@@ -111,7 +111,6 @@ const Joi = require("joi");
  * @typedef ProductListingPrice
  * @property {Price} [effective]
  * @property {Price} [marked]
- * @property {Price} [selling]
  */
 
 /**
@@ -402,7 +401,6 @@ const Joi = require("joi");
  * @property {string[]} [similars]
  * @property {string[]} [tags]
  * @property {ApplicationItemSEO} [seo]
- * @property {DiscountMeta} [discount_meta]
  * @property {string} [image_nature]
  * @property {boolean} [has_variant]
  * @property {string} [item_type]
@@ -1236,7 +1234,6 @@ class CatalogApplicationModel {
     return Joi.object({
       effective: CatalogApplicationModel.Price(),
       marked: CatalogApplicationModel.Price(),
-      selling: CatalogApplicationModel.Price(),
     });
   }
 
@@ -1609,7 +1606,6 @@ class CatalogApplicationModel {
       similars: Joi.array().items(Joi.string().allow("")),
       tags: Joi.array().items(Joi.string().allow("")),
       seo: CatalogApplicationModel.ApplicationItemSEO(),
-      discount_meta: CatalogApplicationModel.DiscountMeta(),
       image_nature: Joi.string().allow(""),
       has_variant: Joi.boolean(),
       item_type: Joi.string().allow(""),

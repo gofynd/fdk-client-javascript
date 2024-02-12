@@ -126,27 +126,6 @@ declare class Billing {
      */
     getInvoices({ requestHeaders }?: any, { responseHeaders }?: object): Promise<BillingPlatformModel.Invoices>;
     /**
-     * @param {BillingPlatformValidator.GetPaymentOptionsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.GetPaymentOptions>} - Success response
-     * @name getPaymentOptions
-     * @summary: API to get payment options
-     * @description: API to get payment options. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getPaymentOptions/).
-     */
-    getPaymentOptions({ transactionId, requestHeaders }?: BillingPlatformValidator.GetPaymentOptionsParam, { responseHeaders }?: object): Promise<BillingPlatformModel.GetPaymentOptions>;
-    /**
-     * @param {BillingPlatformValidator.GetPaymentTransactionParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.PaymentTransactionDetails>} -
-     *   Success response
-     * @name getPaymentTransaction
-     * @summary: API to get payment transaction details
-     * @description: API to get payment transaction details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getPaymentTransaction/).
-     */
-    getPaymentTransaction({ transactionId, requestHeaders }?: BillingPlatformValidator.GetPaymentTransactionParam, { responseHeaders }?: object): Promise<BillingPlatformModel.PaymentTransactionDetails>;
-    /**
      * @param {BillingPlatformValidator.GetSubscriptionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -178,26 +157,6 @@ declare class Billing {
      */
     getentityDetail({ entityName, channel, entityId, component, componentName, requestHeaders, }?: BillingPlatformValidator.GetentityDetailParam, { responseHeaders }?: object): Promise<BillingPlatformModel.EntityResponse>;
     /**
-     * @param {BillingPlatformValidator.GlobalSettingsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.GlobalSettings>} - Success response
-     * @name globalSettings
-     * @summary: API to get global settings details
-     * @description: API to get global settings details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/globalSettings/).
-     */
-    globalSettings({ pageNo, pageSize, query, requestHeaders }?: BillingPlatformValidator.GlobalSettingsParam, { responseHeaders }?: object): Promise<BillingPlatformModel.GlobalSettings>;
-    /**
-     * @param {BillingPlatformValidator.PaymentOptionsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.PaymentOptions>} - Success response
-     * @name paymentOptions
-     * @summary: API to get payment details of requested payment options
-     * @description: API to get payment details of requested payment options. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/paymentOptions/).
-     */
-    paymentOptions({ code, requestHeaders }?: BillingPlatformValidator.PaymentOptionsParam, { responseHeaders }?: object): Promise<BillingPlatformModel.PaymentOptions>;
-    /**
      * @param {BillingPlatformValidator.PlanStatusUpdateParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -218,36 +177,6 @@ declare class Billing {
      */
     subscripePlan({ body, requestHeaders }?: BillingPlatformValidator.SubscripePlanParam, { responseHeaders }?: object): Promise<BillingPlatformModel.SubscribePlanRes>;
     /**
-     * @param {BillingPlatformValidator.SubscriptionConfigsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.ConfigRes>} - Success response
-     * @name subscriptionConfigs
-     * @summary: API to get subscription config details
-     * @description: API to get subscription config details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscriptionConfigs/).
-     */
-    subscriptionConfigs({ requestHeaders }?: any, { responseHeaders }?: object): Promise<BillingPlatformModel.ConfigRes>;
-    /**
-     * @param {BillingPlatformValidator.SubscriptionMethodsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.SubscriptionMethods>} - Success response
-     * @name subscriptionMethods
-     * @summary: API to get subscription methods
-     * @description: API to get subscription methods. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscriptionMethods/).
-     */
-    subscriptionMethods({ uniqueExternalId, requestHeaders }?: BillingPlatformValidator.SubscriptionMethodsParam, { responseHeaders }?: object): Promise<BillingPlatformModel.SubscriptionMethods>;
-    /**
-     * @param {BillingPlatformValidator.SubscriptionPlanChangeParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.PlanChangeDetails>} - Success response
-     * @name subscriptionPlanChange
-     * @summary: API to get plan change details of subscription
-     * @description: API to get plan change details of subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscriptionPlanChange/).
-     */
-    subscriptionPlanChange({ productSuite, uniqueId, platform, requestHeaders }?: BillingPlatformValidator.SubscriptionPlanChangeParam, { responseHeaders }?: object): Promise<BillingPlatformModel.PlanChangeDetails>;
-    /**
      * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -257,16 +186,6 @@ declare class Billing {
      * @description: Upsert subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/upsertCustomerDetail/).
      */
     upsertCustomerDetail({ body, requestHeaders }?: BillingPlatformValidator.UpsertCustomerDetailParam, { responseHeaders }?: object): Promise<BillingPlatformModel.SubscriptionCustomer>;
-    /**
-     * @param {BillingPlatformValidator.VerifyPaymentParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.VerifyPaymentRes>} - Success response
-     * @name verifyPayment
-     * @summary: API to verify subscription payment
-     * @description: API to verify subscription payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/verifyPayment/).
-     */
-    verifyPayment({ body, requestHeaders }?: BillingPlatformValidator.VerifyPaymentParam, { responseHeaders }?: object): Promise<BillingPlatformModel.VerifyPaymentRes>;
 }
-import BillingPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Billing/BillingPlatformValidator");
-import BillingPlatformModel = require("sdk/output/javascript/code/sdk/platform/Billing/BillingPlatformModel");
+import BillingPlatformValidator = require("./BillingPlatformValidator");
+import BillingPlatformModel = require("./BillingPlatformModel");

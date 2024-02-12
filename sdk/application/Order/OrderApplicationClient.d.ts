@@ -146,5 +146,5 @@ declare class Order {
      */
     verifyOtpShipmentCustomer({ orderId, shipmentId, body, requestHeaders }?: OrderApplicationValidator.VerifyOtpShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.VerifyOtpResponse>;
 }
-import OrderApplicationValidator = require("sdk/output/javascript/code/sdk/application/Order/OrderApplicationValidator");
-import OrderApplicationModel = require("sdk/output/javascript/code/sdk/application/Order/OrderApplicationModel");
+import OrderApplicationValidator = require("./OrderApplicationValidator");
+import OrderApplicationModel = require("./OrderApplicationModel");

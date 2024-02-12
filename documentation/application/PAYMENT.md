@@ -23,7 +23,6 @@ Default
 * [createPaymentOrder](#createpaymentorder)
 * [customerCreditSummary](#customercreditsummary)
 * [customerOnboard](#customeronboard)
-* [deleteBeneficiaryDetails](#deletebeneficiarydetails)
 * [deleteUserCard](#deleteusercard)
 * [delinkWallet](#delinkwallet)
 * [enableOrDisableRefundTransferMode](#enableordisablerefundtransfermode)
@@ -37,11 +36,8 @@ Default
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
 * [getPaymentModeRoutesPaymentLink](#getpaymentmoderoutespaymentlink)
 * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
-* [getRefundOptions](#getrefundoptions)
 * [getRupifiBannerDetails](#getrupifibannerdetails)
-* [getSelectedRefundOption](#getselectedrefundoption)
 * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
-* [getUserBeneficiariesDetailV2](#getuserbeneficiariesdetailv2)
 * [initialisePayment](#initialisepayment)
 * [initialisePaymentPaymentLink](#initialisepaymentpaymentlink)
 * [linkWallet](#linkwallet)
@@ -52,16 +48,14 @@ Default
 * [renderHTML](#renderhtml)
 * [resendOrCancelPayment](#resendorcancelpayment)
 * [resendPaymentLink](#resendpaymentlink)
-* [setRefundOptionforShipment](#setrefundoptionforshipment)
 * [updateDefaultBeneficiary](#updatedefaultbeneficiary)
-* [validateBeneficiaryAddress](#validatebeneficiaryaddress)
 * [validateVPA](#validatevpa)
 * [verifyAndChargePayment](#verifyandchargepayment)
 * [verifyCustomerForPayment](#verifycustomerforpayment)
 * [verifyIfscCode](#verifyifsccode)
 * [verifyOtpAndAddBeneficiaryForBank](#verifyotpandaddbeneficiaryforbank)
 * [verifyOtpAndAddBeneficiaryForWallet](#verifyotpandaddbeneficiaryforwallet)
-* [walletLinkInitate](#walletlinkinitate)
+* [walletLinkInitiate](#walletlinkinitiate)
 
 
 
@@ -964,65 +958,6 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ---
 
 
-### deleteBeneficiaryDetails
-Delete saved beneficiary details of customers
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.deleteBeneficiaryDetails({  beneficiaryId : value });
-
-// Async/Await
-const data = await applicationClient.payment.deleteBeneficiaryDetails({  beneficiaryId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| beneficiaryId | string | yes | This is a String value that contains beneficiary_id as value. |  
-
-
-
-Use this API to delete the saved beneficiary details provided beneficiary Id.
-
-*Returned Response:*
-
-
-
-
-[DeleteRefundAccountResponse](#DeleteRefundAccountResponse)
-
-Success. Shows whether the beneficiary details were saved to a returned/cancelled order or not.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "refund_options": "Account successfully deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### deleteUserCard
 Delete a card
 
@@ -1398,7 +1333,6 @@ Success. Returns a list of cards saved by the user. Check the example shown belo
       "expired": false,
       "card_fingerprint": null,
       "card_brand_image": "https://hdn-1.fynd.com/payment/visa.png",
-      "bank_logo": "https://hdn-1.fynd.com/payment/bank.png",
       "compliant_with_tokenisation_guidelines": true
     }
   ]
@@ -2184,10 +2118,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -2731,10 +2661,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -3007,10 +2933,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -3093,117 +3015,6 @@ Success. Returns all available options for payment. Check the example shown belo
 ---
 
 
-### getRefundOptions
-Refund Options Handler to fetch available refund options.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.getRefundOptions({  configuration : value,
- productType : value,
- amount : value });
-
-// Async/Await
-const data = await applicationClient.payment.getRefundOptions({  configuration : value,
- productType : value,
- amount : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configuration | string | yes | config type |    
-| productType | string | no | Product Type either 1P and 3P |    
-| amount | string | no | refunded amount |  
-
-
-
-Refund Options Handler to fetch available refund options
-
-*Returned Response:*
-
-
-
-
-[RefundOptionResponse](#RefundOptionResponse)
-
-Success. Returns the refund options for config type. Check the example shown below or refer `RefundOptionResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "refund_options": {
-    "items": [
-      {
-        "id": 4,
-        "name": "refund_to_source",
-        "display_name": "refund_to_source",
-        "is_active": true
-      },
-      {
-        "id": 5,
-        "name": "creditnote",
-        "display_name": "CreditNote",
-        "is_active": true
-      },
-      {
-        "id": 8,
-        "name": "Wallet",
-        "display_name": "Wallet",
-        "is_active": true
-      }
-    ]
-  },
-  "offline_refund_options": {
-    "payment_modes": [
-      "COD"
-    ],
-    "items": [
-      {
-        "id": 1,
-        "name": "bank",
-        "display_name": "BANK",
-        "is_active": true
-      },
-      {
-        "id": 2,
-        "name": "upi",
-        "display_name": "UPI",
-        "is_active": true
-      },
-      {
-        "id": 3,
-        "name": "jm_wallet",
-        "display_name": "JM Wallet",
-        "is_active": true
-      }
-    ]
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getRupifiBannerDetails
 Get CreditLine Offer
 
@@ -3246,73 +3057,6 @@ Success. Return CreditLine Offer detail. Check the example shown below or refer 
     "kyc_url": "http://rupifi.kyc1.com/",
     "status": "APPROVED"
   }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSelectedRefundOption
-API to get the selected refund options for shipment id
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.getSelectedRefundOption({  shipmentId : value,
- orderId : value });
-
-// Async/Await
-const data = await applicationClient.payment.getSelectedRefundOption({  shipmentId : value,
- orderId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | shipment Id |   
-| orderId | string | yes | Order Id |  
-
-
-
-API to get the selected refund options for shipment id
-
-*Returned Response:*
-
-
-
-
-[SelectedRefundOptionResponse](#SelectedRefundOptionResponse)
-
-Success. Returns the selected refund option for shipment. Check the example shown below or refer `SelectedRefundOptionResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "shipment_id": "1754345678232412312",
-  "transfer_mode": {
-    "mode": "refund_to_source",
-    "display_name": "Refund to Source"
-  },
-  "message": "Refund Source"
 }
 ```
 </details>
@@ -3394,135 +3138,6 @@ Success. Returns the details of the beneficiary getting a refund. Check the exam
     }
   ],
   "show_beneficiary_details": false
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserBeneficiariesDetailV2
-Lists the beneficiary of a refund
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.getUserBeneficiariesDetailV2({  orderId : value,
- shipmentId : value,
- mop : value });
-
-// Async/Await
-const data = await applicationClient.payment.getUserBeneficiariesDetailV2({  orderId : value,
- shipmentId : value,
- mop : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| orderId | string | no | A unique number used for identifying and tracking your orders. |    
-| shipmentId | string | no | A unique number used for identifying and tracking your orders. |    
-| mop | string | no | Mode of payment for which beneficiary data required |  
-
-
-
-Use this API to get the details of all active beneficiary added by a user for refund.
-
-*Returned Response:*
-
-
-
-
-[OrderBeneficiaryResponseSchemaV2](#OrderBeneficiaryResponseSchemaV2)
-
-Success. Returns the details of the beneficiary getting a refund. Check the example shown below or refer `OrderBeneficiaryResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "bank": [
-      {
-        "id": 221,
-        "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
-        "bank_name": "Example Bank",
-        "branch_name": "Example Bank",
-        "account_holder": "DUMMY NAME",
-        "account_no": "XXXX-XXXX-9999",
-        "ifsc_code": "EXAM0009999",
-        "mobile": "9999999999",
-        "email": "dummy@example.com",
-        "address": "204A",
-        "comment": "",
-        "is_active": null,
-        "created_on": "2020-06-29 12:38:39",
-        "modified_on": "2020-06-29 12:38:39",
-        "display_name": "BANK",
-        "transfer_mode": "bank",
-        "title": "Bank Account",
-        "subtitle": "1234567891",
-        "delights_user_name": null,
-        "default": "true,",
-        "logo": "https://hdn-1.fynd.com/payment/paybycard.png"
-      }
-    ],
-    "upi": [
-      {
-        "id": 222,
-        "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
-        "vpa_address": "success@upi",
-        "vpa": "success@upi",
-        "mobile": "9999999999",
-        "email": "dummy@example.com",
-        "address": "204A",
-        "comment": "",
-        "display_name": "UPI",
-        "transfer_mode": "vpa",
-        "title": "UPI Payment",
-        "subtitle": "success@upi",
-        "delights_user_name": null,
-        "default": "true,",
-        "logo": "https://hdn-1.fynd.com/payment/paybycard.png"
-      }
-    ],
-    "wallet": [
-      {
-        "id": 223,
-        "beneficiary_id": "234567823213123",
-        "wallet_address": "1234567891",
-        "wallet": "1234567891",
-        "mobile": "9999999999",
-        "email": "dummy@example.com",
-        "address": "204A",
-        "comment": "",
-        "display_name": "Wallet",
-        "transfer_mode": "wallet",
-        "title": "DummyWallet",
-        "subtitle": "1234567891",
-        "delights_user_name": null,
-        "default": true,
-        "logo": "https://hdn-1.fynd.com/payment/paybycard.png"
-      }
-    ]
-  },
-  "show_beneficiary_details": true
 }
 ```
 </details>
@@ -4214,70 +3829,6 @@ Success. Check the example shown below
 ---
 
 
-### setRefundOptionforShipment
-Save refund source against shipment and order
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.setRefundOptionforShipment({  body : value });
-
-// Async/Await
-const data = await applicationClient.payment.setRefundOptionforShipment({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ShipmentRefundRequest](#ShipmentRefundRequest) | yes | Request body |
-
-
-Save refund source against shipment and order
-
-*Returned Response:*
-
-
-
-
-[ShipmentRefundResponse](#ShipmentRefundResponse)
-
-Success. Returns the status of saved refund source for shipment and order. Check the example shown below or refer `ShipmentRefundResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "order_id": "FY653A517A0EF2BEE7A7",
-    "shipment_id": "1754345678232412312",
-    "beneficiary_id": "213123213123",
-    "transfer_mode": "bank"
-  },
-  "message": "Saved transfer mode for shipment"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateDefaultBeneficiary
 Set a default beneficiary for a refund
 
@@ -4321,90 +3872,6 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 {
   "success": true,
   "is_beneficiary_set": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### validateBeneficiaryAddress
-API to Validate UPI ID and IFSC code
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.validateBeneficiaryAddress({  body : value });
-
-// Async/Await
-const data = await applicationClient.payment.validateBeneficiaryAddress({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ValidateValidateAddressRequest](#ValidateValidateAddressRequest) | yes | Request body |
-
-
-API to Validate UPI ID and IFSC code
-
-*Returned Response:*
-
-
-
-
-[ValidateValidateAddressResponse](#ValidateValidateAddressResponse)
-
-Success. Returns the IFSC/VPA validation. Check the example shown below or refer `ValidateValidateAddressResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "ifsc": {
-    "branch_name": "MANPUR",
-    "bank_name": "GAYA",
-    "BRANCH": "MANPUR",
-    "CENTRE": "GAYA",
-    "DISTRICT": "GAYA",
-    "STATE": "BIHAR",
-    "ADDRESS": "POBUNIYADGANJBIHAR",
-    "CONTACT": "00",
-    "MICR": "816002103",
-    "UPI": true,
-    "RTGS": true,
-    "CITY": "GAYA",
-    "NEFT": true,
-    "IMPS": true,
-    "SWIFT": "",
-    "BANK": "State Bank of India",
-    "BANKCODE": "SBIN",
-    "IFSC": "SBIN0005611",
-    "success": true
-  },
-  "vpa": {
-    "upi_vpa": "success@razorpay",
-    "status": "VALID",
-    "is_valid": true,
-    "customer_name": "Verified"
-  }
 }
 ```
 </details>
@@ -4837,17 +4304,17 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 ---
 
 
-### walletLinkInitate
+### walletLinkInitiate
 Initiate linking of wallet
 
 
 
 ```javascript
 // Promise
-const promise = applicationClient.payment.walletLinkInitate({  body : value });
+const promise = applicationClient.payment.walletLinkInitiate({  body : value });
 
 // Async/Await
-const data = await applicationClient.payment.walletLinkInitate({  body : value });
+const data = await applicationClient.payment.walletLinkInitiate({  body : value });
 ```
 
 
@@ -4937,7 +4404,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delights | boolean? |  yes  | True if  beneficiary to be added by delights or False if by User |
+ | delights | boolean |  no  | True if  beneficiary to be added by delights or False if by User |
  | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  |  |
  | order_id | string |  no  | Merchant Order Id |
  | otp | string? |  yes  |  |
@@ -5008,13 +4475,13 @@ OTP for Wallet Linking sent
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | api | string? |  yes  | Payment gateway api endpoint |
- | config_type | string? |  yes  | Fynd or self payment gateway |
- | key | string? |  yes  | Payment gateway api key |
+ | config_type | string |  no  | Fynd or self payment gateway |
+ | key | string |  no  | Payment gateway api key |
  | merchant_id | string? |  yes  | Unique merchant id |
  | merchant_key | string? |  yes  | Unique merchant key |
  | pin | string? |  yes  | Masked pin |
  | sdk | boolean? |  yes  | SDK |
- | secret | string? |  yes  | Masked payment gateway api secret |
+ | secret | string |  no  | Masked payment gateway api secret |
  | user_id | string? |  yes  | Registered User id |
  | verify_api | string? |  yes  | Payment gateway verify payment api endpoint |
  
@@ -5113,17 +4580,6 @@ OTP for Wallet Linking sent
  | mobile | string |  no  | Moblie Number of the User |
  | vpa | string? |  yes  |  |
  | wallet | string? |  yes  |  |
- 
-
----
-
-#### [BeneficiaryRefundOptions](#BeneficiaryRefundOptions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bank | [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)? |  yes  | List of all add bank beneficiary details. |
- | upi | [UpiBeneficiaryDetails](#UpiBeneficiaryDetails)? |  yes  | List of all add UPI beneficiary details. |
- | wallet | [WalletBeneficiaryDetails](#WalletBeneficiaryDetails)? |  yes  | List of all add Wallet beneficiary details. |
  
 
 ---
@@ -5461,16 +4917,6 @@ OTP for Wallet Linking sent
 
 ---
 
-#### [DeleteRefundAccountResponse](#DeleteRefundAccountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Message |
- | success | boolean |  no  | Success/Failure of the deleted beneficiary |
- 
-
----
-
 #### [DeviceDetails](#DeviceDetails)
 
  | Properties | Type | Nullable | Description |
@@ -5674,16 +5120,6 @@ OTP for Wallet Linking sent
 
 ---
 
-#### [OfflineRefundOptions](#OfflineRefundOptions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [RefundOptionsDetails](#RefundOptionsDetails) |  no  | List of all refund options. |
- | payment_modes | [string] |  no  | List of all offline payment options. MOP Code value |
- 
-
----
-
 #### [OnboardSummary](#OnboardSummary)
 
  | Properties | Type | Nullable | Description |
@@ -5736,17 +5172,6 @@ OTP for Wallet Linking sent
 
 ---
 
-#### [OrderBeneficiaryResponseSchemaV2](#OrderBeneficiaryResponseSchemaV2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [BeneficiaryRefundOptions](#BeneficiaryRefundOptions) |  no  | Beneficiary Data for Bank account, UPI and Wallets. |
- | limit | string |  no  | Max Limit for adding bank account, UPI and wallet |
- | show_beneficiary_details | boolean |  no  | Show Beneficiary details on UI or not. |
- 
-
----
-
 #### [OutstandingOrderDetailsResponse](#OutstandingOrderDetailsResponse)
 
  | Properties | Type | Nullable | Description |
@@ -5767,6 +5192,17 @@ OTP for Wallet Linking sent
  | message | string? |  yes  | Message |
  | status_code | number |  no  | HTTP Status code |
  | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
+#### [PaymentDefaultSelection](#PaymentDefaultSelection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  | Identifier for Payment Mode |
+ | mode | string? |  yes  | Default Selection Payment Mode |
+ | skip | boolean? |  yes  | Decide if the default payment mode will skip the payment options page altogether or just be preferred on the Frontend |
  
 
 ---
@@ -5929,8 +5365,9 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | payment_default_selection | [PaymentDefaultSelection](#PaymentDefaultSelection)? |  yes  |  |
  | payment_flows | [PaymentFlow](#PaymentFlow) |  no  |  |
- | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
+ | payment_option | [RootPaymentMode](#RootPaymentMode) |  no  |  |
  
 
 ---
@@ -5987,7 +5424,7 @@ OTP for Wallet Linking sent
  | order_id | string? |  yes  | Merchant order id |
  | payment_confirm_url | string? |  yes  | Payment confirm url for aggregator |
  | status_code | number |  no  | HTTP status code |
- | success | boolean? |  yes  | Successful or failure |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -6072,38 +5509,6 @@ OTP for Wallet Linking sent
  | is_verified_flag | boolean? |  yes  |  |
  | message | string |  no  | Response message |
  | success | boolean |  no  | Success or failure flag. |
- 
-
----
-
-#### [RefundOptionResponse](#RefundOptionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | offline_refund_options | [OfflineRefundOptions](#OfflineRefundOptions) |  no  | Available offline refund options data |
- | refund_options | [RefundOptions](#RefundOptions) |  no  | Available refund options data |
- | success | boolean |  no  | Success/Failure Of response |
- 
-
----
-
-#### [RefundOptions](#RefundOptions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [RefundOptionsDetails](#RefundOptionsDetails) |  no  | List of all refund options. |
- 
-
----
-
-#### [RefundOptionsDetails](#RefundOptionsDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  | refund option display name |
- | id | number |  no  | Refund ID. It will be unique identifier |
- | is_active | boolean? |  yes  | Refund option is active or not |
- | name | string |  no  | refund option name |
  
 
 ---
@@ -6197,25 +5602,12 @@ OTP for Wallet Linking sent
 
 ---
 
-#### [SelectedRefundOptionResponse](#SelectedRefundOptionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | message |
- | shipment_id | string |  no  | Shipment ID |
- | success | boolean |  no  | Successful or not. |
- | transfer_mode | string |  no  | selected transfer mode for given shipment |
- 
-
----
-
 #### [SetDefaultBeneficiaryRequest](#SetDefaultBeneficiaryRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | beneficiary_id | string |  no  | Beneficiary Hash Id of the beneficiary added |
  | order_id | string |  no  | Merchant Order Id |
- | shipment_id | string? |  yes  | Shipment Id from respective merchant order ID |
  
 
 ---
@@ -6226,41 +5618,6 @@ OTP for Wallet Linking sent
  | ---------- | ---- | -------- | ----------- |
  | is_beneficiary_set | boolean |  no  | Boolean Flag whether Beneficiary set or not |
  | success | boolean? |  yes  | Response is successful or not |
- 
-
----
-
-#### [ShipmentRefundDetail](#ShipmentRefundDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiary_id | string |  no  | Beneficiary ID |
- | order_id | string |  no  | Order ID |
- | shipment_id | string |  no  | Shipment ID |
- | transfer_mode | string |  no  | TransferMode |
- 
-
----
-
-#### [ShipmentRefundRequest](#ShipmentRefundRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiary_id | string? |  yes  | Beneficiary Hash Id of the beneficiary added |
- | order_id | string |  no  | Merchant Order Id |
- | shipment_id | string |  no  | Shipment Id of the respective Merchant Order Id |
- | transfer_mode | string |  no  | Transfer Mode of the Beneficiary to be added |
- 
-
----
-
-#### [ShipmentRefundResponse](#ShipmentRefundResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [ShipmentRefundDetail](#ShipmentRefundDetail) |  no  | Selected Shipment refund option details. |
- | message | string |  no  | message |
- | success | boolean |  no  | Successful or not. |
  
 
 ---
@@ -6323,30 +5680,6 @@ OTP for Wallet Linking sent
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean? |  yes  | Response is successful or not |
- 
-
----
-
-#### [UpiBeneficiaryDetails](#UpiBeneficiaryDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | string |  no  | Address of User |
- | beneficiary_id | string |  no  | Benenficiary Id |
- | comment | string? |  yes  | Remarks |
- | created_on | string |  no  | Creation Date of Beneficiary |
- | delights_user_name | string? |  yes  | User Id Who filled the Beneficiary  |
- | display_name | string |  no  | Display Name Of Account |
- | email | string |  no  | EMail of User |
- | id | number |  no  |   |
- | is_active | boolean |  no  | Boolean Flag whether Beneficiary set or not |
- | mobile | string? |  yes  | Mobile no of User |
- | modified_on | string |  no  | MOdification Date of Beneficiary |
- | subtitle | string |  no  | SHort Title Of Account |
- | title | string |  no  | Title Of Account |
- | transfer_mode | string |  no  | Transfer Mode Of Account |
- | vpa | string? |  yes  | Branch Name Of Account |
- | vpa_address | string |  no  | Bank Name Of Account |
  
 
 ---
@@ -6414,32 +5747,11 @@ OTP for Wallet Linking sent
 
 ---
 
-#### [ValidateValidateAddressRequest](#ValidateValidateAddressRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Aggregator Name |
- | ifsc_code | string? |  yes  | IFSC Code |
- | upi_vpa | string? |  yes  | VPA Address |
- 
-
----
-
-#### [ValidateValidateAddressResponse](#ValidateValidateAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ifsc | string? |  yes  | IFSC details response data |
- | success | boolean |  no  | Successful or not. |
- | upi | [VPADetails](#VPADetails)? |  yes  | UPI validation details. |
- 
-
----
-
 #### [ValidateVPARequest](#ValidateVPARequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | aggregator | string? |  yes  | aggregator slug |
  | upi_vpa | string |  no  | UPI ID |
  
 
@@ -6451,42 +5763,6 @@ OTP for Wallet Linking sent
  | ---------- | ---- | -------- | ----------- |
  | data | [ValidateUPI](#ValidateUPI) |  no  |  |
  | success | boolean |  no  | Response is successful or not. |
- 
-
----
-
-#### [VPADetails](#VPADetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customer_name | string |  no  | VPA Customer Name |
- | is_valid | boolean |  no  | Is VPA valid or not |
- | status | string |  no  | VPA validation message |
- | upi_vpa | string |  no  | VPA address |
- 
-
----
-
-#### [WalletBeneficiaryDetails](#WalletBeneficiaryDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | string |  no  | Address of User |
- | beneficiary_id | string |  no  | Benenficiary Id |
- | comment | string? |  yes  | Remarks |
- | created_on | string |  no  | Creation Date of Beneficiary |
- | delights_user_name | string? |  yes  | User Id Who filled the Beneficiary  |
- | display_name | string |  no  | Display Name Of Account |
- | email | string |  no  | EMail of User |
- | id | number |  no  |   |
- | is_active | boolean |  no  | Boolean Flag whether Beneficiary set or not |
- | mobile | string? |  yes  | MObile no of User |
- | modified_on | string |  no  | MOdification Date of Beneficiary |
- | subtitle | string |  no  | SHort Title Of Account |
- | title | string |  no  | Title Of Account |
- | transfer_mode | string |  no  | Transfer Mode Of Account |
- | wallet | string? |  yes  | Branch Name Of Account |
- | wallet_address | string |  no  | Bank Name Of Account |
  
 
 ---

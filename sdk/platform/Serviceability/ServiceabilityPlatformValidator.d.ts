@@ -68,11 +68,10 @@ export = ServiceabilityPlatformValidator;
  * @property {string} [stage] - Stage of the account. enabled/disabled
  * @property {string} [paymentMode] - Filters dp accounts based on payment mode
  * @property {string} [transportType] - Filters dp accounts based on transport_type
- * @property {string[]} [accountIds] - Filters dp accounts based on their ids
  */
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
+ * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
  */
 /**
  * @typedef GetPackageMaterialListParam
@@ -115,7 +114,7 @@ export = ServiceabilityPlatformValidator;
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
  * @property {string} [channelId] - Zones filtered by an application
  * @property {string} [q] - Search with name as a free text
- * @property {string} [country] - ISO2 code of the country
+ * @property {string} [countryIsoCode] - ISO2 code of the country
  * @property {string} [state] - State name
  * @property {string} [city] - City name
  * @property {string} [pincode] - Pincode value to search zones
@@ -364,13 +363,9 @@ type GetCourierPartnerAccountsParam = {
      * - Filters dp accounts based on transport_type
      */
     transportType?: string;
-    /**
-     * - Filters dp accounts based on their ids
-     */
-    accountIds?: string[];
 };
 type GetOptimalLocationsParam = {
-    body: ServiceabilityPlatformModel.ReAssignStoreRequest;
+    body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema;
 };
 type GetPackageMaterialListParam = {
     /**
@@ -466,7 +461,7 @@ type GetZonesParam = {
     /**
      * - ISO2 code of the country
      */
-    country?: string;
+    countryIsoCode?: string;
     /**
      * - State name
      */
@@ -534,4 +529,4 @@ type UpdateZoneByIdParam = {
 };
 type GetAllStoresParam = any;
 type GetCompanyConfigurationParam = any;
-import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

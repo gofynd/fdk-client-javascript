@@ -36,10 +36,6 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
  */
 /**
- * @typedef PatchApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequest} body
- */
-/**
  * @typedef PatchApplicationServiceabilitySelfShipmentParam
  * @property {ServiceabilityPlatformModel.SelfShipResponse} body
  */
@@ -103,8 +99,6 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getStoreRules(): GetStoreRulesParam;
     /** @returns {InsertApplicationConfigParam} */
     static insertApplicationConfig(): InsertApplicationConfigParam;
-    /** @returns {PatchApplicationConfigurationParam} */
-    static patchApplicationConfiguration(): PatchApplicationConfigurationParam;
     /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
     static patchApplicationServiceabilitySelfShipment(): PatchApplicationServiceabilitySelfShipmentParam;
     /** @returns {UpdateApplicationConfigurationParam} */
@@ -127,7 +121,7 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updateStoreRulesConfig(): UpdateStoreRulesConfigParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateCourierPartnerRuleParam, CreateStoreRulesParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetStoreRuleParam, GetStoreRulesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam };
+    export { CreateCourierPartnerRuleParam, CreateStoreRulesParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetStoreRuleParam, GetStoreRulesParam, InsertApplicationConfigParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam };
 }
 type CreateCourierPartnerRuleParam = {
     body: ServiceabilityPlatformModel.CourierPartnerRule;
@@ -169,9 +163,6 @@ type GetStoreRulesParam = {
 };
 type InsertApplicationConfigParam = {
     body: ServiceabilityPlatformModel.StoreRuleConfigData;
-};
-type PatchApplicationConfigurationParam = {
-    body: ServiceabilityPlatformModel.ApplicationConfigPatchRequest;
 };
 type PatchApplicationServiceabilitySelfShipmentParam = {
     body: ServiceabilityPlatformModel.SelfShipResponse;
@@ -215,4 +206,4 @@ type UpdateStoreRulesConfigParam = {
 type GetApplicationConfigParam = any;
 type GetApplicationConfigurationParam = any;
 type GetApplicationServiceabilitySelfShipmentParam = any;
-import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

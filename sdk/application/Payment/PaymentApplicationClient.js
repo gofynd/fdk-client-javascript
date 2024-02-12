@@ -34,8 +34,6 @@ class Payment {
       customerCreditSummary:
         "/service/application/payment/v1.0/payment/credit-summary/",
       customerOnboard: "/service/application/payment/v1.0/credit-onboard/",
-      deleteBeneficiaryDetails:
-        "/service/application/payment/v1.0/refund/account/{beneficiary_id}",
       deleteUserCard: "/service/application/payment/v1.0/card/remove",
       delinkWallet:
         "/service/application/payment/v1.0/payment/options/wallet/delink",
@@ -58,15 +56,9 @@ class Payment {
         "/service/application/payment/v1.0/payment/options/link/",
       getPosPaymentModeRoutes:
         "/service/application/payment/v1.0/payment/options/pos",
-      getRefundOptions:
-        "/service/application/payment/v1.0/payment/refundoptions/",
       getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
-      getSelectedRefundOption:
-        "/service/application/payment/v1.0/payment/selected_refund_options",
       getUserBeneficiariesDetail:
         "/service/application/payment/v1.0/refund/user/beneficiary",
-      getUserBeneficiariesDetailV2:
-        "/service/application/payment/v2.0/refund/user/beneficiary",
       initialisePayment: "/service/application/payment/v1.0/payment/request",
       initialisePaymentPaymentLink:
         "/service/application/payment/v1.0/payment/request/link/",
@@ -85,12 +77,8 @@ class Payment {
         "/service/application/payment/v1.0/payment/resend_or_cancel",
       resendPaymentLink:
         "/service/application/payment/v1.0/resend-payment-link/",
-      setRefundOptionforShipment:
-        "/service/application/payment/v1.0/payment/refundoptions/",
       updateDefaultBeneficiary:
         "/service/application/payment/v1.0/refund/beneficiary/default",
-      validateBeneficiaryAddress:
-        "/service/application/payment/v1.0/validate/beneficiary-address",
       validateVPA: "/service/application/payment/v1.0/validate-vpa",
       verifyAndChargePayment:
         "/service/application/payment/v1.0/payment/confirm/charge",
@@ -101,7 +89,7 @@ class Payment {
         "/service/application/payment/v1.0/refund/verification/bank",
       verifyOtpAndAddBeneficiaryForWallet:
         "/service/application/payment/v1.0/refund/verification/wallet",
-      walletLinkInitate:
+      walletLinkInitiate:
         "/service/application/payment/v1.0/payment/options/wallet/link",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -1164,89 +1152,6 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Payment > customerOnboard \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {PaymentApplicationValidator.DeleteBeneficiaryDetailsParam} arg -
-   *   Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.DeleteRefundAccountResponse>}
-   *   - Success response
-   *
-   * @name deleteBeneficiaryDetails
-   * @summary: Delete saved beneficiary details of customers
-   * @description: Use this API to delete the saved beneficiary details provided beneficiary Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteBeneficiaryDetails/).
-   */
-  async deleteBeneficiaryDetails(
-    { beneficiaryId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = PaymentApplicationValidator.deleteBeneficiaryDetails().validate(
-      { beneficiaryId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.deleteBeneficiaryDetails().validate(
-      { beneficiaryId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > deleteBeneficiaryDetails \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "delete",
-      constructUrl({
-        url: this._urls["deleteBeneficiaryDetails"],
-        params: { beneficiaryId },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = PaymentApplicationModel.DeleteRefundAccountResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Payment > deleteBeneficiaryDetails \n ${res_error}`,
         });
       }
     }
@@ -2396,89 +2301,6 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetRefundOptionsParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.RefundOptionResponse>} - Success response
-   * @name getRefundOptions
-   * @summary: Refund Options Handler to fetch available refund options.
-   * @description: Refund Options Handler to fetch available refund options - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRefundOptions/).
-   */
-  async getRefundOptions(
-    { configuration, productType, amount, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = PaymentApplicationValidator.getRefundOptions().validate(
-      { configuration, productType, amount },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.getRefundOptions().validate(
-      { configuration, productType, amount },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getRefundOptions \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["configuration"] = configuration;
-    query_params["product_type"] = productType;
-    query_params["amount"] = amount;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getRefundOptions"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = PaymentApplicationModel.RefundOptionResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Payment > getRefundOptions \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {PaymentApplicationValidator.GetRupifiBannerDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -2551,90 +2373,6 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Payment > getRupifiBannerDetails \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {PaymentApplicationValidator.GetSelectedRefundOptionParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.SelectedRefundOptionResponse>}
-   *   - Success response
-   *
-   * @name getSelectedRefundOption
-   * @summary: API to get the selected refund options for shipment id
-   * @description: API to get the selected refund options for shipment id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getSelectedRefundOption/).
-   */
-  async getSelectedRefundOption(
-    { shipmentId, orderId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getSelectedRefundOption().validate(
-      { shipmentId, orderId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.getSelectedRefundOption().validate(
-      { shipmentId, orderId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getSelectedRefundOption \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["shipment_id"] = shipmentId;
-    query_params["order_id"] = orderId;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getSelectedRefundOption"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = PaymentApplicationModel.SelectedRefundOptionResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Payment > getSelectedRefundOption \n ${res_error}`,
         });
       }
     }
@@ -2719,93 +2457,6 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Payment > getUserBeneficiariesDetail \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {PaymentApplicationValidator.GetUserBeneficiariesDetailV2Param} arg
-   *   - Arg object.
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponseSchemaV2>}
-   *   - Success response
-   *
-   * @name getUserBeneficiariesDetailV2
-   * @summary: Lists the beneficiary of a refund
-   * @description: Use this API to get the details of all active beneficiary added by a user for refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetailV2/).
-   */
-  async getUserBeneficiariesDetailV2(
-    { orderId, shipmentId, mop, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getUserBeneficiariesDetailV2().validate(
-      { orderId, shipmentId, mop },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.getUserBeneficiariesDetailV2().validate(
-      { orderId, shipmentId, mop },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getUserBeneficiariesDetailV2 \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["order_id"] = orderId;
-    query_params["shipment_id"] = shipmentId;
-    query_params["mop"] = mop;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getUserBeneficiariesDetailV2"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = PaymentApplicationModel.OrderBeneficiaryResponseSchemaV2().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Payment > getUserBeneficiariesDetailV2 \n ${res_error}`,
         });
       }
     }
@@ -3622,89 +3273,6 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.SetRefundOptionforShipmentParam} arg
-   *   - Arg object.
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ShipmentRefundResponse>} -
-   *   Success response
-   * @name setRefundOptionforShipment
-   * @summary: Save refund source against shipment and order
-   * @description: Save refund source against shipment and order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/setRefundOptionforShipment/).
-   */
-  async setRefundOptionforShipment(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = PaymentApplicationValidator.setRefundOptionforShipment().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.setRefundOptionforShipment().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > setRefundOptionforShipment \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["setRefundOptionforShipment"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = PaymentApplicationModel.ShipmentRefundResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Payment > setRefundOptionforShipment \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {PaymentApplicationValidator.UpdateDefaultBeneficiaryParam} arg -
    *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -3780,90 +3348,6 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Payment > updateDefaultBeneficiary \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {PaymentApplicationValidator.ValidateBeneficiaryAddressParam} arg
-   *   - Arg object.
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ValidateValidateAddressResponse>}
-   *   - Success response
-   *
-   * @name validateBeneficiaryAddress
-   * @summary: API to Validate UPI ID and IFSC code
-   * @description: API to Validate UPI ID and IFSC code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateBeneficiaryAddress/).
-   */
-  async validateBeneficiaryAddress(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = PaymentApplicationValidator.validateBeneficiaryAddress().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.validateBeneficiaryAddress().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > validateBeneficiaryAddress \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["validateBeneficiaryAddress"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = PaymentApplicationModel.ValidateValidateAddressResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Payment > validateBeneficiaryAddress \n ${res_error}`,
         });
       }
     }
@@ -4358,19 +3842,19 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.WalletLinkInitateParam} arg - Arg object.
+   * @param {PaymentApplicationValidator.WalletLinkInitiateParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
-   * @name walletLinkInitate
+   * @name walletLinkInitiate
    * @summary: Initiate linking of wallet
-   * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitate/).
+   * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitiate/).
    */
-  async walletLinkInitate(
+  async walletLinkInitiate(
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = PaymentApplicationValidator.walletLinkInitate().validate(
+    const { error } = PaymentApplicationValidator.walletLinkInitiate().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4381,14 +3865,14 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.walletLinkInitate().validate(
+    } = PaymentApplicationValidator.walletLinkInitiate().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > walletLinkInitate \n ${warrning}`,
+        message: `Parameter Validation warrnings for application > Payment > walletLinkInitiate \n ${warrning}`,
       });
     }
 
@@ -4400,7 +3884,7 @@ class Payment {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["walletLinkInitate"],
+        url: this._urls["walletLinkInitiate"],
         params: {},
       }),
       query_params,
@@ -4427,7 +3911,7 @@ class Payment {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for application > Payment > walletLinkInitate \n ${res_error}`,
+          message: `Response Validation Warnings for application > Payment > walletLinkInitiate \n ${res_error}`,
         });
       }
     }

@@ -46,12 +46,12 @@ declare class Lead {
      * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.GeneralConfigResponse>} - Success response
+     * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
      * @name getGeneralConfig
      * @summary: Get general support configuration.
      * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
      */
-    getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.GeneralConfigResponse>;
+    getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
     /**
      * @param {LeadPlatformValidator.GetPlatformTicketParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -141,6 +141,6 @@ declare class Lead {
      */
     submitFeedback({ id, body, requestHeaders }?: LeadPlatformValidator.SubmitFeedbackParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketFeedback>;
 }
-import LeadPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformValidator");
-import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import LeadPlatformValidator = require("./LeadPlatformValidator");
+import LeadPlatformModel = require("./LeadPlatformModel");
+import Paginator = require("../../common/Paginator");

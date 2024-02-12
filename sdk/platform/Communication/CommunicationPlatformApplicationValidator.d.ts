@@ -222,7 +222,6 @@ export = CommunicationPlatformApplicationValidator;
  */
 /**
  * @typedef SendOtpParam
- * @property {boolean} [ci] - Common Information
  * @property {CommunicationPlatformModel.SendOtpCommsReq} body
  */
 /**
@@ -762,10 +761,6 @@ type SendCommunicationSynchronouslyParam = {
     body: CommunicationPlatformModel.EngineRequest;
 };
 type SendOtpParam = {
-    /**
-     * - Common Information
-     */
-    ci?: boolean;
     body: CommunicationPlatformModel.SendOtpCommsReq;
 };
 type TriggerCampaignJobParam = {
@@ -833,4 +828,4 @@ type GetSystemAudiencesParam = any;
 type GetSystemEmailTemplatesParam = any;
 type GetSystemSmsTemplatesParam = any;
 type UpdateOtpConfigurationParam = any;
-import CommunicationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformModel");
+import CommunicationPlatformModel = require("./CommunicationPlatformModel");

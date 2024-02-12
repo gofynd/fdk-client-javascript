@@ -18,5 +18,5 @@ declare class Content {
      */
     getCredentialsByEntity({ entity, requestHeaders }?: ContentPublicValidator.GetCredentialsByEntityParam, { responseHeaders }?: object): Promise<ContentPublicModel.CredentialsSchema>;
 }
-import ContentPublicValidator = require("sdk/output/javascript/code/sdk/public/Content/ContentPublicValidator");
-import ContentPublicModel = require("sdk/output/javascript/code/sdk/public/Content/ContentPublicModel");
+import ContentPublicValidator = require("./ContentPublicValidator");
+import ContentPublicModel = require("./ContentPublicModel");

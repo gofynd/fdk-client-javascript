@@ -175,7 +175,7 @@ const Joi = require("joi");
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory[]} [sub_categories]
+ * @property {TicketCategory} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -286,7 +286,7 @@ class LeadApplicationModel {
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(LeadApplicationModel.PhoneNumber()),
       emails: Joi.array().items(LeadApplicationModel.Email()),
-      gender: Joi.string().allow("").allow(null),
+      gender: Joi.string().allow(""),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),
@@ -452,7 +452,7 @@ class LeadApplicationModel {
     return Joi.object({
       display: Joi.string().allow("").required(),
       key: Joi.string().allow("").required(),
-      sub_categories: Joi.array().items(Joi.link("#TicketCategory")),
+      sub_categories: Joi.link("#TicketCategory"),
       group_id: Joi.number(),
       feedback_form: LeadApplicationModel.FeedbackForm(),
     });

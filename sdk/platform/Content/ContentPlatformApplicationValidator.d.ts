@@ -174,8 +174,8 @@ export = ContentPlatformApplicationValidator;
  * @typedef GetAppCustomFieldDefinitionsParam
  * @property {string} pageNo
  * @property {string} pageSize
- * @property {string} [resources]
- * @property {string} [types]
+ * @property {string} [resource]
+ * @property {string} [type]
  * @property {string} [search]
  */
 /** @typedef GetAppCustomFieldTypesParam */
@@ -857,8 +857,8 @@ type GetAppCustomFieldDefinitionParam = {
 type GetAppCustomFieldDefinitionsParam = {
     pageNo: string;
     pageSize: string;
-    resources?: string;
-    types?: string;
+    resource?: string;
+    type?: string;
     search?: string;
 };
 type GetAppCustomFieldsParam = {
@@ -1234,4 +1234,4 @@ type GetPageMetaParam = any;
 type GetPageSpecParam = any;
 type GetSEOConfigurationParam = any;
 type GetSupportInformationParam = any;
-import ContentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformModel");
+import ContentPlatformModel = require("./ContentPlatformModel");

@@ -148,5 +148,5 @@ declare class Inventory {
      */
     updateJob({ body, requestHeaders }?: InventoryPlatformValidator.UpdateJobParam, { responseHeaders }?: object): Promise<InventoryPlatformModel.ResponseEnvelopeString>;
 }
-import InventoryPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Inventory/InventoryPlatformValidator");
-import InventoryPlatformModel = require("sdk/output/javascript/code/sdk/platform/Inventory/InventoryPlatformModel");
+import InventoryPlatformValidator = require("./InventoryPlatformValidator");
+import InventoryPlatformModel = require("./InventoryPlatformModel");

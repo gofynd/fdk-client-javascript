@@ -5004,7 +5004,7 @@ class Communication {
    * @description: Send OTP Comms via email and sms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendOtp/).
    */
   async sendOtp(
-    { body, ci, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -5012,7 +5012,6 @@ class Communication {
     } = CommunicationPlatformApplicationValidator.sendOtp().validate(
       {
         body,
-        ci,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -5026,7 +5025,6 @@ class Communication {
     } = CommunicationPlatformApplicationValidator.sendOtp().validate(
       {
         body,
-        ci,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -5038,7 +5036,6 @@ class Communication {
     }
 
     const query_params = {};
-    query_params["ci"] = ci;
 
     const response = await PlatformAPIClient.execute(
       this.config,

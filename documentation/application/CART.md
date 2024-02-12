@@ -22,13 +22,10 @@ Default
 * [getBulkDiscountOffers](#getbulkdiscountoffers)
 * [getCart](#getcart)
 * [getCartLastModified](#getcartlastmodified)
-* [getCartMetaConfig](#getcartmetaconfig)
-* [getCartMetaConfigs](#getcartmetaconfigs)
 * [getCartShareLink](#getcartsharelink)
 * [getCartSharedItems](#getcartshareditems)
 * [getCoupons](#getcoupons)
 * [getItemCount](#getitemcount)
-* [getItemCountV2](#getitemcountv2)
 * [getLadderOffers](#getladderoffers)
 * [getPromotionOffers](#getpromotionoffers)
 * [getShipments](#getshipments)
@@ -122,8 +119,7 @@ const promise = applicationClient.cart.addItems({  body : value,
  b : value,
  areaCode : value,
  buyNow : value,
- id : value,
- cartType : value });
+ id : value });
 
 // Async/Await
 const data = await applicationClient.cart.addItems({  body : value,
@@ -131,8 +127,7 @@ const data = await applicationClient.cart.addItems({  body : value,
  b : value,
  areaCode : value,
  buyNow : value,
- id : value,
- cartType : value });
+ id : value });
 ```
 
 
@@ -141,12 +136,11 @@ const data = await applicationClient.cart.addItems({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
-| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
-| areaCode | string | no | Customer servicable area_code |    
-| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |    
-| id | string | no | The unique identifier of the cart |    
-| cartType | string | no | The type of cart |  
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| areaCode | string | no |  |    
+| buyNow | boolean | no |  |    
+| id | string | no |  |  
 | body | [AddCartRequest](#AddCartRequest) | yes | Request body |
 
 
@@ -898,7 +892,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           },
           "identifiers": {},
           "moq": {},
-          "seller_count": 1,
           "delivery_promise": {
             "timestamp": {
               "min": 1646257339,
@@ -922,7 +915,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
               "name": "Motilal Nagar 1, Goregaon"
             },
             "quantity": 4,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 3999,
@@ -1404,12 +1396,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           "discount": "11% OFF"
         }
       ],
-      "custom_cart": {
-        "cart_name": "Universal",
-        "cart_type": "universal",
-        "id": "659e3b6b33848a683efebf2c",
-        "is_universal": true
-      },
       "delivery_charge_info": "",
       "coupon_text": "View all offers",
       "buy_now": false,
@@ -1671,8 +1657,7 @@ const promise = applicationClient.cart.applyCoupon({  body : value,
  b : value,
  p : value,
  id : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await applicationClient.cart.applyCoupon({  body : value,
@@ -1680,8 +1665,7 @@ const data = await applicationClient.cart.applyCoupon({  body : value,
  b : value,
  p : value,
  id : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -1694,8 +1678,7 @@ const data = await applicationClient.cart.applyCoupon({  body : value,
 | b | boolean | no |  |    
 | p | boolean | no |  |    
 | id | string | no |  |    
-| buyNow | boolean | no |  |    
-| cartType | string | no |  |  
+| buyNow | boolean | no |  |  
 | body | [ApplyCouponRequest](#ApplyCouponRequest) | yes | Request body |
 
 
@@ -2369,16 +2352,14 @@ const promise = applicationClient.cart.applyRewardPoints({  body : value,
  id : value,
  i : value,
  b : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await applicationClient.cart.applyRewardPoints({  body : value,
  id : value,
  i : value,
  b : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -2387,11 +2368,10 @@ const data = await applicationClient.cart.applyRewardPoints({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
-| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
-| buyNow | boolean | no | This is boolean to get buy_now cart |    
-| cartType | string | no | type of the cart |  
+| id | string | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| buyNow | boolean | no |  |  
 | body | [RewardPointRequest](#RewardPointRequest) | yes | Request body |
 
 
@@ -2621,13 +2601,11 @@ Checkout all items in the cart
 ```javascript
 // Promise
 const promise = applicationClient.cart.checkoutCart({  body : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await applicationClient.cart.checkoutCart({  body : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -2636,8 +2614,7 @@ const data = await applicationClient.cart.checkoutCart({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| buyNow | boolean | no | This indicates the type of cart to checkout |    
-| cartType | string | no | The type of cart |  
+| buyNow | boolean | no | This indicates the type of cart to checkout |  
 | body | [CartCheckoutDetailRequest](#CartCheckoutDetailRequest) | yes | Request body |
 
 
@@ -3080,13 +3057,11 @@ Checkout all items in the cart
 ```javascript
 // Promise
 const promise = applicationClient.cart.checkoutCartV2({  body : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await applicationClient.cart.checkoutCartV2({  body : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -3095,8 +3070,7 @@ const data = await applicationClient.cart.checkoutCartV2({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| buyNow | boolean | no | This indicates the type of cart to checkout |    
-| cartType | string | no | The type of cart |  
+| buyNow | boolean | no | This indicates the type of cart to checkout |  
 | body | [CartCheckoutDetailV2Request](#CartCheckoutDetailV2Request) | yes | Request body |
 
 
@@ -3538,12 +3512,10 @@ Delete cart once user made successful checkout
 
 ```javascript
 // Promise
-const promise = applicationClient.cart.deleteCart({  id : value,
- cartType : value });
+const promise = applicationClient.cart.deleteCart({  id : value });
 
 // Async/Await
-const data = await applicationClient.cart.deleteCart({  id : value,
- cartType : value });
+const data = await applicationClient.cart.deleteCart({  id : value });
 ```
 
 
@@ -3552,8 +3524,7 @@ const data = await applicationClient.cart.deleteCart({  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart. |    
-| cartType | string | no | The type of cart |  
+| id | string | no | The unique identifier of the cart. |  
 
 
 
@@ -3857,15 +3828,13 @@ Get discount offers based on quantity
 const promise = applicationClient.cart.getBulkDiscountOffers({  itemId : value,
  articleId : value,
  uid : value,
- slug : value,
- cartType : value });
+ slug : value });
 
 // Async/Await
 const data = await applicationClient.cart.getBulkDiscountOffers({  itemId : value,
  articleId : value,
  uid : value,
- slug : value,
- cartType : value });
+ slug : value });
 ```
 
 
@@ -3877,8 +3846,7 @@ const data = await applicationClient.cart.getBulkDiscountOffers({  itemId : valu
 | itemId | number | no | The Item ID of the product |    
 | articleId | string | no | Article Mongo ID |    
 | uid | number | no | UID of the product |    
-| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
-| cartType | string | no | type of the cart |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 
 
@@ -3999,8 +3967,7 @@ const promise = applicationClient.cart.getCart({  id : value,
  c : value,
  assignCardId : value,
  areaCode : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await applicationClient.cart.getCart({  id : value,
@@ -4009,8 +3976,7 @@ const data = await applicationClient.cart.getCart({  id : value,
  c : value,
  assignCardId : value,
  areaCode : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -4019,14 +3985,13 @@ const data = await applicationClient.cart.getCart({  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
-| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
-| c | boolean | no | This is a boolean value. Select `true` to retrieve the cod charges in breakup of cart items. |    
-| assignCardId | number | no | Token of user's debit or credit card |    
-| areaCode | string | no | Customer servicable area_code |    
-| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |    
-| cartType | string | no | The type of cart |  
+| id | string | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| c | boolean | no |  |    
+| assignCardId | number | no |  |    
+| areaCode | string | no |  |    
+| buyNow | boolean | no |  |  
 
 
 
@@ -4732,7 +4697,6 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
           "name": "Gandhi Nagar"
         },
         "quantity": 108,
-        "product_name": "",
         "price": {
           "base": {
             "marked": 2999,
@@ -4835,8 +4799,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
         }
       },
       "message": "",
-      "quantity": 1,
-      "seller_count": 1
+      "quantity": 1
     }
   ],
   "buy_now": false,
@@ -4900,12 +4863,6 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
       "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
     }
   },
-  "custom_cart": {
-    "cart_name": "Universal",
-    "cart_type": "universal",
-    "id": "659e3b6b33848a683efebf2c",
-    "is_universal": true
-  },
   "delivery_charge_info": "",
   "coupon_text": "View all offers",
   "gstin": "",
@@ -4954,169 +4911,6 @@ const data = await applicationClient.cart.getCartLastModified({  id : value });
 Use this API to fetch Last-Modified timestamp in header metadata.
 
 *Returned Response:*
-
-
-
-
-
-
-
-
----
-
-
-### getCartMetaConfig
-Get cart configuration by id
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.cart.getCartMetaConfig({  cartMetaId : value });
-
-// Async/Await
-const data = await applicationClient.cart.getCartMetaConfig({  cartMetaId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| cartMetaId | string | yes | CartMeta mongo id for fetching single cart meta data |  
-
-
-
-Get cart configuration by id
-
-*Returned Response:*
-
-
-
-
-[CartConfigDetailResponse](#CartConfigDetailResponse)
-
-Cart Config Fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "id": "645ba594d414eb0669e6ee14",
-    "app_id": "60792ded7826bd09330ed90d",
-    "company_id": 884,
-    "bulk_coupons": false,
-    "delivery_charges": {
-      "charges": [],
-      "enabled": false
-    },
-    "empty_cart": false,
-    "enabled": true,
-    "max_cart_items": 50,
-    "min_cart_value": 0,
-    "revenue_engine_coupon": false,
-    "gift_pricing": 50,
-    "gift_display_text": "",
-    "is_universal": false,
-    "is_active": true,
-    "order_placing": {
-      "enabled": true,
-      "message": ""
-    },
-    "name": "Universal",
-    "slug": "universal",
-    "article_tags": [
-      "sale",
-      "offer"
-    ],
-    "allow_coupon_with_rewards": false,
-    "gst_input": true,
-    "staff_selection": true,
-    "placing_for_customer": false,
-    "pan_card": {
-      "enabled": false,
-      "cod_threshold_amount": 0,
-      "online_threshold_amount": 0
-    },
-    "created_on": "2023-12-21T12:17:12",
-    "updated_on": "2023-12-21T12:17:12",
-    "last_modified_by": "5b84e9ffb02426353608c380"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCartMetaConfigs
-Get cart configuration
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.cart.getCartMetaConfigs();
-
-// Async/Await
-const data = await applicationClient.cart.getCartMetaConfigs();
-```
-
-
-
-
-
-
-Get cart configuration
-
-*Returned Response:*
-
-
-
-
-[CartConfigListResponse](#CartConfigListResponse)
-
-Cart Config fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "6203cb1393506f8a75ecd56b",
-      "name": "Universal",
-      "slug": "universal",
-      "article_tags": [
-        "cloths"
-      ],
-      "created_on": "2023-12-21T12:17:12"
-    }
-  ]
-}
-```
-</details>
-
 
 
 
@@ -5724,78 +5518,6 @@ Success. Returns the total count of items in a user's cart.
 ---
 
 
-### getItemCountV2
-Count items in the cart according to cart_type
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.cart.getItemCountV2({  id : value,
- buyNow : value });
-
-// Async/Await
-const data = await applicationClient.cart.getItemCountV2({  id : value,
- buyNow : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| buyNow | boolean | no | Boolean value to get buy_now cart |  
-
-
-
-Use this API to get the total number of items present in cart.
-
-*Returned Response:*
-
-
-
-
-[CartItemCountResponseV2](#CartItemCountResponseV2)
-
-Success. Returns the total count of items in a user's cart.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "user_all_cart_articles_quantity_count": 7,
-  "user_all_cart_article_count": 2,
-  "custom_cart_count": {
-    "universal": {
-      "article_count": 1,
-      "article_quantity_count": 1
-    },
-    "fresh-cart": {
-      "article_count": 1,
-      "article_quantity_count": 6
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getLadderOffers
 Fetch ladder price promotion
 
@@ -5958,15 +5680,13 @@ Fetch available promotions
 const promise = applicationClient.cart.getPromotionOffers({  slug : value,
  pageSize : value,
  promotionGroup : value,
- storeId : value,
- cartType : value });
+ storeId : value });
 
 // Async/Await
 const data = await applicationClient.cart.getPromotionOffers({  slug : value,
  pageSize : value,
  promotionGroup : value,
- storeId : value,
- cartType : value });
+ storeId : value });
 ```
 
 
@@ -5978,8 +5698,7 @@ const data = await applicationClient.cart.getPromotionOffers({  slug : value,
 | slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
 | pageSize | number | no | Number of offers to be fetched to show |    
 | promotionGroup | string | no | Type of promotion groups |    
-| storeId | number | no | Store id |    
-| cartType | string | no | The type of cart |  
+| storeId | number | no | Store id |  
 
 
 
@@ -6879,13 +6598,11 @@ Remove Coupon Applied
 ```javascript
 // Promise
 const promise = applicationClient.cart.removeCoupon({  id : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await applicationClient.cart.removeCoupon({  id : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -6894,9 +6611,8 @@ const data = await applicationClient.cart.removeCoupon({  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| buyNow | boolean | no | This is boolean to get buy_now cart |    
-| cartType | string | no | The type of cart |  
+| id | string | no |  |    
+| buyNow | boolean | no |  |  
 
 
 
@@ -7904,8 +7620,7 @@ const promise = applicationClient.cart.updateCart({  body : value,
  i : value,
  b : value,
  areaCode : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await applicationClient.cart.updateCart({  body : value,
@@ -7913,8 +7628,7 @@ const data = await applicationClient.cart.updateCart({  body : value,
  i : value,
  b : value,
  areaCode : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -7923,12 +7637,11 @@ const data = await applicationClient.cart.updateCart({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
-| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
-| areaCode | string | no | Customer servicable area_code |    
-| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |    
-| cartType | string | no | The type of cart |  
+| id | string | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| areaCode | string | no |  |    
+| buyNow | boolean | no |  |  
 | body | [UpdateCartRequest](#UpdateCartRequest) | yes | Request body |
 
 
@@ -8052,7 +7765,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
               "name": "Gandhi Nagar"
             },
             "quantity": 108,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 2999,
@@ -8148,8 +7860,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
             }
           },
           "message": "",
-          "quantity": 101,
-          "seller_count": 1
+          "quantity": 101
         }
       ],
       "delivery_charge_info": "",
@@ -8893,7 +8604,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
           "key": "437414_7",
           "message": "",
           "bulk_offer": {},
-          "seller_count": 1,
           "price": {
             "base": {
               "add_on": 5499,
@@ -8974,7 +8684,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
               "name": "Colaba Causway"
             },
             "quantity": 5,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 5499,
@@ -9520,8 +9229,7 @@ const promise = applicationClient.cart.validateCouponForPayment({  id : value,
  iin : value,
  network : value,
  type : value,
- cardId : value,
- cartType : value });
+ cardId : value });
 
 // Async/Await
 const data = await applicationClient.cart.validateCouponForPayment({  id : value,
@@ -9534,8 +9242,7 @@ const data = await applicationClient.cart.validateCouponForPayment({  id : value
  iin : value,
  network : value,
  type : value,
- cardId : value,
- cartType : value });
+ cardId : value });
 ```
 
 
@@ -9544,18 +9251,17 @@ const data = await applicationClient.cart.validateCouponForPayment({  id : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| buyNow | boolean | no | This is boolean to get buy_now cart |    
-| addressId | string | no | ID allotted to an address |    
-| paymentMode | string | no | Payment mode selected by the customer |    
-| paymentIdentifier | string | no | Identifier of payment like ICIC, PAYTM |    
-| aggregatorName | string | no | Payment gateway identifier |    
-| merchantCode | string | no | Identifier used by payment gateway for a given payment mode, e.g. NB_ICIC, PAYTM |    
-| iin | string | no | Debit/Credit card prefix (first 6 digit) |    
-| network | string | no | Credit/Debit card issuer, e.g. VISA, MASTERCARD, RUPAY |    
-| type | string | no | card type, e.g. Credit, Debit |    
-| cardId | string | no | saved card token reference id |    
-| cartType | string | no | type of the cart |  
+| id | string | no |  |    
+| buyNow | boolean | no |  |    
+| addressId | string | no |  |    
+| paymentMode | string | no |  |    
+| paymentIdentifier | string | no |  |    
+| aggregatorName | string | no |  |    
+| merchantCode | string | no |  |    
+| iin | string | no |  |    
+| network | string | no |  |    
+| type | string | no |  |    
+| cardId | string | no |  |  
 
 
 
@@ -9653,7 +9359,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | meta | string? |  yes  |  |
  | parent_item_identifiers | [[String: string]]? |  yes  |  |
  | pos | boolean? |  yes  |  |
- | price_factory_type_id | string? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller_id | number? |  yes  |  |
@@ -9720,7 +9425,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
  | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
  | code | string? |  yes  | Promotion code |
- | custom_field_meta | [string]? |  yes  | custom field meta for promotion. |
  | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | meta | string? |  yes  | Meta object for extra data |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
@@ -9925,71 +9629,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [CartConfigDetailObj](#CartConfigDetailObj)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | allow_coupon_with_rewards | boolean? |  yes  |  |
- | app_id | string? |  yes  |  |
- | article_tags | [string]? |  yes  |  |
- | bulk_coupons | boolean? |  yes  |  |
- | company_id | number? |  yes  |  |
- | created_on | string? |  yes  |  |
- | delivery_charges | [DeliveryChargesConfig](#DeliveryChargesConfig)? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | gift_display_text | string? |  yes  |  |
- | gift_pricing | number? |  yes  |  |
- | gst_input | boolean? |  yes  |  |
- | id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | last_modified_by | string? |  yes  |  |
- | max_cart_items | number? |  yes  |  |
- | max_cart_value | number? |  yes  |  |
- | min_cart_value | number? |  yes  |  |
- | name | string? |  yes  |  |
- | order_placing | [OrderPlacing](#OrderPlacing)? |  yes  |  |
- | pan_card | [PanCard](#PanCard)? |  yes  |  |
- | placing_for_customer | boolean? |  yes  |  |
- | revenue_engine_coupon | boolean? |  yes  |  |
- | staff_selection | boolean? |  yes  |  |
- | updated_on | string? |  yes  |  |
- 
-
----
-
-#### [CartConfigDetailResponse](#CartConfigDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [CartConfigDetailObj](#CartConfigDetailObj)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [CartConfigListObj](#CartConfigListObj)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article_tags | [string]? |  yes  |  |
- | created_on | string? |  yes  |  |
- | id | string? |  yes  |  |
- | name | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
-#### [CartConfigListResponse](#CartConfigListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[CartConfigListObj](#CartConfigListObj)]? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
@@ -10038,12 +9677,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | coupon | [CartDetailCoupon](#CartDetailCoupon)? |  yes  |  |
  | coupon_text | string? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | custom_cart | [CustomCart](#CustomCart)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | gstin | string? |  yes  |  |
  | id | string? |  yes  |  |
- | is_pan_received | boolean? |  yes  |  |
  | is_valid | boolean? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | last_modified | string? |  yes  |  |
@@ -10065,17 +9702,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user_cart_items_count | number? |  yes  | Item count present in cart |
- 
-
----
-
-#### [CartItemCountResponseV2](#CartItemCountResponseV2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | custom_cart_count | string? |  yes  |  |
- | user_all_cart_article_count | number? |  yes  |  |
- | user_all_cart_articles_quantity_count | number? |  yes  |  |
  
 
 ---
@@ -10169,7 +9795,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | promo_meta | [PromoMeta](#PromoMeta)? |  yes  |  |
  | promotions_applied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | quantity | number? |  yes  |  |
- | seller_count | number? |  yes  |  |
  
 
 ---
@@ -10259,7 +9884,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | comment | string? |  yes  |  |
  | coupon_text | string? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | custom_cart | [CustomCart](#CustomCart)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
  | delivery_charge_order_value | number? |  yes  |  |
  | delivery_charges | number? |  yes  |  |
@@ -10359,18 +9983,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  |  |
  | symbol | string? |  yes  |  |
- 
-
----
-
-#### [CustomCart](#CustomCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart_name | string? |  yes  | Name of custom cart |
- | cart_type | string? |  yes  | Type of custom cart |
- | id | string? |  yes  | id of custom cart config |
- | is_universal | boolean? |  yes  | By default all carts are universal, will be false for custom cart |
  
 
 ---
@@ -10645,16 +10257,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [OrderPlacing](#OrderPlacing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- | message | string? |  yes  |  |
- 
-
----
-
 #### [Ownership](#Ownership)
 
  | Properties | Type | Nullable | Description |
@@ -10674,17 +10276,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | has_previous | boolean? |  yes  |  |
  | total | number? |  yes  |  |
  | total_item_count | number? |  yes  |  |
- 
-
----
-
-#### [PanCard](#PanCard)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cod_threshold_amount | number? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | online_threshold_amount | number? |  yes  |  |
  
 
 ---
@@ -10763,7 +10354,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
- | product_name | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
@@ -11150,7 +10740,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | item_size | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
- | price_factory_type_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  
 

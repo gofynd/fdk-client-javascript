@@ -362,7 +362,7 @@ declare class Catalog {
      * @summary: Get the price of a product size at a PIN Code
      * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
      */
-    getProductPriceBySlug({ slug, size, storeId, exchangeSellerIdentifier, moq, sellerId, requestHeaders, }?: CatalogApplicationValidator.GetProductPriceBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizePriceResponseV3>;
+    getProductPriceBySlug({ slug, size, storeId, moq, requestHeaders }?: CatalogApplicationValidator.GetProductPriceBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizePriceResponseV3>;
     /**
      * @param {CatalogApplicationValidator.GetProductSellersBySlugParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -498,7 +498,7 @@ declare class Catalog {
      * @summary: Get relevant suggestions for a search query
      * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSearchResults/).
      */
-    getSearchResults({ q, categorySuggestion, brandSuggestion, collectionSuggestion, productSuggestion, querySuggestion, requestHeaders, }?: CatalogApplicationValidator.GetSearchResultsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.AutoCompleteResponse>;
+    getSearchResults({ q, requestHeaders }?: CatalogApplicationValidator.GetSearchResultsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.AutoCompleteResponse>;
     /**
      * @param {CatalogApplicationValidator.GetSimilarComparisonProductBySlugParam} arg
      *   - Arg object.
@@ -558,6 +558,6 @@ declare class Catalog {
      */
     unfollowById({ collectionType, collectionId, requestHeaders }?: CatalogApplicationValidator.UnfollowByIdParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.FollowPostResponse>;
 }
-import CatalogApplicationValidator = require("sdk/output/javascript/code/sdk/application/Catalog/CatalogApplicationValidator");
-import CatalogApplicationModel = require("sdk/output/javascript/code/sdk/application/Catalog/CatalogApplicationModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CatalogApplicationValidator = require("./CatalogApplicationValidator");
+import CatalogApplicationModel = require("./CatalogApplicationModel");
+import Paginator = require("../../common/Paginator");

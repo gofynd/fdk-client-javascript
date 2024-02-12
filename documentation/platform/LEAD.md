@@ -1865,7 +1865,7 @@ Get general support configuration.
 
 
 
-[GeneralConfigResponse](#GeneralConfigResponse)
+[CloseVideoRoomResponse](#CloseVideoRoomResponse)
 
 Success
 
@@ -1882,51 +1882,7 @@ Success
 ```json
 {
   "value": {
-    "_id": "64ca1aabae093a451d54817d",
-    "support_communication": [
-      {
-        "type": "link",
-        "title": "testLink",
-        "value": "http://invalid.in",
-        "description": "invalid link in value",
-        "enabled": true
-      },
-      {
-        "type": "phone_number",
-        "title": "update mobile no test",
-        "value": {
-          "code": "91",
-          "number": "7848845538",
-          "iso": "IN"
-        },
-        "description": "dadskjfd",
-        "enabled": true
-      },
-      {
-        "type": "email",
-        "title": "dfdafdsa",
-        "value": "testing@gmail.com",
-        "description": "asdfadsf",
-        "enabled": true
-      },
-      {
-        "type": "email",
-        "title": "testanu",
-        "value": "test@gmail.com",
-        "description": "tesr",
-        "enabled": true
-      }
-    ],
-    "show_communication_info": true,
-    "type": "partner",
-    "integration": {
-      "type": "default"
-    },
-    "available_integration": [
-      "default",
-      "freshdesk"
-    ],
-    "enable_dris": true
+    "success": true
   }
 }
 ```
@@ -4379,31 +4335,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | assignees | [string]? |  yes  | List of support staff availble for tickets assignment |
+ | assignees | [string] |  no  | List of support staff availble for tickets assignment |
  | categories | [[TicketCategory](#TicketCategory)]? |  yes  | List of possible categories for tickets |
  | priorities | [[Priority](#Priority)] |  no  | List of possible priorities for tickets |
  | statuses | [[Status](#Status)] |  no  | List of possible statuses for tickets |
- 
-
----
-
-#### [GeneralConfigIntegrationSchema](#GeneralConfigIntegrationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [GeneralConfigResponse](#GeneralConfigResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | available_integration | [string]? |  yes  |  |
- | integration | [GeneralConfigIntegrationSchema](#GeneralConfigIntegrationSchema)? |  yes  |  |
- | support_communication | [[SupportCommunicationSchema](#SupportCommunicationSchema)]? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -4520,18 +4455,6 @@ Success
 
 ---
 
-#### [SupportCommunicationSchema](#SupportCommunicationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | title | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [Ticket](#Ticket)
 
  | Properties | Type | Nullable | Description |
@@ -4577,7 +4500,7 @@ Success
  | feedback_form | [FeedbackForm](#FeedbackForm)? |  yes  |  |
  | group_id | number? |  yes  | Group id of category releted data |
  | key | string |  no  | Category key value identifier |
- | sub_categories | [[TicketCategory](#TicketCategory)]? |  yes  |  |
+ | sub_categories | [TicketCategory](#TicketCategory)? |  yes  |  |
  
 
 ---

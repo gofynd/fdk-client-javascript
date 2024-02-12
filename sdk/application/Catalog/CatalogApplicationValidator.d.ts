@@ -148,12 +148,8 @@ export = CatalogApplicationValidator;
  *   /service/application/catalog/v1.0/products/sizes
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
- * @property {string} [exchangeSellerIdentifier] - The seller identifier of the
- *   exchange product.
  * @property {number} [moq] - An Integer indication the Minimum Order Quantity
  *   of a product, e.g. 100.
- * @property {number} [sellerId] - The ID of the seller that is selling the
- *   product, e.g. 1,2,3.
  */
 /**
  * @typedef GetProductSellersBySlugParam
@@ -222,15 +218,10 @@ export = CatalogApplicationValidator;
  */
 /**
  * @typedef GetSearchResultsParam
- * @property {string} [q] - The search query for entering partial or full name
- *   of a product, brand or category. For example, if the given search query `q`
- *   is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_,
+ * @property {string} q - The search query for entering partial or full name of
+ *   a product, brand or category. For example, if the given search query `q` is
+ *   _ski_, the relevant search suggestions could be _skirt_, _ski shoes_,
  *   __skin cream_ etc.
- * @property {number} [categorySuggestion] - For getting related category suggestions.
- * @property {number} [brandSuggestion] - For getting related brand suggestions.
- * @property {number} [collectionSuggestion] - For getting related collection suggestions.
- * @property {number} [productSuggestion] - For getting related product suggestions.
- * @property {number} [querySuggestion] - For getting related query suggestions.
  */
 /**
  * @typedef GetSimilarComparisonProductBySlugParam
@@ -595,20 +586,10 @@ type GetProductPriceBySlugParam = {
      */
     storeId?: number;
     /**
-     * - The seller identifier of the
-     * exchange product.
-     */
-    exchangeSellerIdentifier?: string;
-    /**
      * - An Integer indication the Minimum Order Quantity
      * of a product, e.g. 100.
      */
     moq?: number;
-    /**
-     * - The ID of the seller that is selling the
-     * product, e.g. 1,2,3.
-     */
-    sellerId?: number;
 };
 type GetProductSellersBySlugParam = {
     /**
@@ -743,32 +724,12 @@ type GetProductsParam = {
 };
 type GetSearchResultsParam = {
     /**
-     * - The search query for entering partial or full name
-     * of a product, brand or category. For example, if the given search query `q`
-     * is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_,
+     * - The search query for entering partial or full name of
+     * a product, brand or category. For example, if the given search query `q` is
+     * _ski_, the relevant search suggestions could be _skirt_, _ski shoes_,
      * __skin cream_ etc.
      */
-    q?: string;
-    /**
-     * - For getting related category suggestions.
-     */
-    categorySuggestion?: number;
-    /**
-     * - For getting related brand suggestions.
-     */
-    brandSuggestion?: number;
-    /**
-     * - For getting related collection suggestions.
-     */
-    collectionSuggestion?: number;
-    /**
-     * - For getting related product suggestions.
-     */
-    productSuggestion?: number;
-    /**
-     * - For getting related query suggestions.
-     */
-    querySuggestion?: number;
+    q: string;
 };
 type GetSimilarComparisonProductBySlugParam = {
     /**

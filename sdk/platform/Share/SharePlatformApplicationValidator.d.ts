@@ -95,4 +95,4 @@ type UpdateShortLinkByIdParam = {
     id: string;
     body: SharePlatformModel.ShortLinkReq;
 };
-import SharePlatformModel = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformModel");
+import SharePlatformModel = require("./SharePlatformModel");

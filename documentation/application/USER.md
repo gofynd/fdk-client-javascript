@@ -2471,31 +2471,6 @@ Use this API to reset a password using the link sent on mobile.
 
 
 
-[ResetPasswordSuccess](#ResetPasswordSuccess)
-
-Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "status": "sent"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -3899,10 +3874,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android_hash | string? |  yes  |  |
- | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
  | dob | string? |  yes  |  |
  | email | string? |  yes  |  |
+ | encrypt_otp | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
@@ -4371,8 +4346,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | ---------- | ---- | -------- | ----------- |
  | action | string? |  yes  |  |
  | android_hash | string? |  yes  |  |
- | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
+ | encrypt_otp | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | force | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | token | string? |  yes  |  |
@@ -4394,8 +4369,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android_hash | string? |  yes  |  |
- | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
+ | encrypt_otp | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | mobile | string? |  yes  |  |
  
 

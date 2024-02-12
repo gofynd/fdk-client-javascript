@@ -1018,15 +1018,9 @@ class Serviceability {
    * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
-    {
-      pageNo,
-      pageSize,
-      stage,
-      paymentMode,
-      transportType,
-      accountIds,
-      requestHeaders,
-    } = { requestHeaders: {} },
+    { pageNo, pageSize, stage, paymentMode, transportType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1038,7 +1032,6 @@ class Serviceability {
         stage,
         paymentMode,
         transportType,
-        accountIds,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1056,7 +1049,6 @@ class Serviceability {
         stage,
         paymentMode,
         transportType,
-        accountIds,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1073,7 +1065,6 @@ class Serviceability {
     query_params["stage"] = stage;
     query_params["payment_mode"] = paymentMode;
     query_params["transport_type"] = transportType;
-    query_params["account_ids"] = accountIds;
 
     const xHeaders = {};
 
@@ -1117,11 +1108,12 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>}
+   *   - Success response
+   *
    * @name getOptimalLocations
-   * @summary: Get serviceable store of the item
-   * @description: This API returns serviceable store of the item. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
+   * @summary: Retrieve optimal locations
+   * @description: Retrieve optimal locations based on the specific criteria - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1162,7 +1154,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/optimal-locations`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1176,7 +1168,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ReAssignStoreResponse().validate(
+    } = ServiceabilityPlatformModel.OptimalLocationsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1737,7 +1729,7 @@ class Serviceability {
       isActive,
       channelId,
       q,
-      country,
+      countryIsoCode,
       state,
       city,
       pincode,
@@ -1753,7 +1745,7 @@ class Serviceability {
         isActive,
         channelId,
         q,
-        country,
+        countryIsoCode,
         state,
         city,
         pincode,
@@ -1775,7 +1767,7 @@ class Serviceability {
         isActive,
         channelId,
         q,
-        country,
+        countryIsoCode,
         state,
         city,
         pincode,
@@ -1796,7 +1788,7 @@ class Serviceability {
     query_params["is_active"] = isActive;
     query_params["channel_id"] = channelId;
     query_params["q"] = q;
-    query_params["country"] = country;
+    query_params["country_iso_code"] = countryIsoCode;
     query_params["state"] = state;
     query_params["city"] = city;
     query_params["pincode"] = pincode;

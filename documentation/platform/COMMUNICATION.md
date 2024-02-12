@@ -5558,12 +5558,10 @@ Send OTP using email and sms
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.sendOtp({  body : value,
- ci : value });
+const promise = platformClient.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.sendOtp({  body : value,
- ci : value });
+const data = await platformClient.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
 ```
 
 
@@ -5571,8 +5569,7 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| ci | boolean | no | Common Information |  
+| --------- | -----  | -------- | ----------- |
 | body | [SendOtpCommsReq](#SendOtpCommsReq) | yes | Request body |
 
 

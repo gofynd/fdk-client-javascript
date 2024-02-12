@@ -94,30 +94,6 @@ declare class FileStorage {
      */
     browsefiles({ namespace, body, page, limit, search, requestHeaders }?: FileStoragePlatformApplicationValidator.BrowsefilesParam, { responseHeaders }?: object): Promise<any>;
     /**
-     * @param {FileStoragePlatformApplicationValidator.DeletePdfConfigTemplateParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<string>} - Success response
-     * @name deletePdfConfigTemplate
-     * @summary: delete html template for invoice or label
-     * @description: delete html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfConfigTemplate/).
-     */
-    deletePdfConfigTemplate({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.DeletePdfConfigTemplateParam, { responseHeaders }?: object): Promise<string>;
-    /**
-     * @param {FileStoragePlatformApplicationValidator.DeletePdfTypeParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<string>} - Success response
-     * @name deletePdfType
-     * @summary: delete Pdf Type
-     * @description: delete Pdf Type for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfType/).
-     */
-    deletePdfType({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.DeletePdfTypeParam, { responseHeaders }?: object): Promise<string>;
-    /**
      * @param {FileStoragePlatformApplicationValidator.GeneratePaymentReceiptParam} arg
      *   - Arg object
      *
@@ -221,5 +197,5 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import FileStoragePlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformApplicationValidator");
-import FileStoragePlatformModel = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformModel");
+import FileStoragePlatformApplicationValidator = require("./FileStoragePlatformApplicationValidator");
+import FileStoragePlatformModel = require("./FileStoragePlatformModel");

@@ -99,6 +99,6 @@ declare class Rewards {
      */
     redeemReferralCode({ body, requestHeaders }?: RewardsApplicationValidator.RedeemReferralCodeParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.RedeemReferralCodeResponse>;
 }
-import RewardsApplicationValidator = require("sdk/output/javascript/code/sdk/application/Rewards/RewardsApplicationValidator");
-import RewardsApplicationModel = require("sdk/output/javascript/code/sdk/application/Rewards/RewardsApplicationModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import RewardsApplicationValidator = require("./RewardsApplicationValidator");
+import RewardsApplicationModel = require("./RewardsApplicationModel");
+import Paginator = require("../../common/Paginator");

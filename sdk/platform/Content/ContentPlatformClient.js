@@ -771,7 +771,7 @@ class Content {
    * @description: Use this API to retrieve the definitions of custom fields. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinitions/).
    */
   async getCustomFieldDefinitions(
-    { pageNo, pageSize, resources, types, search, requestHeaders } = {
+    { pageNo, pageSize, resource, type, search, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -782,8 +782,8 @@ class Content {
       {
         pageNo,
         pageSize,
-        resources,
-        types,
+        resource,
+        type,
         search,
       },
       { abortEarly: false, allowUnknown: true }
@@ -799,8 +799,8 @@ class Content {
       {
         pageNo,
         pageSize,
-        resources,
-        types,
+        resource,
+        type,
         search,
       },
       { abortEarly: false, allowUnknown: false }
@@ -815,8 +815,8 @@ class Content {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
-    query_params["resources"] = resources;
-    query_params["types"] = types;
+    query_params["resource"] = resource;
+    query_params["type"] = type;
     query_params["search"] = search;
 
     const xHeaders = {};

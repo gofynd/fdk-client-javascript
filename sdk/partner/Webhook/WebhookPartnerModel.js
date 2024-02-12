@@ -1,58 +1,6 @@
 const Joi = require("joi");
 
 /**
- * @typedef KafkaConfigValidateResponse
- * @property {boolean} [status]
- * @property {string} [message]
- */
-
-/**
- * @typedef KafkaConfigResponse
- * @property {number} [id]
- * @property {string} [name]
- * @property {string} [client_id]
- * @property {string[]} [brokers]
- * @property {boolean} [ssl_enabled]
- * @property {boolean} [sasl_enabled]
- * @property {Object} [sasl_configuration]
- * @property {Object} [ssl_configuration]
- * @property {number} [connection_timeout]
- * @property {number} [authentication_timeout]
- * @property {number} [request_timeout]
- * @property {string} [created_on]
- * @property {Object} [association]
- */
-
-/**
- * @typedef KafkaConfigUpdateRequest
- * @property {string} [name]
- * @property {string} [client_id]
- * @property {string[]} [brokers]
- * @property {boolean} [ssl_enabled]
- * @property {boolean} [sasl_enabled]
- * @property {Object} [sasl_configuration]
- * @property {Object} [ssl_configuration]
- * @property {number} [connection_timeout]
- * @property {number} [authentication_timeout]
- * @property {number} [request_timeout]
- * @property {number} [id]
- */
-
-/**
- * @typedef KafkaConfigRequest
- * @property {string} [name]
- * @property {string} [client_id]
- * @property {string[]} [brokers]
- * @property {boolean} [ssl_enabled]
- * @property {boolean} [sasl_enabled]
- * @property {Object} [sasl_configuration]
- * @property {Object} [ssl_configuration]
- * @property {number} [connection_timeout]
- * @property {number} [authentication_timeout]
- * @property {number} [request_timeout]
- */
-
-/**
  * @typedef UpdateSubscriberResponse
  * @property {string} [message]
  */
@@ -81,7 +29,6 @@ const Joi = require("joi");
  * @property {number} [id]
  * @property {number} [event_id]
  * @property {number} [subscriber_id]
- * @property {string} [topic]
  * @property {string} [created_on]
  */
 
@@ -299,7 +246,6 @@ const Joi = require("joi");
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
- * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {string} [status]
@@ -313,66 +259,6 @@ const Joi = require("joi");
  */
 
 class WebhookPartnerModel {
-  /** @returns {KafkaConfigValidateResponse} */
-  static KafkaConfigValidateResponse() {
-    return Joi.object({
-      status: Joi.boolean(),
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {KafkaConfigResponse} */
-  static KafkaConfigResponse() {
-    return Joi.object({
-      id: Joi.number(),
-      name: Joi.string().allow(""),
-      client_id: Joi.string().allow(""),
-      brokers: Joi.array().items(Joi.string().allow("")),
-      ssl_enabled: Joi.boolean(),
-      sasl_enabled: Joi.boolean(),
-      sasl_configuration: Joi.object().pattern(/\S/, Joi.any()),
-      ssl_configuration: Joi.object().pattern(/\S/, Joi.any()),
-      connection_timeout: Joi.number(),
-      authentication_timeout: Joi.number(),
-      request_timeout: Joi.number(),
-      created_on: Joi.string().allow(""),
-      association: Joi.object().pattern(/\S/, Joi.any()),
-    });
-  }
-
-  /** @returns {KafkaConfigUpdateRequest} */
-  static KafkaConfigUpdateRequest() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      client_id: Joi.string().allow(""),
-      brokers: Joi.array().items(Joi.string().allow("")),
-      ssl_enabled: Joi.boolean(),
-      sasl_enabled: Joi.boolean(),
-      sasl_configuration: Joi.object().pattern(/\S/, Joi.any()),
-      ssl_configuration: Joi.object().pattern(/\S/, Joi.any()),
-      connection_timeout: Joi.number(),
-      authentication_timeout: Joi.number(),
-      request_timeout: Joi.number(),
-      id: Joi.number(),
-    });
-  }
-
-  /** @returns {KafkaConfigRequest} */
-  static KafkaConfigRequest() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      client_id: Joi.string().allow(""),
-      brokers: Joi.array().items(Joi.string().allow("")),
-      ssl_enabled: Joi.boolean(),
-      sasl_enabled: Joi.boolean(),
-      sasl_configuration: Joi.object().pattern(/\S/, Joi.any()),
-      ssl_configuration: Joi.object().pattern(/\S/, Joi.any()),
-      connection_timeout: Joi.number(),
-      authentication_timeout: Joi.number(),
-      request_timeout: Joi.number(),
-    });
-  }
-
   /** @returns {UpdateSubscriberResponse} */
   static UpdateSubscriberResponse() {
     return Joi.object({
@@ -411,7 +297,6 @@ class WebhookPartnerModel {
       id: Joi.number(),
       event_id: Joi.number(),
       subscriber_id: Joi.number(),
-      topic: Joi.string().allow("").allow(null),
       created_on: Joi.string().allow(""),
     });
   }
@@ -680,7 +565,6 @@ class WebhookPartnerModel {
       modified_by: Joi.string().allow(""),
       name: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
-      provider: Joi.string().allow(""),
       association: WebhookPartnerModel.Association(),
       custom_headers: Joi.any(),
       status: Joi.string().allow(""),

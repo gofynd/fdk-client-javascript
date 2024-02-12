@@ -87,6 +87,7 @@ export = LeadPartnerModel;
  * @typedef SupportCommunicationSchema
  * @property {string} [type]
  * @property {string} [title]
+ * @property {Object} [value]
  * @property {string} [description]
  * @property {boolean} [enabled]
  */
@@ -109,8 +110,7 @@ export = LeadPartnerModel;
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
  * @property {Status[]} statuses - List of possible statuses for tickets
- * @property {Object[]} [assignees] - List of support staff availble for tickets
- *   assignment
+ * @property {Object[]} assignees - List of support staff availble for tickets assignment
  */
 /**
  * @typedef TicketHistoryPayload
@@ -263,7 +263,7 @@ export = LeadPartnerModel;
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory[]} [sub_categories]
+ * @property {TicketCategory} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -512,6 +512,7 @@ declare function SupportCommunicationSchema(): SupportCommunicationSchema;
 type SupportCommunicationSchema = {
     type?: string;
     title?: string;
+    value?: any;
     description?: string;
     enabled?: boolean;
 };
@@ -560,10 +561,9 @@ type Filter = {
      */
     statuses: Status[];
     /**
-     * - List of support staff availble for tickets
-     * assignment
+     * - List of support staff availble for tickets assignment
      */
-    assignees?: any[];
+    assignees: any[];
 };
 /** @returns {TicketHistoryPayload} */
 declare function TicketHistoryPayload(): TicketHistoryPayload;
@@ -951,7 +951,7 @@ type TicketCategory = {
      * - Category key value identifier
      */
     key: string;
-    sub_categories?: TicketCategory[];
+    sub_categories?: TicketCategory;
     /**
      * - Group id of category releted data
      */

@@ -110,4 +110,4 @@ type VerifyIfscCodeParam = {
     ifscCode?: string;
 };
 type GetSubscriptionConfigParam = any;
-import PaymentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Payment/PaymentPlatformModel");
+import PaymentPlatformModel = require("./PaymentPlatformModel");

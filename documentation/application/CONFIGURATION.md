@@ -941,11 +941,6 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
       "order": {
         "buy_again": true
       },
-      "buybox": {
-        "show_name": true,
-        "enable_selection": true,
-        "is_seller_buybox_enabled": false
-      },
       "_id": "5e57643c986e4119c973df7d",
       "app": "000000000000000000000004",
       "created_at": "2020-02-27T06:39:56.088Z",
@@ -1641,7 +1636,6 @@ Success
  | __v | number? |  yes  | Version key for tracking revisions. Default value is zero |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel features |
  | app | string? |  yes  | Application ID of the sales channel |
- | buybox | [BuyboxFeature](#BuyboxFeature)? |  yes  |  |
  | cart | [CartFeature](#CartFeature)? |  yes  |  |
  | common | [CommonFeature](#CommonFeature)? |  yes  |  |
  | created_at | string? |  yes  | ISO 8601 timestamp showing the date when the features were configured |
@@ -1898,17 +1892,6 @@ Success
  | icon | string? |  yes  | Hosted URL of icon image representing the business highlight |
  | sub_title | string? |  yes  | Detailed information about the highlight |
  | title | string? |  yes  | Title of the business highlight, e.g. Superfast Delivery |
- 
-
----
-
-#### [BuyboxFeature](#BuyboxFeature)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enable_selection | boolean? |  yes  | Allow selection of sellers/stores on PDP (product detail page). |
- | is_seller_buybox_enabled | boolean? |  yes  | Toggle buybox listing between sellers and stores. True indicates seller listing, while False indicates store listing. |
- | show_name | boolean? |  yes  | Allow users to see seller/stores name on PDP (product detail page). |
  
 
 ---

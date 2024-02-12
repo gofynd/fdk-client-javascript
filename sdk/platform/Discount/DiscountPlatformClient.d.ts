@@ -138,6 +138,6 @@ declare class Discount {
      */
     validateDiscountFile({ body, discount, requestHeaders }?: DiscountPlatformValidator.ValidateDiscountFileParam, { responseHeaders }?: object): Promise<DiscountPlatformModel.FileJobResponse>;
 }
-import DiscountPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Discount/DiscountPlatformValidator");
-import DiscountPlatformModel = require("sdk/output/javascript/code/sdk/platform/Discount/DiscountPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import DiscountPlatformValidator = require("./DiscountPlatformValidator");
+import DiscountPlatformModel = require("./DiscountPlatformModel");
+import Paginator = require("../../common/Paginator");

@@ -4671,15 +4671,15 @@ Get custom fields definitions
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resources : value,
- types : value,
+ resource : value,
+ type : value,
  search : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resources : value,
- types : value,
+ resource : value,
+ type : value,
  search : value });
 ```
 
@@ -4691,8 +4691,8 @@ const data = await platformClient.application("<APPLICATION_ID>").content.getApp
 | --------- | -----  | -------- | ----------- | 
 | pageNo | string | yes |  |   
 | pageSize | string | yes |  |    
-| resources | string | no |  |    
-| types | string | no |  |    
+| resource | string | no |  |    
+| type | string | no |  |    
 | search | string | no |  |  
 
 
@@ -6539,15 +6539,15 @@ Get custom fields definitions
 // Promise
 const promise = platformClient.content.getCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resources : value,
- types : value,
+ resource : value,
+ type : value,
  search : value });
 
 // Async/Await
 const data = await platformClient.content.getCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resources : value,
- types : value,
+ resource : value,
+ type : value,
  search : value });
 ```
 
@@ -6559,8 +6559,8 @@ const data = await platformClient.content.getCustomFieldDefinitions({  pageNo : 
 | --------- | -----  | -------- | ----------- | 
 | pageNo | string | yes |  |   
 | pageSize | string | yes |  |    
-| resources | string | no |  |    
-| types | string | no |  |    
+| resource | string | no |  |    
+| type | string | no |  |    
 | search | string | no |  |  
 
 
@@ -13674,6 +13674,7 @@ Success. Refer `Support` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [ActionPage](#ActionPage)? |  yes  |  |
+ | popup | [ActionPage](#ActionPage)? |  yes  |  |
  | type | string? |  yes  |  |
  
 
@@ -14138,7 +14139,7 @@ Success. Refer `Support` for more details.
  | resource_id | string? |  yes  |  |
  | type | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
- | value | [any]? |  yes  |  |
+ | value | [[CustomFieldValue](#CustomFieldValue)]? |  yes  |  |
  
 
 ---
@@ -14179,6 +14180,15 @@ Success. Refer `Support` for more details.
  | string_multi_line | [StringMultiLine](#StringMultiLine)? |  yes  |  |
  | string_single_line | [StringSingleLine](#StringSingleLine)? |  yes  |  |
  | url | [Url](#Url)? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldValue](#CustomFieldValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | any? |  yes  |  |
  
 
 ---

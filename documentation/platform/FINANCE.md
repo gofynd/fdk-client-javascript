@@ -3271,7 +3271,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number? |  yes  |  |
+ | amount | string? |  yes  |  |
  | company | string? |  yes  |  |
  | currency | [Currency](#Currency)? |  yes  |  |
  | due_date | string? |  yes  |  |

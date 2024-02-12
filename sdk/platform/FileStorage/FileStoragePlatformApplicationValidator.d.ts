@@ -42,14 +42,6 @@ export = FileStoragePlatformApplicationValidator;
  * @property {FileStoragePlatformModel.ExtensionSlug} body
  */
 /**
- * @typedef DeletePdfConfigTemplateParam
- * @property {string} id
- */
-/**
- * @typedef DeletePdfTypeParam
- * @property {string} id
- */
-/**
  * @typedef GeneratePaymentReceiptParam
  * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
  */
@@ -95,10 +87,6 @@ declare class FileStoragePlatformApplicationValidator {
     static appbrowse(): AppbrowseParam;
     /** @returns {BrowsefilesParam} */
     static browsefiles(): BrowsefilesParam;
-    /** @returns {DeletePdfConfigTemplateParam} */
-    static deletePdfConfigTemplate(): DeletePdfConfigTemplateParam;
-    /** @returns {DeletePdfTypeParam} */
-    static deletePdfType(): DeletePdfTypeParam;
     /** @returns {GeneratePaymentReceiptParam} */
     static generatePaymentReceipt(): GeneratePaymentReceiptParam;
     /** @returns {GetDefaultHtmlTemplateParam} */
@@ -115,7 +103,7 @@ declare class FileStoragePlatformApplicationValidator {
     static updateHtmlTemplate(): UpdateHtmlTemplateParam;
 }
 declare namespace FileStoragePlatformApplicationValidator {
-    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam, BrowsefilesParam, DeletePdfConfigTemplateParam, DeletePdfTypeParam, GeneratePaymentReceiptParam, GetDefaultHtmlTemplateParam, GetDefaultPdfDataParam, GetDefaultPdfTemplateParam, GetPdfTypesParam, SaveHtmlTemplateParam, UpdateHtmlTemplateParam };
+    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam, BrowsefilesParam, GeneratePaymentReceiptParam, GetDefaultHtmlTemplateParam, GetDefaultPdfDataParam, GetDefaultPdfTemplateParam, GetPdfTypesParam, SaveHtmlTemplateParam, UpdateHtmlTemplateParam };
 }
 type AppCompleteUploadParam = {
     /**
@@ -187,12 +175,6 @@ type BrowsefilesParam = {
     search?: string;
     body: FileStoragePlatformModel.ExtensionSlug;
 };
-type DeletePdfConfigTemplateParam = {
-    id: string;
-};
-type DeletePdfTypeParam = {
-    id: string;
-};
 type GeneratePaymentReceiptParam = {
     body: FileStoragePlatformModel.PaymentReceiptRequestBody;
 };
@@ -221,4 +203,4 @@ type UpdateHtmlTemplateParam = {
     id: string;
     body: FileStoragePlatformModel.PdfConfig;
 };
-import FileStoragePlatformModel = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformModel");
+import FileStoragePlatformModel = require("./FileStoragePlatformModel");

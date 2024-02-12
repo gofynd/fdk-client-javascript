@@ -5,15 +5,11 @@ export = CartApplicationValidator;
  */
 /**
  * @typedef AddItemsParam
- * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
- *   all the items added in the cart.
- * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
- *   the price breakup of cart items.
- * @property {string} [areaCode] - Customer servicable area_code
- * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
- *   set/initialize buy now cart
- * @property {string} [id] - The unique identifier of the cart
- * @property {string} [cartType] - The type of cart
+ * @property {boolean} [i]
+ * @property {boolean} [b]
+ * @property {string} [areaCode]
+ * @property {boolean} [buyNow]
+ * @property {string} [id]
  * @property {CartApplicationModel.AddCartRequest} body
  */
 /**
@@ -23,36 +19,29 @@ export = CartApplicationValidator;
  * @property {boolean} [p]
  * @property {string} [id]
  * @property {boolean} [buyNow]
- * @property {string} [cartType]
  * @property {CartApplicationModel.ApplyCouponRequest} body
  */
 /**
  * @typedef ApplyRewardPointsParam
- * @property {string} [id] - The unique identifier of the cart
- * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
- *   all the items added in the cart.
- * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
- *   the price breakup of cart items.
- * @property {boolean} [buyNow] - This is boolean to get buy_now cart
- * @property {string} [cartType] - Type of the cart
+ * @property {string} [id]
+ * @property {boolean} [i]
+ * @property {boolean} [b]
+ * @property {boolean} [buyNow]
  * @property {CartApplicationModel.RewardPointRequest} body
  */
 /**
  * @typedef CheckoutCartParam
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout
- * @property {string} [cartType] - The type of cart
  * @property {CartApplicationModel.CartCheckoutDetailRequest} body
  */
 /**
  * @typedef CheckoutCartV2Param
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout
- * @property {string} [cartType] - The type of cart
  * @property {CartApplicationModel.CartCheckoutDetailV2Request} body
  */
 /**
  * @typedef DeleteCartParam
  * @property {string} [id] - The unique identifier of the cart.
- * @property {string} [cartType] - The type of cart
  */
 /**
  * @typedef GetAddressByIdParam
@@ -81,32 +70,21 @@ export = CartApplicationValidator;
  * @property {string} [slug] - A short, human-readable, URL-friendly identifier
  *   of a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
- * @property {string} [cartType] - Type of the cart
  */
 /**
  * @typedef GetCartParam
- * @property {string} [id] - The unique identifier of the cart
- * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
- *   all the items added in the cart.
- * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
- *   the price breakup of cart items.
- * @property {boolean} [c] - This is a boolean value. Select `true` to retrieve
- *   the cod charges in breakup of cart items.
- * @property {number} [assignCardId] - Token of user's debit or credit card
- * @property {string} [areaCode] - Customer servicable area_code
- * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
- *   set/initialize buy now cart
- * @property {string} [cartType] - The type of cart
+ * @property {string} [id]
+ * @property {boolean} [i]
+ * @property {boolean} [b]
+ * @property {boolean} [c]
+ * @property {number} [assignCardId]
+ * @property {string} [areaCode]
+ * @property {boolean} [buyNow]
  */
 /**
  * @typedef GetCartLastModifiedParam
  * @property {string} [id]
  */
-/**
- * @typedef GetCartMetaConfigParam
- * @property {string} cartMetaId - CartMeta mongo id for fetching single cart meta data
- */
-/** @typedef GetCartMetaConfigsParam */
 /**
  * @typedef GetCartShareLinkParam
  * @property {CartApplicationModel.GetShareCartLinkRequest} body
@@ -128,11 +106,6 @@ export = CartApplicationValidator;
  * @property {boolean} [buyNow]
  */
 /**
- * @typedef GetItemCountV2Param
- * @property {string} [id] - The unique identifier of the cart
- * @property {boolean} [buyNow] - Boolean value to get buy_now cart
- */
-/**
  * @typedef GetLadderOffersParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
@@ -151,7 +124,6 @@ export = CartApplicationValidator;
  * @property {number} [pageSize] - Number of offers to be fetched to show
  * @property {string} [promotionGroup] - Type of promotion groups
  * @property {number} [storeId] - Store id
- * @property {string} [cartType] - The type of cart
  */
 /**
  * @typedef GetShipmentsParam
@@ -172,9 +144,8 @@ export = CartApplicationValidator;
  */
 /**
  * @typedef RemoveCouponParam
- * @property {string} [id] - The unique identifier of the cart
- * @property {boolean} [buyNow] - This is boolean to get buy_now cart
- * @property {string} [cartType] - The type of cart
+ * @property {string} [id]
+ * @property {boolean} [buyNow]
  */
 /**
  * @typedef SelectAddressParam
@@ -197,15 +168,11 @@ export = CartApplicationValidator;
  */
 /**
  * @typedef UpdateCartParam
- * @property {string} [id] - The unique identifier of the cart
- * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
- *   all the items added in the cart.
- * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
- *   the price breakup of cart items.
- * @property {string} [areaCode] - Customer servicable area_code
- * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
- *   set/initialize buy now cart
- * @property {string} [cartType] - The type of cart
+ * @property {string} [id]
+ * @property {boolean} [i]
+ * @property {boolean} [b]
+ * @property {string} [areaCode]
+ * @property {boolean} [buyNow]
  * @property {CartApplicationModel.UpdateCartRequest} body
  */
 /**
@@ -221,19 +188,17 @@ export = CartApplicationValidator;
  */
 /**
  * @typedef ValidateCouponForPaymentParam
- * @property {string} [id] - The unique identifier of the cart
- * @property {boolean} [buyNow] - This is boolean to get buy_now cart
- * @property {string} [addressId] - ID allotted to an address
- * @property {string} [paymentMode] - Payment mode selected by the customer
- * @property {string} [paymentIdentifier] - Identifier of payment like ICIC, PAYTM
- * @property {string} [aggregatorName] - Payment gateway identifier
- * @property {string} [merchantCode] - Identifier used by payment gateway for a
- *   given payment mode, e.g. NB_ICIC, PAYTM
- * @property {string} [iin] - Debit/Credit card prefix (first 6 digit)
- * @property {string} [network] - Credit/Debit card issuer, e.g. VISA, MASTERCARD, RUPAY
- * @property {string} [type] - Card type, e.g. Credit, Debit
- * @property {string} [cardId] - Saved card token reference id
- * @property {string} [cartType] - Type of the cart
+ * @property {string} [id]
+ * @property {boolean} [buyNow]
+ * @property {string} [addressId]
+ * @property {string} [paymentMode]
+ * @property {string} [paymentIdentifier]
+ * @property {string} [aggregatorName]
+ * @property {string} [merchantCode]
+ * @property {string} [iin]
+ * @property {string} [network]
+ * @property {string} [type]
+ * @property {string} [cardId]
  */
 declare class CartApplicationValidator {
     /** @returns {AddAddressParam} */
@@ -260,10 +225,6 @@ declare class CartApplicationValidator {
     static getCart(): GetCartParam;
     /** @returns {GetCartLastModifiedParam} */
     static getCartLastModified(): GetCartLastModifiedParam;
-    /** @returns {GetCartMetaConfigParam} */
-    static getCartMetaConfig(): GetCartMetaConfigParam;
-    /** @returns {GetCartMetaConfigsParam} */
-    static getCartMetaConfigs(): any;
     /** @returns {GetCartShareLinkParam} */
     static getCartShareLink(): GetCartShareLinkParam;
     /** @returns {GetCartSharedItemsParam} */
@@ -272,8 +233,6 @@ declare class CartApplicationValidator {
     static getCoupons(): GetCouponsParam;
     /** @returns {GetItemCountParam} */
     static getItemCount(): GetItemCountParam;
-    /** @returns {GetItemCountV2Param} */
-    static getItemCountV2(): GetItemCountV2Param;
     /** @returns {GetLadderOffersParam} */
     static getLadderOffers(): GetLadderOffersParam;
     /** @returns {GetPromotionOffersParam} */
@@ -300,39 +259,17 @@ declare class CartApplicationValidator {
     static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartApplicationValidator {
-    export { AddAddressParam, AddItemsParam, ApplyCouponParam, ApplyRewardPointsParam, CheckoutCartParam, CheckoutCartV2Param, DeleteCartParam, GetAddressByIdParam, GetAddressesParam, GetBulkDiscountOffersParam, GetCartParam, GetCartLastModifiedParam, GetCartMetaConfigParam, GetCartMetaConfigsParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponsParam, GetItemCountParam, GetItemCountV2Param, GetLadderOffersParam, GetPromotionOffersParam, GetShipmentsParam, RemoveAddressParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartWithSharedItemsParam, ValidateCouponForPaymentParam };
+    export { AddAddressParam, AddItemsParam, ApplyCouponParam, ApplyRewardPointsParam, CheckoutCartParam, CheckoutCartV2Param, DeleteCartParam, GetAddressByIdParam, GetAddressesParam, GetBulkDiscountOffersParam, GetCartParam, GetCartLastModifiedParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponsParam, GetItemCountParam, GetLadderOffersParam, GetPromotionOffersParam, GetShipmentsParam, RemoveAddressParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartWithSharedItemsParam, ValidateCouponForPaymentParam };
 }
 type AddAddressParam = {
     body: CartApplicationModel.Address;
 };
 type AddItemsParam = {
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * all the items added in the cart.
-     */
     i?: boolean;
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * the price breakup of cart items.
-     */
     b?: boolean;
-    /**
-     * - Customer servicable area_code
-     */
     areaCode?: string;
-    /**
-     * - This is a boolen value. Select `true` to
-     * set/initialize buy now cart
-     */
     buyNow?: boolean;
-    /**
-     * - The unique identifier of the cart
-     */
     id?: string;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
     body: CartApplicationModel.AddCartRequest;
 };
 type ApplyCouponParam = {
@@ -341,32 +278,13 @@ type ApplyCouponParam = {
     p?: boolean;
     id?: string;
     buyNow?: boolean;
-    cartType?: string;
     body: CartApplicationModel.ApplyCouponRequest;
 };
 type ApplyRewardPointsParam = {
-    /**
-     * - The unique identifier of the cart
-     */
     id?: string;
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * all the items added in the cart.
-     */
     i?: boolean;
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * the price breakup of cart items.
-     */
     b?: boolean;
-    /**
-     * - This is boolean to get buy_now cart
-     */
     buyNow?: boolean;
-    /**
-     * - Type of the cart
-     */
-    cartType?: string;
     body: CartApplicationModel.RewardPointRequest;
 };
 type CheckoutCartParam = {
@@ -374,10 +292,6 @@ type CheckoutCartParam = {
      * - This indicates the type of cart to checkout
      */
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
     body: CartApplicationModel.CartCheckoutDetailRequest;
 };
 type CheckoutCartV2Param = {
@@ -385,10 +299,6 @@ type CheckoutCartV2Param = {
      * - This indicates the type of cart to checkout
      */
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
     body: CartApplicationModel.CartCheckoutDetailV2Request;
 };
 type DeleteCartParam = {
@@ -396,10 +306,6 @@ type DeleteCartParam = {
      * - The unique identifier of the cart.
      */
     id?: string;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
 };
 type GetAddressByIdParam = {
     id: string;
@@ -437,57 +343,18 @@ type GetBulkDiscountOffersParam = {
      * /service/application/catalog/v1.0/products/
      */
     slug?: string;
-    /**
-     * - Type of the cart
-     */
-    cartType?: string;
 };
 type GetCartParam = {
-    /**
-     * - The unique identifier of the cart
-     */
     id?: string;
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * all the items added in the cart.
-     */
     i?: boolean;
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * the price breakup of cart items.
-     */
     b?: boolean;
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * the cod charges in breakup of cart items.
-     */
     c?: boolean;
-    /**
-     * - Token of user's debit or credit card
-     */
     assignCardId?: number;
-    /**
-     * - Customer servicable area_code
-     */
     areaCode?: string;
-    /**
-     * - This is a boolen value. Select `true` to
-     * set/initialize buy now cart
-     */
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
 };
 type GetCartLastModifiedParam = {
     id?: string;
-};
-type GetCartMetaConfigParam = {
-    /**
-     * - CartMeta mongo id for fetching single cart meta data
-     */
-    cartMetaId: string;
 };
 type GetCartShareLinkParam = {
     body: CartApplicationModel.GetShareCartLinkRequest;
@@ -509,16 +376,6 @@ type GetItemCountParam = {
      * - The unique identifier of the cart.
      */
     id?: string;
-    buyNow?: boolean;
-};
-type GetItemCountV2Param = {
-    /**
-     * - The unique identifier of the cart
-     */
-    id?: string;
-    /**
-     * - Boolean value to get buy_now cart
-     */
     buyNow?: boolean;
 };
 type GetLadderOffersParam = {
@@ -562,10 +419,6 @@ type GetPromotionOffersParam = {
      * - Store id
      */
     storeId?: number;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
 };
 type GetShipmentsParam = {
     /**
@@ -601,18 +454,8 @@ type RemoveAddressParam = {
     id: string;
 };
 type RemoveCouponParam = {
-    /**
-     * - The unique identifier of the cart
-     */
     id?: string;
-    /**
-     * - This is boolean to get buy_now cart
-     */
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
 };
 type SelectAddressParam = {
     cartId?: string;
@@ -634,33 +477,11 @@ type UpdateAddressParam = {
     body: CartApplicationModel.Address;
 };
 type UpdateCartParam = {
-    /**
-     * - The unique identifier of the cart
-     */
     id?: string;
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * all the items added in the cart.
-     */
     i?: boolean;
-    /**
-     * - This is a boolean value. Select `true` to retrieve
-     * the price breakup of cart items.
-     */
     b?: boolean;
-    /**
-     * - Customer servicable area_code
-     */
     areaCode?: string;
-    /**
-     * - This is a boolen value. Select `true` to
-     * set/initialize buy now cart
-     */
     buyNow?: boolean;
-    /**
-     * - The type of cart
-     */
-    cartType?: string;
     body: CartApplicationModel.UpdateCartRequest;
 };
 type UpdateCartMetaParam = {
@@ -679,55 +500,16 @@ type UpdateCartWithSharedItemsParam = {
     action: string;
 };
 type ValidateCouponForPaymentParam = {
-    /**
-     * - The unique identifier of the cart
-     */
     id?: string;
-    /**
-     * - This is boolean to get buy_now cart
-     */
     buyNow?: boolean;
-    /**
-     * - ID allotted to an address
-     */
     addressId?: string;
-    /**
-     * - Payment mode selected by the customer
-     */
     paymentMode?: string;
-    /**
-     * - Identifier of payment like ICIC, PAYTM
-     */
     paymentIdentifier?: string;
-    /**
-     * - Payment gateway identifier
-     */
     aggregatorName?: string;
-    /**
-     * - Identifier used by payment gateway for a
-     * given payment mode, e.g. NB_ICIC, PAYTM
-     */
     merchantCode?: string;
-    /**
-     * - Debit/Credit card prefix (first 6 digit)
-     */
     iin?: string;
-    /**
-     * - Credit/Debit card issuer, e.g. VISA, MASTERCARD, RUPAY
-     */
     network?: string;
-    /**
-     * - Card type, e.g. Credit, Debit
-     */
     type?: string;
-    /**
-     * - Saved card token reference id
-     */
     cardId?: string;
-    /**
-     * - Type of the cart
-     */
-    cartType?: string;
 };
-type GetCartMetaConfigsParam = any;
-import CartApplicationModel = require("sdk/output/javascript/code/sdk/application/Cart/CartApplicationModel");
+import CartApplicationModel = require("./CartApplicationModel");

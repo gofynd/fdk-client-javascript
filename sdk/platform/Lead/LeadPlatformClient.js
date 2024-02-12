@@ -336,7 +336,7 @@ class Lead {
    * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.GeneralConfigResponse>} - Success response
+   * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
    * @name getGeneralConfig
    * @summary: Get general support configuration.
    * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
@@ -388,7 +388,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadPlatformModel.GeneralConfigResponse().validate(responseData, {
+    } = LeadPlatformModel.CloseVideoRoomResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

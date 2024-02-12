@@ -1,23 +1,5 @@
 export = LeadPlatformModel;
 /**
- * @typedef GeneralConfigResponse
- * @property {SupportCommunicationSchema[]} [support_communication]
- * @property {string} [type]
- * @property {GeneralConfigIntegrationSchema} [integration]
- * @property {string[]} [available_integration]
- */
-/**
- * @typedef SupportCommunicationSchema
- * @property {string} [type]
- * @property {string} [title]
- * @property {string} [description]
- * @property {boolean} [enabled]
- */
-/**
- * @typedef GeneralConfigIntegrationSchema
- * @property {string} [type]
- */
-/**
  * @typedef TicketList
  * @property {Ticket[]} [items] - List of tickets
  * @property {Filter} [filters]
@@ -109,8 +91,7 @@ export = LeadPlatformModel;
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
  * @property {Status[]} statuses - List of possible statuses for tickets
- * @property {Object[]} [assignees] - List of support staff availble for tickets
- *   assignment
+ * @property {Object[]} assignees - List of support staff availble for tickets assignment
  */
 /**
  * @typedef TicketHistoryPayload
@@ -265,7 +246,7 @@ export = LeadPlatformModel;
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory[]} [sub_categories]
+ * @property {TicketCategory} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -341,29 +322,8 @@ export = LeadPlatformModel;
 declare class LeadPlatformModel {
 }
 declare namespace LeadPlatformModel {
-    export { GeneralConfigResponse, SupportCommunicationSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, NotifyUser, Filter, TicketHistoryPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, ErrorMessage, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, NotifyUser, Filter, TicketHistoryPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, ErrorMessage, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
-/** @returns {GeneralConfigResponse} */
-declare function GeneralConfigResponse(): GeneralConfigResponse;
-type GeneralConfigResponse = {
-    support_communication?: SupportCommunicationSchema[];
-    type?: string;
-    integration?: GeneralConfigIntegrationSchema;
-    available_integration?: string[];
-};
-/** @returns {SupportCommunicationSchema} */
-declare function SupportCommunicationSchema(): SupportCommunicationSchema;
-type SupportCommunicationSchema = {
-    type?: string;
-    title?: string;
-    description?: string;
-    enabled?: boolean;
-};
-/** @returns {GeneralConfigIntegrationSchema} */
-declare function GeneralConfigIntegrationSchema(): GeneralConfigIntegrationSchema;
-type GeneralConfigIntegrationSchema = {
-    type?: string;
-};
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
 type TicketList = {
@@ -566,10 +526,9 @@ type Filter = {
      */
     statuses: Status[];
     /**
-     * - List of support staff availble for tickets
-     * assignment
+     * - List of support staff availble for tickets assignment
      */
-    assignees?: any[];
+    assignees: any[];
 };
 /** @returns {TicketHistoryPayload} */
 declare function TicketHistoryPayload(): TicketHistoryPayload;
@@ -917,7 +876,7 @@ type TicketCategory = {
      * - Category key value identifier
      */
     key: string;
-    sub_categories?: TicketCategory[];
+    sub_categories?: TicketCategory;
     /**
      * - Group id of category releted data
      */

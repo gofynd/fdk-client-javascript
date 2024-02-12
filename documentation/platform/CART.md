@@ -20,8 +20,8 @@ Default
 * [createCoupon](#createcoupon)
 * [createPromotion](#createpromotion)
 * [deleteCart](#deletecart)
-* [deleteCartMetaConfig](#deletecartmetaconfig)
 * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
+* [fetchCartMetaConfig](#fetchcartmetaconfig)
 * [getAbandonedCart](#getabandonedcart)
 * [getAbandonedCartDetails](#getabandonedcartdetails)
 * [getAddressById](#getaddressbyid)
@@ -30,21 +30,16 @@ Default
 * [getAvailableDeliveryModes](#getavailabledeliverymodes)
 * [getCart](#getcart)
 * [getCartList](#getcartlist)
-* [getCartMetaConfig](#getcartmetaconfig)
-* [getCartMetaConfigs](#getcartmetaconfigs)
 * [getCartShareLink](#getcartsharelink)
 * [getCartSharedItems](#getcartshareditems)
 * [getCouponById](#getcouponbyid)
 * [getCouponCodeExists](#getcouponcodeexists)
 * [getCouponOptionValues](#getcouponoptionvalues)
-* [getCouponTags](#getcoupontags)
 * [getCoupons](#getcoupons)
 * [getItemCount](#getitemcount)
-* [getPriceAdjustments](#getpriceadjustments)
 * [getPromosCouponConfig](#getpromoscouponconfig)
 * [getPromotionById](#getpromotionbyid)
 * [getPromotionCodeExists](#getpromotioncodeexists)
-* [getPromotionTags](#getpromotiontags)
 * [getPromotions](#getpromotions)
 * [getShipments](#getshipments)
 * [getStoreAddressByUid](#getstoreaddressbyuid)
@@ -59,7 +54,6 @@ Default
 * [selectAddress](#selectaddress)
 * [selectPaymentMode](#selectpaymentmode)
 * [selectPaymentModeV2](#selectpaymentmodev2)
-* [upateCartMetaActiveStatus](#upatecartmetaactivestatus)
 * [updateAddress](#updateaddress)
 * [updateCart](#updatecart)
 * [updateCartMeta](#updatecartmeta)
@@ -933,9 +927,7 @@ Price Adjustment Created successfully
         "cancellation_allowed": false,
         "return_allowed": false
       }
-    },
-    "remove_articles": false,
-    "auto_remove": true
+    }
   }
 }
 ```
@@ -2262,7 +2254,7 @@ Create new cart meta configuration
 
 
 
-[CartMetaConfigDetailResponse](#CartMetaConfigDetailResponse)
+[CartMetaConfigAdd](#CartMetaConfigAdd)
 
 Cart Meta Config Created successfully
 
@@ -2274,7 +2266,7 @@ Cart Meta Config Created successfully
 
 ```json
 {
-  "id": "645ba594d414eb0669e6ee14",
+  "_id": "645ba594d414eb0669e6ee14",
   "app_id": "60792ded7826bd09330ed90d",
   "company_id": 884,
   "bulk_coupons": false,
@@ -2288,31 +2280,7 @@ Cart Meta Config Created successfully
   "min_cart_value": 0,
   "revenue_engine_coupon": false,
   "gift_pricing": 50,
-  "gift_display_text": "",
-  "is_universal": false,
-  "is_active": true,
-  "order_placing": {
-    "enabled": true,
-    "message": ""
-  },
-  "name": "Universal",
-  "slug": "universal",
-  "article_tags": [
-    "sale",
-    "offer"
-  ],
-  "allow_coupon_with_rewards": false,
-  "gst_input": true,
-  "staff_selection": true,
-  "placing_for_customer": false,
-  "pan_card": {
-    "enabled": false,
-    "cod_threshold_amount": 0,
-    "online_threshold_amount": 0
-  },
-  "created_on": "2023-12-21T12:17:12",
-  "updated_on": "2023-12-21T12:17:12",
-  "last_modified_by": "5b84e9ffb02426353608c380"
+  "gift_display_text": ""
 }
 ```
 </details>
@@ -2563,13 +2531,11 @@ Delete cart once user made successful checkout
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.deleteCart({  body : value,
- id : value,
- cartType : value });
+ id : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.deleteCart({  body : value,
- id : value,
- cartType : value });
+ id : value });
 ```
 
 
@@ -2578,8 +2544,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.deleteCar
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart. |    
-| cartType | string | no | The type of cart |  
+| id | string | no | The unique identifier of the cart. |  
 | body | [DeleteCartRequest](#DeleteCartRequest) | yes | Request body |
 
 
@@ -2604,65 +2569,6 @@ Success. Returns whether the cart has been deleted or not.
 {
   "success": true,
   "message": "cart archived"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteCartMetaConfig
-Delete cart meta configuration
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.deleteCartMetaConfig({  cartMetaId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.deleteCartMetaConfig({  cartMetaId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| cartMetaId | string | yes | CartMeta mongo _id for fetching single cart meta data for editing |  
-
-
-
-Delete cart meta configuration
-
-*Returned Response:*
-
-
-
-
-[SuccessMessage](#SuccessMessage)
-
-Cart Meta Config deleted successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": ""
 }
 ```
 </details>
@@ -3004,6 +2910,73 @@ Cart details with breakup
       "you_saved": 0
     }
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchCartMetaConfig
+Fetch cart meta configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.fetchCartMetaConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.fetchCartMetaConfig();
+```
+
+
+
+
+
+
+Fetch cart meta configuration
+
+*Returned Response:*
+
+
+
+
+[CartMetaConfigAdd](#CartMetaConfigAdd)
+
+Cart Meta Config Fetched successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "645ba594d414eb0669e6ee14",
+  "app_id": "60792ded7826bd09330ed90d",
+  "company_id": 884,
+  "bulk_coupons": false,
+  "delivery_charges": {
+    "charges": [],
+    "enabled": false
+  },
+  "empty_cart": false,
+  "enabled": true,
+  "max_cart_items": 50,
+  "min_cart_value": 0,
+  "revenue_engine_coupon": false,
+  "gift_pricing": 50,
+  "gift_display_text": ""
 }
 ```
 </details>
@@ -3927,8 +3900,7 @@ const promise = platformClient.application("<APPLICATION_ID>").cart.getCart({  i
  i : value,
  b : value,
  assignCardId : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.getCart({  id : value,
@@ -3936,8 +3908,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getCart({
  i : value,
  b : value,
  assignCardId : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -3946,13 +3917,12 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getCart({
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| userId | string | no | Option to fetch cart for the provided user_id. |    
-| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
-| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
-| assignCardId | number | no | Token of user's debit or credit card |    
-| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |    
-| cartType | string | no | The type of cart |  
+| id | string | no |  |    
+| userId | string | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| assignCardId | number | no |  |    
+| buyNow | boolean | no |  |  
 
 
 
@@ -3996,7 +3966,6 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
           "name": "Gandhi Nagar"
         },
         "quantity": 108,
-        "product_name": "",
         "price": {
           "base": {
             "marked": 2999,
@@ -4077,8 +4046,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
         }
       },
       "message": "",
-      "quantity": 1,
-      "seller_count": 1
+      "quantity": 1
     }
   ],
   "buy_now": false,
@@ -4242,171 +4210,6 @@ Platform user cart list
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCartMetaConfig
-Get cart meta configuration by id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getCartMetaConfig({  cartMetaId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getCartMetaConfig({  cartMetaId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| cartMetaId | string | yes | CartMeta mongo _id for fetching single cart meta data for editing |  
-
-
-
-Get cart meta configuration by id
-
-*Returned Response:*
-
-
-
-
-[CartMetaConfigDetailResponse](#CartMetaConfigDetailResponse)
-
-Cart Meta Config Fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "id": "645ba594d414eb0669e6ee14",
-    "app_id": "60792ded7826bd09330ed90d",
-    "company_id": 884,
-    "bulk_coupons": false,
-    "delivery_charges": {
-      "charges": [],
-      "enabled": false
-    },
-    "international_delivery_charges": {
-      "charges": [],
-      "enabled": false
-    },
-    "empty_cart": false,
-    "enabled": true,
-    "max_cart_items": 50,
-    "min_cart_value": 0,
-    "revenue_engine_coupon": false,
-    "gift_pricing": 50,
-    "gift_display_text": "",
-    "is_universal": false,
-    "is_active": true,
-    "order_placing": {
-      "enabled": true,
-      "message": ""
-    },
-    "name": "Universal",
-    "slug": "universal",
-    "article_tags": [
-      "sale",
-      "offer"
-    ],
-    "allow_coupon_with_rewards": false,
-    "gst_input": true,
-    "staff_selection": true,
-    "placing_for_customer": false,
-    "pan_card": {
-      "enabled": false,
-      "cod_threshold_amount": 0,
-      "online_threshold_amount": 0
-    },
-    "created_on": "2023-12-21T12:17:12",
-    "updated_on": "2023-12-21T12:17:12",
-    "last_modified_by": "5b84e9ffb02426353608c380"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCartMetaConfigs
-Get cart meta configuration
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getCartMetaConfigs();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getCartMetaConfigs();
-```
-
-
-
-
-
-
-Get cart meta configuration
-
-*Returned Response:*
-
-
-
-
-[CartMetaConfigListResponse](#CartMetaConfigListResponse)
-
-Cart Meta Configs fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "645ba594d414eb0669e6ee14",
-      "is_active": true,
-      "name": "Universal",
-      "slug": "universal",
-      "created_on": "2023-12-21T12:17:12"
-    }
-  ]
-}
-```
 </details>
 
 
@@ -5176,70 +4979,6 @@ Coupon options enums
 ---
 
 
-### getCouponTags
-Get a list of all coupon tags associated with a application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponTags();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponTags();
-```
-
-
-
-
-
-
-This API helps to get coupon tags data associated to a particular application.
-
-*Returned Response:*
-
-
-
-
-[TagsViewResponse](#TagsViewResponse)
-
-Tag List. See example below for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Tags list for sent</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      "platform",
-      "custom"
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getCoupons
 Get with single coupon details or coupon list
 
@@ -5386,13 +5125,11 @@ Count items in the customer's cart
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.getItemCount({  id : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.getItemCount({  id : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -5402,8 +5139,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getItemCo
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no | The unique identifier of the cart. |    
-| buyNow | boolean | no | Boolean value to get buy_now cart. |    
-| cartType | string | no | The type of cart |  
+| buyNow | boolean | no |  |  
 
 
 
@@ -5427,96 +5163,6 @@ Success. Returns the total count of items in a user's cart.
 ```json
 {
   "user_cart_items_count": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPriceAdjustments
-Get a list of all price adjustments associated with a cart
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getPriceAdjustments({  cartId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getPriceAdjustments({  cartId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| cartId | string | yes | Cart Id |  
-
-
-
-This API helps to get price adjustments data associated to a particular cart
-
-*Returned Response:*
-
-
-
-
-[PriceAdjustmentResponse](#PriceAdjustmentResponse)
-
-Price Adjustments List. See example below for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "id": "cc8154592ccb42c88b481ce4c21ab602",
-    "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
-    "is_authenticated": true,
-    "article_ids": [
-      {
-        "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
-        "value": 100,
-        "code": "abs120",
-        "meta": {},
-        "quantity": 2
-      }
-    ],
-    "type": "discount",
-    "message": "Fynd Campaign 100 Rs off",
-    "value": 100,
-    "article_level_distribution": true,
-    "allow_refund": true,
-    "meta": {},
-    "collection": {
-      "collected_by": "FYND",
-      "refund_by": "FYND"
-    },
-    "restrictions": {
-      "post_order": {
-        "cancellation_allowed": false,
-        "return_allowed": false
-      }
-    },
-    "remove_articles": false,
-    "auto_remove": true
-  }
 }
 ```
 </details>
@@ -5839,70 +5485,6 @@ Valid response with existing promotion code count
   "value": {
     "success": true,
     "count": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPromotionTags
-Get a list of all Promotion tags associated with a application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotionTags();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getPromotionTags();
-```
-
-
-
-
-
-
-This API helps to get Promotion tags data associated to a particular application.
-
-*Returned Response:*
-
-
-
-
-[TagsViewResponse](#TagsViewResponse)
-
-Tag List. See example below for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Tags list for sent</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      "platform",
-      "custom"
-    ]
   }
 }
 ```
@@ -7278,16 +6860,14 @@ const promise = platformClient.application("<APPLICATION_ID>").cart.platformAddI
  i : value,
  b : value,
  buyNow : value,
- id : value,
- cartType : value });
+ id : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.platformAddItems({  body : value,
  i : value,
  b : value,
  buyNow : value,
- id : value,
- cartType : value });
+ id : value });
 ```
 
 
@@ -7296,11 +6876,10 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.platformA
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
-| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
-| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |    
-| id | string | no | The unique identifier of the cart |    
-| cartType | string | no | The type of cart |  
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| buyNow | boolean | no |  |    
+| id | string | no |  |  
 | body | [PlatformAddCartRequest](#PlatformAddCartRequest) | yes | Request body |
 
 
@@ -7398,12 +6977,10 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
             "parent_item_id": 7501190,
             "parent_item_size": "OS"
           },
-          "seller_count": 1,
           "article": {
             "type": "article",
             "uid": "612_9_SE61201_19100302_10",
             "size": "10",
-            "product_name": "",
             "seller": {
               "uid": 612,
               "name": "SSR ENTERPRISE"
@@ -7868,7 +7445,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
             "identifier": "5mPyy88URXuh3Lo35uaTg"
           },
           "discount": "67% OFF",
-          "seller_count": 1,
           "parent_item_identifiers": {
             "identifier": "ZASFF",
             "parent_item_id": 7501190,
@@ -7887,7 +7463,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
               "name": "Gandhi Nagar"
             },
             "quantity": 108,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 2999,
@@ -8009,13 +7584,11 @@ Checkout all items in the cart
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.platformCheckoutCart({  body : value,
- id : value,
- cartType : value });
+ id : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.platformCheckoutCart({  body : value,
- id : value,
- cartType : value });
+ id : value });
 ```
 
 
@@ -8024,8 +7597,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.platformC
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| cartType | string | no | The type of cart |  
+| id | string | no |  |  
 | body | [PlatformCartCheckoutDetailRequest](#PlatformCartCheckoutDetailRequest) | yes | Request body |
 
 
@@ -8453,13 +8025,11 @@ Checkout all items in the cart
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.platformCheckoutCartV2({  body : value,
- id : value,
- cartType : value });
+ id : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.platformCheckoutCartV2({  body : value,
- id : value,
- cartType : value });
+ id : value });
 ```
 
 
@@ -8468,8 +8038,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.platformC
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| cartType | string | no | The type of cart |  
+| id | string | no |  |  
 | body | [PlatformCartCheckoutDetailV2Request](#PlatformCartCheckoutDetailV2Request) | yes | Request body |
 
 
@@ -8900,16 +8469,14 @@ const promise = platformClient.application("<APPLICATION_ID>").cart.platformUpda
  id : value,
  i : value,
  b : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.platformUpdateCart({  body : value,
  id : value,
  i : value,
  b : value,
- buyNow : value,
- cartType : value });
+ buyNow : value });
 ```
 
 
@@ -8918,11 +8485,10 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.platformU
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart |    
-| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
-| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
-| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |    
-| cartType | string | no | The type of cart |  
+| id | string | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| buyNow | boolean | no |  |  
 | body | [PlatformUpdateCartRequest](#PlatformUpdateCartRequest) | yes | Request body |
 
 
@@ -9014,7 +8580,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
             "identifier": "5mPyy88URXuh3Lo35uaTg"
           },
           "discount": "67% OFF",
-          "seller_count": 1,
           "parent_item_identifiers": {
             "identifier": "ZASFF",
             "parent_item_id": 7501190,
@@ -9033,7 +8598,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
               "name": "Gandhi Nagar"
             },
             "quantity": 108,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 2999,
@@ -9205,7 +8769,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
             "identifier": "5mPyy88URXuh3Lo35uaTg"
           },
           "message": "",
-          "seller_count": 1,
           "bulk_offer": {},
           "price": {
             "base": {
@@ -9275,7 +8838,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
               "name": "Colaba Causway"
             },
             "quantity": 5,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 5499,
@@ -10689,111 +10251,6 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 ---
 
 
-### upateCartMetaActiveStatus
-Update cart meta configuration
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.upateCartMetaActiveStatus({  cartMetaId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.upateCartMetaActiveStatus({  cartMetaId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| cartMetaId | string | yes | CartMeta mongo _id for fetching single cart meta data for editing |  
-| body | [CartMetaConfigUpdate](#CartMetaConfigUpdate) | yes | Request body |
-
-
-Update cart meta configuration
-
-*Returned Response:*
-
-
-
-
-[CartMetaConfigDetailResponse](#CartMetaConfigDetailResponse)
-
-Cart Meta Config updated successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "id": "645ba594d414eb0669e6ee14",
-    "app_id": "60792ded7826bd09330ed90d",
-    "company_id": 884,
-    "bulk_coupons": false,
-    "delivery_charges": {
-      "charges": [],
-      "enabled": false
-    },
-    "international_delivery_charges": {
-      "charges": [],
-      "enabled": false
-    },
-    "empty_cart": false,
-    "enabled": true,
-    "max_cart_items": 50,
-    "min_cart_value": 0,
-    "revenue_engine_coupon": false,
-    "gift_pricing": 50,
-    "gift_display_text": "",
-    "is_universal": false,
-    "is_active": true,
-    "order_placing": {
-      "enabled": true,
-      "message": ""
-    },
-    "name": "Universal",
-    "slug": "universal",
-    "article_tags": [
-      "sale",
-      "offer"
-    ],
-    "allow_coupon_with_rewards": false,
-    "gst_input": true,
-    "staff_selection": true,
-    "placing_for_customer": false,
-    "pan_card": {
-      "enabled": false,
-      "cod_threshold_amount": 0,
-      "online_threshold_amount": 0
-    },
-    "created_on": "2023-12-21T12:17:12",
-    "updated_on": "2023-12-21T12:17:12",
-    "last_modified_by": "5b84e9ffb02426353608c380"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateAddress
 Update address added to an account
 
@@ -11516,7 +10973,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.updateCar
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| cartMetaId | string | yes | CartMeta mongo _id for fetching single cart meta data for editing |  
+| cartMetaId | string | yes |  |  
 | body | [CartMetaConfigUpdate](#CartMetaConfigUpdate) | yes | Request body |
 
 
@@ -11527,9 +10984,9 @@ Update cart meta configuration
 
 
 
-[CartMetaConfigDetailResponse](#CartMetaConfigDetailResponse)
+[CartMetaConfigUpdate](#CartMetaConfigUpdate)
 
-Cart Meta Config updated successfully
+Cart Meta Config Created successfully
 
 
 
@@ -11539,48 +10996,21 @@ Cart Meta Config updated successfully
 
 ```json
 {
-  "success": true,
-  "data": {
-    "id": "645ba594d414eb0669e6ee14",
-    "app_id": "60792ded7826bd09330ed90d",
-    "company_id": 884,
-    "bulk_coupons": false,
-    "delivery_charges": {
-      "charges": [],
-      "enabled": false
-    },
-    "empty_cart": false,
-    "enabled": true,
-    "max_cart_items": 50,
-    "min_cart_value": 0,
-    "revenue_engine_coupon": false,
-    "gift_pricing": 50,
-    "gift_display_text": "",
-    "is_universal": false,
-    "is_active": true,
-    "order_placing": {
-      "enabled": true,
-      "message": ""
-    },
-    "name": "Universal",
-    "slug": "universal",
-    "article_tags": [
-      "sale",
-      "offer"
-    ],
-    "allow_coupon_with_rewards": false,
-    "gst_input": true,
-    "staff_selection": true,
-    "placing_for_customer": false,
-    "pan_card": {
-      "enabled": false,
-      "cod_threshold_amount": 0,
-      "online_threshold_amount": 0
-    },
-    "created_on": "2023-12-21T12:17:12",
-    "updated_on": "2023-12-21T12:17:12",
-    "last_modified_by": "5b84e9ffb02426353608c380"
-  }
+  "_id": "645ba594d414eb0669e6ee14",
+  "app_id": "60792ded7826bd09330ed90d",
+  "company_id": 884,
+  "bulk_coupons": false,
+  "delivery_charges": {
+    "charges": [],
+    "enabled": false
+  },
+  "empty_cart": false,
+  "enabled": true,
+  "max_cart_items": 50,
+  "min_cart_value": 0,
+  "revenue_engine_coupon": false,
+  "gift_pricing": 50,
+  "gift_display_text": ""
 }
 ```
 </details>
@@ -12547,9 +11977,7 @@ Price Adjustment Updated successfully
         "cancellation_allowed": false,
         "return_allowed": false
       }
-    },
-    "remove_articles": false,
-    "auto_remove": true
+    }
   }
 }
 ```
@@ -13747,7 +13175,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | meta | string? |  yes  |  |
  | parent_item_identifiers | [[String: string]]? |  yes  |  |
  | pos | boolean? |  yes  |  |
- | price_factory_type_id | string? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller_id | number? |  yes  |  |
@@ -13779,7 +13206,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
  | code | string? |  yes  | Promotion code |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | custom_field_meta | [string]? |  yes  | custom field meta for promotion. |
  | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | meta | string? |  yes  | Meta object for extra data |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
@@ -13972,12 +13398,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | coupon | [CartDetailCoupon](#CartDetailCoupon)? |  yes  |  |
  | coupon_text | string? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | custom_cart | [CustomCart](#CustomCart)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | gstin | string? |  yes  |  |
  | id | string? |  yes  |  |
- | is_pan_received | boolean? |  yes  |  |
  | is_valid | boolean? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | last_modified | string? |  yes  |  |
@@ -14043,59 +13467,14 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_coupon_with_rewards | boolean? |  yes  |  |
- | article_tags | [string]? |  yes  |  |
  | bulk_coupons | boolean? |  yes  |  |
  | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
  | enabled | boolean? |  yes  |  |
  | gift_display_text | string? |  yes  |  |
  | gift_pricing | number? |  yes  |  |
- | gst_input | boolean? |  yes  |  |
- | international_delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | is_active | boolean? |  yes  |  |
  | max_cart_items | number? |  yes  |  |
- | max_cart_value | number? |  yes  |  |
  | min_cart_value | number? |  yes  |  |
- | name | string |  no  |  |
- | order_placing | [OrderPlacing](#OrderPlacing)? |  yes  |  |
- | pan_card | [PanCard](#PanCard)? |  yes  |  |
- | placing_for_customer | boolean? |  yes  |  |
  | revenue_engine_coupon | boolean? |  yes  |  |
- | slug | string |  no  |  |
- | staff_selection | boolean? |  yes  |  |
- 
-
----
-
-#### [CartMetaConfigDetailResponse](#CartMetaConfigDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [CartMetaConfigUpdate](#CartMetaConfigUpdate)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [CartMetaConfigListObj](#CartMetaConfigListObj)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_on | string? |  yes  |  |
- | id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
-#### [CartMetaConfigListResponse](#CartMetaConfigListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[CartMetaConfigListObj](#CartMetaConfigListObj)]? |  yes  |  |
- | success | boolean? |  yes  |  |
  
 
 ---
@@ -14104,25 +13483,14 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_coupon_with_rewards | boolean? |  yes  |  |
- | article_tags | [string]? |  yes  |  |
  | bulk_coupons | boolean? |  yes  |  |
  | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
  | enabled | boolean? |  yes  |  |
  | gift_display_text | string? |  yes  |  |
  | gift_pricing | number? |  yes  |  |
- | gst_input | boolean? |  yes  |  |
- | international_delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | is_active | boolean? |  yes  |  |
  | max_cart_items | number? |  yes  |  |
- | max_cart_value | number? |  yes  |  |
  | min_cart_value | number? |  yes  |  |
- | name | string? |  yes  |  |
- | order_placing | [OrderPlacing](#OrderPlacing)? |  yes  |  |
- | pan_card | [PanCard](#PanCard)? |  yes  |  |
- | placing_for_customer | boolean? |  yes  |  |
  | revenue_engine_coupon | boolean? |  yes  |  |
- | staff_selection | boolean? |  yes  |  |
  
 
 ---
@@ -14201,7 +13569,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | promo_meta | [PromoMeta](#PromoMeta)? |  yes  |  |
  | promotions_applied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | quantity | number? |  yes  |  |
- | seller_count | number? |  yes  |  |
  
 
 ---
@@ -14250,7 +13617,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | comment | string? |  yes  |  |
  | coupon_text | string? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | custom_cart | [CustomCart](#CustomCart)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
  | delivery_charge_order_value | number? |  yes  |  |
  | delivery_charges | number? |  yes  |  |
@@ -14474,18 +13840,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | next_validation_required | boolean? |  yes  |  |
  | title | string? |  yes  |  |
  | valid | boolean? |  yes  |  |
- 
-
----
-
-#### [CustomCart](#CustomCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart_name | string? |  yes  | Name of custom cart |
- | cart_type | string? |  yes  | Type of custom cart |
- | id | string? |  yes  | id of custom cart config |
- | is_universal | boolean? |  yes  | By default all carts are universal, will be false for custom cart |
  
 
 ---
@@ -14940,19 +14294,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
  | message | string? |  yes  |  |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [OrderPlacing](#OrderPlacing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- | message | string? |  yes  |  |
  
 
 ---
@@ -15077,17 +14420,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | has_previous | boolean? |  yes  |  |
  | total | number? |  yes  |  |
  | total_item_count | number? |  yes  |  |
- 
-
----
-
-#### [PanCard](#PanCard)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cod_threshold_amount | number? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | online_threshold_amount | number? |  yes  |  |
  
 
 ---
@@ -15278,7 +14610,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | pos | boolean? |  yes  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
  | type | string? |  yes  |  |
- | user_id | string? |  yes  |  |
+ | user_id | string |  no  |  |
  
 
 ---
@@ -15317,7 +14649,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | pos | boolean? |  yes  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
  | type | string? |  yes  |  |
- | user_id | string? |  yes  |  |
+ | user_id | string |  no  |  |
  
 
 ---
@@ -15330,7 +14662,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | comment | string? |  yes  |  |
  | gift_details | string? |  yes  |  |
  | gstin | string? |  yes  |  |
- | is_pan_received | boolean? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |
  | staff_user_id | string? |  yes  | staff user id |
@@ -15354,7 +14685,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | error | boolean? |  yes  |  |
  | gstin | string? |  yes  |  |
  | id | string? |  yes  |  |
- | is_pan_received | boolean? |  yes  |  |
  | is_valid | boolean? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | last_modified | string? |  yes  |  |
@@ -15449,16 +14779,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | apply_expiry | string? |  yes  | The date and time when the expiry should be applied |
  | article_ids | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
  | article_level_distribution | boolean |  no  | Flag indicating whether the distribution should is done at the article level |
- | auto_remove | boolean? |  yes  | This field if set true will remove mop type price adjustment. |
  | cart_id | string |  no  | The ID of the cart |
  | collection | [Collection](#Collection) |  no  |  |
- | distribution_level | string? |  yes  | distribution level of price adjusment |
- | distribution_type | string? |  yes  | distribution type of price adjusment in case of shipment distribution level |
  | id | string? |  yes  |  |
  | is_authenticated | boolean |  no  | Flag indicating whether the user is authenticated |
  | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
- | remove_articles | boolean? |  yes  | This field if set true will remove all articles in price adjustment if article_ids are present |
  | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | This field accepts the restrictions applied to this particular item or service, including whether or not cancellation and return are allowed, etc |
  | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
@@ -15474,16 +14800,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | apply_expiry | string? |  yes  | The date and time when the expiry should be applied |
  | article_ids | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
  | article_level_distribution | boolean |  no  | Flag indicating whether the distribution should is done at the article level |
- | auto_remove | boolean? |  yes  | This field if set true will remove mop type price adjustment. |
  | cart_id | string |  no  | The ID of the cart |
  | collection | [Collection](#Collection) |  no  |  |
  | created_by | string? |  yes  | The entity that created the field |
- | distribution_level | string? |  yes  | distribution level of price adjusment |
- | distribution_type | string? |  yes  | distribution type of price adjusment in case of shipment distribution level |
  | is_authenticated | boolean |  no  | Flag indicating whether the user is authenticated |
  | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
- | remove_articles | boolean? |  yes  | This field if set true will remove all articles in price adjustment if article_ids are present |
  | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | This field accepts the restrictions applied to this particular item or service, including whether or not cancellation and return are allowed, etc |
  | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
@@ -15517,14 +14839,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | apply_expiry | string? |  yes  | The date and time when the expiry should be applied |
  | article_ids | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
  | article_level_distribution | boolean |  no  | Flag indicating whether the distribution should is done at the article level |
- | auto_remove | boolean? |  yes  | This field if set true will remove mop type price adjustment. |
  | cart_id | string |  no  | The ID of the cart |
  | collection | [Collection](#Collection) |  no  |  |
  | is_authenticated | boolean |  no  | Flag indicating whether the user is authenticated |
  | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
  | modified_by | string? |  yes  | The entity that modified the field |
- | remove_articles | boolean? |  yes  | This field if set true will remove all articles in price adjustment if article_ids are present |
  | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | restrictions applied to this particular item or product, including whether or not cancellation and return are allowed. |
  | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
@@ -15568,7 +14888,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
- | product_name | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
@@ -15715,7 +15034,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | promotion_type | string |  no  |  |
  | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
  | stackable | boolean? |  yes  |  |
- | tags | [string]? |  yes  |  |
  | visiblility | [Visibility](#Visibility)? |  yes  |  |
  
 
@@ -15757,7 +15075,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | calculate_on | string? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
  | code | string? |  yes  | Promotion code |
  | currency | string? |  yes  | Currency used for promotion |
- | custom_field_meta | [string]? |  yes  | custom field meta for promotion. |
  | date_meta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
  | discount_rules | [[DiscountRule](#DiscountRule)] |  no  | Discount rules based on which promotion will be applied |
  | display_meta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
@@ -15768,7 +15085,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | promotion_type | string |  no  | Type of the promotion |
  | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
  | stackable | boolean? |  yes  | Allows more than one promotion to get combined benefits |
- | tags | [string]? |  yes  |  |
  | visiblility | [Visibility](#Visibility)? |  yes  |  |
  
 
@@ -15834,7 +15150,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | calculate_on | string? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
  | code | string? |  yes  |  |
  | currency | string? |  yes  |  |
- | custom_field_meta | [string]? |  yes  | custom field meta for promotion. |
  | date_meta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
  | discount_rules | [[DiscountRule](#DiscountRule)] |  no  |  |
  | display_meta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
@@ -15845,7 +15160,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | promotion_type | string |  no  |  |
  | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
  | stackable | boolean? |  yes  |  |
- | tags | [string]? |  yes  |  |
  | visiblility | [Visibility](#Visibility)? |  yes  |  |
  
 
@@ -16108,30 +15422,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [TagsViewResponse](#TagsViewResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [TimeStampIDResponse](#TimeStampIDResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_id | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | created_on | string? |  yes  |  |
- | id | string? |  yes  |  |
- | last_modified_by | string? |  yes  |  |
- | updated_on | string? |  yes  |  |
- 
-
----
-
 #### [UpdateAddressResponse](#UpdateAddressResponse)
 
  | Properties | Type | Nullable | Description |
@@ -16227,7 +15517,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | item_size | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
- | price_factory_type_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  
 
@@ -16257,7 +15546,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | gstin | string? |  yes  |  |
  | id | string? |  yes  |  |
- | is_pan_received | boolean? |  yes  |  |
  | is_valid | boolean? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | last_modified | string? |  yes  |  |

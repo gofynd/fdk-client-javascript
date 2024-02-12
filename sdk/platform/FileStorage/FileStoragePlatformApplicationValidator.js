@@ -50,16 +50,6 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
- * @typedef DeletePdfConfigTemplateParam
- * @property {string} id
- */
-
-/**
- * @typedef DeletePdfTypeParam
- * @property {string} id
- */
-
-/**
  * @typedef GeneratePaymentReceiptParam
  * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
  */
@@ -149,20 +139,6 @@ class FileStoragePlatformApplicationValidator {
       limit: Joi.number(),
       search: Joi.string().allow(""),
       body: FileStoragePlatformModel.ExtensionSlug().required(),
-    }).required();
-  }
-
-  /** @returns {DeletePdfConfigTemplateParam} */
-  static deletePdfConfigTemplate() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeletePdfTypeParam} */
-  static deletePdfType() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 

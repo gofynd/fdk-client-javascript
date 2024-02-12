@@ -324,12 +324,12 @@ declare class User {
      * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
+     * @returns {Promise<any>} - Success response
      * @name sendResetPasswordMobile
      * @summary: Reset Password
      * @description: Use this API to reset a password using the link sent on mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
      */
-    sendResetPasswordMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendResetPasswordMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.ResetPasswordSuccess>;
+    sendResetPasswordMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendResetPasswordMobileParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {UserApplicationValidator.SendResetTokenParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -486,5 +486,5 @@ declare class User {
      */
     verifyMobileOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyOtpSuccess>;
 }
-import UserApplicationValidator = require("sdk/output/javascript/code/sdk/application/User/UserApplicationValidator");
-import UserApplicationModel = require("sdk/output/javascript/code/sdk/application/User/UserApplicationModel");
+import UserApplicationValidator = require("./UserApplicationValidator");
+import UserApplicationModel = require("./UserApplicationModel");

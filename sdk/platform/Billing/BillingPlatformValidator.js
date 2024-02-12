@@ -59,16 +59,6 @@ const BillingPlatformModel = require("./BillingPlatformModel");
 
 /** @typedef GetInvoicesParam */
 
-/**
- * @typedef GetPaymentOptionsParam
- * @property {string} transactionId - ID of the payment transaction.
- */
-
-/**
- * @typedef GetPaymentTransactionParam
- * @property {string} transactionId - Payment Transaction unique id.
- */
-
 /** @typedef GetSubscriptionParam */
 
 /**
@@ -87,18 +77,6 @@ const BillingPlatformModel = require("./BillingPlatformModel");
  */
 
 /**
- * @typedef GlobalSettingsParam
- * @property {number} pageNo - Number of pages needed
- * @property {number} pageSize - Number of items to be there in page
- * @property {Object} query - Field which will be used in db query
- */
-
-/**
- * @typedef PaymentOptionsParam
- * @property {string} code - Payment options unique code.
- */
-
-/**
  * @typedef PlanStatusUpdateParam
  * @property {BillingPlatformModel.PlanStatusUpdateReq} body
  */
@@ -108,28 +86,9 @@ const BillingPlatformModel = require("./BillingPlatformModel");
  * @property {BillingPlatformModel.SunscribePlan} body
  */
 
-/** @typedef SubscriptionConfigsParam */
-
-/**
- * @typedef SubscriptionMethodsParam
- * @property {Object} uniqueExternalId - Unique id for external company
- */
-
-/**
- * @typedef SubscriptionPlanChangeParam
- * @property {string} [productSuite]
- * @property {number} [uniqueId]
- * @property {string} [platform]
- */
-
 /**
  * @typedef UpsertCustomerDetailParam
  * @property {BillingPlatformModel.SubscriptionCustomerCreate} body
- */
-
-/**
- * @typedef VerifyPaymentParam
- * @property {BillingPlatformModel.VerifyPaymentReq} body
  */
 
 class BillingPlatformValidator {
@@ -217,20 +176,6 @@ class BillingPlatformValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetPaymentOptionsParam} */
-  static getPaymentOptions() {
-    return Joi.object({
-      transactionId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetPaymentTransactionParam} */
-  static getPaymentTransaction() {
-    return Joi.object({
-      transactionId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetSubscriptionParam} */
   static getSubscription() {
     return Joi.object({}).required();
@@ -255,22 +200,6 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {GlobalSettingsParam} */
-  static globalSettings() {
-    return Joi.object({
-      pageNo: Joi.number().required(),
-      pageSize: Joi.number().required(),
-      query: Joi.any().required(),
-    }).required();
-  }
-
-  /** @returns {PaymentOptionsParam} */
-  static paymentOptions() {
-    return Joi.object({
-      code: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {PlanStatusUpdateParam} */
   static planStatusUpdate() {
     return Joi.object({
@@ -285,38 +214,10 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {SubscriptionConfigsParam} */
-  static subscriptionConfigs() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {SubscriptionMethodsParam} */
-  static subscriptionMethods() {
-    return Joi.object({
-      uniqueExternalId: Joi.any().required(),
-    }).required();
-  }
-
-  /** @returns {SubscriptionPlanChangeParam} */
-  static subscriptionPlanChange() {
-    return Joi.object({
-      productSuite: Joi.string().allow(""),
-      uniqueId: Joi.number(),
-      platform: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {UpsertCustomerDetailParam} */
   static upsertCustomerDetail() {
     return Joi.object({
       body: BillingPlatformModel.SubscriptionCustomerCreate().required(),
-    }).required();
-  }
-
-  /** @returns {VerifyPaymentParam} */
-  static verifyPayment() {
-    return Joi.object({
-      body: BillingPlatformModel.VerifyPaymentReq().required(),
     }).required();
   }
 }

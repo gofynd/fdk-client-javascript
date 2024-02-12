@@ -153,7 +153,7 @@ export = LeadApplicationModel;
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory[]} [sub_categories]
+ * @property {TicketCategory} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -560,7 +560,7 @@ type TicketCategory = {
      * - Category key value identifier
      */
     key: string;
-    sub_categories?: TicketCategory[];
+    sub_categories?: TicketCategory;
     /**
      * - Group id of category releted data
      */

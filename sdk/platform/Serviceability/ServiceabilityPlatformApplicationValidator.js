@@ -49,11 +49,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef PatchApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequest} body
- */
-
-/**
  * @typedef PatchApplicationServiceabilitySelfShipmentParam
  * @property {ServiceabilityPlatformModel.SelfShipResponse} body
  */
@@ -172,13 +167,6 @@ class ServiceabilityPlatformApplicationValidator {
   static insertApplicationConfig() {
     return Joi.object({
       body: ServiceabilityPlatformModel.StoreRuleConfigData().required(),
-    }).required();
-  }
-
-  /** @returns {PatchApplicationConfigurationParam} */
-  static patchApplicationConfiguration() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationConfigPatchRequest().required(),
     }).required();
   }
 

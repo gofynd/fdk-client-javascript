@@ -85,5 +85,5 @@ declare class Share {
      */
     getUrlQRCode({ url, requestHeaders }?: ShareApplicationValidator.GetUrlQRCodeParam, { responseHeaders }?: object): Promise<ShareApplicationModel.QRCodeResp>;
 }
-import ShareApplicationValidator = require("sdk/output/javascript/code/sdk/application/Share/ShareApplicationValidator");
-import ShareApplicationModel = require("sdk/output/javascript/code/sdk/application/Share/ShareApplicationModel");
+import ShareApplicationValidator = require("./ShareApplicationValidator");
+import ShareApplicationModel = require("./ShareApplicationModel");

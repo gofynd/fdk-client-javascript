@@ -73,13 +73,12 @@ declare class Cart {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.CartMetaConfigDetailResponse>} -
-     *   Success response
+     * @returns {Promise<CartPlatformModel.CartMetaConfigAdd>} - Success response
      * @name createCartMetaConfig
      * @summary: Create new cart meta configuration
      * @description: Create new cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCartMetaConfig/).
      */
-    createCartMetaConfig({ body, requestHeaders }?: CartPlatformApplicationValidator.CreateCartMetaConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigDetailResponse>;
+    createCartMetaConfig({ body, requestHeaders }?: CartPlatformApplicationValidator.CreateCartMetaConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigAdd>;
     /**
      * @param {CartPlatformApplicationValidator.CreateCouponParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -109,19 +108,7 @@ declare class Cart {
      * @summary: Delete cart once user made successful checkout
      * @description: Use this API to delete the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/deleteCart/).
      */
-    deleteCart({ body, id, cartType, requestHeaders }?: CartPlatformApplicationValidator.DeleteCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.DeleteCartDetailResponse>;
-    /**
-     * @param {CartPlatformApplicationValidator.DeleteCartMetaConfigParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
-     * @name deleteCartMetaConfig
-     * @summary: Delete cart meta configuration
-     * @description: Delete cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/deleteCartMetaConfig/).
-     */
-    deleteCartMetaConfig({ cartMetaId, requestHeaders }?: CartPlatformApplicationValidator.DeleteCartMetaConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
+    deleteCart({ body, id, requestHeaders }?: CartPlatformApplicationValidator.DeleteCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.DeleteCartDetailResponse>;
     /**
      * @param {CartPlatformApplicationValidator.FetchAndvalidateCartItemsParam} arg
      *   - Arg object
@@ -134,6 +121,16 @@ declare class Cart {
      * @description: Get all the details of cart for a list of provided `cart_items` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchAndvalidateCartItems/).
      */
     fetchAndvalidateCartItems({ body, requestHeaders }?: CartPlatformApplicationValidator.FetchAndvalidateCartItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenapiCartDetailsResponse>;
+    /**
+     * @param {CartPlatformApplicationValidator.FetchCartMetaConfigParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CartPlatformModel.CartMetaConfigAdd>} - Success response
+     * @name fetchCartMetaConfig
+     * @summary: Fetch cart meta configuration
+     * @description: Fetch cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchCartMetaConfig/).
+     */
+    fetchCartMetaConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigAdd>;
     /**
      * @param {CartPlatformApplicationValidator.GetAbandonedCartParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -232,7 +229,7 @@ declare class Cart {
      * @summary: Fetch all items added to the customer cart using cart id
      * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCart/).
      */
-    getCart({ id, userId, i, b, assignCardId, buyNow, cartType, requestHeaders }?: CartPlatformApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
+    getCart({ id, userId, i, b, assignCardId, buyNow, requestHeaders }?: CartPlatformApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
      * @param {CartPlatformApplicationValidator.GetCartListParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -243,27 +240,6 @@ declare class Cart {
      * @description: Get all carts for the store os user which is created for customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartList/).
      */
     getCartList({ fromDate, toDate, filterOn, requestHeaders }?: CartPlatformApplicationValidator.GetCartListParam, { responseHeaders }?: object): Promise<CartPlatformModel.MultiCartResponse>;
-    /**
-     * @param {CartPlatformApplicationValidator.GetCartMetaConfigParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.CartMetaConfigDetailResponse>} -
-     *   Success response
-     * @name getCartMetaConfig
-     * @summary: Get cart meta configuration by id
-     * @description: Get cart meta configuration by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartMetaConfig/).
-     */
-    getCartMetaConfig({ cartMetaId, requestHeaders }?: CartPlatformApplicationValidator.GetCartMetaConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigDetailResponse>;
-    /**
-     * @param {CartPlatformApplicationValidator.GetCartMetaConfigsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.CartMetaConfigListResponse>} - Success response
-     * @name getCartMetaConfigs
-     * @summary: Get cart meta configuration
-     * @description: Get cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartMetaConfigs/).
-     */
-    getCartMetaConfigs({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigListResponse>;
     /**
      * @param {CartPlatformApplicationValidator.GetCartShareLinkParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -317,16 +293,6 @@ declare class Cart {
      */
     getCouponOptionValues({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
     /**
-     * @param {CartPlatformApplicationValidator.GetCouponTagsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.TagsViewResponse>} - Success response
-     * @name getCouponTags
-     * @summary: Get a list of all coupon tags associated with a application.
-     * @description: This API helps to get coupon tags data associated to a particular application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponTags/).
-     */
-    getCouponTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CartPlatformModel.TagsViewResponse>;
-    /**
      * @param {CartPlatformApplicationValidator.GetCouponsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -371,17 +337,7 @@ declare class Cart {
      * @summary: Count items in the customer's cart
      * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getItemCount/).
      */
-    getItemCount({ id, buyNow, cartType, requestHeaders }?: CartPlatformApplicationValidator.GetItemCountParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartItemCountResponse>;
-    /**
-     * @param {CartPlatformApplicationValidator.GetPriceAdjustmentsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
-     * @name getPriceAdjustments
-     * @summary: Get a list of all price adjustments associated with a cart
-     * @description: This API helps to get price adjustments data associated to a particular cart - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPriceAdjustments/).
-     */
-    getPriceAdjustments({ cartId, requestHeaders }?: CartPlatformApplicationValidator.GetPriceAdjustmentsParam, { responseHeaders }?: object): Promise<CartPlatformModel.PriceAdjustmentResponse>;
+    getItemCount({ id, buyNow, requestHeaders }?: CartPlatformApplicationValidator.GetItemCountParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartItemCountResponse>;
     /**
      * @param {CartPlatformApplicationValidator.GetPromosCouponConfigParam} arg
      *   - Arg object
@@ -416,16 +372,6 @@ declare class Cart {
      * @description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionCodeExists/).
      */
     getPromotionCodeExists({ code, requestHeaders }?: CartPlatformApplicationValidator.GetPromotionCodeExistsParam, { responseHeaders }?: object): Promise<any>;
-    /**
-     * @param {CartPlatformApplicationValidator.GetPromotionTagsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.TagsViewResponse>} - Success response
-     * @name getPromotionTags
-     * @summary: Get a list of all Promotion tags associated with a application.
-     * @description: This API helps to get Promotion tags data associated to a particular application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionTags/).
-     */
-    getPromotionTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CartPlatformModel.TagsViewResponse>;
     /**
      * @param {CartPlatformApplicationValidator.GetPromotionsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -504,7 +450,7 @@ declare class Cart {
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformAddItems/).
      */
-    platformAddItems({ body, i, b, buyNow, id, cartType, requestHeaders }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResponse>;
+    platformAddItems({ body, i, b, buyNow, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResponse>;
     /**
      * @param {CartPlatformApplicationValidator.PlatformCheckoutCartParam} arg
      *   - Arg object
@@ -516,7 +462,7 @@ declare class Cart {
      * @summary: Checkout all items in the cart
      * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCart/).
      */
-    platformCheckoutCart({ body, id, cartType, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResponse>;
+    platformCheckoutCart({ body, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResponse>;
     /**
      * @param {CartPlatformApplicationValidator.PlatformCheckoutCartV2Param} arg
      *   - Arg object
@@ -528,7 +474,7 @@ declare class Cart {
      * @summary: Checkout all items in the cart
      * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCartV2/).
      */
-    platformCheckoutCartV2({ body, id, cartType, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartV2Param, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResponse>;
+    platformCheckoutCartV2({ body, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartV2Param, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResponse>;
     /**
      * @param {CartPlatformApplicationValidator.PlatformUpdateCartParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -538,7 +484,7 @@ declare class Cart {
      * @summary: Update items in the customer 's cart using cart id
      * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call. update_item for update items. remove_item for removing items.item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity  item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformUpdateCart/).
      */
-    platformUpdateCart({ body, id, i, b, buyNow, cartType, requestHeaders }?: CartPlatformApplicationValidator.PlatformUpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResponse>;
+    platformUpdateCart({ body, id, i, b, buyNow, requestHeaders }?: CartPlatformApplicationValidator.PlatformUpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResponse>;
     /**
      * @param {CartPlatformApplicationValidator.RemoveAddressParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -602,19 +548,6 @@ declare class Cart {
      */
     selectPaymentModeV2({ body, id, buyNow, orderType, requestHeaders }?: CartPlatformApplicationValidator.SelectPaymentModeV2Param, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
-     * @param {CartPlatformApplicationValidator.UpateCartMetaActiveStatusParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.CartMetaConfigDetailResponse>} -
-     *   Success response
-     * @name upateCartMetaActiveStatus
-     * @summary: Update cart meta configuration
-     * @description: Update cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/upateCartMetaActiveStatus/).
-     */
-    upateCartMetaActiveStatus({ cartMetaId, body, requestHeaders }?: CartPlatformApplicationValidator.UpateCartMetaActiveStatusParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigDetailResponse>;
-    /**
      * @param {CartPlatformApplicationValidator.UpdateAddressParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -650,13 +583,12 @@ declare class Cart {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.CartMetaConfigDetailResponse>} -
-     *   Success response
+     * @returns {Promise<CartPlatformModel.CartMetaConfigUpdate>} - Success response
      * @name updateCartMetaConfig
      * @summary: Update cart meta configuration
      * @description: Update cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMetaConfig/).
      */
-    updateCartMetaConfig({ cartMetaId, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartMetaConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigDetailResponse>;
+    updateCartMetaConfig({ cartMetaId, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartMetaConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigUpdate>;
     /**
      * @param {CartPlatformApplicationValidator.UpdateCartUserParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -759,6 +691,6 @@ declare class Cart {
      */
     validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, requestHeaders, }?: CartPlatformApplicationValidator.ValidateCouponForPaymentParam, { responseHeaders }?: object): Promise<CartPlatformModel.PaymentCouponValidate>;
 }
-import CartPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Cart/CartPlatformApplicationValidator");
-import CartPlatformModel = require("sdk/output/javascript/code/sdk/platform/Cart/CartPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CartPlatformApplicationValidator = require("./CartPlatformApplicationValidator");
+import CartPlatformModel = require("./CartPlatformModel");
+import Paginator = require("../../common/Paginator");

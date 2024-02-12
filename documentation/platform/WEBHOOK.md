@@ -25,7 +25,6 @@ Default
 * [manualRetryOfFailedEvent](#manualretryoffailedevent)
 * [pingWebhook](#pingwebhook)
 * [registerSubscriberToEvent](#registersubscribertoevent)
-* [registerSubscriberToEventV2](#registersubscribertoeventv2)
 * [updateSubscriberConfig](#updatesubscriberconfig)
 
 
@@ -684,7 +683,6 @@ Success
   "value": {
     "id": 1,
     "name": "praveen's webhook",
-    "provider": "kafka",
     "webhook_url": "https://webhook.site/67493d35-6468-4c0a-8226-9a50954eb4c3",
     "association": {
       "company_id": 1,
@@ -1270,91 +1268,6 @@ Success
 ---
 
 
-### registerSubscriberToEventV2
-Register Subscriber.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.webhook.registerSubscriberToEventV2({  body : value });
-
-// Async/Await
-const data = await platformClient.webhook.registerSubscriberToEventV2({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SubscriberConfigRequestV2](#SubscriberConfigRequestV2) | yes | Request body |
-
-
-Register Subscriber.
-
-
-*Returned Response:*
-
-
-
-
-[SubscriberConfigResponse](#SubscriberConfigResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "name": "xyz webhook",
-    "provider": "kafka",
-    "webhook_url": "https://xyz.requestcatcher.com/test",
-    "association": {
-      "company_id": 1,
-      "extension_id": "64affd97cbddb85348ca8f93",
-      "application_id": [
-        "63a0490757475baff6154585",
-        "63a42b512df5d4731c5eb601"
-      ]
-    },
-    "custom_headers": {},
-    "status": "active",
-    "email_id": "axyz@gofynd.com",
-    "auth_meta": {},
-    "event_id": [
-      10,
-      11,
-      17
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateSubscriberConfig
 Update Subscriber
 
@@ -1595,16 +1508,6 @@ Success
 
 ---
 
-#### [Events](#Events)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | string? |  yes  |  |
- | topic | string? |  yes  |  |
- 
-
----
-
 #### [HistoryAssociation](#HistoryAssociation)
 
  | Properties | Type | Nullable | Description |
@@ -1814,24 +1717,6 @@ Success
 
 ---
 
-#### [SubscriberConfigRequestV2](#SubscriberConfigRequestV2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | association | [Association](#Association)? |  yes  |  |
- | auth_meta | [AuthMeta](#AuthMeta)? |  yes  |  |
- | custom_headers | string? |  yes  |  |
- | email_id | string? |  yes  |  |
- | events | [[Events](#Events)]? |  yes  |  |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
- | status | string? |  yes  |  |
- | webhook_url | string? |  yes  |  |
- 
-
----
-
 #### [SubscriberConfigResponse](#SubscriberConfigResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1845,7 +1730,6 @@ Success
  | id | number? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
  | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
  | type | string? |  yes  |  |
  | updated_on | string? |  yes  |  |
@@ -1867,7 +1751,6 @@ Success
  | id | number? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
  | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
  | type | string? |  yes  |  |
  | updated_on | string? |  yes  |  |

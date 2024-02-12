@@ -1,5 +1,11 @@
 export = CatalogPlatformValidator;
 /**
+ * @typedef AddInventoryParam
+ * @property {number} itemId - Item code of the product of which size is to be get.
+ * @property {string} size - Size in which inventory is to be added.
+ * @property {CatalogPlatformModel.InventoryRequest} body
+ */
+/**
  * @typedef AllSizesParam
  * @property {number} itemId - Id of the product to be updated.
  */
@@ -14,11 +20,11 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef CreateBulkInventoryJobParam
- * @property {CatalogPlatformModel.InventoryBulkJob} body
+ * @property {CatalogPlatformModel.BulkJob} body
  */
 /**
  * @typedef CreateBulkProductUploadJobParam
- * @property {CatalogPlatformModel.BulkProductUploadJob} body
+ * @property {CatalogPlatformModel.BulkJob} body
  */
 /**
  * @typedef CreateCategoriesParam
@@ -38,8 +44,9 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef CreateMarketplaceOptinParam
- * @property {string} marketplace - Slug of the marketplace .
- * @property {CatalogPlatformModel.CreateMarketplaceOptinRequest} body
+ * @property {string} marketplace - The marketplace for which the detail needs
+ *   to be retrieved.
+ * @property {CatalogPlatformModel.OptInPostRequest} body
  */
 /**
  * @typedef CreateProductParam
@@ -76,7 +83,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef DeleteProductBulkJobParam
- * @property {string} batchId - Batch Id of the bulk product job to be deleted.
+ * @property {number} batchId - Batch Id of the bulk product job to be deleted.
  */
 /**
  * @typedef DeleteRealtimeInventoryParam
@@ -92,7 +99,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef DownloadInventoryTemplateViewParam
- * @property {string} type - Type of file
+ * @property {string} itemType - An `item_type` defines the type of item.
  */
 /**
  * @typedef DownloadProductTemplateViewsParam
@@ -108,7 +115,8 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef ExportInventoryConfigParam
- * @property {string} filter - Filter type from any one of ['brand', 'store', 'type']
+ * @property {string} [filterType] - Filter type from any one of ['brand',
+ *   'store', 'type']
  */
 /**
  * @typedef GetAllProductHsnCodesParam
@@ -134,12 +142,6 @@ export = CatalogPlatformValidator;
 /** @typedef GetCompanyDetailParam */
 /** @typedef GetCompanyMetricsParam */
 /**
- * @typedef GetCompanyVerificationParam
- * @property {string} [q] - A `q` parameter is used to search the company by its name.
- * @property {number} [pageNo] - A `page_no` parameter is a number of the page requested.
- * @property {number} [pageSize] - A `page_size` is the no of items per page.
- */
-/**
  * @typedef GetDepartmentDataParam
  * @property {string} uid - A `uid` is a unique identifier of a department.
  */
@@ -154,7 +156,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef GetInventoriesParam
- * @property {number} [itemId] - Item code of the product of which size is to be get.
+ * @property {string} [itemId] - Item code of the product of which size is to be get.
  * @property {string} [size] - Size of which inventory is to get.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
@@ -163,7 +165,7 @@ export = CatalogPlatformValidator;
  * @property {string} [q] - Search with help of store code.
  * @property {boolean} [sellable] - Filter on whether product is in stock or not.
  * @property {number[]} [storeIds] - The Store Id of products to fetch inventory.
- * @property {number} [sizeIdentifier] - Size Identifier (Seller Identifier or
+ * @property {string} [sizeIdentifier] - Size Identifier (Seller Identifier or
  *   Primary Identifier) of which inventory is to get.
  */
 /**
@@ -197,10 +199,7 @@ export = CatalogPlatformValidator;
  * @property {number[]} [locationIds] - Search by store ids.
  */
 /** @typedef GetInventoryExportParam */
-/**
- * @typedef GetInventoryExportDetailParam
- * @property {string} jobId - Company Id in which assets to be uploaded.
- */
+/** @typedef GetMarketplaceOptinDetailParam */
 /** @typedef GetMarketplacesParam */
 /**
  * @typedef GetOptimalLocationsParam
@@ -237,19 +236,11 @@ export = CatalogPlatformValidator;
  * @typedef GetProductBundleParam
  * @property {string} [q] - A search string that is searched with product bundle name.
  * @property {string[]} [slug] - Slugs of bundles to be retrieved.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
  */
 /**
  * @typedef GetProductBundleDetailParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
- */
-/**
- * @typedef GetProductExportDetailParam
- * @property {string} jobId - Company Id in which assets to be uploaded.
  */
 /**
  * @typedef GetProductExportJobsParam
@@ -264,22 +255,13 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef GetProductSizeParam
+ * @property {string} [itemCode] - Item code of the product size.
  * @property {number} itemId - Item Id of the product size.
+ * @property {number} [brandUid] - Brand Id of the product size.
+ * @property {number} [uid] - Id of the product size.
  */
 /** @typedef GetProductTagsParam */
-/**
- * @typedef GetProductTemplateBySlugParam
- * @property {string} slug - Slug of the template.
- */
-/**
- * @typedef GetProductValidationParam
- * @property {string} type - Type of identifier to validate the product against.
- * @property {string} slug - Type of identifier to validate the product against.
- */
-/**
- * @typedef GetProductVerificationDetailsParam
- * @property {number} itemId - A `item_id` is a unique identifier for a specific product.
- */
+/** @typedef GetProductValidationParam */
 /**
  * @typedef GetProductsParam
  * @property {number[]} [brandIds] - Get multiple products filtered by Brand Ids
@@ -311,12 +293,12 @@ export = CatalogPlatformValidator;
  * @typedef GetSizeGuidesParam
  * @property {boolean} [active] - Filter size guide on basis of active, in-active
  * @property {string} [q] - Query that is to be searched.
- * @property {number} [brandId] - Brand id that is to be searched.
  * @property {string} [tag] - To filter size guide on basis of tag.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
+ * @property {number} [brandId] - Brand id that is to be searched.
  */
 /**
  * @typedef GetStoreDetailParam
@@ -324,11 +306,6 @@ export = CatalogPlatformValidator;
  * @property {number} [pageNo] - The number of page for the company id.
  * @property {number} [pageSize] - Number of records that can be seen on the
  *   page for the company id.
- */
-/**
- * @typedef GetVariantTypesParam
- * @property {string} templateTag - The page number to navigate through the
- *   given set of results
  */
 /**
  * @typedef GetVariantsOfProductsParam
@@ -349,6 +326,7 @@ export = CatalogPlatformValidator;
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
  * @property {number[]} [uids] - Get multiple categories filtered by category uids.
+ * @property {string} [slug] - Get category by slug
  */
 /**
  * @typedef ListDepartmentsDataParam
@@ -363,7 +341,7 @@ export = CatalogPlatformValidator;
  *   department in search parameter.
  * @property {boolean} [isActive] - Can query for departments based on whether
  *   they are active or inactive.
- * @property {number[]} [uids] - Filter department by uids.
+ * @property {string} [slug] - Can filter by slug
  */
 /** @typedef ListHSNCodesParam */
 /**
@@ -396,16 +374,6 @@ export = CatalogPlatformValidator;
  *   of template required.
  */
 /**
- * @typedef PatchInventoryExportDetailParam
- * @property {string} jobId - Company Id in which assets to be uploaded.
- * @property {CatalogPlatformModel.ExportPatchRequest} body
- */
-/**
- * @typedef PatchProductExportDetailParam
- * @property {string} jobId - Company Id in which assets to be uploaded.
- * @property {CatalogPlatformModel.ExportPatchRequest} body
- */
-/**
  * @typedef UpdateCategoryParam
  * @property {string} uid - Category unique id
  * @property {CatalogPlatformModel.CategoryRequestBody} body
@@ -426,7 +394,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef UpdateMarketplaceOptinParam
- * @property {string} marketplace - Slug of the marketplace .
+ * @property {string} marketplaceSlug - Slug of the marketplace .
  * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequest} body
  */
 /**
@@ -452,7 +420,7 @@ export = CatalogPlatformValidator;
  * @property {string} department - Department of the product to be uploaded.
  * @property {string} productType - Product type of the product to be uploaded
  *   i.e. set, standard , digital.
- * @property {CatalogPlatformModel.BulkProductJob} body
+ * @property {CatalogPlatformModel.BulkJob} body
  */
 /**
  * @typedef ValidateProductTemplateParam
@@ -468,9 +436,10 @@ export = CatalogPlatformValidator;
  * @typedef ValidateProductTemplateSchemaParam
  * @property {string} itemType - An `item_type` defines the type of item. The
  *   default value is standard.
- * @property {boolean} bulk - Type of file template i.e if bulk
  */
 declare class CatalogPlatformValidator {
+    /** @returns {AddInventoryParam} */
+    static addInventory(): AddInventoryParam;
     /** @returns {AllSizesParam} */
     static allSizes(): AllSizesParam;
     /** @returns {BulkHsnCodeParam} */
@@ -531,8 +500,6 @@ declare class CatalogPlatformValidator {
     static getCompanyDetail(): any;
     /** @returns {GetCompanyMetricsParam} */
     static getCompanyMetrics(): any;
-    /** @returns {GetCompanyVerificationParam} */
-    static getCompanyVerification(): GetCompanyVerificationParam;
     /** @returns {GetDepartmentDataParam} */
     static getDepartmentData(): GetDepartmentDataParam;
     /** @returns {GetGenderAttributeParam} */
@@ -549,8 +516,8 @@ declare class CatalogPlatformValidator {
     static getInventoryBySizeIdentifier(): GetInventoryBySizeIdentifierParam;
     /** @returns {GetInventoryExportParam} */
     static getInventoryExport(): any;
-    /** @returns {GetInventoryExportDetailParam} */
-    static getInventoryExportDetail(): GetInventoryExportDetailParam;
+    /** @returns {GetMarketplaceOptinDetailParam} */
+    static getMarketplaceOptinDetail(): any;
     /** @returns {GetMarketplacesParam} */
     static getMarketplaces(): any;
     /** @returns {GetOptimalLocationsParam} */
@@ -567,20 +534,14 @@ declare class CatalogPlatformValidator {
     static getProductBundle(): GetProductBundleParam;
     /** @returns {GetProductBundleDetailParam} */
     static getProductBundleDetail(): GetProductBundleDetailParam;
-    /** @returns {GetProductExportDetailParam} */
-    static getProductExportDetail(): GetProductExportDetailParam;
     /** @returns {GetProductExportJobsParam} */
     static getProductExportJobs(): GetProductExportJobsParam;
     /** @returns {GetProductSizeParam} */
     static getProductSize(): GetProductSizeParam;
     /** @returns {GetProductTagsParam} */
     static getProductTags(): any;
-    /** @returns {GetProductTemplateBySlugParam} */
-    static getProductTemplateBySlug(): GetProductTemplateBySlugParam;
     /** @returns {GetProductValidationParam} */
-    static getProductValidation(): GetProductValidationParam;
-    /** @returns {GetProductVerificationDetailsParam} */
-    static getProductVerificationDetails(): GetProductVerificationDetailsParam;
+    static getProductValidation(): any;
     /** @returns {GetProductsParam} */
     static getProducts(): GetProductsParam;
     /** @returns {GetSellerInsightsParam} */
@@ -593,8 +554,6 @@ declare class CatalogPlatformValidator {
     static getSizeGuides(): GetSizeGuidesParam;
     /** @returns {GetStoreDetailParam} */
     static getStoreDetail(): GetStoreDetailParam;
-    /** @returns {GetVariantTypesParam} */
-    static getVariantTypes(): GetVariantTypesParam;
     /** @returns {GetVariantsOfProductsParam} */
     static getVariantsOfProducts(): GetVariantsOfProductsParam;
     /** @returns {ListCategoriesParam} */
@@ -613,10 +572,6 @@ declare class CatalogPlatformValidator {
     static listProductTemplateExportDetails(): any;
     /** @returns {ListTemplateBrandTypeValuesParam} */
     static listTemplateBrandTypeValues(): ListTemplateBrandTypeValuesParam;
-    /** @returns {PatchInventoryExportDetailParam} */
-    static patchInventoryExportDetail(): PatchInventoryExportDetailParam;
-    /** @returns {PatchProductExportDetailParam} */
-    static patchProductExportDetail(): PatchProductExportDetailParam;
     /** @returns {UpdateCategoryParam} */
     static updateCategory(): UpdateCategoryParam;
     /** @returns {UpdateDepartmentParam} */
@@ -641,8 +596,19 @@ declare class CatalogPlatformValidator {
     static validateProductTemplateSchema(): ValidateProductTemplateSchemaParam;
 }
 declare namespace CatalogPlatformValidator {
-    export { AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateCategoriesParam, CreateDepartmentsParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetCompanyVerificationParam, GetDepartmentDataParam, GetGenderAttributeParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetInventoryExportDetailParam, GetMarketplacesParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductTemplateBySlugParam, GetProductValidationParam, GetProductVerificationDetailsParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetVariantTypesParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, PatchInventoryExportDetailParam, PatchProductExportDetailParam, UpdateCategoryParam, UpdateDepartmentParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateMarketplaceOptinParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UploadBulkProductsParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
+    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateCategoriesParam, CreateDepartmentsParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetGenderAttributeParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, UpdateCategoryParam, UpdateDepartmentParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateMarketplaceOptinParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UploadBulkProductsParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
 }
+type AddInventoryParam = {
+    /**
+     * - Item code of the product of which size is to be get.
+     */
+    itemId: number;
+    /**
+     * - Size in which inventory is to be added.
+     */
+    size: string;
+    body: CatalogPlatformModel.InventoryRequest;
+};
 type AllSizesParam = {
     /**
      * - Id of the product to be updated.
@@ -660,10 +626,10 @@ type CreateBulkInventoryParam = {
     body: CatalogPlatformModel.InventoryBulkRequest;
 };
 type CreateBulkInventoryJobParam = {
-    body: CatalogPlatformModel.InventoryBulkJob;
+    body: CatalogPlatformModel.BulkJob;
 };
 type CreateBulkProductUploadJobParam = {
-    body: CatalogPlatformModel.BulkProductUploadJob;
+    body: CatalogPlatformModel.BulkJob;
 };
 type CreateCategoriesParam = {
     body: CatalogPlatformModel.CategoryRequestBody;
@@ -679,10 +645,11 @@ type CreateInventoryExportJobParam = {
 };
 type CreateMarketplaceOptinParam = {
     /**
-     * - Slug of the marketplace .
+     * - The marketplace for which the detail needs
+     * to be retrieved.
      */
     marketplace: string;
-    body: CatalogPlatformModel.CreateMarketplaceOptinRequest;
+    body: CatalogPlatformModel.OptInPostRequest;
 };
 type CreateProductParam = {
     body: CatalogPlatformModel.ProductCreateUpdateSchemaV2;
@@ -722,7 +689,7 @@ type DeleteProductBulkJobParam = {
     /**
      * - Batch Id of the bulk product job to be deleted.
      */
-    batchId: string;
+    batchId: number;
 };
 type DeleteRealtimeInventoryParam = {
     /**
@@ -748,9 +715,9 @@ type DeleteSizeParam = {
 };
 type DownloadInventoryTemplateViewParam = {
     /**
-     * - Type of file
+     * - An `item_type` defines the type of item.
      */
-    type: string;
+    itemType: string;
 };
 type DownloadProductTemplateViewsParam = {
     /**
@@ -776,9 +743,10 @@ type EditProductParam = {
 };
 type ExportInventoryConfigParam = {
     /**
-     * - Filter type from any one of ['brand', 'store', 'type']
+     * - Filter type from any one of ['brand',
+     * 'store', 'type']
      */
-    filter: string;
+    filterType?: string;
 };
 type GetAllProductHsnCodesParam = {
     /**
@@ -828,20 +796,6 @@ type GetCompanyBrandDetailParam = {
      */
     marketplace?: string;
 };
-type GetCompanyVerificationParam = {
-    /**
-     * - A `q` parameter is used to search the company by its name.
-     */
-    q?: string;
-    /**
-     * - A `page_no` parameter is a number of the page requested.
-     */
-    pageNo?: number;
-    /**
-     * - A `page_size` is the no of items per page.
-     */
-    pageSize?: number;
-};
 type GetDepartmentDataParam = {
     /**
      * - A `uid` is a unique identifier of a department.
@@ -865,7 +819,7 @@ type GetInventoriesParam = {
     /**
      * - Item code of the product of which size is to be get.
      */
-    itemId?: number;
+    itemId?: string;
     /**
      * - Size of which inventory is to get.
      */
@@ -896,7 +850,7 @@ type GetInventoriesParam = {
      * - Size Identifier (Seller Identifier or
      * Primary Identifier) of which inventory is to get.
      */
-    sizeIdentifier?: number;
+    sizeIdentifier?: string;
 };
 type GetInventoryBulkUploadHistoryParam = {
     /**
@@ -967,12 +921,6 @@ type GetInventoryBySizeIdentifierParam = {
      */
     locationIds?: number[];
 };
-type GetInventoryExportDetailParam = {
-    /**
-     * - Company Id in which assets to be uploaded.
-     */
-    jobId: string;
-};
 type GetOptimalLocationsParam = {
     body: CatalogPlatformModel.AssignStore;
 };
@@ -1038,16 +986,6 @@ type GetProductBundleParam = {
      * - Slugs of bundles to be retrieved.
      */
     slug?: string[];
-    /**
-     * - The page number to navigate through the given
-     * set of results
-     */
-    pageNo?: number;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
 };
 type GetProductBundleDetailParam = {
     /**
@@ -1055,12 +993,6 @@ type GetProductBundleDetailParam = {
      * detail. Pass the `id` of the keywords which you want to retrieve.
      */
     id: string;
-};
-type GetProductExportDetailParam = {
-    /**
-     * - Company Id in which assets to be uploaded.
-     */
-    jobId: string;
 };
 type GetProductExportJobsParam = {
     /**
@@ -1086,31 +1018,21 @@ type GetProductExportJobsParam = {
 };
 type GetProductSizeParam = {
     /**
+     * - Item code of the product size.
+     */
+    itemCode?: string;
+    /**
      * - Item Id of the product size.
      */
     itemId: number;
-};
-type GetProductTemplateBySlugParam = {
     /**
-     * - Slug of the template.
+     * - Brand Id of the product size.
      */
-    slug: string;
-};
-type GetProductValidationParam = {
+    brandUid?: number;
     /**
-     * - Type of identifier to validate the product against.
+     * - Id of the product size.
      */
-    type: string;
-    /**
-     * - Type of identifier to validate the product against.
-     */
-    slug: string;
-};
-type GetProductVerificationDetailsParam = {
-    /**
-     * - A `item_id` is a unique identifier for a specific product.
-     */
-    itemId: number;
+    uid?: number;
 };
 type GetProductsParam = {
     /**
@@ -1181,10 +1103,6 @@ type GetSizeGuidesParam = {
      */
     q?: string;
     /**
-     * - Brand id that is to be searched.
-     */
-    brandId?: number;
-    /**
      * - To filter size guide on basis of tag.
      */
     tag?: string;
@@ -1198,6 +1116,10 @@ type GetSizeGuidesParam = {
      * Default is 10.
      */
     pageSize?: number;
+    /**
+     * - Brand id that is to be searched.
+     */
+    brandId?: number;
 };
 type GetStoreDetailParam = {
     /**
@@ -1213,13 +1135,6 @@ type GetStoreDetailParam = {
      * page for the company id.
      */
     pageSize?: number;
-};
-type GetVariantTypesParam = {
-    /**
-     * - The page number to navigate through the
-     * given set of results
-     */
-    templateTag: string;
 };
 type GetVariantsOfProductsParam = {
     /**
@@ -1268,6 +1183,10 @@ type ListCategoriesParam = {
      * - Get multiple categories filtered by category uids.
      */
     uids?: number[];
+    /**
+     * - Get category by slug
+     */
+    slug?: string;
 };
 type ListDepartmentsDataParam = {
     /**
@@ -1300,9 +1219,9 @@ type ListDepartmentsDataParam = {
      */
     isActive?: boolean;
     /**
-     * - Filter department by uids.
+     * - Can filter by slug
      */
-    uids?: number[];
+    slug?: string;
 };
 type ListInventoryExportParam = {
     /**
@@ -1358,20 +1277,6 @@ type ListTemplateBrandTypeValuesParam = {
      */
     itemType?: string;
 };
-type PatchInventoryExportDetailParam = {
-    /**
-     * - Company Id in which assets to be uploaded.
-     */
-    jobId: string;
-    body: CatalogPlatformModel.ExportPatchRequest;
-};
-type PatchProductExportDetailParam = {
-    /**
-     * - Company Id in which assets to be uploaded.
-     */
-    jobId: string;
-    body: CatalogPlatformModel.ExportPatchRequest;
-};
 type UpdateCategoryParam = {
     /**
      * - Category unique id
@@ -1400,7 +1305,7 @@ type UpdateMarketplaceOptinParam = {
     /**
      * - Slug of the marketplace .
      */
-    marketplace: string;
+    marketplaceSlug: string;
     body: CatalogPlatformModel.UpdateMarketplaceOptinRequest;
 };
 type UpdateProductBundleParam = {
@@ -1440,7 +1345,7 @@ type UploadBulkProductsParam = {
      * i.e. set, standard , digital.
      */
     productType: string;
-    body: CatalogPlatformModel.BulkProductJob;
+    body: CatalogPlatformModel.BulkJob;
 };
 type ValidateProductTemplateParam = {
     /**
@@ -1466,16 +1371,14 @@ type ValidateProductTemplateSchemaParam = {
      * default value is standard.
      */
     itemType: string;
-    /**
-     * - Type of file template i.e if bulk
-     */
-    bulk: boolean;
 };
 type GetCompanyDetailParam = any;
 type GetCompanyMetricsParam = any;
 type GetInventoryExportParam = any;
+type GetMarketplaceOptinDetailParam = any;
 type GetMarketplacesParam = any;
 type GetProductTagsParam = any;
+type GetProductValidationParam = any;
 type ListHSNCodesParam = any;
 type ListProductTemplateExportDetailsParam = any;
-import CatalogPlatformModel = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformModel");
+import CatalogPlatformModel = require("./CatalogPlatformModel");

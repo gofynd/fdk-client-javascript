@@ -1894,21 +1894,13 @@ class Catalog {
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
    */
   async getProductPriceBySlug(
-    {
-      slug,
-      size,
-      storeId,
-      exchangeSellerIdentifier,
-      moq,
-      sellerId,
-      requestHeaders,
-    } = { requestHeaders: {} },
+    { slug, size, storeId, moq, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CatalogApplicationValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, exchangeSellerIdentifier, moq, sellerId },
+      { slug, size, storeId, moq },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1919,7 +1911,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogApplicationValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, exchangeSellerIdentifier, moq, sellerId },
+      { slug, size, storeId, moq },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1931,9 +1923,7 @@ class Catalog {
 
     const query_params = {};
     query_params["store_id"] = storeId;
-    query_params["exchange_seller_identifier"] = exchangeSellerIdentifier;
     query_params["moq"] = moq;
-    query_params["seller_id"] = sellerId;
 
     const xHeaders = {};
 
@@ -2615,26 +2605,11 @@ class Catalog {
    * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSearchResults/).
    */
   async getSearchResults(
-    {
-      q,
-      categorySuggestion,
-      brandSuggestion,
-      collectionSuggestion,
-      productSuggestion,
-      querySuggestion,
-      requestHeaders,
-    } = { requestHeaders: {} },
+    { q, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getSearchResults().validate(
-      {
-        q,
-        categorySuggestion,
-        brandSuggestion,
-        collectionSuggestion,
-        productSuggestion,
-        querySuggestion,
-      },
+      { q },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2645,14 +2620,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogApplicationValidator.getSearchResults().validate(
-      {
-        q,
-        categorySuggestion,
-        brandSuggestion,
-        collectionSuggestion,
-        productSuggestion,
-        querySuggestion,
-      },
+      { q },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2664,11 +2632,6 @@ class Catalog {
 
     const query_params = {};
     query_params["q"] = q;
-    query_params["category_suggestion"] = categorySuggestion;
-    query_params["brand_suggestion"] = brandSuggestion;
-    query_params["collection_suggestion"] = collectionSuggestion;
-    query_params["product_suggestion"] = productSuggestion;
-    query_params["query_suggestion"] = querySuggestion;
 
     const xHeaders = {};
 

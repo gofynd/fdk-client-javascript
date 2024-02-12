@@ -53,4 +53,4 @@ type GetCompanyLevelThemesParam = {
      */
     searchText?: string;
 };
-import ThemePlatformModel = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformModel");
+import ThemePlatformModel = require("./ThemePlatformModel");

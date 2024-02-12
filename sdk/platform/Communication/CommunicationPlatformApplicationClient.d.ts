@@ -870,7 +870,7 @@ declare class Communication {
      * @summary: Send OTP using email and sms
      * @description: Send OTP Comms via email and sms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendOtp/).
      */
-    sendOtp({ body, ci, requestHeaders }?: CommunicationPlatformApplicationValidator.SendOtpParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SendOtpCommsRes>;
+    sendOtp({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.SendOtpParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SendOtpCommsRes>;
     /**
      * @param {CommunicationPlatformApplicationValidator.TriggerCampaignJobParam} arg
      *   - Arg object
@@ -993,6 +993,6 @@ declare class Communication {
      */
     verfiyOtp({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.VerfiyOtpParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.VerifyOtpCommsSuccessRes>;
 }
-import CommunicationPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformApplicationValidator");
-import CommunicationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CommunicationPlatformApplicationValidator = require("./CommunicationPlatformApplicationValidator");
+import CommunicationPlatformModel = require("./CommunicationPlatformModel");
+import Paginator = require("../../common/Paginator");

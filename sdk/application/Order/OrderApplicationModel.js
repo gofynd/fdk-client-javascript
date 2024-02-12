@@ -242,18 +242,12 @@ const Joi = require("joi");
  * @property {string} [currency_code]
  * @property {string} [seller_identifier]
  * @property {CurrentStatus} [current_status]
- * @property {Article} [article]
  */
 
 /**
  * @typedef FulfillingCompany
  * @property {number} [id]
  * @property {string} [name]
- */
-
-/**
- * @typedef Article
- * @property {string[]} [tags]
  */
 
 /**
@@ -323,7 +317,6 @@ const Joi = require("joi");
  * @property {string} [need_help_url]
  * @property {Object} [return_meta]
  * @property {string} [delivery_date]
- * @property {OrderRequest} [order]
  */
 
 /**
@@ -565,11 +558,6 @@ const Joi = require("joi");
  * @property {ShipmentsRequest[]} [shipments]
  * @property {string} [exclude_bags_next_state]
  * @property {string} [status]
- */
-
-/**
- * @typedef OrderRequest
- * @property {Object} [meta]
  */
 
 /**
@@ -892,7 +880,6 @@ class OrderApplicationModel {
       currency_code: Joi.string().allow(""),
       seller_identifier: Joi.string().allow(""),
       current_status: OrderApplicationModel.CurrentStatus(),
-      article: OrderApplicationModel.Article(),
     });
   }
 
@@ -901,13 +888,6 @@ class OrderApplicationModel {
     return Joi.object({
       id: Joi.number(),
       name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Article} */
-  static Article() {
-    return Joi.object({
-      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -983,7 +963,6 @@ class OrderApplicationModel {
       need_help_url: Joi.string().allow(""),
       return_meta: Joi.any(),
       delivery_date: Joi.string().allow("").allow(null),
-      order: OrderApplicationModel.OrderRequest(),
     });
   }
 
@@ -1301,13 +1280,6 @@ class OrderApplicationModel {
       shipments: Joi.array().items(OrderApplicationModel.ShipmentsRequest()),
       exclude_bags_next_state: Joi.string().allow(""),
       status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {OrderRequest} */
-  static OrderRequest() {
-    return Joi.object({
-      meta: Joi.any(),
     });
   }
 

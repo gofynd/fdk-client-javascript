@@ -26,6 +26,6 @@ declare class Communication {
         pageSize?: number;
     }): Paginator<CommunicationPlatformModel.SystemNotifications>;
 }
-import CommunicationPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformValidator");
-import CommunicationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CommunicationPlatformValidator = require("./CommunicationPlatformValidator");
+import CommunicationPlatformModel = require("./CommunicationPlatformModel");
+import Paginator = require("../../common/Paginator");

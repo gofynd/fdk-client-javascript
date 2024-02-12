@@ -2248,7 +2248,7 @@ class User {
    * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
+   * @returns {Promise<any>} - Success response
    * @name sendResetPasswordMobile
    * @summary: Reset Password
    * @description: Use this API to reset a password using the link sent on mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
@@ -2304,12 +2304,9 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {

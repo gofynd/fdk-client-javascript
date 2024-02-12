@@ -220,16 +220,11 @@ export = OrderApplicationModel;
  * @property {string} [currency_code]
  * @property {string} [seller_identifier]
  * @property {CurrentStatus} [current_status]
- * @property {Article} [article]
  */
 /**
  * @typedef FulfillingCompany
  * @property {number} [id]
  * @property {string} [name]
- */
-/**
- * @typedef Article
- * @property {string[]} [tags]
  */
 /**
  * @typedef DeliveryAddress
@@ -297,7 +292,6 @@ export = OrderApplicationModel;
  * @property {string} [need_help_url]
  * @property {Object} [return_meta]
  * @property {string} [delivery_date]
- * @property {OrderRequest} [order]
  */
 /**
  * @typedef BagsForReorderArticleAssignment
@@ -506,10 +500,6 @@ export = OrderApplicationModel;
  * @property {string} [status]
  */
 /**
- * @typedef OrderRequest
- * @property {Object} [meta]
- */
-/**
  * @typedef UpdateShipmentStatusRequest
  * @property {StatuesRequest[]} [statuses]
  * @property {boolean} [task]
@@ -536,7 +526,7 @@ export = OrderApplicationModel;
 declare class OrderApplicationModel {
 }
 declare namespace OrderApplicationModel {
-    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentUserInfo, FulfillingStore, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, Article, DeliveryAddress, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponse, SendOtpToCustomerResponse, VerifyOtp, VerifyOtpResponse, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, OrderRequest, UpdateShipmentStatusRequest, StatusesBodyResponse, ShipmentApplicationStatusResponse, ErrorResponse };
+    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentUserInfo, FulfillingStore, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, DeliveryAddress, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponse, SendOtpToCustomerResponse, VerifyOtp, VerifyOtpResponse, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, StatusesBodyResponse, ShipmentApplicationStatusResponse, ErrorResponse };
 }
 /** @returns {OrderPage} */
 declare function OrderPage(): OrderPage;
@@ -781,18 +771,12 @@ type Bags = {
     currency_code?: string;
     seller_identifier?: string;
     current_status?: CurrentStatus;
-    article?: Article;
 };
 /** @returns {FulfillingCompany} */
 declare function FulfillingCompany(): FulfillingCompany;
 type FulfillingCompany = {
     id?: number;
     name?: string;
-};
-/** @returns {Article} */
-declare function Article(): Article;
-type Article = {
-    tags?: string[];
 };
 /** @returns {DeliveryAddress} */
 declare function DeliveryAddress(): DeliveryAddress;
@@ -862,7 +846,6 @@ type Shipments = {
     need_help_url?: string;
     return_meta?: any;
     delivery_date?: string;
-    order?: OrderRequest;
 };
 /** @returns {BagsForReorderArticleAssignment} */
 declare function BagsForReorderArticleAssignment(): BagsForReorderArticleAssignment;
@@ -1104,11 +1087,6 @@ type StatuesRequest = {
     shipments?: ShipmentsRequest[];
     exclude_bags_next_state?: string;
     status?: string;
-};
-/** @returns {OrderRequest} */
-declare function OrderRequest(): OrderRequest;
-type OrderRequest = {
-    meta?: any;
 };
 /** @returns {UpdateShipmentStatusRequest} */
 declare function UpdateShipmentStatusRequest(): UpdateShipmentStatusRequest;

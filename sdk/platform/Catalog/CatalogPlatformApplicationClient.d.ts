@@ -9,28 +9,12 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CommonResponseSchemaCollection>}
-     *   - Success response
-     *
+     * @returns {Promise<CatalogPlatformModel.UpdatedResponse>} - Success response
      * @name addCollectionItems
      * @summary: Add items to a collection
      * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addCollectionItems/).
      */
-    addCollectionItems({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.AddCollectionItemsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CommonResponseSchemaCollection>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.AddProductsInPriceFactoryByZoneIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductsResponse>}
-     *   - Success response
-     *
-     * @name addProductsInPriceFactoryByZoneId
-     * @summary:
-     * @description: This API allows to add  products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addProductsInPriceFactoryByZoneId/).
-     */
-    addProductsInPriceFactoryByZoneId({ id, zoneId, body, requestHeaders }?: CatalogPlatformApplicationValidator.AddProductsInPriceFactoryByZoneIdParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateAppPriceFactoryProductsResponse>;
+    addCollectionItems({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.AddCollectionItemsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdatedResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.CreateAppCategoryReturnConfigurationParam} arg
      *   - Arg object
@@ -44,19 +28,6 @@ declare class Catalog {
      */
     createAppCategoryReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppCategoryReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
-     * @param {CatalogPlatformApplicationValidator.CreateAppPriceFactoryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryResponse>} -
-     *   Success response
-     * @name createAppPriceFactory
-     * @summary: Create price factory
-     * @description: This API allows to create price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppPriceFactory/).
-     */
-    createAppPriceFactory({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppPriceFactoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateAppPriceFactoryResponse>;
-    /**
      * @param {CatalogPlatformApplicationValidator.CreateAppReturnConfigurationParam} arg
      *   - Arg object
      *
@@ -68,20 +39,6 @@ declare class Catalog {
      * @description: Create Return configuration level set for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppReturnConfiguration/).
      */
     createAppReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.CreateAutocompleteSettingsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AutocompleteUpsertResponseSchema>}
-     *   - Success response
-     *
-     * @name createAutocompleteSettings
-     * @summary: Create autocomplete settings config for an application
-     * @description: This API allows to create autocomplete settings for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAutocompleteSettings/).
-     */
-    createAutocompleteSettings({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAutocompleteSettingsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AutocompleteUpsertResponseSchema>;
     /**
      * @param {CatalogPlatformApplicationValidator.CreateCollectionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -163,93 +120,12 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AppConfigurationsFilterResponse>}
-     *   - Success response
-     *
+     * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
      * @name createListingConfiguration
      * @summary: Add configuration for listings
      * @description: Add configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createListingConfiguration/).
      */
-    createListingConfiguration({ configType, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsFilterResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRuleBoostActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name createMerchandisingRuleBoostAction
-     * @summary: Create Merchandising Rule's Boost action details
-     * @description: This allows you to create Boost action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleBoostAction/).
-     */
-    createMerchandisingRuleBoostAction({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateMerchandisingRuleBoostActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRuleBuryActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name createMerchandisingRuleBuryAction
-     * @summary: Get Merchandising Rule's Bury action details
-     * @description: This allows you to create Bury action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleBuryAction/).
-     */
-    createMerchandisingRuleBuryAction({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateMerchandisingRuleBuryActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRuleHideActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name createMerchandisingRuleHideAction
-     * @summary: Create Merchandising Rule's Hide action details
-     * @description: This allows you to create hide action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleHideAction/).
-     */
-    createMerchandisingRuleHideAction({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateMerchandisingRuleHideActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRulePinActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name createMerchandisingRulePinAction
-     * @summary: Create Merchandising Rule's action details
-     * @description: This allows you to create pin action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRulePinAction/).
-     */
-    createMerchandisingRulePinAction({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateMerchandisingRulePinActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRuleQueryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.MerchandiseQueryResponse>} -
-     *   Success response
-     * @name createMerchandisingRuleQuery
-     * @summary: Create a Merchandising Rule's query
-     * @description: This allows you to Create a merchandising rule's query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleQuery/).
-     */
-    createMerchandisingRuleQuery({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateMerchandisingRuleQueryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.MerchandiseQueryResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.CreateProductPriceFactoryBulkJobParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>}
-     *   - Success response
-     *
-     * @name createProductPriceFactoryBulkJob
-     * @summary:
-     * @description: This API allows to create bulk job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductPriceFactoryBulkJob/).
-     */
-    createProductPriceFactoryBulkJob({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateProductPriceFactoryBulkJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>;
+    createListingConfiguration({ configType, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsSort>;
     /**
      * @param {CatalogPlatformApplicationValidator.CreateSearchConfigurationParam} arg
      *   - Arg object
@@ -264,19 +140,6 @@ declare class Catalog {
      * @description: This view allows you to modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchConfiguration/).
      */
     createSearchConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateSearchConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateSearchConfigurationResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.CreateSearchRerankParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CreateSearchRerankResponse>} -
-     *   Success response
-     * @name createSearchRerank
-     * @summary: Create search rerank for an application
-     * @description: This view allows you to create search rerank attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchRerank/).
-     */
-    createSearchRerank({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateSearchRerankParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateSearchRerankResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.DeleteAppCategoryReturnConfigurationParam} arg
      *   - Arg object
@@ -364,32 +227,6 @@ declare class Catalog {
      */
     deleteSearchKeywords({ id, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DeleteResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.DeleteSearchRerankConfigurationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.DeleteSearchRerankConfigurationResponse>}
-     *   - Success response
-     *
-     * @name deleteSearchRerankConfiguration
-     * @summary: Delete search rerank configuration for an application
-     * @description: This view allows you to delete search rerank configuration for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchRerankConfiguration/).
-     */
-    deleteSearchRerankConfiguration({ id, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteSearchRerankConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DeleteSearchRerankConfigurationResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.EditAppPriceFactoryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AppPriceFactory>} - Success response
-     * @name editAppPriceFactory
-     * @summary:
-     * @description: This API allows to update price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/editAppPriceFactory/).
-     */
-    editAppPriceFactory({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.EditAppPriceFactoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppPriceFactory>;
-    /**
      * @param {CatalogPlatformApplicationValidator.GetAllCollectionsParam} arg
      *   - Arg object
      *
@@ -401,7 +238,7 @@ declare class Catalog {
      * @summary: List all the collections
      * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllCollections/).
      */
-    getAllCollections({ q, scheduleStatus, type, tag, isActive, pageNo, pageSize, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAllCollectionsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionListingResponse>;
+    getAllCollections({ q, scheduleStatus, type, tags, isActive, pageNo, pageSize, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAllCollectionsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionListingResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetAllSearchKeywordParam} arg
      *   - Arg object
@@ -413,7 +250,7 @@ declare class Catalog {
      * @summary: List all Search Custom Keyword Listing
      * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllSearchKeyword/).
      */
-    getAllSearchKeyword({ pageNo, pageSize, q, isActive, requestHeaders }?: CatalogPlatformApplicationValidator.GetAllSearchKeywordParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsResponse>;
+    getAllSearchKeyword({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetAppCategoryReturnConfigParam} arg
      *   - Arg object
@@ -447,16 +284,16 @@ declare class Catalog {
      * @summary: Get list of locations
      * @description: This API allows to view all the locations asscoiated to a application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
      */
-    getAppLocations({ storeType, uid, q, stage, pageNo, pageSize, tags, storeTypes, companyUids, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppLocationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationListSerializer>;
+    getAppLocations({ storeType, uid, q, stage, pageNo, pageSize, tags, storeTypes, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppLocationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationListSerializer>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - Id of the company whose locations are to fetched
+     * @param {string} arg.companyId - Id of the company whose locations are to fetched
      * @param {string} arg.applicationId - Id of the application whose locations
      *   are to fetched
      * @param {string} [arg.storeType] - Helps to sort the location list on the
      *   basis of location type.
-     * @param {string} [arg.uid] - Helps to sort the location list on the basis
-     *   of uid list.
+     * @param {number[]} [arg.uid] - Helps to sort the location list on the
+     *   basis of uid list.
      * @param {string} [arg.q] - Query that is to be searched.
      * @param {string} [arg.stage] - To filter companies on basis of verified or
      *   unverified companies.
@@ -464,49 +301,21 @@ declare class Catalog {
      *   page. Default is 20.
      * @param {string[]} [arg.tags] - Get locations filtered by tags.
      * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
-     * @param {number[]} [arg.companyUids] - Filter stores by company IDs
-     *   available in the application.
      * @returns {Paginator<CatalogPlatformModel.LocationListSerializer>}
      * @summary: Get list of locations
      * @description: This API allows to view all the locations asscoiated to a application.
      */
-    getAppLocationsPaginator({ companyId, applicationId, storeType, uid, q, stage, pageSize, tags, storeTypes, companyUids, }?: {
-        companyId: number;
+    getAppLocationsPaginator({ companyId, applicationId, storeType, uid, q, stage, pageSize, tags, storeTypes, }?: {
+        companyId: string;
         applicationId: string;
         storeType?: string;
-        uid?: string;
+        uid?: number[];
         q?: string;
         stage?: string;
         pageSize?: number;
         tags?: string[];
         storeTypes?: string[];
-        companyUids?: number[];
     }): Paginator<CatalogPlatformModel.LocationListSerializer>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetAppPriceFactoriesParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetAppPriceFactoryResponse>} -
-     *   Success response
-     * @name getAppPriceFactories
-     * @summary: Get price factory
-     * @description: This API allows to get price factories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppPriceFactories/).
-     */
-    getAppPriceFactories({ isActive, factoryTypeId, code, pageNo, pageSize, requestHeaders }?: CatalogPlatformApplicationValidator.GetAppPriceFactoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAppPriceFactoryResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetAppPriceFactoryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AppPriceFactory>} - Success response
-     * @name getAppPriceFactory
-     * @summary: Get price factory
-     * @description: This API allows to get price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppPriceFactory/).
-     */
-    getAppPriceFactory({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetAppPriceFactoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppPriceFactory>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetAppProductParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -556,7 +365,7 @@ declare class Catalog {
     getAppicationProducts({ q, f, c, filters, isDependent, sortOn, pageId, pageSize, pageNo, pageType, itemIds, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppicationProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ApplicationProductListingResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - A `company_id` is a unique identifier for
+     * @param {string} arg.companyId - A `company_id` is a unique identifier for
      *   a particular seller account.
      * @param {string} arg.applicationId - A `application_id` is a unique
      *   identifier for a particular sale channel.
@@ -579,13 +388,13 @@ declare class Catalog {
      *   values below.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
-     * @param {string[]} [arg.itemIds] - Item Ids of product
+     * @param {number[]} [arg.itemIds] - Item Ids of product
      * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponse>}
      * @summary: List the products
      * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
      */
     getAppicationProductsPaginator({ companyId, applicationId, q, f, c, filters, isDependent, sortOn, pageSize, itemIds, }?: {
-        companyId: number;
+        companyId: string;
         applicationId: string;
         q?: string;
         f?: string;
@@ -594,7 +403,7 @@ declare class Catalog {
         isDependent?: boolean;
         sortOn?: string;
         pageSize?: number;
-        itemIds?: string[];
+        itemIds?: number[];
     }): Paginator<CatalogPlatformModel.ApplicationProductListingResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetApplicationBrandListingParam} arg
@@ -642,7 +451,7 @@ declare class Catalog {
     getApplicationBrands({ department, pageNo, pageSize, q, brandId, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationBrandsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BrandListingResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - A `company_id` is a unique identifier for
+     * @param {string} arg.companyId - A `company_id` is a unique identifier for
      *   a particular seller account.
      * @param {string} arg.applicationId - A `application_id` is a unique
      *   identifier for a particular sale channel.
@@ -654,19 +463,19 @@ declare class Catalog {
      *   page. Default is 12.
      * @param {string} [arg.q] - Search query with brand name.Use this parameter
      *   to search brands by brand name.
-     * @param {number} [arg.brandId] - Helps to sort the brands list on the
+     * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
      *   basis of uid list.
      * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
      * @summary: List all the brands
      * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
     getApplicationBrandsPaginator({ companyId, applicationId, department, pageSize, q, brandId, }?: {
-        companyId: number;
+        companyId: string;
         applicationId: string;
         department?: string;
         pageSize?: number;
         q?: string;
-        brandId?: number;
+        brandId?: number[];
     }): Paginator<CatalogPlatformModel.BrandListingResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetApplicationCategoryListingParam} arg
@@ -682,7 +491,7 @@ declare class Catalog {
     getApplicationCategoryListing({ departmentId, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationCategoryListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BrandListingResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - A `company_id` is a unique identifier for
+     * @param {string} arg.companyId - A `company_id` is a unique identifier for
      *   a particular seller account.
      * @param {string} arg.applicationId - A `application_id` is a unique
      *   identifier for a particular sale channel.
@@ -697,7 +506,7 @@ declare class Catalog {
      * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
     getApplicationCategoryListingPaginator({ companyId, applicationId, departmentId, pageSize, q, }?: {
-        companyId: number;
+        companyId: string;
         applicationId: string;
         departmentId?: number;
         pageSize?: number;
@@ -719,7 +528,7 @@ declare class Catalog {
     getApplicationDepartmentListing({ pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationDepartmentListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ApplicationDepartmentListingResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - A `company_id` is a unique identifier for
+     * @param {string} arg.companyId - A `company_id` is a unique identifier for
      *   a particular seller account.
      * @param {string} arg.applicationId - A `application_id` is a unique
      *   identifier for a particular sale channel.
@@ -732,11 +541,37 @@ declare class Catalog {
      * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
      */
     getApplicationDepartmentListingPaginator({ companyId, applicationId, pageSize, q, }?: {
-        companyId: number;
+        companyId: string;
         applicationId: string;
         pageSize?: number;
         q?: string;
     }): Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponse>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.GetApplicationFilterKeysParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.GetQueryFiltersKeysResponse>} -
+     *   Success response
+     * @name getApplicationFilterKeys
+     * @summary: Get filters keys of the filter options.
+     * @description: Get query filters keys to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterKeys/).
+     */
+    getApplicationFilterKeys({ c, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationFilterKeysParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetQueryFiltersKeysResponse>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.GetApplicationFilterValuesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.GetQueryFiltersValuesResponse>} -
+     *   Success response
+     * @name getApplicationFilterValues
+     * @summary: Get values of the selected value for the filter options.
+     * @description: Get query filters keys to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterValues/).
+     */
+    getApplicationFilterValues({ filterKey, c, collectionId, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationFilterValuesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetQueryFiltersValuesResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetAutocompleteConfigParam} arg
      *   - Arg object
@@ -749,47 +584,20 @@ declare class Catalog {
      * @summary: List all Autocomplete Keyword Listing
      * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteConfig/).
      */
-    getAutocompleteConfig({ pageNo, pageSize, q, isActive, requestHeaders }?: CatalogPlatformApplicationValidator.GetAutocompleteConfigParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
+    getAutocompleteConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetAutocompleteKeywordDetailParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsData>} -
+     * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
      *   Success response
      * @name getAutocompleteKeywordDetail
      * @summary: Get a Autocomplete Keywords Details
      * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteKeywordDetail/).
      */
-    getAutocompleteKeywordDetail({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetAutocompleteKeywordDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsData>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetAutocompletePreviewParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AutocompletePreviewResponseSchema>}
-     *   - Success response
-     *
-     * @name getAutocompletePreview
-     * @summary: Get autocomplete suggestions as per config for an application
-     * @description: This API allows to get autocomplete suggestions as per config. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompletePreview/).
-     */
-    getAutocompletePreview({ q, categorySuggestion, brandSuggestion, collectionSuggestion, productSuggestion, querySuggestion, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAutocompletePreviewParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AutocompletePreviewResponseSchema>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetAutocompleteSettingsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AutocompleteResponseSchema>} -
-     *   Success response
-     * @name getAutocompleteSettings
-     * @summary: Get autocomplete settings config for an application
-     * @description: This API allows to get autocomplete settings config for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteSettings/).
-     */
-    getAutocompleteSettings({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.AutocompleteResponseSchema>;
+    getAutocompleteKeywordDetail({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetAutocompleteKeywordDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetCatalogConfigurationParam} arg
      *   - Arg object
@@ -840,6 +648,19 @@ declare class Catalog {
      */
     getCollectionDetail({ slug, requestHeaders }?: CatalogPlatformApplicationValidator.GetCollectionDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionDetailResponse>;
     /**
+     * @param {CatalogPlatformApplicationValidator.GetCollectionItemsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponse>} -
+     *   Success response
+     * @name getCollectionItems
+     * @summary: Get the items for a collection
+     * @description: Get items from a collection specified by its `id`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionItems/).
+     */
+    getCollectionItems({ id, sortOn, pageId, pageSize, requestHeaders }?: CatalogPlatformApplicationValidator.GetCollectionItemsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionItemsResponse>;
+    /**
      * @param {CatalogPlatformApplicationValidator.GetConfigurationByTypeParam} arg
      *   - Arg object
      *
@@ -865,7 +686,7 @@ declare class Catalog {
      * @summary: Get configuration metadata details for catalog for admin panel
      * @description: Get the configuraion metadata details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationMetadata/).
      */
-    getConfigurationMetadata({ configType, templateSlug, requestHeaders }?: CatalogPlatformApplicationValidator.GetConfigurationMetadataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetConfigMetadataResponse>;
+    getConfigurationMetadata({ configType, templateSlug, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetConfigurationMetadataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetConfigMetadataResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetConfigurationsParam} arg
      *   - Arg object
@@ -879,18 +700,6 @@ declare class Catalog {
      * @description: configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurations/).
      */
     getConfigurations({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAppCatalogConfiguration>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetConfigurationsFilterMetadataParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.FilterResponse>} - Success response
-     * @name getConfigurationsFilterMetadata
-     * @summary: Get filter details for application
-     * @description: configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationsFilterMetadata/).
-     */
-    getConfigurationsFilterMetadata({ filter, requestHeaders }?: CatalogPlatformApplicationValidator.GetConfigurationsFilterMetadataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.FilterResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetDepartmentsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -914,7 +723,7 @@ declare class Catalog {
      * @summary: Get Inventory for company
      * @description: This API allows get Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDiscountedInventoryBySizeIdentifier/).
      */
-    getDiscountedInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, locationIds, requestHeaders, }?: CatalogPlatformApplicationValidator.GetDiscountedInventoryBySizeIdentifierParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>;
+    getDiscountedInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, q, locationIds, requestHeaders, }?: CatalogPlatformApplicationValidator.GetDiscountedInventoryBySizeIdentifierParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetGroupConfigurationsParam} arg
      *   - Arg object
@@ -933,99 +742,12 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetListingConfigResponse>} -
-     *   Success response
+     * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
      * @name getListingConfigurations
      * @summary: Get the details of the application configured configurations of listing config types.
      * @description: Get the details of the application configured configurations of listing config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getListingConfigurations/).
      */
-    getListingConfigurations({ configType, pageNo, pageSize, search, uids, requestHeaders }?: CatalogPlatformApplicationValidator.GetListingConfigurationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetListingConfigResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetLivePreviewParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
-     * @name getLivePreview
-     * @summary: Get live preview of a Merchandising Rule
-     * @description: This allows you to get live preview of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getLivePreview/).
-     */
-    getLivePreview({ merchandisingRuleId, searchKeyword, requestHeaders }?: CatalogPlatformApplicationValidator.GetLivePreviewParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductListingResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetMerchandisingQueryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SearchRequest>} - Success response
-     * @name getMerchandisingQuery
-     * @summary: Get Merchandising Rule's query details
-     * @description: This allows you to get details of a merchandising rule's query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingQuery/).
-     */
-    getMerchandisingQuery({ merchandisingRuleId, requestHeaders }?: CatalogPlatformApplicationValidator.GetMerchandisingQueryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SearchRequest>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetMerchandisingRuleBoostActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetMerchandisingRuleBoostAction>}
-     *   - Success response
-     *
-     * @name getMerchandisingRuleBoostAction
-     * @summary: Get Merchandising Rule's Boost action details
-     * @description: This allows you to get details of Boost action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRuleBoostAction/).
-     */
-    getMerchandisingRuleBoostAction({ merchandisingRuleId, requestHeaders }?: CatalogPlatformApplicationValidator.GetMerchandisingRuleBoostActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetMerchandisingRuleBoostAction>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetMerchandisingRuleBuryActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetMerchandisingRuleBuryAction>}
-     *   - Success response
-     *
-     * @name getMerchandisingRuleBuryAction
-     * @summary: Get Merchandising Rule's Bury action details
-     * @description: This allows you to get details of Bury action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRuleBuryAction/).
-     */
-    getMerchandisingRuleBuryAction({ merchandisingRuleId, requestHeaders }?: CatalogPlatformApplicationValidator.GetMerchandisingRuleBuryActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetMerchandisingRuleBuryAction>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetMerchandisingRuleHideActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.HideResponse>} - Success response
-     * @name getMerchandisingRuleHideAction
-     * @summary: Get Merchandising Rule's Hide action details
-     * @description: This allows you to get details of hide action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRuleHideAction/).
-     */
-    getMerchandisingRuleHideAction({ merchandisingRuleId, requestHeaders }?: CatalogPlatformApplicationValidator.GetMerchandisingRuleHideActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.HideResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetMerchandisingRulePinActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.PinResponse>} - Success response
-     * @name getMerchandisingRulePinAction
-     * @summary: Get Merchandising Rule's action details
-     * @description: This allows you to get details of pin action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRulePinAction/).
-     */
-    getMerchandisingRulePinAction({ merchandisingRuleId, requestHeaders }?: CatalogPlatformApplicationValidator.GetMerchandisingRulePinActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.PinResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetMerchandisingRulesParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.MerchandisingRulesList>} - Success response
-     * @name getMerchandisingRules
-     * @summary: Get list of all Merchandising Rule's details
-     * @description: This allows you to get details of all merchandising rule's details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRules/).
-     */
-    getMerchandisingRules({ pageId, pageSize, requestHeaders }?: CatalogPlatformApplicationValidator.GetMerchandisingRulesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.MerchandisingRulesList>;
+    getListingConfigurations({ configType, pageNo, pageSize, search, requestHeaders }?: CatalogPlatformApplicationValidator.GetListingConfigurationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetConfigResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetProductDetailBySlugParam} arg
      *   - Arg object
@@ -1038,20 +760,6 @@ declare class Catalog {
      * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductDetailBySlug/).
      */
     getProductDetailBySlug({ slug, requestHeaders }?: CatalogPlatformApplicationValidator.GetProductDetailBySlugParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductDetail>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetProductsInPriceFactoryByZoneIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductsResponse>}
-     *   - Success response
-     *
-     * @name getProductsInPriceFactoryByZoneId
-     * @summary:
-     * @description: This API allows to get products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductsInPriceFactoryByZoneId/).
-     */
-    getProductsInPriceFactoryByZoneId({ id, zoneId, itemId, sellerIdentifier, pageNo, pageSize, requestHeaders, }?: CatalogPlatformApplicationValidator.GetProductsInPriceFactoryByZoneIdParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateAppPriceFactoryProductsResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetQueryFiltersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -1082,63 +790,13 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
+     * @returns {Promise<CatalogPlatformModel.GetSearchWordsDetailResponse>} -
+     *   Success response
      * @name getSearchKeywords
      * @summary: Get a Search Keywords Details
      * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchKeywords/).
      */
-    getSearchKeywords({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsData>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetSearchRerankParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetSearchRerankResponse>} - Success response
-     * @name getSearchRerank
-     * @summary: Get search rerank for an application
-     * @description: This view allows you to create search rerank attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchRerank/).
-     */
-    getSearchRerank({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchRerankResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.GetSearchRerankDetailParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetSearchRerankDetailResponse>} -
-     *   Success response
-     * @name getSearchRerankDetail
-     * @summary: Get search rerank for an application
-     * @description: This view allows you to retrieve search rerank attribute detail for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchRerankDetail/).
-     */
-    getSearchRerankDetail({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetSearchRerankDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchRerankDetailResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.PollProductPriceFactoryBulkJobParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobPollResponse>}
-     *   - Success response
-     *
-     * @name pollProductPriceFactoryBulkJob
-     * @summary:
-     * @description: This API allows to poll bulk job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/pollProductPriceFactoryBulkJob/).
-     */
-    pollProductPriceFactoryBulkJob({ id, jobId, requestHeaders }?: CatalogPlatformApplicationValidator.PollProductPriceFactoryBulkJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobPollResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.ProcessProductPriceFactoryBulkJobParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>}
-     *   - Success response
-     *
-     * @name processProductPriceFactoryBulkJob
-     * @summary:
-     * @description: This API allows to process bulk job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/processProductPriceFactoryBulkJob/).
-     */
-    processProductPriceFactoryBulkJob({ id, jobId, body, requestHeaders }?: CatalogPlatformApplicationValidator.ProcessProductPriceFactoryBulkJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>;
+    getSearchKeywords({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsDetailResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateAllowSingleParam} arg
      *   - Arg object
@@ -1237,27 +895,13 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsData>} -
+     * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
      *   Success response
      * @name updateAutocompleteKeyword
      * @summary: Create & Update Autocomplete Keyword
      * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAutocompleteKeyword/).
      */
-    updateAutocompleteKeyword({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAutocompleteKeywordParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsData>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.UpdateAutocompleteSettingsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AutocompleteUpsertResponseSchema>}
-     *   - Success response
-     *
-     * @name updateAutocompleteSettings
-     * @summary: Update autocomplete settings config for an application
-     * @description: This API allows to update autocomplete settings for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAutocompleteSettings/).
-     */
-    updateAutocompleteSettings({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAutocompleteSettingsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AutocompleteUpsertResponseSchema>;
+    updateAutocompleteKeyword({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAutocompleteKeywordParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateCollectionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -1298,93 +942,12 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.AppConfigurationsFilterResponse>}
-     *   - Success response
-     *
+     * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
      * @name updateListingConfiguration
      * @summary: Update configuration for listings
      * @description: Update configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateListingConfiguration/).
      */
-    updateListingConfiguration({ configType, configId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsFilterResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRuleBoostActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name updateMerchandisingRuleBoostAction
-     * @summary: Update Merchandising Rule's Boost action details
-     * @description: This allows you to update Boost action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRuleBoostAction/).
-     */
-    updateMerchandisingRuleBoostAction({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateMerchandisingRuleBoostActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRuleBuryActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name updateMerchandisingRuleBuryAction
-     * @summary: Update Merchandising Rule's Bury action details
-     * @description: This allows you to update Bury action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRuleBuryAction/).
-     */
-    updateMerchandisingRuleBuryAction({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateMerchandisingRuleBuryActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRuleHideActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name updateMerchandisingRuleHideAction
-     * @summary: Update Merchandising Rule's Hide action details
-     * @description: This allows you to update hide action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRuleHideAction/).
-     */
-    updateMerchandisingRuleHideAction({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateMerchandisingRuleHideActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRulePinActionParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name updateMerchandisingRulePinAction
-     * @summary: Update Merchandising Rule's action details
-     * @description: This allows you to update pin action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRulePinAction/).
-     */
-    updateMerchandisingRulePinAction({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateMerchandisingRulePinActionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRuleQueryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-     *   Success response
-     * @name updateMerchandisingRuleQuery
-     * @summary: Update a Merchandising Rule's query
-     * @description: This allows you to Update a merchandising rule's query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRuleQuery/).
-     */
-    updateMerchandisingRuleQuery({ merchandisingRuleId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateMerchandisingRuleQueryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseMerchandising>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.UpdateProductPriceByZoneInPriceFactoryParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.UpdateAppPriceFactoryProductResponse>}
-     *   - Success response
-     *
-     * @name updateProductPriceByZoneInPriceFactory
-     * @summary:
-     * @description: This API allows to partially update products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateProductPriceByZoneInPriceFactory/).
-     */
-    updateProductPriceByZoneInPriceFactory({ id, itemId, zoneId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateProductPriceByZoneInPriceFactoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdateAppPriceFactoryProductResponse>;
+    updateListingConfiguration({ configType, configId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsSort>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateSearchConfigurationParam} arg
      *   - Arg object
@@ -1411,34 +974,7 @@ declare class Catalog {
      * @description: Update Search Keyword by its id. On successful request, returns the updated collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchKeywords/).
      */
     updateSearchKeywords({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsData>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.UpdateSearchRerankConfigurationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.UpdateSearchRerankResponse>} -
-     *   Success response
-     * @name updateSearchRerankConfiguration
-     * @summary: Update search rerank for an application
-     * @description: This view allows you to update search rerank attribute for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchRerankConfiguration/).
-     */
-    updateSearchRerankConfiguration({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateSearchRerankConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdateSearchRerankResponse>;
-    /**
-     * @param {CatalogPlatformApplicationValidator.ValidateProductPriceFactoryBulkJobParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>}
-     *   - Success response
-     *
-     * @name validateProductPriceFactoryBulkJob
-     * @summary:
-     * @description: This API allows to validate bulk job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductPriceFactoryBulkJob/).
-     */
-    validateProductPriceFactoryBulkJob({ id, jobId, body, requestHeaders }?: CatalogPlatformApplicationValidator.ValidateProductPriceFactoryBulkJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>;
 }
-import CatalogPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformApplicationValidator");
-import CatalogPlatformModel = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CatalogPlatformApplicationValidator = require("./CatalogPlatformApplicationValidator");
+import CatalogPlatformModel = require("./CatalogPlatformModel");
+import Paginator = require("../../common/Paginator");

@@ -40,7 +40,6 @@ Default
 * [getZoneById](#getzonebyid)
 * [getZones](#getzones)
 * [insertApplicationConfig](#insertapplicationconfig)
-* [patchApplicationConfiguration](#patchapplicationconfiguration)
 * [patchApplicationServiceabilitySelfShipment](#patchapplicationserviceabilityselfshipment)
 * [updateApplicationConfiguration](#updateapplicationconfiguration)
 * [updateCompanyConfiguration](#updatecompanyconfiguration)
@@ -707,7 +706,7 @@ Successful Response
 
 
 ### getApplicationConfiguration
-Get All application configs
+Get All Courier Rules applied to application
 
 
 
@@ -724,7 +723,7 @@ const data = await platformClient.application("<APPLICATION_ID>").serviceability
 
 
 
-This API returns all config applied to an application
+This API returns all the Courier Rules applied to an application
 
 *Returned Response:*
 
@@ -739,91 +738,11 @@ Response status_code
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; ApplicationConfig</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "application_id": "test_app",
-    "company_id": 1,
-    "rule_ids": [
-      "64b4337a0c607fbfbcd0156b",
-      "64b4337a0c607fbfbcd01564"
-    ],
-    "sort": [
-      "fastest"
-    ],
-    "zones": {
-      "serviceability_type": "zone-based",
-      "active_count": 0,
-      "total_count": 0
-    },
-    "buybox_config": {
-      "show_seller": true,
-      "enable_selection": true,
-      "is_seller_buybox_enabled": true
-    },
-    "buybox_rule_config": {
-      "store_type_priority": [
-        "FC",
-        "STORE"
-      ],
-      "store_tag_proiority": [
-        "store_tag_1",
-        "store_tag_2"
-      ],
-      "sort": [
-        "price",
-        "store_type",
-        "promise",
-        "store_creation_date",
-        "distance",
-        "store_tag"
-      ]
-    },
-    "promise_types": [
-      {
-        "display_name": "Standard Delivery",
-        "slug": "standard_delivery",
-        "description": "A standard promise type for general use",
-        "is_active": true,
-        "is_default": true
-      },
-      {
-        "display_name": "Express Delivery",
-        "slug": "express_delivery",
-        "description": "A express promise type for general use",
-        "is_active": true,
-        "is_default": false
-      }
-    ],
-    "promise_config": {
-      "store_attributes": {
-        "is_operational_timing_enabled": true,
-        "is_order_acceptance_timing_enabled": true,
-        "is_average_processing_time": true,
-        "is_holiday_enabled": true
-      },
-      "delivery_service_attributes": {
-        "is_pickup_cutoff_time_enabled": "true,",
-        "is_service_tat_enabled": true,
-        "is_holiday_enabled": true
-      },
-      "buffer_field": {
-        "unit": "hours",
-        "value": 10,
-        "enabled": true
-      }
-    }
-  }
-}
-```
-</details>
 
+```
 </details>
 
 
@@ -1189,16 +1108,14 @@ const promise = platformClient.serviceability.getCourierPartnerAccounts({  pageN
  pageSize : value,
  stage : value,
  paymentMode : value,
- transportType : value,
- accountIds : value });
+ transportType : value });
 
 // Async/Await
 const data = await platformClient.serviceability.getCourierPartnerAccounts({  pageNo : value,
  pageSize : value,
  stage : value,
  paymentMode : value,
- transportType : value,
- accountIds : value });
+ transportType : value });
 ```
 
 
@@ -1211,8 +1128,7 @@ const data = await platformClient.serviceability.getCourierPartnerAccounts({  pa
 | pageSize | number | no | determines the items to be displayed in a page |    
 | stage | string | no | stage of the account. enabled/disabled |    
 | paymentMode | string | no | Filters dp accounts based on payment mode |    
-| transportType | string | no | Filters dp accounts based on transport_type |    
-| accountIds | Array<string> | no | Filters dp accounts based on their ids |  
+| transportType | string | no | Filters dp accounts based on transport_type |  
 
 
 
@@ -1368,7 +1284,7 @@ Response status_code
 
 
 ### getOptimalLocations
-Get serviceable store of the item
+Retrieve optimal locations
 
 
 
@@ -1386,19 +1302,19 @@ const data = await platformClient.serviceability.getOptimalLocations({  body : v
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [ReAssignStoreRequest](#ReAssignStoreRequest) | yes | Request body |
+| body | [OptimlLocationsRequestSchema](#OptimlLocationsRequestSchema) | yes | Request body |
 
 
-This API returns serviceable store of the item.
+Retrieve optimal locations based on the specific criteria
 
 *Returned Response:*
 
 
 
 
-[ReAssignStoreResponse](#ReAssignStoreResponse)
+[OptimalLocationsResponse](#OptimalLocationsResponse)
 
-Response status_code
+Optimal Locations Success
 
 
 
@@ -2102,7 +2018,7 @@ const promise = platformClient.serviceability.getZones({  pageNo : value,
  isActive : value,
  channelId : value,
  q : value,
- country : value,
+ countryIsoCode : value,
  state : value,
  city : value,
  pincode : value,
@@ -2114,7 +2030,7 @@ const data = await platformClient.serviceability.getZones({  pageNo : value,
  isActive : value,
  channelId : value,
  q : value,
- country : value,
+ countryIsoCode : value,
  state : value,
  city : value,
  pincode : value,
@@ -2132,7 +2048,7 @@ const data = await platformClient.serviceability.getZones({  pageNo : value,
 | isActive | boolean | no | Status of Zone (either active or inactive) |    
 | channelId | string | no | Zones filtered by an application |    
 | q | string | no | search with name as a free text |    
-| country | string | no | ISO2 code of the country |    
+| countryIsoCode | string | no | ISO2 code of the country |    
 | state | string | no | State name |    
 | city | string | no | City name |    
 | pincode | string | no | Pincode value to search zones |    
@@ -2248,71 +2164,6 @@ Response status_code
 ```json
 
 ```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### patchApplicationConfiguration
-To patch any config which can be applied to application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ApplicationConfigPatchRequest](#ApplicationConfigPatchRequest) | yes | Request body |
-
-
-Apply configs to application and for reference, refer to examples
-
-*Returned Response:*
-
-
-
-
-[ApplicationConfigPatchResponse](#ApplicationConfigPatchResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; ApplicationConfigPatchResponse</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -3354,37 +3205,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_id | string? |  yes  |  |
- | buybox_config | [BuyboxConfig](#BuyboxConfig)? |  yes  |  |
- | buybox_rule_config | [BuyboxRuleConfig](#BuyboxRuleConfig)? |  yes  |  |
- | company_id | number? |  yes  |  |
- | manual_priority | [string]? |  yes  |  |
- | promise_config | [PromiseConfig](#PromiseConfig)? |  yes  |  |
- | promise_types | [[PromiseType](#PromiseType)]? |  yes  |  |
  | rule_ids | [string]? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | zones | [ZoneConfig](#ZoneConfig)? |  yes  |  |
- 
-
----
-
-#### [ApplicationConfigPatchRequest](#ApplicationConfigPatchRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buybox_config | [BuyboxConfig](#BuyboxConfig)? |  yes  |  |
- | buybox_rule_config | [BuyboxRuleConfig](#BuyboxRuleConfig)? |  yes  |  |
- | promise_config | [PromiseConfig](#PromiseConfig)? |  yes  |  |
- | promise_types | [[PromiseType](#PromiseType)]? |  yes  |  |
- 
-
----
-
-#### [ApplicationConfigPatchResponse](#ApplicationConfigPatchResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
  
 
 ---
@@ -3443,13 +3266,12 @@ Response status_code
 
 ---
 
-#### [BufferField](#BufferField)
+#### [ArticleAssignment](#ArticleAssignment)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- | unit | string? |  yes  |  |
- | value | number? |  yes  |  |
+ | level | string? |  yes  |  |
+ | strategy | string? |  yes  | The strategy parameter allows users to specify the desired approach or criteria for selecting optimal locations. |
  
 
 ---
@@ -3491,28 +3313,6 @@ Response status_code
  | status | string |  no  |  |
  | success | number? |  yes  |  |
  | total | number? |  yes  |  |
- 
-
----
-
-#### [BuyboxConfig](#BuyboxConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enable_selection | boolean |  no  |  |
- | is_seller_buybox_enabled | boolean |  no  |  |
- | show_seller | boolean |  no  |  |
- 
-
----
-
-#### [BuyboxRuleConfig](#BuyboxRuleConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sort | [string]? |  yes  |  |
- | store_tag_priority | [string]? |  yes  |  |
- | store_type_priority | [string]? |  yes  |  |
  
 
 ---
@@ -3649,7 +3449,6 @@ Response status_code
  | conditions | [CourierPartnerRuleConditions](#CourierPartnerRuleConditions) |  no  |  |
  | cp_list | [[CourierPartnerList](#CourierPartnerList)]? |  yes  |  |
  | is_active | boolean |  no  |  |
- | manual_priority | [string]? |  yes  |  |
  | name | string |  no  |  |
  | sort | [string] |  no  |  |
  
@@ -3749,7 +3548,6 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | is_active | boolean? |  yes  |  |
- | manual_priority | [string]? |  yes  |  |
  | name | string? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
@@ -3785,17 +3583,6 @@ Response status_code
  | lt | number? |  yes  |  |
  | lte | number? |  yes  |  |
  | unit | string |  no  |  |
- 
-
----
-
-#### [DeliveryServiceAttributeConfig](#DeliveryServiceAttributeConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_holiday_enabled | boolean? |  yes  |  |
- | is_pickup_cutoff_time_enabled | boolean? |  yes  |  |
- | is_service_tat_enabled | boolean? |  yes  |  |
  
 
 ---
@@ -4178,6 +3965,21 @@ Response status_code
 
 ---
 
+#### [LocationDetailsServiceability](#LocationDetailsServiceability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | city | string? |  yes  | The city of the serviceability location. |
+ | country | string |  no  | The country of the serviceability location. |
+ | country_iso_code | string |  no  | The ISO code of the country. |
+ | location | [ServiceabilityLocation](#ServiceabilityLocation)? |  yes  |  |
+ | pincode | string? |  yes  | The pincode of the serviceability location. |
+ | sector | string? |  yes  | The sector of the serviceability location. |
+ | state | string? |  yes  | The state of the serviceability location. |
+ 
+
+---
+
 #### [LocationRule](#LocationRule)
 
  | Properties | Type | Nullable | Description |
@@ -4249,6 +4051,77 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | hour | number? |  yes  |  |
  | minute | number? |  yes  |  |
+ 
+
+---
+
+#### [OptimalLocationArticlesResponse](#OptimalLocationArticlesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
+ | assign_locations | [number] |  no  |  |
+ | group_id | string? |  yes  |  |
+ | ignore_locations | [number] |  no  |  |
+ | is_primary_item | boolean? |  yes  |  |
+ | item_id | number |  no  |  |
+ | meta | string? |  yes  |  |
+ | mto_quantity | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | quantity | number |  no  |  |
+ | seller_id | number? |  yes  |  |
+ | size | string |  no  |  |
+ | uid | string |  no  |  |
+ 
+
+---
+
+#### [OptimalLocationAssignedStoresResponse](#OptimalLocationAssignedStoresResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[OptimalLocationArticlesResponse](#OptimalLocationArticlesResponse)] |  no  |  |
+ | store_id | number |  no  |  |
+ 
+
+---
+
+#### [OptimalLocationsArticles](#OptimalLocationsArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
+ | assign_locations | [number] |  no  |  |
+ | group_id | string? |  yes  |  |
+ | ignore_locations | [number] |  no  |  |
+ | is_primary_item | boolean? |  yes  |  |
+ | item_id | number |  no  |  |
+ | meta | string? |  yes  |  |
+ | quantity | string |  no  |  |
+ | seller_id | number? |  yes  |  |
+ | size | string |  no  |  |
+ 
+
+---
+
+#### [OptimalLocationsResponse](#OptimalLocationsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | assigned_stores | [[OptimalLocationAssignedStoresResponse](#OptimalLocationAssignedStoresResponse)] |  no  |  |
+ 
+
+---
+
+#### [OptimlLocationsRequestSchema](#OptimlLocationsRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article | [OptimalLocationsArticles](#OptimalLocationsArticles)? |  yes  |  |
+ | channel_id | string |  no  |  |
+ | channel_type | string |  no  |  |
+ | to_serviceability | [LocationDetailsServiceability](#LocationDetailsServiceability) |  no  |  |
  
 
 ---
@@ -4598,55 +4471,6 @@ Response status_code
 
 ---
 
-#### [PromiseConfig](#PromiseConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buffer_field | [BufferField](#BufferField)? |  yes  |  |
- | delivery_service_attributes | [DeliveryServiceAttributeConfig](#DeliveryServiceAttributeConfig)? |  yes  |  |
- | store_attributes | [StorePromiseAttributeConfig](#StorePromiseAttributeConfig)? |  yes  |  |
- 
-
----
-
-#### [PromiseType](#PromiseType)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | display_name | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_default | boolean |  no  |  |
- | slug | string |  no  |  |
- 
-
----
-
-#### [ReAssignStoreRequest](#ReAssignStoreRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articles | [string] |  no  |  |
- | configuration | string |  no  |  |
- | identifier | string |  no  |  |
- | ignored_locations | [string] |  no  |  |
- | to_pincode | string |  no  |  |
- 
-
----
-
-#### [ReAssignStoreResponse](#ReAssignStoreResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articles | [string]? |  yes  |  |
- | error | string |  no  |  |
- | success | boolean |  no  |  |
- | to_pincode | string |  no  |  |
- 
-
----
-
 #### [RulePriorityRequest](#RulePriorityRequest)
 
  | Properties | Type | Nullable | Description |
@@ -4715,6 +4539,16 @@ Response status_code
 
 ---
 
+#### [ServiceabilityLocation](#ServiceabilityLocation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | string |  no  | The latitude of the serviceability location. |
+ | longitude | string |  no  | The longitude of the serviceability location. |
+ 
+
+---
+
 #### [ServiceabilityModel](#ServiceabilityModel)
 
  | Properties | Type | Nullable | Description |
@@ -4754,18 +4588,6 @@ Response status_code
 
 ---
 
-#### [StorePromiseAttributeConfig](#StorePromiseAttributeConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_average_processing_time | boolean? |  yes  |  |
- | is_holiday_enabled | boolean? |  yes  |  |
- | is_operational_timing_enabled | boolean? |  yes  |  |
- | is_order_acceptance_timing_enabled | boolean? |  yes  |  |
- 
-
----
-
 #### [StoreRuleConditionSchema](#StoreRuleConditionSchema)
 
  | Properties | Type | Nullable | Description |
@@ -4789,7 +4611,6 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manual_priority | [string]? |  yes  |  |
  | rule_ids | [string]? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
@@ -4808,7 +4629,6 @@ Response status_code
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | id | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
- | manual_priority | [string]? |  yes  |  |
  | name | string? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
@@ -4825,7 +4645,6 @@ Response status_code
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | id | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
- | manual_priority | [string]? |  yes  |  |
  | name | string? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
@@ -4845,7 +4664,6 @@ Response status_code
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | id | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
- | manual_priority | [string]? |  yes  |  |
  | name | string? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |

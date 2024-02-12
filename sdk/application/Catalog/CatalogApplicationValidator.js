@@ -170,12 +170,8 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  *   /service/application/catalog/v1.0/products/sizes
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
- * @property {string} [exchangeSellerIdentifier] - The seller identifier of the
- *   exchange product.
  * @property {number} [moq] - An Integer indication the Minimum Order Quantity
  *   of a product, e.g. 100.
- * @property {number} [sellerId] - The ID of the seller that is selling the
- *   product, e.g. 1,2,3.
  */
 
 /**
@@ -251,15 +247,10 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
 
 /**
  * @typedef GetSearchResultsParam
- * @property {string} [q] - The search query for entering partial or full name
- *   of a product, brand or category. For example, if the given search query `q`
- *   is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_,
+ * @property {string} q - The search query for entering partial or full name of
+ *   a product, brand or category. For example, if the given search query `q` is
+ *   _ski_, the relevant search suggestions could be _skirt_, _ski shoes_,
  *   __skin cream_ etc.
- * @property {number} [categorySuggestion] - For getting related category suggestions.
- * @property {number} [brandSuggestion] - For getting related brand suggestions.
- * @property {number} [collectionSuggestion] - For getting related collection suggestions.
- * @property {number} [productSuggestion] - For getting related product suggestions.
- * @property {number} [querySuggestion] - For getting related query suggestions.
  */
 
 /**
@@ -456,9 +447,7 @@ class CatalogApplicationValidator {
       slug: Joi.string().allow("").required(),
       size: Joi.string().allow("").required(),
       storeId: Joi.number(),
-      exchangeSellerIdentifier: Joi.string().allow(""),
       moq: Joi.number(),
-      sellerId: Joi.number(),
     }).required();
   }
 
@@ -525,13 +514,8 @@ class CatalogApplicationValidator {
   /** @returns {GetSearchResultsParam} */
   static getSearchResults() {
     return Joi.object({
-      q: Joi.string().allow(""),
-      categorySuggestion: Joi.number(),
-      brandSuggestion: Joi.number(),
-      collectionSuggestion: Joi.number(),
-      productSuggestion: Joi.number(),
-      querySuggestion: Joi.number(),
-    });
+      q: Joi.string().allow("").required(),
+    }).required();
   }
 
   /** @returns {GetSimilarComparisonProductBySlugParam} */
