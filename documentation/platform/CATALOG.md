@@ -9,151 +9,211 @@
 Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.
 
 
-Default
-* [addCollectionItems](#addcollectionitems)
-* [addInventory](#addinventory)
-* [allSizes](#allsizes)
-* [bulkHsnCode](#bulkhsncode)
-* [createAppCategoryReturnConfiguration](#createappcategoryreturnconfiguration)
-* [createAppReturnConfiguration](#createappreturnconfiguration)
-* [createBulkInventory](#createbulkinventory)
-* [createBulkInventoryJob](#createbulkinventoryjob)
-* [createBulkProductUploadJob](#createbulkproductuploadjob)
-* [createCategories](#createcategories)
-* [createCollection](#createcollection)
-* [createConfigurationByType](#createconfigurationbytype)
-* [createConfigurationProductListing](#createconfigurationproductlisting)
-* [createCustomAutocompleteRule](#createcustomautocompleterule)
-* [createCustomKeyword](#createcustomkeyword)
-* [createDepartments](#createdepartments)
-* [createGroupConfiguration](#creategroupconfiguration)
-* [createInventoryExport](#createinventoryexport)
-* [createInventoryExportJob](#createinventoryexportjob)
-* [createListingConfiguration](#createlistingconfiguration)
-* [createMarketplaceOptin](#createmarketplaceoptin)
-* [createProduct](#createproduct)
-* [createProductAssetsInBulk](#createproductassetsinbulk)
-* [createProductBundle](#createproductbundle)
-* [createProductExportJob](#createproductexportjob)
-* [createProductsInBulk](#createproductsinbulk)
-* [createSearchConfiguration](#createsearchconfiguration)
-* [createSizeGuide](#createsizeguide)
-* [deleteAppCategoryReturnConfiguration](#deleteappcategoryreturnconfiguration)
-* [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-* [deleteBulkInventoryJob](#deletebulkinventoryjob)
-* [deleteCollection](#deletecollection)
-* [deleteGroupConfiguration](#deletegroupconfiguration)
-* [deleteListingConfiguration](#deletelistingconfiguration)
-* [deleteProduct](#deleteproduct)
-* [deleteProductBulkJob](#deleteproductbulkjob)
-* [deleteRealtimeInventory](#deleterealtimeinventory)
-* [deleteSearchConfiguration](#deletesearchconfiguration)
-* [deleteSearchKeywords](#deletesearchkeywords)
-* [deleteSize](#deletesize)
-* [downloadInventoryTemplateView](#downloadinventorytemplateview)
-* [downloadProductTemplateViews](#downloadproducttemplateviews)
-* [editProduct](#editproduct)
-* [exportInventoryConfig](#exportinventoryconfig)
-* [getAllCollections](#getallcollections)
-* [getAllProductHsnCodes](#getallproducthsncodes)
-* [getAllSearchKeyword](#getallsearchkeyword)
-* [getAppCategoryReturnConfig](#getappcategoryreturnconfig)
+Insights and Metrics
+* [getCatalogInsights](#getcataloginsights)
+* [getSellerInsights](#getsellerinsights)
+
+
+Application Information & Brand/Category/Department/Location Management
 * [getAppInventory](#getappinventory)
 * [getAppLocations](#getapplocations)
-* [getAppProduct](#getappproduct)
 * [getAppProducts](#getappproducts)
-* [getAppReturnConfiguration](#getappreturnconfiguration)
 * [getAppicationProducts](#getappicationproducts)
 * [getApplicationBrandListing](#getapplicationbrandlisting)
 * [getApplicationBrands](#getapplicationbrands)
 * [getApplicationCategoryListing](#getapplicationcategorylisting)
 * [getApplicationDepartmentListing](#getapplicationdepartmentlisting)
-* [getApplicationFilterKeys](#getapplicationfilterkeys)
-* [getApplicationFilterValues](#getapplicationfiltervalues)
-* [getAutocompleteConfig](#getautocompleteconfig)
-* [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-* [getCatalogConfiguration](#getcatalogconfiguration)
-* [getCatalogInsights](#getcataloginsights)
 * [getCategories](#getcategories)
-* [getCategoryData](#getcategorydata)
+* [getDepartments](#getdepartments)
+* [getProductDetailBySlug](#getproductdetailbyslug)
+* [updateAppBrand](#updateappbrand)
+* [updateAppCategory](#updateappcategory)
+* [updateAppDepartment](#updateappdepartment)
+* [updateAppLocation](#updateapplocation)
+
+
+Collection Management
+* [addCollectionItems](#addcollectionitems)
+* [createCollection](#createcollection)
+* [deleteCollection](#deletecollection)
+* [getAllCollections](#getallcollections)
 * [getCollectionDetail](#getcollectiondetail)
 * [getCollectionItems](#getcollectionitems)
-* [getCompanyBrandDetail](#getcompanybranddetail)
-* [getCompanyDetail](#getcompanydetail)
-* [getCompanyMetrics](#getcompanymetrics)
+* [updateCollection](#updatecollection)
+
+
+Default
+* [getApplicationFilterKeys](#getapplicationfilterkeys)
+* [getApplicationFilterValues](#getapplicationfiltervalues)
+
+
+Website Configuration Management
+* [createConfigurationByType](#createconfigurationbytype)
+* [createConfigurationProductListing](#createconfigurationproductlisting)
+* [createGroupConfiguration](#creategroupconfiguration)
+* [createListingConfiguration](#createlistingconfiguration)
+* [deleteGroupConfiguration](#deletegroupconfiguration)
+* [deleteListingConfiguration](#deletelistingconfiguration)
+* [getCatalogConfiguration](#getcatalogconfiguration)
 * [getConfigurationByType](#getconfigurationbytype)
 * [getConfigurationMetadata](#getconfigurationmetadata)
 * [getConfigurations](#getconfigurations)
-* [getDepartmentData](#getdepartmentdata)
-* [getDepartments](#getdepartments)
-* [getDiscountedInventoryBySizeIdentifier](#getdiscountedinventorybysizeidentifier)
-* [getGenderAttribute](#getgenderattribute)
 * [getGroupConfigurations](#getgroupconfigurations)
+* [getListingConfigurations](#getlistingconfigurations)
+* [getQueryFilters](#getqueryfilters)
+* [updateAllowSingle](#updateallowsingle)
+* [updateDefaultSort](#updatedefaultsort)
+* [updateGroupConfiguration](#updategroupconfiguration)
+* [updateListingConfiguration](#updatelistingconfiguration)
+
+
+App Product Handling
+* [getAppProduct](#getappproduct)
+* [updateAppProduct](#updateappproduct)
+
+
+Product Management
+* [addInventory](#addinventory)
+* [allSizes](#allsizes)
+* [bulkHsnCode](#bulkhsncode)
+* [createBulkInventory](#createbulkinventory)
+* [createBulkInventoryJob](#createbulkinventoryjob)
+* [createInventoryExport](#createinventoryexport)
+* [createInventoryExportJob](#createinventoryexportjob)
+* [createProduct](#createproduct)
+* [createProductAssetsInBulk](#createproductassetsinbulk)
+* [createProductsInBulk](#createproductsinbulk)
+* [deleteBulkInventoryJob](#deletebulkinventoryjob)
+* [deleteProduct](#deleteproduct)
+* [deleteProductBulkJob](#deleteproductbulkjob)
+* [deleteRealtimeInventory](#deleterealtimeinventory)
+* [deleteSize](#deletesize)
+* [editProduct](#editproduct)
+* [exportInventoryConfig](#exportinventoryconfig)
+* [getAllProductHsnCodes](#getallproducthsncodes)
+* [getDiscountedInventoryBySizeIdentifier](#getdiscountedinventorybysizeidentifier)
 * [getHsnCode](#gethsncode)
 * [getInventories](#getinventories)
 * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
 * [getInventoryBySize](#getinventorybysize)
 * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
 * [getInventoryExport](#getinventoryexport)
-* [getListingConfigurations](#getlistingconfigurations)
-* [getMarketplaceOptinDetail](#getmarketplaceoptindetail)
-* [getMarketplaces](#getmarketplaces)
-* [getOptimalLocations](#getoptimallocations)
 * [getProduct](#getproduct)
 * [getProductAssetsInBulk](#getproductassetsinbulk)
 * [getProductAttributes](#getproductattributes)
 * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
-* [getProductBundle](#getproductbundle)
-* [getProductBundleDetail](#getproductbundledetail)
-* [getProductDetailBySlug](#getproductdetailbyslug)
-* [getProductExportJobs](#getproductexportjobs)
 * [getProductSize](#getproductsize)
 * [getProductTags](#getproducttags)
 * [getProductValidation](#getproductvalidation)
 * [getProducts](#getproducts)
-* [getQueryFilters](#getqueryfilters)
-* [getSearchConfiguration](#getsearchconfiguration)
-* [getSearchKeywords](#getsearchkeywords)
-* [getSellerInsights](#getsellerinsights)
 * [getSingleProductHSNCode](#getsingleproducthsncode)
-* [getSizeGuide](#getsizeguide)
-* [getSizeGuides](#getsizeguides)
-* [getStoreDetail](#getstoredetail)
 * [getVariantsOfProducts](#getvariantsofproducts)
-* [listCategories](#listcategories)
-* [listDepartmentsData](#listdepartmentsdata)
-* [listHSNCodes](#listhsncodes)
 * [listInventoryExport](#listinventoryexport)
-* [listProductTemplate](#listproducttemplate)
-* [listProductTemplateCategories](#listproducttemplatecategories)
-* [listProductTemplateExportDetails](#listproducttemplateexportdetails)
-* [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-* [updateAllowSingle](#updateallowsingle)
-* [updateAppBrand](#updateappbrand)
-* [updateAppCategory](#updateappcategory)
-* [updateAppCategoryReturnConfiguration](#updateappcategoryreturnconfiguration)
-* [updateAppDepartment](#updateappdepartment)
-* [updateAppLocation](#updateapplocation)
-* [updateAppProduct](#updateappproduct)
-* [updateAppReturnConfiguration](#updateappreturnconfiguration)
-* [updateAutocompleteKeyword](#updateautocompletekeyword)
-* [updateCategory](#updatecategory)
-* [updateCollection](#updatecollection)
-* [updateDefaultSort](#updatedefaultsort)
-* [updateDepartment](#updatedepartment)
-* [updateGroupConfiguration](#updategroupconfiguration)
 * [updateHsnCode](#updatehsncode)
 * [updateInventories](#updateinventories)
-* [updateListingConfiguration](#updatelistingconfiguration)
-* [updateMarketplaceOptin](#updatemarketplaceoptin)
-* [updateProductBundle](#updateproductbundle)
 * [updateRealtimeInventory](#updaterealtimeinventory)
-* [updateSearchConfiguration](#updatesearchconfiguration)
-* [updateSearchKeywords](#updatesearchkeywords)
-* [updateSizeGuide](#updatesizeguide)
 * [uploadBulkProducts](#uploadbulkproducts)
+
+
+Configuration
+* [createAppCategoryReturnConfiguration](#createappcategoryreturnconfiguration)
+* [createAppReturnConfiguration](#createappreturnconfiguration)
+* [deleteAppCategoryReturnConfiguration](#deleteappcategoryreturnconfiguration)
+* [getAppCategoryReturnConfig](#getappcategoryreturnconfig)
+* [getAppReturnConfiguration](#getappreturnconfiguration)
+* [updateAppCategoryReturnConfiguration](#updateappcategoryreturnconfiguration)
+* [updateAppReturnConfiguration](#updateappreturnconfiguration)
+
+
+Search Keywords and Autocomplete
+* [createCustomAutocompleteRule](#createcustomautocompleterule)
+* [createCustomKeyword](#createcustomkeyword)
+* [createSearchConfiguration](#createsearchconfiguration)
+* [deleteAutocompleteKeyword](#deleteautocompletekeyword)
+* [deleteSearchConfiguration](#deletesearchconfiguration)
+* [deleteSearchKeywords](#deletesearchkeywords)
+* [getAllSearchKeyword](#getallsearchkeyword)
+* [getAutocompleteConfig](#getautocompleteconfig)
+* [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+* [getSearchConfiguration](#getsearchconfiguration)
+* [getSearchKeywords](#getsearchkeywords)
+* [updateAutocompleteKeyword](#updateautocompletekeyword)
+* [updateSearchKeywords](#updatesearchkeywords)
+
+
+Search
+* [updateSearchConfiguration](#updatesearchconfiguration)
+
+
+Category management
+* [createCategories](#createcategories)
+* [getCategoryData](#getcategorydata)
+* [listCategories](#listcategories)
+* [updateCategory](#updatecategory)
+
+
+Product Template and Department management
+* [createDepartments](#createdepartments)
+* [downloadInventoryTemplateView](#downloadinventorytemplateview)
+* [downloadProductTemplateViews](#downloadproducttemplateviews)
+* [getDepartmentData](#getdepartmentdata)
+* [listDepartmentsData](#listdepartmentsdata)
+* [listProductTemplate](#listproducttemplate)
+* [listProductTemplateCategories](#listproducttemplatecategories)
+* [updateDepartment](#updatedepartment)
 * [validateProductTemplate](#validateproducttemplate)
 * [validateProductTemplateSchema](#validateproducttemplateschema)
+
+
+HSN Code Management
+* [createProductExportJob](#createproductexportjob)
+* [getProductExportJobs](#getproductexportjobs)
+* [listHSNCodes](#listhsncodes)
+* [listProductTemplateExportDetails](#listproducttemplateexportdetails)
+* [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
+
+
+Store Management
+* [getOptimalLocations](#getoptimallocations)
+
+
+Marketplaces
+* [createMarketplaceOptin](#createmarketplaceoptin)
+* [getCompanyBrandDetail](#getcompanybranddetail)
+* [getCompanyDetail](#getcompanydetail)
+* [getMarketplaceOptinDetail](#getmarketplaceoptindetail)
+
+
+Company Onboarding and Metrics
+* [getCompanyMetrics](#getcompanymetrics)
+
+
+Store and All Attribute
+* [getGenderAttribute](#getgenderattribute)
+* [getStoreDetail](#getstoredetail)
+
+
+Product Bundle Management
+* [createProductBundle](#createproductbundle)
+* [getProductBundle](#getproductbundle)
+* [getProductBundleDetail](#getproductbundledetail)
+* [updateProductBundle](#updateproductbundle)
+
+
+Product
+* [createBulkProductUploadJob](#createbulkproductuploadjob)
+
+
+Size Guide Handling
+* [createSizeGuide](#createsizeguide)
+* [getSizeGuide](#getsizeguide)
+* [getSizeGuides](#getsizeguides)
+* [updateSizeGuide](#updatesizeguide)
+
+
+Marketplace
+* [getMarketplaces](#getmarketplaces)
+* [updateMarketplaceOptin](#updatemarketplaceoptin)
 
 
 
@@ -164,2757 +224,17 @@ Default
 
 
 
-### addCollectionItems
-Add items to a collection
+### getCatalogInsights
+Get catalog insights.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
- body : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier of a collection. |  
-| body | [CollectionItemUpdate](#CollectionItemUpdate) | yes | Request body |
-
-
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-
-*Returned Response:*
-
-
-
-
-[UpdatedResponse](#UpdatedResponse)
-
-Status object. Tells whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "items updated"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### addInventory
-Add Inventory for particular size and store.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.addInventory({  itemId : value,
- size : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.addInventory({  itemId : value,
- size : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Item code of the product of which size is to be get. |   
-| size | string | yes | Size in which inventory is to be added. |  
-| body | [InventoryRequest](#InventoryRequest) | yes | Request body |
-
-
-This API allows add Inventory for particular size and store.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### allSizes
-All Sizes for a given Product
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.allSizes({  itemId : value });
-
-// Async/Await
-const data = await platformClient.catalog.allSizes({  itemId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Id of the product to be updated. |  
-
-
-
-This API allows to get  All Sizes for a given Product.
-
-*Returned Response:*
-
-
-
-
-[GetAllSizes](#GetAllSizes)
-
-List Product Sizes. See example below or refer `AllSizes` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "all_sizes": [
-    {
-      "identifiers": [
-        {
-          "gtin_type": "ean",
-          "gtin_value": "74352323423",
-          "primary": true
-        }
-      ],
-      "item_dimensions_unit_of_measure": "cm",
-      "item_height": 100,
-      "item_length": 1000,
-      "item_weight": 100,
-      "item_weight_unit_of_measure": "gram",
-      "item_width": 1000,
-      "size": "OS"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### bulkHsnCode
-Bulk Create or Update Hsn Code.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.bulkHsnCode({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.bulkHsnCode({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BulkHsnUpsert](#BulkHsnUpsert) | yes | Request body |
-
-
-Bulk Create or Update Hsn Code.
-
-*Returned Response:*
-
-
-
-
-[BulkHsnResponse](#BulkHsnResponse)
-
-See example below for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createAppCategoryReturnConfiguration
-Create Category level Application Return Configuration setttings
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createAppCategoryReturnConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createAppCategoryReturnConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BaseAppCategoryReturnConfig](#BaseAppCategoryReturnConfig) | yes | Request body |
-
-
-Create Category level Application Return Configuration setttings
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createAppReturnConfiguration
-Create Return configuration level set for an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createAppReturnConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createAppReturnConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUpdateAppReturnConfig](#CreateUpdateAppReturnConfig) | yes | Request body |
-
-
-Create Return configuration level set for an application.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createBulkInventory
-Create products in bulk associated with given batch Id.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createBulkInventory({  batchId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createBulkInventory({  batchId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes | Batch Id of the bulk create job. |  
-| body | [InventoryBulkRequest](#InventoryBulkRequest) | yes | Request body |
-
-
-This API helps to create products in bulk push to kafka for approval/creation.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createBulkInventoryJob({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createBulkInventoryJob({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BulkJob](#BulkJob) | yes | Request body |
-
-
-This API helps to create a bulk Inventory upload job.
-
-*Returned Response:*
-
-
-
-
-[BulkResponse](#BulkResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "batch_id": "507f1f77bcf86cd799439011",
-  "created_on": "2021-04-02T15:43:59.410000Z"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createBulkProductUploadJob
-Create a Bulk product to upload job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createBulkProductUploadJob({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createBulkProductUploadJob({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BulkJob](#BulkJob) | yes | Request body |
-
-
-This API helps to create a bulk products upload job.
-
-*Returned Response:*
-
-
-
-
-[BulkResponse](#BulkResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "batch_id": "507f1f77bcf86cd799439011",
-  "created_on": "2021-04-02T15:43:59.410000Z"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createCategories
-Create product categories
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createCategories({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createCategories({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
-
-
-This API lets user create product categories
-
-*Returned Response:*
-
-
-
-
-[CategoryCreateResponse](#CategoryCreateResponse)
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Success",
-  "uid": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createCollection
-Add a Collection
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateCollection](#CreateCollection) | yes | Request body |
-
-
-Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-
-*Returned Response:*
-
-
-
-
-[CollectionCreateResponse](#CollectionCreateResponse)
-
-List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_custom_json": {},
-  "_locale_language": {},
-  "_schedule": {
-    "end": null,
-    "next_schedule": [
-      {
-        "end": null,
-        "start": "2021-03-15T12:51:21.333000+00:00Z"
-      }
-    ],
-    "start": "2021-03-15T12:51:21.333000+00:00Z"
-  },
-  "action": {
-    "page": {
-      "query": {
-        "collection": [
-          "new"
-        ]
-      },
-      "type": "collection"
-    },
-    "type": "page"
-  },
-  "allow_facets": true,
-  "allow_sort": true,
-  "badge": {
-    "color": "#ffffff",
-    "text": ""
-  },
-  "banners": {
-    "landscape": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-    },
-    "portrait": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-    }
-  },
-  "description": "",
-  "is_active": true,
-  "logo": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-  },
-  "meta": {},
-  "name": "New",
-  "published": true,
-  "query": [],
-  "seo": {
-    "description": "Test description",
-    "title": "Test"
-  },
-  "slug": "new",
-  "sort_on": "depth_desc",
-  "tags": [],
-  "type": "query",
-  "uid": "604f585a7051e30001173ac1",
-  "visible_facets_keys": []
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createConfigurationByType
-Add configuration for categories and brands
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| type | string | yes | type can be brands, categories etc. |  
-| body | [AppConfiguration](#AppConfiguration) | yes | Request body |
-
-
-Add configuration for categories & brands.
-
-*Returned Response:*
-
-
-
-
-[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
-
-success flag will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createConfigurationProductListing
-Add configuration for products & listings
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AppConfiguration](#AppConfiguration) | yes | Request body |
-
-
-Add configuration for products & listing.
-
-*Returned Response:*
-
-
-
-
-[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
-
-success flag will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createCustomAutocompleteRule
-Add a Custom Autocomplete Keywords
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
-
-
-Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
-
-*Returned Response:*
-
-
-
-
-[CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
-
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createCustomKeyword
-Add a Custom Search Keywords
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
-
-
-Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
-
-*Returned Response:*
-
-
-
-
-[GetSearchWordsData](#GetSearchWordsData)
-
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_custom_json": {},
-  "app_id": "000000000000000000000001",
-  "is_active": true,
-  "result": {
-    "query": {
-      "department": [
-        "men"
-      ]
-    },
-    "sort_on": "popular"
-  },
-  "uid": "602fa1e9a596ce349563f6b9",
-  "words": [
-    "sds"
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createDepartments
-Create the department.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createDepartments({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createDepartments({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DepartmentCreateUpdate](#DepartmentCreateUpdate) | yes | Request body |
-
-
-Create departments using the API.
-
-*Returned Response:*
-
-
-
-
-[DepartmentCreateResponse](#DepartmentCreateResponse)
-
-Success Response. See example below or refer `DepartmentCreateResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Success",
-  "uid": 2
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createGroupConfiguration
-Create configuration for Group config types.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createGroupConfiguration({  configType : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createGroupConfiguration({  configType : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configType | string | yes | A `config_type` is a unique identifier for a particular group configuration type. |  
-| body | [AppConfigurationDetail](#AppConfigurationDetail) | yes | Request body |
-
-
-Create configuration for Group config types.
-
-*Returned Response:*
-
-
-
-
-[AppConfigurationDetail](#AppConfigurationDetail)
-
-success flag will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "app_id": "5d64e3500bcad8693a821c0d",
-  "attributes": [
-    {
-      "display_type": "text",
-      "is_active": true,
-      "key": "features",
-      "name": "Features",
-      "priority": 1,
-      "slug": "features"
-    }
-  ],
-  "id": "62b1cdab15c88fa867ee4dac",
-  "is_active": true,
-  "is_default": false,
-  "name": "test",
-  "priority": 1,
-  "slug": "test15",
-  "template_slugs": [
-    "bags"
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createInventoryExport
-Create an inventory export job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createInventoryExport({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createInventoryExport({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [InventoryCreateRequest](#InventoryCreateRequest) | yes | Request body |
-
-
-This API helps to create a Inventory export job.
-
-*Returned Response:*
-
-
-
-
-[InventoryExportResponse](#InventoryExportResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createInventoryExportJob
-Create a Inventory export Job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createInventoryExportJob({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createInventoryExportJob({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [InventoryExportRequest](#InventoryExportRequest) | yes | Request body |
-
-
-This API helps to create a Inventory export job.
-
-*Returned Response:*
-
-
-
-
-[InventoryExportResponse](#InventoryExportResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createListingConfiguration
-Add configuration for listings
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createListingConfiguration({  configType : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createListingConfiguration({  configType : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configType | string | yes | A `config_type` is a unique identifier for a particular listing configuration type. |  
-| body | [AppConfigurationsSort](#AppConfigurationsSort) | yes | Request body |
-
-
-Add configuration for listing.
-
-*Returned Response:*
-
-
-
-
-[AppConfigurationsSort](#AppConfigurationsSort)
-
-success flag will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "app_id": "5d64e3500bcad8693a821c0d",
-  "default_key": "",
-  "id": "62b1ccb815c88fa867ee4dab",
-  "is_active": true,
-  "is_default": false,
-  "key": "discount_dsc",
-  "logo": "https://hdn-1.fynd.com/products/pictures/attribute/logo/original/iG82Qjay9X-Popularity.png",
-  "name": "Discount High to Low",
-  "priority": 4
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createMarketplaceOptin
-Create/Update opt-in infomation.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createMarketplaceOptin({  marketplace : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createMarketplaceOptin({  marketplace : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| marketplace | string | yes | The marketplace for which the detail needs to be retrieved. |  
-| body | [OptInPostRequest](#OptInPostRequest) | yes | Request body |
-
-
-Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
-
-*Returned Response:*
-
-
-
-
-[UpdatedResponse](#UpdatedResponse)
-
-See example below or refer `UpdatedResponse` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createProduct
-Create a product.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createProduct({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createProduct({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ProductCreateUpdateSchemaV2](#ProductCreateUpdateSchemaV2) | yes | Request body |
-
-
-This API allows to create product.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createProductAssetsInBulk({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createProductAssetsInBulk({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ProductBulkAssets](#ProductBulkAssets) | yes | Request body |
-
-
-This API helps to create a bulk asset upload job.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createProductBundle
-Create Product Bundle
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createProductBundle({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createProductBundle({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ProductBundleRequest](#ProductBundleRequest) | yes | Request body |
-
-
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-
-*Returned Response:*
-
-
-
-
-[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
-
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "choice": "multi",
-  "company_id": 1,
-  "created_by": {
-    "uid": "123",
-    "username": "917827311650_22960"
-  },
-  "created_on": "2021-02-19 16:40:26.310007",
-  "id": "602f9ca2a596ce312f5956f9",
-  "is_active": true,
-  "logo": "http://g.com/poo.png/",
-  "meta": {},
-  "modified_by": {
-    "uid": "123",
-    "username": "917827311650_22960"
-  },
-  "modified_on": "2021-02-19 16:40:26.310027",
-  "name": "Bag",
-  "page_visibility": [
-    "pdp"
-  ],
-  "products": [
-    {
-      "allow_remove": true,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "product_uid": 7500001
-    }
-  ],
-  "same_store_assignment": true,
-  "slug": "bag"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createProductExportJob
-Create a product export job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createProductExportJob({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createProductExportJob({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ProductTemplateDownloadsExport](#ProductTemplateDownloadsExport) | yes | Request body |
-
-
-This API helps to create a Inventory export job.
-
-*Returned Response:*
-
-
-
-
-[ProductDownloadsResponse](#ProductDownloadsResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "_id": "6401cb6729885c34aa30b0c6",
-    "created_by": {
-      "user_id": "550fe8ce436ea332b9e4b4b0",
-      "username": "purvashukla_gofynd_com_44895"
-    },
-    "created_on": "2023-03-03T10:26:47.047171Z",
-    "filters": {
-      "brands": [],
-      "catalogue_types": [
-        "standard"
-      ],
-      "templates": [
-        "footwear"
-      ]
-    },
-    "modified_on": "2023-03-03T10:26:47.047179",
-    "notification_emails": [],
-    "seller_id": 577,
-    "stats": {},
-    "status": "pending",
-    "task_id": "e6c47f1a-b9ad-11ed-b7a0-3ef7b700888d",
-    "type": "excel"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createProductsInBulk
-Create products in bulk associated with given batch Id.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createProductsInBulk({  batchId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createProductsInBulk({  batchId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes | Batch Id in which assets to be uploaded. |  
-| body | [BulkProductRequest](#BulkProductRequest) | yes | Request body |
-
-
-This API helps to create products in bulk push to kafka for approval/creation.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createSearchConfiguration
-Update search configuration for an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.createSearchConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.createSearchConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateSearchConfigurationRequest](#CreateSearchConfigurationRequest) | yes | Request body |
-
-
-This view allows you to modify searchable attributes for an application
-
-*Returned Response:*
-
-
-
-
-[CreateSearchConfigurationResponse](#CreateSearchConfigurationResponse)
-
-List of custom search keywords. See example below or refer `CreateSearchConfigurationResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "application_id": 1234,
-  "company_id": 1,
-  "is_proximity_enabled": false,
-  "proximity": 2,
-  "searchable_attributes": [
-    {
-      "key": "brand_uid",
-      "priority": 1
-    },
-    {
-      "key": "category_uid",
-      "priority": 2
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createSizeGuide
-Create a size guide.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createSizeGuide({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createSizeGuide({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
-
-
-This API allows to create a size guide associated to a brand.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteAppCategoryReturnConfiguration
-Delete Category level Application Return Configuration setttings
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteAppCategoryReturnConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteAppCategoryReturnConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DeleteAppCategoryReturnConfig](#DeleteAppCategoryReturnConfig) | yes | Request body |
-
-
-Delete Category level Application Return Configuration setttings
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-
-
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Returned Response:*
-
-
-
-
-[DeleteResponse](#DeleteResponse)
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Words Deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteBulkInventoryJob
-Delete Bulk Inventory job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.deleteBulkInventoryJob({  batchId : value });
-
-// Async/Await
-const data = await platformClient.catalog.deleteBulkInventoryJob({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes | Batch Id of the bulk delete job. |  
-
-
-
-This API allows to delete bulk Inventory job associated with company.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteCollection
-Delete a Collection
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier of a collection. |  
-
-
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-
-*Returned Response:*
-
-
-
-
-[CommonResponseSchemaCollection](#CommonResponseSchemaCollection)
-
-Status object. Tells whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Collection Deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteGroupConfiguration
-Delete configuration of the product config type of the application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteGroupConfiguration({  configType : value,
- groupSlug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteGroupConfiguration({  configType : value,
- groupSlug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configType | string | yes | A `config_type` is a unique identifier for a particular group configuration type. |   
-| groupSlug | string | yes | A `group_slug` is a unique identifier of a particular configuration. |  
-
-
-
-Delete configuration of the product config type of the application.
-
-*Returned Response:*
-
-
-
-
-[ConfigSuccessResponse](#ConfigSuccessResponse)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Config Item deleted successfully."
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteListingConfiguration
-Delete configuration for listings
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteListingConfiguration({  configType : value,
- configId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteListingConfiguration({  configType : value,
- configId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configType | string | yes | A `config_type` is a unique identifier for a particular listing configuration type. |   
-| configId | string | yes | A `config_id` is a unique identifier of a particular configuration. |  
-
-
-
-Delete configuration for listing.
-
-*Returned Response:*
-
-
-
-
-[ConfigSuccessResponse](#ConfigSuccessResponse)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Config Item deleted successfully."
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteProduct
-Delete a product.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.deleteProduct({  itemId : value });
-
-// Async/Await
-const data = await platformClient.catalog.deleteProduct({  itemId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Id of the product to be updated. |  
-
-
-
-This API allows to delete product.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteProductBulkJob
-Delete Bulk product job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.deleteProductBulkJob({  batchId : value });
-
-// Async/Await
-const data = await platformClient.catalog.deleteProductBulkJob({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | number | yes | Batch Id of the bulk product job to be deleted. |  
-
-
-
-This API allows to delete bulk product job associated with company.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteRealtimeInventory
-Add Inventory for particular size and store.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.deleteRealtimeInventory({  itemId : value,
- sellerIdentifier : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.deleteRealtimeInventory({  itemId : value,
- sellerIdentifier : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Item code of the product of which size is to be get. |   
-| sellerIdentifier | string | yes | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |  
-| body | [InventoryRequestSchemaV2](#InventoryRequestSchemaV2) | yes | Request body |
-
-
-This API allows add Inventory for particular size and store.
-
-*Returned Response:*
-
-
-
-
-[InventoryUpdateResponse](#InventoryUpdateResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "data": {
-        "expiration_date": "9998-01-30T23:59:00",
-        "price_effective": 109.01,
-        "price_marked": 130,
-        "seller_identifier": "SELLER123",
-        "store_id": 124,
-        "total_quantity": 34
-      },
-      "reason": {
-        "message": "Product not found",
-        "reason_code": 2005
-      }
-    },
-    {
-      "data": {
-        "expiration_date": "9998-01-30T23:59:00",
-        "price_effective": 109.01,
-        "price_marked": 130,
-        "seller_identifier": "SELLER123",
-        "store_id": 124,
-        "total_quantity": 34
-      },
-      "reason": {
-        "message": "Size not found",
-        "reason_code": 2004
-      }
-    }
-  ],
-  "message": "Partially Successful"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteSearchConfiguration
-Delete search configuration for an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteSearchConfiguration();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteSearchConfiguration();
-```
-
-
-
-
-
-
-This view allows you to reset search config for an application
-
-*Returned Response:*
-
-
-
-
-[DeleteSearchConfigurationResponse](#DeleteSearchConfigurationResponse)
-
-Status of the delete operation. See `DeleteSearchConfigurationResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteSearchKeywords
-Delete a Search Keywords
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-
-
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Returned Response:*
-
-
-
-
-[DeleteResponse](#DeleteResponse)
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Words Deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteSize
-Delete a Size associated with product.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.deleteSize({  itemId : value,
- size : value });
-
-// Async/Await
-const data = await platformClient.catalog.deleteSize({  itemId : value,
- size : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Item Id of the product associated with size to be deleted. |   
-| size | string | yes | size to be deleted. |  
-
-
-
-This API allows to delete size associated with product.
-
-*Returned Response:*
-
-
-
-
-[ProductSizeDeleteResponse](#ProductSizeDeleteResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "company_id": 1,
-    "item_id": 114,
-    "size": "3"
-  },
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### downloadInventoryTemplateView
-Download Product Template View
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.downloadInventoryTemplateView({  itemType : value });
-
-// Async/Await
-const data = await platformClient.catalog.downloadInventoryTemplateView({  itemType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemType | string | yes | An `item_type` defines the type of item. |  
-
-
-
-Allows you to download product template data
-
-*Returned Response:*
-
-
-
-
-[string](#string)
-
-CSV File of product template data.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### downloadProductTemplateViews
-Download Product Template View
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.downloadProductTemplateViews({  slug : value,
- itemType : value,
- type : value });
-
-// Async/Await
-const data = await platformClient.catalog.downloadProductTemplateViews({  slug : value,
- itemType : value,
- type : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A `slug` is a unique identifier for a particular template. |    
-| itemType | string | no | An `item_type` defines the type of item. The default value is standard. |    
-| type | string | no | Format type of the sample file. The default value is excel. |  
-
-
-
-Allows you to download product template data
-
-*Returned Response:*
-
-
-
-
-[string](#string)
-
-CSV File of product template data. See example below or refer `TemplatesResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### editProduct
-Edit a product.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.editProduct({  itemId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.editProduct({  itemId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Id of the product to be updated. |  
-| body | [ProductCreateUpdateSchemaV2](#ProductCreateUpdateSchemaV2) | yes | Request body |
-
-
-This API allows to edit product.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### exportInventoryConfig
-Get List of different filters for inventory export
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.exportInventoryConfig({  filterType : value });
-
-// Async/Await
-const data = await platformClient.catalog.exportInventoryConfig({  filterType : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
 ```
 
 
@@ -2923,20 +243,20 @@ const data = await platformClient.catalog.exportInventoryConfig({  filterType : 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| filterType | string | no | filter type from any one of ['brand', 'store', 'type'] |  
+| brand | string | no | Brand slug |  
 
 
 
-This API allows get List of different filters like brand, store, and type for inventory export.
+Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the application.
 
 *Returned Response:*
 
 
 
 
-[InventoryConfig](#InventoryConfig)
+[CatalogInsightResponse](#CatalogInsightResponse)
 
-returns filters configuration for inventory export
+Response Data
 
 
 
@@ -2946,17 +266,11 @@ returns filters configuration for inventory export
 
 ```json
 {
-  "data": [
-    {
-      "display": "csv",
-      "value": "csv"
-    },
-    {
-      "display": "excel",
-      "value": "excel"
-    }
-  ],
-  "multivalues": true
+  "item": {
+    "count": 637707,
+    "out_of_stock_count": 452806,
+    "sellable_count": 184901
+  }
 }
 ```
 </details>
@@ -2972,29 +286,17 @@ returns filters configuration for inventory export
 ---
 
 
-### getAllCollections
-List all the collections
+### getSellerInsights
+Get seller insights.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
- scheduleStatus : value,
- type : value,
- tags : value,
- isActive : value,
- pageNo : value,
- pageSize : value });
+const promise = platformClient.catalog.getSellerInsights({  sellerAppId : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
- scheduleStatus : value,
- type : value,
- tags : value,
- isActive : value,
- pageNo : value,
- pageSize : value });
+const data = await platformClient.catalog.getSellerInsights({  sellerAppId : value });
 ```
 
 
@@ -3002,27 +304,21 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getAll
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| q | string | no | Get collection list filtered by q string, |    
-| scheduleStatus | string | no | Get collection list filtered by scheduled status, |    
-| type | string | no | type of the collections |    
-| tags | Array<string> | no | Each response will contain next_id param, which should be sent back to make pagination work. |    
-| isActive | boolean | no | get collections filtered by active status. |    
-| pageNo | number | no | The page number to navigate through the given set of results. |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
+| --------- | -----  | -------- | ----------- | 
+| sellerAppId | string | yes | Id of the seller application which is serving the invetory/catalog of the company |  
 
 
 
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+Retrieve insights and analytics related to sellers within the catalog.
 
 *Returned Response:*
 
 
 
 
-[GetCollectionListingResponse](#GetCollectionListingResponse)
+[CrossSellingResponse](#CrossSellingResponse)
 
-List of collections. See example below or refer `GetCollectionListingResponse` for details
+Response Data
 
 
 
@@ -3032,257 +328,8 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
 
 ```json
 {
-  "filters": {
-    "tags": [
-      {
-        "display": "1+",
-        "is_selected": false,
-        "name": "1+"
-      },
-      {
-        "display": "aa",
-        "is_selected": false,
-        "name": "aa"
-      },
-      {
-        "display": "asd",
-        "is_selected": false,
-        "name": "asd"
-      },
-      {
-        "display": "dda",
-        "is_selected": false,
-        "name": "dda"
-      },
-      {
-        "display": "fahim",
-        "is_selected": false,
-        "name": "fahim"
-      },
-      {
-        "display": "gfg",
-        "is_selected": false,
-        "name": "gfg"
-      },
-      {
-        "display": "sakri",
-        "is_selected": false,
-        "name": "sakri"
-      },
-      {
-        "display": "sdsadas",
-        "is_selected": false,
-        "name": "sdsadas"
-      },
-      {
-        "display": "uuy",
-        "is_selected": false,
-        "name": "uuy"
-      }
-    ],
-    "type": [
-      {
-        "display": "items",
-        "is_selected": false,
-        "name": "items"
-      },
-      {
-        "display": "query",
-        "is_selected": false,
-        "name": "query"
-      }
-    ]
-  },
-  "items": [
-    {
-      "_custom_json": {},
-      "_locale_language": {},
-      "_schedule": {
-        "end": null,
-        "next_schedule": [
-          {
-            "end": null,
-            "start": "2021-03-04T15:35:13.640000Z"
-          }
-        ],
-        "start": "2021-03-04T15:35:13.640000Z"
-      },
-      "action": {
-        "page": {
-          "query": {
-            "collection": [
-              "test1"
-            ]
-          },
-          "type": "collection"
-        },
-        "type": "page"
-      },
-      "allow_facets": true,
-      "allow_sort": true,
-      "badge": {
-        "color": "#ffffff",
-        "text": ""
-      },
-      "banners": {
-        "landscape": {
-          "type": "image",
-          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/landscape-banner/original/3jSEzw9CN-1601465376892.jpeg"
-        },
-        "portrait": {
-          "type": "image",
-          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/portrait-banner/original/mP6OnINGR-1601466767814.jpeg"
-        }
-      },
-      "description": "this is description",
-      "is_active": true,
-      "logo": {
-        "type": "image",
-        "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/square-logo/original/y_-XUYXwx-1602326103322.jpeg"
-      },
-      "meta": {},
-      "name": "test1",
-      "published": true,
-      "query": [],
-      "slug": "test1",
-      "sort_on": "price_asc",
-      "tags": [],
-      "type": "query",
-      "uid": "6040fed076d8a500011ef829",
-      "visible_facets_keys": []
-    },
-    {
-      "_custom_json": {},
-      "_locale_language": {},
-      "_schedule": {
-        "end": null,
-        "next_schedule": [
-          {
-            "end": null,
-            "start": "2021-03-04T09:33:53.686000Z"
-          }
-        ],
-        "start": "2021-03-04T09:33:53.686000Z"
-      },
-      "action": {
-        "page": {
-          "query": {
-            "collection": [
-              "newapiplaform"
-            ]
-          },
-          "type": "collection"
-        },
-        "type": "page"
-      },
-      "allow_facets": true,
-      "allow_sort": true,
-      "badge": {
-        "color": "#aa2727",
-        "text": ""
-      },
-      "banners": {
-        "landscape": {
-          "type": "image",
-          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-        },
-        "portrait": {
-          "type": "image",
-          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-        }
-      },
-      "description": "sadasd",
-      "is_active": true,
-      "logo": {
-        "type": "image",
-        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-      },
-      "meta": {},
-      "name": "newapiplaform",
-      "published": true,
-      "query": [
-        {
-          "attribute": "catalogue",
-          "op": "in",
-          "value": []
-        }
-      ],
-      "slug": "newapiplaform",
-      "sort_on": "popular",
-      "tags": [
-        "sdsadas",
-        "asd"
-      ],
-      "type": "items",
-      "uid": "6040a9b250f97e0001886294",
-      "visible_facets_keys": []
-    },
-    {
-      "_custom_json": {},
-      "_locale_language": {},
-      "_schedule": {
-        "end": null,
-        "next_schedule": [
-          {
-            "end": null,
-            "start": "2021-03-03T10:45:40.544000Z"
-          }
-        ],
-        "start": "2021-03-03T10:45:40.544000Z"
-      },
-      "action": {
-        "page": {
-          "query": {
-            "collection": [
-              "old"
-            ]
-          },
-          "type": "collection"
-        },
-        "type": "page"
-      },
-      "allow_facets": true,
-      "allow_sort": true,
-      "badge": {
-        "color": "#ffffff",
-        "text": ""
-      },
-      "banners": {
-        "landscape": {
-          "type": "image",
-          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-        },
-        "portrait": {
-          "type": "image",
-          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-        }
-      },
-      "description": "",
-      "is_active": true,
-      "logo": {
-        "type": "image",
-        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-      },
-      "meta": {},
-      "name": "new",
-      "published": true,
-      "query": [],
-      "slug": "old",
-      "sort_on": "popular",
-      "tags": [],
-      "type": "query",
-      "uid": "603f68fd953a69000145dc92",
-      "visible_facets_keys": []
-    }
-  ],
-  "page": {
-    "current": 1,
-    "has_next": true,
-    "has_previous": false,
-    "item_total": 190,
-    "size": 19,
-    "type": "collection"
-  }
+  "articles": 18,
+  "products": 18
 }
 ```
 </details>
@@ -3298,276 +345,10 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
 ---
 
 
-### getAllProductHsnCodes
-Hsn Code List.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getAllProductHsnCodes({  pageNo : value,
- pageSize : value,
- q : value,
- type : value });
-
-// Async/Await
-const data = await platformClient.catalog.getAllProductHsnCodes({  pageNo : value,
- pageSize : value,
- q : value,
- type : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | page no |    
-| pageSize | number | no | page size |    
-| q | string | no | search using hsn code, description, reporting_hsn |    
-| type | string | no | search using type |  
-
-
-
-Hsn Code List.
-
-*Returned Response:*
-
-
-
-
-[HsnCodesListingResponseSchemaV2](#HsnCodesListingResponseSchemaV2)
-
-List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "country_code": "INDIA",
-      "description": "final test updated",
-      "hs2_code": "26",
-      "hsn_code": "123fght3",
-      "id": "619e17925e3d3ea77d6fe8cf",
-      "modified_on": "2021-11-25T06:37:00.880000Z",
-      "reporting_hsn": "12345678",
-      "slabs": [
-        {
-          "effective_date": "2021-11-18T10:00:31.798000+00:00",
-          "tax": 10,
-          "threshold": 100
-        },
-        {
-          "effective_date": "2022-11-18T10:00:31.798000+00:00",
-          "tax": 20,
-          "threshold": 200
-        }
-      ],
-      "tax_on_esp": true,
-      "tax_on_mrp": false,
-      "taxes": [
-        {
-          "effective_date": "2021-04-02T15:43:59.410000Z",
-          "rate": 0,
-          "threshold": 0.5
-        }
-      ],
-      "type": "goods",
-      "uid": "123fgh43-1"
-    }
-  ],
-  "page": {
-    "current": "1",
-    "has_next": true,
-    "has_previous": false,
-    "item_total": 8,
-    "size": 8,
-    "type": "number"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAllSearchKeyword
-List all Search Custom Keyword Listing
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
-```
-
-
-
-
-
-
-Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
-
-*Returned Response:*
-
-
-
-
-[GetSearchWordsResponse](#GetSearchWordsResponse)
-
-List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "_custom_json": {},
-      "app_id": "000000000000000000000001",
-      "is_active": true,
-      "result": {
-        "query": {
-          "department": [
-            "men"
-          ]
-        },
-        "sort_on": "popular"
-      },
-      "uid": "602fa1e9a596ce349563f6b9",
-      "words": [
-        "sds"
-      ]
-    }
-  ],
-  "page": {
-    "current": 1,
-    "has_next": false,
-    "has_previous": false,
-    "item_count": 1,
-    "size": 1,
-    "type": "number"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAppCategoryReturnConfig
-Get all category level configuration level set for an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppCategoryReturnConfig();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppCategoryReturnConfig();
-```
-
-
-
-
-
-
-Get all category level configuration level set for an application.
-
-*Returned Response:*
-
-
-
-
-[BaseAppCategoryReturnConfigResponse](#BaseAppCategoryReturnConfigResponse)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "data": [
-      {
-        "app_id": "5d638512c9accedcd910591a",
-        "category_id": 1659,
-        "logo": "https://hdn-1.addsale.com/addsale/category/pictures/square-logo/original/7hR5xHVUi0-eTdgOunCZ-.jpeg",
-        "name": "MG TEST DIGITAL",
-        "return_config": {
-          "returnable": true,
-          "time": 10,
-          "unit": "days"
-        }
-      }
-    ],
-    "page": {
-      "current": "1",
-      "has_next": false,
-      "has_previous": false,
-      "item_total": 1,
-      "size": 1,
-      "type": "number"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### getAppInventory
-Get the stock of a product
+Get application inventory.
 
 
 
@@ -3607,7 +388,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 
 
-Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id - Items - Pagination
+Retrieve inventory data related to the application. Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination
 
 *Returned Response:*
 
@@ -4059,7 +840,7 @@ Success. Returns the article/stock of the product stock.
 
 
 ### getAppLocations
-Get list of locations
+Get application locations.
 
 
 
@@ -4102,7 +883,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 
 
-This API allows to view all the locations asscoiated to a application.
+Retrieve locations specific to the application. View all the locations asscoiated to a application.
 
 *Returned Response:*
 
@@ -4173,87 +954,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 ---
 
 
-### getAppProduct
-Get company application product data.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | string | yes | product id for a particular product. |  
-
-
-
-Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
-
-*Returned Response:*
-
-
-
-
-[OwnerAppItemResponse](#OwnerAppItemResponse)
-
-The Company Applicaton Product Data(MOQ/SEO).
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "alt_text": {
-    "https://test-url.com/test.png": "test-alt"
-  },
-  "is_cod": false,
-  "is_gift": false,
-  "moq": {
-    "increment_unit": 2,
-    "maximum": 10,
-    "minimum": 1
-  },
-  "seo": {
-    "description": "test-description",
-    "title": "test-title",
-    "breadcrumbs": [],
-    "sitemap": {},
-    "meta_tags": [],
-    "canonical_url": "/test"
-  },
-  "size_promotion_threshold": {
-    "threshold_type": "flat",
-    "threshold_value": 100
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getAppProducts
-Get applicationwise products
+Get application products.
 
 
 
@@ -4296,7 +998,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 
 
-Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
+Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
 
 *Returned Response:*
 
@@ -4493,73 +1195,8 @@ The Product object. See example below or refer `ApplicationProductListingRespons
 ---
 
 
-### getAppReturnConfiguration
-Get Return configuration level set for an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppReturnConfiguration();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppReturnConfiguration();
-```
-
-
-
-
-
-
-Get Product Return configuration set at an application level
-
-*Returned Response:*
-
-
-
-
-[AppReturnConfigResponse](#AppReturnConfigResponse)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "app_id": "5d638512c9accedcd910591a",
-  "category_count": 32,
-  "company_id": 1,
-  "created_by": {
-    "user_id": "054bb99f009aece85a3fa087",
-    "username": "test"
-  },
-  "modified_by": {
-    "user_id": "054bb99f009aece85a3fa087",
-    "username": "test"
-  },
-  "modified_on": "2023-03-28T06:05:24.026000",
-  "return_config_level": "category"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getAppicationProducts
-List the products
+Get application products.
 
 
 
@@ -4611,7 +1248,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 
 
-List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
+Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
 
 *Returned Response:*
 
@@ -5261,7 +1898,7 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
 
 
 ### getApplicationBrandListing
-List all the brands for the application
+Get application brand listing.
 
 
 
@@ -5289,7 +1926,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 
 
-A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+Retrieve brand listings related to the application. A brand is the name under which a product is being sold
 
 *Returned Response:*
 
@@ -5361,7 +1998,7 @@ List of Brands. See example below or refer `BrandListingResponse` for details
 
 
 ### getApplicationBrands
-List all the brands
+Get application brands.
 
 
 
@@ -5395,7 +2032,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 
 
-A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+List all the brands. A brand is the name under which a product is being sold. 
 
 *Returned Response:*
 
@@ -5467,7 +2104,7 @@ List of Brands. See example below or refer `BrandListingResponse` for details
 
 
 ### getApplicationCategoryListing
-List all the brands for the application
+Get application category listing.
 
 
 
@@ -5498,7 +2135,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 
 
-A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+Retrieve category listings related to the application. A brand is the name under which a product is being sold.
 
 *Returned Response:*
 
@@ -5570,7 +2207,7 @@ List of Brands. See example below or refer `BrandListingResponse` for details
 
 
 ### getApplicationDepartmentListing
-List all the departments for the application
+Get application department listing.
 
 
 
@@ -5598,7 +2235,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 
 
-Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
+Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments.
 
 *Returned Response:*
 
@@ -5665,6 +2302,1580 @@ List of Departments. See example below or refer `BrandListingResponse` for detai
 
 
 ---
+
+
+### getCategories
+Get categories.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| department | string | no | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API |  
+
+
+
+Retrieve a list of categories. Optionally pass filter the brands by the department.
+
+*Returned Response:*
+
+
+
+
+[CategoryListingResponse](#CategoryListingResponse)
+
+List of Categories. See example below or refer `CategoryListingResponse` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": [
+    {
+      "department": "Cody-Doyle",
+      "items": [
+        {
+          "_custom_json": {},
+          "action": {
+            "query": {
+              "department": [
+                "Jaime-Chambers"
+              ],
+              "l1_category": [
+                "Janet-Parker"
+              ]
+            },
+            "type": "category",
+            "url": "https://api.addsale.com/platform/content/v1/products/?l1_category=Janet-Parker&department=Jaime-Chambers"
+          },
+          "childs": [
+            {
+              "_custom_json": {},
+              "action": {
+                "query": {
+                  "department": [
+                    "Jaime-Chambers"
+                  ],
+                  "l2_category": [
+                    "Hannah-Lawson"
+                  ]
+                },
+                "type": "category",
+                "url": "https://api.addsale.com/platform/content/v1/products/?l2_category=Hannah-Lawson&department=Jaime-Chambers"
+              },
+              "childs": [
+                {
+                  "_custom_json": {},
+                  "action": {
+                    "query": {
+                      "category": [
+                        "Logan-Black"
+                      ],
+                      "department": [
+                        "Jaime-Chambers"
+                      ]
+                    },
+                    "type": "category",
+                    "url": "https://api.addsale.com/platform/content/v1/products/?category=Logan-Black&department=Jaime-Chambers"
+                  },
+                  "childs": [],
+                  "image": {
+                    "aspect_ratio": "13:20",
+                    "aspect_ratio_f": 0.65,
+                    "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+                  },
+                  "name": "Logan Black",
+                  "slug": "Logan-Black",
+                  "uid": 3
+                }
+              ],
+              "image": {
+                "aspect_ratio": "13:20",
+                "aspect_ratio_f": 0.65,
+                "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+              },
+              "name": "Hannah Lawson",
+              "slug": "Hannah-Lawson",
+              "uid": 2
+            }
+          ],
+          "image": {
+            "aspect_ratio": "13:20",
+            "aspect_ratio_f": 0.65,
+            "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+          },
+          "name": "Janet Parker",
+          "slug": "Janet-Parker",
+          "uid": 1
+        }
+      ]
+    }
+  ],
+  "departments": [
+    {
+      "slug": "Cody-Doyle",
+      "uid": 1
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDepartments
+Get departments.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getDepartments();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getDepartments();
+```
+
+
+
+
+
+
+Retrieve a list of departments. Departments are a way to categorise similar products. A product can lie in multiple departments.
+
+*Returned Response:*
+
+
+
+
+[DepartmentResponse](#DepartmentResponse)
+
+List of Departments. See example below or refer `DepartmentResponse` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Zachary Harris",
+      "priority_order": 7,
+      "slug": "Zachary-Harris",
+      "uid": 1
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Aaron Reilly",
+      "priority_order": 7,
+      "slug": "Aaron-Reilly",
+      "uid": 2
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Bobby Sandoval",
+      "priority_order": 7,
+      "slug": "Bobby-Sandoval",
+      "uid": 3
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Seth Hughes",
+      "priority_order": 7,
+      "slug": "Seth-Hughes",
+      "uid": 4
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Michelle Moore",
+      "priority_order": 7,
+      "slug": "Michelle-Moore",
+      "uid": 5
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Annette Baldwin",
+      "priority_order": 7,
+      "slug": "Annette-Baldwin",
+      "uid": 6
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Chris Mata",
+      "priority_order": 7,
+      "slug": "Chris-Mata",
+      "uid": 7
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Nicole Jacobs",
+      "priority_order": 7,
+      "slug": "Nicole-Jacobs",
+      "uid": 8
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Pamela Smith",
+      "priority_order": 7,
+      "slug": "Pamela-Smith",
+      "uid": 9
+    },
+    {
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
+      "name": "Nicole Simon",
+      "priority_order": 7,
+      "slug": "Nicole-Simon",
+      "uid": 10
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getProductDetailBySlug
+Get product details by slug.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |  
+
+
+
+Retrieve detailed product information using a product slug. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
+
+*Returned Response:*
+
+
+
+
+[ProductDetail](#ProductDetail)
+
+The Product object. See example below or refer `ProductDetail` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "attributes": {
+    "brand": "Barry, Jennings and Larson",
+    "color": "DarkGrey",
+    "color_hex": "808080",
+    "gender": [
+      "Men",
+      "Women"
+    ],
+    "item_code": "LGLAPTOPSLEEVE5",
+    "material": "Neoprene",
+    "occasion": "Casual",
+    "primary_color": "Grey",
+    "primary_color_hex": "808080",
+    "primary_material": "Others",
+    "product_details": "This is a Unisex Product.",
+    "product_type": "LaptopBags",
+    "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+    "variant": "LGLAPTOPSLEEVE5",
+    "weight": 100
+  },
+  "brand": {
+    "_custom_json": {},
+    "action": {
+      "page": {
+        "query": {
+          "brand": [
+            "Hess-Inc"
+          ]
+        },
+        "type": "products"
+      },
+      "type": "page"
+    },
+    "logo": {
+      "type": "image",
+      "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+    },
+    "name": "Barry, Jennings and Larson",
+    "uid": 1
+  },
+  "categories": [
+    {
+      "_custom_json": {},
+      "action": {
+        "page": {
+          "query": {
+            "category": [
+              "Amy-Kim-DDS"
+            ]
+          },
+          "type": "category"
+        },
+        "type": "page"
+      },
+      "id": 3,
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+      },
+      "name": "Amy Kim DDS",
+      "uid": 3
+    }
+  ],
+  "color": "808080",
+  "custom_order": {},
+  "grouped_attributes": [
+    {
+      "details": [
+        {
+          "key": "Kimberly Davidson",
+          "type": "text",
+          "value": "DarkGrey"
+        },
+        {
+          "key": "Kimberly Mcdaniel",
+          "type": "text",
+          "value": "Men,Women"
+        },
+        {
+          "key": "Monica Hampton",
+          "type": "text",
+          "value": "Neoprene"
+        },
+        {
+          "key": "John Mendoza",
+          "type": "text",
+          "value": "100 g"
+        }
+      ],
+      "title": "Alexander Sawyer"
+    }
+  ],
+  "has_variant": true,
+  "image_nature": "standard",
+  "medias": [
+    {
+      "type": "image",
+      "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+    }
+  ],
+  "name": "benchmark collaborative paradigms",
+  "no_of_boxes": 1,
+  "product_online_date": "2021-02-03T07:22:29Z",
+  "rating": 2.7,
+  "rating_count": 2,
+  "similars": [
+    "brand"
+  ],
+  "slug": "benchmark-collaborative-paradigms",
+  "tags": [
+    "Digital"
+  ],
+  "teaser_tag": {},
+  "tryouts": [],
+  "type": "product",
+  "uid": 1
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppBrand
+Update application brand.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppBrand({  brandUid : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppBrand({  brandUid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| brandUid | string | yes | brand id for which the custom_json is associated. |  
+| body | [ApplicationBrandJson](#ApplicationBrandJson) | yes | Request body |
+
+
+Modify data associated to a item custom meta.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppCategory
+Update application category.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppCategory({  categoryUid : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppCategory({  categoryUid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| categoryUid | string | yes | category id for which the custom_json is associated. |  
+| body | [ApplicationCategoryJson](#ApplicationCategoryJson) | yes | Request body |
+
+
+Modify category data related to the application. Helps to update data associated to a item custom meta.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppDepartment
+Update application department.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppDepartment({  departmentUid : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppDepartment({  departmentUid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| departmentUid | string | yes | department id for which the custom_json is associated. |  
+| body | [ApplicationDepartmentJson](#ApplicationDepartmentJson) | yes | Request body |
+
+
+Modify department data related to the application.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppLocation
+Update application location.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppLocation({  storeUid : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppLocation({  storeUid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| storeUid | string | yes | store id for which the custom_json is associated. |  
+| body | [ApplicationStoreJson](#ApplicationStoreJson) | yes | Request body |
+
+
+Modify location data related to the application. Helps to update data associated to a item custom meta
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### addCollectionItems
+Add items to a collection
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier of a collection. |  
+| body | [CollectionItemUpdateSchema](#CollectionItemUpdateSchema) | yes | Request body |
+
+
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+
+*Returned Response:*
+
+
+
+
+[CommonResponseSchemaCollection](#CommonResponseSchemaCollection)
+
+Status object. Tells whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "items updated"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCollection
+Add a Collection
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateCollection](#CreateCollection) | yes | Request body |
+
+
+Create a collection to the catalog.
+
+*Returned Response:*
+
+
+
+
+[CollectionCreateResponse](#CollectionCreateResponse)
+
+List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "end": null,
+    "next_schedule": [
+      {
+        "end": null,
+        "start": "2021-03-15T12:51:21.333000+00:00Z"
+      }
+    ],
+    "start": "2021-03-15T12:51:21.333000+00:00Z"
+  },
+  "action": {
+    "page": {
+      "query": {
+        "collection": [
+          "new"
+        ]
+      },
+      "type": "collection"
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "badge": {
+    "color": "#ffffff",
+    "text": ""
+  },
+  "banners": {
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    },
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    }
+  },
+  "description": "",
+  "is_active": true,
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "meta": {},
+  "name": "New",
+  "published": true,
+  "query": [],
+  "seo": {
+    "description": "Test description",
+    "title": "Test"
+  },
+  "slug": "new",
+  "sort_on": "depth_desc",
+  "tags": [],
+  "type": "query",
+  "uid": "604f585a7051e30001173ac1",
+  "visible_facets_keys": []
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteCollection
+Delete a collection.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier of a collection. |  
+
+
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Returned Response:*
+
+
+
+
+[CommonResponseSchemaCollection](#CommonResponseSchemaCollection)
+
+Status object. Tells whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Collection Deleted"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAllCollections
+Retrieve all collections.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
+ scheduleStatus : value,
+ type : value,
+ tags : value,
+ isActive : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
+ scheduleStatus : value,
+ type : value,
+ tags : value,
+ isActive : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| q | string | no | Get collection list filtered by q string, |    
+| scheduleStatus | string | no | Get collection list filtered by scheduled status, |    
+| type | string | no | type of the collections |    
+| tags | Array<string> | no | Each response will contain next_id param, which should be sent back to make pagination work. |    
+| isActive | boolean | no | get collections filtered by active status. |    
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
+
+
+
+A Collection allows you to organize your products into hierarchical groups.
+
+*Returned Response:*
+
+
+
+
+[GetCollectionListingResponse](#GetCollectionListingResponse)
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "filters": {
+    "tags": [
+      {
+        "display": "1+",
+        "is_selected": false,
+        "name": "1+"
+      },
+      {
+        "display": "aa",
+        "is_selected": false,
+        "name": "aa"
+      },
+      {
+        "display": "asd",
+        "is_selected": false,
+        "name": "asd"
+      },
+      {
+        "display": "dda",
+        "is_selected": false,
+        "name": "dda"
+      },
+      {
+        "display": "fahim",
+        "is_selected": false,
+        "name": "fahim"
+      },
+      {
+        "display": "gfg",
+        "is_selected": false,
+        "name": "gfg"
+      },
+      {
+        "display": "sakri",
+        "is_selected": false,
+        "name": "sakri"
+      },
+      {
+        "display": "sdsadas",
+        "is_selected": false,
+        "name": "sdsadas"
+      },
+      {
+        "display": "uuy",
+        "is_selected": false,
+        "name": "uuy"
+      }
+    ],
+    "type": [
+      {
+        "display": "items",
+        "is_selected": false,
+        "name": "items"
+      },
+      {
+        "display": "query",
+        "is_selected": false,
+        "name": "query"
+      }
+    ]
+  },
+  "items": [
+    {
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "end": null,
+        "next_schedule": [
+          {
+            "end": null,
+            "start": "2021-03-04T15:35:13.640000Z"
+          }
+        ],
+        "start": "2021-03-04T15:35:13.640000Z"
+      },
+      "action": {
+        "page": {
+          "query": {
+            "collection": [
+              "test1"
+            ]
+          },
+          "type": "collection"
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "badge": {
+        "color": "#ffffff",
+        "text": ""
+      },
+      "banners": {
+        "landscape": {
+          "type": "image",
+          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/landscape-banner/original/3jSEzw9CN-1601465376892.jpeg"
+        },
+        "portrait": {
+          "type": "image",
+          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/portrait-banner/original/mP6OnINGR-1601466767814.jpeg"
+        }
+      },
+      "description": "this is description",
+      "is_active": true,
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/square-logo/original/y_-XUYXwx-1602326103322.jpeg"
+      },
+      "meta": {},
+      "name": "test1",
+      "published": true,
+      "query": [],
+      "slug": "test1",
+      "sort_on": "price_asc",
+      "tags": [],
+      "type": "query",
+      "uid": "6040fed076d8a500011ef829",
+      "visible_facets_keys": []
+    },
+    {
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "end": null,
+        "next_schedule": [
+          {
+            "end": null,
+            "start": "2021-03-04T09:33:53.686000Z"
+          }
+        ],
+        "start": "2021-03-04T09:33:53.686000Z"
+      },
+      "action": {
+        "page": {
+          "query": {
+            "collection": [
+              "newapiplaform"
+            ]
+          },
+          "type": "collection"
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "badge": {
+        "color": "#aa2727",
+        "text": ""
+      },
+      "banners": {
+        "landscape": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+        },
+        "portrait": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+        }
+      },
+      "description": "sadasd",
+      "is_active": true,
+      "logo": {
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+      },
+      "meta": {},
+      "name": "newapiplaform",
+      "published": true,
+      "query": [
+        {
+          "attribute": "catalogue",
+          "op": "in",
+          "value": []
+        }
+      ],
+      "slug": "newapiplaform",
+      "sort_on": "popular",
+      "tags": [
+        "sdsadas",
+        "asd"
+      ],
+      "type": "items",
+      "uid": "6040a9b250f97e0001886294",
+      "visible_facets_keys": []
+    },
+    {
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "end": null,
+        "next_schedule": [
+          {
+            "end": null,
+            "start": "2021-03-03T10:45:40.544000Z"
+          }
+        ],
+        "start": "2021-03-03T10:45:40.544000Z"
+      },
+      "action": {
+        "page": {
+          "query": {
+            "collection": [
+              "old"
+            ]
+          },
+          "type": "collection"
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "badge": {
+        "color": "#ffffff",
+        "text": ""
+      },
+      "banners": {
+        "landscape": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+        },
+        "portrait": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+        }
+      },
+      "description": "",
+      "is_active": true,
+      "logo": {
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+      },
+      "meta": {},
+      "name": "new",
+      "published": true,
+      "query": [],
+      "slug": "old",
+      "sort_on": "popular",
+      "tags": [],
+      "type": "query",
+      "uid": "603f68fd953a69000145dc92",
+      "visible_facets_keys": []
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": true,
+    "has_previous": false,
+    "item_total": 190,
+    "size": 19,
+    "type": "collection"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCollectionDetail
+Get collection details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. |  
+
+
+
+Get the details of a collection by its slug.
+
+*Returned Response:*
+
+
+
+
+[GetCollectionDetailResponse](#GetCollectionDetailResponse)
+
+The Collection object. See example below or refer `GetCollectionDetailResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "end": null,
+    "next_schedule": [
+      {
+        "end": null,
+        "start": "2020-05-21T03:58:41.237000Z"
+      }
+    ],
+    "start": "2020-05-21T03:58:41.237000Z"
+  },
+  "action": {
+    "page": {
+      "query": {
+        "collection": [
+          "new"
+        ]
+      },
+      "type": "collection"
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "badge": {
+    "color": "#ffffff",
+    "text": ""
+  },
+  "banners": {
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    },
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    }
+  },
+  "description": "",
+  "is_active": true,
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "meta": {},
+  "name": "new",
+  "published": true,
+  "query": {
+    "l3_categories": [
+      "12"
+    ],
+    "sort_on": "discount_asc"
+  },
+  "slug": "new",
+  "sort_on": "popular",
+  "tags": [],
+  "type": "query",
+  "uid": "5ec5fc757cb1e4740a17da23",
+  "visible_facets_keys": []
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCollectionItems
+Get the items for a collection
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
+ sortOn : value,
+ pageId : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
+ sortOn : value,
+ pageId : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier of a collection. |    
+| sortOn | string | no | Each response will contain sort_on param, which should be sent back to make pagination work. |    
+| pageId | string | no | Each response will contain next_id param, which should be sent back to make pagination work. |    
+| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
+
+
+
+Get items from a collection specified by its `id`.
+
+*Returned Response:*
+
+
+
+
+[GetCollectionItemsResponse](#GetCollectionItemsResponse)
+
+The attached items of an collection. See example below or refer `GetCollectionItemsResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCollection
+Update a collection
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier of a collection. |  
+| body | [UpdateCollection](#UpdateCollection) | yes | Request body |
+
+
+Update a collection by it's id. On successful request, returns the updated collection
+
+*Returned Response:*
+
+
+
+
+[UpdateCollection](#UpdateCollection)
+
+The Collection object. See example below or refer `UpdateCollectionSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "end": null,
+    "next_schedule": [
+      {
+        "end": null,
+        "start": "2021-03-15T12:51:21.333000+00:00Z"
+      }
+    ],
+    "start": "2021-03-15T12:51:21.333000+00:00Z"
+  },
+  "action": {
+    "page": {
+      "query": {
+        "collection": [
+          "new"
+        ]
+      },
+      "type": "collection"
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "badge": {
+    "color": "#ffffff",
+    "text": ""
+  },
+  "banners": {
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    },
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    }
+  },
+  "description": "",
+  "is_active": true,
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "meta": {},
+  "name": "New",
+  "published": true,
+  "query": {},
+  "seo": {
+    "description": "Test description",
+    "title": "Test"
+  },
+  "slug": "new",
+  "sort_on": "depth_desc",
+  "tags": [],
+  "type": "query",
+  "uid": "604f585a7051e30001173ac1",
+  "visible_facets_keys": []
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 
 ### getApplicationFilterKeys
@@ -5935,34 +4146,43 @@ The attached items of an collection. See example below or refer `GetQueryFilters
 ---
 
 
-### getAutocompleteConfig
-List all Autocomplete Keyword Listing
+
+
+### createConfigurationByType
+Create configuration by type.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
+ body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
+ body : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| type | string | yes | type can be brands, categories etc. |  
+| body | [AppConfiguration](#AppConfiguration) | yes | Request body |
 
-Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+
+Add configuration for categories & brands.
 
 *Returned Response:*
 
 
 
 
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
 
-List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+success flag will tell whether the operation was successful.
 
 
 
@@ -5971,47 +4191,7 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "items": [
-    {
-      "app_id": "000000000000000000000001",
-      "is_active": true,
-      "results": [
-        {
-          "_custom_json": {},
-          "action": {
-            "page": {
-              "query": {
-                "brand": [
-                  "nike"
-                ]
-              },
-              "type": "products",
-              "url": "/products/?brand=nike"
-            },
-            "type": "page"
-          },
-          "display": "Helllow",
-          "logo": {
-            "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
-          }
-        }
-      ],
-      "uid": "602fa1eaa596ce349563f6c6",
-      "words": [
-        "dasd"
-      ]
-    }
-  ],
-  "page": {
-    "current": 1,
-    "has_next": false,
-    "has_previous": false,
-    "item_count": 1,
-    "size": 1,
-    "type": "number"
-  }
-}
+
 ```
 </details>
 
@@ -6026,17 +4206,74 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
 ---
 
 
-### getAutocompleteKeywordDetail
-Get a Autocomplete Keywords Details
+### createConfigurationProductListing
+Create configuration for product listing.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AppConfiguration](#AppConfiguration) | yes | Request body |
+
+
+Add configuration for products & listing.
+
+*Returned Response:*
+
+
+
+
+[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
+
+success flag will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createGroupConfiguration
+Create group configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createGroupConfiguration({  configType : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createGroupConfiguration({  configType : value,
+ body : value });
 ```
 
 
@@ -6045,20 +4282,20 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getAut
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| configType | string | yes | A `config_type` is a unique identifier for a particular group configuration type. |  
+| body | [AppConfigurationDetail](#AppConfigurationDetail) | yes | Request body |
 
 
-
-Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+Create configuration for group configuration types.
 
 *Returned Response:*
 
 
 
 
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+[AppConfigurationDetail](#AppConfigurationDetail)
 
-The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+success flag will tell whether the operation was successful.
 
 
 
@@ -6068,32 +4305,25 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 ```json
 {
-  "app_id": "000000000000000000000001",
-  "is_active": true,
-  "results": [
+  "app_id": "5d64e3500bcad8693a821c0d",
+  "attributes": [
     {
-      "_custom_json": {},
-      "action": {
-        "page": {
-          "query": {
-            "brand": [
-              "nike"
-            ]
-          },
-          "type": "products",
-          "url": "/products/?brand=nike"
-        },
-        "type": "page"
-      },
-      "display": "Helllow",
-      "logo": {
-        "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
-      }
+      "display_type": "text",
+      "is_active": true,
+      "key": "features",
+      "name": "Features",
+      "priority": 1,
+      "slug": "features"
     }
   ],
-  "uid": "602fa1eaa596ce349563f6c6",
-  "words": [
-    "dasd"
+  "id": "62b1cdab15c88fa867ee4dac",
+  "is_active": true,
+  "is_default": false,
+  "name": "test",
+  "priority": 1,
+  "slug": "test15",
+  "template_slugs": [
+    "bags"
   ]
 }
 ```
@@ -6110,8 +4340,198 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 ---
 
 
+### createListingConfiguration
+Create listing configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createListingConfiguration({  configType : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createListingConfiguration({  configType : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | A `config_type` is a unique identifier for a particular listing configuration type. |  
+| body | [AppConfigurationsSort](#AppConfigurationsSort) | yes | Request body |
+
+
+Add configuration for catalog listing.
+
+*Returned Response:*
+
+
+
+
+[AppConfigurationsSort](#AppConfigurationsSort)
+
+success flag will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "app_id": "5d64e3500bcad8693a821c0d",
+  "default_key": "",
+  "id": "62b1ccb815c88fa867ee4dab",
+  "is_active": true,
+  "is_default": false,
+  "key": "discount_dsc",
+  "logo": "https://hdn-1.fynd.com/products/pictures/attribute/logo/original/iG82Qjay9X-Popularity.png",
+  "name": "Discount High to Low",
+  "priority": 4
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteGroupConfiguration
+Delete group configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteGroupConfiguration({  configType : value,
+ groupSlug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteGroupConfiguration({  configType : value,
+ groupSlug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | A `config_type` is a unique identifier for a particular group configuration type. |   
+| groupSlug | string | yes | A `group_slug` is a unique identifier of a particular configuration. |  
+
+
+
+Delete configuration of the product config type of the application.
+
+*Returned Response:*
+
+
+
+
+[ConfigSuccessResponse](#ConfigSuccessResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Config Item deleted successfully."
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteListingConfiguration
+Delete listing configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteListingConfiguration({  configType : value,
+ configId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteListingConfiguration({  configType : value,
+ configId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | A `config_type` is a unique identifier for a particular listing configuration type. |   
+| configId | string | yes | A `config_id` is a unique identifier of a particular configuration. |  
+
+
+
+Remove a specific listing configuration from the catalog.
+
+*Returned Response:*
+
+
+
+
+[ConfigSuccessResponse](#ConfigSuccessResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Config Item deleted successfully."
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getCatalogConfiguration
-Get configuration meta  details for catalog for admin panel
+Retrieve catalog configuration.
 
 
 
@@ -6128,7 +4548,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getCat
 
 
 
-configuration meta  details for catalog.
+Retrieve configuration meta details for the catalog.
 
 *Returned Response:*
 
@@ -6161,660 +4581,8 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 ---
 
 
-### getCatalogInsights
-Analytics data of catalog and inventory.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| brand | string | no | Brand slug |  
-
-
-
-Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
-
-*Returned Response:*
-
-
-
-
-[CatalogInsightResponse](#CatalogInsightResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "item": {
-    "count": 637707,
-    "out_of_stock_count": 452806,
-    "sellable_count": 184901
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCategories
-List all the categories
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| department | string | no | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API |  
-
-
-
-List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
-
-*Returned Response:*
-
-
-
-
-[CategoryListingResponse](#CategoryListingResponse)
-
-List of Categories. See example below or refer `CategoryListingResponse` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": [
-    {
-      "department": "Cody-Doyle",
-      "items": [
-        {
-          "_custom_json": {},
-          "action": {
-            "query": {
-              "department": [
-                "Jaime-Chambers"
-              ],
-              "l1_category": [
-                "Janet-Parker"
-              ]
-            },
-            "type": "category",
-            "url": "https://api.addsale.com/platform/content/v1/products/?l1_category=Janet-Parker&department=Jaime-Chambers"
-          },
-          "childs": [
-            {
-              "_custom_json": {},
-              "action": {
-                "query": {
-                  "department": [
-                    "Jaime-Chambers"
-                  ],
-                  "l2_category": [
-                    "Hannah-Lawson"
-                  ]
-                },
-                "type": "category",
-                "url": "https://api.addsale.com/platform/content/v1/products/?l2_category=Hannah-Lawson&department=Jaime-Chambers"
-              },
-              "childs": [
-                {
-                  "_custom_json": {},
-                  "action": {
-                    "query": {
-                      "category": [
-                        "Logan-Black"
-                      ],
-                      "department": [
-                        "Jaime-Chambers"
-                      ]
-                    },
-                    "type": "category",
-                    "url": "https://api.addsale.com/platform/content/v1/products/?category=Logan-Black&department=Jaime-Chambers"
-                  },
-                  "childs": [],
-                  "image": {
-                    "aspect_ratio": "13:20",
-                    "aspect_ratio_f": 0.65,
-                    "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
-                  },
-                  "name": "Logan Black",
-                  "slug": "Logan-Black",
-                  "uid": 3
-                }
-              ],
-              "image": {
-                "aspect_ratio": "13:20",
-                "aspect_ratio_f": 0.65,
-                "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
-              },
-              "name": "Hannah Lawson",
-              "slug": "Hannah-Lawson",
-              "uid": 2
-            }
-          ],
-          "image": {
-            "aspect_ratio": "13:20",
-            "aspect_ratio_f": 0.65,
-            "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
-          },
-          "name": "Janet Parker",
-          "slug": "Janet-Parker",
-          "uid": 1
-        }
-      ]
-    }
-  ],
-  "departments": [
-    {
-      "slug": "Cody-Doyle",
-      "uid": 1
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCategoryData
-Get product category by uid
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getCategoryData({  uid : value });
-
-// Async/Await
-const data = await platformClient.catalog.getCategoryData({  uid : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uid | string | yes | Category unique id |  
-
-
-
-This API gets meta associated to product categories.
-
-*Returned Response:*
-
-
-
-
-[SingleCategoryResponse](#SingleCategoryResponse)
-
-Get Data for one category. See example below or refer `CategoryResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "created_by": {
-      "user_id": "5646",
-      "username": "917972410891_48194"
-    },
-    "created_on": "2021-04-02T15:43:59.410000Z",
-    "departments": [
-      1
-    ],
-    "hierarchy": [
-      {
-        "department": 1,
-        "l1": 1,
-        "l2": 22329
-      }
-    ],
-    "id": "60673bbf7896da00017885ad",
-    "is_active": true,
-    "level": 3,
-    "marketplaces": {},
-    "media": {
-      "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/nsi0nJ6gX-landscape.png",
-      "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
-      "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/_4p7Kz9Yp-banner.png"
-    },
-    "modified_by": {
-      "user_id": "16",
-      "username": "nikhilmhatre_gofynd_com_97636"
-    },
-    "modified_on": "2021-04-13T13:57:56.443000Z",
-    "name": "Air Conditioners",
-    "priority": 1,
-    "slug": "air-conditioners",
-    "synonyms": [],
-    "tryouts": [],
-    "uid": 22330
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCollectionDetail
-Get a particular collection
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. |  
-
-
-
-Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
-
-*Returned Response:*
-
-
-
-
-[GetCollectionDetailResponse](#GetCollectionDetailResponse)
-
-The Collection object. See example below or refer `GetCollectionDetailResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_custom_json": {},
-  "_locale_language": {},
-  "_schedule": {
-    "end": null,
-    "next_schedule": [
-      {
-        "end": null,
-        "start": "2020-05-21T03:58:41.237000Z"
-      }
-    ],
-    "start": "2020-05-21T03:58:41.237000Z"
-  },
-  "action": {
-    "page": {
-      "query": {
-        "collection": [
-          "new"
-        ]
-      },
-      "type": "collection"
-    },
-    "type": "page"
-  },
-  "allow_facets": true,
-  "allow_sort": true,
-  "badge": {
-    "color": "#ffffff",
-    "text": ""
-  },
-  "banners": {
-    "landscape": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-    },
-    "portrait": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-    }
-  },
-  "description": "",
-  "is_active": true,
-  "logo": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-  },
-  "meta": {},
-  "name": "new",
-  "published": true,
-  "query": {
-    "l3_categories": [
-      "12"
-    ],
-    "sort_on": "discount_asc"
-  },
-  "slug": "new",
-  "sort_on": "popular",
-  "tags": [],
-  "type": "query",
-  "uid": "5ec5fc757cb1e4740a17da23",
-  "visible_facets_keys": []
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCollectionItems
-Get the items for a collection
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
- sortOn : value,
- pageId : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
- sortOn : value,
- pageId : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier of a collection. |    
-| sortOn | string | no | Each response will contain sort_on param, which should be sent back to make pagination work. |    
-| pageId | string | no | Each response will contain next_id param, which should be sent back to make pagination work. |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
-
-
-
-Get items from a collection specified by its `id`.
-
-*Returned Response:*
-
-
-
-
-[GetCollectionItemsResponse](#GetCollectionItemsResponse)
-
-The attached items of an collection. See example below or refer `GetCollectionItemsResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCompanyBrandDetail
-Get the Company Brand details of Optin.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getCompanyBrandDetail({  isActive : value,
- q : value,
- pageNo : value,
- pageSize : value,
- marketplace : value });
-
-// Async/Await
-const data = await platformClient.catalog.getCompanyBrandDetail({  isActive : value,
- q : value,
- pageNo : value,
- pageSize : value,
- marketplace : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| isActive | boolean | no | The is_active status for the optin id. |    
-| q | string | no | The search value to filter the list. |    
-| pageNo | number | no | The number of page for the company id. |    
-| pageSize | number | no | Number of records that can be seen on the page for the company id. |    
-| marketplace | string | no | The marketplace platform associated with the company id. |  
-
-
-
-Get the details of the Brands associated with the given company_id passed.
-
-*Returned Response:*
-
-
-
-
-[OptinCompanyBrandDetailsView](#OptinCompanyBrandDetailsView)
-
-See example below or refer `OptinCompanyBrandDetailsView` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCompanyDetail
-Get the Company details.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getCompanyDetail();
-
-// Async/Await
-const data = await platformClient.catalog.getCompanyDetail();
-```
-
-
-
-
-
-
-Get the details of the company associated with the given company_id passed.
-
-*Returned Response:*
-
-
-
-
-[OptinCompanyDetail](#OptinCompanyDetail)
-
-See example below or refer `OptinCompanyDetailSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCompanyMetrics
-Get the Company metrics
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getCompanyMetrics();
-
-// Async/Await
-const data = await platformClient.catalog.getCompanyMetrics();
-```
-
-
-
-
-
-
-Get the Company metrics associated with the company ID passed.
-
-*Returned Response:*
-
-
-
-
-[OptinCompanyMetrics](#OptinCompanyMetrics)
-
-See example below or refer `OptinCompanyMetrics` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getConfigurationByType
-Get configured details for catalog
+Retrieve configuration by type.
 
 
 
@@ -6836,7 +4604,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getCon
 
 
 
-configured details for catalog.
+Retrieve configuration details based on a specific type in the catalog.
 
 *Returned Response:*
 
@@ -6870,7 +4638,7 @@ Get application level configured catalog details. See example below or refer `Ge
 
 
 ### getConfigurationMetadata
-Get configuration metadata details for catalog for admin panel
+Retrieve configuration metadata.
 
 
 
@@ -6904,7 +4672,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getCon
 
 
 
-Get the configuraion metadata details for catalog.
+Retrieve the configuraion metadata details for catalog.
 
 *Returned Response:*
 
@@ -7702,7 +5470,7 @@ configuration details for catalog. See example below or refer `GetConfigMetadata
 
 
 ### getConfigurations
-Get configured details for catalog
+Retrieve configurations.
 
 
 
@@ -7719,7 +5487,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getCon
 
 
 
-configured details for catalog.
+Retrieve a configured details for catalog.
 
 *Returned Response:*
 
@@ -8064,17 +5832,25 @@ Get application level configured catalog details. See example below or refer `Ge
 ---
 
 
-### getDepartmentData
-Get specific departments details by passing in unique id of the department.
+### getGroupConfigurations
+Retrieve group configurations.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.getDepartmentData({  uid : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getGroupConfigurations({  configType : value,
+ pageNo : value,
+ pageSize : value,
+ search : value,
+ templateSlug : value });
 
 // Async/Await
-const data = await platformClient.catalog.getDepartmentData({  uid : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getGroupConfigurations({  configType : value,
+ pageNo : value,
+ pageSize : value,
+ search : value,
+ templateSlug : value });
 ```
 
 
@@ -8083,20 +5859,24 @@ const data = await platformClient.catalog.getDepartmentData({  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| uid | string | yes | A `uid` is a unique identifier of a department. |  
+| configType | string | yes | A `config_type` is an identifier that defines a specific type of configuration. |    
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
+| search | string | no | Get configuration list filtered by `search` string. |    
+| templateSlug | string | no | Get configuration list filtered by `template_slug` string. This is for the details and comparision groups. |  
 
 
 
-Allows you to get department data, by uid.
+Retrieve the details of the application configured configurations of group config types.
 
 *Returned Response:*
 
 
 
 
-[DepartmentsResponse](#DepartmentsResponse)
+[GetConfigResponse](#GetConfigResponse)
 
-Departments Data. See example below or refer `DepartmentsResponse` for details
+configuration details for catalog. See example below or refer `GetConfigResponseSchema` for details
 
 
 
@@ -8106,318 +5886,97 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
 
 ```json
 {
-  "items": [
+  "data": [
     {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "3",
-        "username": "918793638893_86554"
-      },
-      "created_on": "2020-07-01T05:33:39.325000Z",
-      "id": "5efc2033623d390001782238",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpgc7d0c15c-c1ff-47eb-8423-6e2df51f2ddf/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpg",
-      "modified_by": {
-        "user_id": "5677",
-        "username": "917753852478_51632"
-      },
-      "modified_on": "2021-03-03T15:55:25.118000Z",
-      "name": "Sample Dept",
-      "platforms": {},
-      "priority_order": 111,
-      "slug": "sample-dept",
-      "synonyms": [
-        "test",
-        "sampe"
+      "app_id": "5d65089e031f9029f8e8dc2f",
+      "attributes": [
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "item_code",
+          "name": "Item Code",
+          "priority": 1,
+          "slug": "item_code"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "brand",
+          "name": "Brand",
+          "priority": 2,
+          "slug": "brand"
+        }
       ],
-      "tags": [],
-      "uid": 5
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "0",
-        "username": "app@fynd.com"
-      },
-      "created_on": "2020-05-19T06:53:37.629000Z",
-      "id": "5ec3827156a7200001c9aeea",
+      "id": "62a84b90bd43c0fe4cf53574",
       "is_active": true,
-      "logo": "https://hdn-1.addsale.com/addsale/media/logo/department/original/15974_381e2236c2a348cc851c29a5d05c66a9.png",
-      "modified_by": {
-        "user_id": "10",
-        "username": "fahimsakri_gofynd_com_44938"
-      },
-      "modified_on": "2021-03-04T14:01:02.556000Z",
-      "name": "Men's Fashion",
-      "platforms": {
-        "fynd": true,
-        "fynd_store": true,
-        "marketplace": true,
-        "openapi": true,
-        "uniket_store": true,
-        "uniket_wholesale": true
-      },
-      "priority_order": 111,
-      "slug": "men-s-fashion",
-      "synonyms": [],
-      "tags": [],
-      "uid": 2
+      "is_default": false,
+      "name": "Test Group12 ",
+      "priority": 1,
+      "slug": "test-group12-31",
+      "template_slugs": [
+        "atesttemplate"
+      ]
     },
     {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "10",
-        "username": "fahimsakri_gofynd_com_44938"
-      },
-      "created_on": "2020-06-29T10:59:33.620000Z",
-      "id": "5ef9c9959b04f00001e40dba",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
-      "modified_by": {
-        "user_id": "3",
-        "username": "918793638893_86554"
-      },
-      "modified_on": "2020-08-06T18:08:02.675000Z",
-      "name": "Groceries",
-      "platforms": {},
-      "priority_order": 10,
-      "slug": "groceries",
-      "synonyms": [],
-      "tags": [],
-      "uid": 4
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "0",
-        "username": "app@fynd.com"
-      },
-      "created_on": "2020-05-18T16:14:41.689000Z",
-      "id": "5ec2b471661a4100019fca0d",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/platform/pictures/free-logo/original/_G1Z2Fg1L-http:d3p8ifzkmzds37.cloudfront.netmedialogodepartmentoriginal15870_c287d3c2431a432bb0e49363ef6b82bc.png.png",
-      "modified_by": {
-        "user_id": "5677",
-        "username": "917753852478_51632"
-      },
-      "modified_on": "2021-03-04T15:39:38.528000Z",
-      "name": "Electronics",
-      "platforms": {
-        "fynd": true,
-        "fynd_store": true,
-        "marketplace": true,
-        "openapi": true,
-        "uniket_store": true,
-        "uniket_wholesale": true
-      },
-      "priority_order": 100,
-      "slug": "electronics",
-      "synonyms": [],
-      "tags": [],
-      "uid": 1
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "3",
-        "username": "918793638893_86554"
-      },
-      "created_on": "2020-05-27T12:04:19.111000Z",
-      "id": "5ece5743cd1bae0001440427",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/g2plam_logo_Jio.pngeeb392ca-3958-46a0-9f13-23c205b596f7/g2plam_logo_Jio.png",
-      "modified_by": {
-        "user_id": "3",
-        "username": "918793638893_86554"
-      },
-      "modified_on": "2020-08-06T18:07:46.060000Z",
-      "name": "Industrial Supplies",
-      "platforms": {},
-      "priority_order": 111,
-      "slug": "industrial-supplies",
-      "synonyms": [],
-      "tags": [],
-      "uid": 3
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "13",
-        "username": "abhinavsrivastava_gofynd_com_05674"
-      },
-      "created_on": "2020-07-06T07:56:01.508000Z",
-      "id": "5f02d9116b0ae500018923dd",
-      "is_active": false,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/wTcfEi_crysis_-_1.jpg14580947-a659-486d-b2d3-d2ca025b1cac/wTcfEi_crysis_-_1.jpg",
-      "modified_by": {
-        "user_id": "3",
-        "username": "918793638893_86554"
-      },
-      "modified_on": "2020-08-06T18:08:12.576000Z",
-      "name": "Clothing",
-      "platforms": {},
-      "priority_order": 1,
-      "slug": "clothing",
-      "synonyms": [],
-      "tags": [],
-      "uid": 6
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "5634",
-        "username": "asavarijadhav_gofynd_com_99880"
-      },
-      "created_on": "2020-08-05T09:04:33.604000Z",
-      "id": "5f2a762131c66700018cdc47",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/RxTsd8_0DEFAULT-LOGO.jpg000ccfc1-2f79-4426-9ac3-de2468c2fcb9/RxTsd8_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "user_id": "5634",
-        "username": "asavarijadhav_gofynd_com_99880"
-      },
-      "modified_on": "2020-08-05T09:44:01.234000Z",
-      "name": "Kids",
-      "platforms": {},
-      "priority_order": 3,
-      "slug": "kids",
-      "synonyms": [],
-      "tags": [],
-      "uid": 8
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "5634",
-        "username": "asavarijadhav_gofynd_com_99880"
-      },
-      "created_on": "2020-08-05T09:44:46.632000Z",
-      "id": "5f2a7f8e31c66700018cdc49",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/tKkDB8_0DEFAULT-LOGO.jpg1c324d4d-f667-4af8-8d98-37205d34e3b5/tKkDB8_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "user_id": "3",
-        "username": "918793638893_86554"
-      },
-      "modified_on": "2020-08-06T18:07:35.231000Z",
-      "name": "Women's Fashion",
-      "platforms": {},
-      "priority_order": 2,
-      "slug": "women-s-fashion",
-      "synonyms": [],
-      "tags": [],
-      "uid": 9
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "5634",
-        "username": "asavarijadhav_gofynd_com_99880"
-      },
-      "created_on": "2020-08-05T09:45:12.075000Z",
-      "id": "5f2a7fa831c66700018cdc4a",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/oLoxiL_0DEFAULT-LOGO.jpgbd050200-700a-4a3e-9da6-e6b78fbee943/oLoxiL_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "user_id": "5634",
-        "username": "asavarijadhav_gofynd_com_99880"
-      },
-      "modified_on": "2020-08-05T09:48:01.660000Z",
-      "name": "Beauty & Personal Care",
-      "platforms": {},
-      "priority_order": 4,
-      "slug": "beauty-personal-care",
-      "synonyms": [],
-      "tags": [],
-      "uid": 10
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "5634",
-        "username": "asavarijadhav_gofynd_com_99880"
-      },
-      "created_on": "2020-08-05T09:45:39.797000Z",
-      "id": "5f2a7fc331c66700018cdc4b",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/vQv4ot_0DEFAULT-LOGO.jpg701cb5af-2024-4abf-ae5d-b68bc1a3cd43/vQv4ot_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "user_id": "3",
-        "username": "918793638893_86554"
-      },
-      "modified_on": "2020-08-06T11:38:57.599000Z",
-      "name": "Home & Living",
-      "platforms": {},
-      "priority_order": 5,
-      "slug": "home-living",
-      "synonyms": [],
-      "tags": [],
-      "uid": 11
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "5634",
-        "username": "asavarijadhav_gofynd_com_99880"
-      },
-      "created_on": "2020-08-05T09:48:42.347000Z",
-      "id": "5f2a807a31c66700018cdc4e",
-      "is_active": false,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/hTobjV_0DEFAULT-LOGO.jpga020159c-7fe7-4c1c-a11a-4be61a60da9f/hTobjV_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "user_id": "5634",
-        "username": "asavarijadhav_gofynd_com_99880"
-      },
-      "modified_on": "2020-08-05T09:48:42.347000Z",
-      "name": "Baby Care & Kids Essentials",
-      "platforms": {},
-      "priority_order": 7,
-      "slug": "baby-care-kids-essentials",
-      "synonyms": [],
-      "tags": [],
-      "uid": 14
-    },
-    {
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "user_id": "5721",
-        "username": "919821012599_75351"
-      },
-      "created_on": "2021-01-13T10:12:33.002000Z",
-      "id": "5ffec79192813f0001eb6560",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
-      "modified_by": {
-        "user_id": "5721",
-        "username": "919821012599_75351"
-      },
-      "modified_on": "2021-01-13T13:50:55.415000Z",
-      "name": "Skin care products",
-      "platforms": {},
-      "priority_order": 10235,
-      "slug": "skin-care-produts",
-      "synonyms": [
-        "skin",
-        "care"
+      "app_id": "5d65089e031f9029f8e8dc2f",
+      "attributes": [
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "item_code",
+          "name": "Item Code",
+          "priority": 1,
+          "slug": "item_code"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "brand",
+          "name": "Brand",
+          "priority": 2,
+          "slug": "brand"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "country_of_origin",
+          "name": "Country Of Origin",
+          "priority": 3,
+          "slug": "country_of_origin"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "image_nature",
+          "name": "Image Type",
+          "priority": 4,
+          "slug": "image_nature"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "discount",
+          "name": "Discount",
+          "priority": 5,
+          "slug": "discount"
+        }
       ],
-      "tags": [],
-      "uid": 21
+      "id": "62a84b9ebd43c0fe4cf53576",
+      "is_active": true,
+      "is_default": false,
+      "name": "ET",
+      "priority": 2,
+      "slug": "et14",
+      "template_slugs": [
+        "atesttemplate"
+      ]
     }
   ],
   "page": {
-    "type": ""
+    "current": 1,
+    "has_next": false,
+    "next": 2,
+    "total_count": 2
   }
 }
 ```
@@ -8434,34 +5993,48 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
 ---
 
 
-### getDepartments
-List all the departments
+### getListingConfigurations
+Retrieve listing configurations.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getDepartments();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getListingConfigurations({  configType : value,
+ pageNo : value,
+ pageSize : value,
+ search : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getDepartments();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getListingConfigurations({  configType : value,
+ pageNo : value,
+ pageSize : value,
+ search : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | A `config_type` is an identifier that defines a specific type of configuration. |    
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
+| search | string | no | Get configuration list filtered by `search` string. |  
 
-Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
+
+
+Retrieve the details of the application configured configurations of listing config types.
 
 *Returned Response:*
 
 
 
 
-[DepartmentResponse](#DepartmentResponse)
+[GetConfigResponse](#GetConfigResponse)
 
-List of Departments. See example below or refer `DepartmentResponse` for details.
+configuration details for catalog. See example below or refer `GetConfigResponseSchema` for details
 
 
 
@@ -8471,106 +6044,532 @@ List of Departments. See example below or refer `DepartmentResponse` for details
 
 ```json
 {
-  "items": [
+  "data": [
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      },
-      "name": "Zachary Harris",
-      "priority_order": 7,
-      "slug": "Zachary-Harris",
-      "uid": 1
+      "app_id": "5d65089e031f9029f8e8dc2f",
+      "attributes": [
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "item_code",
+          "name": "Item Code",
+          "priority": 1,
+          "slug": "item_code"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "brand",
+          "name": "Brand",
+          "priority": 2,
+          "slug": "brand"
+        }
+      ],
+      "id": "62a84b90bd43c0fe4cf53574",
+      "is_active": true,
+      "is_default": false,
+      "name": "Test Group12 ",
+      "priority": 1,
+      "slug": "test-group12-31",
+      "template_slugs": [
+        "atesttemplate"
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "app_id": "5d65089e031f9029f8e8dc2f",
+      "attributes": [
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "item_code",
+          "name": "Item Code",
+          "priority": 1,
+          "slug": "item_code"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "brand",
+          "name": "Brand",
+          "priority": 2,
+          "slug": "brand"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "country_of_origin",
+          "name": "Country Of Origin",
+          "priority": 3,
+          "slug": "country_of_origin"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "image_nature",
+          "name": "Image Type",
+          "priority": 4,
+          "slug": "image_nature"
+        },
+        {
+          "display_type": "text",
+          "is_active": true,
+          "key": "discount",
+          "name": "Discount",
+          "priority": 5,
+          "slug": "discount"
+        }
+      ],
+      "id": "62a84b9ebd43c0fe4cf53576",
+      "is_active": true,
+      "is_default": false,
+      "name": "ET",
+      "priority": 2,
+      "slug": "et14",
+      "template_slugs": [
+        "atesttemplate"
+      ]
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "next": 2,
+    "total_count": 2,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getQueryFilters
+Retrieve query filters.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters();
+```
+
+
+
+
+
+
+Retrieve query filters to configure a collection
+
+*Returned Response:*
+
+
+
+
+[GetQueryFiltersResponse](#GetQueryFiltersResponse)
+
+The attached items of an collection. See example below or refer `GetQueryFiltersResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "filters": [
+    {
+      "key": {
+        "display": "Department",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "name": "department"
       },
-      "name": "Aaron Reilly",
-      "priority_order": 7,
-      "slug": "Aaron-Reilly",
-      "uid": 2
+      "values": [
+        {
+          "count": 2113,
+          "display": "Men's Fashion",
+          "is_selected": false,
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/Men.png"
+          },
+          "value": "men"
+        }
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "key": {
+        "display": "Category",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
+        "name": "category"
       },
-      "name": "Bobby Sandoval",
-      "priority_order": 7,
-      "slug": "Bobby-Sandoval",
-      "uid": 3
+      "values": [
+        {
+          "count": 968,
+          "display": "T-Shirts",
+          "is_selected": false,
+          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
+          "value": "192"
+        }
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "key": {
+        "display": "Category L1",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
+        "name": "category"
       },
-      "name": "Seth Hughes",
-      "priority_order": 7,
-      "slug": "Seth-Hughes",
-      "uid": 4
+      "values": [
+        {
+          "count": 968,
+          "display": "T-Shirts",
+          "is_selected": false,
+          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
+          "value": "192"
+        }
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "key": {
+        "display": "Category L2",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
+        "name": "category"
       },
-      "name": "Michelle Moore",
-      "priority_order": 7,
-      "slug": "Michelle-Moore",
-      "uid": 5
+      "values": [
+        {
+          "count": 968,
+          "display": "T-Shirts",
+          "is_selected": false,
+          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
+          "value": "192"
+        }
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "key": {
+        "display": "Size",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.png",
+        "name": "sizes"
       },
-      "name": "Annette Baldwin",
-      "priority_order": 7,
-      "slug": "Annette-Baldwin",
-      "uid": 6
+      "values": [
+        {
+          "count": 1438,
+          "display": "S",
+          "is_selected": false,
+          "value": "S"
+        }
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "key": {
+        "display": "Brand",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.png",
+        "name": "brand"
       },
-      "name": "Chris Mata",
-      "priority_order": 7,
-      "slug": "Chris-Mata",
-      "uid": 7
+      "values": [
+        {
+          "count": 4263,
+          "display": "Superdry",
+          "is_selected": false,
+          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/1008_238113b8e11448f792e9bf860aac30f2.jpg",
+          "value": "235"
+        }
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "key": {
+        "display": "Rating",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
+        "name": "rating"
       },
-      "name": "Nicole Jacobs",
-      "priority_order": 7,
-      "slug": "Nicole-Jacobs",
-      "uid": 8
+      "values": [
+        {
+          "count": 3,
+          "display": "5 ★",
+          "is_selected": false,
+          "value": "[4 TO *}"
+        }
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "key": {
+        "display": "Company",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png",
+        "name": "company_id_list"
       },
-      "name": "Pamela Smith",
-      "priority_order": 7,
-      "slug": "Pamela-Smith",
-      "uid": 9
+      "values": [
+        {
+          "count": 4262,
+          "display": "RELIANCE BRANDS LIMITED",
+          "is_selected": false,
+          "value": "46"
+        }
+      ]
     },
     {
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      "key": {
+        "display": "Store Ids",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png",
+        "name": "store_id_list"
       },
-      "name": "Nicole Simon",
-      "priority_order": 7,
-      "slug": "Nicole-Simon",
-      "uid": 10
+      "values": [
+        {
+          "count": 1385,
+          "display": "PHOENIX, ,PALLADIUM,  LOWER PAREL - 5410",
+          "is_selected": false,
+          "value": "2201"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Image",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.png",
+        "name": "image_nature"
+      },
+      "values": [
+        {
+          "count": 3111,
+          "display": "Good Quality",
+          "is_selected": false,
+          "value": "standard"
+        },
+        {
+          "count": 1152,
+          "display": "No Image",
+          "is_selected": false,
+          "value": "default"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Set",
+        "kind": "multivalued",
+        "logo": "",
+        "name": "is_set"
+      },
+      "values": [
+        {
+          "count": 4263,
+          "display": "No",
+          "is_selected": false,
+          "value": false
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Product Fit",
+        "kind": "multivalued",
+        "logo": "",
+        "name": "product_fit"
+      },
+      "values": [
+        {
+          "count": 14,
+          "display": "Regular",
+          "is_selected": false,
+          "value": "Regular"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Primary Material",
+        "kind": "multivalued",
+        "logo": "",
+        "name": "primary_material"
+      },
+      "values": [
+        {
+          "count": 1246,
+          "display": "Cotton",
+          "is_selected": false,
+          "value": "Cotton"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Gender",
+        "kind": "multivalued",
+        "logo": "",
+        "name": "gender"
+      },
+      "values": [
+        {
+          "count": 2125,
+          "display": "Men",
+          "is_selected": false,
+          "value": "Men"
+        },
+        {
+          "count": 1492,
+          "display": "Women",
+          "is_selected": false,
+          "value": "Women"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Primary Colour",
+        "kind": "multivalued",
+        "logo": "",
+        "name": "primary_color"
+      },
+      "values": [
+        {
+          "count": 1403,
+          "display": "Multi",
+          "is_selected": false,
+          "value": "Multi"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Size Depth",
+        "kind": "range",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
+        "name": "size_depth"
+      },
+      "values": [
+        {
+          "count": 4263,
+          "display": "0 - 9",
+          "display_format": "{} - {}",
+          "is_selected": false,
+          "max": 9,
+          "min": 0,
+          "query_format": "[{} TO {}]",
+          "selected_max": 9,
+          "selected_min": 0
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Price",
+        "kind": "range",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Min%20price%20effective.png",
+        "name": "min_price_effective"
+      },
+      "values": [
+        {
+          "count": 4263,
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "is_selected": false,
+          "max": 24999,
+          "min": 398,
+          "query_format": "[{},INR TO {},INR]",
+          "selected_max": 24998.77,
+          "selected_min": 398.8
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Discount",
+        "kind": "range",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Platform%20Discount.png",
+        "name": "platform_discount"
+      },
+      "values": [
+        {
+          "count": 4263,
+          "display": "0 - 50",
+          "display_format": "{} - {}",
+          "is_selected": false,
+          "max": 50,
+          "min": 0,
+          "query_format": "[{} TO {}]",
+          "selected_max": 50,
+          "selected_min": 0
+        }
+      ]
+    }
+  ],
+  "sort_on": [
+    {
+      "display": "Latest Products",
+      "is_selected": true,
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Latest%20Products.png",
+      "name": "Latest Products",
+      "value": "latest"
+    },
+    {
+      "display": "Popularity",
+      "is_selected": false,
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Popularity.png",
+      "name": "Popularity",
+      "value": "popular"
+    },
+    {
+      "display": "Price Low to High",
+      "is_selected": false,
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
+      "name": "Price Low to High",
+      "value": "price_asc"
+    },
+    {
+      "display": "Price High to Low",
+      "is_selected": false,
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
+      "name": "Price High to Low",
+      "value": "price_dsc"
+    },
+    {
+      "display": "Discount Low to High",
+      "is_selected": false,
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
+      "name": "Discount Low to High",
+      "value": "discount_asc"
+    },
+    {
+      "display": "Discount High to Low",
+      "is_selected": false,
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
+      "name": "Discount High to Low",
+      "value": "discount_dsc"
+    },
+    {
+      "display": "Rating",
+      "is_selected": false,
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
+      "name": "Rating",
+      "value": "rating_dsc"
+    },
+    {
+      "display": "Size Depth (High to Low)",
+      "is_selected": false,
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
+      "name": "Size Depth (High to Low)",
+      "value": "depth_desc"
     }
   ]
 }
@@ -8588,8 +6587,1579 @@ List of Departments. See example below or refer `DepartmentResponse` for details
 ---
 
 
+### updateAllowSingle
+Update 'Allow Single' setting.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAllowSingle({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAllowSingle({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AllowSingleRequest](#AllowSingleRequest) | yes | Request body |
+
+
+Modify allow single flag for filters of the application.
+
+*Returned Response:*
+
+
+
+
+[ConfigSuccessResponse](#ConfigSuccessResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateDefaultSort
+Update default sorting.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateDefaultSort({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateDefaultSort({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DefaultKeyRequest](#DefaultKeyRequest) | yes | Request body |
+
+
+Modify the default sort key configuration for the application.
+
+*Returned Response:*
+
+
+
+
+[ConfigSuccessResponse](#ConfigSuccessResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateGroupConfiguration
+Update group configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateGroupConfiguration({  configType : value,
+ groupSlug : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateGroupConfiguration({  configType : value,
+ groupSlug : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | A `config_type` is a unique identifier for a particular group configuration type. |   
+| groupSlug | string | yes | A `group_slug` is a unique identifier of a particular configuration. |  
+| body | [AppConfigurationDetail](#AppConfigurationDetail) | yes | Request body |
+
+
+Modify the group configurations for the application.
+
+*Returned Response:*
+
+
+
+
+[AppConfigurationDetail](#AppConfigurationDetail)
+
+success flag will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "app_id": "5d64e3500bcad8693a821c0d",
+  "attributes": [
+    {
+      "display_type": "text",
+      "is_active": true,
+      "key": "features",
+      "name": "Features",
+      "priority": 1,
+      "slug": "features"
+    }
+  ],
+  "id": "62b1cdab15c88fa867ee4dac",
+  "is_active": true,
+  "is_default": false,
+  "name": "test",
+  "priority": 1,
+  "slug": "test15",
+  "template_slugs": [
+    "bags"
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateListingConfiguration
+Update listing configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateListingConfiguration({  configType : value,
+ configId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateListingConfiguration({  configType : value,
+ configId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | A `config_type` is a unique identifier for a particular listing configuration type. |   
+| configId | string | yes | A `config_id` is a unique identifier of a particular configuration. |  
+| body | [AppConfigurationsSort](#AppConfigurationsSort) | yes | Request body |
+
+
+Modify the details and settings of an existing listing configuration.
+
+*Returned Response:*
+
+
+
+
+[AppConfigurationsSort](#AppConfigurationsSort)
+
+success flag will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "app_id": "5d64e3500bcad8693a821c0d",
+  "default_key": "latest",
+  "id": "6250568de404abd533db571d",
+  "is_active": true,
+  "is_default": false,
+  "key": "latest",
+  "name": "Latest",
+  "priority": 1
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getAppProduct
+Retrieve application product data.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | string | yes | product id for a particular product. |  
+
+
+
+Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
+
+*Returned Response:*
+
+
+
+
+[OwnerAppItemResponse](#OwnerAppItemResponse)
+
+The Company Applicaton Product Data(MOQ/SEO).
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "alt_text": {
+    "https://test-url.com/test.png": "test-alt"
+  },
+  "is_cod": false,
+  "is_gift": false,
+  "moq": {
+    "increment_unit": 2,
+    "maximum": 10,
+    "minimum": 1
+  },
+  "seo": {
+    "description": "test-description",
+    "title": "test-title",
+    "breadcrumbs": [],
+    "sitemap": {},
+    "meta_tags": [],
+    "canonical_url": "/test"
+  },
+  "size_promotion_threshold": {
+    "threshold_type": "flat",
+    "threshold_value": 100
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppProduct
+Update application product data.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppProduct({  itemId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppProduct({  itemId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | string | yes | product id for which the custom_meta is associated. |  
+| body | [ApplicationItemMeta](#ApplicationItemMeta) | yes | Request body |
+
+
+Allows to update data associated to a item custom meta.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### addInventory
+Add Inventory for particular size and store.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.addInventory({  itemId : value,
+ size : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.addInventory({  itemId : value,
+ size : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | number | yes | Item code of the product of which size is to be get. |   
+| size | string | yes | Size in which inventory is to be added. |  
+| body | [InventoryRequest](#InventoryRequest) | yes | Request body |
+
+
+Allows add Inventory for particular size and store.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### allSizes
+Get all product sizes.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.allSizes({  itemId : value });
+
+// Async/Await
+const data = await platformClient.catalog.allSizes({  itemId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | number | yes | Id of the product to be updated. |  
+
+
+
+Retrieve all available sizes for a product.
+
+*Returned Response:*
+
+
+
+
+[GetAllSizes](#GetAllSizes)
+
+List Product Sizes. See example below or refer `AllSizes` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "all_sizes": [
+    {
+      "identifiers": [
+        {
+          "gtin_type": "ean",
+          "gtin_value": "74352323423",
+          "primary": true
+        }
+      ],
+      "item_dimensions_unit_of_measure": "cm",
+      "item_height": 100,
+      "item_length": 1000,
+      "item_weight": 100,
+      "item_weight_unit_of_measure": "gram",
+      "item_width": 1000,
+      "size": "OS"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### bulkHsnCode
+Bulk update HSN codes.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.bulkHsnCode({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.bulkHsnCode({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BulkHsnUpsert](#BulkHsnUpsert) | yes | Request body |
+
+
+Perform bulk updates of HSN codes for products.
+
+*Returned Response:*
+
+
+
+
+[BulkHsnResponse](#BulkHsnResponse)
+
+See example below for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createBulkInventory
+Create bulk inventory.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createBulkInventory({  batchId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createBulkInventory({  batchId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| batchId | string | yes | Batch Id of the bulk create job. |  
+| body | [InventoryBulkRequest](#InventoryBulkRequest) | yes | Request body |
+
+
+Helps to create products in bulk push to kafka for approval/creation.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createBulkInventoryJob
+Create bulk inventory upload job.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createBulkInventoryJob({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createBulkInventoryJob({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BulkJob](#BulkJob) | yes | Request body |
+
+
+Helps to create a bulk Inventory upload job.
+
+*Returned Response:*
+
+
+
+
+[BulkResponse](#BulkResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "507f1f77bcf86cd799439011",
+  "created_on": "2021-04-02T15:43:59.410000Z"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createInventoryExport
+Create inventory export.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createInventoryExport({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createInventoryExport({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InventoryCreateRequest](#InventoryCreateRequest) | yes | Request body |
+
+
+Helps to create a Inventory export job.
+
+*Returned Response:*
+
+
+
+
+[InventoryExportResponse](#InventoryExportResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createInventoryExportJob
+Create inventory export job.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createInventoryExportJob({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createInventoryExportJob({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InventoryExportRequest](#InventoryExportRequest) | yes | Request body |
+
+
+Helps to create a Inventory export job.
+
+*Returned Response:*
+
+
+
+
+[InventoryExportResponse](#InventoryExportResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createProduct
+Create a product.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createProduct({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createProduct({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ProductCreateUpdateSchemaV2](#ProductCreateUpdateSchemaV2) | yes | Request body |
+
+
+Allows to create product.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createProductAssetsInBulk
+Create product assets in bulk.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createProductAssetsInBulk({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createProductAssetsInBulk({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ProductBulkAssets](#ProductBulkAssets) | yes | Request body |
+
+
+Helps to create a bulk asset upload job.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createProductsInBulk
+Create products in bulk.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createProductsInBulk({  batchId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createProductsInBulk({  batchId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| batchId | string | yes | Batch Id in which assets to be uploaded. |  
+| body | [BulkProductRequest](#BulkProductRequest) | yes | Request body |
+
+
+Helps to create products in bulk push to kafka for approval/creation.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteBulkInventoryJob
+Delete inventory bulk upload job.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.deleteBulkInventoryJob({  batchId : value });
+
+// Async/Await
+const data = await platformClient.catalog.deleteBulkInventoryJob({  batchId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| batchId | string | yes | Batch Id of the bulk delete job. |  
+
+
+
+Allows to delete bulk Inventory job associated with company.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteProduct
+Delete a product.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.deleteProduct({  itemId : value });
+
+// Async/Await
+const data = await platformClient.catalog.deleteProduct({  itemId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | number | yes | Id of the product to be updated. |  
+
+
+
+Remove a specific product in the catalog
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteProductBulkJob
+Delete product bulk upload job.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.deleteProductBulkJob({  batchId : value });
+
+// Async/Await
+const data = await platformClient.catalog.deleteProductBulkJob({  batchId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| batchId | number | yes | Batch Id of the bulk product job to be deleted. |  
+
+
+
+Allows to delete bulk product job associated with company.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteRealtimeInventory
+Delete realtime inventory.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.deleteRealtimeInventory({  itemId : value,
+ sellerIdentifier : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.deleteRealtimeInventory({  itemId : value,
+ sellerIdentifier : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | number | yes | Item code of the product of which size is to be get. |   
+| sellerIdentifier | string | yes | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |  
+| body | [InventoryRequestSchemaV2](#InventoryRequestSchemaV2) | yes | Request body |
+
+
+Remove specific realtime inventory data.
+
+*Returned Response:*
+
+
+
+
+[InventoryUpdateResponse](#InventoryUpdateResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "data": {
+        "expiration_date": "9998-01-30T23:59:00",
+        "price_effective": 109.01,
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Product not found",
+        "reason_code": 2005
+      }
+    },
+    {
+      "data": {
+        "expiration_date": "9998-01-30T23:59:00",
+        "price_effective": 109.01,
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Size not found",
+        "reason_code": 2004
+      }
+    }
+  ],
+  "message": "Partially Successful"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteSize
+Delete product size.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.deleteSize({  itemId : value,
+ size : value });
+
+// Async/Await
+const data = await platformClient.catalog.deleteSize({  itemId : value,
+ size : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | number | yes | Item Id of the product associated with size to be deleted. |   
+| size | string | yes | size to be deleted. |  
+
+
+
+Allows to delete size associated with product.
+
+*Returned Response:*
+
+
+
+
+[ProductSizeDeleteResponse](#ProductSizeDeleteResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "company_id": 1,
+    "item_id": 114,
+    "size": "3"
+  },
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### editProduct
+Edit a product.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.editProduct({  itemId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.editProduct({  itemId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | number | yes | Id of the product to be updated. |  
+| body | [ProductCreateUpdateSchemaV2](#ProductCreateUpdateSchemaV2) | yes | Request body |
+
+
+Modify the details and settings of an existing product in the catalog.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### exportInventoryConfig
+Export inventory configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.exportInventoryConfig({  filterType : value });
+
+// Async/Await
+const data = await platformClient.catalog.exportInventoryConfig({  filterType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| filterType | string | no | filter type from any one of ['brand', 'store', 'type'] |  
+
+
+
+Retrieve List of different filters like brand, store, and type for inventory export.
+
+*Returned Response:*
+
+
+
+
+[InventoryConfig](#InventoryConfig)
+
+returns filters configuration for inventory export
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": [
+    {
+      "display": "csv",
+      "value": "csv"
+    },
+    {
+      "display": "excel",
+      "value": "excel"
+    }
+  ],
+  "multivalues": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAllProductHsnCodes
+Get all product HSN codes.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getAllProductHsnCodes({  pageNo : value,
+ pageSize : value,
+ q : value,
+ type : value });
+
+// Async/Await
+const data = await platformClient.catalog.getAllProductHsnCodes({  pageNo : value,
+ pageSize : value,
+ q : value,
+ type : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | page no |    
+| pageSize | number | no | page size |    
+| q | string | no | search using hsn code, description, reporting_hsn |    
+| type | string | no | search using type |  
+
+
+
+Retrieve all HSN codes associated with products.
+
+*Returned Response:*
+
+
+
+
+[HsnCodesListingResponseSchemaV2](#HsnCodesListingResponseSchemaV2)
+
+List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "country_code": "INDIA",
+      "description": "final test updated",
+      "hs2_code": "26",
+      "hsn_code": "123fght3",
+      "id": "619e17925e3d3ea77d6fe8cf",
+      "modified_on": "2021-11-25T06:37:00.880000Z",
+      "reporting_hsn": "12345678",
+      "slabs": [
+        {
+          "effective_date": "2021-11-18T10:00:31.798000+00:00",
+          "tax": 10,
+          "threshold": 100
+        },
+        {
+          "effective_date": "2022-11-18T10:00:31.798000+00:00",
+          "tax": 20,
+          "threshold": 200
+        }
+      ],
+      "tax_on_esp": true,
+      "tax_on_mrp": false,
+      "taxes": [
+        {
+          "effective_date": "2021-04-02T15:43:59.410000Z",
+          "rate": 0,
+          "threshold": 0.5
+        }
+      ],
+      "type": "goods",
+      "uid": "123fgh43-1"
+    }
+  ],
+  "page": {
+    "current": "1",
+    "has_next": true,
+    "has_previous": false,
+    "item_total": 8,
+    "size": 8,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getDiscountedInventoryBySizeIdentifier
-Get Inventory for company
+Get discounted inventory by size identifier.
 
 
 
@@ -8626,7 +8196,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getDis
 
 
 
-This API allows get Inventory data for particular company grouped by size and store.
+Allows to retrieve Inventory data for particular company grouped by size and store.
 
 *Returned Response:*
 
@@ -8975,266 +8545,8 @@ returns a list of all inventory grouped by size and store
 ---
 
 
-### getGenderAttribute
-Get gender attribute details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getGenderAttribute({  attributeSlug : value });
-
-// Async/Await
-const data = await platformClient.catalog.getGenderAttribute({  attributeSlug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| attributeSlug | string | yes | slug of the attribute for which you want to view the genders |  
-
-
-
-This API allows to view the gender attribute details.
-
-*Returned Response:*
-
-
-
-
-[GenderDetail](#GenderDetail)
-
-Size guide object. See example below or refer `GenderDetailSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "departments": [
-    "men-s-fashion",
-    "kids",
-    "women-s-fashion",
-    "beauty-personal-care"
-  ],
-  "description": "Clothing department needs gener attribute",
-  "details": {
-    "display_type": "text"
-  },
-  "enabled_for_end_consumer": true,
-  "filters": {
-    "indexing": true,
-    "priority": 2
-  },
-  "id": "5ed11eb0be8d5e00016f0335",
-  "is_nested": true,
-  "logo": "https://hdn-1.addsale.com/x0/products/pictures/attribute/logo/original/Rhv89tqRo-brand-website-logo.png",
-  "meta": {
-    "enriched": false,
-    "mandatory_details": {
-      "l3_keys": []
-    }
-  },
-  "name": "Gender",
-  "schema": {
-    "enum": [
-      "Men",
-      "Women",
-      "Boy",
-      "Girl",
-      "more",
-      "men"
-    ],
-    "format": "",
-    "mandatory": false,
-    "multi": true,
-    "type": "str"
-  },
-  "slug": "gender"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getGroupConfigurations
-Get the details of the application configured configurations of group config types.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getGroupConfigurations({  configType : value,
- pageNo : value,
- pageSize : value,
- search : value,
- templateSlug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getGroupConfigurations({  configType : value,
- pageNo : value,
- pageSize : value,
- search : value,
- templateSlug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configType | string | yes | A `config_type` is an identifier that defines a specific type of configuration. |    
-| pageNo | number | no | The page number to navigate through the given set of results. |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
-| search | string | no | Get configuration list filtered by `search` string. |    
-| templateSlug | string | no | Get configuration list filtered by `template_slug` string. This is for the details and comparision groups. |  
-
-
-
-Get the details of the application configured configurations of group config types.
-
-*Returned Response:*
-
-
-
-
-[GetConfigResponse](#GetConfigResponse)
-
-configuration details for catalog. See example below or refer `GetConfigResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": [
-    {
-      "app_id": "5d65089e031f9029f8e8dc2f",
-      "attributes": [
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "item_code",
-          "name": "Item Code",
-          "priority": 1,
-          "slug": "item_code"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "brand",
-          "name": "Brand",
-          "priority": 2,
-          "slug": "brand"
-        }
-      ],
-      "id": "62a84b90bd43c0fe4cf53574",
-      "is_active": true,
-      "is_default": false,
-      "name": "Test Group12 ",
-      "priority": 1,
-      "slug": "test-group12-31",
-      "template_slugs": [
-        "atesttemplate"
-      ]
-    },
-    {
-      "app_id": "5d65089e031f9029f8e8dc2f",
-      "attributes": [
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "item_code",
-          "name": "Item Code",
-          "priority": 1,
-          "slug": "item_code"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "brand",
-          "name": "Brand",
-          "priority": 2,
-          "slug": "brand"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "country_of_origin",
-          "name": "Country Of Origin",
-          "priority": 3,
-          "slug": "country_of_origin"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "image_nature",
-          "name": "Image Type",
-          "priority": 4,
-          "slug": "image_nature"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "discount",
-          "name": "Discount",
-          "priority": 5,
-          "slug": "discount"
-        }
-      ],
-      "id": "62a84b9ebd43c0fe4cf53576",
-      "is_active": true,
-      "is_default": false,
-      "name": "ET",
-      "priority": 2,
-      "slug": "et14",
-      "template_slugs": [
-        "atesttemplate"
-      ]
-    }
-  ],
-  "page": {
-    "current": 1,
-    "has_next": false,
-    "next": 2,
-    "total_count": 2
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getHsnCode
-Fetch Hsn Code.
+Get HSN code.
 
 
 
@@ -9256,7 +8568,7 @@ const data = await platformClient.catalog.getHsnCode({  id : value });
 
 
 
-Fetch Hsn Code.
+Retrieve the HSN code for a product.
 
 *Returned Response:*
 
@@ -9312,7 +8624,7 @@ See example below details
 
 
 ### getInventories
-Get Inventory for company
+Retrieve inventories.
 
 
 
@@ -9355,7 +8667,7 @@ const data = await platformClient.catalog.getInventories({  itemId : value,
 
 
 
-This API allows get Inventories data for particular company.
+Allows to get Inventories data for particular company.
 
 *Returned Response:*
 
@@ -9866,7 +9178,7 @@ returns a list of all inventory grouped by size and store
 
 
 ### getInventoryBulkUploadHistory
-Get a list of all bulk Inventory upload jobs.
+Retrieve inventory bulk upload history.
 
 
 
@@ -9891,7 +9203,7 @@ const data = await platformClient.catalog.getInventoryBulkUploadHistory({  pageN
 
 
 
-This API helps to get bulk Inventory upload jobs data.
+Helps to get bulk Inventory upload jobs data.
 
 *Returned Response:*
 
@@ -10220,7 +9532,7 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 
 
 ### getInventoryBySize
-Get Inventory for company
+Get inventory by size.
 
 
 
@@ -10257,7 +9569,7 @@ const data = await platformClient.catalog.getInventoryBySize({  itemId : value,
 
 
 
-This API allows get Inventory data for particular company grouped by size and store.
+Allows to retrieve Inventory data for particular company grouped by size and store.
 
 *Returned Response:*
 
@@ -10563,7 +9875,7 @@ returns a list of all inventory grouped by size and store
 
 
 ### getInventoryBySizeIdentifier
-Get Inventory for company
+Get inventory by size identifier.
 
 
 
@@ -10600,7 +9912,7 @@ const data = await platformClient.catalog.getInventoryBySizeIdentifier({  itemId
 
 
 
-This API allows get Inventory data for particular company grouped by size and store.
+Allows to retrieve Inventory data for particular company grouped by size and store.
 
 *Returned Response:*
 
@@ -10940,7 +10252,7 @@ returns a list of all inventory grouped by size and store
 
 
 ### getInventoryExport
-Get Inventory export history.
+Retrieve inventory export data.
 
 
 
@@ -10957,7 +10269,7 @@ const data = await platformClient.catalog.getInventoryExport();
 
 
 
-This API helps to get Inventory export history.
+Helps to retrieve Inventory export history.
 
 *Returned Response:*
 
@@ -10990,374 +10302,8 @@ Returns a list of inventory export jobs
 ---
 
 
-### getListingConfigurations
-Get the details of the application configured configurations of listing config types.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getListingConfigurations({  configType : value,
- pageNo : value,
- pageSize : value,
- search : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getListingConfigurations({  configType : value,
- pageNo : value,
- pageSize : value,
- search : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configType | string | yes | A `config_type` is an identifier that defines a specific type of configuration. |    
-| pageNo | number | no | The page number to navigate through the given set of results. |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
-| search | string | no | Get configuration list filtered by `search` string. |  
-
-
-
-Get the details of the application configured configurations of listing config types.
-
-*Returned Response:*
-
-
-
-
-[GetConfigResponse](#GetConfigResponse)
-
-configuration details for catalog. See example below or refer `GetConfigResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": [
-    {
-      "app_id": "5d65089e031f9029f8e8dc2f",
-      "attributes": [
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "item_code",
-          "name": "Item Code",
-          "priority": 1,
-          "slug": "item_code"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "brand",
-          "name": "Brand",
-          "priority": 2,
-          "slug": "brand"
-        }
-      ],
-      "id": "62a84b90bd43c0fe4cf53574",
-      "is_active": true,
-      "is_default": false,
-      "name": "Test Group12 ",
-      "priority": 1,
-      "slug": "test-group12-31",
-      "template_slugs": [
-        "atesttemplate"
-      ]
-    },
-    {
-      "app_id": "5d65089e031f9029f8e8dc2f",
-      "attributes": [
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "item_code",
-          "name": "Item Code",
-          "priority": 1,
-          "slug": "item_code"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "brand",
-          "name": "Brand",
-          "priority": 2,
-          "slug": "brand"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "country_of_origin",
-          "name": "Country Of Origin",
-          "priority": 3,
-          "slug": "country_of_origin"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "image_nature",
-          "name": "Image Type",
-          "priority": 4,
-          "slug": "image_nature"
-        },
-        {
-          "display_type": "text",
-          "is_active": true,
-          "key": "discount",
-          "name": "Discount",
-          "priority": 5,
-          "slug": "discount"
-        }
-      ],
-      "id": "62a84b9ebd43c0fe4cf53576",
-      "is_active": true,
-      "is_default": false,
-      "name": "ET",
-      "priority": 2,
-      "slug": "et14",
-      "template_slugs": [
-        "atesttemplate"
-      ]
-    }
-  ],
-  "page": {
-    "current": 1,
-    "has_next": false,
-    "next": 2,
-    "total_count": 2,
-    "type": "number"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getMarketplaceOptinDetail
-Get opt-in infomation.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getMarketplaceOptinDetail();
-
-// Async/Await
-const data = await platformClient.catalog.getMarketplaceOptinDetail();
-```
-
-
-
-
-
-
-Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
-
-*Returned Response:*
-
-
-
-
-[GetOptInPlatform](#GetOptInPlatform)
-
-See example below or refer `GetOptInPlatformSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getMarketplaces
-List all marketplaces
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getMarketplaces();
-
-// Async/Await
-const data = await platformClient.catalog.getMarketplaces();
-```
-
-
-
-
-
-
-This API allows to get marketplace information.
-
-*Returned Response:*
-
-
-
-
-[GetAllMarketplaces](#GetAllMarketplaces)
-
-List all Marketplace details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "brand_ids": [],
-      "app_id": "000000000000000000000001",
-      "enabled": true,
-      "created_by": {
-        "username": "test@gofynd.com",
-        "user_id": "ef56cde2dc3227c44bcb73fd"
-      },
-      "created_on": "2023-07-11T18:27:10.477000",
-      "opt_level": "company",
-      "company_id": 1,
-      "modified_by": {
-        "username": "test@gofynd.com",
-        "user_id": "ef56cde2dc3227c44bcb73fd"
-      },
-      "store_ids": [],
-      "modified_on": "2023-07-11T18:27:10.477000",
-      "platform": "fynd",
-      "_id": "64ad9efe8069f0f413265003"
-    }
-  ],
-  "page": {
-    "current": 1,
-    "has_next": false,
-    "has_previous": false,
-    "item_total": 6,
-    "size": 1,
-    "type": "number"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOptimalLocations
-Location Reassignment
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getOptimalLocations({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.getOptimalLocations({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AssignStore](#AssignStore) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[StoreAssignResponse](#StoreAssignResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "61161830f1061e7c7f81d8ed",
-  "article_assignment": {
-    "level": "multi-company",
-    "strategy": "app-config"
-  },
-  "company_id": 783,
-  "index": 0,
-  "item_id": 75252658,
-  "price_effective": 995,
-  "price_marked": 995,
-  "quantity": 1,
-  "s_city": "NOIDA",
-  "size": "OS",
-  "status": true,
-  "store_id": 11550,
-  "store_pincode": 201303,
-  "strategy_wise_listing": [],
-  "uid": "11550_000000410234883001"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getProduct
-Get a single product.
+Get product details.
 
 
 
@@ -11385,7 +10331,7 @@ const data = await platformClient.catalog.getProduct({  itemId : value,
 
 
 
-This API helps to get data associated to a particular product.
+Retrieve data associated to a particular product.
 
 *Returned Response:*
 
@@ -11578,7 +10524,7 @@ Product object. See example below or refer `product.utils.format_product_respons
 
 
 ### getProductAssetsInBulk
-Get a list of all bulk asset jobs.
+Retrieve product assets in bulk.
 
 
 
@@ -11603,7 +10549,7 @@ const data = await platformClient.catalog.getProductAssetsInBulk({  pageNo : val
 
 
 
-This API helps to get bulk asset jobs data associated to a particular company.
+Helps to retrieve bulk asset jobs data associated to a particular company.
 
 *Returned Response:*
 
@@ -11674,7 +10620,7 @@ List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
 
 
 ### getProductAttributes
-Get list of all the attributes by their l3_categories
+Get product attributes.
 
 
 
@@ -11699,7 +10645,7 @@ const data = await platformClient.catalog.getProductAttributes({  category : val
 
 
 
-This API allows to list all the attributes by their l3_categories.
+List all the attributes by their L3 categories.
 
 *Returned Response:*
 
@@ -12117,7 +11063,7 @@ Size guide object. See example below or refer `ProductAttributesResponseSchema` 
 
 
 ### getProductBulkUploadHistory
-Get a list of all bulk product upload jobs.
+Retrieve product bulk upload history.
 
 
 
@@ -12145,7 +11091,7 @@ const data = await platformClient.catalog.getProductBulkUploadHistory({  search 
 
 
 
-This API helps to get bulk product upload jobs data.
+Helps to get bulk product upload jobs data.
 
 *Returned Response:*
 
@@ -12229,574 +11175,8 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 ---
 
 
-### getProductBundle
-List all Product Bundles
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getProductBundle({  q : value,
- slug : value });
-
-// Async/Await
-const data = await platformClient.catalog.getProductBundle({  q : value,
- slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| q | string | no | A search string that is searched with product bundle name. |    
-| slug | Array<string> | no | slugs of bundles to be retrieved. |  
-
-
-
-Get all product bundles for a particular company
-
-*Returned Response:*
-
-
-
-
-[GetProductBundleListingResponse](#GetProductBundleListingResponse)
-
-List of bundle configured for a company. See example below or refer `GetProductBundleListingResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "choice": "multi",
-      "company_id": 1,
-      "created_by": {
-        "uid": "123",
-        "username": "917827311650_22960"
-      },
-      "created_on": "2021-02-19 16:40:26.310007",
-      "id": "602f9ca2a596ce312f5956f9",
-      "is_active": true,
-      "logo": "http://g.com/poo.png/",
-      "meta": {},
-      "modified_by": {
-        "uid": "123",
-        "username": "917827311650_22960"
-      },
-      "modified_on": "2021-02-19 16:40:26.310027",
-      "name": "Bag",
-      "page_visibility": [
-        "pdp"
-      ],
-      "products": [
-        {
-          "allow_remove": true,
-          "auto_add_to_cart": false,
-          "auto_select": false,
-          "max_quantity": 1,
-          "min_quantity": 1,
-          "product_uid": 7500001
-        }
-      ],
-      "same_store_assignment": true,
-      "slug": "bag"
-    },
-    {
-      "choice": "multi",
-      "company_id": 1,
-      "created_by": {
-        "uid": "123",
-        "username": "917827311650_22960"
-      },
-      "created_on": "2021-02-19 16:21:35.091512",
-      "id": "602f9837a596ce2edf9868e2",
-      "is_active": true,
-      "logo": "http://g.com/poo.png/",
-      "meta": {},
-      "modified_by": {
-        "uid": "123",
-        "username": "917827311650_22960"
-      },
-      "modified_on": "2021-02-19 16:21:35.091540",
-      "name": "Bag",
-      "page_visibility": [
-        "pdp"
-      ],
-      "products": [
-        {
-          "allow_remove": true,
-          "auto_add_to_cart": false,
-          "auto_select": false,
-          "max_quantity": 1,
-          "min_quantity": 1,
-          "product_uid": 7500001
-        }
-      ],
-      "same_store_assignment": true,
-      "slug": "bag"
-    },
-    {
-      "choice": "multi",
-      "company_id": 1,
-      "created_by": {
-        "uid": "123",
-        "username": "917827311650_22960"
-      },
-      "created_on": "2021-02-19 16:20:24.605207",
-      "id": "602f97f0a596ce2ead47cd0b",
-      "is_active": true,
-      "logo": "http://g.com/poo.png/",
-      "meta": {},
-      "modified_by": {
-        "uid": "123",
-        "username": "917827311650_22960"
-      },
-      "modified_on": "2021-02-19 16:20:24.605230",
-      "name": "Bag",
-      "page_visibility": [
-        "pdp"
-      ],
-      "products": [
-        {
-          "allow_remove": true,
-          "auto_add_to_cart": false,
-          "auto_select": false,
-          "max_quantity": 1,
-          "min_quantity": 1,
-          "product_uid": 7500001
-        }
-      ],
-      "same_store_assignment": true,
-      "slug": "bag"
-    },
-    {
-      "choice": "multi",
-      "company_id": 1,
-      "created_by": {
-        "uid": "123",
-        "username": "917827311650_22960"
-      },
-      "created_on": "2021-02-19 16:16:46.196449",
-      "id": "602f9716a596ce2e415196df",
-      "is_active": true,
-      "logo": "http://g.com/poo.png/",
-      "meta": {},
-      "modified_by": {
-        "uid": "123",
-        "username": "917827311650_22960"
-      },
-      "modified_on": "2021-02-19 16:16:46.196467",
-      "name": "Bag",
-      "page_visibility": [
-        "pdp"
-      ],
-      "products": [
-        {
-          "allow_remove": true,
-          "auto_add_to_cart": false,
-          "auto_select": false,
-          "max_quantity": 1,
-          "min_quantity": 1,
-          "product_uid": 7500001
-        }
-      ],
-      "same_store_assignment": true,
-      "slug": "bag"
-    }
-  ],
-  "page": {
-    "current": 1,
-    "has_next": false,
-    "has_previous": false,
-    "total": 1,
-    "total_item_count": 4,
-    "type": "number"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getProductBundleDetail
-Get a particular Product Bundle details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getProductBundleDetail({  id : value });
-
-// Async/Await
-const data = await platformClient.catalog.getProductBundleDetail({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
-
-
-
-Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-
-*Returned Response:*
-
-
-
-
-[GetProductBundleResponse](#GetProductBundleResponse)
-
-The Collection object. See example below or refer `GetProductBundleResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "choice": "multi",
-  "company_id": 1,
-  "logo": "http://g.com/poo.png/",
-  "meta": {},
-  "name": "Bag",
-  "page_visibility": [
-    "pdp"
-  ],
-  "products": [
-    {
-      "allow_remove": true,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "product_details": {
-        "attributes": {
-          "brand_name": "brand 2"
-        },
-        "country_of_origin": "India",
-        "images": [
-          "https://hdn-1.addsale.com/x0/media/pictures/tagged_items/original/random_code_4/FE6DUR_000000.png"
-        ],
-        "item_code": "760B3BFF-4905-44B8-A50E-082829E7107F",
-        "name": "Some Phone",
-        "slug": "slug-1",
-        "uid": 7500001
-      },
-      "product_uid": 7500001
-    }
-  ],
-  "same_store_assignment": true,
-  "slug": "bag"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getProductDetailBySlug
-Get a product
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |  
-
-
-
-Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
-
-*Returned Response:*
-
-
-
-
-[ProductDetail](#ProductDetail)
-
-The Product object. See example below or refer `ProductDetail` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "attributes": {
-    "brand": "Barry, Jennings and Larson",
-    "color": "DarkGrey",
-    "color_hex": "808080",
-    "gender": [
-      "Men",
-      "Women"
-    ],
-    "item_code": "LGLAPTOPSLEEVE5",
-    "material": "Neoprene",
-    "occasion": "Casual",
-    "primary_color": "Grey",
-    "primary_color_hex": "808080",
-    "primary_material": "Others",
-    "product_details": "This is a Unisex Product.",
-    "product_type": "LaptopBags",
-    "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
-    "variant": "LGLAPTOPSLEEVE5",
-    "weight": 100
-  },
-  "brand": {
-    "_custom_json": {},
-    "action": {
-      "page": {
-        "query": {
-          "brand": [
-            "Hess-Inc"
-          ]
-        },
-        "type": "products"
-      },
-      "type": "page"
-    },
-    "logo": {
-      "type": "image",
-      "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
-    },
-    "name": "Barry, Jennings and Larson",
-    "uid": 1
-  },
-  "categories": [
-    {
-      "_custom_json": {},
-      "action": {
-        "page": {
-          "query": {
-            "category": [
-              "Amy-Kim-DDS"
-            ]
-          },
-          "type": "category"
-        },
-        "type": "page"
-      },
-      "id": 3,
-      "logo": {
-        "type": "image",
-        "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
-      },
-      "name": "Amy Kim DDS",
-      "uid": 3
-    }
-  ],
-  "color": "808080",
-  "custom_order": {},
-  "grouped_attributes": [
-    {
-      "details": [
-        {
-          "key": "Kimberly Davidson",
-          "type": "text",
-          "value": "DarkGrey"
-        },
-        {
-          "key": "Kimberly Mcdaniel",
-          "type": "text",
-          "value": "Men,Women"
-        },
-        {
-          "key": "Monica Hampton",
-          "type": "text",
-          "value": "Neoprene"
-        },
-        {
-          "key": "John Mendoza",
-          "type": "text",
-          "value": "100 g"
-        }
-      ],
-      "title": "Alexander Sawyer"
-    }
-  ],
-  "has_variant": true,
-  "image_nature": "standard",
-  "medias": [
-    {
-      "type": "image",
-      "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
-    }
-  ],
-  "name": "benchmark collaborative paradigms",
-  "no_of_boxes": 1,
-  "product_online_date": "2021-02-03T07:22:29Z",
-  "rating": 2.7,
-  "rating_count": 2,
-  "similars": [
-    "brand"
-  ],
-  "slug": "benchmark-collaborative-paradigms",
-  "tags": [
-    "Digital"
-  ],
-  "teaser_tag": {},
-  "tryouts": [],
-  "type": "product",
-  "uid": 1
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getProductExportJobs
-Allows you to list all product templates export list details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getProductExportJobs({  status : value,
- fromDate : value,
- toDate : value,
- q : value });
-
-// Async/Await
-const data = await platformClient.catalog.getProductExportJobs({  status : value,
- fromDate : value,
- toDate : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| status | string | no | This is a parameter used to find all the jobs with the specified status. |    
-| fromDate | string | no | This is a parameter used to find the job from the date specified to the current date. |    
-| toDate | string | no | This is a parameter used to find the job from the from_date specified to the to_date. |    
-| q | string | no | It is a query parameter to search the export job with the task ID. |  
-
-
-
-Can view details including trigger data, task id , etc.
-
-*Returned Response:*
-
-
-
-
-[ProductDownloadsResponse](#ProductDownloadsResponse)
-
-List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "completed_on": "2020-12-23T07:23:41.031000Z",
-      "created_by": {
-        "user_id": "5646",
-        "username": "917972410891_48194"
-      },
-      "data": {
-        "brand": [
-          "ruosh"
-        ],
-        "templates": [
-          "mobile-phones-and-tablet"
-        ],
-        "type": "csv"
-      },
-      "id": "5fe2f077516d980001880943",
-      "seller_id": 3,
-      "status": "success",
-      "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
-      "template_tags": {
-        "mobile-phones-and-tablet": {
-          "display": "Mobile Phones & Tablet",
-          "logo": "https://hdn-1.jiox0.de/jiox0/seller/pictures/logo/original/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpgcc2dff44-7fae-4002-9ebe-d2b59c8bee91/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpg"
-        }
-      },
-      "trigger_on": "2020-12-23T07:23:35.302000Z",
-      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip"
-    }
-  ],
-  "page": {}
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getProductSize
-Get a single product size.
+Get product size details.
 
 
 
@@ -12827,7 +11207,7 @@ const data = await platformClient.catalog.getProductSize({  itemId : value,
 
 
 
-This API helps to get data associated to a particular product size.
+Retrieve data associated to a particular product size.
 
 *Returned Response:*
 
@@ -12961,7 +11341,7 @@ Product object. See example below for details
 
 
 ### getProductTags
-Get a list of all tags associated with company.
+Get product tags.
 
 
 
@@ -12978,7 +11358,7 @@ const data = await platformClient.catalog.getProductTags();
 
 
 
-This API helps to get tags data associated to a particular company.
+Retrieve tags data associated to a particular company.
 
 *Returned Response:*
 
@@ -13017,7 +11397,7 @@ Tag List. See example below for details
 
 
 ### getProductValidation
-Validate product/size data
+Get product validation.
 
 
 
@@ -13034,7 +11414,7 @@ const data = await platformClient.catalog.getProductValidation();
 
 
 
-This API validates product data.
+Retrieve validation data for a specific product.
 
 *Returned Response:*
 
@@ -13070,7 +11450,7 @@ Validate Meta. See example below for details
 
 
 ### getProducts
-Get product list
+Retrieve products.
 
 
 
@@ -13116,7 +11496,7 @@ const data = await platformClient.catalog.getProducts({  brandIds : value,
 
 
 
-This API gets meta associated to products.
+Retrieve a list of products available
 
 *Returned Response:*
 
@@ -13315,642 +11695,8 @@ Product Meta. See example below for details
 ---
 
 
-### getQueryFilters
-Get query filters to configure a collection
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters();
-```
-
-
-
-
-
-
-Get query filters to configure a collection
-
-*Returned Response:*
-
-
-
-
-[GetQueryFiltersResponse](#GetQueryFiltersResponse)
-
-The attached items of an collection. See example below or refer `GetQueryFiltersResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "filters": [
-    {
-      "key": {
-        "display": "Department",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
-        "name": "department"
-      },
-      "values": [
-        {
-          "count": 2113,
-          "display": "Men's Fashion",
-          "is_selected": false,
-          "logo": {
-            "type": "image",
-            "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/Men.png"
-          },
-          "value": "men"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Category",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
-        "name": "category"
-      },
-      "values": [
-        {
-          "count": 968,
-          "display": "T-Shirts",
-          "is_selected": false,
-          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
-          "value": "192"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Category L1",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
-        "name": "category"
-      },
-      "values": [
-        {
-          "count": 968,
-          "display": "T-Shirts",
-          "is_selected": false,
-          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
-          "value": "192"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Category L2",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
-        "name": "category"
-      },
-      "values": [
-        {
-          "count": 968,
-          "display": "T-Shirts",
-          "is_selected": false,
-          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
-          "value": "192"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Size",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.png",
-        "name": "sizes"
-      },
-      "values": [
-        {
-          "count": 1438,
-          "display": "S",
-          "is_selected": false,
-          "value": "S"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Brand",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.png",
-        "name": "brand"
-      },
-      "values": [
-        {
-          "count": 4263,
-          "display": "Superdry",
-          "is_selected": false,
-          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/1008_238113b8e11448f792e9bf860aac30f2.jpg",
-          "value": "235"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Rating",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
-        "name": "rating"
-      },
-      "values": [
-        {
-          "count": 3,
-          "display": "5 ★",
-          "is_selected": false,
-          "value": "[4 TO *}"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Company",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png",
-        "name": "company_id_list"
-      },
-      "values": [
-        {
-          "count": 4262,
-          "display": "RELIANCE BRANDS LIMITED",
-          "is_selected": false,
-          "value": "46"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Store Ids",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png",
-        "name": "store_id_list"
-      },
-      "values": [
-        {
-          "count": 1385,
-          "display": "PHOENIX, ,PALLADIUM,  LOWER PAREL - 5410",
-          "is_selected": false,
-          "value": "2201"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Image",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.png",
-        "name": "image_nature"
-      },
-      "values": [
-        {
-          "count": 3111,
-          "display": "Good Quality",
-          "is_selected": false,
-          "value": "standard"
-        },
-        {
-          "count": 1152,
-          "display": "No Image",
-          "is_selected": false,
-          "value": "default"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Set",
-        "kind": "multivalued",
-        "logo": "",
-        "name": "is_set"
-      },
-      "values": [
-        {
-          "count": 4263,
-          "display": "No",
-          "is_selected": false,
-          "value": false
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Product Fit",
-        "kind": "multivalued",
-        "logo": "",
-        "name": "product_fit"
-      },
-      "values": [
-        {
-          "count": 14,
-          "display": "Regular",
-          "is_selected": false,
-          "value": "Regular"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Primary Material",
-        "kind": "multivalued",
-        "logo": "",
-        "name": "primary_material"
-      },
-      "values": [
-        {
-          "count": 1246,
-          "display": "Cotton",
-          "is_selected": false,
-          "value": "Cotton"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Gender",
-        "kind": "multivalued",
-        "logo": "",
-        "name": "gender"
-      },
-      "values": [
-        {
-          "count": 2125,
-          "display": "Men",
-          "is_selected": false,
-          "value": "Men"
-        },
-        {
-          "count": 1492,
-          "display": "Women",
-          "is_selected": false,
-          "value": "Women"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Primary Colour",
-        "kind": "multivalued",
-        "logo": "",
-        "name": "primary_color"
-      },
-      "values": [
-        {
-          "count": 1403,
-          "display": "Multi",
-          "is_selected": false,
-          "value": "Multi"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Size Depth",
-        "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
-        "name": "size_depth"
-      },
-      "values": [
-        {
-          "count": 4263,
-          "display": "0 - 9",
-          "display_format": "{} - {}",
-          "is_selected": false,
-          "max": 9,
-          "min": 0,
-          "query_format": "[{} TO {}]",
-          "selected_max": 9,
-          "selected_min": 0
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Price",
-        "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Min%20price%20effective.png",
-        "name": "min_price_effective"
-      },
-      "values": [
-        {
-          "count": 4263,
-          "currency_code": "INR",
-          "currency_symbol": "₹",
-          "is_selected": false,
-          "max": 24999,
-          "min": 398,
-          "query_format": "[{},INR TO {},INR]",
-          "selected_max": 24998.77,
-          "selected_min": 398.8
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Discount",
-        "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Platform%20Discount.png",
-        "name": "platform_discount"
-      },
-      "values": [
-        {
-          "count": 4263,
-          "display": "0 - 50",
-          "display_format": "{} - {}",
-          "is_selected": false,
-          "max": 50,
-          "min": 0,
-          "query_format": "[{} TO {}]",
-          "selected_max": 50,
-          "selected_min": 0
-        }
-      ]
-    }
-  ],
-  "sort_on": [
-    {
-      "display": "Latest Products",
-      "is_selected": true,
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Latest%20Products.png",
-      "name": "Latest Products",
-      "value": "latest"
-    },
-    {
-      "display": "Popularity",
-      "is_selected": false,
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Popularity.png",
-      "name": "Popularity",
-      "value": "popular"
-    },
-    {
-      "display": "Price Low to High",
-      "is_selected": false,
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
-      "name": "Price Low to High",
-      "value": "price_asc"
-    },
-    {
-      "display": "Price High to Low",
-      "is_selected": false,
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
-      "name": "Price High to Low",
-      "value": "price_dsc"
-    },
-    {
-      "display": "Discount Low to High",
-      "is_selected": false,
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
-      "name": "Discount Low to High",
-      "value": "discount_asc"
-    },
-    {
-      "display": "Discount High to Low",
-      "is_selected": false,
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
-      "name": "Discount High to Low",
-      "value": "discount_dsc"
-    },
-    {
-      "display": "Rating",
-      "is_selected": false,
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
-      "name": "Rating",
-      "value": "rating_dsc"
-    },
-    {
-      "display": "Size Depth (High to Low)",
-      "is_selected": false,
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
-      "name": "Size Depth (High to Low)",
-      "value": "depth_desc"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSearchConfiguration
-List search configuration for an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getSearchConfiguration();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getSearchConfiguration();
-```
-
-
-
-
-
-
-This view allows you to add/modify searchable attributes for an application
-
-*Returned Response:*
-
-
-
-
-[GetSearchConfigurationResponse](#GetSearchConfigurationResponse)
-
-Search configuration for the specified application. See example below or refer `GetSearchConfigurationResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "application_id": "1234",
-  "company_id": 1,
-  "is_proximity_enabled": false,
-  "proximity": 2,
-  "searchable_attributes": [
-    {
-      "key": "brand_uid",
-      "name": "",
-      "priority": 1
-    },
-    {
-      "key": "category_uid",
-      "name": "",
-      "priority": 2
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSearchKeywords
-Get a Search Keywords Details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
-
-
-
-Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
-
-*Returned Response:*
-
-
-
-
-[GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
-
-The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_custom_json": {},
-  "app_id": "000000000000000000000001",
-  "is_active": true,
-  "result": {
-    "query": {
-      "department": [
-        "men"
-      ]
-    },
-    "sort_on": "popular"
-  },
-  "uid": "602fa1e9a596ce349563f6b9",
-  "words": [
-    "sds"
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSellerInsights
-Analytics data of catalog and inventory that are being cross-selled.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getSellerInsights({  sellerAppId : value });
-
-// Async/Await
-const data = await platformClient.catalog.getSellerInsights({  sellerAppId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| sellerAppId | string | yes | Id of the seller application which is serving the invetory/catalog of the company |  
-
-
-
-Analytics data of catalog and inventory that are being cross-selled.
-
-*Returned Response:*
-
-
-
-
-[CrossSellingResponse](#CrossSellingResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "articles": 18,
-  "products": 18
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getSingleProductHSNCode
-Hsn Code List.
+Get single product HSN code.
 
 
 
@@ -13972,7 +11718,7 @@ const data = await platformClient.catalog.getSingleProductHSNCode({  reportingHs
 
 
 
-Hsn Code List.
+Retrieve the HSN code for a single product.
 
 *Returned Response:*
 
@@ -14040,305 +11786,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 ---
 
 
-### getSizeGuide
-Get a single size guide.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getSizeGuide({  id : value });
-
-// Async/Await
-const data = await platformClient.catalog.getSizeGuide({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Id of the size guide to be viewed. |  
-
-
-
-This API helps to get data associated to a size guide.
-
-*Returned Response:*
-
-
-
-
-[SizeGuideResponse](#SizeGuideResponse)
-
-Brand object. See example below or refer `SizeGuideResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "active": true,
-  "brand_id": 1,
-  "company_id": 1,
-  "created_by": {
-    "user_id": "-1",
-    "username": "silverbolt"
-  },
-  "created_on": "2021-02-24T17:46:04.146000Z",
-  "guide": {
-    "meta": {
-      "headers": {
-        "col_1": {
-          "convertable": false,
-          "value": "Head"
-        },
-        "col_2": {
-          "convertable": true,
-          "value": "Shoulder"
-        }
-      },
-      "unit": "cm",
-      "values": [
-        {
-          "col_1": "10",
-          "col_2": "20"
-        },
-        {
-          "col_1": "12",
-          "col_2": "22"
-        },
-        {
-          "col_1": "14",
-          "col_2": "24"
-        }
-      ]
-    }
-  },
-  "id": "60364384f08385bee776f83d",
-  "modified_by": {
-    "user_id": "123",
-    "username": "917827311650_22960"
-  },
-  "modified_on": "2021-02-25T15:19:30.822000Z",
-  "name": "edited size guide",
-  "subtitle": "I am demo",
-  "tag": "demo",
-  "title": "Demo SG"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSizeGuides
-Get list of size guides
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getSizeGuides({  active : value,
- q : value,
- tag : value,
- pageNo : value,
- pageSize : value,
- brandId : value });
-
-// Async/Await
-const data = await platformClient.catalog.getSizeGuides({  active : value,
- q : value,
- tag : value,
- pageNo : value,
- pageSize : value,
- brandId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| active | boolean | no | filter size guide on basis of active, in-active |    
-| q | string | no | Query that is to be searched. |    
-| tag | string | no | to filter size guide on basis of tag. |    
-| pageNo | number | no | The page number to navigate through the given set of results |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
-| brandId | number | no | Brand id that is to be searched. |  
-
-
-
-This API allows to view all the size guides associated to the seller.
-
-*Returned Response:*
-
-
-
-
-[ListSizeGuide](#ListSizeGuide)
-
-Size guide object. See example below or refer `ListSizeGuide` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "active": true,
-      "brand_id": 2,
-      "company_id": 12,
-      "created_by": {
-        "user_id": "-1",
-        "username": "silverbolt"
-      },
-      "created_on": "2021-02-24T17:46:04.146000Z",
-      "guide": {
-        "meta": {
-          "headers": {
-            "col_1": {
-              "convertable": false,
-              "value": "Head"
-            },
-            "col_2": {
-              "convertable": true,
-              "value": "Shoulder"
-            }
-          },
-          "unit": "cm",
-          "values": [
-            {
-              "col_1": "10",
-              "col_2": "20"
-            },
-            {
-              "col_1": "12",
-              "col_2": "22"
-            },
-            {
-              "col_1": "14",
-              "col_2": "24"
-            }
-          ]
-        }
-      },
-      "id": "60364384f08385bee776f83d",
-      "modified_by": {
-        "user_id": "-1",
-        "username": "silverbolt"
-      },
-      "modified_on": "2021-02-24T17:46:04.146000Z",
-      "name": "Demo",
-      "subtitle": "I am demo",
-      "tag": "demo",
-      "title": "Demo SG"
-    }
-  ],
-  "page": {
-    "current": 1,
-    "has_next": false,
-    "has_previous": false,
-    "item_count": 1,
-    "size": 1,
-    "type": "number"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStoreDetail
-Get the Store details.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getStoreDetail({  q : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.catalog.getStoreDetail({  q : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| q | string | no | The search related the store for the company id. |    
-| pageNo | number | no | The number of page for the company id. |    
-| pageSize | number | no | Number of records that can be seen on the page for the company id. |  
-
-
-
-Get the details of the store associated with the company ID passed.
-
-*Returned Response:*
-
-
-
-
-[OptinStoreDetails](#OptinStoreDetails)
-
-See example below or refer `OptinStoreDetailsSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getVariantsOfProducts
-Get product list
+Get variants of products.
 
 
 
@@ -14369,7 +11818,7 @@ const data = await platformClient.catalog.getVariantsOfProducts({  itemId : valu
 
 
 
-This API gets meta associated to products.
+Retrieve variants of a specific product.
 
 *Returned Response:*
 
@@ -14427,8 +11876,1992 @@ Product Meta. See example below for details
 ---
 
 
+### listInventoryExport
+List inventory exports.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.listInventoryExport({  status : value,
+ fromDate : value,
+ toDate : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.catalog.listInventoryExport({  status : value,
+ fromDate : value,
+ toDate : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| status | string | no | Status of the export job. |    
+| fromDate | string | no | Inventory export history filtered according to from_date. |    
+| toDate | string | no | Inventory export history filtered according to from_date. |    
+| q | string | no | Inventory export history filtered according to task ID. |  
+
+
+
+Helps you the retrieve the history of inventory jobs depending on the filtered criteria.
+
+*Returned Response:*
+
+
+
+
+[InventoryExportJobListResponse](#InventoryExportJobListResponse)
+
+Returns a list of inventory export jobs
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": {
+    "_id": "6401bd972a2e6c3d508c9203",
+    "completed_on": "2023-03-03T09:33:11.416000Z",
+    "created_by": {
+      "user_id": "5e199e6998cfe1776f1385dc",
+      "username": "rohanshah@fynd.com"
+    },
+    "created_on": "2023-03-03T09:27:51.262000Z",
+    "filters": {
+      "brand_ids": [
+        2751
+      ],
+      "brands": [
+        "Puma"
+      ],
+      "store_ids": [
+        3622
+      ],
+      "stores": [
+        "Vikings Cbs"
+      ]
+    },
+    "id": "6401bd972a2e6c3d508c9203",
+    "modified_on": "2023-03-03T09:27:51.262000",
+    "notification_emails": [],
+    "seller_id": 577,
+    "status": "success",
+    "task_id": "ab469da4-b9a5-11ed-955a-d6fb21611540",
+    "type": "excel",
+    "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/577/ab469da4-b9a5-11ed-955a-d6fb21611540/ab469da4-b9a5-11ed-955a-d6fb21611540.zip"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateHsnCode
+Update HSN code.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.updateHsnCode({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.updateHsnCode({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Unique id |  
+| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
+
+
+Modify the HSN code associated with a product.
+
+*Returned Response:*
+
+
+
+
+[HsnCode](#HsnCode)
+
+See example below for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "company_id": 1,
+    "hs2_code": "xx",
+    "hsn_code": "xxxxxxxx",
+    "id": "xxxxxxxxxxxx",
+    "modified_by": {
+      "user_id": "0",
+      "username": "narutouzumaki"
+    },
+    "slabs": [
+      {
+        "tax": 0,
+        "threshold": 999999
+      },
+      {
+        "tax": 0,
+        "threshold": 0
+      }
+    ],
+    "tax_on": "esp"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateInventories
+Update inventories.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.updateInventories({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.updateInventories({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InventoryRequestSchemaV2](#InventoryRequestSchemaV2) | yes | Request body |
+
+
+Allows to add Inventory for particular size and store.
+
+*Returned Response:*
+
+
+
+
+[InventoryUpdateResponse](#InventoryUpdateResponse)
+
+Returns a success or partial success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "data": {
+        "expiration_date": "9998-01-30T23:59:00",
+        "price_effective": 109.01,
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Product not found",
+        "reason_code": 2005
+      }
+    },
+    {
+      "data": {
+        "expiration_date": "9998-01-30T23:59:00",
+        "price_effective": 109.01,
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Size not found",
+        "reason_code": 2004
+      }
+    }
+  ],
+  "message": "Partially Successful"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateRealtimeInventory
+Update realtime inventory.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.updateRealtimeInventory({  itemId : value,
+ sellerIdentifier : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.updateRealtimeInventory({  itemId : value,
+ sellerIdentifier : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | number | yes | Item code of the product of which size is to be get. |   
+| sellerIdentifier | string | yes | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |  
+| body | [InventoryRequestSchemaV2](#InventoryRequestSchemaV2) | yes | Request body |
+
+
+Allows to add Inventory for particular size and store.
+
+*Returned Response:*
+
+
+
+
+[InventoryUpdateResponse](#InventoryUpdateResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "data": {
+        "expiration_date": "9998-01-30T23:59:00",
+        "price_effective": 109.01,
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Product not found",
+        "reason_code": 2005
+      }
+    },
+    {
+      "data": {
+        "expiration_date": "9998-01-30T23:59:00",
+        "price_effective": 109.01,
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Size not found",
+        "reason_code": 2004
+      }
+    }
+  ],
+  "message": "Partially Successful"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### uploadBulkProducts
+Upload bulk products.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.uploadBulkProducts({  department : value,
+ productType : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.uploadBulkProducts({  department : value,
+ productType : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| department | string | yes | Department of the product to be uploaded. |   
+| productType | string | yes | Product type of the product to be uploaded i.e. set, standard , digital. |  
+| body | [BulkJob](#BulkJob) | yes | Request body |
+
+
+Helps to create a bulk products upload job.
+
+*Returned Response:*
+
+
+
+
+[BulkResponse](#BulkResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "507f1f77bcf86cd799439011",
+  "created_on": "2021-04-02T15:43:59.410000Z"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createAppCategoryReturnConfiguration
+Create Category level Application Return Configuration setttings
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createAppCategoryReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createAppCategoryReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BaseAppCategoryReturnConfig](#BaseAppCategoryReturnConfig) | yes | Request body |
+
+
+Create Category level Application Return Configuration setttings
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createAppReturnConfiguration
+Create Return configuration level set for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createAppReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createAppReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUpdateAppReturnConfig](#CreateUpdateAppReturnConfig) | yes | Request body |
+
+
+Create Return configuration level set for an application.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAppCategoryReturnConfiguration
+Delete Category level Application Return Configuration setttings
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteAppCategoryReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteAppCategoryReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DeleteAppCategoryReturnConfig](#DeleteAppCategoryReturnConfig) | yes | Request body |
+
+
+Delete Category level Application Return Configuration setttings
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCategoryReturnConfig
+Get all category level configuration level set for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppCategoryReturnConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppCategoryReturnConfig();
+```
+
+
+
+
+
+
+Get all category level configuration level set for an application.
+
+*Returned Response:*
+
+
+
+
+[BaseAppCategoryReturnConfigResponse](#BaseAppCategoryReturnConfigResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "data": [
+      {
+        "app_id": "5d638512c9accedcd910591a",
+        "category_id": 1659,
+        "logo": "https://hdn-1.addsale.com/addsale/category/pictures/square-logo/original/7hR5xHVUi0-eTdgOunCZ-.jpeg",
+        "name": "MG TEST DIGITAL",
+        "return_config": {
+          "returnable": true,
+          "time": 10,
+          "unit": "days"
+        }
+      }
+    ],
+    "page": {
+      "current": "1",
+      "has_next": false,
+      "has_previous": false,
+      "item_total": 1,
+      "size": 1,
+      "type": "number"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppReturnConfiguration
+Get Return configuration level set for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppReturnConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppReturnConfiguration();
+```
+
+
+
+
+
+
+Get Product Return configuration set at an application level
+
+*Returned Response:*
+
+
+
+
+[AppReturnConfigResponse](#AppReturnConfigResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "app_id": "5d638512c9accedcd910591a",
+  "category_count": 32,
+  "company_id": 1,
+  "created_by": {
+    "user_id": "054bb99f009aece85a3fa087",
+    "username": "test"
+  },
+  "modified_by": {
+    "user_id": "054bb99f009aece85a3fa087",
+    "username": "test"
+  },
+  "modified_on": "2023-03-28T06:05:24.026000",
+  "return_config_level": "category"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppCategoryReturnConfiguration
+Update Category level Application Return Configuration setttings
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppCategoryReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppCategoryReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BaseAppCategoryReturnConfig](#BaseAppCategoryReturnConfig) | yes | Request body |
+
+
+Update Category level Application Return Configuration setttings
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppReturnConfiguration
+Update Return configuration level set for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUpdateAppReturnConfig](#CreateUpdateAppReturnConfig) | yes | Request body |
+
+
+Update Return configuration level set for an application.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createCustomAutocompleteRule
+Create custom autocomplete rules.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
+
+
+Generate and add custom autocomplete rules to the catalog.
+
+*Returned Response:*
+
+
+
+
+[CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
+
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCustomKeyword
+Create custom search keywords.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
+
+
+Create a Custom Search Keywords. 
+
+*Returned Response:*
+
+
+
+
+[GetSearchWordsData](#GetSearchWordsData)
+
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_custom_json": {},
+  "app_id": "000000000000000000000001",
+  "is_active": true,
+  "result": {
+    "query": {
+      "department": [
+        "men"
+      ]
+    },
+    "sort_on": "popular"
+  },
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createSearchConfiguration
+Create search configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createSearchConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createSearchConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateSearchConfigurationRequest](#CreateSearchConfigurationRequest) | yes | Request body |
+
+
+Create search configuration for the catalog.
+
+*Returned Response:*
+
+
+
+
+[CreateSearchConfigurationResponse](#CreateSearchConfigurationResponse)
+
+List of custom search keywords. See example below or refer `CreateSearchConfigurationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application_id": 1234,
+  "company_id": 1,
+  "is_proximity_enabled": false,
+  "proximity": 2,
+  "searchable_attributes": [
+    {
+      "key": "brand_uid",
+      "priority": 1
+    },
+    {
+      "key": "category_uid",
+      "priority": 2
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAutocompleteKeyword
+Delete autocomplete keywords.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Returned Response:*
+
+
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Words Deleted"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteSearchConfiguration
+Delete Search Configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteSearchConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteSearchConfiguration();
+```
+
+
+
+
+
+
+Delete search configuration in the catalog.
+
+*Returned Response:*
+
+
+
+
+[DeleteSearchConfigurationResponse](#DeleteSearchConfigurationResponse)
+
+Status of the delete operation. See `DeleteSearchConfigurationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteSearchKeywords
+Delete search keywords.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Returned Response:*
+
+
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Words Deleted"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAllSearchKeyword
+Get all search keywords.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
+```
+
+
+
+
+
+
+Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+
+*Returned Response:*
+
+
+
+
+[GetSearchWordsResponse](#GetSearchWordsResponse)
+
+List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "_custom_json": {},
+      "app_id": "000000000000000000000001",
+      "is_active": true,
+      "result": {
+        "query": {
+          "department": [
+            "men"
+          ]
+        },
+        "sort_on": "popular"
+      },
+      "uid": "602fa1e9a596ce349563f6b9",
+      "words": [
+        "sds"
+      ]
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_count": 1,
+    "size": 1,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAutocompleteConfig
+Get autocomplete configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
+```
+
+
+
+
+
+
+Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+
+*Returned Response:*
+
+
+
+
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "app_id": "000000000000000000000001",
+      "is_active": true,
+      "results": [
+        {
+          "_custom_json": {},
+          "action": {
+            "page": {
+              "query": {
+                "brand": [
+                  "nike"
+                ]
+              },
+              "type": "products",
+              "url": "/products/?brand=nike"
+            },
+            "type": "page"
+          },
+          "display": "Helllow",
+          "logo": {
+            "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
+          }
+        }
+      ],
+      "uid": "602fa1eaa596ce349563f6c6",
+      "words": [
+        "dasd"
+      ]
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_count": 1,
+    "size": 1,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAutocompleteKeywordDetail
+Get autocomplete keyword details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+
+
+
+Retrieve detailed information about a specific autocomplete keyword.
+
+*Returned Response:*
+
+
+
+
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "app_id": "000000000000000000000001",
+  "is_active": true,
+  "results": [
+    {
+      "_custom_json": {},
+      "action": {
+        "page": {
+          "query": {
+            "brand": [
+              "nike"
+            ]
+          },
+          "type": "products",
+          "url": "/products/?brand=nike"
+        },
+        "type": "page"
+      },
+      "display": "Helllow",
+      "logo": {
+        "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
+      }
+    }
+  ],
+  "uid": "602fa1eaa596ce349563f6c6",
+  "words": [
+    "dasd"
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSearchConfiguration
+Get Search Configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getSearchConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getSearchConfiguration();
+```
+
+
+
+
+
+
+Get search configuration in the catalog.
+
+*Returned Response:*
+
+
+
+
+[GetSearchConfigurationResponse](#GetSearchConfigurationResponse)
+
+Search configuration for the specified application. See example below or refer `GetSearchConfigurationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application_id": "1234",
+  "company_id": 1,
+  "is_proximity_enabled": false,
+  "proximity": 2,
+  "searchable_attributes": [
+    {
+      "key": "brand_uid",
+      "name": "",
+      "priority": 1
+    },
+    {
+      "key": "category_uid",
+      "name": "",
+      "priority": 2
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSearchKeywords
+Retrieve search keywords.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+
+
+
+Retrieve a list of search keywords from the catalog.
+
+*Returned Response:*
+
+
+
+
+[GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
+
+The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_custom_json": {},
+  "app_id": "000000000000000000000001",
+  "is_active": true,
+  "result": {
+    "query": {
+      "department": [
+        "men"
+      ]
+    },
+    "sort_on": "popular"
+  },
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAutocompleteKeyword
+Update autocomplete keywords.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
+
+
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+
+*Returned Response:*
+
+
+
+
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSearchKeywords
+Update search keywords.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
+
+
+Update Search Keyword by its id. On successful request, returns the updated collection
+
+*Returned Response:*
+
+
+
+
+[GetSearchWordsData](#GetSearchWordsData)
+
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### updateSearchConfiguration
+Update search configuration for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateSearchConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateSearchConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UpdateSearchConfigurationRequest](#UpdateSearchConfigurationRequest) | yes | Request body |
+
+
+This view allows you to modify searchable attributes for an application
+
+*Returned Response:*
+
+
+
+
+[UpdateSearchConfigurationResponse](#UpdateSearchConfigurationResponse)
+
+List of custom search keywords. See example below or refer `UpdateSearchConfigurationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "searchable_attributes": {}
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createCategories
+Create categories.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createCategories({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createCategories({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
+
+
+Lets user create product categories on for the seller on the platform.
+
+*Returned Response:*
+
+
+
+
+[CategoryCreateResponse](#CategoryCreateResponse)
+
+Category Meta. See example below or refer `CategoryCreateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success",
+  "uid": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCategoryData
+Get category data.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getCategoryData({  uid : value });
+
+// Async/Await
+const data = await platformClient.catalog.getCategoryData({  uid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | Category unique id |  
+
+
+
+Retrieve detailed information about a specific category with the associated meta.
+
+*Returned Response:*
+
+
+
+
+[SingleCategoryResponse](#SingleCategoryResponse)
+
+Get Data for one category. See example below or refer `CategoryResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "created_by": {
+      "user_id": "5646",
+      "username": "917972410891_48194"
+    },
+    "created_on": "2021-04-02T15:43:59.410000Z",
+    "departments": [
+      1
+    ],
+    "hierarchy": [
+      {
+        "department": 1,
+        "l1": 1,
+        "l2": 22329
+      }
+    ],
+    "id": "60673bbf7896da00017885ad",
+    "is_active": true,
+    "level": 3,
+    "marketplaces": {},
+    "media": {
+      "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/nsi0nJ6gX-landscape.png",
+      "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
+      "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/_4p7Kz9Yp-banner.png"
+    },
+    "modified_by": {
+      "user_id": "16",
+      "username": "nikhilmhatre_gofynd_com_97636"
+    },
+    "modified_on": "2021-04-13T13:57:56.443000Z",
+    "name": "Air Conditioners",
+    "priority": 1,
+    "slug": "air-conditioners",
+    "synonyms": [],
+    "tryouts": [],
+    "uid": 22330
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### listCategories
-Get product categories list
+List categories.
 
 
 
@@ -14468,7 +13901,7 @@ const data = await platformClient.catalog.listCategories({  level : value,
 
 
 
-This API gets meta associated to product categories.
+Retrieve a list of meta associated available product categories in the catalog.
 
 *Returned Response:*
 
@@ -14900,8 +14333,614 @@ Category Meta. See example below or refer `CategoryResponse` for details
 ---
 
 
+### updateCategory
+Update category data.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.updateCategory({  uid : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.updateCategory({  uid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | Category unique id |  
+| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
+
+
+Modify data for an existing category in the catalog.
+
+*Returned Response:*
+
+
+
+
+[CategoryUpdateResponse](#CategoryUpdateResponse)
+
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createDepartments
+Create departments.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createDepartments({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createDepartments({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DepartmentCreateUpdate](#DepartmentCreateUpdate) | yes | Request body |
+
+
+Create departments with this resource.
+
+*Returned Response:*
+
+
+
+
+[DepartmentCreateResponse](#DepartmentCreateResponse)
+
+Success Response. See example below or refer `DepartmentCreateResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success",
+  "uid": 2
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### downloadInventoryTemplateView
+Download inventory template view.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.downloadInventoryTemplateView({  itemType : value });
+
+// Async/Await
+const data = await platformClient.catalog.downloadInventoryTemplateView({  itemType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemType | string | yes | An `item_type` defines the type of item. |  
+
+
+
+Allows you to download product template data.
+
+*Returned Response:*
+
+
+
+
+[string](#string)
+
+CSV File of product template data.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### downloadProductTemplateViews
+Download product template views.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.downloadProductTemplateViews({  slug : value,
+ itemType : value,
+ type : value });
+
+// Async/Await
+const data = await platformClient.catalog.downloadProductTemplateViews({  slug : value,
+ itemType : value,
+ type : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A `slug` is a unique identifier for a particular template. |    
+| itemType | string | no | An `item_type` defines the type of item. The default value is standard. |    
+| type | string | no | Format type of the sample file. The default value is excel. |  
+
+
+
+Allows you to download product template data.
+
+*Returned Response:*
+
+
+
+
+[string](#string)
+
+CSV File of product template data. See example below or refer `TemplatesResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDepartmentData
+Get department data.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getDepartmentData({  uid : value });
+
+// Async/Await
+const data = await platformClient.catalog.getDepartmentData({  uid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | A `uid` is a unique identifier of a department. |  
+
+
+
+Retrieve detailed information about a specific department by UID.
+
+*Returned Response:*
+
+
+
+
+[DepartmentsResponse](#DepartmentsResponse)
+
+Departments Data. See example below or refer `DepartmentsResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "3",
+        "username": "918793638893_86554"
+      },
+      "created_on": "2020-07-01T05:33:39.325000Z",
+      "id": "5efc2033623d390001782238",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpgc7d0c15c-c1ff-47eb-8423-6e2df51f2ddf/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpg",
+      "modified_by": {
+        "user_id": "5677",
+        "username": "917753852478_51632"
+      },
+      "modified_on": "2021-03-03T15:55:25.118000Z",
+      "name": "Sample Dept",
+      "platforms": {},
+      "priority_order": 111,
+      "slug": "sample-dept",
+      "synonyms": [
+        "test",
+        "sampe"
+      ],
+      "tags": [],
+      "uid": 5
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "0",
+        "username": "app@fynd.com"
+      },
+      "created_on": "2020-05-19T06:53:37.629000Z",
+      "id": "5ec3827156a7200001c9aeea",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/addsale/media/logo/department/original/15974_381e2236c2a348cc851c29a5d05c66a9.png",
+      "modified_by": {
+        "user_id": "10",
+        "username": "fahimsakri_gofynd_com_44938"
+      },
+      "modified_on": "2021-03-04T14:01:02.556000Z",
+      "name": "Men's Fashion",
+      "platforms": {
+        "fynd": true,
+        "fynd_store": true,
+        "marketplace": true,
+        "openapi": true,
+        "uniket_store": true,
+        "uniket_wholesale": true
+      },
+      "priority_order": 111,
+      "slug": "men-s-fashion",
+      "synonyms": [],
+      "tags": [],
+      "uid": 2
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "10",
+        "username": "fahimsakri_gofynd_com_44938"
+      },
+      "created_on": "2020-06-29T10:59:33.620000Z",
+      "id": "5ef9c9959b04f00001e40dba",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
+      "modified_by": {
+        "user_id": "3",
+        "username": "918793638893_86554"
+      },
+      "modified_on": "2020-08-06T18:08:02.675000Z",
+      "name": "Groceries",
+      "platforms": {},
+      "priority_order": 10,
+      "slug": "groceries",
+      "synonyms": [],
+      "tags": [],
+      "uid": 4
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "0",
+        "username": "app@fynd.com"
+      },
+      "created_on": "2020-05-18T16:14:41.689000Z",
+      "id": "5ec2b471661a4100019fca0d",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/platform/pictures/free-logo/original/_G1Z2Fg1L-http:d3p8ifzkmzds37.cloudfront.netmedialogodepartmentoriginal15870_c287d3c2431a432bb0e49363ef6b82bc.png.png",
+      "modified_by": {
+        "user_id": "5677",
+        "username": "917753852478_51632"
+      },
+      "modified_on": "2021-03-04T15:39:38.528000Z",
+      "name": "Electronics",
+      "platforms": {
+        "fynd": true,
+        "fynd_store": true,
+        "marketplace": true,
+        "openapi": true,
+        "uniket_store": true,
+        "uniket_wholesale": true
+      },
+      "priority_order": 100,
+      "slug": "electronics",
+      "synonyms": [],
+      "tags": [],
+      "uid": 1
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "3",
+        "username": "918793638893_86554"
+      },
+      "created_on": "2020-05-27T12:04:19.111000Z",
+      "id": "5ece5743cd1bae0001440427",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/g2plam_logo_Jio.pngeeb392ca-3958-46a0-9f13-23c205b596f7/g2plam_logo_Jio.png",
+      "modified_by": {
+        "user_id": "3",
+        "username": "918793638893_86554"
+      },
+      "modified_on": "2020-08-06T18:07:46.060000Z",
+      "name": "Industrial Supplies",
+      "platforms": {},
+      "priority_order": 111,
+      "slug": "industrial-supplies",
+      "synonyms": [],
+      "tags": [],
+      "uid": 3
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "13",
+        "username": "abhinavsrivastava_gofynd_com_05674"
+      },
+      "created_on": "2020-07-06T07:56:01.508000Z",
+      "id": "5f02d9116b0ae500018923dd",
+      "is_active": false,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/wTcfEi_crysis_-_1.jpg14580947-a659-486d-b2d3-d2ca025b1cac/wTcfEi_crysis_-_1.jpg",
+      "modified_by": {
+        "user_id": "3",
+        "username": "918793638893_86554"
+      },
+      "modified_on": "2020-08-06T18:08:12.576000Z",
+      "name": "Clothing",
+      "platforms": {},
+      "priority_order": 1,
+      "slug": "clothing",
+      "synonyms": [],
+      "tags": [],
+      "uid": 6
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
+      },
+      "created_on": "2020-08-05T09:04:33.604000Z",
+      "id": "5f2a762131c66700018cdc47",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/RxTsd8_0DEFAULT-LOGO.jpg000ccfc1-2f79-4426-9ac3-de2468c2fcb9/RxTsd8_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
+      },
+      "modified_on": "2020-08-05T09:44:01.234000Z",
+      "name": "Kids",
+      "platforms": {},
+      "priority_order": 3,
+      "slug": "kids",
+      "synonyms": [],
+      "tags": [],
+      "uid": 8
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
+      },
+      "created_on": "2020-08-05T09:44:46.632000Z",
+      "id": "5f2a7f8e31c66700018cdc49",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/tKkDB8_0DEFAULT-LOGO.jpg1c324d4d-f667-4af8-8d98-37205d34e3b5/tKkDB8_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "user_id": "3",
+        "username": "918793638893_86554"
+      },
+      "modified_on": "2020-08-06T18:07:35.231000Z",
+      "name": "Women's Fashion",
+      "platforms": {},
+      "priority_order": 2,
+      "slug": "women-s-fashion",
+      "synonyms": [],
+      "tags": [],
+      "uid": 9
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
+      },
+      "created_on": "2020-08-05T09:45:12.075000Z",
+      "id": "5f2a7fa831c66700018cdc4a",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/oLoxiL_0DEFAULT-LOGO.jpgbd050200-700a-4a3e-9da6-e6b78fbee943/oLoxiL_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
+      },
+      "modified_on": "2020-08-05T09:48:01.660000Z",
+      "name": "Beauty & Personal Care",
+      "platforms": {},
+      "priority_order": 4,
+      "slug": "beauty-personal-care",
+      "synonyms": [],
+      "tags": [],
+      "uid": 10
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
+      },
+      "created_on": "2020-08-05T09:45:39.797000Z",
+      "id": "5f2a7fc331c66700018cdc4b",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/vQv4ot_0DEFAULT-LOGO.jpg701cb5af-2024-4abf-ae5d-b68bc1a3cd43/vQv4ot_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "user_id": "3",
+        "username": "918793638893_86554"
+      },
+      "modified_on": "2020-08-06T11:38:57.599000Z",
+      "name": "Home & Living",
+      "platforms": {},
+      "priority_order": 5,
+      "slug": "home-living",
+      "synonyms": [],
+      "tags": [],
+      "uid": 11
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
+      },
+      "created_on": "2020-08-05T09:48:42.347000Z",
+      "id": "5f2a807a31c66700018cdc4e",
+      "is_active": false,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/hTobjV_0DEFAULT-LOGO.jpga020159c-7fe7-4c1c-a11a-4be61a60da9f/hTobjV_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
+      },
+      "modified_on": "2020-08-05T09:48:42.347000Z",
+      "name": "Baby Care & Kids Essentials",
+      "platforms": {},
+      "priority_order": 7,
+      "slug": "baby-care-kids-essentials",
+      "synonyms": [],
+      "tags": [],
+      "uid": 14
+    },
+    {
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "user_id": "5721",
+        "username": "919821012599_75351"
+      },
+      "created_on": "2021-01-13T10:12:33.002000Z",
+      "id": "5ffec79192813f0001eb6560",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
+      "modified_by": {
+        "user_id": "5721",
+        "username": "919821012599_75351"
+      },
+      "modified_on": "2021-01-13T13:50:55.415000Z",
+      "name": "Skin care products",
+      "platforms": {},
+      "priority_order": 10235,
+      "slug": "skin-care-produts",
+      "synonyms": [
+        "skin",
+        "care"
+      ],
+      "tags": [],
+      "uid": 21
+    }
+  ],
+  "page": {
+    "type": ""
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### listDepartmentsData
-List all Departments.
+List department data.
 
 
 
@@ -15293,166 +15332,8 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
 ---
 
 
-### listHSNCodes
-List HSN Codes
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.listHSNCodes();
-
-// Async/Await
-const data = await platformClient.catalog.listHSNCodes();
-```
-
-
-
-
-
-
-Allows you to list all hsn Codes
-
-*Returned Response:*
-
-
-
-
-[HSNCodesResponse](#HSNCodesResponse)
-
-List of all HSN Codes. See example below or refer `HSNCodesResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "country_of_origin": [
-      "India"
-    ],
-    "hsn_code": [
-      "11111111"
-    ]
-  },
-  "message": "Success"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### listInventoryExport
-Get the history of the inventory export.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.listInventoryExport({  status : value,
- fromDate : value,
- toDate : value,
- q : value });
-
-// Async/Await
-const data = await platformClient.catalog.listInventoryExport({  status : value,
- fromDate : value,
- toDate : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| status | string | no | Status of the export job. |    
-| fromDate | string | no | Inventory export history filtered according to from_date. |    
-| toDate | string | no | Inventory export history filtered according to from_date. |    
-| q | string | no | Inventory export history filtered according to task ID. |  
-
-
-
-This API helps you the get the history of inventory jobs depending on the filtered criteria.
-
-*Returned Response:*
-
-
-
-
-[InventoryExportJobListResponse](#InventoryExportJobListResponse)
-
-Returns a list of inventory export jobs
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": {
-    "_id": "6401bd972a2e6c3d508c9203",
-    "completed_on": "2023-03-03T09:33:11.416000Z",
-    "created_by": {
-      "user_id": "5e199e6998cfe1776f1385dc",
-      "username": "rohanshah@fynd.com"
-    },
-    "created_on": "2023-03-03T09:27:51.262000Z",
-    "filters": {
-      "brand_ids": [
-        2751
-      ],
-      "brands": [
-        "Puma"
-      ],
-      "store_ids": [
-        3622
-      ],
-      "stores": [
-        "Vikings Cbs"
-      ]
-    },
-    "id": "6401bd972a2e6c3d508c9203",
-    "modified_on": "2023-03-03T09:27:51.262000",
-    "notification_emails": [],
-    "seller_id": 577,
-    "status": "success",
-    "task_id": "ab469da4-b9a5-11ed-955a-d6fb21611540",
-    "type": "excel",
-    "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/577/ab469da4-b9a5-11ed-955a-d6fb21611540/ab469da4-b9a5-11ed-955a-d6fb21611540.zip"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### listProductTemplate
-List all Templates
+List product templates.
 
 
 
@@ -15474,7 +15355,7 @@ const data = await platformClient.catalog.listProductTemplate({  department : va
 
 
 
-Allows you to list all product templates, also can filter by department
+Allows you to list all product templates, also can filter by department.
 
 *Returned Response:*
 
@@ -15550,7 +15431,7 @@ List of product templates. See example below or refer `TemplatesResponse` for de
 
 
 ### listProductTemplateCategories
-List Department specifiec product categories
+List product template categories.
 
 
 
@@ -15575,7 +15456,7 @@ const data = await platformClient.catalog.listProductTemplateCategories({  depar
 
 
 
-Allows you to list all product categories values for the departments specified
+Allows you to list all product categories values for the departments specified.
 
 *Returned Response:*
 
@@ -15613,939 +15494,8 @@ List of all categories attached to departments specified. See example below or r
 ---
 
 
-### listProductTemplateExportDetails
-Allows you to list all product templates export list details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.listProductTemplateExportDetails();
-
-// Async/Await
-const data = await platformClient.catalog.listProductTemplateExportDetails();
-```
-
-
-
-
-
-
-Can view details including trigger data, task id , etc.
-
-*Returned Response:*
-
-
-
-
-[ProductDownloadsResponse](#ProductDownloadsResponse)
-
-List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "completed_on": "2020-12-23T07:23:41.031000Z",
-      "created_by": {
-        "user_id": "5646",
-        "username": "917972410891_48194"
-      },
-      "data": {
-        "brand": [
-          "ruosh"
-        ],
-        "templates": [
-          "mobile-phones-and-tablet"
-        ],
-        "type": "csv"
-      },
-      "id": "5fe2f077516d980001880943",
-      "seller_id": 3,
-      "status": "success",
-      "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
-      "template_tags": {
-        "mobile-phones-and-tablet": {
-          "display": "Mobile Phones & Tablet",
-          "logo": "https://hdn-1.jiox0.de/jiox0/seller/pictures/logo/original/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpgcc2dff44-7fae-4002-9ebe-d2b59c8bee91/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpg"
-        }
-      },
-      "trigger_on": "2020-12-23T07:23:35.302000Z",
-      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip"
-    }
-  ],
-  "page": {}
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### listTemplateBrandTypeValues
-Allows you to list all values for Templates, Brands or Type
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.listTemplateBrandTypeValues({  filter : value,
- templateTag : value,
- itemType : value });
-
-// Async/Await
-const data = await platformClient.catalog.listTemplateBrandTypeValues({  filter : value,
- templateTag : value,
- itemType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| filter | string | yes | A `filter` is the unique identifier of the type of value required. |    
-| templateTag | string | no | A `template_tag` is the identifier of the type of template required. |    
-| itemType | string | no | A `item_type` is the identifier of the type of template required. |  
-
-
-
-The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
-
-*Returned Response:*
-
-
-
-
-[ProductConfigurationDownloads](#ProductConfigurationDownloads)
-
-See example below or refer `ProductConfigurationDownloadsSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": [
-    {
-      "display": "csv",
-      "value": "csv"
-    },
-    {
-      "display": "excel",
-      "value": "excel"
-    }
-  ],
-  "multivalue": false
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAllowSingle
-Update allow single flag for filters of the application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAllowSingle({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAllowSingle({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AllowSingleRequest](#AllowSingleRequest) | yes | Request body |
-
-
-Update allow single flag for filters of the application.
-
-*Returned Response:*
-
-
-
-
-[ConfigSuccessResponse](#ConfigSuccessResponse)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppBrand
-Update a single custom json.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppBrand({  brandUid : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppBrand({  brandUid : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| brandUid | string | yes | brand id for which the custom_json is associated. |  
-| body | [ApplicationBrandJson](#ApplicationBrandJson) | yes | Request body |
-
-
-This API helps to update data associated to a item custom meta.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppCategory
-Update a single custom json.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppCategory({  categoryUid : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppCategory({  categoryUid : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| categoryUid | string | yes | category id for which the custom_json is associated. |  
-| body | [ApplicationCategoryJson](#ApplicationCategoryJson) | yes | Request body |
-
-
-This API helps to update data associated to a item custom meta.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppCategoryReturnConfiguration
-Update Category level Application Return Configuration setttings
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppCategoryReturnConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppCategoryReturnConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BaseAppCategoryReturnConfig](#BaseAppCategoryReturnConfig) | yes | Request body |
-
-
-Update Category level Application Return Configuration setttings
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppDepartment
-Update a single custom json.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppDepartment({  departmentUid : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppDepartment({  departmentUid : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| departmentUid | string | yes | department id for which the custom_json is associated. |  
-| body | [ApplicationDepartmentJson](#ApplicationDepartmentJson) | yes | Request body |
-
-
-This API helps to update data associated to a item custom meta.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppLocation
-Update a single custom json.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppLocation({  storeUid : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppLocation({  storeUid : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| storeUid | string | yes | store id for which the custom_json is associated. |  
-| body | [ApplicationStoreJson](#ApplicationStoreJson) | yes | Request body |
-
-
-This API helps to update data associated to a item custom meta.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppProduct
-Update a single custom meta.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppProduct({  itemId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppProduct({  itemId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | string | yes | product id for which the custom_meta is associated. |  
-| body | [ApplicationItemMeta](#ApplicationItemMeta) | yes | Request body |
-
-
-This API helps to update data associated to a item custom meta.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppReturnConfiguration
-Update Return configuration level set for an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppReturnConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppReturnConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUpdateAppReturnConfig](#CreateUpdateAppReturnConfig) | yes | Request body |
-
-
-Update Return configuration level set for an application.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse1](#SuccessResponse1)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
-
-
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-
-*Returned Response:*
-
-
-
-
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
-
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCategory
-Update product categories
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.updateCategory({  uid : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.updateCategory({  uid : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uid | string | yes | Category unique id |  
-| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
-
-
-Update a product category using this api
-
-*Returned Response:*
-
-
-
-
-[CategoryUpdateResponse](#CategoryUpdateResponse)
-
-Category Meta. See example below or refer `CategoryUpdateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCollection
-Update a collection
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier of a collection. |  
-| body | [UpdateCollection](#UpdateCollection) | yes | Request body |
-
-
-Update a collection by it's id. On successful request, returns the updated collection
-
-*Returned Response:*
-
-
-
-
-[UpdateCollection](#UpdateCollection)
-
-The Collection object. See example below or refer `UpdateCollectionSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_custom_json": {},
-  "_locale_language": {},
-  "_schedule": {
-    "end": null,
-    "next_schedule": [
-      {
-        "end": null,
-        "start": "2021-03-15T12:51:21.333000+00:00Z"
-      }
-    ],
-    "start": "2021-03-15T12:51:21.333000+00:00Z"
-  },
-  "action": {
-    "page": {
-      "query": {
-        "collection": [
-          "new"
-        ]
-      },
-      "type": "collection"
-    },
-    "type": "page"
-  },
-  "allow_facets": true,
-  "allow_sort": true,
-  "badge": {
-    "color": "#ffffff",
-    "text": ""
-  },
-  "banners": {
-    "landscape": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-    },
-    "portrait": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-    }
-  },
-  "description": "",
-  "is_active": true,
-  "logo": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-  },
-  "meta": {},
-  "name": "New",
-  "published": true,
-  "query": {},
-  "seo": {
-    "description": "Test description",
-    "title": "Test"
-  },
-  "slug": "new",
-  "sort_on": "depth_desc",
-  "tags": [],
-  "type": "query",
-  "uid": "604f585a7051e30001173ac1",
-  "visible_facets_keys": []
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateDefaultSort
-Update the default sort key configuration for the application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateDefaultSort({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateDefaultSort({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DefaultKeyRequest](#DefaultKeyRequest) | yes | Request body |
-
-
-Update the default sort key configuration for the application.
-
-*Returned Response:*
-
-
-
-
-[ConfigSuccessResponse](#ConfigSuccessResponse)
-
-success message will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateDepartment
-Update the department by their uid.
+Update department data.
 
 
 
@@ -16569,7 +15519,7 @@ const data = await platformClient.catalog.updateDepartment({  uid : value,
 | body | [DepartmentCreateUpdate](#DepartmentCreateUpdate) | yes | Request body |
 
 
-Update the department by their uid using this API.
+Modify the department by their uid using this API.
 
 *Returned Response:*
 
@@ -16619,827 +15569,8 @@ Success Response. See example below or refer `DepartmentCreateResponseSchema` fo
 ---
 
 
-### updateGroupConfiguration
-Update the group configurations for the application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateGroupConfiguration({  configType : value,
- groupSlug : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateGroupConfiguration({  configType : value,
- groupSlug : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configType | string | yes | A `config_type` is a unique identifier for a particular group configuration type. |   
-| groupSlug | string | yes | A `group_slug` is a unique identifier of a particular configuration. |  
-| body | [AppConfigurationDetail](#AppConfigurationDetail) | yes | Request body |
-
-
-Update the group configurations for the application.
-
-*Returned Response:*
-
-
-
-
-[AppConfigurationDetail](#AppConfigurationDetail)
-
-success flag will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "app_id": "5d64e3500bcad8693a821c0d",
-  "attributes": [
-    {
-      "display_type": "text",
-      "is_active": true,
-      "key": "features",
-      "name": "Features",
-      "priority": 1,
-      "slug": "features"
-    }
-  ],
-  "id": "62b1cdab15c88fa867ee4dac",
-  "is_active": true,
-  "is_default": false,
-  "name": "test",
-  "priority": 1,
-  "slug": "test15",
-  "template_slugs": [
-    "bags"
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateHsnCode
-Update Hsn Code.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.updateHsnCode({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.updateHsnCode({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Unique id |  
-| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
-
-
-Update Hsn Code.
-
-*Returned Response:*
-
-
-
-
-[HsnCode](#HsnCode)
-
-See example below for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "company_id": 1,
-    "hs2_code": "xx",
-    "hsn_code": "xxxxxxxx",
-    "id": "xxxxxxxxxxxx",
-    "modified_by": {
-      "user_id": "0",
-      "username": "narutouzumaki"
-    },
-    "slabs": [
-      {
-        "tax": 0,
-        "threshold": 999999
-      },
-      {
-        "tax": 0,
-        "threshold": 0
-      }
-    ],
-    "tax_on": "esp"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateInventories
-Add Inventory for particular size and store.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.updateInventories({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.updateInventories({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [InventoryRequestSchemaV2](#InventoryRequestSchemaV2) | yes | Request body |
-
-
-This API allows add Inventory for particular size and store.
-
-*Returned Response:*
-
-
-
-
-[InventoryUpdateResponse](#InventoryUpdateResponse)
-
-Returns a success or partial success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "data": {
-        "expiration_date": "9998-01-30T23:59:00",
-        "price_effective": 109.01,
-        "price_marked": 130,
-        "seller_identifier": "SELLER123",
-        "store_id": 124,
-        "total_quantity": 34
-      },
-      "reason": {
-        "message": "Product not found",
-        "reason_code": 2005
-      }
-    },
-    {
-      "data": {
-        "expiration_date": "9998-01-30T23:59:00",
-        "price_effective": 109.01,
-        "price_marked": 130,
-        "seller_identifier": "SELLER123",
-        "store_id": 124,
-        "total_quantity": 34
-      },
-      "reason": {
-        "message": "Size not found",
-        "reason_code": 2004
-      }
-    }
-  ],
-  "message": "Partially Successful"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateListingConfiguration
-Update configuration for listings
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateListingConfiguration({  configType : value,
- configId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateListingConfiguration({  configType : value,
- configId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| configType | string | yes | A `config_type` is a unique identifier for a particular listing configuration type. |   
-| configId | string | yes | A `config_id` is a unique identifier of a particular configuration. |  
-| body | [AppConfigurationsSort](#AppConfigurationsSort) | yes | Request body |
-
-
-Update configuration for listing.
-
-*Returned Response:*
-
-
-
-
-[AppConfigurationsSort](#AppConfigurationsSort)
-
-success flag will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "app_id": "5d64e3500bcad8693a821c0d",
-  "default_key": "latest",
-  "id": "6250568de404abd533db571d",
-  "is_active": true,
-  "is_default": false,
-  "key": "latest",
-  "name": "Latest",
-  "priority": 1
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateMarketplaceOptin
-Update marketplace optin
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.updateMarketplaceOptin({  marketplaceSlug : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.updateMarketplaceOptin({  marketplaceSlug : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| marketplaceSlug | string | yes | Slug of the marketplace . |  
-| body | [UpdateMarketplaceOptinRequest](#UpdateMarketplaceOptinRequest) | yes | Request body |
-
-
-This API allows to update marketplace optin for a company.
-
-*Returned Response:*
-
-
-
-
-[UpdateMarketplaceOptinResponse](#UpdateMarketplaceOptinResponse)
-
-Update marketplace optin config.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": null,
-  "-data": {
-    "brand_ids": [],
-    "app_id": "000000000000000000000001",
-    "enabled": true,
-    "created_by": {
-      "username": "test@gofynd.com",
-      "user_id": "ef56cde2dc3227c44bcb73fd"
-    },
-    "opt_level": "company",
-    "company_id": 1,
-    "modified_by": {
-      "username": "test@gofynd.com",
-      "user_id": "ef56cde2dc3227c44bcb73fd"
-    },
-    "store_ids": [],
-    "platform": "fynd"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateProductBundle
-Update a Product Bundle
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.updateProductBundle({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.updateProductBundle({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [ProductBundleUpdateRequest](#ProductBundleUpdateRequest) | yes | Request body |
-
-
-Update a Product Bundle by its id. On successful request, returns the updated product bundle
-
-*Returned Response:*
-
-
-
-
-[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
-
-The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "choice": "multi",
-  "company_id": 1,
-  "created_by": {
-    "uid": "123",
-    "username": "917827311650_22960"
-  },
-  "created_on": "2021-02-19 16:40:26.310007",
-  "id": "602f9ca2a596ce312f5956f9",
-  "is_active": true,
-  "logo": "http://g.com/poo.png/",
-  "meta": {},
-  "modified_by": {
-    "uid": "123",
-    "username": "917827311650_22960"
-  },
-  "modified_on": "2021-02-19 16:40:26.310027",
-  "name": "Bag",
-  "page_visibility": [
-    "pdp"
-  ],
-  "products": [
-    {
-      "allow_remove": true,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "product_uid": 7500001
-    }
-  ],
-  "same_store_assignment": true,
-  "slug": "bag"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateRealtimeInventory
-Add Inventory for particular size and store.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.updateRealtimeInventory({  itemId : value,
- sellerIdentifier : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.updateRealtimeInventory({  itemId : value,
- sellerIdentifier : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Item code of the product of which size is to be get. |   
-| sellerIdentifier | string | yes | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |  
-| body | [InventoryRequestSchemaV2](#InventoryRequestSchemaV2) | yes | Request body |
-
-
-This API allows add Inventory for particular size and store.
-
-*Returned Response:*
-
-
-
-
-[InventoryUpdateResponse](#InventoryUpdateResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "data": {
-        "expiration_date": "9998-01-30T23:59:00",
-        "price_effective": 109.01,
-        "price_marked": 130,
-        "seller_identifier": "SELLER123",
-        "store_id": 124,
-        "total_quantity": 34
-      },
-      "reason": {
-        "message": "Product not found",
-        "reason_code": 2005
-      }
-    },
-    {
-      "data": {
-        "expiration_date": "9998-01-30T23:59:00",
-        "price_effective": 109.01,
-        "price_marked": 130,
-        "seller_identifier": "SELLER123",
-        "store_id": 124,
-        "total_quantity": 34
-      },
-      "reason": {
-        "message": "Size not found",
-        "reason_code": 2004
-      }
-    }
-  ],
-  "message": "Partially Successful"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateSearchConfiguration
-Update search configuration for an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateSearchConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateSearchConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UpdateSearchConfigurationRequest](#UpdateSearchConfigurationRequest) | yes | Request body |
-
-
-This view allows you to modify searchable attributes for an application
-
-*Returned Response:*
-
-
-
-
-[UpdateSearchConfigurationResponse](#UpdateSearchConfigurationResponse)
-
-List of custom search keywords. See example below or refer `UpdateSearchConfigurationResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "searchable_attributes": {}
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateSearchKeywords
-Update Search Keyword
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
-
-
-Update Search Keyword by its id. On successful request, returns the updated collection
-
-*Returned Response:*
-
-
-
-
-[GetSearchWordsData](#GetSearchWordsData)
-
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateSizeGuide
-Edit a size guide.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.updateSizeGuide({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.updateSizeGuide({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Mongo id of the size guide to be edited |  
-| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
-
-
-This API allows to edit a size guide.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### uploadBulkProducts
-Create a Bulk product to upload job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.uploadBulkProducts({  department : value,
- productType : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.uploadBulkProducts({  department : value,
- productType : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| department | string | yes | Department of the product to be uploaded. |   
-| productType | string | yes | Product type of the product to be uploaded i.e. set, standard , digital. |  
-| body | [BulkJob](#BulkJob) | yes | Request body |
-
-
-This API helps to create a bulk products upload job.
-
-*Returned Response:*
-
-
-
-
-[BulkResponse](#BulkResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "batch_id": "507f1f77bcf86cd799439011",
-  "created_on": "2021-04-02T15:43:59.410000Z"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### validateProductTemplate
-Validate Product Template Schema
+Validate product template.
 
 
 
@@ -17467,7 +15598,7 @@ const data = await platformClient.catalog.validateProductTemplate({  slug : valu
 
 
 
-Allows you to list all product templates validation values for all the fields present in the database
+Allows you to list all product templates validation values for all the fields present in the database.
 
 *Returned Response:*
 
@@ -17516,7 +15647,7 @@ List of fields and validation values fro each. See example below or refer `Templ
 
 
 ### validateProductTemplateSchema
-Validate Product Template Schema
+Validate product template schema.
 
 
 
@@ -17538,7 +15669,7 @@ const data = await platformClient.catalog.validateProductTemplateSchema({  itemT
 
 
 
-Allows you to list all product templates validation values for all the fields present in the database
+Allows you to list all product templates validation values for all the fields present in the database.
 
 *Returned Response:*
 
@@ -17646,6 +15777,1975 @@ List of fields and validation values fro each. See example below or refer `Inven
     "type": "object"
   },
   "message": "Success"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createProductExportJob
+Create product export job.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createProductExportJob({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createProductExportJob({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ProductTemplateDownloadsExport](#ProductTemplateDownloadsExport) | yes | Request body |
+
+
+Helps to create a Inventory export job.
+
+*Returned Response:*
+
+
+
+
+[ProductDownloadsResponse](#ProductDownloadsResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "_id": "6401cb6729885c34aa30b0c6",
+    "created_by": {
+      "user_id": "550fe8ce436ea332b9e4b4b0",
+      "username": "purvashukla_gofynd_com_44895"
+    },
+    "created_on": "2023-03-03T10:26:47.047171Z",
+    "filters": {
+      "brands": [],
+      "catalogue_types": [
+        "standard"
+      ],
+      "templates": [
+        "footwear"
+      ]
+    },
+    "modified_on": "2023-03-03T10:26:47.047179",
+    "notification_emails": [],
+    "seller_id": 577,
+    "stats": {},
+    "status": "pending",
+    "task_id": "e6c47f1a-b9ad-11ed-b7a0-3ef7b700888d",
+    "type": "excel"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getProductExportJobs
+Retrieve product export jobs.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getProductExportJobs({  status : value,
+ fromDate : value,
+ toDate : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.catalog.getProductExportJobs({  status : value,
+ fromDate : value,
+ toDate : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| status | string | no | This is a parameter used to find all the jobs with the specified status. |    
+| fromDate | string | no | This is a parameter used to find the job from the date specified to the current date. |    
+| toDate | string | no | This is a parameter used to find the job from the from_date specified to the to_date. |    
+| q | string | no | It is a query parameter to search the export job with the task ID. |  
+
+
+
+View details including trigger data, task id , etc.
+
+*Returned Response:*
+
+
+
+
+[ProductDownloadsResponse](#ProductDownloadsResponse)
+
+List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "completed_on": "2020-12-23T07:23:41.031000Z",
+      "created_by": {
+        "user_id": "5646",
+        "username": "917972410891_48194"
+      },
+      "data": {
+        "brand": [
+          "ruosh"
+        ],
+        "templates": [
+          "mobile-phones-and-tablet"
+        ],
+        "type": "csv"
+      },
+      "id": "5fe2f077516d980001880943",
+      "seller_id": 3,
+      "status": "success",
+      "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
+      "template_tags": {
+        "mobile-phones-and-tablet": {
+          "display": "Mobile Phones & Tablet",
+          "logo": "https://hdn-1.jiox0.de/jiox0/seller/pictures/logo/original/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpgcc2dff44-7fae-4002-9ebe-d2b59c8bee91/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpg"
+        }
+      },
+      "trigger_on": "2020-12-23T07:23:35.302000Z",
+      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip"
+    }
+  ],
+  "page": {}
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### listHSNCodes
+List HSN codes.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.listHSNCodes();
+
+// Async/Await
+const data = await platformClient.catalog.listHSNCodes();
+```
+
+
+
+
+
+
+Retrieve a list of Harmonized System Nomenclature (HSN) codes.
+
+*Returned Response:*
+
+
+
+
+[HSNCodesResponse](#HSNCodesResponse)
+
+List of all HSN Codes. See example below or refer `HSNCodesResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "country_of_origin": [
+      "India"
+    ],
+    "hsn_code": [
+      "11111111"
+    ]
+  },
+  "message": "Success"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### listProductTemplateExportDetails
+List product template export details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.listProductTemplateExportDetails();
+
+// Async/Await
+const data = await platformClient.catalog.listProductTemplateExportDetails();
+```
+
+
+
+
+
+
+Retrieve export details related to product templates. Can view details including trigger data, task id , etc.
+
+*Returned Response:*
+
+
+
+
+[ProductDownloadsResponse](#ProductDownloadsResponse)
+
+List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "completed_on": "2020-12-23T07:23:41.031000Z",
+      "created_by": {
+        "user_id": "5646",
+        "username": "917972410891_48194"
+      },
+      "data": {
+        "brand": [
+          "ruosh"
+        ],
+        "templates": [
+          "mobile-phones-and-tablet"
+        ],
+        "type": "csv"
+      },
+      "id": "5fe2f077516d980001880943",
+      "seller_id": 3,
+      "status": "success",
+      "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
+      "template_tags": {
+        "mobile-phones-and-tablet": {
+          "display": "Mobile Phones & Tablet",
+          "logo": "https://hdn-1.jiox0.de/jiox0/seller/pictures/logo/original/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpgcc2dff44-7fae-4002-9ebe-d2b59c8bee91/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpg"
+        }
+      },
+      "trigger_on": "2020-12-23T07:23:35.302000Z",
+      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip"
+    }
+  ],
+  "page": {}
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### listTemplateBrandTypeValues
+List template brand type values.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.listTemplateBrandTypeValues({  filter : value,
+ templateTag : value,
+ itemType : value });
+
+// Async/Await
+const data = await platformClient.catalog.listTemplateBrandTypeValues({  filter : value,
+ templateTag : value,
+ itemType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| filter | string | yes | A `filter` is the unique identifier of the type of value required. |    
+| templateTag | string | no | A `template_tag` is the identifier of the type of template required. |    
+| itemType | string | no | A `item_type` is the identifier of the type of template required. |  
+
+
+
+Retrieve values related to template brand types. The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
+
+*Returned Response:*
+
+
+
+
+[ProductConfigurationDownloads](#ProductConfigurationDownloads)
+
+See example below or refer `ProductConfigurationDownloadsSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": [
+    {
+      "display": "csv",
+      "value": "csv"
+    },
+    {
+      "display": "excel",
+      "value": "excel"
+    }
+  ],
+  "multivalue": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getOptimalLocations
+Get optimal locations.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getOptimalLocations({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.getOptimalLocations({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AssignStore](#AssignStore) | yes | Request body |
+
+
+Retrieve the most suitable locations based on certain criteria.
+
+*Returned Response:*
+
+
+
+
+[StoreAssignResponse](#StoreAssignResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "61161830f1061e7c7f81d8ed",
+  "article_assignment": {
+    "level": "multi-company",
+    "strategy": "app-config"
+  },
+  "company_id": 783,
+  "index": 0,
+  "item_id": 75252658,
+  "price_effective": 995,
+  "price_marked": 995,
+  "quantity": 1,
+  "s_city": "NOIDA",
+  "size": "OS",
+  "status": true,
+  "store_id": 11550,
+  "store_pincode": 201303,
+  "strategy_wise_listing": [],
+  "uid": "11550_000000410234883001"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createMarketplaceOptin
+Create/Update opt-in infomation.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createMarketplaceOptin({  marketplace : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createMarketplaceOptin({  marketplace : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| marketplace | string | yes | The marketplace for which the detail needs to be retrieved. |  
+| body | [OptInPostRequest](#OptInPostRequest) | yes | Request body |
+
+
+Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
+
+*Returned Response:*
+
+
+
+
+[UpdatedResponse](#UpdatedResponse)
+
+See example below or refer `UpdatedResponse` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCompanyBrandDetail
+Get the Company Brand details of Optin.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getCompanyBrandDetail({  isActive : value,
+ q : value,
+ pageNo : value,
+ pageSize : value,
+ marketplace : value });
+
+// Async/Await
+const data = await platformClient.catalog.getCompanyBrandDetail({  isActive : value,
+ q : value,
+ pageNo : value,
+ pageSize : value,
+ marketplace : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| isActive | boolean | no | The is_active status for the optin id. |    
+| q | string | no | The search value to filter the list. |    
+| pageNo | number | no | The number of page for the company id. |    
+| pageSize | number | no | Number of records that can be seen on the page for the company id. |    
+| marketplace | string | no | The marketplace platform associated with the company id. |  
+
+
+
+Get the details of the Brands associated with the given company_id passed.
+
+*Returned Response:*
+
+
+
+
+[OptinCompanyBrandDetailsView](#OptinCompanyBrandDetailsView)
+
+See example below or refer `OptinCompanyBrandDetailsView` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCompanyDetail
+Get the Company details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getCompanyDetail();
+
+// Async/Await
+const data = await platformClient.catalog.getCompanyDetail();
+```
+
+
+
+
+
+
+Get the details of the company associated with the given company_id passed.
+
+*Returned Response:*
+
+
+
+
+[OptinCompanyDetail](#OptinCompanyDetail)
+
+See example below or refer `OptinCompanyDetailSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getMarketplaceOptinDetail
+Get opt-in infomation.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getMarketplaceOptinDetail();
+
+// Async/Await
+const data = await platformClient.catalog.getMarketplaceOptinDetail();
+```
+
+
+
+
+
+
+Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
+
+*Returned Response:*
+
+
+
+
+[GetOptInPlatform](#GetOptInPlatform)
+
+See example below or refer `GetOptInPlatformSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getCompanyMetrics
+Get company metrics.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getCompanyMetrics();
+
+// Async/Await
+const data = await platformClient.catalog.getCompanyMetrics();
+```
+
+
+
+
+
+
+Allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+
+*Returned Response:*
+
+
+
+
+[OptinCompanyMetrics](#OptinCompanyMetrics)
+
+See example below or refer `OptinCompanyMetrics` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getGenderAttribute
+Get gender attribute.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getGenderAttribute({  attributeSlug : value });
+
+// Async/Await
+const data = await platformClient.catalog.getGenderAttribute({  attributeSlug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| attributeSlug | string | yes | slug of the attribute for which you want to view the genders |  
+
+
+
+Retrieve the gender attribute for catalog listings.
+
+*Returned Response:*
+
+
+
+
+[GenderDetail](#GenderDetail)
+
+Size guide object. See example below or refer `GenderDetailSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "departments": [
+    "men-s-fashion",
+    "kids",
+    "women-s-fashion",
+    "beauty-personal-care"
+  ],
+  "description": "Clothing department needs gener attribute",
+  "details": {
+    "display_type": "text"
+  },
+  "enabled_for_end_consumer": true,
+  "filters": {
+    "indexing": true,
+    "priority": 2
+  },
+  "id": "5ed11eb0be8d5e00016f0335",
+  "is_nested": true,
+  "logo": "https://hdn-1.addsale.com/x0/products/pictures/attribute/logo/original/Rhv89tqRo-brand-website-logo.png",
+  "meta": {
+    "enriched": false,
+    "mandatory_details": {
+      "l3_keys": []
+    }
+  },
+  "name": "Gender",
+  "schema": {
+    "enum": [
+      "Men",
+      "Women",
+      "Boy",
+      "Girl",
+      "more",
+      "men"
+    ],
+    "format": "",
+    "mandatory": false,
+    "multi": true,
+    "type": "str"
+  },
+  "slug": "gender"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getStoreDetail
+Get store details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getStoreDetail({  q : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.catalog.getStoreDetail({  q : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| q | string | no | The search related the store for the company id. |    
+| pageNo | number | no | The number of page for the company id. |    
+| pageSize | number | no | Number of records that can be seen on the page for the company id. |  
+
+
+
+Retrieve the details of the store associated with the company ID passed.
+
+*Returned Response:*
+
+
+
+
+[OptinStoreDetails](#OptinStoreDetails)
+
+See example below or refer `OptinStoreDetailsSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createProductBundle
+Create a product bundle.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createProductBundle({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createProductBundle({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ProductBundleRequest](#ProductBundleRequest) | yes | Request body |
+
+
+Create product bundle in the catalog.
+
+*Returned Response:*
+
+
+
+
+[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
+
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "choice": "multi",
+  "company_id": 1,
+  "created_by": {
+    "uid": "123",
+    "username": "917827311650_22960"
+  },
+  "created_on": "2021-02-19 16:40:26.310007",
+  "id": "602f9ca2a596ce312f5956f9",
+  "is_active": true,
+  "logo": "http://g.com/poo.png/",
+  "meta": {},
+  "modified_by": {
+    "uid": "123",
+    "username": "917827311650_22960"
+  },
+  "modified_on": "2021-02-19 16:40:26.310027",
+  "name": "Bag",
+  "page_visibility": [
+    "pdp"
+  ],
+  "products": [
+    {
+      "allow_remove": true,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "product_uid": 7500001
+    }
+  ],
+  "same_store_assignment": true,
+  "slug": "bag"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getProductBundle
+Retrieve product bundles.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getProductBundle({  q : value,
+ slug : value });
+
+// Async/Await
+const data = await platformClient.catalog.getProductBundle({  q : value,
+ slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| q | string | no | A search string that is searched with product bundle name. |    
+| slug | Array<string> | no | slugs of bundles to be retrieved. |  
+
+
+
+Retrieve a list of product bundles available in the catalog.
+
+*Returned Response:*
+
+
+
+
+[GetProductBundleListingResponse](#GetProductBundleListingResponse)
+
+List of bundle configured for a company. See example below or refer `GetProductBundleListingResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "choice": "multi",
+      "company_id": 1,
+      "created_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
+      "created_on": "2021-02-19 16:40:26.310007",
+      "id": "602f9ca2a596ce312f5956f9",
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "meta": {},
+      "modified_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
+      "modified_on": "2021-02-19 16:40:26.310027",
+      "name": "Bag",
+      "page_visibility": [
+        "pdp"
+      ],
+      "products": [
+        {
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "auto_select": false,
+          "max_quantity": 1,
+          "min_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "same_store_assignment": true,
+      "slug": "bag"
+    },
+    {
+      "choice": "multi",
+      "company_id": 1,
+      "created_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
+      "created_on": "2021-02-19 16:21:35.091512",
+      "id": "602f9837a596ce2edf9868e2",
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "meta": {},
+      "modified_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
+      "modified_on": "2021-02-19 16:21:35.091540",
+      "name": "Bag",
+      "page_visibility": [
+        "pdp"
+      ],
+      "products": [
+        {
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "auto_select": false,
+          "max_quantity": 1,
+          "min_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "same_store_assignment": true,
+      "slug": "bag"
+    },
+    {
+      "choice": "multi",
+      "company_id": 1,
+      "created_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
+      "created_on": "2021-02-19 16:20:24.605207",
+      "id": "602f97f0a596ce2ead47cd0b",
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "meta": {},
+      "modified_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
+      "modified_on": "2021-02-19 16:20:24.605230",
+      "name": "Bag",
+      "page_visibility": [
+        "pdp"
+      ],
+      "products": [
+        {
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "auto_select": false,
+          "max_quantity": 1,
+          "min_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "same_store_assignment": true,
+      "slug": "bag"
+    },
+    {
+      "choice": "multi",
+      "company_id": 1,
+      "created_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
+      "created_on": "2021-02-19 16:16:46.196449",
+      "id": "602f9716a596ce2e415196df",
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "meta": {},
+      "modified_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
+      "modified_on": "2021-02-19 16:16:46.196467",
+      "name": "Bag",
+      "page_visibility": [
+        "pdp"
+      ],
+      "products": [
+        {
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "auto_select": false,
+          "max_quantity": 1,
+          "min_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "same_store_assignment": true,
+      "slug": "bag"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "total": 1,
+    "total_item_count": 4,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getProductBundleDetail
+Get product bundle details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getProductBundleDetail({  id : value });
+
+// Async/Await
+const data = await platformClient.catalog.getProductBundleDetail({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+
+
+
+Retrieve detailed information about a specific product bundle.
+
+*Returned Response:*
+
+
+
+
+[GetProductBundleResponse](#GetProductBundleResponse)
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "choice": "multi",
+  "company_id": 1,
+  "logo": "http://g.com/poo.png/",
+  "meta": {},
+  "name": "Bag",
+  "page_visibility": [
+    "pdp"
+  ],
+  "products": [
+    {
+      "allow_remove": true,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "product_details": {
+        "attributes": {
+          "brand_name": "brand 2"
+        },
+        "country_of_origin": "India",
+        "images": [
+          "https://hdn-1.addsale.com/x0/media/pictures/tagged_items/original/random_code_4/FE6DUR_000000.png"
+        ],
+        "item_code": "760B3BFF-4905-44B8-A50E-082829E7107F",
+        "name": "Some Phone",
+        "slug": "slug-1",
+        "uid": 7500001
+      },
+      "product_uid": 7500001
+    }
+  ],
+  "same_store_assignment": true,
+  "slug": "bag"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateProductBundle
+Update a product bundle.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.updateProductBundle({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.updateProductBundle({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [ProductBundleUpdateRequest](#ProductBundleUpdateRequest) | yes | Request body |
+
+
+Modify the details of an existing product bundle.
+
+*Returned Response:*
+
+
+
+
+[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
+
+The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "choice": "multi",
+  "company_id": 1,
+  "created_by": {
+    "uid": "123",
+    "username": "917827311650_22960"
+  },
+  "created_on": "2021-02-19 16:40:26.310007",
+  "id": "602f9ca2a596ce312f5956f9",
+  "is_active": true,
+  "logo": "http://g.com/poo.png/",
+  "meta": {},
+  "modified_by": {
+    "uid": "123",
+    "username": "917827311650_22960"
+  },
+  "modified_on": "2021-02-19 16:40:26.310027",
+  "name": "Bag",
+  "page_visibility": [
+    "pdp"
+  ],
+  "products": [
+    {
+      "allow_remove": true,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "product_uid": 7500001
+    }
+  ],
+  "same_store_assignment": true,
+  "slug": "bag"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createBulkProductUploadJob
+Create a Bulk product to upload job.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createBulkProductUploadJob({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createBulkProductUploadJob({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BulkJob](#BulkJob) | yes | Request body |
+
+
+This API helps to create a bulk products upload job.
+
+*Returned Response:*
+
+
+
+
+[BulkResponse](#BulkResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "507f1f77bcf86cd799439011",
+  "created_on": "2021-04-02T15:43:59.410000Z"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createSizeGuide
+Create a size guide.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createSizeGuide({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createSizeGuide({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
+
+
+Allows to create a size guide associated to a brand.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSizeGuide
+Get size guide details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getSizeGuide({  id : value });
+
+// Async/Await
+const data = await platformClient.catalog.getSizeGuide({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Id of the size guide to be viewed. |  
+
+
+
+Retrieve data associated about a specific size guide.
+
+*Returned Response:*
+
+
+
+
+[SizeGuideResponse](#SizeGuideResponse)
+
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "active": true,
+  "brand_id": 1,
+  "company_id": 1,
+  "created_by": {
+    "user_id": "-1",
+    "username": "silverbolt"
+  },
+  "created_on": "2021-02-24T17:46:04.146000Z",
+  "guide": {
+    "meta": {
+      "headers": {
+        "col_1": {
+          "convertable": false,
+          "value": "Head"
+        },
+        "col_2": {
+          "convertable": true,
+          "value": "Shoulder"
+        }
+      },
+      "unit": "cm",
+      "values": [
+        {
+          "col_1": "10",
+          "col_2": "20"
+        },
+        {
+          "col_1": "12",
+          "col_2": "22"
+        },
+        {
+          "col_1": "14",
+          "col_2": "24"
+        }
+      ]
+    }
+  },
+  "id": "60364384f08385bee776f83d",
+  "modified_by": {
+    "user_id": "123",
+    "username": "917827311650_22960"
+  },
+  "modified_on": "2021-02-25T15:19:30.822000Z",
+  "name": "edited size guide",
+  "subtitle": "I am demo",
+  "tag": "demo",
+  "title": "Demo SG"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSizeGuides
+Retrieve size guides.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getSizeGuides({  active : value,
+ q : value,
+ tag : value,
+ pageNo : value,
+ pageSize : value,
+ brandId : value });
+
+// Async/Await
+const data = await platformClient.catalog.getSizeGuides({  active : value,
+ q : value,
+ tag : value,
+ pageNo : value,
+ pageSize : value,
+ brandId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| active | boolean | no | filter size guide on basis of active, in-active |    
+| q | string | no | Query that is to be searched. |    
+| tag | string | no | to filter size guide on basis of tag. |    
+| pageNo | number | no | The page number to navigate through the given set of results |    
+| pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
+| brandId | number | no | Brand id that is to be searched. |  
+
+
+
+Allows to view all the size guides associated to the seller.
+
+*Returned Response:*
+
+
+
+
+[ListSizeGuide](#ListSizeGuide)
+
+Size guide object. See example below or refer `ListSizeGuide` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "active": true,
+      "brand_id": 2,
+      "company_id": 12,
+      "created_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "created_on": "2021-02-24T17:46:04.146000Z",
+      "guide": {
+        "meta": {
+          "headers": {
+            "col_1": {
+              "convertable": false,
+              "value": "Head"
+            },
+            "col_2": {
+              "convertable": true,
+              "value": "Shoulder"
+            }
+          },
+          "unit": "cm",
+          "values": [
+            {
+              "col_1": "10",
+              "col_2": "20"
+            },
+            {
+              "col_1": "12",
+              "col_2": "22"
+            },
+            {
+              "col_1": "14",
+              "col_2": "24"
+            }
+          ]
+        }
+      },
+      "id": "60364384f08385bee776f83d",
+      "modified_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "modified_on": "2021-02-24T17:46:04.146000Z",
+      "name": "Demo",
+      "subtitle": "I am demo",
+      "tag": "demo",
+      "title": "Demo SG"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_count": 1,
+    "size": 1,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSizeGuide
+Update a size guide.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.updateSizeGuide({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.updateSizeGuide({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Mongo id of the size guide to be edited |  
+| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
+
+
+Allows to edit a size guide.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getMarketplaces
+List all marketplaces
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getMarketplaces();
+
+// Async/Await
+const data = await platformClient.catalog.getMarketplaces();
+```
+
+
+
+
+
+
+This API allows to get marketplace information.
+
+*Returned Response:*
+
+
+
+
+[GetAllMarketplaces](#GetAllMarketplaces)
+
+List all Marketplace details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "brand_ids": [],
+      "app_id": "000000000000000000000001",
+      "enabled": true,
+      "created_by": {
+        "username": "test@gofynd.com",
+        "user_id": "ef56cde2dc3227c44bcb73fd"
+      },
+      "created_on": "2023-07-11T18:27:10.477000",
+      "opt_level": "company",
+      "company_id": 1,
+      "modified_by": {
+        "username": "test@gofynd.com",
+        "user_id": "ef56cde2dc3227c44bcb73fd"
+      },
+      "store_ids": [],
+      "modified_on": "2023-07-11T18:27:10.477000",
+      "platform": "fynd",
+      "_id": "64ad9efe8069f0f413265003"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_total": 6,
+    "size": 1,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateMarketplaceOptin
+Update marketplace optin
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.updateMarketplaceOptin({  marketplaceSlug : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.updateMarketplaceOptin({  marketplaceSlug : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| marketplaceSlug | string | yes | Slug of the marketplace . |  
+| body | [UpdateMarketplaceOptinRequest](#UpdateMarketplaceOptinRequest) | yes | Request body |
+
+
+This API allows to update marketplace optin for a company.
+
+*Returned Response:*
+
+
+
+
+[UpdateMarketplaceOptinResponse](#UpdateMarketplaceOptinResponse)
+
+Update marketplace optin config.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": null,
+  "-data": {
+    "brand_ids": [],
+    "app_id": "000000000000000000000001",
+    "enabled": true,
+    "created_by": {
+      "username": "test@gofynd.com",
+      "user_id": "ef56cde2dc3227c44bcb73fd"
+    },
+    "opt_level": "company",
+    "company_id": 1,
+    "modified_by": {
+      "username": "test@gofynd.com",
+      "user_id": "ef56cde2dc3227c44bcb73fd"
+    },
+    "store_ids": [],
+    "platform": "fynd"
+  }
 }
 ```
 </details>
@@ -18696,7 +18796,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [CollectionItemUpdateSchemaV2](#CollectionItemUpdateSchemaV2)
+#### [CollectionItemUpdateSchema](#CollectionItemUpdateSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

@@ -9,53 +9,55 @@
 Content System
 
 
-Default
-* [addDataLoader](#adddataloader)
-* [addFaq](#addfaq)
-* [addInjectableTag](#addinjectabletag)
-* [addPathRedirectionRules](#addpathredirectionrules)
+Announcement Management
 * [createAnnouncement](#createannouncement)
+* [deleteAnnouncement](#deleteannouncement)
+* [getAnnouncementById](#getannouncementbyid)
+* [getAnnouncementsList](#getannouncementslist)
+* [updateAnnouncement](#updateannouncement)
+* [updateAnnouncementSchedule](#updateannouncementschedule)
+
+
+Blog Management
+* [createBlog](#createblog)
+* [deleteBlog](#deleteblog)
+* [getBlogBySlug](#getblogbyslug)
+* [getBlogs](#getblogs)
+* [updateBlog](#updateblog)
+
+
+Component & Data Loader Management
+* [addDataLoader](#adddataloader)
+* [deleteDataLoader](#deletedataloader)
+* [editDataLoader](#editdataloader)
+* [getComponentById](#getcomponentbyid)
+* [getDataLoaders](#getdataloaders)
+* [resetDataLoader](#resetdataloader)
+* [selectDataLoader](#selectdataloader)
+
+
+Default
 * [createAppCustomFieldByResourceId](#createappcustomfieldbyresourceid)
 * [createAppCustomFieldDefinition](#createappcustomfielddefinition)
 * [createAppCustomObject](#createappcustomobject)
 * [createAppCustomObjectDefinition](#createappcustomobjectdefinition)
-* [createBlog](#createblog)
 * [createCustomFieldByResourceId](#createcustomfieldbyresourceid)
 * [createCustomFieldDefinition](#createcustomfielddefinition)
 * [createCustomObject](#createcustomobject)
 * [createCustomObjectDefinition](#createcustomobjectdefinition)
-* [createFaqCategory](#createfaqcategory)
-* [createLandingPage](#createlandingpage)
-* [createNavigation](#createnavigation)
-* [createPage](#createpage)
-* [createPagePreview](#createpagepreview)
 * [createSEOMarkupSchema](#createseomarkupschema)
 * [createSlideshow](#createslideshow)
-* [deleteAnnouncement](#deleteannouncement)
 * [deleteAppCustomFieldDefinition](#deleteappcustomfielddefinition)
 * [deleteAppCustomObject](#deleteappcustomobject)
 * [deleteAppCustomObjectDefinition](#deleteappcustomobjectdefinition)
-* [deleteBlog](#deleteblog)
 * [deleteCustomFieldDefinition](#deletecustomfielddefinition)
 * [deleteCustomObject](#deletecustomobject)
 * [deleteCustomObjectDefinition](#deletecustomobjectdefinition)
-* [deleteDataLoader](#deletedataloader)
-* [deleteFaq](#deletefaq)
-* [deleteFaqCategory](#deletefaqcategory)
-* [deleteLandingPage](#deletelandingpage)
-* [deleteNavigation](#deletenavigation)
-* [deletePage](#deletepage)
-* [deletePathRedirectionRules](#deletepathredirectionrules)
 * [deleteSEOMarkupSchema](#deleteseomarkupschema)
 * [deleteSlideshow](#deleteslideshow)
-* [editDataLoader](#editdataloader)
-* [editInjectableTag](#editinjectabletag)
 * [editSEOMarkupSchema](#editseomarkupschema)
 * [exportAppCustomObjectEntries](#exportappcustomobjectentries)
 * [exportCustomObjectEntries](#exportcustomobjectentries)
-* [generateSEOTitle](#generateseotitle)
-* [getAnnouncementById](#getannouncementbyid)
-* [getAnnouncementsList](#getannouncementslist)
 * [getAppCustomFieldDefinition](#getappcustomfielddefinition)
 * [getAppCustomFieldDefinitions](#getappcustomfielddefinitions)
 * [getAppCustomFieldTypes](#getappcustomfieldtypes)
@@ -67,9 +69,6 @@ Default
 * [getAppCustomObjects](#getappcustomobjects)
 * [getAppJobs](#getappjobs)
 * [getAppResources](#getappresources)
-* [getBlogBySlug](#getblogbyslug)
-* [getBlogs](#getblogs)
-* [getComponentById](#getcomponentbyid)
 * [getCustomFieldDefinition](#getcustomfielddefinition)
 * [getCustomFieldDefinitions](#getcustomfielddefinitions)
 * [getCustomFieldTypes](#getcustomfieldtypes)
@@ -79,61 +78,101 @@ Default
 * [getCustomObjectDefinition](#getcustomobjectdefinition)
 * [getCustomObjectDefinitions](#getcustomobjectdefinitions)
 * [getCustomObjects](#getcustomobjects)
-* [getDataLoaders](#getdataloaders)
 * [getDataLoadersByService](#getdataloadersbyservice)
-* [getDefaultNavigations](#getdefaultnavigations)
 * [getDefaultSEOMarkupSchema](#getdefaultseomarkupschema)
-* [getFaqByIdOrSlug](#getfaqbyidorslug)
-* [getFaqCategories](#getfaqcategories)
-* [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
-* [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
-* [getInjectableTags](#getinjectabletags)
 * [getJobs](#getjobs)
-* [getLandingPages](#getlandingpages)
-* [getLegalInformation](#getlegalinformation)
-* [getNavigationBySlug](#getnavigationbyslug)
-* [getNavigations](#getnavigations)
-* [getPageBySlug](#getpagebyslug)
-* [getPageMeta](#getpagemeta)
-* [getPageSpec](#getpagespec)
-* [getPages](#getpages)
-* [getPathRedirectionRule](#getpathredirectionrule)
-* [getPathRedirectionRules](#getpathredirectionrules)
 * [getResources](#getresources)
-* [getSEOConfiguration](#getseoconfiguration)
 * [getSEOMarkupSchema](#getseomarkupschema)
 * [getSEOMarkupSchemas](#getseomarkupschemas)
 * [getSlideshowBySlug](#getslideshowbyslug)
 * [getSlideshows](#getslideshows)
-* [getSupportInformation](#getsupportinformation)
 * [importAppCustomObjectEntries](#importappcustomobjectentries)
 * [importCustomObjectEntries](#importcustomobjectentries)
-* [removeInjectableTag](#removeinjectabletag)
-* [resetDataLoader](#resetdataloader)
 * [sampleAppCustomObjectBulkEntry](#sampleappcustomobjectbulkentry)
 * [sampleCustomObjectBulkEntry](#samplecustomobjectbulkentry)
-* [selectDataLoader](#selectdataloader)
-* [updateAnnouncement](#updateannouncement)
-* [updateAnnouncementSchedule](#updateannouncementschedule)
 * [updateAppCustomFieldDefinition](#updateappcustomfielddefinition)
 * [updateAppCustomObject](#updateappcustomobject)
 * [updateAppCustomObjectDefinition](#updateappcustomobjectdefinition)
-* [updateBlog](#updateblog)
 * [updateCustomFieldDefinition](#updatecustomfielddefinition)
 * [updateCustomObject](#updatecustomobject)
 * [updateCustomObjectDefinition](#updatecustomobjectdefinition)
+* [updateSlideshow](#updateslideshow)
+
+
+FAQ Category and FAQ Management
+* [addFaq](#addfaq)
+* [createFaqCategory](#createfaqcategory)
+* [deleteFaq](#deletefaq)
+* [deleteFaqCategory](#deletefaqcategory)
+* [getFaqByIdOrSlug](#getfaqbyidorslug)
+* [getFaqCategories](#getfaqcategories)
+* [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
+* [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
 * [updateFaq](#updatefaq)
 * [updateFaqCategory](#updatefaqcategory)
-* [updateInjectableTag](#updateinjectabletag)
+
+
+SEO and Landing Page Management:
+* [createLandingPage](#createlandingpage)
+* [deleteLandingPage](#deletelandingpage)
+* [generateSEOTitle](#generateseotitle)
+* [getLandingPages](#getlandingpages)
 * [updateLandingPage](#updatelandingpage)
+
+
+Legal Information Management
+* [getLegalInformation](#getlegalinformation)
 * [updateLegalInformation](#updatelegalinformation)
+
+
+Navigation Management
+* [createNavigation](#createnavigation)
+* [deleteNavigation](#deletenavigation)
+* [getDefaultNavigations](#getdefaultnavigations)
+* [getNavigationBySlug](#getnavigationbyslug)
+* [getNavigations](#getnavigations)
 * [updateNavigation](#updatenavigation)
-* [updatePage](#updatepage)
+
+
+Page management
+* [createPagePreview](#createpagepreview)
+* [getPageMeta](#getpagemeta)
+* [getPageSpec](#getpagespec)
+* [getPages](#getpages)
 * [updatePagePreview](#updatepagepreview)
+
+
+Page Management
+* [createPage](#createpage)
+* [deletePage](#deletepage)
+* [getPageBySlug](#getpagebyslug)
+* [updatePage](#updatepage)
+
+
+Path Redirection Rules
+* [addPathRedirectionRules](#addpathredirectionrules)
+* [deletePathRedirectionRules](#deletepathredirectionrules)
+* [getPathRedirectionRule](#getpathredirectionrule)
+* [getPathRedirectionRules](#getpathredirectionrules)
 * [updatePathRedirectionRules](#updatepathredirectionrules)
+
+
+SEO Configuration Management
+* [getSEOConfiguration](#getseoconfiguration)
 * [updateSEOConfiguration](#updateseoconfiguration)
-* [updateSlideshow](#updateslideshow)
+
+
+Support Information Management
+* [getSupportInformation](#getsupportinformation)
 * [updateSupportInformation](#updatesupportinformation)
+
+
+Injectable Tag Management
+* [addInjectableTag](#addinjectabletag)
+* [editInjectableTag](#editinjectabletag)
+* [getInjectableTags](#getinjectabletags)
+* [removeInjectableTag](#removeinjectabletag)
+* [updateInjectableTag](#updateinjectabletag)
 
 
 
@@ -144,276 +183,8 @@ Default
 
 
 
-### addDataLoader
-Adds a data loader
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.addDataLoader({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.addDataLoader({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DataLoaderSchema](#DataLoaderSchema) | yes | Request body |
-
-
-Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value.
-
-*Returned Response:*
-
-
-
-
-[DataLoaderResponseSchema](#DataLoaderResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "601f77e7aa61066feda44487",
-  "name": "Search API from Algolia",
-  "service": "catalog",
-  "operation_id": "fetchSuggestions",
-  "type": "url",
-  "application": "000000000000000000000001",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### addFaq
-Create an FAQ
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.addFaq({  categoryId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.addFaq({  categoryId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| categoryId | string | yes | ID allotted to an FAQ category. |  
-| body | [CreateFaqSchema](#CreateFaqSchema) | yes | Request body |
-
-
-FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
-
-*Returned Response:*
-
-
-
-
-[CreateFaqResponseSchema](#CreateFaqResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "faq": {
-    "_id": "60265b64e507768b168dee4d",
-    "question": "question 1",
-    "answer": "answer 1",
-    "slug": "question-1",
-    "application": "000000000000000000000001"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### addInjectableTag
-Add a tag
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.addInjectableTag({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.addInjectableTag({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | yes | Request body |
-
-
-CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
-
-*Returned Response:*
-
-
-
-
-[TagsSchema](#TagsSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "601f77e7aa61066feda44487",
-  "tags": [
-    {
-      "name": "Test",
-      "sub_type": "external",
-      "_id": "601f77e7aa61066feda44488",
-      "type": "js",
-      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
-      "position": "head"
-    }
-  ],
-  "application": "000000000000000000000001",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### addPathRedirectionRules
-Save path based redirection rules
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.addPathRedirectionRules({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.addPathRedirectionRules({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PathMappingSchema](#PathMappingSchema) | yes | Request body |
-
-
-Use this API to add redirection rules
-
-*Returned Response:*
-
-
-
-
-[PathMappingSchema](#PathMappingSchema)
-
-Success. Refer `PathMappingSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "615188e9db1e444cb0f40837",
-    "application": "000000000000000000000002",
-    "redirect_from": "/from",
-    "redirect_to": "/to",
-    "createdAt": "2021-09-27T09:03:37.053Z",
-    "updatedAt": "2021-09-27T09:09:25.587Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### createAnnouncement
-Create an announcement
+Create announcement.
 
 
 
@@ -434,7 +205,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.create
 | body | [AdminAnnouncementSchema](#AdminAnnouncementSchema) | yes | Request body |
 
 
-Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
+Generate and add a new announcement.
 
 *Returned Response:*
 
@@ -519,6 +290,1587 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 ---
+
+
+### deleteAnnouncement
+Delete announcement.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteAnnouncement({  announcementId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteAnnouncement({  announcementId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| announcementId | string | yes | ID allotted to the announcement. |  
+
+
+
+Remove a specific announcement.
+
+*Returned Response:*
+
+
+
+
+[CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Successfully deleted announcement",
+    "data": {
+      "value": {
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "_id": "6026283125f06a827dc1a5cc",
+        "title": "test",
+        "announcement": "<p>test123</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": true,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ],
+          "cron": null,
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": null
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:05:57.020Z"
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAnnouncementById
+Get announcement by ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAnnouncementById({  announcementId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAnnouncementById({  announcementId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| announcementId | string | yes | ID allotted to the announcement. |  
+
+
+
+Retrieve detailed information about a specific announcement.
+
+*Returned Response:*
+
+
+
+
+[AdminAnnouncementSchema](#AdminAnnouncementSchema)
+
+Success. Refer `AdminAnnouncementSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "platforms": [
+      "web",
+      "android",
+      "ios"
+    ],
+    "_id": "6026283125f06a827dc1a5cc",
+    "title": "test",
+    "announcement": "<p>test123</p>\n",
+    "pages": [
+      {
+        "page_slug": "$all",
+        "type": "custom"
+      }
+    ],
+    "editor_meta": {
+      "foreground_color": "#000",
+      "background_color": "#fff",
+      "content_type": "markdown",
+      "content": "test"
+    },
+    "_schedule": {
+      "published": true,
+      "next_schedule": [
+        {
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z"
+        }
+      ],
+      "cron": "",
+      "start": "2021-02-10T20:40:00.000Z",
+      "end": "2021-02-18T22:00:00.000Z",
+      "duration": 0
+    },
+    "app": "000000000000000000000001",
+    "author": {
+      "created_by": "5e199e6998cfe1776f1385dc",
+      "modified_by": "5e199e6998cfe1776f1385dc"
+    },
+    "created_at": "2021-02-12T07:03:13.503Z",
+    "modified_at": "2021-02-12T07:05:57.020Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAnnouncementsList
+Get announcements list.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAnnouncementsList({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAnnouncementsList({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Retrieve a list of announcements.
+
+*Returned Response:*
+
+
+
+
+[GetAnnouncementListSchema](#GetAnnouncementListSchema)
+
+Success. Refer `GetAnnouncementListSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "6026283125f06a827dc1a5cc",
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "title": "test",
+        "announcement": "<p>test</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": true,
+          "cron": "",
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": 0,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ]
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:03:13.503Z",
+        "id": "6026283125f06a827dc1a5cc"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 1,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAnnouncement
+Update announcement.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateAnnouncement({  announcementId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateAnnouncement({  announcementId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| announcementId | string | yes | ID allotted to the announcement. |  
+| body | [AdminAnnouncementSchema](#AdminAnnouncementSchema) | yes | Request body |
+
+
+Modify the content and settings of a specific announcement.
+
+*Returned Response:*
+
+
+
+
+[CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+Success. Refer `CreateAnnouncementSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Successfully updated announcement",
+    "data": {
+      "value": {
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "_id": "6026283125f06a827dc1a5cc",
+        "title": "test",
+        "announcement": "<p>test123</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": true,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ],
+          "cron": null,
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": null
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:05:57.020Z"
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAnnouncementSchedule
+Update announcement schedule.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateAnnouncementSchedule({  announcementId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateAnnouncementSchedule({  announcementId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| announcementId | string | yes | ID allotted to the announcement. |  
+| body | [ScheduleSchema](#ScheduleSchema) | yes | Request body |
+
+
+Modify the scheduling of a specific announcement.
+
+*Returned Response:*
+
+
+
+
+[CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+Success. Refer `CreateAnnouncementSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Announcement unpublished",
+    "data": {
+      "value": {
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "_id": "6026283125f06a827dc1a5cc",
+        "title": "test",
+        "announcement": "<p>test123</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": false,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ],
+          "cron": null,
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": null
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:05:57.020Z"
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createBlog
+Create blog.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createBlog({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createBlog({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BlogRequest](#BlogRequest) | yes | Request body |
+
+
+Generate and add a new blog.
+
+*Returned Response:*
+
+
+
+
+[BlogSchema](#BlogSchema)
+
+Success. Refer `BlogSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteBlog
+Delete blog.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteBlog({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteBlog({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the blog. |  
+
+
+
+Remove a specific blog.
+
+*Returned Response:*
+
+
+
+
+[BlogSchema](#BlogSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getBlogBySlug
+Get blog by slug.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getBlogBySlug({  slug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getBlogBySlug({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
+
+
+
+Retrieve detailed information about a specific blog using its slug.
+
+*Returned Response:*
+
+
+
+
+[BlogSchema](#BlogSchema)
+
+Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getBlogs
+Get blogs.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getBlogs({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getBlogs({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Retrieve a list of available blogs.
+
+*Returned Response:*
+
+
+
+
+[BlogGetResponse](#BlogGetResponse)
+
+Success. Refer `BlogGetResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-14T06:49:03.945Z",
+          "modified_on": "2021-03-14T06:49:03.945Z"
+        },
+        "tags": [],
+        "_id": "604db275b3ae202873964d94",
+        "content": [
+          {
+            "type": "html",
+            "value": "<p>test abhinav</p>"
+          }
+        ],
+        "title": "1st Blog",
+        "slug": "1st-blog",
+        "published": true,
+        "_schedule": {
+          "next_schedule": [
+            {}
+          ],
+          "start": "2021-04-08T07:15:13.000Z",
+          "end": "2021-04-10T02:00:00.000Z"
+        },
+        "feature_image": {
+          "secure_url": ""
+        },
+        "application": "000000000000000000000001",
+        "author": {
+          "name": "Fynd App"
+        }
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateBlog
+Update blog.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateBlog({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateBlog({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the blog. |  
+| body | [BlogRequest](#BlogRequest) | yes | Request body |
+
+
+Modify the content and settings of a specific blog.
+
+*Returned Response:*
+
+
+
+
+[BlogSchema](#BlogSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### addDataLoader
+Add data loader.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.addDataLoader({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.addDataLoader({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DataLoaderSchema](#DataLoaderSchema) | yes | Request body |
+
+
+Create and add a new data loader.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "name": "Search API from Algolia",
+  "service": "catalog",
+  "operation_id": "fetchSuggestions",
+  "type": "url",
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteDataLoader
+Delete data loader.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteDataLoader({  dataLoaderId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteDataLoader({  dataLoaderId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| dataLoaderId | string | yes | ID allotted to the data loader. |  
+
+
+
+Remove a specific data loader.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "name": "Search API from Algolia",
+  "service": "catalog",
+  "operation_id": "fetchSuggestions",
+  "type": "url",
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### editDataLoader
+Edit data loader.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.editDataLoader({  dataLoaderId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.editDataLoader({  dataLoaderId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| dataLoaderId | string | yes | ID allotted to the data loader. |  
+| body | [DataLoaderSchema](#DataLoaderSchema) | yes | Request body |
+
+
+Modify the settings of a specific data loader.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "name": "Search API from Algolia",
+  "service": "catalog",
+  "operation_id": "fetchSuggestions",
+  "type": "url",
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getComponentById
+Get component by ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getComponentById({  slug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getComponentById({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
+
+
+
+Retrieve detailed information about a specific component.
+
+*Returned Response:*
+
+
+
+
+[BlogSchema](#BlogSchema)
+
+Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDataLoaders
+Get data loaders.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getDataLoaders();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getDataLoaders();
+```
+
+
+
+
+
+
+Retrieve a list of data loaders.
+
+*Returned Response:*
+
+
+
+
+[DataLoadersSchema](#DataLoadersSchema)
+
+Success. Refer `DataLoadersSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "Algolia",
+      "is_selected": false,
+      "type": "url",
+      "_id": "61bc4523a7ffc7504f4de4a5",
+      "service": "catalog",
+      "operation_id": "fetchSuggestions",
+      "url": "/ext/example/url",
+      "__source": {
+        "type": "extension",
+        "id": "000000000000000000000003"
+      },
+      "application": "100000000000000000000001",
+      "__v": 0
+    },
+    {
+      "name": "Algolia v3",
+      "is_selected": false,
+      "type": "url",
+      "_id": "61bc452da7ffc7504f4de4a7",
+      "service": "catalog",
+      "operation_id": "fetchSuggestions",
+      "url": "/ext/example/url",
+      "__source": {
+        "type": "extension",
+        "id": "000000000000000000000003"
+      },
+      "application": "100000000000000000000001",
+      "__v": 0
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### resetDataLoader
+Reset data loader.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.resetDataLoader({  service : value,
+ operationId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.resetDataLoader({  service : value,
+ operationId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| service | string | yes | Name of service. |   
+| operationId | string | yes | Name of operation id of the service. |  
+
+
+
+Clear and reset data loader settings.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "reset": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### selectDataLoader
+Select data loader.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.selectDataLoader({  dataLoaderId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.selectDataLoader({  dataLoaderId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| dataLoaderId | string | yes | ID allotted to the data loader. |  
+
+
+
+Choose and set a data loader for use.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "name": "Search API from Algolia",
+  "service": "catalog",
+  "operation_id": "fetchSuggestions",
+  "type": "url",
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 
 ### createAppCustomFieldByResourceId
@@ -1013,106 +2365,6 @@ Success. Returns the saved custom object defintion
         "updated_at": "2023-12-04T11:17:04.154Z"
       }
     ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createBlog
-Create a blog
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.createBlog({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.createBlog({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BlogRequest](#BlogRequest) | yes | Request body |
-
-
-Use this API to create a blog.
-
-*Returned Response:*
-
-
-
-
-[BlogSchema](#BlogSchema)
-
-Success. Refer `BlogSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5eaa451a21a4dd75f0fd96c5",
-    "application": "5d3ebd89f540e7506b8b3548",
-    "tags": [
-      "abhinav"
-    ],
-    "title": "my first blog",
-    "slug": "1st_blog",
-    "feature_image": {
-      "secure_url": "https://google.com"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<p>hey there!</p>"
-      }
-    ],
-    "_schedule": {
-      "cron": "* 10 * * *",
-      "start": "2021-03-31T23:30:00.000Z",
-      "end": "2021-03-31T23:55:00.000Z",
-      "duration": 1000,
-      "next_schedule": [
-        {
-          "start": "2021-03-17T04:30:00.000Z",
-          "end": "2021-03-17T04:46:40.000Z"
-        }
-      ]
-    },
-    "published": true,
-    "author": {
-      "name": "Fynd App"
-    },
-    "date_meta": {
-      "created_on": "2021-03-14T06:49:03.945Z",
-      "modified_on": "2021-03-14T06:49:03.945Z"
-    }
   }
 }
 ```
@@ -1641,636 +2893,6 @@ Success. Returns the saved custom object defintion
 ---
 
 
-### createFaqCategory
-Create an FAQ category
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.createFaqCategory({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.createFaqCategory({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema) | yes | Request body |
-
-
-FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
-
-*Returned Response:*
-
-
-
-
-[CreateFaqCategorySchema](#CreateFaqCategorySchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "category": {
-    "index": 0,
-    "children": [],
-    "_id": "60263f80c83c1f89f2863a8a",
-    "slug": "test",
-    "application": "000000000000000000000001",
-    "title": "Test"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createLandingPage
-Create a landing page
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.createLandingPage({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.createLandingPage({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [LandingPageSchema](#LandingPageSchema) | yes | Request body |
-
-
-Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
-
-*Returned Response:*
-
-
-
-
-[LandingPageSchema](#LandingPageSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5eaa451a21a4dd75f0fd96c5",
-    "application": "5d3ebd89f540e7506b8b3548",
-    "_custom_json": {},
-    "slug": "pnc-landing",
-    "action": {
-      "page": {
-        "type": "home"
-      },
-      "popup": {},
-      "type": "page"
-    },
-    "platform": [
-      "web"
-    ],
-    "created_by": {
-      "id": "000000000000000000000000"
-    },
-    "date_meta": {
-      "created_on": "2020-04-30T03:25:14.549Z",
-      "modified_on": "2020-04-30T03:25:14.549Z"
-    },
-    "archived": false
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createNavigation
-Create a navigation
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.createNavigation({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.createNavigation({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [NavigationRequest](#NavigationRequest) | yes | Request body |
-
-
-Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
-
-*Returned Response:*
-
-
-
-
-[NavigationSchema](#NavigationSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5ffbd9b90ac98678ae0458d7",
-    "application": "000000000000000000000001",
-    "_custom_json": null,
-    "name": "test-nav",
-    "slug": "test-nav",
-    "platform": [
-      "ios",
-      "android"
-    ],
-    "orientation": {
-      "portrait": [
-        "left"
-      ]
-    },
-    "navigation": [
-      {
-        "display": "Home",
-        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
-        "sort_order": 1,
-        "type": "",
-        "action": {
-          "page": {
-            "url": "/",
-            "type": "home"
-          },
-          "popup": {},
-          "type": "page"
-        },
-        "active": true,
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "acl": [
-          "all"
-        ],
-        "_locale_language": {
-          "hi": {
-            "display": ""
-          },
-          "ar": {
-            "display": ""
-          },
-          "en_us": {
-            "display": ""
-          }
-        },
-        "sub_navigation": [
-          {
-            "display": "Brands",
-            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
-            "sort_order": 1,
-            "type": "",
-            "action": {
-              "page": {
-                "url": "/brands/",
-                "type": "brands"
-              },
-              "popup": {},
-              "type": "page"
-            },
-            "active": true,
-            "tags": null,
-            "acl": [
-              "all"
-            ],
-            "_locale_language": {
-              "hi": {
-                "display": ""
-              },
-              "ar": {
-                "display": ""
-              },
-              "en_us": {
-                "display": ""
-              }
-            }
-          }
-        ]
-      },
-      {
-        "display": "Collections",
-        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
-        "sort_order": 2,
-        "type": "",
-        "action": {
-          "page": {
-            "url": "/collections/",
-            "type": "collections"
-          },
-          "popup": {},
-          "type": "page"
-        },
-        "active": true,
-        "tags": null,
-        "acl": [
-          "all"
-        ],
-        "_locale_language": {
-          "hi": {
-            "display": ""
-          },
-          "ar": {
-            "display": ""
-          },
-          "en_us": {
-            "display": ""
-          }
-        },
-        "sub_navigation": [
-          {
-            "display": "Categories",
-            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
-            "sort_order": 1,
-            "type": "",
-            "action": {
-              "page": {
-                "url": "/categories/",
-                "type": "categories"
-              },
-              "popup": {},
-              "type": "page"
-            },
-            "active": true,
-            "tags": null,
-            "acl": [
-              "all"
-            ],
-            "_locale_language": {
-              "hi": {
-                "display": ""
-              },
-              "ar": {
-                "display": ""
-              },
-              "en_us": {
-                "display": ""
-              }
-            }
-          }
-        ]
-      },
-      {
-        "display": "Primary Menu",
-        "image": "",
-        "sort_order": 3,
-        "type": "",
-        "action": {
-          "page": {
-            "type": "home"
-          },
-          "popup": {},
-          "type": "page"
-        },
-        "active": true,
-        "tags": null,
-        "acl": [
-          "all"
-        ],
-        "_locale_language": {
-          "hi": {
-            "display": ""
-          },
-          "ar": {
-            "display": ""
-          },
-          "en_us": {
-            "display": ""
-          }
-        }
-      }
-    ],
-    "created_by": {
-      "id": "000000000000000000000000"
-    },
-    "date_meta": {
-      "created_on": "2021-01-11T04:53:13.585Z",
-      "modified_on": "2021-01-14T10:24:34.485Z"
-    },
-    "archived": false
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createPage
-Create a page
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.createPage({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.createPage({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PageRequest](#PageRequest) | yes | Request body |
-
-
-Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
-
-*Returned Response:*
-
-
-
-
-[PageSchema](#PageSchema)
-
-Success. Refer `PageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-16T08:24:19.197Z",
-      "modified_on": "2021-03-16T08:24:19.197Z"
-    },
-    "tags": [
-      "my first page"
-    ],
-    "published": true,
-    "component_ids": [],
-    "archived": false,
-    "_id": "60506dcad18cb33946026862",
-    "title": "my first page",
-    "slug": "1st_page",
-    "feature_image": {
-      "secure_url": "https://google.com/some-image"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
-      },
-      {
-        "type": "css",
-        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
-      },
-      {
-        "type": "js",
-        "value": ""
-      }
-    ],
-    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-    "platform": "web",
-    "description": "hey this is my first page",
-    "visibility": {
-      "test": true
-    },
-    "_schedule": {
-      "start": "2021-04-23T23:50:00.000Z",
-      "next_schedule": [
-        {}
-      ]
-    },
-    "seo": {
-      "title": "my first page",
-      "description": "hey this is my first page",
-      "image": {
-        "url": ""
-      }
-    },
-    "type": "rawhtml",
-    "application": "000000000000000000000001",
-    "orientation": "portrait",
-    "page_meta": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createPagePreview
-Create a page preview
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.createPagePreview({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.createPagePreview({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PageRequest](#PageRequest) | yes | Request body |
-
-
-Use this API to create a page preview to check the appearance of a custom page.
-
-*Returned Response:*
-
-
-
-
-[PageSchema](#PageSchema)
-
-Success. Refer `PageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-16T08:24:19.197Z",
-      "modified_on": "2021-03-16T08:24:19.197Z"
-    },
-    "tags": [
-      "my first page"
-    ],
-    "published": true,
-    "component_ids": [],
-    "archived": false,
-    "_id": "60506dcad18cb33946026862",
-    "title": "my first page",
-    "slug": "1st_page",
-    "feature_image": {
-      "secure_url": "https://google.com/some-image"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
-      },
-      {
-        "type": "css",
-        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
-      },
-      {
-        "type": "js",
-        "value": ""
-      }
-    ],
-    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-    "platform": "web",
-    "description": "hey this is my first page",
-    "visibility": {
-      "test": true
-    },
-    "_schedule": {
-      "start": "2021-04-23T23:50:00.000Z",
-      "next_schedule": [
-        {}
-      ]
-    },
-    "seo": {
-      "title": "my first page",
-      "description": "hey this is my first page",
-      "image": {
-        "url": ""
-      }
-    },
-    "type": "rawhtml",
-    "application": "000000000000000000000001",
-    "orientation": "portrait",
-    "page_meta": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### createSEOMarkupSchema
 Create a SEO Markup schema Template of a page type for an application
 
@@ -2410,116 +3032,6 @@ Success. Refer `SlideshowSchema` for more details.
     ],
     "application": "5cd3db5e9d692cfe5302a7bb",
     "active": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteAnnouncement
-Delete announcement by id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deleteAnnouncement({  announcementId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deleteAnnouncement({  announcementId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| announcementId | string | yes | ID allotted to the announcement. |  
-
-
-
-Use this API to delete an existing announcement.
-
-*Returned Response:*
-
-
-
-
-[CreateAnnouncementSchema](#CreateAnnouncementSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Successfully deleted announcement",
-    "data": {
-      "value": {
-        "platforms": [
-          "web",
-          "android",
-          "ios"
-        ],
-        "_id": "6026283125f06a827dc1a5cc",
-        "title": "test",
-        "announcement": "<p>test123</p>\n",
-        "pages": [
-          {
-            "page_slug": "$all",
-            "type": "custom"
-          }
-        ],
-        "editor_meta": {
-          "foreground_color": "#000",
-          "background_color": "#fff",
-          "content_type": "markdown",
-          "content": "test"
-        },
-        "_schedule": {
-          "published": true,
-          "next_schedule": [
-            {
-              "start": "2021-02-10T20:40:00.000Z",
-              "end": "2021-02-18T22:00:00.000Z"
-            }
-          ],
-          "cron": null,
-          "start": "2021-02-10T20:40:00.000Z",
-          "end": "2021-02-18T22:00:00.000Z",
-          "duration": null
-        },
-        "app": "000000000000000000000001",
-        "author": {
-          "created_by": "5e199e6998cfe1776f1385dc",
-          "modified_by": "5e199e6998cfe1776f1385dc"
-        },
-        "created_at": "2021-02-12T07:03:13.503Z",
-        "modified_at": "2021-02-12T07:05:57.020Z"
-      }
-    }
   }
 }
 ```
@@ -2739,107 +3251,6 @@ Custom object definition details.
 ---
 
 
-### deleteBlog
-Delete blogs
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deleteBlog({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deleteBlog({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the blog. |  
-
-
-
-Use this API to delete a blog.
-
-*Returned Response:*
-
-
-
-
-[BlogSchema](#BlogSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5eaa451a21a4dd75f0fd96c5",
-    "application": "5d3ebd89f540e7506b8b3548",
-    "tags": [
-      "abhinav"
-    ],
-    "title": "my first blog",
-    "slug": "1st_blog",
-    "feature_image": {
-      "secure_url": "https://google.com"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<p>hey there!</p>"
-      }
-    ],
-    "_schedule": {
-      "cron": "* 10 * * *",
-      "start": "2021-03-31T23:30:00.000Z",
-      "end": "2021-03-31T23:55:00.000Z",
-      "duration": 1000,
-      "next_schedule": [
-        {
-          "start": "2021-03-17T04:30:00.000Z",
-          "end": "2021-03-17T04:46:40.000Z"
-        }
-      ]
-    },
-    "published": true,
-    "author": {
-      "name": "Fynd App"
-    },
-    "date_meta": {
-      "created_on": "2021-03-14T06:49:03.945Z",
-      "modified_on": "2021-03-14T06:49:03.945Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### deleteCustomFieldDefinition
 Delete custom fields definition.
 
@@ -3041,710 +3452,6 @@ Custom object definition details.
 ---
 
 
-### deleteDataLoader
-Delete data loader in application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deleteDataLoader({  dataLoaderId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deleteDataLoader({  dataLoaderId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| dataLoaderId | string | yes | ID allotted to the data loader. |  
-
-
-
-Use this API to delete data loader.
-
-*Returned Response:*
-
-
-
-
-[DataLoaderResponseSchema](#DataLoaderResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "601f77e7aa61066feda44487",
-  "name": "Search API from Algolia",
-  "service": "catalog",
-  "operation_id": "fetchSuggestions",
-  "type": "url",
-  "application": "000000000000000000000001",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteFaq
-Delete an FAQ
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deleteFaq({  categoryId : value,
- faqId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deleteFaq({  categoryId : value,
- faqId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| categoryId | string | yes | ID allotted to an FAQ category. |   
-| faqId | string | yes | ID allotted to an FAQ. |  
-
-
-
-Use this API to delete an existing FAQ.
-
-*Returned Response:*
-
-
-
-
-[CreateFaqResponseSchema](#CreateFaqResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "faq": {
-    "_id": "60265b64e507768b168dee4d",
-    "question": "question 1 updated",
-    "answer": "answer 1",
-    "slug": "question-1",
-    "application": "000000000000000000000001"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteFaqCategory
-Delete an FAQ category
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deleteFaqCategory({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deleteFaqCategory({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to an FAQ category. |  
-
-
-
-Use this API to delete an FAQ category.
-
-*Returned Response:*
-
-
-
-
-[FaqSchema](#FaqSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "category": {
-    "index": 0,
-    "children": [],
-    "_id": "60263f80c83c1f89f2863a8a",
-    "slug": "test",
-    "title": "Test",
-    "application": "000000000000000000000001",
-    "__v": 2
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteLandingPage
-Delete a landing page
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deleteLandingPage({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deleteLandingPage({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to a landing page. |  
-
-
-
-Use this API to delete an existing landing page.
-
-*Returned Response:*
-
-
-
-
-[LandingPageSchema](#LandingPageSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5eaa451a21a4dd75f0fd96c5",
-    "application": "5d3ebd89f540e7506b8b3548",
-    "_custom_json": {},
-    "slug": "pnc-landing",
-    "action": {
-      "page": {
-        "type": "home"
-      },
-      "popup": {},
-      "type": "page"
-    },
-    "platform": [
-      "web"
-    ],
-    "created_by": {
-      "id": "000000000000000000000000"
-    },
-    "date_meta": {
-      "created_on": "2020-04-30T03:25:14.549Z",
-      "modified_on": "2020-04-30T03:25:14.549Z"
-    },
-    "archived": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteNavigation
-Delete a navigation
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deleteNavigation({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deleteNavigation({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the navigation. |  
-
-
-
-Use this API to delete an existing navigation.
-
-*Returned Response:*
-
-
-
-
-[NavigationSchema](#NavigationSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5ffbd9b90ac98678ae0458d7",
-    "application": "000000000000000000000001",
-    "_custom_json": null,
-    "name": "temp",
-    "slug": "temp",
-    "platform": "[web]",
-    "orientation": {
-      "portrait": [
-        "left"
-      ]
-    },
-    "navigation": [
-      {
-        "display": "Home",
-        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
-        "sort_order": 1,
-        "type": "",
-        "action": {
-          "page": {
-            "url": "/",
-            "type": "home"
-          },
-          "popup": {},
-          "type": "page"
-        },
-        "active": true,
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "acl": [
-          "all"
-        ],
-        "_locale_language": {
-          "hi": {
-            "display": ""
-          },
-          "ar": {
-            "display": ""
-          },
-          "en_us": {
-            "display": ""
-          }
-        },
-        "sub_navigation": [
-          {
-            "display": "Brands",
-            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
-            "sort_order": 1,
-            "type": "",
-            "action": {
-              "page": {
-                "url": "/brands/",
-                "type": "brands"
-              },
-              "popup": {},
-              "type": "page"
-            },
-            "active": true,
-            "tags": null,
-            "acl": [
-              "all"
-            ],
-            "_locale_language": {
-              "hi": {
-                "display": ""
-              },
-              "ar": {
-                "display": ""
-              },
-              "en_us": {
-                "display": ""
-              }
-            }
-          }
-        ]
-      },
-      {
-        "display": "Collections",
-        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
-        "sort_order": 2,
-        "type": "",
-        "action": {
-          "page": {
-            "url": "/collections/",
-            "type": "collections"
-          },
-          "popup": {},
-          "type": "page"
-        },
-        "active": true,
-        "tags": null,
-        "acl": [
-          "all"
-        ],
-        "_locale_language": {
-          "hi": {
-            "display": ""
-          },
-          "ar": {
-            "display": ""
-          },
-          "en_us": {
-            "display": ""
-          }
-        },
-        "sub_navigation": [
-          {
-            "display": "Categories",
-            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
-            "sort_order": 1,
-            "type": "",
-            "action": {
-              "page": {
-                "url": "/categories/",
-                "type": "categories"
-              },
-              "popup": {},
-              "type": "page"
-            },
-            "active": true,
-            "tags": null,
-            "acl": [
-              "all"
-            ],
-            "_locale_language": {
-              "hi": {
-                "display": ""
-              },
-              "ar": {
-                "display": ""
-              },
-              "en_us": {
-                "display": ""
-              }
-            }
-          }
-        ]
-      },
-      {
-        "display": "Primary Menu",
-        "image": "",
-        "sort_order": 3,
-        "type": "",
-        "action": {
-          "page": {
-            "type": "home"
-          },
-          "popup": {},
-          "type": "page"
-        },
-        "active": true,
-        "tags": null,
-        "acl": [
-          "all"
-        ],
-        "_locale_language": {
-          "hi": {
-            "display": ""
-          },
-          "ar": {
-            "display": ""
-          },
-          "en_us": {
-            "display": ""
-          }
-        }
-      }
-    ],
-    "created_by": {
-      "id": "000000000000000000000000"
-    },
-    "date_meta": {
-      "created_on": "2021-01-11T04:53:13.585Z",
-      "modified_on": "2021-01-14T10:24:34.485Z"
-    },
-    "archived": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deletePage
-Delete a page
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deletePage({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deletePage({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the page. |  
-
-
-
-Use this API to delete an existing page.
-
-*Returned Response:*
-
-
-
-
-[PageSchema](#PageSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-16T08:24:19.197Z",
-      "modified_on": "2021-03-16T08:24:19.197Z"
-    },
-    "tags": [
-      "my first page"
-    ],
-    "published": true,
-    "component_ids": [],
-    "archived": false,
-    "_id": "60506dcad18cb33946026862",
-    "title": "my first page",
-    "slug": "1st_page",
-    "feature_image": {
-      "secure_url": "https://google.com/some-image"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
-      },
-      {
-        "type": "css",
-        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
-      },
-      {
-        "type": "js",
-        "value": ""
-      }
-    ],
-    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-    "platform": "web",
-    "description": "hey this is my first page",
-    "visibility": {
-      "test": true
-    },
-    "_schedule": {
-      "start": "2021-04-23T23:50:00.000Z",
-      "next_schedule": [
-        {}
-      ]
-    },
-    "seo": {
-      "title": "my first page",
-      "description": "hey this is my first page",
-      "image": {
-        "url": ""
-      }
-    },
-    "type": "rawhtml",
-    "application": "000000000000000000000001",
-    "orientation": "portrait",
-    "page_meta": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deletePathRedirectionRules
-Delete path based redirection rules
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deletePathRedirectionRules({  pathId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deletePathRedirectionRules({  pathId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pathId | string | yes | ID allotted to the path redirection rule. |  
-
-
-
-Use this API to delete redirection rules
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Redirection deleted successfully"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### deleteSEOMarkupSchema
 delete a particular SEO Markup schema of an application using its id
 
@@ -3891,144 +3598,6 @@ Success.
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### editDataLoader
-Edit a data loader by id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.editDataLoader({  dataLoaderId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.editDataLoader({  dataLoaderId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| dataLoaderId | string | yes | ID allotted to the data loader. |  
-| body | [DataLoaderSchema](#DataLoaderSchema) | yes | Request body |
-
-
-Use this API to edit the details of an existing data loader by its ID.
-
-*Returned Response:*
-
-
-
-
-[DataLoaderResponseSchema](#DataLoaderResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "601f77e7aa61066feda44487",
-  "name": "Search API from Algolia",
-  "service": "catalog",
-  "operation_id": "fetchSuggestions",
-  "type": "url",
-  "application": "000000000000000000000001",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### editInjectableTag
-Edit a tag by id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.editInjectableTag({  tagId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.editInjectableTag({  tagId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| tagId | string | yes | ID allotted to the tag. |  
-| body | [UpdateHandpickedSchema](#UpdateHandpickedSchema) | yes | Request body |
-
-
-Use this API to edit the details of an existing tag by its ID.
-
-*Returned Response:*
-
-
-
-
-[TagsSchema](#TagsSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "602671b3c0bac99158b10874",
-  "application": "000000000000000000000001",
-  "tags": [
-    {
-      "_id": "601f77e7aa61066feda44488",
-      "name": "floating whatsapp",
-      "sub_type": "inline",
-      "type": "css",
-      "position": "head",
-      "content": ".float{\n\tposition:fixed;\n\twidth:60px;\n\theight:60px;\n\tbottom:40px;\n\tright:40px;\n\tbackground-color:#25d366;\n\tcolor:#FFF;\n\tborder-radius:50px;\n\ttext-align:center;\n  font-size:30px;\n\tbox-shadow: 2px 2px 3px #999;\n  z-index:100;\n}\n\n.my-float{\n\tmargin-top:16px;\n}"
-    }
-  ],
-  "__v": 1
-}
-```
 </details>
 
 
@@ -4234,300 +3803,6 @@ Success. Initiates bulk entries download
 ---
 
 
-### generateSEOTitle
-Get SEO meta tag title for content
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.generateSEOTitle({  type : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.generateSEOTitle({  type : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| type | GenerationEntityType | yes | String representing the type of SEO content to be generated. Possible values are: title, description |  
-| body | [GenerateSEOContent](#GenerateSEOContent) | yes | Request body |
-
-
-Use this API to get GPT3 generated SEO meta tag title for content
-
-*Returned Response:*
-
-
-
-
-[GeneratedSEOContent](#GeneratedSEOContent)
-
-Returns the generated SEO title
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "title": "SEO Title example",
-    "description": "SEO Description example"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAnnouncementById
-Get announcement by ID
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getAnnouncementById({  announcementId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getAnnouncementById({  announcementId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| announcementId | string | yes | ID allotted to the announcement. |  
-
-
-
-Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
-
-*Returned Response:*
-
-
-
-
-[AdminAnnouncementSchema](#AdminAnnouncementSchema)
-
-Success. Refer `AdminAnnouncementSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "platforms": [
-      "web",
-      "android",
-      "ios"
-    ],
-    "_id": "6026283125f06a827dc1a5cc",
-    "title": "test",
-    "announcement": "<p>test123</p>\n",
-    "pages": [
-      {
-        "page_slug": "$all",
-        "type": "custom"
-      }
-    ],
-    "editor_meta": {
-      "foreground_color": "#000",
-      "background_color": "#fff",
-      "content_type": "markdown",
-      "content": "test"
-    },
-    "_schedule": {
-      "published": true,
-      "next_schedule": [
-        {
-          "start": "2021-02-10T20:40:00.000Z",
-          "end": "2021-02-18T22:00:00.000Z"
-        }
-      ],
-      "cron": "",
-      "start": "2021-02-10T20:40:00.000Z",
-      "end": "2021-02-18T22:00:00.000Z",
-      "duration": 0
-    },
-    "app": "000000000000000000000001",
-    "author": {
-      "created_by": "5e199e6998cfe1776f1385dc",
-      "modified_by": "5e199e6998cfe1776f1385dc"
-    },
-    "created_at": "2021-02-12T07:03:13.503Z",
-    "modified_at": "2021-02-12T07:05:57.020Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAnnouncementsList
-Get a list of announcements
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getAnnouncementsList({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getAnnouncementsList({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	
-
-*Returned Response:*
-
-
-
-
-[GetAnnouncementListSchema](#GetAnnouncementListSchema)
-
-Success. Refer `GetAnnouncementListSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "6026283125f06a827dc1a5cc",
-        "platforms": [
-          "web",
-          "android",
-          "ios"
-        ],
-        "title": "test",
-        "announcement": "<p>test</p>\n",
-        "pages": [
-          {
-            "page_slug": "$all",
-            "type": "custom"
-          }
-        ],
-        "editor_meta": {
-          "foreground_color": "#000",
-          "background_color": "#fff",
-          "content_type": "markdown",
-          "content": "test"
-        },
-        "_schedule": {
-          "published": true,
-          "cron": "",
-          "start": "2021-02-10T20:40:00.000Z",
-          "end": "2021-02-18T22:00:00.000Z",
-          "duration": 0,
-          "next_schedule": [
-            {
-              "start": "2021-02-10T20:40:00.000Z",
-              "end": "2021-02-18T22:00:00.000Z"
-            }
-          ]
-        },
-        "app": "000000000000000000000001",
-        "author": {
-          "created_by": "5e199e6998cfe1776f1385dc",
-          "modified_by": "5e199e6998cfe1776f1385dc"
-        },
-        "created_at": "2021-02-12T07:03:13.503Z",
-        "modified_at": "2021-02-12T07:03:13.503Z",
-        "id": "6026283125f06a827dc1a5cc"
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 10,
-      "item_total": 1,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getAppCustomFieldDefinition
 Get custom fields definition by id
 
@@ -4671,15 +3946,15 @@ Get custom fields definitions
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resource : value,
- type : value,
+ resources : value,
+ types : value,
  search : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resource : value,
- type : value,
+ resources : value,
+ types : value,
  search : value });
 ```
 
@@ -4691,8 +3966,8 @@ const data = await platformClient.application("<APPLICATION_ID>").content.getApp
 | --------- | -----  | -------- | ----------- | 
 | pageNo | string | yes |  |   
 | pageSize | string | yes |  |    
-| resource | string | no |  |    
-| type | string | no |  |    
+| resources | string | no |  |    
+| types | string | no |  |    
 | search | string | no |  |  
 
 
@@ -5134,7 +4409,7 @@ Success. Returns all custom field types.
 
 
 ### getAppCustomFields
-Get list of custom fields of given resource
+Get list of custom fields of gives resource
 
 
 
@@ -5560,7 +4835,7 @@ Use this API to update a custom object definition for your application.
 
 [CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
 
-Custom object definition details.
+Success. It will returns the message for delete successfully.
 
 
 
@@ -6086,316 +5361,6 @@ Success. Returns a JSON object of resources. Refer `ResourcesSchema` for more de
 ---
 
 
-### getBlogBySlug
-Get blog by slug
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getBlogBySlug({  slug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getBlogBySlug({  slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
-
-
-
-Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
-
-*Returned Response:*
-
-
-
-
-[BlogSchema](#BlogSchema)
-
-Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5eaa451a21a4dd75f0fd96c5",
-    "application": "5d3ebd89f540e7506b8b3548",
-    "tags": [
-      "abhinav"
-    ],
-    "title": "my first blog",
-    "slug": "1st_blog",
-    "feature_image": {
-      "secure_url": "https://google.com"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<p>hey there!</p>"
-      }
-    ],
-    "_schedule": {
-      "cron": "* 10 * * *",
-      "start": "2021-03-31T23:30:00.000Z",
-      "end": "2021-03-31T23:55:00.000Z",
-      "duration": 1000,
-      "next_schedule": [
-        {
-          "start": "2021-03-17T04:30:00.000Z",
-          "end": "2021-03-17T04:46:40.000Z"
-        }
-      ]
-    },
-    "published": true,
-    "author": {
-      "name": "Fynd App"
-    },
-    "date_meta": {
-      "created_on": "2021-03-14T06:49:03.945Z",
-      "modified_on": "2021-03-14T06:49:03.945Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBlogs
-Get blogs
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getBlogs({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getBlogs({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
-
-*Returned Response:*
-
-
-
-
-[BlogGetResponse](#BlogGetResponse)
-
-Success. Refer `BlogGetResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "date_meta": {
-          "created_on": "2021-03-14T06:49:03.945Z",
-          "modified_on": "2021-03-14T06:49:03.945Z"
-        },
-        "tags": [],
-        "_id": "604db275b3ae202873964d94",
-        "content": [
-          {
-            "type": "html",
-            "value": "<p>test abhinav</p>"
-          }
-        ],
-        "title": "1st Blog",
-        "slug": "1st-blog",
-        "published": true,
-        "_schedule": {
-          "next_schedule": [
-            {}
-          ],
-          "start": "2021-04-08T07:15:13.000Z",
-          "end": "2021-04-10T02:00:00.000Z"
-        },
-        "feature_image": {
-          "secure_url": ""
-        },
-        "application": "000000000000000000000001",
-        "author": {
-          "name": "Fynd App"
-        }
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 1,
-      "item_total": 2,
-      "has_next": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getComponentById
-Get components of a blog
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getComponentById({  slug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getComponentById({  slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
-
-
-
-Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
-
-*Returned Response:*
-
-
-
-
-[BlogSchema](#BlogSchema)
-
-Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5eaa451a21a4dd75f0fd96c5",
-    "application": "5d3ebd89f540e7506b8b3548",
-    "tags": [
-      "abhinav"
-    ],
-    "title": "my first blog",
-    "slug": "1st_blog",
-    "feature_image": {
-      "secure_url": "https://google.com"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<p>hey there!</p>"
-      }
-    ],
-    "_schedule": {
-      "cron": "* 10 * * *",
-      "start": "2021-03-31T23:30:00.000Z",
-      "end": "2021-03-31T23:55:00.000Z",
-      "duration": 1000,
-      "next_schedule": [
-        {
-          "start": "2021-03-17T04:30:00.000Z",
-          "end": "2021-03-17T04:46:40.000Z"
-        }
-      ]
-    },
-    "published": true,
-    "author": {
-      "name": "Fynd App"
-    },
-    "date_meta": {
-      "created_on": "2021-03-14T06:49:03.945Z",
-      "modified_on": "2021-03-14T06:49:03.945Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getCustomFieldDefinition
 Get custom fields definition by id
 
@@ -6539,15 +5504,15 @@ Get custom fields definitions
 // Promise
 const promise = platformClient.content.getCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resource : value,
- type : value,
+ resources : value,
+ types : value,
  search : value });
 
 // Async/Await
 const data = await platformClient.content.getCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resource : value,
- type : value,
+ resources : value,
+ types : value,
  search : value });
 ```
 
@@ -6559,8 +5524,8 @@ const data = await platformClient.content.getCustomFieldDefinitions({  pageNo : 
 | --------- | -----  | -------- | ----------- | 
 | pageNo | string | yes |  |   
 | pageSize | string | yes |  |    
-| resource | string | no |  |    
-| type | string | no |  |    
+| resources | string | no |  |    
+| types | string | no |  |    
 | search | string | no |  |  
 
 
@@ -7718,90 +6683,6 @@ Success. Returns a list of custom objects. Refer `CustomObjectsSchema` for more 
 ---
 
 
-### getDataLoaders
-Get all the data loaders in an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getDataLoaders();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getDataLoaders();
-```
-
-
-
-
-
-
-Use this to get all data loaders of an application
-
-*Returned Response:*
-
-
-
-
-[DataLoadersSchema](#DataLoadersSchema)
-
-Success. Refer `DataLoadersSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "name": "Algolia",
-      "is_selected": false,
-      "type": "url",
-      "_id": "61bc4523a7ffc7504f4de4a5",
-      "service": "catalog",
-      "operation_id": "fetchSuggestions",
-      "url": "/ext/example/url",
-      "__source": {
-        "type": "extension",
-        "id": "000000000000000000000003"
-      },
-      "application": "100000000000000000000001",
-      "__v": 0
-    },
-    {
-      "name": "Algolia v3",
-      "is_selected": false,
-      "type": "url",
-      "_id": "61bc452da7ffc7504f4de4a7",
-      "service": "catalog",
-      "operation_id": "fetchSuggestions",
-      "url": "/ext/example/url",
-      "__source": {
-        "type": "extension",
-        "id": "000000000000000000000003"
-      },
-      "application": "100000000000000000000001",
-      "__v": 0
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getDataLoadersByService
 Get all the data loaders in an application by service name
 
@@ -7891,8 +6772,3414 @@ Success. Refer `DataLoaderResponseSchema` for more details.
 ---
 
 
+### getDefaultSEOMarkupSchema
+Get Default SEO Markup schemas of an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getDefaultSEOMarkupSchema({  pageType : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getDefaultSEOMarkupSchema({  pageType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageType | string | no | The type of page against which schema template was created |  
+
+
+
+Use this API to get the Default SEO Markup schema Templates setup for an application
+
+*Returned Response:*
+
+
+
+
+[DefaultSchemaComponent](#DefaultSchemaComponent)
+
+Success. Refer `DefaultSchemaComponent` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getJobs
+Fetch bulk import and export job list.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getJobs({  page : value,
+ pageSize : value,
+ actionType : value });
+
+// Async/Await
+const data = await platformClient.content.getJobs({  page : value,
+ pageSize : value,
+ actionType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| page | string | yes |  |   
+| pageSize | string | yes |  |   
+| actionType | string | yes |  |  
+
+
+
+Use this api to get list of jobs of bulk import and exports
+
+*Returned Response:*
+
+
+
+
+[CustomObjectBulkEntry](#CustomObjectBulkEntry)
+
+Success. Returns all bulk entries history. 
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "6570124da20cc45d3f2582a7",
+        "jobs": [
+          "2311"
+        ],
+        "finished_jobs": [
+          "2311"
+        ],
+        "error_jobs": [],
+        "errors_occured": [],
+        "company_id": "2",
+        "creator": "company",
+        "URL": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/custom-data/CustomObject-designer-import-6570124da20cc45d3f2582a7.csv",
+        "status": "completed",
+        "action_type": "upload",
+        "entity": "metaobject",
+        "error_url": "",
+        "finished_count": 0,
+        "error_count": 0,
+        "success_count": 0,
+        "total_jobs": 1,
+        "meta": {
+          "mo_total_count": 2,
+          "mo_success_count": 2,
+          "mo_error_count": 0,
+          "mo_defintion_type": "designer"
+        },
+        "created_by": "bd7223b6727eb087987eece7",
+        "created_at": "2023-12-06T06:18:53.219Z",
+        "updated_at": "2023-12-06T06:20:23.560Z",
+        "id": "6570124da20cc45d3f2582a7"
+      },
+      {
+        "_id": "6558b8c49340c43a7015b4af",
+        "jobs": [
+          "2297"
+        ],
+        "finished_jobs": [
+          "2297"
+        ],
+        "error_jobs": [],
+        "errors_occured": [],
+        "company_id": "2",
+        "creator": "company",
+        "URL": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/custom-data/CustomObject-kuldeep-custom-import-6558b8c49340c43a7015b4af.csv",
+        "status": "completed",
+        "action_type": "upload",
+        "entity": "metaobject",
+        "error_url": "",
+        "finished_count": 0,
+        "error_count": 0,
+        "success_count": 0,
+        "total_jobs": 1,
+        "meta": {
+          "mo_total_count": 1,
+          "mo_success_count": 0,
+          "mo_error_count": 1,
+          "mo_defintion_type": "kuldeep-custom"
+        },
+        "created_by": "9759643b65ebc6bacb5275f5",
+        "created_at": "2023-11-18T13:14:44.360Z",
+        "updated_at": "2023-11-18T13:17:19.765Z",
+        "id": "6558b8c49340c43a7015b4af"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 20,
+      "item_total": 2,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getResources
+Get resources
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getResources();
+
+// Async/Await
+const data = await platformClient.content.getResources();
+```
+
+
+
+
+
+
+Use this API to retrieve the resources, such as products, collections, customers, selling locations, etc.
+
+*Returned Response:*
+
+
+
+
+[ResourcesSchema](#ResourcesSchema)
+
+Success. Returns a JSON object of resources. Refer `ResourcesSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "resources": [
+      {
+        "name": "product",
+        "key": "product",
+        "definitions_count": 0
+      },
+      {
+        "name": "Collection",
+        "key": "collection",
+        "definitions_count": 0
+      },
+      {
+        "name": "Page",
+        "key": "page",
+        "definitions_count": 0
+      },
+      {
+        "name": "Blog",
+        "key": "blog",
+        "definitions_count": 0
+      },
+      {
+        "name": "Customer",
+        "key": "customer",
+        "definitions_count": 0
+      },
+      {
+        "name": "Store",
+        "key": "store",
+        "definitions_count": 0
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSEOMarkupSchema
+Get a particular SEO Markup schema of an application using its id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchema({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchema({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Alphanumeric ID allotted to a SEO Markup Schema Template created within a business. |  
+
+
+
+Use this API to get a existing SEO Markup schema an application
+
+*Returned Response:*
+
+
+
+
+[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
+
+Success. Refer `SEOSchemaMarkupTemplate` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSEOMarkupSchemas
+Get SEO Markup schemas of an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchemas({  title : value,
+ active : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchemas({  title : value,
+ active : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| title | string | no | Title of the seo schema. |    
+| active | string | no | Boolean value for fetching seo schema. |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Use this API to get all SEO Markup schema Templates setup for an application
+
+*Returned Response:*
+
+
+
+
+[SeoSchemaComponent](#SeoSchemaComponent)
+
+Success. Refer `SeoSchemaComponent` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSlideshowBySlug
+Get slideshow by slug
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getSlideshowBySlug({  slug : value,
+ devicePlatform : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getSlideshowBySlug({  slug : value,
+ devicePlatform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. |   
+| devicePlatform | string | yes | Filter slideshows by platform. Acceptable values are: web, android, ios and all |  
+
+
+
+Use this API to retrieve the details of a slideshow by its slug.
+
+*Returned Response:*
+
+
+
+
+[SlideshowSchema](#SlideshowSchema)
+
+Success. Refer `SlideshowSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-14T05:27:12.319Z",
+      "modified_on": "2021-03-14T05:27:12.319Z"
+    },
+    "archived": false,
+    "_id": "604d9eb975e9d136bb1b8b83",
+    "configuration": {
+      "start_on_launch": false,
+      "duration": 50,
+      "sleep_time": 100,
+      "slide_direction": "horizontal"
+    },
+    "slug": "ss-sfsd-updated",
+    "platform": "ios",
+    "media": [
+      {
+        "auto_decide_duration": false,
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+        "bg_color": "#ffffff",
+        "duration": 10,
+        "action": {
+          "type": ""
+        }
+      },
+      {
+        "auto_decide_duration": true,
+        "type": "youtube",
+        "url": "https://www.youtube.com/embed/9vJRopau0g0",
+        "bg_color": "#ffffff",
+        "duration": 909,
+        "action": {
+          "type": ""
+        }
+      }
+    ],
+    "application": "5cd3db5e9d692cfe5302a7bb",
+    "active": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSlideshows
+Get slideshows
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getSlideshows({  devicePlatform : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getSlideshows({  devicePlatform : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| devicePlatform | string | yes | Filter slideshows by platform. Acceptable values are: web, android, ios and all |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
+
+*Returned Response:*
+
+
+
+
+[SlideshowGetResponse](#SlideshowGetResponse)
+
+Success. Refer `SlideshowGetResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-14T05:27:12.319Z",
+          "modified_on": "2021-03-14T05:27:12.319Z"
+        },
+        "archived": false,
+        "_id": "604d9eb975e9d136bb1b8b83",
+        "configuration": {
+          "start_on_launch": false,
+          "duration": 50,
+          "sleep_time": 100,
+          "slide_direction": "horizontal"
+        },
+        "slug": "ss-sfsd-updated",
+        "platform": "ios",
+        "media": [
+          {
+            "auto_decide_duration": false,
+            "type": "image",
+            "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "bg_color": "#ffffff",
+            "duration": 10,
+            "action": {
+              "type": ""
+            }
+          },
+          {
+            "auto_decide_duration": true,
+            "type": "youtube",
+            "url": "https://www.youtube.com/embed/9vJRopau0g0",
+            "bg_color": "#ffffff",
+            "duration": 909,
+            "action": {
+              "type": ""
+            }
+          }
+        ],
+        "application": "5cd3db5e9d692cfe5302a7bb",
+        "active": true,
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### importAppCustomObjectEntries
+Bulk custom object entries upload
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.importAppCustomObjectEntries({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.importAppCustomObjectEntries({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomObjectBulkSchema](#CustomObjectBulkSchema) | yes | Request body |
+
+
+Use this API to upload custom object entries
+
+*Returned Response:*
+
+
+
+
+[CustomObjectEntryBulkUploadResponse](#CustomObjectEntryBulkUploadResponse)
+
+Success. Returns confirmation that the upload has started
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Bulk upload of Meta objects started successfully",
+    "task_id": "6570124da20cc45d3f2582a7"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### importCustomObjectEntries
+Bulk custom object entries upload
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.importCustomObjectEntries({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.importCustomObjectEntries({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomObjectBulkSchema](#CustomObjectBulkSchema) | yes | Request body |
+
+
+Use this API to upload custom object entries
+
+*Returned Response:*
+
+
+
+
+[CustomObjectEntryBulkUploadResponse](#CustomObjectEntryBulkUploadResponse)
+
+Success. Returns confirmation that the upload has started
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Bulk upload of Meta objects started successfully",
+    "task_id": "6570124da20cc45d3f2582a7"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sampleAppCustomObjectBulkEntry
+download sample for custom object bulk entry
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.sampleAppCustomObjectBulkEntry({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.sampleAppCustomObjectBulkEntry({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this api to get sample csv file 
+
+*Returned Response:*
+
+
+
+
+[string](#string)
+
+Success. Get headers of custom object definition
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": "city,mobile,name,custom_object_status"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sampleCustomObjectBulkEntry
+download sample for custom object bulk entry
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.sampleCustomObjectBulkEntry({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.content.sampleCustomObjectBulkEntry({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this api to get sample csv file 
+
+*Returned Response:*
+
+
+
+
+[string](#string)
+
+Success. Get headers of custom object definition
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": "city,mobile,name,custom_object_status"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppCustomFieldDefinition
+Update custom field definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomFieldDefinition({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomFieldDefinition({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom field definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "creator": "application",
+    "resource": "product",
+    "name": "name",
+    "namespace": "fname",
+    "key": "fname",
+    "description": "First name",
+    "type": "string_single_line",
+    "multi_value": false,
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "required": false,
+    "is_deleted": false,
+    "_id": "65369654d436ae0e54147e7b",
+    "validations": [],
+    "created_at": "2023-10-23T15:50:44.143Z",
+    "updated_at": "2023-10-23T15:50:44.143Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppCustomObject
+Update custom object details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomObject({  metaobjectId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomObject({  metaobjectId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| metaobjectId | string | yes |  |  
+| body | [CustomObjectRequestSchema](#CustomObjectRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom object detail for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppCustomObjectDefinition
+Update custom object definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomObjectDefinition({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomObjectDefinition({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomObjectDefinitionUpdateRequestSchema](#CustomObjectDefinitionUpdateRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom object definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+Custom field definition updated.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCustomFieldDefinition
+Update custom field definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.updateCustomFieldDefinition({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.updateCustomFieldDefinition({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom field definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "creator": "application",
+    "resource": "product",
+    "name": "name",
+    "namespace": "fname",
+    "key": "fname",
+    "description": "First name",
+    "type": "string_single_line",
+    "multi_value": false,
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "required": false,
+    "is_deleted": false,
+    "_id": "65369654d436ae0e54147e7b",
+    "validations": [],
+    "created_at": "2023-10-23T15:50:44.143Z",
+    "updated_at": "2023-10-23T15:50:44.143Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCustomObject
+Update custom object details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.updateCustomObject({  metaobjectId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.updateCustomObject({  metaobjectId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| metaobjectId | string | yes |  |  
+| body | [CustomObjectRequestSchema](#CustomObjectRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom object detail for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCustomObjectDefinition
+Update custom object definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.updateCustomObjectDefinition({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.updateCustomObjectDefinition({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomObjectDefinitionUpdateRequestSchema](#CustomObjectDefinitionUpdateRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom object definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+Custom field definition updated.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSlideshow
+Update a slideshow
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateSlideshow({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateSlideshow({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the slideshow. |  
+| body | [SlideshowRequest](#SlideshowRequest) | yes | Request body |
+
+
+Use this API to edit the details of an existing slideshow.
+
+*Returned Response:*
+
+
+
+
+[SlideshowSchema](#SlideshowSchema)
+
+Success. Refer `SlideshowSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-14T05:27:12.319Z",
+      "modified_on": "2021-03-14T05:27:12.319Z"
+    },
+    "archived": false,
+    "_id": "604d9eb975e9d136bb1b8b83",
+    "configuration": {
+      "start_on_launch": false,
+      "duration": 50,
+      "sleep_time": 100,
+      "slide_direction": "horizontal"
+    },
+    "slug": "ss-sfsd-updated",
+    "platform": "ios",
+    "media": [
+      {
+        "auto_decide_duration": false,
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+        "bg_color": "#ffffff",
+        "duration": 10,
+        "action": {
+          "type": ""
+        }
+      },
+      {
+        "auto_decide_duration": true,
+        "type": "youtube",
+        "url": "https://www.youtube.com/embed/9vJRopau0g0",
+        "bg_color": "#ffffff",
+        "duration": 909,
+        "action": {
+          "type": ""
+        }
+      }
+    ],
+    "application": "5cd3db5e9d692cfe5302a7bb",
+    "active": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### addFaq
+Add FAQ.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.addFaq({  categoryId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.addFaq({  categoryId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| categoryId | string | yes | ID allotted to an FAQ category. |  
+| body | [CreateFaqSchema](#CreateFaqSchema) | yes | Request body |
+
+
+Create and add a new FAQ.
+
+*Returned Response:*
+
+
+
+
+[CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faq": {
+    "_id": "60265b64e507768b168dee4d",
+    "question": "question 1",
+    "answer": "answer 1",
+    "slug": "question-1",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createFaqCategory
+Create FAQ category.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createFaqCategory({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createFaqCategory({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema) | yes | Request body |
+
+
+Generate and add a new FAQ category.
+
+*Returned Response:*
+
+
+
+
+[CreateFaqCategorySchema](#CreateFaqCategorySchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "slug": "test",
+    "application": "000000000000000000000001",
+    "title": "Test"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteFaq
+Delete FAQ.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteFaq({  categoryId : value,
+ faqId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteFaq({  categoryId : value,
+ faqId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| categoryId | string | yes | ID allotted to an FAQ category. |   
+| faqId | string | yes | ID allotted to an FAQ. |  
+
+
+
+Remove a specific FAQ.
+
+*Returned Response:*
+
+
+
+
+[CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faq": {
+    "_id": "60265b64e507768b168dee4d",
+    "question": "question 1 updated",
+    "answer": "answer 1",
+    "slug": "question-1",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteFaqCategory
+Delete FAQ category.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteFaqCategory({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteFaqCategory({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to an FAQ category. |  
+
+
+
+Remove a specific FAQ category.
+
+*Returned Response:*
+
+
+
+
+[FaqSchema](#FaqSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "slug": "test",
+    "title": "Test",
+    "application": "000000000000000000000001",
+    "__v": 2
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getFaqByIdOrSlug
+Get FAQ by ID or slug.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getFaqByIdOrSlug({  idOrSlug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getFaqByIdOrSlug({  idOrSlug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+
+
+
+Retrieve detailed information about a specific FAQ.
+
+*Returned Response:*
+
+
+
+
+[CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+Success. Refer `CreateFaqResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faq": {
+    "_id": "60265b64e507768b168dee4d",
+    "question": "question 1",
+    "answer": "answer 1",
+    "slug": "question-1",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getFaqCategories
+Get FAQ categories.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getFaqCategories();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getFaqCategories();
+```
+
+
+
+
+
+
+Retrieve a list of FAQ categories.
+
+*Returned Response:*
+
+
+
+
+[GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
+
+Success. Refer `GetFaqCategoriesSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "categories": [
+    {
+      "index": 0,
+      "children": [
+        "6026426ae507768b168dee4b"
+      ],
+      "title": "Test",
+      "_id": "60263f80c83c1f89f2863a8a",
+      "slug": "test",
+      "application": "000000000000000000000001"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getFaqCategoryBySlugOrId
+Get FAQ category by slug or ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId({  idOrSlug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId({  idOrSlug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+
+
+
+Retrieve detailed information about a specific FAQ category.
+
+*Returned Response:*
+
+
+
+
+[GetFaqCategoryBySlugSchema](#GetFaqCategoryBySlugSchema)
+
+Success. Refer `GetFaqCategoryBySlugSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [
+      {
+        "_id": "6026426ae507768b168dee4b",
+        "question": "question 1",
+        "answer": "answer 1",
+        "slug": "question-1",
+        "application": "000000000000000000000001"
+      }
+    ],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "slug": "test",
+    "title": "Test",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getFaqsByCategoryIdOrSlug
+Get FAQs by category ID or slug.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug({  idOrSlug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug({  idOrSlug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+
+
+
+Retrieve a list of FAQs within a specific category.
+
+*Returned Response:*
+
+
+
+
+[GetFaqSchema](#GetFaqSchema)
+
+Success. Refer `GetFaqSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faqs": [
+    {
+      "_id": "60265b64e507768b168dee4d",
+      "question": "question 1",
+      "answer": "answer 1",
+      "slug": "question-1",
+      "application": "000000000000000000000001"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateFaq
+Update FAQ.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateFaq({  categoryId : value,
+ faqId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateFaq({  categoryId : value,
+ faqId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| categoryId | string | yes | ID allotted to an FAQ category. |   
+| faqId | string | yes | ID allotted to an FAQ. |  
+| body | [CreateFaqSchema](#CreateFaqSchema) | yes | Request body |
+
+
+Modify the content and settings of a specific FAQ.
+
+*Returned Response:*
+
+
+
+
+[CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faq": {
+    "_id": "60265b64e507768b168dee4d",
+    "question": "question 1 updated",
+    "answer": "answer 1",
+    "slug": "question-1",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateFaqCategory
+Update FAQ category.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateFaqCategory({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateFaqCategory({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to an FAQ category. |  
+| body | [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema) | yes | Request body |
+
+
+Modify the content and settings of a specific FAQ category.
+
+*Returned Response:*
+
+
+
+
+[CreateFaqCategorySchema](#CreateFaqCategorySchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "title": "Test Updated",
+    "slug": "test",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createLandingPage
+Create landing page.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createLandingPage({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createLandingPage({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [LandingPageSchema](#LandingPageSchema) | yes | Request body |
+
+
+Generate and add a new landing page.
+
+*Returned Response:*
+
+
+
+
+[LandingPageSchema](#LandingPageSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "_custom_json": {},
+    "slug": "pnc-landing",
+    "action": {
+      "page": {
+        "type": "home"
+      },
+      "popup": {},
+      "type": "page"
+    },
+    "platform": [
+      "web"
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2020-04-30T03:25:14.549Z",
+      "modified_on": "2020-04-30T03:25:14.549Z"
+    },
+    "archived": false
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteLandingPage
+Delete landing page.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteLandingPage({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteLandingPage({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to a landing page. |  
+
+
+
+Remove a specific landing page.
+
+*Returned Response:*
+
+
+
+
+[LandingPageSchema](#LandingPageSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "_custom_json": {},
+    "slug": "pnc-landing",
+    "action": {
+      "page": {
+        "type": "home"
+      },
+      "popup": {},
+      "type": "page"
+    },
+    "platform": [
+      "web"
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2020-04-30T03:25:14.549Z",
+      "modified_on": "2020-04-30T03:25:14.549Z"
+    },
+    "archived": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generateSEOTitle
+Generate SEO title.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.generateSEOTitle({  type : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.generateSEOTitle({  type : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| type | GenerationEntityType | yes | String representing the type of SEO content to be generated. Possible values are: title, description |  
+| body | [GenerateSEOContent](#GenerateSEOContent) | yes | Request body |
+
+
+Create an SEO-friendly title for content.
+
+*Returned Response:*
+
+
+
+
+[GeneratedSEOContent](#GeneratedSEOContent)
+
+Returns the generated SEO title
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "title": "SEO Title example",
+    "description": "SEO Description example"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getLandingPages
+Get landing pages.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getLandingPages({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getLandingPages({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Retrieve a list of landing pages.
+
+*Returned Response:*
+
+
+
+
+[LandingPageGetResponse](#LandingPageGetResponse)
+
+Success. Refer `LandingPageGetResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-12T09:26:12.157Z",
+          "modified_on": "2021-03-12T09:26:12.157Z"
+        },
+        "platform": [
+          "android"
+        ],
+        "_id": "604b342e29f19310d8ae9743",
+        "slug": "landing-page-default-2",
+        "action": {
+          "page": {
+            "type": "default"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "application": "5cd3db5e9d692cfe5302a7bb",
+        "archived": false,
+        "_custom_json": {},
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateLandingPage
+Update landing page.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateLandingPage({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateLandingPage({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to a landing page. |  
+| body | [LandingPageSchema](#LandingPageSchema) | yes | Request body |
+
+
+Modify the content and settings of a specific landing page.
+
+*Returned Response:*
+
+
+
+
+[LandingPageSchema](#LandingPageSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "_custom_json": {},
+    "slug": "pnc-landing",
+    "action": {
+      "page": {
+        "type": "home"
+      },
+      "popup": {},
+      "type": "page"
+    },
+    "platform": [
+      "web"
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2020-04-30T03:25:14.549Z",
+      "modified_on": "2020-04-30T03:25:14.549Z"
+    },
+    "archived": false
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getLegalInformation
+Get legal related information for applicaiton
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getLegalInformation();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getLegalInformation();
+```
+
+
+
+
+
+
+Retrieve legal information and terms.
+
+*Returned Response:*
+
+
+
+
+[ApplicationLegal](#ApplicationLegal)
+
+Success. Refer `ApplicationLegal` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "tnc": "**Terms and Conditions test**",
+    "policy": "**Privacy policy test**",
+    "shipping": "**Shipping term and conditions**",
+    "returns": "**Terms & conditions for returns **",
+    "_id": "5e8b2b96abe7dc94c02c9ac9",
+    "application": "000000000000000000000001",
+    "faq": [
+      {
+        "question": "New Question",
+        "answer": "New Answer"
+      },
+      {
+        "question": "New",
+        "answer": "sdfghjhg"
+      },
+      {
+        "question": "test",
+        "answer": "test"
+      },
+      {
+        "question": "New Test",
+        "answer": "New Test answer"
+      },
+      {
+        "question": "test",
+        "answer": "test"
+      }
+    ],
+    "created_at": "2020-04-06T13:16:06.818Z",
+    "updated_at": "2020-07-16T09:47:40.751Z",
+    "__v": 260
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateLegalInformation
+Update legal related information for application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateLegalInformation({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateLegalInformation({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplicationLegal](#ApplicationLegal) | yes | Request body |
+
+
+Modify legal information and terms.
+
+*Returned Response:*
+
+
+
+
+[ApplicationLegal](#ApplicationLegal)
+
+Success. Refer `ApplicationLegal` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tnc": "This is terms and condition",
+  "policy": "This is policy",
+  "faq": [
+    {
+      "question": "This is question",
+      "answer": "This is answer"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createNavigation
+Create navigation items
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createNavigation({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createNavigation({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [NavigationRequest](#NavigationRequest) | yes | Request body |
+
+
+Generate and add a new navigation element.
+
+*Returned Response:*
+
+
+
+
+[NavigationSchema](#NavigationSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5ffbd9b90ac98678ae0458d7",
+    "application": "000000000000000000000001",
+    "_custom_json": null,
+    "name": "test-nav",
+    "slug": "test-nav",
+    "platform": [
+      "ios",
+      "android"
+    ],
+    "orientation": {
+      "portrait": [
+        "left"
+      ]
+    },
+    "navigation": [
+      {
+        "display": "Home",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+        "sort_order": 1,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/",
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/brands/",
+                "type": "brands"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Collections",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+        "sort_order": 2,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/collections/",
+            "type": "collections"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/categories/",
+                "type": "categories"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Primary Menu",
+        "image": "",
+        "sort_order": 3,
+        "type": "",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        }
+      }
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2021-01-11T04:53:13.585Z",
+      "modified_on": "2021-01-14T10:24:34.485Z"
+    },
+    "archived": false
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteNavigation
+Delete navigation.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteNavigation({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteNavigation({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the navigation. |  
+
+
+
+Remove a specific navigation element.
+
+*Returned Response:*
+
+
+
+
+[NavigationSchema](#NavigationSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5ffbd9b90ac98678ae0458d7",
+    "application": "000000000000000000000001",
+    "_custom_json": null,
+    "name": "temp",
+    "slug": "temp",
+    "platform": "[web]",
+    "orientation": {
+      "portrait": [
+        "left"
+      ]
+    },
+    "navigation": [
+      {
+        "display": "Home",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+        "sort_order": 1,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/",
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/brands/",
+                "type": "brands"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Collections",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+        "sort_order": 2,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/collections/",
+            "type": "collections"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/categories/",
+                "type": "categories"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Primary Menu",
+        "image": "",
+        "sort_order": 3,
+        "type": "",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        }
+      }
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2021-01-11T04:53:13.585Z",
+      "modified_on": "2021-01-14T10:24:34.485Z"
+    },
+    "archived": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getDefaultNavigations
-Get default navigations
+Get default navigations.
 
 
 
@@ -7909,7 +10196,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.getDef
 
 
 
-On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
+Retrieve default navigation elements.
 
 *Returned Response:*
 
@@ -8612,743 +10899,8 @@ Success. Refer `DefaultNavigationResponse` for more details.
 ---
 
 
-### getDefaultSEOMarkupSchema
-Get Default SEO Markup schemas of an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getDefaultSEOMarkupSchema({  pageType : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getDefaultSEOMarkupSchema({  pageType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageType | string | no | The type of page against which schema template was created |  
-
-
-
-Use this API to get the Default SEO Markup schema Templates setup for an application
-
-*Returned Response:*
-
-
-
-
-[DefaultSchemaComponent](#DefaultSchemaComponent)
-
-Success. Refer `DefaultSchemaComponent` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getFaqByIdOrSlug
-Get an FAQ
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getFaqByIdOrSlug({  idOrSlug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getFaqByIdOrSlug({  idOrSlug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
-
-
-
-Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
-
-*Returned Response:*
-
-
-
-
-[CreateFaqResponseSchema](#CreateFaqResponseSchema)
-
-Success. Refer `CreateFaqResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "faq": {
-    "_id": "60265b64e507768b168dee4d",
-    "question": "question 1",
-    "answer": "answer 1",
-    "slug": "question-1",
-    "application": "000000000000000000000001"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getFaqCategories
-Get a list of FAQ categories
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getFaqCategories();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getFaqCategories();
-```
-
-
-
-
-
-
-FAQs can be divided into categories. Use this API to get a list of FAQ categories.
-
-*Returned Response:*
-
-
-
-
-[GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
-
-Success. Refer `GetFaqCategoriesSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "categories": [
-    {
-      "index": 0,
-      "children": [
-        "6026426ae507768b168dee4b"
-      ],
-      "title": "Test",
-      "_id": "60263f80c83c1f89f2863a8a",
-      "slug": "test",
-      "application": "000000000000000000000001"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getFaqCategoryBySlugOrId
-Get an FAQ category by slug or id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId({  idOrSlug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId({  idOrSlug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
-
-
-
-FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
-
-*Returned Response:*
-
-
-
-
-[GetFaqCategoryBySlugSchema](#GetFaqCategoryBySlugSchema)
-
-Success. Refer `GetFaqCategoryBySlugSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "category": {
-    "index": 0,
-    "children": [
-      {
-        "_id": "6026426ae507768b168dee4b",
-        "question": "question 1",
-        "answer": "answer 1",
-        "slug": "question-1",
-        "application": "000000000000000000000001"
-      }
-    ],
-    "_id": "60263f80c83c1f89f2863a8a",
-    "slug": "test",
-    "title": "Test",
-    "application": "000000000000000000000001"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getFaqsByCategoryIdOrSlug
-Get question and answers within an FAQ category
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug({  idOrSlug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug({  idOrSlug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
-
-
-
-Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
-
-*Returned Response:*
-
-
-
-
-[GetFaqSchema](#GetFaqSchema)
-
-Success. Refer `GetFaqSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "faqs": [
-    {
-      "_id": "60265b64e507768b168dee4d",
-      "question": "question 1",
-      "answer": "answer 1",
-      "slug": "question-1",
-      "application": "000000000000000000000001"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getInjectableTags
-Get all the tags in an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getInjectableTags({  all : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getInjectableTags({  all : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| all | boolean | no | Get all tags irrespective of the creator of tags |  
-
-
-
-Use this API to get the CSS and JS injected in the application in the form of tags.
-
-*Returned Response:*
-
-
-
-
-[TagsSchema](#TagsSchema)
-
-Success. Refer `TagsSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "601f77e7aa61066feda44487",
-  "tags": [
-    {
-      "name": "Test",
-      "sub_type": "external",
-      "_id": "601f77e7aa61066feda44488",
-      "type": "js",
-      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
-      "position": "head"
-    },
-    {
-      "name": "Test 2",
-      "sub_type": "external",
-      "_id": "601f77e7aa61066feda44489",
-      "type": "js",
-      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
-      "position": "head"
-    }
-  ],
-  "application": "000000000000000000000001",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getJobs
-Fetch bulk import and export job list.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.content.getJobs({  page : value,
- pageSize : value,
- actionType : value });
-
-// Async/Await
-const data = await platformClient.content.getJobs({  page : value,
- pageSize : value,
- actionType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| page | string | yes |  |   
-| pageSize | string | yes |  |   
-| actionType | string | yes |  |  
-
-
-
-Use this api to get list of jobs of bulk import and exports
-
-*Returned Response:*
-
-
-
-
-[CustomObjectBulkEntry](#CustomObjectBulkEntry)
-
-Success. Returns all bulk entries history. 
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "6570124da20cc45d3f2582a7",
-        "jobs": [
-          "2311"
-        ],
-        "finished_jobs": [
-          "2311"
-        ],
-        "error_jobs": [],
-        "errors_occured": [],
-        "company_id": "2",
-        "creator": "company",
-        "URL": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/custom-data/CustomObject-designer-import-6570124da20cc45d3f2582a7.csv",
-        "status": "completed",
-        "action_type": "upload",
-        "entity": "metaobject",
-        "error_url": "",
-        "finished_count": 0,
-        "error_count": 0,
-        "success_count": 0,
-        "total_jobs": 1,
-        "meta": {
-          "mo_total_count": 2,
-          "mo_success_count": 2,
-          "mo_error_count": 0,
-          "mo_defintion_type": "designer"
-        },
-        "created_by": "bd7223b6727eb087987eece7",
-        "created_at": "2023-12-06T06:18:53.219Z",
-        "updated_at": "2023-12-06T06:20:23.560Z",
-        "id": "6570124da20cc45d3f2582a7"
-      },
-      {
-        "_id": "6558b8c49340c43a7015b4af",
-        "jobs": [
-          "2297"
-        ],
-        "finished_jobs": [
-          "2297"
-        ],
-        "error_jobs": [],
-        "errors_occured": [],
-        "company_id": "2",
-        "creator": "company",
-        "URL": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/custom-data/CustomObject-kuldeep-custom-import-6558b8c49340c43a7015b4af.csv",
-        "status": "completed",
-        "action_type": "upload",
-        "entity": "metaobject",
-        "error_url": "",
-        "finished_count": 0,
-        "error_count": 0,
-        "success_count": 0,
-        "total_jobs": 1,
-        "meta": {
-          "mo_total_count": 1,
-          "mo_success_count": 0,
-          "mo_error_count": 1,
-          "mo_defintion_type": "kuldeep-custom"
-        },
-        "created_by": "9759643b65ebc6bacb5275f5",
-        "created_at": "2023-11-18T13:14:44.360Z",
-        "updated_at": "2023-11-18T13:17:19.765Z",
-        "id": "6558b8c49340c43a7015b4af"
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 20,
-      "item_total": 2,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getLandingPages
-Get landing pages
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getLandingPages({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getLandingPages({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
-
-*Returned Response:*
-
-
-
-
-[LandingPageGetResponse](#LandingPageGetResponse)
-
-Success. Refer `LandingPageGetResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "date_meta": {
-          "created_on": "2021-03-12T09:26:12.157Z",
-          "modified_on": "2021-03-12T09:26:12.157Z"
-        },
-        "platform": [
-          "android"
-        ],
-        "_id": "604b342e29f19310d8ae9743",
-        "slug": "landing-page-default-2",
-        "action": {
-          "page": {
-            "type": "default"
-          },
-          "popup": {},
-          "type": "page"
-        },
-        "application": "5cd3db5e9d692cfe5302a7bb",
-        "archived": false,
-        "_custom_json": {},
-        "__v": 0
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 1,
-      "item_total": 2,
-      "has_next": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getLegalInformation
-Get legal information
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getLegalInformation();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getLegalInformation();
-```
-
-
-
-
-
-
-Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
-
-*Returned Response:*
-
-
-
-
-[ApplicationLegal](#ApplicationLegal)
-
-Success. Refer `ApplicationLegal` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "tnc": "**Terms and Conditions test**",
-    "policy": "**Privacy policy test**",
-    "shipping": "**Shipping term and conditions**",
-    "returns": "**Terms & conditions for returns **",
-    "_id": "5e8b2b96abe7dc94c02c9ac9",
-    "application": "000000000000000000000001",
-    "faq": [
-      {
-        "question": "New Question",
-        "answer": "New Answer"
-      },
-      {
-        "question": "New",
-        "answer": "sdfghjhg"
-      },
-      {
-        "question": "test",
-        "answer": "test"
-      },
-      {
-        "question": "New Test",
-        "answer": "New Test answer"
-      },
-      {
-        "question": "test",
-        "answer": "test"
-      }
-    ],
-    "created_at": "2020-04-06T13:16:06.818Z",
-    "updated_at": "2020-07-16T09:47:40.751Z",
-    "__v": 260
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getNavigationBySlug
-Get a navigation by slug
+Get navigation by slug.
 
 
 
@@ -9373,7 +10925,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.getNav
 
 
 
-Use this API to retrieve a navigation by its slug.
+Retrieve detailed information about a specific navigation element.
 
 *Returned Response:*
 
@@ -9598,7 +11150,7 @@ Success. Refer `NavigationSchema` for more details.
 
 
 ### getNavigations
-Get navigations
+Get navigation items
 
 
 
@@ -9626,7 +11178,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.getNav
 
 
 
-Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
+Retrieve a list of navigational elements.
 
 *Returned Response:*
 
@@ -9854,2977 +11406,8 @@ Success. Refer `NavigationGetResponse` for more details.
 ---
 
 
-### getPageBySlug
-Get page by slug
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getPageBySlug({  slug : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getPageBySlug({  slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
-
-
-
-Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
-
-*Returned Response:*
-
-
-
-
-[PageSchema](#PageSchema)
-
-Success. Returns a JSON object of components. Refer `PageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-16T08:24:19.197Z",
-      "modified_on": "2021-03-16T08:24:19.197Z"
-    },
-    "tags": [
-      "my first page"
-    ],
-    "published": true,
-    "component_ids": [],
-    "archived": false,
-    "_id": "60506dcad18cb33946026862",
-    "title": "my first page",
-    "slug": "1st_page",
-    "feature_image": {
-      "secure_url": "https://google.com/some-image"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
-      },
-      {
-        "type": "css",
-        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
-      },
-      {
-        "type": "js",
-        "value": ""
-      }
-    ],
-    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-    "platform": "web",
-    "description": "hey this is my first page",
-    "visibility": {
-      "test": true
-    },
-    "_schedule": {
-      "start": "2021-04-23T23:50:00.000Z",
-      "next_schedule": [
-        {}
-      ]
-    },
-    "seo": {
-      "title": "my first page",
-      "description": "hey this is my first page",
-      "image": {
-        "url": ""
-      }
-    },
-    "type": "rawhtml",
-    "application": "000000000000000000000001",
-    "orientation": "portrait",
-    "page_meta": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPageMeta
-Get page meta
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getPageMeta();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getPageMeta();
-```
-
-
-
-
-
-
-Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
-
-*Returned Response:*
-
-
-
-
-[PageMetaSchema](#PageMetaSchema)
-
-Success. Refer `PageMetaSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "application_id": "000000000000000000000001",
-    "system_pages": [
-      {
-        "display": "Home",
-        "action": {
-          "page": {
-            "type": "home"
-          },
-          "type": "page"
-        },
-        "page_type": "home"
-      },
-      {
-        "display": "Brands",
-        "action": {
-          "page": {
-            "type": "brands"
-          },
-          "type": "page"
-        },
-        "page_type": "brands"
-      },
-      {
-        "display": "Collections",
-        "action": {
-          "page": {
-            "type": "collections"
-          },
-          "type": "page"
-        },
-        "page_type": "collections"
-      },
-      {
-        "display": "Categories",
-        "action": {
-          "page": {
-            "type": "categories"
-          },
-          "type": "page"
-        },
-        "page_type": "categories"
-      }
-    ],
-    "custom_pages": [
-      {
-        "display": "my first page",
-        "slug": "first_page"
-      },
-      {
-        "display": "my second page",
-        "slug": "second_page"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPageSpec
-Get page spec
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getPageSpec();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getPageSpec();
-```
-
-
-
-
-
-
-Use this API to get the specifications of a page, such as page type, display name, params and query.
-
-*Returned Response:*
-
-
-
-
-[PageSpec](#PageSpec)
-
-Success. Refer `PageSpec` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "specifications": [
-      {
-        "page_type": "home",
-        "display_name": "Home",
-        "params": [],
-        "query": []
-      },
-      {
-        "page_type": "collections",
-        "display_name": "Collections",
-        "params": [],
-        "query": []
-      },
-      {
-        "page_type": "collection",
-        "display_name": "Collection",
-        "params": [
-          {
-            "key": "slug",
-            "required": true
-          }
-        ],
-        "query": []
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPages
-Get a list of pages
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getPages({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getPages({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-Use this API to retrieve a list of pages.
-
-*Returned Response:*
-
-
-
-
-[PageGetResponse](#PageGetResponse)
-
-Success. Refer `PageGetResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "date_meta": {
-          "created_on": "2021-03-14T06:49:03.945Z",
-          "modified_on": "2021-03-14T06:49:03.945Z"
-        },
-        "tags": [
-          "my first page"
-        ],
-        "_id": "604db275b3ae202873964d94",
-        "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-        "title": "test-page",
-        "slug": "test-page",
-        "published": true,
-        "_schedule": {
-          "next_schedule": [
-            {}
-          ],
-          "start": "2021-04-08T07:15:13.000Z",
-          "end": "2021-04-10T02:00:00.000Z"
-        },
-        "feature_image": {
-          "secure_url": "https://google.com/some-image"
-        },
-        "seo": {
-          "title": "my first page",
-          "description": "hey this is my first page",
-          "image": {
-            "url": ""
-          }
-        },
-        "application": "000000000000000000000001",
-        "author": {
-          "name": "Abhinav Maurya"
-        }
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 1,
-      "item_total": 2,
-      "has_next": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPathRedirectionRule
-Get path based redirection rule
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRule({  pathId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRule({  pathId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pathId | string | yes | ID allotted to the path redirection rule. |  
-
-
-
-Use this API to get path based redirection rule.
-
-*Returned Response:*
-
-
-
-
-[PathMappingSchema](#PathMappingSchema)
-
-Success. Refer `PathMappingSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "615188e9db1e444cb0f40837",
-    "application": "000000000000000000000002",
-    "redirect_from": "/from",
-    "redirect_to": "/to",
-    "createdAt": "2021-09-27T09:03:37.053Z",
-    "updatedAt": "2021-09-27T09:09:25.587Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPathRedirectionRules
-Get path based redirection rules
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRules({  pageSize : value,
- pageNo : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRules({  pageSize : value,
- pageNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 5.  |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |  
-
-
-
-Use this API to get path based redirection rules.
-
-*Returned Response:*
-
-
-
-
-[PathMappingSchema](#PathMappingSchema)
-
-Success. Refer `PathMappingSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "615188e9db1e444cb0f40837",
-    "application": "000000000000000000000002",
-    "redirect_from": "/from",
-    "redirect_to": "/to",
-    "createdAt": "2021-09-27T09:03:37.053Z",
-    "updatedAt": "2021-09-27T09:09:25.587Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getResources
-Get resources
-
-
-
-```javascript
-// Promise
-const promise = platformClient.content.getResources();
-
-// Async/Await
-const data = await platformClient.content.getResources();
-```
-
-
-
-
-
-
-Use this API to retrieve the resources, such as products, collections, customers, selling locations, etc.
-
-*Returned Response:*
-
-
-
-
-[ResourcesSchema](#ResourcesSchema)
-
-Success. Returns a JSON object of resources. Refer `ResourcesSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "resources": [
-      {
-        "name": "product",
-        "key": "product",
-        "definitions_count": 0
-      },
-      {
-        "name": "Collection",
-        "key": "collection",
-        "definitions_count": 0
-      },
-      {
-        "name": "Page",
-        "key": "page",
-        "definitions_count": 0
-      },
-      {
-        "name": "Blog",
-        "key": "blog",
-        "definitions_count": 0
-      },
-      {
-        "name": "Customer",
-        "key": "customer",
-        "definitions_count": 0
-      },
-      {
-        "name": "Store",
-        "key": "store",
-        "definitions_count": 0
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSEOConfiguration
-Get SEO configuration of an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getSEOConfiguration();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getSEOConfiguration();
-```
-
-
-
-
-
-
-Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
-
-*Returned Response:*
-
-
-
-
-[SeoComponent](#SeoComponent)
-
-Success. Refer `SeoComponent` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "seo": {
-      "details": {
-        "title": "Zyosa Zyosa",
-        "description": "",
-        "image_url": ""
-      },
-      "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
-      "sitemap_enabled": false,
-      "cannonical_enabled": false,
-      "_id": "6009819ee463ad40de397eb2",
-      "app": "000000000000000000000001",
-      "created_at": "2021-01-21T13:29:02.543Z",
-      "updated_at": "2021-02-05T06:36:16.048Z",
-      "__v": 11,
-      "custom_meta_tags": [
-        {
-          "name": "test 0000",
-          "content": "<meta name=\"test\" content=\"0000 cn dcje dcj rejre cjrenurenc \">",
-          "_id": "6017c301bde3c21dbb13b284"
-        },
-        {
-          "name": "cwdcdc",
-          "content": "<meta content=\"wdcewdewc\">",
-          "_id": "6017c675bde3c22cfb13b290"
-        }
-      ]
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSEOMarkupSchema
-Get a particular SEO Markup schema of an application using its id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchema({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchema({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Alphanumeric ID allotted to a SEO Markup Schema Template created within a business. |  
-
-
-
-Use this API to get a existing SEO Markup schema an application
-
-*Returned Response:*
-
-
-
-
-[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
-
-Success. Refer `SEOSchemaMarkupTemplate` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSEOMarkupSchemas
-Get SEO Markup schemas of an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchemas({  title : value,
- active : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchemas({  title : value,
- active : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| title | string | no | Title of the seo schema. |    
-| active | string | no | Boolean value for fetching seo schema. |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-Use this API to get all SEO Markup schema Templates setup for an application
-
-*Returned Response:*
-
-
-
-
-[SeoSchemaComponent](#SeoSchemaComponent)
-
-Success. Refer `SeoSchemaComponent` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSlideshowBySlug
-Get slideshow by slug
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getSlideshowBySlug({  slug : value,
- devicePlatform : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getSlideshowBySlug({  slug : value,
- devicePlatform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. |   
-| devicePlatform | string | yes | Filter slideshows by platform. Acceptable values are: web, android, ios and all |  
-
-
-
-Use this API to retrieve the details of a slideshow by its slug.
-
-*Returned Response:*
-
-
-
-
-[SlideshowSchema](#SlideshowSchema)
-
-Success. Refer `SlideshowSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-14T05:27:12.319Z",
-      "modified_on": "2021-03-14T05:27:12.319Z"
-    },
-    "archived": false,
-    "_id": "604d9eb975e9d136bb1b8b83",
-    "configuration": {
-      "start_on_launch": false,
-      "duration": 50,
-      "sleep_time": 100,
-      "slide_direction": "horizontal"
-    },
-    "slug": "ss-sfsd-updated",
-    "platform": "ios",
-    "media": [
-      {
-        "auto_decide_duration": false,
-        "type": "image",
-        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
-        "bg_color": "#ffffff",
-        "duration": 10,
-        "action": {
-          "type": ""
-        }
-      },
-      {
-        "auto_decide_duration": true,
-        "type": "youtube",
-        "url": "https://www.youtube.com/embed/9vJRopau0g0",
-        "bg_color": "#ffffff",
-        "duration": 909,
-        "action": {
-          "type": ""
-        }
-      }
-    ],
-    "application": "5cd3db5e9d692cfe5302a7bb",
-    "active": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSlideshows
-Get slideshows
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getSlideshows({  devicePlatform : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getSlideshows({  devicePlatform : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| devicePlatform | string | yes | Filter slideshows by platform. Acceptable values are: web, android, ios and all |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
-
-*Returned Response:*
-
-
-
-
-[SlideshowGetResponse](#SlideshowGetResponse)
-
-Success. Refer `SlideshowGetResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "date_meta": {
-          "created_on": "2021-03-14T05:27:12.319Z",
-          "modified_on": "2021-03-14T05:27:12.319Z"
-        },
-        "archived": false,
-        "_id": "604d9eb975e9d136bb1b8b83",
-        "configuration": {
-          "start_on_launch": false,
-          "duration": 50,
-          "sleep_time": 100,
-          "slide_direction": "horizontal"
-        },
-        "slug": "ss-sfsd-updated",
-        "platform": "ios",
-        "media": [
-          {
-            "auto_decide_duration": false,
-            "type": "image",
-            "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
-            "bg_color": "#ffffff",
-            "duration": 10,
-            "action": {
-              "type": ""
-            }
-          },
-          {
-            "auto_decide_duration": true,
-            "type": "youtube",
-            "url": "https://www.youtube.com/embed/9vJRopau0g0",
-            "bg_color": "#ffffff",
-            "duration": 909,
-            "action": {
-              "type": ""
-            }
-          }
-        ],
-        "application": "5cd3db5e9d692cfe5302a7bb",
-        "active": true,
-        "__v": 0
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 1,
-      "item_total": 2,
-      "has_next": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSupportInformation
-Get support information
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getSupportInformation();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getSupportInformation();
-```
-
-
-
-
-
-
-Use this API to get the contact details for customer support, including emails and phone numbers.
-
-*Returned Response:*
-
-
-
-
-[Support](#Support)
-
-Success. Refer `Support` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5ea4980b87a7944094216193",
-    "config_type": "app",
-    "application": "000000000000000000000001",
-    "created_at": "2020-04-25T20:05:31.300Z",
-    "updated_at": "2020-12-04T10:48:12.194Z",
-    "contact": {
-      "phone": {
-        "active": true,
-        "phone": [
-          {
-            "key": "Jane Doe",
-            "code": "91",
-            "number": "9988776655"
-          }
-        ]
-      },
-      "email": {
-        "active": false,
-        "email": []
-      }
-    },
-    "created": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### importAppCustomObjectEntries
-Bulk custom object entries upload
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.importAppCustomObjectEntries({  definitionId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.importAppCustomObjectEntries({  definitionId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| definitionId | string | yes |  |  
-| body | [CustomObjectBulkSchema](#CustomObjectBulkSchema) | yes | Request body |
-
-
-Use this API to upload custom object entries
-
-*Returned Response:*
-
-
-
-
-[CustomObjectEntryBulkUploadResponse](#CustomObjectEntryBulkUploadResponse)
-
-Success. Returns confirmation that the upload has started
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Bulk upload of Meta objects started successfully",
-    "task_id": "6570124da20cc45d3f2582a7"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### importCustomObjectEntries
-Bulk custom object entries upload
-
-
-
-```javascript
-// Promise
-const promise = platformClient.content.importCustomObjectEntries({  definitionId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.content.importCustomObjectEntries({  definitionId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| definitionId | string | yes |  |  
-| body | [CustomObjectBulkSchema](#CustomObjectBulkSchema) | yes | Request body |
-
-
-Use this API to upload custom object entries
-
-*Returned Response:*
-
-
-
-
-[CustomObjectEntryBulkUploadResponse](#CustomObjectEntryBulkUploadResponse)
-
-Success. Returns confirmation that the upload has started
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Bulk upload of Meta objects started successfully",
-    "task_id": "6570124da20cc45d3f2582a7"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### removeInjectableTag
-Remove a tag
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.removeInjectableTag({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.removeInjectableTag({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [RemoveHandpickedSchema](#RemoveHandpickedSchema) | yes | Request body |
-
-
-Use this API to delete an existing tag.
-
-*Returned Response:*
-
-
-
-
-[TagDeleteSuccessResponse](#TagDeleteSuccessResponse)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### resetDataLoader
-Reset a data loader by serive name and operation Id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.resetDataLoader({  service : value,
- operationId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.resetDataLoader({  service : value,
- operationId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| service | string | yes | Name of service. |   
-| operationId | string | yes | Name of operation id of the service. |  
-
-
-
-Use this API to reselect a data loader.
-
-*Returned Response:*
-
-
-
-
-[DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "reset": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sampleAppCustomObjectBulkEntry
-download sample for custom object bulk entry
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.sampleAppCustomObjectBulkEntry({  definitionId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.sampleAppCustomObjectBulkEntry({  definitionId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| definitionId | string | yes |  |  
-
-
-
-Use this api to get sample csv file 
-
-*Returned Response:*
-
-
-
-
-[string](#string)
-
-Success. Get headers of custom object definition
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": "city,mobile,name,custom_object_status"
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sampleCustomObjectBulkEntry
-download sample for custom object bulk entry
-
-
-
-```javascript
-// Promise
-const promise = platformClient.content.sampleCustomObjectBulkEntry({  definitionId : value });
-
-// Async/Await
-const data = await platformClient.content.sampleCustomObjectBulkEntry({  definitionId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| definitionId | string | yes |  |  
-
-
-
-Use this api to get sample csv file 
-
-*Returned Response:*
-
-
-
-
-[string](#string)
-
-Success. Get headers of custom object definition
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": "city,mobile,name,custom_object_status"
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### selectDataLoader
-Select a data loader by id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.selectDataLoader({  dataLoaderId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.selectDataLoader({  dataLoaderId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| dataLoaderId | string | yes | ID allotted to the data loader. |  
-
-
-
-Use this API to select a data loader to be used in applications.
-
-*Returned Response:*
-
-
-
-
-[DataLoaderResponseSchema](#DataLoaderResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "601f77e7aa61066feda44487",
-  "name": "Search API from Algolia",
-  "service": "catalog",
-  "operation_id": "fetchSuggestions",
-  "type": "url",
-  "application": "000000000000000000000001",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAnnouncement
-Update an announcement
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateAnnouncement({  announcementId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateAnnouncement({  announcementId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| announcementId | string | yes | ID allotted to the announcement. |  
-| body | [AdminAnnouncementSchema](#AdminAnnouncementSchema) | yes | Request body |
-
-
-Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
-
-*Returned Response:*
-
-
-
-
-[CreateAnnouncementSchema](#CreateAnnouncementSchema)
-
-Success. Refer `CreateAnnouncementSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Successfully updated announcement",
-    "data": {
-      "value": {
-        "platforms": [
-          "web",
-          "android",
-          "ios"
-        ],
-        "_id": "6026283125f06a827dc1a5cc",
-        "title": "test",
-        "announcement": "<p>test123</p>\n",
-        "pages": [
-          {
-            "page_slug": "$all",
-            "type": "custom"
-          }
-        ],
-        "editor_meta": {
-          "foreground_color": "#000",
-          "background_color": "#fff",
-          "content_type": "markdown",
-          "content": "test"
-        },
-        "_schedule": {
-          "published": true,
-          "next_schedule": [
-            {
-              "start": "2021-02-10T20:40:00.000Z",
-              "end": "2021-02-18T22:00:00.000Z"
-            }
-          ],
-          "cron": null,
-          "start": "2021-02-10T20:40:00.000Z",
-          "end": "2021-02-18T22:00:00.000Z",
-          "duration": null
-        },
-        "app": "000000000000000000000001",
-        "author": {
-          "created_by": "5e199e6998cfe1776f1385dc",
-          "modified_by": "5e199e6998cfe1776f1385dc"
-        },
-        "created_at": "2021-02-12T07:03:13.503Z",
-        "modified_at": "2021-02-12T07:05:57.020Z"
-      }
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAnnouncementSchedule
-Update the schedule and the publish status of an announcement
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateAnnouncementSchedule({  announcementId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateAnnouncementSchedule({  announcementId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| announcementId | string | yes | ID allotted to the announcement. |  
-| body | [ScheduleSchema](#ScheduleSchema) | yes | Request body |
-
-
-Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
-
-*Returned Response:*
-
-
-
-
-[CreateAnnouncementSchema](#CreateAnnouncementSchema)
-
-Success. Refer `CreateAnnouncementSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Announcement unpublished",
-    "data": {
-      "value": {
-        "platforms": [
-          "web",
-          "android",
-          "ios"
-        ],
-        "_id": "6026283125f06a827dc1a5cc",
-        "title": "test",
-        "announcement": "<p>test123</p>\n",
-        "pages": [
-          {
-            "page_slug": "$all",
-            "type": "custom"
-          }
-        ],
-        "editor_meta": {
-          "foreground_color": "#000",
-          "background_color": "#fff",
-          "content_type": "markdown",
-          "content": "test"
-        },
-        "_schedule": {
-          "published": false,
-          "next_schedule": [
-            {
-              "start": "2021-02-10T20:40:00.000Z",
-              "end": "2021-02-18T22:00:00.000Z"
-            }
-          ],
-          "cron": null,
-          "start": "2021-02-10T20:40:00.000Z",
-          "end": "2021-02-18T22:00:00.000Z",
-          "duration": null
-        },
-        "app": "000000000000000000000001",
-        "author": {
-          "created_by": "5e199e6998cfe1776f1385dc",
-          "modified_by": "5e199e6998cfe1776f1385dc"
-        },
-        "created_at": "2021-02-12T07:03:13.503Z",
-        "modified_at": "2021-02-12T07:05:57.020Z"
-      }
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppCustomFieldDefinition
-Update custom field definition
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomFieldDefinition({  definitionId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomFieldDefinition({  definitionId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| definitionId | string | yes |  |  
-| body | [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema) | yes | Request body |
-
-
-Use this API to update a custom field definition for your application.
-
-*Returned Response:*
-
-
-
-
-[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
-
-Custom field definition created.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "creator": "application",
-    "resource": "product",
-    "name": "name",
-    "namespace": "fname",
-    "key": "fname",
-    "description": "First name",
-    "type": "string_single_line",
-    "multi_value": false,
-    "company_id": "1",
-    "application_id": "000000000000000000000001",
-    "created_by": "000000000000000000000001",
-    "updated_by": "000000000000000000000001",
-    "required": false,
-    "is_deleted": false,
-    "_id": "65369654d436ae0e54147e7b",
-    "validations": [],
-    "created_at": "2023-10-23T15:50:44.143Z",
-    "updated_at": "2023-10-23T15:50:44.143Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppCustomObject
-Update custom object details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomObject({  metaobjectId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomObject({  metaobjectId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| metaobjectId | string | yes |  |  
-| body | [CustomObjectRequestSchema](#CustomObjectRequestSchema) | yes | Request body |
-
-
-Use this API to update a custom object detail for your application.
-
-*Returned Response:*
-
-
-
-
-[CustomObjectByIdSchema](#CustomObjectByIdSchema)
-
-Custom field definition created.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "656d67de766f95113450917b",
-    "name": "Designer",
-    "type": "designer",
-    "display_name_key": "name",
-    "description": "",
-    "creator": "company",
-    "created_by": "9759643b65ebc6bacb5275f5",
-    "updated_by": "bd7223b6727eb087987eece7",
-    "field_definitions": [
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "city2",
-        "namespace": "designer",
-        "key": "city",
-        "type": "string_single_line",
-        "description": "",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": false
-      },
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "mobile",
-        "namespace": "designer",
-        "key": "mobile",
-        "type": "string_single_line",
-        "description": "",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": false
-      },
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "name",
-        "namespace": "designer",
-        "key": "name",
-        "type": "string_single_line",
-        "description": "This is name of designer",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": true
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppCustomObjectDefinition
-Update custom object definition
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomObjectDefinition({  definitionId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomObjectDefinition({  definitionId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| definitionId | string | yes |  |  
-| body | [CustomObjectDefinitionUpdateRequestSchema](#CustomObjectDefinitionUpdateRequestSchema) | yes | Request body |
-
-
-Use this API to update a custom object definition for your application.
-
-*Returned Response:*
-
-
-
-
-[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
-
-Custom field definition updated.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "656d67de766f95113450917b",
-    "name": "Designer",
-    "type": "designer",
-    "display_name_key": "name",
-    "description": "",
-    "creator": "company",
-    "created_by": "9759643b65ebc6bacb5275f5",
-    "updated_by": "bd7223b6727eb087987eece7",
-    "field_definitions": [
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "city2",
-        "namespace": "designer",
-        "key": "city",
-        "type": "string_single_line",
-        "description": "",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": false
-      },
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "mobile",
-        "namespace": "designer",
-        "key": "mobile",
-        "type": "string_single_line",
-        "description": "",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": false
-      },
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "name",
-        "namespace": "designer",
-        "key": "name",
-        "type": "string_single_line",
-        "description": "This is name of designer",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": true
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateBlog
-Update a blog
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateBlog({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateBlog({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the blog. |  
-| body | [BlogRequest](#BlogRequest) | yes | Request body |
-
-
-Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
-
-*Returned Response:*
-
-
-
-
-[BlogSchema](#BlogSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5eaa451a21a4dd75f0fd96c5",
-    "application": "5d3ebd89f540e7506b8b3548",
-    "tags": [
-      "abhinav"
-    ],
-    "title": "my first blog",
-    "slug": "1st_blog",
-    "feature_image": {
-      "secure_url": "https://google.com"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<p>hey there!</p>"
-      }
-    ],
-    "_schedule": {
-      "cron": "* 10 * * *",
-      "start": "2021-03-31T23:30:00.000Z",
-      "end": "2021-03-31T23:55:00.000Z",
-      "duration": 1000,
-      "next_schedule": [
-        {
-          "start": "2021-03-17T04:30:00.000Z",
-          "end": "2021-03-17T04:46:40.000Z"
-        }
-      ]
-    },
-    "published": true,
-    "author": {
-      "name": "Fynd App"
-    },
-    "date_meta": {
-      "created_on": "2021-03-14T06:49:03.945Z",
-      "modified_on": "2021-03-14T06:49:03.945Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCustomFieldDefinition
-Update custom field definition
-
-
-
-```javascript
-// Promise
-const promise = platformClient.content.updateCustomFieldDefinition({  definitionId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.content.updateCustomFieldDefinition({  definitionId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| definitionId | string | yes |  |  
-| body | [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema) | yes | Request body |
-
-
-Use this API to update a custom field definition for your application.
-
-*Returned Response:*
-
-
-
-
-[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
-
-Custom field definition created.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "creator": "application",
-    "resource": "product",
-    "name": "name",
-    "namespace": "fname",
-    "key": "fname",
-    "description": "First name",
-    "type": "string_single_line",
-    "multi_value": false,
-    "company_id": "1",
-    "application_id": "000000000000000000000001",
-    "created_by": "000000000000000000000001",
-    "updated_by": "000000000000000000000001",
-    "required": false,
-    "is_deleted": false,
-    "_id": "65369654d436ae0e54147e7b",
-    "validations": [],
-    "created_at": "2023-10-23T15:50:44.143Z",
-    "updated_at": "2023-10-23T15:50:44.143Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCustomObject
-Update custom object details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.content.updateCustomObject({  metaobjectId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.content.updateCustomObject({  metaobjectId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| metaobjectId | string | yes |  |  
-| body | [CustomObjectRequestSchema](#CustomObjectRequestSchema) | yes | Request body |
-
-
-Use this API to update a custom object detail for your application.
-
-*Returned Response:*
-
-
-
-
-[CustomObjectByIdSchema](#CustomObjectByIdSchema)
-
-Custom field definition created.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "656d67de766f95113450917b",
-    "name": "Designer",
-    "type": "designer",
-    "display_name_key": "name",
-    "description": "",
-    "creator": "company",
-    "created_by": "9759643b65ebc6bacb5275f5",
-    "updated_by": "bd7223b6727eb087987eece7",
-    "field_definitions": [
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "city2",
-        "namespace": "designer",
-        "key": "city",
-        "type": "string_single_line",
-        "description": "",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": false
-      },
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "mobile",
-        "namespace": "designer",
-        "key": "mobile",
-        "type": "string_single_line",
-        "description": "",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": false
-      },
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "name",
-        "namespace": "designer",
-        "key": "name",
-        "type": "string_single_line",
-        "description": "This is name of designer",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": true
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCustomObjectDefinition
-Update custom object definition
-
-
-
-```javascript
-// Promise
-const promise = platformClient.content.updateCustomObjectDefinition({  definitionId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.content.updateCustomObjectDefinition({  definitionId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| definitionId | string | yes |  |  
-| body | [CustomObjectDefinitionUpdateRequestSchema](#CustomObjectDefinitionUpdateRequestSchema) | yes | Request body |
-
-
-Use this API to update a custom object definition for your application.
-
-*Returned Response:*
-
-
-
-
-[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
-
-Custom field definition updated.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "656d67de766f95113450917b",
-    "name": "Designer",
-    "type": "designer",
-    "display_name_key": "name",
-    "description": "",
-    "creator": "company",
-    "created_by": "9759643b65ebc6bacb5275f5",
-    "updated_by": "bd7223b6727eb087987eece7",
-    "field_definitions": [
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "city2",
-        "namespace": "designer",
-        "key": "city",
-        "type": "string_single_line",
-        "description": "",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": false
-      },
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "mobile",
-        "namespace": "designer",
-        "key": "mobile",
-        "type": "string_single_line",
-        "description": "",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": false
-      },
-      {
-        "creator": "company",
-        "resource": "metaobject",
-        "name": "name",
-        "namespace": "designer",
-        "key": "name",
-        "type": "string_single_line",
-        "description": "This is name of designer",
-        "multi_value": false,
-        "validations": [],
-        "company_id": "2",
-        "metaobject_definition_id": "656d67de766f95113450917b",
-        "required": true
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateFaq
-Update an FAQ
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateFaq({  categoryId : value,
- faqId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateFaq({  categoryId : value,
- faqId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| categoryId | string | yes | ID allotted to an FAQ category. |   
-| faqId | string | yes | ID allotted to an FAQ. |  
-| body | [CreateFaqSchema](#CreateFaqSchema) | yes | Request body |
-
-
-Use this API to edit an existing FAQ.
-
-*Returned Response:*
-
-
-
-
-[CreateFaqResponseSchema](#CreateFaqResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "faq": {
-    "_id": "60265b64e507768b168dee4d",
-    "question": "question 1 updated",
-    "answer": "answer 1",
-    "slug": "question-1",
-    "application": "000000000000000000000001"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateFaqCategory
-Update an FAQ category
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateFaqCategory({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateFaqCategory({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to an FAQ category. |  
-| body | [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema) | yes | Request body |
-
-
-Use this API to edit an existing FAQ category.
-
-*Returned Response:*
-
-
-
-
-[CreateFaqCategorySchema](#CreateFaqCategorySchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "category": {
-    "index": 0,
-    "children": [],
-    "_id": "60263f80c83c1f89f2863a8a",
-    "title": "Test Updated",
-    "slug": "test",
-    "application": "000000000000000000000001"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateInjectableTag
-Update the exisitng tags for an application by replacing with provided tags
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateInjectableTag({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateInjectableTag({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | yes | Request body |
-
-
-Use this API to edit and override all existing tags. All existing tags will be replaced by the new tags provided in body. 
-
-*Returned Response:*
-
-
-
-
-[TagsSchema](#TagsSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "601f77e7aa61066feda44487",
-  "tags": [
-    {
-      "name": "Test",
-      "sub_type": "external",
-      "_id": "601f77e7aa61066feda44488",
-      "type": "js",
-      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
-      "position": "head"
-    },
-    {
-      "name": "Test 2",
-      "sub_type": "external",
-      "_id": "601f77e7aa61066feda44489",
-      "type": "js",
-      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
-      "position": "head"
-    }
-  ],
-  "application": "000000000000000000000001",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateLandingPage
-Update a landing page
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateLandingPage({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateLandingPage({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to a landing page. |  
-| body | [LandingPageSchema](#LandingPageSchema) | yes | Request body |
-
-
-Use this API to edit the details of an existing landing page.
-
-*Returned Response:*
-
-
-
-
-[LandingPageSchema](#LandingPageSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5eaa451a21a4dd75f0fd96c5",
-    "application": "5d3ebd89f540e7506b8b3548",
-    "_custom_json": {},
-    "slug": "pnc-landing",
-    "action": {
-      "page": {
-        "type": "home"
-      },
-      "popup": {},
-      "type": "page"
-    },
-    "platform": [
-      "web"
-    ],
-    "created_by": {
-      "id": "000000000000000000000000"
-    },
-    "date_meta": {
-      "created_on": "2020-04-30T03:25:14.549Z",
-      "modified_on": "2020-04-30T03:25:14.549Z"
-    },
-    "archived": false
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateLegalInformation
-Save legal information
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateLegalInformation({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateLegalInformation({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ApplicationLegal](#ApplicationLegal) | yes | Request body |
-
-
-Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
-
-*Returned Response:*
-
-
-
-
-[ApplicationLegal](#ApplicationLegal)
-
-Success. Refer `ApplicationLegal` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "tnc": "This is terms and condition",
-  "policy": "This is policy",
-  "faq": [
-    {
-      "question": "This is question",
-      "answer": "This is answer"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateNavigation
-Update a navigation
+Update navigation.
 
 
 
@@ -12848,7 +11431,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.update
 | body | [NavigationRequest](#NavigationRequest) | yes | Request body |
 
 
-Use this API to edit the details of an existing navigation.
+Modify the content and settings of a specific navigation element.
 
 *Returned Response:*
 
@@ -13072,19 +11655,19 @@ Success.
 ---
 
 
-### updatePage
-Update a page
+
+
+### createPagePreview
+Create page preview.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updatePage({  id : value,
- body : value });
+const promise = platformClient.application("<APPLICATION_ID>").content.createPagePreview({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updatePage({  id : value,
- body : value });
+const data = await platformClient.application("<APPLICATION_ID>").content.createPagePreview({  body : value });
 ```
 
 
@@ -13092,12 +11675,11 @@ const data = await platformClient.application("<APPLICATION_ID>").content.update
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the page. |  
-| body | [PageSchema](#PageSchema) | yes | Request body |
+| --------- | -----  | -------- | ----------- |
+| body | [PageRequest](#PageRequest) | yes | Request body |
 
 
-Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
+Generate and add a new page preview.
 
 *Returned Response:*
 
@@ -13192,8 +11774,318 @@ Success. Refer `PageSchema` for more details.
 ---
 
 
+### getPageMeta
+Get page meta.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getPageMeta();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getPageMeta();
+```
+
+
+
+
+
+
+Retrieve metadata for a specific page.
+
+*Returned Response:*
+
+
+
+
+[PageMetaSchema](#PageMetaSchema)
+
+Success. Refer `PageMetaSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "application_id": "000000000000000000000001",
+    "system_pages": [
+      {
+        "display": "Home",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "type": "page"
+        },
+        "page_type": "home"
+      },
+      {
+        "display": "Brands",
+        "action": {
+          "page": {
+            "type": "brands"
+          },
+          "type": "page"
+        },
+        "page_type": "brands"
+      },
+      {
+        "display": "Collections",
+        "action": {
+          "page": {
+            "type": "collections"
+          },
+          "type": "page"
+        },
+        "page_type": "collections"
+      },
+      {
+        "display": "Categories",
+        "action": {
+          "page": {
+            "type": "categories"
+          },
+          "type": "page"
+        },
+        "page_type": "categories"
+      }
+    ],
+    "custom_pages": [
+      {
+        "display": "my first page",
+        "slug": "first_page"
+      },
+      {
+        "display": "my second page",
+        "slug": "second_page"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPageSpec
+Get page specification.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getPageSpec();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getPageSpec();
+```
+
+
+
+
+
+
+Retrieve specifications and details for a specific page.
+
+*Returned Response:*
+
+
+
+
+[PageSpec](#PageSpec)
+
+Success. Refer `PageSpec` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "specifications": [
+      {
+        "page_type": "home",
+        "display_name": "Home",
+        "params": [],
+        "query": []
+      },
+      {
+        "page_type": "collections",
+        "display_name": "Collections",
+        "params": [],
+        "query": []
+      },
+      {
+        "page_type": "collection",
+        "display_name": "Collection",
+        "params": [
+          {
+            "key": "slug",
+            "required": true
+          }
+        ],
+        "query": []
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPages
+Get pages.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getPages({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getPages({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Retrieve a list of available pages.
+
+*Returned Response:*
+
+
+
+
+[PageGetResponse](#PageGetResponse)
+
+Success. Refer `PageGetResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-14T06:49:03.945Z",
+          "modified_on": "2021-03-14T06:49:03.945Z"
+        },
+        "tags": [
+          "my first page"
+        ],
+        "_id": "604db275b3ae202873964d94",
+        "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+        "title": "test-page",
+        "slug": "test-page",
+        "published": true,
+        "_schedule": {
+          "next_schedule": [
+            {}
+          ],
+          "start": "2021-04-08T07:15:13.000Z",
+          "end": "2021-04-10T02:00:00.000Z"
+        },
+        "feature_image": {
+          "secure_url": "https://google.com/some-image"
+        },
+        "seo": {
+          "title": "my first page",
+          "description": "hey this is my first page",
+          "image": {
+            "url": ""
+          }
+        },
+        "application": "000000000000000000000001",
+        "author": {
+          "name": "Abhinav Maurya"
+        }
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updatePagePreview
-Change the publish status of a page
+Update page preview.
 
 
 
@@ -13217,7 +12109,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.update
 | body | [PagePublishRequest](#PagePublishRequest) | yes | Request body |
 
 
-Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
+Modify the content and settings of a specific page preview.
 
 *Returned Response:*
 
@@ -13312,18 +12204,373 @@ Success.
 ---
 
 
-### updatePathRedirectionRules
-Update path based redirection rules
+
+
+### createPage
+Create page.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  pathId : value,
+const promise = platformClient.application("<APPLICATION_ID>").content.createPage({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createPage({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PageRequest](#PageRequest) | yes | Request body |
+
+
+Generate and add a new page to the platform.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Refer `PageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deletePage
+Delete page.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deletePage({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deletePage({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the page. |  
+
+
+
+Remove a page from the platform.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPageBySlug
+Get page by slug.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getPageBySlug({  slug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getPageBySlug({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
+
+
+
+Retrieve detailed information about a specific page using its slug.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Returns a JSON object of components. Refer `PageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePage
+Update page.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updatePage({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  pathId : value,
+const data = await platformClient.application("<APPLICATION_ID>").content.updatePage({  id : value,
  body : value });
 ```
 
@@ -13333,11 +12580,130 @@ const data = await platformClient.application("<APPLICATION_ID>").content.update
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| pathId | string | yes | ID allotted to the path redirection rule. |  
+| id | string | yes | ID allotted to the page. |  
+| body | [PageSchema](#PageSchema) | yes | Request body |
+
+
+Modify and update the content of a page.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Refer `PageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### addPathRedirectionRules
+Add path redirection rules.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.addPathRedirectionRules({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.addPathRedirectionRules({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
 | body | [PathMappingSchema](#PathMappingSchema) | yes | Request body |
 
 
-Use this API to update redirection rules
+Create and add rules for path redirection.
 
 *Returned Response:*
 
@@ -13385,8 +12751,373 @@ Success. Refer `PathMappingSchema` for more details.
 ---
 
 
+### deletePathRedirectionRules
+Delete path redirection rules.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deletePathRedirectionRules({  pathId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deletePathRedirectionRules({  pathId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pathId | string | yes | ID allotted to the path redirection rule. |  
+
+
+
+Remove specific path redirection rules.
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Redirection deleted successfully"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPathRedirectionRule
+Get path redirection rule.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRule({  pathId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRule({  pathId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pathId | string | yes | ID allotted to the path redirection rule. |  
+
+
+
+Retrieve detailed information about a specific path redirection rule.
+
+*Returned Response:*
+
+
+
+
+[PathMappingSchema](#PathMappingSchema)
+
+Success. Refer `PathMappingSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPathRedirectionRules
+Get path redirection rules.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRules({  pageSize : value,
+ pageNo : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRules({  pageSize : value,
+ pageNo : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 5.  |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |  
+
+
+
+Retrieve a list of path redirection rules.
+
+*Returned Response:*
+
+
+
+
+[PathMappingSchema](#PathMappingSchema)
+
+Success. Refer `PathMappingSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePathRedirectionRules
+Update path redirection rules.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  pathId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  pathId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pathId | string | yes | ID allotted to the path redirection rule. |  
+| body | [PathMappingSchema](#PathMappingSchema) | yes | Request body |
+
+
+Modify settings for path redirection rules.
+
+*Returned Response:*
+
+
+
+
+[PathMappingSchema](#PathMappingSchema)
+
+Success. Refer `PathMappingSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getSEOConfiguration
+Get SEO configuration for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getSEOConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getSEOConfiguration();
+```
+
+
+
+
+
+
+Retrieve configuration settings for SEO.
+
+*Returned Response:*
+
+
+
+
+[SeoComponent](#SeoComponent)
+
+Success. Refer `SeoComponent` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "seo": {
+      "details": {
+        "title": "Zyosa Zyosa",
+        "description": "",
+        "image_url": ""
+      },
+      "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
+      "sitemap_enabled": false,
+      "cannonical_enabled": false,
+      "_id": "6009819ee463ad40de397eb2",
+      "app": "000000000000000000000001",
+      "created_at": "2021-01-21T13:29:02.543Z",
+      "updated_at": "2021-02-05T06:36:16.048Z",
+      "__v": 11,
+      "custom_meta_tags": [
+        {
+          "name": "test 0000",
+          "content": "<meta name=\"test\" content=\"0000 cn dcje dcj rejre cjrenurenc \">",
+          "_id": "6017c301bde3c21dbb13b284"
+        },
+        {
+          "name": "cwdcdc",
+          "content": "<meta content=\"wdcewdewc\">",
+          "_id": "6017c675bde3c22cfb13b290"
+        }
+      ]
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateSEOConfiguration
-Update SEO of application
+Update SEO configuration for an application
 
 
 
@@ -13407,7 +13138,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.update
 | body | [SeoComponent](#SeoComponent) | yes | Request body |
 
 
-Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
+Modify configuration settings for SEO.
 
 *Returned Response:*
 
@@ -13473,134 +13204,27 @@ Success. Refer `SeoSchema` for more details.
 ---
 
 
-### updateSlideshow
-Update a slideshow
+
+
+### getSupportInformation
+Get support information.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateSlideshow({  id : value,
- body : value });
+const promise = platformClient.application("<APPLICATION_ID>").content.getSupportInformation();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateSlideshow({  id : value,
- body : value });
+const data = await platformClient.application("<APPLICATION_ID>").content.getSupportInformation();
 ```
 
 
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the slideshow. |  
-| body | [SlideshowRequest](#SlideshowRequest) | yes | Request body |
 
-
-Use this API to edit the details of an existing slideshow.
-
-*Returned Response:*
-
-
-
-
-[SlideshowSchema](#SlideshowSchema)
-
-Success. Refer `SlideshowSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-14T05:27:12.319Z",
-      "modified_on": "2021-03-14T05:27:12.319Z"
-    },
-    "archived": false,
-    "_id": "604d9eb975e9d136bb1b8b83",
-    "configuration": {
-      "start_on_launch": false,
-      "duration": 50,
-      "sleep_time": 100,
-      "slide_direction": "horizontal"
-    },
-    "slug": "ss-sfsd-updated",
-    "platform": "ios",
-    "media": [
-      {
-        "auto_decide_duration": false,
-        "type": "image",
-        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
-        "bg_color": "#ffffff",
-        "duration": 10,
-        "action": {
-          "type": ""
-        }
-      },
-      {
-        "auto_decide_duration": true,
-        "type": "youtube",
-        "url": "https://www.youtube.com/embed/9vJRopau0g0",
-        "bg_color": "#ffffff",
-        "duration": 909,
-        "action": {
-          "type": ""
-        }
-      }
-    ],
-    "application": "5cd3db5e9d692cfe5302a7bb",
-    "active": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateSupportInformation
-Update the support data of an application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateSupportInformation({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateSupportInformation({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [Support](#Support) | yes | Request body |
-
-
-Use this API to edit the existing contact details for customer support, including emails and phone numbers.
+Retrieve information related to customer support.
 
 *Returned Response:*
 
@@ -13651,6 +13275,447 @@ Success. Refer `Support` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSupportInformation
+Update support related info for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateSupportInformation({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateSupportInformation({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [Support](#Support) | yes | Request body |
+
+
+Modify information related to customer support.
+
+*Returned Response:*
+
+
+
+
+[Support](#Support)
+
+Success. Refer `Support` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5ea4980b87a7944094216193",
+    "config_type": "app",
+    "application": "000000000000000000000001",
+    "created_at": "2020-04-25T20:05:31.300Z",
+    "updated_at": "2020-12-04T10:48:12.194Z",
+    "contact": {
+      "phone": {
+        "active": true,
+        "phone": [
+          {
+            "key": "Jane Doe",
+            "code": "91",
+            "number": "9988776655"
+          }
+        ]
+      },
+      "email": {
+        "active": false,
+        "email": []
+      }
+    },
+    "created": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### addInjectableTag
+Create HTML tag.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.addInjectableTag({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.addInjectableTag({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | yes | Request body |
+
+
+Create and add a new injectable tag.
+
+*Returned Response:*
+
+
+
+
+[TagsSchema](#TagsSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "tags": [
+    {
+      "name": "Test",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44488",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    }
+  ],
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### editInjectableTag
+Update HTML tag
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.editInjectableTag({  tagId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.editInjectableTag({  tagId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| tagId | string | yes | ID allotted to the tag. |  
+| body | [UpdateHandpickedSchema](#UpdateHandpickedSchema) | yes | Request body |
+
+
+Modify settings for an injectable tag.
+
+*Returned Response:*
+
+
+
+
+[TagsSchema](#TagsSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "602671b3c0bac99158b10874",
+  "application": "000000000000000000000001",
+  "tags": [
+    {
+      "_id": "601f77e7aa61066feda44488",
+      "name": "floating whatsapp",
+      "sub_type": "inline",
+      "type": "css",
+      "position": "head",
+      "content": ".float{\n\tposition:fixed;\n\twidth:60px;\n\theight:60px;\n\tbottom:40px;\n\tright:40px;\n\tbackground-color:#25d366;\n\tcolor:#FFF;\n\tborder-radius:50px;\n\ttext-align:center;\n  font-size:30px;\n\tbox-shadow: 2px 2px 3px #999;\n  z-index:100;\n}\n\n.my-float{\n\tmargin-top:16px;\n}"
+    }
+  ],
+  "__v": 1
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getInjectableTags
+Get all HTML tags
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getInjectableTags({  all : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getInjectableTags({  all : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| all | boolean | no | Get all tags irrespective of the creator of tags |  
+
+
+
+Retrieve a list of injectable tags.
+
+*Returned Response:*
+
+
+
+
+[TagsSchema](#TagsSchema)
+
+Success. Refer `TagsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "tags": [
+    {
+      "name": "Test",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44488",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    },
+    {
+      "name": "Test 2",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44489",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    }
+  ],
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### removeInjectableTag
+Remove HTML tag.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.removeInjectableTag({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.removeInjectableTag({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [RemoveHandpickedSchema](#RemoveHandpickedSchema) | yes | Request body |
+
+
+Delete a specific injectable tag.
+
+*Returned Response:*
+
+
+
+
+[TagDeleteSuccessResponse](#TagDeleteSuccessResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateInjectableTag
+Update HTML tag
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateInjectableTag({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateInjectableTag({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | yes | Request body |
+
+
+Modify settings for an injectable tag.
+
+*Returned Response:*
+
+
+
+
+[TagsSchema](#TagsSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "tags": [
+    {
+      "name": "Test",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44488",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    },
+    {
+      "name": "Test 2",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44489",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    }
+  ],
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
 </details>
 
 

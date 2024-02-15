@@ -2,7 +2,7 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef AddCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
- * @property {CatalogPlatformModel.CollectionItemUpdate} body
+ * @property {CatalogPlatformModel.CollectionItemUpdateSchema} body
  */
 /**
  * @typedef CreateAppCategoryReturnConfigurationParam
@@ -554,7 +554,7 @@ type AddCollectionItemsParam = {
      * - A `id` is a unique identifier of a collection.
      */
     id: string;
-    body: CatalogPlatformModel.CollectionItemUpdate;
+    body: CatalogPlatformModel.CollectionItemUpdateSchema;
 };
 type CreateAppCategoryReturnConfigurationParam = {
     body: CatalogPlatformModel.BaseAppCategoryReturnConfig;

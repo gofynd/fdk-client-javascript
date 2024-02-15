@@ -41,8 +41,8 @@ export = ContentPlatformValidator;
  * @typedef GetCustomFieldDefinitionsParam
  * @property {string} pageNo
  * @property {string} pageSize
- * @property {string} [resource]
- * @property {string} [type]
+ * @property {string} [resources]
+ * @property {string} [types]
  * @property {string} [search]
  */
 /** @typedef GetCustomFieldTypesParam */
@@ -191,8 +191,8 @@ type GetCustomFieldDefinitionParam = {
 type GetCustomFieldDefinitionsParam = {
     pageNo: string;
     pageSize: string;
-    resource?: string;
-    type?: string;
+    resources?: string;
+    types?: string;
     search?: string;
 };
 type GetCustomFieldsParam = {

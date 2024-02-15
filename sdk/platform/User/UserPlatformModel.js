@@ -366,7 +366,7 @@ const Joi = require("joi");
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [accountkit]
+ * @property {Accountkit} [account_kit]
  * @property {Google} [google]
  */
 
@@ -985,7 +985,7 @@ class UserPlatformModel {
   static SocialTokens() {
     return Joi.object({
       facebook: UserPlatformModel.Facebook(),
-      accountkit: UserPlatformModel.Accountkit(),
+      account_kit: UserPlatformModel.Accountkit(),
       google: UserPlatformModel.Google(),
     });
   }

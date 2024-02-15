@@ -1182,8 +1182,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeAuditHistory
-   * @summary: Auditlog configuration of application.
-   * @description: This API returns Audit logs of Pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
+   * @summary: Update pincode audit history.
+   * @description: Modify and update audit history records for pincode-related activities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
    */
   async updatePincodeAuditHistory(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1265,8 +1265,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeBulkView
-   * @summary: Bulk Update of pincode in the application.
-   * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
+   * @summary: Update pincode bulk view.
+   * @description: Modify and update views related to bulk operations on pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
    */
   async updatePincodeBulkView(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1348,8 +1348,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeCoDListing
-   * @summary: Pincode count view of application.
-   * @description: This API returns count of active pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
+   * @summary: Update pincode CoD (Cash on Delivery) listing.
+   * @description: Modify and update listings for CoD based on pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
    */
   async updatePincodeCoDListing(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1430,8 +1430,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
    *   Success response
    * @name updatePincodeMopView
-   * @summary: PincodeView update of MOP.
-   * @description: This API updates Pincode method of payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
+   * @summary: Update pincode MOP (Mode of Payment) view.
+   * @description: Modify and update views related to pincode MOP. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
    */
   async updatePincodeMopView(
     { body, requestHeaders } = { requestHeaders: {} },

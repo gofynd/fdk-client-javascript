@@ -209,6 +209,7 @@ const Joi = require("joi");
  * @typedef OperationErrorResponse
  * @property {boolean} [success]
  * @property {string} [message]
+ * @property {string} [error]
  */
 
 /**
@@ -427,6 +428,7 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Custom data stored in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string} [_id] - Promotion id
+ * @property {string[]} [tags]
  */
 
 /**
@@ -460,6 +462,7 @@ const Joi = require("joi");
  * @property {Object} buy_rules
  * @property {Object} [_custom_json]
  * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags]
  */
 
 /**
@@ -487,6 +490,7 @@ const Joi = require("joi");
  * @property {Object} buy_rules
  * @property {Object} [_custom_json]
  * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags]
  */
 
 /**
@@ -525,6 +529,7 @@ const Joi = require("joi");
 /**
  * @typedef CartMetaConfigUpdate
  * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
  * @property {boolean} [bulk_coupons]
  * @property {number} [max_cart_items]
  * @property {string} [gift_display_text]
@@ -537,6 +542,7 @@ const Joi = require("joi");
 /**
  * @typedef CartMetaConfigAdd
  * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
  * @property {boolean} [bulk_coupons]
  * @property {number} [max_cart_items]
  * @property {string} [gift_display_text]
@@ -2170,6 +2176,7 @@ class CartPlatformModel {
     return Joi.object({
       success: Joi.boolean(),
       message: Joi.string().allow(""),
+      error: Joi.string().allow(""),
     });
   }
 
@@ -2429,6 +2436,7 @@ class CartPlatformModel {
       _custom_json: Joi.any(),
       date_meta: CartPlatformModel.PromotionDateMeta(),
       _id: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2469,6 +2477,7 @@ class CartPlatformModel {
         .required(),
       _custom_json: Joi.any(),
       date_meta: CartPlatformModel.PromotionDateMeta(),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2501,6 +2510,7 @@ class CartPlatformModel {
         .required(),
       _custom_json: Joi.any(),
       date_meta: CartPlatformModel.PromotionDateMeta(),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2548,6 +2558,7 @@ class CartPlatformModel {
   static CartMetaConfigUpdate() {
     return Joi.object({
       min_cart_value: Joi.number(),
+      max_cart_value: Joi.number(),
       bulk_coupons: Joi.boolean(),
       max_cart_items: Joi.number(),
       gift_display_text: Joi.string().allow(""),
@@ -2562,6 +2573,7 @@ class CartPlatformModel {
   static CartMetaConfigAdd() {
     return Joi.object({
       min_cart_value: Joi.number(),
+      max_cart_value: Joi.number(),
       bulk_coupons: Joi.boolean(),
       max_cart_items: Joi.number(),
       gift_display_text: Joi.string().allow(""),

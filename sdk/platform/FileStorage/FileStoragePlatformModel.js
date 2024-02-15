@@ -33,6 +33,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Params
+ * @property {string} [subpath] - The subpath for the file.
+ */
+
+/**
  * @typedef StartRequest
  * @property {string} file_name
  * @property {string} content_type
@@ -63,12 +68,6 @@ const Joi = require("joi");
  * @property {string} created_on
  * @property {string} modified_on
  * @property {CreatedBy} [created_by]
- */
-
-/**
- * @typedef ProxyResponse
- * @property {Object} [data]
- * @property {Object} [support]
  */
 
 /**
@@ -663,6 +662,13 @@ class FileStoragePlatformModel {
     });
   }
 
+  /** @returns {Params} */
+  static Params() {
+    return Joi.object({
+      subpath: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {StartRequest} */
   static StartRequest() {
     return Joi.object({
@@ -699,14 +705,6 @@ class FileStoragePlatformModel {
       created_on: Joi.string().allow("").required(),
       modified_on: Joi.string().allow("").required(),
       created_by: FileStoragePlatformModel.CreatedBy(),
-    });
-  }
-
-  /** @returns {ProxyResponse} */
-  static ProxyResponse() {
-    return Joi.object({
-      data: Joi.object().pattern(/\S/, Joi.any()),
-      support: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

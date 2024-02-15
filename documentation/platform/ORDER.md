@@ -82,7 +82,7 @@ Default
 
 
 ### attachOrderUser
-
+Attach order user.
 
 
 
@@ -103,7 +103,7 @@ const data = await platformClient.order.attachOrderUser({  body : value });
 | body | [AttachOrderUser](#AttachOrderUser) | yes | Request body |
 
 
-Attach Order User
+Attach order User
 
 *Returned Response:*
 
@@ -502,7 +502,7 @@ Bulk State Transistion Sucessfully Initiated Response.
 
 
 ### checkOrderStatus
-
+Check order status.
 
 
 
@@ -523,7 +523,7 @@ const data = await platformClient.order.checkOrderStatus({  body : value });
 | body | [OrderStatus](#OrderStatus) | yes | Request body |
 
 
-Check order status
+Verify the current status of an order.
 
 *Returned Response:*
 
@@ -557,7 +557,7 @@ Order Status retrieved successfully
 
 
 ### click2Call
-
+Click to call.
 
 
 
@@ -591,7 +591,7 @@ const data = await platformClient.order.click2Call({  caller : value,
 
 
 
-Click to Call
+Click to call. 
 
 *Returned Response:*
 
@@ -628,7 +628,7 @@ Process call on request!
 
 
 ### createChannelConfig
-
+Create channel configuration.
 
 
 
@@ -649,7 +649,7 @@ const data = await platformClient.order.createChannelConfig({  body : value });
 | body | [CreateChannelConfigData](#CreateChannelConfigData) | yes | Request body |
 
 
-createChannelConfig
+Set up configuration for a channel.
 
 *Returned Response:*
 
@@ -689,7 +689,7 @@ Successfully updateShipmentStatus!
 
 
 ### createOrder
-
+Create order.
 
 
 
@@ -710,7 +710,7 @@ const data = await platformClient.order.createOrder({  body : value });
 | body | [CreateOrderAPI](#CreateOrderAPI) | yes | Request body |
 
 
-Create Order
+Create order.
 
 *Returned Response:*
 
@@ -802,7 +802,7 @@ Shipment Dispatched mapped with manifest!
 
 
 ### downloadBulkActionTemplate
-
+Download bulk action template.
 
 
 
@@ -874,7 +874,7 @@ We are processing the file!
 
 
 ### downloadLanesReport
-
+Download lanes report.
 
 
 
@@ -895,7 +895,7 @@ const data = await platformClient.order.downloadLanesReport({  body : value });
 | body | [BulkReportsDownloadRequest](#BulkReportsDownloadRequest) | yes | Request body |
 
 
-downloads lanes shipment/orders.
+Downloads lanes shipment/orders.
 
 *Returned Response:*
 
@@ -940,7 +940,7 @@ Bulk Report creation initiated.
 
 
 ### eInvoiceRetry
-
+E-invoice retry.
 
 
 
@@ -1243,7 +1243,7 @@ Order Logs listing fetched successfully
 
 
 ### fetchCreditBalanceDetail
-
+Fetch credit balance detail.
 
 
 
@@ -1264,7 +1264,7 @@ const data = await platformClient.order.fetchCreditBalanceDetail({  body : value
 | body | [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload) | yes | Request body |
 
 
-Fetch Credit Balance Detail
+Retrieve details about credit balance.
 
 *Returned Response:*
 
@@ -1298,7 +1298,7 @@ Credit Balance will be fetched
 
 
 ### fetchRefundModeConfig
-
+Fetch refund mode config.
 
 
 
@@ -1319,7 +1319,7 @@ const data = await platformClient.order.fetchRefundModeConfig({  body : value })
 | body | [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload) | yes | Request body |
 
 
-Fetch Refund Mode Config
+Retrieve configuration for refund modes.
 
 *Returned Response:*
 
@@ -1420,7 +1420,7 @@ NOTE success response can contains success and failed result as well
 
 
 ### generatePOSReceiptByOrderId
-
+Generate POS receipt by order ID.
 
 
 
@@ -1448,7 +1448,7 @@ const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId :
 
 
 
-Generate POS recipt by order id.
+Create a point-of-sale (POS) receipt for a specific order by order ID.
 
 *Returned Response:*
 
@@ -1482,7 +1482,7 @@ We are processing the request!
 
 
 ### getAllowedStateTransition
-To fetch next state transitions.
+Get allowed state transition.
 
 
 
@@ -1507,8 +1507,7 @@ const data = await platformClient.order.getAllowedStateTransition({  orderingCha
 
 
 
-This endpoint will fetch next possible states based on logged in user
-
+Retrieve next possible states based on logged in user.
 
 *Returned Response:*
 
@@ -1631,7 +1630,7 @@ Successfully Found the templates.
 
 
 ### getAnnouncements
-
+Get announcements.
 
 
 
@@ -1653,7 +1652,7 @@ const data = await platformClient.order.getAnnouncements({  date : value });
 
 
 
-Get Announcements
+Retrieve announcements related to orders or shipments.
 
 *Returned Response:*
 
@@ -1785,7 +1784,7 @@ We are processing the report!
 
 
 ### getBagById
-
+Get bag by ID.
 
 
 
@@ -1813,7 +1812,7 @@ const data = await platformClient.order.getBagById({  bagId : value,
 
 
 
-Get Order Bag Details.
+Retrieve detailed information about a specific bag.
 
 *Returned Response:*
 
@@ -1847,7 +1846,7 @@ Successfully retrived shipment details!
 
 
 ### getBags
-
+Get bags.
 
 
 
@@ -1893,7 +1892,7 @@ const data = await platformClient.order.getBags({  bagIds : value,
 
 
 
-Get Bags for the order
+Retrieve Bags for the order.
 
 *Returned Response:*
 
@@ -1927,7 +1926,7 @@ Successfully retrived all the given shipments details!
 
 
 ### getBulkActionTemplate
-
+Get bulk action template.
 
 
 
@@ -1944,7 +1943,7 @@ const data = await platformClient.order.getBulkActionTemplate();
 
 
 
-Get Bulk Action seller templates.
+Retrieve bulk action seller templates.
 
 *Returned Response:*
 
@@ -1985,7 +1984,7 @@ Slug names
 
 
 ### getBulkShipmentExcelFile
-
+Get bulk shipment Excel file.
 
 
 
@@ -2040,7 +2039,7 @@ const data = await platformClient.order.getBulkShipmentExcelFile({  salesChannel
 
 
 
-Generate Bulk Shipment Excel Report.
+Retrieve a bulk shipment Excel report.
 
 *Returned Response:*
 
@@ -2090,7 +2089,7 @@ We are processing the file!
 
 
 ### getChannelConfig
-
+Get channel configuration.
 
 
 
@@ -2107,7 +2106,7 @@ const data = await platformClient.order.getChannelConfig();
 
 
 
-getChannelConfig
+Retrieve configuration settings for a channel.
 
 *Returned Response:*
 
@@ -2240,7 +2239,7 @@ Job details.
 
 
 ### getLaneConfig
-
+Get lane configuration.
 
 
 
@@ -2316,7 +2315,7 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 
 
 
-Get lane config for the order
+Retrieve configuration settings for lanes.
 
 *Returned Response:*
 
@@ -2698,7 +2697,7 @@ Successful Manifest upload!
 
 
 ### getOrderById
-
+Get order by ID.
 
 
 
@@ -2726,7 +2725,7 @@ const data = await platformClient.order.getOrderById({  orderId : value,
 
 
 
-Get Order Details by ID
+Retrieve detailed information about a specific order.
 
 *Returned Response:*
 
@@ -3156,7 +3155,10 @@ We are processing the report!
               "time": 7,
               "unit": "days",
               "returnable": true
-            }
+            },
+            "tags": [
+              "1P"
+            ]
           },
           "affiliate_bag_details": {
             "coupon_code": null
@@ -3498,7 +3500,7 @@ We are processing the report!
 
 
 ### getOrders
-
+Get orders.
 
 
 
@@ -3583,7 +3585,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 
 
 
-Get Orders Listing
+Retrieve a list of available orders.
 
 *Returned Response:*
 
@@ -3617,7 +3619,7 @@ We are processing the report!
 
 
 ### getPlatformShipmentReasons
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+Get platform shipment reasons.
 
 
 
@@ -3639,7 +3641,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.getPlatf
 
 
 
-Using action, get reasons behind full or partial cancellation of a shipment
+Retrieve reasons behind full or partial cancellation of a shipment
 
 *Returned Response:*
 
@@ -3673,7 +3675,7 @@ Success. Check the example shown below or refer `ShipmentReasonsResponse` for mo
 
 
 ### getRoleBasedActions
-
+Get role-based actions.
 
 
 
@@ -3690,7 +3692,7 @@ const data = await platformClient.order.getRoleBasedActions();
 
 
 
-Get Role Based Actions
+Retrieve role based actions.
 
 *Returned Response:*
 
@@ -3840,7 +3842,7 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
 
 ### getShipmentById
-
+Get shipment by ID.
 
 
 
@@ -3868,7 +3870,7 @@ const data = await platformClient.order.getShipmentById({  channelShipmentId : v
 
 
 
-Get shipment details for the given shipment.
+Retrieve detailed information about a specific shipment.
 
 *Returned Response:*
 
@@ -4109,7 +4111,10 @@ We are processing the report!
               "time": 30,
               "unit": "days",
               "returnable": true
-            }
+            },
+            "tags": [
+              "1P"
+            ]
           },
           "quantity": 1
         }
@@ -4250,7 +4255,7 @@ We are processing the report!
 
 
 ### getShipmentHistory
-
+Get shipment history.
 
 
 
@@ -4275,7 +4280,7 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 
 
-Get Shipment History
+Retrieve the shipment history.
 
 *Returned Response:*
 
@@ -4342,7 +4347,7 @@ It shows the journey of the shipment!
 
 
 ### getShipmentReasons
-Get reasons behind full or partial cancellation of a shipment
+Get shipment reasons.
 
 
 
@@ -4370,7 +4375,7 @@ const data = await platformClient.order.getShipmentReasons({  shipmentId : value
 
 
 
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+Retrieve the issues that led to the cancellation of bags within a shipment.
 
 *Returned Response:*
 
@@ -4432,7 +4437,7 @@ Success. Check the example shown below or refer `PlatformShipmentReasonsResponse
 
 
 ### getShipments
-
+Get shipments.
 
 
 
@@ -4544,7 +4549,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 
 
 
-Get Shipments Listing for the company id
+Retrieve a list of available shipments.
 
 *Returned Response:*
 
@@ -4578,7 +4583,7 @@ We are processing the report!
 
 
 ### getStateTransitionMap
-
+Get state transition map.
 
 
 
@@ -4595,7 +4600,7 @@ const data = await platformClient.order.getStateTransitionMap();
 
 
 
-Get State Transition Map
+Retrieve a map of state transitions for orders.
 
 *Returned Response:*
 
@@ -4883,7 +4888,7 @@ Sucessfully Created the Template Url.
 
 
 ### getfilters
-
+Get filters.
 
 
 
@@ -4908,7 +4913,7 @@ const data = await platformClient.order.getfilters({  view : value,
 
 
 
-Get Listing Filters
+Retrieve listing filters.
 
 *Returned Response:*
 
@@ -5290,7 +5295,7 @@ List of filters
 
 
 ### invalidateShipmentCache
-
+Invalidate shipment cache.
 
 
 
@@ -5311,7 +5316,7 @@ const data = await platformClient.order.invalidateShipmentCache({  body : value 
 | body | [InvalidateShipmentCachePayload](#InvalidateShipmentCachePayload) | yes | Request body |
 
 
-Invalidate shipment Cache
+Invalidate shipment Cache.
 
 *Returned Response:*
 
@@ -5453,7 +5458,7 @@ Job details.
 
 
 ### orderUpdate
-
+Order update.
 
 
 
@@ -5474,7 +5479,7 @@ const data = await platformClient.order.orderUpdate({  body : value });
 | body | [PlatformOrderUpdate](#PlatformOrderUpdate) | yes | Request body |
 
 
-Update Order
+Modify the details and status of an order. 
 
 *Returned Response:*
 
@@ -5508,7 +5513,7 @@ We are processing the order!
 
 
 ### postShipmentHistory
-
+Post shipment history.
 
 
 
@@ -5529,7 +5534,7 @@ const data = await platformClient.order.postShipmentHistory({  body : value });
 | body | [PostShipmentHistory](#PostShipmentHistory) | yes | Request body |
 
 
-Post shipment history
+Add history records for a shipment.
 
 *Returned Response:*
 
@@ -5652,7 +5657,7 @@ Manifest will be processed!
 
 
 ### reassignLocation
-
+Reassign location.
 
 
 
@@ -5673,7 +5678,7 @@ const data = await platformClient.order.reassignLocation({  body : value });
 | body | [StoreReassign](#StoreReassign) | yes | Request body |
 
 
-Reassign Location
+Change the assigned location for an order or shipment.
 
 *Returned Response:*
 
@@ -5707,7 +5712,7 @@ Successfully reassigned location!
 
 
 ### sendSmsNinja
-
+Send SMS via Ninja.
 
 
 
@@ -5728,7 +5733,7 @@ const data = await platformClient.order.sendSmsNinja({  body : value });
 | body | [SendSmsPayload](#SendSmsPayload) | yes | Request body |
 
 
-Send SMS Ninja Panel
+Send SMS Ninja Panel.
 
 *Returned Response:*
 
@@ -5765,7 +5770,7 @@ Sms Sent successfully
 
 
 ### sendUserMobileOTP
-
+Send user mobile OTP.
 
 
 
@@ -5786,7 +5791,7 @@ const data = await platformClient.order.sendUserMobileOTP({  body : value });
 | body | [SendUserMobileOTP](#SendUserMobileOTP) | yes | Request body |
 
 
-Send User Mobile OTP
+Send a one-time OTP to a users mobile device.
 
 *Returned Response:*
 
@@ -5829,7 +5834,7 @@ Send OTP to user mobile
 
 
 ### trackShipment
-
+Track shipment.
 
 
 
@@ -5860,7 +5865,7 @@ const data = await platformClient.order.trackShipment({  shipmentId : value,
 
 
 
-This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
+Retrieve courier partner tracking details for a given shipment id or awb no.
 
 *Returned Response:*
 
@@ -5926,7 +5931,7 @@ Shipment Tracking fetched successfully
 
 
 ### trackShipmentPlatform
-Track shipment
+Track shipment on the platform.
 
 
 
@@ -5948,7 +5953,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.trackShi
 
 
 
-Track Shipment by shipment id, for application based on application Id
+Track shipment by Shipment ID for application based on application Id
 
 *Returned Response:*
 
@@ -5998,7 +6003,7 @@ Success. Check the example shown below or refer `PlatformShipmentTrack` for more
 
 
 ### updateAddress
-
+Update address.
 
 
 
@@ -6053,7 +6058,7 @@ const data = await platformClient.order.updateAddress({  shipmentId : value,
 
 
 
-Update Address for the order
+Modify the shipping address for an order.
 
 *Returned Response:*
 
@@ -6087,7 +6092,7 @@ Update Address will be processed!
 
 
 ### updatePackagingDimensions
-
+Update packaging dimensions.
 
 
 
@@ -6108,7 +6113,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 | body | [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload) | yes | Request body |
 
 
-Update Packaging Dimensions
+Modify the dimensions of packaging.
 
 *Returned Response:*
 
@@ -6142,7 +6147,7 @@ Manifest will be processed!
 
 
 ### updateShipmentLock
-
+Update shipment lock.
 
 
 
@@ -6163,7 +6168,7 @@ const data = await platformClient.order.updateShipmentLock({  body : value });
 | body | [UpdateShipmentLockPayload](#UpdateShipmentLockPayload) | yes | Request body |
 
 
-update shipment/bag lock and check status
+Modify shipment/bag lock and check status.
 
 *Returned Response:*
 
@@ -6222,7 +6227,7 @@ Successfully update the Lock and get check status of the shipment/Bag
 
 
 ### updateShipmentStatus
-
+Update shipment status.
 
 
 
@@ -6243,7 +6248,7 @@ const data = await platformClient.order.updateShipmentStatus({  body : value });
 | body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
 
 
-This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
+Shipment state transition or Shipment data update or both.
 
 *Returned Response:*
 
@@ -6305,7 +6310,7 @@ NOTE success response can contains success and failed result as well
 
 
 ### updateShipmentTracking
-Post courier partner tracking details
+Update shipment tracking.
 
 
 
@@ -6326,7 +6331,7 @@ const data = await platformClient.order.updateShipmentTracking({  body : value }
 | body | [CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails) | yes | Request body |
 
 
-This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms.
+Modify courier partner tracking details for a given shipment id or awb no.
 
 *Returned Response:*
 
@@ -6439,7 +6444,7 @@ Successful Manifest upload!
 
 
 ### verifyMobileOTP
-
+Verify mobile OTP.
 
 
 
@@ -6812,6 +6817,7 @@ Verify OTP
  | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
  | seller_identifier | string |  no  |  |
  | size | string |  no  |  |
+ | tags | [string]? |  yes  |  |
  | uid | string |  no  |  |
  | weight | [Weight](#Weight)? |  yes  |  |
  
@@ -8808,6 +8814,7 @@ Verify OTP
  | identifiers | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
  | size | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  | uid | string? |  yes  |  |
  
 
@@ -8884,7 +8891,7 @@ Verify OTP
  | fynd_order_id | string |  no  |  |
  | meta | string? |  yes  |  |
  | order_date | string |  no  |  |
- | payment_info | [string]? |  yes  |  |
+ | payment_info | [[PaymentInfoData](#PaymentInfoData)]? |  yes  |  |
  | payment_methods | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | tax_details | [TaxDetails](#TaxDetails)? |  yes  |  |
@@ -9148,6 +9155,23 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | payment_methods | [[PaymentMethod](#PaymentMethod)]? |  yes  |  |
  | primary_mode | string |  no  |  |
+ 
+
+---
+
+#### [PaymentInfoData](#PaymentInfoData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | collect_by | string? |  yes  |  |
+ | collected | boolean? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | merchant_transaction_id | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | mode | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | refund_by | string? |  yes  |  |
  
 
 ---

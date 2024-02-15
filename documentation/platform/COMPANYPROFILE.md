@@ -9,20 +9,29 @@
 Catalog CBS - platform Front API's
 
 
-Default
+Company Onboarding and Metrics
 * [cbsOnboardGet](#cbsonboardget)
+* [getCompanyMetrics](#getcompanymetrics)
+* [updateCompany](#updatecompany)
+
+
+Brand Management
 * [createBrand](#createbrand)
-* [createCompanyBrandMapping](#createcompanybrandmapping)
-* [createLocation](#createlocation)
-* [createLocationBulk](#createlocationbulk)
 * [editBrand](#editbrand)
 * [getBrand](#getbrand)
 * [getBrands](#getbrands)
-* [getCompanyMetrics](#getcompanymetrics)
+
+
+Company-Brand Mapping
+* [createCompanyBrandMapping](#createcompanybrandmapping)
+
+
+Location Management
+* [createLocation](#createlocation)
+* [createLocationBulk](#createlocationbulk)
 * [getLocationDetail](#getlocationdetail)
 * [getLocationTags](#getlocationtags)
 * [getLocations](#getlocations)
-* [updateCompany](#updatecompany)
 * [updateLocation](#updatelocation)
 
 
@@ -35,7 +44,7 @@ Default
 
 
 ### cbsOnboardGet
-Get company profile
+Get company onboard data.
 
 
 
@@ -52,7 +61,7 @@ const data = await platformClient.companyProfile.cbsOnboardGet();
 
 
 
-This API allows to view the company profile of the seller account.
+View the company profile of the seller account.
 
 *Returned Response:*
 
@@ -152,8 +161,142 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 ---
 
 
+### getCompanyMetrics
+Get company metrics.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.companyProfile.getCompanyMetrics();
+
+// Async/Await
+const data = await platformClient.companyProfile.getCompanyMetrics();
+```
+
+
+
+
+
+
+Allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+
+*Returned Response:*
+
+
+
+
+[MetricsSerializer](#MetricsSerializer)
+
+Metrics response object. See example below or refer `MetricsSerializer` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "stage": "complete",
+  "store": {
+    "verified": 1,
+    "pending": 1
+  },
+  "brand": {
+    "verified": 1,
+    "pending": 1
+  },
+  "product": {
+    "verified": 0,
+    "pending": 0
+  },
+  "company_documents": {
+    "verified": 1,
+    "pending": 0
+  },
+  "store_documents": {
+    "verified": 0,
+    "pending": 2
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCompany
+Update company information.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.companyProfile.updateCompany({  body : value });
+
+// Async/Await
+const data = await platformClient.companyProfile.updateCompany({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UpdateCompany](#UpdateCompany) | yes | Request body |
+
+
+Allows to edit the company profile of the seller account.
+
+*Returned Response:*
+
+
+
+
+[ProfileSuccessResponse](#ProfileSuccessResponse)
+
+Returns a success message
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
 ### createBrand
-Create a Brand.
+Create brand.
 
 
 
@@ -174,7 +317,7 @@ const data = await platformClient.companyProfile.createBrand({  body : value });
 | body | [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer) | yes | Request body |
 
 
-This API allows to create a brand associated to a company.
+Allows to create a brand associated to a company.
 
 *Returned Response:*
 
@@ -194,179 +337,6 @@ Returns a success response
 ```json
 {
   "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createCompanyBrandMapping
-Create a company brand mapping.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.companyProfile.createCompanyBrandMapping({  body : value });
-
-// Async/Await
-const data = await platformClient.companyProfile.createCompanyBrandMapping({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
-
-
-This API allows to create a company brand mapping, for a already existing brand in the system.
-
-*Returned Response:*
-
-
-
-
-[ProfileSuccessResponse](#ProfileSuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createLocation
-Create a location associated to a company.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.companyProfile.createLocation({  body : value });
-
-// Async/Await
-const data = await platformClient.companyProfile.createLocation({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
-
-
-This API allows to edit a location associated to a company.
-
-*Returned Response:*
-
-
-
-
-[ProfileSuccessResponse](#ProfileSuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createLocationBulk
-Create a location asscoiated to a company in bulk.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.companyProfile.createLocationBulk({  body : value });
-
-// Async/Await
-const data = await platformClient.companyProfile.createLocationBulk({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BulkLocationSerializer](#BulkLocationSerializer) | yes | Request body |
-
-
-This API allows to create a location associated to a company.
-
-*Returned Response:*
-
-
-
-
-[ProfileSuccessResponse](#ProfileSuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "10 stores inserted",
   "success": true
 }
 ```
@@ -384,7 +354,7 @@ Returns a success response
 
 
 ### editBrand
-Edit a brand.
+Edit brand details.
 
 
 
@@ -408,7 +378,7 @@ const data = await platformClient.companyProfile.editBrand({  brandId : value,
 | body | [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer) | yes | Request body |
 
 
-This API allows to edit meta of a brand.
+Modify details and settings of a specific brand. Allows to edit meta of a brand.
 
 *Returned Response:*
 
@@ -445,7 +415,7 @@ Returns a success response
 
 
 ### getBrand
-Get a single company brand.
+Get brand details.
 
 
 
@@ -467,7 +437,7 @@ const data = await platformClient.companyProfile.getBrand({  brandId : value });
 
 
 
-This API helps to get data associated to a particular company brand.
+Retrieve detailed information about a specific brand. Get data associated to a particular company brand.
 
 *Returned Response:*
 
@@ -529,7 +499,7 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 
 
 ### getBrands
-Get brands associated to a company
+Get brands.
 
 
 
@@ -557,7 +527,7 @@ const data = await platformClient.companyProfile.getBrands({  pageNo : value,
 
 
 
-This API helps to get view brands associated to a particular company.
+Retrieve a list of available brands.
 
 *Returned Response:*
 
@@ -678,34 +648,99 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
 ---
 
 
-### getCompanyMetrics
-Get company metrics
+
+
+### createCompanyBrandMapping
+Create company-brand mapping.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.companyProfile.getCompanyMetrics();
+const promise = platformClient.companyProfile.createCompanyBrandMapping({  body : value });
 
 // Async/Await
-const data = await platformClient.companyProfile.getCompanyMetrics();
+const data = await platformClient.companyProfile.createCompanyBrandMapping({  body : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
 
-This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+
+Establish a mapping between a company and a brand.
 
 *Returned Response:*
 
 
 
 
-[MetricsSerializer](#MetricsSerializer)
+[ProfileSuccessResponse](#ProfileSuccessResponse)
 
-Metrics response object. See example below or refer `MetricsSerializer` for details
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createLocation
+Create location.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.companyProfile.createLocation({  body : value });
+
+// Async/Await
+const data = await platformClient.companyProfile.createLocation({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
+
+
+Create a new location. Allows to edit a location associated to a company.
+
+*Returned Response:*
+
+
+
+
+[ProfileSuccessResponse](#ProfileSuccessResponse)
+
+Returns a success response
 
 
 
@@ -716,27 +751,65 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 ```json
 {
   "uid": 1,
-  "stage": "complete",
-  "store": {
-    "verified": 1,
-    "pending": 1
-  },
-  "brand": {
-    "verified": 1,
-    "pending": 1
-  },
-  "product": {
-    "verified": 0,
-    "pending": 0
-  },
-  "company_documents": {
-    "verified": 1,
-    "pending": 0
-  },
-  "store_documents": {
-    "verified": 0,
-    "pending": 2
-  }
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createLocationBulk
+Create locations in bulk.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.companyProfile.createLocationBulk({  body : value });
+
+// Async/Await
+const data = await platformClient.companyProfile.createLocationBulk({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BulkLocationSerializer](#BulkLocationSerializer) | yes | Request body |
+
+
+Allows to create a location associated to a company.
+
+*Returned Response:*
+
+
+
+
+[ProfileSuccessResponse](#ProfileSuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "10 stores inserted",
+  "success": true
 }
 ```
 </details>
@@ -753,7 +826,7 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 
 
 ### getLocationDetail
-Get details of a specific location.
+Get location detail.
 
 
 
@@ -775,7 +848,7 @@ const data = await platformClient.companyProfile.getLocationDetail({  locationId
 
 
 
-This API helps to get data associated to a specific location.
+Retrieve detailed information about a specific location. Get data associated to a specific location.
 
 *Returned Response:*
 
@@ -990,7 +1063,7 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 ### getLocationTags
-Get tags associated with locations for a company.
+Get location tags.
 
 
 
@@ -1007,7 +1080,7 @@ const data = await platformClient.companyProfile.getLocationTags();
 
 
 
-This API fetches all the tags associated to a company.
+Retrieve all the tags associated to a company.
 
 *Returned Response:*
 
@@ -1068,7 +1141,7 @@ Tags list. See example below or refer `StoreTagsResponseSchema` for details
 
 
 ### getLocations
-Get list of locations
+Get company locations.
 
 
 
@@ -1111,7 +1184,7 @@ const data = await platformClient.companyProfile.getLocations({  storeType : val
 
 
 
-This API allows to view all the locations associated to a company.
+Retrieve a list of locations associated with the company.
 
 *Returned Response:*
 
@@ -1328,66 +1401,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 ---
 
 
-### updateCompany
-Edit company profile
-
-
-
-```javascript
-// Promise
-const promise = platformClient.companyProfile.updateCompany({  body : value });
-
-// Async/Await
-const data = await platformClient.companyProfile.updateCompany({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UpdateCompany](#UpdateCompany) | yes | Request body |
-
-
-This API allows to edit the company profile of the seller account.
-
-*Returned Response:*
-
-
-
-
-[ProfileSuccessResponse](#ProfileSuccessResponse)
-
-Returns a success message
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateLocation
-Edit a location asscoiated to a company.
+Update location.
 
 
 
@@ -1411,7 +1426,7 @@ const data = await platformClient.companyProfile.updateLocation({  locationId : 
 | body | [LocationSerializer](#LocationSerializer) | yes | Request body |
 
 
-This API allows to edit a location associated to a company.
+Allows to edit a location associated to a company.
 
 *Returned Response:*
 

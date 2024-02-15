@@ -24,8 +24,8 @@ declare class Configuration {
      * @param {import("../PublicAPIClient").Options} - Options
      * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
      * @name searchApplication
-     * @summary: Search Application
-     * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
+     * @summary: Search application.
+     * @description: Provide application name or domain url. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
      */
     searchApplication({ authorization, query, requestHeaders }?: ConfigurationPublicValidator.SearchApplicationParam, { responseHeaders }?: object): Promise<ConfigurationPublicModel.ApplicationResponse>;
 }

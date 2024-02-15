@@ -202,7 +202,7 @@ export = PaymentApplicationValidator;
  * @property {PaymentApplicationModel.WalletOtpRequest} body
  */
 /**
- * @typedef WalletLinkInitiateParam
+ * @typedef WalletLinkInitateParam
  * @property {PaymentApplicationModel.WalletLinkRequestSchema} body
  */
 declare class PaymentApplicationValidator {
@@ -296,11 +296,11 @@ declare class PaymentApplicationValidator {
     static verifyOtpAndAddBeneficiaryForBank(): VerifyOtpAndAddBeneficiaryForBankParam;
     /** @returns {VerifyOtpAndAddBeneficiaryForWalletParam} */
     static verifyOtpAndAddBeneficiaryForWallet(): VerifyOtpAndAddBeneficiaryForWalletParam;
-    /** @returns {WalletLinkInitiateParam} */
-    static walletLinkInitiate(): WalletLinkInitiateParam;
+    /** @returns {WalletLinkInitateParam} */
+    static walletLinkInitate(): WalletLinkInitateParam;
 }
 declare namespace PaymentApplicationValidator {
-    export { AddBeneficiaryDetailsParam, AddRefundBankAccountUsingOTPParam, AttachCardToCustomerParam, CancelPaymentLinkParam, CardDetailsParam, CheckAndUpdatePaymentStatusParam, CheckAndUpdatePaymentStatusPaymentLinkParam, CheckCreditParam, CreateOrderHandlerPaymentLinkParam, CreatePaymentLinkParam, CreatePaymentOrderParam, CustomerCreditSummaryParam, CustomerOnboardParam, DeleteUserCardParam, DelinkWalletParam, EnableOrDisableRefundTransferModeParam, GetActiveCardAggregatorParam, GetActiveRefundTransferModesParam, GetActiveUserCardsParam, GetAggregatorsConfigParam, GetEpaylaterBannerDetailsParam, GetOrderBeneficiariesDetailParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPaymentModeRoutesPaymentLinkParam, GetPosPaymentModeRoutesParam, GetRupifiBannerDetailsParam, GetUserBeneficiariesDetailParam, InitialisePaymentParam, InitialisePaymentPaymentLinkParam, LinkWalletParam, OutstandingOrderDetailsParam, PaidOrderDetailsParam, PollingPaymentLinkParam, RedirectToAggregatorParam, RenderHTMLParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, UpdateDefaultBeneficiaryParam, ValidateVPAParam, VerifyAndChargePaymentParam, VerifyCustomerForPaymentParam, VerifyIfscCodeParam, VerifyOtpAndAddBeneficiaryForBankParam, VerifyOtpAndAddBeneficiaryForWalletParam, WalletLinkInitiateParam };
+    export { AddBeneficiaryDetailsParam, AddRefundBankAccountUsingOTPParam, AttachCardToCustomerParam, CancelPaymentLinkParam, CardDetailsParam, CheckAndUpdatePaymentStatusParam, CheckAndUpdatePaymentStatusPaymentLinkParam, CheckCreditParam, CreateOrderHandlerPaymentLinkParam, CreatePaymentLinkParam, CreatePaymentOrderParam, CustomerCreditSummaryParam, CustomerOnboardParam, DeleteUserCardParam, DelinkWalletParam, EnableOrDisableRefundTransferModeParam, GetActiveCardAggregatorParam, GetActiveRefundTransferModesParam, GetActiveUserCardsParam, GetAggregatorsConfigParam, GetEpaylaterBannerDetailsParam, GetOrderBeneficiariesDetailParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPaymentModeRoutesPaymentLinkParam, GetPosPaymentModeRoutesParam, GetRupifiBannerDetailsParam, GetUserBeneficiariesDetailParam, InitialisePaymentParam, InitialisePaymentPaymentLinkParam, LinkWalletParam, OutstandingOrderDetailsParam, PaidOrderDetailsParam, PollingPaymentLinkParam, RedirectToAggregatorParam, RenderHTMLParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, UpdateDefaultBeneficiaryParam, ValidateVPAParam, VerifyAndChargePaymentParam, VerifyCustomerForPaymentParam, VerifyIfscCodeParam, VerifyOtpAndAddBeneficiaryForBankParam, VerifyOtpAndAddBeneficiaryForWalletParam, WalletLinkInitateParam };
 }
 type AddBeneficiaryDetailsParam = {
     body: PaymentApplicationModel.AddBeneficiaryDetailsRequest;
@@ -534,7 +534,7 @@ type VerifyOtpAndAddBeneficiaryForBankParam = {
 type VerifyOtpAndAddBeneficiaryForWalletParam = {
     body: PaymentApplicationModel.WalletOtpRequest;
 };
-type WalletLinkInitiateParam = {
+type WalletLinkInitateParam = {
     body: PaymentApplicationModel.WalletLinkRequestSchema;
 };
 type GetActiveRefundTransferModesParam = any;

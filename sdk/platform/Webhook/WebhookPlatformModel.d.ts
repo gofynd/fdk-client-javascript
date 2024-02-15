@@ -204,6 +204,33 @@ export = WebhookPlatformModel;
  * @property {string} [secret]
  */
 /**
+ * @typedef SubscriberFailureResponse
+ * @property {string} [message]
+ * @property {string} [code]
+ * @property {string} [stack]
+ */
+/**
+ * @typedef EventConfigs
+ * @property {number} [id]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [event_category]
+ * @property {Object} [event_schema]
+ * @property {string} [version]
+ * @property {string} [display_name]
+ * @property {string} [description]
+ * @property {string} [created_on]
+ * @property {string} [updated_on]
+ * @property {SubscriberEventMapping} [subscriber_event_mapping]
+ */
+/**
+ * @typedef SubscriberEventMapping
+ * @property {number} [id]
+ * @property {number} [event_id]
+ * @property {number} [subscriber_id]
+ * @property {string} [created_on]
+ */
+/**
  * @typedef SubscriberResponse
  * @property {number} [id]
  * @property {string} [modified_by]
@@ -256,7 +283,7 @@ export = WebhookPlatformModel;
 declare class WebhookPlatformModel {
 }
 declare namespace WebhookPlatformModel {
-    export { Error, Event, RetryEventRequest, Item, RetryCountResponse, RetrySuccessResponse, Err, RetryFailureResponse, RetryStatusResponse, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AuthMeta, SubscriberResponse, SubscriberConfig, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
+    export { Error, Event, RetryEventRequest, Item, RetryCountResponse, RetrySuccessResponse, Err, RetryFailureResponse, RetryStatusResponse, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AuthMeta, SubscriberFailureResponse, EventConfigs, SubscriberEventMapping, SubscriberResponse, SubscriberConfig, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
 }
 /** @returns {Error} */
 declare function Error(): Error;
@@ -609,6 +636,36 @@ declare function AuthMeta(): AuthMeta;
 type AuthMeta = {
     type?: string;
     secret?: string;
+};
+/** @returns {SubscriberFailureResponse} */
+declare function SubscriberFailureResponse(): SubscriberFailureResponse;
+type SubscriberFailureResponse = {
+    message?: string;
+    code?: string;
+    stack?: string;
+};
+/** @returns {EventConfigs} */
+declare function EventConfigs(): EventConfigs;
+type EventConfigs = {
+    id?: number;
+    event_name?: string;
+    event_type?: string;
+    event_category?: string;
+    event_schema?: any;
+    version?: string;
+    display_name?: string;
+    description?: string;
+    created_on?: string;
+    updated_on?: string;
+    subscriber_event_mapping?: SubscriberEventMapping;
+};
+/** @returns {SubscriberEventMapping} */
+declare function SubscriberEventMapping(): SubscriberEventMapping;
+type SubscriberEventMapping = {
+    id?: number;
+    event_id?: number;
+    subscriber_id?: number;
+    created_on?: string;
 };
 /** @returns {SubscriberResponse} */
 declare function SubscriberResponse(): SubscriberResponse;

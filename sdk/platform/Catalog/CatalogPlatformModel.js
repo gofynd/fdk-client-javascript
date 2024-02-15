@@ -1611,7 +1611,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CollectionItemUpdateSchemaV2
+ * @typedef CollectionItemUpdateSchema
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {CollectionItemSchemaV2[]} [items]
@@ -5594,8 +5594,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {CollectionItemUpdateSchemaV2} */
-  static CollectionItemUpdateSchemaV2() {
+  /** @returns {CollectionItemUpdateSchema} */
+  static CollectionItemUpdateSchema() {
     return Joi.object({
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),

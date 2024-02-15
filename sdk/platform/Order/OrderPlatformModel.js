@@ -1883,6 +1883,7 @@ const Joi = require("joi");
  * @property {string} [raw_meta]
  * @property {string} size
  * @property {boolean} [is_set]
+ * @property {string[]} [tags]
  */
 
 /**
@@ -2346,6 +2347,7 @@ const Joi = require("joi");
  * @property {ReturnConfig} [return_config]
  * @property {string} [uid]
  * @property {string} [size]
+ * @property {string[]} [tags]
  */
 
 /**
@@ -2574,6 +2576,19 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PaymentInfoData
+ * @property {Object} [meta]
+ * @property {string} [mode]
+ * @property {string} [name]
+ * @property {number} [amount]
+ * @property {boolean} [collected]
+ * @property {string} [refund_by]
+ * @property {string} [collect_by]
+ * @property {string} [display_name]
+ * @property {string} [merchant_transaction_id]
+ */
+
+/**
  * @typedef OrderData
  * @property {string} order_date
  * @property {string} [created_ts]
@@ -2582,7 +2597,7 @@ const Joi = require("joi");
  * @property {string} fynd_order_id
  * @property {Prices} [prices]
  * @property {Object} [payment_methods]
- * @property {Object[]} [payment_info]
+ * @property {PaymentInfoData[]} [payment_info]
  */
 
 /**
@@ -5430,6 +5445,7 @@ class OrderPlatformModel {
       raw_meta: Joi.string().allow("").allow(null),
       size: Joi.string().allow("").required(),
       is_set: Joi.boolean().allow(null),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -5969,6 +5985,7 @@ class OrderPlatformModel {
       return_config: OrderPlatformModel.ReturnConfig(),
       uid: Joi.string().allow("").allow(null),
       size: Joi.string().allow("").allow(null),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -6233,6 +6250,21 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {PaymentInfoData} */
+  static PaymentInfoData() {
+    return Joi.object({
+      meta: Joi.any(),
+      mode: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      amount: Joi.number(),
+      collected: Joi.boolean(),
+      refund_by: Joi.string().allow(""),
+      collect_by: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      merchant_transaction_id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {OrderData} */
   static OrderData() {
     return Joi.object({
@@ -6243,7 +6275,7 @@ class OrderPlatformModel {
       fynd_order_id: Joi.string().allow("").required(),
       prices: OrderPlatformModel.Prices(),
       payment_methods: Joi.any().allow(null),
-      payment_info: Joi.array().items(Joi.any()),
+      payment_info: Joi.array().items(OrderPlatformModel.PaymentInfoData()),
     });
   }
 

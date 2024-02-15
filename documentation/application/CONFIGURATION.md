@@ -9,23 +9,35 @@
 The Application Configuration module simplifies tasks related to configuring the app. You can use it to retrieve information about sales channels, ownership details, app-specific settings, and integration tokens. This module also offers insights into store performance, ordering options, and available modules. It allows you to access currency information, support multiple languages, and customize store cookies for a personalized user experience. Additionally, the module can retrieve the staff list.
 
 
-Default
-* [getAppCurrencies](#getappcurrencies)
-* [getAppStaffList](#getappstafflist)
-* [getAppStaffs](#getappstaffs)
+Application Information
 * [getApplication](#getapplication)
 * [getBasicDetails](#getbasicdetails)
 * [getContactInfo](#getcontactinfo)
-* [getCurrencies](#getcurrencies)
-* [getCurrencyById](#getcurrencybyid)
 * [getFeatures](#getfeatures)
 * [getIntegrationTokens](#getintegrationtokens)
-* [getLanguages](#getlanguages)
+* [getOwnerInfo](#getownerinfo)
+
+
+Store Information
 * [getOrderingStoreCookie](#getorderingstorecookie)
 * [getOrderingStores](#getorderingstores)
-* [getOwnerInfo](#getownerinfo)
 * [getStoreDetailById](#getstoredetailbyid)
 * [removeOrderingStoreCookie](#removeorderingstorecookie)
+
+
+Currency Management
+* [getAppCurrencies](#getappcurrencies)
+* [getCurrencies](#getcurrencies)
+* [getCurrencyById](#getcurrencybyid)
+
+
+Language Information
+* [getLanguages](#getlanguages)
+
+
+Staff and User Management
+* [getAppStaffList](#getappstafflist)
+* [getAppStaffs](#getappstaffs)
 
 
 
@@ -36,246 +48,8 @@ Default
 
 
 
-### getAppCurrencies
-Get currencies enabled in the application
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.configuration.getAppCurrencies();
-
-// Async/Await
-const data = await applicationClient.configuration.getAppCurrencies();
-```
-
-
-
-
-
-
-Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
-
-*Returned Response:*
-
-
-
-
-[AppCurrencyResponse](#AppCurrencyResponse)
-
-Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "application": "000000000000000000000001",
-    "default_currency": {
-      "ref": "5ecf6122d953d4242c044907",
-      "code": "INR"
-    },
-    "supported_currency": [
-      {
-        "_id": "5ecf6122d953d4242c044907",
-        "is_active": true,
-        "name": "Indian Rupee",
-        "code": "INR",
-        "decimal_digits": 2,
-        "symbol": "₹",
-        "created_at": "2020-05-28T06:58:42.532Z",
-        "modified_at": "2021-04-05T16:44:14.358Z"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAppStaffList
-Get a list of staff.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.configuration.getAppStaffList({  pageNo : value,
- pageSize : value,
- orderIncent : value,
- orderingStore : value,
- user : value,
- userName : value });
-
-// Async/Await
-const data = await applicationClient.configuration.getAppStaffList({  pageNo : value,
- pageSize : value,
- orderIncent : value,
- orderingStore : value,
- user : value,
- userName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
-| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
-| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |    
-| userName | string | no | user name of the member |  
-
-
-
-Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
-
-*Returned Response:*
-
-
-
-
-[AppStaffListResponse](#AppStaffListResponse)
-
-Success. Check the example shown below or refer `AppStaffListResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "5e6b6ae7d450b1219ffdf3b2"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAppStaffs
-Get a list of staff.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.configuration.getAppStaffs({  orderIncent : value,
- orderingStore : value,
- user : value });
-
-// Async/Await
-const data = await applicationClient.configuration.getAppStaffs({  orderIncent : value,
- orderingStore : value,
- user : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
-| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
-| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
-
-
-
-Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
-
-*Returned Response:*
-
-
-
-
-[AppStaffResponse](#AppStaffResponse)
-
-Success. Check the example shown below or refer `AppStaffResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "staff_users": [
-      {
-        "_id": "5e6b6ae7d450b1219ffdf3b2"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getApplication
-Get current sales channel details
+Fetches application details.
 
 
 
@@ -292,7 +66,7 @@ const data = await applicationClient.configuration.getApplication();
 
 
 
-Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
+Retrieve the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
 
 *Returned Response:*
 
@@ -396,7 +170,7 @@ Success. Check the example shown below or refer `Application` for more details.
 
 
 ### getBasicDetails
-Get basic details of the application
+Retrieves basic app info.
 
 
 
@@ -413,7 +187,7 @@ const data = await applicationClient.configuration.getBasicDetails();
 
 
 
-Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
+Retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
 
 *Returned Response:*
 
@@ -495,7 +269,7 @@ Success. Check the example shown below or refer `ApplicationDetail` for more det
 
 
 ### getContactInfo
-Get application information
+Retrieves contact details.
 
 
 
@@ -512,7 +286,7 @@ const data = await applicationClient.configuration.getContactInfo();
 
 
 
-Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
+Retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
 
 *Returned Response:*
 
@@ -666,153 +440,8 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
 ---
 
 
-### getCurrencies
-Get all currencies list
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.configuration.getCurrencies();
-
-// Async/Await
-const data = await applicationClient.configuration.getCurrencies();
-```
-
-
-
-
-
-
-Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
-
-*Returned Response:*
-
-
-
-
-[CurrenciesResponse](#CurrenciesResponse)
-
-Success. Check the example shown below or refer `CurrenciesResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "5ec75d11f7bfb54d798f3516",
-        "is_active": true,
-        "name": "United States Dollar",
-        "code": "USD",
-        "created_at": "2020-05-22T05:03:13.354Z",
-        "modified_at": "2020-06-05T09:12:04.248Z",
-        "decimal_digits": 2,
-        "symbol": "$"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCurrencyById
-Get currency by its ID
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.configuration.getCurrencyById({  id : value });
-
-// Async/Await
-const data = await applicationClient.configuration.getCurrencyById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Object ID assigned to the currency |  
-
-
-
-Use this API to retrieve a currency using its ID.
-
-*Returned Response:*
-
-
-
-
-[Currency](#Currency)
-
-Success. Check the example shown below or refer `Currency` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5ec75d11f7bfb501d88f3559",
-    "is_active": true,
-    "name": "Gold Ounce",
-    "code": "XAU",
-    "created_at": "2020-05-22T05:03:13.429Z",
-    "modified_at": "2020-06-05T09:12:04.248Z",
-    "decimal_digits": 1,
-    "symbol": ""
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getFeatures
-Get features of application
+Fetches app features.
 
 
 
@@ -829,7 +458,7 @@ const data = await applicationClient.configuration.getFeatures();
 
 
 
-Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
+Retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
 
 *Returned Response:*
 
@@ -966,7 +595,7 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
 
 
 ### getIntegrationTokens
-Get integration tokens
+Fetches API tokens.
 
 
 
@@ -983,7 +612,7 @@ const data = await applicationClient.configuration.getIntegrationTokens();
 
 
 
-Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
+Retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook.
 
 *Returned Response:*
 
@@ -1093,223 +722,8 @@ Success. Check the example shown below or refer `AppTokenResponse` for more deta
 ---
 
 
-### getLanguages
-Get list of languages
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.configuration.getLanguages();
-
-// Async/Await
-const data = await applicationClient.configuration.getLanguages();
-```
-
-
-
-
-
-
-Use this API to get a list of languages supported in the application
-
-*Returned Response:*
-
-
-
-
-[LanguageResponse](#LanguageResponse)
-
-Success. Check the example shown below or refer `LanguageResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "name": "हिन्दी",
-        "code": "hi-IN"
-      },
-      {
-        "name": "English",
-        "code": "en-IN"
-      },
-      {
-        "name": "عربى",
-        "code": "ar-AE"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderingStoreCookie
-Get an Ordering Store signed cookie on selection of ordering store.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.configuration.getOrderingStoreCookie({  body : value });
-
-// Async/Await
-const data = await applicationClient.configuration.getOrderingStoreCookie({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OrderingStoreSelectRequest](#OrderingStoreSelectRequest) | yes | Request body |
-
-
-Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
-
-*Returned Response:*
-
-
-
-
-[SuccessMessageResponse](#SuccessMessageResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "success"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderingStores
-Get all deployment stores
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.configuration.getOrderingStores({  pageNo : value,
- pageSize : value,
- q : value });
-
-// Async/Await
-const data = await applicationClient.configuration.getOrderingStores({  pageNo : value,
- pageSize : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
-| q | string | no | Store code or name of the ordering store. |  
-
-
-
-Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
-
-*Returned Response:*
-
-
-
-
-[OrderingStores](#OrderingStores)
-
-Success. Check the example shown below or refer `OrderingStores` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "uid": 1
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getOwnerInfo
-Get sales channel, owner and seller information
+Retrieves application owner details.
 
 
 
@@ -1326,7 +740,7 @@ const data = await applicationClient.configuration.getOwnerInfo();
 
 
 
-Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+Retrieve the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. Also retrieves the seller and owner information such as address, email address, and phone number.
 
 *Returned Response:*
 
@@ -1467,8 +881,151 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
 ---
 
 
+
+
+### getOrderingStoreCookie
+Retrieves store selection cookie.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.configuration.getOrderingStoreCookie({  body : value });
+
+// Async/Await
+const data = await applicationClient.configuration.getOrderingStoreCookie({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OrderingStoreSelectRequest](#OrderingStoreSelectRequest) | yes | Request body |
+
+
+Retrieve an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. 
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "success"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOrderingStores
+Lists order-enabled stores.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.configuration.getOrderingStores({  pageNo : value,
+ pageSize : value,
+ q : value });
+
+// Async/Await
+const data = await applicationClient.configuration.getOrderingStores({  pageNo : value,
+ pageSize : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| q | string | no | Store code or name of the ordering store. |  
+
+
+
+Retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+
+*Returned Response:*
+
+
+
+
+[OrderingStores](#OrderingStores)
+
+Success. Check the example shown below or refer `OrderingStores` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "uid": 1
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getStoreDetailById
-Get ordering store details
+Retrieves store details by ID.
 
 
 
@@ -1490,7 +1047,7 @@ const data = await applicationClient.configuration.getStoreDetailById({  storeId
 
 
 
-Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
+Retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). 
 
 *Returned Response:*
 
@@ -1540,7 +1097,7 @@ Success. Check the example shown below or refer `OrderingStore` for more details
 
 
 ### removeOrderingStoreCookie
-Unset the Ordering Store signed cookie.
+Deletes store cookie.
 
 
 
@@ -1557,7 +1114,7 @@ const data = await applicationClient.configuration.removeOrderingStoreCookie();
 
 
 
-Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
+Unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
 
 *Returned Response:*
 
@@ -1582,6 +1139,469 @@ Success
 {
   "value": {
     "message": "success"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getAppCurrencies
+Retrieves app-specific currencies.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.configuration.getAppCurrencies();
+
+// Async/Await
+const data = await applicationClient.configuration.getAppCurrencies();
+```
+
+
+
+
+
+
+Retrieve a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+
+*Returned Response:*
+
+
+
+
+[AppCurrencyResponse](#AppCurrencyResponse)
+
+Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "application": "000000000000000000000001",
+    "default_currency": {
+      "ref": "5ecf6122d953d4242c044907",
+      "code": "INR"
+    },
+    "supported_currency": [
+      {
+        "_id": "5ecf6122d953d4242c044907",
+        "is_active": true,
+        "name": "Indian Rupee",
+        "code": "INR",
+        "decimal_digits": 2,
+        "symbol": "₹",
+        "created_at": "2020-05-28T06:58:42.532Z",
+        "modified_at": "2021-04-05T16:44:14.358Z"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCurrencies
+Lists supported currencies.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.configuration.getCurrencies();
+
+// Async/Await
+const data = await applicationClient.configuration.getCurrencies();
+```
+
+
+
+
+
+
+Retrieve a list of currencies available. Also get the name, code, symbol, and the decimal digits of the currencies. 
+
+*Returned Response:*
+
+
+
+
+[CurrenciesResponse](#CurrenciesResponse)
+
+Success. Check the example shown below or refer `CurrenciesResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "5ec75d11f7bfb54d798f3516",
+        "is_active": true,
+        "name": "United States Dollar",
+        "code": "USD",
+        "created_at": "2020-05-22T05:03:13.354Z",
+        "modified_at": "2020-06-05T09:12:04.248Z",
+        "decimal_digits": 2,
+        "symbol": "$"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCurrencyById
+Fetches currency by ID.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.configuration.getCurrencyById({  id : value });
+
+// Async/Await
+const data = await applicationClient.configuration.getCurrencyById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Object ID assigned to the currency |  
+
+
+
+Retrieve details of a specific currency using its ID. 
+
+*Returned Response:*
+
+
+
+
+[Currency](#Currency)
+
+Success. Check the example shown below or refer `Currency` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5ec75d11f7bfb501d88f3559",
+    "is_active": true,
+    "name": "Gold Ounce",
+    "code": "XAU",
+    "created_at": "2020-05-22T05:03:13.429Z",
+    "modified_at": "2020-06-05T09:12:04.248Z",
+    "decimal_digits": 1,
+    "symbol": ""
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getLanguages
+Lists available languages.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.configuration.getLanguages();
+
+// Async/Await
+const data = await applicationClient.configuration.getLanguages();
+```
+
+
+
+
+
+
+Retrieves all languages supported by the app.
+
+*Returned Response:*
+
+
+
+
+[LanguageResponse](#LanguageResponse)
+
+Success. Check the example shown below or refer `LanguageResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "name": "हिन्दी",
+        "code": "hi-IN"
+      },
+      {
+        "name": "English",
+        "code": "en-IN"
+      },
+      {
+        "name": "عربى",
+        "code": "ar-AE"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getAppStaffList
+Lists app staff members.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.configuration.getAppStaffList({  pageNo : value,
+ pageSize : value,
+ orderIncent : value,
+ orderingStore : value,
+ user : value,
+ userName : value });
+
+// Async/Await
+const data = await applicationClient.configuration.getAppStaffList({  pageNo : value,
+ pageSize : value,
+ orderIncent : value,
+ orderingStore : value,
+ user : value,
+ userName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
+| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
+| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |    
+| userName | string | no | user name of the member |  
+
+
+
+Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+
+*Returned Response:*
+
+
+
+
+[AppStaffListResponse](#AppStaffListResponse)
+
+Success. Check the example shown below or refer `AppStaffListResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "5e6b6ae7d450b1219ffdf3b2"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppStaffs
+Fetches detailed staff info.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.configuration.getAppStaffs({  orderIncent : value,
+ orderingStore : value,
+ user : value });
+
+// Async/Await
+const data = await applicationClient.configuration.getAppStaffs({  orderIncent : value,
+ orderingStore : value,
+ user : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
+| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
+| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
+
+
+
+Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+
+*Returned Response:*
+
+
+
+
+[AppStaffResponse](#AppStaffResponse)
+
+Success. Check the example shown below or refer `AppStaffResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "staff_users": [
+      {
+        "_id": "5e6b6ae7d450b1219ffdf3b2"
+      }
+    ]
   }
 }
 ```

@@ -125,12 +125,15 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef GetCartParam
- * @property {string} [id]
- * @property {string} [userId]
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {number} [assignCardId]
- * @property {boolean} [buyNow]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {string} [userId] - Option to fetch cart for the provided user_id.
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {number} [assignCardId] - Token of user's debit or credit card
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
  */
 
 /**
@@ -177,7 +180,7 @@ const CartPlatformModel = require("./CartPlatformModel");
 /**
  * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
- * @property {boolean} [buyNow]
+ * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
  */
 
 /**
@@ -236,31 +239,37 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef PlatformAddItemsParam
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {boolean} [buyNow]
- * @property {string} [id]
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
+ * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformAddCartRequest} body
  */
 
 /**
  * @typedef PlatformCheckoutCartParam
- * @property {string} [id]
+ * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailRequest} body
  */
 
 /**
  * @typedef PlatformCheckoutCartV2Param
- * @property {string} [id]
+ * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Request} body
  */
 
 /**
  * @typedef PlatformUpdateCartParam
- * @property {string} [id]
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {boolean} [buyNow]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
  * @property {CartPlatformModel.PlatformUpdateCartRequest} body
  */
 
@@ -332,7 +341,8 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef UpdateCartMetaConfigParam
- * @property {string} cartMetaId
+ * @property {string} cartMetaId - CartMeta mongo _id for fetching single cart
+ *   meta data for editing
  * @property {CartPlatformModel.CartMetaConfigUpdate} body
  */
 

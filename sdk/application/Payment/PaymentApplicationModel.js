@@ -984,6 +984,126 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DeleteRefundAccountResponse
+ * @property {boolean} success - Success/Failure of the deleted beneficiary
+ * @property {string} message - Message
+ */
+
+/**
+ * @typedef RefundOptionsDetails
+ * @property {string} display_name - Refund option display name
+ * @property {number} id - Refund ID. It will be unique identifier
+ * @property {boolean} [is_active] - Refund option is active or not
+ * @property {string} name - Refund option name
+ */
+
+/**
+ * @typedef RefundOptions
+ * @property {RefundOptionsDetails} items - List of all refund options.
+ */
+
+/**
+ * @typedef OfflineRefundOptions
+ * @property {RefundOptionsDetails} items - List of all refund options.
+ * @property {string[]} payment_modes - List of all offline payment options. MOP
+ *   Code value
+ */
+
+/**
+ * @typedef RefundOptionResponse
+ * @property {OfflineRefundOptions} offline_refund_options - Available offline
+ *   refund options data
+ * @property {boolean} success - Success/Failure Of response
+ * @property {RefundOptions} refund_options - Available refund options data
+ */
+
+/**
+ * @typedef SelectedRefundOptionResponse
+ * @property {Object} transfer_mode - Selected transfer mode for given shipment
+ * @property {string} shipment_id - Shipment ID
+ * @property {string} message - Message
+ * @property {boolean} success - Successful or not.
+ */
+
+/**
+ * @typedef WalletBeneficiaryDetails
+ * @property {string} beneficiary_id - Benenficiary Id
+ * @property {string} modified_on - MOdification Date of Beneficiary
+ * @property {string} display_name - Display Name Of Account
+ * @property {number} id -
+ * @property {string} subtitle - SHort Title Of Account
+ * @property {string} transfer_mode - Transfer Mode Of Account
+ * @property {string} [mobile] - MObile no of User
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
+ * @property {string} created_on - Creation Date of Beneficiary
+ * @property {string} address - Address of User
+ * @property {string} title - Title Of Account
+ * @property {string} wallet_address - Bank Name Of Account
+ * @property {string} [comment] - Remarks
+ * @property {string} [wallet] - Branch Name Of Account
+ * @property {string} email - EMail of User
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
+ */
+
+/**
+ * @typedef UpiBeneficiaryDetails
+ * @property {string} beneficiary_id - Benenficiary Id
+ * @property {string} modified_on - MOdification Date of Beneficiary
+ * @property {string} display_name - Display Name Of Account
+ * @property {number} id -
+ * @property {string} subtitle - SHort Title Of Account
+ * @property {string} transfer_mode - Transfer Mode Of Account
+ * @property {string} [vpa] - Branch Name Of Account
+ * @property {string} [mobile] - Mobile no of User
+ * @property {string} vpa_address - Bank Name Of Account
+ * @property {string} created_on - Creation Date of Beneficiary
+ * @property {string} address - Address of User
+ * @property {string} title - Title Of Account
+ * @property {string} [comment] - Remarks
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
+ * @property {string} email - EMail of User
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
+ */
+
+/**
+ * @typedef BeneficiaryRefundOptions
+ * @property {OrderBeneficiaryDetails} [bank] - List of all add bank beneficiary details.
+ * @property {WalletBeneficiaryDetails} [wallet] - List of all add Wallet
+ *   beneficiary details.
+ * @property {UpiBeneficiaryDetails} [upi] - List of all add UPI beneficiary details.
+ */
+
+/**
+ * @typedef OrderBeneficiaryResponseSchemaV2
+ * @property {boolean} show_beneficiary_details - Show Beneficiary details on UI or not.
+ * @property {BeneficiaryRefundOptions} data - Beneficiary Data for Bank
+ *   account, UPI and Wallets.
+ * @property {Object} limit - Max Limit for adding bank account, UPI and wallet
+ */
+
+/**
+ * @typedef ValidateValidateAddressRequest
+ * @property {string} [ifsc_code] - IFSC Code
+ * @property {string} [upi_vpa] - VPA Address
+ * @property {string} [aggregator] - Aggregator Name
+ */
+
+/**
+ * @typedef VPADetails
+ * @property {boolean} is_valid - Is VPA valid or not
+ * @property {string} upi_vpa - VPA address
+ * @property {string} status - VPA validation message
+ * @property {string} customer_name - VPA Customer Name
+ */
+
+/**
+ * @typedef ValidateValidateAddressResponse
+ * @property {VPADetails} [upi] - UPI validation details.
+ * @property {boolean} success - Successful or not.
+ * @property {Object} [ifsc] - IFSC details response data
+ */
+
+/**
  * @typedef PaymentMethodsMetaOrder
  * @property {string} merchant_code - Merchant code
  * @property {string} payment_gateway - Payment gateway name
@@ -1025,9 +1145,32 @@ const Joi = require("joi");
  * @property {string} [payment_confirm_url] - Payment confirm url for aggregator
  * @property {string} [callback_url] - Callback url for aggregator
  * @property {string} [order_id] - Merchant order id
- * @property {boolean} success - Successful or failure
+ * @property {boolean} [success] - Successful or failure
  * @property {number} status_code - HTTP status code
  * @property {PaymentOrderData} [data]
+ * @property {string} message - Message
+ */
+
+/**
+ * @typedef ShipmentRefundRequest
+ * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
+ * @property {string} order_id - Merchant Order Id
+ * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added
+ * @property {string} [beneficiary_id] - Beneficiary Hash Id of the beneficiary added
+ */
+
+/**
+ * @typedef ShipmentRefundDetail
+ * @property {string} shipment_id - Shipment ID
+ * @property {string} order_id - Order ID
+ * @property {string} transfer_mode - TransferMode
+ * @property {string} beneficiary_id - Beneficiary ID
+ */
+
+/**
+ * @typedef ShipmentRefundResponse
+ * @property {ShipmentRefundDetail} data - Selected Shipment refund option details.
+ * @property {boolean} success - Successful or not.
  * @property {string} message - Message
  */
 
@@ -2226,6 +2369,148 @@ class PaymentApplicationModel {
     });
   }
 
+  /** @returns {DeleteRefundAccountResponse} */
+  static DeleteRefundAccountResponse() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      message: Joi.string().allow("").allow(null).required(),
+    });
+  }
+
+  /** @returns {RefundOptionsDetails} */
+  static RefundOptionsDetails() {
+    return Joi.object({
+      display_name: Joi.string().allow("").required(),
+      id: Joi.number().required(),
+      is_active: Joi.boolean().allow(null),
+      name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {RefundOptions} */
+  static RefundOptions() {
+    return Joi.object({
+      items: PaymentApplicationModel.RefundOptionsDetails().required(),
+    });
+  }
+
+  /** @returns {OfflineRefundOptions} */
+  static OfflineRefundOptions() {
+    return Joi.object({
+      items: PaymentApplicationModel.RefundOptionsDetails().required(),
+      payment_modes: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {RefundOptionResponse} */
+  static RefundOptionResponse() {
+    return Joi.object({
+      offline_refund_options: PaymentApplicationModel.OfflineRefundOptions().required(),
+      success: Joi.boolean().required(),
+      refund_options: PaymentApplicationModel.RefundOptions().required(),
+    });
+  }
+
+  /** @returns {SelectedRefundOptionResponse} */
+  static SelectedRefundOptionResponse() {
+    return Joi.object({
+      transfer_mode: Joi.any().required(),
+      shipment_id: Joi.string().allow("").allow(null).required(),
+      message: Joi.string().allow("").allow(null).required(),
+      success: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {WalletBeneficiaryDetails} */
+  static WalletBeneficiaryDetails() {
+    return Joi.object({
+      beneficiary_id: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      display_name: Joi.string().allow("").required(),
+      id: Joi.number().required(),
+      subtitle: Joi.string().allow("").required(),
+      transfer_mode: Joi.string().allow("").required(),
+      mobile: Joi.string().allow(""),
+      is_active: Joi.boolean().required(),
+      created_on: Joi.string().allow("").required(),
+      address: Joi.string().allow("").required(),
+      title: Joi.string().allow("").required(),
+      wallet_address: Joi.string().allow("").required(),
+      comment: Joi.string().allow(""),
+      wallet: Joi.string().allow(""),
+      email: Joi.string().allow("").required(),
+      delights_user_name: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {UpiBeneficiaryDetails} */
+  static UpiBeneficiaryDetails() {
+    return Joi.object({
+      beneficiary_id: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      display_name: Joi.string().allow("").required(),
+      id: Joi.number().required(),
+      subtitle: Joi.string().allow("").required(),
+      transfer_mode: Joi.string().allow("").required(),
+      vpa: Joi.string().allow(""),
+      mobile: Joi.string().allow(""),
+      vpa_address: Joi.string().allow("").required(),
+      created_on: Joi.string().allow("").required(),
+      address: Joi.string().allow("").required(),
+      title: Joi.string().allow("").required(),
+      comment: Joi.string().allow(""),
+      is_active: Joi.boolean().required(),
+      email: Joi.string().allow("").required(),
+      delights_user_name: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {BeneficiaryRefundOptions} */
+  static BeneficiaryRefundOptions() {
+    return Joi.object({
+      bank: PaymentApplicationModel.OrderBeneficiaryDetails(),
+      wallet: PaymentApplicationModel.WalletBeneficiaryDetails(),
+      upi: PaymentApplicationModel.UpiBeneficiaryDetails(),
+    });
+  }
+
+  /** @returns {OrderBeneficiaryResponseSchemaV2} */
+  static OrderBeneficiaryResponseSchemaV2() {
+    return Joi.object({
+      show_beneficiary_details: Joi.boolean().required(),
+      data: PaymentApplicationModel.BeneficiaryRefundOptions().required(),
+      limit: Joi.any().required(),
+    });
+  }
+
+  /** @returns {ValidateValidateAddressRequest} */
+  static ValidateValidateAddressRequest() {
+    return Joi.object({
+      ifsc_code: Joi.string().allow("").allow(null),
+      upi_vpa: Joi.string().allow("").allow(null),
+      aggregator: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {VPADetails} */
+  static VPADetails() {
+    return Joi.object({
+      is_valid: Joi.boolean().required(),
+      upi_vpa: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      customer_name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ValidateValidateAddressResponse} */
+  static ValidateValidateAddressResponse() {
+    return Joi.object({
+      upi: PaymentApplicationModel.VPADetails(),
+      success: Joi.boolean().required(),
+      ifsc: Joi.any(),
+    });
+  }
+
   /** @returns {PaymentMethodsMetaOrder} */
   static PaymentMethodsMetaOrder() {
     return Joi.object({
@@ -2279,10 +2564,39 @@ class PaymentApplicationModel {
       payment_confirm_url: Joi.string().allow("").allow(null),
       callback_url: Joi.string().allow("").allow(null),
       order_id: Joi.string().allow("").allow(null),
-      success: Joi.boolean().required(),
+      success: Joi.boolean(),
       status_code: Joi.number().required(),
       data: PaymentApplicationModel.PaymentOrderData(),
       message: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ShipmentRefundRequest} */
+  static ShipmentRefundRequest() {
+    return Joi.object({
+      shipment_id: Joi.string().allow("").required(),
+      order_id: Joi.string().allow("").required(),
+      transfer_mode: Joi.string().allow("").required(),
+      beneficiary_id: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {ShipmentRefundDetail} */
+  static ShipmentRefundDetail() {
+    return Joi.object({
+      shipment_id: Joi.string().allow("").required(),
+      order_id: Joi.string().allow("").required(),
+      transfer_mode: Joi.string().allow("").required(),
+      beneficiary_id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ShipmentRefundResponse} */
+  static ShipmentRefundResponse() {
+    return Joi.object({
+      data: PaymentApplicationModel.ShipmentRefundDetail().required(),
+      success: Joi.boolean().required(),
+      message: Joi.string().allow("").allow(null).required(),
     });
   }
 }

@@ -5,7 +5,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef AddCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
- * @property {CatalogPlatformModel.CollectionItemUpdate} body
+ * @property {CatalogPlatformModel.CollectionItemUpdateSchema} body
  */
 
 /**
@@ -486,7 +486,7 @@ class CatalogPlatformApplicationValidator {
   static addCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CollectionItemUpdate().required(),
+      body: CatalogPlatformModel.CollectionItemUpdateSchema().required(),
     }).required();
   }
 

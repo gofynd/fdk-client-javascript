@@ -1395,6 +1395,55 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ApplicationById
+ * @property {ApplicationWebsite} [website]
+ * @property {ApplicationCors} [cors]
+ * @property {ApplicationAuth} [auth]
+ * @property {string} [description] - It contains detailed information about the
+ *   sales channel.
+ * @property {string} [channel_type] - It indicates different types of channels,
+ *   such as store, website, and mobile apps, with 'store' being the default value.
+ * @property {number} [cache_ttl] - An integer value that specifies the number
+ *   of seconds until the key expires
+ * @property {boolean} [is_internal] - Indicates whether a sales channel is
+ *   internal or not
+ * @property {boolean} [is_active] - Indicates sales channel is active or not active
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the sales channel
+ * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of owner who owns the application
+ * @property {number} [company_id] - Numeric ID allotted to a business account
+ *   where the sales channel exists
+ * @property {string} [token] - Random generated fix length string for sales
+ *   channel. It is required and auto-generated.
+ * @property {ApplicationRedirections[]} [redirections]
+ * @property {ApplicationMeta[]} [meta]
+ * @property {string} [created_at] - ISO 8601 timestamp of sales channel creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
+ * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
+ * @property {SecureUrl} [banner]
+ * @property {SecureUrl} [logo]
+ * @property {SecureUrl} [favicon]
+ * @property {Domain[]} [domains]
+ * @property {string} [app_type] - It shows application is live or in development mode.
+ * @property {SecureUrl} [mobile_logo]
+ * @property {Domain} [domain]
+ * @property {string} [slug]
+ * @property {string} [mode]
+ * @property {string} [status]
+ * @property {TokenSchemaID[]} [tokens]
+ * @property {string} [secret]
+ */
+
+/**
+ * @typedef TokenSchemaID
+ * @property {string} [token]
+ * @property {string} [created_by]
+ * @property {string} [created_at] - ISO 8601 timestamp of when token created
+ */
+
+/**
  * @typedef TokenSchema
  * @property {string} [token]
  * @property {Object} [created_by]
@@ -3227,6 +3276,53 @@ class ConfigurationPlatformModel {
       status: Joi.string().allow(""),
       tokens: Joi.array().items(ConfigurationPlatformModel.TokenSchema()),
       secret: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ApplicationById} */
+  static ApplicationById() {
+    return Joi.object({
+      website: ConfigurationPlatformModel.ApplicationWebsite(),
+      cors: ConfigurationPlatformModel.ApplicationCors(),
+      auth: ConfigurationPlatformModel.ApplicationAuth(),
+      description: Joi.string().allow(""),
+      channel_type: Joi.string().allow(""),
+      cache_ttl: Joi.number(),
+      is_internal: Joi.boolean(),
+      is_active: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      owner: Joi.string().allow(""),
+      company_id: Joi.number(),
+      token: Joi.string().allow(""),
+      redirections: Joi.array().items(
+        ConfigurationPlatformModel.ApplicationRedirections()
+      ),
+      meta: Joi.array().items(ConfigurationPlatformModel.ApplicationMeta()),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      __v: Joi.number(),
+      banner: ConfigurationPlatformModel.SecureUrl(),
+      logo: ConfigurationPlatformModel.SecureUrl(),
+      favicon: ConfigurationPlatformModel.SecureUrl(),
+      domains: Joi.array().items(ConfigurationPlatformModel.Domain()),
+      app_type: Joi.string().allow(""),
+      mobile_logo: ConfigurationPlatformModel.SecureUrl(),
+      domain: ConfigurationPlatformModel.Domain(),
+      slug: Joi.string().allow(""),
+      mode: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      tokens: Joi.array().items(ConfigurationPlatformModel.TokenSchemaID()),
+      secret: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TokenSchemaID} */
+  static TokenSchemaID() {
+    return Joi.object({
+      token: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
     });
   }
 

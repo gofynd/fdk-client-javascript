@@ -183,6 +183,7 @@ export = CartPlatformModel;
  * @typedef OperationErrorResponse
  * @property {boolean} [success]
  * @property {string} [message]
+ * @property {string} [error]
  */
 /**
  * @typedef CouponUpdate
@@ -380,6 +381,7 @@ export = CartPlatformModel;
  * @property {Object} [_custom_json] - Custom data stored in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string} [_id] - Promotion id
+ * @property {string[]} [tags]
  */
 /**
  * @typedef PromotionsResponse
@@ -411,6 +413,7 @@ export = CartPlatformModel;
  * @property {Object} buy_rules
  * @property {Object} [_custom_json]
  * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags]
  */
 /**
  * @typedef PromotionUpdate
@@ -437,6 +440,7 @@ export = CartPlatformModel;
  * @property {Object} buy_rules
  * @property {Object} [_custom_json]
  * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags]
  */
 /**
  * @typedef PromotionPartialUpdate
@@ -470,6 +474,7 @@ export = CartPlatformModel;
 /**
  * @typedef CartMetaConfigUpdate
  * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
  * @property {boolean} [bulk_coupons]
  * @property {number} [max_cart_items]
  * @property {string} [gift_display_text]
@@ -481,6 +486,7 @@ export = CartPlatformModel;
 /**
  * @typedef CartMetaConfigAdd
  * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
  * @property {boolean} [bulk_coupons]
  * @property {number} [max_cart_items]
  * @property {string} [gift_display_text]
@@ -1945,6 +1951,7 @@ declare function OperationErrorResponse(): OperationErrorResponse;
 type OperationErrorResponse = {
     success?: boolean;
     message?: string;
+    error?: string;
 };
 /** @returns {CouponUpdate} */
 declare function CouponUpdate(): CouponUpdate;
@@ -2211,6 +2218,7 @@ type PromotionListItem = {
      * - Promotion id
      */
     _id?: string;
+    tags?: string[];
 };
 /** @returns {PromotionsResponse} */
 declare function PromotionsResponse(): PromotionsResponse;
@@ -2247,6 +2255,7 @@ type PromotionAdd = {
     buy_rules: any;
     _custom_json?: any;
     date_meta?: PromotionDateMeta;
+    tags?: string[];
 };
 /** @returns {PromotionUpdate} */
 declare function PromotionUpdate(): PromotionUpdate;
@@ -2277,6 +2286,7 @@ type PromotionUpdate = {
     buy_rules: any;
     _custom_json?: any;
     date_meta?: PromotionDateMeta;
+    tags?: string[];
 };
 /** @returns {PromotionPartialUpdate} */
 declare function PromotionPartialUpdate(): PromotionPartialUpdate;
@@ -2345,6 +2355,7 @@ type DeliveryCharges = {
 declare function CartMetaConfigUpdate(): CartMetaConfigUpdate;
 type CartMetaConfigUpdate = {
     min_cart_value?: number;
+    max_cart_value?: number;
     bulk_coupons?: boolean;
     max_cart_items?: number;
     gift_display_text?: string;
@@ -2357,6 +2368,7 @@ type CartMetaConfigUpdate = {
 declare function CartMetaConfigAdd(): CartMetaConfigAdd;
 type CartMetaConfigAdd = {
     min_cart_value?: number;
+    max_cart_value?: number;
     bulk_coupons?: boolean;
     max_cart_items?: number;
     gift_display_text?: string;

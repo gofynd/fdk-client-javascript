@@ -17,8 +17,6 @@ Default
 * [createPackageMaterial](#createpackagematerial)
 * [createPackageMaterialRule](#createpackagematerialrule)
 * [createStoreRules](#createstorerules)
-* [createZone](#createzone)
-* [getAllStores](#getallstores)
 * [getApplicationConfig](#getapplicationconfig)
 * [getApplicationConfiguration](#getapplicationconfiguration)
 * [getApplicationServiceabilitySelfShipment](#getapplicationserviceabilityselfshipment)
@@ -29,7 +27,6 @@ Default
 * [getCourierPartnerAccounts](#getcourierpartneraccounts)
 * [getCourierPartnerRule](#getcourierpartnerrule)
 * [getCourierPartnerRules](#getcourierpartnerrules)
-* [getOptimalLocations](#getoptimallocations)
 * [getPackageMaterialList](#getpackagemateriallist)
 * [getPackageMaterialRule](#getpackagematerialrule)
 * [getPackageMaterialRules](#getpackagematerialrules)
@@ -48,14 +45,26 @@ Default
 * [updateCourierRule](#updatecourierrule)
 * [updatePackageMaterialRule](#updatepackagematerialrule)
 * [updatePackageMaterials](#updatepackagematerials)
-* [updatePincodeAuditHistory](#updatepincodeaudithistory)
-* [updatePincodeBulkView](#updatepincodebulkview)
-* [updatePincodeCoDListing](#updatepincodecodlisting)
-* [updatePincodeMopView](#updatepincodemopview)
 * [updateServiceability](#updateserviceability)
 * [updateStoreRules](#updatestorerules)
 * [updateStoreRulesConfig](#updatestorerulesconfig)
 * [updateZoneById](#updatezonebyid)
+
+
+Zone Management
+* [createZone](#createzone)
+
+
+Store Management
+* [getAllStores](#getallstores)
+* [getOptimalLocations](#getoptimallocations)
+
+
+Delivery Partners (DP) and Rules Managemen
+* [updatePincodeAuditHistory](#updatepincodeaudithistory)
+* [updatePincodeBulkView](#updatepincodebulkview)
+* [updatePincodeCoDListing](#updatepincodecodlisting)
+* [updatePincodeMopView](#updatepincodemopview)
 
 
 
@@ -519,116 +528,6 @@ Create Store Rule
 
 
 [StoreRuleResponseSchema](#StoreRuleResponseSchema)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createZone
-Creates a new Zone
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.createZone({  body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.createZone({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateZoneData](#CreateZoneData) | yes | Request body |
-
-
-Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone.
-
-*Returned Response:*
-
-
-
-
-[ZoneResponse](#ZoneResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "status_code": 200,
-  "zone_id": "64809f27f2b8f575d5cb9c56"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAllStores
-GET stores data
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getAllStores();
-
-// Async/Await
-const data = await platformClient.serviceability.getAllStores();
-```
-
-
-
-
-
-
-This API returns stores data.
-
-*Returned Response:*
-
-
-
-
-[GetStoresViewResponse](#GetStoresViewResponse)
 
 Response status_code
 
@@ -1283,61 +1182,6 @@ Response status_code
 ---
 
 
-### getOptimalLocations
-Retrieve optimal locations
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getOptimalLocations({  body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getOptimalLocations({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OptimlLocationsRequestSchema](#OptimlLocationsRequestSchema) | yes | Request body |
-
-
-Retrieve optimal locations based on the specific criteria
-
-*Returned Response:*
-
-
-
-
-[OptimalLocationsResponse](#OptimalLocationsResponse)
-
-Optimal Locations Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getPackageMaterialList
 Fetching of PackageMaterials from database.
 
@@ -1397,50 +1241,48 @@ Response status_code
 ```json
 {
   "value": {
-    "items": [
-      {
-        "id": "64b8526e5ca47d41582b9fa1",
-        "name": "Package1",
-        "item_id": 1234,
-        "company_id": 1,
-        "length": 1,
-        "height": 1,
-        "width": 1,
-        "weight": 1,
-        "error_rate": 0,
-        "store_ids": [
-          1,
-          9,
-          5
-        ],
-        "rules": [
-          {
-            "rule_id": "64b4337a0c607fbfbcd0156b",
-            "quantity": {
-              "min": 1,
-              "max": 2
-            },
-            "weight": 100
-          }
-        ],
-        "channels": [
-          {
-            "id": "64b4337a0c607fbfbcd0190b",
-            "type": "application"
-          }
-        ],
-        "media": [
-          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
-        ],
-        "package_type": "box",
-        "size": "small",
-        "status": "active",
-        "track_inventory": true,
-        "max_weight": 100,
-        "package_vol_weight": 100,
-        "auto_calculate": true
-      }
-    ],
+    "items": {
+      "id": "64b8526e5ca47d41582b9fa1",
+      "name": "Package1",
+      "item_id": 1234,
+      "company_id": 1,
+      "length": 1,
+      "height": 1,
+      "width": 1,
+      "weight": 1,
+      "error_rate": 0,
+      "store_ids": [
+        1,
+        9,
+        5
+      ],
+      "rules": [
+        {
+          "rule_id": "64b4337a0c607fbfbcd0156b",
+          "quantity": {
+            "min": 1,
+            "max": 2
+          },
+          "weight": 100
+        }
+      ],
+      "channels": [
+        {
+          "id": "64b4337a0c607fbfbcd0190b",
+          "type": "application"
+        }
+      ],
+      "media": [
+        "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
+      ],
+      "package_type": "box",
+      "size": "small",
+      "status": "active",
+      "track_inventory": true,
+      "max_weight": 100,
+      "package_vol_weight": 100,
+      "auto_calculate": true
+    },
     "page": {
       "type": "number",
       "size": 1,
@@ -1608,33 +1450,31 @@ Response status_code
 ```json
 {
   "value": {
-    "items": [
-      {
-        "id": "64b4337a0c607fbfbcd0156b",
-        "company_id": 1,
-        "name": "Rule For Dev Contract",
-        "category_id": {
-          "includes": [
-            1,
-            2
-          ]
-        },
-        "product_tag": {
-          "includes": [
-            "abc",
-            "xyz"
-          ]
-        },
-        "product_id": {
-          "includes": [
-            1,
-            2
-          ]
-        },
-        "type": "package",
-        "is_active": true
-      }
-    ],
+    "items": {
+      "id": "64b4337a0c607fbfbcd0156b",
+      "company_id": 1,
+      "name": "Rule For Dev Contract",
+      "category_id": {
+        "includes": [
+          1,
+          2
+        ]
+      },
+      "product_tag": {
+        "includes": [
+          "abc",
+          "xyz"
+        ]
+      },
+      "product_id": {
+        "includes": [
+          1,
+          2
+        ]
+      },
+      "type": "package",
+      "is_active": true
+    },
     "page": {
       "type": "number",
       "size": 1,
@@ -2018,7 +1858,7 @@ const promise = platformClient.serviceability.getZones({  pageNo : value,
  isActive : value,
  channelId : value,
  q : value,
- countryIsoCode : value,
+ country : value,
  state : value,
  city : value,
  pincode : value,
@@ -2030,7 +1870,7 @@ const data = await platformClient.serviceability.getZones({  pageNo : value,
  isActive : value,
  channelId : value,
  q : value,
- countryIsoCode : value,
+ country : value,
  state : value,
  city : value,
  pincode : value,
@@ -2048,7 +1888,7 @@ const data = await platformClient.serviceability.getZones({  pageNo : value,
 | isActive | boolean | no | Status of Zone (either active or inactive) |    
 | channelId | string | no | Zones filtered by an application |    
 | q | string | no | search with name as a free text |    
-| countryIsoCode | string | no | ISO2 code of the country |    
+| country | string | no | ISO2 code of the country |    
 | state | string | no | State name |    
 | city | string | no | City name |    
 | pincode | string | no | Pincode value to search zones |    
@@ -2094,16 +1934,22 @@ Zone List of application in descending order of their last modified date.
         ],
         "zone_id": "64c3a0926ea670363c8e2e3d",
         "stores_count": 2,
-        "regions_count": 4242
+        "regions_count": 4242,
+        "product": {
+          "count": 0,
+          "type": "all"
+        }
       }
     ],
-    "page": {
-      "type": "number",
-      "size": 1,
-      "current": 1,
-      "has_next": false,
-      "item_total": 1
-    }
+    "page": [
+      {
+        "type": "number",
+        "size": 1,
+        "current": 1,
+        "has_next": false,
+        "item_total": 1
+      }
+    ]
   }
 }
 ```
@@ -2721,229 +2567,6 @@ Response status_code
 ---
 
 
-### updatePincodeAuditHistory
-Auditlog configuration of application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PincodeMopUpdateAuditHistoryRequest](#PincodeMopUpdateAuditHistoryRequest) | yes | Request body |
-
-
-This API returns Audit logs of Pincode.
-
-*Returned Response:*
-
-
-
-
-[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePincodeBulkView
-Bulk Update of pincode in the application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PincodeMopBulkData](#PincodeMopBulkData) | yes | Request body |
-
-
-This API constructs bulk write operations to update the MOP data for each pincode in the payload.
-
-*Returned Response:*
-
-
-
-
-[PincodeBulkViewResponse](#PincodeBulkViewResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "batch_id": "string",
-  "s3_url": "string"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePincodeCoDListing
-Pincode count view of application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PincodeCodStatusListingRequest](#PincodeCodStatusListingRequest) | yes | Request body |
-
-
-This API returns count of active pincode.
-
-*Returned Response:*
-
-
-
-
-[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePincodeMopView
-PincodeView update of MOP.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PincodeMopData](#PincodeMopData) | yes | Request body |
-
-
-This API updates Pincode method of payment.
-
-*Returned Response:*
-
-
-
-
-[PincodeMOPresponse](#PincodeMOPresponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateServiceability
 Serviceability Update for a region
 
@@ -3156,6 +2779,400 @@ Updates the region, application, store mapping and other details in the Zone.
 [ZoneSuccessResponse](#ZoneSuccessResponse)
 
 Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createZone
+Create zone.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.createZone({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.createZone({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateZoneData](#CreateZoneData) | yes | Request body |
+
+
+Generate and add a new zone.
+
+*Returned Response:*
+
+
+
+
+[ZoneResponse](#ZoneResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "status_code": 200,
+  "zone_id": "64809f27f2b8f575d5cb9c56"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getAllStores
+Get all stores.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getAllStores();
+
+// Async/Await
+const data = await platformClient.serviceability.getAllStores();
+```
+
+
+
+
+
+
+Retrieve a list of all available stores data.
+
+*Returned Response:*
+
+
+
+
+[GetStoresViewResponse](#GetStoresViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOptimalLocations
+Retrieve optimal locations
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getOptimalLocations({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getOptimalLocations({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OptimlLocationsRequestSchema](#OptimlLocationsRequestSchema) | yes | Request body |
+
+
+Retrieve optimal locations based on the specific criteria
+
+*Returned Response:*
+
+
+
+
+[OptimalLocationsResponse](#OptimalLocationsResponse)
+
+Optimal Locations Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### updatePincodeAuditHistory
+Update pincode audit history.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopUpdateAuditHistoryRequest](#PincodeMopUpdateAuditHistoryRequest) | yes | Request body |
+
+
+Modify and update audit history records for pincode-related activities.
+
+*Returned Response:*
+
+
+
+
+[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeBulkView
+Update pincode bulk view.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopBulkData](#PincodeMopBulkData) | yes | Request body |
+
+
+Modify and update views related to bulk operations on pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "string",
+  "s3_url": "string"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeCoDListing
+Update pincode CoD (Cash on Delivery) listing.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeCodStatusListingRequest](#PincodeCodStatusListingRequest) | yes | Request body |
+
+
+Modify and update listings for CoD based on pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeMopView
+Update pincode MOP (Mode of Payment) view.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopData](#PincodeMopData) | yes | Request body |
+
+
+Modify and update views related to pincode MOP.
+
+*Returned Response:*
+
+
+
+
+[PincodeMOPresponse](#PincodeMOPresponse)
+
+Response Data
 
 
 

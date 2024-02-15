@@ -444,8 +444,8 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
    * @name createZone
-   * @summary: Creates a new Zone
-   * @description: Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
+   * @summary: Create zone.
+   * @description: Generate and add a new zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
    */
   async createZone(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -524,8 +524,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
    *   Success response
    * @name getAllStores
-   * @summary: GET stores data
-   * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
+   * @summary: Get all stores.
+   * @description: Retrieve a list of all available stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
    */
   async getAllStores(
     { requestHeaders } = { requestHeaders: {} },
@@ -1729,7 +1729,7 @@ class Serviceability {
       isActive,
       channelId,
       q,
-      countryIsoCode,
+      country,
       state,
       city,
       pincode,
@@ -1745,7 +1745,7 @@ class Serviceability {
         isActive,
         channelId,
         q,
-        countryIsoCode,
+        country,
         state,
         city,
         pincode,
@@ -1767,7 +1767,7 @@ class Serviceability {
         isActive,
         channelId,
         q,
-        countryIsoCode,
+        country,
         state,
         city,
         pincode,
@@ -1788,7 +1788,7 @@ class Serviceability {
     query_params["is_active"] = isActive;
     query_params["channel_id"] = channelId;
     query_params["q"] = q;
-    query_params["country_iso_code"] = countryIsoCode;
+    query_params["country"] = country;
     query_params["state"] = state;
     query_params["city"] = city;
     query_params["pincode"] = pincode;

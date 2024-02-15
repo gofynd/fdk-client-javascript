@@ -119,7 +119,7 @@ declare class Content {
      * @summary: Get custom fields definitions
      * @description: Use this API to retrieve the definitions of custom fields. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinitions/).
      */
-    getCustomFieldDefinitions({ pageNo, pageSize, resource, type, search, requestHeaders }?: ContentPlatformValidator.GetCustomFieldDefinitionsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>;
+    getCustomFieldDefinitions({ pageNo, pageSize, resources, types, search, requestHeaders }?: ContentPlatformValidator.GetCustomFieldDefinitionsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>;
     /**
      * @param {ContentPlatformValidator.GetCustomFieldTypesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

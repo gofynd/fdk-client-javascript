@@ -20,8 +20,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionActivateRes>} - Success response
    * @name activateSubscriptionPlan
-   * @summary: Activate subscription
-   * @description: It will activate subscription plan for customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/activateSubscriptionPlan/).
+   * @summary: Activate a subscription plan.
+   * @description: Activate a specific subscription plan for a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/activateSubscriptionPlan/).
    */
   async activateSubscriptionPlan(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -101,8 +101,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
    * @name cancelSubscriptionCharge
-   * @summary: Cancel subscription charge
-   * @description: Cancel subscription and attached charges. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
+   * @summary: Cancel a subscription charge.
+   * @description: Cancel an ongoing subscription charge for a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
    */
   async cancelSubscriptionCharge(
     { extensionId, subscriptionId, requestHeaders } = { requestHeaders: {} },
@@ -184,8 +184,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.CancelSubscriptionRes>} - Success response
    * @name cancelSubscriptionPlan
-   * @summary: Cancel subscription
-   * @description: It will cancel current active subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionPlan/).
+   * @summary: Cancel a subscription plan.
+   * @description: Cancel an active subscription plan for a customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionPlan/).
    */
   async cancelSubscriptionPlan(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -265,8 +265,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.CheckValidityResponse>} - Success response
    * @name checkCouponValidity
-   * @summary: Check coupon validity
-   * @description: Check coupon validity. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/checkCouponValidity/).
+   * @summary: Verify coupon validity.
+   * @description: Checks whether a coupon code is valid for discounts while billing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/checkCouponValidity/).
    */
   async checkCouponValidity(
     { plan, couponCode, requestHeaders } = { requestHeaders: {} },
@@ -349,8 +349,8 @@ class Billing {
    * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponse>} -
    *   Success response
    * @name createOneTimeCharge
-   * @summary: Create one time subscription charge
-   * @description: Register one time subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createOneTimeCharge/).
+   * @summary: Generate a one-time charge.
+   * @description: Generate a one-time charge for specific services or products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createOneTimeCharge/).
    */
   async createOneTimeCharge(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -431,8 +431,8 @@ class Billing {
    * @returns {Promise<BillingPlatformModel.CreateSubscriptionResponse>} -
    *   Success response
    * @name createSubscriptionCharge
-   * @summary: Create subscription charge
-   * @description: Register subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
+   * @summary: Initiate subscription billing.
+   * @description: Register a subscription charge for a seller using your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
    */
   async createSubscriptionCharge(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -514,8 +514,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.OneTimeChargeEntity>} - Success response
    * @name getChargeDetails
-   * @summary: Get subscription charge details
-   * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getChargeDetails/).
+   * @summary: Obtain charge details.
+   * @description: Retrieve comprehensive details about a specific billing charge. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getChargeDetails/).
    */
   async getChargeDetails(
     { extensionId, chargeId, requestHeaders } = { requestHeaders: {} },
@@ -595,8 +595,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
    * @name getCustomerDetail
-   * @summary: Get subscription customer detail
-   * @description: Get subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getCustomerDetail/).
+   * @summary: Fetch customer details.
+   * @description: Obtain customer-related billing information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getCustomerDetail/).
    */
   async getCustomerDetail(
     { requestHeaders } = { requestHeaders: {} },
@@ -670,9 +670,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Plan[]>} - Success response
    * @name getEnterprisePlans
-   * @summary: Get Enterprise Plans
-   * @description: Get Enterprise Plans.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getEnterprisePlans/).
+   * @summary: Retrieve enterprise-level plans.
+   * @description: Retrieve available enterprise-level subscription plans. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getEnterprisePlans/).
    */
   async getEnterprisePlans(
     { requestHeaders } = { requestHeaders: {} },
@@ -743,8 +742,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionLimit>} - Success response
    * @name getFeatureLimitConfig
-   * @summary: Get subscription subscription limits
-   * @description: Get subscription subscription limits. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
+   * @summary: Obtain feature limit configurations.
+   * @description: Retrieve configuration settings for feature limits in subscription plans. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
    */
   async getFeatureLimitConfig(
     { productSuite, type, requestHeaders } = { requestHeaders: {} },
@@ -826,8 +825,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Invoice>} - Success response
    * @name getInvoiceById
-   * @summary: Get invoice by id
-   * @description: Get invoice by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoiceById/).
+   * @summary: Get a specific invoice.
+   * @description: Retrieve a particular invoice's details by providing its unique ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoiceById/).
    */
   async getInvoiceById(
     { invoiceId, requestHeaders } = { requestHeaders: {} },
@@ -905,8 +904,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Invoices>} - Success response
    * @name getInvoices
-   * @summary: Get invoices
-   * @description: Get invoices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoices/).
+   * @summary: Retrieve invoices.
+   * @description: Retrieve invoices for billing and payment tracking. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoices/).
    */
   async getInvoices(
     { requestHeaders } = { requestHeaders: {} },
@@ -978,9 +977,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionStatus>} - Success response
    * @name getSubscription
-   * @summary: Get current subscription detail
-   * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscription/).
+   * @summary: Retrieve subscription details.
+   * @description: Retrieve details of a customer's subscription information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscription/).
    */
   async getSubscription(
     { requestHeaders } = { requestHeaders: {} },
@@ -1054,8 +1052,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
    * @name getSubscriptionCharge
-   * @summary: Get subscription charge details
-   * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
+   * @summary: Retrieve subscription charge details.
+   * @description: Retrieve detailed information about subscription charges using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
    */
   async getSubscriptionCharge(
     { extensionId, subscriptionId, requestHeaders } = { requestHeaders: {} },
@@ -1234,8 +1232,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Plan>} - Success response
    * @name planStatusUpdate
-   * @summary: Update Status of The plan
-   * @description: It will update the status of the plan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/planStatusUpdate/).
+   * @summary: Update subscription plan status.
+   * @description: Modify the status of a subscription plan. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/planStatusUpdate/).
    */
   async planStatusUpdate(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1313,8 +1311,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscribePlanRes>} - Success response
    * @name subscripePlan
-   * @summary: Subscribe plan.
-   * @description: It will subscribe a plan. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscripePlan/).
+   * @summary: Subscribe to a plan.
+   * @description: Subscribe to a specific billing plan. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscripePlan/).
    */
   async subscripePlan(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1392,8 +1390,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
    * @name upsertCustomerDetail
-   * @summary: Upsert subscription customer detail
-   * @description: Upsert subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/upsertCustomerDetail/).
+   * @summary: Update or insert customer details.
+   * @description: Allows you to modify or insert customer information in the billing system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/upsertCustomerDetail/).
    */
   async upsertCustomerDetail(
     { body, requestHeaders } = { requestHeaders: {} },

@@ -9,7 +9,7 @@
 Handle platform subscription
 
 
-Default
+Billing & Subscription
 * [activateSubscriptionPlan](#activatesubscriptionplan)
 * [cancelSubscriptionCharge](#cancelsubscriptioncharge)
 * [cancelSubscriptionPlan](#cancelsubscriptionplan)
@@ -24,10 +24,13 @@ Default
 * [getInvoices](#getinvoices)
 * [getSubscription](#getsubscription)
 * [getSubscriptionCharge](#getsubscriptioncharge)
-* [getentityDetail](#getentitydetail)
 * [planStatusUpdate](#planstatusupdate)
 * [subscripePlan](#subscripeplan)
 * [upsertCustomerDetail](#upsertcustomerdetail)
+
+
+Default
+* [getentityDetail](#getentitydetail)
 
 
 
@@ -39,7 +42,7 @@ Default
 
 
 ### activateSubscriptionPlan
-Activate subscription
+Activate a subscription plan.
 
 
 
@@ -60,7 +63,7 @@ const data = await platformClient.billing.activateSubscriptionPlan({  body : val
 | body | [SubscriptionActivateReq](#SubscriptionActivateReq) | yes | Request body |
 
 
-It will activate subscription plan for customer
+Activate a specific subscription plan for a customer.
 
 *Returned Response:*
 
@@ -150,7 +153,7 @@ Success
 
 
 ### cancelSubscriptionCharge
-Cancel subscription charge
+Cancel a subscription charge.
 
 
 
@@ -175,7 +178,7 @@ const data = await platformClient.billing.cancelSubscriptionCharge({  extensionI
 
 
 
-Cancel subscription and attached charges.
+Cancel an ongoing subscription charge for a customer.
 
 *Returned Response:*
 
@@ -209,7 +212,7 @@ Success
 
 
 ### cancelSubscriptionPlan
-Cancel subscription
+Cancel a subscription plan.
 
 
 
@@ -230,7 +233,7 @@ const data = await platformClient.billing.cancelSubscriptionPlan({  body : value
 | body | [CancelSubscriptionReq](#CancelSubscriptionReq) | yes | Request body |
 
 
-It will cancel current active subscription.
+Cancel an active subscription plan for a customer
 
 *Returned Response:*
 
@@ -322,7 +325,7 @@ Success
 
 
 ### checkCouponValidity
-Check coupon validity
+Verify coupon validity.
 
 
 
@@ -347,7 +350,7 @@ const data = await platformClient.billing.checkCouponValidity({  plan : value,
 
 
 
-Check coupon validity.
+Checks whether a coupon code is valid for discounts while billing.
 
 *Returned Response:*
 
@@ -381,7 +384,7 @@ Success
 
 
 ### createOneTimeCharge
-Create one time subscription charge
+Generate a one-time charge.
 
 
 
@@ -405,7 +408,7 @@ const data = await platformClient.billing.createOneTimeCharge({  extensionId : v
 | body | [CreateOneTimeCharge](#CreateOneTimeCharge) | yes | Request body |
 
 
-Register one time subscription charge for a seller of your extension.
+Generate a one-time charge for specific services or products.
 
 *Returned Response:*
 
@@ -439,7 +442,7 @@ Success
 
 
 ### createSubscriptionCharge
-Create subscription charge
+Initiate subscription billing.
 
 
 
@@ -463,7 +466,7 @@ const data = await platformClient.billing.createSubscriptionCharge({  extensionI
 | body | [CreateSubscriptionCharge](#CreateSubscriptionCharge) | yes | Request body |
 
 
-Register subscription charge for a seller of your extension.
+Register a subscription charge for a seller using your extension.
 
 *Returned Response:*
 
@@ -497,7 +500,7 @@ Success
 
 
 ### getChargeDetails
-Get subscription charge details
+Obtain charge details.
 
 
 
@@ -522,7 +525,7 @@ const data = await platformClient.billing.getChargeDetails({  extensionId : valu
 
 
 
-Get created subscription charge details
+Retrieve comprehensive details about a specific billing charge.
 
 *Returned Response:*
 
@@ -556,7 +559,7 @@ Success
 
 
 ### getCustomerDetail
-Get subscription customer detail
+Fetch customer details.
 
 
 
@@ -573,7 +576,7 @@ const data = await platformClient.billing.getCustomerDetail();
 
 
 
-Get subscription customer detail.
+Obtain customer-related billing information.
 
 *Returned Response:*
 
@@ -639,7 +642,7 @@ Success
 
 
 ### getEnterprisePlans
-Get Enterprise Plans
+Retrieve enterprise-level plans.
 
 
 
@@ -656,8 +659,7 @@ const data = await platformClient.billing.getEnterprisePlans();
 
 
 
-Get Enterprise Plans.
-
+Retrieve available enterprise-level subscription plans.
 
 *Returned Response:*
 
@@ -827,7 +829,7 @@ Success
 
 
 ### getFeatureLimitConfig
-Get subscription subscription limits
+Obtain feature limit configurations.
 
 
 
@@ -852,7 +854,7 @@ const data = await platformClient.billing.getFeatureLimitConfig({  productSuite 
 
 
 
-Get subscription subscription limits.
+Retrieve configuration settings for feature limits in subscription plans.
 
 *Returned Response:*
 
@@ -922,7 +924,7 @@ Success
 
 
 ### getInvoiceById
-Get invoice by id
+Get a specific invoice.
 
 
 
@@ -944,7 +946,7 @@ const data = await platformClient.billing.getInvoiceById({  invoiceId : value })
 
 
 
-Get invoice by id.
+Retrieve a particular invoice's details by providing its unique ID.
 
 *Returned Response:*
 
@@ -1211,7 +1213,7 @@ Success
 
 
 ### getInvoices
-Get invoices
+Retrieve invoices.
 
 
 
@@ -1228,7 +1230,7 @@ const data = await platformClient.billing.getInvoices();
 
 
 
-Get invoices.
+Retrieve invoices for billing and payment tracking.
 
 *Returned Response:*
 
@@ -1501,7 +1503,7 @@ Success
 
 
 ### getSubscription
-Get current subscription detail
+Retrieve subscription details.
 
 
 
@@ -1518,8 +1520,7 @@ const data = await platformClient.billing.getSubscription();
 
 
 
-If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
-
+Retrieve details of a customer's subscription information.
 
 *Returned Response:*
 
@@ -2049,7 +2050,7 @@ Success
 
 
 ### getSubscriptionCharge
-Get subscription charge details
+Retrieve subscription charge details.
 
 
 
@@ -2074,7 +2075,7 @@ const data = await platformClient.billing.getSubscriptionCharge({  extensionId :
 
 
 
-Get created subscription charge details
+Retrieve detailed information about subscription charges using this API.
 
 *Returned Response:*
 
@@ -2107,76 +2108,8 @@ Success
 ---
 
 
-### getentityDetail
-Generic api to get the entity detail
-
-
-
-```javascript
-// Promise
-const promise = platformClient.billing.getentityDetail({  entityName : value,
- channel : value,
- entityId : value,
- component : value,
- componentName : value });
-
-// Async/Await
-const data = await platformClient.billing.getentityDetail({  entityName : value,
- channel : value,
- entityId : value,
- component : value,
- componentName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| entityName | string | yes | Entity name. |    
-| entityId | string | no | Entity unique id. |   
-| channel | string | yes | Ordering channel. |    
-| component | string | no | The coponents the user would like to know. |    
-| componentName | string | no | The name of component the preferred to be fetched. |  
-
-
-
-Generic api to get the entity detail
-
-*Returned Response:*
-
-
-
-
-[EntityResponse](#EntityResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### planStatusUpdate
-Update Status of The plan
+Update subscription plan status.
 
 
 
@@ -2197,7 +2130,7 @@ const data = await platformClient.billing.planStatusUpdate({  body : value });
 | body | [PlanStatusUpdateReq](#PlanStatusUpdateReq) | yes | Request body |
 
 
-It will update the status of the plan
+Modify the status of a subscription plan.
 
 *Returned Response:*
 
@@ -2434,7 +2367,7 @@ Success
 
 
 ### subscripePlan
-Subscribe plan.
+Subscribe to a plan.
 
 
 
@@ -2455,7 +2388,7 @@ const data = await platformClient.billing.subscripePlan({  body : value });
 | body | [SunscribePlan](#SunscribePlan) | yes | Request body |
 
 
-It will subscribe a plan.
+Subscribe to a specific billing plan.
 
 *Returned Response:*
 
@@ -2506,7 +2439,7 @@ Success
 
 
 ### upsertCustomerDetail
-Upsert subscription customer detail
+Update or insert customer details.
 
 
 
@@ -2527,7 +2460,7 @@ const data = await platformClient.billing.upsertCustomerDetail({  body : value }
 | body | [SubscriptionCustomerCreate](#SubscriptionCustomerCreate) | yes | Request body |
 
 
-Upsert subscription customer detail.
+Allows you to modify or insert customer information in the billing system.
 
 *Returned Response:*
 
@@ -2579,6 +2512,76 @@ Success
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getentityDetail
+Generic api to get the entity detail
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.getentityDetail({  entityName : value,
+ channel : value,
+ entityId : value,
+ component : value,
+ componentName : value });
+
+// Async/Await
+const data = await platformClient.billing.getentityDetail({  entityName : value,
+ channel : value,
+ entityId : value,
+ component : value,
+ componentName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| entityName | string | yes | Entity name. |    
+| entityId | string | no | Entity unique id. |   
+| channel | string | yes | Ordering channel. |    
+| component | string | no | The coponents the user would like to know. |    
+| componentName | string | no | The name of component the preferred to be fetched. |  
+
+
+
+Generic api to get the entity detail
+
+*Returned Response:*
+
+
+
+
+[EntityResponse](#EntityResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 

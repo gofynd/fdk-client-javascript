@@ -9,7 +9,7 @@
 Partner configuration apis
 
 
-Default
+Proxy Path Management
 * [addProxyPath](#addproxypath)
 * [removeProxyPath](#removeproxypath)
 
@@ -23,7 +23,7 @@ Default
 
 
 ### addProxyPath
-Create proxy URL for the external URL
+Add proxy path.
 
 
 
@@ -43,11 +43,11 @@ const data = await platformClient.application("<APPLICATION_ID>").partner.addPro
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Extension id for which proxy URL will be generated |  
+| extensionId | string | yes | Extension id for which a proxy URL will be generated |  
 | body | [AddProxyReq](#AddProxyReq) | yes | Request body |
 
 
-Use this API to generate proxy URL for the external URL
+Create and add a new proxy path.
 
 *Returned Response:*
 
@@ -62,20 +62,28 @@ Proxy created successfully
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "_id": "607406b8a472cd527303692f",
-  "attached_path": "test",
-  "proxy_url": "https://www.abc.com",
-  "company_id": "1",
-  "application_id": "000000000000000000000004",
-  "extension_id": "6073280be899ea5b1150fd9d",
-  "created_at": "2021-04-12T08:37:12.077Z",
-  "modified_at": "2021-04-12T08:37:12.077Z"
+  "value": {
+    "_id": "607406b8a472cd527303692f",
+    "attached_path": "test",
+    "proxy_url": "https://www.abc.com",
+    "company_id": "1",
+    "application_id": "000000000000000000000004",
+    "extension_id": "6073280be899ea5b1150fd9d",
+    "created_at": "2021-04-12T08:37:12.077Z",
+    "modified_at": "2021-04-12T08:37:12.077Z"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -90,7 +98,7 @@ Proxy created successfully
 
 
 ### removeProxyPath
-Remove proxy URL for the external URL
+Remove proxy path.
 
 
 
@@ -111,11 +119,11 @@ const data = await platformClient.application("<APPLICATION_ID>").partner.remove
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | extensionId | string | yes | Extension id for which proxy URL needs to be removed |   
-| attachedPath | string | yes | Attachaed path slug |  
+| attachedPath | string | yes | Attached path slug |  
 
 
 
-Use this API to remove the proxy URL which is already generated for the external URL
+Delete a proxy path from the platform.
 
 *Returned Response:*
 
@@ -130,23 +138,31 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "message": "Proxy URL deleted",
-  "data": {
-    "_id": "607406b8a472cd527303692f",
-    "attached_path": "test",
-    "proxy_url": "https://www.abc.com",
-    "company_id": "1",
-    "application_id": "000000000000000000000004",
-    "extension_id": "6073280be899ea5b1150fd9d",
-    "created_at": "2021-04-12T08:37:12.077Z",
-    "modified_at": "2021-04-12T08:37:12.077Z"
+  "value": {
+    "message": "Proxy URL deleted",
+    "data": {
+      "_id": "607406b8a472cd527303692f",
+      "attached_path": "test",
+      "proxy_url": "https://www.abc.com",
+      "company_id": "1",
+      "application_id": "000000000000000000000004",
+      "extension_id": "6073280be899ea5b1150fd9d",
+      "created_at": "2021-04-12T08:37:12.077Z",
+      "modified_at": "2021-04-12T08:37:12.077Z"
+    }
   }
 }
 ```
+</details>
+
 </details>
 
 

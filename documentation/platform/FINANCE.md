@@ -9,33 +9,45 @@
 Handles all finance related activities
 
 
-Default
-* [channelDisplayName](#channeldisplayname)
-* [createSellerCreditNoteConfig](#createsellercreditnoteconfig)
-* [creditNoteDetails](#creditnotedetails)
-* [creditlineDataplatform](#creditlinedataplatform)
-* [deleteConfig](#deleteconfig)
+Report Generation & Download
 * [downloadCreditDebitNote](#downloadcreditdebitnote)
 * [downloadReport](#downloadreport)
 * [downloadReportCustomerCn](#downloadreportcustomercn)
 * [generateReport](#generatereport)
 * [generateReportCustomerCn](#generatereportcustomercn)
 * [getAffiliate](#getaffiliate)
-* [getCnConfig](#getcnconfig)
-* [getCustomerCreditBalance](#getcustomercreditbalance)
 * [getData](#getdata)
 * [getPdfUrlView](#getpdfurlview)
-* [getReason](#getreason)
 * [getReportList](#getreportlist)
 * [getReportingFilters](#getreportingfilters)
-* [invoiceActivityLogs](#invoiceactivitylogs)
-* [invoiceListing](#invoicelisting)
 * [invoicePDF](#invoicepdf)
-* [invoicePaymentDetails](#invoicepaymentdetails)
-* [invoiceType](#invoicetype)
-* [isCnRefundMethod](#iscnrefundmethod)
+
+
+Reason and Configuration Management
+* [getReason](#getreason)
+
+
+Payment and Credit Note Management
+* [channelDisplayName](#channeldisplayname)
+* [createSellerCreditNoteConfig](#createsellercreditnoteconfig)
+* [creditlineDataplatform](#creditlinedataplatform)
+* [getCnConfig](#getcnconfig)
 * [isCreditlinePlatform](#iscreditlineplatform)
 * [paymentProcess](#paymentprocess)
+
+
+Invoice and Credit Note Management
+* [creditNoteDetails](#creditnotedetails)
+* [getCustomerCreditBalance](#getcustomercreditbalance)
+* [invoiceType](#invoicetype)
+* [isCnRefundMethod](#iscnrefundmethod)
+
+
+Default
+* [deleteConfig](#deleteconfig)
+* [invoiceActivityLogs](#invoiceactivitylogs)
+* [invoiceListing](#invoicelisting)
+* [invoicePaymentDetails](#invoicepaymentdetails)
 * [unlockCreditNote](#unlockcreditnote)
 
 
@@ -47,412 +59,8 @@ Default
 
 
 
-### channelDisplayName
-Provide channel display name dict.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.channelDisplayName({  filterKey : value });
-
-// Async/Await
-const data = await platformClient.finance.channelDisplayName({  filterKey : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| filterKey | string | yes | gives display name for channel. |  
-
-
-
-Provide channel display name dict.
-
-*Returned Response:*
-
-
-
-
-[ChannelDisplayNameResponse](#ChannelDisplayNameResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "platform-pos": "POS"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createSellerCreditNoteConfig
-Creates credit note config.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.createSellerCreditNoteConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.createSellerCreditNoteConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateSellerCreditNoteConfigRequest](#CreateSellerCreditNoteConfigRequest) | yes | Request body |
-
-
-Creates credit note config.
-
-*Returned Response:*
-
-
-
-
-[CreateSellerCreditNoteConfigResponse](#CreateSellerCreditNoteConfigResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Credit Note Config created."
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### creditNoteDetails
-Gives credit note details.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.creditNoteDetails({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.creditNoteDetails({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreditNoteDetailsRequest](#CreditNoteDetailsRequest) | yes | Request body |
-
-
-Gives credit note details.
-
-*Returned Response:*
-
-
-
-
-[CreditNoteDetailsResponse](#CreditNoteDetailsResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "cn_reference_number": "test_cn_1",
-    "customer_mobile_number": "1234567890",
-    "cn_amount": 200,
-    "remaining_cn_amount": 200,
-    "cn_status": "unutilised",
-    "cn_details": {
-      "ordering_channel": "POS",
-      "channel_of_issuance": "POS",
-      "order_id": "11111",
-      "shipment_id": "11111",
-      "invoice_number": "invoice_1",
-      "date_issued": "2023-03-08 17:47:20",
-      "expiry_date": "2023-03-08 17:47:20",
-      "staff_id": "staff_1",
-      "store_id": "111"
-    },
-    "available_cn_balance": 500,
-    "redemption_details": [
-      {
-        "order_id": "111",
-        "shipment_id": "111",
-        "invoice_number": "invoice_1",
-        "store_id": "11",
-        "staff_id": "staff_1",
-        "ordering_channel": "POS",
-        "created_at": "2023-03-08 17:47:20",
-        "amount_debited": 100
-      },
-      {
-        "order_id": "111",
-        "shipment_id": "111",
-        "invoice_number": "invoice_1",
-        "store_id": "11",
-        "staff_id": "staff_1",
-        "ordering_channel": "POS",
-        "created_at": "2023-03-08 17:47:20",
-        "amount_debited": 100
-      }
-    ]
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### creditlineDataplatform
-Used to fetch creditline data.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.creditlineDataplatform({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.creditlineDataplatform({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreditlineDataPlatformRequest](#CreditlineDataPlatformRequest) | yes | Request body |
-
-
-Used to fetch creditline data.
-
-*Returned Response:*
-
-
-
-
-[CreditlineDataPlatformResponse](#CreditlineDataPlatformResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "headers": [
-    "Date",
-    "Purpose",
-    "Transaction Type",
-    "Amount",
-    "Credit Balance",
-    "MR Balance"
-  ],
-  "items": [
-    {
-      "table_data": [
-        {
-          "date": "2023-07-14",
-          "purpose": "Monthly Credit Limit Reset",
-          "transaction_type": "Debit",
-          "amount": "₹1295.25",
-          "credit_balance": "₹0.00",
-          "mr_balance": "₹0.00"
-        },
-        {
-          "date": "2023-07-27",
-          "purpose": "Advance Reciept Offline",
-          "transaction_type": "Credit",
-          "amount": "₹120.50",
-          "credit_balance": "₹1295.25",
-          "mr_balance": "₹0.00"
-        },
-        {
-          "date": "2023-07-25",
-          "purpose": "Commission Deduction",
-          "transaction_type": "Debit",
-          "amount": "₹1825.25",
-          "credit_balance": "₹1174.75",
-          "mr_balance": "₹0.00"
-        },
-        {
-          "date": "2023-07-26",
-          "purpose": "Credits Added",
-          "transaction_type": "Credit",
-          "amount": "₹2000.00",
-          "credit_balance": "₹2000.00",
-          "mr_balance": "₹1000.00"
-        },
-        {
-          "date": "2023-07-26",
-          "purpose": "Minimum Retainership",
-          "transaction_type": "Credit",
-          "amount": "₹1000.00",
-          "credit_balance": "₹0.00",
-          "mr_balance": "₹1000.00"
-        }
-      ],
-      "creditline": {
-        "total_amount": 2000,
-        "used_amount": 2000,
-        "balance": 0
-      },
-      "minimum_retainership": {
-        "total_amount": 1000,
-        "used_amount": 1000,
-        "balance": 0
-      },
-      "show_mr": true
-    }
-  ],
-  "item_count": 5,
-  "page": {
-    "type": "number",
-    "size": 10,
-    "current": 1,
-    "has_next": false,
-    "item_count": 5
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteConfig
-Deletes credit note config.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.deleteConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.deleteConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DeleteConfigRequest](#DeleteConfigRequest) | yes | Request body |
-
-
-Deletes credit note config.
-
-*Returned Response:*
-
-
-
-
-[DeleteConfigResponse](#DeleteConfigResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Seller configuration deleted successfully."
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### downloadCreditDebitNote
-Download credit debit note pdf.
+Download credit/debit note.
 
 
 
@@ -473,7 +81,7 @@ const data = await platformClient.finance.downloadCreditDebitNote({  body : valu
 | body | [DownloadCreditDebitNoteRequest](#DownloadCreditDebitNoteRequest) | yes | Request body |
 
 
-Download credit debit note pdf.
+Retrieve and save credit/debit notes.
 
 *Returned Response:*
 
@@ -515,7 +123,7 @@ Success
 
 
 ### downloadReport
-Gives list of all downloaded reports.
+Download financial report.
 
 
 
@@ -536,7 +144,7 @@ const data = await platformClient.finance.downloadReport({  body : value });
 | body | [DownloadReport](#DownloadReport) | yes | Request body |
 
 
-Gives list of all downloaded reports.
+Retrieve and save a financial report.
 
 *Returned Response:*
 
@@ -608,7 +216,7 @@ Success
 
 
 ### downloadReportCustomerCn
-Gives list of downloaded reports.
+Download customer credit note report.
 
 
 
@@ -629,7 +237,7 @@ const data = await platformClient.finance.downloadReportCustomerCn({  body : val
 | body | [DownloadReportCustomerCnRequest](#DownloadReportCustomerCnRequest) | yes | Request body |
 
 
-Gives list of downloaded reports.
+Retrieve and save a report for customer credit notes.
 
 *Returned Response:*
 
@@ -706,7 +314,7 @@ Success
 
 
 ### generateReport
-Generate finance reports.
+Generate financial report.
 
 
 
@@ -727,7 +335,7 @@ const data = await platformClient.finance.generateReport({  body : value });
 | body | [GenerateReportRequest](#GenerateReportRequest) | yes | Request body |
 
 
-Generate finance reports.
+Create a financial report with relevant data.
 
 *Returned Response:*
 
@@ -890,7 +498,7 @@ We are processing the report!
 
 
 ### generateReportCustomerCn
-Generate Credit Note report and gives Note details.
+Generate customer credit note report.
 
 
 
@@ -911,7 +519,7 @@ const data = await platformClient.finance.generateReportCustomerCn({  body : val
 | body | [GenerateReportCustomerCnRequest](#GenerateReportCustomerCnRequest) | yes | Request body |
 
 
-Generate Credit Note report and gives Note details.
+Create a report specifically for customer credit notes.
 
 *Returned Response:*
 
@@ -989,7 +597,7 @@ Success
 
 
 ### getAffiliate
-Gives list of affiliates for company.
+Get affiliate details.
 
 
 
@@ -1010,7 +618,7 @@ const data = await platformClient.finance.getAffiliate({  body : value });
 | body | [GetAffiliate](#GetAffiliate) | yes | Request body |
 
 
-Gives list of affiliates for company.
+Retrieve information about an affiliate.
 
 *Returned Response:*
 
@@ -1118,148 +726,8 @@ Success
 ---
 
 
-### getCnConfig
-Gives credit note config.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.getCnConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.getCnConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [GetCnConfigRequest](#GetCnConfigRequest) | yes | Request body |
-
-
-Gives credit note config.
-
-*Returned Response:*
-
-
-
-
-[GetCnConfigResponse](#GetCnConfigResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "is_cn_as_refund_method": true,
-    "validity": 365,
-    "currency_type": "Indian Rupees",
-    "seller_id": 25,
-    "affiliate_id": "5ea82cc2b496555b51caafa3",
-    "notification_events": {
-      "repeat": "once per day",
-      "expiration_reminder_to_customer": 5
-    },
-    "meta": {
-      "reason": "",
-      "source_channel": [
-        "POS",
-        "ECOMM"
-      ]
-    },
-    "redemption_ordering_channel": [
-      "ECOMM",
-      "POS"
-    ]
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCustomerCreditBalance
-Gives customer credit balance.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.getCustomerCreditBalance({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.getCustomerCreditBalance({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [GetCustomerCreditBalanceRequest](#GetCustomerCreditBalanceRequest) | yes | Request body |
-
-
-Gives customer credit balance.
-
-*Returned Response:*
-
-
-
-
-[GetCustomerCreditBalanceResponse](#GetCustomerCreditBalanceResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "customer_mobile_number": "1234567890",
-    "total_credited_balance": 500
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getData
-Gives list of columns for table provided.
+Get financial data.
 
 
 
@@ -1280,7 +748,7 @@ const data = await platformClient.finance.getData({  body : value });
 | body | [GetEngineRequest](#GetEngineRequest) | yes | Request body |
 
 
-Gives list of columns for table provided.
+Retrieve financial data for analysis.
 
 *Returned Response:*
 
@@ -1356,7 +824,7 @@ Success
 
 
 ### getPdfUrlView
-Gives cn pdf url.
+Get PDF URL view.
 
 
 
@@ -1377,7 +845,7 @@ const data = await platformClient.finance.getPdfUrlView({  body : value });
 | body | [GetPdfUrlViewRequest](#GetPdfUrlViewRequest) | yes | Request body |
 
 
-Gives cn pdf url.
+Retrieve a URL to view a PDF document.
 
 *Returned Response:*
 
@@ -1416,85 +884,8 @@ Success
 ---
 
 
-### getReason
-Gives list of the reasons.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.getReason({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.getReason({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [GetReasonRequest](#GetReasonRequest) | yes | Request body |
-
-
-Gives list of the reasons.
-
-*Returned Response:*
-
-
-
-
-[GetReasonResponse](#GetReasonResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "item_list": [
-    {
-      "id": "82d68950-5bdd-4a2b-a179-afc83454bde3",
-      "name": "DS01",
-      "display_name": "Bag Lost Reimbursement"
-    },
-    {
-      "id": "8f90e0a1-c082-4c0e-b6e1-3640a4dfc69c",
-      "name": "DS02",
-      "display_name": "Wrong Product Reimbursement"
-    }
-  ],
-  "item_count": 16,
-  "page": {
-    "type": "number",
-    "size": 10,
-    "current": 1,
-    "has_next": true,
-    "item_count": 16
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getReportList
-Get the list of available reports for a company.
+Get report list.
 
 
 
@@ -1515,7 +906,7 @@ const data = await platformClient.finance.getReportList({  body : value });
 | body | [GetReportListRequest](#GetReportListRequest) | yes | Request body |
 
 
-Gives list of reports.
+Retrieve a list of available financial reports.
 
 *Returned Response:*
 
@@ -1620,7 +1011,7 @@ Success
 
 
 ### getReportingFilters
-Gets all customer Cn filters and search.
+Get reporting filters.
 
 
 
@@ -1645,7 +1036,7 @@ const data = await platformClient.finance.getReportingFilters({  filterKey : val
 
 
 
-Gets all customer Cn filters and search.
+Retrieve available filters for financial reporting.
 
 *Returned Response:*
 
@@ -1749,6 +1140,982 @@ Success
       "placeholder_text": "Select Issuance Channel"
     }
   ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### invoicePDF
+Get invoice PDF.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.invoicePDF({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.invoicePDF({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InvoicePdfRequest](#InvoicePdfRequest) | yes | Request body |
+
+
+Retrieve the PDF version of an invoice.
+
+*Returned Response:*
+
+
+
+
+[InvoicePdfResponse](#InvoicePdfResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/documents/daytrader/PDFs/61/07-2023/FY/FY-I-A23004-FY24_61_07-2023.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230727%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T190229Z&X-Amz-Expires=604800&X-Amz-Signature=b8642e8764ea320332b5ccb825fe7427872d8fe31b4a3cafafb6c89dd854d9c3&X-Amz-SignedHeaders=host"
+  ],
+  "error": []
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getReason
+Get transaction reason.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.getReason({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.getReason({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GetReasonRequest](#GetReasonRequest) | yes | Request body |
+
+
+Retrieve the reason behind a transaction.
+
+*Returned Response:*
+
+
+
+
+[GetReasonResponse](#GetReasonResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "item_list": [
+    {
+      "id": "82d68950-5bdd-4a2b-a179-afc83454bde3",
+      "name": "DS01",
+      "display_name": "Bag Lost Reimbursement"
+    },
+    {
+      "id": "8f90e0a1-c082-4c0e-b6e1-3640a4dfc69c",
+      "name": "DS02",
+      "display_name": "Wrong Product Reimbursement"
+    }
+  ],
+  "item_count": 16,
+  "page": {
+    "type": "number",
+    "size": 10,
+    "current": 1,
+    "has_next": true,
+    "item_count": 16
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### channelDisplayName
+Get channel display name.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.channelDisplayName({  filterKey : value });
+
+// Async/Await
+const data = await platformClient.finance.channelDisplayName({  filterKey : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| filterKey | string | yes | gives display name for channel. |  
+
+
+
+Retrieve the display name for a channel.
+
+*Returned Response:*
+
+
+
+
+[ChannelDisplayNameResponse](#ChannelDisplayNameResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "platform-pos": "POS"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createSellerCreditNoteConfig
+Create seller credit note config.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.createSellerCreditNoteConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.createSellerCreditNoteConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateSellerCreditNoteConfigRequest](#CreateSellerCreditNoteConfigRequest) | yes | Request body |
+
+
+Set up configuration for seller credit notes.
+
+*Returned Response:*
+
+
+
+
+[CreateSellerCreditNoteConfigResponse](#CreateSellerCreditNoteConfigResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Credit Note Config created."
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### creditlineDataplatform
+Access credit line data platform.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.creditlineDataplatform({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.creditlineDataplatform({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreditlineDataPlatformRequest](#CreditlineDataPlatformRequest) | yes | Request body |
+
+
+Connect to the credit line data platform.
+
+*Returned Response:*
+
+
+
+
+[CreditlineDataPlatformResponse](#CreditlineDataPlatformResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "headers": [
+    "Date",
+    "Purpose",
+    "Transaction Type",
+    "Amount",
+    "Credit Balance",
+    "MR Balance"
+  ],
+  "items": [
+    {
+      "table_data": [
+        {
+          "date": "2023-07-14",
+          "purpose": "Monthly Credit Limit Reset",
+          "transaction_type": "Debit",
+          "amount": "₹1295.25",
+          "credit_balance": "₹0.00",
+          "mr_balance": "₹0.00"
+        },
+        {
+          "date": "2023-07-27",
+          "purpose": "Advance Reciept Offline",
+          "transaction_type": "Credit",
+          "amount": "₹120.50",
+          "credit_balance": "₹1295.25",
+          "mr_balance": "₹0.00"
+        },
+        {
+          "date": "2023-07-25",
+          "purpose": "Commission Deduction",
+          "transaction_type": "Debit",
+          "amount": "₹1825.25",
+          "credit_balance": "₹1174.75",
+          "mr_balance": "₹0.00"
+        },
+        {
+          "date": "2023-07-26",
+          "purpose": "Credits Added",
+          "transaction_type": "Credit",
+          "amount": "₹2000.00",
+          "credit_balance": "₹2000.00",
+          "mr_balance": "₹1000.00"
+        },
+        {
+          "date": "2023-07-26",
+          "purpose": "Minimum Retainership",
+          "transaction_type": "Credit",
+          "amount": "₹1000.00",
+          "credit_balance": "₹0.00",
+          "mr_balance": "₹1000.00"
+        }
+      ],
+      "creditline": {
+        "total_amount": 2000,
+        "used_amount": 2000,
+        "balance": 0
+      },
+      "minimum_retainership": {
+        "total_amount": 1000,
+        "used_amount": 1000,
+        "balance": 0
+      },
+      "show_mr": true
+    }
+  ],
+  "item_count": 5,
+  "page": {
+    "type": "number",
+    "size": 10,
+    "current": 1,
+    "has_next": false,
+    "item_count": 5
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCnConfig
+Get credit note configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.getCnConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.getCnConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GetCnConfigRequest](#GetCnConfigRequest) | yes | Request body |
+
+
+Retrieve configuration settings for credit notes.
+
+*Returned Response:*
+
+
+
+
+[GetCnConfigResponse](#GetCnConfigResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_cn_as_refund_method": true,
+    "validity": 365,
+    "currency_type": "Indian Rupees",
+    "seller_id": 25,
+    "affiliate_id": "5ea82cc2b496555b51caafa3",
+    "notification_events": {
+      "repeat": "once per day",
+      "expiration_reminder_to_customer": 5
+    },
+    "meta": {
+      "reason": "",
+      "source_channel": [
+        "POS",
+        "ECOMM"
+      ]
+    },
+    "redemption_ordering_channel": [
+      "ECOMM",
+      "POS"
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### isCreditlinePlatform
+Check credit line platform status.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.isCreditlinePlatform({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.isCreditlinePlatform({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [IsCreditlinePlatformRequest](#IsCreditlinePlatformRequest) | yes | Request body |
+
+
+Determine if the credit line platform is operational.
+
+*Returned Response:*
+
+
+
+
+[IsCreditlinePlatformResponse](#IsCreditlinePlatformResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "code": 200,
+  "is_creditline_opted": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### paymentProcess
+Process payments.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.paymentProcess({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.paymentProcess({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentProcessRequest](#PaymentProcessRequest) | yes | Request body |
+
+
+Initiate and manage payment processes.
+
+*Returned Response:*
+
+
+
+
+[PaymentProcessResponse](#PaymentProcessResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "code": 200,
+  "message": "success",
+  "transaction_id": "64c2386821617314bf24c3d2",
+  "redirect_url": "https://platform.fyndx1.de/company/123/subscription/renew-plan?plan_id=64c0ffe4770e21b533114912&transaction_id=64c2386821617314bf24c3d2&renew=true&callback_url=http://localdev.fyndx1.de:8087/company/123/billing/bills?activeTab=invoices&meta={\"remarks\":\"Invoice Payment\",\"seller_id\":\"123\",\"callback_url\":\"http://localdev.fyndx1.de:8087/company/123/billing/bills?activeTab=invoices\",\"invoice_number\":\"UN-I-A00355-FY24\",\"mode_of_payment\":\"online\",\"paid_amount_key\":\"total_payable\",\"isInvoicePayment\":true,\"source_reference\":\"invoice\"}",
+  "meta": {
+    "callback_url": "http://localdev.fyndx1.de:8087/company/123/billing/bills?activeTab=invoices",
+    "remarks": "Invoice Payment",
+    "isInvoicePayment": true,
+    "paid_amount_key": "total_payable",
+    "seller_id": "123",
+    "invoice_number": "UN-I-A00355-FY24",
+    "source_reference": "invoice",
+    "mode_of_payment": "online",
+    "source": "website"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### creditNoteDetails
+Get credit note details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.creditNoteDetails({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.creditNoteDetails({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreditNoteDetailsRequest](#CreditNoteDetailsRequest) | yes | Request body |
+
+
+Retrieve detailed information about a credit note.
+
+*Returned Response:*
+
+
+
+
+[CreditNoteDetailsResponse](#CreditNoteDetailsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "cn_reference_number": "test_cn_1",
+    "customer_mobile_number": "1234567890",
+    "cn_amount": 200,
+    "remaining_cn_amount": 200,
+    "cn_status": "unutilised",
+    "cn_details": {
+      "ordering_channel": "POS",
+      "channel_of_issuance": "POS",
+      "order_id": "11111",
+      "shipment_id": "11111",
+      "invoice_number": "invoice_1",
+      "date_issued": "2023-03-08 17:47:20",
+      "expiry_date": "2023-03-08 17:47:20",
+      "staff_id": "staff_1",
+      "store_id": "111"
+    },
+    "available_cn_balance": 500,
+    "redemption_details": [
+      {
+        "order_id": "111",
+        "shipment_id": "111",
+        "invoice_number": "invoice_1",
+        "store_id": "11",
+        "staff_id": "staff_1",
+        "ordering_channel": "POS",
+        "created_at": "2023-03-08 17:47:20",
+        "amount_debited": 100
+      },
+      {
+        "order_id": "111",
+        "shipment_id": "111",
+        "invoice_number": "invoice_1",
+        "store_id": "11",
+        "staff_id": "staff_1",
+        "ordering_channel": "POS",
+        "created_at": "2023-03-08 17:47:20",
+        "amount_debited": 100
+      }
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomerCreditBalance
+Get customer credit balance.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.getCustomerCreditBalance({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.getCustomerCreditBalance({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GetCustomerCreditBalanceRequest](#GetCustomerCreditBalanceRequest) | yes | Request body |
+
+
+Retrieve the credit balance of a customer.
+
+*Returned Response:*
+
+
+
+
+[GetCustomerCreditBalanceResponse](#GetCustomerCreditBalanceResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "customer_mobile_number": "1234567890",
+    "total_credited_balance": 500
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### invoiceType
+Get invoice types.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.invoiceType({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.invoiceType({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InvoiceTypeRequest](#InvoiceTypeRequest) | yes | Request body |
+
+
+Retrieve a list of available invoice types.
+
+*Returned Response:*
+
+
+
+
+[InvoiceTypeResponse](#InvoiceTypeResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "invoice_type_list": [
+    {
+      "text": "Creditline Minimum Gaurantee",
+      "value": "0ebf0c84-2577-4374-a48c-bcbec5afbbd3"
+    },
+    {
+      "text": "Platform Subscription",
+      "value": "fc912415-0e32-4de9-9c46-7b21543747c3"
+    },
+    {
+      "text": "Seller Invoice Fynd",
+      "value": "1ec78cf4-2d25-4bba-9d42-6515dfaf1751"
+    },
+    {
+      "text": "Seller Invoice Fynd Store",
+      "value": "e6d8a752-1691-4b2d-9327-a0a4ea2f7dfd"
+    },
+    {
+      "text": "Seller Invoice OpenAPI Ecom",
+      "value": "5ef45de7-388a-460a-a5ba-ab2de8fcc632"
+    },
+    {
+      "text": "Seller Invoice Uniket",
+      "value": "8d85b574-17b7-4ddd-8d0a-e3a79cbd0659"
+    }
+  ],
+  "payment_status_list": [
+    {
+      "text": "In Process",
+      "value": "in_process"
+    },
+    {
+      "text": "Paid",
+      "value": "paid"
+    },
+    {
+      "text": "Unpaid",
+      "value": "unpaid"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### isCnRefundMethod
+Check CN refund method.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.isCnRefundMethod({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.isCnRefundMethod({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [IsCnRefundMethodRequest](#IsCnRefundMethodRequest) | yes | Request body |
+
+
+Verify the refund method for credit notes.
+
+*Returned Response:*
+
+
+
+
+[IsCnRefundMethodResponse](#IsCnRefundMethodResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_first_time_user": false
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### deleteConfig
+Deletes credit note config.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.deleteConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.deleteConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DeleteConfigRequest](#DeleteConfigRequest) | yes | Request body |
+
+
+Deletes credit note config.
+
+*Returned Response:*
+
+
+
+
+[DeleteConfigResponse](#DeleteConfigResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Seller configuration deleted successfully."
 }
 ```
 </details>
@@ -1944,67 +2311,6 @@ Success
 ---
 
 
-### invoicePDF
-Gives pdf view of invoice.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.invoicePDF({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.invoicePDF({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [InvoicePdfRequest](#InvoicePdfRequest) | yes | Request body |
-
-
-Gives pdf view of invoice.
-
-*Returned Response:*
-
-
-
-
-[InvoicePdfResponse](#InvoicePdfResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": [
-    "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/documents/daytrader/PDFs/61/07-2023/FY/FY-I-A23004-FY24_61_07-2023.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230727%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T190229Z&X-Amz-Expires=604800&X-Amz-Signature=b8642e8764ea320332b5ccb825fe7427872d8fe31b4a3cafafb6c89dd854d9c3&X-Amz-SignedHeaders=host"
-  ],
-  "error": []
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### invoicePaymentDetails
 Display payment details of an invoice.
 
@@ -2073,292 +2379,6 @@ Success
     }
   ],
   "failed_attempts_details": []
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### invoiceType
-Gives list of active invoice type.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.invoiceType({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.invoiceType({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [InvoiceTypeRequest](#InvoiceTypeRequest) | yes | Request body |
-
-
-Gives list of active invoice type.
-
-*Returned Response:*
-
-
-
-
-[InvoiceTypeResponse](#InvoiceTypeResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "invoice_type_list": [
-    {
-      "text": "Creditline Minimum Gaurantee",
-      "value": "0ebf0c84-2577-4374-a48c-bcbec5afbbd3"
-    },
-    {
-      "text": "Platform Subscription",
-      "value": "fc912415-0e32-4de9-9c46-7b21543747c3"
-    },
-    {
-      "text": "Seller Invoice Fynd",
-      "value": "1ec78cf4-2d25-4bba-9d42-6515dfaf1751"
-    },
-    {
-      "text": "Seller Invoice Fynd Store",
-      "value": "e6d8a752-1691-4b2d-9327-a0a4ea2f7dfd"
-    },
-    {
-      "text": "Seller Invoice OpenAPI Ecom",
-      "value": "5ef45de7-388a-460a-a5ba-ab2de8fcc632"
-    },
-    {
-      "text": "Seller Invoice Uniket",
-      "value": "8d85b574-17b7-4ddd-8d0a-e3a79cbd0659"
-    }
-  ],
-  "payment_status_list": [
-    {
-      "text": "In Process",
-      "value": "in_process"
-    },
-    {
-      "text": "Paid",
-      "value": "paid"
-    },
-    {
-      "text": "Unpaid",
-      "value": "unpaid"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### isCnRefundMethod
-Checks if seller has obtained cn as refund method or not.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.isCnRefundMethod({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.isCnRefundMethod({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [IsCnRefundMethodRequest](#IsCnRefundMethodRequest) | yes | Request body |
-
-
-Checks if seller has obtained cn as refund method or not.
-
-*Returned Response:*
-
-
-
-
-[IsCnRefundMethodResponse](#IsCnRefundMethodResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "is_first_time_user": false
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### isCreditlinePlatform
-Checks if seller has opted for creditline or not.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.isCreditlinePlatform({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.isCreditlinePlatform({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [IsCreditlinePlatformRequest](#IsCreditlinePlatformRequest) | yes | Request body |
-
-
-Checks if seller has opted for creditline or not.
-
-*Returned Response:*
-
-
-
-
-[IsCreditlinePlatformResponse](#IsCreditlinePlatformResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "code": 200,
-  "is_creditline_opted": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### paymentProcess
-Payment Processing API.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.paymentProcess({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.paymentProcess({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentProcessRequest](#PaymentProcessRequest) | yes | Request body |
-
-
-Payment Processing API.
-
-*Returned Response:*
-
-
-
-
-[PaymentProcessResponse](#PaymentProcessResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "code": 200,
-  "message": "success",
-  "transaction_id": "64c2386821617314bf24c3d2",
-  "redirect_url": "https://platform.fyndx1.de/company/123/subscription/renew-plan?plan_id=64c0ffe4770e21b533114912&transaction_id=64c2386821617314bf24c3d2&renew=true&callback_url=http://localdev.fyndx1.de:8087/company/123/billing/bills?activeTab=invoices&meta={\"remarks\":\"Invoice Payment\",\"seller_id\":\"123\",\"callback_url\":\"http://localdev.fyndx1.de:8087/company/123/billing/bills?activeTab=invoices\",\"invoice_number\":\"UN-I-A00355-FY24\",\"mode_of_payment\":\"online\",\"paid_amount_key\":\"total_payable\",\"isInvoicePayment\":true,\"source_reference\":\"invoice\"}",
-  "meta": {
-    "callback_url": "http://localdev.fyndx1.de:8087/company/123/billing/bills?activeTab=invoices",
-    "remarks": "Invoice Payment",
-    "isInvoicePayment": true,
-    "paid_amount_key": "total_payable",
-    "seller_id": "123",
-    "invoice_number": "UN-I-A00355-FY24",
-    "source_reference": "invoice",
-    "mode_of_payment": "online",
-    "source": "website"
-  }
 }
 ```
 </details>

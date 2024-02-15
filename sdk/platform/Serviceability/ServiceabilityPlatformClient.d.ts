@@ -71,8 +71,8 @@ declare class Serviceability {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
      * @name createZone
-     * @summary: Creates a new Zone
-     * @description: Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
+     * @summary: Create zone.
+     * @description: Generate and add a new zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
      */
     createZone({ body, requestHeaders }?: ServiceabilityPlatformValidator.CreateZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneResponse>;
     /**
@@ -82,8 +82,8 @@ declare class Serviceability {
      * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
      *   Success response
      * @name getAllStores
-     * @summary: GET stores data
-     * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
+     * @summary: Get all stores.
+     * @description: Retrieve a list of all available stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
      */
     getAllStores({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetStoresViewResponse>;
     /**
@@ -244,7 +244,7 @@ declare class Serviceability {
      * @summary: Shows zones defined at the company level
      * @description: Return the list of zones that are defined at the company level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
      */
-    getZones({ pageNo, pageSize, isActive, channelId, q, countryIsoCode, state, city, pincode, sector, requestHeaders, }?: ServiceabilityPlatformValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResponse>;
+    getZones({ pageNo, pageSize, isActive, channelId, q, country, state, city, pincode, sector, requestHeaders, }?: ServiceabilityPlatformValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.UpdateCompanyConfigurationParam} arg
      *   - Arg object

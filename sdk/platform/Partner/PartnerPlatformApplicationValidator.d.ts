@@ -1,13 +1,13 @@
 export = PartnerPlatformApplicationValidator;
 /**
  * @typedef AddProxyPathParam
- * @property {string} extensionId - Extension id for which proxy URL will be generated
+ * @property {string} extensionId - Extension id for which a proxy URL will be generated
  * @property {PartnerPlatformModel.AddProxyReq} body
  */
 /**
  * @typedef RemoveProxyPathParam
  * @property {string} extensionId - Extension id for which proxy URL needs to be removed
- * @property {string} attachedPath - Attachaed path slug
+ * @property {string} attachedPath - Attached path slug
  */
 declare class PartnerPlatformApplicationValidator {
     /** @returns {AddProxyPathParam} */
@@ -20,7 +20,7 @@ declare namespace PartnerPlatformApplicationValidator {
 }
 type AddProxyPathParam = {
     /**
-     * - Extension id for which proxy URL will be generated
+     * - Extension id for which a proxy URL will be generated
      */
     extensionId: string;
     body: PartnerPlatformModel.AddProxyReq;
@@ -31,7 +31,7 @@ type RemoveProxyPathParam = {
      */
     extensionId: string;
     /**
-     * - Attachaed path slug
+     * - Attached path slug
      */
     attachedPath: string;
 };

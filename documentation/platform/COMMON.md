@@ -9,9 +9,12 @@
 Application configuration apis
 
 
-Default
-* [getLocations](#getlocations)
+Application Information
 * [searchApplication](#searchapplication)
+
+
+Location Management
+* [getLocations](#getlocations)
 
 
 
@@ -22,67 +25,8 @@ Default
 
 
 
-### getLocations
-Get countries, states, cities
-
-
-
-```javascript
-// Promise
-const promise = platformClient.common.getLocations({  locationType : value,
- id : value });
-
-// Async/Await
-const data = await platformClient.common.getLocations({  locationType : value,
- id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| locationType | string | no |  |    
-| id | string | no | Field is optional when location_type is country. If querying for state, provide id of the country. If querying for city, provide id of the state. |  
-
-
-
-Retrieve a list of countries, states, or cities based on the provided location_type and id parameters.
-
-*Returned Response:*
-
-
-
-
-[Locations](#Locations)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### searchApplication
-Search Application
+Search for applications.
 
 
 
@@ -187,6 +131,67 @@ Success
     "id": "620b931ee7bfb11f910bf4a3"
   }
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getLocations
+Get company locations.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.common.getLocations({  locationType : value,
+ id : value });
+
+// Async/Await
+const data = await platformClient.common.getLocations({  locationType : value,
+ id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| locationType | string | no |  |    
+| id | string | no | Field is optional when location_type is country. If querying for state, provide id of the country. If querying for city, provide id of the state. |  
+
+
+
+Retrieve a list of locations associated with the company.
+
+*Returned Response:*
+
+
+
+
+[Locations](#Locations)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
