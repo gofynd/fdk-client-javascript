@@ -272,7 +272,7 @@ export = FinancePlatformModel;
  */
 /**
  * @typedef InvoiceListingResponseItems
- * @property {string} [amount]
+ * @property {number} [amount]
  * @property {string} [company]
  * @property {string} [status]
  * @property {string} [due_date]
@@ -975,7 +975,7 @@ type UnpaidInvoiceDataItems = {
 /** @returns {InvoiceListingResponseItems} */
 declare function InvoiceListingResponseItems(): InvoiceListingResponseItems;
 type InvoiceListingResponseItems = {
-    amount?: string;
+    amount?: number;
     company?: string;
     status?: string;
     due_date?: string;

@@ -46,8 +46,8 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
    * @name createHistory
-   * @summary: Logs ticket history.
-   * @description: Adds a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
+   * @summary: Create history for specific Ticket
+   * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
    */
   async createHistory(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -124,8 +124,8 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name createTicket
-   * @summary: Creates a new ticket.
-   * @description: Generates a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
+   * @summary: Create Ticket
+   * @description: This is used to Create Ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
    */
   async createTicket(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -202,8 +202,8 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.CustomForm>} - Success response
    * @name getCustomForm
-   * @summary: Fetches custom form.
-   * @description: Retrieves a customizable form template for data collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
+   * @summary: Get specific Custom Form using it's slug
+   * @description: Get specific Custom Form using it's slug, this is used to view the form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
    */
   async getCustomForm(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -284,8 +284,8 @@ class Lead {
    *   - Success response
    *
    * @name getParticipantsInsideVideoRoom
-   * @summary: Lists video room participants.
-   * @description: Gets the current participants inside a specific video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getParticipantsInsideVideoRoom/).
+   * @summary: Get participants of a specific Video Room using it's unique name
+   * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getParticipantsInsideVideoRoom/).
    */
   async getParticipantsInsideVideoRoom(
     { uniqueName, requestHeaders } = { requestHeaders: {} },
@@ -364,8 +364,8 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name getTicket
-   * @summary: Retrieves a support ticket.
-   * @description: Retrieve details of a specific customer support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
+   * @summary: Get Ticket with the specific id
+   * @description: Get Ticket with the specific id, this is used to view the ticket details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
    */
   async getTicket(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -441,8 +441,8 @@ class Lead {
    * @returns {Promise<LeadApplicationModel.GetTokenForVideoRoomResponse>} -
    *   Success response
    * @name getTokenForVideoRoom
-   * @summary: Retrieves video room token.
-   * @description: Retrieves a secure token for accessing a video chat room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTokenForVideoRoom/).
+   * @summary: Get Token to join a specific Video Room using it's unqiue name
+   * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTokenForVideoRoom/).
    */
   async getTokenForVideoRoom(
     { uniqueName, requestHeaders } = { requestHeaders: {} },
@@ -520,8 +520,8 @@ class Lead {
    * @returns {Promise<LeadApplicationModel.SubmitCustomFormResponse>} -
    *   Success response
    * @name submitCustomForm
-   * @summary: Submits form data.
-   * @description: Sends user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
+   * @summary: Submit Response for a specific Custom Form using it's slug
+   * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
    */
   async submitCustomForm(
     { slug, body, requestHeaders } = { requestHeaders: {} },

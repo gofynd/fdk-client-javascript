@@ -9,7 +9,7 @@
 Short link and QR Code
 
 
-URL Shortner
+Default
 * [createShortLink](#createshortlink)
 * [getShortLinkByHash](#getshortlinkbyhash)
 * [getShortLinkClickStats](#getshortlinkclickstats)
@@ -26,7 +26,7 @@ URL Shortner
 
 
 ### createShortLink
-Create short link.
+Create short link
 
 
 
@@ -47,7 +47,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.createSh
 | body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
-Generate a shortened URL link for sharing.
+Create short link
 
 *Returned Response:*
 
@@ -121,7 +121,7 @@ Success
 
 
 ### getShortLinkByHash
-Get short link by hash.
+Get short link by hash
 
 
 
@@ -143,7 +143,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.getShort
 
 
 
-Retrieve a specific short link by its unique hash.
+Get short link by hash
 
 *Returned Response:*
 
@@ -217,7 +217,7 @@ Success
 
 
 ### getShortLinkClickStats
-Get short link click statistics.
+Get click statistics for a short link
 
 
 
@@ -239,7 +239,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.getShort
 
 
 
-Retrieve statistics and analytics for clicks on a short link.
+Retrieve click statistics for a given short link ID.
 
 *Returned Response:*
 
@@ -273,7 +273,7 @@ Successful retrieval of click statistics.
 
 
 ### getShortLinks
-Get short links.
+Get short links
 
 
 
@@ -313,7 +313,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.getShort
 
 
 
-Retrieve a list of all generated short links.
+Get short links
 
 *Returned Response:*
 
@@ -398,7 +398,7 @@ Success
 
 
 ### updateShortLinkById
-Update short link by ID.
+Update short link by id
 
 
 
@@ -422,7 +422,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.updateSh
 | body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
-Update details of a specific short link by its ID.
+Update short link by id
 
 *Returned Response:*
 

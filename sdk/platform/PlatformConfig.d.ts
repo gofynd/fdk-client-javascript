@@ -62,4 +62,4 @@ declare class PlatformConfig {
      */
     getAccessToken(): Promise<string>;
 }
-import OauthClient = require("./OAuthClient");
+import OauthClient = require("sdk/output/javascript/code/sdk/platform/OAuthClient");

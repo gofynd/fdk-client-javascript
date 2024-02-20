@@ -23,8 +23,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name createAudience
-   * @summary: Create audience.
-   * @description: Add audience which is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAudience/).
+   * @summary: Create audience
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to create audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAudience/).
    */
   async createAudience(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -104,7 +104,7 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name createBigQueryHeaders
-   * @summary: Create BigQuery headers.
+   * @summary: Create big query headers
    * @description: Create big query headers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createBigQueryHeaders/).
    */
   async createBigQueryHeaders(
@@ -179,7 +179,7 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name createBigQueryNCount
-   * @summary: Create BigQuery N-count.
+   * @summary: Create big query n count
    * @description: Create big query n count - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createBigQueryNCount/).
    */
   async createBigQueryNCount(
@@ -254,7 +254,7 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name createBigQueryRowCount
-   * @summary: Create BigQuery row count.
+   * @summary: Create big query row count
    * @description: Create big query row count - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createBigQueryRowCount/).
    */
   async createBigQueryRowCount(
@@ -329,8 +329,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
    * @name createCampaign
-   * @summary: Create campaign.
-   * @description: Add a new communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createCampaign/).
+   * @summary: Create campaign
+   * @description: Create campaign - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createCampaign/).
    */
   async createCampaign(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -410,8 +410,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
    * @name createEmailProvider
-   * @summary: Create email provider.
-   * @description: Generate and add a new email communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailProvider/).
+   * @summary: Create email provider
+   * @description: Create email provider - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailProvider/).
    */
   async createEmailProvider(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -491,8 +491,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name createEmailTemplate
-   * @summary: Create email template.
-   * @description: Generate and add a new email communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailTemplate/).
+   * @summary: Create email template
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to create an email template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailTemplate/).
    */
   async createEmailTemplate(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -816,8 +816,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name createSmsProvider
-   * @summary: Create SMS provider.
-   * @description: Add a new SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsProvider/).
+   * @summary: Create sms provider
+   * @description: Create sms provider - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsProvider/).
    */
   async createSmsProvider(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -895,8 +895,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name createSmsTemplate
-   * @summary: Create SMS template.
-   * @description: Add a new SMS communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsTemplate/).
+   * @summary: Create sms template
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to create an sms template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsTemplate/).
    */
   async createSmsTemplate(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -976,8 +976,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name deleteAudienceById
-   * @summary: Delete audience by ID.
-   * @description: Remove a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteAudienceById/).
+   * @summary: Delete audience by id
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to delete audience by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteAudienceById/).
    */
   async deleteAudienceById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -1059,8 +1059,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
    * @name deleteEmailProviderById
-   * @summary: Delete email provider by ID.
-   * @description: Remove a specific email communication provider from the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailProviderById/).
+   * @summary: Delete email provider by id
+   * @description: Delete email provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailProviderById/).
    */
   async deleteEmailProviderById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1140,8 +1140,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
    * @name deleteEmailTemplateById
-   * @summary: Delete email template by ID.
-   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Remove a specific email communication template by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailTemplateById/).
+   * @summary: Delete email template by id
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to delete an email template by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailTemplateById/).
    */
   async deleteEmailTemplateById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1302,8 +1302,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
    * @name deleteSmsProviderById
-   * @summary: Delete SMS provider by ID.
-   * @description: Remove a specific SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsProviderById/).
+   * @summary: Delete sms provider by id
+   * @description: Delete sms provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsProviderById/).
    */
   async deleteSmsProviderById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1383,8 +1383,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
    * @name deleteSmsTemplateById
-   * @summary: Delete SMS template by ID.
-   * @description: Remove a specific SMS communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsTemplateById/).
+   * @summary: Delete sms template by id
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to delete an sms template by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsTemplateById/).
    */
   async deleteSmsTemplateById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1549,8 +1549,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
    * @name getAppProviders
-   * @summary: Get application providers.
-   * @description: Retrieve a list of providers associated with the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAppProviders/).
+   * @summary: Get app providers
+   * @description: Using this API will return a list of application providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAppProviders/).
    */
   async getAppProviders(
     { requestHeaders } = { requestHeaders: {} },
@@ -1626,8 +1626,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name getAudienceById
-   * @summary: Get audience by ID.
-   * @description: Retrieve detailed information about a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudienceById/).
+   * @summary: Get audience by id
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences by Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudienceById/).
    */
   async getAudienceById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1707,8 +1707,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audiences>} - Success response
    * @name getAudiences
-   * @summary: Get audiences.
-   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudiences/).
+   * @summary: Get audiences
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudiences/).
    */
   async getAudiences(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -1791,6 +1791,47 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {Object} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.Audiences>}
+   * @summary: Get audiences
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences.
+   */
+  getAudiencesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAudiences({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetBigQueryHeadersByIdParam} arg
    *   - Arg object
    *
@@ -1798,8 +1839,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getBigQueryHeadersById
-   * @summary: Get BigQuery headers by ID.
-   * @description: Retrieve header information from BigQuery for a specific campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigQueryHeadersById/).
+   * @summary: Get big query headers by id
+   * @description: Get big query headers by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigQueryHeadersById/).
    */
   async getBigQueryHeadersById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1877,8 +1918,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getBigQueryRowCountById
-   * @summary: Get BigQuery row count by ID.
-   * @description: Retrieve big query row count by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigQueryRowCountById/).
+   * @summary: Get big query row count by id
+   * @description: Get big query row count by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigQueryRowCountById/).
    */
   async getBigQueryRowCountById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1956,8 +1997,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
    * @name getCampaignById
-   * @summary: Get campaign by ID.
-   * @description: Retrieve detailed information about a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaignById/).
+   * @summary: Get campaign by id
+   * @description: Get campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaignById/).
    */
   async getCampaignById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2037,8 +2078,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Campaigns>} - Success response
    * @name getCampaigns
-   * @summary: Get campaigns.
-   * @description: Retrieve a list of communication campaigns. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaigns/).
+   * @summary: Get campaigns
+   * @description: Get campaigns - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaigns/).
    */
   async getCampaigns(
     { query, pageNo, pageSize, sort, requestHeaders } = { requestHeaders: {} },
@@ -2128,8 +2169,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Logs>} - Success response
    * @name getCommunicationLogs
-   * @summary: Get communication logs.
-   * @description: Retrieve logs and records of communication activities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCommunicationLogs/).
+   * @summary: Get communication logs
+   * @description: Get communication logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCommunicationLogs/).
    */
   async getCommunicationLogs(
     { pageId, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -2212,6 +2253,47 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on _id
+   * @param {Object} [arg.query] -
+   * @returns {Paginator<CommunicationPlatformModel.Logs>}
+   * @summary: Get communication logs
+   * @description: Get communication logs
+   */
+  getCommunicationLogsPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getCommunicationLogs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageId: pageId,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetDefaultSmsProvidersParam} arg
    *   - Arg object
    *
@@ -2220,8 +2302,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.DefaultSmsProviders[]>} -
    *   Success response
    * @name getDefaultSmsProviders
-   * @summary: Get default SMS providers.
-   * @description: Retrieve the default SMS communication providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDefaultSmsProviders/).
+   * @summary: Get default sms providers
+   * @description: Get default sms providers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDefaultSmsProviders/).
    */
   async getDefaultSmsProviders(
     { requestHeaders } = { requestHeaders: {} },
@@ -2295,8 +2377,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.DummyDatasources[]>} -
    *   Success response
    * @name getDummyDatasources
-   * @summary: Get dummy data sources.
-   * @description: Retrieve a list of dummy data sources for testing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasources/).
+   * @summary: Get dummy data sources
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get dummy data sources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasources/).
    */
   async getDummyDatasources(
     { requestHeaders } = { requestHeaders: {} },
@@ -2370,8 +2452,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.DummyDatasourcesMeta>} -
    *   Success response
    * @name getDummyDatasourcesMeta
-   * @summary: Get dummy data sources metadata.
-   * @description: Retrieve metadata information about dummy data sources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasourcesMeta/).
+   * @summary: Get dummy data sources meta
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get dummy data sources meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasourcesMeta/).
    */
   async getDummyDatasourcesMeta(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2451,8 +2533,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
    * @name getEmailProviderById
-   * @summary: Get email provider by ID.
-   * @description: Retrieve detailed information about a specific email communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviderById/).
+   * @summary: Get email provider by id
+   * @description: Get email provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviderById/).
    */
   async getEmailProviderById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2532,8 +2614,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailProviders>} - Success response
    * @name getEmailProviders
-   * @summary: Get email providers.
-   * @description: Retrieve a list of email communication providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviders/).
+   * @summary: Get email providers
+   * @description: Get email providers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviders/).
    */
   async getEmailProviders(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -2616,6 +2698,47 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {Object} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.EmailProviders>}
+   * @summary: Get email providers
+   * @description: Get email providers
+   */
+  getEmailProvidersPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEmailProviders({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetEmailTemplateByIdParam} arg
    *   - Arg object
    *
@@ -2623,8 +2746,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name getEmailTemplateById
-   * @summary: Get email template by ID.
-   * @description: Retrieve detailed information about a specific email communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplateById/).
+   * @summary: Get email template by id
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get an email template by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplateById/).
    */
   async getEmailTemplateById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2704,8 +2827,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
    * @name getEmailTemplates
-   * @summary: Get email templates.
-   * @description: Retrieve a list of available email communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplates/).
+   * @summary: Get email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all email templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplates/).
    */
   async getEmailTemplates(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -2788,6 +2911,47 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {Object} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.EmailTemplates>}
+   * @summary: Get email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all email templates.
+   */
+  getEmailTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEmailTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam} arg
    *   - Arg object
    *
@@ -2796,8 +2960,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.EventSubscriptions>} -
    *   Success response
    * @name getEventSubscriptions
-   * @summary: Get event subscriptions.
-   * @description: Retrieve a list of event subscriptions related to communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEventSubscriptions/).
+   * @summary: Get event subscriptions
+   * @description: Get event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEventSubscriptions/).
    */
   async getEventSubscriptions(
     { pageNo, pageSize, populate, requestHeaders } = { requestHeaders: {} },
@@ -2874,6 +3038,44 @@ class Communication {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.populate] - Populate Fields
+   * @returns {Paginator<CommunicationPlatformModel.EventSubscriptions>}
+   * @summary: Get event subscriptions
+   * @description: Get event subscriptions
+   */
+  getEventSubscriptionsPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    populate,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEventSubscriptions({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        populate: populate,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -2968,8 +3170,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GlobalProviders>} - Success response
    * @name getGlobalProviders
-   * @summary: Get global providers.
-   * @description: Retrieve a list of global communication providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalProviders/).
+   * @summary: Get global providers
+   * @description: Using this API, will retrieve a list of global providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalProviders/).
    */
   async getGlobalProviders(
     { requestHeaders } = { requestHeaders: {} },
@@ -3047,8 +3249,8 @@ class Communication {
    *   - Success response
    *
    * @name getGlobalVariables
-   * @summary: Get global variables.
-   * @description: Retrieve global variables used in communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalVariables/).
+   * @summary: get global variables
+   * @description: get global variables - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalVariables/).
    */
   async getGlobalVariables(
     { requestHeaders } = { requestHeaders: {} },
@@ -3122,8 +3324,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
    * @name getJobLogs
-   * @summary: Get job logs.
-   * @description: Retrieve logs and details related to communication jobs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobLogs/).
+   * @summary: Get job logs
+   * @description: Get job logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobLogs/).
    */
   async getJobLogs(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -3206,13 +3408,54 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {Object} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.JobLogs>}
+   * @summary: Get job logs
+   * @description: Get job logs
+   */
+  getJobLogsPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getJobLogs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetJobsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Jobs>} - Success response
    * @name getJobs
-   * @summary: Get jobs.
-   * @description: Retrieve a list of communication jobs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobs/).
+   * @summary: Get jobs
+   * @description: Get jobs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobs/).
    */
   async getJobs(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -3295,6 +3538,41 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {Object} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.Jobs>}
+   * @summary: Get jobs
+   * @description: Get jobs
+   */
+  getJobsPaginator({ companyId, applicationId, pageSize, sort, query } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getJobs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetNSampleRecordsFromCsvParam} arg
    *   - Arg object
    *
@@ -3302,8 +3580,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
    * @name getNSampleRecordsFromCsv
-   * @summary: Get N sample records from CSV.
-   * @description: Retrieve a specified number of sample records from a CSV data source. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsv/).
+   * @summary: Get n sample records from csv
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get n sample records from csv - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsv/).
    */
   async getNSampleRecordsFromCsv(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -3383,8 +3661,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
    * @name getNSampleRecordsFromCsvByGet
-   * @summary: Get N sample records in CSV
-   * @description: Retrieve a specified number of sample records from a CSV data source using a GET request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsvByGet/).
+   * @summary: Get n sample records from csv
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get n sample records from csv. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsvByGet/).
    */
   async getNSampleRecordsFromCsvByGet(
     { requestHeaders } = { requestHeaders: {} },
@@ -3537,8 +3815,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getSmsProviderById
-   * @summary: Get SMS provider by ID.
-   * @description: Retrieve detailed information about a specific SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviderById/).
+   * @summary: Get sms provider by id
+   * @description: Get sms provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviderById/).
    */
   async getSmsProviderById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -3616,8 +3894,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getSmsProviders
-   * @summary: Get SMS providers.
-   * @description: Retrieve a list of SMS communication providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviders/).
+   * @summary: Get sms providers
+   * @description: Get sms providers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviders/).
    */
   async getSmsProviders(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -3705,8 +3983,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name getSmsTemplateById
-   * @summary: Get SMS template by ID.
-   * @description: Retrieve detailed information about a specific SMS communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplateById/).
+   * @summary: Get sms template by id
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get an sms template by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplateById/).
    */
   async getSmsTemplateById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -3786,8 +4064,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
    * @name getSmsTemplates
-   * @summary: Get SMS templates.
-   * @description: Retrieve a list of available SMS communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplates/).
+   * @summary: Get sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all sms templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplates/).
    */
   async getSmsTemplates(
     { pageNo, pageSize, sort, query, requestHeaders } = { requestHeaders: {} },
@@ -3870,6 +4148,47 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {Object} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.SmsTemplates>}
+   * @summary: Get sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all sms templates.
+   */
+  getSmsTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSmsTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetStatsOfCampaignByIdParam} arg
    *   - Arg object
    *
@@ -3877,8 +4196,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.GetStats>} - Success response
    * @name getStatsOfCampaignById
-   * @summary: Get campaign statistics by ID.
-   * @description: Retrieve statistical data for a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getStatsOfCampaignById/).
+   * @summary: Get stats of campaign by id
+   * @description: Get stats of campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getStatsOfCampaignById/).
    */
   async getStatsOfCampaignById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -3958,8 +4277,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
    * @name getSubscribedEmailTemplates
-   * @summary: Get subscribed email templates.
-   * @description: Retrieve email communication templates that are subscribed to. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSubscribedEmailTemplates/).
+   * @summary: Get subscribed email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all subscribed email templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSubscribedEmailTemplates/).
    */
   async getSubscribedEmailTemplates(
     { pageNo, pageSize, query, requestHeaders } = { requestHeaders: {} },
@@ -4039,6 +4358,44 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.EmailTemplates>}
+   * @summary: Get subscribed email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all subscribed email templates.
+   */
+  getSubscribedEmailTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSubscribedEmailTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetSubscribedSmsTemplatesParam} arg
    *   - Arg object
    *
@@ -4046,8 +4403,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
    * @name getSubscribedSmsTemplates
-   * @summary: Get subscribed SMS templates.
-   * @description: Retrieve SMS communication templates that are subscribed to. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSubscribedSmsTemplates/).
+   * @summary: Get subscribed sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all subscribed sms templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSubscribedSmsTemplates/).
    */
   async getSubscribedSmsTemplates(
     { pageNo, pageSize, query, requestHeaders } = { requestHeaders: {} },
@@ -4127,6 +4484,44 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.query] - To search based on plain text
+   * @returns {Paginator<CommunicationPlatformModel.SmsTemplates>}
+   * @summary: Get subscribed sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all subscribed sms templates.
+   */
+  getSubscribedSmsTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    query,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSubscribedSmsTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        query: query,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetSystemAudiencesParam} arg
    *   - Arg object
    *
@@ -4134,8 +4529,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getSystemAudiences
-   * @summary: Get system audiences.
-   * @description: Retrieve system-defined audiences for communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemAudiences/).
+   * @summary: Get system audiences
+   * @description: Get system audiences - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemAudiences/).
    */
   async getSystemAudiences(
     { requestHeaders } = { requestHeaders: {} },
@@ -4210,8 +4605,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
    *   Success response
    * @name getSystemEmailTemplates
-   * @summary: Get system email templates.
-   * @description: Retrieve system-defined email communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemEmailTemplates/).
+   * @summary: Get system email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all system email templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemEmailTemplates/).
    */
   async getSystemEmailTemplates(
     { requestHeaders } = { requestHeaders: {} },
@@ -4288,8 +4683,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
    *   Success response
    * @name getSystemSmsTemplates
-   * @summary: Get system SMS templates.
-   * @description: Retrieve system-defined SMS communication templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSmsTemplates/).
+   * @summary: Get system sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all system sms templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSmsTemplates/).
    */
   async getSystemSmsTemplates(
     { requestHeaders } = { requestHeaders: {} },
@@ -4364,8 +4759,8 @@ class Communication {
    *   - Success response
    *
    * @name postGlobalVariables
-   * @summary: Post global variables.
-   * @description: Update and post global variables for communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/postGlobalVariables/).
+   * @summary: post global variables
+   * @description: psot global variables - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/postGlobalVariables/).
    */
   async postGlobalVariables(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4445,8 +4840,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
    * @name sendCommunicationAsynchronously
-   * @summary: Send communication asynchronously.
-   * @description: Initiate and send communication with the option for asynchronous processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationAsynchronously/).
+   * @summary: Send email or sms asynchronously
+   * @description: Send email or sms asynchronously - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationAsynchronously/).
    */
   async sendCommunicationAsynchronously(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4526,8 +4921,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
    * @name sendCommunicationSynchronously
-   * @summary: Send communication synchronously.
-   * @description: Initiate and send communication in real-time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationSynchronously/).
+   * @summary: Send email or sms synchronously
+   * @description: Send email or sms synchronously - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationSynchronously/).
    */
   async sendCommunicationSynchronously(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4605,11 +5000,11 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SendOtpCommsRes>} - Success response
    * @name sendOtp
-   * @summary: Send OTP.
-   * @description: Send a one-time password (OTP) for authentication or verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendOtp/).
+   * @summary: Send OTP using email and sms
+   * @description: Send OTP Comms via email and sms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendOtp/).
    */
   async sendOtp(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, ci, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -4617,6 +5012,7 @@ class Communication {
     } = CommunicationPlatformApplicationValidator.sendOtp().validate(
       {
         body,
+        ci,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4630,6 +5026,7 @@ class Communication {
     } = CommunicationPlatformApplicationValidator.sendOtp().validate(
       {
         body,
+        ci,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4641,6 +5038,7 @@ class Communication {
     }
 
     const query_params = {};
+    query_params["ci"] = ci;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4687,8 +5085,8 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
    *   Success response
    * @name triggerCampaignJob
-   * @summary: Trigger campaign job.
-   * @description: Initiate a job to execute a communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/triggerCampaignJob/).
+   * @summary: Trigger campaign job
+   * @description: Trigger campaign job - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/triggerCampaignJob/).
    */
   async triggerCampaignJob(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4768,8 +5166,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
    * @name updateAppProviders
-   * @summary: Update application providers.
-   * @description: Modify provider information for the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAppProviders/).
+   * @summary: update app providers
+   * @description: Using this API will update the application providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAppProviders/).
    */
   async updateAppProviders(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -4849,8 +5247,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name updateAudienceById
-   * @summary: Update audience by ID.
-   * @description: Modify the settings of a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAudienceById/).
+   * @summary: Update audience by id
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to update audience by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAudienceById/).
    */
   async updateAudienceById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -4932,8 +5330,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
    * @name updateCampaignById
-   * @summary: Update campaign by ID.
-   * @description: Modify the settings of a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateCampaignById/).
+   * @summary: Update campaign by id
+   * @description: Update campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateCampaignById/).
    */
   async updateCampaignById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5015,8 +5413,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
    * @name updateEmailProviderById
-   * @summary: Update email provider by ID.
-   * @description: Modify the settings of a specific email communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailProviderById/).
+   * @summary: Update email provider by id
+   * @description: Update email provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailProviderById/).
    */
   async updateEmailProviderById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5098,8 +5496,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name updateEmailTemplateById
-   * @summary: Update email template by ID.
-   * @description: Modify the content and settings of a specific email communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailTemplateById/).
+   * @summary: Update email template by id
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to update an email template by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailTemplateById/).
    */
   async updateEmailTemplateById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5258,8 +5656,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name updateSmsProviderById
-   * @summary: Update SMS provider by ID.
-   * @description: Modify specific SMS communication provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsProviderById/).
+   * @summary: Update sms provider by id
+   * @description: Update sms provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsProviderById/).
    */
   async updateSmsProviderById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5339,8 +5737,8 @@ class Communication {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name updateSmsTemplateById
-   * @summary: Update SMS template by ID.
-   * @description: Modify the content and settings of a specific SMS communication template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsTemplateById/).
+   * @summary: Update sms template by id
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to update an sms template by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsTemplateById/).
    */
   async updateSmsTemplateById(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5422,8 +5820,8 @@ class Communication {
    *   - Success response
    *
    * @name verfiyOtp
-   * @summary: Verify OTP.
-   * @description: Verify the one-time password (OTP) for authentication or verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/verfiyOtp/).
+   * @summary: Verify OTP sent via email and sms
+   * @description: Verify OTP sent via email and sms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/verfiyOtp/).
    */
   async verfiyOtp(
     { body, requestHeaders } = { requestHeaders: {} },

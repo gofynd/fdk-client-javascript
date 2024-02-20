@@ -9,13 +9,10 @@
 The Communications module manages user notifications to keep users informed and engaged through personalized push notifications. Use it to enable users to view notifications they've opted into, modify their communication preferences, and update push tokens for real-time updates.
 
 
-Communication Consent
+Default
 * [getCommunicationConsent](#getcommunicationconsent)
-* [upsertCommunicationConsent](#upsertcommunicationconsent)
-
-
-Push Token Management
 * [upsertAppPushtoken](#upsertapppushtoken)
+* [upsertCommunicationConsent](#upsertcommunicationconsent)
 
 
 
@@ -27,7 +24,7 @@ Push Token Management
 
 
 ### getCommunicationConsent
-Retrieves communication consent status.
+Get communication consent
 
 
 
@@ -44,7 +41,7 @@ const data = await applicationClient.communication.getCommunicationConsent();
 
 
 
-Retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. 
+Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
 
 *Returned Response:*
 
@@ -104,90 +101,8 @@ Success. Returns all available communication opt-ins along with the consent deta
 ---
 
 
-### upsertCommunicationConsent
-Updates or inserts consent settings.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.communication.upsertCommunicationConsent({  body : value });
-
-// Async/Await
-const data = await applicationClient.communication.upsertCommunicationConsent({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CommunicationConsentReq](#CommunicationConsentReq) | yes | Request body |
-
-
-Update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. 
-
-*Returned Response:*
-
-
-
-
-[CommunicationConsentRes](#CommunicationConsentRes)
-
-Success. Updates the channels for which user has consented. Check the example shown below or refer `CommunicationConsentRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "appId": "000000000000000000000004",
-    "userId": "5e56021c4bda3ccab6d9f884",
-    "channels": {
-      "email": {
-        "response": "yes",
-        "displayName": "Email"
-      },
-      "sms": {
-        "response": "yes",
-        "displayName": "SMS"
-      },
-      "whatsapp": {
-        "response": "noaction",
-        "displayName": "WhatsApp"
-      }
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
 ### upsertAppPushtoken
-Updates or adds app push token.
+Upsert push token of a user
 
 
 
@@ -208,7 +123,7 @@ const data = await applicationClient.communication.upsertAppPushtoken({  body : 
 | body | [PushtokenReq](#PushtokenReq) | yes | Request body |
 
 
-Update the push token of the user. 
+Use this API to update and insert the push token of the user.
 
 *Returned Response:*
 
@@ -285,6 +200,86 @@ Success. Check the example shown below or refer `PushtokenRes` for more details.
     "created_at": "2021-02-04T03:25:24.765Z",
     "updated_at": "2021-02-04T03:25:51.152Z",
     "expired_at": "2021-02-05T03:25:51.138Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertCommunicationConsent
+Upsert communication consent
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.communication.upsertCommunicationConsent({  body : value });
+
+// Async/Await
+const data = await applicationClient.communication.upsertCommunicationConsent({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CommunicationConsentReq](#CommunicationConsentReq) | yes | Request body |
+
+
+Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
+
+*Returned Response:*
+
+
+
+
+[CommunicationConsentRes](#CommunicationConsentRes)
+
+Success. Updates the channels for which user has consented. Check the example shown below or refer `CommunicationConsentRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "appId": "000000000000000000000004",
+    "userId": "5e56021c4bda3ccab6d9f884",
+    "channels": {
+      "email": {
+        "response": "yes",
+        "displayName": "Email"
+      },
+      "sms": {
+        "response": "yes",
+        "displayName": "SMS"
+      },
+      "whatsapp": {
+        "response": "noaction",
+        "displayName": "WhatsApp"
+      }
+    }
   }
 }
 ```

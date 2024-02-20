@@ -191,4 +191,4 @@ type OpenVideoRoomParam = {
     body: LeadPlatformModel.CreateVideoRoomPayload;
 };
 type GetCustomFormsParam = any;
-import LeadPlatformModel = require("./LeadPlatformModel");
+import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");

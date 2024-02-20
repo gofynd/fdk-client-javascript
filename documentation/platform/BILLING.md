@@ -9,7 +9,7 @@
 Handle platform subscription
 
 
-Billing & Subscription
+Default
 * [activateSubscriptionPlan](#activatesubscriptionplan)
 * [cancelSubscriptionCharge](#cancelsubscriptioncharge)
 * [cancelSubscriptionPlan](#cancelsubscriptionplan)
@@ -22,15 +22,20 @@ Billing & Subscription
 * [getFeatureLimitConfig](#getfeaturelimitconfig)
 * [getInvoiceById](#getinvoicebyid)
 * [getInvoices](#getinvoices)
+* [getPaymentOptions](#getpaymentoptions)
+* [getPaymentTransaction](#getpaymenttransaction)
 * [getSubscription](#getsubscription)
 * [getSubscriptionCharge](#getsubscriptioncharge)
+* [getentityDetail](#getentitydetail)
+* [globalSettings](#globalsettings)
+* [paymentOptions](#paymentoptions)
 * [planStatusUpdate](#planstatusupdate)
 * [subscripePlan](#subscripeplan)
+* [subscriptionConfigs](#subscriptionconfigs)
+* [subscriptionMethods](#subscriptionmethods)
+* [subscriptionPlanChange](#subscriptionplanchange)
 * [upsertCustomerDetail](#upsertcustomerdetail)
-
-
-Default
-* [getentityDetail](#getentitydetail)
+* [verifyPayment](#verifypayment)
 
 
 
@@ -42,7 +47,7 @@ Default
 
 
 ### activateSubscriptionPlan
-Activate a subscription plan.
+Activate subscription
 
 
 
@@ -63,7 +68,7 @@ const data = await platformClient.billing.activateSubscriptionPlan({  body : val
 | body | [SubscriptionActivateReq](#SubscriptionActivateReq) | yes | Request body |
 
 
-Activate a specific subscription plan for a customer.
+It will activate subscription plan for customer
 
 *Returned Response:*
 
@@ -153,7 +158,7 @@ Success
 
 
 ### cancelSubscriptionCharge
-Cancel a subscription charge.
+Cancel subscription charge
 
 
 
@@ -178,7 +183,7 @@ const data = await platformClient.billing.cancelSubscriptionCharge({  extensionI
 
 
 
-Cancel an ongoing subscription charge for a customer.
+Cancel subscription and attached charges.
 
 *Returned Response:*
 
@@ -212,7 +217,7 @@ Success
 
 
 ### cancelSubscriptionPlan
-Cancel a subscription plan.
+Cancel subscription
 
 
 
@@ -233,7 +238,7 @@ const data = await platformClient.billing.cancelSubscriptionPlan({  body : value
 | body | [CancelSubscriptionReq](#CancelSubscriptionReq) | yes | Request body |
 
 
-Cancel an active subscription plan for a customer
+It will cancel current active subscription.
 
 *Returned Response:*
 
@@ -325,7 +330,7 @@ Success
 
 
 ### checkCouponValidity
-Verify coupon validity.
+Check coupon validity
 
 
 
@@ -350,7 +355,7 @@ const data = await platformClient.billing.checkCouponValidity({  plan : value,
 
 
 
-Checks whether a coupon code is valid for discounts while billing.
+Check coupon validity.
 
 *Returned Response:*
 
@@ -384,7 +389,7 @@ Success
 
 
 ### createOneTimeCharge
-Generate a one-time charge.
+Create one time subscription charge
 
 
 
@@ -408,7 +413,7 @@ const data = await platformClient.billing.createOneTimeCharge({  extensionId : v
 | body | [CreateOneTimeCharge](#CreateOneTimeCharge) | yes | Request body |
 
 
-Generate a one-time charge for specific services or products.
+Register one time subscription charge for a seller of your extension.
 
 *Returned Response:*
 
@@ -442,7 +447,7 @@ Success
 
 
 ### createSubscriptionCharge
-Initiate subscription billing.
+Create subscription charge
 
 
 
@@ -466,7 +471,7 @@ const data = await platformClient.billing.createSubscriptionCharge({  extensionI
 | body | [CreateSubscriptionCharge](#CreateSubscriptionCharge) | yes | Request body |
 
 
-Register a subscription charge for a seller using your extension.
+Register subscription charge for a seller of your extension.
 
 *Returned Response:*
 
@@ -500,7 +505,7 @@ Success
 
 
 ### getChargeDetails
-Obtain charge details.
+Get subscription charge details
 
 
 
@@ -525,7 +530,7 @@ const data = await platformClient.billing.getChargeDetails({  extensionId : valu
 
 
 
-Retrieve comprehensive details about a specific billing charge.
+Get created subscription charge details
 
 *Returned Response:*
 
@@ -559,7 +564,7 @@ Success
 
 
 ### getCustomerDetail
-Fetch customer details.
+Get subscription customer detail
 
 
 
@@ -576,7 +581,7 @@ const data = await platformClient.billing.getCustomerDetail();
 
 
 
-Obtain customer-related billing information.
+Get subscription customer detail.
 
 *Returned Response:*
 
@@ -642,7 +647,7 @@ Success
 
 
 ### getEnterprisePlans
-Retrieve enterprise-level plans.
+Get Enterprise Plans
 
 
 
@@ -659,7 +664,8 @@ const data = await platformClient.billing.getEnterprisePlans();
 
 
 
-Retrieve available enterprise-level subscription plans.
+Get Enterprise Plans.
+
 
 *Returned Response:*
 
@@ -829,7 +835,7 @@ Success
 
 
 ### getFeatureLimitConfig
-Obtain feature limit configurations.
+Get subscription subscription limits
 
 
 
@@ -854,7 +860,7 @@ const data = await platformClient.billing.getFeatureLimitConfig({  productSuite 
 
 
 
-Retrieve configuration settings for feature limits in subscription plans.
+Get subscription subscription limits.
 
 *Returned Response:*
 
@@ -924,7 +930,7 @@ Success
 
 
 ### getInvoiceById
-Get a specific invoice.
+Get invoice by id
 
 
 
@@ -946,7 +952,7 @@ const data = await platformClient.billing.getInvoiceById({  invoiceId : value })
 
 
 
-Retrieve a particular invoice's details by providing its unique ID.
+Get invoice by id.
 
 *Returned Response:*
 
@@ -1213,7 +1219,7 @@ Success
 
 
 ### getInvoices
-Retrieve invoices.
+Get invoices
 
 
 
@@ -1230,7 +1236,7 @@ const data = await platformClient.billing.getInvoices();
 
 
 
-Retrieve invoices for billing and payment tracking.
+Get invoices.
 
 *Returned Response:*
 
@@ -1502,8 +1508,120 @@ Success
 ---
 
 
+### getPaymentOptions
+API to get payment options
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.getPaymentOptions({  transactionId : value });
+
+// Async/Await
+const data = await platformClient.billing.getPaymentOptions({  transactionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| transactionId | string | yes | ID of the payment transaction. |  
+
+
+
+API to get payment options.
+
+*Returned Response:*
+
+
+
+
+[GetPaymentOptions](#GetPaymentOptions)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPaymentTransaction
+API to get payment transaction details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.getPaymentTransaction({  transactionId : value });
+
+// Async/Await
+const data = await platformClient.billing.getPaymentTransaction({  transactionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| transactionId | string | yes | Payment Transaction unique id. |  
+
+
+
+API to get payment transaction details.
+
+*Returned Response:*
+
+
+
+
+[PaymentTransactionDetails](#PaymentTransactionDetails)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getSubscription
-Retrieve subscription details.
+Get current subscription detail
 
 
 
@@ -1520,7 +1638,8 @@ const data = await platformClient.billing.getSubscription();
 
 
 
-Retrieve details of a customer's subscription information.
+If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+
 
 *Returned Response:*
 
@@ -1851,7 +1970,7 @@ Success
       "hash_identifier": "987abf78c61bfef585242bbbeaab1b59",
       "pdf_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/company/13781/self/subscription/documents/invoices/original/U6ffgNlo_-PS-P-A00515-FY24-paid.pdf"
     },
-    "mandate_amount": "630000",
+    "mandate_amount": 630000,
     "current_subscriptions": [
       {
         "current_period": {
@@ -2050,7 +2169,7 @@ Success
 
 
 ### getSubscriptionCharge
-Retrieve subscription charge details.
+Get subscription charge details
 
 
 
@@ -2075,7 +2194,7 @@ const data = await platformClient.billing.getSubscriptionCharge({  extensionId :
 
 
 
-Retrieve detailed information about subscription charges using this API.
+Get created subscription charge details
 
 *Returned Response:*
 
@@ -2108,8 +2227,194 @@ Success
 ---
 
 
+### getentityDetail
+Generic api to get the entity detail
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.getentityDetail({  entityName : value,
+ channel : value,
+ entityId : value,
+ component : value,
+ componentName : value });
+
+// Async/Await
+const data = await platformClient.billing.getentityDetail({  entityName : value,
+ channel : value,
+ entityId : value,
+ component : value,
+ componentName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| entityName | string | yes | Entity name. |    
+| entityId | string | no | Entity unique id. |   
+| channel | string | yes | Ordering channel. |    
+| component | string | no | The coponents the user would like to know. |    
+| componentName | string | no | The name of component the preferred to be fetched. |  
+
+
+
+Generic api to get the entity detail
+
+*Returned Response:*
+
+
+
+
+[EntityResponse](#EntityResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### globalSettings
+API to get global settings details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.globalSettings({  pageNo : value,
+ pageSize : value,
+ query : value });
+
+// Async/Await
+const data = await platformClient.billing.globalSettings({  pageNo : value,
+ pageSize : value,
+ query : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pageNo | number | yes | number of pages needed |   
+| pageSize | number | yes | number of items to be there in page |   
+| query | Object | yes | field which will be used in db query |  
+
+
+
+API to get global settings details.
+
+*Returned Response:*
+
+
+
+
+[GlobalSettings](#GlobalSettings)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### paymentOptions
+API to get payment details of requested payment options
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.paymentOptions({  code : value });
+
+// Async/Await
+const data = await platformClient.billing.paymentOptions({  code : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| code | string | yes | Payment options unique code. |  
+
+
+
+API to get payment details of requested payment options.
+
+*Returned Response:*
+
+
+
+
+[PaymentOptions](#PaymentOptions)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### planStatusUpdate
-Update subscription plan status.
+Update Status of The plan
 
 
 
@@ -2130,7 +2435,7 @@ const data = await platformClient.billing.planStatusUpdate({  body : value });
 | body | [PlanStatusUpdateReq](#PlanStatusUpdateReq) | yes | Request body |
 
 
-Modify the status of a subscription plan.
+It will update the status of the plan
 
 *Returned Response:*
 
@@ -2367,7 +2672,7 @@ Success
 
 
 ### subscripePlan
-Subscribe to a plan.
+Subscribe plan.
 
 
 
@@ -2388,7 +2693,7 @@ const data = await platformClient.billing.subscripePlan({  body : value });
 | body | [SunscribePlan](#SunscribePlan) | yes | Request body |
 
 
-Subscribe to a specific billing plan.
+It will subscribe a plan.
 
 *Returned Response:*
 
@@ -2438,8 +2743,177 @@ Success
 ---
 
 
+### subscriptionConfigs
+API to get subscription config details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.subscriptionConfigs();
+
+// Async/Await
+const data = await platformClient.billing.subscriptionConfigs();
+```
+
+
+
+
+
+
+API to get subscription config details.
+
+*Returned Response:*
+
+
+
+
+[ConfigRes](#ConfigRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### subscriptionMethods
+API to get subscription methods
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.subscriptionMethods({  uniqueExternalId : value });
+
+// Async/Await
+const data = await platformClient.billing.subscriptionMethods({  uniqueExternalId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueExternalId | Object | yes | unique id for external company |  
+
+
+
+API to get subscription methods.
+
+*Returned Response:*
+
+
+
+
+[SubscriptionMethods](#SubscriptionMethods)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### subscriptionPlanChange
+API to get plan change details of subscription
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.subscriptionPlanChange({  productSuite : value,
+ uniqueId : value,
+ platform : value });
+
+// Async/Await
+const data = await platformClient.billing.subscriptionPlanChange({  productSuite : value,
+ uniqueId : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| productSuite | string | no |  |    
+| uniqueId | number | no |  |    
+| platform | string | no |  |  
+
+
+
+API to get plan change details of subscription.
+
+*Returned Response:*
+
+
+
+
+[PlanChangeDetails](#PlanChangeDetails)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### upsertCustomerDetail
-Update or insert customer details.
+Upsert subscription customer detail
 
 
 
@@ -2460,7 +2934,7 @@ const data = await platformClient.billing.upsertCustomerDetail({  body : value }
 | body | [SubscriptionCustomerCreate](#SubscriptionCustomerCreate) | yes | Request body |
 
 
-Allows you to modify or insert customer information in the billing system.
+Upsert subscription customer detail.
 
 *Returned Response:*
 
@@ -2525,27 +2999,17 @@ Success
 ---
 
 
-
-
-### getentityDetail
-Generic api to get the entity detail
+### verifyPayment
+API to verify subscription payment
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.billing.getentityDetail({  entityName : value,
- channel : value,
- entityId : value,
- component : value,
- componentName : value });
+const promise = platformClient.billing.verifyPayment({  body : value });
 
 // Async/Await
-const data = await platformClient.billing.getentityDetail({  entityName : value,
- channel : value,
- entityId : value,
- component : value,
- componentName : value });
+const data = await platformClient.billing.verifyPayment({  body : value });
 ```
 
 
@@ -2553,23 +3017,18 @@ const data = await platformClient.billing.getentityDetail({  entityName : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| entityName | string | yes | Entity name. |    
-| entityId | string | no | Entity unique id. |   
-| channel | string | yes | Ordering channel. |    
-| component | string | no | The coponents the user would like to know. |    
-| componentName | string | no | The name of component the preferred to be fetched. |  
+| --------- | -----  | -------- | ----------- |
+| body | [VerifyPaymentReq](#VerifyPaymentReq) | yes | Request body |
 
 
-
-Generic api to get the entity detail
+API to verify subscription payment.
 
 *Returned Response:*
 
 
 
 
-[EntityResponse](#EntityResponse)
+[VerifyPaymentRes](#VerifyPaymentRes)
 
 Success
 
@@ -2600,11 +3059,47 @@ Success
 ### Schemas
 
 
+#### [Author](#Author)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | modified_by_details | string? |  yes  |  |
+ 
+
+---
+
 #### [BadRequest](#BadRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  | Failure message. |
+ 
+
+---
+
+#### [BillingAddress](#BillingAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | line1 | string? |  yes  |  |
+ | line2 | string? |  yes  |  |
+ | postal_code | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ 
+
+---
+
+#### [BusinessCountryInfo](#BusinessCountryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | currency | [Currency](#Currency)? |  yes  |  |
+ | timezone | string? |  yes  |  |
  
 
 ---
@@ -2658,6 +3153,26 @@ Success
 
 ---
 
+#### [ConfigPublicKey](#ConfigPublicKey)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | public_key | string? |  yes  |  |
+ 
+
+---
+
+#### [ConfigRes](#ConfigRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string? |  yes  |  |
+ | config | [ConfigPublicKey](#ConfigPublicKey)? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [CreateOneTimeCharge](#CreateOneTimeCharge)
 
  | Properties | Type | Nullable | Description |
@@ -2703,6 +3218,38 @@ Success
 
 ---
 
+#### [CreditTransaction](#CreditTransaction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | amount | number? |  yes  |  |
+ | author | [Author](#Author)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | ending_balance | [EndingBalance](#EndingBalance)? |  yes  |  |
+ | entity | string? |  yes  |  |
+ | is_test | boolean? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | payment | [PaymentData](#PaymentData)? |  yes  |  |
+ | subscriber_id | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [Currency](#Currency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | symbol | string? |  yes  |  |
+ 
+
+---
+
 #### [CurrentPeriod](#CurrentPeriod)
 
  | Properties | Type | Nullable | Description |
@@ -2713,12 +3260,40 @@ Success
 
 ---
 
+#### [DefaultMerchants](#DefaultMerchants)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stripe | string? |  yes  |  |
+ 
+
+---
+
 #### [Details](#Details)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | features | [[Features](#Features)]? |  yes  |  |
  | fee_components | [[FeeComponents](#FeeComponents)]? |  yes  |  |
+ 
+
+---
+
+#### [Documents](#Documents)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pan | string? |  yes  |  |
+ 
+
+---
+
+#### [EndingBalance](#EndingBalance)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | old_entry_ref | string? |  yes  |  |
  
 
 ---
@@ -2797,6 +3372,47 @@ Success
  | location | [string]? |  yes  |  |
  | settle_cycle_period | string? |  yes  |  |
  | settlement_type | string? |  yes  |  |
+ 
+
+---
+
+#### [GetPaymentOptions](#GetPaymentOptions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_options | [[PaymentItems](#PaymentItems)]? |  yes  |  |
+ 
+
+---
+
+#### [GlobalSettings](#GlobalSettings)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [GlobalSettingsData](#GlobalSettingsData)? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
+
+---
+
+#### [GlobalSettingsData](#GlobalSettingsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | freeze_panel | boolean? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | payment | [GlobalSettingsPayment](#GlobalSettingsPayment)? |  yes  |  |
+ 
+
+---
+
+#### [GlobalSettingsPayment](#GlobalSettingsPayment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | default_merchants | [DefaultMerchants](#DefaultMerchants)? |  yes  |  |
  
 
 ---
@@ -3089,6 +3705,64 @@ Success
 
 ---
 
+#### [PaymentData](#PaymentData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string? |  yes  |  |
+ | aggregator_order_id | string? |  yes  |  |
+ | transaction_id | string? |  yes  |  |
+ 
+
+---
+
+#### [PaymentItems](#PaymentItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
+#### [PaymentOptions](#PaymentOptions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | aggregator | string? |  yes  |  |
+ | aggregator_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
+#### [PaymentTransactionDetails](#PaymentTransactionDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | aggregator | string? |  yes  |  |
+ | amount | number? |  yes  |  |
+ | collection_type | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | current_status | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | meta | [Meta](#Meta)? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | subscriber_id | string? |  yes  |  |
+ 
+
+---
+
 #### [Phone](#Phone)
 
  | Properties | Type | Nullable | Description |
@@ -3122,6 +3796,30 @@ Success
  | tags | [string]? |  yes  |  |
  | trial_period | number? |  yes  |  |
  | type | string? |  yes  |  |
+ 
+
+---
+
+#### [PlanChangeData](#PlanChangeData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credit_note_amount | number? |  yes  |  |
+ | gross_total | number? |  yes  |  |
+ | gst | number? |  yes  |  |
+ | gst_amount | number? |  yes  |  |
+ | taxable_amount | number? |  yes  |  |
+ | total | number? |  yes  |  |
+ 
+
+---
+
+#### [PlanChangeDetails](#PlanChangeDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [PlanChangeData](#PlanChangeData)? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3164,6 +3862,40 @@ Success
  | meta | [Meta](#Meta)? |  yes  |  |
  | redirect_url | string? |  yes  |  |
  | transaction_id | string? |  yes  |  |
+ 
+
+---
+
+#### [Subscriber](#Subscriber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | billing_address | [BillingAddress](#BillingAddress)? |  yes  |  |
+ | business_country_info | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
+ | comms | boolean? |  yes  |  |
+ | consent | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | credit_balance | number? |  yes  |  |
+ | data | [SubscriberData](#SubscriberData)? |  yes  |  |
+ | documents | [Documents](#Documents)? |  yes  |  |
+ | email | string? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | unique_id | string? |  yes  |  |
+ 
+
+---
+
+#### [SubscriberData](#SubscriberData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | pg_customer_id | string? |  yes  |  |
+ | pg_user_exists | boolean? |  yes  |  |
  
 
 ---
@@ -3388,6 +4120,16 @@ Success
 
 ---
 
+#### [SubscriptionMethods](#SubscriptionMethods)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string]? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [SubscriptionPauseCollection](#SubscriptionPauseCollection)
 
  | Properties | Type | Nullable | Description |
@@ -3405,7 +4147,7 @@ Success
  | current_subscriptions | [[Subscription](#Subscription)]? |  yes  |  |
  | is_enabled | boolean? |  yes  |  |
  | latest_invoice | [InvoicesData](#InvoicesData)? |  yes  |  |
- | mandate_amount | string? |  yes  |  |
+ | mandate_amount | number? |  yes  |  |
  | next_plan | [Plan](#Plan)? |  yes  |  |
  | subscription | [Subscription](#Subscription)? |  yes  |  |
  
@@ -3441,6 +4183,40 @@ Success
  | entity_type | string? |  yes  |  |
  | meta | [Meta](#Meta)? |  yes  |  |
  | plan_id | string? |  yes  |  |
+ 
+
+---
+
+#### [VerifyPaymentData](#VerifyPaymentData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credit_transaction | [CreditTransaction](#CreditTransaction)? |  yes  |  |
+ | subscriber | [Subscriber](#Subscriber)? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [VerifyPaymentReq](#VerifyPaymentReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | provider_type | string? |  yes  |  |
+ | razorpay_order_id | string? |  yes  |  |
+ | razorpay_payment_id | string? |  yes  |  |
+ | razorpay_signature | string? |  yes  |  |
+ | status_code | number? |  yes  |  |
+ 
+
+---
+
+#### [VerifyPaymentRes](#VerifyPaymentRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [VerifyPaymentData](#VerifyPaymentData)? |  yes  |  |
+ | status | string? |  yes  |  |
  
 
 ---

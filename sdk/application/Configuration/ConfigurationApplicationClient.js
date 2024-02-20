@@ -58,8 +58,8 @@ class Configuration {
    * @returns {Promise<ConfigurationApplicationModel.AppCurrencyResponse>} -
    *   Success response
    * @name getAppCurrencies
-   * @summary: Retrieves app-specific currencies.
-   * @description: Retrieve a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
+   * @summary: Get currencies enabled in the application
+   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
    */
   async getAppCurrencies(
     { requestHeaders } = { requestHeaders: {} },
@@ -139,8 +139,8 @@ class Configuration {
    * @returns {Promise<ConfigurationApplicationModel.AppStaffListResponse>} -
    *   Success response
    * @name getAppStaffList
-   * @summary: Lists app staff members.
-   * @description: Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
+   * @summary: Get a list of staff.
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
    */
   async getAppStaffList(
     {
@@ -228,14 +228,58 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on orders.
+   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+   *   retrieving staff members working at a particular ordering store.
+   * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+   *   the details of a particular staff member.
+   * @param {string} [arg.userName] - User name of the member
+   * @returns {Paginator<ConfigurationApplicationModel.AppStaffListResponse>}
+   * @summary: Get a list of staff.
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+   */
+  getAppStaffListPaginator({
+    pageSize,
+    orderIncent,
+    orderingStore,
+    user,
+    userName,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAppStaffList({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        orderIncent: orderIncent,
+        orderingStore: orderingStore,
+        user: user,
+        userName: userName,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationApplicationValidator.GetAppStaffsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.AppStaffResponse>} -
    *   Success response
    * @name getAppStaffs
-   * @summary: Fetches detailed staff info.
-   * @description: Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
+   * @summary: Get a list of staff.
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
    */
   async getAppStaffs(
     { orderIncent, orderingStore, user, requestHeaders } = {
@@ -317,8 +361,8 @@ class Configuration {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.Application>} - Success response
    * @name getApplication
-   * @summary: Fetches application details.
-   * @description: Retrieve the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getApplication/).
+   * @summary: Get current sales channel details
+   * @description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getApplication/).
    */
   async getApplication(
     { requestHeaders } = { requestHeaders: {} },
@@ -398,8 +442,8 @@ class Configuration {
    * @returns {Promise<ConfigurationApplicationModel.ApplicationDetail>} -
    *   Success response
    * @name getBasicDetails
-   * @summary: Retrieves basic app info.
-   * @description: Retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getBasicDetails/).
+   * @summary: Get basic details of the application
+   * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getBasicDetails/).
    */
   async getBasicDetails(
     { requestHeaders } = { requestHeaders: {} },
@@ -480,8 +524,8 @@ class Configuration {
    *   - Success response
    *
    * @name getContactInfo
-   * @summary: Retrieves contact details.
-   * @description: Retrieve information about the social links, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getContactInfo/).
+   * @summary: Get application information
+   * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getContactInfo/).
    */
   async getContactInfo(
     { requestHeaders } = { requestHeaders: {} },
@@ -561,8 +605,8 @@ class Configuration {
    * @returns {Promise<ConfigurationApplicationModel.CurrenciesResponse>} -
    *   Success response
    * @name getCurrencies
-   * @summary: Lists supported currencies.
-   * @description: Retrieve a list of currencies available. Also get the name, code, symbol, and the decimal digits of the currencies.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
+   * @summary: Get all currencies list
+   * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
    */
   async getCurrencies(
     { requestHeaders } = { requestHeaders: {} },
@@ -641,8 +685,8 @@ class Configuration {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.Currency>} - Success response
    * @name getCurrencyById
-   * @summary: Fetches currency by ID.
-   * @description: Retrieve details of a specific currency using its ID.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
+   * @summary: Get currency by its ID
+   * @description: Use this API to retrieve a currency using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
    */
   async getCurrencyById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -722,8 +766,8 @@ class Configuration {
    * @returns {Promise<ConfigurationApplicationModel.AppFeatureResponse>} -
    *   Success response
    * @name getFeatures
-   * @summary: Fetches app features.
-   * @description: Retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
+   * @summary: Get features of application
+   * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
    */
   async getFeatures(
     { requestHeaders } = { requestHeaders: {} },
@@ -803,8 +847,8 @@ class Configuration {
    * @returns {Promise<ConfigurationApplicationModel.AppTokenResponse>} -
    *   Success response
    * @name getIntegrationTokens
-   * @summary: Fetches API tokens.
-   * @description: Retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
+   * @summary: Get integration tokens
+   * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
    */
   async getIntegrationTokens(
     { requestHeaders } = { requestHeaders: {} },
@@ -884,8 +928,8 @@ class Configuration {
    * @returns {Promise<ConfigurationApplicationModel.LanguageResponse>} -
    *   Success response
    * @name getLanguages
-   * @summary: Lists available languages.
-   * @description: Retrieves all languages supported by the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
+   * @summary: Get list of languages
+   * @description: Use this API to get a list of languages supported in the application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
    */
   async getLanguages(
     { requestHeaders } = { requestHeaders: {} },
@@ -966,8 +1010,8 @@ class Configuration {
    *   - Success response
    *
    * @name getOrderingStoreCookie
-   * @summary: Retrieves store selection cookie.
-   * @description: Retrieve an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStoreCookie/).
+   * @summary: Get an Ordering Store signed cookie on selection of ordering store.
+   * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStoreCookie/).
    */
   async getOrderingStoreCookie(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1046,8 +1090,8 @@ class Configuration {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.OrderingStores>} - Success response
    * @name getOrderingStores
-   * @summary: Lists order-enabled stores.
-   * @description: Retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
+   * @summary: Get all deployment stores
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
    */
   async getOrderingStores(
     { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
@@ -1124,6 +1168,36 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @returns {Paginator<ConfigurationApplicationModel.OrderingStores>}
+   * @summary: Get all deployment stores
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+   */
+  getOrderingStoresPaginator({ pageSize, q } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getOrderingStores({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationApplicationValidator.GetOwnerInfoParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -1131,8 +1205,8 @@ class Configuration {
    *   - Success response
    *
    * @name getOwnerInfo
-   * @summary: Retrieves application owner details.
-   * @description: Retrieve the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. Also retrieves the seller and owner information such as address, email address, and phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
+   * @summary: Get sales channel, owner and seller information
+   * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
    */
   async getOwnerInfo(
     { requestHeaders } = { requestHeaders: {} },
@@ -1210,8 +1284,8 @@ class Configuration {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.OrderingStore>} - Success response
    * @name getStoreDetailById
-   * @summary: Retrieves store details by ID.
-   * @description: Retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
+   * @summary: Get ordering store details
+   * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
    */
   async getStoreDetailById(
     { storeId, requestHeaders } = { requestHeaders: {} },
@@ -1294,8 +1368,8 @@ class Configuration {
    *   - Success response
    *
    * @name removeOrderingStoreCookie
-   * @summary: Deletes store cookie.
-   * @description: Unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/removeOrderingStoreCookie/).
+   * @summary: Unset the Ordering Store signed cookie.
+   * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/removeOrderingStoreCookie/).
    */
   async removeOrderingStoreCookie(
     { requestHeaders } = { requestHeaders: {} },

@@ -267,8 +267,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfig>} -
    *   Success response
    * @name getApplicationConfiguration
-   * @summary: Get All Courier Rules applied to application
-   * @description: This API returns all the Courier Rules applied to an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
+   * @summary: Get All application configs
+   * @description: This API returns all config applied to an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
    */
   async getApplicationConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -842,6 +842,89 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationConfigurationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResponse>}
+   *   - Success response
+   *
+   * @name patchApplicationConfiguration
+   * @summary: To patch any config which can be applied to application.
+   * @description: Apply configs to application and for reference, refer to examples - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationConfiguration/).
+   */
+  async patchApplicationConfiguration(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.patchApplicationConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.patchApplicationConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > patchApplicationConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.ApplicationConfigPatchResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > patchApplicationConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
    *   - Arg object
    *
@@ -1182,8 +1265,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeAuditHistory
-   * @summary: Update pincode audit history.
-   * @description: Modify and update audit history records for pincode-related activities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
+   * @summary: Auditlog configuration of application.
+   * @description: This API returns Audit logs of Pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
    */
   async updatePincodeAuditHistory(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1265,8 +1348,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeBulkView
-   * @summary: Update pincode bulk view.
-   * @description: Modify and update views related to bulk operations on pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
+   * @summary: Bulk Update of pincode in the application.
+   * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
    */
   async updatePincodeBulkView(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1348,8 +1431,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeCoDListing
-   * @summary: Update pincode CoD (Cash on Delivery) listing.
-   * @description: Modify and update listings for CoD based on pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
+   * @summary: Pincode count view of application.
+   * @description: This API returns count of active pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
    */
   async updatePincodeCoDListing(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1430,8 +1513,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
    *   Success response
    * @name updatePincodeMopView
-   * @summary: Update pincode MOP (Mode of Payment) view.
-   * @description: Modify and update views related to pincode MOP. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
+   * @summary: PincodeView update of MOP.
+   * @description: This API updates Pincode method of payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
    */
   async updatePincodeMopView(
     { body, requestHeaders } = { requestHeaders: {} },

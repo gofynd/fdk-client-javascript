@@ -20,8 +20,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionActivateRes>} - Success response
    * @name activateSubscriptionPlan
-   * @summary: Activate a subscription plan.
-   * @description: Activate a specific subscription plan for a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/activateSubscriptionPlan/).
+   * @summary: Activate subscription
+   * @description: It will activate subscription plan for customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/activateSubscriptionPlan/).
    */
   async activateSubscriptionPlan(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -101,8 +101,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
    * @name cancelSubscriptionCharge
-   * @summary: Cancel a subscription charge.
-   * @description: Cancel an ongoing subscription charge for a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
+   * @summary: Cancel subscription charge
+   * @description: Cancel subscription and attached charges. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
    */
   async cancelSubscriptionCharge(
     { extensionId, subscriptionId, requestHeaders } = { requestHeaders: {} },
@@ -184,8 +184,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.CancelSubscriptionRes>} - Success response
    * @name cancelSubscriptionPlan
-   * @summary: Cancel a subscription plan.
-   * @description: Cancel an active subscription plan for a customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionPlan/).
+   * @summary: Cancel subscription
+   * @description: It will cancel current active subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionPlan/).
    */
   async cancelSubscriptionPlan(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -265,8 +265,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.CheckValidityResponse>} - Success response
    * @name checkCouponValidity
-   * @summary: Verify coupon validity.
-   * @description: Checks whether a coupon code is valid for discounts while billing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/checkCouponValidity/).
+   * @summary: Check coupon validity
+   * @description: Check coupon validity. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/checkCouponValidity/).
    */
   async checkCouponValidity(
     { plan, couponCode, requestHeaders } = { requestHeaders: {} },
@@ -349,8 +349,8 @@ class Billing {
    * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponse>} -
    *   Success response
    * @name createOneTimeCharge
-   * @summary: Generate a one-time charge.
-   * @description: Generate a one-time charge for specific services or products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createOneTimeCharge/).
+   * @summary: Create one time subscription charge
+   * @description: Register one time subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createOneTimeCharge/).
    */
   async createOneTimeCharge(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -431,8 +431,8 @@ class Billing {
    * @returns {Promise<BillingPlatformModel.CreateSubscriptionResponse>} -
    *   Success response
    * @name createSubscriptionCharge
-   * @summary: Initiate subscription billing.
-   * @description: Register a subscription charge for a seller using your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
+   * @summary: Create subscription charge
+   * @description: Register subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
    */
   async createSubscriptionCharge(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -514,8 +514,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.OneTimeChargeEntity>} - Success response
    * @name getChargeDetails
-   * @summary: Obtain charge details.
-   * @description: Retrieve comprehensive details about a specific billing charge. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getChargeDetails/).
+   * @summary: Get subscription charge details
+   * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getChargeDetails/).
    */
   async getChargeDetails(
     { extensionId, chargeId, requestHeaders } = { requestHeaders: {} },
@@ -595,8 +595,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
    * @name getCustomerDetail
-   * @summary: Fetch customer details.
-   * @description: Obtain customer-related billing information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getCustomerDetail/).
+   * @summary: Get subscription customer detail
+   * @description: Get subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getCustomerDetail/).
    */
   async getCustomerDetail(
     { requestHeaders } = { requestHeaders: {} },
@@ -670,8 +670,9 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Plan[]>} - Success response
    * @name getEnterprisePlans
-   * @summary: Retrieve enterprise-level plans.
-   * @description: Retrieve available enterprise-level subscription plans. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getEnterprisePlans/).
+   * @summary: Get Enterprise Plans
+   * @description: Get Enterprise Plans.
+   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getEnterprisePlans/).
    */
   async getEnterprisePlans(
     { requestHeaders } = { requestHeaders: {} },
@@ -742,8 +743,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionLimit>} - Success response
    * @name getFeatureLimitConfig
-   * @summary: Obtain feature limit configurations.
-   * @description: Retrieve configuration settings for feature limits in subscription plans. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
+   * @summary: Get subscription subscription limits
+   * @description: Get subscription subscription limits. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
    */
   async getFeatureLimitConfig(
     { productSuite, type, requestHeaders } = { requestHeaders: {} },
@@ -825,8 +826,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Invoice>} - Success response
    * @name getInvoiceById
-   * @summary: Get a specific invoice.
-   * @description: Retrieve a particular invoice's details by providing its unique ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoiceById/).
+   * @summary: Get invoice by id
+   * @description: Get invoice by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoiceById/).
    */
   async getInvoiceById(
     { invoiceId, requestHeaders } = { requestHeaders: {} },
@@ -904,8 +905,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Invoices>} - Success response
    * @name getInvoices
-   * @summary: Retrieve invoices.
-   * @description: Retrieve invoices for billing and payment tracking. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoices/).
+   * @summary: Get invoices
+   * @description: Get invoices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoices/).
    */
   async getInvoices(
     { requestHeaders } = { requestHeaders: {} },
@@ -972,13 +973,174 @@ class Billing {
   }
 
   /**
+   * @param {BillingPlatformValidator.GetPaymentOptionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.GetPaymentOptions>} - Success response
+   * @name getPaymentOptions
+   * @summary: API to get payment options
+   * @description: API to get payment options. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getPaymentOptions/).
+   */
+  async getPaymentOptions(
+    { transactionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = BillingPlatformValidator.getPaymentOptions().validate(
+      {
+        transactionId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.getPaymentOptions().validate(
+      {
+        transactionId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > getPaymentOptions \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["transaction_id"] = transactionId;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/payment/options`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.GetPaymentOptions().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getPaymentOptions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {BillingPlatformValidator.GetPaymentTransactionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.PaymentTransactionDetails>} -
+   *   Success response
+   * @name getPaymentTransaction
+   * @summary: API to get payment transaction details
+   * @description: API to get payment transaction details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getPaymentTransaction/).
+   */
+  async getPaymentTransaction(
+    { transactionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = BillingPlatformValidator.getPaymentTransaction().validate(
+      {
+        transactionId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.getPaymentTransaction().validate(
+      {
+        transactionId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > getPaymentTransaction \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/payment/transaction/${transactionId}`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.PaymentTransactionDetails().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getPaymentTransaction \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {BillingPlatformValidator.GetSubscriptionParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionStatus>} - Success response
    * @name getSubscription
-   * @summary: Retrieve subscription details.
-   * @description: Retrieve details of a customer's subscription information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscription/).
+   * @summary: Get current subscription detail
+   * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscription/).
    */
   async getSubscription(
     { requestHeaders } = { requestHeaders: {} },
@@ -1052,8 +1214,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
    * @name getSubscriptionCharge
-   * @summary: Retrieve subscription charge details.
-   * @description: Retrieve detailed information about subscription charges using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
+   * @summary: Get subscription charge details
+   * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
    */
   async getSubscriptionCharge(
     { extensionId, subscriptionId, requestHeaders } = { requestHeaders: {} },
@@ -1227,13 +1389,179 @@ class Billing {
   }
 
   /**
+   * @param {BillingPlatformValidator.GlobalSettingsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.GlobalSettings>} - Success response
+   * @name globalSettings
+   * @summary: API to get global settings details
+   * @description: API to get global settings details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/globalSettings/).
+   */
+  async globalSettings(
+    { pageNo, pageSize, query, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = BillingPlatformValidator.globalSettings().validate(
+      {
+        pageNo,
+        pageSize,
+        query,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.globalSettings().validate(
+      {
+        pageNo,
+        pageSize,
+        query,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > globalSettings \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["query"] = query;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/global-settings`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.GlobalSettings().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > globalSettings \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {BillingPlatformValidator.PaymentOptionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.PaymentOptions>} - Success response
+   * @name paymentOptions
+   * @summary: API to get payment details of requested payment options
+   * @description: API to get payment details of requested payment options. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/paymentOptions/).
+   */
+  async paymentOptions(
+    { code, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = BillingPlatformValidator.paymentOptions().validate(
+      {
+        code,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.paymentOptions().validate(
+      {
+        code,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > paymentOptions \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["code"] = code;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/payment-options`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.PaymentOptions().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > paymentOptions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {BillingPlatformValidator.PlanStatusUpdateParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Plan>} - Success response
    * @name planStatusUpdate
-   * @summary: Update subscription plan status.
-   * @description: Modify the status of a subscription plan. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/planStatusUpdate/).
+   * @summary: Update Status of The plan
+   * @description: It will update the status of the plan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/planStatusUpdate/).
    */
   async planStatusUpdate(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1311,8 +1639,8 @@ class Billing {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscribePlanRes>} - Success response
    * @name subscripePlan
-   * @summary: Subscribe to a plan.
-   * @description: Subscribe to a specific billing plan. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscripePlan/).
+   * @summary: Subscribe plan.
+   * @description: It will subscribe a plan. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscripePlan/).
    */
   async subscripePlan(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1385,13 +1713,258 @@ class Billing {
   }
 
   /**
+   * @param {BillingPlatformValidator.SubscriptionConfigsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.ConfigRes>} - Success response
+   * @name subscriptionConfigs
+   * @summary: API to get subscription config details
+   * @description: API to get subscription config details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscriptionConfigs/).
+   */
+  async subscriptionConfigs(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = BillingPlatformValidator.subscriptionConfigs().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.subscriptionConfigs().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > subscriptionConfigs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/configs`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.ConfigRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > subscriptionConfigs \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {BillingPlatformValidator.SubscriptionMethodsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.SubscriptionMethods>} - Success response
+   * @name subscriptionMethods
+   * @summary: API to get subscription methods
+   * @description: API to get subscription methods. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscriptionMethods/).
+   */
+  async subscriptionMethods(
+    { uniqueExternalId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = BillingPlatformValidator.subscriptionMethods().validate(
+      {
+        uniqueExternalId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.subscriptionMethods().validate(
+      {
+        uniqueExternalId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > subscriptionMethods \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["unique_external_id"] = uniqueExternalId;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/methods`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.SubscriptionMethods().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > subscriptionMethods \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {BillingPlatformValidator.SubscriptionPlanChangeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.PlanChangeDetails>} - Success response
+   * @name subscriptionPlanChange
+   * @summary: API to get plan change details of subscription
+   * @description: API to get plan change details of subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscriptionPlanChange/).
+   */
+  async subscriptionPlanChange(
+    { productSuite, uniqueId, platform, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = BillingPlatformValidator.subscriptionPlanChange().validate(
+      {
+        productSuite,
+        uniqueId,
+        platform,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.subscriptionPlanChange().validate(
+      {
+        productSuite,
+        uniqueId,
+        platform,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > subscriptionPlanChange \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["product_suite"] = productSuite;
+    query_params["unique_id"] = uniqueId;
+    query_params["platform"] = platform;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/plan-change`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.PlanChangeDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > subscriptionPlanChange \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
    * @name upsertCustomerDetail
-   * @summary: Update or insert customer details.
-   * @description: Allows you to modify or insert customer information in the billing system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/upsertCustomerDetail/).
+   * @summary: Upsert subscription customer detail
+   * @description: Upsert subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/upsertCustomerDetail/).
    */
   async upsertCustomerDetail(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1456,6 +2029,85 @@ class Billing {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Billing > upsertCustomerDetail \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {BillingPlatformValidator.VerifyPaymentParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.VerifyPaymentRes>} - Success response
+   * @name verifyPayment
+   * @summary: API to verify subscription payment
+   * @description: API to verify subscription payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/verifyPayment/).
+   */
+  async verifyPayment(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = BillingPlatformValidator.verifyPayment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.verifyPayment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > verifyPayment \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/verify-payment`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.VerifyPaymentRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > verifyPayment \n ${res_error}`,
         });
       }
     }

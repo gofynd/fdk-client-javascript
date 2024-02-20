@@ -472,4 +472,4 @@ type UpdateUserGroupPartiallyParam = {
     body: UserPlatformModel.PartialUserGroupUpdateSchema;
 };
 type GetPlatformConfigParam = any;
-import UserPlatformModel = require("./UserPlatformModel");
+import UserPlatformModel = require("sdk/output/javascript/code/sdk/platform/User/UserPlatformModel");

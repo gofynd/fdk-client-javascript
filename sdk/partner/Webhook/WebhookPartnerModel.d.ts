@@ -1,5 +1,53 @@
 export = WebhookPartnerModel;
 /**
+ * @typedef KafkaConfigValidateResponse
+ * @property {boolean} [status]
+ * @property {string} [message]
+ */
+/**
+ * @typedef KafkaConfigResponse
+ * @property {number} [id]
+ * @property {string} [name]
+ * @property {string} [client_id]
+ * @property {string[]} [brokers]
+ * @property {boolean} [ssl_enabled]
+ * @property {boolean} [sasl_enabled]
+ * @property {Object} [sasl_configuration]
+ * @property {Object} [ssl_configuration]
+ * @property {number} [connection_timeout]
+ * @property {number} [authentication_timeout]
+ * @property {number} [request_timeout]
+ * @property {string} [created_on]
+ * @property {Object} [association]
+ */
+/**
+ * @typedef KafkaConfigUpdateRequest
+ * @property {string} [name]
+ * @property {string} [client_id]
+ * @property {string[]} [brokers]
+ * @property {boolean} [ssl_enabled]
+ * @property {boolean} [sasl_enabled]
+ * @property {Object} [sasl_configuration]
+ * @property {Object} [ssl_configuration]
+ * @property {number} [connection_timeout]
+ * @property {number} [authentication_timeout]
+ * @property {number} [request_timeout]
+ * @property {number} [id]
+ */
+/**
+ * @typedef KafkaConfigRequest
+ * @property {string} [name]
+ * @property {string} [client_id]
+ * @property {string[]} [brokers]
+ * @property {boolean} [ssl_enabled]
+ * @property {boolean} [sasl_enabled]
+ * @property {Object} [sasl_configuration]
+ * @property {Object} [ssl_configuration]
+ * @property {number} [connection_timeout]
+ * @property {number} [authentication_timeout]
+ * @property {number} [request_timeout]
+ */
+/**
  * @typedef UpdateSubscriberResponse
  * @property {string} [message]
  */
@@ -24,6 +72,7 @@ export = WebhookPartnerModel;
  * @property {number} [id]
  * @property {number} [event_id]
  * @property {number} [subscriber_id]
+ * @property {string} [topic]
  * @property {string} [created_on]
  */
 /**
@@ -215,6 +264,7 @@ export = WebhookPartnerModel;
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {string} [status]
@@ -229,8 +279,60 @@ export = WebhookPartnerModel;
 declare class WebhookPartnerModel {
 }
 declare namespace WebhookPartnerModel {
-    export { UpdateSubscriberResponse, UpdateSubscriberRequest, Association, AuthMeta, SubscriberEventMapping, EventConfigResponse, SubscriberConfigResponse, InvalidEventsRequest, InvalidEventsResponse, DownloadReponse, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, HistoryPayload, CancelDownloadResponse, FilterReportResponse, DeliveryTsResponse, DeliveryTsSchema, DeliveryDetailsRequest, EventDeliveryDetailSchema, DeliveryDetailsResponse, EventProcessReportObject, Page, DeliveryEventLevelSchema, DeliverySummaryResponse, DeliverySummarySchema, ItemSchema };
+    export { KafkaConfigValidateResponse, KafkaConfigResponse, KafkaConfigUpdateRequest, KafkaConfigRequest, UpdateSubscriberResponse, UpdateSubscriberRequest, Association, AuthMeta, SubscriberEventMapping, EventConfigResponse, SubscriberConfigResponse, InvalidEventsRequest, InvalidEventsResponse, DownloadReponse, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, HistoryPayload, CancelDownloadResponse, FilterReportResponse, DeliveryTsResponse, DeliveryTsSchema, DeliveryDetailsRequest, EventDeliveryDetailSchema, DeliveryDetailsResponse, EventProcessReportObject, Page, DeliveryEventLevelSchema, DeliverySummaryResponse, DeliverySummarySchema, ItemSchema };
 }
+/** @returns {KafkaConfigValidateResponse} */
+declare function KafkaConfigValidateResponse(): KafkaConfigValidateResponse;
+type KafkaConfigValidateResponse = {
+    status?: boolean;
+    message?: string;
+};
+/** @returns {KafkaConfigResponse} */
+declare function KafkaConfigResponse(): KafkaConfigResponse;
+type KafkaConfigResponse = {
+    id?: number;
+    name?: string;
+    client_id?: string;
+    brokers?: string[];
+    ssl_enabled?: boolean;
+    sasl_enabled?: boolean;
+    sasl_configuration?: any;
+    ssl_configuration?: any;
+    connection_timeout?: number;
+    authentication_timeout?: number;
+    request_timeout?: number;
+    created_on?: string;
+    association?: any;
+};
+/** @returns {KafkaConfigUpdateRequest} */
+declare function KafkaConfigUpdateRequest(): KafkaConfigUpdateRequest;
+type KafkaConfigUpdateRequest = {
+    name?: string;
+    client_id?: string;
+    brokers?: string[];
+    ssl_enabled?: boolean;
+    sasl_enabled?: boolean;
+    sasl_configuration?: any;
+    ssl_configuration?: any;
+    connection_timeout?: number;
+    authentication_timeout?: number;
+    request_timeout?: number;
+    id?: number;
+};
+/** @returns {KafkaConfigRequest} */
+declare function KafkaConfigRequest(): KafkaConfigRequest;
+type KafkaConfigRequest = {
+    name?: string;
+    client_id?: string;
+    brokers?: string[];
+    ssl_enabled?: boolean;
+    sasl_enabled?: boolean;
+    sasl_configuration?: any;
+    ssl_configuration?: any;
+    connection_timeout?: number;
+    authentication_timeout?: number;
+    request_timeout?: number;
+};
 /** @returns {UpdateSubscriberResponse} */
 declare function UpdateSubscriberResponse(): UpdateSubscriberResponse;
 type UpdateSubscriberResponse = {
@@ -261,6 +363,7 @@ type SubscriberEventMapping = {
     id?: number;
     event_id?: number;
     subscriber_id?: number;
+    topic?: string;
     created_on?: string;
 };
 /** @returns {EventConfigResponse} */
@@ -553,6 +656,7 @@ type ItemSchema = {
     modified_by?: string;
     name?: string;
     webhook_url?: string;
+    provider?: string;
     association?: Association;
     custom_headers?: any;
     status?: string;

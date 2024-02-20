@@ -9,12 +9,9 @@
 Application configuration apis
 
 
-Application Information
-* [searchApplication](#searchapplication)
-
-
 Default
 * [getLocations](#getlocations)
+* [searchApplication](#searchapplication)
 
 
 
@@ -25,8 +22,67 @@ Default
 
 
 
+### getLocations
+Get countries, states, cities
+
+
+
+```javascript
+// Promise
+const promise = publicClient.configuration.getLocations({  locationType : value,
+ id : value });
+
+// Async/Await
+const data = await publicClient.configuration.getLocations({  locationType : value,
+ id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| locationType | string | no | Provide location type to query on. Possible values : country, state, city |    
+| id | string | no | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
+
+
+
+Get Location configuration
+
+*Returned Response:*
+
+
+
+
+[Locations](#Locations)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### searchApplication
-Search application.
+Search Application
 
 
 
@@ -51,7 +107,7 @@ const data = await publicClient.configuration.searchApplication({  authorization
 
 
 
-Provide application name or domain url.
+Provide application name or domain url
 
 *Returned Response:*
 
@@ -131,67 +187,6 @@ Success
     "id": "620b931ee7bfb11f910bf4a3"
   }
 }
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### getLocations
-Get countries, states, cities
-
-
-
-```javascript
-// Promise
-const promise = publicClient.configuration.getLocations({  locationType : value,
- id : value });
-
-// Async/Await
-const data = await publicClient.configuration.getLocations({  locationType : value,
- id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| locationType | string | no | Provide location type to query on. Possible values : country, state, city |    
-| id | string | no | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
-
-
-
-Get Location configuration
-
-*Returned Response:*
-
-
-
-
-[Locations](#Locations)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
 ```
 </details>
 

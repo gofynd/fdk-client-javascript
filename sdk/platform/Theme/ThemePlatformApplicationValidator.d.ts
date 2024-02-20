@@ -345,4 +345,4 @@ type GetApplicationThemesParam = any;
 type GetApplicationThemesCountParam = any;
 type GetAppliedThemeParam = any;
 type GetFontsParam = any;
-import ThemePlatformModel = require("./ThemePlatformModel");
+import ThemePlatformModel = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformModel");

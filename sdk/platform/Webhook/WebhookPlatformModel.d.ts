@@ -204,37 +204,11 @@ export = WebhookPlatformModel;
  * @property {string} [secret]
  */
 /**
- * @typedef SubscriberFailureResponse
- * @property {string} [message]
- * @property {string} [code]
- * @property {string} [stack]
- */
-/**
- * @typedef EventConfigs
- * @property {number} [id]
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {Object} [event_schema]
- * @property {string} [version]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [created_on]
- * @property {string} [updated_on]
- * @property {SubscriberEventMapping} [subscriber_event_mapping]
- */
-/**
- * @typedef SubscriberEventMapping
- * @property {number} [id]
- * @property {number} [event_id]
- * @property {number} [subscriber_id]
- * @property {string} [created_on]
- */
-/**
  * @typedef SubscriberResponse
  * @property {number} [id]
  * @property {string} [modified_by]
  * @property {string} [name]
+ * @property {string} [provider]
  * @property {string} [webhook_url]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
@@ -245,6 +219,24 @@ export = WebhookPlatformModel;
  * @property {string} [type]
  * @property {AuthMeta} [auth_meta]
  * @property {EventConfig[]} [event_configs]
+ */
+/**
+ * @typedef Events
+ * @property {string} [slug]
+ * @property {string} [topic]
+ */
+/**
+ * @typedef SubscriberConfigRequestV2
+ * @property {number} [id]
+ * @property {string} [name]
+ * @property {string} [webhook_url]
+ * @property {string} [provider]
+ * @property {Association} [association]
+ * @property {Object} [custom_headers]
+ * @property {string} [status]
+ * @property {string} [email_id]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Events[]} [events]
  */
 /**
  * @typedef SubscriberConfig
@@ -264,6 +256,7 @@ export = WebhookPlatformModel;
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {SubscriberStatus} [status]
@@ -283,7 +276,7 @@ export = WebhookPlatformModel;
 declare class WebhookPlatformModel {
 }
 declare namespace WebhookPlatformModel {
-    export { Error, Event, RetryEventRequest, Item, RetryCountResponse, RetrySuccessResponse, Err, RetryFailureResponse, RetryStatusResponse, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AuthMeta, SubscriberFailureResponse, EventConfigs, SubscriberEventMapping, SubscriberResponse, SubscriberConfig, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
+    export { Error, Event, RetryEventRequest, Item, RetryCountResponse, RetrySuccessResponse, Err, RetryFailureResponse, RetryStatusResponse, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AuthMeta, SubscriberResponse, Events, SubscriberConfigRequestV2, SubscriberConfig, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
 }
 /** @returns {Error} */
 declare function Error(): Error;
@@ -637,42 +630,13 @@ type AuthMeta = {
     type?: string;
     secret?: string;
 };
-/** @returns {SubscriberFailureResponse} */
-declare function SubscriberFailureResponse(): SubscriberFailureResponse;
-type SubscriberFailureResponse = {
-    message?: string;
-    code?: string;
-    stack?: string;
-};
-/** @returns {EventConfigs} */
-declare function EventConfigs(): EventConfigs;
-type EventConfigs = {
-    id?: number;
-    event_name?: string;
-    event_type?: string;
-    event_category?: string;
-    event_schema?: any;
-    version?: string;
-    display_name?: string;
-    description?: string;
-    created_on?: string;
-    updated_on?: string;
-    subscriber_event_mapping?: SubscriberEventMapping;
-};
-/** @returns {SubscriberEventMapping} */
-declare function SubscriberEventMapping(): SubscriberEventMapping;
-type SubscriberEventMapping = {
-    id?: number;
-    event_id?: number;
-    subscriber_id?: number;
-    created_on?: string;
-};
 /** @returns {SubscriberResponse} */
 declare function SubscriberResponse(): SubscriberResponse;
 type SubscriberResponse = {
     id?: number;
     modified_by?: string;
     name?: string;
+    provider?: string;
     webhook_url?: string;
     association?: Association;
     custom_headers?: any;
@@ -683,6 +647,26 @@ type SubscriberResponse = {
     type?: string;
     auth_meta?: AuthMeta;
     event_configs?: EventConfig[];
+};
+/** @returns {Events} */
+declare function Events(): Events;
+type Events = {
+    slug?: string;
+    topic?: string;
+};
+/** @returns {SubscriberConfigRequestV2} */
+declare function SubscriberConfigRequestV2(): SubscriberConfigRequestV2;
+type SubscriberConfigRequestV2 = {
+    id?: number;
+    name?: string;
+    webhook_url?: string;
+    provider?: string;
+    association?: Association;
+    custom_headers?: any;
+    status?: string;
+    email_id?: string;
+    auth_meta?: AuthMeta;
+    events?: Events[];
 };
 /** @returns {SubscriberConfig} */
 declare function SubscriberConfig(): SubscriberConfig;
@@ -704,6 +688,7 @@ type SubscriberConfigResponse = {
     modified_by?: string;
     name?: string;
     webhook_url?: string;
+    provider?: string;
     association?: Association;
     custom_headers?: any;
     status?: SubscriberStatus;

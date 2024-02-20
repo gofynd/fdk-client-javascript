@@ -438,6 +438,23 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ReAssignStoreRequest
+ * @property {string} to_pincode
+ * @property {string} identifier
+ * @property {Object} configuration
+ * @property {string[]} ignored_locations
+ * @property {Object[]} articles
+ */
+
+/**
+ * @typedef ReAssignStoreResponse
+ * @property {string} to_pincode
+ * @property {boolean} success
+ * @property {Object} error
+ * @property {Object[]} [articles]
+ */
+
+/**
  * @typedef PincodeMopData
  * @property {number[]} pincodes
  * @property {string} country
@@ -679,6 +696,7 @@ const Joi = require("joi");
  * @property {CourierPartnerList[]} [cp_list]
  * @property {string} name
  * @property {CourierPartnerRuleConditions} conditions
+ * @property {string[]} [manual_priority]
  * @property {string[]} sort
  */
 
@@ -707,10 +725,82 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BuyboxConfig
+ * @property {boolean} show_seller
+ * @property {boolean} enable_selection
+ * @property {boolean} is_seller_buybox_enabled
+ */
+
+/**
+ * @typedef BuyboxRuleConfig
+ * @property {string[]} [store_type_priority]
+ * @property {string[]} [store_tag_priority]
+ * @property {string[]} [sort]
+ */
+
+/**
+ * @typedef PromiseType
+ * @property {string} display_name
+ * @property {string} slug
+ * @property {string} description
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ */
+
+/**
+ * @typedef StorePromiseAttributeConfig
+ * @property {boolean} [is_operational_timing_enabled]
+ * @property {boolean} [is_order_acceptance_timing_enabled]
+ * @property {boolean} [is_average_processing_time]
+ * @property {boolean} [is_holiday_enabled]
+ */
+
+/**
+ * @typedef DeliveryServiceAttributeConfig
+ * @property {boolean} [is_pickup_cutoff_time_enabled]
+ * @property {boolean} [is_service_tat_enabled]
+ * @property {boolean} [is_holiday_enabled]
+ */
+
+/**
+ * @typedef BufferField
+ * @property {string} [unit]
+ * @property {number} [value]
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef PromiseConfig
+ * @property {StorePromiseAttributeConfig} [store_attributes]
+ * @property {DeliveryServiceAttributeConfig} [delivery_service_attributes]
+ * @property {BufferField} [buffer_field]
+ */
+
+/**
  * @typedef ApplicationConfig
  * @property {string[]} [rule_ids]
  * @property {string[]} [sort]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string[]} [manual_priority]
  * @property {ZoneConfig} [zones]
+ * @property {BuyboxConfig} [buybox_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseType[]} [promise_types]
+ * @property {PromiseConfig} [promise_config]
+ */
+
+/**
+ * @typedef ApplicationConfigPatchRequest
+ * @property {BuyboxConfig} [buybox_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseType[]} [promise_types]
+ * @property {PromiseConfig} [promise_config]
+ */
+
+/**
+ * @typedef ApplicationConfigPatchResponse
+ * @property {boolean} [success]
  */
 
 /**
@@ -767,6 +857,7 @@ const Joi = require("joi");
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  */
 
 /**
@@ -803,6 +894,7 @@ const Joi = require("joi");
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  */
@@ -827,6 +919,7 @@ const Joi = require("joi");
  * @property {string[]} [type_based_priority]
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [manual_priority]
  * @property {string[]} [sort]
  */
 
@@ -839,6 +932,7 @@ const Joi = require("joi");
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  */
@@ -852,6 +946,7 @@ const Joi = require("joi");
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  * @property {number} [company_id]
@@ -1043,81 +1138,6 @@ const Joi = require("joi");
 /**
  * @typedef RulePriorityResponse
  * @property {boolean} [success]
- */
-
-/**
- * @typedef ArticleAssignment
- * @property {string} [level]
- * @property {string} [strategy] - The strategy parameter allows users to
- *   specify the desired approach or criteria for selecting optimal locations.
- */
-
-/**
- * @typedef ServiceabilityLocation
- * @property {string} longitude - The longitude of the serviceability location.
- * @property {string} latitude - The latitude of the serviceability location.
- */
-
-/**
- * @typedef LocationDetailsServiceability
- * @property {string} [pincode] - The pincode of the serviceability location.
- * @property {string} [sector] - The sector of the serviceability location.
- * @property {string} [state] - The state of the serviceability location.
- * @property {string} country - The country of the serviceability location.
- * @property {string} [city] - The city of the serviceability location.
- * @property {string} country_iso_code - The ISO code of the country.
- * @property {ServiceabilityLocation} [location]
- */
-
-/**
- * @typedef OptimalLocationsArticles
- * @property {number} item_id
- * @property {string} size
- * @property {string} quantity
- * @property {string} [group_id]
- * @property {boolean} [is_primary_item]
- * @property {Object} [meta]
- * @property {ArticleAssignment} article_assignment
- * @property {number[]} ignore_locations
- * @property {number[]} assign_locations
- * @property {number} [seller_id]
- */
-
-/**
- * @typedef OptimlLocationsRequestSchema
- * @property {string} channel_id
- * @property {string} channel_type
- * @property {LocationDetailsServiceability} to_serviceability
- * @property {OptimalLocationsArticles} [article]
- */
-
-/**
- * @typedef OptimalLocationArticlesResponse
- * @property {number} item_id
- * @property {string} size
- * @property {number} quantity
- * @property {string} [group_id]
- * @property {boolean} [is_primary_item]
- * @property {Object} [meta]
- * @property {ArticleAssignment} article_assignment
- * @property {number} [seller_id]
- * @property {number[]} ignore_locations
- * @property {number[]} assign_locations
- * @property {number} price_effective
- * @property {number} mto_quantity
- * @property {string} _id
- * @property {string} uid
- */
-
-/**
- * @typedef OptimalLocationAssignedStoresResponse
- * @property {number} store_id
- * @property {OptimalLocationArticlesResponse[]} articles
- */
-
-/**
- * @typedef OptimalLocationsResponse
- * @property {OptimalLocationAssignedStoresResponse[]} assigned_stores
  */
 
 class ServiceabilityPlatformModel {
@@ -1702,6 +1722,27 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {ReAssignStoreRequest} */
+  static ReAssignStoreRequest() {
+    return Joi.object({
+      to_pincode: Joi.string().allow("").required(),
+      identifier: Joi.string().allow("").required(),
+      configuration: Joi.any().required(),
+      ignored_locations: Joi.array().items(Joi.string().allow("")).required(),
+      articles: Joi.array().items(Joi.any()).required(),
+    });
+  }
+
+  /** @returns {ReAssignStoreResponse} */
+  static ReAssignStoreResponse() {
+    return Joi.object({
+      to_pincode: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
+      error: Joi.any().required(),
+      articles: Joi.array().items(Joi.any()),
+    });
+  }
+
   /** @returns {PincodeMopData} */
   static PincodeMopData() {
     return Joi.object({
@@ -2015,6 +2056,7 @@ class ServiceabilityPlatformModel {
       ),
       name: Joi.string().allow("").required(),
       conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions().required(),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       sort: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
@@ -2055,12 +2097,106 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {BuyboxConfig} */
+  static BuyboxConfig() {
+    return Joi.object({
+      show_seller: Joi.boolean().required(),
+      enable_selection: Joi.boolean().required(),
+      is_seller_buybox_enabled: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {BuyboxRuleConfig} */
+  static BuyboxRuleConfig() {
+    return Joi.object({
+      store_type_priority: Joi.array().items(Joi.string().allow("")),
+      store_tag_priority: Joi.array().items(Joi.string().allow("")),
+      sort: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {PromiseType} */
+  static PromiseType() {
+    return Joi.object({
+      display_name: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      description: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
+      is_default: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {StorePromiseAttributeConfig} */
+  static StorePromiseAttributeConfig() {
+    return Joi.object({
+      is_operational_timing_enabled: Joi.boolean(),
+      is_order_acceptance_timing_enabled: Joi.boolean(),
+      is_average_processing_time: Joi.boolean(),
+      is_holiday_enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {DeliveryServiceAttributeConfig} */
+  static DeliveryServiceAttributeConfig() {
+    return Joi.object({
+      is_pickup_cutoff_time_enabled: Joi.boolean(),
+      is_service_tat_enabled: Joi.boolean(),
+      is_holiday_enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BufferField} */
+  static BufferField() {
+    return Joi.object({
+      unit: Joi.string().allow(""),
+      value: Joi.number(),
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PromiseConfig} */
+  static PromiseConfig() {
+    return Joi.object({
+      store_attributes: ServiceabilityPlatformModel.StorePromiseAttributeConfig(),
+      delivery_service_attributes: ServiceabilityPlatformModel.DeliveryServiceAttributeConfig(),
+      buffer_field: ServiceabilityPlatformModel.BufferField(),
+    });
+  }
+
   /** @returns {ApplicationConfig} */
   static ApplicationConfig() {
     return Joi.object({
       rule_ids: Joi.array().items(Joi.string().allow("")),
       sort: Joi.array().items(Joi.string().allow("")),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       zones: ServiceabilityPlatformModel.ZoneConfig(),
+      buybox_config: ServiceabilityPlatformModel.BuyboxConfig(),
+      buybox_rule_config: ServiceabilityPlatformModel.BuyboxRuleConfig(),
+      promise_types: Joi.array().items(
+        ServiceabilityPlatformModel.PromiseType()
+      ),
+      promise_config: ServiceabilityPlatformModel.PromiseConfig(),
+    });
+  }
+
+  /** @returns {ApplicationConfigPatchRequest} */
+  static ApplicationConfigPatchRequest() {
+    return Joi.object({
+      buybox_config: ServiceabilityPlatformModel.BuyboxConfig(),
+      buybox_rule_config: ServiceabilityPlatformModel.BuyboxRuleConfig(),
+      promise_types: Joi.array().items(
+        ServiceabilityPlatformModel.PromiseType()
+      ),
+      promise_config: ServiceabilityPlatformModel.PromiseConfig(),
+    });
+  }
+
+  /** @returns {ApplicationConfigPatchResponse} */
+  static ApplicationConfigPatchResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
     });
   }
 
@@ -2135,6 +2271,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
       sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2179,6 +2316,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
       sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       conditions: ServiceabilityPlatformModel.StoreRuleConditionSchema(),
       is_active: Joi.boolean(),
     });
@@ -2213,6 +2351,7 @@ class ServiceabilityPlatformModel {
       store_priority: Joi.array().items(
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       sort: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -2229,6 +2368,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
       sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       conditions: ServiceabilityPlatformModel.StoreRuleConditionSchema(),
       is_active: Joi.boolean(),
     });
@@ -2246,6 +2386,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
       sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       conditions: ServiceabilityPlatformModel.StoreRuleConditionSchema(),
       is_active: Joi.boolean(),
       company_id: Joi.number(),
@@ -2485,102 +2626,6 @@ class ServiceabilityPlatformModel {
   static RulePriorityResponse() {
     return Joi.object({
       success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {ArticleAssignment} */
-  static ArticleAssignment() {
-    return Joi.object({
-      level: Joi.string().allow(""),
-      strategy: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ServiceabilityLocation} */
-  static ServiceabilityLocation() {
-    return Joi.object({
-      longitude: Joi.string().allow("").required(),
-      latitude: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {LocationDetailsServiceability} */
-  static LocationDetailsServiceability() {
-    return Joi.object({
-      pincode: Joi.string().allow(""),
-      sector: Joi.string().allow(""),
-      state: Joi.string().allow(""),
-      country: Joi.string().allow("").required(),
-      city: Joi.string().allow(""),
-      country_iso_code: Joi.string().allow("").required(),
-      location: ServiceabilityPlatformModel.ServiceabilityLocation(),
-    });
-  }
-
-  /** @returns {OptimalLocationsArticles} */
-  static OptimalLocationsArticles() {
-    return Joi.object({
-      item_id: Joi.number().required(),
-      size: Joi.string().allow("").required(),
-      quantity: Joi.string().allow("").required(),
-      group_id: Joi.string().allow(""),
-      is_primary_item: Joi.boolean(),
-      meta: Joi.any(),
-      article_assignment: ServiceabilityPlatformModel.ArticleAssignment().required(),
-      ignore_locations: Joi.array().items(Joi.number()).required(),
-      assign_locations: Joi.array().items(Joi.number()).required(),
-      seller_id: Joi.number(),
-    });
-  }
-
-  /** @returns {OptimlLocationsRequestSchema} */
-  static OptimlLocationsRequestSchema() {
-    return Joi.object({
-      channel_id: Joi.string().allow("").required(),
-      channel_type: Joi.string().allow("").required(),
-      to_serviceability: ServiceabilityPlatformModel.LocationDetailsServiceability().required(),
-      article: ServiceabilityPlatformModel.OptimalLocationsArticles(),
-    });
-  }
-
-  /** @returns {OptimalLocationArticlesResponse} */
-  static OptimalLocationArticlesResponse() {
-    return Joi.object({
-      item_id: Joi.number().required(),
-      size: Joi.string().allow("").required(),
-      quantity: Joi.number().required(),
-      group_id: Joi.string().allow(""),
-      is_primary_item: Joi.boolean(),
-      meta: Joi.any(),
-      article_assignment: ServiceabilityPlatformModel.ArticleAssignment().required(),
-      seller_id: Joi.number(),
-      ignore_locations: Joi.array().items(Joi.number()).required(),
-      assign_locations: Joi.array().items(Joi.number()).required(),
-      price_effective: Joi.number().required(),
-      mto_quantity: Joi.number().required(),
-      _id: Joi.string().allow("").required(),
-      uid: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {OptimalLocationAssignedStoresResponse} */
-  static OptimalLocationAssignedStoresResponse() {
-    return Joi.object({
-      store_id: Joi.number().required(),
-      articles: Joi.array()
-        .items(ServiceabilityPlatformModel.OptimalLocationArticlesResponse())
-        .required(),
-    });
-  }
-
-  /** @returns {OptimalLocationsResponse} */
-  static OptimalLocationsResponse() {
-    return Joi.object({
-      assigned_stores: Joi.array()
-        .items(
-          ServiceabilityPlatformModel.OptimalLocationAssignedStoresResponse()
-        )
-        .required(),
     });
   }
 }

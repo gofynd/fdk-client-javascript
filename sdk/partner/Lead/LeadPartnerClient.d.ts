@@ -121,5 +121,5 @@ declare class Lead {
      */
     getGeneralConfig({ requestHeaders }?: LeadPartnerValidator.GetGeneralConfigParam, { responseHeaders }?: object): Promise<LeadPartnerModel.GeneralConfigResponse>;
 }
-import LeadPartnerModel = require("./LeadPartnerModel");
-import Paginator = require("../../common/Paginator");
+import LeadPartnerModel = require("sdk/output/javascript/code/sdk/partner/Lead/LeadPartnerModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

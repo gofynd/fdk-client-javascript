@@ -53,4 +53,4 @@ type StartUploadParam = {
     namespace: string;
     body: FileStorageApplicationModel.StartRequest;
 };
-import FileStorageApplicationModel = require("./FileStorageApplicationModel");
+import FileStorageApplicationModel = require("sdk/output/javascript/code/sdk/application/FileStorage/FileStorageApplicationModel");

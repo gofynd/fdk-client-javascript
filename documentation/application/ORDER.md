@@ -9,23 +9,17 @@
 The Order and Shipment module is designed for retrieving application-specific orders, accessing order details, and obtaining shipment and invoice information. This module facilitates shipment tracking, allows customization of shipment details, and provides reasons for cancellations and returns. Additionally, it offers real-time shipment status updates.
 
 
-Order Details
+Default
+* [getCustomerDetailsByShipmentId](#getcustomerdetailsbyshipmentid)
+* [getInvoiceByShipmentId](#getinvoicebyshipmentid)
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
 * [getPosOrderById](#getposorderbyid)
-* [getShipmentById](#getshipmentbyid)
-* [trackShipment](#trackshipment)
-
-
-Receipt, Label and Invoice Download 
-* [getInvoiceByShipmentId](#getinvoicebyshipmentid)
-
-
-Default
-* [getCustomerDetailsByShipmentId](#getcustomerdetailsbyshipmentid)
 * [getShipmentBagReasons](#getshipmentbagreasons)
+* [getShipmentById](#getshipmentbyid)
 * [getShipmentReasons](#getshipmentreasons)
 * [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
+* [trackShipment](#trackshipment)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
 
@@ -38,8 +32,129 @@ Default
 
 
 
+### getCustomerDetailsByShipmentId
+Get Customer Details by Shipment Id
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.getCustomerDetailsByShipmentId({  orderId : value,
+ shipmentId : value });
+
+// Async/Await
+const data = await applicationClient.order.getCustomerDetailsByShipmentId({  orderId : value,
+ shipmentId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| shipmentId | string | yes | A unique number used for identifying and tracking your orders. |  
+
+
+
+Use this API to retrieve customer details such as mobileno using Shipment ID.
+
+*Returned Response:*
+
+
+
+
+[CustomerDetailsResponse](#CustomerDetailsResponse)
+
+Success. Check the example shown below or refer `CustomerDetailsByShipmentId` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "order_id": "FYMP629D972D01B6BD76",
+  "shipment_id": "16544950215681060915J",
+  "name": "sagar Kulkarni",
+  "phone": "XXX-XXX-6780",
+  "country": "India"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getInvoiceByShipmentId
+Get Invoice of a shipment
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
+
+// Async/Await
+const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. |  
+
+
+
+Use this API to retrieve shipment invoice.
+
+*Returned Response:*
+
+
+
+
+[ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
+
+Success. Check the example shown below or refer `ShipmentById` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getOrderById
-Fetches order by ID.
+Get details of an order
 
 
 
@@ -64,7 +179,7 @@ const data = await applicationClient.order.getOrderById({  orderId : value,
 
 
 
-Retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
 
 *Returned Response:*
 
@@ -1084,7 +1199,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
 
 
 ### getOrders
-Lists customer orders.
+Get all orders
 
 
 
@@ -1127,7 +1242,7 @@ const data = await applicationClient.order.getOrders({  status : value,
 
 
 
-Retrieves all orders associated with a customer account.
+Use this API to retrieve all the orders.
 
 *Returned Response:*
 
@@ -1161,7 +1276,7 @@ Success. Returns all the orders. Check the example shown below or refer `OrderLi
 
 
 ### getPosOrderById
-Retrieves POS order details.
+Get POS Order
 
 
 
@@ -1183,7 +1298,7 @@ const data = await applicationClient.order.getPosOrderById({  orderId : value })
 
 
 
-Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
 
 *Returned Response:*
 
@@ -1503,8 +1618,109 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
 ---
 
 
+### getShipmentBagReasons
+Get reasons behind full or partial cancellation of a shipment
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.getShipmentBagReasons({  shipmentId : value,
+ bagId : value });
+
+// Async/Await
+const data = await applicationClient.order.getShipmentBagReasons({  shipmentId : value,
+ bagId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| bagId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+*Returned Response:*
+
+
+
+
+[ShipmentBagReasons](#ShipmentBagReasons)
+
+Success. Check the example shown below or refer `ShipmentBagReasons` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "reasons": [
+    {
+      "id": 1,
+      "display_name": "Not available",
+      "qc_type": [],
+      "question_set": []
+    },
+    {
+      "reasons": [
+        {
+          "id": 2,
+          "display_name": "Processing other orders",
+          "qc_type": [],
+          "question_set": []
+        },
+        {
+          "id": 3,
+          "display_name": "Printer not working",
+          "qc_type": [],
+          "question_set": []
+        },
+        {
+          "reasons": [
+            {
+              "id": 4,
+              "display_name": "Card issues",
+              "qc_type": [],
+              "question_set": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "display_name": "Card issues",
+      "qc_type": [],
+      "question_set": []
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getShipmentById
-Fetches shipment by ID.
+Get details of a shipment
 
 
 
@@ -1529,7 +1745,7 @@ const data = await applicationClient.order.getShipmentById({  shipmentId : value
 
 
 
-Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
 
 *Returned Response:*
 
@@ -1958,303 +2174,8 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
 ---
 
 
-### trackShipment
-Tracks shipment status.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.order.trackShipment({  shipmentId : value });
-
-// Async/Await
-const data = await applicationClient.order.trackShipment({  shipmentId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-
-
-
-Track Shipment by shipment id, for application based on application Id.
-
-*Returned Response:*
-
-
-
-
-[ShipmentTrack](#ShipmentTrack)
-
-Success. Check the example shown below or refer `ShipmentTrack` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "results": [
-    {
-      "awb": "string",
-      "updated_at": "string",
-      "last_location_recieved_at": "string",
-      "reason": "string",
-      "shipment_type": "string",
-      "status": "string",
-      "updated_time": "string",
-      "account_name": "string"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### getInvoiceByShipmentId
-Retrieves invoice for shipment.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
-
-// Async/Await
-const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. |  
-
-
-
-Retrieve the invoice corresponding to a specific shipment ID.
-
-*Returned Response:*
-
-
-
-
-[ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
-
-Success. Check the example shown below or refer `ShipmentById` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### getCustomerDetailsByShipmentId
-Retrieves shipment customer.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.order.getCustomerDetailsByShipmentId({  orderId : value,
- shipmentId : value });
-
-// Async/Await
-const data = await applicationClient.order.getCustomerDetailsByShipmentId({  orderId : value,
- shipmentId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
-| shipmentId | string | yes | A unique number used for identifying and tracking your orders. |  
-
-
-
-Retrieve customer details such as mobile number using Shipment ID.
-
-*Returned Response:*
-
-
-
-
-[CustomerDetailsResponse](#CustomerDetailsResponse)
-
-Success. Check the example shown below or refer `CustomerDetailsByShipmentId` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "order_id": "FYMP629D972D01B6BD76",
-  "shipment_id": "16544950215681060915J",
-  "name": "sagar Kulkarni",
-  "phone": "XXX-XXX-6780",
-  "country": "India"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getShipmentBagReasons
-Lists bag reasons.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.order.getShipmentBagReasons({  shipmentId : value,
- bagId : value });
-
-// Async/Await
-const data = await applicationClient.order.getShipmentBagReasons({  shipmentId : value,
- bagId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
-| bagId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-
-
-
-Retrieves reasons that led to the cancellation for the status of shipment bags.
-
-*Returned Response:*
-
-
-
-
-[ShipmentBagReasons](#ShipmentBagReasons)
-
-Success. Check the example shown below or refer `ShipmentBagReasons` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "reasons": [
-    {
-      "id": 1,
-      "display_name": "Not available",
-      "qc_type": [],
-      "question_set": []
-    },
-    {
-      "reasons": [
-        {
-          "id": 2,
-          "display_name": "Processing other orders",
-          "qc_type": [],
-          "question_set": []
-        },
-        {
-          "id": 3,
-          "display_name": "Printer not working",
-          "qc_type": [],
-          "question_set": []
-        },
-        {
-          "reasons": [
-            {
-              "id": 4,
-              "display_name": "Card issues",
-              "qc_type": [],
-              "question_set": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "display_name": "Card issues",
-      "qc_type": [],
-      "question_set": []
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getShipmentReasons
-Lists shipment reasons.
+Get reasons behind full or partial cancellation of a shipment
 
 
 
@@ -2276,7 +2197,7 @@ const data = await applicationClient.order.getShipmentReasons({  shipmentId : va
 
 
 
-Retrieve reasons explaining various shipment statuses.
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
 
 *Returned Response:*
 
@@ -2393,7 +2314,7 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
 
 ### sendOtpToShipmentCustomer
-Sends OTP to customer.
+Send and Resend Otp code to Order-Shipment customer
 
 
 
@@ -2418,7 +2339,7 @@ const data = await applicationClient.order.sendOtpToShipmentCustomer({  orderId 
 
 
 
-Sends a one-time password (OTP) to the customer for shipment verification.
+Use this API to send OTP to the customer of the mapped Shipment.
 
 *Returned Response:*
 
@@ -2456,8 +2377,77 @@ Success to acknowledge the service was notified
 ---
 
 
+### trackShipment
+Track shipment
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.trackShipment({  shipmentId : value });
+
+// Async/Await
+const data = await applicationClient.order.trackShipment({  shipmentId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Track Shipment by shipment id, for application based on application Id
+
+*Returned Response:*
+
+
+
+
+[ShipmentTrack](#ShipmentTrack)
+
+Success. Check the example shown below or refer `ShipmentTrack` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "results": [
+    {
+      "awb": "string",
+      "updated_at": "string",
+      "last_location_recieved_at": "string",
+      "reason": "string",
+      "shipment_type": "string",
+      "status": "string",
+      "updated_time": "string",
+      "account_name": "string"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateShipmentStatus
-Updates shipment status.
+Update the shipment status
 
 
 
@@ -2481,7 +2471,7 @@ const data = await applicationClient.order.updateShipmentStatus({  shipmentId : 
 | body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
 
 
-Modifies the current status of a specific shipment using its shipment ID.
+Use this API to update the status of a shipment using its shipment ID.
 
 *Returned Response:*
 
@@ -2533,7 +2523,7 @@ Successfully updateShipmentStatus!
 
 
 ### verifyOtpShipmentCustomer
-Verifies OTP.
+Verify Otp code
 
 
 
@@ -2560,7 +2550,7 @@ const data = await applicationClient.order.verifyOtpShipmentCustomer({  orderId 
 | body | [VerifyOtp](#VerifyOtp) | yes | Request body |
 
 
-Confirms the OTP sent to the shipment customer for verification.
+Use this API to verify OTP and create a session token with custom payload.
 
 *Returned Response:*
 

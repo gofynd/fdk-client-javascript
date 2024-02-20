@@ -49,6 +49,7 @@ export = CartApplicationModel;
  * @property {AppliedFreeArticles[]} [applied_free_articles] - Applied free
  *   article for free gift item promotions
  * @property {string} [promotion_type] - Promotion type of current promotion
+ * @property {Object[]} [custom_field_meta] - Custom field meta for promotion.
  * @property {Object} [meta] - Meta object for extra data
  * @property {string} [code] - Promotion code
  */
@@ -113,6 +114,7 @@ export = CartApplicationModel;
  * @property {string} [size]
  * @property {number} [mto_quantity]
  * @property {BaseInfo} [seller]
+ * @property {string} [product_name]
  * @property {string} [seller_identifier]
  * @property {Object} [parent_item_identifiers]
  * @property {Object} [identifier]
@@ -261,6 +263,7 @@ export = CartApplicationModel;
  * @property {string} [key]
  * @property {string} [message]
  * @property {boolean} [is_set]
+ * @property {number} [seller_count]
  * @property {ProductPricePerUnitInfo} [price_per_unit]
  * @property {AppliedPromotion[]} [promotions_applied]
  */
@@ -361,12 +364,21 @@ export = CartApplicationModel;
  * @property {DeliveryChargesConfig} [delivery_charges_config]
  */
 /**
+ * @typedef CustomCart
+ * @property {string} [id] - Id of custom cart config
+ * @property {string} [cart_name] - Name of custom cart
+ * @property {string} [cart_type] - Type of custom cart
+ * @property {boolean} [is_universal] - By default all carts are universal, will
+ *   be false for custom cart
+ */
+/**
  * @typedef CartDetailResponse
  * @property {number} [cart_id]
  * @property {string} [uid]
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {string} [checkout_mode]
  * @property {string} [pan_no]
+ * @property {boolean} [is_pan_received]
  * @property {boolean} [is_valid]
  * @property {string} [id]
  * @property {PaymentSelectionLock} [payment_selection_lock]
@@ -388,6 +400,7 @@ export = CartApplicationModel;
  * @property {string} [coupon_text]
  * @property {boolean} [buy_now]
  * @property {Object} [pan_config]
+ * @property {CustomCart} [custom_cart]
  */
 /**
  * @typedef AddProductCart
@@ -400,6 +413,7 @@ export = CartApplicationModel;
  * @property {number} [store_id]
  * @property {string} [display]
  * @property {string} [article_id]
+ * @property {string} [price_factory_type_id]
  * @property {Object[]} [parent_item_identifiers]
  * @property {number} [seller_id]
  * @property {boolean} [pos]
@@ -431,6 +445,7 @@ export = CartApplicationModel;
  * @property {CartProductIdentifer} identifiers
  * @property {string} [article_id]
  * @property {Object} [parent_item_identifiers]
+ * @property {string} [price_factory_type_id]
  * @property {number} [item_id]
  * @property {Object} [meta]
  */
@@ -455,6 +470,12 @@ export = CartApplicationModel;
 /**
  * @typedef CartItemCountResponse
  * @property {number} [user_cart_items_count] - Item count present in cart
+ */
+/**
+ * @typedef CartItemCountResponseV2
+ * @property {number} [user_all_cart_articles_quantity_count]
+ * @property {number} [user_all_cart_article_count]
+ * @property {Object} [custom_cart_count]
  */
 /**
  * @typedef PageCoupon
@@ -732,6 +753,7 @@ export = CartApplicationModel;
  * @property {string} [coupon_text]
  * @property {boolean} [buy_now]
  * @property {number} [cod_charges]
+ * @property {CustomCart} [custom_cart]
  */
 /**
  * @typedef CartCheckoutResponse
@@ -933,10 +955,66 @@ export = CartApplicationModel;
  * @property {string} [type]
  * @property {string} [card_id]
  */
+/**
+ * @typedef CartConfigListObj
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string[]} [article_tags]
+ * @property {string} [created_on]
+ */
+/**
+ * @typedef CartConfigListResponse
+ * @property {boolean} [success]
+ * @property {CartConfigListObj[]} [data]
+ */
+/**
+ * @typedef OrderPlacing
+ * @property {boolean} [enabled]
+ * @property {string} [message]
+ */
+/**
+ * @typedef PanCard
+ * @property {boolean} [enabled]
+ * @property {number} [cod_threshold_amount]
+ * @property {number} [online_threshold_amount]
+ */
+/**
+ * @typedef CartConfigDetailObj
+ * @property {string} [id]
+ * @property {string} [app_id]
+ * @property {number} [company_id]
+ * @property {string} [created_on]
+ * @property {string} [updated_on]
+ * @property {string} [last_modified_by]
+ * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
+ * @property {boolean} [bulk_coupons]
+ * @property {number} [max_cart_items]
+ * @property {string} [gift_display_text]
+ * @property {DeliveryChargesConfig} [delivery_charges]
+ * @property {boolean} [revenue_engine_coupon]
+ * @property {number} [gift_pricing]
+ * @property {boolean} [enabled]
+ * @property {boolean} [is_active]
+ * @property {OrderPlacing} [order_placing]
+ * @property {string} [name]
+ * @property {string[]} [article_tags]
+ * @property {boolean} [allow_coupon_with_rewards]
+ * @property {boolean} [gst_input]
+ * @property {boolean} [staff_selection]
+ * @property {boolean} [placing_for_customer]
+ * @property {PanCard} [pan_card]
+ */
+/**
+ * @typedef CartConfigDetailResponse
+ * @property {boolean} [success]
+ * @property {CartConfigDetailObj} [data]
+ */
 declare class CartApplicationModel {
 }
 declare namespace CartApplicationModel {
-    export { BuyRules, DiscountRulesApp, Ownership, FreeGiftItem, AppliedFreeArticles, AppliedPromotion, PaymentSelectionLock, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, BasePrice, ArticlePriceInfo, BaseInfo, StoreInfo, ProductArticle, CartProductIdentifer, PromoMeta, ChargesAmount, Charges, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, ProductAvailabilitySize, ProductAvailability, ActionQuery, ProductAction, Tags, ProductImage, CategoryInfo, CartProduct, CouponDetails, CartProductInfo, DisplayBreakup, RawBreakup, CouponBreakup, LoyaltyPoints, CartBreakup, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, DeleteCartDetailResponse, CartItemCountResponse, PageCoupon, Coupon, GetCouponResponse, ApplyCouponRequest, OfferPrice, OfferItem, OfferSeller, BulkPriceOffer, BulkPriceResponse, RewardPointRequest, GeoLocation, Address, GetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, SelectCartAddressRequest, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, ShipmentResponse, CartShipmentsResponse, CartCheckoutCustomMeta, CustomerDetails, StaffCheckout, CartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, GiftDetail, ArticleGiftDetail, CartMetaRequest, CartMetaResponse, CartMetaMissingResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, FreeGiftItems, PromotionOffer, PromotionOffersResponse, OperationErrorResponse, LadderPrice, LadderOfferItem, LadderPriceOffer, CurrencyInfo, LadderPriceOffers, PaymentMeta, PaymentMethod, CartCheckoutDetailV2Request };
+    export { BuyRules, DiscountRulesApp, Ownership, FreeGiftItem, AppliedFreeArticles, AppliedPromotion, PaymentSelectionLock, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, BasePrice, ArticlePriceInfo, BaseInfo, StoreInfo, ProductArticle, CartProductIdentifer, PromoMeta, ChargesAmount, Charges, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, ProductAvailabilitySize, ProductAvailability, ActionQuery, ProductAction, Tags, ProductImage, CategoryInfo, CartProduct, CouponDetails, CartProductInfo, DisplayBreakup, RawBreakup, CouponBreakup, LoyaltyPoints, CartBreakup, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CustomCart, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, DeleteCartDetailResponse, CartItemCountResponse, CartItemCountResponseV2, PageCoupon, Coupon, GetCouponResponse, ApplyCouponRequest, OfferPrice, OfferItem, OfferSeller, BulkPriceOffer, BulkPriceResponse, RewardPointRequest, GeoLocation, Address, GetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, SelectCartAddressRequest, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, ShipmentResponse, CartShipmentsResponse, CartCheckoutCustomMeta, CustomerDetails, StaffCheckout, CartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, GiftDetail, ArticleGiftDetail, CartMetaRequest, CartMetaResponse, CartMetaMissingResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, FreeGiftItems, PromotionOffer, PromotionOffersResponse, OperationErrorResponse, LadderPrice, LadderOfferItem, LadderPriceOffer, CurrencyInfo, LadderPriceOffers, PaymentMeta, PaymentMethod, CartCheckoutDetailV2Request, CartConfigListObj, CartConfigListResponse, OrderPlacing, PanCard, CartConfigDetailObj, CartConfigDetailResponse };
 }
 /** @returns {BuyRules} */
 declare function BuyRules(): BuyRules;
@@ -1085,6 +1163,10 @@ type AppliedPromotion = {
      */
     promotion_type?: string;
     /**
+     * - Custom field meta for promotion.
+     */
+    custom_field_meta?: any[];
+    /**
      * - Meta object for extra data
      */
     meta?: any;
@@ -1170,6 +1252,7 @@ type ProductArticle = {
     size?: string;
     mto_quantity?: number;
     seller?: BaseInfo;
+    product_name?: string;
     seller_identifier?: string;
     parent_item_identifiers?: any;
     identifier?: any;
@@ -1372,6 +1455,7 @@ type CartProductInfo = {
     key?: string;
     message?: string;
     is_set?: boolean;
+    seller_count?: number;
     price_per_unit?: ProductPricePerUnitInfo;
     promotions_applied?: AppliedPromotion[];
 };
@@ -1484,6 +1568,27 @@ declare function CartCommonConfig(): CartCommonConfig;
 type CartCommonConfig = {
     delivery_charges_config?: DeliveryChargesConfig;
 };
+/** @returns {CustomCart} */
+declare function CustomCart(): CustomCart;
+type CustomCart = {
+    /**
+     * - Id of custom cart config
+     */
+    id?: string;
+    /**
+     * - Name of custom cart
+     */
+    cart_name?: string;
+    /**
+     * - Type of custom cart
+     */
+    cart_type?: string;
+    /**
+     * - By default all carts are universal, will
+     * be false for custom cart
+     */
+    is_universal?: boolean;
+};
 /** @returns {CartDetailResponse} */
 declare function CartDetailResponse(): CartDetailResponse;
 type CartDetailResponse = {
@@ -1492,6 +1597,7 @@ type CartDetailResponse = {
     applied_promo_details?: AppliedPromotion[];
     checkout_mode?: string;
     pan_no?: string;
+    is_pan_received?: boolean;
     is_valid?: boolean;
     id?: string;
     payment_selection_lock?: PaymentSelectionLock;
@@ -1513,6 +1619,7 @@ type CartDetailResponse = {
     coupon_text?: string;
     buy_now?: boolean;
     pan_config?: any;
+    custom_cart?: CustomCart;
 };
 /** @returns {AddProductCart} */
 declare function AddProductCart(): AddProductCart;
@@ -1526,6 +1633,7 @@ type AddProductCart = {
     store_id?: number;
     display?: string;
     article_id?: string;
+    price_factory_type_id?: string;
     parent_item_identifiers?: any[];
     seller_id?: number;
     pos?: boolean;
@@ -1569,6 +1677,7 @@ type UpdateProductCart = {
     identifiers: CartProductIdentifer;
     article_id?: string;
     parent_item_identifiers?: any;
+    price_factory_type_id?: string;
     item_id?: number;
     meta?: any;
 };
@@ -1606,6 +1715,13 @@ type CartItemCountResponse = {
      * - Item count present in cart
      */
     user_cart_items_count?: number;
+};
+/** @returns {CartItemCountResponseV2} */
+declare function CartItemCountResponseV2(): CartItemCountResponseV2;
+type CartItemCountResponseV2 = {
+    user_all_cart_articles_quantity_count?: number;
+    user_all_cart_article_count?: number;
+    custom_cart_count?: any;
 };
 /** @returns {PageCoupon} */
 declare function PageCoupon(): PageCoupon;
@@ -1961,6 +2077,7 @@ type CheckCart = {
     coupon_text?: string;
     buy_now?: boolean;
     cod_charges?: number;
+    custom_cart?: CustomCart;
 };
 /** @returns {CartCheckoutResponse} */
 declare function CartCheckoutResponse(): CartCheckoutResponse;
@@ -2310,4 +2427,66 @@ type CartCheckoutDetailV2Request = {
     network?: string;
     type?: string;
     card_id?: string;
+};
+/** @returns {CartConfigListObj} */
+declare function CartConfigListObj(): CartConfigListObj;
+type CartConfigListObj = {
+    id?: string;
+    name?: string;
+    slug?: string;
+    article_tags?: string[];
+    created_on?: string;
+};
+/** @returns {CartConfigListResponse} */
+declare function CartConfigListResponse(): CartConfigListResponse;
+type CartConfigListResponse = {
+    success?: boolean;
+    data?: CartConfigListObj[];
+};
+/** @returns {OrderPlacing} */
+declare function OrderPlacing(): OrderPlacing;
+type OrderPlacing = {
+    enabled?: boolean;
+    message?: string;
+};
+/** @returns {PanCard} */
+declare function PanCard(): PanCard;
+type PanCard = {
+    enabled?: boolean;
+    cod_threshold_amount?: number;
+    online_threshold_amount?: number;
+};
+/** @returns {CartConfigDetailObj} */
+declare function CartConfigDetailObj(): CartConfigDetailObj;
+type CartConfigDetailObj = {
+    id?: string;
+    app_id?: string;
+    company_id?: number;
+    created_on?: string;
+    updated_on?: string;
+    last_modified_by?: string;
+    min_cart_value?: number;
+    max_cart_value?: number;
+    bulk_coupons?: boolean;
+    max_cart_items?: number;
+    gift_display_text?: string;
+    delivery_charges?: DeliveryChargesConfig;
+    revenue_engine_coupon?: boolean;
+    gift_pricing?: number;
+    enabled?: boolean;
+    is_active?: boolean;
+    order_placing?: OrderPlacing;
+    name?: string;
+    article_tags?: string[];
+    allow_coupon_with_rewards?: boolean;
+    gst_input?: boolean;
+    staff_selection?: boolean;
+    placing_for_customer?: boolean;
+    pan_card?: PanCard;
+};
+/** @returns {CartConfigDetailResponse} */
+declare function CartConfigDetailResponse(): CartConfigDetailResponse;
+type CartConfigDetailResponse = {
+    success?: boolean;
+    data?: CartConfigDetailObj;
 };

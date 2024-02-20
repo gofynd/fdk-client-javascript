@@ -287,6 +287,7 @@ export = ConfigurationApplicationModel;
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {BuyboxFeature} [buybox]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -393,6 +394,16 @@ export = ConfigurationApplicationModel;
  * @typedef OrderFeature
  * @property {boolean} [buy_again] - Allow buy again option for order. Default
  *   value is false.
+ */
+/**
+ * @typedef BuyboxFeature
+ * @property {boolean} [show_name] - Allow users to see seller/stores name on
+ *   PDP (product detail page).
+ * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
+ *   PDP (product detail page).
+ * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
+ *   between sellers and stores. True indicates seller listing, while False
+ *   indicates store listing.
  */
 /**
  * @typedef AppFeatureResponse
@@ -783,7 +794,7 @@ export = ConfigurationApplicationModel;
 declare class ConfigurationApplicationModel {
 }
 declare namespace ConfigurationApplicationModel {
-    export { ApplicationAboutResponse, ApplicationInfo, CompanyInfo, OwnerInfo, SupportedLanguage, LanguageResponse, AppStaffResponse, AppStaffListResponse, OrderingStoreSelectRequest, OrderingStoreSelect, AppStaff, AppTokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, NotFound, InvalidPayloadRequest, UnhandledError, SuccessMessageResponse, CompanyAboutAddress, UserEmail, UserPhoneNumber, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationSupportPhone, InformationSupportEmail, InformationLoc, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, DefaultCurrency, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores };
+    export { ApplicationAboutResponse, ApplicationInfo, CompanyInfo, OwnerInfo, SupportedLanguage, LanguageResponse, AppStaffResponse, AppStaffListResponse, OrderingStoreSelectRequest, OrderingStoreSelect, AppStaff, AppTokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, BuyboxFeature, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, NotFound, InvalidPayloadRequest, UnhandledError, SuccessMessageResponse, CompanyAboutAddress, UserEmail, UserPhoneNumber, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationSupportPhone, InformationSupportEmail, InformationLoc, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, DefaultCurrency, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores };
 }
 /** @returns {ApplicationAboutResponse} */
 declare function ApplicationAboutResponse(): ApplicationAboutResponse;
@@ -1328,6 +1339,7 @@ type AppFeature = {
     qr?: QrFeature;
     pcr?: PcrFeature;
     order?: OrderFeature;
+    buybox?: BuyboxFeature;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * for the sales channel features
@@ -1533,6 +1545,26 @@ type OrderFeature = {
      * value is false.
      */
     buy_again?: boolean;
+};
+/** @returns {BuyboxFeature} */
+declare function BuyboxFeature(): BuyboxFeature;
+type BuyboxFeature = {
+    /**
+     * - Allow users to see seller/stores name on
+     * PDP (product detail page).
+     */
+    show_name?: boolean;
+    /**
+     * - Allow selection of sellers/stores on
+     * PDP (product detail page).
+     */
+    enable_selection?: boolean;
+    /**
+     * - Toggle buybox listing
+     * between sellers and stores. True indicates seller listing, while False
+     * indicates store listing.
+     */
+    is_seller_buybox_enabled?: boolean;
 };
 /** @returns {AppFeatureResponse} */
 declare function AppFeatureResponse(): AppFeatureResponse;

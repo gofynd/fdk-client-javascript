@@ -40,6 +40,7 @@ export = ConfigurationPlatformModel;
  * @property {InventoryCategory} [category]
  * @property {InventoryPrice} [price]
  * @property {InventoryDiscount} [discount]
+ * @property {PricingStrategy} [pricing_strategy]
  * @property {boolean} [out_of_stock] - Indicates whether out of stock products
  *   are allowed to show up on the website
  * @property {boolean} [only_verified_products] - Show only verified products
@@ -688,6 +689,7 @@ export = ConfigurationPlatformModel;
  *   are allowed to show up on the website.
  * @property {boolean} [only_verified_products] - Show only verified products
  *   (the ones whose data have been verified by the admin)
+ * @property {PricingStrategy} [pricing_strategy]
  */
 /**
  * @typedef AppInventory
@@ -1035,6 +1037,7 @@ export = ConfigurationPlatformModel;
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {BuyboxFeature} [buybox]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -1139,6 +1142,16 @@ export = ConfigurationPlatformModel;
  *   value is false.
  */
 /**
+ * @typedef BuyboxFeature
+ * @property {boolean} [show_name] - Allow users to see seller/stores name on
+ *   PDP (product detail page).
+ * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
+ *   PDP (product detail page).
+ * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
+ *   between sellers and stores. True indicates seller listing, while False
+ *   indicates store listing.
+ */
+/**
  * @typedef AppFeatureRequest
  * @property {AppFeature} [feature]
  */
@@ -1239,53 +1252,6 @@ export = ConfigurationPlatformModel;
  * @property {string} [secret]
  */
 /**
- * @typedef ApplicationById
- * @property {ApplicationWebsite} [website]
- * @property {ApplicationCors} [cors]
- * @property {ApplicationAuth} [auth]
- * @property {string} [description] - It contains detailed information about the
- *   sales channel.
- * @property {string} [channel_type] - It indicates different types of channels,
- *   such as store, website, and mobile apps, with 'store' being the default value.
- * @property {number} [cache_ttl] - An integer value that specifies the number
- *   of seconds until the key expires
- * @property {boolean} [is_internal] - Indicates whether a sales channel is
- *   internal or not
- * @property {boolean} [is_active] - Indicates sales channel is active or not active
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel
- * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
- *   of owner who owns the application
- * @property {number} [company_id] - Numeric ID allotted to a business account
- *   where the sales channel exists
- * @property {string} [token] - Random generated fix length string for sales
- *   channel. It is required and auto-generated.
- * @property {ApplicationRedirections[]} [redirections]
- * @property {ApplicationMeta[]} [meta]
- * @property {string} [created_at] - ISO 8601 timestamp of sales channel creation
- * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
- * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
- * @property {SecureUrl} [banner]
- * @property {SecureUrl} [logo]
- * @property {SecureUrl} [favicon]
- * @property {Domain[]} [domains]
- * @property {string} [app_type] - It shows application is live or in development mode.
- * @property {SecureUrl} [mobile_logo]
- * @property {Domain} [domain]
- * @property {string} [slug]
- * @property {string} [mode]
- * @property {string} [status]
- * @property {TokenSchemaID[]} [tokens]
- * @property {string} [secret]
- */
-/**
- * @typedef TokenSchemaID
- * @property {string} [token]
- * @property {string} [created_by]
- * @property {string} [created_at] - ISO 8601 timestamp of when token created
- */
-/**
  * @typedef TokenSchema
  * @property {string} [token]
  * @property {Object} [created_by]
@@ -1301,6 +1267,12 @@ export = ConfigurationPlatformModel;
  * @property {string} [criteria] - Whether all brands are enabled, or explicitly
  *   few brands in the inventory
  * @property {number[]} [brands]
+ */
+/**
+ * @typedef PricingStrategy
+ * @property {boolean} [is_active] - Indicates whether the pricing strategy is
+ *   active or not active
+ * @property {string} [value] - Indicates the pricing strategy value.
  */
 /**
  * @typedef StoreCriteriaRule
@@ -1571,7 +1543,7 @@ export = ConfigurationPlatformModel;
 declare class ConfigurationPlatformModel {
 }
 declare namespace ConfigurationPlatformModel {
-    export { ApplicationInventory, PiiMasking, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, ValidationFailedResponse, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequest, Domain, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, SuccessMessageResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, UpdateIntegrationLevelRequest, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, InventoryConfig, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequest, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, ApplicationById, TokenSchemaID, TokenSchema, InvalidPayloadRequest, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponse };
+    export { ApplicationInventory, PiiMasking, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, InternationalDeliveryCharges, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, ValidationFailedResponse, NotFound, CommunicationConfig, CommsConfig, PanCardConfig, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, DomainAdd, DomainAddRequest, Domain, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, SuccessMessageResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, UpdateIntegrationLevelRequest, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, InventoryConfig, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OrderingStoreSelectRequest, OrderingStoreSelect, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, ListingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, BuyboxFeature, AppFeatureRequest, AppFeatureResponse, Currency, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, InvalidPayloadRequest, InventoryBrandRule, PricingStrategy, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationLoc, InformationSupport, InformationSupportPhone, InformationSupportEmail, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponse };
 }
 /** @returns {ApplicationInventory} */
 declare function ApplicationInventory(): ApplicationInventory;
@@ -1638,6 +1610,7 @@ type AppInventoryConfig = {
     category?: InventoryCategory;
     price?: InventoryPrice;
     discount?: InventoryDiscount;
+    pricing_strategy?: PricingStrategy;
     /**
      * - Indicates whether out of stock products
      * are allowed to show up on the website
@@ -2965,6 +2938,7 @@ type InventoryConfig = {
      * (the ones whose data have been verified by the admin)
      */
     only_verified_products?: boolean;
+    pricing_strategy?: PricingStrategy;
 };
 /** @returns {AppInventory} */
 declare function AppInventory(): AppInventory;
@@ -3634,6 +3608,7 @@ type AppFeature = {
     qr?: QrFeature;
     pcr?: PcrFeature;
     order?: OrderFeature;
+    buybox?: BuyboxFeature;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * for the sales channel features
@@ -3834,6 +3809,26 @@ type OrderFeature = {
      * value is false.
      */
     buy_again?: boolean;
+};
+/** @returns {BuyboxFeature} */
+declare function BuyboxFeature(): BuyboxFeature;
+type BuyboxFeature = {
+    /**
+     * - Allow users to see seller/stores name on
+     * PDP (product detail page).
+     */
+    show_name?: boolean;
+    /**
+     * - Allow selection of sellers/stores on
+     * PDP (product detail page).
+     */
+    enable_selection?: boolean;
+    /**
+     * - Toggle buybox listing
+     * between sellers and stores. True indicates seller listing, while False
+     * indicates store listing.
+     */
+    is_seller_buybox_enabled?: boolean;
 };
 /** @returns {AppFeatureRequest} */
 declare function AppFeatureRequest(): AppFeatureRequest;
@@ -4038,100 +4033,6 @@ type Application = {
     tokens?: TokenSchema[];
     secret?: string;
 };
-/** @returns {ApplicationById} */
-declare function ApplicationById(): ApplicationById;
-type ApplicationById = {
-    website?: ApplicationWebsite;
-    cors?: ApplicationCors;
-    auth?: ApplicationAuth;
-    /**
-     * - It contains detailed information about the
-     * sales channel.
-     */
-    description?: string;
-    /**
-     * - It indicates different types of channels,
-     * such as store, website, and mobile apps, with 'store' being the default value.
-     */
-    channel_type?: string;
-    /**
-     * - An integer value that specifies the number
-     * of seconds until the key expires
-     */
-    cache_ttl?: number;
-    /**
-     * - Indicates whether a sales channel is
-     * internal or not
-     */
-    is_internal?: boolean;
-    /**
-     * - Indicates sales channel is active or not active
-     */
-    is_active?: boolean;
-    /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the sales channel
-     */
-    _id?: string;
-    /**
-     * - Name of the sales channel, e.g. Zenz Fashion
-     */
-    name?: string;
-    /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of owner who owns the application
-     */
-    owner?: string;
-    /**
-     * - Numeric ID allotted to a business account
-     * where the sales channel exists
-     */
-    company_id?: number;
-    /**
-     * - Random generated fix length string for sales
-     * channel. It is required and auto-generated.
-     */
-    token?: string;
-    redirections?: ApplicationRedirections[];
-    meta?: ApplicationMeta[];
-    /**
-     * - ISO 8601 timestamp of sales channel creation
-     */
-    created_at?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel updation
-     */
-    modified_at?: string;
-    /**
-     * - Version key for tracking revisions. Default value is zero.
-     */
-    __v?: number;
-    banner?: SecureUrl;
-    logo?: SecureUrl;
-    favicon?: SecureUrl;
-    domains?: Domain[];
-    /**
-     * - It shows application is live or in development mode.
-     */
-    app_type?: string;
-    mobile_logo?: SecureUrl;
-    domain?: Domain;
-    slug?: string;
-    mode?: string;
-    status?: string;
-    tokens?: TokenSchemaID[];
-    secret?: string;
-};
-/** @returns {TokenSchemaID} */
-declare function TokenSchemaID(): TokenSchemaID;
-type TokenSchemaID = {
-    token?: string;
-    created_by?: string;
-    /**
-     * - ISO 8601 timestamp of when token created
-     */
-    created_at?: string;
-};
 /** @returns {TokenSchema} */
 declare function TokenSchema(): TokenSchema;
 type TokenSchema = {
@@ -4163,6 +4064,19 @@ type InventoryBrandRule = {
      */
     criteria?: string;
     brands?: number[];
+};
+/** @returns {PricingStrategy} */
+declare function PricingStrategy(): PricingStrategy;
+type PricingStrategy = {
+    /**
+     * - Indicates whether the pricing strategy is
+     * active or not active
+     */
+    is_active?: boolean;
+    /**
+     * - Indicates the pricing strategy value.
+     */
+    value?: string;
 };
 /** @returns {StoreCriteriaRule} */
 declare function StoreCriteriaRule(): StoreCriteriaRule;

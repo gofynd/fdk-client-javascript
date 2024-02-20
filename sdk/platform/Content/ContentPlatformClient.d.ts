@@ -273,5 +273,5 @@ declare class Content {
      */
     updateCustomObjectDefinition({ definitionId, body, requestHeaders }?: ContentPlatformValidator.UpdateCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSchema>;
 }
-import ContentPlatformValidator = require("./ContentPlatformValidator");
-import ContentPlatformModel = require("./ContentPlatformModel");
+import ContentPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformValidator");
+import ContentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformModel");

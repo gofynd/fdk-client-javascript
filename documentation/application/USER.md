@@ -9,7 +9,18 @@
 The User Authentication module prioritizes security, offering multiple login options, password management, and profile updates. This module allows users to log in using social accounts, mobile OTPs, or passwords, and also enables secure password resets. It manages mobile and email verification, profile details, and session information.
 
 
-Login and Authentication
+Default
+* [addEmail](#addemail)
+* [addMobileNumber](#addmobilenumber)
+* [deleteEmail](#deleteemail)
+* [deleteMobileNumber](#deletemobilenumber)
+* [deleteUser](#deleteuser)
+* [forgotPassword](#forgotpassword)
+* [getListOfActiveSessions](#getlistofactivesessions)
+* [getLoggedInUser](#getloggedinuser)
+* [getPlatformConfig](#getplatformconfig)
+* [getUserAttributes](#getuserattributes)
+* [hasPassword](#haspassword)
 * [loginWithAppleIOS](#loginwithappleios)
 * [loginWithEmailAndPassword](#loginwithemailandpassword)
 * [loginWithFacebook](#loginwithfacebook)
@@ -17,57 +28,31 @@ Login and Authentication
 * [loginWithGoogleAndroid](#loginwithgoogleandroid)
 * [loginWithGoogleIOS](#loginwithgoogleios)
 * [loginWithOTP](#loginwithotp)
-* [logout](#logout)
-
-
-Password Management
-* [forgotPassword](#forgotpassword)
-* [hasPassword](#haspassword)
-* [resetForgotPassword](#resetforgotpassword)
-* [sendResetPasswordEmail](#sendresetpasswordemail)
-* [sendResetPasswordMobile](#sendresetpasswordmobile)
-* [sendResetToken](#sendresettoken)
-* [updatePassword](#updatepassword)
-* [verifyEmailForgotOTP](#verifyemailforgototp)
-
-
-Login and Registration
-* [addEmail](#addemail)
-* [deleteEmail](#deleteemail)
 * [loginWithToken](#loginwithtoken)
+* [logout](#logout)
 * [registerWithForm](#registerwithform)
+* [resetForgotPassword](#resetforgotpassword)
 * [sendForgotOTPOnEmail](#sendforgototponemail)
 * [sendForgotOTPOnMobile](#sendforgototponmobile)
 * [sendOTPOnEmail](#sendotponemail)
 * [sendOTPOnMobile](#sendotponmobile)
+* [sendResetPasswordEmail](#sendresetpasswordemail)
+* [sendResetPasswordMobile](#sendresetpasswordmobile)
+* [sendResetToken](#sendresettoken)
 * [sendVerificationLinkToEmail](#sendverificationlinktoemail)
 * [sendVerificationLinkToMobile](#sendverificationlinktomobile)
 * [setEmailAsPrimary](#setemailasprimary)
-* [verifyEmailOTP](#verifyemailotp)
-* [verifyMobileForgotOTP](#verifymobileforgototp)
-* [verifyMobileOTP](#verifymobileotp)
-
-
-Email and Mobile Verification:
-* [verifyEmail](#verifyemail)
-* [verifyMobile](#verifymobile)
-
-
-User Account Management
-* [deleteUser](#deleteuser)
-* [getListOfActiveSessions](#getlistofactivesessions)
-* [getLoggedInUser](#getloggedinuser)
-* [getPlatformConfig](#getplatformconfig)
-* [userExists](#userexists)
-
-
-Profile Management
-* [addMobileNumber](#addmobilenumber)
-* [deleteMobileNumber](#deletemobilenumber)
-* [getUserAttributes](#getuserattributes)
 * [setMobileNumberAsPrimary](#setmobilenumberasprimary)
+* [updatePassword](#updatepassword)
 * [updateProfile](#updateprofile)
 * [updateUserAttributes](#updateuserattributes)
+* [userExists](#userexists)
+* [verifyEmail](#verifyemail)
+* [verifyEmailForgotOTP](#verifyemailforgototp)
+* [verifyEmailOTP](#verifyemailotp)
+* [verifyMobile](#verifymobile)
+* [verifyMobileForgotOTP](#verifymobileforgototp)
+* [verifyMobileOTP](#verifymobileotp)
 
 
 
@@ -78,1225 +63,8 @@ Profile Management
 
 
 
-### loginWithAppleIOS
-Apple iOS login.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.loginWithAppleIOS({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.loginWithAppleIOS({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [OAuthRequestAppleSchema](#OAuthRequestAppleSchema) | yes | Request body |
-
-
-Enables login through Apple ID specifically for iOS users.
-
-*Returned Response:*
-
-
-
-
-[AuthSuccess](#AuthSuccess)
-
-Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; apple ios login success</i></summary>
-
-```json
-{
-  "value": {
-    "user_exists": false,
-    "user": {
-      "emails": [
-        {
-          "email": "www.akash24@gmail.com",
-          "verified": true,
-          "primary": true,
-          "active": true
-        }
-      ],
-      "phone_numbers": [],
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "debug": {
-        "platform": "Fynd"
-      },
-      "active": true
-    },
-    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### loginWithEmailAndPassword
-Email/password login.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.loginWithEmailAndPassword({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.loginWithEmailAndPassword({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PasswordLoginRequestSchema](#PasswordLoginRequestSchema) | yes | Request body |
-
-
-Enables login using an email and password combination.
-
-*Returned Response:*
-
-
-
-
-[LoginSuccess](#LoginSuccess)
-
-Success. Check the example shown below or refer `LoginSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; login password success</i></summary>
-
-```json
-{
-  "value": {
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### loginWithFacebook
-Facebook login.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.loginWithFacebook({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.loginWithFacebook({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [OAuthRequestSchema](#OAuthRequestSchema) | yes | Request body |
-
-
-Enables login through Facebook accounts.
-
-*Returned Response:*
-
-
-
-
-[AuthSuccess](#AuthSuccess)
-
-Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; facebook token login success</i></summary>
-
-```json
-{
-  "value": {
-    "user_exists": false,
-    "user": {
-      "emails": [
-        {
-          "email": "www.akash24@gmail.com",
-          "verified": true,
-          "primary": true,
-          "active": true
-        }
-      ],
-      "phone_numbers": [],
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "debug": {
-        "platform": "Fynd"
-      },
-      "active": true
-    },
-    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### loginWithGoogle
-Google login.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.loginWithGoogle({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.loginWithGoogle({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [OAuthRequestSchema](#OAuthRequestSchema) | yes | Request body |
-
-
-Enables login through Google accounts.
-
-*Returned Response:*
-
-
-
-
-[AuthSuccess](#AuthSuccess)
-
-Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; google token login success</i></summary>
-
-```json
-{
-  "value": {
-    "user_exists": false,
-    "user": {
-      "emails": [
-        {
-          "email": "www.akash24@gmail.com",
-          "verified": true,
-          "primary": true,
-          "active": true
-        }
-      ],
-      "phone_numbers": [],
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "debug": {
-        "platform": "Fynd"
-      },
-      "active": true
-    },
-    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### loginWithGoogleAndroid
-Android Google login.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.loginWithGoogleAndroid({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.loginWithGoogleAndroid({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [OAuthRequestSchema](#OAuthRequestSchema) | yes | Request body |
-
-
-Facilitates Google login specifically for Android users.
-
-*Returned Response:*
-
-
-
-
-[AuthSuccess](#AuthSuccess)
-
-Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; google android token login success</i></summary>
-
-```json
-{
-  "value": {
-    "user_exists": false,
-    "user": {
-      "emails": [
-        {
-          "email": "www.akash24@gmail.com",
-          "verified": true,
-          "primary": true,
-          "active": true
-        }
-      ],
-      "phone_numbers": [],
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "debug": {
-        "platform": "Fynd"
-      },
-      "active": true
-    },
-    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### loginWithGoogleIOS
-iOS Google login.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.loginWithGoogleIOS({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.loginWithGoogleIOS({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [OAuthRequestSchema](#OAuthRequestSchema) | yes | Request body |
-
-
-Facilitates Google login specifically for iOS users.
-
-*Returned Response:*
-
-
-
-
-[AuthSuccess](#AuthSuccess)
-
-Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; google android token login success</i></summary>
-
-```json
-{
-  "value": {
-    "user_exists": false,
-    "user": {
-      "emails": [
-        {
-          "email": "www.akash24@gmail.com",
-          "verified": true,
-          "primary": true,
-          "active": true
-        }
-      ],
-      "phone_numbers": [],
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "debug": {
-        "platform": "Fynd"
-      },
-      "active": true
-    },
-    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### loginWithOTP
-OTP login.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.loginWithOTP({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.loginWithOTP({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendOtpRequestSchema](#SendOtpRequestSchema) | yes | Request body |
-
-
-Allows users to log in using a one-time password.
-
-*Returned Response:*
-
-
-
-
-[SendOtpResponse](#SendOtpResponse)
-
-Success. Check the example shown below or refer `SendOtpResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; login otp success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "request_id": "01503005aeab87cbed93d40f46cc2749",
-    "message": "OTP sent",
-    "mobile": "8652523958",
-    "country_code": "91",
-    "resend_timer": 30,
-    "resendToken": "58e72ca0-66ae-11eb-98b1-77d61363826e"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### logout
-Logs out currently logged in user
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.logout();
-
-// Async/Await
-const data = await applicationClient.user.logout();
-```
-
-
-
-
-
-
-Use this API to check to logout a user from the app.
-
-*Returned Response:*
-
-
-
-
-[LogoutSuccess](#LogoutSuccess)
-
-Success. Returns a success message as shown below. Refer `LogoutSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; logout success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### forgotPassword
-Forgot password.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.forgotPassword({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.forgotPassword({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema) | yes | Request body |
-
-
-Initiates the password recovery process for the user.
-
-*Returned Response:*
-
-
-
-
-[LoginSuccess](#LoginSuccess)
-
-Success. Check the example shown below or refer `LoginSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; forgot password success</i></summary>
-
-```json
-{
-  "value": {
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### hasPassword
-Check password.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.hasPassword();
-
-// Async/Await
-const data = await applicationClient.user.hasPassword();
-```
-
-
-
-
-
-
-Checks if the user has set a password for the account.
-
-*Returned Response:*
-
-
-
-
-[HasPasswordSuccess](#HasPasswordSuccess)
-
-Success. Returns a boolean value. Check the example shown below or refer `HasPasswordSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; has password success</i></summary>
-
-```json
-{
-  "value": {
-    "result": 1
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### resetForgotPassword
-Forgot password.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.resetForgotPassword({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.resetForgotPassword({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema) | yes | Request body |
-
-
-Initiates the password recovery process for the user.
-
-*Returned Response:*
-
-
-
-
-[ResetForgotPasswordSuccess](#ResetForgotPasswordSuccess)
-
-Success. Check the example shown below or refer `ResetForgotPasswordSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; reset forgot password success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendResetPasswordEmail
-Reset password (Email).
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendResetPasswordEmail({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.sendResetPasswordEmail({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendResetPasswordEmailRequestSchema](#SendResetPasswordEmailRequestSchema) | yes | Request body |
-
-
-Sends a password reset link to the user's email.
-
-*Returned Response:*
-
-
-
-
-[ResetPasswordSuccess](#ResetPasswordSuccess)
-
-Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; reset password success</i></summary>
-
-```json
-{
-  "value": {
-    "status": "sent"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendResetPasswordMobile
-Reset password (Mobile).
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendResetPasswordMobile({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.sendResetPasswordMobile({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema) | yes | Request body |
-
-
-Sends a password reset OTP to the user's mobile number.
-
-*Returned Response:*
-
-
-
-
----
-
-
-### sendResetToken
-Reset Password using token
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendResetToken({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.sendResetToken({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CodeRequestBodySchema](#CodeRequestBodySchema) | yes | Request body |
-
-
-Use this API to send code to reset password.
-
-*Returned Response:*
-
-
-
-
-[ResetPasswordSuccess](#ResetPasswordSuccess)
-
-Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; reset token success</i></summary>
-
-```json
-{
-  "value": {
-    "status": "success"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePassword
-Update password.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.updatePassword({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.updatePassword({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UpdatePasswordRequestSchema](#UpdatePasswordRequestSchema) | yes | Request body |
-
-
-Allows users to update their existing password.
-
-*Returned Response:*
-
-
-
-
-[VerifyEmailSuccess](#VerifyEmailSuccess)
-
-Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; update password success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "success"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyEmailForgotOTP
-Verify Email Forgot OTP
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.verifyEmailForgotOTP({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.verifyEmailForgotOTP({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [VerifyEmailForgotOtpRequestSchema](#VerifyEmailForgotOtpRequestSchema) | yes | Request body |
-
-
-Validates the OTP sent to the user's forgot email address request.
-
-*Returned Response:*
-
-
-
-
-[VerifyForgotOtpSuccess](#VerifyForgotOtpSuccess)
-
-Success. Returns a JSON object as shown below. Refer `VerifyForgotOtpSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; verify forgot otp on email success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "forgot_token": "d6c9df22-7e65-41be-9852-8207a8d2d54d"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
 ### addEmail
-Add email.
+Add email to profile
 
 
 
@@ -1320,7 +88,7 @@ const data = await applicationClient.user.addEmail({  body : value,
 | body | [EditEmailRequestSchema](#EditEmailRequestSchema) | yes | Request body |
 
 
-Adds a new email address to the user's profile.
+Use this API to add a new email address to a profile
 
 *Returned Response:*
 
@@ -1409,8 +177,122 @@ Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` 
 ---
 
 
+### addMobileNumber
+Add mobile number to profile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.addMobileNumber({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.addMobileNumber({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [EditMobileRequestSchema](#EditMobileRequestSchema) | yes | Request body |
+
+
+Use this API to add a new mobile number to a profile.
+
+*Returned Response:*
+
+
+
+
+[VerifyMobileOTPSuccess](#VerifyMobileOTPSuccess)
+
+Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; add mobile number to profile success</i></summary>
+
+```json
+{
+  "value": {
+    "verify_mobile_link": true,
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### deleteEmail
-Delete email.
+Delete email from profile
 
 
 
@@ -1444,7 +326,7 @@ const data = await applicationClient.user.deleteEmail({  active : value,
 
 
 
-Removes an email address from the user's profile.
+Use this API to delete an email address from a profile
 
 *Returned Response:*
 
@@ -1468,1762 +350,6 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
 ```json
 {
   "value": {
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### loginWithToken
-Login or Register with token
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.loginWithToken({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.loginWithToken({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [TokenRequestBodySchema](#TokenRequestBodySchema) | yes | Request body |
-
-
-Use this API to login or register using a token for authentication.
-
-*Returned Response:*
-
-
-
-
-[LoginSuccess](#LoginSuccess)
-
-Success. Check the example shown below or refer `LoginSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; login with token success</i></summary>
-
-```json
-{
-  "value": {
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### registerWithForm
-User registration.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.registerWithForm({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.registerWithForm({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [FormRegisterRequestSchema](#FormRegisterRequestSchema) | yes | Request body |
-
-
-Enables new users to register using a form.
-
-*Returned Response:*
-
-
-
-
-[RegisterFormSuccess](#RegisterFormSuccess)
-
-Success. Check the example shown below or refer `RegisterFormSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; register form success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "request_id": "ebc059191393681cdfb805b5424bddad",
-    "message": "OTP sent",
-    "mobile": "7400448798",
-    "country_code": "91",
-    "resend_timer": 30,
-    "resend_token": "5197ff90-66e2-11eb-9399-0312fbf2c2a6",
-    "verify_mobile_otp": true,
-    "register_token": "276e718a-d406-4a4b-83f7-cb6cb72b99ff",
-    "userExists": false
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendForgotOTPOnEmail
-Send Forgot OTP Email
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendForgotOTPOnEmail({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.sendForgotOTPOnEmail({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendEmailForgotOtpRequestSchema](#SendEmailForgotOtpRequestSchema) | yes | Request body |
-
-
-Sends a one-time password to the user's forgot email for verification request.
-
-*Returned Response:*
-
-
-
-
-[EmailOtpSuccess](#EmailOtpSuccess)
-
-Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; send forgot otp on email success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendForgotOTPOnMobile
-Send forgot OTP on mobile
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendForgotOTPOnMobile({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.sendForgotOTPOnMobile({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendMobileForgotOtpRequestSchema](#SendMobileForgotOtpRequestSchema) | yes | Request body |
-
-
-Sends a one-time password to the user's forgot mobile for verification request.
-
-*Returned Response:*
-
-
-
-
-[OtpSuccess](#OtpSuccess)
-
-Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; send forgot otp on mobile success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "request_id": "01503005aeab87cbed93d40f46cc2749",
-    "message": "OTP sent",
-    "mobile": "9987568524",
-    "country_code": "91",
-    "resend_timer": 30,
-    "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendOTPOnEmail
-Send email OTP.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendOTPOnEmail({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.sendOTPOnEmail({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendEmailOtpRequestSchema](#SendEmailOtpRequestSchema) | yes | Request body |
-
-
-Sends a one-time password to the user's email for verification.
-
-*Returned Response:*
-
-
-
-
-[EmailOtpSuccess](#EmailOtpSuccess)
-
-Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; send email otp success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendOTPOnMobile
-Send mobile OTP.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendOTPOnMobile({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.sendOTPOnMobile({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendMobileOtpRequestSchema](#SendMobileOtpRequestSchema) | yes | Request body |
-
-
-Sends a one-time password to the user's mobile for verification.
-
-*Returned Response:*
-
-
-
-
-[OtpSuccess](#OtpSuccess)
-
-Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; send mobile otp success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "request_id": "01503005aeab87cbed93d40f46cc2749",
-    "message": "OTP sent",
-    "mobile": "8652523958",
-    "country_code": "91",
-    "resend_timer": 30,
-    "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendVerificationLinkToEmail
-Verify new email.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendVerificationLinkToEmail({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.sendVerificationLinkToEmail({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [EditEmailRequestSchema](#EditEmailRequestSchema) | yes | Request body |
-
-
-Sends a verification link to a newly added email address.
-
-*Returned Response:*
-
-
-
-
-[SendEmailVerifyLinkSuccess](#SendEmailVerifyLinkSuccess)
-
-Request body must contain an email ID. Refer `EditEmailRequestSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; send verification link to email success</i></summary>
-
-```json
-{
-  "value": {
-    "verify_email_link": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendVerificationLinkToMobile
-Verify new mobile.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.sendVerificationLinkToMobile({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.sendVerificationLinkToMobile({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema) | yes | Request body |
-
-
-Sends a verification link to a newly added mobile number.
-
-*Returned Response:*
-
-
-
-
-[SendMobileVerifyLinkSuccess](#SendMobileVerifyLinkSuccess)
-
-Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; send verification link to mobile success</i></summary>
-
-```json
-{
-  "value": {
-    "verify_mobile_link": true,
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### setEmailAsPrimary
-Set primary email.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.setEmailAsPrimary({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.setEmailAsPrimary({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [EditEmailRequestSchema](#EditEmailRequestSchema) | yes | Request body |
-
-
-Sets an email address as the primary contact for the user.
-
-*Returned Response:*
-
-
-
-
-[LoginSuccess](#LoginSuccess)
-
-Success. Returns a JSON object with user details. Refer `LoginSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; set email as primary success</i></summary>
-
-```json
-{
-  "value": {
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyEmailOTP
-Verify Email OTP
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.verifyEmailOTP({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.verifyEmailOTP({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema) | yes | Request body |
-
-
-Validates the OTP sent to the user's email address request.
-
-*Returned Response:*
-
-
-
-
-[VerifyOtpSuccess](#VerifyOtpSuccess)
-
-Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; verify email otp success</i></summary>
-
-```json
-{
-  "value": {
-    "verify_mobile_link": true,
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyMobileForgotOTP
-Verify Forgot OTP on mobile
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.verifyMobileForgotOTP({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.verifyMobileForgotOTP({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [VerifyMobileForgotOtpRequestSchema](#VerifyMobileForgotOtpRequestSchema) | yes | Request body |
-
-
-Use this API to verify the Forgot OTP received on a mobile number.
-
-*Returned Response:*
-
-
-
-
-[VerifyForgotOtpSuccess](#VerifyForgotOtpSuccess)
-
-Success. Returns a JSON object as shown below. Refer `VerifyForgotOtpSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; verify forgot otp on mobile success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "forgot_token": "d6c9df22-7e65-41be-9852-8207a8d2d54d"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyMobileOTP
-Verify mobile OTP.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.verifyMobileOTP({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.verifyMobileOTP({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [VerifyOtpRequestSchema](#VerifyOtpRequestSchema) | yes | Request body |
-
-
-Validates the OTP sent to the user's mobile.
-
-*Returned Response:*
-
-
-
-
-[VerifyOtpSuccess](#VerifyOtpSuccess)
-
-Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; verify mobile otp success</i></summary>
-
-```json
-{
-  "value": {
-    "verify_mobile_link": true,
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### verifyEmail
-Verify email.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.verifyEmail({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.verifyEmail({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CodeRequestBodySchema](#CodeRequestBodySchema) | yes | Request body |
-
-
-Verifies the user's email address.
-
-*Returned Response:*
-
-
-
-
-[VerifyEmailSuccess](#VerifyEmailSuccess)
-
-Success. Check the example shown below or refer `VerifyEmailSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; verify email success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "verified"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyMobile
-Verify mobile.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.verifyMobile({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.verifyMobile({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CodeRequestBodySchema](#CodeRequestBodySchema) | yes | Request body |
-
-
-Verifies the user's mobile number.
-
-*Returned Response:*
-
-
-
-
-[VerifyEmailSuccess](#VerifyEmailSuccess)
-
-Success. Check the example shown below or refer `VerifyEmailSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; verify mobile success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "verified"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### deleteUser
-verify otp and delete user
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.deleteUser({  body : value });
-
-// Async/Await
-const data = await applicationClient.user.deleteUser({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema) | yes | Request body |
-
-
-verify otp and delete user
-
-*Returned Response:*
-
-
-
-
-[DeleteUserSuccess](#DeleteUserSuccess)
-
-Success. Returns a success message. Refer `DeleteUserSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; delete user success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getListOfActiveSessions
-Get list of sessions
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.getListOfActiveSessions();
-
-// Async/Await
-const data = await applicationClient.user.getListOfActiveSessions();
-```
-
-
-
-
-
-
-Use this API to retrieve all active sessions of a user.
-
-*Returned Response:*
-
-
-
-
-[SessionListSuccess](#SessionListSuccess)
-
-Success. Returns a JSON object containing an array of sessions. Refer `SessionListSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; get all sessions success</i></summary>
-
-```json
-{
-  "value": {
-    "sessions": [
-      "session1",
-      "session2"
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getLoggedInUser
-Current user.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.getLoggedInUser();
-
-// Async/Await
-const data = await applicationClient.user.getLoggedInUser();
-```
-
-
-
-
-
-
-Retrieve information about the currently logged-in user.
-
-*Returned Response:*
-
-
-
-
-[UserObjectSchema](#UserObjectSchema)
-
-Success. Returns a JSON object with user details. Refer `UserObjectSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; get session success</i></summary>
-
-```json
-{
-  "value": {
-    "user": {
-      "debug": {
-        "source": "deadlock",
-        "platform": "000000000000000000000001"
-      },
-      "gender": "male",
-      "account_type": "user",
-      "active": true,
-      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-      "has_old_password_hash": false,
-      "_id": "5e68af49cfa09bf7233022f1",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "username": "akashmane_gofynd_com_10039",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2021-02-04T10:10:44.981Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPlatformConfig
-Platform config.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.getPlatformConfig({  name : value });
-
-// Async/Await
-const data = await applicationClient.user.getPlatformConfig({  name : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| name | string | no | Name of the application, e.g. Fynd |  
-
-
-
-Retrieve configuration settings related to the user platform.
-
-*Returned Response:*
-
-
-
-
-[PlatformSchema](#PlatformSchema)
-
-Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; get platform config success</i></summary>
-
-```json
-{
-  "value": {
-    "active": true,
-    "mobile_image": "test",
-    "desktop_image": "test",
-    "social": {
-      "facebook": true,
-      "google": true,
-      "account_kit": true
-    },
-    "flash_card": {
-      "text": "",
-      "text_color": "#FFFFFF",
-      "background_color": "#EF5350"
-    },
-    "register": true,
-    "forgot_password": true,
-    "login": {
-      "password": true,
-      "otp": true
-    },
-    "skip_captcha": false,
-    "display": "Fynd",
-    "subtext": "Login to Fynd",
-    "name": "Fynd",
-    "meta": {},
-    "required_fields": {
-      "email": {
-        "is_required": false,
-        "level": "hard"
-      },
-      "mobile": {
-        "is_required": true,
-        "level": "hard"
-      }
-    },
-    "register_required_fields": {
-      "email": {
-        "is_required": false,
-        "level": "hard"
-      },
-      "mobile": {
-        "is_required": true,
-        "level": "hard"
-      }
-    },
-    "skip_login": false,
-    "look_and_feel": {
-      "background_color": "#F5F5F5",
-      "card_position": "center"
-    },
-    "social_tokens": {
-      "google": {
-        "appId": "token_123"
-      },
-      "facebook": {
-        "appId": "2033146826724884"
-      },
-      "account_kit": {
-        "appId": "548529975557631"
-      }
-    },
-    "delete_account_reasons": [
-      {
-        "reason_text": "test",
-        "reason_id": "123",
-        "show_text_area": true
-      }
-    ],
-    "delete_account_day": 7,
-    "delete_account_consent": {
-      "consent_text": ""
-    },
-    "session_config": {
-      "duration": 30,
-      "type": "Days",
-      "is_rolling": false
-    },
-    "_id": "5e04a5e5220bc15839ad9bc0",
-    "created_at": "2019-12-26T12:21:57.878Z",
-    "updated_at": "2020-08-13T14:31:09.878Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### userExists
-Check user is already registered or not
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.userExists({  q : value });
-
-// Async/Await
-const data = await applicationClient.user.userExists({  q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| q | string | yes | email id or phone number of user |  
-
-
-
-Use this API to check whether user is already registered or not to the sales channel.
-
-*Returned Response:*
-
-
-
-
-[UserExistsResponse](#UserExistsResponse)
-
-Returns true or false based on user is registered or not.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; user exists success</i></summary>
-
-```json
-{
-  "value": {
-    "user_exists": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### addMobileNumber
-Add mobile.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.user.addMobileNumber({  body : value,
- platform : value });
-
-// Async/Await
-const data = await applicationClient.user.addMobileNumber({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [EditMobileRequestSchema](#EditMobileRequestSchema) | yes | Request body |
-
-
-Adds a new mobile number to the user's profile.
-
-*Returned Response:*
-
-
-
-
-[VerifyMobileOTPSuccess](#VerifyMobileOTPSuccess)
-
-Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; add mobile number to profile success</i></summary>
-
-```json
-{
-  "value": {
-    "verify_mobile_link": true,
     "user": {
       "debug": {
         "source": "deadlock",
@@ -3414,6 +540,496 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 ---
 
 
+### deleteUser
+verify otp and delete user
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.deleteUser({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.deleteUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema) | yes | Request body |
+
+
+verify otp and delete user
+
+*Returned Response:*
+
+
+
+
+[DeleteUserSuccess](#DeleteUserSuccess)
+
+Success. Returns a success message. Refer `DeleteUserSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; delete user success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### forgotPassword
+Forgot Password
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.forgotPassword({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.forgotPassword({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema) | yes | Request body |
+
+
+Use this API to reset a password using the code sent on email or SMS.
+
+*Returned Response:*
+
+
+
+
+[LoginSuccess](#LoginSuccess)
+
+Success. Check the example shown below or refer `LoginSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; forgot password success</i></summary>
+
+```json
+{
+  "value": {
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getListOfActiveSessions
+Get list of sessions
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.getListOfActiveSessions();
+
+// Async/Await
+const data = await applicationClient.user.getListOfActiveSessions();
+```
+
+
+
+
+
+
+Use this API to retrieve all active sessions of a user.
+
+*Returned Response:*
+
+
+
+
+[SessionListSuccess](#SessionListSuccess)
+
+Success. Returns a JSON object containing an array of sessions. Refer `SessionListSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get all sessions success</i></summary>
+
+```json
+{
+  "value": {
+    "sessions": [
+      "session1",
+      "session2"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getLoggedInUser
+Get logged in user
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.getLoggedInUser();
+
+// Async/Await
+const data = await applicationClient.user.getLoggedInUser();
+```
+
+
+
+
+
+
+Use this API  to get the details of a logged in user.
+
+*Returned Response:*
+
+
+
+
+[UserObjectSchema](#UserObjectSchema)
+
+Success. Returns a JSON object with user details. Refer `UserObjectSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get session success</i></summary>
+
+```json
+{
+  "value": {
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPlatformConfig
+Get platform configurations
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.getPlatformConfig({  name : value });
+
+// Async/Await
+const data = await applicationClient.user.getPlatformConfig({  name : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| name | string | no | Name of the application, e.g. Fynd |  
+
+
+
+Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
+
+*Returned Response:*
+
+
+
+
+[PlatformSchema](#PlatformSchema)
+
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get platform config success</i></summary>
+
+```json
+{
+  "value": {
+    "active": true,
+    "mobile_image": "test",
+    "desktop_image": "test",
+    "social": {
+      "facebook": true,
+      "google": true,
+      "account_kit": true
+    },
+    "flash_card": {
+      "text": "",
+      "text_color": "#FFFFFF",
+      "background_color": "#EF5350"
+    },
+    "register": true,
+    "forgot_password": true,
+    "login": {
+      "password": true,
+      "otp": true
+    },
+    "skip_captcha": false,
+    "display": "Fynd",
+    "subtext": "Login to Fynd",
+    "name": "Fynd",
+    "meta": {},
+    "required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "register_required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "skip_login": false,
+    "look_and_feel": {
+      "background_color": "#F5F5F5",
+      "card_position": "center"
+    },
+    "social_tokens": {
+      "google": {
+        "appId": "token_123"
+      },
+      "facebook": {
+        "appId": "2033146826724884"
+      },
+      "account_kit": {
+        "appId": "548529975557631"
+      }
+    },
+    "delete_account_reasons": [
+      {
+        "reason_text": "test",
+        "reason_id": "123",
+        "show_text_area": true
+      }
+    ],
+    "delete_account_day": 7,
+    "delete_account_consent": {
+      "consent_text": ""
+    },
+    "session_config": {
+      "duration": 30,
+      "type": "Days",
+      "is_rolling": false
+    },
+    "_id": "5e04a5e5220bc15839ad9bc0",
+    "created_at": "2019-12-26T12:21:57.878Z",
+    "updated_at": "2020-08-13T14:31:09.878Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getUserAttributes
 Get user attributes
 
@@ -3483,8 +1099,1765 @@ Returns a list of users attributes
 ---
 
 
+### hasPassword
+Check password
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.hasPassword();
+
+// Async/Await
+const data = await applicationClient.user.hasPassword();
+```
+
+
+
+
+
+
+Use this API to check if user has created a password for login.
+
+*Returned Response:*
+
+
+
+
+[HasPasswordSuccess](#HasPasswordSuccess)
+
+Success. Returns a boolean value. Check the example shown below or refer `HasPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; has password success</i></summary>
+
+```json
+{
+  "value": {
+    "result": 1
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### loginWithAppleIOS
+Login or Register using Apple on iOS
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.loginWithAppleIOS({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.loginWithAppleIOS({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [OAuthRequestAppleSchema](#OAuthRequestAppleSchema) | yes | Request body |
+
+
+Use this API to login or register in iOS app using Apple Account credentials.
+
+*Returned Response:*
+
+
+
+
+[AuthSuccess](#AuthSuccess)
+
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; apple ios login success</i></summary>
+
+```json
+{
+  "value": {
+    "user_exists": false,
+    "user": {
+      "emails": [
+        {
+          "email": "www.akash24@gmail.com",
+          "verified": true,
+          "primary": true,
+          "active": true
+        }
+      ],
+      "phone_numbers": [],
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "debug": {
+        "platform": "Fynd"
+      },
+      "active": true
+    },
+    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### loginWithEmailAndPassword
+Login or Register with password
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.loginWithEmailAndPassword({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.loginWithEmailAndPassword({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PasswordLoginRequestSchema](#PasswordLoginRequestSchema) | yes | Request body |
+
+
+Use this API to login or register using an email address and password.
+
+*Returned Response:*
+
+
+
+
+[LoginSuccess](#LoginSuccess)
+
+Success. Check the example shown below or refer `LoginSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; login password success</i></summary>
+
+```json
+{
+  "value": {
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### loginWithFacebook
+Login or Register using Facebook
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.loginWithFacebook({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.loginWithFacebook({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [OAuthRequestSchema](#OAuthRequestSchema) | yes | Request body |
+
+
+Use this API to login or register using Facebook credentials.
+
+*Returned Response:*
+
+
+
+
+[AuthSuccess](#AuthSuccess)
+
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; facebook token login success</i></summary>
+
+```json
+{
+  "value": {
+    "user_exists": false,
+    "user": {
+      "emails": [
+        {
+          "email": "www.akash24@gmail.com",
+          "verified": true,
+          "primary": true,
+          "active": true
+        }
+      ],
+      "phone_numbers": [],
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "debug": {
+        "platform": "Fynd"
+      },
+      "active": true
+    },
+    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### loginWithGoogle
+Login or Register using Google
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.loginWithGoogle({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.loginWithGoogle({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [OAuthRequestSchema](#OAuthRequestSchema) | yes | Request body |
+
+
+Use this API to login or register using Google Account credentials.
+
+*Returned Response:*
+
+
+
+
+[AuthSuccess](#AuthSuccess)
+
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; google token login success</i></summary>
+
+```json
+{
+  "value": {
+    "user_exists": false,
+    "user": {
+      "emails": [
+        {
+          "email": "www.akash24@gmail.com",
+          "verified": true,
+          "primary": true,
+          "active": true
+        }
+      ],
+      "phone_numbers": [],
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "debug": {
+        "platform": "Fynd"
+      },
+      "active": true
+    },
+    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### loginWithGoogleAndroid
+Login or Register using Google on Android
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.loginWithGoogleAndroid({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.loginWithGoogleAndroid({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [OAuthRequestSchema](#OAuthRequestSchema) | yes | Request body |
+
+
+Use this API to login or register in Android app using Google Account credentials.
+
+*Returned Response:*
+
+
+
+
+[AuthSuccess](#AuthSuccess)
+
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; google android token login success</i></summary>
+
+```json
+{
+  "value": {
+    "user_exists": false,
+    "user": {
+      "emails": [
+        {
+          "email": "www.akash24@gmail.com",
+          "verified": true,
+          "primary": true,
+          "active": true
+        }
+      ],
+      "phone_numbers": [],
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "debug": {
+        "platform": "Fynd"
+      },
+      "active": true
+    },
+    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### loginWithGoogleIOS
+Login or Register using Google on iOS
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.loginWithGoogleIOS({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.loginWithGoogleIOS({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [OAuthRequestSchema](#OAuthRequestSchema) | yes | Request body |
+
+
+Use this API to login or register in iOS app using Google Account credentials.
+
+*Returned Response:*
+
+
+
+
+[AuthSuccess](#AuthSuccess)
+
+Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; google android token login success</i></summary>
+
+```json
+{
+  "value": {
+    "user_exists": false,
+    "user": {
+      "emails": [
+        {
+          "email": "www.akash24@gmail.com",
+          "verified": true,
+          "primary": true,
+          "active": true
+        }
+      ],
+      "phone_numbers": [],
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "debug": {
+        "platform": "Fynd"
+      },
+      "active": true
+    },
+    "register_token": "d960c388-e286-43d9-b688-f6d1decc632d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### loginWithOTP
+Login or Register with OTP
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.loginWithOTP({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.loginWithOTP({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendOtpRequestSchema](#SendOtpRequestSchema) | yes | Request body |
+
+
+Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
+
+*Returned Response:*
+
+
+
+
+[SendOtpResponse](#SendOtpResponse)
+
+Success. Check the example shown below or refer `SendOtpResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; login otp success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "request_id": "01503005aeab87cbed93d40f46cc2749",
+    "message": "OTP sent",
+    "mobile": "8652523958",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resendToken": "58e72ca0-66ae-11eb-98b1-77d61363826e"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### loginWithToken
+Login or Register with token
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.loginWithToken({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.loginWithToken({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [TokenRequestBodySchema](#TokenRequestBodySchema) | yes | Request body |
+
+
+Use this API to login or register using a token for authentication.
+
+*Returned Response:*
+
+
+
+
+[LoginSuccess](#LoginSuccess)
+
+Success. Check the example shown below or refer `LoginSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; login with token success</i></summary>
+
+```json
+{
+  "value": {
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### logout
+Logs out currently logged in user
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.logout();
+
+// Async/Await
+const data = await applicationClient.user.logout();
+```
+
+
+
+
+
+
+Use this API to check to logout a user from the app.
+
+*Returned Response:*
+
+
+
+
+[LogoutSuccess](#LogoutSuccess)
+
+Success. Returns a success message as shown below. Refer `LogoutSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; logout success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### registerWithForm
+Registration using a form
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.registerWithForm({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.registerWithForm({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [FormRegisterRequestSchema](#FormRegisterRequestSchema) | yes | Request body |
+
+
+Use this API to perform user registration by sending form data in the request body.
+
+*Returned Response:*
+
+
+
+
+[RegisterFormSuccess](#RegisterFormSuccess)
+
+Success. Check the example shown below or refer `RegisterFormSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; register form success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "request_id": "ebc059191393681cdfb805b5424bddad",
+    "message": "OTP sent",
+    "mobile": "7400448798",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resend_token": "5197ff90-66e2-11eb-9399-0312fbf2c2a6",
+    "verify_mobile_otp": true,
+    "register_token": "276e718a-d406-4a4b-83f7-cb6cb72b99ff",
+    "userExists": false
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### resetForgotPassword
+Reset forgot Password
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.resetForgotPassword({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.resetForgotPassword({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema) | yes | Request body |
+
+
+Use this API to reset a password using the code sent on email or SMS.
+
+*Returned Response:*
+
+
+
+
+[ResetForgotPasswordSuccess](#ResetForgotPasswordSuccess)
+
+Success. Check the example shown below or refer `ResetForgotPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; reset forgot password success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendForgotOTPOnEmail
+Send Forgot OTP on email
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendForgotOTPOnEmail({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendForgotOTPOnEmail({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendEmailForgotOtpRequestSchema](#SendEmailForgotOtpRequestSchema) | yes | Request body |
+
+
+Use this API to send an Forgot OTP to an email ID.
+
+*Returned Response:*
+
+
+
+
+[EmailOtpSuccess](#EmailOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send forgot otp on email success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendForgotOTPOnMobile
+Send Forgot OTP on mobile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendForgotOTPOnMobile({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendForgotOTPOnMobile({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendMobileForgotOtpRequestSchema](#SendMobileForgotOtpRequestSchema) | yes | Request body |
+
+
+Use this API to send an Forgot OTP to a mobile number.
+
+*Returned Response:*
+
+
+
+
+[OtpSuccess](#OtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send forgot otp on mobile success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "request_id": "01503005aeab87cbed93d40f46cc2749",
+    "message": "OTP sent",
+    "mobile": "9987568524",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendOTPOnEmail
+Send OTP on email
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendOTPOnEmail({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendOTPOnEmail({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendEmailOtpRequestSchema](#SendEmailOtpRequestSchema) | yes | Request body |
+
+
+Use this API to send an OTP to an email ID.
+
+*Returned Response:*
+
+
+
+
+[EmailOtpSuccess](#EmailOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send email otp success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendOTPOnMobile
+Send OTP on mobile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendOTPOnMobile({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendOTPOnMobile({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendMobileOtpRequestSchema](#SendMobileOtpRequestSchema) | yes | Request body |
+
+
+Use this API to send an OTP to a mobile number.
+
+*Returned Response:*
+
+
+
+
+[OtpSuccess](#OtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send mobile otp success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "request_id": "01503005aeab87cbed93d40f46cc2749",
+    "message": "OTP sent",
+    "mobile": "8652523958",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendResetPasswordEmail
+Reset Password
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendResetPasswordEmail({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendResetPasswordEmail({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendResetPasswordEmailRequestSchema](#SendResetPasswordEmailRequestSchema) | yes | Request body |
+
+
+Use this API to reset a password using the link sent on email.
+
+*Returned Response:*
+
+
+
+
+[ResetPasswordSuccess](#ResetPasswordSuccess)
+
+Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; reset password success</i></summary>
+
+```json
+{
+  "value": {
+    "status": "sent"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendResetPasswordMobile
+Reset Password
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendResetPasswordMobile({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendResetPasswordMobile({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema) | yes | Request body |
+
+
+Use this API to reset a password using the link sent on mobile.
+
+*Returned Response:*
+
+
+
+
+[ResetPasswordSuccess](#ResetPasswordSuccess)
+
+Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "status": "sent"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendResetToken
+Reset Password using token
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendResetToken({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.sendResetToken({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CodeRequestBodySchema](#CodeRequestBodySchema) | yes | Request body |
+
+
+Use this API to send code to reset password.
+
+*Returned Response:*
+
+
+
+
+[ResetPasswordSuccess](#ResetPasswordSuccess)
+
+Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; reset token success</i></summary>
+
+```json
+{
+  "value": {
+    "status": "success"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendVerificationLinkToEmail
+Send verification link to email
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendVerificationLinkToEmail({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendVerificationLinkToEmail({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [EditEmailRequestSchema](#EditEmailRequestSchema) | yes | Request body |
+
+
+Use this API to send verification link to an email address.
+
+*Returned Response:*
+
+
+
+
+[SendEmailVerifyLinkSuccess](#SendEmailVerifyLinkSuccess)
+
+Request body must contain an email ID. Refer `EditEmailRequestSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send verification link to email success</i></summary>
+
+```json
+{
+  "value": {
+    "verify_email_link": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendVerificationLinkToMobile
+Send verification link to mobile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendVerificationLinkToMobile({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendVerificationLinkToMobile({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema) | yes | Request body |
+
+
+Use this API to send a verification link to a mobile number
+
+*Returned Response:*
+
+
+
+
+[SendMobileVerifyLinkSuccess](#SendMobileVerifyLinkSuccess)
+
+Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send verification link to mobile success</i></summary>
+
+```json
+{
+  "value": {
+    "verify_mobile_link": true,
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### setEmailAsPrimary
+Set email as primary
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.setEmailAsPrimary({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.setEmailAsPrimary({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EditEmailRequestSchema](#EditEmailRequestSchema) | yes | Request body |
+
+
+Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
+
+*Returned Response:*
+
+
+
+
+[LoginSuccess](#LoginSuccess)
+
+Success. Returns a JSON object with user details. Refer `LoginSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; set email as primary success</i></summary>
+
+```json
+{
+  "value": {
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### setMobileNumberAsPrimary
-Set primary mobile.
+Set mobile as primary
 
 
 
@@ -3505,7 +2878,7 @@ const data = await applicationClient.user.setMobileNumberAsPrimary({  body : val
 | body | [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema) | yes | Request body |
 
 
-Sets a mobile number as the primary contact for the user.
+Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
 
 *Returned Response:*
 
@@ -3575,6 +2948,71 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
       "created_at": "2020-03-11T09:28:41.982Z",
       "updated_at": "2021-02-04T10:10:44.981Z"
     }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePassword
+Update user password
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.updatePassword({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.updatePassword({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UpdatePasswordRequestSchema](#UpdatePasswordRequestSchema) | yes | Request body |
+
+
+Use this API to update the password.
+
+*Returned Response:*
+
+
+
+
+[VerifyEmailSuccess](#VerifyEmailSuccess)
+
+Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update password success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "success"
   }
 }
 ```
@@ -3774,6 +3212,568 @@ Returns a list of users attributes
 ---
 
 
+### userExists
+Check user is already registered or not
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.userExists({  q : value });
+
+// Async/Await
+const data = await applicationClient.user.userExists({  q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| q | string | yes | email id or phone number of user |  
+
+
+
+Use this API to check whether user is already registered or not to the sales channel.
+
+*Returned Response:*
+
+
+
+
+[UserExistsResponse](#UserExistsResponse)
+
+Returns true or false based on user is registered or not.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; user exists success</i></summary>
+
+```json
+{
+  "value": {
+    "user_exists": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyEmail
+Verify email
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.verifyEmail({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.verifyEmail({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CodeRequestBodySchema](#CodeRequestBodySchema) | yes | Request body |
+
+
+Use this API to send a verification code to verify an email.
+
+*Returned Response:*
+
+
+
+
+[VerifyEmailSuccess](#VerifyEmailSuccess)
+
+Success. Check the example shown below or refer `VerifyEmailSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify email success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "verified"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyEmailForgotOTP
+Verify Forgot OTP on email
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.verifyEmailForgotOTP({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.verifyEmailForgotOTP({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [VerifyEmailForgotOtpRequestSchema](#VerifyEmailForgotOtpRequestSchema) | yes | Request body |
+
+
+Use this API to verify the Forgot OTP received on an email ID.
+
+*Returned Response:*
+
+
+
+
+[VerifyForgotOtpSuccess](#VerifyForgotOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `VerifyForgotOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify forgot otp on email success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "forgot_token": "d6c9df22-7e65-41be-9852-8207a8d2d54d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyEmailOTP
+Verify OTP on email
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.verifyEmailOTP({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.verifyEmailOTP({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema) | yes | Request body |
+
+
+Use this API to verify the OTP received on an email ID.
+
+*Returned Response:*
+
+
+
+
+[VerifyOtpSuccess](#VerifyOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify email otp success</i></summary>
+
+```json
+{
+  "value": {
+    "verify_mobile_link": true,
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyMobile
+Verify mobile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.verifyMobile({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.verifyMobile({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CodeRequestBodySchema](#CodeRequestBodySchema) | yes | Request body |
+
+
+Use this API to send a verification code to verify a mobile number.
+
+*Returned Response:*
+
+
+
+
+[VerifyEmailSuccess](#VerifyEmailSuccess)
+
+Success. Check the example shown below or refer `VerifyEmailSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify mobile success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "verified"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyMobileForgotOTP
+Verify Forgot OTP on mobile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.verifyMobileForgotOTP({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.verifyMobileForgotOTP({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [VerifyMobileForgotOtpRequestSchema](#VerifyMobileForgotOtpRequestSchema) | yes | Request body |
+
+
+Use this API to verify the Forgot OTP received on a mobile number.
+
+*Returned Response:*
+
+
+
+
+[VerifyForgotOtpSuccess](#VerifyForgotOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `VerifyForgotOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify forgot otp on mobile success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "forgot_token": "d6c9df22-7e65-41be-9852-8207a8d2d54d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyMobileOTP
+Verify OTP on mobile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.verifyMobileOTP({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.verifyMobileOTP({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [VerifyOtpRequestSchema](#VerifyOtpRequestSchema) | yes | Request body |
+
+
+Use this API to verify the OTP received on a mobile number.
+
+*Returned Response:*
+
+
+
+
+[VerifyOtpSuccess](#VerifyOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify mobile otp success</i></summary>
+
+```json
+{
+  "value": {
+    "verify_mobile_link": true,
+    "user": {
+      "debug": {
+        "source": "deadlock",
+        "platform": "000000000000000000000001"
+      },
+      "gender": "male",
+      "account_type": "user",
+      "active": true,
+      "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+      "has_old_password_hash": false,
+      "_id": "5e68af49cfa09bf7233022f1",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "username": "akashmane_gofynd_com_10039",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2021-02-04T10:10:44.981Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 
 ### Schemas
@@ -3899,10 +3899,10 @@ Returns a list of users attributes
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android_hash | string? |  yes  |  |
+ | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
  | dob | string? |  yes  |  |
  | email | string? |  yes  |  |
- | encrypt_otp | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
@@ -4371,8 +4371,8 @@ Returns a list of users attributes
  | ---------- | ---- | -------- | ----------- |
  | action | string? |  yes  |  |
  | android_hash | string? |  yes  |  |
+ | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
- | encrypt_otp | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | force | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | token | string? |  yes  |  |
@@ -4394,8 +4394,8 @@ Returns a list of users attributes
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android_hash | string? |  yes  |  |
+ | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
- | encrypt_otp | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | mobile | string? |  yes  |  |
  
 

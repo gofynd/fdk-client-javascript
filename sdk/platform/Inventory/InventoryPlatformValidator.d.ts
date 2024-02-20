@@ -168,4 +168,4 @@ type UpdateJobParam = {
 };
 type GetConfigByCompanyParam = any;
 type GetJobConfigDefaultsParam = any;
-import InventoryPlatformModel = require("./InventoryPlatformModel");
+import InventoryPlatformModel = require("sdk/output/javascript/code/sdk/platform/Inventory/InventoryPlatformModel");

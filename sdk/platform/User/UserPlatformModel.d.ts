@@ -322,7 +322,7 @@ export = UserPlatformModel;
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 /**
@@ -959,7 +959,7 @@ type FlashCard = {
 declare function SocialTokens(): SocialTokens;
 type SocialTokens = {
     facebook?: Facebook;
-    account_kit?: Accountkit;
+    accountkit?: Accountkit;
     google?: Google;
 };
 /** @returns {DeleteAccountReasons} */

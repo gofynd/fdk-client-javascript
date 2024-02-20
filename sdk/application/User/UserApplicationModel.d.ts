@@ -34,7 +34,7 @@ export = UserApplicationModel;
  */
 /**
  * @typedef EditProfileRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {EditProfileMobileSchema} [mobile]
@@ -90,7 +90,7 @@ export = UserApplicationModel;
  */
 /**
  * @typedef SendMobileOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
  * @property {string} [mobile]
  * @property {string} [country_code]
  * @property {string} [action]
@@ -150,7 +150,7 @@ export = UserApplicationModel;
  */
 /**
  * @typedef SendOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
  * @property {string} [country_code]
  * @property {string} [mobile]
  * @property {string} [android_hash]
@@ -554,7 +554,7 @@ type EditProfileRequestSchema = {
     /**
      * - Set to true if you want to encrypt the OTP.
      */
-    encrypt_otp?: boolean;
+    ci?: boolean;
     first_name?: string;
     last_name?: string;
     mobile?: EditProfileMobileSchema;
@@ -621,7 +621,7 @@ type SendMobileOtpRequestSchema = {
     /**
      * - Set to true if you want to encrypt the OTP.
      */
-    encrypt_otp?: boolean;
+    ci?: boolean;
     mobile?: string;
     country_code?: string;
     action?: string;
@@ -694,7 +694,7 @@ type SendOtpRequestSchema = {
     /**
      * - Set to true if you want to encrypt the OTP.
      */
-    encrypt_otp?: boolean;
+    ci?: boolean;
     country_code?: string;
     mobile?: string;
     android_hash?: string;

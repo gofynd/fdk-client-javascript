@@ -41,7 +41,7 @@ const Joi = require("joi");
 
 /**
  * @typedef EditProfileRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {EditProfileMobileSchema} [mobile]
@@ -105,7 +105,7 @@ const Joi = require("joi");
 
 /**
  * @typedef SendMobileOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
  * @property {string} [mobile]
  * @property {string} [country_code]
  * @property {string} [action]
@@ -175,7 +175,7 @@ const Joi = require("joi");
 
 /**
  * @typedef SendOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
  * @property {string} [country_code]
  * @property {string} [mobile]
  * @property {string} [android_hash]
@@ -637,7 +637,7 @@ class UserApplicationModel {
   /** @returns {EditProfileRequestSchema} */
   static EditProfileRequestSchema() {
     return Joi.object({
-      encrypt_otp: Joi.boolean(),
+      ci: Joi.boolean(),
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       mobile: UserApplicationModel.EditProfileMobileSchema(),
@@ -717,7 +717,7 @@ class UserApplicationModel {
   /** @returns {SendMobileOtpRequestSchema} */
   static SendMobileOtpRequestSchema() {
     return Joi.object({
-      encrypt_otp: Joi.boolean(),
+      ci: Joi.boolean(),
       mobile: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       action: Joi.string().allow(""),
@@ -807,7 +807,7 @@ class UserApplicationModel {
   /** @returns {SendOtpRequestSchema} */
   static SendOtpRequestSchema() {
     return Joi.object({
-      encrypt_otp: Joi.boolean(),
+      ci: Joi.boolean(),
       country_code: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
       android_hash: Joi.string().allow(""),
@@ -1121,8 +1121,8 @@ class UserApplicationModel {
       social_tokens: UserApplicationModel.SocialTokens(),
       created_at: Joi.string().allow(""),
       register: Joi.boolean(),
-      mobile_image: Joi.string().allow(""),
-      desktop_image: Joi.string().allow(""),
+      mobile_image: Joi.string().allow("").allow(null),
+      desktop_image: Joi.string().allow("").allow(null),
       delete_account_day: Joi.number(),
       delete_account_reasons: Joi.array().items(
         UserApplicationModel.DeleteAccountReasons()
@@ -1288,7 +1288,7 @@ class UserApplicationModel {
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserApplicationModel.PhoneNumber()),
       emails: Joi.array().items(UserApplicationModel.Email()),
-      gender: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),

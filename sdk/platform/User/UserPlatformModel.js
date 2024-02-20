@@ -366,7 +366,7 @@ const Joi = require("joi");
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 
@@ -879,8 +879,8 @@ class UserPlatformModel {
       social_tokens: UserPlatformModel.SocialTokens(),
       created_at: Joi.string().allow(""),
       register: Joi.boolean(),
-      mobile_image: Joi.string().allow(""),
-      desktop_image: Joi.string().allow(""),
+      mobile_image: Joi.string().allow("").allow(null),
+      desktop_image: Joi.string().allow("").allow(null),
       delete_account_day: Joi.number(),
       delete_account_reasons: Joi.array().items(
         UserPlatformModel.DeleteAccountReasons()
@@ -985,7 +985,7 @@ class UserPlatformModel {
   static SocialTokens() {
     return Joi.object({
       facebook: UserPlatformModel.Facebook(),
-      account_kit: UserPlatformModel.Accountkit(),
+      accountkit: UserPlatformModel.Accountkit(),
       google: UserPlatformModel.Google(),
     });
   }
@@ -1115,7 +1115,7 @@ class UserPlatformModel {
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
-      gender: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),
@@ -1138,7 +1138,7 @@ class UserPlatformModel {
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
-      gender: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),

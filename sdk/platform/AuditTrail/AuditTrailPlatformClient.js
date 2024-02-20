@@ -20,8 +20,8 @@ class AuditTrail {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<AuditTrailPlatformModel.CreateLogResponse>} - Success response
    * @name createAuditLog
-   * @summary: Create an audit log.
-   * @description: Generate and record an audit log entry for a specific event or action. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/createAuditLog/).
+   * @summary: Create logs for auditing later on
+   * @description: Create a log instance that stores all the relevant info to be logged - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/createAuditLog/).
    */
   async createAuditLog(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -99,8 +99,8 @@ class AuditTrail {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
    * @name getAuditLog
-   * @summary: Get an audit log entry.
-   * @description: Retrieve a specific audit log entry - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLog/).
+   * @summary: Get audit log
+   * @description: Get detailed log information by their id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLog/).
    */
   async getAuditLog(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -178,8 +178,8 @@ class AuditTrail {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
    * @name getAuditLogs
-   * @summary: Retrieve audit logs.
-   * @description: Retrieve audit logs for system events and actions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLogs/).
+   * @summary: Get paginated audit logs
+   * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLogs/).
    */
   async getAuditLogs(
     { qs, limit, sort, requestHeaders } = { requestHeaders: {} },
@@ -264,8 +264,8 @@ class AuditTrail {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<AuditTrailPlatformModel.EntityTypesResponse>} - Success response
    * @name getEntityTypes
-   * @summary: Obtain entity types for auditing.
-   * @description: List of entity types that can be audited within the platform's - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getEntityTypes/).
+   * @summary: Get entity types
+   * @description: Get a consolidated list of entity types from all the logs stored on the db, which further helps to filter the logs better - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getEntityTypes/).
    */
   async getEntityTypes(
     { requestHeaders } = { requestHeaders: {} },

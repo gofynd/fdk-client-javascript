@@ -73,6 +73,11 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
  */
 
 /**
+ * @typedef RegisterSubscriberToEventV2Param
+ * @property {WebhookPlatformModel.SubscriberConfigRequestV2} body
+ */
+
+/**
  * @typedef UpdateSubscriberConfigParam
  * @property {WebhookPlatformModel.SubscriberConfig} body
  */
@@ -178,6 +183,13 @@ class WebhookPlatformValidator {
   static registerSubscriberToEvent() {
     return Joi.object({
       body: WebhookPlatformModel.SubscriberConfig().required(),
+    }).required();
+  }
+
+  /** @returns {RegisterSubscriberToEventV2Param} */
+  static registerSubscriberToEventV2() {
+    return Joi.object({
+      body: WebhookPlatformModel.SubscriberConfigRequestV2().required(),
     }).required();
   }
 

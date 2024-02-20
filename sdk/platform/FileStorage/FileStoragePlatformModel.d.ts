@@ -28,10 +28,6 @@ export = FileStoragePlatformModel;
  * @property {string[]} [tags]
  */
 /**
- * @typedef Params
- * @property {string} [subpath] - The subpath for the file.
- */
-/**
  * @typedef StartRequest
  * @property {string} file_name
  * @property {string} content_type
@@ -60,6 +56,11 @@ export = FileStoragePlatformModel;
  * @property {string} created_on
  * @property {string} modified_on
  * @property {CreatedBy} [created_by]
+ */
+/**
+ * @typedef ProxyResponse
+ * @property {Object} [data]
+ * @property {Object} [support]
  */
 /**
  * @typedef DestinationNamespace
@@ -557,7 +558,7 @@ export = FileStoragePlatformModel;
 declare class FileStoragePlatformModel {
 }
 declare namespace FileStoragePlatformModel {
-    export { FailedResponse, CDN, Upload, StartResponse, Params, StartRequest, CreatedBy, CompleteResponse, DestinationNamespace, CopyFiles, Urls, SignUrlResponse, SignUrlRequest, InvoiceTypesDataResponse, InvoiceTypesResponse, ConversionRate, DeliveryPartnerDetail, Image, PaymentData, InvoiceDetail, CompanyDetail, StoreDetail, CustomerBillingDetail, CustomerShippingDetail, ReturnDetail, Brand, Cgst, Sgst, Igst, Tax, ItemsProductTable, ProductTable, Taxes, TaxTable, RegisteredCompanyDetail, Kwargs, ShipmentIdBarcodeGenerator, SignedQrcodeGenerator, KwargsUpiQrcode, UpiQrcodeGenerator, DigitalsignatureGenerator, KwargsAwbNumber, AwbNumberLabelBarcodeGenerator, AwbNumberBarcodeGenerator, MetaProperty, Meta, DummyTemplateDataPayload, DummyTemplateData, DummyTemplateDataItems, PdfConfig, PdfConfigSuccessData, PdfConfigSuccess, PdfConfigSaveSuccessData, PdfConfigSaveSuccess, PdfDefaultTemplateSuccess, Document, PaymentReceiptRequestBody, PaymentReceiptOrderDetails, PaymentReceiptCustomerDetails, PaymentReceiptPayments, PaymentReceiptFormat, PaymentReceiptService, PaymentReceiptTaxes, PaymentReceiptPayload, PaymentReceiptMeta, ExtensionSlug };
+    export { FailedResponse, CDN, Upload, StartResponse, StartRequest, CreatedBy, CompleteResponse, ProxyResponse, DestinationNamespace, CopyFiles, Urls, SignUrlResponse, SignUrlRequest, InvoiceTypesDataResponse, InvoiceTypesResponse, ConversionRate, DeliveryPartnerDetail, Image, PaymentData, InvoiceDetail, CompanyDetail, StoreDetail, CustomerBillingDetail, CustomerShippingDetail, ReturnDetail, Brand, Cgst, Sgst, Igst, Tax, ItemsProductTable, ProductTable, Taxes, TaxTable, RegisteredCompanyDetail, Kwargs, ShipmentIdBarcodeGenerator, SignedQrcodeGenerator, KwargsUpiQrcode, UpiQrcodeGenerator, DigitalsignatureGenerator, KwargsAwbNumber, AwbNumberLabelBarcodeGenerator, AwbNumberBarcodeGenerator, MetaProperty, Meta, DummyTemplateDataPayload, DummyTemplateData, DummyTemplateDataItems, PdfConfig, PdfConfigSuccessData, PdfConfigSuccess, PdfConfigSaveSuccessData, PdfConfigSaveSuccess, PdfDefaultTemplateSuccess, Document, PaymentReceiptRequestBody, PaymentReceiptOrderDetails, PaymentReceiptCustomerDetails, PaymentReceiptPayments, PaymentReceiptFormat, PaymentReceiptService, PaymentReceiptTaxes, PaymentReceiptPayload, PaymentReceiptMeta, ExtensionSlug };
 }
 /** @returns {FailedResponse} */
 declare function FailedResponse(): FailedResponse;
@@ -591,14 +592,6 @@ type StartResponse = {
     cdn: CDN;
     tags?: string[];
 };
-/** @returns {Params} */
-declare function Params(): Params;
-type Params = {
-    /**
-     * - The subpath for the file.
-     */
-    subpath?: string;
-};
 /** @returns {StartRequest} */
 declare function StartRequest(): StartRequest;
 type StartRequest = {
@@ -631,6 +624,12 @@ type CompleteResponse = {
     created_on: string;
     modified_on: string;
     created_by?: CreatedBy;
+};
+/** @returns {ProxyResponse} */
+declare function ProxyResponse(): ProxyResponse;
+type ProxyResponse = {
+    data?: any;
+    support?: any;
 };
 /** @returns {DestinationNamespace} */
 declare function DestinationNamespace(): DestinationNamespace;

@@ -317,4 +317,4 @@ type GetDomainsParam = any;
 type GetInventoryConfigParam = any;
 type GetOrderingStoreConfigParam = any;
 type RemoveOrderingStoreCookieParam = any;
-import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
+import ConfigurationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformModel");

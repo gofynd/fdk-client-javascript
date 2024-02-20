@@ -17,6 +17,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
  * @property {string} [id] - The unique identifier of the cart
+ * @property {string} [cartType] - The type of cart
  * @property {CartApplicationModel.AddCartRequest} body
  */
 
@@ -39,6 +40,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
  *   the price breakup of cart items.
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart
+ * @property {string} [cartType] - Type of the cart
  * @property {CartApplicationModel.RewardPointRequest} body
  */
 
@@ -59,6 +61,7 @@ const CartApplicationModel = require("./CartApplicationModel");
 /**
  * @typedef DeleteCartParam
  * @property {string} [id] - The unique identifier of the cart.
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
@@ -90,6 +93,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {string} [slug] - A short, human-readable, URL-friendly identifier
  *   of a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
+ * @property {string} [cartType] - Type of the cart
  */
 
 /**
@@ -105,12 +109,20 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {string} [areaCode] - Customer servicable area_code
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
  * @typedef GetCartLastModifiedParam
  * @property {string} [id]
  */
+
+/**
+ * @typedef GetCartMetaConfigParam
+ * @property {string} cartMetaId - CartMeta mongo id for fetching single cart meta data
+ */
+
+/** @typedef GetCartMetaConfigsParam */
 
 /**
  * @typedef GetCartShareLinkParam
@@ -134,6 +146,12 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow]
+ */
+
+/**
+ * @typedef GetItemCountV2Param
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [buyNow] - Boolean value to get buy_now cart
  */
 
 /**
@@ -182,6 +200,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @typedef RemoveCouponParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
@@ -266,6 +285,7 @@ class CartApplicationValidator {
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       id: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
       body: CartApplicationModel.AddCartRequest().required(),
     }).required();
   }
@@ -290,6 +310,7 @@ class CartApplicationValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
       body: CartApplicationModel.RewardPointRequest().required(),
     }).required();
   }
@@ -316,6 +337,7 @@ class CartApplicationValidator {
   static deleteCart() {
     return Joi.object({
       id: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
     });
   }
 
@@ -351,6 +373,7 @@ class CartApplicationValidator {
       articleId: Joi.string().allow(""),
       uid: Joi.number(),
       slug: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
     });
   }
 
@@ -364,6 +387,7 @@ class CartApplicationValidator {
       assignCardId: Joi.number(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
     });
   }
 
@@ -372,6 +396,18 @@ class CartApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
     });
+  }
+
+  /** @returns {GetCartMetaConfigParam} */
+  static getCartMetaConfig() {
+    return Joi.object({
+      cartMetaId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetCartMetaConfigsParam} */
+  static getCartMetaConfigs() {
+    return Joi.object({});
   }
 
   /** @returns {GetCartShareLinkParam} */
@@ -400,6 +436,14 @@ class CartApplicationValidator {
 
   /** @returns {GetItemCountParam} */
   static getItemCount() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GetItemCountV2Param} */
+  static getItemCountV2() {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
@@ -451,6 +495,7 @@ class CartApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
     });
   }
 

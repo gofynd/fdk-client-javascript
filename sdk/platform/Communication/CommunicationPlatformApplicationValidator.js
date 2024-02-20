@@ -281,6 +281,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef SendOtpParam
+ * @property {boolean} [ci] - Common Information
  * @property {CommunicationPlatformModel.SendOtpCommsReq} body
  */
 
@@ -743,6 +744,7 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {SendOtpParam} */
   static sendOtp() {
     return Joi.object({
+      ci: Joi.boolean(),
       body: CommunicationPlatformModel.SendOtpCommsReq().required(),
     }).required();
   }

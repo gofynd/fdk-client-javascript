@@ -11,13 +11,10 @@ The File Storage module simplifies your file upload and storage tasks. Use the '
 * [upload](#upload)
 
 
-File Upload Management
+Default
 * [completeUpload](#completeupload)
-* [startUpload](#startupload)
-
-
-URL Signing
 * [signUrls](#signurls)
+* [startUpload](#startupload)
 
 
 
@@ -108,7 +105,7 @@ Use this API to perform the upload of an arbitrarily sized buffer or blob.
 
 
 ### completeUpload
-Finalizes upload process.
+Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
 
 
 
@@ -132,7 +129,25 @@ const data = await applicationClient.fileStorage.completeUpload({  namespace : v
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
-Complete the process of uploading the file, and will return the URL of the uploaded file
+Use this API to perform the third step of uploading (i.e. **Complete**) an arbitrarily sized buffer or blob.
+
+The three major steps are:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `startUpload`.
+It returns a storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
+
+### Complete
+After successfully upload, call the `completeUpload` API to finish the upload process.
+This operation will return the URL of the uploaded file.
+
 
 *Returned Response:*
 
@@ -201,8 +216,79 @@ Success
 ---
 
 
+### signUrls
+Explain here
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.fileStorage.signUrls({  body : value });
+
+// Async/Await
+const data = await applicationClient.fileStorage.signUrls({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SignUrlRequest](#SignUrlRequest) | yes | Request body |
+
+
+Describe here
+
+*Returned Response:*
+
+
+
+
+[SignUrlResponse](#SignUrlResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "urls": [
+      {
+        "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
+        "signed_url": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
+        "expiry": 1800
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### startUpload
-Initiates file upload
+Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
 
 
 
@@ -226,7 +312,25 @@ const data = await applicationClient.fileStorage.startUpload({  namespace : valu
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 
-Starts the process of uploading a file to storage location, and returns a storage link in response.
+Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
+
+The three major steps are:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `startUpload`.
+It returns a storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
+
+### Complete
+After successfully upload, call the `completeUpload` API to finish the upload process.
+This operation will return the URL of the uploaded file.
+
 
 *Returned Response:*
 
@@ -270,79 +374,6 @@ Success. Returns a response containing relaving and absolute_url of storage serv
       "expiry": 5000,
       "url": "https://xxx.xxx.xxx/products/pictures/free/original/qwertyuiop-shirt.png?AWSAccessKeyId=xxx&Content-Type=image%2Fpng&Expires=5000&Signature=xxx&x-amz-acl=public-read"
     }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### signUrls
-Signs file URLs.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.fileStorage.signUrls({  body : value });
-
-// Async/Await
-const data = await applicationClient.fileStorage.signUrls({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SignUrlRequest](#SignUrlRequest) | yes | Request body |
-
-
-Generates secure, signed URLs that is valid for certain expiry time for accessing stored files.
-
-*Returned Response:*
-
-
-
-
-[SignUrlResponse](#SignUrlResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "urls": [
-      {
-        "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
-        "signed_url": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
-        "expiry": 1800
-      }
-    ]
   }
 }
 ```

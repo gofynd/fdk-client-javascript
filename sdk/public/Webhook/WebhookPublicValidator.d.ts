@@ -39,4 +39,4 @@ type ValidateSchemaParam = {
 };
 type FetchAllWebhookEventsParam = any;
 type NotifyDepricatedEventParam = any;
-import WebhookPublicModel = require("./WebhookPublicModel");
+import WebhookPublicModel = require("sdk/output/javascript/code/sdk/public/Webhook/WebhookPublicModel");

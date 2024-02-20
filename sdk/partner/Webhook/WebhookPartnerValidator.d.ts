@@ -9,4 +9,8 @@ declare class WebhookValidator {
     static getInvalidEventList(): any;
     static fetchSubscribers(): any;
     static updateSubscriber(): any;
+    static createKafkaConfiguration(): any;
+    static fetchKafkaConfiguration(): any;
+    static updateKafkaConfiguration(): any;
+    static validateKafkaConfiguration(): any;
 }

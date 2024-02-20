@@ -244,4 +244,4 @@ type UpdateCustomObjectDefinitionParam = {
 };
 type GetCustomFieldTypesParam = any;
 type GetResourcesParam = any;
-import ContentPlatformModel = require("./ContentPlatformModel");
+import ContentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformModel");

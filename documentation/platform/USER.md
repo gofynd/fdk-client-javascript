@@ -9,47 +9,35 @@
 Authentication Service
 
 
-User Management
+Default
 * [archiveUser](#archiveuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [createUser](#createuser)
-* [getCustomers](#getcustomers)
-* [searchUsers](#searchusers)
-* [unDeleteUser](#undeleteuser)
-* [updateUser](#updateuser)
-
-
-Session Management
+* [createUserAttributeDefinition](#createuserattributedefinition)
+* [createUserGroup](#createusergroup)
 * [createUserSession](#createusersession)
 * [deleteActiveSessions](#deleteactivesessions)
 * [deleteSession](#deletesession)
-* [getActiveSessions](#getactivesessions)
-
-
-Website Configuration Management
-* [getPlatformConfig](#getplatformconfig)
-* [updatePlatformConfig](#updateplatformconfig)
-
-
-User Group Management
-* [createUserGroup](#createusergroup)
-* [getUserGroupById](#getusergroupbyid)
-* [getUserGroups](#getusergroups)
-* [updateUserGroup](#updateusergroup)
-* [updateUserGroupPartially](#updateusergrouppartially)
-
-
-User Attributes Definition
-* [createUserAttributeDefinition](#createuserattributedefinition)
 * [deleteUserAttribute](#deleteuserattribute)
 * [deleteUserAttributeDefinitionById](#deleteuserattributedefinitionbyid)
+* [getActiveSessions](#getactivesessions)
+* [getCustomers](#getcustomers)
+* [getPlatformConfig](#getplatformconfig)
 * [getUserAttribute](#getuserattribute)
 * [getUserAttributeById](#getuserattributebyid)
 * [getUserAttributeDefinitionById](#getuserattributedefinitionbyid)
 * [getUserAttributeDefinitions](#getuserattributedefinitions)
 * [getUserAttributesForUser](#getuserattributesforuser)
+* [getUserGroupById](#getusergroupbyid)
+* [getUserGroups](#getusergroups)
+* [searchUsers](#searchusers)
+* [unDeleteUser](#undeleteuser)
+* [updatePlatformConfig](#updateplatformconfig)
+* [updateUser](#updateuser)
 * [updateUserAttribute](#updateuserattribute)
 * [updateUserAttributeDefinition](#updateuserattributedefinition)
+* [updateUserGroup](#updateusergroup)
+* [updateUserGroupPartially](#updateusergrouppartially)
 
 
 
@@ -126,7 +114,7 @@ Success
 
 
 ### blockOrUnblockUsers
-Block/unblock users.
+Block/Unblock user
 
 
 
@@ -147,7 +135,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.blockOrUn
 | body | [BlockUserRequestSchema](#BlockUserRequestSchema) | yes | Request body |
 
 
-Control user access by blocking or unblocking their accounts.
+Block/Unblock user
 
 *Returned Response:*
 
@@ -191,7 +179,7 @@ Success
 
 
 ### createUser
-Create user.
+Create user
 
 
 
@@ -212,7 +200,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.createUse
 | body | [CreateUserRequestSchema](#CreateUserRequestSchema) | yes | Request body |
 
 
-Register and add a new user to the platform.
+Create user
 
 *Returned Response:*
 
@@ -295,1417 +283,6 @@ User create
 ---
 
 
-### getCustomers
-Get customers.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getCustomers({  q : value,
- pageSize : value,
- pageNo : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getCustomers({  q : value,
- pageSize : value,
- pageNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| q | string | no | The search query. Mobile number or email ID of a customer. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
-
-
-
-Retrieve a list of customer profiles.
-
-*Returned Response:*
-
-
-
-
-[CustomerListResponseSchema](#CustomerListResponseSchema)
-
-Success. Refer `CustomerListResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; get list customer success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "000000000000000023106198",
-        "gender": "male",
-        "active": true,
-        "emails": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "email": "raaz.crzy@gmail.com"
-          }
-        ],
-        "username": "raaz_crzy_gmail_com_63747_23106198",
-        "__v": 7,
-        "debug": {
-          "source": "deadlock",
-          "platform": "000000000000000000000003"
-        },
-        "dob": "1995-07-23T00:00:00.000Z",
-        "id": "000000000000000023106198",
-        "account_type": "user",
-        "profile_pic_url": "https://hdn-1.fynd.com/user/profile/original/000000000000000023106198/1586498418772.jpg",
-        "first_name": "Prince",
-        "last_name": "Raj",
-        "phone_numbers": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "phone": "7008963113",
-            "country_code": 91
-          }
-        ],
-        "created_at": "2019-05-15T14:07:52.872Z",
-        "updated_at": "2020-09-21T06:38:41.388Z",
-        "has_old_password_hash": false
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 10,
-      "item_total": 0,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### searchUsers
-Search users.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value,
- query : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value,
- query : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| q | string | no | The search query. Mobile number or email ID of a customer. |    
-| query | Array<string> | no | The search queries. Mobile numbers or email IDs of customers. |  
-
-
-
-Search and filter user profiles.
-
-*Returned Response:*
-
-
-
-
-[UserSearchResponseSchema](#UserSearchResponseSchema)
-
-Success. Returns first name, last name, emails, phone number and gender of the user. Refer `UserSearchResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; search customer success</i></summary>
-
-```json
-{
-  "value": {
-    "users": [
-      {
-        "_id": "5e68af49cfa09bf7233022f1",
-        "gender": "male",
-        "active": true,
-        "emails": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "email": "akashmane@gofynd.com"
-          },
-          {
-            "active": true,
-            "primary": false,
-            "verified": true,
-            "email": "akashmane@fynd.com"
-          },
-          {
-            "active": true,
-            "primary": false,
-            "verified": true,
-            "email": "akashmane@uniket.store"
-          }
-        ],
-        "account_type": "user",
-        "first_name": "Akash",
-        "last_name": "Mane",
-        "phone_numbers": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "phone": "8652523958",
-            "country_code": 91
-          }
-        ],
-        "created_at": "2020-03-11T09:28:41.982Z",
-        "updated_at": "2020-03-11T09:28:41.982Z"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### unDeleteUser
-Undelete user.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema) | yes | Request body |
-
-
-Restore a previously deleted user account.
-
-*Returned Response:*
-
-
-
-
-[UnDeleteUserSuccess](#UnDeleteUserSuccess)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; undelete user success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateUser
-Update user.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.updateUser({  userId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.updateUser({  userId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | User ID |  
-| body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
-
-
-Modify and update user profile information.
-
-*Returned Response:*
-
-
-
-
-[CreateUserResponseSchema](#CreateUserResponseSchema)
-
-User update
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; update user success</i></summary>
-
-```json
-{
-  "value": {
-    "user": {
-      "_id": "5e68af49cfa09bf7233022f1",
-      "gender": "male",
-      "active": true,
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "external_id": "100002000036789",
-      "account_type": "user",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "meta": {},
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2020-03-11T09:28:41.982Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### createUserSession
-Create user session.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.createUserSession({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.createUserSession({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema) | yes | Request body |
-
-
-Establish a session for user interactions.
-
-*Returned Response:*
-
-
-
-
-[CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
-
-Create user session
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; create user session success</i></summary>
-
-```json
-{
-  "value": {
-    "domain": "vinit.com",
-    "max_age": 4555555,
-    "secure": true,
-    "http_only": true,
-    "cookie": {
-      "f.session": "s%3A-LrEF5FVR8jrT5DCtCHSbAy7JFyX-f9T.uXOQwzje8nOfx4ODANrLi4yNX5fW2W5kLQ2rkBdO2xE"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteActiveSessions
-Delete active sessions.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
- reason : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
- reason : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID of a customer. |   
-| reason | string | yes | Reason to delete sessions. |  
-
-
-
-End multiple active user sessions.
-
-*Returned Response:*
-
-
-
-
-[SessionsDeleteResponseSchema](#SessionsDeleteResponseSchema)
-
-Success. Refer `SessionsDeleteResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; delete user sessions success</i></summary>
-
-```json
-{
-  "value": {
-    "user_id": "61f02c3dcc701256044ed6c0",
-    "session_ids": [
-      "sess:123",
-      "sess:456"
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteSession
-Delete session.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
- sessionId : value,
- reason : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
- sessionId : value,
- reason : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID of a customer. |   
-| sessionId | string | yes | Session ID of a customer. |   
-| reason | string | yes | Reason for deleting session. |  
-
-
-
-Terminate an active user session.
-
-*Returned Response:*
-
-
-
-
-[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
-
-Success. Refer `SessionDeleteResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; delete user session success</i></summary>
-
-```json
-{
-  "value": {
-    "user_id": "61f02c3dcc701256044ed6c0",
-    "session_id": "sess:123"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getActiveSessions
-Get active sessions.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID of a customer. |  
-
-
-
-Retrieve a list of currently active user sessions.
-
-*Returned Response:*
-
-
-
-
-[SessionListResponseSchema](#SessionListResponseSchema)
-
-Success. Refer `SessionListResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; get user sessions success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "session_id": "134",
-        "user_agent": "134",
-        "ip": "134",
-        "domain": "134",
-        "expire_in": "134"
-      },
-      {
-        "session_id": "134",
-        "user_agent": "134",
-        "ip": "134",
-        "domain": "134",
-        "expire_in": "134"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### getPlatformConfig
-Get platform config.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getPlatformConfig();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getPlatformConfig();
-```
-
-
-
-
-
-
-Retrieve configuration settings for the platform.
-
-*Returned Response:*
-
-
-
-
-[PlatformSchema](#PlatformSchema)
-
-Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; get platform config success</i></summary>
-
-```json
-{
-  "value": {
-    "active": true,
-    "mobile_image": "",
-    "desktop_image": "",
-    "social": {
-      "facebook": true,
-      "google": true,
-      "account_kit": true
-    },
-    "flash_card": {
-      "text": "",
-      "text_color": "#FFFFFF",
-      "background_color": "#EF5350"
-    },
-    "register": true,
-    "forgot_password": true,
-    "login": {
-      "password": true,
-      "otp": true
-    },
-    "skip_captcha": false,
-    "display": "Fynd",
-    "subtext": "Login to Fynd",
-    "name": "Fynd",
-    "meta": {},
-    "required_fields": {
-      "email": {
-        "is_required": false,
-        "level": "hard"
-      },
-      "mobile": {
-        "is_required": true,
-        "level": "hard"
-      }
-    },
-    "register_required_fields": {
-      "email": {
-        "is_required": false,
-        "level": "hard"
-      },
-      "mobile": {
-        "is_required": true,
-        "level": "hard"
-      }
-    },
-    "skip_login": false,
-    "look_and_feel": {
-      "background_color": "#F5F5F5",
-      "card_position": "center"
-    },
-    "social_tokens": {
-      "google": {
-        "app_id": "token_123"
-      },
-      "facebook": {
-        "app_id": "token_123"
-      },
-      "accountkit": {
-        "app_id": "token_123"
-      }
-    },
-    "session_config": {
-      "duration": 30,
-      "type": "Days",
-      "is_rolling": false
-    },
-    "delete_account_reasons": [
-      {
-        "reason_text": "test",
-        "reason_id": "123",
-        "show_text_area": true
-      }
-    ],
-    "delete_account_day": 7,
-    "delete_account_consent": {
-      "consent_text": ""
-    },
-    "_id": "5e04a5e5220bc15839ad9bc0",
-    "created_at": "2019-12-26T12:21:57.878Z",
-    "updated_at": "2020-08-13T14:31:09.878Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePlatformConfig
-Update platform config.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PlatformSchema](#PlatformSchema) | yes | Request body |
-
-
-Modify and update platform configuration settings.
-
-*Returned Response:*
-
-
-
-
-[PlatformSchema](#PlatformSchema)
-
-Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; update platform config success</i></summary>
-
-```json
-{
-  "value": {
-    "active": true,
-    "mobile_image": "",
-    "desktop_image": "",
-    "social": {
-      "facebook": true,
-      "google": true,
-      "account_kit": true
-    },
-    "flash_card": {
-      "text": "",
-      "text_color": "#FFFFFF",
-      "background_color": "#EF5350"
-    },
-    "register": true,
-    "forgot_password": true,
-    "login": {
-      "password": true,
-      "otp": true
-    },
-    "skip_captcha": false,
-    "display": "Fynd",
-    "subtext": "Login to Fynd",
-    "name": "Fynd",
-    "meta": {},
-    "required_fields": {
-      "email": {
-        "is_required": false,
-        "level": "hard"
-      },
-      "mobile": {
-        "is_required": true,
-        "level": "hard"
-      }
-    },
-    "register_required_fields": {
-      "email": {
-        "is_required": false,
-        "level": "hard"
-      },
-      "mobile": {
-        "is_required": true,
-        "level": "hard"
-      }
-    },
-    "skip_login": false,
-    "look_and_feel": {
-      "background_color": "#F5F5F5",
-      "card_position": "center"
-    },
-    "social_tokens": {
-      "google": {
-        "app_id": "token_123"
-      },
-      "facebook": {
-        "app_id": "token_123"
-      },
-      "accountkit": {
-        "app_id": "token_123"
-      }
-    },
-    "session_config": {
-      "duration": 30,
-      "type": "Days",
-      "is_rolling": false
-    },
-    "delete_account_reasons": [
-      {
-        "reason_text": "test",
-        "reason_id": "123",
-        "show_text_area": true
-      }
-    ],
-    "delete_account_day": 7,
-    "delete_account_consent": {
-      "consent_text": ""
-    },
-    "_id": "5e04a5e5220bc15839ad9bc0",
-    "created_at": "2019-12-26T12:21:57.878Z",
-    "updated_at": "2020-08-13T14:31:09.878Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-### createUserGroup
-Create user group.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUserGroup](#CreateUserGroup) | yes | Request body |
-
-
-Form and add a new user group.
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. returns created User Group. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; create user group success</i></summary>
-
-```json
-{
-  "value": {
-    "is_active": true,
-    "_id": "6345677535474fbb6944b7ce",
-    "name": "Group 1",
-    "description": "description",
-    "file_url": "url",
-    "status": "pending",
-    "uid": 1,
-    "application_id": "000000000000000000000001",
-    "created_at": "2022-10-11T12:54:13.539Z",
-    "modified_at": "2022-10-11T12:54:13.539Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserGroupById
-Get user group by ID.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| groupId | string | yes | Numeric ID allotted to a User Group |  
-
-
-
-Retrieve a user group by its unique identifier.
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. User Group details. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; get user group id success</i></summary>
-
-```json
-{
-  "value": {
-    "is_active": true,
-    "_id": "6345677535474fbb6944b7ce",
-    "name": "Group 1",
-    "description": "description",
-    "file_url": "url",
-    "status": "pending",
-    "uid": 1,
-    "application_id": "000000000000000000000001",
-    "created_at": "2022-10-11T12:54:13.539Z",
-    "modified_at": "2022-10-11T12:54:13.539Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserGroups
-Get user groups.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
- pageSize : value,
- name : value,
- type : value,
- status : value,
- groupUid : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
- pageSize : value,
- name : value,
- type : value,
- status : value,
- groupUid : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | string | no | page number for pagination result |    
-| pageSize | string | no | page size for pagination result |    
-| name | string | no | to search for User Groups which contains given string in their name |    
-| type | string | no | to search for User Groups with given type |    
-| status | string | no | to get User Groups with given status |    
-| groupUid | number | no | to get User Groups with given uid |  
-
-
-
-Retrieve a list of user groups.
-
-*Returned Response:*
-
-
-
-
-[UserGroupListResponseSchema](#UserGroupListResponseSchema)
-
-Success. User Group details. `UserGroupListResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; get user group success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "is_active": true,
-        "_id": "6345677535474fbb6944b7ce",
-        "name": "Group 1",
-        "description": "description",
-        "file_url": "url",
-        "status": "pending",
-        "uid": 1,
-        "application_id": "000000000000000000000001",
-        "created_at": "2022-10-11T12:54:13.539Z",
-        "modified_at": "2022-10-11T12:54:13.539Z",
-        "__v": 0
-      },
-      {
-        "is_active": true,
-        "_id": "6345677535474fbb6944b7ced",
-        "name": "Group 2",
-        "description": "description",
-        "file_url": "url2",
-        "status": "pending",
-        "uid": 1,
-        "application_id": "000000000000000000000001",
-        "created_at": "2022-10-11T12:54:13.539Z",
-        "modified_at": "2022-10-11T12:54:13.539Z",
-        "__v": 0
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 10,
-      "item_total": 0,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateUserGroup
-Update user group.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| groupId | string | yes | Numeric ID allotted to a User Group |  
-| body | [UpdateUserGroupSchema](#UpdateUserGroupSchema) | yes | Request body |
-
-
-Modify and update user group details.
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. returns updated User Group. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; update user group success</i></summary>
-
-```json
-{
-  "value": {
-    "is_active": true,
-    "_id": "6345677535474fbb6944b7ce",
-    "name": "Group 1",
-    "description": "description",
-    "file_url": "url",
-    "status": "pending",
-    "uid": 1,
-    "application_id": "000000000000000000000004",
-    "created_at": "2022-10-11T12:54:13.539Z",
-    "modified_at": "2022-10-11T12:54:13.539Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateUserGroupPartially
-Add or Remove an user from particular user group and update user group details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.updateUserGroupPartially({  groupId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.updateUserGroupPartially({  groupId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| groupId | string | yes | Numeric ID allotted to a User Group |  
-| body | [PartialUserGroupUpdateSchema](#PartialUserGroupUpdateSchema) | yes | Request body |
-
-
-Update user group partially on the platform.
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. returns updated User Group. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; update user group partially success</i></summary>
-
-```json
-{
-  "value": {
-    "is_active": true,
-    "_id": "6345677535474fbb6944b7ce",
-    "name": "Group 1",
-    "description": "description",
-    "file_url": "url",
-    "status": "pending",
-    "uid": 1,
-    "application_id": "000000000000000000000001",
-    "created_at": "2022-10-11T12:54:13.539Z",
-    "modified_at": "2022-10-11T12:54:13.539Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
 ### createUserAttributeDefinition
 Create a User Attribute Definition
 
@@ -1771,6 +348,298 @@ Success. returns created User Attribute Definition. `UserAttributeDefinitionResp
   "modified_at": "2023-10-17T10:05:00Z"
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createUserGroup
+Create an User Group
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUserGroup](#CreateUserGroup) | yes | Request body |
+
+
+Use this API to create new user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. returns created User Group. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; create user group success</i></summary>
+
+```json
+{
+  "value": {
+    "is_active": true,
+    "_id": "6345677535474fbb6944b7ce",
+    "name": "Group 1",
+    "description": "description",
+    "file_url": "url",
+    "status": "pending",
+    "uid": 1,
+    "application_id": "000000000000000000000001",
+    "created_at": "2022-10-11T12:54:13.539Z",
+    "modified_at": "2022-10-11T12:54:13.539Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createUserSession
+Create user session
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.createUserSession({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.createUserSession({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema) | yes | Request body |
+
+
+Create user session
+
+*Returned Response:*
+
+
+
+
+[CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
+
+Create user session
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; create user session success</i></summary>
+
+```json
+{
+  "value": {
+    "domain": "vinit.com",
+    "max_age": 4555555,
+    "secure": true,
+    "http_only": true,
+    "cookie": {
+      "f.session": "s%3A-LrEF5FVR8jrT5DCtCHSbAy7JFyX-f9T.uXOQwzje8nOfx4ODANrLi4yNX5fW2W5kLQ2rkBdO2xE"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteActiveSessions
+Delete a list of all session for a user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
+ reason : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
+ reason : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID of a customer. |   
+| reason | string | yes | Reason to delete sessions. |  
+
+
+
+Use this API to Delete a list of session of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionsDeleteResponseSchema](#SessionsDeleteResponseSchema)
+
+Success. Refer `SessionsDeleteResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; delete user sessions success</i></summary>
+
+```json
+{
+  "value": {
+    "user_id": "61f02c3dcc701256044ed6c0",
+    "session_ids": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteSession
+Delete a session for a user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
+ sessionId : value,
+ reason : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
+ sessionId : value,
+ reason : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID of a customer. |   
+| sessionId | string | yes | Session ID of a customer. |   
+| reason | string | yes | Reason for deleting session. |  
+
+
+
+Use this API to Delete a session of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
+
+Success. Refer `SessionDeleteResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; delete user session success</i></summary>
+
+```json
+{
+  "value": {
+    "user_id": "61f02c3dcc701256044ed6c0",
+    "session_id": "sess:123"
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -1886,6 +755,344 @@ Successful Deletion
 ```json
 
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getActiveSessions
+Get a list of all session with info for a user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID of a customer. |  
+
+
+
+Use this API to retrieve a list of session with info of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionListResponseSchema](#SessionListResponseSchema)
+
+Success. Refer `SessionListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get user sessions success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "session_id": "134",
+        "user_agent": "134",
+        "ip": "134",
+        "domain": "134",
+        "expire_in": "134"
+      },
+      {
+        "session_id": "134",
+        "user_agent": "134",
+        "ip": "134",
+        "domain": "134",
+        "expire_in": "134"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomers
+Get a list of customers
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.getCustomers({  q : value,
+ pageSize : value,
+ pageNo : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.getCustomers({  q : value,
+ pageSize : value,
+ pageNo : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| q | string | no | The search query. Mobile number or email ID of a customer. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
+
+
+
+Use this API to retrieve a list of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[CustomerListResponseSchema](#CustomerListResponseSchema)
+
+Success. Refer `CustomerListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get list customer success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "000000000000000023106198",
+        "gender": "male",
+        "active": true,
+        "emails": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "email": "raaz.crzy@gmail.com"
+          }
+        ],
+        "username": "raaz_crzy_gmail_com_63747_23106198",
+        "__v": 7,
+        "debug": {
+          "source": "deadlock",
+          "platform": "000000000000000000000003"
+        },
+        "dob": "1995-07-23T00:00:00.000Z",
+        "id": "000000000000000023106198",
+        "account_type": "user",
+        "profile_pic_url": "https://hdn-1.fynd.com/user/profile/original/000000000000000023106198/1586498418772.jpg",
+        "first_name": "Prince",
+        "last_name": "Raj",
+        "phone_numbers": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "phone": "7008963113",
+            "country_code": 91
+          }
+        ],
+        "created_at": "2019-05-15T14:07:52.872Z",
+        "updated_at": "2020-09-21T06:38:41.388Z",
+        "has_old_password_hash": false
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 0,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPlatformConfig
+Get platform configurations
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.getPlatformConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.getPlatformConfig();
+```
+
+
+
+
+
+
+Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
+
+*Returned Response:*
+
+
+
+
+[PlatformSchema](#PlatformSchema)
+
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get platform config success</i></summary>
+
+```json
+{
+  "value": {
+    "active": true,
+    "mobile_image": "",
+    "desktop_image": "",
+    "social": {
+      "facebook": true,
+      "google": true,
+      "account_kit": true
+    },
+    "flash_card": {
+      "text": "",
+      "text_color": "#FFFFFF",
+      "background_color": "#EF5350"
+    },
+    "register": true,
+    "forgot_password": true,
+    "login": {
+      "password": true,
+      "otp": true
+    },
+    "skip_captcha": false,
+    "display": "Fynd",
+    "subtext": "Login to Fynd",
+    "name": "Fynd",
+    "meta": {},
+    "required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "register_required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "skip_login": false,
+    "look_and_feel": {
+      "background_color": "#F5F5F5",
+      "card_position": "center"
+    },
+    "social_tokens": {
+      "google": {
+        "app_id": "token_123"
+      },
+      "facebook": {
+        "app_id": "token_123"
+      },
+      "accountkit": {
+        "app_id": "token_123"
+      }
+    },
+    "session_config": {
+      "duration": 30,
+      "type": "Days",
+      "is_rolling": false
+    },
+    "delete_account_reasons": [
+      {
+        "reason_text": "test",
+        "reason_id": "123",
+        "show_text_area": true
+      }
+    ],
+    "delete_account_day": 7,
+    "delete_account_consent": {
+      "consent_text": ""
+    },
+    "_id": "5e04a5e5220bc15839ad9bc0",
+    "created_at": "2019-12-26T12:21:57.878Z",
+    "updated_at": "2020-08-13T14:31:09.878Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -2218,6 +1425,623 @@ Successful update
 ---
 
 
+### getUserGroupById
+Get an User Group by Id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| groupId | string | yes | Numeric ID allotted to a User Group |  
+
+
+
+Use this API to get details of an existing user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. User Group details. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get user group id success</i></summary>
+
+```json
+{
+  "value": {
+    "is_active": true,
+    "_id": "6345677535474fbb6944b7ce",
+    "name": "Group 1",
+    "description": "description",
+    "file_url": "url",
+    "status": "pending",
+    "uid": 1,
+    "application_id": "000000000000000000000001",
+    "created_at": "2022-10-11T12:54:13.539Z",
+    "modified_at": "2022-10-11T12:54:13.539Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserGroups
+Get User Groups mathcing criteria
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
+ pageSize : value,
+ name : value,
+ type : value,
+ status : value,
+ groupUid : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
+ pageSize : value,
+ name : value,
+ type : value,
+ status : value,
+ groupUid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | string | no | page number for pagination result |    
+| pageSize | string | no | page size for pagination result |    
+| name | string | no | to search for User Groups which contains given string in their name |    
+| type | string | no | to search for User Groups with given type |    
+| status | string | no | to get User Groups with given status |    
+| groupUid | number | no | to get User Groups with given uid |  
+
+
+
+Use this API to get User Groups mathing criteria passed in query
+
+*Returned Response:*
+
+
+
+
+[UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+Success. User Group details. `UserGroupListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get user group success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "is_active": true,
+        "_id": "6345677535474fbb6944b7ce",
+        "name": "Group 1",
+        "description": "description",
+        "file_url": "url",
+        "status": "pending",
+        "uid": 1,
+        "application_id": "000000000000000000000001",
+        "created_at": "2022-10-11T12:54:13.539Z",
+        "modified_at": "2022-10-11T12:54:13.539Z",
+        "__v": 0
+      },
+      {
+        "is_active": true,
+        "_id": "6345677535474fbb6944b7ced",
+        "name": "Group 2",
+        "description": "description",
+        "file_url": "url2",
+        "status": "pending",
+        "uid": 1,
+        "application_id": "000000000000000000000001",
+        "created_at": "2022-10-11T12:54:13.539Z",
+        "modified_at": "2022-10-11T12:54:13.539Z",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 0,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### searchUsers
+Search an existing user.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value,
+ query : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value,
+ query : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| q | string | no | The search query. Mobile number or email ID of a customer. |    
+| query | Array<string> | no | The search queries. Mobile numbers or email IDs of customers. |  
+
+
+
+Use this API to retrieve an existing user from a list.
+
+*Returned Response:*
+
+
+
+
+[UserSearchResponseSchema](#UserSearchResponseSchema)
+
+Success. Returns first name, last name, emails, phone number and gender of the user. Refer `UserSearchResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; search customer success</i></summary>
+
+```json
+{
+  "value": {
+    "users": [
+      {
+        "_id": "5e68af49cfa09bf7233022f1",
+        "gender": "male",
+        "active": true,
+        "emails": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "email": "akashmane@gofynd.com"
+          },
+          {
+            "active": true,
+            "primary": false,
+            "verified": true,
+            "email": "akashmane@fynd.com"
+          },
+          {
+            "active": true,
+            "primary": false,
+            "verified": true,
+            "email": "akashmane@uniket.store"
+          }
+        ],
+        "account_type": "user",
+        "first_name": "Akash",
+        "last_name": "Mane",
+        "phone_numbers": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "phone": "8652523958",
+            "country_code": 91
+          }
+        ],
+        "created_at": "2020-03-11T09:28:41.982Z",
+        "updated_at": "2020-03-11T09:28:41.982Z"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### unDeleteUser
+undelete user who deleted from application and have not elapsed the platform configured delete days
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema) | yes | Request body |
+
+
+undelete user who deleted from application and have not elapsed the platform configured delete days
+
+*Returned Response:*
+
+
+
+
+[UnDeleteUserSuccess](#UnDeleteUserSuccess)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; undelete user success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePlatformConfig
+Update platform configurations
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PlatformSchema](#PlatformSchema) | yes | Request body |
+
+
+Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
+
+*Returned Response:*
+
+
+
+
+[PlatformSchema](#PlatformSchema)
+
+Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update platform config success</i></summary>
+
+```json
+{
+  "value": {
+    "active": true,
+    "mobile_image": "",
+    "desktop_image": "",
+    "social": {
+      "facebook": true,
+      "google": true,
+      "account_kit": true
+    },
+    "flash_card": {
+      "text": "",
+      "text_color": "#FFFFFF",
+      "background_color": "#EF5350"
+    },
+    "register": true,
+    "forgot_password": true,
+    "login": {
+      "password": true,
+      "otp": true
+    },
+    "skip_captcha": false,
+    "display": "Fynd",
+    "subtext": "Login to Fynd",
+    "name": "Fynd",
+    "meta": {},
+    "required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "register_required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "skip_login": false,
+    "look_and_feel": {
+      "background_color": "#F5F5F5",
+      "card_position": "center"
+    },
+    "social_tokens": {
+      "google": {
+        "app_id": "token_123"
+      },
+      "facebook": {
+        "app_id": "token_123"
+      },
+      "accountkit": {
+        "app_id": "token_123"
+      }
+    },
+    "session_config": {
+      "duration": 30,
+      "type": "Days",
+      "is_rolling": false
+    },
+    "delete_account_reasons": [
+      {
+        "reason_text": "test",
+        "reason_id": "123",
+        "show_text_area": true
+      }
+    ],
+    "delete_account_day": 7,
+    "delete_account_consent": {
+      "consent_text": ""
+    },
+    "_id": "5e04a5e5220bc15839ad9bc0",
+    "created_at": "2019-12-26T12:21:57.878Z",
+    "updated_at": "2020-08-13T14:31:09.878Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateUser
+Update user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.updateUser({  userId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.updateUser({  userId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | User ID |  
+| body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
+
+
+Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
+
+*Returned Response:*
+
+
+
+
+[CreateUserResponseSchema](#CreateUserResponseSchema)
+
+User update
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update user success</i></summary>
+
+```json
+{
+  "value": {
+    "user": {
+      "_id": "5e68af49cfa09bf7233022f1",
+      "gender": "male",
+      "active": true,
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "external_id": "100002000036789",
+      "account_type": "user",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "meta": {},
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2020-03-11T09:28:41.982Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateUserAttribute
 Update Or Create User Attribute
 
@@ -2324,6 +2148,162 @@ Successful update
 ```json
 
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateUserGroup
+Update an User Group
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| groupId | string | yes | Numeric ID allotted to a User Group |  
+| body | [UpdateUserGroupSchema](#UpdateUserGroupSchema) | yes | Request body |
+
+
+Use this API to update an existing user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. returns updated User Group. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update user group success</i></summary>
+
+```json
+{
+  "value": {
+    "is_active": true,
+    "_id": "6345677535474fbb6944b7ce",
+    "name": "Group 1",
+    "description": "description",
+    "file_url": "url",
+    "status": "pending",
+    "uid": 1,
+    "application_id": "000000000000000000000004",
+    "created_at": "2022-10-11T12:54:13.539Z",
+    "modified_at": "2022-10-11T12:54:13.539Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateUserGroupPartially
+Add or Remove an user from particular user group and update user group details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.updateUserGroupPartially({  groupId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.updateUserGroupPartially({  groupId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| groupId | string | yes | Numeric ID allotted to a User Group |  
+| body | [PartialUserGroupUpdateSchema](#PartialUserGroupUpdateSchema) | yes | Request body |
+
+
+Use this API to update user group details and add or remove an user to the user group.
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. returns updated User Group. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update user group partially success</i></summary>
+
+```json
+{
+  "value": {
+    "is_active": true,
+    "_id": "6345677535474fbb6944b7ce",
+    "name": "Group 1",
+    "description": "description",
+    "file_url": "url",
+    "status": "pending",
+    "uid": 1,
+    "application_id": "000000000000000000000001",
+    "created_at": "2022-10-11T12:54:13.539Z",
+    "modified_at": "2022-10-11T12:54:13.539Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -2824,7 +2804,7 @@ Successful update
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_kit | [Accountkit](#Accountkit)? |  yes  |  |
+ | accountkit | [Accountkit](#Accountkit)? |  yes  |  |
  | facebook | [Facebook](#Facebook)? |  yes  |  |
  | google | [Google](#Google)? |  yes  |  |
  

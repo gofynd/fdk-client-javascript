@@ -95,6 +95,7 @@ export = CatalogApplicationModel;
  * @typedef ProductListingPrice
  * @property {Price} [effective]
  * @property {Price} [marked]
+ * @property {Price} [selling]
  */
 /**
  * @typedef ProductSizesPrice
@@ -354,6 +355,7 @@ export = CatalogApplicationModel;
  * @property {string[]} [similars]
  * @property {string[]} [tags]
  * @property {ApplicationItemSEO} [seo]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} [image_nature]
  * @property {boolean} [has_variant]
  * @property {string} [item_type]
@@ -1129,6 +1131,7 @@ declare function ProductListingPrice(): ProductListingPrice;
 type ProductListingPrice = {
     effective?: Price;
     marked?: Price;
+    selling?: Price;
 };
 /** @returns {ProductSizesPrice} */
 declare function ProductSizesPrice(): ProductSizesPrice;
@@ -1455,6 +1458,7 @@ type ProductListingDetail = {
     similars?: string[];
     tags?: string[];
     seo?: ApplicationItemSEO;
+    discount_meta?: DiscountMeta;
     image_nature?: string;
     has_variant?: boolean;
     item_type?: string;
