@@ -18,6 +18,7 @@ export = DiscountPlatformModel;
  * @property {string} [file_path]
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
+ * @property {string[]} [zone_ids]
  * @property {ValidityObject} validity
  * @property {DiscountMeta} [discount_meta]
  */
@@ -192,6 +193,7 @@ type CreateUpdateDiscount = {
     file_path?: string;
     brand_ids?: number[];
     store_ids?: number[];
+    zone_ids?: string[];
     validity: ValidityObject;
     discount_meta?: DiscountMeta;
 };

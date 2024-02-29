@@ -112,7 +112,7 @@ export = UserPlatformModel;
  */
 /**
  * @typedef CustomerListResponseSchema
- * @property {UserSchema[]} [items]
+ * @property {UserSearchSchema[]} [items]
  * @property {PaginationSchema} [page]
  */
 /**
@@ -322,7 +322,7 @@ export = UserPlatformModel;
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [accountkit]
+ * @property {Accountkit} [account_kit]
  * @property {Google} [google]
  */
 /**
@@ -717,7 +717,7 @@ type UserSearchResponseSchema = {
 /** @returns {CustomerListResponseSchema} */
 declare function CustomerListResponseSchema(): CustomerListResponseSchema;
 type CustomerListResponseSchema = {
-    items?: UserSchema[];
+    items?: UserSearchSchema[];
     page?: PaginationSchema;
 };
 /** @returns {PaginationSchema} */
@@ -959,7 +959,7 @@ type FlashCard = {
 declare function SocialTokens(): SocialTokens;
 type SocialTokens = {
     facebook?: Facebook;
-    accountkit?: Accountkit;
+    account_kit?: Accountkit;
     google?: Google;
 };
 /** @returns {DeleteAccountReasons} */

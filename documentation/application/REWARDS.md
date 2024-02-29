@@ -9,10 +9,16 @@
 The Rewards Points module manages loyalty and rewards programs. Use it to search for offers by name, track user points, monitor referrals, and apply order discounts. The module also supports the use of referral codes, allowing users to earn rewards for both themselves and their referrers.
 
 
-Default
-* [catalogueOrder](#catalogueorder)
+Offer and Discount Information
 * [getOfferByName](#getofferbyname)
 * [getOrderDiscount](#getorderdiscount)
+
+
+Catalog Order
+* [catalogueOrder](#catalogueorder)
+
+
+User Points and Referral Handling
 * [getUserPoints](#getuserpoints)
 * [getUserPointsHistory](#getuserpointshistory)
 * [getUserReferralDetails](#getuserreferraldetails)
@@ -27,79 +33,8 @@ Default
 
 
 
-### catalogueOrder
-Get all transactions of reward points
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.rewards.catalogueOrder({  body : value });
-
-// Async/Await
-const data = await applicationClient.rewards.catalogueOrder({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CatalogueOrderRequest](#CatalogueOrderRequest) | yes | Request body |
-
-
-Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
-
-*Returned Response:*
-
-
-
-
-[CatalogueOrderResponse](#CatalogueOrderResponse)
-
-Success. Check example below or refer `CatalogueOrderResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "articles": [
-      {
-        "id": "qwer",
-        "price": 2356,
-        "points": 1000
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getOfferByName
-Get offer by name
+Fetch specific offer
 
 
 
@@ -121,7 +56,7 @@ const data = await applicationClient.rewards.getOfferByName({  name : value });
 
 
 
-Use this API to get fetch the specific offer details and configuration by the name of the offer.
+Retrieves detailed information about an offer by its name.
 
 *Returned Response:*
 
@@ -204,7 +139,7 @@ Success. Check example below or refer `Offer` for more details.
 
 
 ### getOrderDiscount
-Calculates the discount on order-amount
+Order discount.
 
 
 
@@ -225,7 +160,7 @@ const data = await applicationClient.rewards.getOrderDiscount({  body : value })
 | body | [OrderDiscountRequest](#OrderDiscountRequest) | yes | Request body |
 
 
-Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer.
+Retrieve the discount applied to a specific order.
 
 *Returned Response:*
 
@@ -290,8 +225,83 @@ Success. Check example below or refer `OrderDiscountResponse` for more details.
 ---
 
 
+
+
+### catalogueOrder
+Order from catalogue.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.rewards.catalogueOrder({  body : value });
+
+// Async/Await
+const data = await applicationClient.rewards.catalogueOrder({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CatalogueOrderRequest](#CatalogueOrderRequest) | yes | Request body |
+
+
+Place an reward on order items available in the catalogue.
+
+*Returned Response:*
+
+
+
+
+[CatalogueOrderResponse](#CatalogueOrderResponse)
+
+Success. Check example below or refer `CatalogueOrderResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "articles": [
+      {
+        "id": "qwer",
+        "price": 2356,
+        "points": 1000
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
 ### getUserPoints
-Get total available points of a user
+Current points.
 
 
 
@@ -308,7 +318,7 @@ const data = await applicationClient.rewards.getUserPoints();
 
 
 
-Use this API to retrieve total available points of a user for current application.
+Retrieves the current reward points balance for the user.
 
 *Returned Response:*
 
@@ -352,7 +362,7 @@ Success. Check example below or refer `PointsResponse` for more details.
 
 
 ### getUserPointsHistory
-Get all transactions of reward points
+Points history.
 
 
 
@@ -377,7 +387,7 @@ const data = await applicationClient.rewards.getUserPointsHistory({  pageId : va
 
 
 
-Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
+Gets the historical data of points earned or spent by the user.
 
 *Returned Response:*
 
@@ -467,7 +477,7 @@ Success. Check example below or refer `PointsHistoryResponse` for more details.
 
 
 ### getUserReferralDetails
-Get referral details of a user
+Referral details.
 
 
 
@@ -484,7 +494,7 @@ const data = await applicationClient.rewards.getUserReferralDetails();
 
 
 
-Use this API to retrieve the referral details like referral code of a user.
+Gets the details of the user’s referral status and codes.
 
 *Returned Response:*
 
@@ -585,7 +595,7 @@ Success. Check example below or refer `ReferralDetailsResponse` for more details
 
 
 ### redeemReferralCode
-Redeems a referral code and credits reward points to referee and the referrer as per the configuration
+Redeem code.
 
 
 
@@ -606,7 +616,7 @@ const data = await applicationClient.rewards.redeemReferralCode({  body : value 
 | body | [RedeemReferralCodeRequest](#RedeemReferralCodeRequest) | yes | Request body |
 
 
-Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
+Applies a referral code to earn or redeem rewards.
 
 *Returned Response:*
 

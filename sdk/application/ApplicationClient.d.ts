@@ -7,7 +7,7 @@ export = ApplicationClient;
 declare class ApplicationClient {
     /** @param {import("./ApplicationConfig")} config - The application configuration. */
     constructor(config: import("./ApplicationConfig"));
-    config: import("sdk/output/javascript/code/sdk/application/ApplicationConfig");
+    config: import("./ApplicationConfig");
     cart: Cart;
     catalog: Catalog;
     common: Common;
@@ -56,19 +56,19 @@ declare class ApplicationClient {
      */
     setExtraHeaders(header: object): void;
 }
-import Cart = require("sdk/output/javascript/code/sdk/application/Cart/CartApplicationClient");
-import Catalog = require("sdk/output/javascript/code/sdk/application/Catalog/CatalogApplicationClient");
-import Common = require("sdk/output/javascript/code/sdk/application/Common/CommonApplicationClient");
-import Communication = require("sdk/output/javascript/code/sdk/application/Communication/CommunicationApplicationClient");
-import Configuration = require("sdk/output/javascript/code/sdk/application/Configuration/ConfigurationApplicationClient");
-import Content = require("sdk/output/javascript/code/sdk/application/Content/ContentApplicationClient");
-import FileStorage = require("sdk/output/javascript/code/sdk/application/FileStorage/FileStorageApplicationClient");
-import Lead = require("sdk/output/javascript/code/sdk/application/Lead/LeadApplicationClient");
-import Logistic = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationClient");
-import Order = require("sdk/output/javascript/code/sdk/application/Order/OrderApplicationClient");
-import Payment = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationClient");
-import PosCart = require("sdk/output/javascript/code/sdk/application/PosCart/PosCartApplicationClient");
-import Rewards = require("sdk/output/javascript/code/sdk/application/Rewards/RewardsApplicationClient");
-import Share = require("sdk/output/javascript/code/sdk/application/Share/ShareApplicationClient");
-import Theme = require("sdk/output/javascript/code/sdk/application/Theme/ThemeApplicationClient");
-import User = require("sdk/output/javascript/code/sdk/application/User/UserApplicationClient");
+import Cart = require("./Cart/CartApplicationClient");
+import Catalog = require("./Catalog/CatalogApplicationClient");
+import Common = require("./Common/CommonApplicationClient");
+import Communication = require("./Communication/CommunicationApplicationClient");
+import Configuration = require("./Configuration/ConfigurationApplicationClient");
+import Content = require("./Content/ContentApplicationClient");
+import FileStorage = require("./FileStorage/FileStorageApplicationClient");
+import Lead = require("./Lead/LeadApplicationClient");
+import Logistic = require("./Logistic/LogisticApplicationClient");
+import Order = require("./Order/OrderApplicationClient");
+import Payment = require("./Payment/PaymentApplicationClient");
+import PosCart = require("./PosCart/PosCartApplicationClient");
+import Rewards = require("./Rewards/RewardsApplicationClient");
+import Share = require("./Share/ShareApplicationClient");
+import Theme = require("./Theme/ThemeApplicationClient");
+import User = require("./User/UserApplicationClient");

@@ -19,8 +19,8 @@ declare class Share {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
      * @name createShortLink
-     * @summary: Create a short link
-     * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/createShortLink/).
+     * @summary: Shorten URL.
+     * @description: Creates a shortened version of a given URL for easier sharing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/createShortLink/).
      */
     createShortLink({ body, requestHeaders }?: ShareApplicationValidator.CreateShortLinkParam, { responseHeaders }?: object): Promise<ShareApplicationModel.ShortLinkRes>;
     /**
@@ -29,8 +29,8 @@ declare class Share {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
      * @name getApplicationQRCode
-     * @summary: Create QR Code of an app
-     * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getApplicationQRCode/).
+     * @summary: App QR code.
+     * @description: Generates a QR code for the application for easy sharing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getApplicationQRCode/).
      */
     getApplicationQRCode({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ShareApplicationModel.QRCodeResp>;
     /**
@@ -39,8 +39,8 @@ declare class Share {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
      * @name getCollectionQRCodeBySlug
-     * @summary: Create QR Code of a collection
-     * @description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getCollectionQRCodeBySlug/).
+     * @summary: Collection QR code.
+     * @description: Generates a QR code for a specific product collection using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getCollectionQRCodeBySlug/).
      */
     getCollectionQRCodeBySlug({ slug, requestHeaders }?: ShareApplicationValidator.GetCollectionQRCodeBySlugParam, { responseHeaders }?: object): Promise<ShareApplicationModel.QRCodeResp>;
     /**
@@ -50,8 +50,8 @@ declare class Share {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
      * @name getOriginalShortLinkByHash
-     * @summary: Get original link by hash
-     * @description: Use this API to retrieve the original link from a short-link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getOriginalShortLinkByHash/).
+     * @summary: Original URL.
+     * @description: Retrieve the original link from a short-link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getOriginalShortLinkByHash/).
      */
     getOriginalShortLinkByHash({ hash, requestHeaders }?: ShareApplicationValidator.GetOriginalShortLinkByHashParam, { responseHeaders }?: object): Promise<ShareApplicationModel.ShortLinkRes>;
     /**
@@ -60,8 +60,8 @@ declare class Share {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
      * @name getProductQRCodeBySlug
-     * @summary: Create QR Code of a product
-     * @description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getProductQRCodeBySlug/).
+     * @summary: Product QR code.
+     * @description: Creates a QR code for a specific product identified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getProductQRCodeBySlug/).
      */
     getProductQRCodeBySlug({ slug, requestHeaders }?: ShareApplicationValidator.GetProductQRCodeBySlugParam, { responseHeaders }?: object): Promise<ShareApplicationModel.QRCodeResp>;
     /**
@@ -70,8 +70,8 @@ declare class Share {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
      * @name getShortLinkByHash
-     * @summary: Get short link by hash
-     * @description: Use this API to get a short link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getShortLinkByHash/).
+     * @summary: Fetch short link.
+     * @description: Retrieves a previously created short link using its hash identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getShortLinkByHash/).
      */
     getShortLinkByHash({ hash, requestHeaders }?: ShareApplicationValidator.GetShortLinkByHashParam, { responseHeaders }?: object): Promise<ShareApplicationModel.ShortLinkRes>;
     /**
@@ -80,10 +80,10 @@ declare class Share {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
      * @name getUrlQRCode
-     * @summary: Create QR Code of a URL
-     * @description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getUrlQRCode/).
+     * @summary: URL to QR code.
+     * @description: Converts a given URL into a scannable QR code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getUrlQRCode/).
      */
     getUrlQRCode({ url, requestHeaders }?: ShareApplicationValidator.GetUrlQRCodeParam, { responseHeaders }?: object): Promise<ShareApplicationModel.QRCodeResp>;
 }
-import ShareApplicationValidator = require("sdk/output/javascript/code/sdk/application/Share/ShareApplicationValidator");
-import ShareApplicationModel = require("sdk/output/javascript/code/sdk/application/Share/ShareApplicationModel");
+import ShareApplicationValidator = require("./ShareApplicationValidator");
+import ShareApplicationModel = require("./ShareApplicationModel");

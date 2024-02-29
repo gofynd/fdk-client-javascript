@@ -69,4 +69,4 @@ declare class FileStorage {
      */
     browse({ namespace, applicationId, companyId, page, limit, requestHeaders }?: FileStoragePartnerValidator.BrowseParam, { responseHeaders }?: object): Promise<any>;
 }
-import FileStoragePartnerModel = require("sdk/output/javascript/code/sdk/partner/FileStorage/FileStoragePartnerModel");
+import FileStoragePartnerModel = require("./FileStoragePartnerModel");

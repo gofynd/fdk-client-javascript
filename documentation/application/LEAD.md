@@ -9,14 +9,20 @@
 The Leads Management module improves communication, support, and effective interaction. Utilize it to retrieve user tickets, create ticket histories, and generate new tickets. This module also enables you to set up video rooms for participants, providing room tokens for secure access.
 
 
-Default
+Ticket Management
 * [createHistory](#createhistory)
 * [createTicket](#createticket)
-* [getCustomForm](#getcustomform)
-* [getParticipantsInsideVideoRoom](#getparticipantsinsidevideoroom)
 * [getTicket](#getticket)
-* [getTokenForVideoRoom](#gettokenforvideoroom)
+
+
+Custom Form Handling
+* [getCustomForm](#getcustomform)
 * [submitCustomForm](#submitcustomform)
+
+
+Video Room Management
+* [getParticipantsInsideVideoRoom](#getparticipantsinsidevideoroom)
+* [getTokenForVideoRoom](#gettokenforvideoroom)
 
 
 
@@ -28,7 +34,7 @@ Default
 
 
 ### createHistory
-Create history for specific Ticket
+Logs ticket history.
 
 
 
@@ -52,7 +58,7 @@ const data = await applicationClient.lead.createHistory({  id : value,
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | yes | Request body |
 
 
-Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+Adds a history entry for a specific support ticket.
 
 *Returned Response:*
 
@@ -128,7 +134,7 @@ Success
 
 
 ### createTicket
-Create Ticket
+Creates a new ticket.
 
 
 
@@ -149,7 +155,7 @@ const data = await applicationClient.lead.createTicket({  body : value });
 | body | [AddTicketPayload](#AddTicketPayload) | yes | Request body |
 
 
-This is used to Create Ticket.
+Generates a new customer support ticket for a user query.
 
 *Returned Response:*
 
@@ -381,183 +387,8 @@ Success
 ---
 
 
-### getCustomForm
-Get specific Custom Form using it's slug
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.lead.getCustomForm({  slug : value });
-
-// Async/Await
-const data = await applicationClient.lead.getCustomForm({  slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | Slug of form whose response is getting submitted |  
-
-
-
-Get specific Custom Form using it's slug, this is used to view the form.
-
-*Returned Response:*
-
-
-
-
-[CustomForm](#CustomForm)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Default</i></summary>
-
-```json
-{
-  "value": {
-    "priority": "high",
-    "login_required": false,
-    "should_notify": false,
-    "inputs": [
-      {
-        "required": false,
-        "type": "text",
-        "display": "Name",
-        "placeholder": "Please enter your name",
-        "key": "name"
-      }
-    ],
-    "available_assignees": [],
-    "_id": "5fd258a9088f957f34c288fc",
-    "title": "trail form",
-    "description": "Trail form description",
-    "slug": "trail-form",
-    "application_id": "000000000000000000000003",
-    "created_on": {
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-      "platform": "web",
-      "meta": {
-        "browser": {
-          "name": "Chrome",
-          "version": "87.0.4280.88"
-        },
-        "os": {
-          "name": "macOS",
-          "version": "10.15.6",
-          "versionName": "Catalina"
-        },
-        "platform": {
-          "type": "desktop",
-          "vendor": "Apple"
-        },
-        "engine": {
-          "name": "Blink"
-        }
-      }
-    },
-    "created_by": "5d1363adf599d850df93175e",
-    "createdAt": "2020-12-10T17:19:37.515Z",
-    "updatedAt": "2020-12-10T17:19:43.214Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getParticipantsInsideVideoRoom
-Get participants of a specific Video Room using it's unique name
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.lead.getParticipantsInsideVideoRoom({  uniqueName : value });
-
-// Async/Await
-const data = await applicationClient.lead.getParticipantsInsideVideoRoom({  uniqueName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uniqueName | string | yes | Unique name of Video Room |  
-
-
-
-Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-
-*Returned Response:*
-
-
-
-
-[GetParticipantsInsideVideoRoomResponse](#GetParticipantsInsideVideoRoomResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Default</i></summary>
-
-```json
-{
-  "value": {
-    "participants": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getTicket
-Get Ticket with the specific id
+Retrieves a support ticket.
 
 
 
@@ -579,7 +410,7 @@ const data = await applicationClient.lead.getTicket({  id : value });
 
 
 
-Get Ticket with the specific id, this is used to view the ticket details
+Retrieve details of a specific customer support ticket.
 
 *Returned Response:*
 
@@ -811,17 +642,19 @@ Success
 ---
 
 
-### getTokenForVideoRoom
-Get Token to join a specific Video Room using it's unqiue name
+
+
+### getCustomForm
+Fetches custom form.
 
 
 
 ```javascript
 // Promise
-const promise = applicationClient.lead.getTokenForVideoRoom({  uniqueName : value });
+const promise = applicationClient.lead.getCustomForm({  slug : value });
 
 // Async/Await
-const data = await applicationClient.lead.getTokenForVideoRoom({  uniqueName : value });
+const data = await applicationClient.lead.getCustomForm({  slug : value });
 ```
 
 
@@ -830,18 +663,18 @@ const data = await applicationClient.lead.getTokenForVideoRoom({  uniqueName : v
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| uniqueName | string | yes | Unique name of Video Room |  
+| slug | string | yes | Slug of form whose response is getting submitted |  
 
 
 
-Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+Retrieves a customizable form template for data collection.
 
 *Returned Response:*
 
 
 
 
-[GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
+[CustomForm](#CustomForm)
 
 Success
 
@@ -858,7 +691,50 @@ Success
 ```json
 {
   "value": {
-    "access_token": "your_token_to_the_room"
+    "priority": "high",
+    "login_required": false,
+    "should_notify": false,
+    "inputs": [
+      {
+        "required": false,
+        "type": "text",
+        "display": "Name",
+        "placeholder": "Please enter your name",
+        "key": "name"
+      }
+    ],
+    "available_assignees": [],
+    "_id": "5fd258a9088f957f34c288fc",
+    "title": "trail form",
+    "description": "Trail form description",
+    "slug": "trail-form",
+    "application_id": "000000000000000000000003",
+    "created_on": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+      "platform": "web",
+      "meta": {
+        "browser": {
+          "name": "Chrome",
+          "version": "87.0.4280.88"
+        },
+        "os": {
+          "name": "macOS",
+          "version": "10.15.6",
+          "versionName": "Catalina"
+        },
+        "platform": {
+          "type": "desktop",
+          "vendor": "Apple"
+        },
+        "engine": {
+          "name": "Blink"
+        }
+      }
+    },
+    "created_by": "5d1363adf599d850df93175e",
+    "createdAt": "2020-12-10T17:19:37.515Z",
+    "updatedAt": "2020-12-10T17:19:43.214Z",
+    "__v": 0
   }
 }
 ```
@@ -878,7 +754,7 @@ Success
 
 
 ### submitCustomForm
-Submit Response for a specific Custom Form using it's slug
+Submits form data.
 
 
 
@@ -902,7 +778,7 @@ const data = await applicationClient.lead.submitCustomForm({  slug : value,
 | body | [CustomFormSubmissionPayload](#CustomFormSubmissionPayload) | yes | Request body |
 
 
-Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+Sends user-entered data from a custom form for processing.
 
 *Returned Response:*
 
@@ -1118,6 +994,140 @@ Success
       "__v": 0,
       "video_room_id": "6012f38557751ee8fc162cf7"
     }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getParticipantsInsideVideoRoom
+Lists video room participants.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.lead.getParticipantsInsideVideoRoom({  uniqueName : value });
+
+// Async/Await
+const data = await applicationClient.lead.getParticipantsInsideVideoRoom({  uniqueName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueName | string | yes | Unique name of Video Room |  
+
+
+
+Gets the current participants inside a specific video room.
+
+*Returned Response:*
+
+
+
+
+[GetParticipantsInsideVideoRoomResponse](#GetParticipantsInsideVideoRoomResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "participants": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getTokenForVideoRoom
+Retrieves video room token.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.lead.getTokenForVideoRoom({  uniqueName : value });
+
+// Async/Await
+const data = await applicationClient.lead.getTokenForVideoRoom({  uniqueName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueName | string | yes | Unique name of Video Room |  
+
+
+
+Retrieves a secure token for accessing a video chat room.
+
+*Returned Response:*
+
+
+
+
+[GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "access_token": "your_token_to_the_room"
   }
 }
 ```
@@ -1372,7 +1382,7 @@ Success
  | feedback_form | [FeedbackForm](#FeedbackForm)? |  yes  |  |
  | group_id | number? |  yes  | Group id of category releted data |
  | key | string |  no  | Category key value identifier |
- | sub_categories | [[TicketCategory](#TicketCategory)]? |  yes  |  |
+ | sub_categories | [TicketCategory](#TicketCategory)? |  yes  |  |
  
 
 ---

@@ -67,7 +67,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
       query_params,
       body,
       requestHeaders,
@@ -93,93 +93,6 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > addCollectionItems \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.AddProductsInPriceFactoryByZoneIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductsResponse>}
-   *   - Success response
-   *
-   * @name addProductsInPriceFactoryByZoneId
-   * @summary:
-   * @description: This API allows to add  products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addProductsInPriceFactoryByZoneId/).
-   */
-  async addProductsInPriceFactoryByZoneId(
-    { id, zoneId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.addProductsInPriceFactoryByZoneId().validate(
-      {
-        id,
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.addProductsInPriceFactoryByZoneId().validate(
-      {
-        id,
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > addProductsInPriceFactoryByZoneId \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}/products/zone/${zoneId}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductsResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > addProductsInPriceFactoryByZoneId \n ${res_error}`,
         });
       }
     }
@@ -269,88 +182,6 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.CreateAppPriceFactoryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryResponse>} -
-   *   Success response
-   * @name createAppPriceFactory
-   * @summary: Create price factory
-   * @description: This API allows to create price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppPriceFactory/).
-   */
-  async createAppPriceFactory(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createAppPriceFactory().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createAppPriceFactory().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createAppPriceFactory \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createAppPriceFactory \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.CreateAppReturnConfigurationParam} arg
    *   - Arg object
    *
@@ -432,89 +263,6 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.CreateAutocompleteSettingsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AutocompleteUpsertResponseSchema>}
-   *   - Success response
-   *
-   * @name createAutocompleteSettings
-   * @summary: Create autocomplete settings config for an application
-   * @description: This API allows to create autocomplete settings for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAutocompleteSettings/).
-   */
-  async createAutocompleteSettings(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createAutocompleteSettings().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createAutocompleteSettings().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createAutocompleteSettings \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/settings`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.AutocompleteUpsertResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createAutocompleteSettings \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.CreateCollectionParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -522,7 +270,7 @@ class Catalog {
    *   Success response
    * @name createCollection
    * @summary: Add a Collection
-   * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCollection/).
+   * @description: Create a collection to the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCollection/).
    */
   async createCollection(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -561,7 +309,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
       query_params,
       body,
       requestHeaders,
@@ -603,7 +351,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
    *   Success response
    * @name createConfigurationByType
-   * @summary: Add configuration for categories and brands
+   * @summary: Create configuration by type.
    * @description: Add configuration for categories & brands. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createConfigurationByType/).
    */
   async createConfigurationByType(
@@ -645,7 +393,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
       query_params,
       body,
       requestHeaders,
@@ -687,7 +435,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
    *   Success response
    * @name createConfigurationProductListing
-   * @summary: Add configuration for products & listings
+   * @summary: Create configuration for product listing.
    * @description: Add configuration for products & listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createConfigurationProductListing/).
    */
   async createConfigurationProductListing(
@@ -727,7 +475,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
       query_params,
       body,
       requestHeaders,
@@ -770,8 +518,8 @@ class Catalog {
    *   - Success response
    *
    * @name createCustomAutocompleteRule
-   * @summary: Add a Custom Autocomplete Keywords
-   * @description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomAutocompleteRule/).
+   * @summary: Create custom autocomplete rules.
+   * @description: Generate and add custom autocomplete rules to the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomAutocompleteRule/).
    */
   async createCustomAutocompleteRule(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -810,7 +558,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
       query_params,
       body,
       requestHeaders,
@@ -851,8 +599,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
    * @name createCustomKeyword
-   * @summary: Add a Custom Search Keywords
-   * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomKeyword/).
+   * @summary: Create custom search keywords.
+   * @description: Create a Custom Search Keywords.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomKeyword/).
    */
   async createCustomKeyword(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -891,7 +639,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
       query_params,
       body,
       requestHeaders,
@@ -932,8 +680,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.AppConfigurationDetail>} - Success response
    * @name createGroupConfiguration
-   * @summary: Create configuration for Group config types.
-   * @description: Create configuration for Group config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createGroupConfiguration/).
+   * @summary: Create group configuration.
+   * @description: Create configuration for group configuration types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createGroupConfiguration/).
    */
   async createGroupConfiguration(
     { configType, body, requestHeaders } = { requestHeaders: {} },
@@ -1013,12 +761,10 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AppConfigurationsFilterResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
    * @name createListingConfiguration
-   * @summary: Add configuration for listings
-   * @description: Add configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createListingConfiguration/).
+   * @summary: Create listing configuration.
+   * @description: Add configuration for catalog listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createListingConfiguration/).
    */
   async createListingConfiguration(
     { configType, body, requestHeaders } = { requestHeaders: {} },
@@ -1059,7 +805,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/`,
       query_params,
       body,
       requestHeaders,
@@ -1073,425 +819,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.AppConfigurationsFilterResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createListingConfiguration \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRuleBoostActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name createMerchandisingRuleBoostAction
-   * @summary: Create Merchandising Rule's Boost action details
-   * @description: This allows you to create Boost action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleBoostAction/).
-   */
-  async createMerchandisingRuleBoostAction(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRuleBoostAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRuleBoostAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createMerchandisingRuleBoostAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/boost`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createMerchandisingRuleBoostAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRuleBuryActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name createMerchandisingRuleBuryAction
-   * @summary: Get Merchandising Rule's Bury action details
-   * @description: This allows you to create Bury action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleBuryAction/).
-   */
-  async createMerchandisingRuleBuryAction(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRuleBuryAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRuleBuryAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createMerchandisingRuleBuryAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/bury`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createMerchandisingRuleBuryAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRuleHideActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name createMerchandisingRuleHideAction
-   * @summary: Create Merchandising Rule's Hide action details
-   * @description: This allows you to create hide action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleHideAction/).
-   */
-  async createMerchandisingRuleHideAction(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRuleHideAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRuleHideAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createMerchandisingRuleHideAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/hide`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createMerchandisingRuleHideAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRulePinActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name createMerchandisingRulePinAction
-   * @summary: Create Merchandising Rule's action details
-   * @description: This allows you to create pin action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRulePinAction/).
-   */
-  async createMerchandisingRulePinAction(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRulePinAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRulePinAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createMerchandisingRulePinAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/pin`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createMerchandisingRulePinAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.CreateMerchandisingRuleQueryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.MerchandiseQueryResponse>} -
-   *   Success response
-   * @name createMerchandisingRuleQuery
-   * @summary: Create a Merchandising Rule's query
-   * @description: This allows you to Create a merchandising rule's query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMerchandisingRuleQuery/).
-   */
-  async createMerchandisingRuleQuery(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRuleQuery().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createMerchandisingRuleQuery().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createMerchandisingRuleQuery \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/query`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.MerchandiseQueryResponse().validate(responseData, {
+    } = CatalogPlatformModel.AppConfigurationsSort().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1502,92 +830,7 @@ class Catalog {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createMerchandisingRuleQuery \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.CreateProductPriceFactoryBulkJobParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>}
-   *   - Success response
-   *
-   * @name createProductPriceFactoryBulkJob
-   * @summary:
-   * @description: This API allows to create bulk job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductPriceFactoryBulkJob/).
-   */
-  async createProductPriceFactoryBulkJob(
-    { id, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createProductPriceFactoryBulkJob().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createProductPriceFactoryBulkJob().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createProductPriceFactoryBulkJob \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}/products/bulk`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createProductPriceFactoryBulkJob \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Catalog > createListingConfiguration \n ${res_error}`,
         });
       }
     }
@@ -1605,8 +848,8 @@ class Catalog {
    *   - Success response
    *
    * @name createSearchConfiguration
-   * @summary: Update search configuration for an application
-   * @description: This view allows you to modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchConfiguration/).
+   * @summary: Create search configuration
+   * @description: Create search configuration for the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchConfiguration/).
    */
   async createSearchConfiguration(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1645,7 +888,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration/`,
       query_params,
       body,
       requestHeaders,
@@ -1671,88 +914,6 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > createSearchConfiguration \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.CreateSearchRerankParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateSearchRerankResponse>} -
-   *   Success response
-   * @name createSearchRerank
-   * @summary: Create search rerank for an application
-   * @description: This view allows you to create search rerank attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchRerank/).
-   */
-  async createSearchRerank(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.createSearchRerank().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.createSearchRerank().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > createSearchRerank \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.CreateSearchRerankResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > createSearchRerank \n ${res_error}`,
         });
       }
     }
@@ -1849,7 +1010,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
    * @name deleteAutocompleteKeyword
-   * @summary: Delete a Autocomplete Keywords
+   * @summary: Delete autocomplete keywords.
    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteAutocompleteKeyword/).
    */
   async deleteAutocompleteKeyword(
@@ -1889,7 +1050,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -1930,7 +1091,7 @@ class Catalog {
    *   - Success response
    *
    * @name deleteCollection
-   * @summary: Delete a Collection
+   * @summary: Delete a collection.
    * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteCollection/).
    */
   async deleteCollection(
@@ -1970,7 +1131,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -2011,7 +1172,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name deleteGroupConfiguration
-   * @summary: Delete configuration of the product config type of the application.
+   * @summary: Delete group configuration.
    * @description: Delete configuration of the product config type of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteGroupConfiguration/).
    */
   async deleteGroupConfiguration(
@@ -2094,8 +1255,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name deleteListingConfiguration
-   * @summary: Delete configuration for listings
-   * @description: Delete configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteListingConfiguration/).
+   * @summary: Delete listing configuration.
+   * @description: Remove a specific listing configuration from the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteListingConfiguration/).
    */
   async deleteListingConfiguration(
     { configType, configId, requestHeaders } = { requestHeaders: {} },
@@ -2136,7 +1297,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -2179,8 +1340,8 @@ class Catalog {
    *   - Success response
    *
    * @name deleteSearchConfiguration
-   * @summary: Delete search configuration for an application
-   * @description: This view allows you to reset search config for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchConfiguration/).
+   * @summary: Delete Search Configuration
+   * @description: Delete search configuration in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchConfiguration/).
    */
   async deleteSearchConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -2215,7 +1376,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration/`,
       query_params,
       undefined,
       requestHeaders,
@@ -2256,7 +1417,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
    * @name deleteSearchKeywords
-   * @summary: Delete a Search Keywords
+   * @summary: Delete search keywords.
    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchKeywords/).
    */
   async deleteSearchKeywords(
@@ -2296,7 +1457,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -2330,172 +1491,6 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.DeleteSearchRerankConfigurationParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.DeleteSearchRerankConfigurationResponse>}
-   *   - Success response
-   *
-   * @name deleteSearchRerankConfiguration
-   * @summary: Delete search rerank configuration for an application
-   * @description: This view allows you to delete search rerank configuration for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchRerankConfiguration/).
-   */
-  async deleteSearchRerankConfiguration(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.deleteSearchRerankConfiguration().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.deleteSearchRerankConfiguration().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > deleteSearchRerankConfiguration \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.DeleteSearchRerankConfigurationResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > deleteSearchRerankConfiguration \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.EditAppPriceFactoryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AppPriceFactory>} - Success response
-   * @name editAppPriceFactory
-   * @summary:
-   * @description: This API allows to update price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/editAppPriceFactory/).
-   */
-  async editAppPriceFactory(
-    { id, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.editAppPriceFactory().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.editAppPriceFactory().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > editAppPriceFactory \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.AppPriceFactory().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > editAppPriceFactory \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.GetAllCollectionsParam} arg
    *   - Arg object
    *
@@ -2504,15 +1499,15 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.GetCollectionListingResponse>} -
    *   Success response
    * @name getAllCollections
-   * @summary: List all the collections
-   * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllCollections/).
+   * @summary: Retrieve all collections.
+   * @description: A Collection allows you to organize your products into hierarchical groups. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllCollections/).
    */
   async getAllCollections(
     {
       q,
       scheduleStatus,
       type,
-      tag,
+      tags,
       isActive,
       pageNo,
       pageSize,
@@ -2527,7 +1522,7 @@ class Catalog {
         q,
         scheduleStatus,
         type,
-        tag,
+        tags,
         isActive,
         pageNo,
         pageSize,
@@ -2546,7 +1541,7 @@ class Catalog {
         q,
         scheduleStatus,
         type,
-        tag,
+        tags,
         isActive,
         pageNo,
         pageSize,
@@ -2564,7 +1559,7 @@ class Catalog {
     query_params["q"] = q;
     query_params["schedule_status"] = scheduleStatus;
     query_params["type"] = type;
-    query_params["tag"] = tag;
+    query_params["tags"] = tags;
     query_params["is_active"] = isActive;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2572,7 +1567,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
       query_params,
       undefined,
       requestHeaders,
@@ -2606,6 +1601,61 @@ class Catalog {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - A `company_id` is a unique identifier for
+   *   a particular seller account.
+   * @param {string} arg.applicationId - A `application_id` is a unique
+   *   identifier for a particular sale channel.
+   * @param {string} [arg.q] - Get collection list filtered by q string,
+   * @param {string} [arg.scheduleStatus] - Get collection list filtered by
+   *   scheduled status,
+   * @param {string} [arg.type] - Type of the collections
+   * @param {string[]} [arg.tags] - Each response will contain next_id param,
+   *   which should be sent back to make pagination work.
+   * @param {boolean} [arg.isActive] - Get collections filtered by active status.
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 12.
+   * @returns {Paginator<CatalogPlatformModel.GetCollectionListingResponse>}
+   * @summary: Retrieve all collections.
+   * @description: A Collection allows you to organize your products into hierarchical groups.
+   */
+  getAllCollectionsPaginator({
+    companyId,
+    applicationId,
+    q,
+    scheduleStatus,
+    type,
+    tags,
+    isActive,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAllCollections({
+        companyId: companyId,
+        applicationId: applicationId,
+        q: q,
+        scheduleStatus: scheduleStatus,
+        type: type,
+        tags: tags,
+        isActive: isActive,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CatalogPlatformApplicationValidator.GetAllSearchKeywordParam} arg
    *   - Arg object
    *
@@ -2613,22 +1663,17 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.GetSearchWordsResponse>} - Success response
    * @name getAllSearchKeyword
-   * @summary: List all Search Custom Keyword Listing
+   * @summary: Get all search keywords.
    * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllSearchKeyword/).
    */
   async getAllSearchKeyword(
-    { pageNo, pageSize, q, isActive, requestHeaders } = { requestHeaders: {} },
+    { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CatalogPlatformApplicationValidator.getAllSearchKeyword().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-        isActive,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2639,12 +1684,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogPlatformApplicationValidator.getAllSearchKeyword().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-        isActive,
-      },
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2655,15 +1695,11 @@ class Catalog {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-    query_params["is_active"] = isActive;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
       query_params,
       undefined,
       requestHeaders,
@@ -2781,8 +1817,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.InventoryStockResponse>} - Success response
    * @name getAppInventory
-   * @summary: Get the stock of a product
-   * @description: Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id - Items - Pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
+   * @summary: Get application inventory.
+   * @description: Retrieve inventory data related to the application. Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
    */
   async getAppInventory(
     {
@@ -2849,7 +1885,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/inventory`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/inventory/`,
       query_params,
       undefined,
       requestHeaders,
@@ -2888,8 +1924,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.LocationListSerializer>} - Success response
    * @name getAppLocations
-   * @summary: Get list of locations
-   * @description: This API allows to view all the locations asscoiated to a application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
+   * @summary: Get application locations.
+   * @description: Retrieve locations specific to the application. View all the locations asscoiated to a application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
    */
   async getAppLocations(
     {
@@ -2901,7 +1937,6 @@ class Catalog {
       pageSize,
       tags,
       storeTypes,
-      companyUids,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2918,7 +1953,6 @@ class Catalog {
         pageSize,
         tags,
         storeTypes,
-        companyUids,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2939,7 +1973,6 @@ class Catalog {
         pageSize,
         tags,
         storeTypes,
-        companyUids,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2959,7 +1992,6 @@ class Catalog {
     query_params["page_size"] = pageSize;
     query_params["tags"] = tags;
     query_params["store_types"] = storeTypes;
-    query_params["company_uids"] = companyUids;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2999,13 +2031,13 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Id of the company whose locations are to fetched
+   * @param {string} arg.companyId - Id of the company whose locations are to fetched
    * @param {string} arg.applicationId - Id of the application whose locations
    *   are to fetched
    * @param {string} [arg.storeType] - Helps to sort the location list on the
    *   basis of location type.
-   * @param {string} [arg.uid] - Helps to sort the location list on the basis
-   *   of uid list.
+   * @param {number[]} [arg.uid] - Helps to sort the location list on the
+   *   basis of uid list.
    * @param {string} [arg.q] - Query that is to be searched.
    * @param {string} [arg.stage] - To filter companies on basis of verified or
    *   unverified companies.
@@ -3013,11 +2045,9 @@ class Catalog {
    *   page. Default is 20.
    * @param {string[]} [arg.tags] - Get locations filtered by tags.
    * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
-   * @param {number[]} [arg.companyUids] - Filter stores by company IDs
-   *   available in the application.
    * @returns {Paginator<CatalogPlatformModel.LocationListSerializer>}
-   * @summary: Get list of locations
-   * @description: This API allows to view all the locations asscoiated to a application.
+   * @summary: Get application locations.
+   * @description: Retrieve locations specific to the application. View all the locations asscoiated to a application.
    */
   getAppLocationsPaginator({
     companyId,
@@ -3029,7 +2059,6 @@ class Catalog {
     pageSize,
     tags,
     storeTypes,
-    companyUids,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -3047,7 +2076,6 @@ class Catalog {
         pageSize: pageSize,
         tags: tags,
         storeTypes: storeTypes,
-        companyUids: companyUids,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -3060,190 +2088,12 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.GetAppPriceFactoriesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetAppPriceFactoryResponse>} -
-   *   Success response
-   * @name getAppPriceFactories
-   * @summary: Get price factory
-   * @description: This API allows to get price factories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppPriceFactories/).
-   */
-  async getAppPriceFactories(
-    { isActive, factoryTypeId, code, pageNo, pageSize, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getAppPriceFactories().validate(
-      {
-        isActive,
-        factoryTypeId,
-        code,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getAppPriceFactories().validate(
-      {
-        isActive,
-        factoryTypeId,
-        code,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getAppPriceFactories \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["is_active"] = isActive;
-    query_params["factory_type_id"] = factoryTypeId;
-    query_params["code"] = code;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetAppPriceFactoryResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getAppPriceFactories \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetAppPriceFactoryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AppPriceFactory>} - Success response
-   * @name getAppPriceFactory
-   * @summary: Get price factory
-   * @description: This API allows to get price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppPriceFactory/).
-   */
-  async getAppPriceFactory(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getAppPriceFactory().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getAppPriceFactory().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getAppPriceFactory \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.AppPriceFactory().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getAppPriceFactory \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.GetAppProductParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.OwnerAppItemResponse>} - Success response
    * @name getAppProduct
-   * @summary: Get company application product data.
+   * @summary: Retrieve application product data.
    * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProduct/).
    */
   async getAppProduct(
@@ -3283,7 +2133,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product/${itemId}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product/${itemId}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -3323,8 +2173,8 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.RawProductListingResponse>} -
    *   Success response
    * @name getAppProducts
-   * @summary: Get applicationwise products
-   * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProducts/).
+   * @summary: Get application products.
+   * @description: Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProducts/).
    */
   async getAppProducts(
     {
@@ -3395,7 +2245,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/raw-products`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/raw-products/`,
       query_params,
       undefined,
       requestHeaders,
@@ -3426,6 +2276,64 @@ class Catalog {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - A `company_id` is a unique identifier for
+   *   a particular seller account.
+   * @param {string} arg.applicationId - A `application_id` is a unique
+   *   identifier for a particular sale channel.
+   * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
+   * @param {number[]} [arg.categoryIds] - Get multiple products filtered by
+   *   Category Ids
+   * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
+   *   Department Ids
+   * @param {string[]} [arg.tags] - Get multiple products filtered by tags
+   * @param {number[]} [arg.itemIds] - Get multiple products filtered by Item Ids
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 10.
+   * @param {string} [arg.q] - Search with Item Code, Name, Slug or Identifier.
+   * @returns {Paginator<CatalogPlatformModel.RawProductListingResponse>}
+   * @summary: Get application products.
+   * @description: Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
+   */
+  getAppProductsPaginator({
+    companyId,
+    applicationId,
+    brandIds,
+    categoryIds,
+    departmentIds,
+    tags,
+    itemIds,
+    pageSize,
+    q,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAppProducts({
+        companyId: companyId,
+        applicationId: applicationId,
+        brandIds: brandIds,
+        categoryIds: categoryIds,
+        departmentIds: departmentIds,
+        tags: tags,
+        itemIds: itemIds,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -3515,8 +2423,8 @@ class Catalog {
    *   - Success response
    *
    * @name getAppicationProducts
-   * @summary: List the products
-   * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppicationProducts/).
+   * @summary: Get application products.
+   * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppicationProducts/).
    */
   async getAppicationProducts(
     {
@@ -3634,7 +2542,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - A `company_id` is a unique identifier for
+   * @param {string} arg.companyId - A `company_id` is a unique identifier for
    *   a particular seller account.
    * @param {string} arg.applicationId - A `application_id` is a unique
    *   identifier for a particular sale channel.
@@ -3657,10 +2565,10 @@ class Catalog {
    *   values below.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string[]} [arg.itemIds] - Item Ids of product
+   * @param {number[]} [arg.itemIds] - Item Ids of product
    * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponse>}
-   * @summary: List the products
-   * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
+   * @summary: Get application products.
+   * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
    */
   getAppicationProductsPaginator({
     companyId,
@@ -3712,8 +2620,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
    * @name getApplicationBrandListing
-   * @summary: List all the brands for the application
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrandListing/).
+   * @summary: Get application brand listing.
+   * @description: Retrieve brand listings related to the application. A brand is the name under which a product is being sold - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrandListing/).
    */
   async getApplicationBrandListing(
     { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
@@ -3803,8 +2711,8 @@ class Catalog {
    * @param {string} [arg.q] - Search query with brand name.Use this parameter
    *   to search brands by brand name.
    * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
-   * @summary: List all the brands for the application
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+   * @summary: Get application brand listing.
+   * @description: Retrieve brand listings related to the application. A brand is the name under which a product is being sold
    */
   getApplicationBrandListingPaginator({
     companyId,
@@ -3842,8 +2750,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
    * @name getApplicationBrands
-   * @summary: List all the brands
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
+   * @summary: Get application brands.
+   * @description: List all the brands. A brand is the name under which a product is being sold.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
    */
   async getApplicationBrands(
     { department, pageNo, pageSize, q, brandId, requestHeaders } = {
@@ -3932,7 +2840,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - A `company_id` is a unique identifier for
+   * @param {string} arg.companyId - A `company_id` is a unique identifier for
    *   a particular seller account.
    * @param {string} arg.applicationId - A `application_id` is a unique
    *   identifier for a particular sale channel.
@@ -3944,11 +2852,11 @@ class Catalog {
    *   page. Default is 12.
    * @param {string} [arg.q] - Search query with brand name.Use this parameter
    *   to search brands by brand name.
-   * @param {number} [arg.brandId] - Helps to sort the brands list on the
+   * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
    *   basis of uid list.
    * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
-   * @summary: List all the brands
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+   * @summary: Get application brands.
+   * @description: List all the brands. A brand is the name under which a product is being sold.
    */
   getApplicationBrandsPaginator({
     companyId,
@@ -3990,8 +2898,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
    * @name getApplicationCategoryListing
-   * @summary: List all the brands for the application
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationCategoryListing/).
+   * @summary: Get application category listing.
+   * @description: Retrieve category listings related to the application. A brand is the name under which a product is being sold. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationCategoryListing/).
    */
   async getApplicationCategoryListing(
     { departmentId, pageNo, pageSize, q, requestHeaders } = {
@@ -4077,7 +2985,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - A `company_id` is a unique identifier for
+   * @param {string} arg.companyId - A `company_id` is a unique identifier for
    *   a particular seller account.
    * @param {string} arg.applicationId - A `application_id` is a unique
    *   identifier for a particular sale channel.
@@ -4088,8 +2996,8 @@ class Catalog {
    * @param {string} [arg.q] - Search query with brand name.Use this parameter
    *   to search brands by brand name.
    * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
-   * @summary: List all the brands for the application
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+   * @summary: Get application category listing.
+   * @description: Retrieve category listings related to the application. A brand is the name under which a product is being sold.
    */
   getApplicationCategoryListingPaginator({
     companyId,
@@ -4131,8 +3039,8 @@ class Catalog {
    *   - Success response
    *
    * @name getApplicationDepartmentListing
-   * @summary: List all the departments for the application
-   * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationDepartmentListing/).
+   * @summary: Get application department listing.
+   * @description: Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationDepartmentListing/).
    */
   async getApplicationDepartmentListing(
     { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
@@ -4213,7 +3121,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - A `company_id` is a unique identifier for
+   * @param {string} arg.companyId - A `company_id` is a unique identifier for
    *   a particular seller account.
    * @param {string} arg.applicationId - A `application_id` is a unique
    *   identifier for a particular sale channel.
@@ -4222,8 +3130,8 @@ class Catalog {
    * @param {string} [arg.q] - Search query with brand name.Use this parameter
    *   to search department by name.
    * @returns {Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponse>}
-   * @summary: List all the departments for the application
-   * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
+   * @summary: Get application department listing.
+   * @description: Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments.
    */
   getApplicationDepartmentListingPaginator({
     companyId,
@@ -4254,29 +3162,26 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.GetAutocompleteConfigParam} arg
+   * @param {CatalogPlatformApplicationValidator.GetApplicationFilterKeysParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
+   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersKeysResponse>} -
    *   Success response
-   * @name getAutocompleteConfig
-   * @summary: List all Autocomplete Keyword Listing
-   * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteConfig/).
+   * @name getApplicationFilterKeys
+   * @summary: Get filters keys of the filter options.
+   * @description: Get query filters keys to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterKeys/).
    */
-  async getAutocompleteConfig(
-    { pageNo, pageSize, q, isActive, requestHeaders } = { requestHeaders: {} },
+  async getApplicationFilterKeys(
+    { c, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = CatalogPlatformApplicationValidator.getAutocompleteConfig().validate(
+    } = CatalogPlatformApplicationValidator.getApplicationFilterKeys().validate(
       {
-        pageNo,
-        pageSize,
-        q,
-        isActive,
+        c,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4287,13 +3192,188 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogPlatformApplicationValidator.getAutocompleteConfig().validate(
+    } = CatalogPlatformApplicationValidator.getApplicationFilterKeys().validate(
       {
+        c,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getApplicationFilterKeys \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["c"] = c;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/filter-options/keys`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.GetQueryFiltersKeysResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getApplicationFilterKeys \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.GetApplicationFilterValuesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersValuesResponse>} -
+   *   Success response
+   * @name getApplicationFilterValues
+   * @summary: Get values of the selected value for the filter options.
+   * @description: Get query filters keys to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterValues/).
+   */
+  async getApplicationFilterValues(
+    { filterKey, c, collectionId, pageNo, pageSize, q, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getApplicationFilterValues().validate(
+      {
+        filterKey,
+        c,
+        collectionId,
         pageNo,
         pageSize,
         q,
-        isActive,
       },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getApplicationFilterValues().validate(
+      {
+        filterKey,
+        c,
+        collectionId,
+        pageNo,
+        pageSize,
+        q,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getApplicationFilterValues \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["c"] = c;
+    query_params["collection_id"] = collectionId;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["q"] = q;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/filter-options/${filterKey}/values`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.GetQueryFiltersValuesResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getApplicationFilterValues \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.GetAutocompleteConfigParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
+   *   Success response
+   * @name getAutocompleteConfig
+   * @summary: Get autocomplete configuration.
+   * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteConfig/).
+   */
+  async getAutocompleteConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getAutocompleteConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getAutocompleteConfig().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -4304,15 +3384,11 @@ class Catalog {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-    query_params["is_active"] = isActive;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
       query_params,
       undefined,
       requestHeaders,
@@ -4351,11 +3427,11 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsData>} -
+   * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
    *   Success response
    * @name getAutocompleteKeywordDetail
-   * @summary: Get a Autocomplete Keywords Details
-   * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteKeywordDetail/).
+   * @summary: Get autocomplete keyword details.
+   * @description: Retrieve detailed information about a specific autocomplete keyword. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteKeywordDetail/).
    */
   async getAutocompleteKeywordDetail(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -4394,7 +3470,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -4408,10 +3484,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetAutocompleteWordsData().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CatalogPlatformModel.GetAutocompleteWordsResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4420,191 +3496,6 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > getAutocompleteKeywordDetail \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetAutocompletePreviewParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AutocompletePreviewResponseSchema>}
-   *   - Success response
-   *
-   * @name getAutocompletePreview
-   * @summary: Get autocomplete suggestions as per config for an application
-   * @description: This API allows to get autocomplete suggestions as per config. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompletePreview/).
-   */
-  async getAutocompletePreview(
-    {
-      q,
-      categorySuggestion,
-      brandSuggestion,
-      collectionSuggestion,
-      productSuggestion,
-      querySuggestion,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getAutocompletePreview().validate(
-      {
-        q,
-        categorySuggestion,
-        brandSuggestion,
-        collectionSuggestion,
-        productSuggestion,
-        querySuggestion,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getAutocompletePreview().validate(
-      {
-        q,
-        categorySuggestion,
-        brandSuggestion,
-        collectionSuggestion,
-        productSuggestion,
-        querySuggestion,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getAutocompletePreview \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["q"] = q;
-    query_params["category_suggestion"] = categorySuggestion;
-    query_params["brand_suggestion"] = brandSuggestion;
-    query_params["collection_suggestion"] = collectionSuggestion;
-    query_params["product_suggestion"] = productSuggestion;
-    query_params["query_suggestion"] = querySuggestion;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/preview`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.AutocompletePreviewResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getAutocompletePreview \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetAutocompleteSettingsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AutocompleteResponseSchema>} -
-   *   Success response
-   * @name getAutocompleteSettings
-   * @summary: Get autocomplete settings config for an application
-   * @description: This API allows to get autocomplete settings config for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteSettings/).
-   */
-  async getAutocompleteSettings(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getAutocompleteSettings().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getAutocompleteSettings().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getAutocompleteSettings \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/settings`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.AutocompleteResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getAutocompleteSettings \n ${res_error}`,
         });
       }
     }
@@ -4622,8 +3513,8 @@ class Catalog {
    *   - Success response
    *
    * @name getCatalogConfiguration
-   * @summary: Get configuration meta  details for catalog for admin panel
-   * @description: configuration meta  details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogConfiguration/).
+   * @summary: Retrieve catalog configuration.
+   * @description: Retrieve configuration meta details for the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogConfiguration/).
    */
   async getCatalogConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -4658,7 +3549,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/metadata`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/metadata/`,
       query_params,
       undefined,
       requestHeaders,
@@ -4699,8 +3590,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.CatalogInsightResponse>} - Success response
    * @name getCatalogInsights
-   * @summary: Analytics data of catalog and inventory.
-   * @description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogInsights/).
+   * @summary: Get catalog insights.
+   * @description: Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogInsights/).
    */
   async getCatalogInsights(
     { brand, requestHeaders } = { requestHeaders: {} },
@@ -4740,7 +3631,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/analytics/insights`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/analytics/insights/`,
       query_params,
       undefined,
       requestHeaders,
@@ -4779,8 +3670,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.CategoryListingResponse>} - Success response
    * @name getCategories
-   * @summary: List all the categories
-   * @description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategories/).
+   * @summary: Get categories.
+   * @description: Retrieve a list of categories. Optionally pass filter the brands by the department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategories/).
    */
   async getCategories(
     { department, requestHeaders } = { requestHeaders: {} },
@@ -4862,8 +3753,8 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.GetCollectionDetailResponse>} -
    *   Success response
    * @name getCollectionDetail
-   * @summary: Get a particular collection
-   * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionDetail/).
+   * @summary: Get collection details.
+   * @description: Get the details of a collection by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionDetail/).
    */
   async getCollectionDetail(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -4902,7 +3793,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${slug}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${slug}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -4936,6 +3827,97 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformApplicationValidator.GetCollectionItemsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponse>} -
+   *   Success response
+   * @name getCollectionItems
+   * @summary: Get the items for a collection
+   * @description: Get items from a collection specified by its `id`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionItems/).
+   */
+  async getCollectionItems(
+    { id, sortOn, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getCollectionItems().validate(
+      {
+        id,
+        sortOn,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getCollectionItems().validate(
+      {
+        id,
+        sortOn,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getCollectionItems \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["sort_on"] = sortOn;
+    query_params["page_id"] = pageId;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.GetCollectionItemsResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getCollectionItems \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformApplicationValidator.GetConfigurationByTypeParam} arg
    *   - Arg object
    *
@@ -4945,8 +3927,8 @@ class Catalog {
    *   - Success response
    *
    * @name getConfigurationByType
-   * @summary: Get configured details for catalog
-   * @description: configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationByType/).
+   * @summary: Retrieve configuration by type.
+   * @description: Retrieve configuration details based on a specific type in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationByType/).
    */
   async getConfigurationByType(
     { type, requestHeaders } = { requestHeaders: {} },
@@ -4985,7 +3967,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -5027,11 +4009,13 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.GetConfigMetadataResponse>} -
    *   Success response
    * @name getConfigurationMetadata
-   * @summary: Get configuration metadata details for catalog for admin panel
-   * @description: Get the configuraion metadata details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationMetadata/).
+   * @summary: Retrieve configuration metadata.
+   * @description: Retrieve the configuraion metadata details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationMetadata/).
    */
   async getConfigurationMetadata(
-    { configType, templateSlug, requestHeaders } = { requestHeaders: {} },
+    { configType, templateSlug, pageNo, pageSize, q, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -5040,6 +4024,9 @@ class Catalog {
       {
         configType,
         templateSlug,
+        pageNo,
+        pageSize,
+        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -5054,6 +4041,9 @@ class Catalog {
       {
         configType,
         templateSlug,
+        pageNo,
+        pageSize,
+        q,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -5066,11 +4056,14 @@ class Catalog {
 
     const query_params = {};
     query_params["template_slug"] = templateSlug;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["q"] = q;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/metadata`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/metadata/`,
       query_params,
       undefined,
       requestHeaders,
@@ -5112,8 +4105,8 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
    *   Success response
    * @name getConfigurations
-   * @summary: Get configured details for catalog
-   * @description: configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurations/).
+   * @summary: Retrieve configurations.
+   * @description: Retrieve a configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurations/).
    */
   async getConfigurations(
     { requestHeaders } = { requestHeaders: {} },
@@ -5148,7 +4141,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
       query_params,
       undefined,
       requestHeaders,
@@ -5182,94 +4175,13 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.GetConfigurationsFilterMetadataParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.FilterResponse>} - Success response
-   * @name getConfigurationsFilterMetadata
-   * @summary: Get filter details for application
-   * @description: configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationsFilterMetadata/).
-   */
-  async getConfigurationsFilterMetadata(
-    { filter, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getConfigurationsFilterMetadata().validate(
-      {
-        filter,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getConfigurationsFilterMetadata().validate(
-      {
-        filter,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getConfigurationsFilterMetadata \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/metadata/${filter}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.FilterResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getConfigurationsFilterMetadata \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.GetDepartmentsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.DepartmentResponse>} - Success response
    * @name getDepartments
-   * @summary: List all the departments
-   * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartments/).
+   * @summary: Get departments.
+   * @description: Retrieve a list of departments. Departments are a way to categorise similar products. A product can lie in multiple departments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartments/).
    */
   async getDepartments(
     { requestHeaders } = { requestHeaders: {} },
@@ -5347,8 +4259,8 @@ class Catalog {
    *   - Success response
    *
    * @name getDiscountedInventoryBySizeIdentifier
-   * @summary: Get Inventory for company
-   * @description: This API allows get Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDiscountedInventoryBySizeIdentifier/).
+   * @summary: Get discounted inventory by size identifier.
+   * @description: Allows to retrieve Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDiscountedInventoryBySizeIdentifier/).
    */
   async getDiscountedInventoryBySizeIdentifier(
     {
@@ -5356,6 +4268,7 @@ class Catalog {
       sizeIdentifier,
       pageNo,
       pageSize,
+      q,
       locationIds,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -5369,6 +4282,7 @@ class Catalog {
         sizeIdentifier,
         pageNo,
         pageSize,
+        q,
         locationIds,
       },
       { abortEarly: false, allowUnknown: true }
@@ -5386,6 +4300,7 @@ class Catalog {
         sizeIdentifier,
         pageNo,
         pageSize,
+        q,
         locationIds,
       },
       { abortEarly: false, allowUnknown: false }
@@ -5400,6 +4315,7 @@ class Catalog {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["q"] = q;
     query_params["location_ids"] = locationIds;
 
     const response = await PlatformAPIClient.execute(
@@ -5439,6 +4355,56 @@ class Catalog {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId - Id of the company associated to product
+   *   that is to be viewed.
+   * @param {string} arg.applicationId - Uniquer Application ID.
+   * @param {number} arg.itemId - Item code of the product of which size is to be get.
+   * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
+   *   or Primary Identifier) of which inventory is to get.
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 12.
+   * @param {string} [arg.q] - Search with help of store code.
+   * @param {number[]} [arg.locationIds] - Search by store ids.
+   * @returns {Paginator<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
+   * @summary: Get discounted inventory by size identifier.
+   * @description: Allows to retrieve Inventory data for particular company grouped by size and store.
+   */
+  getDiscountedInventoryBySizeIdentifierPaginator({
+    companyId,
+    applicationId,
+    itemId,
+    sizeIdentifier,
+    pageSize,
+    q,
+    locationIds,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getDiscountedInventoryBySizeIdentifier({
+        companyId: companyId,
+        applicationId: applicationId,
+        itemId: itemId,
+        sizeIdentifier: sizeIdentifier,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+        locationIds: locationIds,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CatalogPlatformApplicationValidator.GetGroupConfigurationsParam} arg
    *   - Arg object
    *
@@ -5446,8 +4412,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
    * @name getGroupConfigurations
-   * @summary: Get the details of the application configured configurations of group config types.
-   * @description: Get the details of the application configured configurations of group config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGroupConfigurations/).
+   * @summary: Retrieve group configurations.
+   * @description: Retrieve the details of the application configured configurations of group config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGroupConfigurations/).
    */
   async getGroupConfigurations(
     { configType, pageNo, pageSize, search, templateSlug, requestHeaders } = {
@@ -5539,14 +4505,13 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetListingConfigResponse>} -
-   *   Success response
+   * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
    * @name getListingConfigurations
-   * @summary: Get the details of the application configured configurations of listing config types.
-   * @description: Get the details of the application configured configurations of listing config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getListingConfigurations/).
+   * @summary: Retrieve listing configurations.
+   * @description: Retrieve the details of the application configured configurations of listing config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getListingConfigurations/).
    */
   async getListingConfigurations(
-    { configType, pageNo, pageSize, search, uids, requestHeaders } = {
+    { configType, pageNo, pageSize, search, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -5559,7 +4524,6 @@ class Catalog {
         pageNo,
         pageSize,
         search,
-        uids,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -5576,7 +4540,6 @@ class Catalog {
         pageNo,
         pageSize,
         search,
-        uids,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -5591,12 +4554,11 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["search"] = search;
-    query_params["uids"] = uids;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -5610,7 +4572,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetListingConfigResponse().validate(responseData, {
+    } = CatalogPlatformModel.GetConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5630,584 +4592,6 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.GetLivePreviewParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
-   * @name getLivePreview
-   * @summary: Get live preview of a Merchandising Rule
-   * @description: This allows you to get live preview of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getLivePreview/).
-   */
-  async getLivePreview(
-    { merchandisingRuleId, searchKeyword, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getLivePreview().validate(
-      {
-        merchandisingRuleId,
-        searchKeyword,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getLivePreview().validate(
-      {
-        merchandisingRuleId,
-        searchKeyword,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getLivePreview \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["search_keyword"] = searchKeyword;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/preview`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.ProductListingResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getLivePreview \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetMerchandisingQueryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SearchRequest>} - Success response
-   * @name getMerchandisingQuery
-   * @summary: Get Merchandising Rule's query details
-   * @description: This allows you to get details of a merchandising rule's query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingQuery/).
-   */
-  async getMerchandisingQuery(
-    { merchandisingRuleId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getMerchandisingQuery().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getMerchandisingQuery().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getMerchandisingQuery \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/query`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SearchRequest().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getMerchandisingQuery \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetMerchandisingRuleBoostActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetMerchandisingRuleBoostAction>}
-   *   - Success response
-   *
-   * @name getMerchandisingRuleBoostAction
-   * @summary: Get Merchandising Rule's Boost action details
-   * @description: This allows you to get details of Boost action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRuleBoostAction/).
-   */
-  async getMerchandisingRuleBoostAction(
-    { merchandisingRuleId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRuleBoostAction().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRuleBoostAction().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getMerchandisingRuleBoostAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/boost`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetMerchandisingRuleBoostAction().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getMerchandisingRuleBoostAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetMerchandisingRuleBuryActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetMerchandisingRuleBuryAction>}
-   *   - Success response
-   *
-   * @name getMerchandisingRuleBuryAction
-   * @summary: Get Merchandising Rule's Bury action details
-   * @description: This allows you to get details of Bury action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRuleBuryAction/).
-   */
-  async getMerchandisingRuleBuryAction(
-    { merchandisingRuleId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRuleBuryAction().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRuleBuryAction().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getMerchandisingRuleBuryAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/bury`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetMerchandisingRuleBuryAction().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getMerchandisingRuleBuryAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetMerchandisingRuleHideActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.HideResponse>} - Success response
-   * @name getMerchandisingRuleHideAction
-   * @summary: Get Merchandising Rule's Hide action details
-   * @description: This allows you to get details of hide action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRuleHideAction/).
-   */
-  async getMerchandisingRuleHideAction(
-    { merchandisingRuleId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRuleHideAction().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRuleHideAction().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getMerchandisingRuleHideAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/hide`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.HideResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getMerchandisingRuleHideAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetMerchandisingRulePinActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.PinResponse>} - Success response
-   * @name getMerchandisingRulePinAction
-   * @summary: Get Merchandising Rule's action details
-   * @description: This allows you to get details of pin action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRulePinAction/).
-   */
-  async getMerchandisingRulePinAction(
-    { merchandisingRuleId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRulePinAction().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRulePinAction().validate(
-      {
-        merchandisingRuleId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getMerchandisingRulePinAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/pin`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.PinResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getMerchandisingRulePinAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetMerchandisingRulesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.MerchandisingRulesList>} - Success response
-   * @name getMerchandisingRules
-   * @summary: Get list of all Merchandising Rule's details
-   * @description: This allows you to get details of all merchandising rule's details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMerchandisingRules/).
-   */
-  async getMerchandisingRules(
-    { pageId, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRules().validate(
-      {
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getMerchandisingRules().validate(
-      {
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getMerchandisingRules \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.MerchandisingRulesList().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getMerchandisingRules \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.GetProductDetailBySlugParam} arg
    *   - Arg object
    *
@@ -6215,8 +4599,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.ProductDetail>} - Success response
    * @name getProductDetailBySlug
-   * @summary: Get a product
-   * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductDetailBySlug/).
+   * @summary: Get product details by slug.
+   * @description: Retrieve detailed product information using a product slug. Products are the core resource of an application. Products can be associated by categories, collections, brands and more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductDetailBySlug/).
    */
   async getProductDetailBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -6289,118 +4673,13 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.GetProductsInPriceFactoryByZoneIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductsResponse>}
-   *   - Success response
-   *
-   * @name getProductsInPriceFactoryByZoneId
-   * @summary:
-   * @description: This API allows to get products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductsInPriceFactoryByZoneId/).
-   */
-  async getProductsInPriceFactoryByZoneId(
-    {
-      id,
-      zoneId,
-      itemId,
-      sellerIdentifier,
-      pageNo,
-      pageSize,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getProductsInPriceFactoryByZoneId().validate(
-      {
-        id,
-        zoneId,
-        itemId,
-        sellerIdentifier,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getProductsInPriceFactoryByZoneId().validate(
-      {
-        id,
-        zoneId,
-        itemId,
-        sellerIdentifier,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getProductsInPriceFactoryByZoneId \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["item_id"] = itemId;
-    query_params["seller_identifier"] = sellerIdentifier;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}/products/zone/${zoneId}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductsResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getProductsInPriceFactoryByZoneId \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.GetQueryFiltersParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.GetQueryFiltersResponse>} - Success response
    * @name getQueryFilters
-   * @summary: Get query filters to configure a collection
-   * @description: Get query filters to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getQueryFilters/).
+   * @summary: Retrieve query filters.
+   * @description: Retrieve query filters to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getQueryFilters/).
    */
   async getQueryFilters(
     { requestHeaders } = { requestHeaders: {} },
@@ -6435,7 +4714,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/query-options`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/query-options/`,
       query_params,
       undefined,
       requestHeaders,
@@ -6478,8 +4757,8 @@ class Catalog {
    *   - Success response
    *
    * @name getSearchConfiguration
-   * @summary: List search configuration for an application
-   * @description: This view allows you to add/modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchConfiguration/).
+   * @summary: Get Search Configuration
+   * @description: Get search configuration in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchConfiguration/).
    */
   async getSearchConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -6514,7 +4793,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration/`,
       query_params,
       undefined,
       requestHeaders,
@@ -6553,10 +4832,11 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
+   * @returns {Promise<CatalogPlatformModel.GetSearchWordsDetailResponse>} -
+   *   Success response
    * @name getSearchKeywords
-   * @summary: Get a Search Keywords Details
-   * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchKeywords/).
+   * @summary: Retrieve search keywords.
+   * @description: Retrieve a list of search keywords from the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchKeywords/).
    */
   async getSearchKeywords(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -6595,7 +4875,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
       query_params,
       undefined,
       requestHeaders,
@@ -6609,10 +4889,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetSearchWordsData().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CatalogPlatformModel.GetSearchWordsDetailResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -6629,335 +4909,6 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.GetSearchRerankParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetSearchRerankResponse>} - Success response
-   * @name getSearchRerank
-   * @summary: Get search rerank for an application
-   * @description: This view allows you to create search rerank attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchRerank/).
-   */
-  async getSearchRerank(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getSearchRerank().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getSearchRerank().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getSearchRerank \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetSearchRerankResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getSearchRerank \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.GetSearchRerankDetailParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetSearchRerankDetailResponse>} -
-   *   Success response
-   * @name getSearchRerankDetail
-   * @summary: Get search rerank for an application
-   * @description: This view allows you to retrieve search rerank attribute detail for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchRerankDetail/).
-   */
-  async getSearchRerankDetail(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.getSearchRerankDetail().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.getSearchRerankDetail().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > getSearchRerankDetail \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.GetSearchRerankDetailResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > getSearchRerankDetail \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.PollProductPriceFactoryBulkJobParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobPollResponse>}
-   *   - Success response
-   *
-   * @name pollProductPriceFactoryBulkJob
-   * @summary:
-   * @description: This API allows to poll bulk job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/pollProductPriceFactoryBulkJob/).
-   */
-  async pollProductPriceFactoryBulkJob(
-    { id, jobId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.pollProductPriceFactoryBulkJob().validate(
-      {
-        id,
-        jobId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.pollProductPriceFactoryBulkJob().validate(
-      {
-        id,
-        jobId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > pollProductPriceFactoryBulkJob \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}/products/bulk/${jobId}/poll`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobPollResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > pollProductPriceFactoryBulkJob \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.ProcessProductPriceFactoryBulkJobParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>}
-   *   - Success response
-   *
-   * @name processProductPriceFactoryBulkJob
-   * @summary:
-   * @description: This API allows to process bulk job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/processProductPriceFactoryBulkJob/).
-   */
-  async processProductPriceFactoryBulkJob(
-    { id, jobId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.processProductPriceFactoryBulkJob().validate(
-      {
-        id,
-        jobId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.processProductPriceFactoryBulkJob().validate(
-      {
-        id,
-        jobId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > processProductPriceFactoryBulkJob \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}/products/bulk/${jobId}/process`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > processProductPriceFactoryBulkJob \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CatalogPlatformApplicationValidator.UpdateAllowSingleParam} arg
    *   - Arg object
    *
@@ -6965,8 +4916,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name updateAllowSingle
-   * @summary: Update allow single flag for filters of the application.
-   * @description: Update allow single flag for filters of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAllowSingle/).
+   * @summary: Update 'Allow Single' setting.
+   * @description: Modify allow single flag for filters of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAllowSingle/).
    */
   async updateAllowSingle(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -7044,8 +4995,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppBrand
-   * @summary: Update a single custom json.
-   * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
+   * @summary: Update application brand.
+   * @description: Modify data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
    */
   async updateAppBrand(
     { brandUid, body, requestHeaders } = { requestHeaders: {} },
@@ -7127,8 +5078,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppCategory
-   * @summary: Update a single custom json.
-   * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategory/).
+   * @summary: Update application category.
+   * @description: Modify category data related to the application. Helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategory/).
    */
   async updateAppCategory(
     { categoryUid, body, requestHeaders } = { requestHeaders: {} },
@@ -7291,8 +5242,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppDepartment
-   * @summary: Update a single custom json.
-   * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppDepartment/).
+   * @summary: Update application department.
+   * @description: Modify department data related to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppDepartment/).
    */
   async updateAppDepartment(
     { departmentUid, body, requestHeaders } = { requestHeaders: {} },
@@ -7374,8 +5325,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppLocation
-   * @summary: Update a single custom json.
-   * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppLocation/).
+   * @summary: Update application location.
+   * @description: Modify location data related to the application. Helps to update data associated to a item custom meta - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppLocation/).
    */
   async updateAppLocation(
     { storeUid, body, requestHeaders } = { requestHeaders: {} },
@@ -7455,8 +5406,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppProduct
-   * @summary: Update a single custom meta.
-   * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
+   * @summary: Update application product data.
+   * @description: Allows to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
    */
   async updateAppProduct(
     { itemId, body, requestHeaders } = { requestHeaders: {} },
@@ -7497,7 +5448,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product/${itemId}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product/${itemId}/`,
       query_params,
       body,
       requestHeaders,
@@ -7617,10 +5568,10 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsData>} -
+   * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
    *   Success response
    * @name updateAutocompleteKeyword
-   * @summary: Create & Update Autocomplete Keyword
+   * @summary: Update autocomplete keywords.
    * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAutocompleteKeyword/).
    */
   async updateAutocompleteKeyword(
@@ -7662,7 +5613,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
       query_params,
       body,
       requestHeaders,
@@ -7676,92 +5627,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetAutocompleteWordsData().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateAutocompleteKeyword \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.UpdateAutocompleteSettingsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AutocompleteUpsertResponseSchema>}
-   *   - Success response
-   *
-   * @name updateAutocompleteSettings
-   * @summary: Update autocomplete settings config for an application
-   * @description: This API allows to update autocomplete settings for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAutocompleteSettings/).
-   */
-  async updateAutocompleteSettings(
-    { id, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.updateAutocompleteSettings().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.updateAutocompleteSettings().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateAutocompleteSettings \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/settings/${id}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.AutocompleteUpsertResponseSchema().validate(
+    } = CatalogPlatformModel.GetAutocompleteWordsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -7772,7 +5638,7 @@ class Catalog {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateAutocompleteSettings \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Catalog > updateAutocompleteKeyword \n ${res_error}`,
         });
       }
     }
@@ -7828,7 +5694,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
       query_params,
       body,
       requestHeaders,
@@ -7869,8 +5735,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name updateDefaultSort
-   * @summary: Update the default sort key configuration for the application.
-   * @description: Update the default sort key configuration for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDefaultSort/).
+   * @summary: Update default sorting.
+   * @description: Modify the default sort key configuration for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDefaultSort/).
    */
   async updateDefaultSort(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -7950,8 +5816,8 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.AppConfigurationDetail>} - Success response
    * @name updateGroupConfiguration
-   * @summary: Update the group configurations for the application.
-   * @description: Update the group configurations for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateGroupConfiguration/).
+   * @summary: Update group configuration.
+   * @description: Modify the group configurations for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateGroupConfiguration/).
    */
   async updateGroupConfiguration(
     { configType, groupSlug, body, requestHeaders } = { requestHeaders: {} },
@@ -8033,12 +5899,10 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.AppConfigurationsFilterResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
    * @name updateListingConfiguration
-   * @summary: Update configuration for listings
-   * @description: Update configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateListingConfiguration/).
+   * @summary: Update listing configuration.
+   * @description: Modify the details and settings of an existing listing configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateListingConfiguration/).
    */
   async updateListingConfiguration(
     { configType, configId, body, requestHeaders } = { requestHeaders: {} },
@@ -8081,7 +5945,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}/`,
       query_params,
       body,
       requestHeaders,
@@ -8095,10 +5959,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.AppConfigurationsFilterResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.AppConfigurationsSort().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -8107,515 +5971,6 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > updateListingConfiguration \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRuleBoostActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name updateMerchandisingRuleBoostAction
-   * @summary: Update Merchandising Rule's Boost action details
-   * @description: This allows you to update Boost action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRuleBoostAction/).
-   */
-  async updateMerchandisingRuleBoostAction(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRuleBoostAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRuleBoostAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateMerchandisingRuleBoostAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/boost`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateMerchandisingRuleBoostAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRuleBuryActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name updateMerchandisingRuleBuryAction
-   * @summary: Update Merchandising Rule's Bury action details
-   * @description: This allows you to update Bury action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRuleBuryAction/).
-   */
-  async updateMerchandisingRuleBuryAction(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRuleBuryAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRuleBuryAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateMerchandisingRuleBuryAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/bury`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateMerchandisingRuleBuryAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRuleHideActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name updateMerchandisingRuleHideAction
-   * @summary: Update Merchandising Rule's Hide action details
-   * @description: This allows you to update hide action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRuleHideAction/).
-   */
-  async updateMerchandisingRuleHideAction(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRuleHideAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRuleHideAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateMerchandisingRuleHideAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/hide`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateMerchandisingRuleHideAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRulePinActionParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name updateMerchandisingRulePinAction
-   * @summary: Update Merchandising Rule's action details
-   * @description: This allows you to update pin action of a merchandising rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRulePinAction/).
-   */
-  async updateMerchandisingRulePinAction(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRulePinAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRulePinAction().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateMerchandisingRulePinAction \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/pin`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateMerchandisingRulePinAction \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.UpdateMerchandisingRuleQueryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponseMerchandising>} -
-   *   Success response
-   * @name updateMerchandisingRuleQuery
-   * @summary: Update a Merchandising Rule's query
-   * @description: This allows you to Update a merchandising rule's query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMerchandisingRuleQuery/).
-   */
-  async updateMerchandisingRuleQuery(
-    { merchandisingRuleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRuleQuery().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.updateMerchandisingRuleQuery().validate(
-      {
-        merchandisingRuleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateMerchandisingRuleQuery \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchandise/rules/${merchandisingRuleId}/query`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponseMerchandising().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateMerchandisingRuleQuery \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.UpdateProductPriceByZoneInPriceFactoryParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.UpdateAppPriceFactoryProductResponse>}
-   *   - Success response
-   *
-   * @name updateProductPriceByZoneInPriceFactory
-   * @summary:
-   * @description: This API allows to partially update products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateProductPriceByZoneInPriceFactory/).
-   */
-  async updateProductPriceByZoneInPriceFactory(
-    { id, itemId, zoneId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.updateProductPriceByZoneInPriceFactory().validate(
-      {
-        id,
-        itemId,
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.updateProductPriceByZoneInPriceFactory().validate(
-      {
-        id,
-        itemId,
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateProductPriceByZoneInPriceFactory \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}/product/${itemId}/zone/${zoneId}/price`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.UpdateAppPriceFactoryProductResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateProductPriceByZoneInPriceFactory \n ${res_error}`,
         });
       }
     }
@@ -8673,7 +6028,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration/`,
       query_params,
       body,
       requestHeaders,
@@ -8714,7 +6069,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
    * @name updateSearchKeywords
-   * @summary: Update Search Keyword
+   * @summary: Update search keywords.
    * @description: Update Search Keyword by its id. On successful request, returns the updated collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchKeywords/).
    */
   async updateSearchKeywords(
@@ -8756,7 +6111,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
       query_params,
       body,
       requestHeaders,
@@ -8782,177 +6137,6 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > updateSearchKeywords \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.UpdateSearchRerankConfigurationParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.UpdateSearchRerankResponse>} -
-   *   Success response
-   * @name updateSearchRerankConfiguration
-   * @summary: Update search rerank for an application
-   * @description: This view allows you to update search rerank attribute for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchRerankConfiguration/).
-   */
-  async updateSearchRerankConfiguration(
-    { id, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.updateSearchRerankConfiguration().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.updateSearchRerankConfiguration().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > updateSearchRerankConfiguration \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.UpdateSearchRerankResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > updateSearchRerankConfiguration \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformApplicationValidator.ValidateProductPriceFactoryBulkJobParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse>}
-   *   - Success response
-   *
-   * @name validateProductPriceFactoryBulkJob
-   * @summary:
-   * @description: This API allows to validate bulk job for adding products in price factory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductPriceFactoryBulkJob/).
-   */
-  async validateProductPriceFactoryBulkJob(
-    { id, jobId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CatalogPlatformApplicationValidator.validateProductPriceFactoryBulkJob().validate(
-      {
-        id,
-        jobId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformApplicationValidator.validateProductPriceFactoryBulkJob().validate(
-      {
-        id,
-        jobId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > validateProductPriceFactoryBulkJob \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-factory/${id}/products/bulk/${jobId}/validate`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.CreateAppPriceFactoryProductBulkJobResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > validateProductPriceFactoryBulkJob \n ${res_error}`,
         });
       }
     }

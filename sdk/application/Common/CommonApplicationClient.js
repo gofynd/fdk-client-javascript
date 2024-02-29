@@ -40,8 +40,8 @@ class Common {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CommonApplicationModel.Locations>} - Success response
    * @name getLocations
-   * @summary: Get countries, states, cities
-   * @description: Get countries, states, cities - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
+   * @summary: Fetches available locations.
+   * @description: Retrieves a list of all locations of countries, states, cities.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
    */
   async getLocations(
     { locationType, id, requestHeaders } = { requestHeaders: {} },
@@ -120,8 +120,8 @@ class Common {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CommonApplicationModel.ApplicationResponse>} - Success response
    * @name searchApplication
-   * @summary: Search Application
-   * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
+   * @summary: Searches through applications.
+   * @description: Provide application name or domain url.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
    */
   async searchApplication(
     { authorization, query, requestHeaders } = { requestHeaders: {} },

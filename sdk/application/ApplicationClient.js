@@ -15,6 +15,8 @@ const Share = require("./Share/ShareApplicationClient");
 const Theme = require("./Theme/ThemeApplicationClient");
 const User = require("./User/UserApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
+const { Logger } = require("../common/Logger");
+const { convertStringToBase64 } = require("../common/utils");
 
 /**
  * Represents the client for the application.
@@ -41,6 +43,24 @@ class ApplicationClient {
     this.share = new Share(config);
     this.theme = new Theme(config);
     this.user = new User(config);
+    if (
+      typeof window != "undefined" &&
+      config.options &&
+      config.options.enable_clickstream
+    ) {
+      const Clickstream = require("@gofynd/flick");
+      Logger({
+        level: "DEBUG",
+        message: `initializing clickstream with base url ${config.domain}`,
+      });
+      Clickstream.initialize(
+        config.domain,
+        convertStringToBase64(
+          config.applicationID + ":" + config.applicationToken
+        )
+      );
+      require("../common/Clickstream");
+    }
   }
 
   /**

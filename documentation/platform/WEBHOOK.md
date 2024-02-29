@@ -9,7 +9,7 @@
 This service provides functionality to emits different events to the subscribed webhook url's. It auto retry three times for all the failed events after certain interval as well as you can also retry manually the failed events and can view the reports.
 
 
-Default
+Webhook event management
 * [cancelJobByName](#canceljobbyname)
 * [downloadDeliveryReport](#downloaddeliveryreport)
 * [fetchAllEventConfigurations](#fetchalleventconfigurations)
@@ -25,7 +25,6 @@ Default
 * [manualRetryOfFailedEvent](#manualretryoffailedevent)
 * [pingWebhook](#pingwebhook)
 * [registerSubscriberToEvent](#registersubscribertoevent)
-* [registerSubscriberToEventV2](#registersubscribertoeventv2)
 * [updateSubscriberConfig](#updatesubscriberconfig)
 
 
@@ -38,7 +37,7 @@ Default
 
 
 ### cancelJobByName
-Cancel a report export.
+Cancel job by name.
 
 
 
@@ -60,8 +59,7 @@ const data = await platformClient.webhook.cancelJobByName({  filename : value })
 
 
 
-Cancel the export of a specific report for a company.
-
+Cancel a specific job by its name.
 
 *Returned Response:*
 
@@ -105,7 +103,7 @@ Report export canceled successfully.
 
 
 ### downloadDeliveryReport
-Download processed events report for a company.
+Download delivery report.
 
 
 
@@ -126,8 +124,7 @@ const data = await platformClient.webhook.downloadDeliveryReport({  body : value
 | body | [EventProcessRequest](#EventProcessRequest) | yes | Request body |
 
 
-Download reports for a specific company based on the provided filters.
-
+Download detailed delivery reports for events.
 
 *Returned Response:*
 
@@ -171,7 +168,7 @@ Successfully downloaded the report.
 
 
 ### fetchAllEventConfigurations
-Get All Webhook Events.
+Fetch all event configurations.
 
 
 
@@ -188,8 +185,7 @@ const data = await platformClient.webhook.fetchAllEventConfigurations();
 
 
 
-To fetch all webhook events.
-
+Retrieve all configurations for event handling.
 
 *Returned Response:*
 
@@ -246,7 +242,7 @@ Successfully received ping for the provided webhook url.
 
 
 ### getDeliveryReports
-Get processed events report for a company.
+Get delivery reports.
 
 
 
@@ -267,8 +263,7 @@ const data = await platformClient.webhook.getDeliveryReports({  body : value });
 | body | [EventProcessRequest](#EventProcessRequest) | yes | Request body |
 
 
-Retrieve a list of processed events for a specific company based on the provided filters.
-
+Retrieve reports on the delivery status of events.
 
 *Returned Response:*
 
@@ -327,7 +322,7 @@ Successfully retrieved the processed events report.
 
 
 ### getEventCounts
-Get the count of failed events for a company within a specified date range.
+Get event counts.
 
 
 
@@ -348,8 +343,7 @@ const data = await platformClient.webhook.getEventCounts({  body : value });
 | body | [RetryEventRequest](#RetryEventRequest) | yes | Request body |
 
 
-Retrieves the count of failed events for a specific company within the specified date range. The user can filter the count based on specific event types if provided.
-
+Retrieve the counts of events based on their status.
 
 *Returned Response:*
 
@@ -398,7 +392,7 @@ Initiates a manual retry for event processing for a specific company. This endpo
 
 
 ### getHistoricalReports
-Get report download history.
+Get historical reports.
 
 
 
@@ -419,8 +413,7 @@ const data = await platformClient.webhook.getHistoricalReports({  body : value }
 | body | [HistoryPayload](#HistoryPayload) | yes | Request body |
 
 
-Retrieve history reports for a specific company based on the provided filters.
-
+Retrieve historical reports of webhook events.
 
 *Returned Response:*
 
@@ -492,7 +485,7 @@ It will give list of all the reports that was downloaded.
 
 
 ### getManualRetryStatus
-Get the retry status for a company's failed events.
+Get manual retry status.
 
 
 
@@ -509,8 +502,7 @@ const data = await platformClient.webhook.getManualRetryStatus();
 
 
 
-Retrieves the status of retry for a specific company's failed events. This endpoint returns the total number of events, the count of successfully retried events, the count of failed retry attempts, and the overall status of the retry process.
-
+Check the status of a manual retry operation.
 
 *Returned Response:*
 
@@ -557,7 +549,7 @@ Successful response with the retry status.
 
 
 ### getReportFilters
-Get filters for a company.
+Get report filters.
 
 
 
@@ -578,8 +570,7 @@ const data = await platformClient.webhook.getReportFilters({  body : value });
 | body | [ReportFiltersPayload](#ReportFiltersPayload) | yes | Request body |
 
 
-Retrieve filters for a specific company based on the provided subscriber IDs.
-
+Retrieve filters used for generating reports.
 
 *Returned Response:*
 
@@ -636,7 +627,7 @@ Successfully retrieved the filters.
 
 
 ### getSubscriberById
-Get Subscriber By Subscriber ID
+Get subscriber by ID.
 
 
 
@@ -658,7 +649,7 @@ const data = await platformClient.webhook.getSubscriberById({  subscriberId : va
 
 
 
-Get Subscriber By Subscriber ID
+Retrieve a subscriber's details by their unique identifier.
 
 *Returned Response:*
 
@@ -684,7 +675,6 @@ Success
   "value": {
     "id": 1,
     "name": "praveen's webhook",
-    "provider": "kafka",
     "webhook_url": "https://webhook.site/67493d35-6468-4c0a-8226-9a50954eb4c3",
     "association": {
       "company_id": 1,
@@ -740,7 +730,7 @@ Success
 
 
 ### getSubscribersByCompany
-Get Subscribers By CompanyId.
+Get subscribers by company.
 
 
 
@@ -768,8 +758,7 @@ const data = await platformClient.webhook.getSubscribersByCompany({  pageNo : va
 
 
 
-Get Subscribers By Company ID.
-
+Retrieve subscribers associated with a company.
 
 *Returned Response:*
 
@@ -870,7 +859,7 @@ Subscribers By Company ID.
 
 
 ### getSubscribersByExtensionId
-Get Subscribers By Extension ID
+Get subscribers by extension ID.
 
 
 
@@ -898,7 +887,7 @@ const data = await platformClient.webhook.getSubscribersByExtensionId({  extensi
 
 
 
-Get Subscribers By ExtensionID
+Retrieve subscribers associated with a specific extension.
 
 *Returned Response:*
 
@@ -993,7 +982,7 @@ Success
 
 
 ### manualRetryCancel
-Cancel the active manual retry for a company's failed events.
+Manual retry cancellation.
 
 
 
@@ -1010,8 +999,7 @@ const data = await platformClient.webhook.manualRetryCancel();
 
 
 
-Cancels the active manual retry for a specific company's failed events. If a manual retry is currently in progress, it will be cancelled.
-
+Cancel a manual retry operation for a failed event.
 
 *Returned Response:*
 
@@ -1053,7 +1041,7 @@ Manual retry cancelled successfully.
 
 
 ### manualRetryOfFailedEvent
-Initiate a manual retry for event processing.
+Manual retry of failed event.
 
 
 
@@ -1074,8 +1062,7 @@ const data = await platformClient.webhook.manualRetryOfFailedEvent({  body : val
 | body | [RetryEventRequest](#RetryEventRequest) | yes | Request body |
 
 
-Initiates a manual retry for event processing for a specific company. This endpoint allows the user to specify the date range (start_date and end_date) within which the events should be retried.
-
+Trigger a manual retry for an event that failed to deliver.
 
 *Returned Response:*
 
@@ -1119,7 +1106,7 @@ Initiates a manual retry for event processing for a specific company. This endpo
 
 
 ### pingWebhook
-Ping and validate webhook url.
+Ping webhook.
 
 
 
@@ -1140,8 +1127,7 @@ const data = await platformClient.webhook.pingWebhook({  body : value });
 | body | [PingWebhook](#PingWebhook) | yes | Request body |
 
 
-Ping and validate webhook url.
-
+Send a test ping to a webhook for verification.
 
 *Returned Response:*
 
@@ -1187,7 +1173,7 @@ Successfully received ping for the provided webhook url.
 
 
 ### registerSubscriberToEvent
-Register Subscriber.
+Register subscriber to event.
 
 
 
@@ -1208,92 +1194,7 @@ const data = await platformClient.webhook.registerSubscriberToEvent({  body : va
 | body | [SubscriberConfig](#SubscriberConfig) | yes | Request body |
 
 
-Register Subscriber.
-
-
-*Returned Response:*
-
-
-
-
-[SubscriberConfigResponse](#SubscriberConfigResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "name": "xyz webhook",
-    "webhook_url": "https://xyz.requestcatcher.com/test",
-    "association": {
-      "company_id": 1,
-      "extension_id": "64affd97cbddb85348ca8f93",
-      "application_id": [
-        "63a0490757475baff6154585",
-        "63a42b512df5d4731c5eb601"
-      ]
-    },
-    "custom_headers": {},
-    "status": "active",
-    "email_id": "axyz@gofynd.com",
-    "auth_meta": {},
-    "event_id": [
-      10,
-      11,
-      17
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### registerSubscriberToEventV2
-Register Subscriber.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.webhook.registerSubscriberToEventV2({  body : value });
-
-// Async/Await
-const data = await platformClient.webhook.registerSubscriberToEventV2({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SubscriberConfigRequestV2](#SubscriberConfigRequestV2) | yes | Request body |
-
-
-Register Subscriber.
-
+Add a subscriber to receive events of a specific type.
 
 *Returned Response:*
 
@@ -1318,7 +1219,6 @@ Success
 {
   "value": {
     "name": "xyz webhook",
-    "provider": "kafka",
     "webhook_url": "https://xyz.requestcatcher.com/test",
     "association": {
       "company_id": 1,
@@ -1356,7 +1256,7 @@ Success
 
 
 ### updateSubscriberConfig
-Update Subscriber
+Update subscriber config.
 
 
 
@@ -1377,7 +1277,7 @@ const data = await platformClient.webhook.updateSubscriberConfig({  body : value
 | body | [SubscriberConfig](#SubscriberConfig) | yes | Request body |
 
 
-Update Subscriber
+Modify and update subscriber configuration settings.
 
 *Returned Response:*
 
@@ -1551,6 +1451,25 @@ Success
 
 ---
 
+#### [EventConfigs](#EventConfigs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | event_category | string? |  yes  |  |
+ | event_name | string? |  yes  |  |
+ | event_schema | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | subscriber_event_mapping | [SubscriberEventMapping](#SubscriberEventMapping)? |  yes  |  |
+ | updated_on | string? |  yes  |  |
+ | version | string? |  yes  |  |
+ 
+
+---
+
 #### [EventProcessReportObject](#EventProcessReportObject)
 
  | Properties | Type | Nullable | Description |
@@ -1591,16 +1510,6 @@ Success
  | start_date | string? |  yes  |  |
  | status | string? |  yes  |  |
  | subscriber_ids | [number]? |  yes  |  |
- 
-
----
-
-#### [Events](#Events)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | string? |  yes  |  |
- | topic | string? |  yes  |  |
  
 
 ---
@@ -1814,24 +1723,6 @@ Success
 
 ---
 
-#### [SubscriberConfigRequestV2](#SubscriberConfigRequestV2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | association | [Association](#Association)? |  yes  |  |
- | auth_meta | [AuthMeta](#AuthMeta)? |  yes  |  |
- | custom_headers | string? |  yes  |  |
- | email_id | string? |  yes  |  |
- | events | [[Events](#Events)]? |  yes  |  |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
- | status | string? |  yes  |  |
- | webhook_url | string? |  yes  |  |
- 
-
----
-
 #### [SubscriberConfigResponse](#SubscriberConfigResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1845,11 +1736,33 @@ Success
  | id | number? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
  | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
  | type | string? |  yes  |  |
  | updated_on | string? |  yes  |  |
  | webhook_url | string? |  yes  |  |
+ 
+
+---
+
+#### [SubscriberEventMapping](#SubscriberEventMapping)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string? |  yes  |  |
+ | event_id | number? |  yes  |  |
+ | id | number? |  yes  |  |
+ | subscriber_id | number? |  yes  |  |
+ 
+
+---
+
+#### [SubscriberFailureResponse](#SubscriberFailureResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | stack | string? |  yes  |  |
  
 
 ---
@@ -1867,7 +1780,6 @@ Success
  | id | number? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
  | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
  | type | string? |  yes  |  |
  | updated_on | string? |  yes  |  |

@@ -63,4 +63,4 @@ declare class PartnerConfig {
      */
     getAccessToken(): Promise<string>;
 }
-import OauthClient = require("sdk/output/javascript/code/sdk/partner/OAuthClient");
+import OauthClient = require("./OAuthClient");

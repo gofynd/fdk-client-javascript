@@ -20,6 +20,7 @@ const Joi = require("joi");
  * @property {string} [file_path]
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
+ * @property {string[]} [zone_ids]
  * @property {ValidityObject} validity
  * @property {DiscountMeta} [discount_meta]
  */
@@ -208,6 +209,7 @@ class DiscountPlatformModel {
       file_path: Joi.string().allow(""),
       brand_ids: Joi.array().items(Joi.number()),
       store_ids: Joi.array().items(Joi.number()),
+      zone_ids: Joi.array().items(Joi.string().allow("")),
       validity: DiscountPlatformModel.ValidityObject().required(),
       discount_meta: DiscountPlatformModel.DiscountMeta(),
     });

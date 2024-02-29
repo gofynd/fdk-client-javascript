@@ -20,8 +20,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.AllAvailablePageSchema>} - Success response
    * @name getAllPages
-   * @summary: Get all pages of a theme
-   * @description: Use this API to retrieve all the available pages of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getAllPages/).
+   * @summary: Get all pages.
+   * @description: Retrieve a list of all pages available in the partner server setup. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getAllPages/).
    */
   async getAllPages(
     { companyId, applicationId, themeId, requestHeaders } = {
@@ -97,8 +97,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.AvailablePageSchema>} - Success response
    * @name createPage
-   * @summary: Create a page
-   * @description: Use this API to create a page for a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createPage/).
+   * @summary: Create page.
+   * @description: Add a new page to the partner server configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createPage/).
    */
   async createPage(
     { companyId, applicationId, themeId, body, requestHeaders } = {
@@ -181,8 +181,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.AllAvailablePageSchema>} - Success response
    * @name updateMultiplePages
-   * @summary: Update multiple pages of a theme
-   * @description: Use this API to update multiple pages of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/updateMultiplePages/).
+   * @summary: Update multiple pages.
+   * @description: Modify and update multiple pages in the partner server setup. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/updateMultiplePages/).
    */
   async updateMultiplePages(
     { companyId, applicationId, themeId, body, requestHeaders } = {
@@ -267,8 +267,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.AvailablePageSchema>} - Success response
    * @name getPage
-   * @summary: Get page of a theme
-   * @description: Use this API to retrieve a page of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getPage/).
+   * @summary: Get page.
+   * @description: Obtain detailed information about a specific page in the partner server. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getPage/).
    */
   async getPage(
     { companyId, applicationId, themeId, pageValue, requestHeaders } = {
@@ -345,8 +345,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.AvailablePageSchema>} - Success response
    * @name updatePage
-   * @summary: Updates a page
-   * @description: Use this API to update a page for a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/updatePage/).
+   * @summary: Update page.
+   * @description: Modify and update information related to a specific page in the partner server. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/updatePage/).
    */
   async updatePage(
     { companyId, applicationId, themeId, pageValue, body, requestHeaders } = {
@@ -431,8 +431,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.AvailablePageSchema>} - Success response
    * @name deletePage
-   * @summary: Deletes a page
-   * @description: Use this API to delete a page for a theme by its ID and page_value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/deletePage/).
+   * @summary: Delete page.
+   * @description: Remove a page from the partner server configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/deletePage/).
    */
   async deletePage(
     { companyId, applicationId, themeId, pageValue, requestHeaders } = {
@@ -509,8 +509,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.ThemesSchema[]>} - Success response
    * @name getApplicationThemes
-   * @summary: Get all the themes for a specific application
-   * @description: Use this API to get list of theme - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getApplicationThemes/).
+   * @summary: Get application themes.
+   * @description: Retrieve a list of themes available for the partner server application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getApplicationThemes/).
    */
   async getApplicationThemes(
     { companyId, applicationId, requestHeaders } = { requestHeaders: {} },
@@ -582,8 +582,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
    * @name getThemeById
-   * @summary: Get Theme By Theme Id
-   * @description: Use this API to get theme details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeById/).
+   * @summary: Get theme by ID.
+   * @description: Obtain detailed information about a theme using its unique ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeById/).
    */
   async getThemeById(
     { companyId, applicationId, themeId, requestHeaders } = {
@@ -659,8 +659,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
    * @name updateTheme
-   * @summary: Update theme for a specific company and application
-   * @description: Update theme for a specific company and application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/updateTheme/).
+   * @summary: Update theme.
+   * @description: Modify and update information related to a theme in the partner server. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/updateTheme/).
    */
   async updateTheme(
     { companyId, applicationId, themeId, body, requestHeaders } = {
@@ -743,8 +743,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
    * @name deleteTheme
-   * @summary: Delete a theme
-   * @description: This endpoint is used to delete a theme from the specified company and application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/deleteTheme/).
+   * @summary: Delete theme.
+   * @description: Remove a theme from the partner server configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/deleteTheme/).
    */
   async deleteTheme(
     { companyId, applicationId, themeId, requestHeaders } = {
@@ -820,8 +820,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.MarketplaceThemeSchema>} - Success response
    * @name getOrganizationThemes
-   * @summary: Get organization's themes
-   * @description: Get organization's themes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getOrganizationThemes/).
+   * @summary: Get organization themes.
+   * @description: Retrieve a list of themes associated with partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getOrganizationThemes/).
    */
   async getOrganizationThemes(
     { status, pageSize, pageNo, requestHeaders } = { requestHeaders: {} },
@@ -904,8 +904,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.MarketplaceTheme>} - Success response
    * @name getOrganizationThemeDetails
-   * @summary: Get theme details for an organization
-   * @description: Fetches the theme details for a specific organization and theme ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getOrganizationThemeDetails/).
+   * @summary: Get organization theme details.
+   * @description: Obtain detailed information about a theme within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getOrganizationThemeDetails/).
    */
   async getOrganizationThemeDetails(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -983,8 +983,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.MarketplaceTheme>} - Success response
    * @name updateDraftTheme
-   * @summary: Update theme draft/submitted
-   * @description: Update theme draft/submitted - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/updateDraftTheme/).
+   * @summary: Update draft theme.
+   * @description: Modify and update a draft theme in partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/updateDraftTheme/).
    */
   async updateDraftTheme(
     { themeId, body, requestHeaders } = { requestHeaders: {} },
@@ -1062,8 +1062,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.MarketplaceTheme>} - Success response
    * @name submitOrganizationTheme
-   * @summary: Submit a theme
-   * @description: Use this api to Submit a theme - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/submitOrganizationTheme/).
+   * @summary: Submit organization theme.
+   * @description: Initiate the process of submitting a theme within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/submitOrganizationTheme/).
    */
   async submitOrganizationTheme(
     { themeId, body, requestHeaders } = { requestHeaders: {} },
@@ -1141,8 +1141,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.MarketplaceTheme>} - Success response
    * @name deleteOrganizationTheme
-   * @summary: Delete a theme
-   * @description: This endpoint allows you to delete a theme by providing the organization and theme IDs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/deleteOrganizationTheme/).
+   * @summary: Delete organization theme.
+   * @description: Remove a theme from partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/deleteOrganizationTheme/).
    */
   async deleteOrganizationTheme(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -1218,8 +1218,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.MarketplaceTheme[]>} - Success response
    * @name getLatestVersionOfThemeBySlug
-   * @summary: Get latest version of specified theme
-   * @description: Use this api to get latest version of specified theme - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getLatestVersionOfThemeBySlug/).
+   * @summary: Get latest version of theme by slug.
+   * @description: Retrieve the most recent version of a theme using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getLatestVersionOfThemeBySlug/).
    */
   async getLatestVersionOfThemeBySlug(
     { slugName, requestHeaders } = { requestHeaders: {} },
@@ -1294,8 +1294,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.MarketplaceTheme>} - Success response
    * @name createNewThemeInOrganization
-   * @summary: Create a new theme for the organization
-   * @description: Use this api to create a new theme for the organization - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createNewThemeInOrganization/).
+   * @summary: Create new theme in organization.
+   * @description: Add a new theme to partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createNewThemeInOrganization/).
    */
   async createNewThemeInOrganization(
     { body, slug, requestHeaders } = { requestHeaders: {} },
@@ -1376,8 +1376,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.ThemeRejectionReasons>} - Success response
    * @name getThemeRejectionReasons
-   * @summary: Get theme rejection reasons
-   * @description: Use this api to get theme rejection reasons - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeRejectionReasons/).
+   * @summary: Get theme rejection reasons.
+   * @description: Retrieve reasons for the rejection of themes within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeRejectionReasons/).
    */
   async getThemeRejectionReasons(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -1453,8 +1453,8 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.MarketplaceThemeSchema>} - Success response
    * @name getThemeVersions
-   * @summary: Get theme versions
-   * @description: Retrieve a list of theme versions for a specific theme in an organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeVersions/).
+   * @summary: Get theme versions.
+   * @description: Retrieve a list of versions available for a theme within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeVersions/).
    */
   async getThemeVersions(
     { themeSlug, pageSize, pageNo, requestHeaders } = { requestHeaders: {} },

@@ -9,10 +9,13 @@
 Webhook dispatcher with retry and one event to many subscriber vice versa
 
 
-Default
+Webhook event management
 * [fetchAllWebhookEvents](#fetchallwebhookevents)
-* [notifyDepricatedEvent](#notifydepricatedevent)
 * [queryWebhookEventDetails](#querywebhookeventdetails)
+
+
+Default
+* [notifyDepricatedEvent](#notifydepricatedevent)
 * [testHandlerTransformation](#testhandlertransformation)
 * [validateSchema](#validateschema)
 
@@ -26,7 +29,7 @@ Default
 
 
 ### fetchAllWebhookEvents
-Get All Webhook Events
+Fetch all webhook events.
 
 
 
@@ -43,7 +46,7 @@ const data = await publicClient.webhook.fetchAllWebhookEvents();
 
 
 
-Get All Webhook Events
+Retrieve a list of all webhook events in the public server setup.
 
 *Returned Response:*
 
@@ -51,80 +54,6 @@ Get All Webhook Events
 
 
 [EventConfigResponse](#EventConfigResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "event_configs": [
-      {
-        "id": 1,
-        "event_name": "article",
-        "event_type": "create",
-        "event_category": "application",
-        "version": "1",
-        "display_name": "article",
-        "description": "This event gets triggered when an article is created",
-        "event_schema": null,
-        "created_on": "2021-12-20T17:38:22.922Z",
-        "updated_on": "2023-07-26T12:30:30.930Z"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### notifyDepricatedEvent
-Notifies all the events that are going to depricate
-
-
-
-```javascript
-// Promise
-const promise = publicClient.webhook.notifyDepricatedEvent();
-
-// Async/Await
-const data = await publicClient.webhook.notifyDepricatedEvent();
-```
-
-
-
-
-
-
-Notifies all the events that are subscribed and are going to deprecate or new version is available for those events
-
-*Returned Response:*
-
-
-
-
-[EventNotifier](#EventNotifier)
 
 Success
 
@@ -174,7 +103,7 @@ Success
 
 
 ### queryWebhookEventDetails
-Send webhook event name, type, version, category in request body to get complete details of event from server
+Query webhook event details.
 
 
 
@@ -195,7 +124,7 @@ const data = await publicClient.webhook.queryWebhookEventDetails({  body : value
 | body | [Array<EventConfigBase>](#Array<EventConfigBase>) | yes | Request body |
 
 
-Get Webhook Event Details for provided events
+Query and obtain detailed information about webhook events in the public server configurations.
 
 *Returned Response:*
 
@@ -203,6 +132,82 @@ Get Webhook Event Details for provided events
 
 
 [EventConfigResponse](#EventConfigResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "event_configs": [
+      {
+        "id": 1,
+        "event_name": "article",
+        "event_type": "create",
+        "event_category": "application",
+        "version": "1",
+        "display_name": "article",
+        "description": "This event gets triggered when an article is created",
+        "event_schema": null,
+        "created_on": "2021-12-20T17:38:22.922Z",
+        "updated_on": "2023-07-26T12:30:30.930Z"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### notifyDepricatedEvent
+Notifies all the events that are going to depricate
+
+
+
+```javascript
+// Promise
+const promise = publicClient.webhook.notifyDepricatedEvent();
+
+// Async/Await
+const data = await publicClient.webhook.notifyDepricatedEvent();
+```
+
+
+
+
+
+
+Notifies all the events that are subscribed and are going to deprecate or new version is available for those events
+
+*Returned Response:*
+
+
+
+
+[EventNotifier](#EventNotifier)
 
 Success
 

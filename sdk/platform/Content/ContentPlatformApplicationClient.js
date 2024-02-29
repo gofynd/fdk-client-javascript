@@ -22,8 +22,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name addDataLoader
-   * @summary: Adds a data loader
-   * @description: Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addDataLoader/).
+   * @summary: Add data loader.
+   * @description: Create and add a new data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addDataLoader/).
    */
   async addDataLoader(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -101,8 +101,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name addFaq
-   * @summary: Create an FAQ
-   * @description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addFaq/).
+   * @summary: Add FAQ.
+   * @description: Create and add a new FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addFaq/).
    */
   async addFaq(
     { categoryId, body, requestHeaders } = { requestHeaders: {} },
@@ -180,8 +180,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name addInjectableTag
-   * @summary: Add a tag
-   * @description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
+   * @summary: Create HTML tag.
+   * @description: Create and add a new injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
    */
   async addInjectableTag(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -261,8 +261,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name addPathRedirectionRules
-   * @summary: Save path based redirection rules
-   * @description: Use this API to add redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
+   * @summary: Add path redirection rules.
+   * @description: Create and add rules for path redirection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
    */
   async addPathRedirectionRules(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -343,8 +343,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
    * @name createAnnouncement
-   * @summary: Create an announcement
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAnnouncement/).
+   * @summary: Create announcement.
+   * @description: Generate and add a new announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAnnouncement/).
    */
   async createAnnouncement(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -755,8 +755,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name createBlog
-   * @summary: Create a blog
-   * @description: Use this API to create a blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createBlog/).
+   * @summary: Create blog.
+   * @description: Generate and add a new blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createBlog/).
    */
   async createBlog(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -834,8 +834,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
    * @name createFaqCategory
-   * @summary: Create an FAQ category
-   * @description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createFaqCategory/).
+   * @summary: Create FAQ category.
+   * @description: Generate and add a new FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createFaqCategory/).
    */
   async createFaqCategory(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -915,8 +915,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name createLandingPage
-   * @summary: Create a landing page
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createLandingPage/).
+   * @summary: Create landing page.
+   * @description: Generate and add a new landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createLandingPage/).
    */
   async createLandingPage(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -994,8 +994,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name createNavigation
-   * @summary: Create a navigation
-   * @description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createNavigation/).
+   * @summary: Create navigation items
+   * @description: Generate and add a new navigation element. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createNavigation/).
    */
   async createNavigation(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1073,8 +1073,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name createPage
-   * @summary: Create a page
-   * @description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPage/).
+   * @summary: Create page.
+   * @description: Generate and add a new page to the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPage/).
    */
   async createPage(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1152,8 +1152,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name createPagePreview
-   * @summary: Create a page preview
-   * @description: Use this API to create a page preview to check the appearance of a custom page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPagePreview/).
+   * @summary: Create page preview.
+   * @description: Generate and add a new page preview. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPagePreview/).
    */
   async createPagePreview(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1394,8 +1394,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
    * @name deleteAnnouncement
-   * @summary: Delete announcement by id
-   * @description: Use this API to delete an existing announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAnnouncement/).
+   * @summary: Delete announcement.
+   * @description: Remove a specific announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAnnouncement/).
    */
   async deleteAnnouncement(
     { announcementId, requestHeaders } = { requestHeaders: {} },
@@ -1718,8 +1718,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name deleteBlog
-   * @summary: Delete blogs
-   * @description: Use this API to delete a blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteBlog/).
+   * @summary: Delete blog.
+   * @description: Remove a specific blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteBlog/).
    */
   async deleteBlog(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1796,8 +1796,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name deleteDataLoader
-   * @summary: Delete data loader in application
-   * @description: Use this API to delete data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteDataLoader/).
+   * @summary: Delete data loader.
+   * @description: Remove a specific data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteDataLoader/).
    */
   async deleteDataLoader(
     { dataLoaderId, requestHeaders } = { requestHeaders: {} },
@@ -1875,8 +1875,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name deleteFaq
-   * @summary: Delete an FAQ
-   * @description: Use this API to delete an existing FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaq/).
+   * @summary: Delete FAQ.
+   * @description: Remove a specific FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaq/).
    */
   async deleteFaq(
     { categoryId, faqId, requestHeaders } = { requestHeaders: {} },
@@ -1956,8 +1956,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.FaqSchema>} - Success response
    * @name deleteFaqCategory
-   * @summary: Delete an FAQ category
-   * @description: Use this API to delete an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaqCategory/).
+   * @summary: Delete FAQ category.
+   * @description: Remove a specific FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaqCategory/).
    */
   async deleteFaqCategory(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2037,8 +2037,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name deleteLandingPage
-   * @summary: Delete a landing page
-   * @description: Use this API to delete an existing landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteLandingPage/).
+   * @summary: Delete landing page.
+   * @description: Remove a specific landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteLandingPage/).
    */
   async deleteLandingPage(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2116,8 +2116,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name deleteNavigation
-   * @summary: Delete a navigation
-   * @description: Use this API to delete an existing navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteNavigation/).
+   * @summary: Delete navigation.
+   * @description: Remove a specific navigation element. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteNavigation/).
    */
   async deleteNavigation(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2195,8 +2195,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name deletePage
-   * @summary: Delete a page
-   * @description: Use this API to delete an existing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePage/).
+   * @summary: Delete page.
+   * @description: Remove a page from the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePage/).
    */
   async deletePage(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2274,8 +2274,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name deletePathRedirectionRules
-   * @summary: Delete path based redirection rules
-   * @description: Use this API to delete redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePathRedirectionRules/).
+   * @summary: Delete path redirection rules.
+   * @description: Remove specific path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePathRedirectionRules/).
    */
   async deletePathRedirectionRules(
     { pathId, requestHeaders } = { requestHeaders: {} },
@@ -2512,8 +2512,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name editDataLoader
-   * @summary: Edit a data loader by id
-   * @description: Use this API to edit the details of an existing data loader by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editDataLoader/).
+   * @summary: Edit data loader.
+   * @description: Modify the settings of a specific data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editDataLoader/).
    */
   async editDataLoader(
     { dataLoaderId, body, requestHeaders } = { requestHeaders: {} },
@@ -2595,8 +2595,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name editInjectableTag
-   * @summary: Edit a tag by id
-   * @description: Use this API to edit the details of an existing tag by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
+   * @summary: Update HTML tag
+   * @description: Modify settings for an injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
    */
   async editInjectableTag(
     { tagId, body, requestHeaders } = { requestHeaders: {} },
@@ -2842,8 +2842,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GeneratedSEOContent>} - Success response
    * @name generateSEOTitle
-   * @summary: Get SEO meta tag title for content
-   * @description: Use this API to get GPT3 generated SEO meta tag title for content - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/generateSEOTitle/).
+   * @summary: Generate SEO title.
+   * @description: Create an SEO-friendly title for content. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/generateSEOTitle/).
    */
   async generateSEOTitle(
     { type, body, requestHeaders } = { requestHeaders: {} },
@@ -2925,8 +2925,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.AdminAnnouncementSchema>} - Success response
    * @name getAnnouncementById
-   * @summary: Get announcement by ID
-   * @description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementById/).
+   * @summary: Get announcement by ID.
+   * @description: Retrieve detailed information about a specific announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementById/).
    */
   async getAnnouncementById(
     { announcementId, requestHeaders } = { requestHeaders: {} },
@@ -3007,8 +3007,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.GetAnnouncementListSchema>} -
    *   Success response
    * @name getAnnouncementsList
-   * @summary: Get a list of announcements
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	 - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementsList/).
+   * @summary: Get announcements list.
+   * @description: Retrieve a list of announcements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementsList/).
    */
   async getAnnouncementsList(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -3082,40 +3082,6 @@ class Content {
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.GetAnnouncementListSchema>}
-   * @summary: Get a list of announcements
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.
-   */
-  getAnnouncementsListPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAnnouncementsList({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 
   /**
@@ -3384,7 +3350,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomFieldsResponseSchema>} -
    *   Success response
    * @name getAppCustomFields
-   * @summary: Get list of custom fields of given resource
+   * @summary: Get list of custom fields of gives resource
    * @description: Use this API to retrieve the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFields/).
    */
   async getAppCustomFields(
@@ -4047,8 +4013,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getBlogBySlug
-   * @summary: Get blog by slug
-   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogBySlug/).
+   * @summary: Get blog by slug.
+   * @description: Retrieve detailed information about a specific blog using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogBySlug/).
    */
   async getBlogBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -4126,8 +4092,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogGetResponse>} - Success response
    * @name getBlogs
-   * @summary: Get blogs
-   * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
+   * @summary: Get blogs.
+   * @description: Retrieve a list of available blogs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
    */
   async getBlogs(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -4202,47 +4168,13 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.BlogGetResponse>}
-   * @summary: Get blogs
-   * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
-   */
-  getBlogsPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getBlogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getComponentById
-   * @summary: Get components of a blog
-   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
+   * @summary: Get component by ID.
+   * @description: Retrieve detailed information about a specific component. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
    */
   async getComponentById(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -4320,8 +4252,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DataLoadersSchema>} - Success response
    * @name getDataLoaders
-   * @summary: Get all the data loaders in an application
-   * @description: Use this to get all data loaders of an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaders/).
+   * @summary: Get data loaders.
+   * @description: Retrieve a list of data loaders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaders/).
    */
   async getDataLoaders(
     { requestHeaders } = { requestHeaders: {} },
@@ -4480,8 +4412,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DefaultNavigationResponse>} -
    *   Success response
    * @name getDefaultNavigations
-   * @summary: Get default navigations
-   * @description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultNavigations/).
+   * @summary: Get default navigations.
+   * @description: Retrieve default navigation elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultNavigations/).
    */
   async getDefaultNavigations(
     { requestHeaders } = { requestHeaders: {} },
@@ -4637,8 +4569,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name getFaqByIdOrSlug
-   * @summary: Get an FAQ
-   * @description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqByIdOrSlug/).
+   * @summary: Get FAQ by ID or slug.
+   * @description: Retrieve detailed information about a specific FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqByIdOrSlug/).
    */
   async getFaqByIdOrSlug(
     { idOrSlug, requestHeaders } = { requestHeaders: {} },
@@ -4716,8 +4648,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GetFaqCategoriesSchema>} - Success response
    * @name getFaqCategories
-   * @summary: Get a list of FAQ categories
-   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategories/).
+   * @summary: Get FAQ categories.
+   * @description: Retrieve a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategories/).
    */
   async getFaqCategories(
     { requestHeaders } = { requestHeaders: {} },
@@ -4794,8 +4726,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.GetFaqCategoryBySlugSchema>} -
    *   Success response
    * @name getFaqCategoryBySlugOrId
-   * @summary: Get an FAQ category by slug or id
-   * @description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategoryBySlugOrId/).
+   * @summary: Get FAQ category by slug or ID.
+   * @description: Retrieve detailed information about a specific FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategoryBySlugOrId/).
    */
   async getFaqCategoryBySlugOrId(
     { idOrSlug, requestHeaders } = { requestHeaders: {} },
@@ -4875,8 +4807,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GetFaqSchema>} - Success response
    * @name getFaqsByCategoryIdOrSlug
-   * @summary: Get question and answers within an FAQ category
-   * @description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqsByCategoryIdOrSlug/).
+   * @summary: Get FAQs by category ID or slug.
+   * @description: Retrieve a list of FAQs within a specific category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqsByCategoryIdOrSlug/).
    */
   async getFaqsByCategoryIdOrSlug(
     { idOrSlug, requestHeaders } = { requestHeaders: {} },
@@ -4956,8 +4888,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name getInjectableTags
-   * @summary: Get all the tags in an application
-   * @description: Use this API to get the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
+   * @summary: Get all HTML tags
+   * @description: Retrieve a list of injectable tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
    */
   async getInjectableTags(
     { all, requestHeaders } = { requestHeaders: {} },
@@ -5036,8 +4968,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.LandingPageGetResponse>} - Success response
    * @name getLandingPages
-   * @summary: Get landing pages
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
+   * @summary: Get landing pages.
+   * @description: Retrieve a list of landing pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
    */
   async getLandingPages(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -5114,40 +5046,6 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.LandingPageGetResponse>}
-   * @summary: Get landing pages
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
-   */
-  getLandingPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getLandingPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.GetLegalInformationParam} arg
    *   - Arg object
    *
@@ -5155,8 +5053,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
    * @name getLegalInformation
-   * @summary: Get legal information
-   * @description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLegalInformation/).
+   * @summary: Get legal related information for applicaiton
+   * @description: Retrieve legal information and terms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLegalInformation/).
    */
   async getLegalInformation(
     { requestHeaders } = { requestHeaders: {} },
@@ -5232,8 +5130,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name getNavigationBySlug
-   * @summary: Get a navigation by slug
-   * @description: Use this API to retrieve a navigation by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigationBySlug/).
+   * @summary: Get navigation by slug.
+   * @description: Retrieve detailed information about a specific navigation element. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigationBySlug/).
    */
   async getNavigationBySlug(
     { slug, devicePlatform, requestHeaders } = { requestHeaders: {} },
@@ -5314,8 +5212,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationGetResponse>} - Success response
    * @name getNavigations
-   * @summary: Get navigations
-   * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigations/).
+   * @summary: Get navigation items
+   * @description: Retrieve a list of navigational elements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigations/).
    */
   async getNavigations(
     { devicePlatform, pageNo, pageSize, requestHeaders } = {
@@ -5397,55 +5295,13 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {string} arg.devicePlatform - Filter navigations by platform.
-   *   Acceptable values are: web, android, ios, all
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.NavigationGetResponse>}
-   * @summary: Get navigations
-   * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
-   */
-  getNavigationsPaginator({
-    companyId,
-    applicationId,
-    devicePlatform,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getNavigations({
-        companyId: companyId,
-        applicationId: applicationId,
-        devicePlatform: devicePlatform,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.GetPageBySlugParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name getPageBySlug
-   * @summary: Get page by slug
-   * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
+   * @summary: Get page by slug.
+   * @description: Retrieve detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
    */
   async getPageBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -5523,8 +5379,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageMetaSchema>} - Success response
    * @name getPageMeta
-   * @summary: Get page meta
-   * @description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageMeta/).
+   * @summary: Get page meta.
+   * @description: Retrieve metadata for a specific page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageMeta/).
    */
   async getPageMeta(
     { requestHeaders } = { requestHeaders: {} },
@@ -5598,8 +5454,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSpec>} - Success response
    * @name getPageSpec
-   * @summary: Get page spec
-   * @description: Use this API to get the specifications of a page, such as page type, display name, params and query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageSpec/).
+   * @summary: Get page specification.
+   * @description: Retrieve specifications and details for a specific page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageSpec/).
    */
   async getPageSpec(
     { requestHeaders } = { requestHeaders: {} },
@@ -5673,8 +5529,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageGetResponse>} - Success response
    * @name getPages
-   * @summary: Get a list of pages
-   * @description: Use this API to retrieve a list of pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPages/).
+   * @summary: Get pages.
+   * @description: Retrieve a list of available pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPages/).
    */
   async getPages(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -5749,40 +5605,6 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.PageGetResponse>}
-   * @summary: Get a list of pages
-   * @description: Use this API to retrieve a list of pages.
-   */
-  getPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.GetPathRedirectionRuleParam} arg
    *   - Arg object
    *
@@ -5790,8 +5612,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name getPathRedirectionRule
-   * @summary: Get path based redirection rule
-   * @description: Use this API to get path based redirection rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
+   * @summary: Get path redirection rule.
+   * @description: Retrieve detailed information about a specific path redirection rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
    */
   async getPathRedirectionRule(
     { pathId, requestHeaders } = { requestHeaders: {} },
@@ -5871,8 +5693,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name getPathRedirectionRules
-   * @summary: Get path based redirection rules
-   * @description: Use this API to get path based redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
+   * @summary: Get path redirection rules.
+   * @description: Retrieve a list of path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
    */
   async getPathRedirectionRules(
     { pageSize, pageNo, requestHeaders } = { requestHeaders: {} },
@@ -5956,8 +5778,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SeoComponent>} - Success response
    * @name getSEOConfiguration
-   * @summary: Get SEO configuration of an application
-   * @description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOConfiguration/).
+   * @summary: Get SEO configuration for an application
+   * @description: Retrieve configuration settings for SEO. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOConfiguration/).
    */
   async getSEOConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -6421,8 +6243,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.Support>} - Success response
    * @name getSupportInformation
-   * @summary: Get support information
-   * @description: Use this API to get the contact details for customer support, including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSupportInformation/).
+   * @summary: Get support information.
+   * @description: Retrieve information related to customer support. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSupportInformation/).
    */
   async getSupportInformation(
     { requestHeaders } = { requestHeaders: {} },
@@ -6584,8 +6406,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.TagDeleteSuccessResponse>} -
    *   Success response
    * @name removeInjectableTag
-   * @summary: Remove a tag
-   * @description: Use this API to delete an existing tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/removeInjectableTag/).
+   * @summary: Remove HTML tag.
+   * @description: Delete a specific injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/removeInjectableTag/).
    */
   async removeInjectableTag(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -6664,8 +6486,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResetResponseSchema>} -
    *   Success response
    * @name resetDataLoader
-   * @summary: Reset a data loader by serive name and operation Id
-   * @description: Use this API to reselect a data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/resetDataLoader/).
+   * @summary: Reset data loader.
+   * @description: Clear and reset data loader settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/resetDataLoader/).
    */
   async resetDataLoader(
     { service, operationId, requestHeaders } = { requestHeaders: {} },
@@ -6824,8 +6646,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name selectDataLoader
-   * @summary: Select a data loader by id
-   * @description: Use this API to select a data loader to be used in applications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/selectDataLoader/).
+   * @summary: Select data loader.
+   * @description: Choose and set a data loader for use. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/selectDataLoader/).
    */
   async selectDataLoader(
     { dataLoaderId, requestHeaders } = { requestHeaders: {} },
@@ -6906,8 +6728,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
    * @name updateAnnouncement
-   * @summary: Update an announcement
-   * @description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAnnouncement/).
+   * @summary: Update announcement.
+   * @description: Modify the content and settings of a specific announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAnnouncement/).
    */
   async updateAnnouncement(
     { announcementId, body, requestHeaders } = { requestHeaders: {} },
@@ -6990,8 +6812,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
    * @name updateAnnouncementSchedule
-   * @summary: Update the schedule and the publish status of an announcement
-   * @description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAnnouncementSchedule/).
+   * @summary: Update announcement schedule.
+   * @description: Modify the scheduling of a specific announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAnnouncementSchedule/).
    */
   async updateAnnouncementSchedule(
     { announcementId, body, requestHeaders } = { requestHeaders: {} },
@@ -7323,8 +7145,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name updateBlog
-   * @summary: Update a blog
-   * @description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateBlog/).
+   * @summary: Update blog.
+   * @description: Modify the content and settings of a specific blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateBlog/).
    */
   async updateBlog(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -7402,8 +7224,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name updateFaq
-   * @summary: Update an FAQ
-   * @description: Use this API to edit an existing FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateFaq/).
+   * @summary: Update FAQ.
+   * @description: Modify the content and settings of a specific FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateFaq/).
    */
   async updateFaq(
     { categoryId, faqId, body, requestHeaders } = { requestHeaders: {} },
@@ -7485,8 +7307,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
    * @name updateFaqCategory
-   * @summary: Update an FAQ category
-   * @description: Use this API to edit an existing FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateFaqCategory/).
+   * @summary: Update FAQ category.
+   * @description: Modify the content and settings of a specific FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateFaqCategory/).
    */
   async updateFaqCategory(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -7568,8 +7390,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name updateInjectableTag
-   * @summary: Update the exisitng tags for an application by replacing with provided tags
-   * @description: Use this API to edit and override all existing tags. All existing tags will be replaced by the new tags provided in body.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
+   * @summary: Update HTML tag
+   * @description: Modify settings for an injectable tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
    */
   async updateInjectableTag(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -7649,8 +7471,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name updateLandingPage
-   * @summary: Update a landing page
-   * @description: Use this API to edit the details of an existing landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLandingPage/).
+   * @summary: Update landing page.
+   * @description: Modify the content and settings of a specific landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLandingPage/).
    */
   async updateLandingPage(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -7732,8 +7554,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
    * @name updateLegalInformation
-   * @summary: Save legal information
-   * @description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLegalInformation/).
+   * @summary: Update legal related information for application
+   * @description: Modify legal information and terms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLegalInformation/).
    */
   async updateLegalInformation(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -7811,8 +7633,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name updateNavigation
-   * @summary: Update a navigation
-   * @description: Use this API to edit the details of an existing navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateNavigation/).
+   * @summary: Update navigation.
+   * @description: Modify the content and settings of a specific navigation element. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateNavigation/).
    */
   async updateNavigation(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -7892,8 +7714,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name updatePage
-   * @summary: Update a page
-   * @description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePage/).
+   * @summary: Update page.
+   * @description: Modify and update the content of a page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePage/).
    */
   async updatePage(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -7973,8 +7795,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name updatePagePreview
-   * @summary: Change the publish status of a page
-   * @description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePagePreview/).
+   * @summary: Update page preview.
+   * @description: Modify the content and settings of a specific page preview. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePagePreview/).
    */
   async updatePagePreview(
     { slug, body, requestHeaders } = { requestHeaders: {} },
@@ -8056,8 +7878,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name updatePathRedirectionRules
-   * @summary: Update path based redirection rules
-   * @description: Use this API to update redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePathRedirectionRules/).
+   * @summary: Update path redirection rules.
+   * @description: Modify settings for path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePathRedirectionRules/).
    */
   async updatePathRedirectionRules(
     { pathId, body, requestHeaders } = { requestHeaders: {} },
@@ -8139,8 +7961,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SeoSchema>} - Success response
    * @name updateSEOConfiguration
-   * @summary: Update SEO of application
-   * @description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSEOConfiguration/).
+   * @summary: Update SEO configuration for an application
+   * @description: Modify configuration settings for SEO. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSEOConfiguration/).
    */
   async updateSEOConfiguration(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -8301,8 +8123,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.Support>} - Success response
    * @name updateSupportInformation
-   * @summary: Update the support data of an application
-   * @description: Use this API to edit the existing contact details for customer support, including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSupportInformation/).
+   * @summary: Update support related info for an application
+   * @description: Modify information related to customer support. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSupportInformation/).
    */
   async updateSupportInformation(
     { body, requestHeaders } = { requestHeaders: {} },

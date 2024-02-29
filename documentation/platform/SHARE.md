@@ -9,7 +9,7 @@
 Short link and QR Code
 
 
-Default
+URL Shortner
 * [createShortLink](#createshortlink)
 * [getShortLinkByHash](#getshortlinkbyhash)
 * [getShortLinkClickStats](#getshortlinkclickstats)
@@ -26,7 +26,7 @@ Default
 
 
 ### createShortLink
-Create short link
+Create short link.
 
 
 
@@ -47,7 +47,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.createSh
 | body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
-Create short link
+Generate a shortened URL link for sharing.
 
 *Returned Response:*
 
@@ -67,8 +67,6 @@ Success
 ```json
 {
   "url": {
-    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
-    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
     "hash": "3qKlnsq-x"
   },
   "redirects": {
@@ -121,7 +119,7 @@ Success
 
 
 ### getShortLinkByHash
-Get short link by hash
+Get short link by hash.
 
 
 
@@ -143,7 +141,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.getShort
 
 
 
-Get short link by hash
+Retrieve a specific short link by its unique hash.
 
 *Returned Response:*
 
@@ -163,8 +161,6 @@ Success
 ```json
 {
   "url": {
-    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
-    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
     "hash": "3qKlnsq-x"
   },
   "redirects": {
@@ -217,7 +213,7 @@ Success
 
 
 ### getShortLinkClickStats
-Get click statistics for a short link
+Get short link click statistics.
 
 
 
@@ -239,7 +235,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.getShort
 
 
 
-Retrieve click statistics for a given short link ID.
+Retrieve statistics and analytics for clicks on a short link.
 
 *Returned Response:*
 
@@ -273,7 +269,7 @@ Successful retrieval of click statistics.
 
 
 ### getShortLinks
-Get short links
+Get short links.
 
 
 
@@ -313,7 +309,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.getShort
 
 
 
-Get short links
+Retrieve a list of all generated short links.
 
 *Returned Response:*
 
@@ -335,8 +331,6 @@ Success
   "items": [
     {
       "url": {
-        "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
-        "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
         "hash": "3qKlnsq-x"
       },
       "redirects": {
@@ -398,7 +392,7 @@ Success
 
 
 ### updateShortLinkById
-Update short link by id
+Update short link by ID.
 
 
 
@@ -422,7 +416,7 @@ const data = await platformClient.application("<APPLICATION_ID>").share.updateSh
 | body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
-Update short link by id
+Update details of a specific short link by its ID.
 
 *Returned Response:*
 
@@ -442,8 +436,6 @@ Success
 ```json
 {
   "url": {
-    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
-    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
     "hash": "3qKlnsq-x"
   },
   "redirects": {
@@ -658,8 +650,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | hash | string? |  yes  |  |
- | original | string? |  yes  |  |
- | short | string? |  yes  |  |
  
 
 ---

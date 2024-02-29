@@ -17,9 +17,6 @@ Default
 * [click2Call](#click2call)
 * [createChannelConfig](#createchannelconfig)
 * [createOrder](#createorder)
-* [createRule](#createrule)
-* [deleteRule](#deleterule)
-* [deleteuserviews](#deleteuserviews)
 * [dispatchManifests](#dispatchmanifests)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
 * [downloadLanesReport](#downloadlanesreport)
@@ -28,6 +25,7 @@ Default
 * [failedOrderLogs](#failedorderlogs)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
+* [generateInvoiceID](#generateinvoiceid)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAllowedStateTransition](#getallowedstatetransition)
 * [getAllowedTemplatesForBulk](#getallowedtemplatesforbulk)
@@ -47,15 +45,7 @@ Default
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
 * [getPlatformShipmentReasons](#getplatformshipmentreasons)
-* [getQuestions](#getquestions)
-* [getRefundConfiguration](#getrefundconfiguration)
-* [getRefundEnableStateList](#getrefundenablestatelist)
-* [getRefundStateConfiguration](#getrefundstateconfiguration)
 * [getRoleBasedActions](#getrolebasedactions)
-* [getRuleById](#getrulebyid)
-* [getRuleLaneConfig](#getrulelaneconfig)
-* [getRuleList](#getrulelist)
-* [getRuleParameters](#getruleparameters)
 * [getShipmentBagReasons](#getshipmentbagreasons)
 * [getShipmentById](#getshipmentbyid)
 * [getShipmentHistory](#getshipmenthistory)
@@ -64,15 +54,10 @@ Default
 * [getStateTransitionMap](#getstatetransitionmap)
 * [getTemplate](#gettemplate)
 * [getfilters](#getfilters)
-* [getuserviews](#getuserviews)
-* [globalfilters](#globalfilters)
 * [invalidateShipmentCache](#invalidateshipmentcache)
 * [jobDetails](#jobdetails)
 * [orderUpdate](#orderupdate)
-* [postRefundConfiguration](#postrefundconfiguration)
-* [postRefundStateConfiguration](#postrefundstateconfiguration)
 * [postShipmentHistory](#postshipmenthistory)
-* [postuserviews](#postuserviews)
 * [processManifests](#processmanifests)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
@@ -81,12 +66,9 @@ Default
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
-* [updateRule](#updaterule)
-* [updateRulePosition](#updateruleposition)
 * [updateShipmentLock](#updateshipmentlock)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [updateShipmentTracking](#updateshipmenttracking)
-* [updateuserviews](#updateuserviews)
 * [uploadConsents](#uploadconsents)
 * [verifyMobileOTP](#verifymobileotp)
 
@@ -100,7 +82,7 @@ Default
 
 
 ### attachOrderUser
-
+Attach order user.
 
 
 
@@ -121,7 +103,7 @@ const data = await platformClient.order.attachOrderUser({  body : value });
 | body | [AttachOrderUser](#AttachOrderUser) | yes | Request body |
 
 
-Attach Order User
+Attach order User
 
 *Returned Response:*
 
@@ -520,7 +502,7 @@ Bulk State Transistion Sucessfully Initiated Response.
 
 
 ### checkOrderStatus
-
+Check order status.
 
 
 
@@ -541,7 +523,7 @@ const data = await platformClient.order.checkOrderStatus({  body : value });
 | body | [OrderStatus](#OrderStatus) | yes | Request body |
 
 
-Check order status
+Verify the current status of an order.
 
 *Returned Response:*
 
@@ -575,7 +557,7 @@ Order Status retrieved successfully
 
 
 ### click2Call
-
+Click to call.
 
 
 
@@ -609,7 +591,7 @@ const data = await platformClient.order.click2Call({  caller : value,
 
 
 
-Click to Call
+Click to call. 
 
 *Returned Response:*
 
@@ -646,7 +628,7 @@ Process call on request!
 
 
 ### createChannelConfig
-
+Create channel configuration.
 
 
 
@@ -667,7 +649,7 @@ const data = await platformClient.order.createChannelConfig({  body : value });
 | body | [CreateChannelConfigData](#CreateChannelConfigData) | yes | Request body |
 
 
-createChannelConfig
+Set up configuration for a channel.
 
 *Returned Response:*
 
@@ -707,7 +689,7 @@ Successfully updateShipmentStatus!
 
 
 ### createOrder
-
+Create order.
 
 
 
@@ -728,7 +710,7 @@ const data = await platformClient.order.createOrder({  body : value });
 | body | [CreateOrderAPI](#CreateOrderAPI) | yes | Request body |
 
 
-Create Order
+Create order.
 
 *Returned Response:*
 
@@ -747,175 +729,6 @@ Successfully created an order!
 
 ```json
 
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createRule
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.createRule({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.createRule({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [RuleRequest](#RuleRequest) | yes | Request body |
-
-
-Create a new rule
-
-*Returned Response:*
-
-
-
-
-[CreateRuleResponse](#CreateRuleResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteRule
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.deleteRule({  ruleId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.deleteRule({  ruleId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleId | string | yes |  |  
-
-
-
-Delete a specific rule by ID
-
-*Returned Response:*
-
-
-
-
-[DeleteRuleResponse](#DeleteRuleResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteuserviews
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.deleteuserviews({  id : value });
-
-// Async/Await
-const data = await platformClient.order.deleteuserviews({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Id of view |  
-
-
-
-Delete User views(User cross company views)
-
-*Returned Response:*
-
-
-
-
-[CreateUpdateDeleteResponse](#CreateUpdateDeleteResponse)
-
-Success. Check the example shown below.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "User view deleted successfully"
-}
 ```
 </details>
 
@@ -989,7 +802,7 @@ Shipment Dispatched mapped with manifest!
 
 
 ### downloadBulkActionTemplate
-
+Download bulk action template.
 
 
 
@@ -1061,7 +874,7 @@ We are processing the file!
 
 
 ### downloadLanesReport
-
+Download lanes report.
 
 
 
@@ -1082,7 +895,7 @@ const data = await platformClient.order.downloadLanesReport({  body : value });
 | body | [BulkReportsDownloadRequest](#BulkReportsDownloadRequest) | yes | Request body |
 
 
-downloads lanes shipment/orders.
+Downloads lanes shipment/orders.
 
 *Returned Response:*
 
@@ -1127,7 +940,7 @@ Bulk Report creation initiated.
 
 
 ### eInvoiceRetry
-
+E-invoice retry.
 
 
 
@@ -1430,7 +1243,7 @@ Order Logs listing fetched successfully
 
 
 ### fetchCreditBalanceDetail
-
+Fetch credit balance detail.
 
 
 
@@ -1451,7 +1264,7 @@ const data = await platformClient.order.fetchCreditBalanceDetail({  body : value
 | body | [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload) | yes | Request body |
 
 
-Fetch Credit Balance Detail
+Retrieve details about credit balance.
 
 *Returned Response:*
 
@@ -1485,7 +1298,7 @@ Credit Balance will be fetched
 
 
 ### fetchRefundModeConfig
-
+Fetch refund mode config.
 
 
 
@@ -1506,7 +1319,7 @@ const data = await platformClient.order.fetchRefundModeConfig({  body : value })
 | body | [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload) | yes | Request body |
 
 
-Fetch Refund Mode Config
+Retrieve configuration for refund modes.
 
 *Returned Response:*
 
@@ -1539,8 +1352,75 @@ Refund mode config is returned based on input parameter
 ---
 
 
-### generatePOSReceiptByOrderId
+### generateInvoiceID
 
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.generateInvoiceID({  invoiceType : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.order.generateInvoiceID({  invoiceType : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| invoiceType | string | yes | mention the type of invoice id to generate |  
+| body | [GenerateInvoiceIDRequest](#GenerateInvoiceIDRequest) | yes | Request body |
+
+
+This API is used to manually generate Invoice ID against shipments.
+
+*Returned Response:*
+
+
+
+
+[GenerateInvoiceIDResponse](#GenerateInvoiceIDResponse)
+
+NOTE success response can contains success and failed result as well
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "shipment_id": "16838049724111283577",
+      "success": true,
+      "invoice_id": "A0B1C2D3",
+      "error_message": null
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generatePOSReceiptByOrderId
+Generate POS receipt by order ID.
 
 
 
@@ -1568,7 +1448,7 @@ const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId :
 
 
 
-Generate POS recipt by order id.
+Create a point-of-sale (POS) receipt for a specific order by order ID.
 
 *Returned Response:*
 
@@ -1602,7 +1482,7 @@ We are processing the request!
 
 
 ### getAllowedStateTransition
-To fetch next state transitions.
+Get allowed state transition.
 
 
 
@@ -1627,8 +1507,7 @@ const data = await platformClient.order.getAllowedStateTransition({  orderingCha
 
 
 
-This endpoint will fetch next possible states based on logged in user
-
+Retrieve next possible states based on logged in user.
 
 *Returned Response:*
 
@@ -1751,7 +1630,7 @@ Successfully Found the templates.
 
 
 ### getAnnouncements
-
+Get announcements.
 
 
 
@@ -1773,7 +1652,7 @@ const data = await platformClient.order.getAnnouncements({  date : value });
 
 
 
-Get Announcements
+Retrieve announcements related to orders or shipments.
 
 *Returned Response:*
 
@@ -1905,7 +1784,7 @@ We are processing the report!
 
 
 ### getBagById
-
+Get bag by ID.
 
 
 
@@ -1933,7 +1812,7 @@ const data = await platformClient.order.getBagById({  bagId : value,
 
 
 
-Get Order Bag Details.
+Retrieve detailed information about a specific bag.
 
 *Returned Response:*
 
@@ -1967,7 +1846,7 @@ Successfully retrived shipment details!
 
 
 ### getBags
-
+Get bags.
 
 
 
@@ -2013,7 +1892,7 @@ const data = await platformClient.order.getBags({  bagIds : value,
 
 
 
-Get Bags for the order
+Retrieve Bags for the order.
 
 *Returned Response:*
 
@@ -2047,7 +1926,7 @@ Successfully retrived all the given shipments details!
 
 
 ### getBulkActionTemplate
-
+Get bulk action template.
 
 
 
@@ -2064,7 +1943,7 @@ const data = await platformClient.order.getBulkActionTemplate();
 
 
 
-Get Bulk Action seller templates.
+Retrieve bulk action seller templates.
 
 *Returned Response:*
 
@@ -2105,7 +1984,7 @@ Slug names
 
 
 ### getBulkShipmentExcelFile
-
+Get bulk shipment Excel file.
 
 
 
@@ -2160,7 +2039,7 @@ const data = await platformClient.order.getBulkShipmentExcelFile({  salesChannel
 
 
 
-Generate Bulk Shipment Excel Report.
+Retrieve a bulk shipment Excel report.
 
 *Returned Response:*
 
@@ -2210,7 +2089,7 @@ We are processing the file!
 
 
 ### getChannelConfig
-
+Get channel configuration.
 
 
 
@@ -2227,7 +2106,7 @@ const data = await platformClient.order.getChannelConfig();
 
 
 
-getChannelConfig
+Retrieve configuration settings for a channel.
 
 *Returned Response:*
 
@@ -2360,7 +2239,7 @@ Job details.
 
 
 ### getLaneConfig
-
+Get lane configuration.
 
 
 
@@ -2436,7 +2315,7 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 
 
 
-Get lane config for the order
+Retrieve configuration settings for lanes.
 
 *Returned Response:*
 
@@ -2818,7 +2697,7 @@ Successful Manifest upload!
 
 
 ### getOrderById
-
+Get order by ID.
 
 
 
@@ -2846,7 +2725,7 @@ const data = await platformClient.order.getOrderById({  orderId : value,
 
 
 
-Get Order Details by ID
+Retrieve detailed information about a specific order.
 
 *Returned Response:*
 
@@ -3621,7 +3500,7 @@ We are processing the report!
 
 
 ### getOrders
-
+Get orders.
 
 
 
@@ -3706,7 +3585,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 
 
 
-Get Orders Listing
+Retrieve a list of available orders.
 
 *Returned Response:*
 
@@ -3740,7 +3619,7 @@ We are processing the report!
 
 
 ### getPlatformShipmentReasons
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+Get platform shipment reasons.
 
 
 
@@ -3762,7 +3641,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.getPlatf
 
 
 
-Using action, get reasons behind full or partial cancellation of a shipment
+Retrieve reasons behind full or partial cancellation of a shipment
 
 *Returned Response:*
 
@@ -3795,272 +3674,8 @@ Success. Check the example shown below or refer `ShipmentReasonsResponse` for mo
 ---
 
 
-### getQuestions
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.getQuestions({  pageNo : value,
- pageSize : value,
- q : value,
- isActive : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.getQuestions({  pageNo : value,
- pageSize : value,
- q : value,
- isActive : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| q | string | no | To search questions using query |    
-| isActive | string | no | To get active questions |  
-
-
-
-Get all questions of that cluster
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRefundConfiguration
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getRefundConfiguration({  appId : value });
-
-// Async/Await
-const data = await platformClient.order.getRefundConfiguration({  appId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| appId | string | yes |  |  
-
-
-
-refund configuration.
-
-*Returned Response:*
-
-
-
-
-[RefundStateConfigurationManualSchemaResponse](#RefundStateConfigurationManualSchemaResponse)
-
-refund config.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "prepaid": {
-      "message": "manual refund for prepaid",
-      "is_manual": false
-    },
-    "non_prepaid": {
-      "message": "manual refund for non_prepaid",
-      "is_manual": true
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRefundEnableStateList
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getRefundEnableStateList();
-
-// Async/Await
-const data = await platformClient.order.getRefundEnableStateList();
-```
-
-
-
-
-
-
-Refund State Configuration
-
-*Returned Response:*
-
-
-
-
-[GetRefundStates](#GetRefundStates)
-
-It shows the Refund states
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "state": "cancelled_customer",
-      "display_name": "Cancelled by Customer"
-    },
-    {
-      "state": "cancelled_fynd",
-      "display_name": "Cancelled by Fynd"
-    }
-  ],
-  "success": true,
-  "status": 200
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRefundStateConfiguration
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getRefundStateConfiguration({  appId : value });
-
-// Async/Await
-const data = await platformClient.order.getRefundStateConfiguration({  appId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| appId | string | yes |  |  
-
-
-
-Refund State Configuration
-
-*Returned Response:*
-
-
-
-
-[GetRefundStateConfigurationResponse](#GetRefundStateConfigurationResponse)
-
-It shows the Refund configuration
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "config": {
-    "prepaid": [
-      "cancelled_customer",
-      "cancelled_fynd"
-    ],
-    "non_prepaid": [
-      "return_bag_picked"
-    ]
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getRoleBasedActions
-
+Get role-based actions.
 
 
 
@@ -4077,7 +3692,7 @@ const data = await platformClient.order.getRoleBasedActions();
 
 
 
-Get Role Based Actions
+Retrieve role based actions.
 
 *Returned Response:*
 
@@ -4111,224 +3726,6 @@ You will get an array of actions allowed for that particular user based on their
     }
   ]
 }
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRuleById
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.getRuleById({  ruleId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.getRuleById({  ruleId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleId | string | yes |  |  
-
-
-
-Get a specific rule by ID
-
-*Returned Response:*
-
-
-
-
-[RuleResponse](#RuleResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRuleLaneConfig
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.getRuleLaneConfig({  searchValue : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.getRuleLaneConfig({  searchValue : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| searchValue | string | no |  |  
-
-
-
-Retrieve rule lane configurations
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRuleList
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.getRuleList({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.getRuleList({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [RuleListRequest](#RuleListRequest) | yes | Request body |
-
-
-Get a list of rules
-
-*Returned Response:*
-
-
-
-
-[RuleListResponse](#RuleListResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRuleParameters
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.getRuleParameters();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.getRuleParameters();
-```
-
-
-
-
-
-
-Get available rule parameters
-
-*Returned Response:*
-
-
-
-
-[RuleParametersResponse](#RuleParametersResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
 ```
 </details>
 
@@ -4445,7 +3842,7 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
 
 ### getShipmentById
-
+Get shipment by ID.
 
 
 
@@ -4473,7 +3870,7 @@ const data = await platformClient.order.getShipmentById({  channelShipmentId : v
 
 
 
-Get shipment details for the given shipment.
+Retrieve detailed information about a specific shipment.
 
 *Returned Response:*
 
@@ -4858,7 +4255,7 @@ We are processing the report!
 
 
 ### getShipmentHistory
-
+Get shipment history.
 
 
 
@@ -4883,7 +4280,7 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 
 
-Get Shipment History
+Retrieve the shipment history.
 
 *Returned Response:*
 
@@ -4950,7 +4347,7 @@ It shows the journey of the shipment!
 
 
 ### getShipmentReasons
-Get reasons behind full or partial cancellation of a shipment
+Get shipment reasons.
 
 
 
@@ -4978,7 +4375,7 @@ const data = await platformClient.order.getShipmentReasons({  shipmentId : value
 
 
 
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+Retrieve the issues that led to the cancellation of bags within a shipment.
 
 *Returned Response:*
 
@@ -5040,7 +4437,7 @@ Success. Check the example shown below or refer `PlatformShipmentReasonsResponse
 
 
 ### getShipments
-
+Get shipments.
 
 
 
@@ -5152,7 +4549,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 
 
 
-Get Shipments Listing for the company id
+Retrieve a list of available shipments.
 
 *Returned Response:*
 
@@ -5186,7 +4583,7 @@ We are processing the report!
 
 
 ### getStateTransitionMap
-
+Get state transition map.
 
 
 
@@ -5203,7 +4600,7 @@ const data = await platformClient.order.getStateTransitionMap();
 
 
 
-Get State Transition Map
+Retrieve a map of state transitions for orders.
 
 *Returned Response:*
 
@@ -5491,7 +4888,7 @@ Sucessfully Created the Template Url.
 
 
 ### getfilters
-
+Get filters.
 
 
 
@@ -5516,7 +4913,7 @@ const data = await platformClient.order.getfilters({  view : value,
 
 
 
-Get Listing Filters
+Retrieve listing filters.
 
 *Returned Response:*
 
@@ -5897,688 +5294,8 @@ List of filters
 ---
 
 
-### getuserviews
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getuserviews();
-
-// Async/Await
-const data = await platformClient.order.getuserviews();
-```
-
-
-
-
-
-
-Get User views(User cross company views)
-
-*Returned Response:*
-
-
-
-
-[UserViewsResponse](#UserViewsResponse)
-
-Success. Check the example shown below.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "parent_views": [
-    {
-      "views": [
-        {
-          "id": "65858ec5e5a448bea2d30c0d",
-          "slug": "packed",
-          "text": "Packed",
-          "filters": [
-            {
-              "label": "Shipment Status",
-              "value": "bag_status",
-              "options": [
-                {
-                  "label": "Placed",
-                  "value": "placed"
-                },
-                {
-                  "label": "My New State",
-                  "value": "my_new_state"
-                }
-              ]
-            },
-            {
-              "label": "Shipment Active Status",
-              "value": "is_active",
-              "options": [
-                {
-                  "label": "Active Shipments",
-                  "value": true
-                },
-                {
-                  "label": "Inactive Shipments",
-                  "value": false
-                }
-              ]
-            },
-            {
-              "label": "Shipment Lock Status",
-              "value": "lock_status",
-              "options": [
-                {
-                  "label": "Locked Shipments",
-                  "value": "locked"
-                },
-                {
-                  "label": "Unlocked Shipments",
-                  "value": "complete"
-                }
-              ]
-            },
-            {
-              "label": "Delivery Partners",
-              "value": "dps",
-              "options": [
-                {
-                  "label": "Xpress Bee",
-                  "value": "3b2r8g27r8"
-                },
-                {
-                  "label": "Self Ship",
-                  "value": "self_ship"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "parent_slug": "processed",
-      "parent_text": "Processed"
-    },
-    {
-      "views": [
-        {
-          "id": "65858e50e5a448bea2d30c0c",
-          "slug": "reassigned",
-          "text": "Reassigned",
-          "filters": [
-            {
-              "label": "Shipment Status",
-              "value": "bag_status",
-              "options": [
-                {
-                  "label": "Placed",
-                  "value": "placed"
-                },
-                {
-                  "label": "My New State",
-                  "value": "my_new_state"
-                }
-              ]
-            },
-            {
-              "label": "Shipment Active Status",
-              "value": "is_active",
-              "options": [
-                {
-                  "label": "Active Shipments",
-                  "value": true
-                },
-                {
-                  "label": "Inactive Shipments",
-                  "value": false
-                }
-              ]
-            },
-            {
-              "label": "Shipment Lock Status",
-              "value": "lock_status",
-              "options": [
-                {
-                  "label": "Locked Shipments",
-                  "value": "locked"
-                },
-                {
-                  "label": "Unlocked Shipments",
-                  "value": "complete"
-                }
-              ]
-            },
-            {
-              "label": "Delivery Partners",
-              "value": "dps",
-              "options": [
-                {
-                  "label": "Xpress Bee",
-                  "value": "3b2r8g27r8"
-                },
-                {
-                  "label": "Self Ship",
-                  "value": "self_ship"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "parent_slug": "unfilfilled",
-      "parent_text": "Unfulfilled"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### globalfilters
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.globalfilters({  showIn : value,
- requestSource : value });
-
-// Async/Await
-const data = await platformClient.order.globalfilters({  showIn : value,
- requestSource : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| showIn | string | yes | Name of view to get filters for |   
-| requestSource | string | yes | Name of site (Platform/Admin) |  
-
-
-
-Get Global Filters
-
-*Returned Response:*
-
-
-
-
-[GlobalFiltersResponse](#GlobalFiltersResponse)
-
-Global list of filters
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "filters": [
-    {
-      "label": "Fulfilling Stores",
-      "value": "stores",
-      "filter_type": "global",
-      "type": "single_select",
-      "options": []
-    },
-    {
-      "label": "Sort Type",
-      "value": "sort_type",
-      "type": "single_select",
-      "filter_type": "global",
-      "options": [
-        {
-          "label": "SLA",
-          "value": "sla_asc"
-        },
-        {
-          "label": "Newest First",
-          "value": "created_date_desc"
-        },
-        {
-          "label": "Oldest First",
-          "value": "created_date_asc"
-        }
-      ]
-    },
-    {
-      "label": "Search Types",
-      "value": "search_type",
-      "type": "single_select",
-      "filter_type": "global",
-      "options": [
-        {
-          "label": "Auto",
-          "value": "auto",
-          "placeholder_text": "Search by Shipment ID, Order ID or Customer Email",
-          "min_search_size": 5,
-          "show_ui": true
-        },
-        {
-          "label": "Shipment ID",
-          "value": "shipment_id",
-          "placeholder_text": "Search by Shipment ID",
-          "min_search_size": 6,
-          "show_ui": true
-        },
-        {
-          "text": "User ID",
-          "value": "user_id",
-          "placeholder_text": "Search by User ID",
-          "min_search_size": 4,
-          "show_ui": false
-        },
-        {
-          "label": "Bag ID",
-          "value": "bag_id",
-          "placeholder_text": "Search by Bag ID",
-          "min_search_size": 4,
-          "show_ui": true
-        },
-        {
-          "label": "Order ID",
-          "value": "order_id",
-          "placeholder_text": "Search by Order ID",
-          "min_search_size": 6,
-          "show_ui": true
-        },
-        {
-          "label": "External Order ID",
-          "value": "external_order_id",
-          "placeholder_text": "Search by External Order ID",
-          "min_search_size": 6,
-          "show_ui": true
-        },
-        {
-          "label": "External Bag ID",
-          "value": "external_bag_id",
-          "placeholder_text": "Search by External Bag ID",
-          "min_search_size": 6,
-          "show_ui": true
-        },
-        {
-          "label": "External Shipment ID",
-          "value": "external_shipment_id",
-          "placeholder_text": "Search by External Shipment ID",
-          "min_search_size": 6,
-          "show_ui": true
-        },
-        {
-          "label": "Channel Shipment ID",
-          "value": "channel_shipment_id",
-          "placeholder_text": "Search by Channel Shipment ID",
-          "min_search_size": 6,
-          "show_ui": true
-        },
-        {
-          "label": "Invoice",
-          "value": "invoice_id",
-          "placeholder_text": "Search by Invoice",
-          "min_search_size": 5,
-          "show_ui": true
-        },
-        {
-          "label": "AWB",
-          "value": "awb_no",
-          "placeholder_text": "Search by AWB",
-          "min_search_size": 10,
-          "show_ui": true
-        },
-        {
-          "label": "SKU",
-          "value": "sku",
-          "placeholder_text": "Search by SKU",
-          "min_search_size": 3,
-          "show_ui": true
-        },
-        {
-          "label": "EAN",
-          "value": "ean",
-          "placeholder_text": "Search by EAN",
-          "min_search_size": 3,
-          "show_ui": true
-        },
-        {
-          "label": "ALU",
-          "value": "alu",
-          "placeholder_text": "Search by ALU",
-          "min_search_size": 3,
-          "show_ui": true
-        },
-        {
-          "label": "UPC",
-          "value": "upc",
-          "placeholder_text": "Search by UPC",
-          "min_search_size": 3,
-          "show_ui": true
-        },
-        {
-          "label": "Customer Registered Phone",
-          "value": "registered_phone",
-          "placeholder_text": "Search by Customer Registered Phone",
-          "min_search_size": 3,
-          "show_ui": true
-        },
-        {
-          "label": "Customer Name",
-          "value": "name",
-          "placeholder_text": "Search by Customer Name",
-          "min_search_size": 3,
-          "show_ui": true
-        },
-        {
-          "label": "Customer Phone",
-          "value": "phone",
-          "placeholder_text": "Search by Customer Phone",
-          "min_search_size": 3,
-          "show_ui": true
-        },
-        {
-          "label": "Customer Email",
-          "value": "email",
-          "placeholder_text": "Search by Customer Email",
-          "min_search_size": 5,
-          "show_ui": true
-        },
-        {
-          "label": "Return ID",
-          "value": "return_id",
-          "placeholder_text": "Search by Return ID",
-          "min_search_size": 5,
-          "show_ui": true
-        },
-        {
-          "text": "Tags",
-          "value": "tags",
-          "placeholder_text": "Search by Tags",
-          "min_search_size": 3,
-          "show_ui": false
-        }
-      ]
-    },
-    {
-      "label": "Shipment Status",
-      "filter_type": "advance",
-      "value": "bag_status",
-      "type": "multi_select",
-      "options": [
-        {
-          "label": "Order Start 1",
-          "value": {
-            "state_type": "operational",
-            "slug": "order-start",
-            "label": "Order Start 1"
-          }
-        },
-        {
-          "label": "sameeer",
-          "value": {
-            "state_type": "operational",
-            "slug": "sameeer",
-            "label": "sameeer"
-          }
-        },
-        {
-          "label": "Talha test demo 2",
-          "value": {
-            "state_type": "operational",
-            "slug": "talha-test-demo-2",
-            "label": "Talha test demo 2"
-          }
-        },
-        {
-          "label": "Refund Acknowledged 22",
-          "value": {
-            "state_type": "financial",
-            "slug": "refund-acknowledged-22",
-            "label": "Refund Acknowledged 22"
-          }
-        },
-        {
-          "label": "Shomin Test",
-          "value": {
-            "state_type": "operational",
-            "slug": "shomin-test",
-            "label": "Shomin Test"
-          }
-        },
-        {
-          "label": "Amit",
-          "value": {
-            "state_type": "operational",
-            "slug": "amit",
-            "label": "Amit"
-          }
-        },
-        {
-          "label": "Niteen A",
-          "value": {
-            "state_type": "operational",
-            "slug": "niteen-a",
-            "label": "Niteen A"
-          }
-        },
-        {
-          "label": "Rahul rathod",
-          "value": {
-            "state_type": "operational",
-            "slug": "rahul-rathod",
-            "label": "Rahul rathod"
-          }
-        },
-        {
-          "label": "Sameer Kadam",
-          "value": {
-            "state_type": "operational",
-            "slug": "sameer-kadam",
-            "label": "Sameer Kadam"
-          }
-        },
-        {
-          "label": "sameer",
-          "value": {
-            "state_type": "operational",
-            "slug": "sameer",
-            "label": "sameer"
-          }
-        },
-        {
-          "label": "talha test 6",
-          "value": {
-            "state_type": "operational",
-            "slug": "ta",
-            "label": "talha test 6"
-          }
-        },
-        {
-          "label": "Talha",
-          "value": {
-            "state_type": "operational",
-            "slug": "talha",
-            "label": "Talha"
-          }
-        },
-        {
-          "label": "Refund Acknowledged 22",
-          "value": {
-            "state_type": "financial",
-            "slug": "refund_acknowledged_22",
-            "label": "Refund Acknowledged 22"
-          }
-        },
-        {
-          "label": "Refund On Hold 24",
-          "value": {
-            "state_type": "financial",
-            "slug": "refund_on_hold_24",
-            "label": "Refund On Hold 24"
-          }
-        },
-        {
-          "label": "refund_acknowledged_22",
-          "value": {
-            "state_type": "operational",
-            "slug": "Refund Acknowledged 22",
-            "label": "refund_acknowledged_22"
-          }
-        },
-        {
-          "label": "Refund on Hold 2",
-          "value": {
-            "state_type": "financial",
-            "slug": "refund_on_hold_2",
-            "label": "Refund on Hold 2"
-          }
-        },
-        {
-          "label": "Refund Acknowledged 3",
-          "value": {
-            "state_type": "operational",
-            "slug": "refund_acknowledged_2",
-            "label": "Refund Acknowledged 3"
-          }
-        },
-        {
-          "label": "Refund Acknowledged 21",
-          "value": {
-            "state_type": "operational",
-            "slug": "refund_acknowledged_1",
-            "label": "Refund Acknowledged 21"
-          }
-        },
-        {
-          "label": "Refund Acknowledged",
-          "value": {
-            "state_type": "financial",
-            "slug": "refund_acknowledged",
-            "label": "Refund Acknowledged"
-          }
-        },
-        {
-          "label": "Refund pending for Approval",
-          "value": {
-            "state_type": "financial",
-            "slug": "refund_pending_for_approval",
-            "label": "Refund pending for Approval"
-          }
-        }
-      ]
-    },
-    {
-      "label": "Time to Dispatch",
-      "value": "time_to_dispatch",
-      "type": "single_select",
-      "filter_type": "advance",
-      "placeholder_text": "Select time to dispatch",
-      "options": [
-        {
-          "label": "Breached",
-          "value": "1"
-        },
-        {
-          "label": "Not Breached",
-          "value": "-1"
-        }
-      ]
-    },
-    {
-      "label": "Payment Methods",
-      "value": "payment_methods",
-      "type": "single_select",
-      "filter_type": "advance",
-      "placeholder_text": "Select payment methods",
-      "options": [
-        {
-          "label": "COD",
-          "value": "COD"
-        },
-        {
-          "label": "Prepaid",
-          "value": "PREPAID"
-        }
-      ]
-    },
-    {
-      "label": "Delivery Partner",
-      "value": "dp_ids",
-      "filter_type": "advance",
-      "type": "multi_select",
-      "placeholder_text": "Select delivery partners",
-      "required": true,
-      "options": [
-        {
-          "label": "Self Delivery",
-          "value": "652255c58ab4101b2595c6c5|652255c58ab4101b2595c6c5",
-          "name": "Self Delivery"
-        }
-      ]
-    },
-    {
-      "label": "Sales Channel",
-      "value": "sales_channels",
-      "placeholder_text": "Select sales channels",
-      "filter_type": "advance",
-      "type": "multi_select",
-      "required": false,
-      "options": [
-        {
-          "label": "Test Company - 1",
-          "value": "655cbbb68bd7831239082ce1",
-          "name": "Test Company - 1"
-        }
-      ]
-    },
-    {
-      "label": "Tags",
-      "value": "tags",
-      "filter_type": "advance",
-      "type": "multi_select",
-      "placeholder_text": "Select tags",
-      "required": false,
-      "options": []
-    }
-  ],
-  "company_id": null,
-  "request_source": "platform",
-  "show_in": "shipment_view"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### invalidateShipmentCache
-
+Invalidate shipment cache.
 
 
 
@@ -6599,7 +5316,7 @@ const data = await platformClient.order.invalidateShipmentCache({  body : value 
 | body | [InvalidateShipmentCachePayload](#InvalidateShipmentCachePayload) | yes | Request body |
 
 
-Invalidate shipment Cache
+Invalidate shipment Cache.
 
 *Returned Response:*
 
@@ -6741,7 +5458,7 @@ Job details.
 
 
 ### orderUpdate
-
+Order update.
 
 
 
@@ -6762,7 +5479,7 @@ const data = await platformClient.order.orderUpdate({  body : value });
 | body | [PlatformOrderUpdate](#PlatformOrderUpdate) | yes | Request body |
 
 
-Update Order
+Modify the details and status of an order. 
 
 *Returned Response:*
 
@@ -6795,139 +5512,8 @@ We are processing the order!
 ---
 
 
-### postRefundConfiguration
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.postRefundConfiguration({  appId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.order.postRefundConfiguration({  appId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| appId | string | yes |  |  
-| body | [RefundStateConfigurationManualSchema](#RefundStateConfigurationManualSchema) | yes | Request body |
-
-
-refund configuration.
-
-*Returned Response:*
-
-
-
-
-[RefundStateConfigurationManualSchemaResponse](#RefundStateConfigurationManualSchemaResponse)
-
-refund config.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "prepaid": {
-      "message": "manual refund for prepaid",
-      "is_manual": false
-    },
-    "non_prepaid": {
-      "message": "manual refund for non_prepaid",
-      "is_manual": true
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### postRefundStateConfiguration
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.postRefundStateConfiguration({  appId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.order.postRefundStateConfiguration({  appId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| appId | string | yes |  |  
-| body | [PostRefundStateConfiguration](#PostRefundStateConfiguration) | yes | Request body |
-
-
-Refund State Configuration
-
-*Returned Response:*
-
-
-
-
-[PostRefundStateConfigurationResponse](#PostRefundStateConfigurationResponse)
-
-create refund configuration successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "update refund configuration successfully"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### postShipmentHistory
-
+Post shipment history.
 
 
 
@@ -6948,7 +5534,7 @@ const data = await platformClient.order.postShipmentHistory({  body : value });
 | body | [PostShipmentHistory](#PostShipmentHistory) | yes | Request body |
 
 
-Post shipment history
+Add history records for a shipment.
 
 *Returned Response:*
 
@@ -7000,63 +5586,6 @@ It shows the journey of the shipment!
     }
   ],
   "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### postuserviews
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.postuserviews({  body : value });
-
-// Async/Await
-const data = await platformClient.order.postuserviews({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UserViewsResponse](#UserViewsResponse) | yes | Request body |
-
-
-Add User views(User cross company views)
-
-*Returned Response:*
-
-
-
-
-[CreateUpdateDeleteResponse](#CreateUpdateDeleteResponse)
-
-Success. Check the example shown below.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "User view added successfully"
 }
 ```
 </details>
@@ -7128,7 +5657,7 @@ Manifest will be processed!
 
 
 ### reassignLocation
-
+Reassign location.
 
 
 
@@ -7149,7 +5678,7 @@ const data = await platformClient.order.reassignLocation({  body : value });
 | body | [StoreReassign](#StoreReassign) | yes | Request body |
 
 
-Reassign Location
+Change the assigned location for an order or shipment.
 
 *Returned Response:*
 
@@ -7183,7 +5712,7 @@ Successfully reassigned location!
 
 
 ### sendSmsNinja
-
+Send SMS via Ninja.
 
 
 
@@ -7204,7 +5733,7 @@ const data = await platformClient.order.sendSmsNinja({  body : value });
 | body | [SendSmsPayload](#SendSmsPayload) | yes | Request body |
 
 
-Send SMS Ninja Panel
+Send SMS Ninja Panel.
 
 *Returned Response:*
 
@@ -7241,7 +5770,7 @@ Sms Sent successfully
 
 
 ### sendUserMobileOTP
-
+Send user mobile OTP.
 
 
 
@@ -7262,7 +5791,7 @@ const data = await platformClient.order.sendUserMobileOTP({  body : value });
 | body | [SendUserMobileOTP](#SendUserMobileOTP) | yes | Request body |
 
 
-Send User Mobile OTP
+Send a one-time OTP to a users mobile device.
 
 *Returned Response:*
 
@@ -7305,7 +5834,7 @@ Send OTP to user mobile
 
 
 ### trackShipment
-
+Track shipment.
 
 
 
@@ -7336,7 +5865,7 @@ const data = await platformClient.order.trackShipment({  shipmentId : value,
 
 
 
-This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
+Retrieve courier partner tracking details for a given shipment id or awb no.
 
 *Returned Response:*
 
@@ -7402,7 +5931,7 @@ Shipment Tracking fetched successfully
 
 
 ### trackShipmentPlatform
-Track shipment
+Track shipment on the platform.
 
 
 
@@ -7424,7 +5953,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.trackShi
 
 
 
-Track Shipment by shipment id, for application based on application Id
+Track shipment by Shipment ID for application based on application Id
 
 *Returned Response:*
 
@@ -7474,7 +6003,7 @@ Success. Check the example shown below or refer `PlatformShipmentTrack` for more
 
 
 ### updateAddress
-
+Update address.
 
 
 
@@ -7529,7 +6058,7 @@ const data = await platformClient.order.updateAddress({  shipmentId : value,
 
 
 
-Update Address for the order
+Modify the shipping address for an order.
 
 *Returned Response:*
 
@@ -7563,7 +6092,7 @@ Update Address will be processed!
 
 
 ### updatePackagingDimensions
-
+Update packaging dimensions.
 
 
 
@@ -7584,7 +6113,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 | body | [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload) | yes | Request body |
 
 
-Update Packaging Dimensions
+Modify the dimensions of packaging.
 
 *Returned Response:*
 
@@ -7617,121 +6146,8 @@ Manifest will be processed!
 ---
 
 
-### updateRule
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.updateRule({  ruleId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.updateRule({  ruleId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleId | string | yes |  |  
-| body | [RuleUpdateRequest](#RuleUpdateRequest) | yes | Request body |
-
-
-Update a specific rule by ID
-
-*Returned Response:*
-
-
-
-
-[RuleUpdateResponse](#RuleUpdateResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateRulePosition
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.updateRulePosition({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.updateRulePosition({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UpdateRulePositionRequest](#UpdateRulePositionRequest) | yes | Request body |
-
-
-Update the position of a rule
-
-*Returned Response:*
-
-
-
-
-[UpdateRulePositionResponse](#UpdateRulePositionResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateShipmentLock
-
+Update shipment lock.
 
 
 
@@ -7752,7 +6168,7 @@ const data = await platformClient.order.updateShipmentLock({  body : value });
 | body | [UpdateShipmentLockPayload](#UpdateShipmentLockPayload) | yes | Request body |
 
 
-update shipment/bag lock and check status
+Modify shipment/bag lock and check status.
 
 *Returned Response:*
 
@@ -7811,7 +6227,7 @@ Successfully update the Lock and get check status of the shipment/Bag
 
 
 ### updateShipmentStatus
-
+Update shipment status.
 
 
 
@@ -7832,7 +6248,7 @@ const data = await platformClient.order.updateShipmentStatus({  body : value });
 | body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
 
 
-This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
+Shipment state transition or Shipment data update or both.
 
 *Returned Response:*
 
@@ -7894,7 +6310,7 @@ NOTE success response can contains success and failed result as well
 
 
 ### updateShipmentTracking
-Post courier partner tracking details
+Update shipment tracking.
 
 
 
@@ -7915,7 +6331,7 @@ const data = await platformClient.order.updateShipmentTracking({  body : value }
 | body | [CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails) | yes | Request body |
 
 
-This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms.
+Modify courier partner tracking details for a given shipment id or awb no.
 
 *Returned Response:*
 
@@ -7956,63 +6372,6 @@ Shipment Tracking updated successfully
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateuserviews
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.updateuserviews({  body : value });
-
-// Async/Await
-const data = await platformClient.order.updateuserviews({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UserViewsResponse](#UserViewsResponse) | yes | Request body |
-
-
-Update User views(User cross company views)
-
-*Returned Response:*
-
-
-
-
-[CreateUpdateDeleteResponse](#CreateUpdateDeleteResponse)
-
-Success. Check the example shown below.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "User view updated successfully"
-}
-```
 </details>
 
 
@@ -8085,7 +6444,7 @@ Successful Manifest upload!
 
 
 ### verifyMobileOTP
-
+Verify mobile OTP.
 
 
 
@@ -8841,6 +7200,7 @@ Verify OTP
  | city | string? |  yes  |  |
  | country | string? |  yes  |  |
  | country_code | string? |  yes  |  |
+ | country_iso_code | string? |  yes  | Country Code in ISO 2 format (e.g. US, IN) |
  | customer_code | string? |  yes  |  |
  | external_customer_code | string? |  yes  |  |
  | first_name | string? |  yes  |  |
@@ -9116,17 +7476,6 @@ Verify OTP
 
 ---
 
-#### [Condition](#Condition)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | operation | string |  no  |  |
- | value | string |  no  |  |
- | variable | string |  no  |  |
- 
-
----
-
 #### [ContactDetails](#ContactDetails)
 
  | Properties | Type | Nullable | Description |
@@ -9288,26 +7637,6 @@ Verify OTP
 
 ---
 
-#### [CreateRuleResponse](#CreateRuleResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [RuleError](#RuleError)? |  yes  |  |
- | id | number? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [CreateUpdateDeleteResponse](#CreateUpdateDeleteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
 #### [CreditBalanceInfo](#CreditBalanceInfo)
 
  | Properties | Type | Nullable | Description |
@@ -9401,17 +7730,6 @@ Verify OTP
 
 ---
 
-#### [DeleteRuleResponse](#DeleteRuleResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [RuleError](#RuleError)? |  yes  |  |
- | id | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [DeliverySlotDetails](#DeliverySlotDetails)
 
  | Properties | Type | Nullable | Description |
@@ -9421,16 +7739,6 @@ Verify OTP
  | slot | string? |  yes  |  |
  | type | string? |  yes  |  |
  | upper_bound | string? |  yes  |  |
- 
-
----
-
-#### [Department](#Department)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | id | string? |  yes  |  |
  
 
 ---
@@ -9705,8 +8013,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  |  |
  | success | boolean? |  yes  |  |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
  
 
 ---
@@ -9816,17 +8122,6 @@ Verify OTP
 
 ---
 
-#### [FilterOptions](#FilterOptions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | label | string |  no  |  |
- | name | string? |  yes  |  |
- | value | string |  no  |  |
- 
-
----
-
 #### [Filters](#Filters)
 
  | Properties | Type | Nullable | Description |
@@ -9853,21 +8148,6 @@ Verify OTP
  | placeholder_text | string? |  yes  |  |
  | required | boolean? |  yes  |  |
  | text | string |  no  |  |
- | type | string |  no  |  |
- | value | string |  no  |  |
- 
-
----
-
-#### [FiltersList](#FiltersList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | filter_type | string |  no  |  |
- | label | string |  no  |  |
- | options | [[FilterOptions](#FilterOptions)] |  no  |  |
- | placeholder_text | string? |  yes  |  |
- | required | boolean? |  yes  |  |
  | type | string |  no  |  |
  | value | string |  no  |  |
  
@@ -9976,6 +8256,57 @@ Verify OTP
 
 ---
 
+#### [GenerateInvoiceIDErrorResponse](#GenerateInvoiceIDErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)]? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error_message | string? |  yes  |  |
+ | invoice_id | boolean? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDRequest](#GenerateInvoiceIDRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_ids | [string] |  no  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDResponse](#GenerateInvoiceIDResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)]? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error_message | boolean? |  yes  |  |
+ | invoice_id | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
 
  | Properties | Type | Nullable | Description |
@@ -10008,39 +8339,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | data | [BagData](#BagData)? |  yes  |  |
  | status_code | number? |  yes  |  |
- 
-
----
-
-#### [GetRefundStateConfigurationResponse](#GetRefundStateConfigurationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | config | [PostRefundStateConfiguration](#PostRefundStateConfiguration)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [GetRefundStates](#GetRefundStates)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[RefundStates](#RefundStates)]? |  yes  |  |
- | status | number? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [GlobalFiltersResponse](#GlobalFiltersResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | filters | [[FiltersList](#FiltersList)] |  no  |  |
- | request_source | string? |  yes  |  |
- | show_in | string |  no  |  |
  
 
 ---
@@ -10287,16 +8585,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | file_name | string? |  yes  |  |
  | url | string? |  yes  |  |
- 
-
----
-
-#### [L3](#L3)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | id | string? |  yes  |  |
  
 
 ---
@@ -10861,67 +9149,6 @@ Verify OTP
 
 ---
 
-#### [PageInfo](#PageInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | page_size | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [PaginatedStates](#PaginatedStates)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[StateManagerState](#StateManagerState)]? |  yes  |  |
- | page | [PaginationInfo](#PaginationInfo)? |  yes  |  |
- 
-
----
-
-#### [PaginationInfo](#PaginationInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | total | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [ParameterResponse](#ParameterResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
-#### [ParentViews](#ParentViews)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parent_slug | string? |  yes  |  |
- | parent_text | string? |  yes  |  |
- | views | [[ViewDetails](#ViewDetails)]? |  yes  |  |
- 
-
----
-
 #### [PaymentInfo](#PaymentInfo)
 
  | Properties | Type | Nullable | Description |
@@ -11285,26 +9512,6 @@ Verify OTP
 
 ---
 
-#### [PostRefundStateConfiguration](#PostRefundStateConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | non_prepaid | [string]? |  yes  |  |
- | prepaid | [string]? |  yes  |  |
- 
-
----
-
-#### [PostRefundStateConfigurationResponse](#PostRefundStateConfigurationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [PostShipmentHistory](#PostShipmentHistory)
 
  | Properties | Type | Nullable | Description |
@@ -11456,17 +9663,6 @@ Verify OTP
 
 ---
 
-#### [QuestionErrorResponse](#QuestionErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | any? |  yes  |  |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
 #### [QuestionSet](#QuestionSet)
 
  | Properties | Type | Nullable | Description |
@@ -11477,28 +9673,14 @@ Verify OTP
 
 ---
 
-#### [QuestionSetItem](#QuestionSetItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | id | number |  no  |  |
- 
-
----
-
 #### [Reason](#Reason)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | id | number |  no  |  |
- | is_active | boolean |  no  |  |
- | is_deleted | boolean |  no  |  |
- | meta | string |  no  |  |
- | qc_type | [string] |  no  |  |
- | question_set | [[QuestionSet](#QuestionSet)] |  no  |  |
- | remark_required | boolean |  no  |  |
+ | display_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | qc_type | [string]? |  yes  |  |
+ | question_set | [[QuestionSet](#QuestionSet)]? |  yes  |  |
  
 
 ---
@@ -11559,65 +9741,6 @@ Verify OTP
 
 ---
 
-#### [RefundStateConfigurationManualSchema](#RefundStateConfigurationManualSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | non_prepaid | [RefundStateManualWithoutMessage](#RefundStateManualWithoutMessage)? |  yes  |  |
- | prepaid | [RefundStateManualWithoutMessage](#RefundStateManualWithoutMessage)? |  yes  |  |
- 
-
----
-
-#### [RefundStateConfigurationManualSchemaResponse](#RefundStateConfigurationManualSchemaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [RefundStateManualWithMessageData](#RefundStateManualWithMessageData)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [RefundStateManualWithMessage](#RefundStateManualWithMessage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_manual | boolean? |  yes  |  |
- | message | string? |  yes  |  |
- 
-
----
-
-#### [RefundStateManualWithMessageData](#RefundStateManualWithMessageData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | non_prepaid | [RefundStateManualWithMessage](#RefundStateManualWithMessage)? |  yes  |  |
- | prepaid | [RefundStateManualWithMessage](#RefundStateManualWithMessage)? |  yes  |  |
- 
-
----
-
-#### [RefundStateManualWithoutMessage](#RefundStateManualWithoutMessage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_manual | boolean? |  yes  |  |
- 
-
----
-
-#### [RefundStates](#RefundStates)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | state | string? |  yes  |  |
- 
-
----
-
 #### [ReplacementDetails](#ReplacementDetails)
 
  | Properties | Type | Nullable | Description |
@@ -11654,206 +9777,6 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | next_statuses | [string]? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [RuleAction](#RuleAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reasons | [[Reason](#Reason)]? |  yes  |  |
- 
-
----
-
-#### [RuleError](#RuleError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | type | string |  no  |  |
- | value | string |  no  |  |
- 
-
----
-
-#### [RuleErrorResponse](#RuleErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [RuleError](#RuleError)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [RuleItem](#RuleItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | actions | [RuleAction](#RuleAction) |  no  |  |
- | channel | string |  no  |  |
- | conditions | [Condition](#Condition) |  no  |  |
- | description | string |  no  |  |
- | entity_type | string |  no  |  |
- | flow_type | string |  no  |  |
- | id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_deleted | boolean |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
- | name | string |  no  |  |
- | position | number |  no  |  |
- | qc_enabled | boolean |  no  |  |
- | rule_type | string |  no  |  |
- | value | string |  no  |  |
- 
-
----
-
-#### [RuleLaneConfigErrorResponse](#RuleLaneConfigErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | any? |  yes  |  |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
-#### [RuleListItem](#RuleListItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | actions | [RuleAction](#RuleAction) |  no  |  |
- | channel | string |  no  |  |
- | conditions | [Condition](#Condition) |  no  |  |
- | description | string |  no  |  |
- | entity_type | string |  no  |  |
- | error | [RuleError](#RuleError) |  no  |  |
- | flow_type | string |  no  |  |
- | id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_deleted | boolean |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
- | name | string |  no  |  |
- | position | number |  no  |  |
- | qc_enabled | boolean |  no  |  |
- | rule_type | string |  no  |  |
- | success | boolean |  no  |  |
- | value | string |  no  |  |
- 
-
----
-
-#### [RuleListRequest](#RuleListRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | flow_type | string? |  yes  |  |
- | lane_type | string? |  yes  |  |
- | page_no | number? |  yes  |  |
- | page_size | number? |  yes  |  |
- 
-
----
-
-#### [RuleListResponse](#RuleListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [RuleErrorResponse](#RuleErrorResponse)? |  yes  |  |
- | items | [[RuleListItem](#RuleListItem)]? |  yes  |  |
- | page | [PageInfo](#PageInfo)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [RuleMeta](#RuleMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | department | [Department](#Department)? |  yes  |  |
- | l3 | [L3](#L3)? |  yes  |  |
- 
-
----
-
-#### [RuleParametersResponse](#RuleParametersResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | response | [[ParameterResponse](#ParameterResponse)]? |  yes  |  |
- 
-
----
-
-#### [RuleRequest](#RuleRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | actions | [RuleAction](#RuleAction) |  no  |  |
- | channel | string |  no  |  |
- | conditions | [[Condition](#Condition)] |  no  |  |
- | description | string? |  yes  |  |
- | entity_type | string |  no  |  |
- | flow_type | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_deleted | boolean |  no  |  |
- | meta | [RuleMeta](#RuleMeta) |  no  |  |
- | name | string |  no  |  |
- | qc_enabled | boolean |  no  |  |
- | restrict_forward_servicability | boolean? |  yes  |  |
- | rule_type | string |  no  |  |
- | value | string |  no  |  |
- 
-
----
-
-#### [RuleResponse](#RuleResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [RuleError](#RuleError)? |  yes  |  |
- | id | string? |  yes  |  |
- | items | [RuleItem](#RuleItem)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [RuleUpdateRequest](#RuleUpdateRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | actions | [RuleAction](#RuleAction) |  no  |  |
- | channel | string |  no  |  |
- | conditions | [[Condition](#Condition)] |  no  |  |
- | description | string? |  yes  |  |
- | entity_type | string |  no  |  |
- | flow_type | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_deleted | boolean |  no  |  |
- | meta | [RuleMeta](#RuleMeta) |  no  |  |
- | name | string |  no  |  |
- | position | number |  no  |  |
- | qc_enabled | boolean |  no  |  |
- | restrict_forward_servicability | boolean |  no  |  |
- | rule_type | string |  no  |  |
- | value | string |  no  |  |
- 
-
----
-
-#### [RuleUpdateResponse](#RuleUpdateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [RuleError](#RuleError)? |  yes  |  |
- | id | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  
 
@@ -12346,6 +10269,7 @@ Verify OTP
  | city | string? |  yes  |  |
  | country | string? |  yes  |  |
  | country_code | string? |  yes  |  |
+ | country_iso_code | string? |  yes  | Country Code in ISO 2 format (e.g. US, IN) |
  | customer_code | string? |  yes  |  |
  | external_customer_code | string? |  yes  |  |
  | first_name | string? |  yes  |  |
@@ -12381,66 +10305,6 @@ Verify OTP
  | payment_mode | string? |  yes  | Data mapped in Communication template: payment_mode |
  | phone_number | number |  no  | phone number for communication |
  | shipment_id | number |  no  | ShipmentId |
- 
-
----
-
-#### [StateManagerFilter](#StateManagerFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | default_value | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | options | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [StateManagerState](#StateManagerState)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_display_name | string? |  yes  | The application display name |
- | app_facing | boolean? |  yes  | Whether state is for app facing or not |
- | id | number? |  yes  | Unique identifier for the state |
- | is_active | boolean? |  yes  | Whether state is active or not |
- | journey_type | string? |  yes  | Type of the journey |
- | platform_display_name | string? |  yes  | The platform display name |
- | state | string? |  yes  | The name of the state |
- | state_type | string? |  yes  | Type of the state |
- 
-
----
-
-#### [StateManagerTask](#StateManagerTask)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | doc_string | string? |  yes  |  |
- | id | number? |  yes  |  |
- | kwargs | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
-
----
-
-#### [StateTransitionFlag](#StateTransitionFlag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | default_value | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | options | string? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -12756,31 +10620,6 @@ Verify OTP
 
 ---
 
-#### [UpdateRulePositionRequest](#UpdateRulePositionRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | flow_type | string |  no  |  |
- | page_no | number |  no  |  |
- | page_size | number |  no  |  |
- | position | number |  no  |  |
- | rule_id | number |  no  |  |
- 
-
----
-
-#### [UpdateRulePositionResponse](#UpdateRulePositionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [RuleError](#RuleError)? |  yes  |  |
- | items | [[RuleItem](#RuleItem)]? |  yes  |  |
- | page | [PageInfo](#PageInfo)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [UpdateShipmentLockPayload](#UpdateShipmentLockPayload)
 
  | Properties | Type | Nullable | Description |
@@ -12789,6 +10628,7 @@ Verify OTP
  | action_type | string |  no  | Expected action_type: [complete, operational, financial] |
  | entities | [[Entities](#Entities)] |  no  | Shipment/Entity |
  | entity_type | string |  no  | Expected entity_type: [bags, shipments] |
+ | resume_tasks_after_unlock | boolean? |  yes  |  |
  
 
 ---
@@ -12931,15 +10771,6 @@ Verify OTP
 
 ---
 
-#### [UserViewsResponse](#UserViewsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parent_views | [[ParentViews](#ParentViews)]? |  yes  |  |
- 
-
----
-
 #### [VerifyMobileOTP](#VerifyMobileOTP)
 
  | Properties | Type | Nullable | Description |
@@ -12981,18 +10812,6 @@ Verify OTP
  | fynd_order_id | string? |  yes  |  |
  | message | string? |  yes  |  |
  | mobile | string? |  yes  |  |
- 
-
----
-
-#### [ViewDetails](#ViewDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | filters | [[FiltersList](#FiltersList)]? |  yes  |  |
- | id | string? |  yes  |  |
- | slug | string? |  yes  |  |
- | text | string? |  yes  |  |
  
 
 ---

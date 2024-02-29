@@ -9,7 +9,7 @@
 The Sharing module simplifies the creation and sharing of QR codes and short links. Use it to generate QR codes for apps, products, collections, and URLs. Create short links for long URLs and retrieve them, along with the original URLs, using their respective codes.
 
 
-Default
+QR Code & Short Link management
 * [createShortLink](#createshortlink)
 * [getApplicationQRCode](#getapplicationqrcode)
 * [getCollectionQRCodeBySlug](#getcollectionqrcodebyslug)
@@ -28,7 +28,7 @@ Default
 
 
 ### createShortLink
-Create a short link
+Shorten URL.
 
 
 
@@ -49,7 +49,7 @@ const data = await applicationClient.share.createShortLink({  body : value });
 | body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
-Use this API to create a short link that is easy to write/share/read as compared to long URLs.
+Creates a shortened version of a given URL for easier sharing.
 
 *Returned Response:*
 
@@ -69,8 +69,6 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 ```json
 {
   "url": {
-    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
-    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
     "hash": "3qKlnsq-x"
   },
   "redirects": {
@@ -123,7 +121,7 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 
 
 ### getApplicationQRCode
-Create QR Code of an app
+App QR code.
 
 
 
@@ -140,7 +138,7 @@ const data = await applicationClient.share.getApplicationQRCode();
 
 
 
-Use this API to create a QR code of an app for sharing it with users who want to use the app.
+Generates a QR code for the application for easy sharing.
 
 *Returned Response:*
 
@@ -177,7 +175,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 ### getCollectionQRCodeBySlug
-Create QR Code of a collection
+Collection QR code.
 
 
 
@@ -199,7 +197,7 @@ const data = await applicationClient.share.getCollectionQRCodeBySlug({  slug : v
 
 
 
-Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
+Generates a QR code for a specific product collection using its slug.
 
 *Returned Response:*
 
@@ -236,7 +234,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 ### getOriginalShortLinkByHash
-Get original link by hash
+Original URL.
 
 
 
@@ -258,7 +256,7 @@ const data = await applicationClient.share.getOriginalShortLinkByHash({  hash : 
 
 
 
-Use this API to retrieve the original link from a short-link by using a hash value.
+Retrieve the original link from a short-link by using a hash value.
 
 *Returned Response:*
 
@@ -278,8 +276,6 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 ```json
 {
   "url": {
-    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
-    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
     "hash": "3qKlnsq-x"
   },
   "redirects": {
@@ -332,7 +328,7 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 
 
 ### getProductQRCodeBySlug
-Create QR Code of a product
+Product QR code.
 
 
 
@@ -354,7 +350,7 @@ const data = await applicationClient.share.getProductQRCodeBySlug({  slug : valu
 
 
 
-Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
+Creates a QR code for a specific product identified by its slug.
 
 *Returned Response:*
 
@@ -391,7 +387,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 ### getShortLinkByHash
-Get short link by hash
+Fetch short link.
 
 
 
@@ -413,7 +409,7 @@ const data = await applicationClient.share.getShortLinkByHash({  hash : value })
 
 
 
-Use this API to get a short link by using a hash value.
+Retrieves a previously created short link using its hash identifier.
 
 *Returned Response:*
 
@@ -433,8 +429,6 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 ```json
 {
   "url": {
-    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
-    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
     "hash": "3qKlnsq-x"
   },
   "redirects": {
@@ -487,7 +481,7 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 
 
 ### getUrlQRCode
-Create QR Code of a URL
+URL to QR code.
 
 
 
@@ -509,7 +503,7 @@ const data = await applicationClient.share.getUrlQRCode({  url : value });
 
 
 
-Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
+Converts a given URL into a scannable QR code.
 
 *Returned Response:*
 
@@ -674,8 +668,6 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | hash | string? |  yes  |  |
- | original | string? |  yes  |  |
- | short | string? |  yes  |  |
  
 
 ---

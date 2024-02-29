@@ -9,19 +9,28 @@
 Earn and redeem reward points
 
 
-Default
+Giveaways
 * [getGiveawayById](#getgiveawaybyid)
+* [saveGiveAway](#savegiveaway)
+* [showGiveaways](#showgiveaways)
+* [updateGiveAway](#updategiveaway)
+
+
+Offers
 * [getOfferByName](#getofferbyname)
-* [getRewardsConfiguration](#getrewardsconfiguration)
+* [showOffers](#showoffers)
+* [updateOfferByName](#updateofferbyname)
+
+
+User Management
 * [getUserDetails](#getuserdetails)
 * [getUserPointsHistory](#getuserpointshistory)
-* [saveGiveAway](#savegiveaway)
-* [setRewardsConfiguration](#setrewardsconfiguration)
-* [showGiveaways](#showgiveaways)
-* [showOffers](#showoffers)
-* [updateGiveAway](#updategiveaway)
-* [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
+
+
+Rewards Configuration
+* [getRewardsConfiguration](#getrewardsconfiguration)
+* [setRewardsConfiguration](#setrewardsconfiguration)
 
 
 
@@ -55,7 +64,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiv
 
 
 
-Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway.
+Retrieve specific giveaway details by its unique identifier.
 
 *Returned Response:*
 
@@ -98,375 +107,6 @@ ok
     "banner_image": {
       "secure_url": "",
       "aspect_ratio": "2:1"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOfferByName
-Fetch a offer by its name
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| name | string | yes | The name given to the offer. |  
-
-
-
-Fetch the specific offer details and configuration by the name of the offer.
-
-*Returned Response:*
-
-
-
-
-[Offer](#Offer)
-
-Success. Check example below or refer `Offer` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "63bfb9c1195d62ac089641cd",
-    "application_id": "5d5c304a4df829372e2ad6d1",
-    "name": "order",
-    "_schedule": {},
-    "active": true,
-    "banner_image": {
-      "aspect_ratio": "2:1",
-      "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
-    },
-    "created_at": "2023-01-12T07:41:53.356Z",
-    "display": {
-      "validity": 1000,
-      "validity_unit": "hours"
-    },
-    "info_action": {
-      "type": "",
-      "page": {
-        "type": "",
-        "params": {
-          "slug": null
-        },
-        "url": ""
-      }
-    },
-    "rule": {
-      "claimed": true,
-      "value": 10,
-      "value_type": "percent",
-      "validity": 60000
-    },
-    "share": {
-      "default": "Hey, join me on {{application_name}} and get exciting offers and reward points. Signup today and quickly earn Rs.{{offer_amount}}. Visit {{offer_link}} now!",
-      "text": ""
-    },
-    "sub_text": "Purchase and get reward points",
-    "text": "Order & Earn",
-    "type": "earn",
-    "updated_at": "2023-01-12T15:46:04.854Z",
-    "updated_by": "6678589f5d0df704c9996644",
-    "url": ""
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRewardsConfiguration
-Get all valid android paths
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
-```
-
-
-
-
-
-
-Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device.
-
-*Returned Response:*
-
-
-
-
-[ConfigurationRes](#ConfigurationRes)
-
-Success. Refer `ConfigurationRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; ConfigurationRes</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "terms_conditions_link": "https://fynd.freshdesk.com/support/solutions/folders/33000111619",
-    "valid_android_packages": [
-      "co.abc.com"
-    ],
-    "application_id": "5d5c304a4df829372e2ad6d1"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserDetails
-Get user reward details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserDetails({  userId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserDetails({  userId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | user id |  
-
-
-
-Fetches the user details and the user reward details with their current reward points for the specific user.
-
-*Returned Response:*
-
-
-
-
-[UserRes](#UserRes)
-
-Success. Check example below or refer `UserRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "user": {
-      "_id": "6362648a38693f31a29e51e2",
-      "user_id": "620f8234e517800d9497660d",
-      "referral": {
-        "code": "HASE02"
-      },
-      "application_id": "5d5c304a4df829372e2ad6d1",
-      "created_at": "2022-11-02T12:37:30.078Z",
-      "updated_at": "2022-11-02T12:37:30.078Z",
-      "active": false,
-      "block_reason": "test"
-    },
-    "points": {
-      "available": 0
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserPointsHistory
-Get all transactions of reward points
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
- pageId : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
- pageId : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | user id |    
-| pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
-| pageSize | number | no | The number of items to retrieve in each page. |  
-
-
-
-Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
-
-*Returned Response:*
-
-
-
-
-[HistoryRes](#HistoryRes)
-
-Success. Check example below or refer `HistoryRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "6464a9eb70e0debb8462667d",
-        "application_id": "000000000000000000000001",
-        "user_id": "000000000000000009802478",
-        "points": 500,
-        "remaining_points": 500,
-        "txn_name": "signup_credit",
-        "claimed": true,
-        "expires_on": "2023-06-14T10:18:19.118Z",
-        "meta": {
-          "offer_id": "630e0b8e349f3f1cfbec572f"
-        },
-        "created_at": "2023-05-17T10:18:19.118Z",
-        "updated_at": "2023-05-17T10:18:19.118Z",
-        "text_1": "Signup points",
-        "text_2": "Additional Points",
-        "text_3": "Will expire on 3:48 PM, 14 Jun'23"
-      },
-      {
-        "_id": "6464a9d370e0debb84626677",
-        "application_id": "000000000000000000000001",
-        "user_id": "000000000000000009802478",
-        "points": 500,
-        "remaining_points": 500,
-        "txn_name": "signup_credit",
-        "claimed": true,
-        "expires_on": "2023-06-14T10:17:55.588Z",
-        "meta": {
-          "offer_id": "630e0b8e349f3f1cfbec572f"
-        },
-        "created_at": "2023-05-17T10:17:55.588Z",
-        "updated_at": "2023-05-17T10:17:55.588Z",
-        "text_1": "Signup points",
-        "text_2": "Additional Points",
-        "text_3": "Will expire on 3:47 PM, 14 Jun'23"
-      }
-    ],
-    "page": {
-      "current": 0,
-      "item_total": 2,
-      "type": "cursor",
-      "size": 1,
-      "has_previous": true,
-      "has_next": false,
-      "next_id": ""
     }
   }
 }
@@ -487,7 +127,7 @@ Success. Check example below or refer `HistoryRes` for more details.
 
 
 ### saveGiveAway
-List of giveaways of the current application.
+Save giveaway.
 
 
 
@@ -508,7 +148,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.saveGi
 | body | [Giveaway](#Giveaway) | yes | Request body |
 
 
-Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway.
+Store and manage details of a giveaway.
 
 *Returned Response:*
 
@@ -570,78 +210,8 @@ ok
 ---
 
 
-### setRewardsConfiguration
-Updates the collection with given android paths.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ConfigurationRequest](#ConfigurationRequest) | yes | Request body |
-
-
-Updates the configuration or inserts new records with the given android paths.
-
-*Returned Response:*
-
-
-
-
-[SetConfigurationRes](#SetConfigurationRes)
-
-ok
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "terms_conditions_link": "https://fynd.freshdesk.com/support/solutions/folders/33000111619",
-    "valid_android_packages": [
-      "co.abc.com"
-    ],
-    "application_id": "5d5c304a4df829372e2ad6d1"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### showGiveaways
-List of giveaways of the current application.
+Display giveaways.
 
 
 
@@ -666,7 +236,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.showGi
 
 
 
-Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created.
+Retrieve and display available giveaways.
 
 *Returned Response:*
 
@@ -768,8 +338,202 @@ ok
 ---
 
 
+### updateGiveAway
+Update giveaway.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Giveaway ID |  
+| body | [Giveaway](#Giveaway) | yes | Request body |
+
+
+Modify and update information about a giveaway.
+
+*Returned Response:*
+
+
+
+
+[Giveaway](#Giveaway)
+
+ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "application_id": "5d5c304a4df829372e2ad6d1",
+    "name": "abhinav test",
+    "title": "abhinav test",
+    "description": "abhinav test",
+    "active": true,
+    "audience": {
+      "id": "6459029c9020a3d96599c528",
+      "header_user_id": "uid"
+    },
+    "rule": {
+      "amount": 1000
+    },
+    "_schedule": {
+      "start": "2023-05-24T09:35:02.800Z",
+      "end": "2023-05-24T18:30:00.000Z"
+    },
+    "banner_image": {
+      "secure_url": "",
+      "aspect_ratio": "2:1"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getOfferByName
+Get offer by name.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| name | string | yes | The name given to the offer. |  
+
+
+
+Retrieve an offer by its name.
+
+*Returned Response:*
+
+
+
+
+[Offer](#Offer)
+
+Success. Check example below or refer `Offer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "63bfb9c1195d62ac089641cd",
+    "application_id": "5d5c304a4df829372e2ad6d1",
+    "name": "order",
+    "_schedule": {},
+    "active": true,
+    "banner_image": {
+      "aspect_ratio": "2:1",
+      "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
+    },
+    "created_at": "2023-01-12T07:41:53.356Z",
+    "display": {
+      "validity": 1000,
+      "validity_unit": "hours"
+    },
+    "info_action": {
+      "type": "",
+      "page": {
+        "type": "",
+        "params": {
+          "slug": null
+        },
+        "url": ""
+      }
+    },
+    "rule": {
+      "claimed": true,
+      "value": 10,
+      "value_type": "percent",
+      "validity": 60000
+    },
+    "share": {
+      "default": "Hey, join me on {{application_name}} and get exciting offers and reward points. Signup today and quickly earn Rs.{{offer_amount}}. Visit {{offer_link}} now!",
+      "text": ""
+    },
+    "sub_text": "Purchase and get reward points",
+    "text": "Order & Earn",
+    "type": "earn",
+    "updated_at": "2023-01-12T15:46:04.854Z",
+    "updated_by": "6678589f5d0df704c9996644",
+    "url": ""
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### showOffers
-List of offers of the current application.
+Show offers.
 
 
 
@@ -786,7 +550,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.showOf
 
 
 
-Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details.
+Display available offers for users.
 
 *Returned Response:*
 
@@ -1037,95 +801,8 @@ ok
 ---
 
 
-### updateGiveAway
-Updates the giveaway by it's ID.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Giveaway ID |  
-| body | [Giveaway](#Giveaway) | yes | Request body |
-
-
-Make the necessary updates to the giveaway based on its giveaway ID.
-
-*Returned Response:*
-
-
-
-
-[Giveaway](#Giveaway)
-
-ok
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "application_id": "5d5c304a4df829372e2ad6d1",
-    "name": "abhinav test",
-    "title": "abhinav test",
-    "description": "abhinav test",
-    "active": true,
-    "audience": {
-      "id": "6459029c9020a3d96599c528",
-      "header_user_id": "uid"
-    },
-    "rule": {
-      "amount": 1000
-    },
-    "_schedule": {
-      "start": "2023-05-24T09:35:02.800Z",
-      "end": "2023-05-24T18:30:00.000Z"
-    },
-    "banner_image": {
-      "secure_url": "",
-      "aspect_ratio": "2:1"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateOfferByName
-Update offer by name
+Update offer by name.
 
 
 
@@ -1149,7 +826,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.update
 | body | [Offer](#Offer) | yes | Request body |
 
 
-Update the specific offer details and its configuration by offer name.
+Modify and manage an offer using its name.
 
 *Returned Response:*
 
@@ -1231,8 +908,208 @@ Success. Check example below or refer `Offer` for more details.
 ---
 
 
+
+
+### getUserDetails
+Get user details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserDetails({  userId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserDetails({  userId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |  
+
+
+
+Retrieve comprehensive details about a user in the rewards program.
+
+*Returned Response:*
+
+
+
+
+[UserRes](#UserRes)
+
+Success. Check example below or refer `UserRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "user": {
+      "_id": "6362648a38693f31a29e51e2",
+      "user_id": "620f8234e517800d9497660d",
+      "referral": {
+        "code": "HASE02"
+      },
+      "application_id": "5d5c304a4df829372e2ad6d1",
+      "created_at": "2022-11-02T12:37:30.078Z",
+      "updated_at": "2022-11-02T12:37:30.078Z",
+      "active": false,
+      "block_reason": "test"
+    },
+    "points": {
+      "available": 0
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserPointsHistory
+Get user points history.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
+ pageId : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
+ pageId : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |    
+| pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
+
+
+
+Retrieve the history of points earned and redeemed by a user.
+
+*Returned Response:*
+
+
+
+
+[HistoryRes](#HistoryRes)
+
+Success. Check example below or refer `HistoryRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "6464a9eb70e0debb8462667d",
+        "application_id": "000000000000000000000001",
+        "user_id": "000000000000000009802478",
+        "points": 500,
+        "remaining_points": 500,
+        "txn_name": "signup_credit",
+        "claimed": true,
+        "expires_on": "2023-06-14T10:18:19.118Z",
+        "meta": {
+          "offer_id": "630e0b8e349f3f1cfbec572f"
+        },
+        "created_at": "2023-05-17T10:18:19.118Z",
+        "updated_at": "2023-05-17T10:18:19.118Z",
+        "text_1": "Signup points",
+        "text_2": "Additional Points",
+        "text_3": "Will expire on 3:48 PM, 14 Jun'23"
+      },
+      {
+        "_id": "6464a9d370e0debb84626677",
+        "application_id": "000000000000000000000001",
+        "user_id": "000000000000000009802478",
+        "points": 500,
+        "remaining_points": 500,
+        "txn_name": "signup_credit",
+        "claimed": true,
+        "expires_on": "2023-06-14T10:17:55.588Z",
+        "meta": {
+          "offer_id": "630e0b8e349f3f1cfbec572f"
+        },
+        "created_at": "2023-05-17T10:17:55.588Z",
+        "updated_at": "2023-05-17T10:17:55.588Z",
+        "text_1": "Signup points",
+        "text_2": "Additional Points",
+        "text_3": "Will expire on 3:47 PM, 14 Jun'23"
+      }
+    ],
+    "page": {
+      "current": 0,
+      "item_total": 2,
+      "type": "cursor",
+      "size": 1,
+      "has_previous": true,
+      "has_next": false,
+      "next_id": ""
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateUserStatus
-Update user status
+Update user status.
 
 
 
@@ -1256,7 +1133,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.update
 | body | [AppUser](#AppUser) | yes | Request body |
 
 
-Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body.
+Change and update the status of a user in the rewards system.
 
 *Returned Response:*
 
@@ -1295,6 +1172,144 @@ Success
     "points": {
       "available": 0
     }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getRewardsConfiguration
+Get rewards configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
+```
+
+
+
+
+
+
+Retrieve the configuration settings for the rewards program.
+
+*Returned Response:*
+
+
+
+
+[ConfigurationRes](#ConfigurationRes)
+
+Success. Refer `ConfigurationRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; ConfigurationRes</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "terms_conditions_link": "https://fynd.freshdesk.com/support/solutions/folders/33000111619",
+    "valid_android_packages": [
+      "co.abc.com"
+    ],
+    "application_id": "5d5c304a4df829372e2ad6d1"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### setRewardsConfiguration
+Set rewards configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ConfigurationRequest](#ConfigurationRequest) | yes | Request body |
+
+
+Configure and modify the settings for the rewards program.
+
+*Returned Response:*
+
+
+
+
+[SetConfigurationRes](#SetConfigurationRes)
+
+ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "terms_conditions_link": "https://fynd.freshdesk.com/support/solutions/folders/33000111619",
+    "valid_android_packages": [
+      "co.abc.com"
+    ],
+    "application_id": "5d5c304a4df829372e2ad6d1"
   }
 }
 ```

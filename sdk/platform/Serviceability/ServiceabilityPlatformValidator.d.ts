@@ -68,11 +68,10 @@ export = ServiceabilityPlatformValidator;
  * @property {string} [stage] - Stage of the account. enabled/disabled
  * @property {string} [paymentMode] - Filters dp accounts based on payment mode
  * @property {string} [transportType] - Filters dp accounts based on transport_type
- * @property {string[]} [accountIds] - Filters dp accounts based on their ids
  */
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
+ * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
  */
 /**
  * @typedef GetPackageMaterialListParam
@@ -364,13 +363,9 @@ type GetCourierPartnerAccountsParam = {
      * - Filters dp accounts based on transport_type
      */
     transportType?: string;
-    /**
-     * - Filters dp accounts based on their ids
-     */
-    accountIds?: string[];
 };
 type GetOptimalLocationsParam = {
-    body: ServiceabilityPlatformModel.ReAssignStoreRequest;
+    body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema;
 };
 type GetPackageMaterialListParam = {
     /**
@@ -534,4 +529,4 @@ type UpdateZoneByIdParam = {
 };
 type GetAllStoresParam = any;
 type GetCompanyConfigurationParam = any;
-import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

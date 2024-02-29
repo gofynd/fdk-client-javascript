@@ -26,62 +26,6 @@ export = OrderPlatformModel;
  * @property {string} [error]
  */
 /**
- * @typedef QuestionErrorResponse
- * @property {string} [type]
- * @property {string} [value]
- * @property {Object} [message]
- */
-/**
- * @typedef PostRefundStateConfiguration
- * @property {string[]} [prepaid]
- * @property {string[]} [non_prepaid]
- */
-/**
- * @typedef PostRefundStateConfigurationResponse
- * @property {string} [message]
- * @property {boolean} [success]
- */
-/**
- * @typedef GetRefundStateConfigurationResponse
- * @property {boolean} [success]
- * @property {PostRefundStateConfiguration} [config]
- */
-/**
- * @typedef RefundStates
- * @property {string} [state]
- * @property {string} [display_name]
- */
-/**
- * @typedef GetRefundStates
- * @property {boolean} [success]
- * @property {RefundStates[]} [items]
- * @property {number} [status]
- */
-/**
- * @typedef RefundStateManualWithoutMessage
- * @property {boolean} [is_manual]
- */
-/**
- * @typedef RefundStateManualWithMessage
- * @property {boolean} [is_manual]
- * @property {string} [message]
- */
-/**
- * @typedef RefundStateManualWithMessageData
- * @property {RefundStateManualWithMessage} [prepaid]
- * @property {RefundStateManualWithMessage} [non_prepaid]
- */
-/**
- * @typedef RefundStateConfigurationManualSchema
- * @property {RefundStateManualWithoutMessage} [prepaid]
- * @property {RefundStateManualWithoutMessage} [non_prepaid]
- */
-/**
- * @typedef RefundStateConfigurationManualSchemaResponse
- * @property {boolean} [success]
- * @property {RefundStateManualWithMessageData} [data]
- */
-/**
  * @typedef StoreReassign
  * @property {number} store_id
  * @property {number} [bag_id]
@@ -120,6 +64,7 @@ export = OrderPlatformModel;
  * @property {string} action_type - Expected action_type: [complete,
  *   operational, financial]
  * @property {Entities[]} entities - Shipment/Entity
+ * @property {boolean} [resume_tasks_after_unlock]
  */
 /**
  * @typedef OriginalFilter
@@ -790,6 +735,7 @@ export = OrderPlatformModel;
  * @property {string} [primary_email]
  * @property {string} [address2]
  * @property {string} [country_code]
+ * @property {string} [country_iso_code] - Country Code in ISO 2 format (e.g. US, IN)
  */
 /**
  * @typedef BillingInfo
@@ -817,6 +763,7 @@ export = OrderPlatformModel;
  * @property {string} [address2]
  * @property {string} [landmark]
  * @property {string} [country_code]
+ * @property {string} [country_iso_code] - Country Code in ISO 2 format (e.g. US, IN)
  */
 /**
  * @typedef UserInfo
@@ -1464,270 +1411,30 @@ export = OrderPlatformModel;
  * @property {string} exception
  */
 /**
- * @typedef StateTransitionFlag
- * @property {number} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [type]
- * @property {Object} [options]
- * @property {string} [default_value]
- */
-/**
- * @typedef StateManagerFilter
- * @property {number} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [type]
- * @property {Object} [options]
- * @property {string} [default_value]
- */
-/**
- * @typedef StateManagerTask
- * @property {number} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [doc_string]
- * @property {Object} [kwargs]
- */
-/**
- * @typedef PaginationInfo
- * @property {number} [current]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [total]
- * @property {number} [item_total]
- * @property {string} [type]
- * @property {number} [size]
- */
-/**
- * @typedef StateManagerState
- * @property {number} [id] - Unique identifier for the state
- * @property {string} [state] - The name of the state
- * @property {string} [platform_display_name] - The platform display name
- * @property {boolean} [app_facing] - Whether state is for app facing or not
- * @property {string} [app_display_name] - The application display name
- * @property {boolean} [is_active] - Whether state is active or not
- * @property {string} [state_type] - Type of the state
- * @property {string} [journey_type] - Type of the journey
- */
-/**
- * @typedef PaginatedStates
- * @property {StateManagerState[]} [items]
- * @property {PaginationInfo} [page]
- */
-/**
- * @typedef RuleLaneConfigErrorResponse
- * @property {string} [type]
- * @property {string} [value]
- * @property {Object} [message]
- */
-/**
- * @typedef QuestionSetItem
- * @property {number} id
- * @property {string} display_name
- */
-/**
- * @typedef Reason
- * @property {number} id
- * @property {string} display_name
- * @property {boolean} remark_required
- * @property {string[]} qc_type
- * @property {QuestionSet[]} question_set
- * @property {Object} meta
- * @property {boolean} is_active
- * @property {boolean} is_deleted
- */
-/**
- * @typedef RuleRequest
- * @property {string} flow_type
- * @property {string} name
- * @property {string} [description]
- * @property {string} entity_type
- * @property {string} value
- * @property {string} channel
- * @property {string} rule_type
- * @property {boolean} is_deleted
- * @property {boolean} [restrict_forward_servicability]
- * @property {Condition[]} conditions
- * @property {RuleMeta} meta
- * @property {boolean} qc_enabled
- * @property {boolean} is_active
- * @property {RuleAction} actions
- */
-/**
- * @typedef CreateRuleResponse
- * @property {number} [id]
+ * @typedef GenerateInvoiceIDResponseData
+ * @property {string} [shipment_id]
  * @property {boolean} [success]
- * @property {RuleError} [error]
+ * @property {string} [invoice_id]
+ * @property {boolean} [error_message]
  */
 /**
- * @typedef RuleResponse
- * @property {string} [id]
- * @property {RuleItem} [items]
+ * @typedef GenerateInvoiceIDErrorResponseData
+ * @property {string} [shipment_id]
  * @property {boolean} [success]
- * @property {RuleError} [error]
+ * @property {boolean} [invoice_id]
+ * @property {string} [error_message]
  */
 /**
- * @typedef RuleUpdateRequest
- * @property {string} flow_type
- * @property {string} name
- * @property {string} [description]
- * @property {string} entity_type
- * @property {string} value
- * @property {string} channel
- * @property {string} rule_type
- * @property {boolean} is_deleted
- * @property {number} position
- * @property {boolean} restrict_forward_servicability
- * @property {Condition[]} conditions
- * @property {RuleMeta} meta
- * @property {boolean} qc_enabled
- * @property {boolean} is_active
- * @property {RuleAction} actions
+ * @typedef GenerateInvoiceIDRequest
+ * @property {string[]} shipment_ids
  */
 /**
- * @typedef Condition
- * @property {string} value
- * @property {string} variable
- * @property {string} operation
+ * @typedef GenerateInvoiceIDResponse
+ * @property {GenerateInvoiceIDResponseData[]} [items]
  */
 /**
- * @typedef RuleMeta
- * @property {Department} [department]
- * @property {L3} [l3]
- */
-/**
- * @typedef RuleAction
- * @property {Reason[]} [reasons]
- */
-/**
- * @typedef Department
- * @property {string} [id]
- * @property {string} [display_name]
- */
-/**
- * @typedef L3
- * @property {string} [id]
- * @property {string} [display_name]
- */
-/**
- * @typedef Error
- * @property {string} [type]
- * @property {string} [value]
- * @property {string} [message]
- * @property {boolean} [success]
- */
-/**
- * @typedef RuleUpdateResponse
- * @property {string} [id]
- * @property {boolean} [success]
- * @property {RuleError} [error]
- */
-/**
- * @typedef DeleteRuleResponse
- * @property {string} [id]
- * @property {boolean} [success]
- * @property {RuleError} [error]
- */
-/**
- * @typedef UpdateRulePositionRequest
- * @property {number} rule_id
- * @property {number} page_no
- * @property {number} page_size
- * @property {number} position
- * @property {string} flow_type
- */
-/**
- * @typedef UpdateRulePositionResponse
- * @property {PageInfo} [page]
- * @property {RuleItem[]} [items]
- * @property {boolean} [success]
- * @property {RuleError} [error]
- */
-/**
- * @typedef RuleItem
- * @property {string} id
- * @property {string} entity_type
- * @property {string} value
- * @property {string} channel
- * @property {RuleAction} actions
- * @property {boolean} qc_enabled
- * @property {boolean} is_deleted
- * @property {Condition} conditions
- * @property {Meta} meta
- * @property {string} rule_type
- * @property {boolean} is_active
- * @property {string} name
- * @property {string} description
- * @property {string} flow_type
- * @property {number} position
- */
-/**
- * @typedef RuleParametersResponse
- * @property {ParameterResponse[]} [response]
- */
-/**
- * @typedef ParameterResponse
- * @property {string} [text]
- * @property {string} [value]
- */
-/**
- * @typedef RuleListRequest
- * @property {number} [page_size]
- * @property {number} [page_no]
- * @property {string} [flow_type]
- * @property {string} [lane_type]
- */
-/**
- * @typedef RuleListResponse
- * @property {PageInfo} [page]
- * @property {RuleListItem[]} [items]
- * @property {boolean} [success]
- * @property {RuleErrorResponse} [error]
- */
-/**
- * @typedef RuleListItem
- * @property {string} id
- * @property {string} entity_type
- * @property {string} value
- * @property {string} channel
- * @property {RuleAction} actions
- * @property {boolean} qc_enabled
- * @property {boolean} is_deleted
- * @property {Condition} conditions
- * @property {Meta} meta
- * @property {string} rule_type
- * @property {boolean} is_active
- * @property {string} name
- * @property {string} description
- * @property {string} flow_type
- * @property {number} position
- * @property {boolean} success
- * @property {RuleError} error
- */
-/**
- * @typedef RuleError
- * @property {string} type
- * @property {string} value
- * @property {string} message
- */
-/**
- * @typedef RuleErrorResponse
- * @property {boolean} [success]
- * @property {RuleError} [error]
- */
-/**
- * @typedef PageInfo
- * @property {string} [type]
- * @property {number} [current]
- * @property {number} [size]
- * @property {number} [item_total]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [page_size]
+ * @typedef GenerateInvoiceIDErrorResponse
+ * @property {GenerateInvoiceIDErrorResponseData[]} [items]
  */
 /**
  * @typedef Page
@@ -2725,50 +2432,6 @@ export = OrderPlatformModel;
  * @property {Object} [page]
  */
 /**
- * @typedef FilterOptions
- * @property {string} label
- * @property {string} value
- * @property {string} [name]
- */
-/**
- * @typedef FiltersList
- * @property {string} label
- * @property {string} value
- * @property {string} filter_type
- * @property {string} type
- * @property {string} [placeholder_text]
- * @property {boolean} [required]
- * @property {FilterOptions[]} options
- */
-/**
- * @typedef GlobalFiltersResponse
- * @property {FiltersList[]} filters
- * @property {number} company_id
- * @property {string} [request_source]
- * @property {string} show_in
- */
-/**
- * @typedef ViewDetails
- * @property {string} [id]
- * @property {string} [slug]
- * @property {string} [text]
- * @property {FiltersList[]} [filters]
- */
-/**
- * @typedef ParentViews
- * @property {ViewDetails[]} [views]
- * @property {string} [parent_slug]
- * @property {string} [parent_text]
- */
-/**
- * @typedef UserViewsResponse
- * @property {ParentViews[]} [parent_views]
- */
-/**
- * @typedef CreateUpdateDeleteResponse
- * @property {string} [message]
- */
-/**
  * @typedef FiltersResponse
  * @property {AdvanceFilterInfo} [advance_filter]
  * @property {FiltersInfo[]} [global_filter]
@@ -2790,6 +2453,13 @@ export = OrderPlatformModel;
 /**
  * @typedef BulkActionTemplateResponse
  * @property {BulkActionTemplate[]} [template_x_slug] - Allowed bulk action template slugs
+ */
+/**
+ * @typedef Reason
+ * @property {string[]} [qc_type]
+ * @property {number} [id]
+ * @property {QuestionSet[]} [question_set]
+ * @property {string} [display_name]
  */
 /**
  * @typedef PlatformShipmentReasonsResponse
@@ -3152,10 +2822,15 @@ export = OrderPlatformModel;
  * @property {string} [file_name]
  * @property {string} [url]
  */
+/**
+ * @typedef Error
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, QuestionErrorResponse, PostRefundStateConfiguration, PostRefundStateConfigurationResponse, GetRefundStateConfigurationResponse, RefundStates, GetRefundStates, RefundStateManualWithoutMessage, RefundStateManualWithMessage, RefundStateManualWithMessageData, RefundStateConfigurationManualSchema, RefundStateConfigurationManualSchemaResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, BaseResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, LineItem, ProcessingDates, Shipment, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, StateTransitionFlag, StateManagerFilter, StateManagerTask, PaginationInfo, StateManagerState, PaginatedStates, RuleLaneConfigErrorResponse, QuestionSetItem, Reason, RuleRequest, CreateRuleResponse, RuleResponse, RuleUpdateRequest, Condition, RuleMeta, RuleAction, Department, L3, Error, RuleUpdateResponse, DeleteRuleResponse, UpdateRulePositionRequest, UpdateRulePositionResponse, RuleItem, RuleParametersResponse, ParameterResponse, RuleListRequest, RuleListResponse, RuleListItem, RuleError, RuleErrorResponse, PageInfo, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, PlatformDeliveryAddress, ShipmentListingChannel, Prices, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FilterOptions, FiltersList, GlobalFiltersResponse, ViewDetails, ParentViews, UserViewsResponse, CreateUpdateDeleteResponse, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, TemplateDownloadResponse };
+    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, BaseResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, LineItem, ProcessingDates, Shipment, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequest, GenerateInvoiceIDResponse, GenerateInvoiceIDErrorResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, PlatformDeliveryAddress, ShipmentListingChannel, Prices, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, Reason, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, TemplateDownloadResponse, Error };
 }
 /** @returns {InvalidateShipmentCachePayload} */
 declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
@@ -3195,73 +2870,6 @@ type ErrorResponse = {
     message: string;
     error_trace?: string;
     error?: string;
-};
-/** @returns {QuestionErrorResponse} */
-declare function QuestionErrorResponse(): QuestionErrorResponse;
-type QuestionErrorResponse = {
-    type?: string;
-    value?: string;
-    message?: any;
-};
-/** @returns {PostRefundStateConfiguration} */
-declare function PostRefundStateConfiguration(): PostRefundStateConfiguration;
-type PostRefundStateConfiguration = {
-    prepaid?: string[];
-    non_prepaid?: string[];
-};
-/** @returns {PostRefundStateConfigurationResponse} */
-declare function PostRefundStateConfigurationResponse(): PostRefundStateConfigurationResponse;
-type PostRefundStateConfigurationResponse = {
-    message?: string;
-    success?: boolean;
-};
-/** @returns {GetRefundStateConfigurationResponse} */
-declare function GetRefundStateConfigurationResponse(): GetRefundStateConfigurationResponse;
-type GetRefundStateConfigurationResponse = {
-    success?: boolean;
-    config?: PostRefundStateConfiguration;
-};
-/** @returns {RefundStates} */
-declare function RefundStates(): RefundStates;
-type RefundStates = {
-    state?: string;
-    display_name?: string;
-};
-/** @returns {GetRefundStates} */
-declare function GetRefundStates(): GetRefundStates;
-type GetRefundStates = {
-    success?: boolean;
-    items?: RefundStates[];
-    status?: number;
-};
-/** @returns {RefundStateManualWithoutMessage} */
-declare function RefundStateManualWithoutMessage(): RefundStateManualWithoutMessage;
-type RefundStateManualWithoutMessage = {
-    is_manual?: boolean;
-};
-/** @returns {RefundStateManualWithMessage} */
-declare function RefundStateManualWithMessage(): RefundStateManualWithMessage;
-type RefundStateManualWithMessage = {
-    is_manual?: boolean;
-    message?: string;
-};
-/** @returns {RefundStateManualWithMessageData} */
-declare function RefundStateManualWithMessageData(): RefundStateManualWithMessageData;
-type RefundStateManualWithMessageData = {
-    prepaid?: RefundStateManualWithMessage;
-    non_prepaid?: RefundStateManualWithMessage;
-};
-/** @returns {RefundStateConfigurationManualSchema} */
-declare function RefundStateConfigurationManualSchema(): RefundStateConfigurationManualSchema;
-type RefundStateConfigurationManualSchema = {
-    prepaid?: RefundStateManualWithoutMessage;
-    non_prepaid?: RefundStateManualWithoutMessage;
-};
-/** @returns {RefundStateConfigurationManualSchemaResponse} */
-declare function RefundStateConfigurationManualSchemaResponse(): RefundStateConfigurationManualSchemaResponse;
-type RefundStateConfigurationManualSchemaResponse = {
-    success?: boolean;
-    data?: RefundStateManualWithMessageData;
 };
 /** @returns {StoreReassign} */
 declare function StoreReassign(): StoreReassign;
@@ -3336,6 +2944,7 @@ type UpdateShipmentLockPayload = {
      * - Shipment/Entity
      */
     entities: Entities[];
+    resume_tasks_after_unlock?: boolean;
 };
 /** @returns {OriginalFilter} */
 declare function OriginalFilter(): OriginalFilter;
@@ -4257,6 +3866,10 @@ type ShippingInfo = {
     primary_email?: string;
     address2?: string;
     country_code?: string;
+    /**
+     * - Country Code in ISO 2 format (e.g. US, IN)
+     */
+    country_iso_code?: string;
 };
 /** @returns {BillingInfo} */
 declare function BillingInfo(): BillingInfo;
@@ -4285,6 +3898,10 @@ type BillingInfo = {
     address2?: string;
     landmark?: string;
     country_code?: string;
+    /**
+     * - Country Code in ISO 2 format (e.g. US, IN)
+     */
+    country_iso_code?: string;
 };
 /** @returns {UserInfo} */
 declare function UserInfo(): UserInfo;
@@ -5098,327 +4715,36 @@ type FailedOrderLogDetails = {
     error_trace: string;
     exception: string;
 };
-/** @returns {StateTransitionFlag} */
-declare function StateTransitionFlag(): StateTransitionFlag;
-type StateTransitionFlag = {
-    id?: number;
-    name?: string;
-    display_name?: string;
-    description?: string;
-    type?: string;
-    options?: any;
-    default_value?: string;
-};
-/** @returns {StateManagerFilter} */
-declare function StateManagerFilter(): StateManagerFilter;
-type StateManagerFilter = {
-    id?: number;
-    name?: string;
-    display_name?: string;
-    description?: string;
-    type?: string;
-    options?: any;
-    default_value?: string;
-};
-/** @returns {StateManagerTask} */
-declare function StateManagerTask(): StateManagerTask;
-type StateManagerTask = {
-    id?: number;
-    name?: string;
-    display_name?: string;
-    description?: string;
-    doc_string?: string;
-    kwargs?: any;
-};
-/** @returns {PaginationInfo} */
-declare function PaginationInfo(): PaginationInfo;
-type PaginationInfo = {
-    current?: number;
-    has_previous?: boolean;
-    has_next?: boolean;
-    total?: number;
-    item_total?: number;
-    type?: string;
-    size?: number;
-};
-/** @returns {StateManagerState} */
-declare function StateManagerState(): StateManagerState;
-type StateManagerState = {
-    /**
-     * - Unique identifier for the state
-     */
-    id?: number;
-    /**
-     * - The name of the state
-     */
-    state?: string;
-    /**
-     * - The platform display name
-     */
-    platform_display_name?: string;
-    /**
-     * - Whether state is for app facing or not
-     */
-    app_facing?: boolean;
-    /**
-     * - The application display name
-     */
-    app_display_name?: string;
-    /**
-     * - Whether state is active or not
-     */
-    is_active?: boolean;
-    /**
-     * - Type of the state
-     */
-    state_type?: string;
-    /**
-     * - Type of the journey
-     */
-    journey_type?: string;
-};
-/** @returns {PaginatedStates} */
-declare function PaginatedStates(): PaginatedStates;
-type PaginatedStates = {
-    items?: StateManagerState[];
-    page?: PaginationInfo;
-};
-/** @returns {RuleLaneConfigErrorResponse} */
-declare function RuleLaneConfigErrorResponse(): RuleLaneConfigErrorResponse;
-type RuleLaneConfigErrorResponse = {
-    type?: string;
-    value?: string;
-    message?: any;
-};
-/** @returns {QuestionSetItem} */
-declare function QuestionSetItem(): QuestionSetItem;
-type QuestionSetItem = {
-    id: number;
-    display_name: string;
-};
-/** @returns {Reason} */
-declare function Reason(): Reason;
-type Reason = {
-    id: number;
-    display_name: string;
-    remark_required: boolean;
-    qc_type: string[];
-    question_set: QuestionSet[];
-    meta: any;
-    is_active: boolean;
-    is_deleted: boolean;
-};
-/** @returns {RuleRequest} */
-declare function RuleRequest(): RuleRequest;
-type RuleRequest = {
-    flow_type: string;
-    name: string;
-    description?: string;
-    entity_type: string;
-    value: string;
-    channel: string;
-    rule_type: string;
-    is_deleted: boolean;
-    restrict_forward_servicability?: boolean;
-    conditions: Condition[];
-    meta: RuleMeta;
-    qc_enabled: boolean;
-    is_active: boolean;
-    actions: RuleAction;
-};
-/** @returns {CreateRuleResponse} */
-declare function CreateRuleResponse(): CreateRuleResponse;
-type CreateRuleResponse = {
-    id?: number;
+/** @returns {GenerateInvoiceIDResponseData} */
+declare function GenerateInvoiceIDResponseData(): GenerateInvoiceIDResponseData;
+type GenerateInvoiceIDResponseData = {
+    shipment_id?: string;
     success?: boolean;
-    error?: RuleError;
+    invoice_id?: string;
+    error_message?: boolean;
 };
-/** @returns {RuleResponse} */
-declare function RuleResponse(): RuleResponse;
-type RuleResponse = {
-    id?: string;
-    items?: RuleItem;
+/** @returns {GenerateInvoiceIDErrorResponseData} */
+declare function GenerateInvoiceIDErrorResponseData(): GenerateInvoiceIDErrorResponseData;
+type GenerateInvoiceIDErrorResponseData = {
+    shipment_id?: string;
     success?: boolean;
-    error?: RuleError;
+    invoice_id?: boolean;
+    error_message?: string;
 };
-/** @returns {RuleUpdateRequest} */
-declare function RuleUpdateRequest(): RuleUpdateRequest;
-type RuleUpdateRequest = {
-    flow_type: string;
-    name: string;
-    description?: string;
-    entity_type: string;
-    value: string;
-    channel: string;
-    rule_type: string;
-    is_deleted: boolean;
-    position: number;
-    restrict_forward_servicability: boolean;
-    conditions: Condition[];
-    meta: RuleMeta;
-    qc_enabled: boolean;
-    is_active: boolean;
-    actions: RuleAction;
+/** @returns {GenerateInvoiceIDRequest} */
+declare function GenerateInvoiceIDRequest(): GenerateInvoiceIDRequest;
+type GenerateInvoiceIDRequest = {
+    shipment_ids: string[];
 };
-/** @returns {Condition} */
-declare function Condition(): Condition;
-type Condition = {
-    value: string;
-    variable: string;
-    operation: string;
+/** @returns {GenerateInvoiceIDResponse} */
+declare function GenerateInvoiceIDResponse(): GenerateInvoiceIDResponse;
+type GenerateInvoiceIDResponse = {
+    items?: GenerateInvoiceIDResponseData[];
 };
-/** @returns {RuleMeta} */
-declare function RuleMeta(): RuleMeta;
-type RuleMeta = {
-    department?: Department;
-    l3?: L3;
-};
-/** @returns {RuleAction} */
-declare function RuleAction(): RuleAction;
-type RuleAction = {
-    reasons?: Reason[];
-};
-/** @returns {Department} */
-declare function Department(): Department;
-type Department = {
-    id?: string;
-    display_name?: string;
-};
-/** @returns {L3} */
-declare function L3(): L3;
-type L3 = {
-    id?: string;
-    display_name?: string;
-};
-/** @returns {Error} */
-declare function Error(): Error;
-type Error = {
-    type?: string;
-    value?: string;
-    message?: string;
-    success?: boolean;
-};
-/** @returns {RuleUpdateResponse} */
-declare function RuleUpdateResponse(): RuleUpdateResponse;
-type RuleUpdateResponse = {
-    id?: string;
-    success?: boolean;
-    error?: RuleError;
-};
-/** @returns {DeleteRuleResponse} */
-declare function DeleteRuleResponse(): DeleteRuleResponse;
-type DeleteRuleResponse = {
-    id?: string;
-    success?: boolean;
-    error?: RuleError;
-};
-/** @returns {UpdateRulePositionRequest} */
-declare function UpdateRulePositionRequest(): UpdateRulePositionRequest;
-type UpdateRulePositionRequest = {
-    rule_id: number;
-    page_no: number;
-    page_size: number;
-    position: number;
-    flow_type: string;
-};
-/** @returns {UpdateRulePositionResponse} */
-declare function UpdateRulePositionResponse(): UpdateRulePositionResponse;
-type UpdateRulePositionResponse = {
-    page?: PageInfo;
-    items?: RuleItem[];
-    success?: boolean;
-    error?: RuleError;
-};
-/** @returns {RuleItem} */
-declare function RuleItem(): RuleItem;
-type RuleItem = {
-    id: string;
-    entity_type: string;
-    value: string;
-    channel: string;
-    actions: RuleAction;
-    qc_enabled: boolean;
-    is_deleted: boolean;
-    conditions: Condition;
-    meta: Meta;
-    rule_type: string;
-    is_active: boolean;
-    name: string;
-    description: string;
-    flow_type: string;
-    position: number;
-};
-/** @returns {RuleParametersResponse} */
-declare function RuleParametersResponse(): RuleParametersResponse;
-type RuleParametersResponse = {
-    response?: ParameterResponse[];
-};
-/** @returns {ParameterResponse} */
-declare function ParameterResponse(): ParameterResponse;
-type ParameterResponse = {
-    text?: string;
-    value?: string;
-};
-/** @returns {RuleListRequest} */
-declare function RuleListRequest(): RuleListRequest;
-type RuleListRequest = {
-    page_size?: number;
-    page_no?: number;
-    flow_type?: string;
-    lane_type?: string;
-};
-/** @returns {RuleListResponse} */
-declare function RuleListResponse(): RuleListResponse;
-type RuleListResponse = {
-    page?: PageInfo;
-    items?: RuleListItem[];
-    success?: boolean;
-    error?: RuleErrorResponse;
-};
-/** @returns {RuleListItem} */
-declare function RuleListItem(): RuleListItem;
-type RuleListItem = {
-    id: string;
-    entity_type: string;
-    value: string;
-    channel: string;
-    actions: RuleAction;
-    qc_enabled: boolean;
-    is_deleted: boolean;
-    conditions: Condition;
-    meta: Meta;
-    rule_type: string;
-    is_active: boolean;
-    name: string;
-    description: string;
-    flow_type: string;
-    position: number;
-    success: boolean;
-    error: RuleError;
-};
-/** @returns {RuleError} */
-declare function RuleError(): RuleError;
-type RuleError = {
-    type: string;
-    value: string;
-    message: string;
-};
-/** @returns {RuleErrorResponse} */
-declare function RuleErrorResponse(): RuleErrorResponse;
-type RuleErrorResponse = {
-    success?: boolean;
-    error?: RuleError;
-};
-/** @returns {PageInfo} */
-declare function PageInfo(): PageInfo;
-type PageInfo = {
-    type?: string;
-    current?: number;
-    size?: number;
-    item_total?: number;
-    has_previous?: boolean;
-    has_next?: boolean;
-    page_size?: number;
+/** @returns {GenerateInvoiceIDErrorResponse} */
+declare function GenerateInvoiceIDErrorResponse(): GenerateInvoiceIDErrorResponse;
+type GenerateInvoiceIDErrorResponse = {
+    items?: GenerateInvoiceIDErrorResponseData[];
 };
 /** @returns {Page} */
 declare function Page(): Page;
@@ -6500,57 +5826,6 @@ type AdvanceFilterInfo = {
     applied_filters?: any;
     page?: any;
 };
-/** @returns {FilterOptions} */
-declare function FilterOptions(): FilterOptions;
-type FilterOptions = {
-    label: string;
-    value: string;
-    name?: string;
-};
-/** @returns {FiltersList} */
-declare function FiltersList(): FiltersList;
-type FiltersList = {
-    label: string;
-    value: string;
-    filter_type: string;
-    type: string;
-    placeholder_text?: string;
-    required?: boolean;
-    options: FilterOptions[];
-};
-/** @returns {GlobalFiltersResponse} */
-declare function GlobalFiltersResponse(): GlobalFiltersResponse;
-type GlobalFiltersResponse = {
-    filters: FiltersList[];
-    company_id: number;
-    request_source?: string;
-    show_in: string;
-};
-/** @returns {ViewDetails} */
-declare function ViewDetails(): ViewDetails;
-type ViewDetails = {
-    id?: string;
-    slug?: string;
-    text?: string;
-    filters?: FiltersList[];
-};
-/** @returns {ParentViews} */
-declare function ParentViews(): ParentViews;
-type ParentViews = {
-    views?: ViewDetails[];
-    parent_slug?: string;
-    parent_text?: string;
-};
-/** @returns {UserViewsResponse} */
-declare function UserViewsResponse(): UserViewsResponse;
-type UserViewsResponse = {
-    parent_views?: ParentViews[];
-};
-/** @returns {CreateUpdateDeleteResponse} */
-declare function CreateUpdateDeleteResponse(): CreateUpdateDeleteResponse;
-type CreateUpdateDeleteResponse = {
-    message?: string;
-};
 /** @returns {FiltersResponse} */
 declare function FiltersResponse(): FiltersResponse;
 type FiltersResponse = {
@@ -6584,6 +5859,14 @@ type BulkActionTemplateResponse = {
      * - Allowed bulk action template slugs
      */
     template_x_slug?: BulkActionTemplate[];
+};
+/** @returns {Reason} */
+declare function Reason(): Reason;
+type Reason = {
+    qc_type?: string[];
+    id?: number;
+    question_set?: QuestionSet[];
+    display_name?: string;
 };
 /** @returns {PlatformShipmentReasonsResponse} */
 declare function PlatformShipmentReasonsResponse(): PlatformShipmentReasonsResponse;
@@ -6976,4 +6259,10 @@ declare function TemplateDownloadResponse(): TemplateDownloadResponse;
 type TemplateDownloadResponse = {
     file_name?: string;
     url?: string;
+};
+/** @returns {Error} */
+declare function Error(): Error;
+type Error = {
+    message?: string;
+    success?: boolean;
 };

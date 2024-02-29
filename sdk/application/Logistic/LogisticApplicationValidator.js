@@ -69,8 +69,18 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  */
 
 /**
+ * @typedef GetPincodeCityParam
+ * @property {string} pincode - A `pincode` contains a specific address of a location.
+ */
+
+/**
  * @typedef GetPincodeZonesParam
  * @property {LogisticApplicationModel.GetZoneFromPincodeViewRequest} body
+ */
+
+/**
+ * @typedef GetTatProductParam
+ * @property {LogisticApplicationModel.TATViewRequest} body
  */
 
 /**
@@ -149,10 +159,24 @@ class LogisticApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetPincodeCityParam} */
+  static getPincodeCity() {
+    return Joi.object({
+      pincode: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetPincodeZonesParam} */
   static getPincodeZones() {
     return Joi.object({
       body: LogisticApplicationModel.GetZoneFromPincodeViewRequest().required(),
+    }).required();
+  }
+
+  /** @returns {GetTatProductParam} */
+  static getTatProduct() {
+    return Joi.object({
+      body: LogisticApplicationModel.TATViewRequest().required(),
     }).required();
   }
 

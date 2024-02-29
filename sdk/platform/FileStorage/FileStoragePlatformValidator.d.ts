@@ -104,4 +104,4 @@ type StartUploadParam = {
     namespace: string;
     body: FileStoragePlatformModel.StartRequest;
 };
-import FileStoragePlatformModel = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformModel");
+import FileStoragePlatformModel = require("./FileStoragePlatformModel");

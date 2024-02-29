@@ -939,13 +939,18 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CustomFieldValue
+ * @property {Object} [value]
+ */
+
+/**
  * @typedef CustomFieldSchema
  * @property {string} [_id]
  * @property {string} [namespace]
  * @property {string} [key]
  * @property {string} [resource]
  * @property {string} [creator]
- * @property {Object[]} [value]
+ * @property {CustomFieldValue[]} [value]
  * @property {string} [resource_id]
  * @property {string} [type]
  * @property {boolean} [multi_value]
@@ -2547,6 +2552,13 @@ class ContentPlatformModel {
     });
   }
 
+  /** @returns {CustomFieldValue} */
+  static CustomFieldValue() {
+    return Joi.object({
+      value: Joi.any(),
+    });
+  }
+
   /** @returns {CustomFieldSchema} */
   static CustomFieldSchema() {
     return Joi.object({
@@ -2555,7 +2567,7 @@ class ContentPlatformModel {
       key: Joi.string().allow(""),
       resource: Joi.string().allow(""),
       creator: Joi.string().allow(""),
-      value: Joi.array().items(Joi.any()),
+      value: Joi.array().items(ContentPlatformModel.CustomFieldValue()),
       resource_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
       multi_value: Joi.boolean(),

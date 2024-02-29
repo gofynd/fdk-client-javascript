@@ -31,73 +31,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef QuestionErrorResponse
- * @property {string} [type]
- * @property {string} [value]
- * @property {Object} [message]
- */
-
-/**
- * @typedef PostRefundStateConfiguration
- * @property {string[]} [prepaid]
- * @property {string[]} [non_prepaid]
- */
-
-/**
- * @typedef PostRefundStateConfigurationResponse
- * @property {string} [message]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef GetRefundStateConfigurationResponse
- * @property {boolean} [success]
- * @property {PostRefundStateConfiguration} [config]
- */
-
-/**
- * @typedef RefundStates
- * @property {string} [state]
- * @property {string} [display_name]
- */
-
-/**
- * @typedef GetRefundStates
- * @property {boolean} [success]
- * @property {RefundStates[]} [items]
- * @property {number} [status]
- */
-
-/**
- * @typedef RefundStateManualWithoutMessage
- * @property {boolean} [is_manual]
- */
-
-/**
- * @typedef RefundStateManualWithMessage
- * @property {boolean} [is_manual]
- * @property {string} [message]
- */
-
-/**
- * @typedef RefundStateManualWithMessageData
- * @property {RefundStateManualWithMessage} [prepaid]
- * @property {RefundStateManualWithMessage} [non_prepaid]
- */
-
-/**
- * @typedef RefundStateConfigurationManualSchema
- * @property {RefundStateManualWithoutMessage} [prepaid]
- * @property {RefundStateManualWithoutMessage} [non_prepaid]
- */
-
-/**
- * @typedef RefundStateConfigurationManualSchemaResponse
- * @property {boolean} [success]
- * @property {RefundStateManualWithMessageData} [data]
- */
-
-/**
  * @typedef StoreReassign
  * @property {number} store_id
  * @property {number} [bag_id]
@@ -139,6 +72,7 @@ const Joi = require("joi");
  * @property {string} action_type - Expected action_type: [complete,
  *   operational, financial]
  * @property {Entities[]} entities - Shipment/Entity
+ * @property {boolean} [resume_tasks_after_unlock]
  */
 
 /**
@@ -889,6 +823,7 @@ const Joi = require("joi");
  * @property {string} [primary_email]
  * @property {string} [address2]
  * @property {string} [country_code]
+ * @property {string} [country_iso_code] - Country Code in ISO 2 format (e.g. US, IN)
  */
 
 /**
@@ -917,6 +852,7 @@ const Joi = require("joi");
  * @property {string} [address2]
  * @property {string} [landmark]
  * @property {string} [country_code]
+ * @property {string} [country_iso_code] - Country Code in ISO 2 format (e.g. US, IN)
  */
 
 /**
@@ -1654,301 +1590,34 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StateTransitionFlag
- * @property {number} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [type]
- * @property {Object} [options]
- * @property {string} [default_value]
- */
-
-/**
- * @typedef StateManagerFilter
- * @property {number} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [type]
- * @property {Object} [options]
- * @property {string} [default_value]
- */
-
-/**
- * @typedef StateManagerTask
- * @property {number} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [doc_string]
- * @property {Object} [kwargs]
- */
-
-/**
- * @typedef PaginationInfo
- * @property {number} [current]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [total]
- * @property {number} [item_total]
- * @property {string} [type]
- * @property {number} [size]
- */
-
-/**
- * @typedef StateManagerState
- * @property {number} [id] - Unique identifier for the state
- * @property {string} [state] - The name of the state
- * @property {string} [platform_display_name] - The platform display name
- * @property {boolean} [app_facing] - Whether state is for app facing or not
- * @property {string} [app_display_name] - The application display name
- * @property {boolean} [is_active] - Whether state is active or not
- * @property {string} [state_type] - Type of the state
- * @property {string} [journey_type] - Type of the journey
- */
-
-/**
- * @typedef PaginatedStates
- * @property {StateManagerState[]} [items]
- * @property {PaginationInfo} [page]
- */
-
-/**
- * @typedef RuleLaneConfigErrorResponse
- * @property {string} [type]
- * @property {string} [value]
- * @property {Object} [message]
- */
-
-/**
- * @typedef QuestionSetItem
- * @property {number} id
- * @property {string} display_name
- */
-
-/**
- * @typedef Reason
- * @property {number} id
- * @property {string} display_name
- * @property {boolean} remark_required
- * @property {string[]} qc_type
- * @property {QuestionSet[]} question_set
- * @property {Object} meta
- * @property {boolean} is_active
- * @property {boolean} is_deleted
- */
-
-/**
- * @typedef RuleRequest
- * @property {string} flow_type
- * @property {string} name
- * @property {string} [description]
- * @property {string} entity_type
- * @property {string} value
- * @property {string} channel
- * @property {string} rule_type
- * @property {boolean} is_deleted
- * @property {boolean} [restrict_forward_servicability]
- * @property {Condition[]} conditions
- * @property {RuleMeta} meta
- * @property {boolean} qc_enabled
- * @property {boolean} is_active
- * @property {RuleAction} actions
- */
-
-/**
- * @typedef CreateRuleResponse
- * @property {number} [id]
+ * @typedef GenerateInvoiceIDResponseData
+ * @property {string} [shipment_id]
  * @property {boolean} [success]
- * @property {RuleError} [error]
+ * @property {string} [invoice_id]
+ * @property {boolean} [error_message]
  */
 
 /**
- * @typedef RuleResponse
- * @property {string} [id]
- * @property {RuleItem} [items]
+ * @typedef GenerateInvoiceIDErrorResponseData
+ * @property {string} [shipment_id]
  * @property {boolean} [success]
- * @property {RuleError} [error]
+ * @property {boolean} [invoice_id]
+ * @property {string} [error_message]
  */
 
 /**
- * @typedef RuleUpdateRequest
- * @property {string} flow_type
- * @property {string} name
- * @property {string} [description]
- * @property {string} entity_type
- * @property {string} value
- * @property {string} channel
- * @property {string} rule_type
- * @property {boolean} is_deleted
- * @property {number} position
- * @property {boolean} restrict_forward_servicability
- * @property {Condition[]} conditions
- * @property {RuleMeta} meta
- * @property {boolean} qc_enabled
- * @property {boolean} is_active
- * @property {RuleAction} actions
+ * @typedef GenerateInvoiceIDRequest
+ * @property {string[]} shipment_ids
  */
 
 /**
- * @typedef Condition
- * @property {string} value
- * @property {string} variable
- * @property {string} operation
+ * @typedef GenerateInvoiceIDResponse
+ * @property {GenerateInvoiceIDResponseData[]} [items]
  */
 
 /**
- * @typedef RuleMeta
- * @property {Department} [department]
- * @property {L3} [l3]
- */
-
-/**
- * @typedef RuleAction
- * @property {Reason[]} [reasons]
- */
-
-/**
- * @typedef Department
- * @property {string} [id]
- * @property {string} [display_name]
- */
-
-/**
- * @typedef L3
- * @property {string} [id]
- * @property {string} [display_name]
- */
-
-/**
- * @typedef Error
- * @property {string} [type]
- * @property {string} [value]
- * @property {string} [message]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef RuleUpdateResponse
- * @property {string} [id]
- * @property {boolean} [success]
- * @property {RuleError} [error]
- */
-
-/**
- * @typedef DeleteRuleResponse
- * @property {string} [id]
- * @property {boolean} [success]
- * @property {RuleError} [error]
- */
-
-/**
- * @typedef UpdateRulePositionRequest
- * @property {number} rule_id
- * @property {number} page_no
- * @property {number} page_size
- * @property {number} position
- * @property {string} flow_type
- */
-
-/**
- * @typedef UpdateRulePositionResponse
- * @property {PageInfo} [page]
- * @property {RuleItem[]} [items]
- * @property {boolean} [success]
- * @property {RuleError} [error]
- */
-
-/**
- * @typedef RuleItem
- * @property {string} id
- * @property {string} entity_type
- * @property {string} value
- * @property {string} channel
- * @property {RuleAction} actions
- * @property {boolean} qc_enabled
- * @property {boolean} is_deleted
- * @property {Condition} conditions
- * @property {Meta} meta
- * @property {string} rule_type
- * @property {boolean} is_active
- * @property {string} name
- * @property {string} description
- * @property {string} flow_type
- * @property {number} position
- */
-
-/**
- * @typedef RuleParametersResponse
- * @property {ParameterResponse[]} [response]
- */
-
-/**
- * @typedef ParameterResponse
- * @property {string} [text]
- * @property {string} [value]
- */
-
-/**
- * @typedef RuleListRequest
- * @property {number} [page_size]
- * @property {number} [page_no]
- * @property {string} [flow_type]
- * @property {string} [lane_type]
- */
-
-/**
- * @typedef RuleListResponse
- * @property {PageInfo} [page]
- * @property {RuleListItem[]} [items]
- * @property {boolean} [success]
- * @property {RuleErrorResponse} [error]
- */
-
-/**
- * @typedef RuleListItem
- * @property {string} id
- * @property {string} entity_type
- * @property {string} value
- * @property {string} channel
- * @property {RuleAction} actions
- * @property {boolean} qc_enabled
- * @property {boolean} is_deleted
- * @property {Condition} conditions
- * @property {Meta} meta
- * @property {string} rule_type
- * @property {boolean} is_active
- * @property {string} name
- * @property {string} description
- * @property {string} flow_type
- * @property {number} position
- * @property {boolean} success
- * @property {RuleError} error
- */
-
-/**
- * @typedef RuleError
- * @property {string} type
- * @property {string} value
- * @property {string} message
- */
-
-/**
- * @typedef RuleErrorResponse
- * @property {boolean} [success]
- * @property {RuleError} [error]
- */
-
-/**
- * @typedef PageInfo
- * @property {string} [type]
- * @property {number} [current]
- * @property {number} [size]
- * @property {number} [item_total]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [page_size]
+ * @typedef GenerateInvoiceIDErrorResponse
+ * @property {GenerateInvoiceIDErrorResponseData[]} [items]
  */
 
 /**
@@ -3032,57 +2701,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FilterOptions
- * @property {string} label
- * @property {string} value
- * @property {string} [name]
- */
-
-/**
- * @typedef FiltersList
- * @property {string} label
- * @property {string} value
- * @property {string} filter_type
- * @property {string} type
- * @property {string} [placeholder_text]
- * @property {boolean} [required]
- * @property {FilterOptions[]} options
- */
-
-/**
- * @typedef GlobalFiltersResponse
- * @property {FiltersList[]} filters
- * @property {number} company_id
- * @property {string} [request_source]
- * @property {string} show_in
- */
-
-/**
- * @typedef ViewDetails
- * @property {string} [id]
- * @property {string} [slug]
- * @property {string} [text]
- * @property {FiltersList[]} [filters]
- */
-
-/**
- * @typedef ParentViews
- * @property {ViewDetails[]} [views]
- * @property {string} [parent_slug]
- * @property {string} [parent_text]
- */
-
-/**
- * @typedef UserViewsResponse
- * @property {ParentViews[]} [parent_views]
- */
-
-/**
- * @typedef CreateUpdateDeleteResponse
- * @property {string} [message]
- */
-
-/**
  * @typedef FiltersResponse
  * @property {AdvanceFilterInfo} [advance_filter]
  * @property {FiltersInfo[]} [global_filter]
@@ -3108,6 +2726,14 @@ const Joi = require("joi");
 /**
  * @typedef BulkActionTemplateResponse
  * @property {BulkActionTemplate[]} [template_x_slug] - Allowed bulk action template slugs
+ */
+
+/**
+ * @typedef Reason
+ * @property {string[]} [qc_type]
+ * @property {number} [id]
+ * @property {QuestionSet[]} [question_set]
+ * @property {string} [display_name]
  */
 
 /**
@@ -3502,6 +3128,12 @@ const Joi = require("joi");
  * @property {string} [url]
  */
 
+/**
+ * @typedef Error
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+
 class OrderPlatformModel {
   /** @returns {InvalidateShipmentCachePayload} */
   static InvalidateShipmentCachePayload() {
@@ -3539,95 +3171,6 @@ class OrderPlatformModel {
       message: Joi.string().allow("").allow(null).required(),
       error_trace: Joi.string().allow("").allow(null),
       error: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {QuestionErrorResponse} */
-  static QuestionErrorResponse() {
-    return Joi.object({
-      type: Joi.string().allow("").allow(null),
-      value: Joi.string().allow("").allow(null),
-      message: Joi.any(),
-    });
-  }
-
-  /** @returns {PostRefundStateConfiguration} */
-  static PostRefundStateConfiguration() {
-    return Joi.object({
-      prepaid: Joi.array().items(Joi.string().allow("")),
-      non_prepaid: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {PostRefundStateConfigurationResponse} */
-  static PostRefundStateConfigurationResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {GetRefundStateConfigurationResponse} */
-  static GetRefundStateConfigurationResponse() {
-    return Joi.object({
-      success: Joi.boolean(),
-      config: OrderPlatformModel.PostRefundStateConfiguration(),
-    });
-  }
-
-  /** @returns {RefundStates} */
-  static RefundStates() {
-    return Joi.object({
-      state: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GetRefundStates} */
-  static GetRefundStates() {
-    return Joi.object({
-      success: Joi.boolean(),
-      items: Joi.array().items(OrderPlatformModel.RefundStates()),
-      status: Joi.number(),
-    });
-  }
-
-  /** @returns {RefundStateManualWithoutMessage} */
-  static RefundStateManualWithoutMessage() {
-    return Joi.object({
-      is_manual: Joi.boolean(),
-    });
-  }
-
-  /** @returns {RefundStateManualWithMessage} */
-  static RefundStateManualWithMessage() {
-    return Joi.object({
-      is_manual: Joi.boolean(),
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {RefundStateManualWithMessageData} */
-  static RefundStateManualWithMessageData() {
-    return Joi.object({
-      prepaid: OrderPlatformModel.RefundStateManualWithMessage(),
-      non_prepaid: OrderPlatformModel.RefundStateManualWithMessage(),
-    });
-  }
-
-  /** @returns {RefundStateConfigurationManualSchema} */
-  static RefundStateConfigurationManualSchema() {
-    return Joi.object({
-      prepaid: OrderPlatformModel.RefundStateManualWithoutMessage(),
-      non_prepaid: OrderPlatformModel.RefundStateManualWithoutMessage(),
-    });
-  }
-
-  /** @returns {RefundStateConfigurationManualSchemaResponse} */
-  static RefundStateConfigurationManualSchemaResponse() {
-    return Joi.object({
-      success: Joi.boolean(),
-      data: OrderPlatformModel.RefundStateManualWithMessageData(),
     });
   }
 
@@ -3674,6 +3217,7 @@ class OrderPlatformModel {
       action: Joi.string().allow("").required(),
       action_type: Joi.string().allow("").required(),
       entities: Joi.array().items(OrderPlatformModel.Entities()).required(),
+      resume_tasks_after_unlock: Joi.boolean().allow(null),
     });
   }
 
@@ -4591,6 +4135,7 @@ class OrderPlatformModel {
       primary_email: Joi.string().allow(""),
       address2: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
     });
   }
 
@@ -4621,6 +4166,7 @@ class OrderPlatformModel {
       address2: Joi.string().allow(""),
       landmark: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
     });
   }
 
@@ -5554,367 +5100,48 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {StateTransitionFlag} */
-  static StateTransitionFlag() {
+  /** @returns {GenerateInvoiceIDResponseData} */
+  static GenerateInvoiceIDResponseData() {
     return Joi.object({
-      id: Joi.number(),
-      name: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      options: Joi.object().pattern(/\S/, Joi.any()),
-      default_value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {StateManagerFilter} */
-  static StateManagerFilter() {
-    return Joi.object({
-      id: Joi.number(),
-      name: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      options: Joi.object().pattern(/\S/, Joi.any()),
-      default_value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {StateManagerTask} */
-  static StateManagerTask() {
-    return Joi.object({
-      id: Joi.number(),
-      name: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      doc_string: Joi.string().allow(""),
-      kwargs: Joi.any(),
-    });
-  }
-
-  /** @returns {PaginationInfo} */
-  static PaginationInfo() {
-    return Joi.object({
-      current: Joi.number(),
-      has_previous: Joi.boolean(),
-      has_next: Joi.boolean(),
-      total: Joi.number(),
-      item_total: Joi.number(),
-      type: Joi.string().allow(""),
-      size: Joi.number(),
-    });
-  }
-
-  /** @returns {StateManagerState} */
-  static StateManagerState() {
-    return Joi.object({
-      id: Joi.number(),
-      state: Joi.string().allow(""),
-      platform_display_name: Joi.string().allow(""),
-      app_facing: Joi.boolean(),
-      app_display_name: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      state_type: Joi.string().allow(""),
-      journey_type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PaginatedStates} */
-  static PaginatedStates() {
-    return Joi.object({
-      items: Joi.array().items(OrderPlatformModel.StateManagerState()),
-      page: OrderPlatformModel.PaginationInfo(),
-    });
-  }
-
-  /** @returns {RuleLaneConfigErrorResponse} */
-  static RuleLaneConfigErrorResponse() {
-    return Joi.object({
-      type: Joi.string().allow("").allow(null),
-      value: Joi.string().allow("").allow(null),
-      message: Joi.any(),
-    });
-  }
-
-  /** @returns {QuestionSetItem} */
-  static QuestionSetItem() {
-    return Joi.object({
-      id: Joi.number().required(),
-      display_name: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {Reason} */
-  static Reason() {
-    return Joi.object({
-      id: Joi.number().required(),
-      display_name: Joi.string().allow("").required(),
-      remark_required: Joi.boolean().required(),
-      qc_type: Joi.array().items(Joi.string().allow("")).required(),
-      question_set: Joi.array()
-        .items(OrderPlatformModel.QuestionSet())
-        .required(),
-      meta: Joi.any().required(),
-      is_active: Joi.boolean().required(),
-      is_deleted: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {RuleRequest} */
-  static RuleRequest() {
-    return Joi.object({
-      flow_type: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-      description: Joi.string().allow(""),
-      entity_type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-      channel: Joi.string().allow("").required(),
-      rule_type: Joi.string().allow("").required(),
-      is_deleted: Joi.boolean().required(),
-      restrict_forward_servicability: Joi.boolean(),
-      conditions: Joi.array().items(OrderPlatformModel.Condition()).required(),
-      meta: OrderPlatformModel.RuleMeta().required(),
-      qc_enabled: Joi.boolean().required(),
-      is_active: Joi.boolean().required(),
-      actions: OrderPlatformModel.RuleAction().required(),
-    });
-  }
-
-  /** @returns {CreateRuleResponse} */
-  static CreateRuleResponse() {
-    return Joi.object({
-      id: Joi.number(),
+      shipment_id: Joi.string().allow(""),
       success: Joi.boolean(),
-      error: OrderPlatformModel.RuleError(),
+      invoice_id: Joi.string().allow("").allow(null),
+      error_message: Joi.boolean().allow(null),
     });
   }
 
-  /** @returns {RuleResponse} */
-  static RuleResponse() {
+  /** @returns {GenerateInvoiceIDErrorResponseData} */
+  static GenerateInvoiceIDErrorResponseData() {
     return Joi.object({
-      id: Joi.string().allow(""),
-      items: OrderPlatformModel.RuleItem(),
+      shipment_id: Joi.string().allow(""),
       success: Joi.boolean(),
-      error: OrderPlatformModel.RuleError(),
+      invoice_id: Joi.boolean().allow(null),
+      error_message: Joi.string().allow("").allow(null),
     });
   }
 
-  /** @returns {RuleUpdateRequest} */
-  static RuleUpdateRequest() {
+  /** @returns {GenerateInvoiceIDRequest} */
+  static GenerateInvoiceIDRequest() {
     return Joi.object({
-      flow_type: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-      description: Joi.string().allow(""),
-      entity_type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-      channel: Joi.string().allow("").required(),
-      rule_type: Joi.string().allow("").required(),
-      is_deleted: Joi.boolean().required(),
-      position: Joi.number().required(),
-      restrict_forward_servicability: Joi.boolean().required(),
-      conditions: Joi.array().items(OrderPlatformModel.Condition()).required(),
-      meta: OrderPlatformModel.RuleMeta().required(),
-      qc_enabled: Joi.boolean().required(),
-      is_active: Joi.boolean().required(),
-      actions: OrderPlatformModel.RuleAction().required(),
+      shipment_ids: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 
-  /** @returns {Condition} */
-  static Condition() {
+  /** @returns {GenerateInvoiceIDResponse} */
+  static GenerateInvoiceIDResponse() {
     return Joi.object({
-      value: Joi.string().allow("").required(),
-      variable: Joi.string().allow("").required(),
-      operation: Joi.string().allow("").required(),
+      items: Joi.array().items(
+        OrderPlatformModel.GenerateInvoiceIDResponseData()
+      ),
     });
   }
 
-  /** @returns {RuleMeta} */
-  static RuleMeta() {
+  /** @returns {GenerateInvoiceIDErrorResponse} */
+  static GenerateInvoiceIDErrorResponse() {
     return Joi.object({
-      department: OrderPlatformModel.Department(),
-      l3: OrderPlatformModel.L3(),
-    });
-  }
-
-  /** @returns {RuleAction} */
-  static RuleAction() {
-    return Joi.object({
-      reasons: Joi.array().items(OrderPlatformModel.Reason()),
-    });
-  }
-
-  /** @returns {Department} */
-  static Department() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {L3} */
-  static L3() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Error} */
-  static Error() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {RuleUpdateResponse} */
-  static RuleUpdateResponse() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      success: Joi.boolean(),
-      error: OrderPlatformModel.RuleError(),
-    });
-  }
-
-  /** @returns {DeleteRuleResponse} */
-  static DeleteRuleResponse() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      success: Joi.boolean(),
-      error: OrderPlatformModel.RuleError(),
-    });
-  }
-
-  /** @returns {UpdateRulePositionRequest} */
-  static UpdateRulePositionRequest() {
-    return Joi.object({
-      rule_id: Joi.number().required(),
-      page_no: Joi.number().required(),
-      page_size: Joi.number().required(),
-      position: Joi.number().required(),
-      flow_type: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {UpdateRulePositionResponse} */
-  static UpdateRulePositionResponse() {
-    return Joi.object({
-      page: OrderPlatformModel.PageInfo(),
-      items: Joi.array().items(OrderPlatformModel.RuleItem()),
-      success: Joi.boolean(),
-      error: OrderPlatformModel.RuleError(),
-    });
-  }
-
-  /** @returns {RuleItem} */
-  static RuleItem() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      entity_type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-      channel: Joi.string().allow("").required(),
-      actions: OrderPlatformModel.RuleAction().required(),
-      qc_enabled: Joi.boolean().required(),
-      is_deleted: Joi.boolean().required(),
-      conditions: OrderPlatformModel.Condition().required(),
-      meta: OrderPlatformModel.Meta().required(),
-      rule_type: Joi.string().allow("").required(),
-      is_active: Joi.boolean().required(),
-      name: Joi.string().allow("").required(),
-      description: Joi.string().allow("").required(),
-      flow_type: Joi.string().allow("").required(),
-      position: Joi.number().required(),
-    });
-  }
-
-  /** @returns {RuleParametersResponse} */
-  static RuleParametersResponse() {
-    return Joi.object({
-      response: Joi.array().items(OrderPlatformModel.ParameterResponse()),
-    });
-  }
-
-  /** @returns {ParameterResponse} */
-  static ParameterResponse() {
-    return Joi.object({
-      text: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {RuleListRequest} */
-  static RuleListRequest() {
-    return Joi.object({
-      page_size: Joi.number(),
-      page_no: Joi.number(),
-      flow_type: Joi.string().allow(""),
-      lane_type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {RuleListResponse} */
-  static RuleListResponse() {
-    return Joi.object({
-      page: OrderPlatformModel.PageInfo(),
-      items: Joi.array().items(OrderPlatformModel.RuleListItem()),
-      success: Joi.boolean().allow(null),
-      error: OrderPlatformModel.RuleErrorResponse(),
-    });
-  }
-
-  /** @returns {RuleListItem} */
-  static RuleListItem() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      entity_type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-      channel: Joi.string().allow("").required(),
-      actions: OrderPlatformModel.RuleAction().required(),
-      qc_enabled: Joi.boolean().required(),
-      is_deleted: Joi.boolean().required(),
-      conditions: OrderPlatformModel.Condition().required(),
-      meta: OrderPlatformModel.Meta().required(),
-      rule_type: Joi.string().allow("").required(),
-      is_active: Joi.boolean().required(),
-      name: Joi.string().allow("").required(),
-      description: Joi.string().allow("").required(),
-      flow_type: Joi.string().allow("").required(),
-      position: Joi.number().required(),
-      success: Joi.boolean().required(),
-      error: OrderPlatformModel.RuleError().required(),
-    });
-  }
-
-  /** @returns {RuleError} */
-  static RuleError() {
-    return Joi.object({
-      type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-      message: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {RuleErrorResponse} */
-  static RuleErrorResponse() {
-    return Joi.object({
-      success: Joi.boolean().allow(null),
-      error: OrderPlatformModel.RuleError(),
-    });
-  }
-
-  /** @returns {PageInfo} */
-  static PageInfo() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      current: Joi.number(),
-      size: Joi.number(),
-      item_total: Joi.number(),
-      has_previous: Joi.boolean(),
-      has_next: Joi.boolean(),
-      page_size: Joi.number(),
+      items: Joi.array().items(
+        OrderPlatformModel.GenerateInvoiceIDErrorResponseData()
+      ),
     });
   }
 
@@ -7176,71 +6403,6 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {FilterOptions} */
-  static FilterOptions() {
-    return Joi.object({
-      label: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-      name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {FiltersList} */
-  static FiltersList() {
-    return Joi.object({
-      label: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-      filter_type: Joi.string().allow("").required(),
-      type: Joi.string().allow("").required(),
-      placeholder_text: Joi.string().allow(""),
-      required: Joi.boolean(),
-      options: Joi.array().items(OrderPlatformModel.FilterOptions()).required(),
-    });
-  }
-
-  /** @returns {GlobalFiltersResponse} */
-  static GlobalFiltersResponse() {
-    return Joi.object({
-      filters: Joi.array().items(OrderPlatformModel.FiltersList()).required(),
-      company_id: Joi.number().allow(null).required(),
-      request_source: Joi.string().allow(""),
-      show_in: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {ViewDetails} */
-  static ViewDetails() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-      text: Joi.string().allow(""),
-      filters: Joi.array().items(OrderPlatformModel.FiltersList()),
-    });
-  }
-
-  /** @returns {ParentViews} */
-  static ParentViews() {
-    return Joi.object({
-      views: Joi.array().items(OrderPlatformModel.ViewDetails()),
-      parent_slug: Joi.string().allow(""),
-      parent_text: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UserViewsResponse} */
-  static UserViewsResponse() {
-    return Joi.object({
-      parent_views: Joi.array().items(OrderPlatformModel.ParentViews()),
-    });
-  }
-
-  /** @returns {CreateUpdateDeleteResponse} */
-  static CreateUpdateDeleteResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {FiltersResponse} */
   static FiltersResponse() {
     return Joi.object({
@@ -7278,6 +6440,16 @@ class OrderPlatformModel {
       template_x_slug: Joi.array().items(
         OrderPlatformModel.BulkActionTemplate()
       ),
+    });
+  }
+
+  /** @returns {Reason} */
+  static Reason() {
+    return Joi.object({
+      qc_type: Joi.array().items(Joi.string().allow("")),
+      id: Joi.number(),
+      question_set: Joi.array().items(OrderPlatformModel.QuestionSet()),
+      display_name: Joi.string().allow(""),
     });
   }
 
@@ -7738,6 +6910,14 @@ class OrderPlatformModel {
     return Joi.object({
       file_name: Joi.string().allow(""),
       url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Error} */
+  static Error() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 }

@@ -10,7 +10,9 @@ declare class Logistic {
         getLocality: string;
         getLocations: string;
         getOptimalLocations: string;
+        getPincodeCity: string;
         getPincodeZones: string;
+        getTatProduct: string;
         validateAddress: string;
     };
     _urls: {};
@@ -21,8 +23,8 @@ declare class Logistic {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<LogisticApplicationModel.CountryListResponse>} - Success response
      * @name getAllCountries
-     * @summary: Get Country List
-     * @description: Get all countries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
+     * @summary: Lists all countries.
+     * @description: Retrieve a list of all countries supported by the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
      */
     getAllCountries({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LogisticApplicationModel.CountryListResponse>;
     /**
@@ -71,8 +73,8 @@ declare class Logistic {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<LogisticApplicationModel.GetStoreResponse>} - Success response
      * @name getLocations
-     * @summary: GET locations from the Pincode.
-     * @description: This API returns store from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocations/).
+     * @summary: Fetches available locations.
+     * @description: Retrieves a list of all locations of countries, states, cities.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocations/).
      */
     getLocations({ xApplicationId, xApplicationData, country, state, city, pincode, sector, pageNo, pageSize, requestHeaders, }?: LogisticApplicationValidator.GetLocationsParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetStoreResponse>;
     /**
@@ -82,10 +84,20 @@ declare class Logistic {
      * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
      *   Success response
      * @name getOptimalLocations
-     * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
+     * @summary: Finds optimal locations.
+     * @description: Retrieve the most efficient locations for logistics purposes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
      */
     getOptimalLocations({ body, requestHeaders }?: LogisticApplicationValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.ReAssignStoreResponse>;
+    /**
+     * @param {LogisticApplicationValidator.GetPincodeCityParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
+     * @name getPincodeCity
+     * @summary: Fetches city by pincode.
+     * @description: Retrieve the name of the city associated with a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
+     */
+    getPincodeCity({ pincode, requestHeaders }?: LogisticApplicationValidator.GetPincodeCityParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.PincodeApiResponse>;
     /**
      * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -94,10 +106,20 @@ declare class Logistic {
      *   - Success response
      *
      * @name getPincodeZones
-     * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
+     * @summary: Fetches zones by pincode.
+     * @description: Retreive the logistical zones corresponding to a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
      */
     getPincodeZones({ body, requestHeaders }?: LogisticApplicationValidator.GetPincodeZonesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>;
+    /**
+     * @param {LogisticApplicationValidator.GetTatProductParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
+     * @name getTatProduct
+     * @summary: Retrieves product turnaround time.
+     * @description: Retrieve the estimated delivery time for a specific product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
+     */
+    getTatProduct({ body, requestHeaders }?: LogisticApplicationValidator.GetTatProductParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.TATViewResponse>;
     /**
      * @param {LogisticApplicationValidator.ValidateAddressParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -110,5 +132,5 @@ declare class Logistic {
      */
     validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: LogisticApplicationValidator.ValidateAddressParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.ValidateAddressRequest>;
 }
-import LogisticApplicationModel = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationModel");
-import LogisticApplicationValidator = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationValidator");
+import LogisticApplicationModel = require("./LogisticApplicationModel");
+import LogisticApplicationValidator = require("./LogisticApplicationValidator");

@@ -2,13 +2,13 @@ export = PaymentApplicationModel;
 /**
  * @typedef AggregatorConfigDetail
  * @property {boolean} [sdk] - SDK
- * @property {string} [secret] - Masked payment gateway api secret
+ * @property {string} secret - Masked payment gateway api secret
  * @property {string} [api] - Payment gateway api endpoint
  * @property {string} [pin] - Masked pin
- * @property {string} [config_type] - Fynd or self payment gateway
+ * @property {string} config_type - Fynd or self payment gateway
  * @property {string} [merchant_key] - Unique merchant key
  * @property {string} [verify_api] - Payment gateway verify payment api endpoint
- * @property {string} [key] - Payment gateway api key
+ * @property {string} key - Payment gateway api key
  * @property {string} [user_id] - Registered User id
  * @property {string} [merchant_id] - Unique merchant id
  */
@@ -268,6 +268,13 @@ export = PaymentApplicationModel;
  * @property {string} [api_link] - Api_link
  */
 /**
+ * @typedef PaymentDefaultSelection
+ * @property {string} [mode] - Default Selection Payment Mode
+ * @property {string} [identifier] - Identifier for Payment Mode
+ * @property {boolean} [skip] - Decide if the default payment mode will skip the
+ *   payment options page altogether or just be preferred on the Frontend
+ */
+/**
  * @typedef PaymentFlow
  * @property {AggregatorRoute} [bqr_razorpay]
  * @property {AggregatorRoute} [fynd]
@@ -286,8 +293,9 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef PaymentOptionAndFlow
- * @property {RootPaymentMode[]} payment_option - Payment options
+ * @property {RootPaymentMode} payment_option
  * @property {PaymentFlow} payment_flows
+ * @property {PaymentDefaultSelection} [payment_default_selection]
  */
 /**
  * @typedef AdvanceObject
@@ -398,6 +406,7 @@ export = PaymentApplicationModel;
 /**
  * @typedef ValidateVPARequest
  * @property {string} upi_vpa - UPI ID
+ * @property {string} [aggregator] - Aggregator slug
  */
 /**
  * @typedef ValidateUPI
@@ -539,8 +548,8 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef AddBeneficiaryDetailsRequest
- * @property {boolean} [delights] - True if beneficiary to be added by delights
- *   or False if by User
+ * @property {boolean} delights - True if beneficiary to be added by delights or
+ *   False if by User
  * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
  * @property {BeneficiaryModeDetails} details
  * @property {string} [otp]
@@ -584,7 +593,6 @@ export = PaymentApplicationModel;
  * @typedef SetDefaultBeneficiaryRequest
  * @property {string} order_id - Merchant Order Id
  * @property {string} beneficiary_id - Beneficiary Hash Id of the beneficiary added
- * @property {string} [shipment_id] - Shipment Id from respective merchant order ID
  */
 /**
  * @typedef SetDefaultBeneficiaryResponse
@@ -1042,7 +1050,7 @@ export = PaymentApplicationModel;
 declare class PaymentApplicationModel {
 }
 declare namespace PaymentApplicationModel {
-    export { AggregatorConfigDetail, AggregatorsConfigDetailResponse, ErrorCodeAndDescription, HttpErrorCodeAndResponse, AttachCardRequest, AttachCardsResponse, CardPaymentGateway, ActiveCardPaymentGatewayResponse, Card, ListCardsResponse, DeletehCardRequest, DeleteCardsResponse, ValidateCustomerRequest, ValidateCustomerResponse, ChargeCustomerRequest, ChargeCustomerResponse, PaymentInitializationRequest, PaymentInitializationResponse, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, IntentAppErrorList, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, AggregatorRoute, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteResponse, WalletLinkRequestSchema, WalletVerifyRequestSchema, WalletDelinkRequestSchema, WalletResponseSchema, RupifiBannerData, RupifiBannerResponse, EpaylaterBannerData, EpaylaterBannerResponse, ResendOrCancelPaymentRequest, LinkStatus, ResendOrCancelPaymentResponse, renderHTMLRequest, renderHTMLResponse, ValidateVPARequest, ValidateUPI, ValidateVPAResponse, CardDetails, CardDetailsResponse, TransferItemsDetails, TransferModeDetails, TransferModeResponse, UpdateRefundTransferModeRequest, UpdateRefundTransferModeResponse, OrderBeneficiaryDetails, OrderBeneficiaryResponse, NotFoundResourceError, IfscCodeResponse, ErrorCodeDescription, AddBeneficiaryViaOtpVerificationRequest, AddBeneficiaryViaOtpVerificationResponse, WrongOtpError, BeneficiaryModeDetails, AddBeneficiaryDetailsRequest, RefundAccountResponse, BankDetailsForOTP, AddBeneficiaryDetailsOTPRequest, WalletOtpRequest, WalletOtpResponse, SetDefaultBeneficiaryRequest, SetDefaultBeneficiaryResponse, GetPaymentLinkResponse, ErrorDescription, ErrorResponse, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, CancelOrResendPaymentLinkRequest, ResendPaymentLinkResponse, CancelPaymentLinkResponse, PollingPaymentLinkResponse, PaymentMethodsMeta, CreateOrderUserPaymentMethods, CreateOrderUserRequest, CreateOrderUserData, CreateOrderUserResponse, BalanceDetails, CreditSummary, CustomerCreditSummaryResponse, RedirectURL, RedirectToAggregatorResponse, CreditDetail, CheckCreditResponse, KYCAddress, UserPersonalInfoInDetails, MarketplaceInfo, BusinessDetails, DeviceDetails, CustomerOnboardingRequest, OnboardSummary, CustomerOnboardingResponse, OutstandingOrderDetailsResponse, PaidOrderDetailsResponse, DeleteRefundAccountResponse, RefundOptionsDetails, RefundOptions, OfflineRefundOptions, RefundOptionResponse, SelectedRefundOptionResponse, WalletBeneficiaryDetails, UpiBeneficiaryDetails, BeneficiaryRefundOptions, OrderBeneficiaryResponseSchemaV2, ValidateValidateAddressRequest, VPADetails, ValidateValidateAddressResponse, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderRequest, PaymentOrderData, PaymentOrderResponse, ShipmentRefundRequest, ShipmentRefundDetail, ShipmentRefundResponse };
+    export { AggregatorConfigDetail, AggregatorsConfigDetailResponse, ErrorCodeAndDescription, HttpErrorCodeAndResponse, AttachCardRequest, AttachCardsResponse, CardPaymentGateway, ActiveCardPaymentGatewayResponse, Card, ListCardsResponse, DeletehCardRequest, DeleteCardsResponse, ValidateCustomerRequest, ValidateCustomerResponse, ChargeCustomerRequest, ChargeCustomerResponse, PaymentInitializationRequest, PaymentInitializationResponse, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, IntentAppErrorList, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteResponse, WalletLinkRequestSchema, WalletVerifyRequestSchema, WalletDelinkRequestSchema, WalletResponseSchema, RupifiBannerData, RupifiBannerResponse, EpaylaterBannerData, EpaylaterBannerResponse, ResendOrCancelPaymentRequest, LinkStatus, ResendOrCancelPaymentResponse, renderHTMLRequest, renderHTMLResponse, ValidateVPARequest, ValidateUPI, ValidateVPAResponse, CardDetails, CardDetailsResponse, TransferItemsDetails, TransferModeDetails, TransferModeResponse, UpdateRefundTransferModeRequest, UpdateRefundTransferModeResponse, OrderBeneficiaryDetails, OrderBeneficiaryResponse, NotFoundResourceError, IfscCodeResponse, ErrorCodeDescription, AddBeneficiaryViaOtpVerificationRequest, AddBeneficiaryViaOtpVerificationResponse, WrongOtpError, BeneficiaryModeDetails, AddBeneficiaryDetailsRequest, RefundAccountResponse, BankDetailsForOTP, AddBeneficiaryDetailsOTPRequest, WalletOtpRequest, WalletOtpResponse, SetDefaultBeneficiaryRequest, SetDefaultBeneficiaryResponse, GetPaymentLinkResponse, ErrorDescription, ErrorResponse, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, CancelOrResendPaymentLinkRequest, ResendPaymentLinkResponse, CancelPaymentLinkResponse, PollingPaymentLinkResponse, PaymentMethodsMeta, CreateOrderUserPaymentMethods, CreateOrderUserRequest, CreateOrderUserData, CreateOrderUserResponse, BalanceDetails, CreditSummary, CustomerCreditSummaryResponse, RedirectURL, RedirectToAggregatorResponse, CreditDetail, CheckCreditResponse, KYCAddress, UserPersonalInfoInDetails, MarketplaceInfo, BusinessDetails, DeviceDetails, CustomerOnboardingRequest, OnboardSummary, CustomerOnboardingResponse, OutstandingOrderDetailsResponse, PaidOrderDetailsResponse, DeleteRefundAccountResponse, RefundOptionsDetails, RefundOptions, OfflineRefundOptions, RefundOptionResponse, SelectedRefundOptionResponse, WalletBeneficiaryDetails, UpiBeneficiaryDetails, BeneficiaryRefundOptions, OrderBeneficiaryResponseSchemaV2, ValidateValidateAddressRequest, VPADetails, ValidateValidateAddressResponse, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderRequest, PaymentOrderData, PaymentOrderResponse, ShipmentRefundRequest, ShipmentRefundDetail, ShipmentRefundResponse };
 }
 /** @returns {AggregatorConfigDetail} */
 declare function AggregatorConfigDetail(): AggregatorConfigDetail;
@@ -1054,7 +1062,7 @@ type AggregatorConfigDetail = {
     /**
      * - Masked payment gateway api secret
      */
-    secret?: string;
+    secret: string;
     /**
      * - Payment gateway api endpoint
      */
@@ -1066,7 +1074,7 @@ type AggregatorConfigDetail = {
     /**
      * - Fynd or self payment gateway
      */
-    config_type?: string;
+    config_type: string;
     /**
      * - Unique merchant key
      */
@@ -1078,7 +1086,7 @@ type AggregatorConfigDetail = {
     /**
      * - Payment gateway api key
      */
-    key?: string;
+    key: string;
     /**
      * - Registered User id
      */
@@ -1851,6 +1859,23 @@ type AggregatorRoute = {
      */
     api_link?: string;
 };
+/** @returns {PaymentDefaultSelection} */
+declare function PaymentDefaultSelection(): PaymentDefaultSelection;
+type PaymentDefaultSelection = {
+    /**
+     * - Default Selection Payment Mode
+     */
+    mode?: string;
+    /**
+     * - Identifier for Payment Mode
+     */
+    identifier?: string;
+    /**
+     * - Decide if the default payment mode will skip the
+     * payment options page altogether or just be preferred on the Frontend
+     */
+    skip?: boolean;
+};
 /** @returns {PaymentFlow} */
 declare function PaymentFlow(): PaymentFlow;
 type PaymentFlow = {
@@ -1872,11 +1897,9 @@ type PaymentFlow = {
 /** @returns {PaymentOptionAndFlow} */
 declare function PaymentOptionAndFlow(): PaymentOptionAndFlow;
 type PaymentOptionAndFlow = {
-    /**
-     * - Payment options
-     */
-    payment_option: RootPaymentMode[];
+    payment_option: RootPaymentMode;
     payment_flows: PaymentFlow;
+    payment_default_selection?: PaymentDefaultSelection;
 };
 /** @returns {AdvanceObject} */
 declare function AdvanceObject(): AdvanceObject;
@@ -2152,6 +2175,10 @@ type ValidateVPARequest = {
      * - UPI ID
      */
     upi_vpa: string;
+    /**
+     * - Aggregator slug
+     */
+    aggregator?: string;
 };
 /** @returns {ValidateUPI} */
 declare function ValidateUPI(): ValidateUPI;
@@ -2553,10 +2580,10 @@ type BeneficiaryModeDetails = {
 declare function AddBeneficiaryDetailsRequest(): AddBeneficiaryDetailsRequest;
 type AddBeneficiaryDetailsRequest = {
     /**
-     * - True if beneficiary to be added by delights
-     * or False if by User
+     * - True if beneficiary to be added by delights or
+     * False if by User
      */
-    delights?: boolean;
+    delights: boolean;
     /**
      * - Shipment Id of the respective Merchant Order Id
      */
@@ -2645,10 +2672,6 @@ type SetDefaultBeneficiaryRequest = {
      * - Beneficiary Hash Id of the beneficiary added
      */
     beneficiary_id: string;
-    /**
-     * - Shipment Id from respective merchant order ID
-     */
-    shipment_id?: string;
 };
 /** @returns {SetDefaultBeneficiaryResponse} */
 declare function SetDefaultBeneficiaryResponse(): SetDefaultBeneficiaryResponse;

@@ -89,4 +89,4 @@ type SubmitCustomFormParam = {
     slug: string;
     body: LeadApplicationModel.CustomFormSubmissionPayload;
 };
-import LeadApplicationModel = require("sdk/output/javascript/code/sdk/application/Lead/LeadApplicationModel");
+import LeadApplicationModel = require("./LeadApplicationModel");

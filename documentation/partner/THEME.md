@@ -9,27 +9,33 @@
 Responsible for partner theme submission
 
 
-Default
-* [createNewThemeInOrganization](#createnewthemeinorganization)
+Page Management
 * [createPage](#createpage)
-* [createTheme](#createtheme)
-* [deleteOrganizationTheme](#deleteorganizationtheme)
 * [deletePage](#deletepage)
-* [deleteTheme](#deletetheme)
 * [getAllPages](#getallpages)
+* [getPage](#getpage)
+* [updateMultiplePages](#updatemultiplepages)
+* [updatePage](#updatepage)
+
+
+Theme management 
+* [createNewThemeInOrganization](#createnewthemeinorganization)
+* [deleteOrganizationTheme](#deleteorganizationtheme)
+* [deleteTheme](#deletetheme)
 * [getApplicationThemes](#getapplicationthemes)
 * [getLatestVersionOfThemeBySlug](#getlatestversionofthemebyslug)
 * [getOrganizationThemeDetails](#getorganizationthemedetails)
 * [getOrganizationThemes](#getorganizationthemes)
-* [getPage](#getpage)
 * [getThemeById](#getthemebyid)
 * [getThemeRejectionReasons](#getthemerejectionreasons)
 * [getThemeVersions](#getthemeversions)
 * [submitOrganizationTheme](#submitorganizationtheme)
 * [updateDraftTheme](#updatedrafttheme)
-* [updateMultiplePages](#updatemultiplepages)
-* [updatePage](#updatepage)
 * [updateTheme](#updatetheme)
+
+
+Default
+* [createTheme](#createtheme)
 
 
 
@@ -40,299 +46,8 @@ Default
 
 
 
-### createNewThemeInOrganization
-Create a new theme for the organization
-
-
-
-```javascript
-// Promise
-const promise = partnerClient.theme.createNewThemeInOrganization({  organizationId : value,
- body : value,
- slug : value });
-
-// Async/Await
-const data = await partnerClient.theme.createNewThemeInOrganization({  organizationId : value,
- body : value,
- slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| organizationId | string | yes | The ID of the organization |    
-| slug | string | no | The slug of the theme. |  
-| body | [MarketplaceTheme](#MarketplaceTheme) | yes | Request body |
-
-
-Use this api to create a new theme for the organization
-
-*Returned Response:*
-
-
-
-
-[MarketplaceTheme](#MarketplaceTheme)
-
-Theme updated successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; example1</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "64be51bee7048a025f4fb0b8",
-    "payment": {
-      "is_paid": false,
-      "amount": 0
-    },
-    "contact": {
-      "developer_contact": [
-        "test@gofynd.com"
-      ],
-      "seller_contact": "test@gofynd.com"
-    },
-    "industry": [
-      "Business equipment and supplies",
-      "Books, music, and video",
-      "Clothing"
-    ],
-    "is_update": false,
-    "is_default": false,
-    "name": "White-Splash",
-    "tagline": "Where Style Meets Artistry",
-    "description": "Kartmax is the perfect theme to get you started with your store. Capture audiences' attention through captivating layouts inspired by editorial design, striking typography, and impactful hero sections. Embrace a contemporary narrative that exudes personality and brings your content to life.",
-    "catalog_size": {
-      "min": 200,
-      "max": 0
-    },
-    "images": {
-      "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
-      "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/PY-1mmO03-mobile.png"
-    },
-    "carousel": [
-      {
-        "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
-        "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/fhPI_ADIa-carousel_mobile_0.png"
-      },
-      {
-        "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
-        "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/u3zWsTqM5-carousel_mobile_1.png"
-      },
-      {
-        "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
-        "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/fhPI_ADIa-carousel_mobile_0.png"
-      },
-      {
-        "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
-        "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/fhPI_ADIa-carousel_mobile_0.png"
-      }
-    ],
-    "src": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/zrIW3mA4G-White-Splash_1.0.157.zip",
-    "explore": {
-      "title": "Elevate Your Shopping Experience",
-      "description": "Designed to cater to extensive carts and inventories, featuring a prominent search bar and the choice for a permanently visible cart sidebar."
-    },
-    "features": [
-      {
-        "category": "Home Sections",
-        "list": [
-          {
-            "label": "Video",
-            "description": "Video as a section"
-          },
-          {
-            "label": "Carousel",
-            "description": "Carousel as a section"
-          }
-        ]
-      },
-      {
-        "category": "Authentication",
-        "list": [
-          {
-            "label": "Standard Login Interface",
-            "description": "Deafult Login Interface, use this if you have not implmented custom login interface for login, register flows inside your theme code."
-          },
-          {
-            "label": "Login with Email",
-            "description": "This is be default available in Standard Login Interface. If custom login interface is used, check your implmentation."
-          },
-          {
-            "label": "Login with Mobile Number",
-            "description": "This is be default available in Standard Login Interface. If custom login interface is used, check your implmentation."
-          },
-          {
-            "label": "Voice OTP",
-            "description": "This is be default available in Standard Login Interface. If custom login interface is used, check your implmentation."
-          },
-          {
-            "label": "Social Media login",
-            "description": "This is be default available in Standard Login Interface. If custom login interface is used, check your implmentation."
-          }
-        ]
-      },
-      {
-        "category": "Cart & Checkout",
-        "list": [
-          {
-            "label": "Guest Checkout",
-            "description": "Enables customer to buy a product without login"
-          },
-          {
-            "label": "Customized Cart",
-            "description": "--"
-          }
-        ]
-      },
-      {
-        "category": "Product Description",
-        "list": [
-          {
-            "label": "Buy Now",
-            "description": "Buy Now flow support along with Add to Cart"
-          },
-          {
-            "label": "Product Videos",
-            "description": "Videos present in product catalog can be shown"
-          },
-          {
-            "label": "3D Model of Product",
-            "description": "3D Models present in product catalog can be shown"
-          },
-          {
-            "label": "Product Variants",
-            "description": "Show variants of a particular product"
-          },
-          {
-            "label": "Extension Support",
-            "description": "Supports various extensions made for Prdouct Page"
-          },
-          {
-            "label": "Default Size Selection",
-            "description": "By default select one size"
-          },
-          {
-            "label": "Product Highlights",
-            "description": "Show highlights added in the cartalog"
-          },
-          {
-            "label": "Short Description",
-            "description": "Show short description from catalog in PDP"
-          }
-        ]
-      },
-      {
-        "category": "Product Listing",
-        "list": [
-          {
-            "label": "Infinite Scroll",
-            "description": "Infinite scrolling support using lazy loady"
-          },
-          {
-            "label": "Discount Badges",
-            "description": "Show discount or custom badges on Product tiles"
-          },
-          {
-            "label": "Product Variants",
-            "description": "Supports showcase various variants on the listing itself"
-          }
-        ]
-      },
-      {
-        "category": "Navigation",
-        "list": [
-          {
-            "label": "Customizable Navigation Menu",
-            "description": "Customize Navigation Menu to accomodate multiple desings"
-          }
-        ]
-      },
-      {
-        "category": "SEO",
-        "list": [
-          {
-            "label": "alt text",
-            "description": "Alt text data received in API is used on Product Images"
-          }
-        ]
-      }
-    ],
-    "highlights": [
-      {
-        "title": "Styles and Colours",
-        "description": "With custom colours and styles, you can modify the appearance of your entire store or particular sections for specific events, marketing drives, or whenever des",
-        "image": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/xD9aRhQIO-highlight_0.png"
-      },
-      {
-        "title": "Enhanced Navigation and Menu:",
-        "description": "Unleash the full potential of your header by showcasing images, videos, products, and collections in an enhanced dropdown menu. Improve the browsing experience ",
-        "image": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/xD9aRhQIO-highlight_0.png"
-      }
-    ],
-    "variations": [
-      {
-        "name": "default",
-        "color": "#35919b",
-        "demo_url": "nx7zjzx4i.hostx1.de",
-        "images": {
-          "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
-          "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/PY-1mmO03-mobile.png"
-        }
-      }
-    ],
-    "documentation": {
-      "notes": "<p>White splash user documentation</p>",
-      "url": ""
-    },
-    "status": "published",
-    "step": 7,
-    "comments": {
-      "developer_remark": "White Splash fyndx1 theme submission",
-      "reviewer_feedback": ""
-    },
-    "release": {
-      "version": "1.0.157",
-      "notes": "<p>White-splash release notes. Fyndx1 theme submission.</p>"
-    },
-    "slug": "white-splash",
-    "organization_id": "64aec4634bc407961ed265c5",
-    "user_id": "ce6432937739e49875dedae0",
-    "created_at": "2023-07-24T10:26:06.612Z",
-    "updated_at": "2023-07-24T10:26:37.894Z",
-    "template_theme_id": "64be51dd44650d20b5b15f18",
-    "theme_type": "vue2"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### createPage
-Create a page 
+Create page.
 
 
 
@@ -359,7 +74,7 @@ const data = await partnerClient.theme.createPage({  themeId : value,
 | body | [AvailablePageSchema](#AvailablePageSchema) | yes | Request body |
 
 
-Use this API to create a page for a theme by its ID.
+Add a new page to the partner server configurations.
 
 *Returned Response:*
 
@@ -760,125 +475,8 @@ Success. Returns the page of the theme. Refer `AvailablePageSchema` for more det
 ---
 
 
-### createTheme
-Create a new theme
-
-
-
-```javascript
-// Promise
-const promise = partnerClient.theme.createTheme({  organizationId : value,
- body : value });
-
-// Async/Await
-const data = await partnerClient.theme.createTheme({  organizationId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| organizationId | string | yes | Organization ID |  
-| body | [CreateNewTheme](#CreateNewTheme) | yes | Request body |
-
-
-Themes improve the look and appearance of a website. Use this API to create a theme.
-
-*Returned Response:*
-
-
-
-
-[ThemesSchema](#ThemesSchema)
-
-Returns the new application theme details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteOrganizationTheme
-Delete a theme
-
-
-
-```javascript
-// Promise
-const promise = partnerClient.theme.deleteOrganizationTheme({  organizationId : value,
- themeId : value });
-
-// Async/Await
-const data = await partnerClient.theme.deleteOrganizationTheme({  organizationId : value,
- themeId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| organizationId | string | yes | The ID of the organization |   
-| themeId | string | yes | The ID of the theme |  
-
-
-
-This endpoint allows you to delete a theme by providing the organization and theme IDs.
-
-*Returned Response:*
-
-
-
-
-[MarketplaceTheme](#MarketplaceTheme)
-
-Successful deletion of the theme
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### deletePage
-Deletes a page 
+Delete page.
 
 
 
@@ -906,7 +504,7 @@ const data = await partnerClient.theme.deletePage({  themeId : value,
 
 
 
-Use this API to delete a page for a theme by its ID and page_value.
+Remove a page from the partner server configurations.
 
 *Returned Response:*
 
@@ -1307,8 +905,1934 @@ Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more d
 ---
 
 
+### getAllPages
+Get all pages.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.getAllPages({  themeId : value,
+ organizationId : value });
+
+// Async/Await
+const data = await partnerClient.theme.getAllPages({  themeId : value,
+ organizationId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | ID of the theme to be retrieved |   
+| organizationId | string | yes | Organization ID |  
+
+
+
+Retrieve a list of all pages available in the partner server setup.
+
+*Returned Response:*
+
+
+
+
+[AllAvailablePageSchema](#AllAvailablePageSchema)
+
+Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; All pages</i></summary>
+
+```json
+{
+  "value": {
+    "pages": [
+      {
+        "path": "products",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981639e13f6b2"
+        },
+        "_id": "60ab5ca6d572fed64294eb0e",
+        "value": "product-listing",
+        "text": "Product Listing",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "collection",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981fc5d13f6b9"
+        },
+        "_id": "60ab5ca6d572fed64294eaf9",
+        "text": "Collection Listing",
+        "value": "collection-listing",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "compare",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981cbca13f6b1"
+        },
+        "_id": "60ab5ca6d572fed64294eb0b",
+        "value": "compare-products",
+        "text": "Compare Products",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "cart/bag",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e9812fdf13f6ae"
+        },
+        "_id": "60ab5ca6d572fed64294eb02",
+        "value": "cart-landing",
+        "text": "Cart Landing",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "product",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e9815c9713f6ab"
+        },
+        "_id": "60ab5ca6d572fed64294eaf6",
+        "text": "Product Description",
+        "value": "product-description",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "product/:slug/reviews",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60ab5ca6d572fed64294eb24"
+        },
+        "_id": "60ab5ca6d572fed64294eb25",
+        "sections_meta": [],
+        "value": "product-reviews",
+        "text": "Product Reviews",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "__v": 9
+      },
+      {
+        "path": "blog",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60ab5ca6d572fed64294eb22"
+        },
+        "_id": "60ab5ca6d572fed64294eb23",
+        "sections_meta": [],
+        "value": "blog",
+        "text": "Blog",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "__v": 9
+      },
+      {
+        "path": "sections/cookie",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e9814fed13f6b5"
+        },
+        "_id": "60ab5ca6d572fed64294eb17",
+        "text": "cookie",
+        "value": "cookie",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "sections/vivek",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981b32713f6b6"
+        },
+        "_id": "60ab5ca6d572fed64294eb1a",
+        "text": "vivek",
+        "value": "vivek",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "about-us",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60ab5ca6d572fed64294eb28"
+        },
+        "_id": "60ab5ca6d572fed64294eb29",
+        "sections_meta": [],
+        "value": "about-us",
+        "text": "About Us",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "__v": 9
+      },
+      {
+        "path": "wishlist",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981dd2d13f6b3"
+        },
+        "_id": "60ab5ca6d572fed64294eb11",
+        "value": "wishlist",
+        "text": "Wishlist",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "product/:slug/add-review",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60ab5ca6d572fed64294eb26"
+        },
+        "_id": "60ab5ca6d572fed64294eb27",
+        "sections_meta": [],
+        "value": "add-product-review",
+        "text": "Add Product Review",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "__v": 9
+      },
+      {
+        "path": "brands",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981161a13f6ad"
+        },
+        "_id": "60ab5ca6d572fed64294eaff",
+        "value": "brands",
+        "text": "Brands",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e98115b013f6ac"
+        },
+        "_id": "60ab5ca6d572fed64294eafc",
+        "value": "home",
+        "text": "Home",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "collections",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981ad0b13f6b0"
+        },
+        "_id": "60ab5ca6d572fed64294eb08",
+        "value": "collections",
+        "text": "Collections",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "categories",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981872c13f6af"
+        },
+        "_id": "60ab5ca6d572fed64294eb05",
+        "value": "categories",
+        "text": "Categories",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "sections/test",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e98177f713f6b4"
+        },
+        "_id": "60ab5ca6d572fed64294eb14",
+        "text": "Test",
+        "value": "test",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "sections/vinit",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e98170b813f6b8"
+        },
+        "_id": "60ab5ca6d572fed64294eb20",
+        "text": "vinit",
+        "value": "vinit",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "sections/maggie",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981469613f6b7"
+        },
+        "_id": "60ab5ca6d572fed64294eb1d",
+        "text": "maggie",
+        "value": "maggie",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPage
+Get page.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.getPage({  themeId : value,
+ pageValue : value,
+ organizationId : value });
+
+// Async/Await
+const data = await partnerClient.theme.getPage({  themeId : value,
+ pageValue : value,
+ organizationId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | ID of the theme to be retrieved |   
+| pageValue | string | yes | Value of the page to be retrieved |   
+| organizationId | string | yes | Organization ID |  
+
+
+
+Obtain detailed information about a specific page in the partner server.
+
+*Returned Response:*
+
+
+
+
+[AvailablePageSchema](#AvailablePageSchema)
+
+Success. Returns an object of the page.  Refer `AvailablePageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Home page</i></summary>
+
+```json
+{
+  "value": {
+    "path": "",
+    "type": "system",
+    "seo": {
+      "title": "",
+      "description": "",
+      "_id": "60210832d7e98115b013f6ac"
+    },
+    "props": [],
+    "_id": "60ab5ca6d572fed64294eafc",
+    "sections": [
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": false,
+            "desktop": false,
+            "tablet": false
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "utm": "facebook"
+            }
+          }
+        },
+        "name": "customHtml",
+        "props": {
+          "code": {
+            "type": "code",
+            "value": "<p style=\"text-align:right;\"><a href=\"tel:+919820204442\"><img src=\"https://dabuttonfactory.com/button.png?t=For+any+queries%2C+call%3A+%2B91+98202+04442&f=Open+Sans-Bold&ts=21&tc=fff&hp=20&vp=15&c=round&bgt=unicolored&bgc=7043f7\"/> </a></p>"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "udm": "vivek"
+            }
+          }
+        },
+        "name": "brands-listing",
+        "props": {
+          "title": {
+            "type": "text",
+            "value": "Popular rrrrr"
+          },
+          "header": {
+            "type": "header"
+          },
+          "brand_type": {
+            "value": "all",
+            "type": "radio"
+          },
+          "department": {
+            "type": "department"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "layout": {
+            "value": "horizontal",
+            "type": "select"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      },
+      {
+        "blocks": [
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          }
+        ],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": false,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": ""
+          }
+        },
+        "name": "featuredProducts",
+        "props": {
+          "heading": {
+            "value": "Featured Products",
+            "type": "text"
+          },
+          "item_count": {
+            "type": "range",
+            "value": 4
+          },
+          "full_width": {
+            "value": false,
+            "type": "checkbox"
+          }
+        },
+        "preset": {
+          "blocks": [
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            }
+          ]
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "categoryListPage",
+        "props": {
+          "heading": {
+            "type": "text",
+            "value": "Explore Categories"
+          },
+          "layout": {
+            "type": "select",
+            "value": "grid"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "heroBanner",
+        "props": {
+          "ctaLink": {
+            "type": "url",
+            "value": "https://uniket.hostx0.de/about-us"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "imageBanner",
+        "props": {
+          "image": {
+            "value": "",
+            "type": "image_picker"
+          },
+          "full_width": {
+            "value": false,
+            "type": "checkbox"
+          },
+          "overlayLayout": {
+            "value": "left",
+            "type": "select"
+          },
+          "overlayImage": {
+            "value": "",
+            "type": "image_picker"
+          },
+          "text": {
+            "value": "",
+            "type": "text"
+          },
+          "text_color": {
+            "value": "#000",
+            "type": "color"
+          },
+          "ctaLink": {
+            "value": "",
+            "type": "url"
+          },
+          "ctaText": {
+            "value": "",
+            "type": "text"
+          },
+          "layout": {
+            "type": "select",
+            "value": "full"
+          },
+          "height": {
+            "type": "select",
+            "value": "h-auto"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": ""
+          }
+        },
+        "name": "brands-listing",
+        "props": {
+          "title": {
+            "type": "text",
+            "value": "asdfasdf"
+          },
+          "header": {
+            "type": "header"
+          },
+          "brand_type": {
+            "value": "all",
+            "type": "radio"
+          },
+          "department": {
+            "type": "department"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "layout": {
+            "value": "horizontal",
+            "type": "select"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      }
+    ],
+    "value": "home",
+    "text": "Home",
+    "theme": "5fb3ee4194a5181feeeba8e5",
+    "sections_meta": [],
+    "__v": 9
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateMultiplePages
+Update multiple pages.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.updateMultiplePages({  themeId : value,
+ organizationId : value,
+ body : value });
+
+// Async/Await
+const data = await partnerClient.theme.updateMultiplePages({  themeId : value,
+ organizationId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | ID of the theme to be retrieved |   
+| organizationId | string | yes | Organization ID |  
+| body | [AllAvailablePageSchema](#AllAvailablePageSchema) | yes | Request body |
+
+
+Modify and update multiple pages in the partner server setup.
+
+*Returned Response:*
+
+
+
+
+[AllAvailablePageSchema](#AllAvailablePageSchema)
+
+Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; All pages</i></summary>
+
+```json
+{
+  "value": {
+    "pages": [
+      {
+        "path": "products",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981639e13f6b2"
+        },
+        "_id": "60ab5ca6d572fed64294eb0e",
+        "value": "product-listing",
+        "text": "Product Listing",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "collection",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981fc5d13f6b9"
+        },
+        "_id": "60ab5ca6d572fed64294eaf9",
+        "text": "Collection Listing",
+        "value": "collection-listing",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "compare",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981cbca13f6b1"
+        },
+        "_id": "60ab5ca6d572fed64294eb0b",
+        "value": "compare-products",
+        "text": "Compare Products",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "cart/bag",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e9812fdf13f6ae"
+        },
+        "_id": "60ab5ca6d572fed64294eb02",
+        "value": "cart-landing",
+        "text": "Cart Landing",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "product",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e9815c9713f6ab"
+        },
+        "_id": "60ab5ca6d572fed64294eaf6",
+        "text": "Product Description",
+        "value": "product-description",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "product/:slug/reviews",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60ab5ca6d572fed64294eb24"
+        },
+        "_id": "60ab5ca6d572fed64294eb25",
+        "sections_meta": [],
+        "value": "product-reviews",
+        "text": "Product Reviews",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "__v": 9
+      },
+      {
+        "path": "blog",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60ab5ca6d572fed64294eb22"
+        },
+        "_id": "60ab5ca6d572fed64294eb23",
+        "sections_meta": [],
+        "value": "blog",
+        "text": "Blog",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "__v": 9
+      },
+      {
+        "path": "sections/cookie",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e9814fed13f6b5"
+        },
+        "_id": "60ab5ca6d572fed64294eb17",
+        "text": "cookie",
+        "value": "cookie",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "sections/vivek",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981b32713f6b6"
+        },
+        "_id": "60ab5ca6d572fed64294eb1a",
+        "text": "vivek",
+        "value": "vivek",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "about-us",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60ab5ca6d572fed64294eb28"
+        },
+        "_id": "60ab5ca6d572fed64294eb29",
+        "sections_meta": [],
+        "value": "about-us",
+        "text": "About Us",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "__v": 9
+      },
+      {
+        "path": "wishlist",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981dd2d13f6b3"
+        },
+        "_id": "60ab5ca6d572fed64294eb11",
+        "value": "wishlist",
+        "text": "Wishlist",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "product/:slug/add-review",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60ab5ca6d572fed64294eb26"
+        },
+        "_id": "60ab5ca6d572fed64294eb27",
+        "sections_meta": [],
+        "value": "add-product-review",
+        "text": "Add Product Review",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "__v": 9
+      },
+      {
+        "path": "brands",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981161a13f6ad"
+        },
+        "_id": "60ab5ca6d572fed64294eaff",
+        "value": "brands",
+        "text": "Brands",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e98115b013f6ac"
+        },
+        "_id": "60ab5ca6d572fed64294eafc",
+        "value": "home",
+        "text": "Home",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "collections",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981ad0b13f6b0"
+        },
+        "_id": "60ab5ca6d572fed64294eb08",
+        "value": "collections",
+        "text": "Collections",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "categories",
+        "type": "system",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981872c13f6af"
+        },
+        "_id": "60ab5ca6d572fed64294eb05",
+        "value": "categories",
+        "text": "Categories",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "sections/test",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e98177f713f6b4"
+        },
+        "_id": "60ab5ca6d572fed64294eb14",
+        "text": "Test",
+        "value": "test",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "sections/vinit",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e98170b813f6b8"
+        },
+        "_id": "60ab5ca6d572fed64294eb20",
+        "text": "vinit",
+        "value": "vinit",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      },
+      {
+        "path": "sections/maggie",
+        "type": "sections",
+        "seo": {
+          "title": "",
+          "description": "",
+          "_id": "60210832d7e981469613f6b7"
+        },
+        "_id": "60ab5ca6d572fed64294eb1d",
+        "text": "maggie",
+        "value": "maggie",
+        "theme": "5fb3ee4194a5181feeeba8e5",
+        "sections_meta": [],
+        "__v": 9
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePage
+Update page.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.updatePage({  themeId : value,
+ pageValue : value,
+ organizationId : value,
+ body : value });
+
+// Async/Await
+const data = await partnerClient.theme.updatePage({  themeId : value,
+ pageValue : value,
+ organizationId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | ID of the theme |   
+| pageValue | string | yes | Value of the page to be updated |   
+| organizationId | string | yes | Organization ID |  
+| body | [AvailablePageSchema](#AvailablePageSchema) | yes | Request body |
+
+
+Modify and update information related to a specific page in the partner server.
+
+*Returned Response:*
+
+
+
+
+[AvailablePageSchema](#AvailablePageSchema)
+
+Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; page</i></summary>
+
+```json
+{
+  "value": {
+    "path": "",
+    "type": "system",
+    "seo": {
+      "title": "",
+      "description": "",
+      "_id": "60210832d7e98115b013f6ac"
+    },
+    "props": [],
+    "_id": "60ab5ca6d572fed64294eafc",
+    "sections": [
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": false,
+            "desktop": false,
+            "tablet": false
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "utm": "facebook"
+            }
+          }
+        },
+        "name": "customHtml",
+        "props": {
+          "code": {
+            "type": "code",
+            "value": "<p style=\"text-align:right;\"><a href=\"tel:+919820204442\"><img src=\"https://dabuttonfactory.com/button.png?t=For+any+queries%2C+call%3A+%2B91+98202+04442&f=Open+Sans-Bold&ts=21&tc=fff&hp=20&vp=15&c=round&bgt=unicolored&bgc=7043f7\"/> </a></p>"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "udm": "vivek"
+            }
+          }
+        },
+        "name": "brands-listing",
+        "props": {
+          "title": {
+            "type": "text",
+            "value": "Popular rrrrr"
+          },
+          "header": {
+            "type": "header"
+          },
+          "brand_type": {
+            "value": "all",
+            "type": "radio"
+          },
+          "department": {
+            "type": "department"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "layout": {
+            "value": "horizontal",
+            "type": "select"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      },
+      {
+        "blocks": [
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          }
+        ],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": false,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": ""
+          }
+        },
+        "name": "featuredProducts",
+        "props": {
+          "heading": {
+            "value": "Featured Products",
+            "type": "text"
+          },
+          "item_count": {
+            "type": "range",
+            "value": 4
+          },
+          "full_width": {
+            "value": false,
+            "type": "checkbox"
+          }
+        },
+        "preset": {
+          "blocks": [
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            }
+          ]
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "categoryListPage",
+        "props": {
+          "heading": {
+            "type": "text",
+            "value": "Explore Categories"
+          },
+          "layout": {
+            "type": "select",
+            "value": "grid"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "heroBanner",
+        "props": {
+          "ctaLink": {
+            "type": "url",
+            "value": "https://uniket.hostx0.de/about-us"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "imageBanner",
+        "props": {
+          "image": {
+            "value": "",
+            "type": "image_picker"
+          },
+          "full_width": {
+            "value": false,
+            "type": "checkbox"
+          },
+          "overlayLayout": {
+            "value": "left",
+            "type": "select"
+          },
+          "overlayImage": {
+            "value": "",
+            "type": "image_picker"
+          },
+          "text": {
+            "value": "",
+            "type": "text"
+          },
+          "text_color": {
+            "value": "#000",
+            "type": "color"
+          },
+          "ctaLink": {
+            "value": "",
+            "type": "url"
+          },
+          "ctaText": {
+            "value": "",
+            "type": "text"
+          },
+          "layout": {
+            "type": "select",
+            "value": "full"
+          },
+          "height": {
+            "type": "select",
+            "value": "h-auto"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": ""
+          }
+        },
+        "name": "brands-listing",
+        "props": {
+          "title": {
+            "type": "text",
+            "value": "asdfasdf"
+          },
+          "header": {
+            "type": "header"
+          },
+          "brand_type": {
+            "value": "all",
+            "type": "radio"
+          },
+          "department": {
+            "type": "department"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "layout": {
+            "value": "horizontal",
+            "type": "select"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      }
+    ],
+    "value": "home",
+    "text": "Home",
+    "theme": "5fb3ee4194a5181feeeba8e5",
+    "sections_meta": [],
+    "__v": 9
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createNewThemeInOrganization
+Create new theme in organization.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.createNewThemeInOrganization({  organizationId : value,
+ body : value,
+ slug : value });
+
+// Async/Await
+const data = await partnerClient.theme.createNewThemeInOrganization({  organizationId : value,
+ body : value,
+ slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | The ID of the organization |    
+| slug | string | no | The slug of the theme. |  
+| body | [MarketplaceTheme](#MarketplaceTheme) | yes | Request body |
+
+
+Add a new theme to partner server organizations.
+
+*Returned Response:*
+
+
+
+
+[MarketplaceTheme](#MarketplaceTheme)
+
+Theme updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; example1</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "64be51bee7048a025f4fb0b8",
+    "payment": {
+      "is_paid": false,
+      "amount": 0
+    },
+    "contact": {
+      "developer_contact": [
+        "test@gofynd.com"
+      ],
+      "seller_contact": "test@gofynd.com"
+    },
+    "industry": [
+      "Business equipment and supplies",
+      "Books, music, and video",
+      "Clothing"
+    ],
+    "is_update": false,
+    "is_default": false,
+    "name": "White-Splash",
+    "tagline": "Where Style Meets Artistry",
+    "description": "Kartmax is the perfect theme to get you started with your store. Capture audiences' attention through captivating layouts inspired by editorial design, striking typography, and impactful hero sections. Embrace a contemporary narrative that exudes personality and brings your content to life.",
+    "catalog_size": {
+      "min": 200,
+      "max": 0
+    },
+    "images": {
+      "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
+      "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/PY-1mmO03-mobile.png"
+    },
+    "carousel": [
+      {
+        "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
+        "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/fhPI_ADIa-carousel_mobile_0.png"
+      },
+      {
+        "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
+        "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/u3zWsTqM5-carousel_mobile_1.png"
+      },
+      {
+        "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
+        "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/fhPI_ADIa-carousel_mobile_0.png"
+      },
+      {
+        "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
+        "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/fhPI_ADIa-carousel_mobile_0.png"
+      }
+    ],
+    "src": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/zrIW3mA4G-White-Splash_1.0.157.zip",
+    "explore": {
+      "title": "Elevate Your Shopping Experience",
+      "description": "Designed to cater to extensive carts and inventories, featuring a prominent search bar and the choice for a permanently visible cart sidebar."
+    },
+    "features": [
+      {
+        "category": "Home Sections",
+        "list": [
+          {
+            "label": "Video",
+            "description": "Video as a section"
+          },
+          {
+            "label": "Carousel",
+            "description": "Carousel as a section"
+          }
+        ]
+      },
+      {
+        "category": "Authentication",
+        "list": [
+          {
+            "label": "Standard Login Interface",
+            "description": "Deafult Login Interface, use this if you have not implmented custom login interface for login, register flows inside your theme code."
+          },
+          {
+            "label": "Login with Email",
+            "description": "This is be default available in Standard Login Interface. If custom login interface is used, check your implmentation."
+          },
+          {
+            "label": "Login with Mobile Number",
+            "description": "This is be default available in Standard Login Interface. If custom login interface is used, check your implmentation."
+          },
+          {
+            "label": "Voice OTP",
+            "description": "This is be default available in Standard Login Interface. If custom login interface is used, check your implmentation."
+          },
+          {
+            "label": "Social Media login",
+            "description": "This is be default available in Standard Login Interface. If custom login interface is used, check your implmentation."
+          }
+        ]
+      },
+      {
+        "category": "Cart & Checkout",
+        "list": [
+          {
+            "label": "Guest Checkout",
+            "description": "Enables customer to buy a product without login"
+          },
+          {
+            "label": "Customized Cart",
+            "description": "--"
+          }
+        ]
+      },
+      {
+        "category": "Product Description",
+        "list": [
+          {
+            "label": "Buy Now",
+            "description": "Buy Now flow support along with Add to Cart"
+          },
+          {
+            "label": "Product Videos",
+            "description": "Videos present in product catalog can be shown"
+          },
+          {
+            "label": "3D Model of Product",
+            "description": "3D Models present in product catalog can be shown"
+          },
+          {
+            "label": "Product Variants",
+            "description": "Show variants of a particular product"
+          },
+          {
+            "label": "Extension Support",
+            "description": "Supports various extensions made for Prdouct Page"
+          },
+          {
+            "label": "Default Size Selection",
+            "description": "By default select one size"
+          },
+          {
+            "label": "Product Highlights",
+            "description": "Show highlights added in the cartalog"
+          },
+          {
+            "label": "Short Description",
+            "description": "Show short description from catalog in PDP"
+          }
+        ]
+      },
+      {
+        "category": "Product Listing",
+        "list": [
+          {
+            "label": "Infinite Scroll",
+            "description": "Infinite scrolling support using lazy loady"
+          },
+          {
+            "label": "Discount Badges",
+            "description": "Show discount or custom badges on Product tiles"
+          },
+          {
+            "label": "Product Variants",
+            "description": "Supports showcase various variants on the listing itself"
+          }
+        ]
+      },
+      {
+        "category": "Navigation",
+        "list": [
+          {
+            "label": "Customizable Navigation Menu",
+            "description": "Customize Navigation Menu to accomodate multiple desings"
+          }
+        ]
+      },
+      {
+        "category": "SEO",
+        "list": [
+          {
+            "label": "alt text",
+            "description": "Alt text data received in API is used on Product Images"
+          }
+        ]
+      }
+    ],
+    "highlights": [
+      {
+        "title": "Styles and Colours",
+        "description": "With custom colours and styles, you can modify the appearance of your entire store or particular sections for specific events, marketing drives, or whenever des",
+        "image": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/xD9aRhQIO-highlight_0.png"
+      },
+      {
+        "title": "Enhanced Navigation and Menu:",
+        "description": "Unleash the full potential of your header by showcasing images, videos, products, and collections in an enhanced dropdown menu. Improve the browsing experience ",
+        "image": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/xD9aRhQIO-highlight_0.png"
+      }
+    ],
+    "variations": [
+      {
+        "name": "default",
+        "color": "#35919b",
+        "demo_url": "nx7zjzx4i.hostx1.de",
+        "images": {
+          "desktop": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/EXo5oubRa-desktop.png",
+          "mobile": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/pictures/free-icon/original/PY-1mmO03-mobile.png"
+        }
+      }
+    ],
+    "documentation": {
+      "notes": "<p>White splash user documentation</p>",
+      "url": ""
+    },
+    "status": "published",
+    "step": 7,
+    "comments": {
+      "developer_remark": "White Splash fyndx1 theme submission",
+      "reviewer_feedback": ""
+    },
+    "release": {
+      "version": "1.0.157",
+      "notes": "<p>White-splash release notes. Fyndx1 theme submission.</p>"
+    },
+    "slug": "white-splash",
+    "organization_id": "64aec4634bc407961ed265c5",
+    "user_id": "ce6432937739e49875dedae0",
+    "created_at": "2023-07-24T10:26:06.612Z",
+    "updated_at": "2023-07-24T10:26:37.894Z",
+    "template_theme_id": "64be51dd44650d20b5b15f18",
+    "theme_type": "vue2"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteOrganizationTheme
+Delete organization theme.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.deleteOrganizationTheme({  organizationId : value,
+ themeId : value });
+
+// Async/Await
+const data = await partnerClient.theme.deleteOrganizationTheme({  organizationId : value,
+ themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | The ID of the organization |   
+| themeId | string | yes | The ID of the theme |  
+
+
+
+Remove a theme from partner server organizations.
+
+*Returned Response:*
+
+
+
+
+[MarketplaceTheme](#MarketplaceTheme)
+
+Successful deletion of the theme
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### deleteTheme
-Delete a theme
+Delete theme.
 
 
 
@@ -1333,7 +2857,7 @@ const data = await partnerClient.theme.deleteTheme({  themeId : value,
 
 
 
-This endpoint is used to delete a theme from the specified company and application.
+Remove a theme from the partner server configurations.
 
 *Returned Response:*
 
@@ -5328,363 +6852,8 @@ Theme successfully deleted.
 ---
 
 
-### getAllPages
-Get all pages of a theme
-
-
-
-```javascript
-// Promise
-const promise = partnerClient.theme.getAllPages({  themeId : value,
- organizationId : value });
-
-// Async/Await
-const data = await partnerClient.theme.getAllPages({  themeId : value,
- organizationId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| themeId | string | yes | ID of the theme to be retrieved |   
-| organizationId | string | yes | Organization ID |  
-
-
-
-Use this API to retrieve all the available pages of a theme by its ID.
-
-*Returned Response:*
-
-
-
-
-[AllAvailablePageSchema](#AllAvailablePageSchema)
-
-Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; All pages</i></summary>
-
-```json
-{
-  "value": {
-    "pages": [
-      {
-        "path": "products",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981639e13f6b2"
-        },
-        "_id": "60ab5ca6d572fed64294eb0e",
-        "value": "product-listing",
-        "text": "Product Listing",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "collection",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981fc5d13f6b9"
-        },
-        "_id": "60ab5ca6d572fed64294eaf9",
-        "text": "Collection Listing",
-        "value": "collection-listing",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "compare",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981cbca13f6b1"
-        },
-        "_id": "60ab5ca6d572fed64294eb0b",
-        "value": "compare-products",
-        "text": "Compare Products",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "cart/bag",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e9812fdf13f6ae"
-        },
-        "_id": "60ab5ca6d572fed64294eb02",
-        "value": "cart-landing",
-        "text": "Cart Landing",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "product",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e9815c9713f6ab"
-        },
-        "_id": "60ab5ca6d572fed64294eaf6",
-        "text": "Product Description",
-        "value": "product-description",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "product/:slug/reviews",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb24"
-        },
-        "_id": "60ab5ca6d572fed64294eb25",
-        "sections_meta": [],
-        "value": "product-reviews",
-        "text": "Product Reviews",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
-        "path": "blog",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb22"
-        },
-        "_id": "60ab5ca6d572fed64294eb23",
-        "sections_meta": [],
-        "value": "blog",
-        "text": "Blog",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
-        "path": "sections/cookie",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e9814fed13f6b5"
-        },
-        "_id": "60ab5ca6d572fed64294eb17",
-        "text": "cookie",
-        "value": "cookie",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "sections/vivek",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981b32713f6b6"
-        },
-        "_id": "60ab5ca6d572fed64294eb1a",
-        "text": "vivek",
-        "value": "vivek",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "about-us",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb28"
-        },
-        "_id": "60ab5ca6d572fed64294eb29",
-        "sections_meta": [],
-        "value": "about-us",
-        "text": "About Us",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
-        "path": "wishlist",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981dd2d13f6b3"
-        },
-        "_id": "60ab5ca6d572fed64294eb11",
-        "value": "wishlist",
-        "text": "Wishlist",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "product/:slug/add-review",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb26"
-        },
-        "_id": "60ab5ca6d572fed64294eb27",
-        "sections_meta": [],
-        "value": "add-product-review",
-        "text": "Add Product Review",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
-        "path": "brands",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981161a13f6ad"
-        },
-        "_id": "60ab5ca6d572fed64294eaff",
-        "value": "brands",
-        "text": "Brands",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e98115b013f6ac"
-        },
-        "_id": "60ab5ca6d572fed64294eafc",
-        "value": "home",
-        "text": "Home",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "collections",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981ad0b13f6b0"
-        },
-        "_id": "60ab5ca6d572fed64294eb08",
-        "value": "collections",
-        "text": "Collections",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "categories",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981872c13f6af"
-        },
-        "_id": "60ab5ca6d572fed64294eb05",
-        "value": "categories",
-        "text": "Categories",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "sections/test",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e98177f713f6b4"
-        },
-        "_id": "60ab5ca6d572fed64294eb14",
-        "text": "Test",
-        "value": "test",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "sections/vinit",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e98170b813f6b8"
-        },
-        "_id": "60ab5ca6d572fed64294eb20",
-        "text": "vinit",
-        "value": "vinit",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "sections/maggie",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981469613f6b7"
-        },
-        "_id": "60ab5ca6d572fed64294eb1d",
-        "text": "maggie",
-        "value": "maggie",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getApplicationThemes
-Get all the themes for a specific application
+Get application themes.
 
 
 
@@ -5706,7 +6875,7 @@ const data = await partnerClient.theme.getApplicationThemes({  organizationId : 
 
 
 
-Use this API to get list of theme
+Retrieve a list of themes available for the partner server application.
 
 *Returned Response:*
 
@@ -9706,7 +10875,7 @@ The list of themes for the application was fetched successfully.
 
 
 ### getLatestVersionOfThemeBySlug
-Get latest version of specified theme
+Get latest version of theme by slug.
 
 
 
@@ -9731,7 +10900,7 @@ const data = await partnerClient.theme.getLatestVersionOfThemeBySlug({  organiza
 
 
 
-Use this api to get latest version of specified theme
+Retrieve the most recent version of a theme using its slug.
 
 *Returned Response:*
 
@@ -9765,7 +10934,7 @@ Successful operation
 
 
 ### getOrganizationThemeDetails
-Get theme details for an organization
+Get organization theme details.
 
 
 
@@ -9790,7 +10959,7 @@ const data = await partnerClient.theme.getOrganizationThemeDetails({  organizati
 
 
 
-Fetches the theme details for a specific organization and theme ID
+Obtain detailed information about a theme within partner server organizations.
 
 *Returned Response:*
 
@@ -9824,7 +10993,7 @@ Successful response
 
 
 ### getOrganizationThemes
-Get organization's themes
+Get organization themes.
 
 
 
@@ -9855,7 +11024,7 @@ const data = await partnerClient.theme.getOrganizationThemes({  organizationId :
 
 
 
-Get organization's themes
+Retrieve a list of themes associated with partner server organizations.
 
 *Returned Response:*
 
@@ -9888,438 +11057,8 @@ Successful operation
 ---
 
 
-### getPage
-Get page of a theme
-
-
-
-```javascript
-// Promise
-const promise = partnerClient.theme.getPage({  themeId : value,
- pageValue : value,
- organizationId : value });
-
-// Async/Await
-const data = await partnerClient.theme.getPage({  themeId : value,
- pageValue : value,
- organizationId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| themeId | string | yes | ID of the theme to be retrieved |   
-| pageValue | string | yes | Value of the page to be retrieved |   
-| organizationId | string | yes | Organization ID |  
-
-
-
-Use this API to retrieve a page of a theme.
-
-*Returned Response:*
-
-
-
-
-[AvailablePageSchema](#AvailablePageSchema)
-
-Success. Returns an object of the page.  Refer `AvailablePageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Home page</i></summary>
-
-```json
-{
-  "value": {
-    "path": "",
-    "type": "system",
-    "seo": {
-      "title": "",
-      "description": "",
-      "_id": "60210832d7e98115b013f6ac"
-    },
-    "props": [],
-    "_id": "60ab5ca6d572fed64294eafc",
-    "sections": [
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": false,
-            "desktop": false,
-            "tablet": false
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "utm": "facebook"
-            }
-          }
-        },
-        "name": "customHtml",
-        "props": {
-          "code": {
-            "type": "code",
-            "value": "<p style=\"text-align:right;\"><a href=\"tel:+919820204442\"><img src=\"https://dabuttonfactory.com/button.png?t=For+any+queries%2C+call%3A+%2B91+98202+04442&f=Open+Sans-Bold&ts=21&tc=fff&hp=20&vp=15&c=round&bgt=unicolored&bgc=7043f7\"/> </a></p>"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "udm": "vivek"
-            }
-          }
-        },
-        "name": "brands-listing",
-        "props": {
-          "title": {
-            "type": "text",
-            "value": "Popular rrrrr"
-          },
-          "header": {
-            "type": "header"
-          },
-          "brand_type": {
-            "value": "all",
-            "type": "radio"
-          },
-          "department": {
-            "type": "department"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "layout": {
-            "value": "horizontal",
-            "type": "select"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      },
-      {
-        "blocks": [
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          }
-        ],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": false,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": ""
-          }
-        },
-        "name": "featuredProducts",
-        "props": {
-          "heading": {
-            "value": "Featured Products",
-            "type": "text"
-          },
-          "item_count": {
-            "type": "range",
-            "value": 4
-          },
-          "full_width": {
-            "value": false,
-            "type": "checkbox"
-          }
-        },
-        "preset": {
-          "blocks": [
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            }
-          ]
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "categoryListPage",
-        "props": {
-          "heading": {
-            "type": "text",
-            "value": "Explore Categories"
-          },
-          "layout": {
-            "type": "select",
-            "value": "grid"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "heroBanner",
-        "props": {
-          "ctaLink": {
-            "type": "url",
-            "value": "https://uniket.hostx0.de/about-us"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "imageBanner",
-        "props": {
-          "image": {
-            "value": "",
-            "type": "image_picker"
-          },
-          "full_width": {
-            "value": false,
-            "type": "checkbox"
-          },
-          "overlayLayout": {
-            "value": "left",
-            "type": "select"
-          },
-          "overlayImage": {
-            "value": "",
-            "type": "image_picker"
-          },
-          "text": {
-            "value": "",
-            "type": "text"
-          },
-          "text_color": {
-            "value": "#000",
-            "type": "color"
-          },
-          "ctaLink": {
-            "value": "",
-            "type": "url"
-          },
-          "ctaText": {
-            "value": "",
-            "type": "text"
-          },
-          "layout": {
-            "type": "select",
-            "value": "full"
-          },
-          "height": {
-            "type": "select",
-            "value": "h-auto"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": ""
-          }
-        },
-        "name": "brands-listing",
-        "props": {
-          "title": {
-            "type": "text",
-            "value": "asdfasdf"
-          },
-          "header": {
-            "type": "header"
-          },
-          "brand_type": {
-            "value": "all",
-            "type": "radio"
-          },
-          "department": {
-            "type": "department"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "layout": {
-            "value": "horizontal",
-            "type": "select"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      }
-    ],
-    "value": "home",
-    "text": "Home",
-    "theme": "5fb3ee4194a5181feeeba8e5",
-    "sections_meta": [],
-    "__v": 9
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getThemeById
-Get Theme By Theme Id
+Get theme by ID.
 
 
 
@@ -10344,7 +11083,7 @@ const data = await partnerClient.theme.getThemeById({  themeId : value,
 
 
 
-Use this API to get theme details
+Obtain detailed information about a theme using its unique ID.
 
 *Returned Response:*
 
@@ -10378,7 +11117,7 @@ The Details of themes for the application was fetched successfully.
 
 
 ### getThemeRejectionReasons
-Get theme rejection reasons
+Get theme rejection reasons.
 
 
 
@@ -10403,7 +11142,7 @@ const data = await partnerClient.theme.getThemeRejectionReasons({  organizationI
 
 
 
-Use this api to get theme rejection reasons
+Retrieve reasons for the rejection of themes within partner server organizations.
 
 *Returned Response:*
 
@@ -10437,7 +11176,7 @@ Theme rejection reasons retrieved successfully
 
 
 ### getThemeVersions
-Get theme versions
+Get theme versions.
 
 
 
@@ -10468,7 +11207,7 @@ const data = await partnerClient.theme.getThemeVersions({  organizationId : valu
 
 
 
-Retrieve a list of theme versions for a specific theme in an organization.
+Retrieve a list of versions available for a theme within partner server organizations.
 
 *Returned Response:*
 
@@ -10502,7 +11241,7 @@ Successful operation.
 
 
 ### submitOrganizationTheme
-Submit a theme
+Submit organization theme.
 
 
 
@@ -10529,7 +11268,7 @@ const data = await partnerClient.theme.submitOrganizationTheme({  organizationId
 | body | [MarketplaceTheme](#MarketplaceTheme) | yes | Request body |
 
 
-Use this api to Submit a theme
+Initiate the process of submitting a theme within partner server organizations.
 
 *Returned Response:*
 
@@ -10793,7 +11532,7 @@ Theme updated successfully
 
 
 ### updateDraftTheme
-Update theme draft/submitted
+Update draft theme.
 
 
 
@@ -10820,7 +11559,7 @@ const data = await partnerClient.theme.updateDraftTheme({  organizationId : valu
 | body | [MarketplaceTheme](#MarketplaceTheme) | yes | Request body |
 
 
-Update theme draft/submitted
+Modify and update a draft theme in partner server organizations.
 
 *Returned Response:*
 
@@ -11185,797 +11924,8 @@ Theme updated successfully
 ---
 
 
-### updateMultiplePages
-Update multiple pages of a theme
-
-
-
-```javascript
-// Promise
-const promise = partnerClient.theme.updateMultiplePages({  themeId : value,
- organizationId : value,
- body : value });
-
-// Async/Await
-const data = await partnerClient.theme.updateMultiplePages({  themeId : value,
- organizationId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| themeId | string | yes | ID of the theme to be retrieved |   
-| organizationId | string | yes | Organization ID |  
-| body | [AllAvailablePageSchema](#AllAvailablePageSchema) | yes | Request body |
-
-
-Use this API to update multiple pages of a theme by its ID.
-
-*Returned Response:*
-
-
-
-
-[AllAvailablePageSchema](#AllAvailablePageSchema)
-
-Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; All pages</i></summary>
-
-```json
-{
-  "value": {
-    "pages": [
-      {
-        "path": "products",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981639e13f6b2"
-        },
-        "_id": "60ab5ca6d572fed64294eb0e",
-        "value": "product-listing",
-        "text": "Product Listing",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "collection",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981fc5d13f6b9"
-        },
-        "_id": "60ab5ca6d572fed64294eaf9",
-        "text": "Collection Listing",
-        "value": "collection-listing",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "compare",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981cbca13f6b1"
-        },
-        "_id": "60ab5ca6d572fed64294eb0b",
-        "value": "compare-products",
-        "text": "Compare Products",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "cart/bag",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e9812fdf13f6ae"
-        },
-        "_id": "60ab5ca6d572fed64294eb02",
-        "value": "cart-landing",
-        "text": "Cart Landing",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "product",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e9815c9713f6ab"
-        },
-        "_id": "60ab5ca6d572fed64294eaf6",
-        "text": "Product Description",
-        "value": "product-description",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "product/:slug/reviews",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb24"
-        },
-        "_id": "60ab5ca6d572fed64294eb25",
-        "sections_meta": [],
-        "value": "product-reviews",
-        "text": "Product Reviews",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
-        "path": "blog",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb22"
-        },
-        "_id": "60ab5ca6d572fed64294eb23",
-        "sections_meta": [],
-        "value": "blog",
-        "text": "Blog",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
-        "path": "sections/cookie",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e9814fed13f6b5"
-        },
-        "_id": "60ab5ca6d572fed64294eb17",
-        "text": "cookie",
-        "value": "cookie",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "sections/vivek",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981b32713f6b6"
-        },
-        "_id": "60ab5ca6d572fed64294eb1a",
-        "text": "vivek",
-        "value": "vivek",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "about-us",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb28"
-        },
-        "_id": "60ab5ca6d572fed64294eb29",
-        "sections_meta": [],
-        "value": "about-us",
-        "text": "About Us",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
-        "path": "wishlist",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981dd2d13f6b3"
-        },
-        "_id": "60ab5ca6d572fed64294eb11",
-        "value": "wishlist",
-        "text": "Wishlist",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "product/:slug/add-review",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb26"
-        },
-        "_id": "60ab5ca6d572fed64294eb27",
-        "sections_meta": [],
-        "value": "add-product-review",
-        "text": "Add Product Review",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
-        "path": "brands",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981161a13f6ad"
-        },
-        "_id": "60ab5ca6d572fed64294eaff",
-        "value": "brands",
-        "text": "Brands",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e98115b013f6ac"
-        },
-        "_id": "60ab5ca6d572fed64294eafc",
-        "value": "home",
-        "text": "Home",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "collections",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981ad0b13f6b0"
-        },
-        "_id": "60ab5ca6d572fed64294eb08",
-        "value": "collections",
-        "text": "Collections",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "categories",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981872c13f6af"
-        },
-        "_id": "60ab5ca6d572fed64294eb05",
-        "value": "categories",
-        "text": "Categories",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "sections/test",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e98177f713f6b4"
-        },
-        "_id": "60ab5ca6d572fed64294eb14",
-        "text": "Test",
-        "value": "test",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "sections/vinit",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e98170b813f6b8"
-        },
-        "_id": "60ab5ca6d572fed64294eb20",
-        "text": "vinit",
-        "value": "vinit",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "sections/maggie",
-        "type": "sections",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60210832d7e981469613f6b7"
-        },
-        "_id": "60ab5ca6d572fed64294eb1d",
-        "text": "maggie",
-        "value": "maggie",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "sections_meta": [],
-        "__v": 9
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePage
-Updates a page 
-
-
-
-```javascript
-// Promise
-const promise = partnerClient.theme.updatePage({  themeId : value,
- pageValue : value,
- organizationId : value,
- body : value });
-
-// Async/Await
-const data = await partnerClient.theme.updatePage({  themeId : value,
- pageValue : value,
- organizationId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| themeId | string | yes | ID of the theme |   
-| pageValue | string | yes | Value of the page to be updated |   
-| organizationId | string | yes | Organization ID |  
-| body | [AvailablePageSchema](#AvailablePageSchema) | yes | Request body |
-
-
-Use this API to update a page for a theme by its ID.
-
-*Returned Response:*
-
-
-
-
-[AvailablePageSchema](#AvailablePageSchema)
-
-Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; page</i></summary>
-
-```json
-{
-  "value": {
-    "path": "",
-    "type": "system",
-    "seo": {
-      "title": "",
-      "description": "",
-      "_id": "60210832d7e98115b013f6ac"
-    },
-    "props": [],
-    "_id": "60ab5ca6d572fed64294eafc",
-    "sections": [
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": false,
-            "desktop": false,
-            "tablet": false
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "utm": "facebook"
-            }
-          }
-        },
-        "name": "customHtml",
-        "props": {
-          "code": {
-            "type": "code",
-            "value": "<p style=\"text-align:right;\"><a href=\"tel:+919820204442\"><img src=\"https://dabuttonfactory.com/button.png?t=For+any+queries%2C+call%3A+%2B91+98202+04442&f=Open+Sans-Bold&ts=21&tc=fff&hp=20&vp=15&c=round&bgt=unicolored&bgc=7043f7\"/> </a></p>"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "udm": "vivek"
-            }
-          }
-        },
-        "name": "brands-listing",
-        "props": {
-          "title": {
-            "type": "text",
-            "value": "Popular rrrrr"
-          },
-          "header": {
-            "type": "header"
-          },
-          "brand_type": {
-            "value": "all",
-            "type": "radio"
-          },
-          "department": {
-            "type": "department"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "layout": {
-            "value": "horizontal",
-            "type": "select"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      },
-      {
-        "blocks": [
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          }
-        ],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": false,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": ""
-          }
-        },
-        "name": "featuredProducts",
-        "props": {
-          "heading": {
-            "value": "Featured Products",
-            "type": "text"
-          },
-          "item_count": {
-            "type": "range",
-            "value": 4
-          },
-          "full_width": {
-            "value": false,
-            "type": "checkbox"
-          }
-        },
-        "preset": {
-          "blocks": [
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            }
-          ]
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "categoryListPage",
-        "props": {
-          "heading": {
-            "type": "text",
-            "value": "Explore Categories"
-          },
-          "layout": {
-            "type": "select",
-            "value": "grid"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "heroBanner",
-        "props": {
-          "ctaLink": {
-            "type": "url",
-            "value": "https://uniket.hostx0.de/about-us"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "imageBanner",
-        "props": {
-          "image": {
-            "value": "",
-            "type": "image_picker"
-          },
-          "full_width": {
-            "value": false,
-            "type": "checkbox"
-          },
-          "overlayLayout": {
-            "value": "left",
-            "type": "select"
-          },
-          "overlayImage": {
-            "value": "",
-            "type": "image_picker"
-          },
-          "text": {
-            "value": "",
-            "type": "text"
-          },
-          "text_color": {
-            "value": "#000",
-            "type": "color"
-          },
-          "ctaLink": {
-            "value": "",
-            "type": "url"
-          },
-          "ctaText": {
-            "value": "",
-            "type": "text"
-          },
-          "layout": {
-            "type": "select",
-            "value": "full"
-          },
-          "height": {
-            "type": "select",
-            "value": "h-auto"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": ""
-          }
-        },
-        "name": "brands-listing",
-        "props": {
-          "title": {
-            "type": "text",
-            "value": "asdfasdf"
-          },
-          "header": {
-            "type": "header"
-          },
-          "brand_type": {
-            "value": "all",
-            "type": "radio"
-          },
-          "department": {
-            "type": "department"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "layout": {
-            "value": "horizontal",
-            "type": "select"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      }
-    ],
-    "value": "home",
-    "text": "Home",
-    "theme": "5fb3ee4194a5181feeeba8e5",
-    "sections_meta": [],
-    "__v": 9
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateTheme
-Update theme for a specific company and application
+Update theme.
 
 
 
@@ -12002,7 +11952,7 @@ const data = await partnerClient.theme.updateTheme({  themeId : value,
 | body | [UpdateThemeRequestBody](#UpdateThemeRequestBody) | yes | Request body |
 
 
-Update theme for a specific company and application
+Modify and update information related to a theme in the partner server.
 
 *Returned Response:*
 
@@ -15984,6 +15934,66 @@ Theme updated successfully
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createTheme
+Create a new theme
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.createTheme({  organizationId : value,
+ body : value });
+
+// Async/Await
+const data = await partnerClient.theme.createTheme({  organizationId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | Organization ID |  
+| body | [CreateNewTheme](#CreateNewTheme) | yes | Request body |
+
+
+Themes improve the look and appearance of a website. Use this API to create a theme.
+
+*Returned Response:*
+
+
+
+
+[ThemesSchema](#ThemesSchema)
+
+Returns the new application theme details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 

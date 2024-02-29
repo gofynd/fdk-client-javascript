@@ -9,57 +9,108 @@
 Application configuration apis
 
 
+Build Configuration
+* [getBuildConfig](#getbuildconfig)
+* [updateBuildConfig](#updatebuildconfig)
+
+
+Application Versions
+* [getPreviousVersions](#getpreviousversions)
+
+
+App Features Management
+* [getAppFeatures](#getappfeatures)
+* [modifyAppFeatures](#modifyappfeatures)
+* [updateAppFeatures](#updateappfeatures)
+
+
+Application Basic Details
+* [getAppBasicDetails](#getappbasicdetails)
+* [updateAppBasicDetails](#updateappbasicdetails)
+
+
+Contact Information
+* [getAppContactInfo](#getappcontactinfo)
+* [updateAppContactInfo](#updateappcontactinfo)
+
+
+API Tokens
+* [getAppApiTokens](#getappapitokens)
+* [updateAppApiTokens](#updateappapitokens)
+
+
+Company and Store Information
+* [getAppCompanies](#getappcompanies)
+* [getAppStores](#getappstores)
+
+
+Product Listing Configuration
+* [getInventoryConfig](#getinventoryconfig)
+* [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
+* [updateInventoryConfig](#updateinventoryconfig)
+
+
+Currency Configuration
+* [getAppCurrencyConfig](#getappcurrencyconfig)
+* [getAppSupportedCurrency](#getappsupportedcurrency)
+* [updateAppCurrencyConfig](#updateappcurrencyconfig)
+
+
+Ordering Stores
+* [getOrderingStoreConfig](#getorderingstoreconfig)
+* [getOrderingStoresByFilter](#getorderingstoresbyfilter)
+* [getStaffOrderingStores](#getstafforderingstores)
+* [updateOrderingStoreConfig](#updateorderingstoreconfig)
+
+
 Default
+* [getOrderingStoreCookie](#getorderingstorecookie)
+* [removeOrderingStoreCookie](#removeorderingstorecookie)
+
+
+Domain Management
 * [addDomain](#adddomain)
 * [changeDomainType](#changedomaintype)
-* [createApplication](#createapplication)
-* [getAppApiTokens](#getappapitokens)
-* [getAppBasicDetails](#getappbasicdetails)
-* [getAppCompanies](#getappcompanies)
-* [getAppContactInfo](#getappcontactinfo)
-* [getAppCurrencyConfig](#getappcurrencyconfig)
-* [getAppFeatures](#getappfeatures)
-* [getAppStores](#getappstores)
-* [getAppSupportedCurrency](#getappsupportedcurrency)
-* [getApplicationById](#getapplicationbyid)
-* [getApplications](#getapplications)
-* [getAvailableOptIns](#getavailableoptins)
-* [getBrandsByCompany](#getbrandsbycompany)
-* [getBuildConfig](#getbuildconfig)
-* [getCompanyByBrands](#getcompanybybrands)
-* [getCurrencies](#getcurrencies)
-* [getDomainAvailibility](#getdomainavailibility)
 * [getDomainStatus](#getdomainstatus)
 * [getDomains](#getdomains)
+* [removeDomainById](#removedomainbyid)
+
+
+Application Management
+* [createApplication](#createapplication)
+* [getApplicationById](#getapplicationbyid)
+* [getApplications](#getapplications)
+
+
+Currency Information
+* [getCurrencies](#getcurrencies)
+
+
+Domain Availability
+* [getDomainAvailibility](#getdomainavailibility)
+
+
+Integration Configuration
+* [getAvailableOptIns](#getavailableoptins)
 * [getIntegrationById](#getintegrationbyid)
 * [getIntegrationByLevelId](#getintegrationbylevelid)
 * [getIntegrationLevelConfig](#getintegrationlevelconfig)
-* [getInventoryConfig](#getinventoryconfig)
 * [getLevelActiveIntegrations](#getlevelactiveintegrations)
-* [getOrderingStoreConfig](#getorderingstoreconfig)
-* [getOrderingStoreCookie](#getorderingstorecookie)
-* [getOrderingStoresByFilter](#getorderingstoresbyfilter)
-* [getOtherSellerApplicationById](#getothersellerapplicationbyid)
-* [getOtherSellerApplications](#getothersellerapplications)
-* [getPreviousVersions](#getpreviousversions)
 * [getSelectedOptIns](#getselectedoptins)
-* [getStaffOrderingStores](#getstafforderingstores)
-* [getStoreByBrands](#getstorebybrands)
-* [modifyAppFeatures](#modifyappfeatures)
-* [optOutFromApplication](#optoutfromapplication)
-* [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
-* [removeDomainById](#removedomainbyid)
-* [removeOrderingStoreCookie](#removeorderingstorecookie)
-* [updateAppApiTokens](#updateappapitokens)
-* [updateAppBasicDetails](#updateappbasicdetails)
-* [updateAppContactInfo](#updateappcontactinfo)
-* [updateAppCurrencyConfig](#updateappcurrencyconfig)
-* [updateAppFeatures](#updateappfeatures)
-* [updateBuildConfig](#updatebuildconfig)
-* [updateInventoryConfig](#updateinventoryconfig)
 * [updateLevelIntegration](#updatelevelintegration)
 * [updateLevelUidIntegration](#updateleveluidintegration)
-* [updateOrderingStoreConfig](#updateorderingstoreconfig)
+
+
+Brands and Companies
+* [getBrandsByCompany](#getbrandsbycompany)
+* [getCompanyByBrands](#getcompanybybrands)
+* [getStoreByBrands](#getstorebybrands)
+
+
+Other Seller Applications
+* [getOtherSellerApplicationById](#getothersellerapplicationbyid)
+* [getOtherSellerApplications](#getothersellerapplications)
+* [optOutFromApplication](#optoutfromapplication)
 
 
 
@@ -70,17 +121,17 @@ Default
 
 
 
-### addDomain
-Add new domain to current sales channel
+### getBuildConfig
+Get build configuration.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
 ```
 
 
@@ -88,18 +139,19 @@ const data = await platformClient.application("<APPLICATION_ID>").configuration.
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DomainAddRequest](#DomainAddRequest) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| platformType | string | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
 
 
-Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
+
+Retrieve latest build configuration, such as app name, landing page image, splash image used in a mobile build.
 
 *Returned Response:*
 
 
 
 
-[Domain](#Domain)
+[MobileAppConfiguration](#MobileAppConfiguration)
 
 Success
 
@@ -116,12 +168,23 @@ Success
 ```json
 {
   "value": {
-    "name": "testdm.hostfynd.dev",
-    "verified": true,
-    "message": "New domain added successfully",
-    "is_primary": false,
-    "is_shortlink": false,
-    "_id": "6048497e87f5730423149190"
+    "is_active": true,
+    "_id": "5ea9b318bc23a343ab6d442f",
+    "app_name": "TestUniket",
+    "landing_image": {
+      "aspect_ratio": "57/51",
+      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
+    },
+    "splash_image": {
+      "aspect_ratio": "1/1",
+      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
+    },
+    "application": "000000000000000000000001",
+    "platform_type": "android",
+    "created_at": "2020-04-29T17:02:16.976Z",
+    "modified_at": "2021-02-23T17:10:26.872Z",
+    "__v": 0,
+    "package_name": "com.fynd.store.x000000000000000000000004"
   }
 }
 ```
@@ -140,17 +203,19 @@ Success
 ---
 
 
-### changeDomainType
-Change the type of domain in the current sales channel
+### updateBuildConfig
+Update build configuration.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
+ body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
+ body : value });
 ```
 
 
@@ -158,18 +223,19 @@ const data = await platformClient.application("<APPLICATION_ID>").configuration.
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UpdateDomainTypeRequest](#UpdateDomainTypeRequest) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| platformType | string | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
+| body | [MobileAppConfigRequest](#MobileAppConfigRequest) | yes | Request body |
 
 
-Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain.
+Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build.
 
 *Returned Response:*
 
 
 
 
-[DomainsResponse](#DomainsResponse)
+[MobileAppConfiguration](#MobileAppConfiguration)
 
 Success
 
@@ -186,29 +252,107 @@ Success
 ```json
 {
   "value": {
-    "domains": [
+    "is_active": true,
+    "_id": "5ea9b318bc23a343ab6d442f",
+    "app_name": "TestUniket",
+    "landing_image": {
+      "aspect_ratio": "57/51",
+      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
+    },
+    "splash_image": {
+      "aspect_ratio": "1/1",
+      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
+    },
+    "application": "000000000000000000000001",
+    "platform_type": "android",
+    "created_at": "2020-04-29T17:02:16.976Z",
+    "modified_at": "2021-02-23T17:10:26.872Z",
+    "__v": 0,
+    "package_name": "com.fynd.store.x000000000000000000000001"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getPreviousVersions
+Get previous versions.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| platformType | string | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
+
+
+
+Retrieve version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
+
+*Returned Response:*
+
+
+
+
+[BuildVersionHistory](#BuildVersionHistory)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "versions": [
       {
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "verified": true,
-        "name": "uniket.hostx0.de",
-        "is_primary": true,
-        "is_shortlink": false
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": true,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostx0.de"
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": false,
-        "_id": "6048497e87f5730423149190",
-        "name": "testdm.hostx0.de"
+        "_id": "6035376ab937c5f7c5462888",
+        "application": "000000000000000000000001",
+        "platform_type": "android",
+        "build_status": "pending",
+        "version_name": "0.5.6",
+        "download_url": {
+          "secure_url": "http://test-bucket.s3.amazonaws.com/test-bucket/release/app-uniket-release.apk"
+        },
+        "version_code": 1,
+        "created_at": "2021-02-23T17:12:10.977Z",
+        "modified_at": "2021-02-23T17:12:10.977Z",
+        "__v": 0
       }
-    ]
+    ],
+    "latest_available_version_name": "0.5.7"
   }
 }
 ```
@@ -227,36 +371,34 @@ Success
 ---
 
 
-### createApplication
-Create a new sales channel
+
+
+### getAppFeatures
+Get application features.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.configuration.createApplication({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppFeatures();
 
 // Async/Await
-const data = await platformClient.configuration.createApplication({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppFeatures();
 ```
 
 
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateApplicationRequest](#CreateApplicationRequest) | yes | Request body |
 
-
-Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
+Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
 
 *Returned Response:*
 
 
 
 
-[CreateAppResponse](#CreateAppResponse)
+[AppFeatureResponse](#AppFeatureResponse)
 
 Success
 
@@ -273,8 +415,106 @@ Success
 ```json
 {
   "value": {
-    "app": {
-      "name": "testing"
+    "feature": {
+      "product_detail": {
+        "similar": [
+          "basic",
+          "visual",
+          "brand",
+          "category",
+          "seller",
+          "price",
+          "specs"
+        ],
+        "seller_selection": true,
+        "update_product_meta": true,
+        "request_product": true
+      },
+      "landing_page": {
+        "launch_page": {
+          "page_type": "home",
+          "params": {},
+          "query": {}
+        },
+        "continue_as_guest": true,
+        "login_btn_text": "Click here to sign-in",
+        "show_domain_textbox": true,
+        "show_register_btn": true
+      },
+      "registration_page": {
+        "ask_store_address": false
+      },
+      "home_page": {
+        "order_processing": true
+      },
+      "common": {
+        "communication_optin_dialog": {
+          "visibility": true
+        },
+        "deployment_store_selection": {
+          "enabled": true,
+          "type": "hard"
+        },
+        "listing_price": {
+          "value": "min",
+          "sort": "min"
+        },
+        "listing_page": {
+          "sort_on": "popular"
+        },
+        "international_shipping": {
+          "enabled": false
+        },
+        "currency": {
+          "value": [
+            "INR"
+          ],
+          "type": "explicit",
+          "default_currency": "INR"
+        },
+        "revenue_engine": {
+          "enabled": false
+        },
+        "feedback": {
+          "enabled": true
+        },
+        "compare_products": {
+          "enabled": true
+        },
+        "reward_points": {
+          "credit": {
+            "enabled": true
+          },
+          "debit": {
+            "enabled": true,
+            "auto_apply": false,
+            "strategy_channel": "REWARDS"
+          }
+        }
+      },
+      "cart": {
+        "gst_input": true,
+        "staff_selection": true,
+        "placing_for_customer": true,
+        "google_map": true,
+        "revenue_engine_coupon": false
+      },
+      "qr": {
+        "application": true,
+        "products": true,
+        "collections": true
+      },
+      "pcr": {
+        "staff_selection": true
+      },
+      "order": {
+        "buy_again": true
+      },
+      "_id": "5e57643c986e4119c973df7d",
+      "app": "000000000000000000000001",
+      "created_at": "2020-02-27T06:39:56.088Z",
+      "modified_at": "2021-02-02T11:04:14.289Z",
+      "__v": 1
     }
   }
 }
@@ -294,32 +534,36 @@ Success
 ---
 
 
-### getAppApiTokens
-Get social tokens for the sales channel
+### modifyAppFeatures
+Modify application features.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppApiTokens();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppApiTokens();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
 
-Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key.
+
+Update features of application
 
 *Returned Response:*
 
 
 
 
-[TokenResponse](#TokenResponse)
+[AppFeature](#AppFeature)
 
 Success
 
@@ -336,72 +580,89 @@ Success
 ```json
 {
   "value": {
-    "tokens": {
-      "firebase": {
-        "credentials": {
-          "ios": {
-            "application_id": "test",
-            "api_key": "test"
-          },
-          "android": {
-            "application_id": "test",
-            "api_key": "test"
-          },
-          "project_id": "uniket-d8cdc",
-          "gcm_sender_id": "test",
-          "application_id": "test",
-          "api_key": "test"
-        },
-        "enabled": true
+    "product_detail": {
+      "similar": [
+        "basic",
+        "visual",
+        "brand",
+        "category",
+        "seller",
+        "price",
+        "specs"
+      ],
+      "seller_selection": true,
+      "update_product_meta": true,
+      "request_product": true
+    },
+    "landing_page": {
+      "launch_page": {
+        "page_type": "home",
+        "params": {},
+        "query": {}
       },
-      "moengage": {
-        "credentials": {
-          "app_id": "test"
-        },
-        "enabled": true
+      "continue_as_guest": true,
+      "login_btn_text": "Click here to sign-in",
+      "show_domain_textbox": true,
+      "show_register_btn": true
+    },
+    "registration_page": {
+      "ask_store_address": false
+    },
+    "home_page": {
+      "order_processing": true
+    },
+    "common": {
+      "communication_optin_dialog": {
+        "visibility": true
       },
-      "segment": {
-        "credentials": {
-          "write_key": "test"
-        },
-        "enabled": true
+      "deployment_store_selection": {
+        "enabled": true,
+        "type": "hard"
       },
-      "gtm": {
-        "credentials": {
-          "api_key": "test"
-        },
+      "listing_price": {
+        "value": "min",
+        "sort": "min"
+      },
+      "currency": {
+        "value": [
+          "INR"
+        ],
+        "type": "explicit",
+        "default_currency": "INR"
+      },
+      "revenue_engine": {
         "enabled": false
       },
-      "freshchat": {
-        "credentials": {
-          "app_id": "123456",
-          "app_key": "123456789",
-          "web_token": ""
-        },
-        "enabled": false
-      },
-      "safetynet": {
-        "credentials": {
-          "api_key": "test"
-        },
+      "feedback": {
         "enabled": true
       },
-      "fynd_rewards": {
-        "credentials": {
-          "public_key": "test"
-        }
-      },
-      "google_map": {
-        "credentials": {
-          "api_key": "test"
-        }
+      "compare_products": {
+        "enabled": true
       }
     },
-    "_id": "5e66282a073261060ee83751",
-    "application": "000000000000000000000001",
-    "created_at": "2020-03-09T11:27:38.894Z",
-    "modified_at": "2020-12-24T05:39:17.054Z",
-    "__v": 0
+    "cart": {
+      "gst_input": true,
+      "staff_selection": true,
+      "placing_for_customer": true,
+      "google_map": true,
+      "revenue_engine_coupon": false
+    },
+    "qr": {
+      "application": true,
+      "products": true,
+      "collections": true
+    },
+    "pcr": {
+      "staff_selection": true
+    },
+    "order": {
+      "buy_again": true
+    },
+    "_id": "5e57643c986e4119c973df7d",
+    "app": "000000000000000000000001",
+    "created_at": "2020-02-27T06:39:56.088Z",
+    "modified_at": "2021-03-09T15:40:29.188Z",
+    "__v": 1
   }
 }
 ```
@@ -420,8 +681,157 @@ Success
 ---
 
 
+### updateAppFeatures
+Update application features.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
+
+
+Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
+
+*Returned Response:*
+
+
+
+
+[AppFeature](#AppFeature)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "product_detail": {
+      "similar": [
+        "basic",
+        "visual",
+        "brand",
+        "category",
+        "seller",
+        "price",
+        "specs"
+      ],
+      "seller_selection": true,
+      "update_product_meta": true,
+      "request_product": true
+    },
+    "landing_page": {
+      "launch_page": {
+        "page_type": "home",
+        "params": {},
+        "query": {}
+      },
+      "continue_as_guest": true,
+      "login_btn_text": "Click here to sign-in",
+      "show_domain_textbox": true,
+      "show_register_btn": true
+    },
+    "registration_page": {
+      "ask_store_address": false
+    },
+    "home_page": {
+      "order_processing": true
+    },
+    "common": {
+      "communication_optin_dialog": {
+        "visibility": true
+      },
+      "deployment_store_selection": {
+        "enabled": true,
+        "type": "hard"
+      },
+      "listing_price": {
+        "value": "min",
+        "sort": "min"
+      },
+      "currency": {
+        "value": [
+          "INR"
+        ],
+        "type": "explicit",
+        "default_currency": "INR"
+      },
+      "revenue_engine": {
+        "enabled": false
+      },
+      "feedback": {
+        "enabled": true
+      },
+      "compare_products": {
+        "enabled": true
+      }
+    },
+    "cart": {
+      "gst_input": true,
+      "staff_selection": true,
+      "placing_for_customer": true,
+      "google_map": true,
+      "revenue_engine_coupon": false
+    },
+    "qr": {
+      "application": true,
+      "products": true,
+      "collections": true
+    },
+    "pcr": {
+      "staff_selection": true
+    },
+    "order": {
+      "buy_again": true
+    },
+    "_id": "5e57643c986e4119c973df7d",
+    "app": "000000000000000000000001",
+    "created_at": "2020-02-27T06:39:56.088Z",
+    "updated_at": "2021-03-09T15:40:29.188Z",
+    "__v": 1
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
 ### getAppBasicDetails
-Get sales channel details
+Get application basic details.
 
 
 
@@ -520,21 +930,17 @@ Success
 ---
 
 
-### getAppCompanies
-Get companies enabled in the sales channel inventory
+### updateAppBasicDetails
+Update application basic details.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
- pageNo : value,
- pageSize : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
- pageNo : value,
- pageSize : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
 ```
 
 
@@ -542,21 +948,18 @@ const data = await platformClient.application("<APPLICATION_ID>").configuration.
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| uid | number | no | UID of companies to be fetched |    
-| pageNo | number | no | The current page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+| --------- | -----  | -------- | ----------- |
+| body | [ApplicationDetail](#ApplicationDetail) | yes | Request body |
 
 
-
-Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+Modify sales channel details like name, description, logo, domain, company ID, and other related information.
 
 *Returned Response:*
 
 
 
 
-[CompaniesResponse](#CompaniesResponse)
+[ApplicationDetail](#ApplicationDetail)
 
 Success
 
@@ -573,20 +976,43 @@ Success
 ```json
 {
   "value": {
-    "items": [
+    "name": "Uniket B2B",
+    "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+    "logo": {
+      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    },
+    "mobile_logo": {
+      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    },
+    "favicon": {
+      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+    },
+    "banner": {
+      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+    },
+    "domain": {
+      "verified": true,
+      "is_primary": true,
+      "is_shortlink": false,
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "name": "uniket.hostfynd.dev"
+    },
+    "domains": [
       {
-        "uid": 2,
-        "name": "Sample2 Company",
-        "company_type": "mbo"
+        "verified": true,
+        "is_primary": true,
+        "is_shortlink": false,
+        "_id": "5eb1177748312a3bd55d0f1e",
+        "name": "uniket.hostfynd.dev"
+      },
+      {
+        "verified": true,
+        "is_primary": false,
+        "is_shortlink": true,
+        "_id": "5f0858c5f86e00cd42dccc8d",
+        "name": "jd.hostfynd.dev"
       }
-    ],
-    "page": {
-      "type": "number",
-      "size": 200,
-      "current": 1,
-      "has_next": false,
-      "item_total": 3
-    }
+    ]
   }
 }
 ```
@@ -605,8 +1031,10 @@ Success
 ---
 
 
+
+
 ### getAppContactInfo
-Get current information of the sales channel
+Get application contact information.
 
 
 
@@ -777,32 +1205,36 @@ Success
 ---
 
 
-### getAppCurrencyConfig
-Get currencies supported in the application
+### updateAppContactInfo
+Update application contact information.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplicationInformation](#ApplicationInformation) | yes | Request body |
 
-Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
+
+Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
 
 *Returned Response:*
 
 
 
 
-[AppSupportedCurrency](#AppSupportedCurrency)
+[ApplicationInformation](#ApplicationInformation)
 
 Success
 
@@ -819,21 +1251,112 @@ Success
 ```json
 {
   "value": {
-    "_id": "5ec7a85965c3893857538d93",
-    "supported_currency": [
-      "5ec75d11f7bfb5a7d38f3524",
-      "5ec75d11f7bfb54d798f3516",
-      "5ec75d11f7bfb553b88f355f",
-      "5ec75d11f7bfb559d08f34d5",
-      "5ec75d11f7bfb5d1e98f34da"
-    ],
-    "application": "000000000000000000000001",
-    "default_currency": {
-      "ref": "5ec75d11f7bfb54d798f3516",
-      "code": "USD"
+    "_id": "5e6627bd0732616083e83750",
+    "address": {
+      "address_line": [
+        "Warehouse 5, Near Industrial Complex",
+        "2nd Lane, Andheri"
+      ],
+      "phone": [
+        {
+          "code": "+91",
+          "number": "9988998899"
+        }
+      ],
+      "city": "Mumbai , Maharashtra , India",
+      "country": "India",
+      "pincode": 400059
     },
-    "created_at": "2020-05-22T10:24:25.984Z",
-    "modified_at": "2021-03-09T10:47:32.664Z"
+    "social_links": {
+      "facebook": {
+        "title": "Facebook",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/hQAbAKdvHK-facebookfooteraopcjq.svg",
+        "link": ""
+      },
+      "instagram": {
+        "title": "Instagram",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/UZYsGWOqXp-instagramfooterl3utrr.svg",
+        "link": ""
+      },
+      "twitter": {
+        "title": "Twitter",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/oT2hW-BJjq-twitterfooternajsyr.svg",
+        "link": ""
+      },
+      "pinterest": {
+        "title": "Pinterest",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/v0erlcMk8p-pinterestfooternzmq4b.svg",
+        "link": ""
+      },
+      "google_plus": {
+        "title": "Google+",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/lw3Y5S58h4-googleplusysukr1.png",
+        "link": ""
+      },
+      "youtube": {
+        "title": "Youtube",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/EYV03PDST_-youtubefootermqhcr7.svg",
+        "link": ""
+      },
+      "linked_in": {
+        "title": "LinkedIn",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/qa7gx_bW9O-linkedinfooterrcr0yq.svg",
+        "link": ""
+      },
+      "blog_link": {
+        "title": "Blog",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/LKpxTk1I3s-mediumfooterdtvrva.svg",
+        "link": ""
+      }
+    },
+    "links": [
+      {
+        "title": "Shipping",
+        "link": "www.uniket.store/shipping-details"
+      },
+      {
+        "title": "Returns",
+        "link": "www.uniket.store/policy/return-policy"
+      },
+      {
+        "title": "Privacy",
+        "link": "www.uniket.store/policy/privacy-policy"
+      },
+      {
+        "title": "Terms",
+        "link": "www.uniket.store/policy/terms-conditions"
+      }
+    ],
+    "copyright_text": "#MadeInIndia © 2020 Shopsense Retail Technologies",
+    "support": {
+      "timing": "9 AM to 9 PM",
+      "phone": [],
+      "email": [],
+      "business_highlights": [
+        {
+          "_id": "60479413a32f774d754b00ef",
+          "title": "Most Genuine Products",
+          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
+          "sub_title": "Directly from brands"
+        },
+        {
+          "_id": "60479413a32f7717df4b00f0",
+          "title": "Credit Facility Available",
+          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
+          "sub_title": "Free 30 Days Credit"
+        },
+        {
+          "_id": "60479413a32f77e70b4b00f1",
+          "title": "Assured Returns",
+          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
+          "sub_title": "For all damaged/wrong items"
+        }
+      ]
+    },
+    "application": "000000000000000000000001",
+    "created_at": "2020-03-09T11:25:49.921Z",
+    "modified_at": "2021-03-09T15:28:19.598Z",
+    "__v": 101
   }
 }
 ```
@@ -852,17 +1375,19 @@ Success
 ---
 
 
-### getAppFeatures
-Get the sales channel configuration and features
+
+
+### getAppApiTokens
+Get application API tokens.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppFeatures();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppApiTokens();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppFeatures();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppApiTokens();
 ```
 
 
@@ -870,14 +1395,14 @@ const data = await platformClient.application("<APPLICATION_ID>").configuration.
 
 
 
-Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
+Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. 
 
 *Returned Response:*
 
 
 
 
-[AppFeatureResponse](#AppFeatureResponse)
+[TokenResponse](#TokenResponse)
 
 Success
 
@@ -894,111 +1419,299 @@ Success
 ```json
 {
   "value": {
-    "feature": {
-      "product_detail": {
-        "similar": [
-          "basic",
-          "visual",
-          "brand",
-          "category",
-          "seller",
-          "price",
-          "specs"
-        ],
-        "seller_selection": true,
-        "update_product_meta": true,
-        "request_product": true
-      },
-      "landing_page": {
-        "launch_page": {
-          "page_type": "home",
-          "params": {},
-          "query": {}
-        },
-        "continue_as_guest": true,
-        "login_btn_text": "Click here to sign-in",
-        "show_domain_textbox": true,
-        "show_register_btn": true
-      },
-      "registration_page": {
-        "ask_store_address": false
-      },
-      "home_page": {
-        "order_processing": true
-      },
-      "common": {
-        "communication_optin_dialog": {
-          "visibility": true
-        },
-        "deployment_store_selection": {
-          "enabled": true,
-          "type": "hard"
-        },
-        "listing_price": {
-          "value": "min",
-          "sort": "min"
-        },
-        "listing_page": {
-          "sort_on": "popular"
-        },
-        "international_shipping": {
-          "enabled": false
-        },
-        "currency": {
-          "value": [
-            "INR"
-          ],
-          "type": "explicit",
-          "default_currency": "INR"
-        },
-        "revenue_engine": {
-          "enabled": false
-        },
-        "feedback": {
-          "enabled": true
-        },
-        "compare_products": {
-          "enabled": true
-        },
-        "reward_points": {
-          "credit": {
-            "enabled": true
+    "tokens": {
+      "firebase": {
+        "credentials": {
+          "ios": {
+            "application_id": "test",
+            "api_key": "test"
           },
-          "debit": {
-            "enabled": true,
-            "auto_apply": false,
-            "strategy_channel": "REWARDS"
-          }
+          "android": {
+            "application_id": "test",
+            "api_key": "test"
+          },
+          "project_id": "uniket-d8cdc",
+          "gcm_sender_id": "test",
+          "application_id": "test",
+          "api_key": "test"
+        },
+        "enabled": true
+      },
+      "moengage": {
+        "credentials": {
+          "app_id": "test"
+        },
+        "enabled": true
+      },
+      "segment": {
+        "credentials": {
+          "write_key": "test"
+        },
+        "enabled": true
+      },
+      "gtm": {
+        "credentials": {
+          "api_key": "test"
+        },
+        "enabled": false
+      },
+      "freshchat": {
+        "credentials": {
+          "app_id": "123456",
+          "app_key": "123456789",
+          "web_token": ""
+        },
+        "enabled": false
+      },
+      "safetynet": {
+        "credentials": {
+          "api_key": "test"
+        },
+        "enabled": true
+      },
+      "fynd_rewards": {
+        "credentials": {
+          "public_key": "test"
         }
       },
-      "cart": {
-        "gst_input": true,
-        "staff_selection": true,
-        "placing_for_customer": true,
-        "google_map": true,
-        "revenue_engine_coupon": false
+      "google_map": {
+        "credentials": {
+          "api_key": "test"
+        }
+      }
+    },
+    "_id": "5e66282a073261060ee83751",
+    "application": "000000000000000000000001",
+    "created_at": "2020-03-09T11:27:38.894Z",
+    "modified_at": "2020-12-24T05:39:17.054Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppApiTokens
+Update application API tokens.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [TokenResponse](#TokenResponse) | yes | Request body |
+
+
+Add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
+
+*Returned Response:*
+
+
+
+
+[TokenResponse](#TokenResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "tokens": {
+      "firebase": {
+        "credentials": {
+          "ios": {
+            "application_id": "test",
+            "api_key": "test"
+          },
+          "android": {
+            "application_id": "test",
+            "api_key": "test"
+          },
+          "project_id": "uniket-d8cdc",
+          "gcm_sender_id": "test",
+          "application_id": "test",
+          "api_key": "test"
+        },
+        "enabled": true
       },
-      "qr": {
-        "application": true,
-        "products": true,
-        "collections": true
+      "moengage": {
+        "credentials": {
+          "app_id": "test"
+        },
+        "enabled": true
       },
-      "pcr": {
-        "staff_selection": true
+      "segment": {
+        "credentials": {
+          "write_key": "test"
+        },
+        "enabled": true
       },
-      "order": {
-        "buy_again": true
+      "gtm": {
+        "credentials": {
+          "api_key": "1234567890"
+        },
+        "enabled": false
       },
-      "buybox": {
-        "show_name": true,
-        "enable_selection": true,
-        "is_seller_buybox_enabled": false
+      "freshchat": {
+        "credentials": {
+          "app_id": "123456",
+          "app_key": "123456789",
+          "web_token": ""
+        },
+        "enabled": false
       },
-      "_id": "5e57643c986e4119c973df7d",
-      "app": "000000000000000000000001",
-      "created_at": "2020-02-27T06:39:56.088Z",
-      "modified_at": "2021-02-02T11:04:14.289Z",
-      "__v": 1
+      "safetynet": {
+        "credentials": {
+          "api_key": "test"
+        },
+        "enabled": true
+      },
+      "fynd_rewards": {
+        "credentials": {
+          "public_key": "test"
+        }
+      },
+      "auth": {
+        "google": {
+          "appId": "test"
+        },
+        "facebook": {
+          "appId": "test"
+        },
+        "accountkit": {
+          "appId": ""
+        }
+      },
+      "google_map": {
+        "credentials": {
+          "api_key": "test"
+        }
+      }
+    },
+    "_id": "5e66282a073261060ee83751",
+    "application": "000000000000000000000001",
+    "created_at": "2020-03-09T11:27:38.894Z",
+    "updated_at": "2020-12-24T05:39:17.054Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getAppCompanies
+Get application companies.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| uid | number | no | UID of companies to be fetched |    
+| pageNo | number | no | The current page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+
+*Returned Response:*
+
+
+
+
+[CompaniesResponse](#CompaniesResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "uid": 2,
+        "name": "Sample2 Company",
+        "company_type": "mbo"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "size": 200,
+      "current": 1,
+      "has_next": false,
+      "item_total": 3
     }
   }
 }
@@ -1019,7 +1732,7 @@ Success
 
 
 ### getAppStores
-Get stores enabled in the sales channel inventory
+Get application stores.
 
 
 
@@ -1044,7 +1757,7 @@ const data = await platformClient.application("<APPLICATION_ID>").configuration.
 
 
 
-Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
 
 *Returned Response:*
 
@@ -1118,1308 +1831,10 @@ Success
 ---
 
 
-### getAppSupportedCurrency
-Get currencies enabled in the application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
-```
-
-
-
-
-
-
-Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
-
-*Returned Response:*
-
-
-
-
-[AppCurrencyResponse](#AppCurrencyResponse)
-
-Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "application": "000000000000000000000001",
-    "default_currency": {
-      "ref": "5ecf6122d953d4242c044907",
-      "code": "INR"
-    },
-    "supported_currency": [
-      {
-        "_id": "5ecf6122d953d4242c044907",
-        "is_active": true,
-        "name": "Indian Rupee",
-        "code": "INR",
-        "decimal_digits": 2,
-        "symbol": "₹",
-        "created_at": "2020-05-28T06:58:42.532Z",
-        "modified_at": "2021-04-05T16:44:14.358Z"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getApplicationById
-Get sales channel data by ID
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getApplicationById();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getApplicationById();
-```
-
-
-
-
-
-
-Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
-
-*Returned Response:*
-
-
-
-
-[Application](#Application)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "company_id": 2,
-    "name": "test"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getApplications
-Get list of registered sales channels under company
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getApplications({  pageNo : value,
- pageSize : value,
- q : value });
-
-// Async/Await
-const data = await platformClient.configuration.getApplications({  pageNo : value,
- pageSize : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| q | string | no | Search param by name or domain |  
-
-
-
-Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
-
-*Returned Response:*
-
-
-
-
-[ApplicationsResponse](#ApplicationsResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "app": {
-      "name": "testing",
-      "company_id": 2
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAvailableOptIns
-Get all available integration opt-ins
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getAvailableOptIns({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.configuration.getAvailableOptIns({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-Use this API to get a list of all available integrations in a company
-
-*Returned Response:*
-
-
-
-
-[GetIntegrationsOptInsResponse](#GetIntegrationsOptInsResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "validators": {
-          "company": {
-            "json_schema": [
-              {
-                "display": "Host",
-                "key": "host",
-                "type": "text",
-                "tooltip": "Enter host address"
-              }
-            ],
-            "browser_script": ""
-          },
-          "store": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "inventory": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "order": {
-            "json_schema": [],
-            "browser_script": ""
-          }
-        },
-        "description": "awesome integration",
-        "description_html": "",
-        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
-        "companies": [],
-        "support": [
-          "inventory",
-          "order"
-        ],
-        "_id": "5e56089f4265cf2846d1e58c",
-        "name": "x0-1",
-        "meta": [
-          {
-            "public": true,
-            "_id": "5e56089f4265cf81e1d1e58e",
-            "name": "wow",
-            "value": "1"
-          }
-        ],
-        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
-        "owner": "5e55fe074bda3c392ed9eab2",
-        "created_at": "2020-02-26T05:56:47.214Z",
-        "updated_at": "2021-03-02T12:29:03.554Z",
-        "token": "fKoHRW5H",
-        "secret": "d1E85CTmf",
-        "__v": 12
-      },
-      {
-        "validators": {
-          "company": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "store": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "inventory": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "order": {
-            "json_schema": [],
-            "browser_script": ""
-          }
-        },
-        "description": "jabardast",
-        "description_html": "",
-        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
-        "companies": [],
-        "support": [
-          "inventory",
-          "order"
-        ],
-        "_id": "5e5608bf4265cf7198d1e58f",
-        "name": "x0-2",
-        "meta": [
-          {
-            "public": false,
-            "_id": "5e5608bf4265cf813fd1e590",
-            "name": "wow",
-            "value": "1"
-          }
-        ],
-        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
-        "owner": "5e55fe074bda3c392ed9eab2",
-        "created_at": "2020-02-26T05:57:19.875Z",
-        "updated_at": "2021-02-15T05:23:55.962Z",
-        "token": "3h3_mnzp",
-        "secret": "dgGHrIlFG",
-        "__v": 7
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 50,
-      "item_total": 24,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBrandsByCompany
-Get brands by company.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getBrandsByCompany({  q : value });
-
-// Async/Await
-const data = await platformClient.configuration.getBrandsByCompany({  q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| q | string | no | Search text for brand name |  
-
-
-
-Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
-
-*Returned Response:*
-
-
-
-
-[BrandsByCompanyResponse](#BrandsByCompanyResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "brands": [
-      {
-        "name": "5th Avenue",
-        "value": 476,
-        "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
-        "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
-        "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBuildConfig
-Get configuration of latest mobile build
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| platformType | string | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
-
-
-
-Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build.
-
-*Returned Response:*
-
-
-
-
-[MobileAppConfiguration](#MobileAppConfiguration)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "is_active": true,
-    "_id": "5ea9b318bc23a343ab6d442f",
-    "app_name": "TestUniket",
-    "landing_image": {
-      "aspect_ratio": "57/51",
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
-    },
-    "splash_image": {
-      "aspect_ratio": "1/1",
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
-    },
-    "application": "000000000000000000000001",
-    "platform_type": "android",
-    "created_at": "2020-04-29T17:02:16.976Z",
-    "modified_at": "2021-02-23T17:10:26.872Z",
-    "__v": 0,
-    "package_name": "com.fynd.store.x000000000000000000000004"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCompanyByBrands
-Get company by brand uids
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getCompanyByBrands({  body : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.configuration.getCompanyByBrands({  body : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-| body | [CompanyByBrandsRequest](#CompanyByBrandsRequest) | yes | Request body |
-
-
-Use this API to get a list of companies by the brands they deal
-
-*Returned Response:*
-
-
-
-
-[CompanyByBrandsResponse](#CompanyByBrandsResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "company_name": "RELIANCE RETAIL LTD",
-        "company_id": 1
-      },
-      {
-        "company_name": "SARASUOLE PRIVATE LIMITED",
-        "company_id": 2
-      },
-      {
-        "company_name": "Lloyd Palek",
-        "company_id": 4
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 200,
-      "item_total": 171,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCurrencies
-Get all currencies
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getCurrencies();
-
-// Async/Await
-const data = await platformClient.configuration.getCurrencies();
-```
-
-
-
-
-
-
-Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
-
-*Returned Response:*
-
-
-
-
-[CurrenciesResponse](#CurrenciesResponse)
-
-Currencies Success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "5ec75d11f7bfb54d798f3516",
-        "is_active": true,
-        "name": "United States Dollar",
-        "code": "USD",
-        "created_at": "2020-05-22T05:03:13.354Z",
-        "updated_at": "2020-06-05T09:12:04.248Z",
-        "decimal_digits": 2,
-        "symbol": "$"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getDomainAvailibility
-Check domain availability before linking to application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getDomainAvailibility({  body : value });
-
-// Async/Await
-const data = await platformClient.configuration.getDomainAvailibility({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DomainSuggestionsRequest](#DomainSuggestionsRequest) | yes | Request body |
-
-
-Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
-
-*Returned Response:*
-
-
-
-
-[DomainSuggestionsResponse](#DomainSuggestionsResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "Suggestions for fynd domains": {
-      "value": {
-        "domains": [
-          {
-            "name": "test.hostx1.de",
-            "is_available": false
-          },
-          {
-            "name": "testhive.hostx1.de",
-            "is_available": true
-          }
-        ]
-      }
-    },
-    "Suggestions for custom domains": {
-      "value": {
-        "domains": [
-          {
-            "name": "test25.in",
-            "unsupported": false,
-            "is_available": false
-          },
-          {
-            "name": "try25.in",
-            "unsupported": false,
-            "is_available": true,
-            "price": 14.99,
-            "currency": "USD"
-          }
-        ]
-      }
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getDomainStatus
-Get the status of connected domain
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DomainStatusRequest](#DomainStatusRequest) | yes | Request body |
-
-
-Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
-
-*Returned Response:*
-
-
-
-
-[DomainStatusResponse](#DomainStatusResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "connected": true,
-    "status": [
-      {
-        "display": "Domain TXT record entry 5d65089e031f9029f8e8dc2f",
-        "status": true
-      },
-      {
-        "display": "Domain pointing to 18.217.232.69 A record",
-        "status": true
-      },
-      {
-        "display": "Domain pointing to 18.188.115.251 A record",
-        "status": true
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getDomains
-Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getDomains();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getDomains();
-```
-
-
-
-
-
-
-Get list of domains
-
-*Returned Response:*
-
-
-
-
-[DomainsResponse](#DomainsResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "domains": [
-      {
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "verified": true,
-        "name": "uniket.hostfynd.dev",
-        "is_primary": true,
-        "is_shortlink": false,
-        "is_predefined": true
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": true,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostfynd.dev",
-        "is_predefined": true
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": false,
-        "_id": "6048497e87f5730423149190",
-        "name": "testdm.hostfynd.dev",
-        "is_predefined": true
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getIntegrationById
-Get integration data by its ID
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getIntegrationById({  id : value });
-
-// Async/Await
-const data = await platformClient.configuration.getIntegrationById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Integration id |  
-
-
-
-Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
-
-*Returned Response:*
-
-
-
-
-[Integration](#Integration)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5ec376ce848a005189acb312",
-    "validators": {
-      "company": {
-        "browser_script": "",
-        "json_schema": [
-          {
-            "type": "object"
-          },
-          {
-            "required": [
-              "ip_address",
-              "icode",
-              "gds_entity_id",
-              "auth_key"
-            ]
-          },
-          {
-            "properties": null,
-            "gds_entity_id": {
-              "type": "string",
-              "title": "GDS Entity ID",
-              "minLength": 3,
-              "maxLength": 10,
-              "pattern": "^[a-zA-Z0-9]+$",
-              "description": "GDS Entity ID is a unique identifier provided by Ginesys to you."
-            },
-            "ip_address": {
-              "type": "string",
-              "title": "IP Address",
-              "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
-              "description": "Enter IP address provided by Ginesys for your POS server"
-            },
-            "auth_key": {
-              "title": "Auth Key",
-              "type": "string",
-              "maxLength": 500,
-              "description": "Provide authentication token provided by Ginesys to you."
-            },
-            "icode": {
-              "title": "ICODE",
-              "type": "string",
-              "enum": [
-                "ean",
-                "upc",
-                "alu",
-                "sku_code"
-              ],
-              "description": "Please select the correct SKU identifier that you use to provide inventory to Fynd."
-            }
-          }
-        ]
-      },
-      "store": {
-        "browser_script": "",
-        "json_schema": [
-          {
-            "type": "object"
-          },
-          {
-            "properties": null,
-            "location_id": {
-              "type": "string",
-              "title": "Location ID",
-              "description": "Provide site code as per POS/SAP."
-            },
-            "ip_address": {
-              "type": "string",
-              "title": "IP Address",
-              "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
-              "description": "Enter IP address provided by Ginesys for your POS server"
-            }
-          }
-        ]
-      }
-    },
-    "description": "Sap Integration west ELM brands",
-    "constants": {},
-    "name": "SAP RBL Integration",
-    "meta": [
-      {
-        "public": true,
-        "_id": "5ee3e246129be17ce0b59ef4",
-        "name": "price_level",
-        "value": "store"
-      }
-    ],
-    "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1589868232/addsale/platform/integrations/icon/z3kj9p8nidx4zzmdutdu.svg",
-    "owner": "5e60e43dcd08cf01069eb23e",
-    "created_at": "2020-05-19T06:03:58.757Z",
-    "updated_at": "2020-06-15T12:00:42.598Z",
-    "token": "qk60vXqk-",
-    "secret": "Gp0dYInpUV",
-    "__v": 13,
-    "description_html": ""
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getIntegrationByLevelId
-Get integration config at a particular level (store/company)
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getIntegrationByLevelId({  id : value,
- level : value,
- uid : value });
-
-// Async/Await
-const data = await platformClient.configuration.getIntegrationByLevelId({  id : value,
- level : value,
- uid : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Integration ID (24-digit Mongo Object ID) |   
-| level | string | yes | Integration level, `store` or `company` |   
-| uid | number | yes | Unique identifier of integration level (store/company) |  
-
-
-
-Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
-
-*Returned Response:*
-
-
-
-
-[IntegrationLevel](#IntegrationLevel)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "opted": false,
-    "permissions": [],
-    "last_patch": [],
-    "_id": "5ec377f2848a0073feacb31b",
-    "integration": "5ec376ce848a005189acb312",
-    "level": "store",
-    "uid": 1,
-    "meta": [],
-    "token": "1RuGX0Fyp",
-    "created_at": "2020-05-19T06:08:50.199Z",
-    "modified_at": "2020-08-17T07:54:01.809Z",
-    "__v": 14
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getIntegrationLevelConfig
-Get integration level config
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getIntegrationLevelConfig({  id : value,
- level : value,
- opted : value,
- checkPermission : value });
-
-// Async/Await
-const data = await platformClient.configuration.getIntegrationLevelConfig({  id : value,
- level : value,
- opted : value,
- checkPermission : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Integration ID (24-digit Mongo Object ID) |   
-| level | string | yes | store or company |    
-| opted | boolean | no | True means get the opted stores. False means get the stores that aren't opted. |    
-| checkPermission | boolean | no | Filter on if permissions (for inventory/order) are present |  
-
-
-
-Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc.
-
-*Returned Response:*
-
-
-
-
-[IntegrationConfigResponse](#IntegrationConfigResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "opted": false,
-        "permissions": [],
-        "last_patch": [],
-        "_id": "5ec377f2848a0073feacb31b",
-        "integration": "5ec376ce848a005189acb312",
-        "level": "store",
-        "uid": 1,
-        "meta": [],
-        "token": "1RuGX0Fyp",
-        "created_at": "2020-05-19T06:08:50.199Z",
-        "modified_at": "2020-08-17T07:54:01.809Z",
-        "__v": 14
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### getInventoryConfig
-Get sales channel configuration
+Get inventory configuration.
 
 
 
@@ -2436,7 +1851,7 @@ const data = await platformClient.application("<APPLICATION_ID>").configuration.
 
 
 
-Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+Retrieve configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
 
 *Returned Response:*
 
@@ -2490,10 +1905,6 @@ Success
       "discount": {
         "min": 0,
         "max": 100
-      },
-      "pricing_strategy": {
-        "is_active": false,
-        "value": "all"
       },
       "out_of_stock": true,
       "franchise_enabled": true,
@@ -2690,1287 +2101,8 @@ Success
 ---
 
 
-### getLevelActiveIntegrations
-Check active integration at store
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getLevelActiveIntegrations({  id : value,
- level : value,
- uid : value });
-
-// Async/Await
-const data = await platformClient.configuration.getLevelActiveIntegrations({  id : value,
- level : value,
- uid : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Integration ID (24-digit Mongo Object ID) |   
-| level | string | yes | Integration level, `store` or `company` |   
-| uid | number | yes | Unique identifier of integration level (store/company) |  
-
-
-
-Use this API to check if a store is already opted-in for any integration
-
-*Returned Response:*
-
-
-
-
-[OptedStoreIntegration](#OptedStoreIntegration)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "other_entity": {
-      "opted": false,
-      "permissions": [],
-      "last_patch": [],
-      "_id": "5ec377f2848a0073feacb31b",
-      "integration": "5ec376ce848a005189acb312",
-      "level": "company",
-      "uid": 2,
-      "meta": [],
-      "token": "1RuGX0Fyp",
-      "created_at": "2020-05-19T06:08:50.199Z",
-      "modified_at": "2020-08-17T07:54:01.809Z",
-      "__v": 14
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderingStoreConfig
-Get ordering store config
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreConfig();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreConfig();
-```
-
-
-
-
-
-
-Fetch the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
-
-*Returned Response:*
-
-
-
-
-[OrderingStoreConfig](#OrderingStoreConfig)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "deployment_meta": {
-      "deployed_stores": [
-        1,
-        10
-      ],
-      "all_stores": false,
-      "enabled": true,
-      "type": "hard",
-      "_id": "5e7e5e4d6b5f3b4b54c95f9c",
-      "app": "000000000000000000000001"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderingStoreCookie
-Get an Ordering Store signed cookie on selection of ordering store.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreCookie({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreCookie({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OrderingStoreSelectRequest](#OrderingStoreSelectRequest) | yes | Request body |
-
-
-Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
-
-*Returned Response:*
-
-
-
-
-[SuccessMessageResponse](#SuccessMessageResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "success"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderingStoresByFilter
-Get ordering store by filter
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-| body | [FilterOrderingStoreRequest](#FilterOrderingStoreRequest) | yes | Request body |
-
-
-Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
-
-*Returned Response:*
-
-
-
-
-[OrderingStores](#OrderingStores)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "page": {
-      "type": "number",
-      "size": 10,
-      "current": 1,
-      "has_next": true,
-      "item_total": 583
-    },
-    "items": [
-      {
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SAGAR TECH PLAZA, SAKINAKA",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              1,
-              1
-            ]
-          },
-          "pincode": 400070,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "_id": "5f586563f509dd000145c02d",
-        "store_type": "high_street",
-        "uid": 11016,
-        "store_code": "HS-0c532",
-        "display_name": " Brand Company Store 11",
-        "name": " Brand Company Store 11",
-        "pincode": 400070,
-        "code": "HS-0c532"
-      },
-      {
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "UNNAMED ROAD, VASAI EAST SALT PLANT",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.84293219999999,
-              19.3805675
-            ]
-          },
-          "address2": "VASAI EAST SALT PLANT, VASAI EAST, ",
-          "pincode": 401208,
-          "country": "INDIA",
-          "city": "VIRAR",
-          "landmark": ""
-        },
-        "_id": "5f585934f509dd000145c025",
-        "store_type": "high_street",
-        "uid": 11567,
-        "store_code": "123456",
-        "display_name": "2nd Store",
-        "name": "2nd Store",
-        "pincode": 401208,
-        "code": "123456"
-      },
-      {
-        "address": {
-          "state": "GUJARAT",
-          "address1": "32, AANAND SHOPPING CENTRE ",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              1,
-              1
-            ]
-          },
-          "pincode": 380001,
-          "country": "INDIA",
-          "city": "AHMEDABAD"
-        },
-        "_id": "5f587b5ef509dd000145c02f",
-        "store_type": "high_street",
-        "uid": 11568,
-        "store_code": "12345",
-        "display_name": "3rd ",
-        "name": "3rd ",
-        "pincode": 380001,
-        "code": "12345"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOtherSellerApplicationById
-Get other seller's sales channel by ID
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getOtherSellerApplicationById({  id : value });
-
-// Async/Await
-const data = await platformClient.configuration.getOtherSellerApplicationById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Application Id |  
-
-
-
-Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory
-
-*Returned Response:*
-
-
-
-
-[OptedApplicationResponse](#OptedApplicationResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "name": "intent 2",
-    "description": "",
-    "_id": "5f030880f019afd636889afc",
-    "domain": "intent.hostfynd.dev",
-    "company": {
-      "uid": 94,
-      "name": "DummyImran"
-    },
-    "opted_inventory": {
-      "opt_type": {
-        "key": "store",
-        "display": "Store"
-      },
-      "items": [
-        {
-          "name": "RRL01",
-          "id": 1,
-          "store_code": "WH_8513",
-          "_id": "5ec2c0b168fc2800017112f5",
-          "modified_on": "2020-09-09T04:25:55.843Z",
-          "uid": 1
-        }
-      ]
-    },
-    "address": {
-      "state": "MAHARASHTRA",
-      "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-      "lat_long": {
-        "type": "Point",
-        "coordinates": [
-          72.8691788,
-          19.1174114
-        ]
-      },
-      "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-      "pincode": 400059,
-      "country": "INDIA",
-      "city": "MUMBAI"
-    },
-    "display_name": "RRL01",
-    "store_type": "warehouse",
-    "company_id": 2,
-    "opt_out_inventory": {
-      "store": [],
-      "company": []
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOtherSellerApplications
-Get other seller sales channels
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getOtherSellerApplications({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.configuration.getOtherSellerApplications({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
-
-*Returned Response:*
-
-
-
-
-[OtherSellerApplications](#OtherSellerApplications)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "name": "intent 2",
-        "description": "",
-        "_id": "5f030880f019afd636889afc",
-        "domain": "intent.hostfynd.dev",
-        "company": {
-          "uid": 2,
-          "name": "DummyImran"
-        },
-        "opt_type": "store"
-      },
-      {
-        "name": "new application imran",
-        "description": "",
-        "_id": "5f03f5d17692029e2d1a50a5",
-        "domain": "imranstore.hostfynd.dev",
-        "company": {
-          "uid": 2,
-          "name": "DummyImran"
-        },
-        "opt_type": "store"
-      },
-      {
-        "name": "helo",
-        "description": "",
-        "_id": "5f03f63b769202170c1a50a9",
-        "domain": "helo.hostfynd.dev",
-        "company": {
-          "uid": 7,
-          "name": "Zack Burgdorf"
-        },
-        "opt_type": "store"
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 10,
-      "item_total": 20,
-      "has_next": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPreviousVersions
-Get details of previous mobile builds
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| platformType | string | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
-
-
-
-Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
-
-*Returned Response:*
-
-
-
-
-[BuildVersionHistory](#BuildVersionHistory)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "versions": [
-      {
-        "_id": "6035376ab937c5f7c5462888",
-        "application": "000000000000000000000001",
-        "platform_type": "android",
-        "build_status": "pending",
-        "version_name": "0.5.6",
-        "download_url": {
-          "secure_url": "http://test-bucket.s3.amazonaws.com/test-bucket/release/app-uniket-release.apk"
-        },
-        "version_code": 1,
-        "created_at": "2021-02-23T17:12:10.977Z",
-        "modified_at": "2021-02-23T17:12:10.977Z",
-        "__v": 0
-      }
-    ],
-    "latest_available_version_name": "0.5.7"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSelectedOptIns
-Get company/store level integration opt-ins
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getSelectedOptIns({  level : value,
- uid : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.configuration.getSelectedOptIns({  level : value,
- uid : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| level | string | yes | store or company |   
-| uid | number | yes | Unique identifier of the selected integration level. |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-
-
-
-Use this API to get the store-level/company-level integrations configured in a company
-
-*Returned Response:*
-
-
-
-
-[GetIntegrationsOptInsResponse](#GetIntegrationsOptInsResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "validators": {
-          "company": {
-            "json_schema": [
-              {
-                "display": "Host",
-                "key": "host",
-                "type": "text",
-                "tooltip": "Enter host address"
-              }
-            ],
-            "browser_script": ""
-          },
-          "store": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "inventory": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "order": {
-            "json_schema": [],
-            "browser_script": ""
-          }
-        },
-        "description": "awesome integration",
-        "description_html": "",
-        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
-        "companies": [],
-        "support": [
-          "inventory",
-          "order"
-        ],
-        "_id": "5e56089f4265cf2846d1e58c",
-        "name": "x0-1",
-        "meta": [
-          {
-            "public": true,
-            "_id": "5e56089f4265cf81e1d1e58e",
-            "name": "wow",
-            "value": "1"
-          }
-        ],
-        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
-        "owner": "5e55fe074bda3c392ed9eab2",
-        "created_at": "2020-02-26T05:56:47.214Z",
-        "updated_at": "2021-03-02T12:29:03.554Z",
-        "token": "fKoHRW5H",
-        "secret": "d1E85CTmf",
-        "__v": 12
-      },
-      {
-        "validators": {
-          "company": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "store": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "inventory": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "order": {
-            "json_schema": [],
-            "browser_script": ""
-          }
-        },
-        "description": "jabardast",
-        "description_html": "",
-        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
-        "companies": [],
-        "support": [
-          "inventory",
-          "order"
-        ],
-        "_id": "5e5608bf4265cf7198d1e58f",
-        "name": "x0-2",
-        "meta": [
-          {
-            "public": false,
-            "_id": "5e5608bf4265cf813fd1e590",
-            "name": "wow",
-            "value": "1"
-          }
-        ],
-        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
-        "owner": "5e55fe074bda3c392ed9eab2",
-        "created_at": "2020-02-26T05:57:19.875Z",
-        "updated_at": "2021-02-15T05:23:55.962Z",
-        "token": "3h3_mnzp",
-        "secret": "dgGHrIlFG",
-        "__v": 7
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 50,
-      "item_total": 24,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStaffOrderingStores
-Get deployment stores
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
- pageSize : value,
- q : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
- pageSize : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
-| q | string | no | Store code or name of the ordering store. |  
-
-
-
-Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
-
-*Returned Response:*
-
-
-
-
-[OrderingStoresResponse](#OrderingStoresResponse)
-
-Success. Check the example shown below or refer `OrderingStoresResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "uid": 10
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStoreByBrands
-Get stores by brand uids for the current company
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.getStoreByBrands({  body : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.configuration.getStoreByBrands({  body : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
-| body | [StoreByBrandsRequest](#StoreByBrandsRequest) | yes | Request body |
-
-
-Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
-
-*Returned Response:*
-
-
-
-
-[StoreByBrandsResponse](#StoreByBrandsResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "store_name": "RRL01",
-        "store_id": 1,
-        "store_type": "warehouse",
-        "store_code": "WH_8513",
-        "store_address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "company": {
-          "uid": 2,
-          "name": "RELIANCE RETAIL LTD"
-        }
-      },
-      {
-        "store_name": "RUOSH WAREHOUSE",
-        "store_id": 2,
-        "store_type": "warehouse",
-        "store_code": "RUOSH43",
-        "store_address": {
-          "state": "MAHARASHTRA",
-          "address1": "RAUNAK CITY SECTOR 4 D10, SAPAD GAON",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              73.121952,
-              19.2645048
-            ]
-          },
-          "address2": "SAPAD GAON, KHADAKPADA, ",
-          "pincode": 421301,
-          "country": "INDIA",
-          "city": "THANE",
-          "landmark": "near taj"
-        },
-        "company": {
-          "uid": 2,
-          "name": "SARASUOLE PRIVATE LIMITED"
-        }
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 200,
-      "item_total": 762,
-      "has_next": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### modifyAppFeatures
-Update features of application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
-
-
-Update features of application
-
-*Returned Response:*
-
-
-
-
-[AppFeature](#AppFeature)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "product_detail": {
-      "similar": [
-        "basic",
-        "visual",
-        "brand",
-        "category",
-        "seller",
-        "price",
-        "specs"
-      ],
-      "seller_selection": true,
-      "update_product_meta": true,
-      "request_product": true
-    },
-    "landing_page": {
-      "launch_page": {
-        "page_type": "home",
-        "params": {},
-        "query": {}
-      },
-      "continue_as_guest": true,
-      "login_btn_text": "Click here to sign-in",
-      "show_domain_textbox": true,
-      "show_register_btn": true
-    },
-    "registration_page": {
-      "ask_store_address": false
-    },
-    "home_page": {
-      "order_processing": true
-    },
-    "common": {
-      "communication_optin_dialog": {
-        "visibility": true
-      },
-      "deployment_store_selection": {
-        "enabled": true,
-        "type": "hard"
-      },
-      "listing_price": {
-        "value": "min",
-        "sort": "min"
-      },
-      "currency": {
-        "value": [
-          "INR"
-        ],
-        "type": "explicit",
-        "default_currency": "INR"
-      },
-      "revenue_engine": {
-        "enabled": false
-      },
-      "feedback": {
-        "enabled": true
-      },
-      "compare_products": {
-        "enabled": true
-      }
-    },
-    "cart": {
-      "gst_input": true,
-      "staff_selection": true,
-      "placing_for_customer": true,
-      "google_map": true,
-      "revenue_engine_coupon": false
-    },
-    "qr": {
-      "application": true,
-      "products": true,
-      "collections": true
-    },
-    "pcr": {
-      "staff_selection": true
-    },
-    "order": {
-      "buy_again": true
-    },
-    "buybox": {
-      "show_name": true,
-      "enable_selection": true,
-      "is_seller_buybox_enabled": false
-    },
-    "_id": "5e57643c986e4119c973df7d",
-    "app": "000000000000000000000001",
-    "created_at": "2020-02-27T06:39:56.088Z",
-    "modified_at": "2021-03-09T15:40:29.188Z",
-    "__v": 1
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### optOutFromApplication
-Opt-out company or store from other seller application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.configuration.optOutFromApplication({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.configuration.optOutFromApplication({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Alphanumeric ID allotted to an application (sales channel website) created within a business account. |  
-| body | [OptOutInventory](#OptOutInventory) | yes | Request body |
-
-
-Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
-
-*Returned Response:*
-
-
-
-
-[SuccessMessageResponse](#SuccessMessageResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Updated opt out data"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### partiallyUpdateInventoryConfig
-Partially update sales channel configuration
+Partially update inventory configuration.
 
 
 
@@ -4045,10 +2177,6 @@ Success
       "discount": {
         "min": 0,
         "max": 100
-      },
-      "pricing_strategy": {
-        "is_active": false,
-        "value": "all"
       },
       "out_of_stock": true,
       "franchise_enabled": true,
@@ -4245,862 +2373,8 @@ Success
 ---
 
 
-### removeDomainById
-Remove attached domain from current sales channel
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | The unique identifier (24-digit Mongo Object ID) of the domain |  
-
-
-
-Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
-
-*Returned Response:*
-
-
-
-
-[SuccessMessageResponse](#SuccessMessageResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Domain removed successfully"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### removeOrderingStoreCookie
-Unset the Ordering Store signed cookie.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.removeOrderingStoreCookie();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.removeOrderingStoreCookie();
-```
-
-
-
-
-
-
-Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
-
-*Returned Response:*
-
-
-
-
-[SuccessMessageResponse](#SuccessMessageResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "message": "success"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppApiTokens
-Add or update social tokens for the sales channel
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [TokenResponse](#TokenResponse) | yes | Request body |
-
-
-Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
-
-*Returned Response:*
-
-
-
-
-[TokenResponse](#TokenResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "tokens": {
-      "firebase": {
-        "credentials": {
-          "ios": {
-            "application_id": "test",
-            "api_key": "test"
-          },
-          "android": {
-            "application_id": "test",
-            "api_key": "test"
-          },
-          "project_id": "uniket-d8cdc",
-          "gcm_sender_id": "test",
-          "application_id": "test",
-          "api_key": "test"
-        },
-        "enabled": true
-      },
-      "moengage": {
-        "credentials": {
-          "app_id": "test"
-        },
-        "enabled": true
-      },
-      "segment": {
-        "credentials": {
-          "write_key": "test"
-        },
-        "enabled": true
-      },
-      "gtm": {
-        "credentials": {
-          "api_key": "1234567890"
-        },
-        "enabled": false
-      },
-      "freshchat": {
-        "credentials": {
-          "app_id": "123456",
-          "app_key": "123456789",
-          "web_token": ""
-        },
-        "enabled": false
-      },
-      "safetynet": {
-        "credentials": {
-          "api_key": "test"
-        },
-        "enabled": true
-      },
-      "fynd_rewards": {
-        "credentials": {
-          "public_key": "test"
-        }
-      },
-      "auth": {
-        "google": {
-          "appId": "test"
-        },
-        "facebook": {
-          "appId": "test"
-        },
-        "accountkit": {
-          "appId": ""
-        }
-      },
-      "google_map": {
-        "credentials": {
-          "api_key": "test"
-        }
-      }
-    },
-    "_id": "5e66282a073261060ee83751",
-    "application": "000000000000000000000001",
-    "created_at": "2020-03-09T11:27:38.894Z",
-    "updated_at": "2020-12-24T05:39:17.054Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppBasicDetails
-Update sales channel details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ApplicationDetail](#ApplicationDetail) | yes | Request body |
-
-
-Modify sales channel details like name, description, logo, domain, company ID, and other related information.
-
-*Returned Response:*
-
-
-
-
-[ApplicationDetail](#ApplicationDetail)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "name": "Uniket B2B",
-    "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
-    "logo": {
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "mobile_logo": {
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "favicon": {
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
-    },
-    "banner": {
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
-    },
-    "domain": {
-      "verified": true,
-      "is_primary": true,
-      "is_shortlink": false,
-      "_id": "5eb1177748312a3bd55d0f1e",
-      "name": "uniket.hostfynd.dev"
-    },
-    "domains": [
-      {
-        "verified": true,
-        "is_primary": true,
-        "is_shortlink": false,
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "name": "uniket.hostfynd.dev"
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": true,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostfynd.dev"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppContactInfo
-Save or update current information of the sales channel
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ApplicationInformation](#ApplicationInformation) | yes | Request body |
-
-
-Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
-
-*Returned Response:*
-
-
-
-
-[ApplicationInformation](#ApplicationInformation)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5e6627bd0732616083e83750",
-    "address": {
-      "address_line": [
-        "Warehouse 5, Near Industrial Complex",
-        "2nd Lane, Andheri"
-      ],
-      "phone": [
-        {
-          "code": "+91",
-          "number": "9988998899"
-        }
-      ],
-      "city": "Mumbai , Maharashtra , India",
-      "country": "India",
-      "pincode": 400059
-    },
-    "social_links": {
-      "facebook": {
-        "title": "Facebook",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/hQAbAKdvHK-facebookfooteraopcjq.svg",
-        "link": ""
-      },
-      "instagram": {
-        "title": "Instagram",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/UZYsGWOqXp-instagramfooterl3utrr.svg",
-        "link": ""
-      },
-      "twitter": {
-        "title": "Twitter",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/oT2hW-BJjq-twitterfooternajsyr.svg",
-        "link": ""
-      },
-      "pinterest": {
-        "title": "Pinterest",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/v0erlcMk8p-pinterestfooternzmq4b.svg",
-        "link": ""
-      },
-      "google_plus": {
-        "title": "Google+",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/lw3Y5S58h4-googleplusysukr1.png",
-        "link": ""
-      },
-      "youtube": {
-        "title": "Youtube",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/EYV03PDST_-youtubefootermqhcr7.svg",
-        "link": ""
-      },
-      "linked_in": {
-        "title": "LinkedIn",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/qa7gx_bW9O-linkedinfooterrcr0yq.svg",
-        "link": ""
-      },
-      "blog_link": {
-        "title": "Blog",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/LKpxTk1I3s-mediumfooterdtvrva.svg",
-        "link": ""
-      }
-    },
-    "links": [
-      {
-        "title": "Shipping",
-        "link": "www.uniket.store/shipping-details"
-      },
-      {
-        "title": "Returns",
-        "link": "www.uniket.store/policy/return-policy"
-      },
-      {
-        "title": "Privacy",
-        "link": "www.uniket.store/policy/privacy-policy"
-      },
-      {
-        "title": "Terms",
-        "link": "www.uniket.store/policy/terms-conditions"
-      }
-    ],
-    "copyright_text": "#MadeInIndia © 2020 Shopsense Retail Technologies",
-    "support": {
-      "timing": "9 AM to 9 PM",
-      "phone": [],
-      "email": [],
-      "business_highlights": [
-        {
-          "_id": "60479413a32f774d754b00ef",
-          "title": "Most Genuine Products",
-          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
-          "sub_title": "Directly from brands"
-        },
-        {
-          "_id": "60479413a32f7717df4b00f0",
-          "title": "Credit Facility Available",
-          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
-          "sub_title": "Free 30 Days Credit"
-        },
-        {
-          "_id": "60479413a32f77e70b4b00f1",
-          "title": "Assured Returns",
-          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
-          "sub_title": "For all damaged/wrong items"
-        }
-      ]
-    },
-    "application": "000000000000000000000001",
-    "created_at": "2020-03-09T11:25:49.921Z",
-    "modified_at": "2021-03-09T15:28:19.598Z",
-    "__v": 101
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppCurrencyConfig
-Update initial sales channel supported currency
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AppSupportedCurrency](#AppSupportedCurrency) | yes | Request body |
-
-
-Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default.
-
-*Returned Response:*
-
-
-
-
-[AppSupportedCurrency](#AppSupportedCurrency)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5ec7a85965c3893857538d93",
-    "supported_currency": [
-      "5ec75d11f7bfb5a7d38f3524",
-      "5ec75d11f7bfb54d798f3516",
-      "5ec75d11f7bfb553b88f355f",
-      "5ec75d11f7bfb559d08f34d5",
-      "5ec75d11f7bfb5d1e98f34da"
-    ],
-    "application": "000000000000000000000001",
-    "default_currency": {
-      "ref": "5ec75d11f7bfb54d798f3516",
-      "code": "USD"
-    },
-    "created_at": "2020-05-22T10:24:25.984Z",
-    "modified_at": "2021-03-09T10:47:32.664Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAppFeatures
-Update the sales channel configuration and features
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
-
-
-Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
-
-*Returned Response:*
-
-
-
-
-[AppFeature](#AppFeature)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "product_detail": {
-      "similar": [
-        "basic",
-        "visual",
-        "brand",
-        "category",
-        "seller",
-        "price",
-        "specs"
-      ],
-      "seller_selection": true,
-      "update_product_meta": true,
-      "request_product": true
-    },
-    "landing_page": {
-      "launch_page": {
-        "page_type": "home",
-        "params": {},
-        "query": {}
-      },
-      "continue_as_guest": true,
-      "login_btn_text": "Click here to sign-in",
-      "show_domain_textbox": true,
-      "show_register_btn": true
-    },
-    "registration_page": {
-      "ask_store_address": false
-    },
-    "home_page": {
-      "order_processing": true
-    },
-    "common": {
-      "communication_optin_dialog": {
-        "visibility": true
-      },
-      "deployment_store_selection": {
-        "enabled": true,
-        "type": "hard"
-      },
-      "listing_price": {
-        "value": "min",
-        "sort": "min"
-      },
-      "currency": {
-        "value": [
-          "INR"
-        ],
-        "type": "explicit",
-        "default_currency": "INR"
-      },
-      "revenue_engine": {
-        "enabled": false
-      },
-      "feedback": {
-        "enabled": true
-      },
-      "compare_products": {
-        "enabled": true
-      }
-    },
-    "cart": {
-      "gst_input": true,
-      "staff_selection": true,
-      "placing_for_customer": true,
-      "google_map": true,
-      "revenue_engine_coupon": false
-    },
-    "qr": {
-      "application": true,
-      "products": true,
-      "collections": true
-    },
-    "pcr": {
-      "staff_selection": true
-    },
-    "order": {
-      "buy_again": true
-    },
-    "buybox": {
-      "show_name": true,
-      "enable_selection": true,
-      "is_seller_buybox_enabled": false
-    },
-    "_id": "5e57643c986e4119c973df7d",
-    "app": "000000000000000000000001",
-    "created_at": "2020-02-27T06:39:56.088Z",
-    "updated_at": "2021-03-09T15:40:29.188Z",
-    "__v": 1
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateBuildConfig
-Update the configuration for next mobile build
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| platformType | string | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
-| body | [MobileAppConfigRequest](#MobileAppConfigRequest) | yes | Request body |
-
-
-Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build.
-
-*Returned Response:*
-
-
-
-
-[MobileAppConfiguration](#MobileAppConfiguration)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "is_active": true,
-    "_id": "5ea9b318bc23a343ab6d442f",
-    "app_name": "TestUniket",
-    "landing_image": {
-      "aspect_ratio": "57/51",
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
-    },
-    "splash_image": {
-      "aspect_ratio": "1/1",
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
-    },
-    "application": "000000000000000000000001",
-    "platform_type": "android",
-    "created_at": "2020-04-29T17:02:16.976Z",
-    "modified_at": "2021-02-23T17:10:26.872Z",
-    "__v": 0,
-    "package_name": "com.fynd.store.x000000000000000000000001"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateInventoryConfig
-Update sales channel configuration
+Update inventory configuration.
 
 
 
@@ -5371,8 +2645,2281 @@ Success
 ---
 
 
+
+
+### getAppCurrencyConfig
+Get application currency configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
+```
+
+
+
+
+
+
+Retrieve a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
+
+*Returned Response:*
+
+
+
+
+[AppSupportedCurrency](#AppSupportedCurrency)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5ec7a85965c3893857538d93",
+    "supported_currency": [
+      "5ec75d11f7bfb5a7d38f3524",
+      "5ec75d11f7bfb54d798f3516",
+      "5ec75d11f7bfb553b88f355f",
+      "5ec75d11f7bfb559d08f34d5",
+      "5ec75d11f7bfb5d1e98f34da"
+    ],
+    "application": "000000000000000000000001",
+    "default_currency": {
+      "ref": "5ec75d11f7bfb54d798f3516",
+      "code": "USD"
+    },
+    "created_at": "2020-05-22T10:24:25.984Z",
+    "modified_at": "2021-03-09T10:47:32.664Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppSupportedCurrency
+Get supported currencies.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
+```
+
+
+
+
+
+
+Retrieve a list of supported currencies for the application. A list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+
+*Returned Response:*
+
+
+
+
+[AppCurrencyResponse](#AppCurrencyResponse)
+
+Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "application": "000000000000000000000001",
+    "default_currency": {
+      "ref": "5ecf6122d953d4242c044907",
+      "code": "INR"
+    },
+    "supported_currency": [
+      {
+        "_id": "5ecf6122d953d4242c044907",
+        "is_active": true,
+        "name": "Indian Rupee",
+        "code": "INR",
+        "decimal_digits": 2,
+        "symbol": "₹",
+        "created_at": "2020-05-28T06:58:42.532Z",
+        "modified_at": "2021-04-05T16:44:14.358Z"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppCurrencyConfig
+Update application currency configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AppSupportedCurrency](#AppSupportedCurrency) | yes | Request body |
+
+
+Modify currency configuration settings for the application. Add and edit the currencies supported in the application. Initially, INR will be enabled by default.
+
+*Returned Response:*
+
+
+
+
+[AppSupportedCurrency](#AppSupportedCurrency)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5ec7a85965c3893857538d93",
+    "supported_currency": [
+      "5ec75d11f7bfb5a7d38f3524",
+      "5ec75d11f7bfb54d798f3516",
+      "5ec75d11f7bfb553b88f355f",
+      "5ec75d11f7bfb559d08f34d5",
+      "5ec75d11f7bfb5d1e98f34da"
+    ],
+    "application": "000000000000000000000001",
+    "default_currency": {
+      "ref": "5ec75d11f7bfb54d798f3516",
+      "code": "USD"
+    },
+    "created_at": "2020-05-22T10:24:25.984Z",
+    "modified_at": "2021-03-09T10:47:32.664Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getOrderingStoreConfig
+Get ordering store configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreConfig();
+```
+
+
+
+
+
+
+Retrieve configuration settings for ordering stores. Retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+
+*Returned Response:*
+
+
+
+
+[OrderingStoreConfig](#OrderingStoreConfig)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "deployment_meta": {
+      "deployed_stores": [
+        1,
+        10
+      ],
+      "all_stores": false,
+      "enabled": true,
+      "type": "hard",
+      "_id": "5e7e5e4d6b5f3b4b54c95f9c",
+      "app": "000000000000000000000001"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOrderingStoresByFilter
+Get ordering stores by filter.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+| body | [FilterOrderingStoreRequest](#FilterOrderingStoreRequest) | yes | Request body |
+
+
+Retrieve ordering stores based on specified filters. Use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+
+*Returned Response:*
+
+
+
+
+[OrderingStores](#OrderingStores)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "page": {
+      "type": "number",
+      "size": 10,
+      "current": 1,
+      "has_next": true,
+      "item_total": 583
+    },
+    "items": [
+      {
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "SAGAR TECH PLAZA, SAKINAKA",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              1,
+              1
+            ]
+          },
+          "pincode": 400070,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "_id": "5f586563f509dd000145c02d",
+        "store_type": "high_street",
+        "uid": 11016,
+        "store_code": "HS-0c532",
+        "display_name": " Brand Company Store 11",
+        "name": " Brand Company Store 11",
+        "pincode": 400070,
+        "code": "HS-0c532"
+      },
+      {
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "UNNAMED ROAD, VASAI EAST SALT PLANT",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.84293219999999,
+              19.3805675
+            ]
+          },
+          "address2": "VASAI EAST SALT PLANT, VASAI EAST, ",
+          "pincode": 401208,
+          "country": "INDIA",
+          "city": "VIRAR",
+          "landmark": ""
+        },
+        "_id": "5f585934f509dd000145c025",
+        "store_type": "high_street",
+        "uid": 11567,
+        "store_code": "123456",
+        "display_name": "2nd Store",
+        "name": "2nd Store",
+        "pincode": 401208,
+        "code": "123456"
+      },
+      {
+        "address": {
+          "state": "GUJARAT",
+          "address1": "32, AANAND SHOPPING CENTRE ",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              1,
+              1
+            ]
+          },
+          "pincode": 380001,
+          "country": "INDIA",
+          "city": "AHMEDABAD"
+        },
+        "_id": "5f587b5ef509dd000145c02f",
+        "store_type": "high_street",
+        "uid": 11568,
+        "store_code": "12345",
+        "display_name": "3rd ",
+        "name": "3rd ",
+        "pincode": 380001,
+        "code": "12345"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getStaffOrderingStores
+Get staff ordering stores.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
+ pageSize : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
+ pageSize : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| q | string | no | Store code or name of the ordering store. |  
+
+
+
+Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+
+*Returned Response:*
+
+
+
+
+[OrderingStoresResponse](#OrderingStoresResponse)
+
+Success. Check the example shown below or refer `OrderingStoresResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "uid": 10
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateOrderingStoreConfig
+Update ordering store configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OrderingStoreConfig](#OrderingStoreConfig) | yes | Request body |
+
+
+Modify configuration settings for ordering stores. Edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
+
+*Returned Response:*
+
+
+
+
+[DeploymentMeta](#DeploymentMeta)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "deployed_stores": [
+      1,
+      10
+    ],
+    "all_stores": false,
+    "enabled": true,
+    "type": "hard",
+    "_id": "5e7e5e4d6b5f3b4b54c95f9c",
+    "app": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getOrderingStoreCookie
+Get an Ordering Store signed cookie on selection of ordering store.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreCookie({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreCookie({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OrderingStoreSelectRequest](#OrderingStoreSelectRequest) | yes | Request body |
+
+
+Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "success"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### removeOrderingStoreCookie
+Unset the Ordering Store signed cookie.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.removeOrderingStoreCookie();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.removeOrderingStoreCookie();
+```
+
+
+
+
+
+
+Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "success"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### addDomain
+Add domain.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DomainAddRequest](#DomainAddRequest) | yes | Request body |
+
+
+Add a new domain. Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
+
+*Returned Response:*
+
+
+
+
+[Domain](#Domain)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "name": "testdm.hostfynd.dev",
+    "verified": true,
+    "message": "New domain added successfully",
+    "is_primary": false,
+    "is_shortlink": false,
+    "_id": "6048497e87f5730423149190"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### changeDomainType
+Change domain type.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UpdateDomainTypeRequest](#UpdateDomainTypeRequest) | yes | Request body |
+
+
+Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links.
+
+*Returned Response:*
+
+
+
+
+[DomainsResponse](#DomainsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "_id": "5eb1177748312a3bd55d0f1e",
+        "verified": true,
+        "name": "uniket.hostx0.de",
+        "is_primary": true,
+        "is_shortlink": false
+      },
+      {
+        "verified": true,
+        "is_primary": false,
+        "is_shortlink": true,
+        "_id": "5f0858c5f86e00cd42dccc8d",
+        "name": "jd.hostx0.de"
+      },
+      {
+        "verified": true,
+        "is_primary": false,
+        "is_shortlink": false,
+        "_id": "6048497e87f5730423149190",
+        "name": "testdm.hostx0.de"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDomainStatus
+Get domain status.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DomainStatusRequest](#DomainStatusRequest) | yes | Request body |
+
+
+Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
+
+*Returned Response:*
+
+
+
+
+[DomainStatusResponse](#DomainStatusResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "connected": true,
+    "status": [
+      {
+        "display": "Domain TXT record entry 5d65089e031f9029f8e8dc2f",
+        "status": true
+      },
+      {
+        "display": "Domain pointing to 18.217.232.69 A record",
+        "status": true
+      },
+      {
+        "display": "Domain pointing to 18.188.115.251 A record",
+        "status": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDomains
+Get domains.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getDomains();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getDomains();
+```
+
+
+
+
+
+
+Get list of domains. 
+
+*Returned Response:*
+
+
+
+
+[DomainsResponse](#DomainsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "_id": "5eb1177748312a3bd55d0f1e",
+        "verified": true,
+        "name": "uniket.hostfynd.dev",
+        "is_primary": true,
+        "is_shortlink": false,
+        "is_predefined": true
+      },
+      {
+        "verified": true,
+        "is_primary": false,
+        "is_shortlink": true,
+        "_id": "5f0858c5f86e00cd42dccc8d",
+        "name": "jd.hostfynd.dev",
+        "is_predefined": true
+      },
+      {
+        "verified": true,
+        "is_primary": false,
+        "is_shortlink": false,
+        "_id": "6048497e87f5730423149190",
+        "name": "testdm.hostfynd.dev",
+        "is_predefined": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### removeDomainById
+Remove domain by ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | The unique identifier (24-digit Mongo Object ID) of the domain |  
+
+
+
+Delete a specific domain from the application. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Domain removed successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### createApplication
+Create application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.createApplication({  body : value });
+
+// Async/Await
+const data = await platformClient.configuration.createApplication({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateApplicationRequest](#CreateApplicationRequest) | yes | Request body |
+
+
+Generate and add a new application. Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
+
+*Returned Response:*
+
+
+
+
+[CreateAppResponse](#CreateAppResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "app": {
+      "name": "testing"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getApplicationById
+Get application by ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getApplicationById();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getApplicationById();
+```
+
+
+
+
+
+
+Retrieve detailed information about a specific application. Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
+
+*Returned Response:*
+
+
+
+
+[ApplicationById](#ApplicationById)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "company_id": 2,
+    "name": "test"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getApplications
+Get applications.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getApplications({  pageNo : value,
+ pageSize : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.configuration.getApplications({  pageNo : value,
+ pageSize : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| q | string | no | Search param by name or domain |  
+
+
+
+Retrieve a list of available applications. Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
+
+*Returned Response:*
+
+
+
+
+[ApplicationsResponse](#ApplicationsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "app": {
+      "name": "testing",
+      "company_id": 2
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getCurrencies
+Get currencies.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getCurrencies();
+
+// Async/Await
+const data = await platformClient.configuration.getCurrencies();
+```
+
+
+
+
+
+
+Retrieve a list of available currencies. Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+
+*Returned Response:*
+
+
+
+
+[CurrenciesResponse](#CurrenciesResponse)
+
+Currencies Success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "5ec75d11f7bfb54d798f3516",
+        "is_active": true,
+        "name": "United States Dollar",
+        "code": "USD",
+        "created_at": "2020-05-22T05:03:13.354Z",
+        "updated_at": "2020-06-05T09:12:04.248Z",
+        "decimal_digits": 2,
+        "symbol": "$"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getDomainAvailibility
+Get domain availability.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getDomainAvailibility({  body : value });
+
+// Async/Await
+const data = await platformClient.configuration.getDomainAvailibility({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DomainSuggestionsRequest](#DomainSuggestionsRequest) | yes | Request body |
+
+
+Check the availability of a specific domain. Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
+
+*Returned Response:*
+
+
+
+
+[DomainSuggestionsResponse](#DomainSuggestionsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "Suggestions for fynd domains": {
+      "value": {
+        "domains": [
+          {
+            "name": "test.hostx1.de",
+            "is_available": false
+          },
+          {
+            "name": "testhive.hostx1.de",
+            "is_available": true
+          }
+        ]
+      }
+    },
+    "Suggestions for custom domains": {
+      "value": {
+        "domains": [
+          {
+            "name": "test25.in",
+            "unsupported": false,
+            "is_available": false
+          },
+          {
+            "name": "try25.in",
+            "unsupported": false,
+            "is_available": true,
+            "price": 14.99,
+            "currency": "USD"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getAvailableOptIns
+Get available opt-ins.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getAvailableOptIns({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.configuration.getAvailableOptIns({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company. 
+
+*Returned Response:*
+
+
+
+
+[GetIntegrationsOptInsResponse](#GetIntegrationsOptInsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "validators": {
+          "company": {
+            "json_schema": [
+              {
+                "display": "Host",
+                "key": "host",
+                "type": "text",
+                "tooltip": "Enter host address"
+              }
+            ],
+            "browser_script": ""
+          },
+          "store": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "inventory": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "order": {
+            "json_schema": [],
+            "browser_script": ""
+          }
+        },
+        "description": "awesome integration",
+        "description_html": "",
+        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+        "companies": [],
+        "support": [
+          "inventory",
+          "order"
+        ],
+        "_id": "5e56089f4265cf2846d1e58c",
+        "name": "x0-1",
+        "meta": [
+          {
+            "public": true,
+            "_id": "5e56089f4265cf81e1d1e58e",
+            "name": "wow",
+            "value": "1"
+          }
+        ],
+        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
+        "owner": "5e55fe074bda3c392ed9eab2",
+        "created_at": "2020-02-26T05:56:47.214Z",
+        "updated_at": "2021-03-02T12:29:03.554Z",
+        "token": "fKoHRW5H",
+        "secret": "d1E85CTmf",
+        "__v": 12
+      },
+      {
+        "validators": {
+          "company": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "store": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "inventory": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "order": {
+            "json_schema": [],
+            "browser_script": ""
+          }
+        },
+        "description": "jabardast",
+        "description_html": "",
+        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+        "companies": [],
+        "support": [
+          "inventory",
+          "order"
+        ],
+        "_id": "5e5608bf4265cf7198d1e58f",
+        "name": "x0-2",
+        "meta": [
+          {
+            "public": false,
+            "_id": "5e5608bf4265cf813fd1e590",
+            "name": "wow",
+            "value": "1"
+          }
+        ],
+        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
+        "owner": "5e55fe074bda3c392ed9eab2",
+        "created_at": "2020-02-26T05:57:19.875Z",
+        "updated_at": "2021-02-15T05:23:55.962Z",
+        "token": "3h3_mnzp",
+        "secret": "dgGHrIlFG",
+        "__v": 7
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 50,
+      "item_total": 24,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getIntegrationById
+Get integration by ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getIntegrationById({  id : value });
+
+// Async/Await
+const data = await platformClient.configuration.getIntegrationById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Integration id |  
+
+
+
+Retrieve detailed information about a specific integration. Retrieve the details of an integration (such as Ginesys, SAP, etc.) using its ID.
+
+*Returned Response:*
+
+
+
+
+[Integration](#Integration)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5ec376ce848a005189acb312",
+    "validators": {
+      "company": {
+        "browser_script": "",
+        "json_schema": [
+          {
+            "type": "object"
+          },
+          {
+            "required": [
+              "ip_address",
+              "icode",
+              "gds_entity_id",
+              "auth_key"
+            ]
+          },
+          {
+            "properties": null,
+            "gds_entity_id": {
+              "type": "string",
+              "title": "GDS Entity ID",
+              "minLength": 3,
+              "maxLength": 10,
+              "pattern": "^[a-zA-Z0-9]+$",
+              "description": "GDS Entity ID is a unique identifier provided by Ginesys to you."
+            },
+            "ip_address": {
+              "type": "string",
+              "title": "IP Address",
+              "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
+              "description": "Enter IP address provided by Ginesys for your POS server"
+            },
+            "auth_key": {
+              "title": "Auth Key",
+              "type": "string",
+              "maxLength": 500,
+              "description": "Provide authentication token provided by Ginesys to you."
+            },
+            "icode": {
+              "title": "ICODE",
+              "type": "string",
+              "enum": [
+                "ean",
+                "upc",
+                "alu",
+                "sku_code"
+              ],
+              "description": "Please select the correct SKU identifier that you use to provide inventory to Fynd."
+            }
+          }
+        ]
+      },
+      "store": {
+        "browser_script": "",
+        "json_schema": [
+          {
+            "type": "object"
+          },
+          {
+            "properties": null,
+            "location_id": {
+              "type": "string",
+              "title": "Location ID",
+              "description": "Provide site code as per POS/SAP."
+            },
+            "ip_address": {
+              "type": "string",
+              "title": "IP Address",
+              "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
+              "description": "Enter IP address provided by Ginesys for your POS server"
+            }
+          }
+        ]
+      }
+    },
+    "description": "Sap Integration west ELM brands",
+    "constants": {},
+    "name": "SAP RBL Integration",
+    "meta": [
+      {
+        "public": true,
+        "_id": "5ee3e246129be17ce0b59ef4",
+        "name": "price_level",
+        "value": "store"
+      }
+    ],
+    "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1589868232/addsale/platform/integrations/icon/z3kj9p8nidx4zzmdutdu.svg",
+    "owner": "5e60e43dcd08cf01069eb23e",
+    "created_at": "2020-05-19T06:03:58.757Z",
+    "updated_at": "2020-06-15T12:00:42.598Z",
+    "token": "qk60vXqk-",
+    "secret": "Gp0dYInpUV",
+    "__v": 13,
+    "description_html": ""
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getIntegrationByLevelId
+Get integration by level ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getIntegrationByLevelId({  id : value,
+ level : value,
+ uid : value });
+
+// Async/Await
+const data = await platformClient.configuration.getIntegrationByLevelId({  id : value,
+ level : value,
+ uid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Integration ID (24-digit Mongo Object ID) |   
+| level | string | yes | Integration level, `store` or `company` |   
+| uid | number | yes | Unique identifier of integration level (store/company) |  
+
+
+
+Retrieve integration details for a specific level. Retrieve the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
+
+*Returned Response:*
+
+
+
+
+[IntegrationLevel](#IntegrationLevel)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "opted": false,
+    "permissions": [],
+    "last_patch": [],
+    "_id": "5ec377f2848a0073feacb31b",
+    "integration": "5ec376ce848a005189acb312",
+    "level": "store",
+    "uid": 1,
+    "meta": [],
+    "token": "1RuGX0Fyp",
+    "created_at": "2020-05-19T06:08:50.199Z",
+    "modified_at": "2020-08-17T07:54:01.809Z",
+    "__v": 14
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getIntegrationLevelConfig
+Get integration level configuration.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getIntegrationLevelConfig({  id : value,
+ level : value,
+ opted : value,
+ checkPermission : value });
+
+// Async/Await
+const data = await platformClient.configuration.getIntegrationLevelConfig({  id : value,
+ level : value,
+ opted : value,
+ checkPermission : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Integration ID (24-digit Mongo Object ID) |   
+| level | string | yes | store or company |    
+| opted | boolean | no | True means get the opted stores. False means get the stores that aren't opted. |    
+| checkPermission | boolean | no | Filter on if permissions (for inventory/order) are present |  
+
+
+
+Retrieve configuration settings for integration levels. Retrieve the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc.
+
+*Returned Response:*
+
+
+
+
+[IntegrationConfigResponse](#IntegrationConfigResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "opted": false,
+        "permissions": [],
+        "last_patch": [],
+        "_id": "5ec377f2848a0073feacb31b",
+        "integration": "5ec376ce848a005189acb312",
+        "level": "store",
+        "uid": 1,
+        "meta": [],
+        "token": "1RuGX0Fyp",
+        "created_at": "2020-05-19T06:08:50.199Z",
+        "modified_at": "2020-08-17T07:54:01.809Z",
+        "__v": 14
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getLevelActiveIntegrations
+Get active integrations for a level.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getLevelActiveIntegrations({  id : value,
+ level : value,
+ uid : value });
+
+// Async/Await
+const data = await platformClient.configuration.getLevelActiveIntegrations({  id : value,
+ level : value,
+ uid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Integration ID (24-digit Mongo Object ID) |   
+| level | string | yes | Integration level, `store` or `company` |   
+| uid | number | yes | Unique identifier of integration level (store/company) |  
+
+
+
+Check if a store is already opted-in for any integration
+
+*Returned Response:*
+
+
+
+
+[OptedStoreIntegration](#OptedStoreIntegration)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "other_entity": {
+      "opted": false,
+      "permissions": [],
+      "last_patch": [],
+      "_id": "5ec377f2848a0073feacb31b",
+      "integration": "5ec376ce848a005189acb312",
+      "level": "company",
+      "uid": 2,
+      "meta": [],
+      "token": "1RuGX0Fyp",
+      "created_at": "2020-05-19T06:08:50.199Z",
+      "modified_at": "2020-08-17T07:54:01.809Z",
+      "__v": 14
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSelectedOptIns
+Get selected opt-ins.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getSelectedOptIns({  level : value,
+ uid : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.configuration.getSelectedOptIns({  level : value,
+ uid : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| level | string | yes | store or company |   
+| uid | number | yes | Unique identifier of the selected integration level. |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Retrieve a list of selected opt-ins. Retrieve the store-level/company-level integrations configured in a company
+
+*Returned Response:*
+
+
+
+
+[GetIntegrationsOptInsResponse](#GetIntegrationsOptInsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "validators": {
+          "company": {
+            "json_schema": [
+              {
+                "display": "Host",
+                "key": "host",
+                "type": "text",
+                "tooltip": "Enter host address"
+              }
+            ],
+            "browser_script": ""
+          },
+          "store": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "inventory": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "order": {
+            "json_schema": [],
+            "browser_script": ""
+          }
+        },
+        "description": "awesome integration",
+        "description_html": "",
+        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+        "companies": [],
+        "support": [
+          "inventory",
+          "order"
+        ],
+        "_id": "5e56089f4265cf2846d1e58c",
+        "name": "x0-1",
+        "meta": [
+          {
+            "public": true,
+            "_id": "5e56089f4265cf81e1d1e58e",
+            "name": "wow",
+            "value": "1"
+          }
+        ],
+        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
+        "owner": "5e55fe074bda3c392ed9eab2",
+        "created_at": "2020-02-26T05:56:47.214Z",
+        "updated_at": "2021-03-02T12:29:03.554Z",
+        "token": "fKoHRW5H",
+        "secret": "d1E85CTmf",
+        "__v": 12
+      },
+      {
+        "validators": {
+          "company": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "store": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "inventory": {
+            "json_schema": [],
+            "browser_script": ""
+          },
+          "order": {
+            "json_schema": [],
+            "browser_script": ""
+          }
+        },
+        "description": "jabardast",
+        "description_html": "",
+        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+        "companies": [],
+        "support": [
+          "inventory",
+          "order"
+        ],
+        "_id": "5e5608bf4265cf7198d1e58f",
+        "name": "x0-2",
+        "meta": [
+          {
+            "public": false,
+            "_id": "5e5608bf4265cf813fd1e590",
+            "name": "wow",
+            "value": "1"
+          }
+        ],
+        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
+        "owner": "5e55fe074bda3c392ed9eab2",
+        "created_at": "2020-02-26T05:57:19.875Z",
+        "updated_at": "2021-02-15T05:23:55.962Z",
+        "token": "3h3_mnzp",
+        "secret": "dgGHrIlFG",
+        "__v": 7
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 50,
+      "item_total": 24,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateLevelIntegration
-Update a store level integration you opted
+Update level integration.
 
 
 
@@ -5399,7 +4946,7 @@ const data = await platformClient.configuration.updateLevelIntegration({  id : v
 | body | [UpdateIntegrationLevelRequest](#UpdateIntegrationLevelRequest) | yes | Request body |
 
 
-Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
+Modify level integration. Update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
 
 *Returned Response:*
 
@@ -5454,7 +5001,7 @@ Success
 
 
 ### updateLevelUidIntegration
-Update integration level by store UID
+Update level UID integration.
 
 
 
@@ -5484,7 +5031,7 @@ const data = await platformClient.configuration.updateLevelUidIntegration({  id 
 | body | [IntegrationLevel](#IntegrationLevel) | yes | Request body |
 
 
-Update the level of integration by store UID
+Modify UID-based integration. Update the level of integration by store UID
 
 *Returned Response:*
 
@@ -5539,17 +5086,19 @@ Success
 ---
 
 
-### updateOrderingStoreConfig
-Add/Update ordering store config
+
+
+### getBrandsByCompany
+Get brands by company.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
+const promise = platformClient.configuration.getBrandsByCompany({  q : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
+const data = await platformClient.configuration.getBrandsByCompany({  q : value });
 ```
 
 
@@ -5557,18 +5106,19 @@ const data = await platformClient.application("<APPLICATION_ID>").configuration.
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OrderingStoreConfig](#OrderingStoreConfig) | yes | Request body |
+| --------- | -----  | -------- | ----------- |  
+| q | string | no | Search text for brand name |  
 
 
-Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
+
+Retrieve all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
 
 *Returned Response:*
 
 
 
 
-[DeploymentMeta](#DeploymentMeta)
+[BrandsByCompanyResponse](#BrandsByCompanyResponse)
 
 Success
 
@@ -5585,15 +5135,527 @@ Success
 ```json
 {
   "value": {
-    "deployed_stores": [
-      1,
-      10
+    "brands": [
+      {
+        "name": "5th Avenue",
+        "value": 476,
+        "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
+        "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
+        "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCompanyByBrands
+Get company by brands.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getCompanyByBrands({  body : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.configuration.getCompanyByBrands({  body : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+| body | [CompanyByBrandsRequest](#CompanyByBrandsRequest) | yes | Request body |
+
+
+Retrieve companies associated with specific brands. Retrieve a list of companies by the brands they deal.
+
+*Returned Response:*
+
+
+
+
+[CompanyByBrandsResponse](#CompanyByBrandsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "company_name": "RELIANCE RETAIL LTD",
+        "company_id": 1
+      },
+      {
+        "company_name": "SARASUOLE PRIVATE LIMITED",
+        "company_id": 2
+      },
+      {
+        "company_name": "Lloyd Palek",
+        "company_id": 4
+      }
     ],
-    "all_stores": false,
-    "enabled": true,
-    "type": "hard",
-    "_id": "5e7e5e4d6b5f3b4b54c95f9c",
-    "app": "000000000000000000000001"
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 200,
+      "item_total": 171,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getStoreByBrands
+Get store by brands.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getStoreByBrands({  body : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.configuration.getStoreByBrands({  body : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+| body | [StoreByBrandsRequest](#StoreByBrandsRequest) | yes | Request body |
+
+
+Retrieve stores associated with specific brands. Retrieve a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
+
+*Returned Response:*
+
+
+
+
+[StoreByBrandsResponse](#StoreByBrandsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "store_name": "RRL01",
+        "store_id": 1,
+        "store_type": "warehouse",
+        "store_code": "WH_8513",
+        "store_address": {
+          "state": "MAHARASHTRA",
+          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.8691788,
+              19.1174114
+            ]
+          },
+          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+          "pincode": 400059,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "company": {
+          "uid": 2,
+          "name": "RELIANCE RETAIL LTD"
+        }
+      },
+      {
+        "store_name": "RUOSH WAREHOUSE",
+        "store_id": 2,
+        "store_type": "warehouse",
+        "store_code": "RUOSH43",
+        "store_address": {
+          "state": "MAHARASHTRA",
+          "address1": "RAUNAK CITY SECTOR 4 D10, SAPAD GAON",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              73.121952,
+              19.2645048
+            ]
+          },
+          "address2": "SAPAD GAON, KHADAKPADA, ",
+          "pincode": 421301,
+          "country": "INDIA",
+          "city": "THANE",
+          "landmark": "near taj"
+        },
+        "company": {
+          "uid": 2,
+          "name": "SARASUOLE PRIVATE LIMITED"
+        }
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 200,
+      "item_total": 762,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+### getOtherSellerApplicationById
+Get other seller application by ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getOtherSellerApplicationById({  id : value });
+
+// Async/Await
+const data = await platformClient.configuration.getOtherSellerApplicationById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Application Id |  
+
+
+
+Retrieve details of a seller application that was not created within the current company. but has opted for the current company's inventory
+
+*Returned Response:*
+
+
+
+
+[OptedApplicationResponse](#OptedApplicationResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "name": "intent 2",
+    "description": "",
+    "_id": "5f030880f019afd636889afc",
+    "domain": "intent.hostfynd.dev",
+    "company": {
+      "uid": 94,
+      "name": "DummyImran"
+    },
+    "opted_inventory": {
+      "opt_type": {
+        "key": "store",
+        "display": "Store"
+      },
+      "items": [
+        {
+          "name": "RRL01",
+          "id": 1,
+          "store_code": "WH_8513",
+          "_id": "5ec2c0b168fc2800017112f5",
+          "modified_on": "2020-09-09T04:25:55.843Z",
+          "uid": 1
+        }
+      ]
+    },
+    "address": {
+      "state": "MAHARASHTRA",
+      "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+      "lat_long": {
+        "type": "Point",
+        "coordinates": [
+          72.8691788,
+          19.1174114
+        ]
+      },
+      "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+      "pincode": 400059,
+      "country": "INDIA",
+      "city": "MUMBAI"
+    },
+    "display_name": "RRL01",
+    "store_type": "warehouse",
+    "company_id": 2,
+    "opt_out_inventory": {
+      "store": [],
+      "company": []
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOtherSellerApplications
+Get other seller applications.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.getOtherSellerApplications({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.configuration.getOtherSellerApplications({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Retrieve applications from other sellers. Retrieve all other seller applications that were not created within the current company. but have opted for the current company's inventory.
+
+*Returned Response:*
+
+
+
+
+[OtherSellerApplications](#OtherSellerApplications)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "name": "intent 2",
+        "description": "",
+        "_id": "5f030880f019afd636889afc",
+        "domain": "intent.hostfynd.dev",
+        "company": {
+          "uid": 2,
+          "name": "DummyImran"
+        },
+        "opt_type": "store"
+      },
+      {
+        "name": "new application imran",
+        "description": "",
+        "_id": "5f03f5d17692029e2d1a50a5",
+        "domain": "imranstore.hostfynd.dev",
+        "company": {
+          "uid": 2,
+          "name": "DummyImran"
+        },
+        "opt_type": "store"
+      },
+      {
+        "name": "helo",
+        "description": "",
+        "_id": "5f03f63b769202170c1a50a9",
+        "domain": "helo.hostfynd.dev",
+        "company": {
+          "uid": 7,
+          "name": "Zack Burgdorf"
+        },
+        "opt_type": "store"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 20,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### optOutFromApplication
+Opt out from an application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.configuration.optOutFromApplication({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.configuration.optOutFromApplication({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Alphanumeric ID allotted to an application (sales channel website) created within a business account. |  
+| body | [OptOutInventory](#OptOutInventory) | yes | Request body |
+
+
+Choose to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Updated opt out data"
   }
 }
 ```
@@ -5686,7 +5748,6 @@ Success
  | __v | number? |  yes  | Version key for tracking revisions. Default value is zero |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel features |
  | app | string? |  yes  | Application ID of the sales channel |
- | buybox | [BuyboxFeature](#BuyboxFeature)? |  yes  |  |
  | cart | [CartFeature](#CartFeature)? |  yes  |  |
  | common | [CommonFeature](#CommonFeature)? |  yes  |  |
  | created_at | string? |  yes  | ISO 8601 timestamp showing the date when the features were configured |
@@ -5757,7 +5818,6 @@ Success
  | only_verified_products | boolean? |  yes  | Show only verified products (the ones whose data has been verified by the admin) |
  | out_of_stock | boolean? |  yes  | Indicates whether out of stock products are allowed to show up on the website |
  | price | [InventoryPrice](#InventoryPrice)? |  yes  |  |
- | pricing_strategy | [PricingStrategy](#PricingStrategy)? |  yes  |  |
  | store | [InventoryStore](#InventoryStore)? |  yes  |  |
  
 
@@ -5838,6 +5898,44 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | enabled | boolean? |  yes  | Shows sales channel auth is enabled or not enabled. |
+ 
+
+---
+
+#### [ApplicationById](#ApplicationById)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  | Version key for tracking revisions. Default value is zero. |
+ | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of the sales channel |
+ | app_type | string? |  yes  | It shows application is live or in development mode. |
+ | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | cache_ttl | number? |  yes  | An integer value that specifies the number of seconds until the key expires |
+ | channel_type | string? |  yes  | It indicates different types of channels, such as store, website, and mobile apps, with 'store' being the default value. |
+ | company_id | number? |  yes  | Numeric ID allotted to a business account where the sales channel exists |
+ | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
+ | created_at | string? |  yes  | ISO 8601 timestamp of sales channel creation |
+ | description | string? |  yes  | It contains detailed information about the sales channel. |
+ | domain | [Domain](#Domain)? |  yes  |  |
+ | domains | [[Domain](#Domain)]? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | is_active | boolean? |  yes  | Indicates sales channel is active or not active |
+ | is_internal | boolean? |  yes  | Indicates whether a sales channel is internal or not |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mode | string? |  yes  |  |
+ | modified_at | string? |  yes  | ISO 8601 timestamp of sales channel updation |
+ | name | string? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
+ | owner | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
+ | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
+ | secret | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | token | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
+ | tokens | [[TokenSchemaID](#TokenSchemaID)]? |  yes  |  |
+ | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  
 
 ---
@@ -6143,17 +6241,6 @@ Success
  | icon | string? |  yes  | Hosted URL of icon image representing the business highlight |
  | sub_title | string? |  yes  | Detailed information about the highlight |
  | title | string? |  yes  | Title of the business highlight, e.g. Superfast Delivery |
- 
-
----
-
-#### [BuyboxFeature](#BuyboxFeature)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enable_selection | boolean? |  yes  | Allow selection of sellers/stores on PDP (product detail page). |
- | is_seller_buybox_enabled | boolean? |  yes  | Toggle buybox listing between sellers and stores. True indicates seller listing, while False indicates store listing. |
- | show_name | boolean? |  yes  | Allow users to see seller/stores name on PDP (product detail page). |
  
 
 ---
@@ -6947,7 +7034,6 @@ Success
  | image | [string]? |  yes  |  |
  | only_verified_products | boolean? |  yes  | Show only verified products (the ones whose data have been verified by the admin) |
  | out_of_stock | boolean? |  yes  | Indicates whether out of stock products are allowed to show up on the website. |
- | pricing_strategy | [PricingStrategy](#PricingStrategy)? |  yes  |  |
  | store | [InventoryStoreRule](#InventoryStoreRule)? |  yes  |  |
  
 
@@ -7550,16 +7636,6 @@ Success
 
 ---
 
-#### [PricingStrategy](#PricingStrategy)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_active | boolean? |  yes  | Indicates whether the pricing strategy is active or not active |
- | value | string? |  yes  | Indicates the pricing strategy value. |
- 
-
----
-
 #### [ProductDetailFeature](#ProductDetailFeature)
 
  | Properties | Type | Nullable | Description |
@@ -7807,6 +7883,17 @@ Success
 ---
 
 #### [TokenSchema](#TokenSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_at | string? |  yes  | ISO 8601 timestamp of when token created |
+ | created_by | string? |  yes  |  |
+ | token | string? |  yes  |  |
+ 
+
+---
+
+#### [TokenSchemaID](#TokenSchemaID)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

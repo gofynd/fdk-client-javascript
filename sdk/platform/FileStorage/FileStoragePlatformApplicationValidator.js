@@ -50,16 +50,6 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
- * @typedef DeletePdfConfigTemplateParam
- * @property {string} id
- */
-
-/**
- * @typedef DeletePdfTypeParam
- * @property {string} id
- */
-
-/**
  * @typedef GeneratePaymentReceiptParam
  * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
  */
@@ -87,7 +77,6 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 /**
  * @typedef GetPdfTypesParam
  * @property {string} [countryCode]
- * @property {boolean} storeOs
  */
 
 /**
@@ -152,20 +141,6 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {DeletePdfConfigTemplateParam} */
-  static deletePdfConfigTemplate() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeletePdfTypeParam} */
-  static deletePdfType() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GeneratePaymentReceiptParam} */
   static generatePaymentReceipt() {
     return Joi.object({
@@ -203,7 +178,6 @@ class FileStoragePlatformApplicationValidator {
   static getPdfTypes() {
     return Joi.object({
       countryCode: Joi.string().allow(""),
-      storeOs: Joi.boolean().required(),
     }).required();
   }
 

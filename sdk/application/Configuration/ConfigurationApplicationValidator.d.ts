@@ -168,4 +168,4 @@ type GetIntegrationTokensParam = any;
 type GetLanguagesParam = any;
 type GetOwnerInfoParam = any;
 type RemoveOrderingStoreCookieParam = any;
-import ConfigurationApplicationModel = require("sdk/output/javascript/code/sdk/application/Configuration/ConfigurationApplicationModel");
+import ConfigurationApplicationModel = require("./ConfigurationApplicationModel");

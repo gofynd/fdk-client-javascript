@@ -444,8 +444,8 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
    * @name createZone
-   * @summary: Creates a new Zone
-   * @description: Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
+   * @summary: Create zone.
+   * @description: Generate and add a new zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
    */
   async createZone(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -524,8 +524,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
    *   Success response
    * @name getAllStores
-   * @summary: GET stores data
-   * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
+   * @summary: Get all stores.
+   * @description: Retrieve a list of all available stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
    */
   async getAllStores(
     { requestHeaders } = { requestHeaders: {} },
@@ -1018,15 +1018,9 @@ class Serviceability {
    * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
-    {
-      pageNo,
-      pageSize,
-      stage,
-      paymentMode,
-      transportType,
-      accountIds,
-      requestHeaders,
-    } = { requestHeaders: {} },
+    { pageNo, pageSize, stage, paymentMode, transportType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1038,7 +1032,6 @@ class Serviceability {
         stage,
         paymentMode,
         transportType,
-        accountIds,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1056,7 +1049,6 @@ class Serviceability {
         stage,
         paymentMode,
         transportType,
-        accountIds,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1073,7 +1065,6 @@ class Serviceability {
     query_params["stage"] = stage;
     query_params["payment_mode"] = paymentMode;
     query_params["transport_type"] = transportType;
-    query_params["account_ids"] = accountIds;
 
     const xHeaders = {};
 
@@ -1117,11 +1108,12 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>}
+   *   - Success response
+   *
    * @name getOptimalLocations
-   * @summary: Get serviceable store of the item
-   * @description: This API returns serviceable store of the item. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
+   * @summary: Retrieve optimal locations
+   * @description: Retrieve optimal locations based on the specific criteria - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1162,7 +1154,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/optimal-locations`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1176,7 +1168,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ReAssignStoreResponse().validate(
+    } = ServiceabilityPlatformModel.OptimalLocationsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

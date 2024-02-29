@@ -53,11 +53,6 @@ export = PaymentApplicationValidator;
  * @property {PaymentApplicationModel.CustomerOnboardingRequest} body
  */
 /**
- * @typedef DeleteBeneficiaryDetailsParam
- * @property {string} beneficiaryId - This is a String value that contains
- *   beneficiary_id as value.
- */
-/**
  * @typedef DeleteUserCardParam
  * @property {PaymentApplicationModel.DeletehCardRequest} body
  */
@@ -128,30 +123,11 @@ export = PaymentApplicationValidator;
  * @property {string} [userDetails] - URIencoded JSON containing details of an
  *   anonymous user.
  */
-/**
- * @typedef GetRefundOptionsParam
- * @property {string} configuration - Config type
- * @property {string} [productType] - Product Type either 1P and 3P
- * @property {string} [amount] - Refunded amount
- */
 /** @typedef GetRupifiBannerDetailsParam */
-/**
- * @typedef GetSelectedRefundOptionParam
- * @property {string} shipmentId - Shipment Id
- * @property {string} orderId - Order Id
- */
 /**
  * @typedef GetUserBeneficiariesDetailParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
- */
-/**
- * @typedef GetUserBeneficiariesDetailV2Param
- * @property {string} [orderId] - A unique number used for identifying and
- *   tracking your orders.
- * @property {string} [shipmentId] - A unique number used for identifying and
- *   tracking your orders.
- * @property {string} [mop] - Mode of payment for which beneficiary data required
  */
 /**
  * @typedef InitialisePaymentParam
@@ -197,16 +173,8 @@ export = PaymentApplicationValidator;
  * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
  */
 /**
- * @typedef SetRefundOptionforShipmentParam
- * @property {PaymentApplicationModel.ShipmentRefundRequest} body
- */
-/**
  * @typedef UpdateDefaultBeneficiaryParam
  * @property {PaymentApplicationModel.SetDefaultBeneficiaryRequest} body
- */
-/**
- * @typedef ValidateBeneficiaryAddressParam
- * @property {PaymentApplicationModel.ValidateValidateAddressRequest} body
  */
 /**
  * @typedef ValidateVPAParam
@@ -264,8 +232,6 @@ declare class PaymentApplicationValidator {
     static customerCreditSummary(): CustomerCreditSummaryParam;
     /** @returns {CustomerOnboardParam} */
     static customerOnboard(): CustomerOnboardParam;
-    /** @returns {DeleteBeneficiaryDetailsParam} */
-    static deleteBeneficiaryDetails(): DeleteBeneficiaryDetailsParam;
     /** @returns {DeleteUserCardParam} */
     static deleteUserCard(): DeleteUserCardParam;
     /** @returns {DelinkWalletParam} */
@@ -292,16 +258,10 @@ declare class PaymentApplicationValidator {
     static getPaymentModeRoutesPaymentLink(): GetPaymentModeRoutesPaymentLinkParam;
     /** @returns {GetPosPaymentModeRoutesParam} */
     static getPosPaymentModeRoutes(): GetPosPaymentModeRoutesParam;
-    /** @returns {GetRefundOptionsParam} */
-    static getRefundOptions(): GetRefundOptionsParam;
     /** @returns {GetRupifiBannerDetailsParam} */
     static getRupifiBannerDetails(): any;
-    /** @returns {GetSelectedRefundOptionParam} */
-    static getSelectedRefundOption(): GetSelectedRefundOptionParam;
     /** @returns {GetUserBeneficiariesDetailParam} */
     static getUserBeneficiariesDetail(): GetUserBeneficiariesDetailParam;
-    /** @returns {GetUserBeneficiariesDetailV2Param} */
-    static getUserBeneficiariesDetailV2(): GetUserBeneficiariesDetailV2Param;
     /** @returns {InitialisePaymentParam} */
     static initialisePayment(): InitialisePaymentParam;
     /** @returns {InitialisePaymentPaymentLinkParam} */
@@ -322,12 +282,8 @@ declare class PaymentApplicationValidator {
     static resendOrCancelPayment(): ResendOrCancelPaymentParam;
     /** @returns {ResendPaymentLinkParam} */
     static resendPaymentLink(): ResendPaymentLinkParam;
-    /** @returns {SetRefundOptionforShipmentParam} */
-    static setRefundOptionforShipment(): SetRefundOptionforShipmentParam;
     /** @returns {UpdateDefaultBeneficiaryParam} */
     static updateDefaultBeneficiary(): UpdateDefaultBeneficiaryParam;
-    /** @returns {ValidateBeneficiaryAddressParam} */
-    static validateBeneficiaryAddress(): ValidateBeneficiaryAddressParam;
     /** @returns {ValidateVPAParam} */
     static validateVPA(): ValidateVPAParam;
     /** @returns {VerifyAndChargePaymentParam} */
@@ -344,7 +300,7 @@ declare class PaymentApplicationValidator {
     static walletLinkInitate(): WalletLinkInitateParam;
 }
 declare namespace PaymentApplicationValidator {
-    export { AddBeneficiaryDetailsParam, AddRefundBankAccountUsingOTPParam, AttachCardToCustomerParam, CancelPaymentLinkParam, CardDetailsParam, CheckAndUpdatePaymentStatusParam, CheckAndUpdatePaymentStatusPaymentLinkParam, CheckCreditParam, CreateOrderHandlerPaymentLinkParam, CreatePaymentLinkParam, CreatePaymentOrderParam, CustomerCreditSummaryParam, CustomerOnboardParam, DeleteBeneficiaryDetailsParam, DeleteUserCardParam, DelinkWalletParam, EnableOrDisableRefundTransferModeParam, GetActiveCardAggregatorParam, GetActiveRefundTransferModesParam, GetActiveUserCardsParam, GetAggregatorsConfigParam, GetEpaylaterBannerDetailsParam, GetOrderBeneficiariesDetailParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPaymentModeRoutesPaymentLinkParam, GetPosPaymentModeRoutesParam, GetRefundOptionsParam, GetRupifiBannerDetailsParam, GetSelectedRefundOptionParam, GetUserBeneficiariesDetailParam, GetUserBeneficiariesDetailV2Param, InitialisePaymentParam, InitialisePaymentPaymentLinkParam, LinkWalletParam, OutstandingOrderDetailsParam, PaidOrderDetailsParam, PollingPaymentLinkParam, RedirectToAggregatorParam, RenderHTMLParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, SetRefundOptionforShipmentParam, UpdateDefaultBeneficiaryParam, ValidateBeneficiaryAddressParam, ValidateVPAParam, VerifyAndChargePaymentParam, VerifyCustomerForPaymentParam, VerifyIfscCodeParam, VerifyOtpAndAddBeneficiaryForBankParam, VerifyOtpAndAddBeneficiaryForWalletParam, WalletLinkInitateParam };
+    export { AddBeneficiaryDetailsParam, AddRefundBankAccountUsingOTPParam, AttachCardToCustomerParam, CancelPaymentLinkParam, CardDetailsParam, CheckAndUpdatePaymentStatusParam, CheckAndUpdatePaymentStatusPaymentLinkParam, CheckCreditParam, CreateOrderHandlerPaymentLinkParam, CreatePaymentLinkParam, CreatePaymentOrderParam, CustomerCreditSummaryParam, CustomerOnboardParam, DeleteUserCardParam, DelinkWalletParam, EnableOrDisableRefundTransferModeParam, GetActiveCardAggregatorParam, GetActiveRefundTransferModesParam, GetActiveUserCardsParam, GetAggregatorsConfigParam, GetEpaylaterBannerDetailsParam, GetOrderBeneficiariesDetailParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPaymentModeRoutesPaymentLinkParam, GetPosPaymentModeRoutesParam, GetRupifiBannerDetailsParam, GetUserBeneficiariesDetailParam, InitialisePaymentParam, InitialisePaymentPaymentLinkParam, LinkWalletParam, OutstandingOrderDetailsParam, PaidOrderDetailsParam, PollingPaymentLinkParam, RedirectToAggregatorParam, RenderHTMLParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, UpdateDefaultBeneficiaryParam, ValidateVPAParam, VerifyAndChargePaymentParam, VerifyCustomerForPaymentParam, VerifyIfscCodeParam, VerifyOtpAndAddBeneficiaryForBankParam, VerifyOtpAndAddBeneficiaryForWalletParam, WalletLinkInitateParam };
 }
 type AddBeneficiaryDetailsParam = {
     body: PaymentApplicationModel.AddBeneficiaryDetailsRequest;
@@ -388,13 +344,6 @@ type CustomerCreditSummaryParam = {
 };
 type CustomerOnboardParam = {
     body: PaymentApplicationModel.CustomerOnboardingRequest;
-};
-type DeleteBeneficiaryDetailsParam = {
-    /**
-     * - This is a String value that contains
-     * beneficiary_id as value.
-     */
-    beneficiaryId: string;
 };
 type DeleteUserCardParam = {
     body: PaymentApplicationModel.DeletehCardRequest;
@@ -514,52 +463,12 @@ type GetPosPaymentModeRoutesParam = {
      */
     userDetails?: string;
 };
-type GetRefundOptionsParam = {
-    /**
-     * - Config type
-     */
-    configuration: string;
-    /**
-     * - Product Type either 1P and 3P
-     */
-    productType?: string;
-    /**
-     * - Refunded amount
-     */
-    amount?: string;
-};
-type GetSelectedRefundOptionParam = {
-    /**
-     * - Shipment Id
-     */
-    shipmentId: string;
-    /**
-     * - Order Id
-     */
-    orderId: string;
-};
 type GetUserBeneficiariesDetailParam = {
     /**
      * - A unique number used for identifying and
      * tracking your orders.
      */
     orderId: string;
-};
-type GetUserBeneficiariesDetailV2Param = {
-    /**
-     * - A unique number used for identifying and
-     * tracking your orders.
-     */
-    orderId?: string;
-    /**
-     * - A unique number used for identifying and
-     * tracking your orders.
-     */
-    shipmentId?: string;
-    /**
-     * - Mode of payment for which beneficiary data required
-     */
-    mop?: string;
 };
 type InitialisePaymentParam = {
     body: PaymentApplicationModel.PaymentInitializationRequest;
@@ -600,14 +509,8 @@ type ResendOrCancelPaymentParam = {
 type ResendPaymentLinkParam = {
     body: PaymentApplicationModel.CancelOrResendPaymentLinkRequest;
 };
-type SetRefundOptionforShipmentParam = {
-    body: PaymentApplicationModel.ShipmentRefundRequest;
-};
 type UpdateDefaultBeneficiaryParam = {
     body: PaymentApplicationModel.SetDefaultBeneficiaryRequest;
-};
-type ValidateBeneficiaryAddressParam = {
-    body: PaymentApplicationModel.ValidateValidateAddressRequest;
 };
 type ValidateVPAParam = {
     body: PaymentApplicationModel.ValidateVPARequest;
@@ -637,4 +540,4 @@ type WalletLinkInitateParam = {
 type GetActiveRefundTransferModesParam = any;
 type GetEpaylaterBannerDetailsParam = any;
 type GetRupifiBannerDetailsParam = any;
-import PaymentApplicationModel = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationModel");
+import PaymentApplicationModel = require("./PaymentApplicationModel");

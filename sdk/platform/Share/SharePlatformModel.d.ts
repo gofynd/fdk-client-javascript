@@ -58,8 +58,6 @@ export = SharePlatformModel;
  */
 /**
  * @typedef UrlInfo
- * @property {string} [original]
- * @property {string} [short]
  * @property {string} [hash]
  */
 /**
@@ -196,8 +194,6 @@ type ShortLinkReq = {
 /** @returns {UrlInfo} */
 declare function UrlInfo(): UrlInfo;
 type UrlInfo = {
-    original?: string;
-    short?: string;
     hash?: string;
 };
 /** @returns {ShortLinkRes} */

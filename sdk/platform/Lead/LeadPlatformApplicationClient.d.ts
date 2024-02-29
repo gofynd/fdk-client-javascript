@@ -9,8 +9,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
      * @name closeVideoRoom
-     * @summary: Close the video room and force all participants to leave.
-     * @description: Close the video room and force all participants to leave. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/closeVideoRoom/).
+     * @summary: Close video room.
+     * @description: Terminate and close an active video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/closeVideoRoom/).
      */
     closeVideoRoom({ uniqueName, requestHeaders }?: LeadPlatformApplicationValidator.CloseVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
     /**
@@ -19,8 +19,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
      * @name createCustomForm
-     * @summary: Creates a new custom form
-     * @description: Creates a new custom form for given application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createCustomForm/).
+     * @summary: Create custom form.
+     * @description: Create a new custom form for application users to fill - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createCustomForm/).
      */
     createCustomForm({ body, requestHeaders }?: LeadPlatformApplicationValidator.CreateCustomFormParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomForm>;
     /**
@@ -49,8 +49,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
      * @name editCustomForm
-     * @summary: Edit the given custom form
-     * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
+     * @summary: Edit custom form.
+     * @description: Modify the content and assosciated settings of a custom form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
      */
     editCustomForm({ slug, body, requestHeaders }?: LeadPlatformApplicationValidator.EditCustomFormParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomForm>;
     /**
@@ -69,8 +69,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
      * @name getCustomForm
-     * @summary: Get specific custom form using it's slug
-     * @description: Get specific custom form using it's slug, this is used to view the form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForm/).
+     * @summary: Get custom form.
+     * @description: Retrieve information about a custom form which includes corresponding field details and any validation regex required against that field or not - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForm/).
      */
     getCustomForm({ slug, requestHeaders }?: LeadPlatformApplicationValidator.GetCustomFormParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomForm>;
     /**
@@ -79,8 +79,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.CustomFormList>} - Success response
      * @name getCustomForms
-     * @summary: Get list of custom form
-     * @description: Get list of custom form for given application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForms/).
+     * @summary: Get custom forms.
+     * @description: Retrieve a list of available custom forms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForms/).
      */
     getCustomForms({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomFormList>;
     /**
@@ -146,10 +146,10 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.CreateVideoRoomResponse>} - Success response
      * @name openVideoRoom
-     * @summary: Open a video room.
-     * @description: Open a video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/openVideoRoom/).
+     * @summary: Open video room.
+     * @description: Initiate and open a video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/openVideoRoom/).
      */
     openVideoRoom({ body, requestHeaders }?: LeadPlatformApplicationValidator.OpenVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CreateVideoRoomResponse>;
 }
-import LeadPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformApplicationValidator");
-import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");
+import LeadPlatformApplicationValidator = require("./LeadPlatformApplicationValidator");
+import LeadPlatformModel = require("./LeadPlatformModel");

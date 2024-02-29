@@ -12,7 +12,7 @@ declare class PartnerClient {
      *   partner client.
      */
     constructor(config: import("./PartnerConfig"));
-    config: import("sdk/output/javascript/code/sdk/partner/PartnerConfig");
+    config: import("./PartnerConfig");
     fileStorage: FileStorage;
     lead: Lead;
     logistics: Logistics;
@@ -26,8 +26,8 @@ declare class PartnerClient {
      */
     setExtraHeaders(header: object): void;
 }
-import FileStorage = require("sdk/output/javascript/code/sdk/partner/FileStorage/FileStoragePartnerClient");
-import Lead = require("sdk/output/javascript/code/sdk/partner/Lead/LeadPartnerClient");
-import Logistics = require("sdk/output/javascript/code/sdk/partner/Logistics/LogisticsPartnerClient");
-import Theme = require("sdk/output/javascript/code/sdk/partner/Theme/ThemePartnerClient");
-import Webhook = require("sdk/output/javascript/code/sdk/partner/Webhook/WebhookPartnerClient");
+import FileStorage = require("./FileStorage/FileStoragePartnerClient");
+import Lead = require("./Lead/LeadPartnerClient");
+import Logistics = require("./Logistics/LogisticsPartnerClient");
+import Theme = require("./Theme/ThemePartnerClient");
+import Webhook = require("./Webhook/WebhookPartnerClient");

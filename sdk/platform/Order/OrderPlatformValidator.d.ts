@@ -38,10 +38,6 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 /**
- * @typedef DeleteuserviewsParam
- * @property {string} id - Id of view
- */
-/**
  * @typedef DispatchManifestsParam
  * @property {string} manifestId
  * @property {OrderPlatformModel.DispatchManifest} body
@@ -69,6 +65,11 @@ export = OrderPlatformValidator;
 /**
  * @typedef FetchRefundModeConfigParam
  * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
+ */
+/**
+ * @typedef GenerateInvoiceIDParam
+ * @property {string} invoiceType - Mention the type of invoice id to generate
+ * @property {OrderPlatformModel.GenerateInvoiceIDRequest} body
  */
 /**
  * @typedef GeneratePOSReceiptByOrderIdParam
@@ -223,15 +224,6 @@ export = OrderPlatformValidator;
  * @property {string} [customerId]
  * @property {string} [orderType]
  */
-/**
- * @typedef GetRefundConfigurationParam
- * @property {string} appId
- */
-/** @typedef GetRefundEnableStateListParam */
-/**
- * @typedef GetRefundStateConfigurationParam
- * @property {string} appId
- */
 /** @typedef GetRoleBasedActionsParam */
 /**
  * @typedef GetShipmentByIdParam
@@ -300,12 +292,6 @@ export = OrderPlatformValidator;
  * @property {string} view - Name of view
  * @property {string} [groupEntity] - Name of group entity
  */
-/** @typedef GetuserviewsParam */
-/**
- * @typedef GlobalfiltersParam
- * @property {string} showIn - Name of view to get filters for
- * @property {string} requestSource - Name of site (Platform/Admin)
- */
 /**
  * @typedef InvalidateShipmentCacheParam
  * @property {OrderPlatformModel.InvalidateShipmentCachePayload} body
@@ -319,22 +305,8 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.PlatformOrderUpdate} body
  */
 /**
- * @typedef PostRefundConfigurationParam
- * @property {string} appId
- * @property {OrderPlatformModel.RefundStateConfigurationManualSchema} body
- */
-/**
- * @typedef PostRefundStateConfigurationParam
- * @property {string} appId
- * @property {OrderPlatformModel.PostRefundStateConfiguration} body
- */
-/**
  * @typedef PostShipmentHistoryParam
  * @property {OrderPlatformModel.PostShipmentHistory} body
- */
-/**
- * @typedef PostuserviewsParam
- * @property {OrderPlatformModel.UserViewsResponse} body
  */
 /**
  * @typedef ProcessManifestsParam
@@ -391,10 +363,6 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.CourierPartnerTrackingDetails} body
  */
 /**
- * @typedef UpdateuserviewsParam
- * @property {OrderPlatformModel.UserViewsResponse} body
- */
-/**
  * @typedef UploadConsentsParam
  * @property {string} manifestId
  * @property {OrderPlatformModel.UploadConsent} body
@@ -418,8 +386,6 @@ declare class OrderPlatformValidator {
     static createChannelConfig(): CreateChannelConfigParam;
     /** @returns {CreateOrderParam} */
     static createOrder(): CreateOrderParam;
-    /** @returns {DeleteuserviewsParam} */
-    static deleteuserviews(): DeleteuserviewsParam;
     /** @returns {DispatchManifestsParam} */
     static dispatchManifests(): DispatchManifestsParam;
     /** @returns {DownloadBulkActionTemplateParam} */
@@ -434,6 +400,8 @@ declare class OrderPlatformValidator {
     static fetchCreditBalanceDetail(): FetchCreditBalanceDetailParam;
     /** @returns {FetchRefundModeConfigParam} */
     static fetchRefundModeConfig(): FetchRefundModeConfigParam;
+    /** @returns {GenerateInvoiceIDParam} */
+    static generateInvoiceID(): GenerateInvoiceIDParam;
     /** @returns {GeneratePOSReceiptByOrderIdParam} */
     static generatePOSReceiptByOrderId(): GeneratePOSReceiptByOrderIdParam;
     /** @returns {GetAllowedStateTransitionParam} */
@@ -468,12 +436,6 @@ declare class OrderPlatformValidator {
     static getOrderById(): GetOrderByIdParam;
     /** @returns {GetOrdersParam} */
     static getOrders(): GetOrdersParam;
-    /** @returns {GetRefundConfigurationParam} */
-    static getRefundConfiguration(): GetRefundConfigurationParam;
-    /** @returns {GetRefundEnableStateListParam} */
-    static getRefundEnableStateList(): any;
-    /** @returns {GetRefundStateConfigurationParam} */
-    static getRefundStateConfiguration(): GetRefundStateConfigurationParam;
     /** @returns {GetRoleBasedActionsParam} */
     static getRoleBasedActions(): any;
     /** @returns {GetShipmentByIdParam} */
@@ -490,24 +452,14 @@ declare class OrderPlatformValidator {
     static getTemplate(): GetTemplateParam;
     /** @returns {GetfiltersParam} */
     static getfilters(): GetfiltersParam;
-    /** @returns {GetuserviewsParam} */
-    static getuserviews(): any;
-    /** @returns {GlobalfiltersParam} */
-    static globalfilters(): GlobalfiltersParam;
     /** @returns {InvalidateShipmentCacheParam} */
     static invalidateShipmentCache(): InvalidateShipmentCacheParam;
     /** @returns {JobDetailsParam} */
     static jobDetails(): JobDetailsParam;
     /** @returns {OrderUpdateParam} */
     static orderUpdate(): OrderUpdateParam;
-    /** @returns {PostRefundConfigurationParam} */
-    static postRefundConfiguration(): PostRefundConfigurationParam;
-    /** @returns {PostRefundStateConfigurationParam} */
-    static postRefundStateConfiguration(): PostRefundStateConfigurationParam;
     /** @returns {PostShipmentHistoryParam} */
     static postShipmentHistory(): PostShipmentHistoryParam;
-    /** @returns {PostuserviewsParam} */
-    static postuserviews(): PostuserviewsParam;
     /** @returns {ProcessManifestsParam} */
     static processManifests(): ProcessManifestsParam;
     /** @returns {ReassignLocationParam} */
@@ -528,15 +480,13 @@ declare class OrderPlatformValidator {
     static updateShipmentStatus(): UpdateShipmentStatusParam;
     /** @returns {UpdateShipmentTrackingParam} */
     static updateShipmentTracking(): UpdateShipmentTrackingParam;
-    /** @returns {UpdateuserviewsParam} */
-    static updateuserviews(): UpdateuserviewsParam;
     /** @returns {UploadConsentsParam} */
     static uploadConsents(): UploadConsentsParam;
     /** @returns {VerifyMobileOTPParam} */
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DeleteuserviewsParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRefundConfigurationParam, GetRefundEnableStateListParam, GetRefundStateConfigurationParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, GetuserviewsParam, GlobalfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostRefundConfigurationParam, PostRefundStateConfigurationParam, PostShipmentHistoryParam, PostuserviewsParam, ProcessManifestsParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UpdateuserviewsParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestsParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
 type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
@@ -605,12 +555,6 @@ type CreateChannelConfigParam = {
 type CreateOrderParam = {
     body: OrderPlatformModel.CreateOrderAPI;
 };
-type DeleteuserviewsParam = {
-    /**
-     * - Id of view
-     */
-    id: string;
-};
 type DispatchManifestsParam = {
     manifestId: string;
     body: OrderPlatformModel.DispatchManifest;
@@ -638,6 +582,13 @@ type FetchCreditBalanceDetailParam = {
 };
 type FetchRefundModeConfigParam = {
     body: OrderPlatformModel.RefundModeConfigRequestPayload;
+};
+type GenerateInvoiceIDParam = {
+    /**
+     * - Mention the type of invoice id to generate
+     */
+    invoiceType: string;
+    body: OrderPlatformModel.GenerateInvoiceIDRequest;
 };
 type GeneratePOSReceiptByOrderIdParam = {
     orderId: string;
@@ -934,12 +885,6 @@ type GetOrdersParam = {
     customerId?: string;
     orderType?: string;
 };
-type GetRefundConfigurationParam = {
-    appId: string;
-};
-type GetRefundStateConfigurationParam = {
-    appId: string;
-};
 type GetShipmentByIdParam = {
     /**
      * - App Shipment Id
@@ -1099,16 +1044,6 @@ type GetfiltersParam = {
      */
     groupEntity?: string;
 };
-type GlobalfiltersParam = {
-    /**
-     * - Name of view to get filters for
-     */
-    showIn: string;
-    /**
-     * - Name of site (Platform/Admin)
-     */
-    requestSource: string;
-};
 type InvalidateShipmentCacheParam = {
     body: OrderPlatformModel.InvalidateShipmentCachePayload;
 };
@@ -1118,19 +1053,8 @@ type JobDetailsParam = {
 type OrderUpdateParam = {
     body: OrderPlatformModel.PlatformOrderUpdate;
 };
-type PostRefundConfigurationParam = {
-    appId: string;
-    body: OrderPlatformModel.RefundStateConfigurationManualSchema;
-};
-type PostRefundStateConfigurationParam = {
-    appId: string;
-    body: OrderPlatformModel.PostRefundStateConfiguration;
-};
 type PostShipmentHistoryParam = {
     body: OrderPlatformModel.PostShipmentHistory;
-};
-type PostuserviewsParam = {
-    body: OrderPlatformModel.UserViewsResponse;
 };
 type ProcessManifestsParam = {
     body: OrderPlatformModel.ProcessManifest;
@@ -1188,9 +1112,6 @@ type UpdateShipmentStatusParam = {
 type UpdateShipmentTrackingParam = {
     body: OrderPlatformModel.CourierPartnerTrackingDetails;
 };
-type UpdateuserviewsParam = {
-    body: OrderPlatformModel.UserViewsResponse;
-};
 type UploadConsentsParam = {
     manifestId: string;
     body: OrderPlatformModel.UploadConsent;
@@ -1201,8 +1122,6 @@ type VerifyMobileOTPParam = {
 type GetAllowedTemplatesForBulkParam = any;
 type GetBulkActionTemplateParam = any;
 type GetChannelConfigParam = any;
-type GetRefundEnableStateListParam = any;
 type GetRoleBasedActionsParam = any;
 type GetStateTransitionMapParam = any;
-type GetuserviewsParam = any;
-import OrderPlatformModel = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformModel");
+import OrderPlatformModel = require("./OrderPlatformModel");

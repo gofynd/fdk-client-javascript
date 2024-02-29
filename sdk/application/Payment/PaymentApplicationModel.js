@@ -3,13 +3,13 @@ const Joi = require("joi");
 /**
  * @typedef AggregatorConfigDetail
  * @property {boolean} [sdk] - SDK
- * @property {string} [secret] - Masked payment gateway api secret
+ * @property {string} secret - Masked payment gateway api secret
  * @property {string} [api] - Payment gateway api endpoint
  * @property {string} [pin] - Masked pin
- * @property {string} [config_type] - Fynd or self payment gateway
+ * @property {string} config_type - Fynd or self payment gateway
  * @property {string} [merchant_key] - Unique merchant key
  * @property {string} [verify_api] - Payment gateway verify payment api endpoint
- * @property {string} [key] - Payment gateway api key
+ * @property {string} key - Payment gateway api key
  * @property {string} [user_id] - Registered User id
  * @property {string} [merchant_id] - Unique merchant id
  */
@@ -295,6 +295,14 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PaymentDefaultSelection
+ * @property {string} [mode] - Default Selection Payment Mode
+ * @property {string} [identifier] - Identifier for Payment Mode
+ * @property {boolean} [skip] - Decide if the default payment mode will skip the
+ *   payment options page altogether or just be preferred on the Frontend
+ */
+
+/**
  * @typedef PaymentFlow
  * @property {AggregatorRoute} [bqr_razorpay]
  * @property {AggregatorRoute} [fynd]
@@ -314,8 +322,9 @@ const Joi = require("joi");
 
 /**
  * @typedef PaymentOptionAndFlow
- * @property {RootPaymentMode[]} payment_option - Payment options
+ * @property {RootPaymentMode} payment_option
  * @property {PaymentFlow} payment_flows
+ * @property {PaymentDefaultSelection} [payment_default_selection]
  */
 
 /**
@@ -444,6 +453,7 @@ const Joi = require("joi");
 /**
  * @typedef ValidateVPARequest
  * @property {string} upi_vpa - UPI ID
+ * @property {string} [aggregator] - Aggregator slug
  */
 
 /**
@@ -604,8 +614,8 @@ const Joi = require("joi");
 
 /**
  * @typedef AddBeneficiaryDetailsRequest
- * @property {boolean} [delights] - True if beneficiary to be added by delights
- *   or False if by User
+ * @property {boolean} delights - True if beneficiary to be added by delights or
+ *   False if by User
  * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
  * @property {BeneficiaryModeDetails} details
  * @property {string} [otp]
@@ -655,7 +665,6 @@ const Joi = require("joi");
  * @typedef SetDefaultBeneficiaryRequest
  * @property {string} order_id - Merchant Order Id
  * @property {string} beneficiary_id - Beneficiary Hash Id of the beneficiary added
- * @property {string} [shipment_id] - Shipment Id from respective merchant order ID
  */
 
 /**
@@ -1170,13 +1179,13 @@ class PaymentApplicationModel {
   static AggregatorConfigDetail() {
     return Joi.object({
       sdk: Joi.boolean().allow(null),
-      secret: Joi.string().allow(""),
+      secret: Joi.string().allow("").required(),
       api: Joi.string().allow("").allow(null),
       pin: Joi.string().allow("").allow(null),
-      config_type: Joi.string().allow(""),
+      config_type: Joi.string().allow("").required(),
       merchant_key: Joi.string().allow("").allow(null),
       verify_api: Joi.string().allow("").allow(null),
-      key: Joi.string().allow(""),
+      key: Joi.string().allow("").required(),
       user_id: Joi.string().allow("").allow(null),
       merchant_id: Joi.string().allow("").allow(null),
     });
@@ -1510,6 +1519,15 @@ class PaymentApplicationModel {
     });
   }
 
+  /** @returns {PaymentDefaultSelection} */
+  static PaymentDefaultSelection() {
+    return Joi.object({
+      mode: Joi.string().allow("").allow(null),
+      identifier: Joi.string().allow("").allow(null),
+      skip: Joi.boolean().allow(null),
+    });
+  }
+
   /** @returns {PaymentFlow} */
   static PaymentFlow() {
     return Joi.object({
@@ -1533,10 +1551,9 @@ class PaymentApplicationModel {
   /** @returns {PaymentOptionAndFlow} */
   static PaymentOptionAndFlow() {
     return Joi.object({
-      payment_option: Joi.array()
-        .items(PaymentApplicationModel.RootPaymentMode())
-        .required(),
+      payment_option: PaymentApplicationModel.RootPaymentMode().required(),
       payment_flows: PaymentApplicationModel.PaymentFlow().required(),
+      payment_default_selection: PaymentApplicationModel.PaymentDefaultSelection(),
     });
   }
 
@@ -1704,6 +1721,7 @@ class PaymentApplicationModel {
   static ValidateVPARequest() {
     return Joi.object({
       upi_vpa: Joi.string().allow("").required(),
+      aggregator: Joi.string().allow(""),
     });
   }
 
@@ -1906,7 +1924,7 @@ class PaymentApplicationModel {
   /** @returns {AddBeneficiaryDetailsRequest} */
   static AddBeneficiaryDetailsRequest() {
     return Joi.object({
-      delights: Joi.boolean(),
+      delights: Joi.boolean().required(),
       shipment_id: Joi.string().allow("").required(),
       details: PaymentApplicationModel.BeneficiaryModeDetails().required(),
       otp: Joi.string().allow(""),
@@ -1967,7 +1985,6 @@ class PaymentApplicationModel {
     return Joi.object({
       order_id: Joi.string().allow("").required(),
       beneficiary_id: Joi.string().allow("").required(),
-      shipment_id: Joi.string().allow(""),
     });
   }
 

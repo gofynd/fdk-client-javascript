@@ -331,4 +331,4 @@ type UpdateLevelUidIntegrationParam = {
     body: ConfigurationPlatformModel.IntegrationLevel;
 };
 type GetCurrenciesParam = any;
-import ConfigurationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformModel");
+import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

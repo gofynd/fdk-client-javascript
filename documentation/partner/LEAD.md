@@ -719,14 +719,14 @@ Success
       {
         "type": "email",
         "title": "dfdafdsa",
-        "value": "test@gmail.com",
+        "value": "asdfad@kdfkd.coj",
         "description": "asdfadsf",
         "enabled": true
       },
       {
         "type": "email",
         "title": "testanu",
-        "value": "testing@gmail.com",
+        "value": "anushkakamat@gofynd.com",
         "description": "tesr",
         "enabled": true
       }
@@ -1334,6 +1334,7 @@ Success
           "key": "high"
         }
       ],
+      "assignees": [],
       "categories": [
         {
           "form": {
@@ -1603,6 +1604,7 @@ Success
           "key": "high"
         }
       ],
+      "assignees": [],
       "categories": [
         {
           "form": {
@@ -2008,7 +2010,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | assignees | [string]? |  yes  | List of support staff availble for tickets assignment |
+ | assignees | [string] |  no  | List of support staff availble for tickets assignment |
  | categories | [[TicketCategory](#TicketCategory)]? |  yes  | List of possible categories for tickets |
  | priorities | [[Priority](#Priority)] |  no  | List of possible priorities for tickets |
  | statuses | [[Status](#Status)] |  no  | List of possible statuses for tickets |
@@ -2157,6 +2159,7 @@ Success
  | enabled | boolean? |  yes  |  |
  | title | string? |  yes  |  |
  | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -2206,7 +2209,7 @@ Success
  | feedback_form | [FeedbackForm](#FeedbackForm)? |  yes  |  |
  | group_id | number? |  yes  | Group id of category releted data |
  | key | string |  no  | Category key value identifier |
- | sub_categories | [[TicketCategory](#TicketCategory)]? |  yes  |  |
+ | sub_categories | [TicketCategory](#TicketCategory)? |  yes  |  |
  
 
 ---

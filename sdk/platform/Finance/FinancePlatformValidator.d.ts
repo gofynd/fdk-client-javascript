@@ -268,4 +268,4 @@ type PaymentProcessParam = {
 type UnlockCreditNoteParam = {
     body: FinancePlatformModel.UnlockCreditNoteRequest;
 };
-import FinancePlatformModel = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformModel");
+import FinancePlatformModel = require("./FinancePlatformModel");
