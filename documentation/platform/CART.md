@@ -238,8 +238,8 @@ Coupon object for sent `id`
     }
   },
   "date_meta": {
-    "modified_on": "2020-02-04T14:27:00.577000+00:00",
-    "created_on": "2020-01-14T10:46:04.474000+00:00"
+    "modified_on": "2020-02-04T14:27:00.577Z",
+    "created_on": "2020-01-14T10:46:04.474Z"
   },
   "action": {
     "action_date": null,
@@ -281,13 +281,13 @@ Coupon object for sent `id`
   "_schedule": {
     "next_schedule": [
       {
-        "start": "2020-01-14T10:45:03.600000+00:00",
-        "end": "2020-01-16T10:45:03+00:00"
+        "start": "2020-01-14T10:45:03.600Z",
+        "end": "2020-01-16T10:45:03.000Z"
       }
     ],
     "duration": null,
-    "start": "2020-01-14T10:45:03.600000+00:00",
-    "end": "2020-01-16T10:45:03+00:00",
+    "start": "2020-01-14T10:45:03.600Z",
+    "end": "2020-01-16T10:45:03.000Z",
     "cron": ""
   },
   "state": {
@@ -441,13 +441,13 @@ Coupon List for sent page_size and page_no
         "_schedule": {
           "next_schedule": [
             {
-              "start": "2020-01-14T10:45:03.600000+00:00",
-              "end": "2020-01-16T10:45:03+00:00"
+              "start": "2020-01-14T10:45:03.600Z",
+              "end": "2020-01-16T10:45:03.000Z"
             }
           ],
           "duration": null,
-          "start": "2020-01-14T10:45:03.600000+00:00",
-          "end": "2020-01-16T10:45:03+00:00",
+          "start": "2020-01-14T10:45:03.600Z",
+          "end": "2020-01-16T10:45:03.000Z",
           "cron": ""
         },
         "state": {
@@ -687,8 +687,8 @@ Promotion Created successfully
   "promo_group": "product",
   "promotion_type": "bogo",
   "date_meta": {
-    "modified_on": "2022-01-11T05:47:11.503000+00:00",
-    "created_on": "2022-01-10T19:49:29.917000+00:00"
+    "modified_on": "2022-01-11T05:47:11.503Z",
+    "created_on": "2022-01-10T19:49:29.917Z"
   },
   "discount_rules": [
     {
@@ -857,8 +857,8 @@ Promotion object for sent `id`
   "promo_group": "product",
   "promotion_type": "bogo",
   "date_meta": {
-    "modified_on": "2022-01-11T05:47:11.503000+00:00",
-    "created_on": "2022-01-10T19:49:29.917000+00:00"
+    "modified_on": "2022-01-11T05:47:11.503Z",
+    "created_on": "2022-01-10T19:49:29.917Z"
   },
   "discount_rules": [
     {
@@ -1055,8 +1055,8 @@ Promotion List for sent page_size and page_no
         "promo_group": "product",
         "promotion_type": "bogo",
         "date_meta": {
-          "modified_on": "2022-01-11T05:47:11.503000+00:00",
-          "created_on": "2022-01-10T19:49:29.917000+00:00"
+          "modified_on": "2022-01-11T05:47:11.503Z",
+          "created_on": "2022-01-10T19:49:29.917Z"
         },
         "display_meta": {
           "name": "Test BOGO promo"
@@ -1070,12 +1070,12 @@ Promotion List for sent page_size and page_no
           "modified_by": "5"
         },
         "_schedule": {
-          "start": "2022-01-10T18:45:36.311000+00:00",
-          "end": "2025-01-10T18:45:36.311000+00:00",
+          "start": "2022-01-10T18:45:36.311Z",
+          "end": "2025-01-10T18:45:36.311Z",
           "published": true,
           "next_schedule": [
             {
-              "start": "2022-01-10T18:45:36.311000+00:00",
+              "start": "2022-01-10T18:45:36.311Z",
               "end": null,
               "cron": ""
             }
@@ -1193,8 +1193,8 @@ Promotion updated successfully
   "promo_group": "product",
   "promotion_type": "bogo",
   "date_meta": {
-    "modified_on": "2022-01-11T05:47:11.503000+00:00",
-    "created_on": "2022-01-10T19:49:29.917000+00:00"
+    "modified_on": "2022-01-11T05:47:11.503Z",
+    "created_on": "2022-01-10T19:49:29.917Z"
   },
   "discount_rules": [
     {
@@ -1594,8 +1594,8 @@ Success. Returns a list of all the curently active coupons/promos
       "is_hidden": true,
       "entity_type": "promotion",
       "type": "percentage",
-      "created_on": "2022-05-30 07:33:01.303000",
-      "modified_on": "2022-05-31 10:41:01.441000"
+      "created_on": "2022-05-30T07:33:01.303Z",
+      "modified_on": "2022-05-31T10:41:01.441Z"
     }
   ]
 }
@@ -2435,7 +2435,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "uid": "7927",
       "gstin": "",
       "checkout_mode": "self",
-      "last_modified": "2023-03-03",
+      "last_modified": "2023-03-03T00:00:00.000Z",
       "restrict_checkout": false,
       "is_valid": true
     },
@@ -2627,7 +2627,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "checkout_mode": "self",
       "restrict_checkout": false,
       "is_valid": false,
-      "last_modified": "2023-03-03"
+      "last_modified": "2023-03-03T00:00:00.000Z"
     },
     "result": {}
   }
@@ -3903,9 +3903,9 @@ Abandoned Cart List for sent page_size and page_no
         },
         "payments": {},
         "is_archive": false,
-        "created_on": "2022-06-28 14:25:15.578000",
-        "last_modified": "2022-06-29 13:52:03.313000",
-        "expire_at": "2023-06-24 13:52:03.313000",
+        "created_on": "2022-06-28T14:25:15.578Z",
+        "last_modified": "2022-06-29T13:52:03.313Z",
+        "expire_at": "2023-06-24T13:52:03.313Z",
         "fc_index_map": [
           0,
           0
@@ -4170,7 +4170,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
   "checkout_mode": "self",
   "restrict_checkout": false,
   "is_valid": true,
-  "last_modified": "2022-06-28"
+  "last_modified": "2022-06-28T00:00:00.000Z"
 }
 ```
 </details>
@@ -4412,7 +4412,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
   "checkout_mode": "self",
   "restrict_checkout": false,
   "is_valid": true,
-  "last_modified": "2023-03-03"
+  "last_modified": "2023-03-03T00:00:00.000Z"
 }
 ```
 </details>
@@ -4643,7 +4643,7 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
       "selected_staff": "",
       "ordering_store": null,
       "source": {},
-      "created_on": "2019-12-18T14:00:07.165000"
+      "created_on": "2019-12-18T14:00:07.165Z"
     },
     "items": [
       {
@@ -4907,7 +4907,7 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
     },
     "restrict_checkout": false,
     "is_valid": true,
-    "last_modified": "2023-03-03"
+    "last_modified": "2023-03-03T00:00:00.000Z"
   },
   "error": ""
 }
@@ -7644,7 +7644,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       "checkout_mode": "self",
       "restrict_checkout": false,
       "is_valid": true,
-      "last_modified": "2023-03-03"
+      "last_modified": "2023-03-03T00:00:00.000Z"
     },
     "result": {
       "707569_90": {
@@ -7971,7 +7971,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
         "code": "INR",
         "symbol": "₹"
       },
-      "last_modified": "2023-03-03"
+      "last_modified": "2023-03-03T00:00:00.000Z"
     },
     "message": "Quantity of item updated",
     "success": true
@@ -8444,7 +8444,7 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
         "selected_staff": "",
         "ordering_store": null,
         "source": {},
-        "created_on": "2019-12-18T14:00:07.165000"
+        "created_on": "2019-12-18T14:00:07.165Z"
       },
       "items": [
         {
@@ -8708,7 +8708,7 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
       },
       "restrict_checkout": false,
       "is_valid": true,
-      "last_modified": "2023-03-03"
+      "last_modified": "2023-03-03T00:00:00.000Z"
     }
   }
 }
@@ -11356,7 +11356,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
     "coupon_text": "View all offers",
     "gstin": "",
     "checkout_mode": "self",
-    "last_modified": "2023-03-03",
+    "last_modified": "2023-03-03T00:00:00.000Z",
     "restrict_checkout": false,
     "is_valid": true
   }
@@ -11609,7 +11609,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
     "coupon_text": "View all offers",
     "gstin": "",
     "checkout_mode": "self",
-    "last_modified": "2023-03-03",
+    "last_modified": "2023-03-03T00:00:00.000Z",
     "restrict_checkout": false,
     "is_valid": false
   }
@@ -12083,7 +12083,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
     "coupon_text": "View all offers",
     "gstin": "",
     "checkout_mode": "self",
-    "last_modified": "2023-03-03",
+    "last_modified": "2023-03-03T00:00:00.000Z",
     "restrict_checkout": false,
     "is_valid": true
   }
@@ -12336,7 +12336,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
     "coupon_text": "View all offers",
     "gstin": "",
     "checkout_mode": "self",
-    "last_modified": "2023-03-03",
+    "last_modified": "2023-03-03T00:00:00.000Z",
     "restrict_checkout": false,
     "is_valid": false
   }

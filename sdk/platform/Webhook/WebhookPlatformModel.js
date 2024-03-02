@@ -87,7 +87,7 @@ const Joi = require("joi");
  * @property {string} [event_name] - The name of the processed event.
  * @property {number} [response_code] - The response code of the event.
  * @property {string} [response_message] - The response message of the event.
- * @property {Object} [data] - The data associated with the event.
+ * @property {string} [data] - The data associated with the event.
  * @property {number} [attempt] - The attempt number of the event.
  * @property {number} [last_attempted_on] - The timestamp of the last attempted event.
  * @property {string} [status] - The status of the event (e.g., "FAILED").
@@ -130,6 +130,7 @@ const Joi = require("joi");
  * @property {string} [event_name]
  * @property {string} [event_type]
  * @property {string} [event_category]
+ * @property {SubscriberEventMapping} [subscriber_event_mapping]
  * @property {Object} [event_schema]
  * @property {string} [version]
  * @property {string} [display_name]
@@ -236,28 +237,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SubscriberFailureResponse
- * @property {string} [message]
- * @property {string} [code]
- * @property {string} [stack]
- */
-
-/**
- * @typedef EventConfigs
- * @property {number} [id]
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {Object} [event_schema]
- * @property {string} [version]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [created_on]
- * @property {string} [updated_on]
- * @property {SubscriberEventMapping} [subscriber_event_mapping]
- */
-
-/**
  * @typedef SubscriberEventMapping
  * @property {number} [id]
  * @property {number} [event_id]
@@ -318,7 +297,7 @@ const Joi = require("joi");
  * @property {Page} [page]
  */
 
-/** @typedef {"active" | "inactive" | "blocked"} SubscriberStatus */
+/** @typedef {"" | "" | ""} SubscriberStatus */
 
 class WebhookPlatformModel {
   /** @returns {Error} */
@@ -432,7 +411,7 @@ class WebhookPlatformModel {
       event_name: Joi.string().allow(""),
       response_code: Joi.number(),
       response_message: Joi.string().allow(""),
-      data: Joi.object().pattern(/\S/, Joi.any()),
+      data: Joi.string().allow(""),
       attempt: Joi.number(),
       last_attempted_on: Joi.number(),
       status: Joi.string().allow(""),
@@ -482,6 +461,7 @@ class WebhookPlatformModel {
       event_name: Joi.string().allow(""),
       event_type: Joi.string().allow(""),
       event_category: Joi.string().allow(""),
+      subscriber_event_mapping: WebhookPlatformModel.SubscriberEventMapping(),
       event_schema: Joi.object().pattern(/\S/, Joi.any()),
       version: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
@@ -609,32 +589,6 @@ class WebhookPlatformModel {
     return Joi.object({
       type: Joi.string().allow(""),
       secret: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscriberFailureResponse} */
-  static SubscriberFailureResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      stack: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {EventConfigs} */
-  static EventConfigs() {
-    return Joi.object({
-      id: Joi.number(),
-      event_name: Joi.string().allow(""),
-      event_type: Joi.string().allow(""),
-      event_category: Joi.string().allow(""),
-      event_schema: Joi.object().pattern(/\S/, Joi.any()),
-      version: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      created_on: Joi.string().allow(""),
-      updated_on: Joi.string().allow(""),
-      subscriber_event_mapping: WebhookPlatformModel.SubscriberEventMapping(),
     });
   }
 

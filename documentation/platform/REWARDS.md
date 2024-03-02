@@ -681,7 +681,7 @@ ok
         "aspect_ratio": "2:1",
         "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
       },
-      "created_at": "0001-01-01T00:00:00.000Z",
+      "created_at": "1901-01-01T00:00:00.000Z",
       "display": {
         "validity": 10,
         "validity_unit": "days"

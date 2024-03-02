@@ -1480,7 +1480,7 @@ Get dummy json data for invoice
             {
               "payment_type": "Cash on Delivery",
               "amount": 3010,
-              "date": "2023-08-09",
+              "date": "2023-08-09T00:00:00.000Z",
               "transaction_id": "TR64D383390EAD429ED3"
             }
           ],

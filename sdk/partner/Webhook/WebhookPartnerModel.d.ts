@@ -167,7 +167,7 @@ export = WebhookPartnerModel;
  * @property {string} [event_name] - The name of the processed event.
  * @property {number} [response_code] - The response code of the event.
  * @property {string} [response_message] - The response message of the event.
- * @property {Object} [data] - The data associated with the event.
+ * @property {string} [data] - The data associated with the event.
  * @property {number} [attempt] - The attempt number of the event.
  * @property {number} [last_attempted_on] - The timestamp of the last attempted event.
  * @property {string} [status] - The status of the event (e.g., "FAILED").
@@ -482,7 +482,7 @@ type EventProcessReportObject = {
     /**
      * - The data associated with the event.
      */
-    data?: any;
+    data?: string;
     /**
      * - The attempt number of the event.
      */

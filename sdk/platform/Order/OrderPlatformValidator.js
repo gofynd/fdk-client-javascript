@@ -257,6 +257,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   company order
  * @property {string} [customerId]
  * @property {string} [orderType]
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -267,6 +269,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [shipmentId] - Shipment Id
  * @property {boolean} [fetchActiveShipment] - Flag to fetch active or
  *   deactivated shipments
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 
 /**
@@ -743,6 +747,7 @@ class OrderPlatformValidator {
       showCrossCompanyData: Joi.boolean(),
       customerId: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
+      allowInactive: Joi.boolean(),
     }).required();
   }
 
@@ -757,6 +762,7 @@ class OrderPlatformValidator {
       channelShipmentId: Joi.string().allow(""),
       shipmentId: Joi.string().allow(""),
       fetchActiveShipment: Joi.boolean(),
+      allowInactive: Joi.boolean(),
     }).required();
   }
 

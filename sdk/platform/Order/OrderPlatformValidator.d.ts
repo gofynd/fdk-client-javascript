@@ -223,6 +223,8 @@ export = OrderPlatformValidator;
  *   company order
  * @property {string} [customerId]
  * @property {string} [orderType]
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
@@ -231,6 +233,8 @@ export = OrderPlatformValidator;
  * @property {string} [shipmentId] - Shipment Id
  * @property {boolean} [fetchActiveShipment] - Flag to fetch active or
  *   deactivated shipments
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 /**
  * @typedef GetShipmentHistoryParam
@@ -884,6 +888,11 @@ type GetOrdersParam = {
     showCrossCompanyData?: boolean;
     customerId?: string;
     orderType?: string;
+    /**
+     * - Flag indicating whether inactive
+     * shipments are allowed
+     */
+    allowInactive?: boolean;
 };
 type GetShipmentByIdParam = {
     /**
@@ -899,6 +908,11 @@ type GetShipmentByIdParam = {
      * deactivated shipments
      */
     fetchActiveShipment?: boolean;
+    /**
+     * - Flag indicating whether inactive
+     * shipments are allowed
+     */
+    allowInactive?: boolean;
 };
 type GetShipmentHistoryParam = {
     /**

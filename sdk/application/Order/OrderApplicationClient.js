@@ -315,6 +315,7 @@ class Order {
       startDate,
       endDate,
       customMeta,
+      allowInactive,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -329,6 +330,7 @@ class Order {
         startDate,
         endDate,
         customMeta,
+        allowInactive,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -347,6 +349,7 @@ class Order {
         startDate,
         endDate,
         customMeta,
+        allowInactive,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -366,6 +369,7 @@ class Order {
     query_params["start_date"] = startDate;
     query_params["end_date"] = endDate;
     query_params["custom_meta"] = customMeta;
+    query_params["allow_inactive"] = allowInactive;
 
     const xHeaders = {};
 

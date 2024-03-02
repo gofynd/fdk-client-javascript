@@ -61,7 +61,7 @@ declare class Order {
      * @summary: Lists customer orders.
      * @description: Retrieves all orders associated with a customer account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
      */
-    getOrders({ status, pageNo, pageSize, fromDate, toDate, startDate, endDate, customMeta, requestHeaders, }?: OrderApplicationValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderList>;
+    getOrders({ status, pageNo, pageSize, fromDate, toDate, startDate, endDate, customMeta, allowInactive, requestHeaders, }?: OrderApplicationValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderList>;
     /**
      * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

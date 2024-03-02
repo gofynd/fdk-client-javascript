@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.2-beta.6) - v1.9.1-prerelease-v6
+# CHANGE LOG (1.4.2-beta.7) - v1.9.1-prerelease-v7
 
 ## Application Client
 
@@ -132,6 +132,8 @@
 #### getOrders
 
 - ##### What's New
+	- [Added] `query` parameter `allowInactive` (type: `boolean`)
+
 	- [Added] property `items[].shipments[].prices.amount_to_be_collected` of schema `Prices` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].prices.amount_to_be_collected` of schema `Prices` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].financial_breakup[].amount_to_be_collected` of schema `FinancialBreakup` in response with status code 200
@@ -685,7 +687,17 @@
 #### getDeliveryDetailInsights
 
 - ##### What's Changed
+	- [Breaking] [Changed] Type from `object` to `string` of property `rows[].data` of schema `EventProcessReportObject` in response with status code 200
 	- [Breaking] [Changed] Type from `integer` to `number` of property `rows[].last_attempted_on` of schema `EventProcessReportObject` in response with status code 200
+
+
+#### getHistoricalReports
+
+- ##### What's Deprecated
+	- [Deleted] Value format from `date-time` from property `items[].filters.end_date` of schema `HistoryFilters` in response with status code 200
+	- [Deleted] Value format from `date-time` from property `items[].filters.start_date` of schema `HistoryFilters` in response with status code 200
+	- [Deleted] Value format from `date-time` from property `items[].created_on` of schema `HistoryItems` in response with status code 200
+	- [Deleted] Value format from `date-time` from property `items[].updated_on` of schema `HistoryItems` in response with status code 200
 
 
 ## Platform Client
@@ -834,27 +846,6 @@
 
 - ##### What's Changed
 	- [Changed] Path From `/service/platform/catalog/v1.0/company/{company_id}/application/{application_id}/collections/{id}/items/` To `/service/platform/catalog/v2.0/company/{company_id}/application/{application_id}/collections/{id}/items/`
-
-
-#### createBulkInventoryJob
-
-- ##### What's Changed
-	- [Breaking] [Changed] Default value from `2023-08-16T12:07:13.817Z` to `2023-08-16T12:07:13.817348` of property `modified_on` of schema `BulkJob` in request body
-	- [Breaking] [Changed] Default value from `2023-08-16T12:07:13.817Z` to `2023-08-16T12:07:13.817348` of property `modified_on` of schema `BulkResponse` in response with status code 200
-
-
-#### createBulkProductUploadJob
-
-- ##### What's Changed
-	- [Breaking] [Changed] Default value from `2023-08-16T12:07:13.817Z` to `2023-08-16T12:07:13.817348` of property `modified_on` of schema `BulkJob` in request body
-	- [Breaking] [Changed] Default value from `2023-08-16T12:07:13.817Z` to `2023-08-16T12:07:13.817348` of property `modified_on` of schema `BulkResponse` in response with status code 200
-
-
-#### uploadBulkProducts
-
-- ##### What's Changed
-	- [Breaking] [Changed] Default value from `2023-08-16T12:07:13.817Z` to `2023-08-16T12:07:13.817348` of property `modified_on` of schema `BulkJob` in request body
-	- [Breaking] [Changed] Default value from `2023-08-16T12:07:13.817Z` to `2023-08-16T12:07:13.817348` of property `modified_on` of schema `BulkResponse` in response with status code 200
 
 
 #### getApplicationFilterValues
@@ -1030,6 +1021,8 @@
 #### getShipmentById
 
 - ##### What's New
+	- [Added] `query` parameter `allowInactive` (type: `boolean`)
+
 	- [Added] property `shipments[].order.affiliate_order_id` of schema `OrderDetailsData` in response with status code 200
 	- [Added] property `shipments[].bags[].financial_breakup.amount_to_be_collected` of schema `FinancialBreakup` in response with status code 200
 	- [Added] property `shipments[].bags[].article.tags` of schema `OrderBagArticle` in response with status code 200
@@ -1056,6 +1049,8 @@
 #### getOrders
 
 - ##### What's New
+	- [Added] `query` parameter `allowInactive` (type: `boolean`)
+
 	- [Added] property `items[].shipments[].order.affiliate_order_id` of schema `OrderDetailsData` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].financial_breakup.amount_to_be_collected` of schema `FinancialBreakup` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].article.tags` of schema `OrderBagArticle` in response with status code 200
@@ -1473,10 +1468,117 @@
 
 
 
+#### downloadDeliveryReport
+
+- ##### What's Deprecated
+	- [Deleted] Value format from `date-time` from property `end_date` of schema `EventProcessRequest` in request body
+	- [Deleted] Value format from `date-time` from property `start_date` of schema `EventProcessRequest` in request body
+
+
+#### getHistoricalReports
+
+- ##### What's Deprecated
+	- [Deleted] Value format from `date-time` from property `items[].filters.end_date` of schema `HistoryFilters` in response with status code 200
+	- [Deleted] Value format from `date-time` from property `items[].filters.start_date` of schema `HistoryFilters` in response with status code 200
+	- [Deleted] Value format from `date-time` from property `items[].created_on` of schema `HistoryItems` in response with status code 200
+	- [Deleted] Value format from `date-time` from property `items[].updated_on` of schema `HistoryItems` in response with status code 200
+
+
 #### getDeliveryReports
 
+- ##### What's Deprecated
+	- [Deleted] Value format from `date-time` from property `end_date` of schema `EventProcessRequest` in request body
+	- [Deleted] Value format from `date-time` from property `start_date` of schema `EventProcessRequest` in request body
+
 - ##### What's Changed
+	- [Breaking] [Changed] Type from `object` to `string` of property `rows[].data` of schema `EventProcessReportObject` in response with status code 200
 	- [Breaking] [Changed] Type from `integer` to `number` of property `rows[].last_attempted_on` of schema `EventProcessReportObject` in response with status code 200
+
+
+#### fetchAllEventConfigurations
+
+- ##### What's New
+	- [Added] property `event_configs[].subscriber_event_mapping` of schema `EventConfig` in response with status code 200
+
+
+#### registerSubscriberToEvent
+
+- ##### What's New
+	- [Added] Possible values `active` to property `status` of schema `SubscriberStatus` in request body
+	- [Added] Possible values `inactive` to property `status` of schema `SubscriberStatus` in request body
+	- [Added] Possible values `blocked` to property `status` of schema `SubscriberStatus` in request body
+	- [Added] Possible values `active` to property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `inactive` to property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `blocked` to property `status` of schema `SubscriberStatus` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in request body
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in request body
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in request body
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+
+
+#### getSubscribersByCompany
+
+- ##### What's New
+	- [Added] Possible values `active` to property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `inactive` to property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `blocked` to property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] property `items[].event_configs[].subscriber_event_mapping` of schema `EventConfig` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `items[].status` of schema `SubscriberStatus` in response with status code 200
+
+
+#### updateSubscriberConfig
+
+- ##### What's New
+	- [Added] Possible values `active` to property `status` of schema `SubscriberStatus` in request body
+	- [Added] Possible values `inactive` to property `status` of schema `SubscriberStatus` in request body
+	- [Added] Possible values `blocked` to property `status` of schema `SubscriberStatus` in request body
+	- [Added] Possible values `active` to property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `inactive` to property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `blocked` to property `status` of schema `SubscriberStatus` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in request body
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in request body
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in request body
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+
+
+#### getSubscriberById
+
+- ##### What's New
+	- [Added] Possible values `active` to property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `inactive` to property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `blocked` to property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] property `event_configs[].subscriber_event_mapping` of schema `EventConfig` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `status` of schema `SubscriberStatus` in response with status code 200
+
+
+#### getSubscribersByExtensionId
+
+- ##### What's New
+	- [Added] Possible values `active` to property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `inactive` to property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] Possible values `blocked` to property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Added] property `items[].event_configs[].subscriber_event_mapping` of schema `EventConfig` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `items[].status` of schema `SubscriberStatus` in response with status code 200
+	- [Breaking] [Deleted] Possible values from property `items[].status` of schema `SubscriberStatus` in response with status code 200
 
 
 # CHANGE LOG (1.4.1) - fp-v1.9.0

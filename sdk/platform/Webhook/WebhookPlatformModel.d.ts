@@ -74,7 +74,7 @@ export = WebhookPlatformModel;
  * @property {string} [event_name] - The name of the processed event.
  * @property {number} [response_code] - The response code of the event.
  * @property {string} [response_message] - The response message of the event.
- * @property {Object} [data] - The data associated with the event.
+ * @property {string} [data] - The data associated with the event.
  * @property {number} [attempt] - The attempt number of the event.
  * @property {number} [last_attempted_on] - The timestamp of the last attempted event.
  * @property {string} [status] - The status of the event (e.g., "FAILED").
@@ -113,6 +113,7 @@ export = WebhookPlatformModel;
  * @property {string} [event_name]
  * @property {string} [event_type]
  * @property {string} [event_category]
+ * @property {SubscriberEventMapping} [subscriber_event_mapping]
  * @property {Object} [event_schema]
  * @property {string} [version]
  * @property {string} [display_name]
@@ -204,26 +205,6 @@ export = WebhookPlatformModel;
  * @property {string} [secret]
  */
 /**
- * @typedef SubscriberFailureResponse
- * @property {string} [message]
- * @property {string} [code]
- * @property {string} [stack]
- */
-/**
- * @typedef EventConfigs
- * @property {number} [id]
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {Object} [event_schema]
- * @property {string} [version]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [created_on]
- * @property {string} [updated_on]
- * @property {SubscriberEventMapping} [subscriber_event_mapping]
- */
-/**
  * @typedef SubscriberEventMapping
  * @property {number} [id]
  * @property {number} [event_id]
@@ -279,11 +260,11 @@ export = WebhookPlatformModel;
  * @property {SubscriberResponse[]} [items]
  * @property {Page} [page]
  */
-/** @typedef {"active" | "inactive" | "blocked"} SubscriberStatus */
+/** @typedef {"" | "" | ""} SubscriberStatus */
 declare class WebhookPlatformModel {
 }
 declare namespace WebhookPlatformModel {
-    export { Error, Event, RetryEventRequest, Item, RetryCountResponse, RetrySuccessResponse, Err, RetryFailureResponse, RetryStatusResponse, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AuthMeta, SubscriberFailureResponse, EventConfigs, SubscriberEventMapping, SubscriberResponse, SubscriberConfig, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
+    export { Error, Event, RetryEventRequest, Item, RetryCountResponse, RetrySuccessResponse, Err, RetryFailureResponse, RetryStatusResponse, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AuthMeta, SubscriberEventMapping, SubscriberResponse, SubscriberConfig, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
 }
 /** @returns {Error} */
 declare function Error(): Error;
@@ -400,7 +381,7 @@ type EventProcessReportObject = {
     /**
      * - The data associated with the event.
      */
-    data?: any;
+    data?: string;
     /**
      * - The attempt number of the event.
      */
@@ -479,6 +460,7 @@ type EventConfig = {
     event_name?: string;
     event_type?: string;
     event_category?: string;
+    subscriber_event_mapping?: SubscriberEventMapping;
     event_schema?: any;
     version?: string;
     display_name?: string;
@@ -637,28 +619,6 @@ type AuthMeta = {
     type?: string;
     secret?: string;
 };
-/** @returns {SubscriberFailureResponse} */
-declare function SubscriberFailureResponse(): SubscriberFailureResponse;
-type SubscriberFailureResponse = {
-    message?: string;
-    code?: string;
-    stack?: string;
-};
-/** @returns {EventConfigs} */
-declare function EventConfigs(): EventConfigs;
-type EventConfigs = {
-    id?: number;
-    event_name?: string;
-    event_type?: string;
-    event_category?: string;
-    event_schema?: any;
-    version?: string;
-    display_name?: string;
-    description?: string;
-    created_on?: string;
-    updated_on?: string;
-    subscriber_event_mapping?: SubscriberEventMapping;
-};
 /** @returns {SubscriberEventMapping} */
 declare function SubscriberEventMapping(): SubscriberEventMapping;
 type SubscriberEventMapping = {
@@ -726,4 +686,4 @@ type SubscriberConfigList = {
  * @returns {SubscriberStatus}
  */
 declare function SubscriberStatus(): SubscriberStatus;
-type SubscriberStatus = "active" | "inactive" | "blocked";
+type SubscriberStatus = "" | "" | "";

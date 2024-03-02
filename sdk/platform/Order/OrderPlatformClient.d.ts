@@ -332,7 +332,7 @@ declare class Order {
      * @summary: Get orders.
      * @description: Retrieve a list of available orders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponse>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, allowInactive, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponse>;
     /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -352,7 +352,7 @@ declare class Order {
      * @summary: Get shipment by ID.
      * @description: Retrieve detailed information about a specific shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentById/).
      */
-    getShipmentById({ channelShipmentId, shipmentId, fetchActiveShipment, requestHeaders }?: OrderPlatformValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInfoResponse>;
+    getShipmentById({ channelShipmentId, shipmentId, fetchActiveShipment, allowInactive, requestHeaders, }?: OrderPlatformValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInfoResponse>;
     /**
      * @param {OrderPlatformValidator.GetShipmentHistoryParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

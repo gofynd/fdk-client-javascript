@@ -193,7 +193,7 @@ const Joi = require("joi");
  * @property {string} [event_name] - The name of the processed event.
  * @property {number} [response_code] - The response code of the event.
  * @property {string} [response_message] - The response message of the event.
- * @property {Object} [data] - The data associated with the event.
+ * @property {string} [data] - The data associated with the event.
  * @property {number} [attempt] - The attempt number of the event.
  * @property {number} [last_attempted_on] - The timestamp of the last attempted event.
  * @property {string} [status] - The status of the event (e.g., "FAILED").
@@ -500,7 +500,7 @@ class WebhookPartnerModel {
       event_name: Joi.string().allow(""),
       response_code: Joi.number(),
       response_message: Joi.string().allow(""),
-      data: Joi.object().pattern(/\S/, Joi.any()),
+      data: Joi.string().allow(""),
       attempt: Joi.number(),
       last_attempted_on: Joi.number(),
       status: Joi.string().allow(""),

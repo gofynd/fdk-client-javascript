@@ -332,7 +332,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
                     {
                       "rate": 15,
                       "enable": true,
-                      "effective_date": "2022-06-05T18:29:23.904000"
+                      "effective_date": "2022-06-05T18:29:23.904Z"
                     }
                   ],
                   "company_cin": "U45200MH1992PTC066474"
@@ -341,7 +341,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
                   {
                     "rate": 15,
                     "enable": true,
-                    "effective_date": "2022-06-05T18:29:23.904000"
+                    "effective_date": "2022-06-05T18:29:23.904Z"
                   }
                 ],
                 "coupon": {
@@ -2624,7 +2624,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
                 {
                   "rate": 15,
                   "enable": true,
-                  "effective_date": "2022-06-05T18:29:23.904000"
+                  "effective_date": "2022-06-05T18:29:23.904Z"
                 }
               ],
               "company_cin": "U45200MH1992PTC066474"
@@ -2633,7 +2633,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
               {
                 "rate": 15,
                 "enable": true,
-                "effective_date": "2022-06-05T18:29:23.904000"
+                "effective_date": "2022-06-05T18:29:23.904Z"
               }
             ],
             "coupon": {
@@ -3452,7 +3452,7 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
       "selected_staff": "",
       "ordering_store": null,
       "source": {},
-      "created_on": "2019-12-18T14:00:07.165000"
+      "created_on": "2019-12-18T14:00:07.165Z"
     },
     "items": [
       {
@@ -4652,7 +4652,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
                     {
                       "rate": 15,
                       "enable": true,
-                      "effective_date": "2022-06-05T18:29:23.904000"
+                      "effective_date": "2022-06-05T18:29:23.904Z"
                     }
                   ],
                   "company_cin": "U45200MH1992PTC066474"
@@ -4661,7 +4661,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
                   {
                     "rate": 15,
                     "enable": true,
-                    "effective_date": "2022-06-05T18:29:23.904000"
+                    "effective_date": "2022-06-05T18:29:23.904Z"
                   }
                 ],
                 "coupon": {
@@ -5456,7 +5456,7 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
         "selected_staff": "",
         "ordering_store": null,
         "source": {},
-        "created_on": "2019-12-18T14:00:07.165000"
+        "created_on": "2019-12-18T14:00:07.165Z"
       },
       "items": [
         {

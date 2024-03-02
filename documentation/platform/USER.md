@@ -1767,8 +1767,8 @@ Success. returns created User Attribute Definition. `UserAttributeDefinitionResp
   "is_locked": false,
   "created_by": "5f6d1d7774e48a04969b2ea7",
   "updated_by": "5f6d1d7774e48a04969b2ea7",
-  "created_at": "2023-10-17T10:00:00Z",
-  "modified_at": "2023-10-17T10:05:00Z"
+  "created_at": "2023-10-17T10:00:00.000Z",
+  "modified_at": "2023-10-17T10:05:00.000Z"
 }
 ```
 </details>

@@ -171,7 +171,7 @@ Success
       "requested_by": "jayeshfansamkar_gofynd_com_17506",
       "full_name": "jayesh fansamkar",
       "display_name": "Settlement Report",
-      "created_at": "2023-07-26 22:38:04",
+      "created_at": "2023-07-26T22:38:04.000Z",
       "filters": {
         "brand": [],
         "channel": [],
@@ -186,8 +186,8 @@ Success
         "job_id": "export_1690391284747"
       },
       "status": "In Process",
-      "start_date": "2023-07-19",
-      "end_date": "2023-07-26",
+      "start_date": "2023-07-19T00:00:00.000Z",
+      "end_date": "2023-07-26T00:00:00.000Z",
       "msg": null,
       "download_link": null
     }
@@ -264,12 +264,12 @@ Success
       "requested_by": "app",
       "full_name": "app",
       "display_name": "Credit Note Report",
-      "created_at": "2023-04-18 06:29:11",
+      "created_at": "2023-04-18T06:29:11.000Z",
       "filters": {},
       "meta": {},
       "status": "Completed",
-      "start_date": "2023-04-21",
-      "end_date": "2023-04-22",
+      "start_date": "2023-04-21T00:00:00.000Z",
+      "end_date": "2023-04-22T00:00:00.000Z",
       "msg": "",
       "download_link": "https://opex-test-bucket.s3.amazonaws.com/csv/credit%20note%20report_2023-04-21_2023-04-22_1681799353.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230418%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230418T062915Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a92612927b39a630e894e9179b531d2af3954223a6dc16788275a52675c8a7bf"
     },
@@ -280,12 +280,12 @@ Success
       "requested_by": "app",
       "full_name": "app",
       "display_name": "Credit Note Report",
-      "created_at": "2023-04-18 06:15:39",
+      "created_at": "2023-04-18T06:15:39.000Z",
       "filters": {},
       "meta": {},
       "status": "In Process",
-      "start_date": "2023-04-21",
-      "end_date": "2023-04-22",
+      "start_date": "2023-04-21T00:00:00.000Z",
+      "end_date": "2023-04-22T00:00:00.000Z",
       "msg": "",
       "download_link": "https://opex-test-bucket.s3.amazonaws.com/csv/credit%20note%20report_2023-04-21_2023-04-22_1681799353.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230418%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230418T062915Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a92612927b39a630e894e9179b531d2af3954223a6dc16788275a52675c8a7bf"
     }
@@ -355,8 +355,8 @@ We are processing the report!
 ```json
 {
   "data": {
-    "start_date": "2023-07-26",
-    "end_date": "2023-07-31",
+    "start_date": "2023-07-26T00:00:00.000Z",
+    "end_date": "2023-07-31T00:00:00.000Z",
     "headers": [
       "Company Id",
       "Company",
@@ -539,8 +539,8 @@ Success
 ```json
 {
   "data": {
-    "start_date": "2023-04-26",
-    "end_date": "2023-07-31",
+    "start_date": "2023-04-26T00:00:00.000Z",
+    "end_date": "2023-07-31T00:00:00.000Z",
     "headers": [
       "Credit Reference Number",
       "Amount",
@@ -1469,7 +1469,7 @@ Success
     {
       "table_data": [
         {
-          "date": "2023-07-14",
+          "date": "2023-07-14T00:00:00.000Z",
           "purpose": "Monthly Credit Limit Reset",
           "transaction_type": "Debit",
           "amount": "₹1295.25",
@@ -1477,7 +1477,7 @@ Success
           "mr_balance": "₹0.00"
         },
         {
-          "date": "2023-07-27",
+          "date": "2023-07-27T00:00:00.000Z",
           "purpose": "Advance Reciept Offline",
           "transaction_type": "Credit",
           "amount": "₹120.50",
@@ -1485,7 +1485,7 @@ Success
           "mr_balance": "₹0.00"
         },
         {
-          "date": "2023-07-25",
+          "date": "2023-07-25T00:00:00.000Z",
           "purpose": "Commission Deduction",
           "transaction_type": "Debit",
           "amount": "₹1825.25",
@@ -1493,7 +1493,7 @@ Success
           "mr_balance": "₹0.00"
         },
         {
-          "date": "2023-07-26",
+          "date": "2023-07-26T00:00:00.000Z",
           "purpose": "Credits Added",
           "transaction_type": "Credit",
           "amount": "₹2000.00",
@@ -1501,7 +1501,7 @@ Success
           "mr_balance": "₹1000.00"
         },
         {
-          "date": "2023-07-26",
+          "date": "2023-07-26T00:00:00.000Z",
           "purpose": "Minimum Retainership",
           "transaction_type": "Credit",
           "amount": "₹1000.00",
@@ -1809,8 +1809,8 @@ Success
       "order_id": "11111",
       "shipment_id": "11111",
       "invoice_number": "invoice_1",
-      "date_issued": "2023-03-08 17:47:20",
-      "expiry_date": "2023-03-08 17:47:20",
+      "date_issued": "2023-03-08T17:47:20.000Z",
+      "expiry_date": "2023-03-08T17:47:20.000Z",
       "staff_id": "staff_1",
       "store_id": "111"
     },
@@ -1823,7 +1823,7 @@ Success
         "store_id": "11",
         "staff_id": "staff_1",
         "ordering_channel": "POS",
-        "created_at": "2023-03-08 17:47:20",
+        "created_at": "2023-03-08T17:47:20.000Z",
         "amount_debited": 100
       },
       {
@@ -1833,7 +1833,7 @@ Success
         "store_id": "11",
         "staff_id": "staff_1",
         "ordering_channel": "POS",
-        "created_at": "2023-03-08 17:47:20",
+        "created_at": "2023-03-08T17:47:20.000Z",
         "amount_debited": 100
       }
     ]
@@ -2374,7 +2374,7 @@ Success
           "value": "882648404204"
         }
       ],
-      "date_of_payment": "2023-07-19 13:12:15.901928",
+      "date_of_payment": "2023-07-19T13:12:15.901Z",
       "amount": 8000
     }
   ],

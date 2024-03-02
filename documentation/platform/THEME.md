@@ -27235,7 +27235,7 @@ Success. Refer `FontsSchema` for more details.
         "latin"
       ],
       "version": "v14",
-      "last_modified": "2020-09-02",
+      "last_modified": "2020-09-02T00:00:00.000Z",
       "files": {
         "regular": "http://fonts.gstatic.com/s/abeezee/v14/esDR31xSG-6AGleN6tKukbcHCpE.ttf",
         "italic": "http://fonts.gstatic.com/s/abeezee/v14/esDT31xSG-6AGleN2tCklZUCGpG-GQ.ttf"

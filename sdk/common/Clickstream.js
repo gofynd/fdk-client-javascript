@@ -20,24 +20,32 @@ const sg = function safeGet(fn, defaultValue = null) {
 if (typeof window != "undefined") {
   window.FPI.event.on("user.login", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.identify(eventData["user_id"], { ...eventData }).catch(
-      (err) => {
-        Logger({ level: "ERROR", message: err });
-      }
-    );
+    Clickstream.identify(eventData["user_id"], {
+      event_type: "identity",
+      ...eventData,
+    }).catch((err) => {
+      Logger({ level: "ERROR", message: err });
+    });
   });
 
   window.FPI.event.on("user.update", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.identify(eventData["used_id"], { ...eventData }).catch(
-      (err) => {
-        Logger({ level: "ERROR", message: err });
-      }
-    );
+    Clickstream.identify(eventData["used_id"], {
+      event_type: "identity",
+      ...eventData,
+    }).catch((err) => {
+      Logger({ level: "ERROR", message: err });
+    });
   });
 
   window.FPI.event.on("user.logout", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
+    Clickstream.sendEvent("user_logout", {
+      event_type: "identity",
+      ...eventData,
+    }).catch((err) => {
+      Logger({ level: "ERROR", message: err });
+    });
     Clickstream.reset().catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -224,7 +232,7 @@ if (typeof window != "undefined") {
   window.FPI.event.on("search.products", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
     Clickstream.sendEvent("product_search", {
-      type: "search",
+      event_type: "search",
       query: eventData.search_text,
     })
       .then((resp) => {

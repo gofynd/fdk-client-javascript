@@ -2816,6 +2816,7 @@ class Order {
       showCrossCompanyData,
       customerId,
       orderType,
+      allowInactive,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2844,6 +2845,7 @@ class Order {
         showCrossCompanyData,
         customerId,
         orderType,
+        allowInactive,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2876,6 +2878,7 @@ class Order {
         showCrossCompanyData,
         customerId,
         orderType,
+        allowInactive,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2909,6 +2912,7 @@ class Order {
     query_params["show_cross_company_data"] = showCrossCompanyData;
     query_params["customer_id"] = customerId;
     query_params["order_type"] = orderType;
+    query_params["allow_inactive"] = allowInactive;
 
     const xHeaders = {};
 
@@ -3033,9 +3037,13 @@ class Order {
    * @description: Retrieve detailed information about a specific shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentById/).
    */
   async getShipmentById(
-    { channelShipmentId, shipmentId, fetchActiveShipment, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      channelShipmentId,
+      shipmentId,
+      fetchActiveShipment,
+      allowInactive,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getShipmentById().validate(
@@ -3043,6 +3051,7 @@ class Order {
         channelShipmentId,
         shipmentId,
         fetchActiveShipment,
+        allowInactive,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3058,6 +3067,7 @@ class Order {
         channelShipmentId,
         shipmentId,
         fetchActiveShipment,
+        allowInactive,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3072,6 +3082,7 @@ class Order {
     query_params["channel_shipment_id"] = channelShipmentId;
     query_params["shipment_id"] = shipmentId;
     query_params["fetch_active_shipment"] = fetchActiveShipment;
+    query_params["allow_inactive"] = allowInactive;
 
     const xHeaders = {};
 

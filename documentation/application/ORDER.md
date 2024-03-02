@@ -286,8 +286,8 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "show_promise": true,
           "timestamp": {
             "dp_promise": null,
-            "min": "2022-09-26T06:37:17+00:00",
-            "max": "2022-09-27T06:37:17+00:00"
+            "min": "2022-09-26T06:37:17.000Z",
+            "max": "2022-09-27T06:37:17.000Z"
           }
         },
         "bags": [
@@ -295,7 +295,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
             "id": 67631,
             "current_status": {
               "status": "placed",
-              "updated_at": "2022-09-23T12:07:35+00:00",
+              "updated_at": "2022-09-23T12:07:35.000Z",
               "name": "Placed",
               "journey_type": "forward"
             },
@@ -496,8 +496,8 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "address_1": " asd",
           "area_code": "400059",
           "longitude": 72.8773159,
-          "created_at": "2022-09-22T18:19:29+00:00",
-          "updated_at": "2022-09-22T18:19:29+00:00",
+          "created_at": "2022-09-22T18:19:29.000Z",
+          "updated_at": "2022-09-22T18:19:29.000Z",
           "address_type": "home",
           "country_code": "91",
           "geo_location": {
@@ -712,8 +712,8 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "show_promise": false,
           "timestamp": {
             "dp_promise": null,
-            "min": "2022-09-26T06:37:17+00:00",
-            "max": "2022-09-27T06:37:17+00:00"
+            "min": "2022-09-26T06:37:17.000Z",
+            "max": "2022-09-27T06:37:17.000Z"
           }
         },
         "bags": [
@@ -721,7 +721,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
             "id": 67632,
             "current_status": {
               "status": "refund_acknowledged",
-              "updated_at": "2022-09-23T12:07:58+00:00",
+              "updated_at": "2022-09-23T12:07:58.000Z",
               "name": "Refund Acknowledged",
               "journey_type": null
             },
@@ -915,8 +915,8 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "address_1": " asd",
           "area_code": "400059",
           "longitude": 72.8773159,
-          "created_at": "2022-09-22T18:19:29+00:00",
-          "updated_at": "2022-09-22T18:19:29+00:00",
+          "created_at": "2022-09-22T18:19:29.000Z",
+          "updated_at": "2022-09-22T18:19:29.000Z",
           "address_type": "home",
           "country_code": "91",
           "geo_location": {
@@ -1097,7 +1097,8 @@ const promise = applicationClient.order.getOrders({  status : value,
  toDate : value,
  startDate : value,
  endDate : value,
- customMeta : value });
+ customMeta : value,
+ allowInactive : value });
 
 // Async/Await
 const data = await applicationClient.order.getOrders({  status : value,
@@ -1107,7 +1108,8 @@ const data = await applicationClient.order.getOrders({  status : value,
  toDate : value,
  startDate : value,
  endDate : value,
- customMeta : value });
+ customMeta : value,
+ allowInactive : value });
 ```
 
 
@@ -1123,7 +1125,8 @@ const data = await applicationClient.order.getOrders({  status : value,
 | toDate | string | no | The date till which the orders should be retrieved. |    
 | startDate | string | no | UTC Start Date in ISO format |    
 | endDate | string | no | UTC Start Date in ISO format |    
-| customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |  
+| customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |    
+| allowInactive | boolean | no | Flag indicating whether inactive shipments are allowed |  
 
 
 
@@ -1369,8 +1372,8 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
           "show_promise": false,
           "timestamp": {
             "dp_promise": null,
-            "min": "2022-08-15T09:38:44+00:00",
-            "max": "2022-08-18T09:38:44+00:00"
+            "min": "2022-08-15T09:38:44.000Z",
+            "max": "2022-08-18T09:38:44.000Z"
           }
         },
         "bags": [
@@ -1378,7 +1381,7 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
             "id": 59987,
             "current_status": {
               "status": "bag_not_picked",
-              "updated_at": "2022-08-22T21:33:33+00:00",
+              "updated_at": "2022-08-22T21:33:33.000Z",
               "name": "Bag Not Picked",
               "journey_type": "forward"
             },
@@ -1669,8 +1672,8 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
     "promise": {
       "show_promise": false,
       "timestamp": {
-        "min": "2022-08-14T13:52:37+00:00",
-        "max": "2022-08-17T13:52:37+00:00",
+        "min": "2022-08-14T13:52:37.000Z",
+        "max": "2022-08-17T13:52:37.000Z",
         "dp_promise": null
       }
     },
@@ -1679,7 +1682,7 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
         "id": 59624,
         "current_status": {
           "status": "bag_not_picked",
-          "updated_at": "2022-08-18T23:46:11+00:00",
+          "updated_at": "2022-08-18T23:46:11.000Z",
           "name": "Bag Not Picked",
           "journey_type": "forward"
         },
@@ -1832,8 +1835,8 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
       "address_1": " test",
       "area_code": "400074",
       "longitude": 72.8423802,
-      "created_at": "2022-08-10T18:52:38+00:00",
-      "updated_at": "2022-08-10T18:52:38+00:00",
+      "created_at": "2022-08-10T18:52:38.000Z",
+      "updated_at": "2022-08-10T18:52:38.000Z",
       "address_type": "home",
       "country_code": "91",
       "geo_location": {

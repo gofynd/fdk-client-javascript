@@ -1436,6 +1436,7 @@ Success
  | event_schema | string? |  yes  |  |
  | event_type | string? |  yes  |  |
  | id | number? |  yes  |  |
+ | subscriber_event_mapping | [SubscriberEventMapping](#SubscriberEventMapping)? |  yes  |  |
  | updated_on | string? |  yes  |  |
  | version | string? |  yes  |  |
  
@@ -1447,25 +1448,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | event_configs | [[EventConfig](#EventConfig)]? |  yes  |  |
- 
-
----
-
-#### [EventConfigs](#EventConfigs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_on | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | event_category | string? |  yes  |  |
- | event_name | string? |  yes  |  |
- | event_schema | string? |  yes  |  |
- | event_type | string? |  yes  |  |
- | id | number? |  yes  |  |
- | subscriber_event_mapping | [SubscriberEventMapping](#SubscriberEventMapping)? |  yes  |  |
- | updated_on | string? |  yes  |  |
- | version | string? |  yes  |  |
  
 
 ---
@@ -1756,17 +1738,6 @@ Success
 
 ---
 
-#### [SubscriberFailureResponse](#SubscriberFailureResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | message | string? |  yes  |  |
- | stack | string? |  yes  |  |
- 
-
----
-
 #### [SubscriberResponse](#SubscriberResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1821,9 +1792,9 @@ Success
 
  | Name | Value | Description |
  | ---- | ----- | ----------- |
- | active | active | Status is active |
- | inactive | inactive | Status is inactive |
- | blocked | blocked | Subscriber is blocked by system due to multiple failed delivery attempts. |
+ | active | active | active |
+ | inactive | inactive | inactive |
+ | blocked | blocked | blocked |
 
 ---
 

@@ -563,12 +563,12 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
         "synonyms": [
           "xyz"
         ],
-        "created_on": "2021-02-25T15:21:57.666000+00:00",
+        "created_on": "2021-02-25T15:21:57.666Z",
         "created_by": {
           "user_id": "123",
           "username": "917827311650_22960"
         },
-        "modified_on": "2021-02-25T15:21:57.666000+00:00",
+        "modified_on": "2021-02-25T15:21:57.666Z",
         "name": "test_post",
         "logo": "http://cdn4.gofynd.com/media/logo/brand/original/4597_40d1ce44d61940d4829a3c54951bd9ee.jpg"
       },
@@ -611,12 +611,12 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
           "username": "silverbolt"
         },
         "company_type": "mbo",
-        "created_on": "2021-02-25T15:21:51.526000+00:00",
+        "created_on": "2021-02-25T15:21:51.526Z",
         "created_by": {
           "user_id": "123",
           "username": "917827311650_22960"
         },
-        "modified_on": "2021-02-25T17:44:55.722000+00:00",
+        "modified_on": "2021-02-25T17:44:55.722Z",
         "name": "Cache Company"
       },
       "created_by": {
@@ -867,7 +867,7 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 ```json
 {
-  "verified_on": "2021-02-25T15:22:07.140000+00:00",
+  "verified_on": "2021-02-25T15:22:07.140Z",
   "company": {
     "business_type": "huf",
     "stage": "complete",
@@ -1238,12 +1238,12 @@ Company profile object. See example below or refer `LocationListSerializer` for 
           "username": "silverbolt"
         },
         "company_type": "mbo",
-        "created_on": "2021-02-25T15:21:51.526000+00:00",
+        "created_on": "2021-02-25T15:21:51.526Z",
         "created_by": {
           "user_id": "123",
           "username": "917827311650_22960"
         },
-        "modified_on": "2021-02-25T17:44:55.722000+00:00",
+        "modified_on": "2021-02-25T17:44:55.722Z",
         "name": "Cache Company"
       },
       "address": {
@@ -1355,7 +1355,7 @@ Company profile object. See example below or refer `LocationListSerializer` for 
       "product_return_config": {
         "on_same_store": true
       },
-      "created_on": "2021-02-25T15:22:04.913000+00:00",
+      "created_on": "2021-02-25T15:22:04.913Z",
       "created_by": {
         "user_id": "123",
         "username": "917827311650_22960"
