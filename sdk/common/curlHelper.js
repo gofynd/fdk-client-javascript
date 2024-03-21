@@ -1,6 +1,6 @@
 const qs = require("query-string");
-const combineURLs = require("axios/lib/helpers/combineURLs");
-const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
+const { combineURLs } = require("axios");
+const { isAbsoluteURL } = require("axios");
 
 let reqConfig;
 

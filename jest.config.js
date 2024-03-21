@@ -13,4 +13,6 @@ module.exports = {
     "testPathIgnorePatterns": [
       "cypress/integration/standalone.spec.js"
     ]
+    ,
+    moduleDirectories: ['node_modules', 'axios/lib/helpers'],
 };

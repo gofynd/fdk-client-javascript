@@ -1,5 +1,5 @@
-const combineURLs = require("axios/lib/helpers/combineURLs");
-const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
+const { combineURLs } = require("axios");
+const { isAbsoluteURL } = require("axios");
 const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
