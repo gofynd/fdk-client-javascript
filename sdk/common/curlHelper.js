@@ -1,6 +1,5 @@
 const qs = require("query-string");
-const { combineURLs } = require("axios");
-const { isAbsoluteURL } = require("axios");
+const { combineURLs, isAbsoluteURL } = require("./Utility");
 
 let reqConfig;
 

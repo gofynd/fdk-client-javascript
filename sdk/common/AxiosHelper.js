@@ -1,5 +1,4 @@
-const { combineURLs } = require("axios");
-const { isAbsoluteURL } = require("axios");
+const { combineURLs, isAbsoluteURL } = require("./Utility");
 const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");

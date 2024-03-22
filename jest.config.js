@@ -14,5 +14,4 @@ module.exports = {
       "cypress/integration/standalone.spec.js"
     ]
     ,
-    moduleDirectories: ['node_modules', 'axios/lib/helpers'],
 };
