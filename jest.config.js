@@ -13,4 +13,5 @@ module.exports = {
     "testPathIgnorePatterns": [
       "cypress/integration/standalone.spec.js"
     ]
+    ,
 };
