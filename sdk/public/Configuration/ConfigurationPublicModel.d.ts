@@ -53,15 +53,14 @@ export = ConfigurationPublicModel;
  * @property {ApplicationCors} [cors]
  * @property {ApplicationAuth} [auth]
  * @property {string} [description] - It contains detailed information about the
- *   sales channel
+ *   sales channel.
  * @property {string} [channel_type] - It indicates different channel types like
- *   store, website-and-mobile-apps. Default value is store.
+ *   store, website-and-mobile-apps. Default value is store
  * @property {number} [cache_ttl] - An integer value that specifies the number
  *   of seconds until the key expires
  * @property {boolean} [is_internal] - Indicates whether a sales channel is
  *   internal or not
- * @property {boolean} [is_active] - Indicates whether a sales channel is active
- *   or not active
+ * @property {boolean} [is_active] - Indicates sales channel is active or not active
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
@@ -69,30 +68,30 @@ export = ConfigurationPublicModel;
  *   of owner who owns the application
  * @property {number} [company_id] - Numeric ID allotted to a business account
  *   where the sales channel exists
- * @property {string} [token] - Randomly generated fixed-length string for sales
+ * @property {string} [token] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
  * @property {ApplicationRedirections[]} [redirections]
  * @property {ApplicationMeta[]} [meta]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel creation
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  * @property {SecureUrl} [banner]
  * @property {SecureUrl} [logo]
  * @property {SecureUrl} [favicon]
  * @property {Domain[]} [domains]
- * @property {string} [app_type] - It shows whether application is live or in
- *   development mode
+ * @property {string} [app_type] - It shows application is live or in development mode.
  * @property {SecureUrl} [mobile_logo]
  * @property {Domain} [domain]
  * @property {string} [slug]
+ * @property {string} [mode]
+ * @property {string} [status]
+ * @property {TokenSchema[]} [tokens]
  */
 /**
- * @typedef NotFound
- * @property {string} [message] - Response message for not found
- */
-/**
- * @typedef BadRequest
- * @property {string} [message] - Failure message (in a string format)
+ * @typedef TokenSchema
+ * @property {string} [token]
+ * @property {Object} [created_by]
+ * @property {string} [created_at] - ISO 8601 timestamp of when token created
  */
 /**
  * @typedef LocationDefaultLanguage
@@ -132,7 +131,7 @@ export = ConfigurationPublicModel;
 declare class ConfigurationPublicModel {
 }
 declare namespace ConfigurationPublicModel {
-    export { ApplicationResponse, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequest, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
+    export { ApplicationResponse, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
 }
 /** @returns {ApplicationResponse} */
 declare function ApplicationResponse(): ApplicationResponse;
@@ -240,12 +239,12 @@ type Application = {
     auth?: ApplicationAuth;
     /**
      * - It contains detailed information about the
-     * sales channel
+     * sales channel.
      */
     description?: string;
     /**
      * - It indicates different channel types like
-     * store, website-and-mobile-apps. Default value is store.
+     * store, website-and-mobile-apps. Default value is store
      */
     channel_type?: string;
     /**
@@ -259,8 +258,7 @@ type Application = {
      */
     is_internal?: boolean;
     /**
-     * - Indicates whether a sales channel is active
-     * or not active
+     * - Indicates sales channel is active or not active
      */
     is_active?: boolean;
     /**
@@ -283,7 +281,7 @@ type Application = {
      */
     company_id?: number;
     /**
-     * - Randomly generated fixed-length string for sales
+     * - Random generated fix length string for sales
      * channel. It is required and auto-generated.
      */
     token?: string;
@@ -296,7 +294,7 @@ type Application = {
     /**
      * - ISO 8601 timestamp of sales channel updation
      */
-    updated_at?: string;
+    modified_at?: string;
     /**
      * - Version key for tracking revisions. Default value is zero.
      */
@@ -306,29 +304,25 @@ type Application = {
     favicon?: SecureUrl;
     domains?: Domain[];
     /**
-     * - It shows whether application is live or in
-     * development mode
+     * - It shows application is live or in development mode.
      */
     app_type?: string;
     mobile_logo?: SecureUrl;
     domain?: Domain;
     slug?: string;
+    mode?: string;
+    status?: string;
+    tokens?: TokenSchema[];
 };
-/** @returns {NotFound} */
-declare function NotFound(): NotFound;
-type NotFound = {
+/** @returns {TokenSchema} */
+declare function TokenSchema(): TokenSchema;
+type TokenSchema = {
+    token?: string;
+    created_by?: any;
     /**
-     * - Response message for not found
+     * - ISO 8601 timestamp of when token created
      */
-    message?: string;
-};
-/** @returns {BadRequest} */
-declare function BadRequest(): BadRequest;
-type BadRequest = {
-    /**
-     * - Failure message (in a string format)
-     */
-    message?: string;
+    created_at?: string;
 };
 /** @returns {LocationDefaultLanguage} */
 declare function LocationDefaultLanguage(): LocationDefaultLanguage;

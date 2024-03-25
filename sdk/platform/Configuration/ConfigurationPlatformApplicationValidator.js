@@ -43,6 +43,8 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /** @typedef GetApplicationByIdParam */
 
+/** @typedef GetApplicationConfigurationParam */
+
 /**
  * @typedef GetBuildConfigParam
  * @property {string} platformType - The device platform for which the mobile
@@ -212,6 +214,11 @@ class ConfigurationPlatformApplicationValidator {
 
   /** @returns {GetApplicationByIdParam} */
   static getApplicationById() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetApplicationConfigurationParam} */
+  static getApplicationConfiguration() {
     return Joi.object({}).required();
   }
 

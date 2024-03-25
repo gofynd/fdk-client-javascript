@@ -24,5 +24,5 @@ declare class Partner {
      */
     removeProxyPath({ extensionId, attachedPath, requestHeaders }?: PartnerPlatformApplicationValidator.RemoveProxyPathParam, { responseHeaders }?: object): Promise<PartnerPlatformModel.RemoveProxyResponse>;
 }
-import PartnerPlatformApplicationValidator = require("./PartnerPlatformApplicationValidator");
-import PartnerPlatformModel = require("./PartnerPlatformModel");
+import PartnerPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Partner/PartnerPlatformApplicationValidator");
+import PartnerPlatformModel = require("sdk/output/javascript/code/sdk/platform/Partner/PartnerPlatformModel");

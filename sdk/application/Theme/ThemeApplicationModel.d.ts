@@ -14,6 +14,8 @@ export = ThemeApplicationModel;
  * @property {string} [theme]
  * @property {AvailablePageSeo} [seo]
  * @property {Object[]} [props]
+ * @property {string} [updated_at]
+ * @property {string} [created_at]
  * @property {string} [_id]
  */
 /**
@@ -51,7 +53,7 @@ export = ThemeApplicationModel;
  * @property {Object} [params]
  * @property {Object} [query]
  * @property {string} [url]
- * @property {PageType} type
+ * @property {string} [type]
  */
 /**
  * @typedef AvailablePageSeo
@@ -60,7 +62,7 @@ export = ThemeApplicationModel;
  * @property {string} [canonical_url]
  * @property {SEOMetaItem[]} [meta_tags]
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {SEObreadcrumb[]} [breadcrumbs]
  * @property {string} [_id]
  */
 /**
@@ -70,6 +72,7 @@ export = ThemeApplicationModel;
  * @property {Object} [props]
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
+ * @property {string} [source]
  * @property {AvailablePagePredicate} [predicate]
  */
 /**
@@ -125,6 +128,8 @@ export = ThemeApplicationModel;
  * @property {SectionItem[]} [available_sections] - Available sections information
  * @property {string} [theme_type]
  * @property {number} [company_id] - The company id in which sales channel exists
+ * @property {string} [src]
+ * @property {Object[]} [global_sections]
  */
 /**
  * @typedef Font
@@ -149,7 +154,7 @@ export = ThemeApplicationModel;
  * @property {string} current - The current configuration
  * @property {ThemeConfiguration[]} list - A list of configurations
  * @property {GlobalSchema} [global_schema]
- * @property {Preset} [preset]
+ * @property {Object} [preset] - An Object of default theme configurations
  */
 /**
  * @typedef ThemeConfiguration
@@ -201,7 +206,6 @@ export = ThemeApplicationModel;
  */
 /**
  * @typedef GlobalConfig
- * @property {StaticConfig} [statics]
  * @property {CustomConfig} [custom]
  */
 /**
@@ -286,6 +290,8 @@ export = ThemeApplicationModel;
  * @property {Colors} [colors]
  * @property {AuthConfig} [auth]
  * @property {PaletteConfig} [palette]
+ * @property {Object} [order_tracking]
+ * @property {Object} [manifest]
  */
 /**
  * @typedef Colors
@@ -374,13 +380,8 @@ export = ThemeApplicationModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {Section[]} [sections]
+ * @property {string} [value] - The value of the page.
  */
 /**
  * @typedef SectionProps
@@ -473,58 +474,10 @@ export = ThemeApplicationModel;
  * @typedef BlitzkriegApiErrorSchema
  * @property {string} [message]
  */
-/**
- * @typedef {| "about-us"
- *   | "addresses"
- *   | "blog"
- *   | "brands"
- *   | "cards"
- *   | "cart"
- *   | "categories"
- *   | "brand"
- *   | "category"
- *   | "collection"
- *   | "collections"
- *   | "contact-us"
- *   | "external"
- *   | "faq"
- *   | "freshchat"
- *   | "home"
- *   | "notification-settings"
- *   | "orders"
- *   | "page"
- *   | "policy"
- *   | "product"
- *   | "product-request"
- *   | "products"
- *   | "profile"
- *   | "profile-order-shipment"
- *   | "profile-basic"
- *   | "profile-company"
- *   | "profile-emails"
- *   | "profile-phones"
- *   | "rate-us"
- *   | "refer-earn"
- *   | "settings"
- *   | "shared-cart"
- *   | "tnc"
- *   | "track-order"
- *   | "wishlist"
- *   | "sections"
- *   | "form"
- *   | "cart-delivery"
- *   | "cart-payment"
- *   | "cart-review"
- *   | "login"
- *   | "register"
- *   | "shipping-policy"
- *   | "return-policy"
- *   | "order-status"} PageType
- */
 declare class ThemeApplicationModel {
 }
 declare namespace ThemeApplicationModel {
-    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, ActionPage, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema, PageType };
+    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, ActionPage, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema };
 }
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -543,6 +496,8 @@ type AvailablePageSchema = {
     theme?: string;
     seo?: AvailablePageSeo;
     props?: any[];
+    updated_at?: string;
+    created_at?: string;
     _id?: string;
 };
 /** @returns {AvailablePageSectionMetaAttributes} */
@@ -587,7 +542,7 @@ type ActionPage = {
     params?: any;
     query?: any;
     url?: string;
-    type: PageType;
+    type?: string;
 };
 /** @returns {AvailablePageSeo} */
 declare function AvailablePageSeo(): AvailablePageSeo;
@@ -597,7 +552,7 @@ type AvailablePageSeo = {
     canonical_url?: string;
     meta_tags?: SEOMetaItem[];
     sitemap?: SEOSitemap;
-    breadcrumb?: SEObreadcrumb[];
+    breadcrumbs?: SEObreadcrumb[];
     _id?: string;
 };
 /** @returns {AvailablePageSchemaSections} */
@@ -608,6 +563,7 @@ type AvailablePageSchemaSections = {
     props?: any;
     blocks?: any[];
     preset?: any;
+    source?: string;
     predicate?: AvailablePagePredicate;
 };
 /** @returns {AvailablePagePredicate} */
@@ -714,6 +670,8 @@ type ThemesSchema = {
      * - The company id in which sales channel exists
      */
     company_id?: number;
+    src?: string;
+    global_sections?: any[];
 };
 /** @returns {Font} */
 declare function Font(): Font;
@@ -757,7 +715,10 @@ type Config = {
      */
     list: ThemeConfiguration[];
     global_schema?: GlobalSchema;
-    preset?: Preset;
+    /**
+     * - An Object of default theme configurations
+     */
+    preset?: any;
 };
 /** @returns {ThemeConfiguration} */
 declare function ThemeConfiguration(): ThemeConfiguration;
@@ -909,7 +870,6 @@ type CustomProps = {
 /** @returns {GlobalConfig} */
 declare function GlobalConfig(): GlobalConfig;
 type GlobalConfig = {
-    statics?: StaticConfig;
     custom?: CustomConfig;
 };
 /** @returns {GeneralSetting} */
@@ -1100,6 +1060,8 @@ type StaticProps = {
     colors?: Colors;
     auth?: AuthConfig;
     palette?: PaletteConfig;
+    order_tracking?: any;
+    manifest?: any;
 };
 /** @returns {Colors} */
 declare function Colors(): Colors;
@@ -1282,13 +1244,11 @@ type Preset = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
-    size?: number;
+    sections?: Section[];
+    /**
+     * - The value of the page.
+     */
+    value?: string;
 };
 /** @returns {SectionProps} */
 declare function SectionProps(): SectionProps;
@@ -1467,10 +1427,3 @@ declare function BlitzkriegApiErrorSchema(): BlitzkriegApiErrorSchema;
 type BlitzkriegApiErrorSchema = {
     message?: string;
 };
-/**
- * Enum: PageType Used By: Theme
- *
- * @returns {PageType}
- */
-declare function PageType(): PageType;
-type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

@@ -29,5 +29,5 @@ declare class Configuration {
      */
     searchApplication({ authorization, query, requestHeaders }?: ConfigurationPublicValidator.SearchApplicationParam, { responseHeaders }?: object): Promise<ConfigurationPublicModel.ApplicationResponse>;
 }
-import ConfigurationPublicValidator = require("./ConfigurationPublicValidator");
-import ConfigurationPublicModel = require("./ConfigurationPublicModel");
+import ConfigurationPublicValidator = require("sdk/output/javascript/code/sdk/public/Configuration/ConfigurationPublicValidator");
+import ConfigurationPublicModel = require("sdk/output/javascript/code/sdk/public/Configuration/ConfigurationPublicModel");

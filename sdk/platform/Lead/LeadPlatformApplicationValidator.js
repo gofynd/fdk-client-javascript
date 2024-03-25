@@ -59,7 +59,7 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  *   ticket filters
  * @property {string} [q] - Search through ticket titles and description
  * @property {string} [status] - Filter tickets on status
- * @property {LeadPlatformModel.PriorityEnum} [priority] - Filter tickets on priority
+ * @property {string} [priority] - Filter tickets on priority
  * @property {string} [category] - Filter tickets on category
  */
 
@@ -157,7 +157,7 @@ class LeadPlatformApplicationValidator {
       filters: Joi.boolean(),
       q: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      priority: LeadPlatformModel.PriorityEnum(),
+      priority: Joi.string().allow(""),
       category: Joi.string().allow(""),
     }).required();
   }

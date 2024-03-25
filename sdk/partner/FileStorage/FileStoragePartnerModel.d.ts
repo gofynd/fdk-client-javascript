@@ -1,5 +1,39 @@
 export = FileStoragePartnerModel;
 /**
+ * @typedef SizeConstraints
+ * @property {number} [max] - Maximum allowed size (in bytes) for files in the namespace
+ */
+/**
+ * @typedef FetchProxyResponse
+ * @property {string} [id]
+ * @property {string} [created_at]
+ */
+/**
+ * @typedef FetchProxyRequest
+ * @property {number} [id]
+ * @property {string} [customer]
+ * @property {number} [quantity]
+ * @property {number} [price]
+ * @property {string} [url]
+ */
+/**
+ * @typedef ProxyResponse
+ * @property {Object} [data]
+ * @property {Object} [support]
+ */
+/**
+ * @typedef NamespaceDetails
+ * @property {string} [namespace] - The namespace identifier
+ * @property {string[]} [valid_content_types] - List of valid content types for
+ *   the namespace
+ * @property {SizeConstraints} [size]
+ * @property {string} [file_acl] - Access control level for files in the namespace
+ */
+/**
+ * @typedef AllNamespaceDetails
+ * @property {NamespaceDetails[]} [items]
+ */
+/**
  * @typedef CDN
  * @property {string} url
  * @property {string} absolute_url
@@ -59,8 +93,60 @@ export = FileStoragePartnerModel;
 declare class FileStoragePartnerModel {
 }
 declare namespace FileStoragePartnerModel {
-    export { CDN, Upload, StartResponse, StartRequest, CreatedBy, CompleteResponse, FailedResponse };
+    export { SizeConstraints, FetchProxyResponse, FetchProxyRequest, ProxyResponse, NamespaceDetails, AllNamespaceDetails, CDN, Upload, StartResponse, StartRequest, CreatedBy, CompleteResponse, FailedResponse };
 }
+/** @returns {SizeConstraints} */
+declare function SizeConstraints(): SizeConstraints;
+type SizeConstraints = {
+    /**
+     * - Maximum allowed size (in bytes) for files in the namespace
+     */
+    max?: number;
+};
+/** @returns {FetchProxyResponse} */
+declare function FetchProxyResponse(): FetchProxyResponse;
+type FetchProxyResponse = {
+    id?: string;
+    created_at?: string;
+};
+/** @returns {FetchProxyRequest} */
+declare function FetchProxyRequest(): FetchProxyRequest;
+type FetchProxyRequest = {
+    id?: number;
+    customer?: string;
+    quantity?: number;
+    price?: number;
+    url?: string;
+};
+/** @returns {ProxyResponse} */
+declare function ProxyResponse(): ProxyResponse;
+type ProxyResponse = {
+    data?: any;
+    support?: any;
+};
+/** @returns {NamespaceDetails} */
+declare function NamespaceDetails(): NamespaceDetails;
+type NamespaceDetails = {
+    /**
+     * - The namespace identifier
+     */
+    namespace?: string;
+    /**
+     * - List of valid content types for
+     * the namespace
+     */
+    valid_content_types?: string[];
+    size?: SizeConstraints;
+    /**
+     * - Access control level for files in the namespace
+     */
+    file_acl?: string;
+};
+/** @returns {AllNamespaceDetails} */
+declare function AllNamespaceDetails(): AllNamespaceDetails;
+type AllNamespaceDetails = {
+    items?: NamespaceDetails[];
+};
 /** @returns {CDN} */
 declare function CDN(): CDN;
 type CDN = {

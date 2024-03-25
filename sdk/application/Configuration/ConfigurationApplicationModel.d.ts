@@ -287,6 +287,7 @@ export = ConfigurationApplicationModel;
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {BuyboxFeature} [buybox]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -393,6 +394,16 @@ export = ConfigurationApplicationModel;
  * @typedef OrderFeature
  * @property {boolean} [buy_again] - Allow buy again option for order. Default
  *   value is false.
+ */
+/**
+ * @typedef BuyboxFeature
+ * @property {boolean} [show_name] - Allow users to see seller/stores name on
+ *   PDP (product detail page).
+ * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
+ *   PDP (product detail page).
+ * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
+ *   between sellers and stores. True indicates seller listing, while False
+ *   indicates store listing.
  */
 /**
  * @typedef AppFeatureResponse
@@ -525,7 +536,7 @@ export = ConfigurationApplicationModel;
  */
 /**
  * @typedef CompanyAboutAddress
- * @property {number} [pincode] - 6-digit PIN code of the city, e.g. 400001
+ * @property {string} [pincode] - 6-digit PIN code of the city, e.g. 400001
  * @property {string} [address1] - Primary address line of the company
  * @property {string} [address2] - Secondary address line of the company
  * @property {string} [city] - City name, e.g. Mumbai
@@ -555,13 +566,14 @@ export = ConfigurationApplicationModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {string} type - Page type
+ * @property {number} [size] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ * @property {number} [current] - Current page number
+ * @property {boolean} [has_next] - Next page is present or not
+ * @property {number} [item_total] - Total number of items to retrieve
+ * @property {string} [next_id] - Next page ID
+ * @property {boolean} [has_previous] - Previous page is present or not
  */
 /**
  * @typedef ApplicationInformation
@@ -746,7 +758,7 @@ export = ConfigurationApplicationModel;
  * @property {string} [address1] - Address of the opted store
  * @property {StoreLatLong} [lat_long]
  * @property {string} [address2] - Address of the opted store
- * @property {number} [pincode] - 6-digit PIN code of the opted store location
+ * @property {string} [pincode] - 6-digit PIN code of the opted store location
  * @property {string} [country] - Country of the opted store, e.g. India
  * @property {string} [city] - City of the opted store, e.g. Mumbai
  */
@@ -761,7 +773,7 @@ export = ConfigurationApplicationModel;
  * @property {string} [store_type] - Store type of the ordering store, e.g.
  *   high_street, mall, warehouse
  * @property {string} [store_code] - Store code of the ordering store, e.g. MUM-102
- * @property {number} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
+ * @property {string} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
  * @property {string} [code] - Code of the ordering store (usually same as Store Code)
  */
 /**
@@ -783,7 +795,7 @@ export = ConfigurationApplicationModel;
 declare class ConfigurationApplicationModel {
 }
 declare namespace ConfigurationApplicationModel {
-    export { ApplicationAboutResponse, ApplicationInfo, CompanyInfo, OwnerInfo, SupportedLanguage, LanguageResponse, AppStaffResponse, AppStaffListResponse, OrderingStoreSelectRequest, OrderingStoreSelect, AppStaff, AppTokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, NotFound, InvalidPayloadRequest, UnhandledError, SuccessMessageResponse, CompanyAboutAddress, UserEmail, UserPhoneNumber, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationSupportPhone, InformationSupportEmail, InformationLoc, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, DefaultCurrency, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores };
+    export { ApplicationAboutResponse, ApplicationInfo, CompanyInfo, OwnerInfo, SupportedLanguage, LanguageResponse, AppStaffResponse, AppStaffListResponse, OrderingStoreSelectRequest, OrderingStoreSelect, AppStaff, AppTokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, BuyboxFeature, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, NotFound, InvalidPayloadRequest, UnhandledError, SuccessMessageResponse, CompanyAboutAddress, UserEmail, UserPhoneNumber, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationSupportPhone, InformationSupportEmail, InformationLoc, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, DefaultCurrency, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores };
 }
 /** @returns {ApplicationAboutResponse} */
 declare function ApplicationAboutResponse(): ApplicationAboutResponse;
@@ -1328,6 +1340,7 @@ type AppFeature = {
     qr?: QrFeature;
     pcr?: PcrFeature;
     order?: OrderFeature;
+    buybox?: BuyboxFeature;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * for the sales channel features
@@ -1533,6 +1546,26 @@ type OrderFeature = {
      * value is false.
      */
     buy_again?: boolean;
+};
+/** @returns {BuyboxFeature} */
+declare function BuyboxFeature(): BuyboxFeature;
+type BuyboxFeature = {
+    /**
+     * - Allow users to see seller/stores name on
+     * PDP (product detail page).
+     */
+    show_name?: boolean;
+    /**
+     * - Allow selection of sellers/stores on
+     * PDP (product detail page).
+     */
+    enable_selection?: boolean;
+    /**
+     * - Toggle buybox listing
+     * between sellers and stores. True indicates seller listing, while False
+     * indicates store listing.
+     */
+    is_seller_buybox_enabled?: boolean;
 };
 /** @returns {AppFeatureResponse} */
 declare function AppFeatureResponse(): AppFeatureResponse;
@@ -1804,7 +1837,7 @@ type CompanyAboutAddress = {
     /**
      * - 6-digit PIN code of the city, e.g. 400001
      */
-    pincode?: number;
+    pincode?: string;
     /**
      * - Primary address line of the company
      */
@@ -1882,13 +1915,35 @@ type UserPhoneNumber = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
+    /**
+     * - Page type
+     */
     type: string;
+    /**
+     * - The number of items to retrieve in each page.
+     * Default value is 10.
+     */
     size?: number;
+    /**
+     * - Current page number
+     */
+    current?: number;
+    /**
+     * - Next page is present or not
+     */
+    has_next?: boolean;
+    /**
+     * - Total number of items to retrieve
+     */
+    item_total?: number;
+    /**
+     * - Next page ID
+     */
+    next_id?: string;
+    /**
+     * - Previous page is present or not
+     */
+    has_previous?: boolean;
 };
 /** @returns {ApplicationInformation} */
 declare function ApplicationInformation(): ApplicationInformation;
@@ -2284,7 +2339,7 @@ type OptedStoreAddress = {
     /**
      * - 6-digit PIN code of the opted store location
      */
-    pincode?: number;
+    pincode?: string;
     /**
      * - Country of the opted store, e.g. India
      */
@@ -2327,7 +2382,7 @@ type OrderingStore = {
     /**
      * - 6-digit PIN Code of the ordering store, e.g. 400001
      */
-    pincode?: number;
+    pincode?: string;
     /**
      * - Code of the ordering store (usually same as Store Code)
      */

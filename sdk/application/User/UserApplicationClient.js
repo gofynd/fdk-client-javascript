@@ -58,8 +58,6 @@ class User {
         "/service/application/user/authentication/v1.0/otp/mobile/send",
       sendResetPasswordEmail:
         "/service/application/user/authentication/v1.0/login/password/reset",
-      sendResetPasswordMobile:
-        "/service/application/user/authentication/v1.0/login/password/mobile/reset",
       sendResetToken:
         "/service/application/user/authentication/v1.0/login/password/reset/token",
       sendVerificationLinkToEmail:
@@ -112,11 +110,11 @@ class User {
    * @description: Adds a new email address to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
    */
   async addEmail(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.addEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -125,7 +123,7 @@ class User {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = UserApplicationValidator.addEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -136,7 +134,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -189,11 +186,11 @@ class User {
    * @description: Adds a new mobile number to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
    */
   async addMobileNumber(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.addMobileNumber().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -204,7 +201,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.addMobileNumber().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -215,7 +212,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -989,11 +985,11 @@ class User {
    * @description: Enables login through Apple ID specifically for iOS users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
    */
   async loginWithAppleIOS(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithAppleIOS().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1004,7 +1000,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.loginWithAppleIOS().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1015,7 +1011,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -1148,11 +1143,11 @@ class User {
    * @description: Enables login through Facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
    */
   async loginWithFacebook(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithFacebook().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1163,7 +1158,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.loginWithFacebook().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1174,7 +1169,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -1227,11 +1221,11 @@ class User {
    * @description: Enables login through Google accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
    */
   async loginWithGoogle(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithGoogle().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1242,7 +1236,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.loginWithGoogle().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1253,7 +1247,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -1306,13 +1299,13 @@ class User {
    * @description: Facilitates Google login specifically for Android users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
    */
   async loginWithGoogleAndroid(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = UserApplicationValidator.loginWithGoogleAndroid().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1323,7 +1316,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.loginWithGoogleAndroid().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1334,7 +1327,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -1387,11 +1379,11 @@ class User {
    * @description: Facilitates Google login specifically for iOS users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
    */
   async loginWithGoogleIOS(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithGoogleIOS().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1402,7 +1394,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.loginWithGoogleIOS().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1413,7 +1405,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -1466,11 +1457,11 @@ class User {
    * @description: Allows users to log in using a one-time password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
    */
   async loginWithOTP(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1481,7 +1472,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.loginWithOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1492,7 +1483,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -1699,11 +1689,11 @@ class User {
    * @description: Enables new users to register using a form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
    */
   async registerWithForm(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.registerWithForm().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1714,7 +1704,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.registerWithForm().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1725,7 +1715,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -1857,11 +1846,11 @@ class User {
    * @description: Sends a one-time password to the user's forgot email for verification request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
    */
   async sendForgotOTPOnEmail(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.sendForgotOTPOnEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1872,7 +1861,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.sendForgotOTPOnEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1883,7 +1872,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -1936,11 +1924,11 @@ class User {
    * @description: Sends a one-time password to the user's forgot mobile for verification request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
    */
   async sendForgotOTPOnMobile(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.sendForgotOTPOnMobile().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1951,7 +1939,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.sendForgotOTPOnMobile().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1962,7 +1950,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -2015,11 +2002,11 @@ class User {
    * @description: Sends a one-time password to the user's email for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
    */
   async sendOTPOnEmail(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.sendOTPOnEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2030,7 +2017,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.sendOTPOnEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2041,7 +2028,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -2094,11 +2080,11 @@ class User {
    * @description: Sends a one-time password to the user's mobile for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
    */
   async sendOTPOnMobile(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.sendOTPOnMobile().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2109,7 +2095,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.sendOTPOnMobile().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2120,7 +2106,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -2173,13 +2158,13 @@ class User {
    * @description: Sends a password reset link to the user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
    */
   async sendResetPasswordEmail(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = UserApplicationValidator.sendResetPasswordEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2190,7 +2175,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.sendResetPasswordEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2201,7 +2186,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -2237,84 +2221,6 @@ class User {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > User > sendResetPasswordEmail \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<any>} - Success response
-   * @name sendResetPasswordMobile
-   * @summary: Reset password (Mobile).
-   * @description: Sends a password reset OTP to the user's mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
-   */
-  async sendResetPasswordMobile(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = UserApplicationValidator.sendResetPasswordMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendResetPasswordMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendResetPasswordMobile \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["platform"] = platform;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["sendResetPasswordMobile"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: true });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendResetPasswordMobile \n ${res_error}`,
         });
       }
     }
@@ -2412,13 +2318,13 @@ class User {
    * @description: Sends a verification link to a newly added email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
    */
   async sendVerificationLinkToEmail(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = UserApplicationValidator.sendVerificationLinkToEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2429,7 +2335,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.sendVerificationLinkToEmail().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2440,7 +2346,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -2496,13 +2401,13 @@ class User {
    * @description: Sends a verification link to a newly added mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
    */
   async sendVerificationLinkToMobile(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = UserApplicationValidator.sendVerificationLinkToMobile().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2513,7 +2418,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.sendVerificationLinkToMobile().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2524,7 +2429,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -2813,11 +2717,11 @@ class User {
    * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
    */
   async updateProfile(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.updateProfile().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2828,7 +2732,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.updateProfile().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2839,7 +2743,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -3123,11 +3026,11 @@ class User {
    * @description: Validates the OTP sent to the user's forgot email address request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
    */
   async verifyEmailForgotOTP(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.verifyEmailForgotOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3138,7 +3041,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.verifyEmailForgotOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -3149,7 +3052,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -3202,11 +3104,11 @@ class User {
    * @description: Validates the OTP sent to the user's email address request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailOTP/).
    */
   async verifyEmailOTP(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.verifyEmailOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3217,7 +3119,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.verifyEmailOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -3228,7 +3130,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -3359,11 +3260,11 @@ class User {
    * @description: Use this API to verify the Forgot OTP received on a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
    */
   async verifyMobileForgotOTP(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.verifyMobileForgotOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3374,7 +3275,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.verifyMobileForgotOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -3385,7 +3286,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 
@@ -3438,11 +3338,11 @@ class User {
    * @description: Validates the OTP sent to the user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
    */
   async verifyMobileOTP(
-    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.verifyMobileOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3453,7 +3353,7 @@ class User {
     const {
       error: warrning,
     } = UserApplicationValidator.verifyMobileOTP().validate(
-      { body, platform },
+      { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -3464,7 +3364,6 @@ class User {
     }
 
     const query_params = {};
-    query_params["platform"] = platform;
 
     const xHeaders = {};
 

@@ -8,8 +8,23 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef CreateGeoAreaParam
+ * @property {ServiceabilityPlatformModel.GeoAreaRequestBody} body
+ */
+
+/**
  * @typedef CreateStoreRulesParam
  * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
+ */
+
+/**
+ * @typedef CreateZoneParam
+ * @property {ServiceabilityPlatformModel.CreateZoneV2Data} body
+ */
+
+/**
+ * @typedef DeleteZoneParam
+ * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
  */
 
 /** @typedef GetApplicationConfigParam */
@@ -31,6 +46,23 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef GetGeoAreaParam
+ * @property {string} geoareaId - A unique identifier for the GeoArea.
+ */
+
+/**
+ * @typedef GetGeoAreasParam
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {boolean} [isActive] - Status of GeoAreas (either active or inactive)
+ * @property {string} [q] - Search with name as a free text
+ * @property {string} [countryIsoCode] - ISO2 code of the country
+ * @property {string} [state] - State name
+ * @property {string} [city] - City name
+ * @property {string} [pincode] - Pincode value to search geoareas
+ * @property {string} [sector] - Sector value to search geoareas
+ */
+
+/**
  * @typedef GetStoreRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
  *   particular rule object.
@@ -44,8 +76,34 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef GetZoneParam
+ * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
+ */
+
+/**
+ * @typedef GetZonesParam
+ * @property {string} [stage] - Identifies the specific stage of zone bing requested.
+ * @property {number} [pageSize] - Defines the number of items displayed per page.
+ * @property {string} [zoneIds] - Defines the specific zones with the given ids
+ *   to be displayed.
+ * @property {boolean} [isActive] - Status of Zone (either active or inactive)
+ * @property {string} [q] - Search with name as a free text.
+ * @property {string} [country] - Name of the country.
+ * @property {string} [countryIsoCode] - ISO2 code of the country.
+ * @property {string} [pincode] - PIN Code of the country.
+ * @property {string} [state] - State of the country.
+ * @property {string} [city] - City of the country.
+ * @property {string} [sector] - Sector name of mentioned address.
+ */
+
+/**
  * @typedef InsertApplicationConfigParam
  * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
+ */
+
+/**
+ * @typedef PatchApplicationConfigurationParam
+ * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequest} body
  */
 
 /**
@@ -67,6 +125,12 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @typedef UpdateCourierRuleParam
  * @property {string} ruleId - A `rule_id` is a unique identifier for a particular Dp.
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
+ */
+
+/**
+ * @typedef UpdateGeoAreaParam
+ * @property {string} geoareaId - A unique identifier for the GeoArea.
+ * @property {ServiceabilityPlatformModel.GeoAreaRequestBody} body
  */
 
 /**
@@ -101,6 +165,12 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
  */
 
+/**
+ * @typedef UpdateZoneParam
+ * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
+ * @property {ServiceabilityPlatformModel.UpdateZoneDataV2} body
+ */
+
 class ServiceabilityPlatformApplicationValidator {
   /** @returns {CreateCourierPartnerRuleParam} */
   static createCourierPartnerRule() {
@@ -109,10 +179,31 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateGeoAreaParam} */
+  static createGeoArea() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.GeoAreaRequestBody().required(),
+    }).required();
+  }
+
   /** @returns {CreateStoreRulesParam} */
   static createStoreRules() {
     return Joi.object({
       body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema().required(),
+    }).required();
+  }
+
+  /** @returns {CreateZoneParam} */
+  static createZone() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.CreateZoneV2Data().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteZoneParam} */
+  static deleteZone() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -147,6 +238,27 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetGeoAreaParam} */
+  static getGeoArea() {
+    return Joi.object({
+      geoareaId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetGeoAreasParam} */
+  static getGeoAreas() {
+    return Joi.object({
+      pageSize: Joi.number(),
+      isActive: Joi.boolean(),
+      q: Joi.string().allow(""),
+      countryIsoCode: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetStoreRuleParam} */
   static getStoreRule() {
     return Joi.object({
@@ -163,10 +275,41 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetZoneParam} */
+  static getZone() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetZonesParam} */
+  static getZones() {
+    return Joi.object({
+      stage: Joi.string().allow(""),
+      pageSize: Joi.number(),
+      zoneIds: Joi.string().allow(""),
+      isActive: Joi.boolean(),
+      q: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      countryIsoCode: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {InsertApplicationConfigParam} */
   static insertApplicationConfig() {
     return Joi.object({
       body: ServiceabilityPlatformModel.StoreRuleConfigData().required(),
+    }).required();
+  }
+
+  /** @returns {PatchApplicationConfigurationParam} */
+  static patchApplicationConfiguration() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.ApplicationConfigPatchRequest().required(),
     }).required();
   }
 
@@ -196,6 +339,15 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({
       ruleId: Joi.string().allow("").required(),
       body: ServiceabilityPlatformModel.CourierPartnerRule().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateGeoAreaParam} */
+  static updateGeoArea() {
+    return Joi.object({
+      geoareaId: Joi.string().allow("").required(),
+
+      body: ServiceabilityPlatformModel.GeoAreaRequestBody().required(),
     }).required();
   }
 
@@ -239,6 +391,15 @@ class ServiceabilityPlatformApplicationValidator {
   static updateStoreRulesConfig() {
     return Joi.object({
       body: ServiceabilityPlatformModel.StoreRuleConfigData().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateZoneParam} */
+  static updateZone() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
+
+      body: ServiceabilityPlatformModel.UpdateZoneDataV2().required(),
     }).required();
   }
 }

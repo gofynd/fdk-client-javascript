@@ -150,6 +150,6 @@ declare class Logistics {
      * @summary: Get all countries and associated data.
      * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
      */
-    getCountries({ onboarding, pageNo, pageSize, q, requestHeaders }?: LogisticsPartnerValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.GetCountries>;
+    getCountries({ onboarding, pageNo, pageSize, q, hierarchy, requestHeaders }?: LogisticsPartnerValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.GetCountries>;
 }
-import LogisticsPartnerModel = require("./LogisticsPartnerModel");
+import LogisticsPartnerModel = require("sdk/output/javascript/code/sdk/partner/Logistics/LogisticsPartnerModel");

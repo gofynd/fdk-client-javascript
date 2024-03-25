@@ -1,12 +1,6 @@
 const Joi = require("joi");
 
 /**
- * @typedef ClickStatsResponse
- * @property {ClickStatsItem[]} click_stats - An array of click statistics for
- *   the short link.
- */
-
-/**
  * @typedef ClickStatsItem
  * @property {string} display - The display name of the click statistic.
  * @property {number} total - The total number of clicks for the statistic.
@@ -118,15 +112,6 @@ const Joi = require("joi");
  */
 
 class SharePlatformModel {
-  /** @returns {ClickStatsResponse} */
-  static ClickStatsResponse() {
-    return Joi.object({
-      click_stats: Joi.array()
-        .items(SharePlatformModel.ClickStatsItem())
-        .required(),
-    });
-  }
-
   /** @returns {ClickStatsItem} */
   static ClickStatsItem() {
     return Joi.object({

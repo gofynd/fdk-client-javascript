@@ -5,17 +5,12 @@ export = SharePlatformApplicationValidator;
  */
 /**
  * @typedef GetShortLinkByHashParam
- * @property {string} hash - Hash of short url
- */
-/**
- * @typedef GetShortLinkClickStatsParam
- * @property {string} surlId - Short link ID for which click statistics are to
- *   be retrieved.
+ * @property {string} hash
  */
 /**
  * @typedef GetShortLinksParam
  * @property {number} [pageNo] - Current page number
- * @property {number} [pageSize] - Current page size
+ * @property {number} [pageSize] - Number of items displayed per page
  * @property {string} [createdBy] - Short link creator
  * @property {string} [active] - Short link active status
  * @property {string} [shortUrl] - Search for short url
@@ -24,7 +19,7 @@ export = SharePlatformApplicationValidator;
  */
 /**
  * @typedef UpdateShortLinkByIdParam
- * @property {string} id - Short link document identifier
+ * @property {string} id - Document Id
  * @property {SharePlatformModel.ShortLinkReq} body
  */
 declare class SharePlatformApplicationValidator {
@@ -32,31 +27,19 @@ declare class SharePlatformApplicationValidator {
     static createShortLink(): CreateShortLinkParam;
     /** @returns {GetShortLinkByHashParam} */
     static getShortLinkByHash(): GetShortLinkByHashParam;
-    /** @returns {GetShortLinkClickStatsParam} */
-    static getShortLinkClickStats(): GetShortLinkClickStatsParam;
     /** @returns {GetShortLinksParam} */
     static getShortLinks(): GetShortLinksParam;
     /** @returns {UpdateShortLinkByIdParam} */
     static updateShortLinkById(): UpdateShortLinkByIdParam;
 }
 declare namespace SharePlatformApplicationValidator {
-    export { CreateShortLinkParam, GetShortLinkByHashParam, GetShortLinkClickStatsParam, GetShortLinksParam, UpdateShortLinkByIdParam };
+    export { CreateShortLinkParam, GetShortLinkByHashParam, GetShortLinksParam, UpdateShortLinkByIdParam };
 }
 type CreateShortLinkParam = {
     body: SharePlatformModel.ShortLinkReq;
 };
 type GetShortLinkByHashParam = {
-    /**
-     * - Hash of short url
-     */
     hash: string;
-};
-type GetShortLinkClickStatsParam = {
-    /**
-     * - Short link ID for which click statistics are to
-     * be retrieved.
-     */
-    surlId: string;
 };
 type GetShortLinksParam = {
     /**
@@ -64,7 +47,7 @@ type GetShortLinksParam = {
      */
     pageNo?: number;
     /**
-     * - Current page size
+     * - Number of items displayed per page
      */
     pageSize?: number;
     /**
@@ -90,9 +73,9 @@ type GetShortLinksParam = {
 };
 type UpdateShortLinkByIdParam = {
     /**
-     * - Short link document identifier
+     * - Document Id
      */
     id: string;
     body: SharePlatformModel.ShortLinkReq;
 };
-import SharePlatformModel = require("./SharePlatformModel");
+import SharePlatformModel = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformModel");

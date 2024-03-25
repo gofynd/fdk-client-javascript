@@ -7,12 +7,6 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
-/** @typedef CreateBigQueryHeadersParam */
-
-/** @typedef CreateBigQueryNCountParam */
-
-/** @typedef CreateBigQueryRowCountParam */
-
 /**
  * @typedef CreateCampaignParam
  * @property {CommunicationPlatformModel.CampaignReq} body
@@ -55,18 +49,18 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef DeleteAudienceByIdParam
- * @property {string} id - Audience id
+ * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
 /**
  * @typedef DeleteEmailProviderByIdParam
- * @property {string} id - Email provider id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef DeleteEmailTemplateByIdParam
- * @property {string} id - Email template id
+ * @property {string} id - Event subscription id
  */
 
 /**
@@ -76,63 +70,53 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef DeleteSmsProviderByIdParam
- * @property {string} id - Sms provider id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef DeleteSmsTemplateByIdParam
- * @property {string} id - Sms template id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef EditEventSubscriptionsParam
  * @property {string} id - Event subscription id
- * @property {CommunicationPlatformModel.SubscriptionsObject} body
+ * @property {CommunicationPlatformModel.SubscriptionsObjectRequest} body
  */
 
 /** @typedef GetAppProvidersParam */
 
 /**
  * @typedef GetAudienceByIdParam
- * @property {string} id - Audience id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef GetAudiencesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
- * @property {Object} [query] - To search based on plain text
- */
-
-/**
- * @typedef GetBigQueryHeadersByIdParam
- * @property {string} id - Audience id
- */
-
-/**
- * @typedef GetBigQueryRowCountByIdParam
- * @property {string} id - Audience id
+ * @property {string} [sort] - To sort based on created_at
+ * @property {string} [query] - To search based on plain text
  */
 
 /**
  * @typedef GetCampaignByIdParam
- * @property {string} id - Campaign id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef GetCampaignsParam
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [query] - To search based on plain text
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
+ * @property {string} [sort] - To sort based on created_at
  */
 
 /**
  * @typedef GetCommunicationLogsParam
- * @property {string} [pageId] - Current page no
+ * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on _id
+ * @property {string} [sort] - To sort based on created_at
  * @property {Object} [query]
  */
 
@@ -147,28 +131,28 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef GetEmailProviderByIdParam
- * @property {string} id - Email provider id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef GetEmailProvidersParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [sort] - To sort based on created_at
+ * @property {string} [query] - To search based on plain text
  */
 
 /**
  * @typedef GetEmailTemplateByIdParam
- * @property {string} id - Email template id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef GetEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [sort] - To sort based on created_at
+ * @property {string} [query] - To search based on plain text
  */
 
 /**
@@ -180,8 +164,8 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef GetEventSubscriptionsByIdParam
- * @property {string} id - Event subscription id
  * @property {string} [populate] - Populate Fields
+ * @property {string} id - Event subscription id
  */
 
 /** @typedef GetGlobalProvidersParam */
@@ -192,16 +176,16 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @typedef GetJobLogsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [sort] - To sort based on created_at
+ * @property {string} [query] - To search based on plain text
  */
 
 /**
  * @typedef GetJobsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [sort] - To sort based on created_at
+ * @property {string} [query] - To search based on plain text
  */
 
 /**
@@ -209,56 +193,59 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {CommunicationPlatformModel.GetNRecordsCsvReq} body
  */
 
-/** @typedef GetNSampleRecordsFromCsvByGetParam */
+/**
+ * @typedef GetNSampleRecordsFromCsvByGetParam
+ * @property {number} [count] - Number or records
+ * @property {boolean} [header] - Header needed
+ * @property {string} [url] - Url of file
+ */
 
 /** @typedef GetOtpConfigurationParam */
 
 /**
  * @typedef GetSmsProviderByIdParam
- * @property {string} id - Sms provider id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef GetSmsProvidersParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [sort] - To sort based on created_at
+ * @property {string} [query] - To search based on plain text
  */
 
 /**
  * @typedef GetSmsTemplateByIdParam
- * @property {string} id - Sms template id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef GetSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [sort] - To sort based on created_at
+ * @property {string} [query] - To search based on plain text
  */
 
 /**
  * @typedef GetStatsOfCampaignByIdParam
- * @property {string} id - Campaign id
+ * @property {string} id - Event subscription id
  */
 
 /**
  * @typedef GetSubscribedEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [query] - To search based on plain text
  */
 
 /**
  * @typedef GetSubscribedSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [query] - To search based on plain text
+ * @property {string} [query] - To search based on plain text
  */
-
-/** @typedef GetSystemAudiencesParam */
 
 /** @typedef GetSystemEmailTemplatesParam */
 
@@ -281,6 +268,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef SendOtpParam
+ * @property {boolean} [ci] - Common Information
  * @property {CommunicationPlatformModel.SendOtpCommsReq} body
  */
 
@@ -296,25 +284,25 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef UpdateAudienceByIdParam
- * @property {string} id - Audience id
+ * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
 /**
  * @typedef UpdateCampaignByIdParam
- * @property {string} id - Campaign id
+ * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.CampaignReq} body
  */
 
 /**
  * @typedef UpdateEmailProviderByIdParam
- * @property {string} id - Email provider id
+ * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.EmailProviderReq} body
  */
 
 /**
  * @typedef UpdateEmailTemplateByIdParam
- * @property {string} id - Email template id
+ * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
 
@@ -322,13 +310,13 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef UpdateSmsProviderByIdParam
- * @property {string} id - Sms provider id
+ * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.SmsProviderReq} body
  */
 
 /**
  * @typedef UpdateSmsTemplateByIdParam
- * @property {string} id - Sms template id
+ * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.SmsTemplateReq} body
  */
 
@@ -343,21 +331,6 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       body: CommunicationPlatformModel.AudienceReq().required(),
     }).required();
-  }
-
-  /** @returns {CreateBigQueryHeadersParam} */
-  static createBigQueryHeaders() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {CreateBigQueryNCountParam} */
-  static createBigQueryNCount() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {CreateBigQueryRowCountParam} */
-  static createBigQueryRowCount() {
-    return Joi.object({}).required();
   }
 
   /** @returns {CreateCampaignParam} */
@@ -463,7 +436,7 @@ class CommunicationPlatformApplicationValidator {
   static editEventSubscriptions() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CommunicationPlatformModel.SubscriptionsObject().required(),
+      body: CommunicationPlatformModel.SubscriptionsObjectRequest().required(),
     }).required();
   }
 
@@ -484,22 +457,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
-      query: Joi.any(),
-    }).required();
-  }
-
-  /** @returns {GetBigQueryHeadersByIdParam} */
-  static getBigQueryHeadersById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetBigQueryRowCountByIdParam} */
-  static getBigQueryRowCountById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
+      sort: Joi.string().allow(""),
+      query: Joi.string().allow(""),
     }).required();
   }
 
@@ -513,19 +472,19 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {GetCampaignsParam} */
   static getCampaigns() {
     return Joi.object({
-      query: Joi.any(),
+      query: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
+      sort: Joi.string().allow(""),
     }).required();
   }
 
   /** @returns {GetCommunicationLogsParam} */
   static getCommunicationLogs() {
     return Joi.object({
-      pageId: Joi.string().allow(""),
+      pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
+      sort: Joi.string().allow(""),
       query: Joi.any(),
     }).required();
   }
@@ -559,8 +518,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
-      query: Joi.any(),
+      sort: Joi.string().allow(""),
+      query: Joi.string().allow(""),
     }).required();
   }
 
@@ -576,8 +535,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
-      query: Joi.any(),
+      sort: Joi.string().allow(""),
+      query: Joi.string().allow(""),
     }).required();
   }
 
@@ -593,8 +552,8 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {GetEventSubscriptionsByIdParam} */
   static getEventSubscriptionsById() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
       populate: Joi.string().allow(""),
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -613,8 +572,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
-      query: Joi.any(),
+      sort: Joi.string().allow(""),
+      query: Joi.string().allow(""),
     }).required();
   }
 
@@ -623,8 +582,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
-      query: Joi.any(),
+      sort: Joi.string().allow(""),
+      query: Joi.string().allow(""),
     }).required();
   }
 
@@ -637,7 +596,11 @@ class CommunicationPlatformApplicationValidator {
 
   /** @returns {GetNSampleRecordsFromCsvByGetParam} */
   static getNSampleRecordsFromCsvByGet() {
-    return Joi.object({}).required();
+    return Joi.object({
+      count: Joi.number(),
+      header: Joi.boolean(),
+      url: Joi.string().allow(""),
+    }).required();
   }
 
   /** @returns {GetOtpConfigurationParam} */
@@ -657,8 +620,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
-      query: Joi.any(),
+      sort: Joi.string().allow(""),
+      query: Joi.string().allow(""),
     }).required();
   }
 
@@ -674,8 +637,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
-      query: Joi.any(),
+      sort: Joi.string().allow(""),
+      query: Joi.string().allow(""),
     }).required();
   }
 
@@ -691,7 +654,7 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      query: Joi.any(),
+      query: Joi.string().allow(""),
     }).required();
   }
 
@@ -700,13 +663,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      query: Joi.any(),
+      query: Joi.string().allow(""),
     }).required();
-  }
-
-  /** @returns {GetSystemAudiencesParam} */
-  static getSystemAudiences() {
-    return Joi.object({}).required();
   }
 
   /** @returns {GetSystemEmailTemplatesParam} */
@@ -743,6 +701,7 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {SendOtpParam} */
   static sendOtp() {
     return Joi.object({
+      ci: Joi.boolean(),
       body: CommunicationPlatformModel.SendOtpCommsReq().required(),
     }).required();
   }

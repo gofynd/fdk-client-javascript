@@ -11,20 +11,10 @@ declare class Theme {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
      * @name addThemeToApplication
-     * @summary: Add theme to application.
-     * @description: Include a theme in an application's design. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addThemeToApplication/).
+     * @summary: Add a theme to an application
+     * @description: Add a theme to an application by providing the marketplace theme ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addThemeToApplication/).
      */
     addThemeToApplication({ body, requestHeaders }?: ThemePlatformApplicationValidator.AddThemeToApplicationParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemesSchema>;
-    /**
-     * @param {ThemePlatformApplicationValidator.AddToThemeLibraryParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
-     * @name addToThemeLibrary
-     * @summary: Add to theme library.
-     * @description: Store and add a theme to the platform's library. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addToThemeLibrary/).
-     */
-    addToThemeLibrary({ body, requestHeaders }?: ThemePlatformApplicationValidator.AddToThemeLibraryParam, { responseHeaders }?: object): Promise<ThemePlatformModel.DummyResponse>;
     /**
      * @param {ThemePlatformApplicationValidator.ApplyThemeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -35,16 +25,6 @@ declare class Theme {
      * @description: Set and apply a theme to an application or page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/applyTheme/).
      */
     applyTheme({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.ApplyThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemesSchema>;
-    /**
-     * @param {ThemePlatformApplicationValidator.ArchiveThemeParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
-     * @name archiveTheme
-     * @summary: Archive theme.
-     * @description: Store a theme in an archive. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/archiveTheme/).
-     */
-    archiveTheme({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.ArchiveThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.DummyResponse>;
     /**
      * @param {ThemePlatformApplicationValidator.CreatePageParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -140,6 +120,28 @@ declare class Theme {
      */
     getFonts({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemePlatformModel.FontsSchema>;
     /**
+     * @param {ThemePlatformApplicationValidator.GetFontsV2Param} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
+     * @name getFontsV2
+     * @summary: Get fonts.
+     * @description: Retrieve a list of available fonts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getFontsV2/).
+     */
+    getFontsV2({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemePlatformModel.FontsSchema>;
+    /**
+     * @param {ThemePlatformApplicationValidator.GetLatestVersionOfThemeBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ThemePlatformModel.MarketplaceTheme[]>} - Success response
+     * @name getLatestVersionOfThemeBySlug
+     * @summary: Get latest version of theme by slug.
+     * @description: Retrieve the most recent version of a theme using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getLatestVersionOfThemeBySlug/).
+     */
+    getLatestVersionOfThemeBySlug({ slugName, requestHeaders }?: ThemePlatformApplicationValidator.GetLatestVersionOfThemeBySlugParam, { responseHeaders }?: object): Promise<ThemePlatformModel.MarketplaceTheme[]>;
+    /**
      * @param {ThemePlatformApplicationValidator.GetPageParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -149,16 +151,6 @@ declare class Theme {
      * @description: Retrieve detailed information about a specific page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getPage/).
      */
     getPage({ themeId, pageValue, requestHeaders }?: ThemePlatformApplicationValidator.GetPageParam, { responseHeaders }?: object): Promise<ThemePlatformModel.AvailablePageSchema>;
-    /**
-     * @param {ThemePlatformApplicationValidator.GetPublicThemesParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
-     * @name getPublicThemes
-     * @summary: Get public themes.
-     * @description: Retrieve themes that are publicly accessible. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getPublicThemes/).
-     */
-    getPublicThemes({ pageSize, pageNo, requestHeaders }?: ThemePlatformApplicationValidator.GetPublicThemesParam, { responseHeaders }?: object): Promise<ThemePlatformModel.DummyResponse>;
     /**
      * @param {ThemePlatformApplicationValidator.GetThemeByIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -192,16 +184,6 @@ declare class Theme {
      */
     getThemeLastModified({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.GetThemeLastModifiedParam, { responseHeaders }?: object): Promise<any>;
     /**
-     * @param {ThemePlatformApplicationValidator.GetThemeLibraryParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
-     * @name getThemeLibrary
-     * @summary: Get theme library.
-     * @description: Retrieve themes available in the platform's library. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeLibrary/).
-     */
-    getThemeLibrary({ pageSize, pageNo, requestHeaders }?: ThemePlatformApplicationValidator.GetThemeLibraryParam, { responseHeaders }?: object): Promise<ThemePlatformModel.DummyResponse>;
-    /**
      * @param {ThemePlatformApplicationValidator.IsUpgradableParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -211,36 +193,6 @@ declare class Theme {
      * @description: Determine if a theme is eligible for an upgrade. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
      */
     isUpgradable({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.IsUpgradableParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemeUpgradableResponse>;
-    /**
-     * @param {ThemePlatformApplicationValidator.PublishThemeParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
-     * @name publishTheme
-     * @summary: Publish theme.
-     * @description: Make a theme accessible for use. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/publishTheme/).
-     */
-    publishTheme({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.PublishThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.DummyResponse>;
-    /**
-     * @param {ThemePlatformApplicationValidator.UnarchiveThemeParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
-     * @name unarchiveTheme
-     * @summary: Unarchive theme.
-     * @description: Retrieve a theme from the archive. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/unarchiveTheme/).
-     */
-    unarchiveTheme({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.UnarchiveThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.DummyResponse>;
-    /**
-     * @param {ThemePlatformApplicationValidator.UnpublishThemeParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
-     * @name unpublishTheme
-     * @summary: Unpublish theme.
-     * @description: Remove a published theme from public access. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/unpublishTheme/).
-     */
-    unpublishTheme({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.UnpublishThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.DummyResponse>;
     /**
      * @param {ThemePlatformApplicationValidator.UpdateMultiplePagesParam} arg
      *   - Arg object
@@ -294,5 +246,5 @@ declare class Theme {
      */
     upgradeTheme({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.UpgradeThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemesSchema>;
 }
-import ThemePlatformApplicationValidator = require("./ThemePlatformApplicationValidator");
-import ThemePlatformModel = require("./ThemePlatformModel");
+import ThemePlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformApplicationValidator");
+import ThemePlatformModel = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformModel");

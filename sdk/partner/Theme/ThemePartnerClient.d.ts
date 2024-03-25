@@ -202,5 +202,25 @@ declare class Theme {
      * @description: Themes improve the look and appearance of a website. Use this API to create a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createTheme/).
      */
     createTheme({ companyId, applicationId, body, requestHeaders }?: ThemePartnerValidator.CreateThemeParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemesSchema>;
+    /**
+     * @param {ThemePartnerValidator.GetOrgnaizationDefaultThemeParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.MarketplaceTheme>} - Success response
+     * @name getOrgnaizationDefaultTheme
+     * @summary: Get organization default theme details.
+     * @description: Obtain detailed information about a theme within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getOrgnaizationDefaultTheme/).
+     */
+    getOrgnaizationDefaultTheme({ companyId, applicationId, requestHeaders }?: ThemePartnerValidator.GetOrgnaizationDefaultThemeParam, { responseHeaders }?: object): Promise<ThemePartnerModel.MarketplaceTheme>;
+    /**
+     * @param {ThemePartnerValidator.GetSystemPageParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.DefaultPageSchema>} - Success response
+     * @name getSystemPage
+     * @summary: Get system page.
+     * @description: Obtain detailed information about a system page within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getSystemPage/).
+     */
+    getSystemPage({ companyId, applicationId, pageValue, requestHeaders }?: ThemePartnerValidator.GetSystemPageParam, { responseHeaders }?: object): Promise<ThemePartnerModel.DefaultPageSchema>;
 }
-import ThemePartnerModel = require("./ThemePartnerModel");
+import ThemePartnerModel = require("sdk/output/javascript/code/sdk/partner/Theme/ThemePartnerModel");

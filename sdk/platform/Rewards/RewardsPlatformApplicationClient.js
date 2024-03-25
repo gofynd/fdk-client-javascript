@@ -411,6 +411,44 @@ class Rewards {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.userId - User id
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<RewardsPlatformModel.HistoryRes>}
+   * @summary: Get user points history.
+   * @description: Retrieve the history of points earned and redeemed by a user.
+   */
+  getUserPointsHistoryPaginator({
+    userId,
+    companyId,
+    applicationId,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getUserPointsHistory({
+        userId: userId,
+        companyId: companyId,
+        applicationId: applicationId,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {RewardsPlatformApplicationValidator.SaveGiveAwayParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

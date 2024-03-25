@@ -38,7 +38,7 @@ declare class ApplicationConfig {
         applicationID: string;
         applicationToken?: string;
         domain?: string;
-        logLevel?: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
+        logLevel?: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR";
         locationDetails?: LocationObject;
         currencyCode?: string;
     }, options?: {
@@ -50,7 +50,7 @@ declare class ApplicationConfig {
         strictResponseCheck: boolean;
     };
     domain: string;
-    logLevel: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
+    logLevel: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR";
     extraHeaders: any[];
     locationDetails: LocationObject;
     currencyCode: string;
@@ -59,7 +59,7 @@ declare class ApplicationConfig {
      *
      * @param {logLevelEnum} level - The log level to set.
      */
-    setLogLevel(level: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR"): void;
+    setLogLevel(level: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR"): void;
     /**
      * Sets the cookie for the application.
      *

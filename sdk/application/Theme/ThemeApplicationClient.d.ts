@@ -5,8 +5,10 @@ declare class Theme {
     _relativeUrls: {
         getAllPages: string;
         getAppliedTheme: string;
+        getAppliedThemeV1: string;
         getPage: string;
         getThemeForPreview: string;
+        getThemeForPreviewV1: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -31,6 +33,16 @@ declare class Theme {
      */
     getAppliedTheme({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
     /**
+     * @param {ThemeApplicationValidator.GetAppliedThemeV1Param} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+     * @name getAppliedThemeV1
+     * @summary: Current theme.
+     * @description: Gets the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedThemeV1/).
+     */
+    getAppliedThemeV1({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
+    /**
      * @param {ThemeApplicationValidator.GetPageParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -50,6 +62,16 @@ declare class Theme {
      * @description: Retrieves a theme for previewing before applying it to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
      */
     getThemeForPreview({ themeId, requestHeaders }?: ThemeApplicationValidator.GetThemeForPreviewParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
+    /**
+     * @param {ThemeApplicationValidator.GetThemeForPreviewV1Param} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+     * @name getThemeForPreviewV1
+     * @summary: Preview theme.
+     * @description: Retrieves a theme for previewing before applying it to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreviewV1/).
+     */
+    getThemeForPreviewV1({ themeId, requestHeaders }?: ThemeApplicationValidator.GetThemeForPreviewV1Param, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
 }
-import ThemeApplicationValidator = require("./ThemeApplicationValidator");
-import ThemeApplicationModel = require("./ThemeApplicationModel");
+import ThemeApplicationValidator = require("sdk/output/javascript/code/sdk/application/Theme/ThemeApplicationValidator");
+import ThemeApplicationModel = require("sdk/output/javascript/code/sdk/application/Theme/ThemeApplicationModel");

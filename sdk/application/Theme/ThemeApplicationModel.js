@@ -16,6 +16,8 @@ const Joi = require("joi");
  * @property {string} [theme]
  * @property {AvailablePageSeo} [seo]
  * @property {Object[]} [props]
+ * @property {string} [updated_at]
+ * @property {string} [created_at]
  * @property {string} [_id]
  */
 
@@ -60,7 +62,7 @@ const Joi = require("joi");
  * @property {Object} [params]
  * @property {Object} [query]
  * @property {string} [url]
- * @property {PageType} type
+ * @property {string} [type]
  */
 
 /**
@@ -70,7 +72,7 @@ const Joi = require("joi");
  * @property {string} [canonical_url]
  * @property {SEOMetaItem[]} [meta_tags]
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {SEObreadcrumb[]} [breadcrumbs]
  * @property {string} [_id]
  */
 
@@ -81,6 +83,7 @@ const Joi = require("joi");
  * @property {Object} [props]
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
+ * @property {string} [source]
  * @property {AvailablePagePredicate} [predicate]
  */
 
@@ -142,6 +145,8 @@ const Joi = require("joi");
  * @property {SectionItem[]} [available_sections] - Available sections information
  * @property {string} [theme_type]
  * @property {number} [company_id] - The company id in which sales channel exists
+ * @property {string} [src]
+ * @property {Object[]} [global_sections]
  */
 
 /**
@@ -170,7 +175,7 @@ const Joi = require("joi");
  * @property {string} current - The current configuration
  * @property {ThemeConfiguration[]} list - A list of configurations
  * @property {GlobalSchema} [global_schema]
- * @property {Preset} [preset]
+ * @property {Object} [preset] - An Object of default theme configurations
  */
 
 /**
@@ -226,7 +231,6 @@ const Joi = require("joi");
 
 /**
  * @typedef GlobalConfig
- * @property {StaticConfig} [statics]
  * @property {CustomConfig} [custom]
  */
 
@@ -324,6 +328,8 @@ const Joi = require("joi");
  * @property {Colors} [colors]
  * @property {AuthConfig} [auth]
  * @property {PaletteConfig} [palette]
+ * @property {Object} [order_tracking]
+ * @property {Object} [manifest]
  */
 
 /**
@@ -428,13 +434,8 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {Section[]} [sections]
+ * @property {string} [value] - The value of the page.
  */
 
 /**
@@ -545,55 +546,6 @@ const Joi = require("joi");
  * @property {string} [message]
  */
 
-/**
- * @typedef {| "about-us"
- *   | "addresses"
- *   | "blog"
- *   | "brands"
- *   | "cards"
- *   | "cart"
- *   | "categories"
- *   | "brand"
- *   | "category"
- *   | "collection"
- *   | "collections"
- *   | "contact-us"
- *   | "external"
- *   | "faq"
- *   | "freshchat"
- *   | "home"
- *   | "notification-settings"
- *   | "orders"
- *   | "page"
- *   | "policy"
- *   | "product"
- *   | "product-request"
- *   | "products"
- *   | "profile"
- *   | "profile-order-shipment"
- *   | "profile-basic"
- *   | "profile-company"
- *   | "profile-emails"
- *   | "profile-phones"
- *   | "rate-us"
- *   | "refer-earn"
- *   | "settings"
- *   | "shared-cart"
- *   | "tnc"
- *   | "track-order"
- *   | "wishlist"
- *   | "sections"
- *   | "form"
- *   | "cart-delivery"
- *   | "cart-payment"
- *   | "cart-review"
- *   | "login"
- *   | "register"
- *   | "shipping-policy"
- *   | "return-policy"
- *   | "order-status"} PageType
- */
-
 class ThemeApplicationModel {
   /** @returns {AllAvailablePageSchema} */
   static AllAvailablePageSchema() {
@@ -618,6 +570,8 @@ class ThemeApplicationModel {
       theme: Joi.string().allow(""),
       seo: ThemeApplicationModel.AvailablePageSeo(),
       props: Joi.array().items(Joi.any()),
+      updated_at: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
       _id: Joi.string().allow(""),
     });
   }
@@ -682,7 +636,7 @@ class ThemeApplicationModel {
         Joi.array().items(Joi.string().allow(""))
       ),
       url: Joi.string().allow(""),
-      type: ThemeApplicationModel.PageType().required(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -694,7 +648,7 @@ class ThemeApplicationModel {
       canonical_url: Joi.string().allow(""),
       meta_tags: Joi.array().items(ThemeApplicationModel.SEOMetaItem()),
       sitemap: ThemeApplicationModel.SEOSitemap(),
-      breadcrumb: Joi.array().items(ThemeApplicationModel.SEObreadcrumb()),
+      breadcrumbs: Joi.array().items(ThemeApplicationModel.SEObreadcrumb()),
       _id: Joi.string().allow(""),
     });
   }
@@ -707,6 +661,7 @@ class ThemeApplicationModel {
       props: Joi.any(),
       blocks: Joi.array().items(Joi.any()),
       preset: Joi.any(),
+      source: Joi.string().allow(""),
       predicate: ThemeApplicationModel.AvailablePagePredicate(),
     });
   }
@@ -782,6 +737,8 @@ class ThemeApplicationModel {
       ),
       theme_type: Joi.string().allow(""),
       company_id: Joi.number(),
+      src: Joi.string().allow(""),
+      global_sections: Joi.array().items(Joi.any()),
     });
   }
 
@@ -820,7 +777,7 @@ class ThemeApplicationModel {
         .items(ThemeApplicationModel.ThemeConfiguration())
         .required(),
       global_schema: ThemeApplicationModel.GlobalSchema(),
-      preset: ThemeApplicationModel.Preset(),
+      preset: Joi.any(),
     });
   }
 
@@ -879,7 +836,6 @@ class ThemeApplicationModel {
   /** @returns {GlobalConfig} */
   static GlobalConfig() {
     return Joi.object({
-      statics: ThemeApplicationModel.StaticConfig(),
       custom: ThemeApplicationModel.CustomConfig(),
     });
   }
@@ -1003,6 +959,8 @@ class ThemeApplicationModel {
       colors: ThemeApplicationModel.Colors(),
       auth: ThemeApplicationModel.AuthConfig(),
       palette: ThemeApplicationModel.PaletteConfig(),
+      order_tracking: Joi.any(),
+      manifest: Joi.any(),
     });
   }
 
@@ -1104,8 +1062,8 @@ class ThemeApplicationModel {
   /** @returns {SectionItem} */
   static SectionItem() {
     return Joi.object({
-      props: Joi.array().items(Joi.any()),
-      blocks: Joi.array().items(Joi.any()),
+      props: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+      blocks: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
       name: Joi.string().allow(""),
       label: Joi.string().allow(""),
     });
@@ -1139,13 +1097,8 @@ class ThemeApplicationModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      has_previous: Joi.boolean(),
-      has_next: Joi.boolean(),
-      current: Joi.number(),
-      type: Joi.string().allow("").required(),
-      size: Joi.number(),
+      sections: Joi.array().items(ThemeApplicationModel.Section()),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -1289,107 +1242,6 @@ class ThemeApplicationModel {
     return Joi.object({
       message: Joi.string().allow(""),
     });
-  }
-
-  /**
-   * Enum: PageType Used By: Theme
-   *
-   * @returns {PageType}
-   */
-  static PageType() {
-    return Joi.string().valid(
-      "about-us",
-
-      "addresses",
-
-      "blog",
-
-      "brands",
-
-      "cards",
-
-      "cart",
-
-      "categories",
-
-      "brand",
-
-      "category",
-
-      "collection",
-
-      "collections",
-
-      "contact-us",
-
-      "external",
-
-      "faq",
-
-      "freshchat",
-
-      "home",
-
-      "notification-settings",
-
-      "orders",
-
-      "page",
-
-      "policy",
-
-      "product",
-
-      "product-request",
-
-      "products",
-
-      "profile",
-
-      "profile-order-shipment",
-
-      "profile-basic",
-
-      "profile-company",
-
-      "profile-emails",
-
-      "profile-phones",
-
-      "rate-us",
-
-      "refer-earn",
-
-      "settings",
-
-      "shared-cart",
-
-      "tnc",
-
-      "track-order",
-
-      "wishlist",
-
-      "sections",
-
-      "form",
-
-      "cart-delivery",
-
-      "cart-payment",
-
-      "cart-review",
-
-      "login",
-
-      "register",
-
-      "shipping-policy",
-
-      "return-policy",
-
-      "order-status"
-    );
   }
 }
 module.exports = ThemeApplicationModel;

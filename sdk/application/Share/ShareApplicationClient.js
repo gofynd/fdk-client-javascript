@@ -14,17 +14,17 @@ class Share {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      createShortLink: "/service/application/share/v1.0/links/short-link/",
-      getApplicationQRCode: "/service/application/share/v1.0/qr/",
+      createShortLink: "/service/application/share/v1.0/links/short-link",
+      getApplicationQRCode: "/service/application/share/v1.0/qr",
       getCollectionQRCodeBySlug:
-        "/service/application/share/v1.0/qr/collection/{slug}/",
+        "/service/application/share/v1.0/qr/collection/{slug}",
       getOriginalShortLinkByHash:
-        "/service/application/share/v1.0/links/short-link/{hash}/original/",
+        "/service/application/share/v1.0/links/short-link/{hash}/original",
       getProductQRCodeBySlug:
-        "/service/application/share/v1.0/qr/products/{slug}/",
+        "/service/application/share/v1.0/qr/products/{slug}",
       getShortLinkByHash:
-        "/service/application/share/v1.0/links/short-link/{hash}/",
-      getUrlQRCode: "/service/application/share/v1.0/qr/url/",
+        "/service/application/share/v1.0/links/short-link/{hash}",
+      getUrlQRCode: "/service/application/share/v1.0/qr/url",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {

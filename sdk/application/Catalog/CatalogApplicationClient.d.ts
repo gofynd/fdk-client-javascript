@@ -282,8 +282,8 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.ApplicationStoreListing>} -
      *   Success response
      * @name getInStockLocations
-     * @summary: Finds in-stock locations for products.
-     * @description: Lists locations where specified products are currently in stock. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
+     * @summary: Get store meta information.
+     * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
      */
     getInStockLocations({ pageNo, pageSize, q, city, range, latitude, longitude, requestHeaders, }?: CatalogApplicationValidator.GetInStockLocationsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ApplicationStoreListing>;
     /**
@@ -298,8 +298,8 @@ declare class Catalog {
      * @param {number} [arg.longitude] - Longitude of the location from where
      *   one wants to retreive the nearest stores, e.g. 19.1174114
      * @returns {Paginator<CatalogApplicationModel.ApplicationStoreListing>}
-     * @summary: Finds in-stock locations for products.
-     * @description: Lists locations where specified products are currently in stock.
+     * @summary: Get store meta information.
+     * @description: Use this API to get a list of stores in a specific application.
      */
     getInStockLocationsPaginator({ pageSize, q, city, range, latitude, longitude, }?: {
         pageSize?: number;
@@ -315,8 +315,8 @@ declare class Catalog {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CatalogApplicationModel.StoreDetails>} - Success response
      * @name getLocationDetailsById
-     * @summary: Retrieves location details by ID.
-     * @description: Retrieves detailed information about a specific location using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
+     * @summary: Get store meta information.
+     * @description: Use this API to get meta details for a store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
      */
     getLocationDetailsById({ locationId, requestHeaders }?: CatalogApplicationValidator.GetLocationDetailsByIdParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.StoreDetails>;
     /**
@@ -356,25 +356,25 @@ declare class Catalog {
      * @param {CatalogApplicationValidator.GetProductPriceBySlugParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CatalogApplicationModel.ProductSizePriceResponseV3>} -
+     * @returns {Promise<CatalogApplicationModel.ProductSizePriceResponseV4>} -
      *   Success response
      * @name getProductPriceBySlug
-     * @summary: Retrieves product price by slug.
-     * @description: Retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
+     * @summary: Get the price of a product size at a PIN Code
+     * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
      */
-    getProductPriceBySlug({ slug, size, storeId, moq, requestHeaders }?: CatalogApplicationValidator.GetProductPriceBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizePriceResponseV3>;
+    getProductPriceBySlug({ slug, size, storeId, pincode, moq, requestHeaders }?: CatalogApplicationValidator.GetProductPriceBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizePriceResponseV4>;
     /**
      * @param {CatalogApplicationValidator.GetProductSellersBySlugParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>}
+     * @returns {Promise<CatalogApplicationModel.ProductSizeSellersResponseV4>}
      *   - Success response
      *
      * @name getProductSellersBySlug
-     * @summary: Lists sellers for a product by slug.
-     * @description: Retrieve a list of all sellers offering a specific product identified by its slug.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
+     * @summary: Get the sellers of a product size at a PIN Code
+     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
      */
-    getProductSellersBySlug({ slug, size, strategy, pageNo, pageSize, requestHeaders }?: CatalogApplicationValidator.GetProductSellersBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>;
+    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, requestHeaders }?: CatalogApplicationValidator.GetProductSellersBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizeSellersResponseV4>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -383,19 +383,22 @@ declare class Catalog {
      * @param {string} arg.size - A string indicating the size of the product,
      *   e.g. S, M, XL. You can get slug value from the endpoint
      *   /service/application/catalog/v1.0/products/sizes
+     * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
+     *   which the selling locations should be searched, e.g. 400059
      * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
      *   eg, fast-delivery, low-price, optimal.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<CatalogApplicationModel.ProductSizeSellersResponseV3>}
-     * @summary: Lists sellers for a product by slug.
-     * @description: Retrieve a list of all sellers offering a specific product identified by its slug.
+     * @returns {Paginator<CatalogApplicationModel.ProductSizeSellersResponseV4>}
+     * @summary: Get the sellers of a product size at a PIN Code
+     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
-    getProductSellersBySlugPaginator({ slug, size, strategy, pageSize }?: {
+    getProductSellersBySlugPaginator({ slug, size, pincode, strategy, pageSize, }?: {
         slug: string;
         size: string;
+        pincode?: string;
         strategy?: string;
         pageSize?: number;
-    }): Paginator<CatalogApplicationModel.ProductSizeSellersResponseV3>;
+    }): Paginator<CatalogApplicationModel.ProductSizeSellersResponseV4>;
     /**
      * @param {CatalogApplicationValidator.GetProductSizesBySlugParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -518,10 +521,10 @@ declare class Catalog {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CatalogApplicationModel.StoreListingResponse>} - Success response
      * @name getStores
-     * @summary: Lists available stores.
-     * @description: Retrieves a list of all physical or online stores. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
+     * @summary: Get store meta information.
+     * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
      */
-    getStores({ pageNo, pageSize, q, city, range, latitude, longitude, tags, requestHeaders, }?: CatalogApplicationValidator.GetStoresParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.StoreListingResponse>;
+    getStores({ pageNo, pageSize, q, city, range, latitude, longitude, requestHeaders, }?: CatalogApplicationValidator.GetStoresParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.StoreListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
@@ -533,19 +536,17 @@ declare class Catalog {
      *   wants to retreive the nearest stores, e.g. 72.8691788
      * @param {number} [arg.longitude] - Longitude of the location from where
      *   one wants to retreive the nearest stores, e.g. 19.1174114
-     * @param {string} [arg.tags] - Search stores based on tags.
      * @returns {Paginator<CatalogApplicationModel.StoreListingResponse>}
-     * @summary: Lists available stores.
-     * @description: Retrieves a list of all physical or online stores.
+     * @summary: Get store meta information.
+     * @description: Use this API to get a list of stores in a specific application.
      */
-    getStoresPaginator({ pageSize, q, city, range, latitude, longitude, tags, }?: {
+    getStoresPaginator({ pageSize, q, city, range, latitude, longitude }?: {
         pageSize?: number;
         q?: string;
         city?: string;
         range?: number;
         latitude?: number;
         longitude?: number;
-        tags?: string;
     }): Paginator<CatalogApplicationModel.StoreListingResponse>;
     /**
      * @param {CatalogApplicationValidator.UnfollowByIdParam} arg - Arg object.
@@ -558,6 +559,6 @@ declare class Catalog {
      */
     unfollowById({ collectionType, collectionId, requestHeaders }?: CatalogApplicationValidator.UnfollowByIdParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.FollowPostResponse>;
 }
-import CatalogApplicationValidator = require("./CatalogApplicationValidator");
-import CatalogApplicationModel = require("./CatalogApplicationModel");
-import Paginator = require("../../common/Paginator");
+import CatalogApplicationValidator = require("sdk/output/javascript/code/sdk/application/Catalog/CatalogApplicationValidator");
+import CatalogApplicationModel = require("sdk/output/javascript/code/sdk/application/Catalog/CatalogApplicationModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

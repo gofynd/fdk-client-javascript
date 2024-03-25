@@ -18,6 +18,8 @@ class Logistic {
       getCountries: "/service/application/logistics/v1.0/countries",
       getCountry:
         "/service/application/logistics/v1.0/countries/{country_iso_code}",
+      getGeoAreas:
+        "/service/application/logistics/v1.0/company/{company_id}/application/{application_id}/geoareas",
       getLocalities:
         "/service/application/logistics/v1.0/localities/{locality_type}",
       getLocality:
@@ -25,9 +27,9 @@ class Logistic {
       getLocations: "/service/application/logistics/v1.0/locations",
       getOptimalLocations:
         "/service/application/logistics/v1.0/reassign_stores",
-      getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
-      getTatProduct: "/service/application/logistics/v1.0/",
+      getZones:
+        "/service/application/logistics/v2.0/company/{company_id}/application/{application_id}/zones",
       validateAddress:
         "/service/application/logistics/v1.0/country/{country_iso_code}/address/templates/{template_name}/validate",
     };
@@ -135,13 +137,13 @@ class Logistic {
    * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountries/).
    */
   async getCountries(
-    { onboarding, pageNo, pageSize, q, requestHeaders } = {
+    { onboarding, pageNo, pageSize, q, hierarchy, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = LogisticApplicationValidator.getCountries().validate(
-      { onboarding, pageNo, pageSize, q },
+      { onboarding, pageNo, pageSize, q, hierarchy },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -152,7 +154,7 @@ class Logistic {
     const {
       error: warrning,
     } = LogisticApplicationValidator.getCountries().validate(
-      { onboarding, pageNo, pageSize, q },
+      { onboarding, pageNo, pageSize, q, hierarchy },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -167,6 +169,7 @@ class Logistic {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
+    query_params["hierarchy"] = hierarchy;
 
     const xHeaders = {};
 
@@ -207,6 +210,41 @@ class Logistic {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.onboarding] - Only fetch countries which allowed
+   *   for onboard on Platform.
+   * @param {number} [arg.pageSize] - Page size.
+   * @param {string} [arg.q] - Search.
+   * @param {string} [arg.hierarchy] - Get countries with only certain
+   *   hierarchy present..
+   * @returns {Paginator<LogisticApplicationModel.GetCountries>}
+   * @summary: Get all countries and associated data.
+   * @description: Retrieve of all countries.
+   */
+  getCountriesPaginator({ onboarding, pageSize, q, hierarchy } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getCountries({
+        onboarding: onboarding,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+        hierarchy: hierarchy,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -288,6 +326,127 @@ class Logistic {
   }
 
   /**
+   * @param {LogisticApplicationValidator.GetGeoAreasParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LogisticApplicationModel.GeoAreaGetResponseBody>} -
+   *   Success response
+   * @name getGeoAreas
+   * @summary: Get all geoareas in the current application.
+   * @description: Retrieves a listing view of created GeoAreas. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getGeoAreas/).
+   */
+  async getGeoAreas(
+    {
+      applicationId,
+      companyId,
+      pageSize,
+      isActive,
+      q,
+      countryIsoCode,
+      state,
+      city,
+      pincode,
+      sector,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LogisticApplicationValidator.getGeoAreas().validate(
+      {
+        applicationId,
+        companyId,
+        pageSize,
+        isActive,
+        q,
+        countryIsoCode,
+        state,
+        city,
+        pincode,
+        sector,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticApplicationValidator.getGeoAreas().validate(
+      {
+        applicationId,
+        companyId,
+        pageSize,
+        isActive,
+        q,
+        countryIsoCode,
+        state,
+        city,
+        pincode,
+        sector,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Logistic > getGeoAreas \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_size"] = pageSize;
+    query_params["is_active"] = isActive;
+    query_params["q"] = q;
+    query_params["country_iso_code"] = countryIsoCode;
+    query_params["state"] = state;
+    query_params["city"] = city;
+    query_params["pincode"] = pincode;
+    query_params["sector"] = sector;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getGeoAreas"],
+        params: { applicationId, companyId },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LogisticApplicationModel.GeoAreaGetResponseBody().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Logistic > getGeoAreas \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {LogisticApplicationValidator.GetLocalitiesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -305,12 +464,24 @@ class Logistic {
       pageNo,
       pageSize,
       q,
+      name,
+      namesList,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = LogisticApplicationValidator.getLocalities().validate(
-      { localityType, country, state, city, pageNo, pageSize, q },
+      {
+        localityType,
+        country,
+        state,
+        city,
+        pageNo,
+        pageSize,
+        q,
+        name,
+        namesList,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -321,7 +492,17 @@ class Logistic {
     const {
       error: warrning,
     } = LogisticApplicationValidator.getLocalities().validate(
-      { localityType, country, state, city, pageNo, pageSize, q },
+      {
+        localityType,
+        country,
+        state,
+        city,
+        pageNo,
+        pageSize,
+        q,
+        name,
+        namesList,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -338,6 +519,8 @@ class Logistic {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
+    query_params["name"] = name;
+    query_params["names_list"] = namesList;
 
     const xHeaders = {};
 
@@ -378,6 +561,59 @@ class Logistic {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.localityType - A `locality_type` contains unique
+   *   geographical division.
+   * @param {string} [arg.country] - A `country` contains a specific value of
+   *   the country iso2 code.
+   * @param {string} [arg.state] - A `state` contains a specific value of the
+   *   state, province.
+   * @param {string} [arg.city] - A `city` contains a specific value of the city.
+   * @param {number} [arg.pageSize] - Page size.
+   * @param {string} [arg.q] - Search.
+   * @param {string} [arg.name] - Search with full name.
+   * @param {string} [arg.namesList] - Search with multiple full names
+   * @returns {Paginator<LogisticApplicationModel.GetLocalities>}
+   * @summary: Get Localities.
+   * @description: Get Localities data.
+   */
+  getLocalitiesPaginator({
+    localityType,
+    country,
+    state,
+    city,
+    pageSize,
+    q,
+    name,
+    namesList,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getLocalities({
+        localityType: localityType,
+        country: country,
+        state: state,
+        city: city,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+        name: name,
+        namesList: namesList,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -663,84 +899,6 @@ class Logistic {
   }
 
   /**
-   * @param {LogisticApplicationValidator.GetPincodeCityParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
-   * @name getPincodeCity
-   * @summary: Fetches city by pincode.
-   * @description: Retrieve the name of the city associated with a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
-   */
-  async getPincodeCity(
-    { pincode, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = LogisticApplicationValidator.getPincodeCity().validate(
-      { pincode },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticApplicationValidator.getPincodeCity().validate(
-      { pincode },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Logistic > getPincodeCity \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPincodeCity"],
-        params: { pincode },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LogisticApplicationModel.PincodeApiResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Logistic > getPincodeCity \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -821,20 +979,49 @@ class Logistic {
   }
 
   /**
-   * @param {LogisticApplicationValidator.GetTatProductParam} arg - Arg object.
+   * @param {LogisticApplicationValidator.GetZonesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
-   * @name getTatProduct
-   * @summary: Retrieves product turnaround time.
-   * @description: Retrieve the estimated delivery time for a specific product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
+   * @returns {Promise<LogisticApplicationModel.ListViewResponseV2>} - Success response
+   * @name getZones
+   * @summary: Shows zones defined at the application level
+   * @description: Displays the list of zones defined at the application level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getZones/).
    */
-  async getTatProduct(
-    { body, requestHeaders } = { requestHeaders: {} },
+  async getZones(
+    {
+      companyId,
+      applicationId,
+      stage,
+      pageSize,
+      zoneIds,
+      isActive,
+      q,
+      country,
+      countryIsoCode,
+      pincode,
+      state,
+      city,
+      sector,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LogisticApplicationValidator.getTatProduct().validate(
-      { body },
+    const { error } = LogisticApplicationValidator.getZones().validate(
+      {
+        companyId,
+        applicationId,
+        stage,
+        pageSize,
+        zoneIds,
+        isActive,
+        q,
+        country,
+        countryIsoCode,
+        pincode,
+        state,
+        city,
+        sector,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -844,30 +1031,55 @@ class Logistic {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticApplicationValidator.getTatProduct().validate(
-      { body },
+    } = LogisticApplicationValidator.getZones().validate(
+      {
+        companyId,
+        applicationId,
+        stage,
+        pageSize,
+        zoneIds,
+        isActive,
+        q,
+        country,
+        countryIsoCode,
+        pincode,
+        state,
+        city,
+        sector,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Logistic > getTatProduct \n ${warrning}`,
+        message: `Parameter Validation warrnings for application > Logistic > getZones \n ${warrning}`,
       });
     }
 
     const query_params = {};
+    query_params["stage"] = stage;
+    query_params["page_size"] = pageSize;
+    query_params["zone_ids"] = zoneIds;
+    query_params["is_active"] = isActive;
+    query_params["q"] = q;
+    query_params["country"] = country;
+    query_params["country_iso_code"] = countryIsoCode;
+    query_params["pincode"] = pincode;
+    query_params["state"] = state;
+    query_params["city"] = city;
+    query_params["sector"] = sector;
 
     const xHeaders = {};
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
-      "post",
+      "get",
       constructUrl({
-        url: this._urls["getTatProduct"],
-        params: {},
+        url: this._urls["getZones"],
+        params: { companyId, applicationId },
       }),
       query_params,
-      body,
+      undefined,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -879,7 +1091,7 @@ class Logistic {
 
     const {
       error: res_error,
-    } = LogisticApplicationModel.TATViewResponse().validate(responseData, {
+    } = LogisticApplicationModel.ListViewResponseV2().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -890,7 +1102,7 @@ class Logistic {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for application > Logistic > getTatProduct \n ${res_error}`,
+          message: `Response Validation Warnings for application > Logistic > getZones \n ${res_error}`,
         });
       }
     }

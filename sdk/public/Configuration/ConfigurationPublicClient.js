@@ -14,9 +14,9 @@ class Configuration {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getLocations: "/service/common/configuration/v1.0/location",
+      getLocations: "/service/public/configuration/v1.0/location",
       searchApplication:
-        "/service/common/configuration/v1.0/application/search-application",
+        "/service/public/configuration/v1.0/application/search-application",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {

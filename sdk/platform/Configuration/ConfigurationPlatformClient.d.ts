@@ -24,6 +24,18 @@ declare class Configuration {
      */
     getApplications({ pageNo, pageSize, q, requestHeaders }?: ConfigurationPlatformValidator.GetApplicationsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.ApplicationsResponse>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.q] - Search param by name or domain
+     * @returns {Paginator<ConfigurationPlatformModel.ApplicationsResponse>}
+     * @summary: Get applications.
+     * @description: Retrieve a list of available applications. Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
+     */
+    getApplicationsPaginator({ pageSize, q }?: {
+        pageSize?: number;
+        q?: string;
+    }): Paginator<ConfigurationPlatformModel.ApplicationsResponse>;
+    /**
      * @param {ConfigurationPlatformValidator.GetAvailableOptInsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -32,9 +44,20 @@ declare class Configuration {
      *
      * @name getAvailableOptIns
      * @summary: Get available opt-ins.
-     * @description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAvailableOptIns/).
+     * @description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAvailableOptIns/).
      */
     getAvailableOptIns({ pageNo, pageSize, requestHeaders }?: ConfigurationPlatformValidator.GetAvailableOptInsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @returns {Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
+     * @summary: Get available opt-ins.
+     * @description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company.
+     */
+    getAvailableOptInsPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
     /**
      * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -57,6 +80,19 @@ declare class Configuration {
      * @description: Retrieve companies associated with specific brands. Retrieve a list of companies by the brands they deal. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getCompanyByBrands/).
      */
     getCompanyByBrands({ body, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformValidator.GetCompanyByBrandsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {ConfigurationPlatformModel.CompanyByBrandsRequest} arg.body
+     * @returns {Paginator<ConfigurationPlatformModel.CompanyByBrandsResponse>}
+     * @summary: Get company by brands.
+     * @description: Retrieve companies associated with specific brands. Retrieve a list of companies by the brands they deal.
+     */
+    getCompanyByBrandsPaginator({ pageSize, body }?: {
+        pageSize?: number;
+        body: ConfigurationPlatformModel.CompanyByBrandsRequest;
+    }): Paginator<ConfigurationPlatformModel.CompanyByBrandsResponse>;
     /**
      * @param {ConfigurationPlatformValidator.GetCurrenciesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -157,6 +193,17 @@ declare class Configuration {
      */
     getOtherSellerApplications({ pageNo, pageSize, requestHeaders }?: ConfigurationPlatformValidator.GetOtherSellerApplicationsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OtherSellerApplications>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @returns {Paginator<ConfigurationPlatformModel.OtherSellerApplications>}
+     * @summary: Get other seller applications.
+     * @description: Retrieve applications from other sellers. Retrieve all other seller applications that were not created within the current company. but have opted for the current company's inventory.
+     */
+    getOtherSellerApplicationsPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator<ConfigurationPlatformModel.OtherSellerApplications>;
+    /**
      * @param {ConfigurationPlatformValidator.GetSelectedOptInsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -169,16 +216,44 @@ declare class Configuration {
      */
     getSelectedOptIns({ level, uid, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformValidator.GetSelectedOptInsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.level - Store or company
+     * @param {number} arg.uid - Unique identifier of the selected integration level.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @returns {Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
+     * @summary: Get selected opt-ins.
+     * @description: Retrieve a list of selected opt-ins. Retrieve the store-level/company-level integrations configured in a company
+     */
+    getSelectedOptInsPaginator({ level, uid, pageSize }?: {
+        level: string;
+        uid: number;
+        pageSize?: number;
+    }): Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
+    /**
      * @param {ConfigurationPlatformValidator.GetStoreByBrandsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponse>} -
      *   Success response
      * @name getStoreByBrands
-     * @summary: Get store by brands.
-     * @description: Retrieve stores associated with specific brands. Retrieve a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoreByBrands/).
+     * @summary: Get stores by brand uids for the current company
+     * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoreByBrands/).
      */
     getStoreByBrands({ body, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformValidator.GetStoreByBrandsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.StoreByBrandsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {ConfigurationPlatformModel.StoreByBrandsRequest} arg.body
+     * @returns {Paginator<ConfigurationPlatformModel.StoreByBrandsResponse>}
+     * @summary: Get stores by brand uids for the current company
+     * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
+     */
+    getStoreByBrandsPaginator({ pageSize, body }?: {
+        pageSize?: number;
+        body: ConfigurationPlatformModel.StoreByBrandsRequest;
+    }): Paginator<ConfigurationPlatformModel.StoreByBrandsResponse>;
     /**
      * @param {ConfigurationPlatformValidator.OptOutFromApplicationParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -215,5 +290,6 @@ declare class Configuration {
      */
     updateLevelUidIntegration({ id, level, uid, body, requestHeaders }?: ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.IntegrationLevel>;
 }
-import ConfigurationPlatformValidator = require("./ConfigurationPlatformValidator");
-import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
+import ConfigurationPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformValidator");
+import ConfigurationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

@@ -80,19 +80,19 @@ export = UserPlatformModel;
  */
 /**
  * @typedef BlockUserRequestSchema
- * @property {boolean} [status]
- * @property {string[]} [user_id]
- * @property {string} [reason]
+ * @property {boolean} status
+ * @property {string[]} user_id
+ * @property {string} reason
  */
 /**
  * @typedef ArchiveUserRequestSchema
- * @property {string} [user_id]
+ * @property {string} user_id
  */
 /**
  * @typedef UnDeleteUserRequestSchema
- * @property {string} [user_id]
- * @property {string} [reason]
- * @property {string} [reason_id]
+ * @property {string} user_id
+ * @property {string} reason
+ * @property {string} reason_id
  */
 /**
  * @typedef BlockUserSuccess
@@ -138,16 +138,6 @@ export = UserPlatformModel;
  * @property {string[]} [session_ids]
  */
 /**
- * @typedef APIError
- * @property {string} [code]
- * @property {string} [message]
- * @property {string} [info] - Error code description link
- * @property {string} [request_id]
- * @property {string} [error]
- * @property {Object} [meta]
- * @property {boolean} [authenticated]
- */
-/**
  * @typedef SessionListResponseInfo
  * @property {string} [session_id]
  * @property {string} [user_agent]
@@ -171,6 +161,7 @@ export = UserPlatformModel;
 /**
  * @typedef UserGroupResponseSchema
  * @property {Conditions[]} [conditions]
+ * @property {string[]} [blacklisted_users]
  * @property {UserResponseErrorSchema} [error]
  * @property {string} [name]
  * @property {string} [description]
@@ -203,6 +194,7 @@ export = UserPlatformModel;
  * @property {string} name
  * @property {string} description
  * @property {string} [file_url]
+ * @property {string[]} [blacklisted_users]
  */
 /**
  * @typedef CreateUserRequestSchema
@@ -221,9 +213,9 @@ export = UserPlatformModel;
  */
 /**
  * @typedef CreateUserSessionRequestSchema
- * @property {string} [domain]
+ * @property {string} domain
  * @property {number} [max_age]
- * @property {string} [user_id]
+ * @property {string} user_id
  */
 /**
  * @typedef CreateUserSessionResponseSchema
@@ -241,6 +233,8 @@ export = UserPlatformModel;
  * @property {boolean} [active]
  * @property {boolean} [forgot_password]
  * @property {Login} [login]
+ * @property {AccountLockout} [account_lockout]
+ * @property {PasswordSettings} [password_settings]
  * @property {boolean} [skip_captcha]
  * @property {string} [name]
  * @property {MetaSchema} [meta]
@@ -268,9 +262,39 @@ export = UserPlatformModel;
  * @property {string} [background_color]
  */
 /**
+ * @typedef PasswordConfigs
+ * @property {number} [length]
+ * @property {boolean} [require_special_character]
+ * @property {boolean} [require_number]
+ * @property {boolean} [require_capital_character]
+ */
+/**
+ * @typedef PasswordHistory
+ * @property {boolean} [required]
+ * @property {number} [count]
+ */
+/**
+ * @typedef PasswordExpiry
+ * @property {boolean} [required]
+ * @property {number} [duration]
+ */
+/**
+ * @typedef PasswordSettings
+ * @property {PasswordConfigs} [configs]
+ * @property {PasswordHistory} [history]
+ * @property {PasswordExpiry} [expiry]
+ */
+/**
+ * @typedef AccountLockout
+ * @property {boolean} [enable]
+ * @property {number} [attempts]
+ * @property {number} [duration]
+ */
+/**
  * @typedef Login
  * @property {boolean} [password]
  * @property {boolean} [otp]
+ * @property {string} [via]
  */
 /**
  * @typedef MetaSchema
@@ -284,9 +308,14 @@ export = UserPlatformModel;
  * @property {boolean} [apple]
  */
 /**
+ * @typedef PlatformPassword
+ * @property {boolean} [is_required]
+ */
+/**
  * @typedef RequiredFields
  * @property {PlatformEmail} [email]
  * @property {PlatformMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 /**
  * @typedef PlatformEmail
@@ -302,6 +331,7 @@ export = UserPlatformModel;
  * @typedef RegisterRequiredFields
  * @property {RegisterRequiredFieldsEmail} [email]
  * @property {RegisterRequiredFieldsMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 /**
  * @typedef RegisterRequiredFieldsEmail
@@ -322,7 +352,7 @@ export = UserPlatformModel;
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 /**
@@ -377,6 +407,10 @@ export = UserPlatformModel;
  * @property {UserGroupUpdateData[]} [user_data] - Required property when passed
  *   type json. Array of user data. Must have `action` field and one of
  *   `phone_number`, `email` or `user_id` field in object
+ * @property {string[]} [whitelisted_users] - List of user ids to be whitelisted
+ *   from user group
+ * @property {string[]} [blacklisted_users] - List of user ids to be blacklisted
+ *   from user group
  */
 /**
  * @typedef UserGroupUpdateData
@@ -411,9 +445,16 @@ export = UserPlatformModel;
  * @property {string} [country_code]
  */
 /**
+ * @typedef UserPasswordHistory
+ * @property {string} [salt]
+ * @property {string} [hash]
+ */
+/**
  * @typedef UserSchema
  * @property {string} [application_id]
  * @property {string} [user_id]
+ * @property {string} [password_last_modified]
+ * @property {UserPasswordHistory[]} [password_history]
  * @property {string} [first_name]
  * @property {Object} [meta]
  * @property {string} [last_name]
@@ -454,23 +495,33 @@ export = UserPlatformModel;
  */
 /**
  * @typedef PhoneNumber
- * @property {boolean} [active]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [phone]
- * @property {number} [country_code]
+ * @property {string} [phone] - Phone number
+ * @property {number} [country_code] - Country code
+ * @property {boolean} [active] - Is the phone number active
+ * @property {boolean} [primary] - Is it a primary phone number
+ * @property {boolean} [verified] - Is the phone number verified
  */
 /**
  * @typedef Email
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [email]
- * @property {boolean} [active]
+ * @property {string} [email] - Email address
+ * @property {boolean} [active] - Is the email active
+ * @property {boolean} [primary] - Is it a primary email
+ * @property {boolean} [verified] - Is the email verified
+ */
+/**
+ * @typedef APIError
+ * @property {string} [code]
+ * @property {string} [message]
+ * @property {string} [info] - Error code description link
+ * @property {string} [request_id]
+ * @property {string} [error]
+ * @property {Object} [meta]
+ * @property {boolean} [authenticated]
  */
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
+    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, PasswordConfigs, PasswordHistory, PasswordExpiry, PasswordSettings, AccountLockout, Login, MetaSchema, Social, PlatformPassword, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserPasswordHistory, UserSchema, UserSearchSchema, PhoneNumber, Email, APIError };
 }
 /** @returns {SuccessMessageResponse} */
 declare function SuccessMessageResponse(): SuccessMessageResponse;
@@ -678,21 +729,21 @@ type CreateUserAttributeDefinition = {
 /** @returns {BlockUserRequestSchema} */
 declare function BlockUserRequestSchema(): BlockUserRequestSchema;
 type BlockUserRequestSchema = {
-    status?: boolean;
-    user_id?: string[];
-    reason?: string;
+    status: boolean;
+    user_id: string[];
+    reason: string;
 };
 /** @returns {ArchiveUserRequestSchema} */
 declare function ArchiveUserRequestSchema(): ArchiveUserRequestSchema;
 type ArchiveUserRequestSchema = {
-    user_id?: string;
+    user_id: string;
 };
 /** @returns {UnDeleteUserRequestSchema} */
 declare function UnDeleteUserRequestSchema(): UnDeleteUserRequestSchema;
 type UnDeleteUserRequestSchema = {
-    user_id?: string;
-    reason?: string;
-    reason_id?: string;
+    user_id: string;
+    reason: string;
+    reason_id: string;
 };
 /** @returns {BlockUserSuccess} */
 declare function BlockUserSuccess(): BlockUserSuccess;
@@ -746,20 +797,6 @@ type SessionsDeleteResponseSchema = {
     user_id?: string;
     session_ids?: string[];
 };
-/** @returns {APIError} */
-declare function APIError(): APIError;
-type APIError = {
-    code?: string;
-    message?: string;
-    /**
-     * - Error code description link
-     */
-    info?: string;
-    request_id?: string;
-    error?: string;
-    meta?: any;
-    authenticated?: boolean;
-};
 /** @returns {SessionListResponseInfo} */
 declare function SessionListResponseInfo(): SessionListResponseInfo;
 type SessionListResponseInfo = {
@@ -788,6 +825,7 @@ type UserResponseErrorSchema = {
 declare function UserGroupResponseSchema(): UserGroupResponseSchema;
 type UserGroupResponseSchema = {
     conditions?: Conditions[];
+    blacklisted_users?: string[];
     error?: UserResponseErrorSchema;
     name?: string;
     description?: string;
@@ -823,6 +861,7 @@ type CreateUserGroup = {
     name: string;
     description: string;
     file_url?: string;
+    blacklisted_users?: string[];
 };
 /** @returns {CreateUserRequestSchema} */
 declare function CreateUserRequestSchema(): CreateUserRequestSchema;
@@ -844,9 +883,9 @@ type CreateUserResponseSchema = {
 /** @returns {CreateUserSessionRequestSchema} */
 declare function CreateUserSessionRequestSchema(): CreateUserSessionRequestSchema;
 type CreateUserSessionRequestSchema = {
-    domain?: string;
+    domain: string;
     max_age?: number;
-    user_id?: string;
+    user_id: string;
 };
 /** @returns {CreateUserSessionResponseSchema} */
 declare function CreateUserSessionResponseSchema(): CreateUserSessionResponseSchema;
@@ -866,6 +905,8 @@ type PlatformSchema = {
     active?: boolean;
     forgot_password?: boolean;
     login?: Login;
+    account_lockout?: AccountLockout;
+    password_settings?: PasswordSettings;
     skip_captcha?: boolean;
     name?: string;
     meta?: MetaSchema;
@@ -893,11 +934,46 @@ type LookAndFeel = {
     card_position?: string;
     background_color?: string;
 };
+/** @returns {PasswordConfigs} */
+declare function PasswordConfigs(): PasswordConfigs;
+type PasswordConfigs = {
+    length?: number;
+    require_special_character?: boolean;
+    require_number?: boolean;
+    require_capital_character?: boolean;
+};
+/** @returns {PasswordHistory} */
+declare function PasswordHistory(): PasswordHistory;
+type PasswordHistory = {
+    required?: boolean;
+    count?: number;
+};
+/** @returns {PasswordExpiry} */
+declare function PasswordExpiry(): PasswordExpiry;
+type PasswordExpiry = {
+    required?: boolean;
+    duration?: number;
+};
+/** @returns {PasswordSettings} */
+declare function PasswordSettings(): PasswordSettings;
+type PasswordSettings = {
+    configs?: PasswordConfigs;
+    history?: PasswordHistory;
+    expiry?: PasswordExpiry;
+};
+/** @returns {AccountLockout} */
+declare function AccountLockout(): AccountLockout;
+type AccountLockout = {
+    enable?: boolean;
+    attempts?: number;
+    duration?: number;
+};
 /** @returns {Login} */
 declare function Login(): Login;
 type Login = {
     password?: boolean;
     otp?: boolean;
+    via?: string;
 };
 /** @returns {MetaSchema} */
 declare function MetaSchema(): MetaSchema;
@@ -912,11 +988,17 @@ type Social = {
     google?: boolean;
     apple?: boolean;
 };
+/** @returns {PlatformPassword} */
+declare function PlatformPassword(): PlatformPassword;
+type PlatformPassword = {
+    is_required?: boolean;
+};
 /** @returns {RequiredFields} */
 declare function RequiredFields(): RequiredFields;
 type RequiredFields = {
     email?: PlatformEmail;
     mobile?: PlatformMobile;
+    password?: PlatformPassword;
 };
 /** @returns {PlatformEmail} */
 declare function PlatformEmail(): PlatformEmail;
@@ -935,6 +1017,7 @@ declare function RegisterRequiredFields(): RegisterRequiredFields;
 type RegisterRequiredFields = {
     email?: RegisterRequiredFieldsEmail;
     mobile?: RegisterRequiredFieldsMobile;
+    password?: PlatformPassword;
 };
 /** @returns {RegisterRequiredFieldsEmail} */
 declare function RegisterRequiredFieldsEmail(): RegisterRequiredFieldsEmail;
@@ -959,7 +1042,7 @@ type FlashCard = {
 declare function SocialTokens(): SocialTokens;
 type SocialTokens = {
     facebook?: Facebook;
-    account_kit?: Accountkit;
+    accountkit?: Accountkit;
     google?: Google;
 };
 /** @returns {DeleteAccountReasons} */
@@ -1031,6 +1114,16 @@ type PartialUserGroupUpdateSchema = {
      * `phone_number`, `email` or `user_id` field in object
      */
     user_data?: UserGroupUpdateData[];
+    /**
+     * - List of user ids to be whitelisted
+     * from user group
+     */
+    whitelisted_users?: string[];
+    /**
+     * - List of user ids to be blacklisted
+     * from user group
+     */
+    blacklisted_users?: string[];
 };
 /** @returns {UserGroupUpdateData} */
 declare function UserGroupUpdateData(): UserGroupUpdateData;
@@ -1077,11 +1170,19 @@ type UserPhoneNumbers = {
     phone?: string;
     country_code?: string;
 };
+/** @returns {UserPasswordHistory} */
+declare function UserPasswordHistory(): UserPasswordHistory;
+type UserPasswordHistory = {
+    salt?: string;
+    hash?: string;
+};
 /** @returns {UserSchema} */
 declare function UserSchema(): UserSchema;
 type UserSchema = {
     application_id?: string;
     user_id?: string;
+    password_last_modified?: string;
+    password_history?: UserPasswordHistory[];
     first_name?: string;
     meta?: any;
     last_name?: string;
@@ -1124,17 +1225,58 @@ type UserSearchSchema = {
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
 type PhoneNumber = {
-    active?: boolean;
-    primary?: boolean;
-    verified?: boolean;
+    /**
+     * - Phone number
+     */
     phone?: string;
+    /**
+     * - Country code
+     */
     country_code?: number;
+    /**
+     * - Is the phone number active
+     */
+    active?: boolean;
+    /**
+     * - Is it a primary phone number
+     */
+    primary?: boolean;
+    /**
+     * - Is the phone number verified
+     */
+    verified?: boolean;
 };
 /** @returns {Email} */
 declare function Email(): Email;
 type Email = {
-    primary?: boolean;
-    verified?: boolean;
+    /**
+     * - Email address
+     */
     email?: string;
+    /**
+     * - Is the email active
+     */
     active?: boolean;
+    /**
+     * - Is it a primary email
+     */
+    primary?: boolean;
+    /**
+     * - Is the email verified
+     */
+    verified?: boolean;
+};
+/** @returns {APIError} */
+declare function APIError(): APIError;
+type APIError = {
+    code?: string;
+    message?: string;
+    /**
+     * - Error code description link
+     */
+    info?: string;
+    request_id?: string;
+    error?: string;
+    meta?: any;
+    authenticated?: boolean;
 };

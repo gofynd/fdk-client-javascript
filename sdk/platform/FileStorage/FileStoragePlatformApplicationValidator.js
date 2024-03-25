@@ -50,8 +50,48 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
+ * @typedef CreateTemplateParam
+ * @property {FileStoragePlatformModel.CreateTemplate} body
+ */
+
+/**
+ * @typedef DeletePdfConfigTemplateParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef DeletePdfPayloadByIdParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef DeletePdfTemplateParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef DeletePdfTypeParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef FetchPdfDefaultTemplateByIdParam
+ * @property {string} id
+ */
+
+/**
+ * @typedef FetchPdfTypeByIdParam
+ * @property {string} id
+ */
+
+/**
  * @typedef GeneratePaymentReceiptParam
  * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
+ */
+
+/**
+ * @typedef GetConfigHtmlTemplateByIdParam
+ * @property {string} id
  */
 
 /**
@@ -75,8 +115,14 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
+ * @typedef GetPdfPayloadByIdParam
+ * @property {string} id
+ */
+
+/**
  * @typedef GetPdfTypesParam
  * @property {string} [countryCode]
+ * @property {boolean} storeOs
  */
 
 /**
@@ -85,9 +131,37 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
+ * @typedef SavePdfPayloadDataParam
+ * @property {FileStoragePlatformModel.savePdfPayload} body
+ */
+
+/**
+ * @typedef SavePdfTypesParam
+ * @property {FileStoragePlatformModel.UpdatePdfTypeRequest} body
+ */
+
+/**
  * @typedef UpdateHtmlTemplateParam
  * @property {string} id
  * @property {FileStoragePlatformModel.PdfConfig} body
+ */
+
+/**
+ * @typedef UpdatePdfPayloadDataByIdParam
+ * @property {string} id
+ * @property {FileStoragePlatformModel.DummyPayloadById} body
+ */
+
+/**
+ * @typedef UpdatePdfTypeByIdParam
+ * @property {string} id
+ * @property {FileStoragePlatformModel.UpdatePdfTypeRequest} body
+ */
+
+/**
+ * @typedef UpdateTemplateParam
+ * @property {string} id
+ * @property {FileStoragePlatformModel.UpdateTemplate} body
  */
 
 class FileStoragePlatformApplicationValidator {
@@ -141,10 +215,66 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateTemplateParam} */
+  static createTemplate() {
+    return Joi.object({
+      body: FileStoragePlatformModel.CreateTemplate().required(),
+    }).required();
+  }
+
+  /** @returns {DeletePdfConfigTemplateParam} */
+  static deletePdfConfigTemplate() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeletePdfPayloadByIdParam} */
+  static deletePdfPayloadById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeletePdfTemplateParam} */
+  static deletePdfTemplate() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeletePdfTypeParam} */
+  static deletePdfType() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {FetchPdfDefaultTemplateByIdParam} */
+  static fetchPdfDefaultTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {FetchPdfTypeByIdParam} */
+  static fetchPdfTypeById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GeneratePaymentReceiptParam} */
   static generatePaymentReceipt() {
     return Joi.object({
       body: FileStoragePlatformModel.PaymentReceiptRequestBody().required(),
+    }).required();
+  }
+
+  /** @returns {GetConfigHtmlTemplateByIdParam} */
+  static getConfigHtmlTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -174,10 +304,18 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetPdfPayloadByIdParam} */
+  static getPdfPayloadById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetPdfTypesParam} */
   static getPdfTypes() {
     return Joi.object({
       countryCode: Joi.string().allow(""),
+      storeOs: Joi.boolean().required(),
     }).required();
   }
 
@@ -188,11 +326,49 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {SavePdfPayloadDataParam} */
+  static savePdfPayloadData() {
+    return Joi.object({
+      body: FileStoragePlatformModel.savePdfPayload().required(),
+    }).required();
+  }
+
+  /** @returns {SavePdfTypesParam} */
+  static savePdfTypes() {
+    return Joi.object({
+      body: FileStoragePlatformModel.UpdatePdfTypeRequest().required(),
+    }).required();
+  }
+
   /** @returns {UpdateHtmlTemplateParam} */
   static updateHtmlTemplate() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: FileStoragePlatformModel.PdfConfig().required(),
+    }).required();
+  }
+
+  /** @returns {UpdatePdfPayloadDataByIdParam} */
+  static updatePdfPayloadDataById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: FileStoragePlatformModel.DummyPayloadById().required(),
+    }).required();
+  }
+
+  /** @returns {UpdatePdfTypeByIdParam} */
+  static updatePdfTypeById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: FileStoragePlatformModel.UpdatePdfTypeRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateTemplateParam} */
+  static updateTemplate() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: FileStoragePlatformModel.UpdateTemplate().required(),
     }).required();
   }
 }

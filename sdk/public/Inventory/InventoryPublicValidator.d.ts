@@ -88,4 +88,4 @@ type GetJobConfigByIntegrationTypeParam = {
 type SaveJobCodesMetricsParam = {
     body: InventoryPublicModel.EmailJobMetrics;
 };
-import InventoryPublicModel = require("./InventoryPublicModel");
+import InventoryPublicModel = require("sdk/output/javascript/code/sdk/public/Inventory/InventoryPublicModel");

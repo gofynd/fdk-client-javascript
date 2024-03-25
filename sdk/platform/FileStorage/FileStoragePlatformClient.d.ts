@@ -46,12 +46,12 @@ declare class FileStorage {
      * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<string>} - Success response
+     * @returns {Promise<FileStoragePlatformModel.ProxyResponse>} - Success response
      * @name proxy
      * @summary: Proxy file access.
      * @description: Access files through a proxy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
      */
-    proxy({ url, requestHeaders }?: FileStoragePlatformValidator.ProxyParam, { responseHeaders }?: object): Promise<string>;
+    proxy({ url, requestHeaders }?: FileStoragePlatformValidator.ProxyParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.ProxyResponse>;
     /**
      * @param {FileStoragePlatformValidator.StartUploadParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -79,5 +79,5 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import FileStoragePlatformValidator = require("./FileStoragePlatformValidator");
-import FileStoragePlatformModel = require("./FileStoragePlatformModel");
+import FileStoragePlatformValidator = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformValidator");
+import FileStoragePlatformModel = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformModel");

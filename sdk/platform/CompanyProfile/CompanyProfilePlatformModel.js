@@ -64,7 +64,7 @@ const Joi = require("joi");
  * @typedef GetAddressSerializer
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {number} [pincode]
+ * @property {string} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -106,10 +106,11 @@ const Joi = require("joi");
 
 /**
  * @typedef ErrorResponse
+ * @property {number} [code]
+ * @property {string} [error]
  * @property {string} [message]
- * @property {string} [code]
- * @property {number} [status]
  * @property {Object} [meta]
+ * @property {number} [status]
  */
 
 /**
@@ -123,7 +124,7 @@ const Joi = require("joi");
  * @typedef CreateUpdateAddressSerializer
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {number} pincode
+ * @property {string} [pincode]
  * @property {string} address_type
  * @property {number} longitude
  * @property {string} country
@@ -155,6 +156,7 @@ const Joi = require("joi");
 /**
  * @typedef ProfileSuccessResponse
  * @property {number} [uid]
+ * @property {Object[]} [data]
  * @property {string} [message]
  * @property {boolean} [success]
  */
@@ -217,6 +219,7 @@ const Joi = require("joi");
  * @property {number} [uid]
  * @property {BrandBannerSerializer} banner
  * @property {string} name
+ * @property {string} [slug]
  */
 
 /**
@@ -242,7 +245,7 @@ const Joi = require("joi");
  * @property {string} company_type
  * @property {string} [modified_on]
  * @property {string[]} [market_channels]
- * @property {string} business_type
+ * @property {string} [business_type]
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string[]} [notification_emails]
  * @property {CompanyDetails} [details]
@@ -271,13 +274,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
+ * @property {boolean} [has_previous]
  * @property {number} [item_total]
  * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
  * @property {number} [size]
+ * @property {string} type
+ * @property {number} [current]
+ * @property {boolean} [has_next]
  */
 
 /**
@@ -410,7 +413,7 @@ const Joi = require("joi");
  * @typedef AddressSerializer
  * @property {string} [landmark]
  * @property {string} country_code
- * @property {number} [pincode]
+ * @property {string} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -556,7 +559,7 @@ class CompanyProfilePlatformModel {
     return Joi.object({
       landmark: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       address_type: Joi.string().allow(""),
       longitude: Joi.number().required(),
       country: Joi.string().allow(""),
@@ -606,10 +609,11 @@ class CompanyProfilePlatformModel {
   /** @returns {ErrorResponse} */
   static ErrorResponse() {
     return Joi.object({
+      code: Joi.number(),
+      error: Joi.string().allow(""),
       message: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      status: Joi.number(),
       meta: Joi.any(),
+      status: Joi.number(),
     });
   }
 
@@ -627,7 +631,7 @@ class CompanyProfilePlatformModel {
     return Joi.object({
       landmark: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
-      pincode: Joi.number().required(),
+      pincode: Joi.string().allow(""),
       address_type: Joi.string().allow("").required(),
       longitude: Joi.number().required(),
       country: Joi.string().allow("").required(),
@@ -667,6 +671,7 @@ class CompanyProfilePlatformModel {
   static ProfileSuccessResponse() {
     return Joi.object({
       uid: Joi.number(),
+      data: Joi.array().items(Joi.any()),
       message: Joi.string().allow(""),
       success: Joi.boolean(),
     });
@@ -739,6 +744,7 @@ class CompanyProfilePlatformModel {
       uid: Joi.number(),
       banner: CompanyProfilePlatformModel.BrandBannerSerializer().required(),
       name: Joi.string().allow("").required(),
+      slug: Joi.string().allow(""),
     });
   }
 
@@ -772,7 +778,7 @@ class CompanyProfilePlatformModel {
       company_type: Joi.string().allow("").required(),
       modified_on: Joi.string().allow(""),
       market_channels: Joi.array().items(Joi.string().allow("")),
-      business_type: Joi.string().allow("").required(),
+      business_type: Joi.string().allow(""),
       addresses: Joi.array().items(
         CompanyProfilePlatformModel.GetAddressSerializer()
       ),
@@ -807,13 +813,13 @@ class CompanyProfilePlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
+      has_previous: Joi.boolean(),
       item_total: Joi.number(),
       next_id: Joi.string().allow(""),
-      has_previous: Joi.boolean(),
-      has_next: Joi.boolean(),
-      current: Joi.number(),
-      type: Joi.string().allow("").required(),
       size: Joi.number(),
+      type: Joi.string().allow("").required(),
+      current: Joi.number(),
+      has_next: Joi.boolean(),
     });
   }
 
@@ -988,7 +994,7 @@ class CompanyProfilePlatformModel {
     return Joi.object({
       landmark: Joi.string().allow(""),
       country_code: Joi.string().allow("").required(),
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       address_type: Joi.string().allow(""),
       longitude: Joi.number().required(),
       country: Joi.string().allow(""),

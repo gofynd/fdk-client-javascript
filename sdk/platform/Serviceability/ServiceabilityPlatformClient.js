@@ -439,85 +439,6 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.CreateZoneParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
-   * @name createZone
-   * @summary: Create zone.
-   * @description: Generate and add a new zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
-   */
-  async createZone(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ServiceabilityPlatformValidator.createZone().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformValidator.createZone().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > createZone \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v2.0/company/${this.config.companyId}/zones`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.ZoneResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > createZone \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformValidator.GetAllStoresParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -1018,9 +939,15 @@ class Serviceability {
    * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
-    { pageNo, pageSize, stage, paymentMode, transportType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      pageNo,
+      pageSize,
+      stage,
+      paymentMode,
+      transportType,
+      accountIds,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1032,6 +959,7 @@ class Serviceability {
         stage,
         paymentMode,
         transportType,
+        accountIds,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1049,6 +977,7 @@ class Serviceability {
         stage,
         paymentMode,
         transportType,
+        accountIds,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1065,6 +994,7 @@ class Serviceability {
     query_params["stage"] = stage;
     query_params["payment_mode"] = paymentMode;
     query_params["transport_type"] = transportType;
+    query_params["account_ids"] = accountIds;
 
     const xHeaders = {};
 
@@ -1108,12 +1038,11 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
+   *   Success response
    * @name getOptimalLocations
-   * @summary: Retrieve optimal locations
-   * @description: Retrieve optimal locations based on the specific criteria - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
+   * @summary: Get serviceable store of the item
+   * @description: This API returns serviceable store of the item. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1154,7 +1083,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/optimal-locations`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1168,7 +1097,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.OptimalLocationsResponse().validate(
+    } = ServiceabilityPlatformModel.ReAssignStoreResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1634,205 +1563,6 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.GetZoneByIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetZoneByIdSchema>} -
-   *   Success response
-   * @name getZoneById
-   * @summary: Get details of the Zone
-   * @description: Returns the region, application, store mapping and other details in the Zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneById/).
-   */
-  async getZoneById(
-    { zoneId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ServiceabilityPlatformValidator.getZoneById().validate(
-      {
-        zoneId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformValidator.getZoneById().validate(
-      {
-        zoneId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getZoneById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v2.0/company/${this.config.companyId}/zones/${zoneId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.GetZoneByIdSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getZoneById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformValidator.GetZonesParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
-   * @name getZones
-   * @summary: Shows zones defined at the company level
-   * @description: Return the list of zones that are defined at the company level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
-   */
-  async getZones(
-    {
-      pageNo,
-      pageSize,
-      isActive,
-      channelId,
-      q,
-      country,
-      state,
-      city,
-      pincode,
-      sector,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ServiceabilityPlatformValidator.getZones().validate(
-      {
-        pageNo,
-        pageSize,
-        isActive,
-        channelId,
-        q,
-        country,
-        state,
-        city,
-        pincode,
-        sector,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformValidator.getZones().validate(
-      {
-        pageNo,
-        pageSize,
-        isActive,
-        channelId,
-        q,
-        country,
-        state,
-        city,
-        pincode,
-        sector,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getZones \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["is_active"] = isActive;
-    query_params["channel_id"] = channelId;
-    query_params["q"] = q;
-    query_params["country"] = country;
-    query_params["state"] = state;
-    query_params["city"] = city;
-    query_params["pincode"] = pincode;
-    query_params["sector"] = sector;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v2.0/company/${this.config.companyId}/zones`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.ListViewResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getZones \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformValidator.UpdateCompanyConfigurationParam} arg
    *   - Arg object
    *
@@ -2257,88 +1987,6 @@ class Serviceability {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Serviceability > updateServiceability \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformValidator.UpdateZoneByIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
-   *   Success response
-   * @name updateZoneById
-   * @summary: Update details of a Zone
-   * @description: Updates the region, application, store mapping and other details in the Zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZoneById/).
-   */
-  async updateZoneById(
-    { zoneId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ServiceabilityPlatformValidator.updateZoneById().validate(
-      {
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformValidator.updateZoneById().validate(
-      {
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > updateZoneById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/logistics/v2.0/company/${this.config.companyId}/zones/${zoneId}`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.ZoneSuccessResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > updateZoneById \n ${res_error}`,
         });
       }
     }

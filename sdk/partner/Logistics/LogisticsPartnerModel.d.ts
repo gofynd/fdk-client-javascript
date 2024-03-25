@@ -33,13 +33,11 @@ export = LogisticsPartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [current] - Current page number
+ * @property {boolean} [has_next] - Next page available
+ * @property {boolean} [has_previous] - Previous page available
+ * @property {number} [item_total] - Total records
+ * @property {number} [size] - Current page size
  */
 /**
  * @typedef BulkRegionJobSerializer
@@ -217,12 +215,25 @@ type BulkRegionServiceabilityTatResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
+    /**
+     * - Current page number
+     */
     current?: number;
-    type: string;
+    /**
+     * - Next page available
+     */
+    has_next?: boolean;
+    /**
+     * - Previous page available
+     */
+    has_previous?: boolean;
+    /**
+     * - Total records
+     */
+    item_total?: number;
+    /**
+     * - Current page size
+     */
     size?: number;
 };
 /** @returns {BulkRegionJobSerializer} */

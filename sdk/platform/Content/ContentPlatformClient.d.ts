@@ -60,7 +60,20 @@ declare class Content {
      * @summary: Delete custom fields definition.
      * @description: Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldDefinition/).
      */
-    deleteCustomFieldDefinition({ definitionId, requestHeaders }?: ContentPlatformValidator.DeleteCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
+    deleteCustomFieldDefinition({ id, requestHeaders }?: ContentPlatformValidator.DeleteCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
+    /**
+     * @param {ContentPlatformValidator.DeleteCustomFieldsByResourceIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.CustomFieldsDeleteSchema>} -
+     *   Success response
+     * @name deleteCustomFieldsByResourceId
+     * @summary: delete custom fields of given resource and resource id
+     * @description: Use this API to delete the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldsByResourceId/).
+     */
+    deleteCustomFieldsByResourceId({ resource, resourceId, ids, requestHeaders }?: ContentPlatformValidator.DeleteCustomFieldsByResourceIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldsDeleteSchema>;
     /**
      * @param {ContentPlatformValidator.DeleteCustomObjectParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -70,7 +83,7 @@ declare class Content {
      * @summary: Delete custom object
      * @description: Use this API to delete the custom object entry by id. This will also delete related custom fields entries related to this custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObject/).
      */
-    deleteCustomObject({ metaobjectId, requestHeaders }?: ContentPlatformValidator.DeleteCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
+    deleteCustomObject({ id, requestHeaders }?: ContentPlatformValidator.DeleteCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
     /**
      * @param {ContentPlatformValidator.DeleteCustomObjectDefinitionParam} arg
      *   - Arg object
@@ -84,7 +97,7 @@ declare class Content {
      * @summary: delete custom object definition by id
      * @description: Use this API to delete a custom object definition and related data for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObjectDefinition/).
      */
-    deleteCustomObjectDefinition({ definitionId, requestHeaders }?: ContentPlatformValidator.DeleteCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionDeleteResponseSchema>;
+    deleteCustomObjectDefinition({ id, requestHeaders }?: ContentPlatformValidator.DeleteCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionDeleteResponseSchema>;
     /**
      * @param {ContentPlatformValidator.ExportCustomObjectEntriesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -108,7 +121,7 @@ declare class Content {
      * @summary: Get custom fields definition by id
      * @description: Use this API to retrieve the definitions of custom fields using definition_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinition/).
      */
-    getCustomFieldDefinition({ definitionId, requestHeaders }?: ContentPlatformValidator.GetCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
+    getCustomFieldDefinition({ id, requestHeaders }?: ContentPlatformValidator.GetCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
     /**
      * @param {ContentPlatformValidator.GetCustomFieldDefinitionsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -121,15 +134,25 @@ declare class Content {
      */
     getCustomFieldDefinitions({ pageNo, pageSize, resources, types, search, requestHeaders }?: ContentPlatformValidator.GetCustomFieldDefinitionsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>;
     /**
+     * @param {ContentPlatformValidator.GetCustomFieldJobsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.CustomFieldBulkEntry>} - Success response
+     * @name getCustomFieldJobs
+     * @summary: Fetch bulk import and export job list.
+     * @description: Use this api to get list of jobs of bulk import and exports - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldJobs/).
+     */
+    getCustomFieldJobs({ page, pageSize, actionType, requestHeaders }?: ContentPlatformValidator.GetCustomFieldJobsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldBulkEntry>;
+    /**
      * @param {ContentPlatformValidator.GetCustomFieldTypesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.MetafieldTypesSchema>} - Success response
      * @name getCustomFieldTypes
      * @summary: Get custom field types
      * @description: Use this API to retrieve the custom field types  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldTypes/).
      */
-    getCustomFieldTypes({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectByIdSchema>;
+    getCustomFieldTypes({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.MetafieldTypesSchema>;
     /**
      * @param {ContentPlatformValidator.GetCustomFieldsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -162,7 +185,7 @@ declare class Content {
      * @summary: Get custom object details
      * @description: Use this API to retrieve the custom object details and their fields details and definitions and references. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObject/).
      */
-    getCustomObject({ metaobjectId, requestHeaders }?: ContentPlatformValidator.GetCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectByIdSchema>;
+    getCustomObject({ id, requestHeaders }?: ContentPlatformValidator.GetCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectByIdSchema>;
     /**
      * @param {ContentPlatformValidator.GetCustomObjectDefinitionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -173,7 +196,7 @@ declare class Content {
      * @summary: get custom object definition by id
      * @description: Use this API to update a custom object definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinition/).
      */
-    getCustomObjectDefinition({ definitionId, requestHeaders }?: ContentPlatformValidator.GetCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSchema>;
+    getCustomObjectDefinition({ id, requestHeaders }?: ContentPlatformValidator.GetCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSchema>;
     /**
      * @param {ContentPlatformValidator.GetCustomObjectDefinitionsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -238,6 +261,20 @@ declare class Content {
      */
     sampleCustomObjectBulkEntry({ definitionId, requestHeaders }?: ContentPlatformValidator.SampleCustomObjectBulkEntryParam, { responseHeaders }?: object): Promise<string>;
     /**
+     * @param {ContentPlatformValidator.UpdateCustomFieldByResourceIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>}
+     *   - Success response
+     *
+     * @name updateCustomFieldByResourceId
+     * @summary: Update custom field entries for gives resource and resource_id
+     * @description: Use this API to create the custom field entry for given resource and resource_id in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomFieldByResourceId/).
+     */
+    updateCustomFieldByResourceId({ resource, resourceId, body, requestHeaders }?: ContentPlatformValidator.UpdateCustomFieldByResourceIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldsResponseByResourceIdSchema>;
+    /**
      * @param {ContentPlatformValidator.UpdateCustomFieldDefinitionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -248,17 +285,17 @@ declare class Content {
      * @summary: Update custom field definition
      * @description: Use this API to update a custom field definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomFieldDefinition/).
      */
-    updateCustomFieldDefinition({ definitionId, body, requestHeaders }?: ContentPlatformValidator.UpdateCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
+    updateCustomFieldDefinition({ id, body, requestHeaders }?: ContentPlatformValidator.UpdateCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionDetailResSchema>;
     /**
      * @param {ContentPlatformValidator.UpdateCustomObjectParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
+     * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
      * @name updateCustomObject
      * @summary: Update custom object details
      * @description: Use this API to update a custom object detail for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObject/).
      */
-    updateCustomObject({ metaobjectId, body, requestHeaders }?: ContentPlatformValidator.UpdateCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectByIdSchema>;
+    updateCustomObject({ id, body, requestHeaders }?: ContentPlatformValidator.UpdateCustomObjectParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectSchema>;
     /**
      * @param {ContentPlatformValidator.UpdateCustomObjectDefinitionParam} arg
      *   - Arg object
@@ -271,7 +308,7 @@ declare class Content {
      * @summary: Update custom object definition
      * @description: Use this API to update a custom object definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObjectDefinition/).
      */
-    updateCustomObjectDefinition({ definitionId, body, requestHeaders }?: ContentPlatformValidator.UpdateCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSchema>;
+    updateCustomObjectDefinition({ id, body, requestHeaders }?: ContentPlatformValidator.UpdateCustomObjectDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectDefinitionSchema>;
 }
-import ContentPlatformValidator = require("./ContentPlatformValidator");
-import ContentPlatformModel = require("./ContentPlatformModel");
+import ContentPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformValidator");
+import ContentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformModel");

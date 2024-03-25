@@ -326,6 +326,7 @@ const Joi = require("joi");
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {BuyboxFeature} [buybox]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -447,6 +448,17 @@ const Joi = require("joi");
  * @typedef OrderFeature
  * @property {boolean} [buy_again] - Allow buy again option for order. Default
  *   value is false.
+ */
+
+/**
+ * @typedef BuyboxFeature
+ * @property {boolean} [show_name] - Allow users to see seller/stores name on
+ *   PDP (product detail page).
+ * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
+ *   PDP (product detail page).
+ * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
+ *   between sellers and stores. True indicates seller listing, while False
+ *   indicates store listing.
  */
 
 /**
@@ -595,7 +607,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CompanyAboutAddress
- * @property {number} [pincode] - 6-digit PIN code of the city, e.g. 400001
+ * @property {string} [pincode] - 6-digit PIN code of the city, e.g. 400001
  * @property {string} [address1] - Primary address line of the company
  * @property {string} [address2] - Secondary address line of the company
  * @property {string} [city] - City name, e.g. Mumbai
@@ -628,13 +640,14 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {string} type - Page type
+ * @property {number} [size] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ * @property {number} [current] - Current page number
+ * @property {boolean} [has_next] - Next page is present or not
+ * @property {number} [item_total] - Total number of items to retrieve
+ * @property {string} [next_id] - Next page ID
+ * @property {boolean} [has_previous] - Previous page is present or not
  */
 
 /**
@@ -844,7 +857,7 @@ const Joi = require("joi");
  * @property {string} [address1] - Address of the opted store
  * @property {StoreLatLong} [lat_long]
  * @property {string} [address2] - Address of the opted store
- * @property {number} [pincode] - 6-digit PIN code of the opted store location
+ * @property {string} [pincode] - 6-digit PIN code of the opted store location
  * @property {string} [country] - Country of the opted store, e.g. India
  * @property {string} [city] - City of the opted store, e.g. Mumbai
  */
@@ -860,7 +873,7 @@ const Joi = require("joi");
  * @property {string} [store_type] - Store type of the ordering store, e.g.
  *   high_street, mall, warehouse
  * @property {string} [store_code] - Store code of the ordering store, e.g. MUM-102
- * @property {number} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
+ * @property {string} [pincode] - 6-digit PIN Code of the ordering store, e.g. 400001
  * @property {string} [code] - Code of the ordering store (usually same as Store Code)
  */
 
@@ -1247,6 +1260,7 @@ class ConfigurationApplicationModel {
       qr: ConfigurationApplicationModel.QrFeature(),
       pcr: ConfigurationApplicationModel.PcrFeature(),
       order: ConfigurationApplicationModel.OrderFeature(),
+      buybox: ConfigurationApplicationModel.BuyboxFeature(),
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -1376,6 +1390,15 @@ class ConfigurationApplicationModel {
   static OrderFeature() {
     return Joi.object({
       buy_again: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BuyboxFeature} */
+  static BuyboxFeature() {
+    return Joi.object({
+      show_name: Joi.boolean(),
+      enable_selection: Joi.boolean(),
+      is_seller_buybox_enabled: Joi.boolean(),
     });
   }
 
@@ -1537,7 +1560,7 @@ class ConfigurationApplicationModel {
   /** @returns {CompanyAboutAddress} */
   static CompanyAboutAddress() {
     return Joi.object({
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       address1: Joi.string().allow(""),
       address2: Joi.string().allow(""),
       city: Joi.string().allow(""),
@@ -1571,13 +1594,13 @@ class ConfigurationApplicationModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
+      current: Joi.number(),
+      has_next: Joi.boolean(),
       item_total: Joi.number(),
       next_id: Joi.string().allow(""),
       has_previous: Joi.boolean(),
-      has_next: Joi.boolean(),
-      current: Joi.number(),
-      type: Joi.string().allow("").required(),
-      size: Joi.number(),
     });
   }
 
@@ -1835,7 +1858,7 @@ class ConfigurationApplicationModel {
       address1: Joi.string().allow(""),
       lat_long: ConfigurationApplicationModel.StoreLatLong(),
       address2: Joi.string().allow(""),
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       country: Joi.string().allow(""),
       city: Joi.string().allow(""),
     });
@@ -1851,7 +1874,7 @@ class ConfigurationApplicationModel {
       display_name: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
       store_code: Joi.string().allow(""),
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       code: Joi.string().allow(""),
     });
   }

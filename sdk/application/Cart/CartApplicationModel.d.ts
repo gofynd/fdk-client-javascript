@@ -1,15 +1,65 @@
 export = CartApplicationModel;
 /**
+ * @typedef PromoBuyRuleCartConditions
+ * @property {PromoBuyRuleCompareFieldsTypes} [cart_quantity]
+ * @property {PromoBuyRuleCompareFieldsTypes} [cart_total]
+ * @property {number[]} [item_id]
+ * @property {number[]} [item_store]
+ * @property {number[]} [item_company]
+ * @property {number[]} [item_brand]
+ * @property {number[]} [item_exclude_brand]
+ * @property {number[]} [item_category]
+ * @property {number[]} [item_exclude_category]
+ * @property {number[]} [item_l1_category]
+ * @property {number[]} [item_exclude_l1_category]
+ * @property {number[]} [item_l2_category]
+ * @property {number[]} [item_exclude_l2_category]
+ * @property {number[]} [item_department]
+ * @property {number[]} [item_exclude_id]
+ * @property {number[]} [available_zones]
+ * @property {string[]} [product_tags]
+ */
+/**
+ * @typedef PromoBuyRuleCompareFieldsTypes
+ * @property {number} [greater_than_equals]
+ * @property {number} [greater_than]
+ * @property {number} [equals]
+ * @property {number} [less_than]
+ * @property {number} [less_than_equals]
+ */
+/**
  * @typedef BuyRules
+ * @property {PromoBuyRuleCartConditions} [cart_conditions]
  * @property {Object} [item_criteria] - Item criteria of promotion
- * @property {Object} [cart_conditions] - Cart conditions details for promotion
+ * @property {boolean} [all_items]
+ * @property {boolean} [mrp_promo]
+ * @property {string} [slug]
+ */
+/**
+ * @typedef PromoDiscountRuleOffer
+ * @property {number} [max_offer_quantity]
+ * @property {number} [discount_percentage]
+ * @property {number} [discount_amount]
+ */
+/**
+ * @typedef PromoDiscountRuleRawOffer
+ * @property {string} [buy_condition]
+ * @property {string} [discount_type]
+ * @property {PromoDiscountRuleOffer} [offer]
+ * @property {PromoDiscountRuleItemCriteria} [item_criteria]
+ */
+/**
+ * @typedef PromoDiscountRuleItemCriteria
+ * @property {number[]} [item_id]
+ * @property {string[]} [buy_rules]
+ * @property {boolean} [all_items]
  */
 /**
  * @typedef DiscountRulesApp
+ * @property {PromoDiscountRuleOffer} [offer]
+ * @property {PromoDiscountRuleRawOffer} [raw_offer]
+ * @property {PromoDiscountRuleItemCriteria} [item_criteria]
  * @property {string[]} [matched_buy_rules] - Matched buy rules for promotion
- * @property {Object} [raw_offer] - Raw offer details for promotion
- * @property {Object} [offer] - Offer for promotion
- * @property {Object} [item_criteria] - Item criteria of promotion
  */
 /**
  * @typedef Ownership
@@ -27,30 +77,43 @@ export = CartApplicationModel;
  */
 /**
  * @typedef AppliedFreeArticles
- * @property {FreeGiftItem} [free_gift_item_details] - Free gift items details
  * @property {string} [parent_item_identifier] - Parent item identifier for free article
  * @property {number} [quantity] - Free article quantity
  * @property {string} [article_id] - Free article id
+ * @property {FreeGiftItem} [free_gift_item_details] - Free gift items details
+ */
+/**
+ * @typedef Ownership2
+ * @property {string} [payable_category] - Promo amount payable category
+ * @property {string} [payable_by] - Promo amount bearable party
  */
 /**
  * @typedef AppliedPromotion
- * @property {string} [promo_id] - Promotion id
- * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
- * @property {string} [offer_text] - Offer text of current promotion
- * @property {string} [promotion_group] - Promotion group for the promotion
- * @property {boolean} [mrp_promotion] - If applied promotion is applied on
- *   product MRP or ESP
- * @property {string} [promotion_name] - Promotion name of current promotion
- * @property {number} [amount] - Per unit discount amount applied with current promotion
- * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
- * @property {Ownership} [ownership] - Ownership of promotion
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
+ * @property {number} [original_article_quantity]
+ * @property {Ownership2} [ownership] - Ownership of promotion
+ * @property {CartCurrency} [currency]
+ * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
  * @property {AppliedFreeArticles[]} [applied_free_articles] - Applied free
  *   article for free gift item promotions
+ * @property {string} [promotion_name] - Promotion name of current promotion
+ * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
+ * @property {string} [offer_text] - Offer text of current promotion
+ * @property {number} [amount] - Per unit discount amount applied with current promotion
  * @property {string} [promotion_type] - Promotion type of current promotion
+ * @property {boolean} [mrp_promotion] - If applied promotion is applied on
+ *   product MRP or ESP
+ * @property {string} [promotion_group] - Promotion group for the promotion
+ * @property {string} [promo_id] - Promotion id
  * @property {Object} [meta] - Meta object for extra data
  * @property {string} [code] - Promotion code
+ * @property {string} [offer_label]
+ * @property {boolean} [return_allowed]
+ * @property {boolean} [cancellation_allowed]
+ * @property {string} [promo_code]
+ * @property {number} [free_quantity]
+ * @property {string} [offer_description]
  */
 /**
  * @typedef PaymentSelectionLock
@@ -82,9 +145,21 @@ export = CartApplicationModel;
 /**
  * @typedef BasePrice
  * @property {number} [effective]
+ * @property {string} [currency_code]
  * @property {string} [currency_symbol]
  * @property {number} [marked]
- * @property {string} [currency_code]
+ * @property {number} [selling]
+ */
+/**
+ * @typedef ArticleAppliedPriceAdjustment
+ * @property {Object} [adjusted_value] - Value of price adjustment created along
+ *   with destination currency
+ * @property {boolean} [article_level_distribution] - Boolean value true if
+ *   price adjustment is distributed over articles
+ * @property {string} [article_id] - Article Id of product
+ * @property {number} [applied_quantity] - Article quantity on which this price
+ *   adjusment applied
+ * @property {Object} [meta] - Meta data added in article of price adjustment
  */
 /**
  * @typedef ArticlePriceInfo
@@ -98,30 +173,36 @@ export = CartApplicationModel;
  */
 /**
  * @typedef StoreInfo
- * @property {string} [store_code]
  * @property {number} [uid]
  * @property {string} [name]
+ * @property {string} [store_code]
+ */
+/**
+ * @typedef ArticleGiftCard
+ * @property {number} [gift_price]
+ * @property {string} [display_text]
+ * @property {boolean} [is_gift_applied]
  */
 /**
  * @typedef ProductArticle
- * @property {ArticlePriceInfo} [price]
- * @property {string[]} [product_group_tags]
- * @property {Object} [extra_meta]
+ * @property {string} [seller_identifier]
  * @property {number} [quantity]
+ * @property {BaseInfo} [seller]
+ * @property {Object} [cart_item_meta]
+ * @property {Object} [parent_item_identifiers]
+ * @property {boolean} [is_gift_visible]
+ * @property {string} [uid]
+ * @property {ArticleGiftCard} [gift_card]
+ * @property {string[]} [product_group_tags]
+ * @property {Object} [identifier]
+ * @property {number} [mto_quantity]
+ * @property {Object} [extra_meta]
+ * @property {string} [type]
  * @property {Object} [_custom_json]
+ * @property {ArticlePriceInfo} [price]
  * @property {Object} [meta]
  * @property {string} [size]
- * @property {number} [mto_quantity]
- * @property {BaseInfo} [seller]
- * @property {string} [seller_identifier]
- * @property {Object} [parent_item_identifiers]
- * @property {Object} [identifier]
  * @property {StoreInfo} [store]
- * @property {Object} [cart_item_meta]
- * @property {string} [uid]
- * @property {Object} [gift_card]
- * @property {boolean} [is_gift_visible]
- * @property {string} [type]
  * @property {string[]} [tags] - A list of article tags
  */
 /**
@@ -150,12 +231,13 @@ export = CartApplicationModel;
  */
 /**
  * @typedef ProductPrice
- * @property {string} [currency_symbol]
- * @property {number} [selling]
- * @property {string} [currency_code]
- * @property {number} [add_on]
- * @property {number} [effective]
  * @property {number} [marked]
+ * @property {number} [add_on]
+ * @property {string} [currency_code]
+ * @property {string} [currency_symbol]
+ * @property {number} [effective]
+ * @property {number} [selling]
+ * @property {number} [selling_price]
  */
 /**
  * @typedef ProductPriceInfo
@@ -218,114 +300,167 @@ export = CartApplicationModel;
  */
 /**
  * @typedef CartProduct
- * @property {Object} [_custom_json]
- * @property {BaseInfo} [brand]
- * @property {ProductAction} [action]
- * @property {Tags} [teaser_tag]
  * @property {string} [slug] - Unique product url name generated via product
  *   name and other meta data
  * @property {ProductImage[]} [images]
+ * @property {Object} [teaser_tag]
+ * @property {BaseInfo} [brand]
+ * @property {ProductAction} [action]
  * @property {number} [uid]
+ * @property {string[]} [tags]
+ * @property {Object} [_custom_json]
+ * @property {string} [type]
  * @property {string} [name]
  * @property {string} [item_code]
  * @property {CategoryInfo[]} [categories]
- * @property {string[]} [tags]
- * @property {string} [type]
- * @property {Object} [attributes]
+ * @property {ProductAttributes} [attributes]
+ */
+/**
+ * @typedef ProductAttributes
+ * @property {string} [product_type]
+ * @property {string} [item_code]
+ * @property {string} [primary_color_hex]
+ * @property {string} [primary_material]
+ * @property {string} [primary_color]
+ * @property {string} [variant]
+ * @property {string} [color]
+ * @property {string} [season]
+ * @property {string} [style_note]
  */
 /**
  * @typedef CouponDetails
+ * @property {number} [discount_total_quantity]
  * @property {number} [discount_single_quantity]
  * @property {string} [code]
- * @property {number} [discount_total_quantity]
+ */
+/**
+ * @typedef ParentItemIdentifiers
+ * @property {string} [identifier]
+ * @property {string} [parent_item_size]
+ * @property {string} [parent_item_id]
+ */
+/**
+ * @typedef CartItemMOQ
+ * @property {number} [increment_unit]
+ * @property {number} [maximum]
+ * @property {number} [minimum]
+ */
+/**
+ * @typedef CartItemCustomOrder
+ * @property {boolean} [is_custom_order]
+ * @property {number} [manufacturing_time]
+ * @property {string} [manufacturing_time_unit]
  */
 /**
  * @typedef CartProductInfo
- * @property {ProductArticle} [article]
- * @property {Object} [moq]
- * @property {CartProductIdentifer} identifiers
- * @property {PromoMeta} [promo_meta]
- * @property {ProductPriceInfo} [price]
  * @property {number} [quantity]
- * @property {Charges[]} [charges]
- * @property {string} [discount]
- * @property {ProductAvailability} [availability]
- * @property {ShipmentPromise} [delivery_promise]
  * @property {CartProduct} [product]
  * @property {string} [product_ean_id]
- * @property {Object} [bulk_offer]
- * @property {Object} [parent_item_identifiers]
- * @property {CouponDetails} [coupon]
- * @property {Object} [custom_order]
- * @property {string} [coupon_message]
- * @property {string} [key]
- * @property {string} [message]
+ * @property {ParentItemIdentifiers} [parent_item_identifiers]
  * @property {boolean} [is_set]
- * @property {ProductPricePerUnitInfo} [price_per_unit]
+ * @property {ProductArticle} [article]
  * @property {AppliedPromotion[]} [promotions_applied]
- */
-/**
- * @typedef DisplayBreakup
- * @property {string} [currency_symbol]
+ * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [key]
- * @property {string} [display]
- * @property {string[]} [message]
- * @property {string} [currency_code]
- * @property {number} [value]
- * @property {number} [preset]
- */
-/**
- * @typedef RawBreakup
- * @property {number} [vog]
- * @property {number} [subtotal]
- * @property {number} [fynd_cash]
- * @property {number} [discount]
- * @property {number} [convenience_fee]
- * @property {number} [delivery_charge]
- * @property {number} [gst_charges]
- * @property {number} [mrp_total]
- * @property {number} [mop_total]
- * @property {number} [total_charge]
- * @property {number} [coupon]
- * @property {number} [total]
- * @property {number} [gift_card]
- * @property {number} [you_saved]
- * @property {number} [cod_charge]
- */
-/**
- * @typedef CouponBreakup
- * @property {number} [coupon_value]
- * @property {string} [title]
- * @property {string} [sub_title]
- * @property {number} [minimum_cart_value]
+ * @property {CouponDetails} [coupon]
+ * @property {Object} [bulk_offer]
+ * @property {ArticleAppliedPriceAdjustment[]} [price_adjustment_applied]
+ * @property {ProductPriceInfo} [price]
+ * @property {string} [coupon_message]
+ * @property {CartProductIdentifer} identifiers
  * @property {string} [message]
- * @property {string} [coupon_type]
- * @property {string} [uid]
- * @property {number} [value]
- * @property {number} [max_discount_value]
- * @property {boolean} [is_applied]
- * @property {string} [description]
- * @property {string} [code]
+ * @property {string} [discount]
+ * @property {ProductAvailability} [availability]
+ * @property {CartItemMOQ} [moq]
+ * @property {ProductPriceInfo} [price_per_unit]
+ * @property {PromoMeta} [promo_meta]
+ * @property {CartItemCustomOrder} [custom_order]
+ * @property {number[]} [charges]
+ * @property {number} [seller_count]
+ */
+/**
+ * @typedef PriceAdjustmentApplied
+ * @property {string} [article_id]
+ * @property {Object} [adjusted_value]
+ * @property {number} [applied_quantity]
+ * @property {Object} [meta]
+ * @property {boolean} [article_level_distribution]
  * @property {string} [type]
  */
 /**
- * @typedef LoyaltyPoints
- * @property {number} [total]
- * @property {string} [description]
- * @property {number} [applicable]
+ * @typedef CouponBreakup
+ * @property {string} [title]
+ * @property {number} [max_discount_value]
+ * @property {number} [value]
  * @property {boolean} [is_applied]
+ * @property {string} [uid]
+ * @property {string} [coupon_type]
+ * @property {string} [sub_title]
+ * @property {number} [coupon_value]
+ * @property {string} [code]
+ * @property {string} [type]
+ * @property {number} [minimum_cart_value]
+ * @property {string} [message]
+ * @property {string} [description]
+ */
+/**
+ * @typedef DisplayBreakup
+ * @property {string} [key]
+ * @property {number} [value]
+ * @property {string} [currency_code]
+ * @property {string} [currency_symbol]
+ * @property {string} [display]
+ * @property {string[]} [message]
+ * @property {number} [original]
+ * @property {string} [attr]
+ * @property {Object} [meta]
+ */
+/**
+ * @typedef LoyaltyPoints
+ * @property {boolean} [is_applied]
+ * @property {number} [total]
+ * @property {number} [applicable]
+ * @property {string} [description]
+ * @property {string} [message]
+ */
+/**
+ * @typedef RawBreakup
+ * @property {number} [promotion]
+ * @property {number} [coupon]
+ * @property {number} [gst_charges]
+ * @property {number} [mrp_total]
+ * @property {number} [fynd_cash]
+ * @property {number} [vog]
+ * @property {number} [gift_card]
+ * @property {number} [cod_charge]
+ * @property {number} [total]
+ * @property {number} [discount]
+ * @property {number} [delivery_charge]
+ * @property {number} [you_saved]
+ * @property {number} [subtotal]
+ * @property {number} [sub_total]
+ * @property {number} [convenience_fee]
+ * @property {number} [total_charge]
+ * @property {number} [mop_total]
  */
 /**
  * @typedef CartBreakup
- * @property {DisplayBreakup[]} [display]
- * @property {RawBreakup} [raw]
  * @property {CouponBreakup} [coupon]
+ * @property {DisplayBreakup[]} [display]
  * @property {LoyaltyPoints} [loyalty_points]
+ * @property {RawBreakup} [raw]
  */
 /**
  * @typedef CartCurrency
  * @property {string} [code] - Currency code defined by ISO 4217:2015
  * @property {string} [symbol]
+ */
+/**
+ * @typedef CartCouponMedias
+ * @property {string} [alt]
+ * @property {string} [url]
+ * @property {string} [type]
+ * @property {string} [key]
  */
 /**
  * @typedef CartDetailCoupon
@@ -345,6 +480,7 @@ export = CartApplicationModel;
  * @property {number} [maximum_discount_value]
  * @property {string} [message]
  * @property {number} [minimum_cart_value]
+ * @property {CartCouponMedias[]} [medias]
  */
 /**
  * @typedef ChargesThreshold
@@ -361,50 +497,85 @@ export = CartApplicationModel;
  * @property {DeliveryChargesConfig} [delivery_charges_config]
  */
 /**
+ * @typedef CartAppliedPriceAdjustment
+ * @property {boolean} [remove_articles] - Boolean value indicating if articles
+ *   should be removed from cart
+ * @property {Object} [adjusted_value] - Value of price adjustment created along
+ *   with destination currency
+ * @property {boolean} [article_level_distribution] - Boolean value true if
+ *   price adjustment is distributed over articles
+ * @property {boolean} [auto_remove] - Boolean value indicating if auto remove is enabled
+ * @property {string[]} [applied_articles_ids] - List of article IDs where the
+ *   adjustment is applied
+ * @property {string} [message] - Message associated with the Price adjustment
+ * @property {string} [_type] - Type of the Price Adjustment
+ * @property {Object} [meta] - Meta data added in article of price adjustment
+ * @property {Object} [restrictions] - It contains all the restrictions applied
+ *   on price adjustments
+ * @property {string} [_id] - ID of the price Adjustment
+ */
+/**
+ * @typedef CustomCart
+ * @property {string} [id] - Id of custom cart config
+ * @property {string} [cart_name] - Name of custom cart
+ * @property {string} [cart_type] - Type of custom cart
+ * @property {boolean} [is_universal] - By default all carts are universal, will
+ *   be false for custom cart
+ */
+/**
  * @typedef CartDetailResponse
  * @property {number} [cart_id]
  * @property {string} [uid]
- * @property {AppliedPromotion[]} [applied_promo_details]
- * @property {string} [checkout_mode]
- * @property {string} [pan_no]
- * @property {boolean} [is_valid]
+ * @property {string} [coupon_text]
  * @property {string} [id]
- * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [comment]
  * @property {CartProductInfo[]} [items]
+ * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {string} [delivery_charge_info]
  * @property {CartCommonConfig} [common_config]
  * @property {CartDetailCoupon} [coupon]
+ * @property {boolean} [restrict_checkout]
  * @property {string} [message]
  * @property {Object} [notification]
  * @property {string} [staff_user_id]
  * @property {boolean} [success]
- * @property {string} [gstin]
- * @property {boolean} [restrict_checkout]
- * @property {string} [last_modified]
  * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [is_valid]
  * @property {CartCurrency} [currency]
- * @property {string} [coupon_text]
+ * @property {string} [checkout_mode]
+ * @property {string} [last_modified]
+ * @property {CartAppliedPriceAdjustment[]} [price_adjustment_applied]
  * @property {boolean} [buy_now]
+ * @property {string} [gstin]
+ * @property {AppliedPromotion[]} [applied_promo_details]
+ * @property {string} [pan_no]
+ * @property {CustomCart} [custom_cart]
+ * @property {boolean} [is_pan_received]
  * @property {Object} [pan_config]
  */
 /**
+ * @typedef ArticleAssignment
+ * @property {string} [level]
+ * @property {string} [strategy]
+ */
+/**
  * @typedef AddProductCart
- * @property {Object} [article_assignment]
- * @property {string[]} [product_group_tags]
- * @property {Object} [extra_meta]
  * @property {number} [quantity]
- * @property {Object} [_custom_json]
  * @property {string} [item_size]
+ * @property {number} [seller_id]
+ * @property {string} [price_factory_type_id]
+ * @property {Object[]} [parent_item_identifiers]
+ * @property {string[]} [product_group_tags]
+ * @property {string} [article_id]
+ * @property {ArticleAssignment} [article_assignment]
  * @property {number} [store_id]
  * @property {string} [display]
- * @property {string} [article_id]
- * @property {Object[]} [parent_item_identifiers]
- * @property {number} [seller_id]
- * @property {boolean} [pos]
  * @property {number} [item_id]
+ * @property {Object} [extra_meta]
+ * @property {Object} [_custom_json]
  * @property {Object} [meta]
+ * @property {boolean} [pos]
  * @property {string} [seller_identifier] - Add items using seller identifier for store os
  */
 /**
@@ -414,12 +585,13 @@ export = CartApplicationModel;
  */
 /**
  * @typedef AddCartDetailResponse
- * @property {string} [message]
- * @property {boolean} [partial] - When adding multiple items check if all
- *   added. True if only few are added.
- * @property {CartDetailResponse} [cart]
  * @property {boolean} [success] - True if all items are added successfully.
- *   False if partially added or not added.
+ *   false if partially added or not added.
+ * @property {CartDetailResponse} [cart]
+ * @property {boolean} [partial] - When adding multiple items check if all
+ *   added. true if only few are added.
+ * @property {string} [message]
+ * @property {Object} [result]
  */
 /**
  * @typedef UpdateProductCart
@@ -431,6 +603,7 @@ export = CartApplicationModel;
  * @property {CartProductIdentifer} identifiers
  * @property {string} [article_id]
  * @property {Object} [parent_item_identifiers]
+ * @property {string} [price_factory_type_id]
  * @property {number} [item_id]
  * @property {Object} [meta]
  */
@@ -444,12 +617,12 @@ export = CartApplicationModel;
  * @property {string} [message]
  * @property {CartDetailResponse} [cart]
  * @property {boolean} [success] - True if all items are added successfully.
- *   False if partially added or not added.
+ *   false if partially added or not added.
  */
 /**
  * @typedef DeleteCartDetailResponse
  * @property {string} [message]
- * @property {boolean} [success] - True if cart is archived successfully. False
+ * @property {boolean} [success] - True if cart is archived successfully. false
  *   if not archived.
  */
 /**
@@ -457,31 +630,42 @@ export = CartApplicationModel;
  * @property {number} [user_cart_items_count] - Item count present in cart
  */
 /**
- * @typedef PageCoupon
- * @property {number} [total_item_count]
- * @property {boolean} [has_next]
- * @property {number} [total]
- * @property {number} [current]
- * @property {boolean} [has_previous]
+ * @typedef CartItemCountResponseV2
+ * @property {number} [user_all_cart_articles_quantity_count]
+ * @property {number} [user_all_cart_article_count]
+ * @property {Object} [custom_cart_count]
+ * @property {Object[]} [custom_cart_ordered_count]
  */
 /**
  * @typedef Coupon
- * @property {number} [coupon_amount] - The amount based on cart value
- * @property {number} [coupon_value]
  * @property {string} [title]
- * @property {number} [minimum_cart_value]
- * @property {string} [sub_title]
- * @property {string} [expires_on]
- * @property {string} [message]
- * @property {string} [coupon_type]
  * @property {number} [max_discount_value]
  * @property {string} [coupon_code]
- * @property {boolean} [is_applicable]
- * @property {string} [description]
  * @property {boolean} [is_applied]
+ * @property {string} [coupon_type]
+ * @property {string} [expires_on]
+ * @property {number} [coupon_value]
+ * @property {string} [sub_title]
+ * @property {number} [minimum_cart_value]
+ * @property {boolean} [is_applicable]
+ * @property {string} [message]
+ * @property {string} [description]
  * @property {string} [start_date]
  * @property {string} [end_date]
  * @property {string} [coupon_applicable_message]
+ * @property {boolean} [is_bank_offer]
+ * @property {string} [offer_text]
+ * @property {number} [coupon_amount]
+ * @property {string[]} [tags]
+ * @property {CartCouponMedias[]} [medias]
+ */
+/**
+ * @typedef PageCoupon
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {number} [total]
+ * @property {number} [total_item_count]
+ * @property {boolean} [has_previous]
  */
 /**
  * @typedef GetCouponResponse
@@ -538,34 +722,42 @@ export = CartApplicationModel;
  */
 /**
  * @typedef Address
- * @property {string} [country_iso_code]
- * @property {string} [area]
+ * @property {number} [pincode]
  * @property {string} [phone]
- * @property {string} [country_phone_code]
- * @property {string} [checkout_mode]
- * @property {string} [address]
- * @property {string} [area_code_slug]
- * @property {GeoLocation} [geo_location]
  * @property {string} [id]
- * @property {Object} [_custom_json]
+ * @property {string} [area_code_slug]
+ * @property {string} [country_code]
+ * @property {GeoLocation} [geo_location]
+ * @property {string} [country]
+ * @property {string} [state]
+ * @property {boolean} [is_default_address]
+ * @property {string[]} [tags]
+ * @property {string} [created_by_user_id]
+ * @property {string} [landmark]
+ * @property {string} [email]
+ * @property {string} [area_code]
+ * @property {string} [checkout_mode]
+ * @property {Object} [meta]
+ * @property {boolean} [is_active]
+ * @property {string} [name]
+ * @property {Object} [google_map_point]
+ * @property {string} [cart_id]
  * @property {string} [city]
  * @property {string} [sector]
  * @property {string} [state_code] - State code for international address
- * @property {string} [created_by_user_id]
- * @property {string} [landmark]
+ * @property {string} [area]
  * @property {string} [user_id]
- * @property {string} [name]
- * @property {Object} [google_map_point]
- * @property {boolean} [is_active]
- * @property {string[]} [tags]
- * @property {string} [country_code]
  * @property {string} [address_type]
- * @property {string} [country]
- * @property {boolean} [is_default_address]
- * @property {string} [area_code]
- * @property {string} [email]
- * @property {string} [state]
- * @property {Object} [meta]
+ * @property {string} [address]
+ * @property {string} [country_phone_code]
+ * @property {string} [country_iso_code]
+ * @property {Object} [_custom_json]
+ * @property {number} [uid]
+ * @property {boolean} [is_anonymous]
+ * @property {string} [app_id]
+ * @property {string} [expire_at]
+ * @property {string} [address_id]
+ * @property {string} [store_name]
  */
 /**
  * @typedef GetAddressesResponse
@@ -577,6 +769,7 @@ export = CartApplicationModel;
  * @property {string} [id]
  * @property {boolean} [success]
  * @property {boolean} [is_default_address]
+ * @property {Object} [address_id]
  */
 /**
  * @typedef UpdateAddressResponse
@@ -584,11 +777,13 @@ export = CartApplicationModel;
  * @property {string} [id]
  * @property {boolean} [success]
  * @property {boolean} [is_default_address]
+ * @property {string} [address_id]
  */
 /**
  * @typedef DeleteAddressResponse
  * @property {string} [id]
  * @property {boolean} [is_deleted]
+ * @property {string} [address_id]
  */
 /**
  * @typedef SelectCartAddressRequest
@@ -608,17 +803,17 @@ export = CartApplicationModel;
 /**
  * @typedef CouponValidity
  * @property {string} [title]
- * @property {number} [discount]
  * @property {boolean} [next_validation_required]
  * @property {boolean} [valid]
  * @property {string} [display_message_en]
  * @property {string} [code]
+ * @property {number} [discount]
  */
 /**
  * @typedef PaymentCouponValidate
+ * @property {boolean} success
  * @property {string} [message]
  * @property {CouponValidity} [coupon_validity]
- * @property {boolean} success
  */
 /**
  * @typedef ShipmentResponse
@@ -632,28 +827,60 @@ export = CartApplicationModel;
  * @property {CartProductInfo[]} [items]
  * @property {string} [fulfillment_type]
  * @property {number} [fulfillment_id]
+ * @property {ShipmentMeta} [meta]
+ * @property {ShipmentLogisticsMeta} [logistics_meta]
+ */
+/**
+ * @typedef ShipmentMeta
+ * @property {string} [packaging_name]
+ * @property {string} [dimension]
+ * @property {string} [assign_dp_from_sb]
+ * @property {string} [dp_sort_key]
+ * @property {string} [shipment_weight]
+ * @property {string} [shipment_volumetric_weight]
+ * @property {string} [shipment_chargeable_weight]
+ * @property {string} [shipping_zone]
+ */
+/**
+ * @typedef ShipmentLogisticsMeta
+ * @property {string[]} [account_options]
+ * @property {Object} [account_info]
+ * @property {string} [dp_sort_key]
+ * @property {string} [assign_dp_from_sb]
  */
 /**
  * @typedef CartShipmentsResponse
- * @property {string} [delivery_charge_info]
- * @property {string} [checkout_mode]
- * @property {string} [message]
- * @property {string} [gstin]
- * @property {boolean} [restrict_checkout]
- * @property {string} [last_modified]
  * @property {number} [cart_id]
- * @property {boolean} [is_valid]
- * @property {CartBreakup} [breakup_values]
- * @property {CartCurrency} [currency]
- * @property {string} [id]
- * @property {ShipmentResponse[]} [shipments]
- * @property {PaymentSelectionLock} [payment_selection_lock]
- * @property {string} [coupon_text]
- * @property {ShipmentPromise} [delivery_promise]
- * @property {boolean} [error]
- * @property {string} [comment]
- * @property {boolean} [buy_now]
  * @property {string} [uid]
+ * @property {string} [coupon_text]
+ * @property {string} [id]
+ * @property {Object} [pan_config]
+ * @property {ShipmentPromise} [delivery_promise]
+ * @property {string} [comment]
+ * @property {CartProductInfo[]} [items]
+ * @property {PaymentSelectionLock} [payment_selection_lock]
+ * @property {string} [delivery_charge_info]
+ * @property {CartCommonConfig} [common_config]
+ * @property {CartDetailCoupon} [coupon]
+ * @property {boolean} [restrict_checkout]
+ * @property {string} [message]
+ * @property {Object} [notification]
+ * @property {string} [staff_user_id]
+ * @property {boolean} [success]
+ * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [is_valid]
+ * @property {CartCurrency} [currency]
+ * @property {string} [checkout_mode]
+ * @property {string} [last_modified]
+ * @property {boolean} [buy_now]
+ * @property {string} [gstin]
+ * @property {AppliedPromotion[]} [applied_promo_details]
+ * @property {string} [pan_no]
+ * @property {CustomCart} [custom_cart]
+ * @property {CartAppliedPriceAdjustment[]} [price_adjustment_applied]
+ * @property {ShipmentResponse[]} [shipments]
+ * @property {boolean} [error]
+ * @property {boolean} [is_pan_received]
  */
 /**
  * @typedef CartCheckoutCustomMeta
@@ -703,35 +930,36 @@ export = CartApplicationModel;
  */
 /**
  * @typedef CheckCart
- * @property {string} [checkout_mode]
- * @property {string} [user_type]
- * @property {string} [cod_message]
  * @property {number} [cart_id]
- * @property {boolean} [is_valid]
- * @property {number} [delivery_charges]
+ * @property {string} [uid]
+ * @property {string} [coupon_text]
  * @property {string} [id]
- * @property {PaymentSelectionLock} [payment_selection_lock]
- * @property {string} [error_message]
  * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [comment]
  * @property {CartProductInfo[]} [items]
- * @property {string} [uid]
- * @property {number} [delivery_charge_order_value]
+ * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {string} [delivery_charge_info]
- * @property {boolean} [cod_available]
- * @property {boolean} [success]
- * @property {string} [store_code]
- * @property {string} [message]
- * @property {string} [gstin]
+ * @property {CartCommonConfig} [common_config]
+ * @property {CartDetailCoupon} [coupon]
  * @property {boolean} [restrict_checkout]
- * @property {string} [last_modified]
- * @property {string} [order_id]
+ * @property {string} [message]
+ * @property {Object} [notification]
+ * @property {string} [staff_user_id]
+ * @property {boolean} [success]
  * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [is_valid]
  * @property {CartCurrency} [currency]
- * @property {Object[]} [store_emps]
- * @property {string} [coupon_text]
+ * @property {string} [checkout_mode]
+ * @property {string} [last_modified]
  * @property {boolean} [buy_now]
- * @property {number} [cod_charges]
+ * @property {string} [gstin]
+ * @property {AppliedPromotion[]} [applied_promo_details]
+ * @property {string} [pan_no]
+ * @property {CustomCart} [custom_cart]
+ * @property {PriceAdjustmentApplied[]} [price_adjustment_applied]
+ * @property {boolean} [is_pan_received]
+ * @property {Object} [pan_config]
+ * @property {string} [order_id]
  */
 /**
  * @typedef CartCheckoutResponse
@@ -755,13 +983,15 @@ export = CartApplicationModel;
  */
 /**
  * @typedef CartMetaRequest
- * @property {Object} [delivery_slots]
- * @property {ArticleGiftDetail} [gift_details]
+ * @property {string} [gstin]
  * @property {Object} [pick_up_customer_details] - Customer contact details for
  *   customer pickup at store
  * @property {string} [checkout_mode]
+ * @property {Object} [gift_details]
+ * @property {string} [pan_no]
  * @property {string} [comment]
- * @property {string} [gstin]
+ * @property {string} [staff_user_id] - Staff user id
+ * @property {Object} [delivery_slots]
  */
 /**
  * @typedef CartMetaResponse
@@ -770,7 +1000,21 @@ export = CartApplicationModel;
  */
 /**
  * @typedef CartMetaMissingResponse
- * @property {string[]} [errors]
+ * @property {CartMetaFieldsValidation} [errors]
+ * @property {string} [message]
+ * @property {boolean} [success]
+ * @property {CartMetaFieldsValidation} [meta]
+ */
+/**
+ * @typedef CartMetaFieldsValidation
+ * @property {string[]} [pan_no]
+ * @property {string[]} [gstin]
+ * @property {string[]} [checkout_mode]
+ * @property {string[]} [comment]
+ * @property {string[]} [pick_up_customer_details]
+ * @property {string[]} [gift_details]
+ * @property {string[]} [staff_user_id]
+ * @property {string[]} [delivery_slots]
  */
 /**
  * @typedef GetShareCartLinkRequest
@@ -793,25 +1037,36 @@ export = CartApplicationModel;
  */
 /**
  * @typedef SharedCart
- * @property {string} [checkout_mode]
  * @property {number} [cart_id]
- * @property {boolean} [is_valid]
+ * @property {string} [uid]
+ * @property {string} [coupon_text]
  * @property {string} [id]
- * @property {PaymentSelectionLock} [payment_selection_lock]
+ * @property {Object} [pan_config]
  * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [comment]
  * @property {CartProductInfo[]} [items]
- * @property {string} [uid]
+ * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {string} [delivery_charge_info]
- * @property {string} [message]
- * @property {string} [gstin]
- * @property {SharedCartDetails} [shared_cart_details]
+ * @property {CartCommonConfig} [common_config]
+ * @property {CartDetailCoupon} [coupon]
  * @property {boolean} [restrict_checkout]
- * @property {string} [last_modified]
+ * @property {string} [message]
+ * @property {Object} [notification]
+ * @property {string} [staff_user_id]
+ * @property {boolean} [success]
  * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [is_valid]
  * @property {CartCurrency} [currency]
- * @property {string} [coupon_text]
+ * @property {string} [checkout_mode]
+ * @property {string} [last_modified]
  * @property {boolean} [buy_now]
+ * @property {string} [gstin]
+ * @property {AppliedPromotion[]} [applied_promo_details]
+ * @property {string} [pan_no]
+ * @property {CustomCart} [custom_cart]
+ * @property {CartAppliedPriceAdjustment[]} [price_adjustment_applied]
+ * @property {SharedCartDetails} [shared_cart_details]
+ * @property {boolean} [is_pan_received]
  */
 /**
  * @typedef SharedCartResponse
@@ -888,6 +1143,7 @@ export = CartApplicationModel;
  * @typedef LadderPriceOffers
  * @property {LadderPriceOffer[]} [available_offers]
  * @property {CurrencyInfo} [currency]
+ * @property {number[]} [store_id]
  */
 /**
  * @typedef PaymentMeta
@@ -902,6 +1158,7 @@ export = CartApplicationModel;
  * @property {string} mode
  * @property {string} [payment]
  * @property {number} [amount]
+ * @property {string} [payment_identifier]
  * @property {string} [name]
  * @property {Object} [payment_extra_identifiers]
  */
@@ -933,42 +1190,162 @@ export = CartApplicationModel;
  * @property {string} [type]
  * @property {string} [card_id]
  */
+/**
+ * @typedef CartMetaConfigListResponse
+ * @property {boolean} [success]
+ * @property {CartMetaConfigListObject[]} [data]
+ */
+/**
+ * @typedef CartMetaConfigListObject
+ * @property {string} [id]
+ * @property {string} [slug]
+ * @property {string} [created_on]
+ * @property {string} [name]
+ * @property {boolean} [is_active]
+ * @property {string[]} [article_tags]
+ */
+/**
+ * @typedef OrderPlacing
+ * @property {boolean} [enabled]
+ * @property {string} [message]
+ */
+/**
+ * @typedef PanCard
+ * @property {boolean} [enabled]
+ * @property {number} [cod_threshold_amount]
+ * @property {number} [online_threshold_amount]
+ */
+/**
+ * @typedef CartConfigDetailObj
+ * @property {string} [id]
+ * @property {string} [app_id]
+ * @property {number} [company_id]
+ * @property {string} [created_on]
+ * @property {string} [updated_on]
+ * @property {string} [last_modified_by]
+ * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
+ * @property {boolean} [bulk_coupons]
+ * @property {number} [max_cart_items]
+ * @property {string} [gift_display_text]
+ * @property {DeliveryChargesConfig} [delivery_charges]
+ * @property {boolean} [revenue_engine_coupon]
+ * @property {number} [gift_pricing]
+ * @property {boolean} [enabled]
+ * @property {boolean} [is_active]
+ * @property {OrderPlacing} [order_placing]
+ * @property {string} [name]
+ * @property {string[]} [article_tags]
+ * @property {boolean} [allow_coupon_with_rewards]
+ * @property {boolean} [gst_input]
+ * @property {boolean} [staff_selection]
+ * @property {boolean} [placing_for_customer]
+ * @property {PanCard} [pan_card]
+ * @property {string} [slug]
+ * @property {boolean} [is_universal]
+ * @property {DeliveryChargesConfig} [international_delivery_charges]
+ */
+/**
+ * @typedef CartConfigDetailResponse
+ * @property {boolean} [success]
+ * @property {CartConfigDetailObj} [data]
+ */
+/**
+ * @typedef SelectAddressResponseError
+ * @property {string} [message]
+ * @property {number} [cart_id]
+ * @property {string} [id]
+ * @property {boolean} [is_valid]
+ * @property {AllAddressForSelectAddress} [address]
+ */
+/**
+ * @typedef AllAddressForSelectAddress
+ * @property {Address[]} [address]
+ * @property {boolean} [pii_masking]
+ */
+/**
+ * @typedef DeleteCartRequest
+ * @property {string[]} [cart_id_list]
+ */
 declare class CartApplicationModel {
 }
 declare namespace CartApplicationModel {
-    export { BuyRules, DiscountRulesApp, Ownership, FreeGiftItem, AppliedFreeArticles, AppliedPromotion, PaymentSelectionLock, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, BasePrice, ArticlePriceInfo, BaseInfo, StoreInfo, ProductArticle, CartProductIdentifer, PromoMeta, ChargesAmount, Charges, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, ProductAvailabilitySize, ProductAvailability, ActionQuery, ProductAction, Tags, ProductImage, CategoryInfo, CartProduct, CouponDetails, CartProductInfo, DisplayBreakup, RawBreakup, CouponBreakup, LoyaltyPoints, CartBreakup, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, DeleteCartDetailResponse, CartItemCountResponse, PageCoupon, Coupon, GetCouponResponse, ApplyCouponRequest, OfferPrice, OfferItem, OfferSeller, BulkPriceOffer, BulkPriceResponse, RewardPointRequest, GeoLocation, Address, GetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, SelectCartAddressRequest, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, ShipmentResponse, CartShipmentsResponse, CartCheckoutCustomMeta, CustomerDetails, StaffCheckout, CartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, GiftDetail, ArticleGiftDetail, CartMetaRequest, CartMetaResponse, CartMetaMissingResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, FreeGiftItems, PromotionOffer, PromotionOffersResponse, OperationErrorResponse, LadderPrice, LadderOfferItem, LadderPriceOffer, CurrencyInfo, LadderPriceOffers, PaymentMeta, PaymentMethod, CartCheckoutDetailV2Request };
+    export { PromoBuyRuleCartConditions, PromoBuyRuleCompareFieldsTypes, BuyRules, PromoDiscountRuleOffer, PromoDiscountRuleRawOffer, PromoDiscountRuleItemCriteria, DiscountRulesApp, Ownership, FreeGiftItem, AppliedFreeArticles, Ownership2, AppliedPromotion, PaymentSelectionLock, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, BasePrice, ArticleAppliedPriceAdjustment, ArticlePriceInfo, BaseInfo, StoreInfo, ArticleGiftCard, ProductArticle, CartProductIdentifer, PromoMeta, ChargesAmount, Charges, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, ProductAvailabilitySize, ProductAvailability, ActionQuery, ProductAction, Tags, ProductImage, CategoryInfo, CartProduct, ProductAttributes, CouponDetails, ParentItemIdentifiers, CartItemMOQ, CartItemCustomOrder, CartProductInfo, PriceAdjustmentApplied, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, CartCurrency, CartCouponMedias, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartAppliedPriceAdjustment, CustomCart, CartDetailResponse, ArticleAssignment, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, DeleteCartDetailResponse, CartItemCountResponse, CartItemCountResponseV2, Coupon, PageCoupon, GetCouponResponse, ApplyCouponRequest, OfferPrice, OfferItem, OfferSeller, BulkPriceOffer, BulkPriceResponse, RewardPointRequest, GeoLocation, Address, GetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, SelectCartAddressRequest, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, ShipmentResponse, ShipmentMeta, ShipmentLogisticsMeta, CartShipmentsResponse, CartCheckoutCustomMeta, CustomerDetails, StaffCheckout, CartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, GiftDetail, ArticleGiftDetail, CartMetaRequest, CartMetaResponse, CartMetaMissingResponse, CartMetaFieldsValidation, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, FreeGiftItems, PromotionOffer, PromotionOffersResponse, OperationErrorResponse, LadderPrice, LadderOfferItem, LadderPriceOffer, CurrencyInfo, LadderPriceOffers, PaymentMeta, PaymentMethod, CartCheckoutDetailV2Request, CartMetaConfigListResponse, CartMetaConfigListObject, OrderPlacing, PanCard, CartConfigDetailObj, CartConfigDetailResponse, SelectAddressResponseError, AllAddressForSelectAddress, DeleteCartRequest };
 }
+/** @returns {PromoBuyRuleCartConditions} */
+declare function PromoBuyRuleCartConditions(): PromoBuyRuleCartConditions;
+type PromoBuyRuleCartConditions = {
+    cart_quantity?: PromoBuyRuleCompareFieldsTypes;
+    cart_total?: PromoBuyRuleCompareFieldsTypes;
+    item_id?: number[];
+    item_store?: number[];
+    item_company?: number[];
+    item_brand?: number[];
+    item_exclude_brand?: number[];
+    item_category?: number[];
+    item_exclude_category?: number[];
+    item_l1_category?: number[];
+    item_exclude_l1_category?: number[];
+    item_l2_category?: number[];
+    item_exclude_l2_category?: number[];
+    item_department?: number[];
+    item_exclude_id?: number[];
+    available_zones?: number[];
+    product_tags?: string[];
+};
+/** @returns {PromoBuyRuleCompareFieldsTypes} */
+declare function PromoBuyRuleCompareFieldsTypes(): PromoBuyRuleCompareFieldsTypes;
+type PromoBuyRuleCompareFieldsTypes = {
+    greater_than_equals?: number;
+    greater_than?: number;
+    equals?: number;
+    less_than?: number;
+    less_than_equals?: number;
+};
 /** @returns {BuyRules} */
 declare function BuyRules(): BuyRules;
 type BuyRules = {
+    cart_conditions?: PromoBuyRuleCartConditions;
     /**
      * - Item criteria of promotion
      */
     item_criteria?: any;
-    /**
-     * - Cart conditions details for promotion
-     */
-    cart_conditions?: any;
+    all_items?: boolean;
+    mrp_promo?: boolean;
+    slug?: string;
+};
+/** @returns {PromoDiscountRuleOffer} */
+declare function PromoDiscountRuleOffer(): PromoDiscountRuleOffer;
+type PromoDiscountRuleOffer = {
+    max_offer_quantity?: number;
+    discount_percentage?: number;
+    discount_amount?: number;
+};
+/** @returns {PromoDiscountRuleRawOffer} */
+declare function PromoDiscountRuleRawOffer(): PromoDiscountRuleRawOffer;
+type PromoDiscountRuleRawOffer = {
+    buy_condition?: string;
+    discount_type?: string;
+    offer?: PromoDiscountRuleOffer;
+    item_criteria?: PromoDiscountRuleItemCriteria;
+};
+/** @returns {PromoDiscountRuleItemCriteria} */
+declare function PromoDiscountRuleItemCriteria(): PromoDiscountRuleItemCriteria;
+type PromoDiscountRuleItemCriteria = {
+    item_id?: number[];
+    buy_rules?: string[];
+    all_items?: boolean;
 };
 /** @returns {DiscountRulesApp} */
 declare function DiscountRulesApp(): DiscountRulesApp;
 type DiscountRulesApp = {
+    offer?: PromoDiscountRuleOffer;
+    raw_offer?: PromoDiscountRuleRawOffer;
+    item_criteria?: PromoDiscountRuleItemCriteria;
     /**
      * - Matched buy rules for promotion
      */
     matched_buy_rules?: string[];
-    /**
-     * - Raw offer details for promotion
-     */
-    raw_offer?: any;
-    /**
-     * - Offer for promotion
-     */
-    offer?: any;
-    /**
-     * - Item criteria of promotion
-     */
-    item_criteria?: any;
 };
 /** @returns {Ownership} */
 declare function Ownership(): Ownership;
@@ -1014,10 +1391,6 @@ type FreeGiftItem = {
 declare function AppliedFreeArticles(): AppliedFreeArticles;
 type AppliedFreeArticles = {
     /**
-     * - Free gift items details
-     */
-    free_gift_item_details?: FreeGiftItem;
-    /**
      * - Parent item identifier for free article
      */
     parent_item_identifier?: string;
@@ -1029,14 +1402,50 @@ type AppliedFreeArticles = {
      * - Free article id
      */
     article_id?: string;
+    /**
+     * - Free gift items details
+     */
+    free_gift_item_details?: FreeGiftItem;
+};
+/** @returns {Ownership2} */
+declare function Ownership2(): Ownership2;
+type Ownership2 = {
+    /**
+     * - Promo amount payable category
+     */
+    payable_category?: string;
+    /**
+     * - Promo amount bearable party
+     */
+    payable_by?: string;
 };
 /** @returns {AppliedPromotion} */
 declare function AppliedPromotion(): AppliedPromotion;
 type AppliedPromotion = {
     /**
-     * - Promotion id
+     * - Quantity of article on which
+     * promotion is applicable
      */
-    promo_id?: string;
+    article_quantity?: number;
+    original_article_quantity?: number;
+    /**
+     * - Ownership of promotion
+     */
+    ownership?: Ownership2;
+    currency?: CartCurrency;
+    /**
+     * - Discount rules for promotions
+     */
+    discount_rules?: DiscountRulesApp[];
+    /**
+     * - Applied free
+     * article for free gift item promotions
+     */
+    applied_free_articles?: AppliedFreeArticles[];
+    /**
+     * - Promotion name of current promotion
+     */
+    promotion_name?: string;
     /**
      * - Buy rules for promotions
      */
@@ -1046,44 +1455,26 @@ type AppliedPromotion = {
      */
     offer_text?: string;
     /**
-     * - Promotion group for the promotion
+     * - Per unit discount amount applied with current promotion
      */
-    promotion_group?: string;
+    amount?: number;
+    /**
+     * - Promotion type of current promotion
+     */
+    promotion_type?: string;
     /**
      * - If applied promotion is applied on
      * product MRP or ESP
      */
     mrp_promotion?: boolean;
     /**
-     * - Promotion name of current promotion
+     * - Promotion group for the promotion
      */
-    promotion_name?: string;
+    promotion_group?: string;
     /**
-     * - Per unit discount amount applied with current promotion
+     * - Promotion id
      */
-    amount?: number;
-    /**
-     * - Discount rules for promotions
-     */
-    discount_rules?: DiscountRulesApp[];
-    /**
-     * - Ownership of promotion
-     */
-    ownership?: Ownership;
-    /**
-     * - Quantity of article on which
-     * promotion is applicable
-     */
-    article_quantity?: number;
-    /**
-     * - Applied free
-     * article for free gift item promotions
-     */
-    applied_free_articles?: AppliedFreeArticles[];
-    /**
-     * - Promotion type of current promotion
-     */
-    promotion_type?: string;
+    promo_id?: string;
     /**
      * - Meta object for extra data
      */
@@ -1092,6 +1483,12 @@ type AppliedPromotion = {
      * - Promotion code
      */
     code?: string;
+    offer_label?: string;
+    return_allowed?: boolean;
+    cancellation_allowed?: boolean;
+    promo_code?: string;
+    free_quantity?: number;
+    offer_description?: string;
 };
 /** @returns {PaymentSelectionLock} */
 declare function PaymentSelectionLock(): PaymentSelectionLock;
@@ -1135,9 +1532,37 @@ type ShipmentPromise = {
 declare function BasePrice(): BasePrice;
 type BasePrice = {
     effective?: number;
+    currency_code?: string;
     currency_symbol?: string;
     marked?: number;
-    currency_code?: string;
+    selling?: number;
+};
+/** @returns {ArticleAppliedPriceAdjustment} */
+declare function ArticleAppliedPriceAdjustment(): ArticleAppliedPriceAdjustment;
+type ArticleAppliedPriceAdjustment = {
+    /**
+     * - Value of price adjustment created along
+     * with destination currency
+     */
+    adjusted_value?: any;
+    /**
+     * - Boolean value true if
+     * price adjustment is distributed over articles
+     */
+    article_level_distribution?: boolean;
+    /**
+     * - Article Id of product
+     */
+    article_id?: string;
+    /**
+     * - Article quantity on which this price
+     * adjusment applied
+     */
+    applied_quantity?: number;
+    /**
+     * - Meta data added in article of price adjustment
+     */
+    meta?: any;
 };
 /** @returns {ArticlePriceInfo} */
 declare function ArticlePriceInfo(): ArticlePriceInfo;
@@ -1154,31 +1579,38 @@ type BaseInfo = {
 /** @returns {StoreInfo} */
 declare function StoreInfo(): StoreInfo;
 type StoreInfo = {
-    store_code?: string;
     uid?: number;
     name?: string;
+    store_code?: string;
+};
+/** @returns {ArticleGiftCard} */
+declare function ArticleGiftCard(): ArticleGiftCard;
+type ArticleGiftCard = {
+    gift_price?: number;
+    display_text?: string;
+    is_gift_applied?: boolean;
 };
 /** @returns {ProductArticle} */
 declare function ProductArticle(): ProductArticle;
 type ProductArticle = {
-    price?: ArticlePriceInfo;
-    product_group_tags?: string[];
-    extra_meta?: any;
+    seller_identifier?: string;
     quantity?: number;
+    seller?: BaseInfo;
+    cart_item_meta?: any;
+    parent_item_identifiers?: any;
+    is_gift_visible?: boolean;
+    uid?: string;
+    gift_card?: ArticleGiftCard;
+    product_group_tags?: string[];
+    identifier?: any;
+    mto_quantity?: number;
+    extra_meta?: any;
+    type?: string;
     _custom_json?: any;
+    price?: ArticlePriceInfo;
     meta?: any;
     size?: string;
-    mto_quantity?: number;
-    seller?: BaseInfo;
-    seller_identifier?: string;
-    parent_item_identifiers?: any;
-    identifier?: any;
     store?: StoreInfo;
-    cart_item_meta?: any;
-    uid?: string;
-    gift_card?: any;
-    is_gift_visible?: boolean;
-    type?: string;
     /**
      * - A list of article tags
      */
@@ -1239,12 +1671,13 @@ type Charges = {
 /** @returns {ProductPrice} */
 declare function ProductPrice(): ProductPrice;
 type ProductPrice = {
-    currency_symbol?: string;
-    selling?: number;
-    currency_code?: string;
-    add_on?: number;
-    effective?: number;
     marked?: number;
+    add_on?: number;
+    currency_code?: string;
+    currency_symbol?: string;
+    effective?: number;
+    selling?: number;
+    selling_price?: number;
 };
 /** @returns {ProductPriceInfo} */
 declare function ProductPriceInfo(): ProductPriceInfo;
@@ -1324,119 +1757,170 @@ type CategoryInfo = {
 /** @returns {CartProduct} */
 declare function CartProduct(): CartProduct;
 type CartProduct = {
-    _custom_json?: any;
-    brand?: BaseInfo;
-    action?: ProductAction;
-    teaser_tag?: Tags;
     /**
      * - Unique product url name generated via product
      * name and other meta data
      */
     slug?: string;
     images?: ProductImage[];
+    teaser_tag?: any;
+    brand?: BaseInfo;
+    action?: ProductAction;
     uid?: number;
+    tags?: string[];
+    _custom_json?: any;
+    type?: string;
     name?: string;
     item_code?: string;
     categories?: CategoryInfo[];
-    tags?: string[];
-    type?: string;
-    attributes?: any;
+    attributes?: ProductAttributes;
+};
+/** @returns {ProductAttributes} */
+declare function ProductAttributes(): ProductAttributes;
+type ProductAttributes = {
+    product_type?: string;
+    item_code?: string;
+    primary_color_hex?: string;
+    primary_material?: string;
+    primary_color?: string;
+    variant?: string;
+    color?: string;
+    season?: string;
+    style_note?: string;
 };
 /** @returns {CouponDetails} */
 declare function CouponDetails(): CouponDetails;
 type CouponDetails = {
+    discount_total_quantity?: number;
     discount_single_quantity?: number;
     code?: string;
-    discount_total_quantity?: number;
+};
+/** @returns {ParentItemIdentifiers} */
+declare function ParentItemIdentifiers(): ParentItemIdentifiers;
+type ParentItemIdentifiers = {
+    identifier?: string;
+    parent_item_size?: string;
+    parent_item_id?: string;
+};
+/** @returns {CartItemMOQ} */
+declare function CartItemMOQ(): CartItemMOQ;
+type CartItemMOQ = {
+    increment_unit?: number;
+    maximum?: number;
+    minimum?: number;
+};
+/** @returns {CartItemCustomOrder} */
+declare function CartItemCustomOrder(): CartItemCustomOrder;
+type CartItemCustomOrder = {
+    is_custom_order?: boolean;
+    manufacturing_time?: number;
+    manufacturing_time_unit?: string;
 };
 /** @returns {CartProductInfo} */
 declare function CartProductInfo(): CartProductInfo;
 type CartProductInfo = {
-    article?: ProductArticle;
-    moq?: any;
-    identifiers: CartProductIdentifer;
-    promo_meta?: PromoMeta;
-    price?: ProductPriceInfo;
     quantity?: number;
-    charges?: Charges[];
-    discount?: string;
-    availability?: ProductAvailability;
-    delivery_promise?: ShipmentPromise;
     product?: CartProduct;
     product_ean_id?: string;
-    bulk_offer?: any;
-    parent_item_identifiers?: any;
-    coupon?: CouponDetails;
-    custom_order?: any;
-    coupon_message?: string;
-    key?: string;
-    message?: string;
+    parent_item_identifiers?: ParentItemIdentifiers;
     is_set?: boolean;
-    price_per_unit?: ProductPricePerUnitInfo;
+    article?: ProductArticle;
     promotions_applied?: AppliedPromotion[];
-};
-/** @returns {DisplayBreakup} */
-declare function DisplayBreakup(): DisplayBreakup;
-type DisplayBreakup = {
-    currency_symbol?: string;
+    delivery_promise?: ShipmentPromise;
     key?: string;
-    display?: string;
-    message?: string[];
-    currency_code?: string;
-    value?: number;
-    preset?: number;
+    coupon?: CouponDetails;
+    bulk_offer?: any;
+    price_adjustment_applied?: ArticleAppliedPriceAdjustment[];
+    price?: ProductPriceInfo;
+    coupon_message?: string;
+    identifiers: CartProductIdentifer;
+    message?: string;
+    discount?: string;
+    availability?: ProductAvailability;
+    moq?: CartItemMOQ;
+    price_per_unit?: ProductPriceInfo;
+    promo_meta?: PromoMeta;
+    custom_order?: CartItemCustomOrder;
+    charges?: number[];
+    seller_count?: number;
 };
-/** @returns {RawBreakup} */
-declare function RawBreakup(): RawBreakup;
-type RawBreakup = {
-    vog?: number;
-    subtotal?: number;
-    fynd_cash?: number;
-    discount?: number;
-    convenience_fee?: number;
-    delivery_charge?: number;
-    gst_charges?: number;
-    mrp_total?: number;
-    mop_total?: number;
-    total_charge?: number;
-    coupon?: number;
-    total?: number;
-    gift_card?: number;
-    you_saved?: number;
-    cod_charge?: number;
+/** @returns {PriceAdjustmentApplied} */
+declare function PriceAdjustmentApplied(): PriceAdjustmentApplied;
+type PriceAdjustmentApplied = {
+    article_id?: string;
+    adjusted_value?: any;
+    applied_quantity?: number;
+    meta?: any;
+    article_level_distribution?: boolean;
+    type?: string;
 };
 /** @returns {CouponBreakup} */
 declare function CouponBreakup(): CouponBreakup;
 type CouponBreakup = {
-    coupon_value?: number;
     title?: string;
-    sub_title?: string;
-    minimum_cart_value?: number;
-    message?: string;
-    coupon_type?: string;
-    uid?: string;
-    value?: number;
     max_discount_value?: number;
+    value?: number;
     is_applied?: boolean;
-    description?: string;
+    uid?: string;
+    coupon_type?: string;
+    sub_title?: string;
+    coupon_value?: number;
     code?: string;
     type?: string;
+    minimum_cart_value?: number;
+    message?: string;
+    description?: string;
+};
+/** @returns {DisplayBreakup} */
+declare function DisplayBreakup(): DisplayBreakup;
+type DisplayBreakup = {
+    key?: string;
+    value?: number;
+    currency_code?: string;
+    currency_symbol?: string;
+    display?: string;
+    message?: string[];
+    original?: number;
+    attr?: string;
+    meta?: any;
 };
 /** @returns {LoyaltyPoints} */
 declare function LoyaltyPoints(): LoyaltyPoints;
 type LoyaltyPoints = {
-    total?: number;
-    description?: string;
-    applicable?: number;
     is_applied?: boolean;
+    total?: number;
+    applicable?: number;
+    description?: string;
+    message?: string;
+};
+/** @returns {RawBreakup} */
+declare function RawBreakup(): RawBreakup;
+type RawBreakup = {
+    promotion?: number;
+    coupon?: number;
+    gst_charges?: number;
+    mrp_total?: number;
+    fynd_cash?: number;
+    vog?: number;
+    gift_card?: number;
+    cod_charge?: number;
+    total?: number;
+    discount?: number;
+    delivery_charge?: number;
+    you_saved?: number;
+    subtotal?: number;
+    sub_total?: number;
+    convenience_fee?: number;
+    total_charge?: number;
+    mop_total?: number;
 };
 /** @returns {CartBreakup} */
 declare function CartBreakup(): CartBreakup;
 type CartBreakup = {
-    display?: DisplayBreakup[];
-    raw?: RawBreakup;
     coupon?: CouponBreakup;
+    display?: DisplayBreakup[];
     loyalty_points?: LoyaltyPoints;
+    raw?: RawBreakup;
 };
 /** @returns {CartCurrency} */
 declare function CartCurrency(): CartCurrency;
@@ -1446,6 +1930,14 @@ type CartCurrency = {
      */
     code?: string;
     symbol?: string;
+};
+/** @returns {CartCouponMedias} */
+declare function CartCouponMedias(): CartCouponMedias;
+type CartCouponMedias = {
+    alt?: string;
+    url?: string;
+    type?: string;
+    key?: string;
 };
 /** @returns {CartDetailCoupon} */
 declare function CartDetailCoupon(): CartDetailCoupon;
@@ -1466,6 +1958,7 @@ type CartDetailCoupon = {
     maximum_discount_value?: number;
     message?: string;
     minimum_cart_value?: number;
+    medias?: CartCouponMedias[];
 };
 /** @returns {ChargesThreshold} */
 declare function ChargesThreshold(): ChargesThreshold;
@@ -1484,53 +1977,133 @@ declare function CartCommonConfig(): CartCommonConfig;
 type CartCommonConfig = {
     delivery_charges_config?: DeliveryChargesConfig;
 };
+/** @returns {CartAppliedPriceAdjustment} */
+declare function CartAppliedPriceAdjustment(): CartAppliedPriceAdjustment;
+type CartAppliedPriceAdjustment = {
+    /**
+     * - Boolean value indicating if articles
+     * should be removed from cart
+     */
+    remove_articles?: boolean;
+    /**
+     * - Value of price adjustment created along
+     * with destination currency
+     */
+    adjusted_value?: any;
+    /**
+     * - Boolean value true if
+     * price adjustment is distributed over articles
+     */
+    article_level_distribution?: boolean;
+    /**
+     * - Boolean value indicating if auto remove is enabled
+     */
+    auto_remove?: boolean;
+    /**
+     * - List of article IDs where the
+     * adjustment is applied
+     */
+    applied_articles_ids?: string[];
+    /**
+     * - Message associated with the Price adjustment
+     */
+    message?: string;
+    /**
+     * - Type of the Price Adjustment
+     */
+    _type?: string;
+    /**
+     * - Meta data added in article of price adjustment
+     */
+    meta?: any;
+    /**
+     * - It contains all the restrictions applied
+     * on price adjustments
+     */
+    restrictions?: any;
+    /**
+     * - ID of the price Adjustment
+     */
+    _id?: string;
+};
+/** @returns {CustomCart} */
+declare function CustomCart(): CustomCart;
+type CustomCart = {
+    /**
+     * - Id of custom cart config
+     */
+    id?: string;
+    /**
+     * - Name of custom cart
+     */
+    cart_name?: string;
+    /**
+     * - Type of custom cart
+     */
+    cart_type?: string;
+    /**
+     * - By default all carts are universal, will
+     * be false for custom cart
+     */
+    is_universal?: boolean;
+};
 /** @returns {CartDetailResponse} */
 declare function CartDetailResponse(): CartDetailResponse;
 type CartDetailResponse = {
     cart_id?: number;
     uid?: string;
-    applied_promo_details?: AppliedPromotion[];
-    checkout_mode?: string;
-    pan_no?: string;
-    is_valid?: boolean;
+    coupon_text?: string;
     id?: string;
-    payment_selection_lock?: PaymentSelectionLock;
     delivery_promise?: ShipmentPromise;
     comment?: string;
     items?: CartProductInfo[];
+    payment_selection_lock?: PaymentSelectionLock;
     delivery_charge_info?: string;
     common_config?: CartCommonConfig;
     coupon?: CartDetailCoupon;
+    restrict_checkout?: boolean;
     message?: string;
     notification?: any;
     staff_user_id?: string;
     success?: boolean;
-    gstin?: string;
-    restrict_checkout?: boolean;
-    last_modified?: string;
     breakup_values?: CartBreakup;
+    is_valid?: boolean;
     currency?: CartCurrency;
-    coupon_text?: string;
+    checkout_mode?: string;
+    last_modified?: string;
+    price_adjustment_applied?: CartAppliedPriceAdjustment[];
     buy_now?: boolean;
+    gstin?: string;
+    applied_promo_details?: AppliedPromotion[];
+    pan_no?: string;
+    custom_cart?: CustomCart;
+    is_pan_received?: boolean;
     pan_config?: any;
+};
+/** @returns {ArticleAssignment} */
+declare function ArticleAssignment(): ArticleAssignment;
+type ArticleAssignment = {
+    level?: string;
+    strategy?: string;
 };
 /** @returns {AddProductCart} */
 declare function AddProductCart(): AddProductCart;
 type AddProductCart = {
-    article_assignment?: any;
-    product_group_tags?: string[];
-    extra_meta?: any;
     quantity?: number;
-    _custom_json?: any;
     item_size?: string;
+    seller_id?: number;
+    price_factory_type_id?: string;
+    parent_item_identifiers?: any[];
+    product_group_tags?: string[];
+    article_id?: string;
+    article_assignment?: ArticleAssignment;
     store_id?: number;
     display?: string;
-    article_id?: string;
-    parent_item_identifiers?: any[];
-    seller_id?: number;
-    pos?: boolean;
     item_id?: number;
+    extra_meta?: any;
+    _custom_json?: any;
     meta?: any;
+    pos?: boolean;
     /**
      * - Add items using seller identifier for store os
      */
@@ -1545,18 +2118,19 @@ type AddCartRequest = {
 /** @returns {AddCartDetailResponse} */
 declare function AddCartDetailResponse(): AddCartDetailResponse;
 type AddCartDetailResponse = {
-    message?: string;
-    /**
-     * - When adding multiple items check if all
-     * added. True if only few are added.
-     */
-    partial?: boolean;
-    cart?: CartDetailResponse;
     /**
      * - True if all items are added successfully.
-     * False if partially added or not added.
+     * false if partially added or not added.
      */
     success?: boolean;
+    cart?: CartDetailResponse;
+    /**
+     * - When adding multiple items check if all
+     * added. true if only few are added.
+     */
+    partial?: boolean;
+    message?: string;
+    result?: any;
 };
 /** @returns {UpdateProductCart} */
 declare function UpdateProductCart(): UpdateProductCart;
@@ -1569,6 +2143,7 @@ type UpdateProductCart = {
     identifiers: CartProductIdentifer;
     article_id?: string;
     parent_item_identifiers?: any;
+    price_factory_type_id?: string;
     item_id?: number;
     meta?: any;
 };
@@ -1585,7 +2160,7 @@ type UpdateCartDetailResponse = {
     cart?: CartDetailResponse;
     /**
      * - True if all items are added successfully.
-     * False if partially added or not added.
+     * false if partially added or not added.
      */
     success?: boolean;
 };
@@ -1594,7 +2169,7 @@ declare function DeleteCartDetailResponse(): DeleteCartDetailResponse;
 type DeleteCartDetailResponse = {
     message?: string;
     /**
-     * - True if cart is archived successfully. False
+     * - True if cart is archived successfully. false
      * if not archived.
      */
     success?: boolean;
@@ -1607,37 +2182,46 @@ type CartItemCountResponse = {
      */
     user_cart_items_count?: number;
 };
-/** @returns {PageCoupon} */
-declare function PageCoupon(): PageCoupon;
-type PageCoupon = {
-    total_item_count?: number;
-    has_next?: boolean;
-    total?: number;
-    current?: number;
-    has_previous?: boolean;
+/** @returns {CartItemCountResponseV2} */
+declare function CartItemCountResponseV2(): CartItemCountResponseV2;
+type CartItemCountResponseV2 = {
+    user_all_cart_articles_quantity_count?: number;
+    user_all_cart_article_count?: number;
+    custom_cart_count?: any;
+    custom_cart_ordered_count?: any[];
 };
 /** @returns {Coupon} */
 declare function Coupon(): Coupon;
 type Coupon = {
-    /**
-     * - The amount based on cart value
-     */
-    coupon_amount?: number;
-    coupon_value?: number;
     title?: string;
-    minimum_cart_value?: number;
-    sub_title?: string;
-    expires_on?: string;
-    message?: string;
-    coupon_type?: string;
     max_discount_value?: number;
     coupon_code?: string;
-    is_applicable?: boolean;
-    description?: string;
     is_applied?: boolean;
+    coupon_type?: string;
+    expires_on?: string;
+    coupon_value?: number;
+    sub_title?: string;
+    minimum_cart_value?: number;
+    is_applicable?: boolean;
+    message?: string;
+    description?: string;
     start_date?: string;
     end_date?: string;
     coupon_applicable_message?: string;
+    is_bank_offer?: boolean;
+    offer_text?: string;
+    coupon_amount?: number;
+    tags?: string[];
+    medias?: CartCouponMedias[];
+};
+/** @returns {PageCoupon} */
+declare function PageCoupon(): PageCoupon;
+type PageCoupon = {
+    has_next?: boolean;
+    current?: number;
+    total?: number;
+    total_item_count?: number;
+    has_previous?: boolean;
 };
 /** @returns {GetCouponResponse} */
 declare function GetCouponResponse(): GetCouponResponse;
@@ -1746,37 +2330,45 @@ type GeoLocation = {
 /** @returns {Address} */
 declare function Address(): Address;
 type Address = {
-    country_iso_code?: string;
-    area?: string;
+    pincode?: number;
     phone?: string;
-    country_phone_code?: string;
-    checkout_mode?: string;
-    address?: string;
-    area_code_slug?: string;
-    geo_location?: GeoLocation;
     id?: string;
-    _custom_json?: any;
+    area_code_slug?: string;
+    country_code?: string;
+    geo_location?: GeoLocation;
+    country?: string;
+    state?: string;
+    is_default_address?: boolean;
+    tags?: string[];
+    created_by_user_id?: string;
+    landmark?: string;
+    email?: string;
+    area_code?: string;
+    checkout_mode?: string;
+    meta?: any;
+    is_active?: boolean;
+    name?: string;
+    google_map_point?: any;
+    cart_id?: string;
     city?: string;
     sector?: string;
     /**
      * - State code for international address
      */
     state_code?: string;
-    created_by_user_id?: string;
-    landmark?: string;
+    area?: string;
     user_id?: string;
-    name?: string;
-    google_map_point?: any;
-    is_active?: boolean;
-    tags?: string[];
-    country_code?: string;
     address_type?: string;
-    country?: string;
-    is_default_address?: boolean;
-    area_code?: string;
-    email?: string;
-    state?: string;
-    meta?: any;
+    address?: string;
+    country_phone_code?: string;
+    country_iso_code?: string;
+    _custom_json?: any;
+    uid?: number;
+    is_anonymous?: boolean;
+    app_id?: string;
+    expire_at?: string;
+    address_id?: string;
+    store_name?: string;
 };
 /** @returns {GetAddressesResponse} */
 declare function GetAddressesResponse(): GetAddressesResponse;
@@ -1790,6 +2382,7 @@ type SaveAddressResponse = {
     id?: string;
     success?: boolean;
     is_default_address?: boolean;
+    address_id?: any;
 };
 /** @returns {UpdateAddressResponse} */
 declare function UpdateAddressResponse(): UpdateAddressResponse;
@@ -1798,12 +2391,14 @@ type UpdateAddressResponse = {
     id?: string;
     success?: boolean;
     is_default_address?: boolean;
+    address_id?: string;
 };
 /** @returns {DeleteAddressResponse} */
 declare function DeleteAddressResponse(): DeleteAddressResponse;
 type DeleteAddressResponse = {
     id?: string;
     is_deleted?: boolean;
+    address_id?: string;
 };
 /** @returns {SelectCartAddressRequest} */
 declare function SelectCartAddressRequest(): SelectCartAddressRequest;
@@ -1826,18 +2421,18 @@ type UpdateCartPaymentRequest = {
 declare function CouponValidity(): CouponValidity;
 type CouponValidity = {
     title?: string;
-    discount?: number;
     next_validation_required?: boolean;
     valid?: boolean;
     display_message_en?: string;
     code?: string;
+    discount?: number;
 };
 /** @returns {PaymentCouponValidate} */
 declare function PaymentCouponValidate(): PaymentCouponValidate;
 type PaymentCouponValidate = {
+    success: boolean;
     message?: string;
     coupon_validity?: CouponValidity;
-    success: boolean;
 };
 /** @returns {ShipmentResponse} */
 declare function ShipmentResponse(): ShipmentResponse;
@@ -1852,29 +2447,63 @@ type ShipmentResponse = {
     items?: CartProductInfo[];
     fulfillment_type?: string;
     fulfillment_id?: number;
+    meta?: ShipmentMeta;
+    logistics_meta?: ShipmentLogisticsMeta;
+};
+/** @returns {ShipmentMeta} */
+declare function ShipmentMeta(): ShipmentMeta;
+type ShipmentMeta = {
+    packaging_name?: string;
+    dimension?: string;
+    assign_dp_from_sb?: string;
+    dp_sort_key?: string;
+    shipment_weight?: string;
+    shipment_volumetric_weight?: string;
+    shipment_chargeable_weight?: string;
+    shipping_zone?: string;
+};
+/** @returns {ShipmentLogisticsMeta} */
+declare function ShipmentLogisticsMeta(): ShipmentLogisticsMeta;
+type ShipmentLogisticsMeta = {
+    account_options?: string[];
+    account_info?: any;
+    dp_sort_key?: string;
+    assign_dp_from_sb?: string;
 };
 /** @returns {CartShipmentsResponse} */
 declare function CartShipmentsResponse(): CartShipmentsResponse;
 type CartShipmentsResponse = {
-    delivery_charge_info?: string;
-    checkout_mode?: string;
-    message?: string;
-    gstin?: string;
-    restrict_checkout?: boolean;
-    last_modified?: string;
     cart_id?: number;
-    is_valid?: boolean;
-    breakup_values?: CartBreakup;
-    currency?: CartCurrency;
-    id?: string;
-    shipments?: ShipmentResponse[];
-    payment_selection_lock?: PaymentSelectionLock;
-    coupon_text?: string;
-    delivery_promise?: ShipmentPromise;
-    error?: boolean;
-    comment?: string;
-    buy_now?: boolean;
     uid?: string;
+    coupon_text?: string;
+    id?: string;
+    pan_config?: any;
+    delivery_promise?: ShipmentPromise;
+    comment?: string;
+    items?: CartProductInfo[];
+    payment_selection_lock?: PaymentSelectionLock;
+    delivery_charge_info?: string;
+    common_config?: CartCommonConfig;
+    coupon?: CartDetailCoupon;
+    restrict_checkout?: boolean;
+    message?: string;
+    notification?: any;
+    staff_user_id?: string;
+    success?: boolean;
+    breakup_values?: CartBreakup;
+    is_valid?: boolean;
+    currency?: CartCurrency;
+    checkout_mode?: string;
+    last_modified?: string;
+    buy_now?: boolean;
+    gstin?: string;
+    applied_promo_details?: AppliedPromotion[];
+    pan_no?: string;
+    custom_cart?: CustomCart;
+    price_adjustment_applied?: CartAppliedPriceAdjustment[];
+    shipments?: ShipmentResponse[];
+    error?: boolean;
+    is_pan_received?: boolean;
 };
 /** @returns {CartCheckoutCustomMeta} */
 declare function CartCheckoutCustomMeta(): CartCheckoutCustomMeta;
@@ -1932,35 +2561,36 @@ type CartCheckoutDetailRequest = {
 /** @returns {CheckCart} */
 declare function CheckCart(): CheckCart;
 type CheckCart = {
-    checkout_mode?: string;
-    user_type?: string;
-    cod_message?: string;
     cart_id?: number;
-    is_valid?: boolean;
-    delivery_charges?: number;
+    uid?: string;
+    coupon_text?: string;
     id?: string;
-    payment_selection_lock?: PaymentSelectionLock;
-    error_message?: string;
     delivery_promise?: ShipmentPromise;
     comment?: string;
     items?: CartProductInfo[];
-    uid?: string;
-    delivery_charge_order_value?: number;
+    payment_selection_lock?: PaymentSelectionLock;
     delivery_charge_info?: string;
-    cod_available?: boolean;
-    success?: boolean;
-    store_code?: string;
-    message?: string;
-    gstin?: string;
+    common_config?: CartCommonConfig;
+    coupon?: CartDetailCoupon;
     restrict_checkout?: boolean;
-    last_modified?: string;
-    order_id?: string;
+    message?: string;
+    notification?: any;
+    staff_user_id?: string;
+    success?: boolean;
     breakup_values?: CartBreakup;
+    is_valid?: boolean;
     currency?: CartCurrency;
-    store_emps?: any[];
-    coupon_text?: string;
+    checkout_mode?: string;
+    last_modified?: string;
     buy_now?: boolean;
-    cod_charges?: number;
+    gstin?: string;
+    applied_promo_details?: AppliedPromotion[];
+    pan_no?: string;
+    custom_cart?: CustomCart;
+    price_adjustment_applied?: PriceAdjustmentApplied[];
+    is_pan_received?: boolean;
+    pan_config?: any;
+    order_id?: string;
 };
 /** @returns {CartCheckoutResponse} */
 declare function CartCheckoutResponse(): CartCheckoutResponse;
@@ -1988,16 +2618,21 @@ type ArticleGiftDetail = {
 /** @returns {CartMetaRequest} */
 declare function CartMetaRequest(): CartMetaRequest;
 type CartMetaRequest = {
-    delivery_slots?: any;
-    gift_details?: ArticleGiftDetail;
+    gstin?: string;
     /**
      * - Customer contact details for
      * customer pickup at store
      */
     pick_up_customer_details?: any;
     checkout_mode?: string;
+    gift_details?: any;
+    pan_no?: string;
     comment?: string;
-    gstin?: string;
+    /**
+     * - Staff user id
+     */
+    staff_user_id?: string;
+    delivery_slots?: any;
 };
 /** @returns {CartMetaResponse} */
 declare function CartMetaResponse(): CartMetaResponse;
@@ -2008,7 +2643,22 @@ type CartMetaResponse = {
 /** @returns {CartMetaMissingResponse} */
 declare function CartMetaMissingResponse(): CartMetaMissingResponse;
 type CartMetaMissingResponse = {
-    errors?: string[];
+    errors?: CartMetaFieldsValidation;
+    message?: string;
+    success?: boolean;
+    meta?: CartMetaFieldsValidation;
+};
+/** @returns {CartMetaFieldsValidation} */
+declare function CartMetaFieldsValidation(): CartMetaFieldsValidation;
+type CartMetaFieldsValidation = {
+    pan_no?: string[];
+    gstin?: string[];
+    checkout_mode?: string[];
+    comment?: string[];
+    pick_up_customer_details?: string[];
+    gift_details?: string[];
+    staff_user_id?: string[];
+    delivery_slots?: string[];
 };
 /** @returns {GetShareCartLinkRequest} */
 declare function GetShareCartLinkRequest(): GetShareCartLinkRequest;
@@ -2059,25 +2709,36 @@ type SharedCartDetails = {
 /** @returns {SharedCart} */
 declare function SharedCart(): SharedCart;
 type SharedCart = {
-    checkout_mode?: string;
     cart_id?: number;
-    is_valid?: boolean;
+    uid?: string;
+    coupon_text?: string;
     id?: string;
-    payment_selection_lock?: PaymentSelectionLock;
+    pan_config?: any;
     delivery_promise?: ShipmentPromise;
     comment?: string;
     items?: CartProductInfo[];
-    uid?: string;
+    payment_selection_lock?: PaymentSelectionLock;
     delivery_charge_info?: string;
-    message?: string;
-    gstin?: string;
-    shared_cart_details?: SharedCartDetails;
+    common_config?: CartCommonConfig;
+    coupon?: CartDetailCoupon;
     restrict_checkout?: boolean;
-    last_modified?: string;
+    message?: string;
+    notification?: any;
+    staff_user_id?: string;
+    success?: boolean;
     breakup_values?: CartBreakup;
+    is_valid?: boolean;
     currency?: CartCurrency;
-    coupon_text?: string;
+    checkout_mode?: string;
+    last_modified?: string;
     buy_now?: boolean;
+    gstin?: string;
+    applied_promo_details?: AppliedPromotion[];
+    pan_no?: string;
+    custom_cart?: CustomCart;
+    price_adjustment_applied?: CartAppliedPriceAdjustment[];
+    shared_cart_details?: SharedCartDetails;
+    is_pan_received?: boolean;
 };
 /** @returns {SharedCartResponse} */
 declare function SharedCartResponse(): SharedCartResponse;
@@ -2260,6 +2921,7 @@ declare function LadderPriceOffers(): LadderPriceOffers;
 type LadderPriceOffers = {
     available_offers?: LadderPriceOffer[];
     currency?: CurrencyInfo;
+    store_id?: number[];
 };
 /** @returns {PaymentMeta} */
 declare function PaymentMeta(): PaymentMeta;
@@ -2276,6 +2938,7 @@ type PaymentMethod = {
     mode: string;
     payment?: string;
     amount?: number;
+    payment_identifier?: string;
     name?: string;
     payment_extra_identifiers?: any;
 };
@@ -2310,4 +2973,90 @@ type CartCheckoutDetailV2Request = {
     network?: string;
     type?: string;
     card_id?: string;
+};
+/** @returns {CartMetaConfigListResponse} */
+declare function CartMetaConfigListResponse(): CartMetaConfigListResponse;
+type CartMetaConfigListResponse = {
+    success?: boolean;
+    data?: CartMetaConfigListObject[];
+};
+/** @returns {CartMetaConfigListObject} */
+declare function CartMetaConfigListObject(): CartMetaConfigListObject;
+type CartMetaConfigListObject = {
+    id?: string;
+    slug?: string;
+    created_on?: string;
+    name?: string;
+    is_active?: boolean;
+    article_tags?: string[];
+};
+/** @returns {OrderPlacing} */
+declare function OrderPlacing(): OrderPlacing;
+type OrderPlacing = {
+    enabled?: boolean;
+    message?: string;
+};
+/** @returns {PanCard} */
+declare function PanCard(): PanCard;
+type PanCard = {
+    enabled?: boolean;
+    cod_threshold_amount?: number;
+    online_threshold_amount?: number;
+};
+/** @returns {CartConfigDetailObj} */
+declare function CartConfigDetailObj(): CartConfigDetailObj;
+type CartConfigDetailObj = {
+    id?: string;
+    app_id?: string;
+    company_id?: number;
+    created_on?: string;
+    updated_on?: string;
+    last_modified_by?: string;
+    min_cart_value?: number;
+    max_cart_value?: number;
+    bulk_coupons?: boolean;
+    max_cart_items?: number;
+    gift_display_text?: string;
+    delivery_charges?: DeliveryChargesConfig;
+    revenue_engine_coupon?: boolean;
+    gift_pricing?: number;
+    enabled?: boolean;
+    is_active?: boolean;
+    order_placing?: OrderPlacing;
+    name?: string;
+    article_tags?: string[];
+    allow_coupon_with_rewards?: boolean;
+    gst_input?: boolean;
+    staff_selection?: boolean;
+    placing_for_customer?: boolean;
+    pan_card?: PanCard;
+    slug?: string;
+    is_universal?: boolean;
+    international_delivery_charges?: DeliveryChargesConfig;
+};
+/** @returns {CartConfigDetailResponse} */
+declare function CartConfigDetailResponse(): CartConfigDetailResponse;
+type CartConfigDetailResponse = {
+    success?: boolean;
+    data?: CartConfigDetailObj;
+};
+/** @returns {SelectAddressResponseError} */
+declare function SelectAddressResponseError(): SelectAddressResponseError;
+type SelectAddressResponseError = {
+    message?: string;
+    cart_id?: number;
+    id?: string;
+    is_valid?: boolean;
+    address?: AllAddressForSelectAddress;
+};
+/** @returns {AllAddressForSelectAddress} */
+declare function AllAddressForSelectAddress(): AllAddressForSelectAddress;
+type AllAddressForSelectAddress = {
+    address?: Address[];
+    pii_masking?: boolean;
+};
+/** @returns {DeleteCartRequest} */
+declare function DeleteCartRequest(): DeleteCartRequest;
+type DeleteCartRequest = {
+    cart_id_list?: string[];
 };

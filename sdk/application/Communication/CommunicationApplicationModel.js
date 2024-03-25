@@ -49,12 +49,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BadRequestSchema
- * @property {string} [status] - Response status.
- * @property {string} [message] - Failure message.
- */
-
-/**
  * @typedef PushtokenReq
  * @property {string} [action]
  * @property {string} [bundle_identifier]
@@ -76,6 +70,32 @@ const Joi = require("joi");
  * @property {string} [created_at]
  * @property {string} [updated_at]
  * @property {string} [expired_at]
+ */
+
+/**
+ * @typedef OtpConfigurationExpiryDuration
+ * @property {number} time
+ * @property {string} denomination
+ */
+
+/**
+ * @typedef OtpConfigurationExpiry
+ * @property {OtpConfigurationExpiryDuration} duration
+ * @property {string} type
+ */
+
+/**
+ * @typedef OtpConfigurationRateLimit
+ * @property {number} [duration]
+ * @property {number} [limit]
+ */
+
+/**
+ * @typedef OtpConfiguration
+ * @property {number} otp_length
+ * @property {string} type
+ * @property {OtpConfigurationExpiry} expiry
+ * @property {OtpConfigurationRateLimit} [rate_limit]
  */
 
 class CommunicationApplicationModel {
@@ -141,14 +161,6 @@ class CommunicationApplicationModel {
     });
   }
 
-  /** @returns {BadRequestSchema} */
-  static BadRequestSchema() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {PushtokenReq} */
   static PushtokenReq() {
     return Joi.object({
@@ -174,6 +186,40 @@ class CommunicationApplicationModel {
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       expired_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {OtpConfigurationExpiryDuration} */
+  static OtpConfigurationExpiryDuration() {
+    return Joi.object({
+      time: Joi.number().required(),
+      denomination: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OtpConfigurationExpiry} */
+  static OtpConfigurationExpiry() {
+    return Joi.object({
+      duration: CommunicationApplicationModel.OtpConfigurationExpiryDuration().required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OtpConfigurationRateLimit} */
+  static OtpConfigurationRateLimit() {
+    return Joi.object({
+      duration: Joi.number(),
+      limit: Joi.number(),
+    });
+  }
+
+  /** @returns {OtpConfiguration} */
+  static OtpConfiguration() {
+    return Joi.object({
+      otp_length: Joi.number().required(),
+      type: Joi.string().allow("").required(),
+      expiry: CommunicationApplicationModel.OtpConfigurationExpiry().required(),
+      rate_limit: CommunicationApplicationModel.OtpConfigurationRateLimit(),
     });
   }
 }

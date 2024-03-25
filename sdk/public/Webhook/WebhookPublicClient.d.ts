@@ -62,5 +62,5 @@ declare class Webhook {
      */
     validateSchema({ body, requestHeaders }?: WebhookPublicValidator.ValidateSchemaParam, { responseHeaders }?: object): Promise<WebhookPublicModel.ValidateSchemaResponse>;
 }
-import WebhookPublicModel = require("./WebhookPublicModel");
-import WebhookPublicValidator = require("./WebhookPublicValidator");
+import WebhookPublicModel = require("sdk/output/javascript/code/sdk/public/Webhook/WebhookPublicModel");
+import WebhookPublicValidator = require("sdk/output/javascript/code/sdk/public/Webhook/WebhookPublicValidator");

@@ -19,11 +19,6 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
 
-/**
- * @typedef GetFeedbacksParam
- * @property {string} id - Ticket ID for which feedbacks are to be fetched
- */
-
 /** @typedef GetGeneralConfigParam */
 
 /**
@@ -43,7 +38,7 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  *   ticket filters
  * @property {string} [q] - Search through ticket titles and description
  * @property {string} [status] - Filter tickets on status
- * @property {LeadPlatformModel.PriorityEnum} [priority] - Filter tickets on priority
+ * @property {string} [priority] - Filter tickets on priority
  * @property {string} [category] - Filter tickets on category
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
@@ -59,12 +54,6 @@ const LeadPlatformModel = require("./LeadPlatformModel");
 /**
  * @typedef GetTokenForPlatformVideoRoomParam
  * @property {string} uniqueName - Unique name of video room
- */
-
-/**
- * @typedef SubmitFeedbackParam
- * @property {string} id - Ticket ID for which feedback is to be submitted
- * @property {LeadPlatformModel.TicketFeedbackPayload} body
  */
 
 class LeadPlatformValidator {
@@ -88,13 +77,6 @@ class LeadPlatformValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadPlatformModel.EditTicketPayload().required(),
-    }).required();
-  }
-
-  /** @returns {GetFeedbacksParam} */
-  static getFeedbacks() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -124,7 +106,7 @@ class LeadPlatformValidator {
       filters: Joi.boolean(),
       q: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      priority: LeadPlatformModel.PriorityEnum(),
+      priority: Joi.string().allow(""),
       category: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -142,14 +124,6 @@ class LeadPlatformValidator {
   static getTokenForPlatformVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {SubmitFeedbackParam} */
-  static submitFeedback() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: LeadPlatformModel.TicketFeedbackPayload().required(),
     }).required();
   }
 }

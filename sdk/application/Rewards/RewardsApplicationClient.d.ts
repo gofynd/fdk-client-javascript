@@ -67,6 +67,16 @@ declare class Rewards {
      */
     getUserPointsHistory({ pageId, pageSize, requestHeaders }?: RewardsApplicationValidator.GetUserPointsHistoryParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.PointsHistoryResponse>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @returns {Paginator<RewardsApplicationModel.PointsHistoryResponse>}
+     * @summary: Points history.
+     * @description: Gets the historical data of points earned or spent by the user.
+     */
+    getUserPointsHistoryPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator<RewardsApplicationModel.PointsHistoryResponse>;
+    /**
      * @param {RewardsApplicationValidator.GetUserReferralDetailsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -89,5 +99,6 @@ declare class Rewards {
      */
     redeemReferralCode({ body, requestHeaders }?: RewardsApplicationValidator.RedeemReferralCodeParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.RedeemReferralCodeResponse>;
 }
-import RewardsApplicationValidator = require("./RewardsApplicationValidator");
-import RewardsApplicationModel = require("./RewardsApplicationModel");
+import RewardsApplicationValidator = require("sdk/output/javascript/code/sdk/application/Rewards/RewardsApplicationValidator");
+import RewardsApplicationModel = require("sdk/output/javascript/code/sdk/application/Rewards/RewardsApplicationModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

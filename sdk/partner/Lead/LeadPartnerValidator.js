@@ -8,7 +8,7 @@ class LeadValidator {
       filters: Joi.boolean(),
       q: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      priority: LeadModel.PriorityEnum(),
+      priority: Joi.string().allow(""),
       category: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -59,8 +59,24 @@ class LeadValidator {
     }).required();
   }
 
+  static openVideoRoom() {
+    return Joi.object({
+      body: LeadModel.CreateVideoRoomPayload().required(),
+    }).required();
+  }
+
+  static closeVideoRoom() {
+    return Joi.object({
+      uniqueName: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getGeneralConfig() {
     return Joi.object({}).required();
+  }
+
+  static getPartnerGeneralConfig() {
+    return Joi.object({});
   }
 }
 

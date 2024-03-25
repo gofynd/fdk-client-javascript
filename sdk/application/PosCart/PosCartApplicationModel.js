@@ -55,7 +55,8 @@ const Joi = require("joi");
  *   article for free gift item promotions
  * @property {Ownership} [ownership] - Ownership of promotion
  * @property {CartCurrency} [currency]
- * @property {string} [promotion_group] - Promotion group for the promotion
+ * @property {string} [promotion_group] - Promotion type of current promotion
+ * @property {Object} [meta] - Meta object for extra data
  */
 
 /**
@@ -929,6 +930,7 @@ class PosCartApplicationModel {
       ownership: PosCartApplicationModel.Ownership(),
       currency: PosCartApplicationModel.CartCurrency(),
       promotion_group: Joi.string().allow(""),
+      meta: Joi.any(),
     });
   }
 

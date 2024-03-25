@@ -15,7 +15,7 @@ class Lead {
     this._conf = _conf;
     this._relativeUrls = {
       createHistory: "/service/application/lead/v1.0/ticket/{id}/history",
-      createTicket: "/service/application/lead/v1.0/ticket/",
+      createTicket: "/service/application/lead/v1.0/ticket",
       getCustomForm: "/service/application/lead/v1.0/form/{slug}",
       getParticipantsInsideVideoRoom:
         "/service/application/lead/v1.0/video/room/{unique_name}/participants",

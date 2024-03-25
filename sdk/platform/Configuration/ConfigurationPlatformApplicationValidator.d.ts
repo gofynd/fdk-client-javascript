@@ -29,6 +29,7 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /** @typedef GetAppSupportedCurrencyParam */
 /** @typedef GetApplicationByIdParam */
+/** @typedef GetApplicationConfigurationParam */
 /**
  * @typedef GetBuildConfigParam
  * @property {string} platformType - The device platform for which the mobile
@@ -136,6 +137,8 @@ declare class ConfigurationPlatformApplicationValidator {
     static getAppSupportedCurrency(): any;
     /** @returns {GetApplicationByIdParam} */
     static getApplicationById(): any;
+    /** @returns {GetApplicationConfigurationParam} */
+    static getApplicationConfiguration(): any;
     /** @returns {GetBuildConfigParam} */
     static getBuildConfig(): GetBuildConfigParam;
     /** @returns {GetDomainStatusParam} */
@@ -180,7 +183,7 @@ declare class ConfigurationPlatformApplicationValidator {
     static updateOrderingStoreConfig(): UpdateOrderingStoreConfigParam;
 }
 declare namespace ConfigurationPlatformApplicationValidator {
-    export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoreCookieParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, RemoveOrderingStoreCookieParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
+    export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetApplicationConfigurationParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoreCookieParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, RemoveOrderingStoreCookieParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
 }
 type AddDomainParam = {
     body: ConfigurationPlatformModel.DomainAddRequest;
@@ -313,8 +316,9 @@ type GetAppCurrencyConfigParam = any;
 type GetAppFeaturesParam = any;
 type GetAppSupportedCurrencyParam = any;
 type GetApplicationByIdParam = any;
+type GetApplicationConfigurationParam = any;
 type GetDomainsParam = any;
 type GetInventoryConfigParam = any;
 type GetOrderingStoreConfigParam = any;
 type RemoveOrderingStoreCookieParam = any;
-import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
+import ConfigurationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformModel");

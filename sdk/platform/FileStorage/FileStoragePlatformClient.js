@@ -345,7 +345,7 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<string>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.ProxyResponse>} - Success response
    * @name proxy
    * @summary: Proxy file access.
    * @description: Access files through a proxy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
@@ -398,9 +398,12 @@ class FileStorage {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: true });
+    const {
+      error: res_error,
+    } = FileStoragePlatformModel.ProxyResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

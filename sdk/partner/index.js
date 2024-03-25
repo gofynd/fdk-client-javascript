@@ -2,6 +2,8 @@ module.exports = {
   PartnerConfig: require("./PartnerConfig"),
   PartnerClient: require("./PartnerClient"),
   PartnerModel: {
+    CatalogPartnerModel: require("./Catalog/CatalogPartnerModel"),
+
     FileStoragePartnerModel: require("./FileStorage/FileStoragePartnerModel"),
 
     LeadPartnerModel: require("./Lead/LeadPartnerModel"),

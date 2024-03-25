@@ -66,16 +66,6 @@ declare class Serviceability {
      */
     createPackageMaterialRule({ body, requestHeaders }?: ServiceabilityPlatformValidator.CreatePackageMaterialRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageRuleResponse>;
     /**
-     * @param {ServiceabilityPlatformValidator.CreateZoneParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
-     * @name createZone
-     * @summary: Create zone.
-     * @description: Generate and add a new zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
-     */
-    createZone({ body, requestHeaders }?: ServiceabilityPlatformValidator.CreateZoneParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneResponse>;
-    /**
      * @param {ServiceabilityPlatformValidator.GetAllStoresParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -148,19 +138,18 @@ declare class Serviceability {
      * @summary: Getting Courier Account list of a company.
      * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
      */
-    getCourierPartnerAccounts({ pageNo, pageSize, stage, paymentMode, transportType, requestHeaders }?: ServiceabilityPlatformValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse>;
+    getCourierPartnerAccounts({ pageNo, pageSize, stage, paymentMode, transportType, accountIds, requestHeaders, }?: ServiceabilityPlatformValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>}
-     *   - Success response
-     *
+     * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
+     *   Success response
      * @name getOptimalLocations
-     * @summary: Retrieve optimal locations
-     * @description: Retrieve optimal locations based on the specific criteria - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
+     * @summary: Get serviceable store of the item
+     * @description: This API returns serviceable store of the item. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
      */
-    getOptimalLocations({ body, requestHeaders }?: ServiceabilityPlatformValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>;
+    getOptimalLocations({ body, requestHeaders }?: ServiceabilityPlatformValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.GetPackageMaterialListParam} arg
      *   - Arg object
@@ -225,27 +214,6 @@ declare class Serviceability {
      */
     getServiceability({ extensionId, schemeId, regionId, requestHeaders }?: ServiceabilityPlatformValidator.GetServiceabilityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ServiceabilityModel>;
     /**
-     * @param {ServiceabilityPlatformValidator.GetZoneByIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GetZoneByIdSchema>} -
-     *   Success response
-     * @name getZoneById
-     * @summary: Get details of the Zone
-     * @description: Returns the region, application, store mapping and other details in the Zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneById/).
-     */
-    getZoneById({ zoneId, requestHeaders }?: ServiceabilityPlatformValidator.GetZoneByIdParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneByIdSchema>;
-    /**
-     * @param {ServiceabilityPlatformValidator.GetZonesParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
-     * @name getZones
-     * @summary: Shows zones defined at the company level
-     * @description: Return the list of zones that are defined at the company level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
-     */
-    getZones({ pageNo, pageSize, isActive, channelId, q, country, state, city, pincode, sector, requestHeaders, }?: ServiceabilityPlatformValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResponse>;
-    /**
      * @param {ServiceabilityPlatformValidator.UpdateCompanyConfigurationParam} arg
      *   - Arg object
      *
@@ -308,17 +276,6 @@ declare class Serviceability {
      * @description: Serviceability Update for a region - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateServiceability/).
      */
     updateServiceability({ extensionId, schemeId, regionId, body, requestHeaders }?: ServiceabilityPlatformValidator.UpdateServiceabilityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ServiceabilityModel>;
-    /**
-     * @param {ServiceabilityPlatformValidator.UpdateZoneByIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
-     *   Success response
-     * @name updateZoneById
-     * @summary: Update details of a Zone
-     * @description: Updates the region, application, store mapping and other details in the Zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZoneById/).
-     */
-    updateZoneById({ zoneId, body, requestHeaders }?: ServiceabilityPlatformValidator.UpdateZoneByIdParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>;
 }
-import ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
-import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
+import ServiceabilityPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformValidator");
+import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");

@@ -58,6 +58,93 @@ declare class FileStorage {
      */
     browsefiles({ namespace, body, page, limit, search, requestHeaders }?: FileStoragePlatformApplicationValidator.BrowsefilesParam, { responseHeaders }?: object): Promise<any>;
     /**
+     * @param {FileStoragePlatformApplicationValidator.CreateTemplateParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.PdfTemplateCreateSuccess>} -
+     *   Success response
+     * @name createTemplate
+     * @summary: Create HTML default template
+     * @description: Create and save a new default HTML template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/createTemplate/).
+     */
+    createTemplate({ body, requestHeaders }?: FileStoragePlatformApplicationValidator.CreateTemplateParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfTemplateCreateSuccess>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.DeletePdfConfigTemplateParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name deletePdfConfigTemplate
+     * @summary: delete html template for invoice or label
+     * @description: delete html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfConfigTemplate/).
+     */
+    deletePdfConfigTemplate({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.DeletePdfConfigTemplateParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.DeletePdfPayloadByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.DummyPayloadById>} - Success response
+     * @name deletePdfPayloadById
+     * @summary: Get default PDF data.
+     * @description: Retrieve default data for PDF generation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfPayloadById/).
+     */
+    deletePdfPayloadById({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.DeletePdfPayloadByIdParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.DummyPayloadById>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.DeletePdfTemplateParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name deletePdfTemplate
+     * @summary: delete html template for invoice or label
+     * @description: delete html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfTemplate/).
+     */
+    deletePdfTemplate({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.DeletePdfTemplateParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.DeletePdfTypeParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name deletePdfType
+     * @summary: Delete Pdf Type
+     * @description: Delete Pdf Type for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfType/).
+     */
+    deletePdfType({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.DeletePdfTypeParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.FetchPdfDefaultTemplateByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.PdfDefaultTemplateResponse>}
+     *   - Success response
+     *
+     * @name fetchPdfDefaultTemplateById
+     * @summary: get default html template for invoice or label
+     * @description: get default html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/fetchPdfDefaultTemplateById/).
+     */
+    fetchPdfDefaultTemplateById({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.FetchPdfDefaultTemplateByIdParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfDefaultTemplateResponse>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.FetchPdfTypeByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.PdfTypeIdResponse>} - Success response
+     * @name fetchPdfTypeById
+     * @summary: Get the pdf types of by id
+     * @description: Get the pdf types of PDF formats for filter - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/fetchPdfTypeById/).
+     */
+    fetchPdfTypeById({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.FetchPdfTypeByIdParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfTypeIdResponse>;
+    /**
      * @param {FileStoragePlatformApplicationValidator.GeneratePaymentReceiptParam} arg
      *   - Arg object
      *
@@ -69,6 +156,18 @@ declare class FileStorage {
      * @description: Generate Payment Receipt for Jiomart Digital - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/generatePaymentReceipt/).
      */
     generatePaymentReceipt({ body, requestHeaders }?: FileStoragePlatformApplicationValidator.GeneratePaymentReceiptParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.GetConfigHtmlTemplateByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getConfigHtmlTemplateById
+     * @summary: Update html template for invoice or label
+     * @description: Update html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getConfigHtmlTemplateById/).
+     */
+    getConfigHtmlTemplateById({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.GetConfigHtmlTemplateByIdParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {FileStoragePlatformApplicationValidator.GetDefaultHtmlTemplateParam} arg
      *   - Arg object
@@ -108,16 +207,28 @@ declare class FileStorage {
      */
     getDefaultPdfTemplate({ pdfTypeId, format, countryCode, requestHeaders }?: FileStoragePlatformApplicationValidator.GetDefaultPdfTemplateParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfDefaultTemplateSuccess>;
     /**
+     * @param {FileStoragePlatformApplicationValidator.GetPdfPayloadByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.DummyPayloadById>} - Success response
+     * @name getPdfPayloadById
+     * @summary: Get default PDF data.
+     * @description: Retrieve default data for PDF generation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfPayloadById/).
+     */
+    getPdfPayloadById({ id, requestHeaders }?: FileStoragePlatformApplicationValidator.GetPdfPayloadByIdParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.DummyPayloadById>;
+    /**
      * @param {FileStoragePlatformApplicationValidator.GetPdfTypesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<FileStoragePlatformModel.InvoiceTypesResponse>} -
      *   Success response
      * @name getPdfTypes
-     * @summary: Get PDF types.
-     * @description: Retrieve a list of available PDF types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
+     * @summary: Get all the supported invoice pdf types
+     * @description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
      */
-    getPdfTypes({ countryCode, requestHeaders }?: FileStoragePlatformApplicationValidator.GetPdfTypesParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.InvoiceTypesResponse>;
+    getPdfTypes({ storeOs, countryCode, requestHeaders }?: FileStoragePlatformApplicationValidator.GetPdfTypesParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.InvoiceTypesResponse>;
     /**
      * @param {FileStoragePlatformApplicationValidator.SaveHtmlTemplateParam} arg
      *   - Arg object
@@ -132,6 +243,28 @@ declare class FileStorage {
      */
     saveHtmlTemplate({ body, requestHeaders }?: FileStoragePlatformApplicationValidator.SaveHtmlTemplateParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfConfigSaveSuccess>;
     /**
+     * @param {FileStoragePlatformApplicationValidator.SavePdfPayloadDataParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.DummyPayloadById>} - Success response
+     * @name savePdfPayloadData
+     * @summary: save Dummy pdf data for invoice or label
+     * @description: Update Dummy pdf data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/savePdfPayloadData/).
+     */
+    savePdfPayloadData({ body, requestHeaders }?: FileStoragePlatformApplicationValidator.SavePdfPayloadDataParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.DummyPayloadById>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.SavePdfTypesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.PdfTypeIdResponse>} - Success response
+     * @name savePdfTypes
+     * @summary: Get all the supported invoice pdf types
+     * @description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/savePdfTypes/).
+     */
+    savePdfTypes({ body, requestHeaders }?: FileStoragePlatformApplicationValidator.SavePdfTypesParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfTypeIdResponse>;
+    /**
      * @param {FileStoragePlatformApplicationValidator.UpdateHtmlTemplateParam} arg
      *   - Arg object
      *
@@ -144,6 +277,43 @@ declare class FileStorage {
      * @description: Update the HTML Template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/updateHtmlTemplate/).
      */
     updateHtmlTemplate({ id, body, requestHeaders }?: FileStoragePlatformApplicationValidator.UpdateHtmlTemplateParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfConfigSaveSuccess>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.UpdatePdfPayloadDataByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.DummyPayloadById>} - Success response
+     * @name updatePdfPayloadDataById
+     * @summary: Update Dummy pdf data for invoice or label
+     * @description: Update Dummy pdf data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/updatePdfPayloadDataById/).
+     */
+    updatePdfPayloadDataById({ id, body, requestHeaders }?: FileStoragePlatformApplicationValidator.UpdatePdfPayloadDataByIdParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.DummyPayloadById>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.UpdatePdfTypeByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.PdfTypeIdResponse>} - Success response
+     * @name updatePdfTypeById
+     * @summary: update the PDF type
+     * @description: update the PDF type - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/updatePdfTypeById/).
+     */
+    updatePdfTypeById({ id, body, requestHeaders }?: FileStoragePlatformApplicationValidator.UpdatePdfTypeByIdParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfTypeIdResponse>;
+    /**
+     * @param {FileStoragePlatformApplicationValidator.UpdateTemplateParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePlatformModel.PdfConfigurationResponse>} -
+     *   Success response
+     * @name updateTemplate
+     * @summary: Update HTML default template
+     * @description: Update and save default HTML template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/updateTemplate/).
+     */
+    updateTemplate({ id, body, requestHeaders }?: FileStoragePlatformApplicationValidator.UpdateTemplateParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.PdfConfigurationResponse>;
     /**
      * @param data
      * @param {string} file_name
@@ -161,5 +331,5 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import FileStoragePlatformApplicationValidator = require("./FileStoragePlatformApplicationValidator");
-import FileStoragePlatformModel = require("./FileStoragePlatformModel");
+import FileStoragePlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformApplicationValidator");
+import FileStoragePlatformModel = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformModel");

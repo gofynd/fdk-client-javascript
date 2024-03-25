@@ -85,4 +85,4 @@ type GetUrlQRCodeParam = {
     url: string;
 };
 type GetApplicationQRCodeParam = any;
-import ShareApplicationModel = require("./ShareApplicationModel");
+import ShareApplicationModel = require("sdk/output/javascript/code/sdk/application/Share/ShareApplicationModel");

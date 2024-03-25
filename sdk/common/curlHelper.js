@@ -1,7 +1,5 @@
 const qs = require("query-string");
-const combineURLs = require("axios/lib/helpers/combineURLs");
-const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
-
+const { combineURLs, isAbsoluteURL } = require("./utils");
 let reqConfig;
 
 // generate url with query params

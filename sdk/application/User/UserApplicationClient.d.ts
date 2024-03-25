@@ -30,7 +30,6 @@ declare class User {
         sendOTPOnEmail: string;
         sendOTPOnMobile: string;
         sendResetPasswordEmail: string;
-        sendResetPasswordMobile: string;
         sendResetToken: string;
         sendVerificationLinkToEmail: string;
         sendVerificationLinkToMobile: string;
@@ -58,7 +57,7 @@ declare class User {
      * @summary: Add email.
      * @description: Adds a new email address to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
      */
-    addEmail({ body, platform, requestHeaders }?: UserApplicationValidator.AddEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyEmailOTPSuccess>;
+    addEmail({ body, requestHeaders }?: UserApplicationValidator.AddEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyEmailOTPSuccess>;
     /**
      * @param {UserApplicationValidator.AddMobileNumberParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -68,7 +67,7 @@ declare class User {
      * @summary: Add mobile.
      * @description: Adds a new mobile number to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
      */
-    addMobileNumber({ body, platform, requestHeaders }?: UserApplicationValidator.AddMobileNumberParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyMobileOTPSuccess>;
+    addMobileNumber({ body, requestHeaders }?: UserApplicationValidator.AddMobileNumberParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyMobileOTPSuccess>;
     /**
      * @param {UserApplicationValidator.DeleteEmailParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -168,7 +167,7 @@ declare class User {
      * @summary: Apple iOS login.
      * @description: Enables login through Apple ID specifically for iOS users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
      */
-    loginWithAppleIOS({ body, platform, requestHeaders }?: UserApplicationValidator.LoginWithAppleIOSParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithAppleIOS({ body, requestHeaders }?: UserApplicationValidator.LoginWithAppleIOSParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
     /**
      * @param {UserApplicationValidator.LoginWithEmailAndPasswordParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -188,7 +187,7 @@ declare class User {
      * @summary: Facebook login.
      * @description: Enables login through Facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
      */
-    loginWithFacebook({ body, platform, requestHeaders }?: UserApplicationValidator.LoginWithFacebookParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithFacebook({ body, requestHeaders }?: UserApplicationValidator.LoginWithFacebookParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
     /**
      * @param {UserApplicationValidator.LoginWithGoogleParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -198,7 +197,7 @@ declare class User {
      * @summary: Google login.
      * @description: Enables login through Google accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
      */
-    loginWithGoogle({ body, platform, requestHeaders }?: UserApplicationValidator.LoginWithGoogleParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithGoogle({ body, requestHeaders }?: UserApplicationValidator.LoginWithGoogleParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
     /**
      * @param {UserApplicationValidator.LoginWithGoogleAndroidParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -208,7 +207,7 @@ declare class User {
      * @summary: Android Google login.
      * @description: Facilitates Google login specifically for Android users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
      */
-    loginWithGoogleAndroid({ body, platform, requestHeaders }?: UserApplicationValidator.LoginWithGoogleAndroidParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithGoogleAndroid({ body, requestHeaders }?: UserApplicationValidator.LoginWithGoogleAndroidParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
     /**
      * @param {UserApplicationValidator.LoginWithGoogleIOSParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -218,7 +217,7 @@ declare class User {
      * @summary: iOS Google login.
      * @description: Facilitates Google login specifically for iOS users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
      */
-    loginWithGoogleIOS({ body, platform, requestHeaders }?: UserApplicationValidator.LoginWithGoogleIOSParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithGoogleIOS({ body, requestHeaders }?: UserApplicationValidator.LoginWithGoogleIOSParam, { responseHeaders }?: object): Promise<UserApplicationModel.AuthSuccess>;
     /**
      * @param {UserApplicationValidator.LoginWithOTPParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -228,7 +227,7 @@ declare class User {
      * @summary: OTP login.
      * @description: Allows users to log in using a one-time password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
      */
-    loginWithOTP({ body, platform, requestHeaders }?: UserApplicationValidator.LoginWithOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendOtpResponse>;
+    loginWithOTP({ body, requestHeaders }?: UserApplicationValidator.LoginWithOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendOtpResponse>;
     /**
      * @param {UserApplicationValidator.LoginWithTokenParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -258,7 +257,7 @@ declare class User {
      * @summary: User registration.
      * @description: Enables new users to register using a form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
      */
-    registerWithForm({ body, platform, requestHeaders }?: UserApplicationValidator.RegisterWithFormParam, { responseHeaders }?: object): Promise<UserApplicationModel.RegisterFormSuccess>;
+    registerWithForm({ body, requestHeaders }?: UserApplicationValidator.RegisterWithFormParam, { responseHeaders }?: object): Promise<UserApplicationModel.RegisterFormSuccess>;
     /**
      * @param {UserApplicationValidator.ResetForgotPasswordParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -279,7 +278,7 @@ declare class User {
      * @summary: Send Forgot OTP Email
      * @description: Sends a one-time password to the user's forgot email for verification request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
      */
-    sendForgotOTPOnEmail({ body, platform, requestHeaders }?: UserApplicationValidator.SendForgotOTPOnEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.EmailOtpSuccess>;
+    sendForgotOTPOnEmail({ body, requestHeaders }?: UserApplicationValidator.SendForgotOTPOnEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.EmailOtpSuccess>;
     /**
      * @param {UserApplicationValidator.SendForgotOTPOnMobileParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -289,7 +288,7 @@ declare class User {
      * @summary: Send forgot OTP on mobile
      * @description: Sends a one-time password to the user's forgot mobile for verification request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
      */
-    sendForgotOTPOnMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendForgotOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.OtpSuccess>;
+    sendForgotOTPOnMobile({ body, requestHeaders }?: UserApplicationValidator.SendForgotOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.OtpSuccess>;
     /**
      * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -299,7 +298,7 @@ declare class User {
      * @summary: Send email OTP.
      * @description: Sends a one-time password to the user's email for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
      */
-    sendOTPOnEmail({ body, platform, requestHeaders }?: UserApplicationValidator.SendOTPOnEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.EmailOtpSuccess>;
+    sendOTPOnEmail({ body, requestHeaders }?: UserApplicationValidator.SendOTPOnEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.EmailOtpSuccess>;
     /**
      * @param {UserApplicationValidator.SendOTPOnMobileParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -309,7 +308,7 @@ declare class User {
      * @summary: Send mobile OTP.
      * @description: Sends a one-time password to the user's mobile for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
      */
-    sendOTPOnMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.OtpSuccess>;
+    sendOTPOnMobile({ body, requestHeaders }?: UserApplicationValidator.SendOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.OtpSuccess>;
     /**
      * @param {UserApplicationValidator.SendResetPasswordEmailParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -319,17 +318,7 @@ declare class User {
      * @summary: Reset password (Email).
      * @description: Sends a password reset link to the user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
      */
-    sendResetPasswordEmail({ body, platform, requestHeaders }?: UserApplicationValidator.SendResetPasswordEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.ResetPasswordSuccess>;
-    /**
-     * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<any>} - Success response
-     * @name sendResetPasswordMobile
-     * @summary: Reset password (Mobile).
-     * @description: Sends a password reset OTP to the user's mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
-     */
-    sendResetPasswordMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendResetPasswordMobileParam, { responseHeaders }?: object): Promise<any>;
+    sendResetPasswordEmail({ body, requestHeaders }?: UserApplicationValidator.SendResetPasswordEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.ResetPasswordSuccess>;
     /**
      * @param {UserApplicationValidator.SendResetTokenParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -351,7 +340,7 @@ declare class User {
      * @summary: Verify new email.
      * @description: Sends a verification link to a newly added email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
      */
-    sendVerificationLinkToEmail({ body, platform, requestHeaders }?: UserApplicationValidator.SendVerificationLinkToEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>;
+    sendVerificationLinkToEmail({ body, requestHeaders }?: UserApplicationValidator.SendVerificationLinkToEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>;
     /**
      * @param {UserApplicationValidator.SendVerificationLinkToMobileParam} arg
      *   - Arg object.
@@ -364,7 +353,7 @@ declare class User {
      * @summary: Verify new mobile.
      * @description: Sends a verification link to a newly added mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
      */
-    sendVerificationLinkToMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendVerificationLinkToMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>;
+    sendVerificationLinkToMobile({ body, requestHeaders }?: UserApplicationValidator.SendVerificationLinkToMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>;
     /**
      * @param {UserApplicationValidator.SetEmailAsPrimaryParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -404,7 +393,7 @@ declare class User {
      * @summary: Edit Profile Details
      * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
      */
-    updateProfile({ body, platform, requestHeaders }?: UserApplicationValidator.UpdateProfileParam, { responseHeaders }?: object): Promise<UserApplicationModel.ProfileEditSuccess>;
+    updateProfile({ body, requestHeaders }?: UserApplicationValidator.UpdateProfileParam, { responseHeaders }?: object): Promise<UserApplicationModel.ProfileEditSuccess>;
     /**
      * @param {UserApplicationValidator.UpdateUserAttributesParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -444,7 +433,7 @@ declare class User {
      * @summary: Verify Email Forgot OTP
      * @description: Validates the OTP sent to the user's forgot email address request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
      */
-    verifyEmailForgotOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyEmailForgotOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyForgotOtpSuccess>;
+    verifyEmailForgotOTP({ body, requestHeaders }?: UserApplicationValidator.VerifyEmailForgotOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyForgotOtpSuccess>;
     /**
      * @param {UserApplicationValidator.VerifyEmailOTPParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -454,7 +443,7 @@ declare class User {
      * @summary: Verify Email OTP
      * @description: Validates the OTP sent to the user's email address request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailOTP/).
      */
-    verifyEmailOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyEmailOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyOtpSuccess>;
+    verifyEmailOTP({ body, requestHeaders }?: UserApplicationValidator.VerifyEmailOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyOtpSuccess>;
     /**
      * @param {UserApplicationValidator.VerifyMobileParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -474,7 +463,7 @@ declare class User {
      * @summary: Verify Forgot OTP on mobile
      * @description: Use this API to verify the Forgot OTP received on a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
      */
-    verifyMobileForgotOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyMobileForgotOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyForgotOtpSuccess>;
+    verifyMobileForgotOTP({ body, requestHeaders }?: UserApplicationValidator.VerifyMobileForgotOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyForgotOtpSuccess>;
     /**
      * @param {UserApplicationValidator.VerifyMobileOTPParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -484,7 +473,7 @@ declare class User {
      * @summary: Verify mobile OTP.
      * @description: Validates the OTP sent to the user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
      */
-    verifyMobileOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyOtpSuccess>;
+    verifyMobileOTP({ body, requestHeaders }?: UserApplicationValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyOtpSuccess>;
 }
-import UserApplicationValidator = require("./UserApplicationValidator");
-import UserApplicationModel = require("./UserApplicationModel");
+import UserApplicationValidator = require("sdk/output/javascript/code/sdk/application/User/UserApplicationValidator");
+import UserApplicationModel = require("sdk/output/javascript/code/sdk/application/User/UserApplicationModel");

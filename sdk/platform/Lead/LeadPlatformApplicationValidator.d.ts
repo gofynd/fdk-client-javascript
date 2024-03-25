@@ -46,7 +46,7 @@ export = LeadPlatformApplicationValidator;
  *   ticket filters
  * @property {string} [q] - Search through ticket titles and description
  * @property {string} [status] - Filter tickets on status
- * @property {LeadPlatformModel.PriorityEnum} [priority] - Filter tickets on priority
+ * @property {string} [priority] - Filter tickets on priority
  * @property {string} [category] - Filter tickets on category
  */
 /**
@@ -169,7 +169,7 @@ type GetNewTicketsParam = {
     /**
      * - Filter tickets on priority
      */
-    priority?: LeadPlatformModel.PriorityEnum;
+    priority?: string;
     /**
      * - Filter tickets on category
      */
@@ -191,4 +191,4 @@ type OpenVideoRoomParam = {
     body: LeadPlatformModel.CreateVideoRoomPayload;
 };
 type GetCustomFormsParam = any;
-import LeadPlatformModel = require("./LeadPlatformModel");
+import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");

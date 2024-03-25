@@ -1,13 +1,13 @@
 const Joi = require("joi");
 
 /**
- * @typedef UpdateSubscriberResponse
- * @property {string} [message]
+ * @typedef UpdateSubscriberRequest
+ * @property {string} [status]
  */
 
 /**
- * @typedef UpdateSubscriberRequest
- * @property {string} [status]
+ * @typedef UpdateSubscriberResponse
+ * @property {string} [message]
  */
 
 /**
@@ -29,6 +29,7 @@ const Joi = require("joi");
  * @property {number} [id]
  * @property {number} [event_id]
  * @property {number} [subscriber_id]
+ * @property {string} [topic]
  * @property {string} [created_on]
  */
 
@@ -44,6 +45,7 @@ const Joi = require("joi");
  * @property {string} [description]
  * @property {string} [created_on]
  * @property {string} [updated_on]
+ * @property {string} [group]
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
  */
 
@@ -69,11 +71,6 @@ const Joi = require("joi");
  * @property {string} [version]
  * @property {string} [category]
  * @property {number} [count]
- */
-
-/**
- * @typedef DownloadReponse
- * @property {string} [file_name]
  */
 
 /**
@@ -206,13 +203,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [current] - The current page number.
+ * @property {boolean} [has_next] - Indicates if there is a next page.
+ * @property {boolean} [has_previous] - Indicates if there is a previous page.
+ * @property {number} [total_page]
+ * @property {number} [item_total] - The total number of items.
+ * @property {number} [size] - The number of items per page.
+ * @property {string} [type] - Type of the response (e.g., "number").
  */
 
 /**
@@ -246,6 +243,7 @@ const Joi = require("joi");
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {string} [status]
@@ -259,17 +257,17 @@ const Joi = require("joi");
  */
 
 class WebhookPartnerModel {
-  /** @returns {UpdateSubscriberResponse} */
-  static UpdateSubscriberResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {UpdateSubscriberRequest} */
   static UpdateSubscriberRequest() {
     return Joi.object({
       status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdateSubscriberResponse} */
+  static UpdateSubscriberResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
 
@@ -297,6 +295,7 @@ class WebhookPartnerModel {
       id: Joi.number(),
       event_id: Joi.number(),
       subscriber_id: Joi.number(),
+      topic: Joi.string().allow("").allow(null),
       created_on: Joi.string().allow(""),
     });
   }
@@ -314,6 +313,7 @@ class WebhookPartnerModel {
       description: Joi.string().allow("").allow(null),
       created_on: Joi.string().allow(""),
       updated_on: Joi.string().allow(""),
+      group: Joi.string().allow("").allow(null),
       subscriber_event_mapping: WebhookPartnerModel.SubscriberEventMapping(),
     });
   }
@@ -345,13 +345,6 @@ class WebhookPartnerModel {
       version: Joi.string().allow(""),
       category: Joi.string().allow(""),
       count: Joi.number(),
-    });
-  }
-
-  /** @returns {DownloadReponse} */
-  static DownloadReponse() {
-    return Joi.object({
-      file_name: Joi.string().allow(""),
     });
   }
 
@@ -515,13 +508,13 @@ class WebhookPartnerModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      has_previous: Joi.boolean(),
-      has_next: Joi.boolean(),
       current: Joi.number(),
-      type: Joi.string().allow("").required(),
+      has_next: Joi.boolean(),
+      has_previous: Joi.boolean(),
+      total_page: Joi.number(),
+      item_total: Joi.number(),
       size: Joi.number(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -565,6 +558,7 @@ class WebhookPartnerModel {
       modified_by: Joi.string().allow(""),
       name: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
       association: WebhookPartnerModel.Association(),
       custom_headers: Joi.any(),
       status: Joi.string().allow(""),

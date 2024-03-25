@@ -1,10 +1,5 @@
 export = SharePlatformModel;
 /**
- * @typedef ClickStatsResponse
- * @property {ClickStatsItem[]} click_stats - An array of click statistics for
- *   the short link.
- */
-/**
  * @typedef ClickStatsItem
  * @property {string} display - The display name of the click statistic.
  * @property {number} total - The total number of clicks for the statistic.
@@ -105,17 +100,8 @@ export = SharePlatformModel;
 declare class SharePlatformModel {
 }
 declare namespace SharePlatformModel {
-    export { ClickStatsResponse, ClickStatsItem, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, Page, ShortLinkList, ErrorRes };
+    export { ClickStatsItem, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, Page, ShortLinkList, ErrorRes };
 }
-/** @returns {ClickStatsResponse} */
-declare function ClickStatsResponse(): ClickStatsResponse;
-type ClickStatsResponse = {
-    /**
-     * - An array of click statistics for
-     * the short link.
-     */
-    click_stats: ClickStatsItem[];
-};
 /** @returns {ClickStatsItem} */
 declare function ClickStatsItem(): ClickStatsItem;
 type ClickStatsItem = {

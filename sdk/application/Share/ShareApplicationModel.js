@@ -63,6 +63,8 @@ const Joi = require("joi");
 /**
  * @typedef UrlInfo
  * @property {string} [hash]
+ * @property {string} [url_hash]
+ * @property {string} [alias]
  */
 
 /**
@@ -175,6 +177,8 @@ class ShareApplicationModel {
   static UrlInfo() {
     return Joi.object({
       hash: Joi.string().allow(""),
+      url_hash: Joi.string().allow(""),
+      alias: Joi.string().allow(""),
     });
   }
 

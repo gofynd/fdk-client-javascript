@@ -1,12 +1,10 @@
 export = UserApplicationValidator;
 /**
  * @typedef AddEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 /**
  * @typedef AddMobileNumberParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditMobileRequestSchema} body
  */
 /**
@@ -55,7 +53,6 @@ export = UserApplicationValidator;
 /** @typedef HasPasswordParam */
 /**
  * @typedef LoginWithAppleIOSParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestAppleSchema} body
  */
 /**
@@ -64,27 +61,22 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef LoginWithFacebookParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
  * @typedef LoginWithGoogleParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
  * @typedef LoginWithGoogleAndroidParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
  * @typedef LoginWithGoogleIOSParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
  * @typedef LoginWithOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendOtpRequestSchema} body
  */
 /**
@@ -94,7 +86,6 @@ export = UserApplicationValidator;
 /** @typedef LogoutParam */
 /**
  * @typedef RegisterWithFormParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.FormRegisterRequestSchema} body
  */
 /**
@@ -103,33 +94,23 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef SendForgotOTPOnEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendEmailForgotOtpRequestSchema} body
  */
 /**
  * @typedef SendForgotOTPOnMobileParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendMobileForgotOtpRequestSchema} body
  */
 /**
  * @typedef SendOTPOnEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendEmailOtpRequestSchema} body
  */
 /**
  * @typedef SendOTPOnMobileParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendMobileOtpRequestSchema} body
  */
 /**
  * @typedef SendResetPasswordEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendResetPasswordEmailRequestSchema} body
- */
-/**
- * @typedef SendResetPasswordMobileParam
- * @property {string} [platform] - ID of the application
- * @property {UserApplicationModel.SendResetPasswordMobileRequestSchema} body
  */
 /**
  * @typedef SendResetTokenParam
@@ -137,12 +118,10 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef SendVerificationLinkToEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 /**
  * @typedef SendVerificationLinkToMobileParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
  */
 /**
@@ -159,7 +138,6 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef UpdateProfileParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditProfileRequestSchema} body
  */
 /**
@@ -176,12 +154,10 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef VerifyEmailForgotOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyEmailForgotOtpRequestSchema} body
  */
 /**
  * @typedef VerifyEmailOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyEmailOtpRequestSchema} body
  */
 /**
@@ -190,12 +166,10 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef VerifyMobileForgotOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyMobileForgotOtpRequestSchema} body
  */
 /**
  * @typedef VerifyMobileOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyOtpRequestSchema} body
  */
 declare class UserApplicationValidator {
@@ -253,8 +227,6 @@ declare class UserApplicationValidator {
     static sendOTPOnMobile(): SendOTPOnMobileParam;
     /** @returns {SendResetPasswordEmailParam} */
     static sendResetPasswordEmail(): SendResetPasswordEmailParam;
-    /** @returns {SendResetPasswordMobileParam} */
-    static sendResetPasswordMobile(): SendResetPasswordMobileParam;
     /** @returns {SendResetTokenParam} */
     static sendResetToken(): SendResetTokenParam;
     /** @returns {SendVerificationLinkToEmailParam} */
@@ -287,20 +259,12 @@ declare class UserApplicationValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace UserApplicationValidator {
-    export { AddEmailParam, AddMobileNumberParam, DeleteEmailParam, DeleteMobileNumberParam, DeleteUserParam, ForgotPasswordParam, GetListOfActiveSessionsParam, GetLoggedInUserParam, GetPlatformConfigParam, GetUserAttributesParam, HasPasswordParam, LoginWithAppleIOSParam, LoginWithEmailAndPasswordParam, LoginWithFacebookParam, LoginWithGoogleParam, LoginWithGoogleAndroidParam, LoginWithGoogleIOSParam, LoginWithOTPParam, LoginWithTokenParam, LogoutParam, RegisterWithFormParam, ResetForgotPasswordParam, SendForgotOTPOnEmailParam, SendForgotOTPOnMobileParam, SendOTPOnEmailParam, SendOTPOnMobileParam, SendResetPasswordEmailParam, SendResetPasswordMobileParam, SendResetTokenParam, SendVerificationLinkToEmailParam, SendVerificationLinkToMobileParam, SetEmailAsPrimaryParam, SetMobileNumberAsPrimaryParam, UpdatePasswordParam, UpdateProfileParam, UpdateUserAttributesParam, UserExistsParam, VerifyEmailParam, VerifyEmailForgotOTPParam, VerifyEmailOTPParam, VerifyMobileParam, VerifyMobileForgotOTPParam, VerifyMobileOTPParam };
+    export { AddEmailParam, AddMobileNumberParam, DeleteEmailParam, DeleteMobileNumberParam, DeleteUserParam, ForgotPasswordParam, GetListOfActiveSessionsParam, GetLoggedInUserParam, GetPlatformConfigParam, GetUserAttributesParam, HasPasswordParam, LoginWithAppleIOSParam, LoginWithEmailAndPasswordParam, LoginWithFacebookParam, LoginWithGoogleParam, LoginWithGoogleAndroidParam, LoginWithGoogleIOSParam, LoginWithOTPParam, LoginWithTokenParam, LogoutParam, RegisterWithFormParam, ResetForgotPasswordParam, SendForgotOTPOnEmailParam, SendForgotOTPOnMobileParam, SendOTPOnEmailParam, SendOTPOnMobileParam, SendResetPasswordEmailParam, SendResetTokenParam, SendVerificationLinkToEmailParam, SendVerificationLinkToMobileParam, SetEmailAsPrimaryParam, SetMobileNumberAsPrimaryParam, UpdatePasswordParam, UpdateProfileParam, UpdateUserAttributesParam, UserExistsParam, VerifyEmailParam, VerifyEmailForgotOTPParam, VerifyEmailOTPParam, VerifyMobileParam, VerifyMobileForgotOTPParam, VerifyMobileOTPParam };
 }
 type AddEmailParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.EditEmailRequestSchema;
 };
 type AddMobileNumberParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.EditMobileRequestSchema;
 };
 type DeleteEmailParam = {
@@ -378,120 +342,57 @@ type GetUserAttributesParam = {
     slug?: string;
 };
 type LoginWithAppleIOSParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.OAuthRequestAppleSchema;
 };
 type LoginWithEmailAndPasswordParam = {
     body: UserApplicationModel.PasswordLoginRequestSchema;
 };
 type LoginWithFacebookParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
 type LoginWithGoogleParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
 type LoginWithGoogleAndroidParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
 type LoginWithGoogleIOSParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
 type LoginWithOTPParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.SendOtpRequestSchema;
 };
 type LoginWithTokenParam = {
     body: UserApplicationModel.TokenRequestBodySchema;
 };
 type RegisterWithFormParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.FormRegisterRequestSchema;
 };
 type ResetForgotPasswordParam = {
     body: UserApplicationModel.ForgotPasswordRequestSchema;
 };
 type SendForgotOTPOnEmailParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.SendEmailForgotOtpRequestSchema;
 };
 type SendForgotOTPOnMobileParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.SendMobileForgotOtpRequestSchema;
 };
 type SendOTPOnEmailParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.SendEmailOtpRequestSchema;
 };
 type SendOTPOnMobileParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.SendMobileOtpRequestSchema;
 };
 type SendResetPasswordEmailParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.SendResetPasswordEmailRequestSchema;
-};
-type SendResetPasswordMobileParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
-    body: UserApplicationModel.SendResetPasswordMobileRequestSchema;
 };
 type SendResetTokenParam = {
     body: UserApplicationModel.CodeRequestBodySchema;
 };
 type SendVerificationLinkToEmailParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.EditEmailRequestSchema;
 };
 type SendVerificationLinkToMobileParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.SendVerificationLinkMobileRequestSchema;
 };
 type SetEmailAsPrimaryParam = {
@@ -504,10 +405,6 @@ type UpdatePasswordParam = {
     body: UserApplicationModel.UpdatePasswordRequestSchema;
 };
 type UpdateProfileParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.EditProfileRequestSchema;
 };
 type UpdateUserAttributesParam = {
@@ -523,38 +420,22 @@ type VerifyEmailParam = {
     body: UserApplicationModel.CodeRequestBodySchema;
 };
 type VerifyEmailForgotOTPParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.VerifyEmailForgotOtpRequestSchema;
 };
 type VerifyEmailOTPParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.VerifyEmailOtpRequestSchema;
 };
 type VerifyMobileParam = {
     body: UserApplicationModel.CodeRequestBodySchema;
 };
 type VerifyMobileForgotOTPParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.VerifyMobileForgotOtpRequestSchema;
 };
 type VerifyMobileOTPParam = {
-    /**
-     * - ID of the application
-     */
-    platform?: string;
     body: UserApplicationModel.VerifyOtpRequestSchema;
 };
 type GetListOfActiveSessionsParam = any;
 type GetLoggedInUserParam = any;
 type HasPasswordParam = any;
 type LogoutParam = any;
-import UserApplicationModel = require("./UserApplicationModel");
+import UserApplicationModel = require("sdk/output/javascript/code/sdk/application/User/UserApplicationModel");

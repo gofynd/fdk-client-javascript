@@ -4,15 +4,15 @@ const ContentPublicModel = require("./ContentPublicModel");
 
 /**
  * @typedef GetCredentialsByEntityParam
- * @property {string} [entity] - Server Type
+ * @property {string} entity - Server Type
  */
 
 class ContentPublicValidator {
   /** @returns {GetCredentialsByEntityParam} */
   static getCredentialsByEntity() {
     return Joi.object({
-      entity: Joi.string().allow(""),
-    });
+      entity: Joi.string().allow("").required(),
+    }).required();
   }
 }
 

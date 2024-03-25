@@ -242,6 +242,17 @@ declare class Finance {
      */
     invoicePaymentDetails({ invoiceNumber, requestHeaders }?: FinancePlatformValidator.InvoicePaymentDetailsParam, { responseHeaders }?: object): Promise<FinancePlatformModel.InvoicePaymentDetailsResponse>;
     /**
+     * @param {FinancePlatformValidator.InvoicePaymentOptionsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.InvoicePaymentOptionsResponse>} -
+     *   Success response
+     * @name invoicePaymentOptions
+     * @summary: Display all payment options for an invoice.
+     * @description: Display all payment options for an invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentOptions/).
+     */
+    invoicePaymentOptions({ body, requestHeaders }?: FinancePlatformValidator.InvoicePaymentOptionsParam, { responseHeaders }?: object): Promise<FinancePlatformModel.InvoicePaymentOptionsResponse>;
+    /**
      * @param {FinancePlatformValidator.InvoiceTypeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -274,6 +285,16 @@ declare class Finance {
      */
     isCreditlinePlatform({ body, requestHeaders }?: FinancePlatformValidator.IsCreditlinePlatformParam, { responseHeaders }?: object): Promise<FinancePlatformModel.IsCreditlinePlatformResponse>;
     /**
+     * @param {FinancePlatformValidator.OrderFreezeParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.OrederFreezeResponse>} - Success response
+     * @name orderFreeze
+     * @summary: Get status of oms freeze.
+     * @description: Used to get status of oms freeze. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/orderFreeze/).
+     */
+    orderFreeze({ requestHeaders }?: any, { responseHeaders }?: object): Promise<FinancePlatformModel.OrederFreezeResponse>;
+    /**
      * @param {FinancePlatformValidator.PaymentProcessParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -295,5 +316,5 @@ declare class Finance {
      */
     unlockCreditNote({ body, requestHeaders }?: FinancePlatformValidator.UnlockCreditNoteParam, { responseHeaders }?: object): Promise<FinancePlatformModel.UnlockCreditNoteResponse>;
 }
-import FinancePlatformValidator = require("./FinancePlatformValidator");
-import FinancePlatformModel = require("./FinancePlatformModel");
+import FinancePlatformValidator = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformValidator");
+import FinancePlatformModel = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformModel");

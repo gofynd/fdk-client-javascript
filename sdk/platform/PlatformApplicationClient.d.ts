@@ -12,9 +12,10 @@ declare class PlatformApplicationClient {
      * @param {import("./PlatformConfig")} config - The platform configuration.
      */
     constructor(applicationId: string, config: import("./PlatformConfig"));
-    config: import("./PlatformConfig");
+    config: import("sdk/output/javascript/code/sdk/platform/PlatformConfig");
     companyId: string;
     applicationId: string;
+    analytics: Analytics;
     cart: Cart;
     catalog: Catalog;
     communication: Communication;
@@ -38,18 +39,19 @@ declare class PlatformApplicationClient {
      */
     setExtraHeaders(header: object): void;
 }
-import Cart = require("./Cart/CartPlatformApplicationClient");
-import Catalog = require("./Catalog/CatalogPlatformApplicationClient");
-import Communication = require("./Communication/CommunicationPlatformApplicationClient");
-import Configuration = require("./Configuration/ConfigurationPlatformApplicationClient");
-import Content = require("./Content/ContentPlatformApplicationClient");
-import FileStorage = require("./FileStorage/FileStoragePlatformApplicationClient");
-import Lead = require("./Lead/LeadPlatformApplicationClient");
-import Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
-import Order = require("./Order/OrderPlatformApplicationClient");
-import Partner = require("./Partner/PartnerPlatformApplicationClient");
-import Payment = require("./Payment/PaymentPlatformApplicationClient");
-import Rewards = require("./Rewards/RewardsPlatformApplicationClient");
-import Share = require("./Share/SharePlatformApplicationClient");
-import Theme = require("./Theme/ThemePlatformApplicationClient");
-import User = require("./User/UserPlatformApplicationClient");
+import Analytics = require("sdk/output/javascript/code/sdk/platform/Analytics/AnalyticsPlatformApplicationClient");
+import Cart = require("sdk/output/javascript/code/sdk/platform/Cart/CartPlatformApplicationClient");
+import Catalog = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformApplicationClient");
+import Communication = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformApplicationClient");
+import Configuration = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformApplicationClient");
+import Content = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformApplicationClient");
+import FileStorage = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformApplicationClient");
+import Lead = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformApplicationClient");
+import Serviceability = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformApplicationClient");
+import Order = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformApplicationClient");
+import Partner = require("sdk/output/javascript/code/sdk/platform/Partner/PartnerPlatformApplicationClient");
+import Payment = require("sdk/output/javascript/code/sdk/platform/Payment/PaymentPlatformApplicationClient");
+import Rewards = require("sdk/output/javascript/code/sdk/platform/Rewards/RewardsPlatformApplicationClient");
+import Share = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformApplicationClient");
+import Theme = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformApplicationClient");
+import User = require("sdk/output/javascript/code/sdk/platform/User/UserPlatformApplicationClient");

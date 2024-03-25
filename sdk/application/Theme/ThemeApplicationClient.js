@@ -16,8 +16,11 @@ class Theme {
     this._relativeUrls = {
       getAllPages: "/service/application/theme/v1.0/{theme_id}/page",
       getAppliedTheme: "/service/application/theme/v2.0/applied-theme",
+      getAppliedThemeV1: "/service/application/theme/v1.0/applied-theme",
       getPage: "/service/application/theme/v1.0/{theme_id}/{page_value}",
       getThemeForPreview: "/service/application/theme/v2.0/{theme_id}/preview",
+      getThemeForPreviewV1:
+        "/service/application/theme/v1.0/{theme_id}/preview",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -192,6 +195,84 @@ class Theme {
   }
 
   /**
+   * @param {ThemeApplicationValidator.GetAppliedThemeV1Param} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+   * @name getAppliedThemeV1
+   * @summary: Current theme.
+   * @description: Gets the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedThemeV1/).
+   */
+  async getAppliedThemeV1(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemeApplicationValidator.getAppliedThemeV1().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemeApplicationValidator.getAppliedThemeV1().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Theme > getAppliedThemeV1 \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getAppliedThemeV1"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemeApplicationModel.ThemesSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Theme > getAppliedThemeV1 \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ThemeApplicationValidator.GetPageParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -342,6 +423,84 @@ class Theme {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Theme > getThemeForPreview \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemeApplicationValidator.GetThemeForPreviewV1Param} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+   * @name getThemeForPreviewV1
+   * @summary: Preview theme.
+   * @description: Retrieves a theme for previewing before applying it to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreviewV1/).
+   */
+  async getThemeForPreviewV1(
+    { themeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemeApplicationValidator.getThemeForPreviewV1().validate(
+      { themeId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemeApplicationValidator.getThemeForPreviewV1().validate(
+      { themeId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Theme > getThemeForPreviewV1 \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getThemeForPreviewV1"],
+        params: { themeId },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemeApplicationModel.ThemesSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Theme > getThemeForPreviewV1 \n ${res_error}`,
         });
       }
     }

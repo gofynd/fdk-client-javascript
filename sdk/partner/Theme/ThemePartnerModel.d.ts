@@ -1,5 +1,22 @@
 export = ThemePartnerModel;
 /**
+ * @typedef DefaultPageSchema
+ * @property {string} [path]
+ * @property {string} [type]
+ * @property {string[]} [sections]
+ * @property {string[]} [sections_meta]
+ * @property {string} [text]
+ * @property {string} [value]
+ * @property {DefaultPageProp[]} [props]
+ */
+/**
+ * @typedef DefaultPageProp
+ * @property {string} [type]
+ * @property {string} [id]
+ * @property {string} [label]
+ * @property {string} [info]
+ */
+/**
  * @typedef AvailablePageSchema
  * @property {string} [value]
  * @property {string} [text]
@@ -13,6 +30,7 @@ export = ThemePartnerModel;
  * @property {string} [_id]
  * @property {string} [created_at] - The creation timestamp of the page
  * @property {string} [updated_at] - The last update timestamp of the page
+ * @property {string} [application] - The application id
  */
 /**
  * @typedef AvailablePageSectionMetaAttributes
@@ -24,7 +42,8 @@ export = ThemePartnerModel;
  * @property {string} [description]
  * @property {SEOMetaItem[]} [meta_tags]
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {SEObreadcrumb[]} [breadcrumbs]
+ * @property {string} [canonical_url]
  * @property {string} [_id]
  */
 /**
@@ -58,7 +77,7 @@ export = ThemePartnerModel;
  * @property {Object} [params]
  * @property {Object} [query]
  * @property {string} [url]
- * @property {PageType} type
+ * @property {string} [type]
  */
 /**
  * @typedef AvailablePageSchemaSections
@@ -110,7 +129,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef MarketplaceThemeSchema
- * @property {MarketplaceTheme[]} [themes]
+ * @property {MarketplaceTheme[]} [items]
  * @property {PaginationSchema} [page]
  */
 /**
@@ -143,6 +162,7 @@ export = ThemePartnerModel;
  * @property {string} [created_at] - Theme creation timestamp
  * @property {string} [updated_at] - Theme update timestamp
  * @property {string} [template_theme_id] - Template theme ID
+ * @property {string} [theme_type] - Theme type
  */
 /**
  * @typedef PaymentInfo
@@ -237,6 +257,7 @@ export = ThemePartnerModel;
 /**
  * @typedef BlitzkriegApiErrorSchema
  * @property {string} [message]
+ * @property {string} [level]
  */
 /**
  * @typedef BlitzkriegInternalServerErrorSchema
@@ -264,6 +285,7 @@ export = ThemePartnerModel;
  * @property {string} [theme_type]
  * @property {number} [company_id] - The company id in which sales channel exists
  * @property {string} [src]
+ * @property {Object[]} [global_sections]
  */
 /**
  * @typedef Font
@@ -422,6 +444,7 @@ export = ThemePartnerModel;
  * @property {Object[]} [blocks] - Blocks
  * @property {string} [name] - Name of the section
  * @property {string} [label] - Label for the section
+ * @property {Object} [preset]
  */
 /**
  * @typedef GlobalSchema
@@ -442,13 +465,8 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {Section[]} [sections]
+ * @property {string} [value] - The value of the page.
  */
 /**
  * @typedef SectionProps
@@ -544,59 +562,30 @@ export = ThemePartnerModel;
  * @property {string} [current] - The current configuration
  * @property {Page[]} [pages]
  */
-/**
- * @typedef {| "about-us"
- *   | "addresses"
- *   | "blog"
- *   | "brands"
- *   | "cards"
- *   | "cart"
- *   | "categories"
- *   | "brand"
- *   | "category"
- *   | "collection"
- *   | "collections"
- *   | "contact-us"
- *   | "external"
- *   | "faq"
- *   | "freshchat"
- *   | "home"
- *   | "notification-settings"
- *   | "orders"
- *   | "page"
- *   | "policy"
- *   | "product"
- *   | "product-request"
- *   | "products"
- *   | "profile"
- *   | "profile-order-shipment"
- *   | "profile-basic"
- *   | "profile-company"
- *   | "profile-emails"
- *   | "profile-phones"
- *   | "rate-us"
- *   | "refer-earn"
- *   | "settings"
- *   | "shared-cart"
- *   | "tnc"
- *   | "track-order"
- *   | "wishlist"
- *   | "sections"
- *   | "form"
- *   | "cart-delivery"
- *   | "cart-payment"
- *   | "cart-review"
- *   | "login"
- *   | "register"
- *   | "shipping-policy"
- *   | "return-policy"
- *   | "order-status"} PageType
- */
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { AvailablePageSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, ActionPage, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, PageType };
+    export { DefaultPageSchema, DefaultPageProp, AvailablePageSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, ActionPage, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme };
 }
+/** @returns {DefaultPageSchema} */
+declare function DefaultPageSchema(): DefaultPageSchema;
+type DefaultPageSchema = {
+    path?: string;
+    type?: string;
+    sections?: string[];
+    sections_meta?: string[];
+    text?: string;
+    value?: string;
+    props?: DefaultPageProp[];
+};
+/** @returns {DefaultPageProp} */
+declare function DefaultPageProp(): DefaultPageProp;
+type DefaultPageProp = {
+    type?: string;
+    id?: string;
+    label?: string;
+    info?: string;
+};
 /** @returns {AvailablePageSchema} */
 declare function AvailablePageSchema(): AvailablePageSchema;
 type AvailablePageSchema = {
@@ -618,6 +607,10 @@ type AvailablePageSchema = {
      * - The last update timestamp of the page
      */
     updated_at?: string;
+    /**
+     * - The application id
+     */
+    application?: string;
 };
 /** @returns {AvailablePageSectionMetaAttributes} */
 declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaAttributes;
@@ -631,7 +624,8 @@ type AvailablePageSeo = {
     description?: string;
     meta_tags?: SEOMetaItem[];
     sitemap?: SEOSitemap;
-    breadcrumb?: SEObreadcrumb[];
+    breadcrumbs?: SEObreadcrumb[];
+    canonical_url?: string;
     _id?: string;
 };
 /** @returns {SEOMetaItem} */
@@ -671,7 +665,7 @@ type ActionPage = {
     params?: any;
     query?: any;
     url?: string;
-    type: PageType;
+    type?: string;
 };
 /** @returns {AvailablePageSchemaSections} */
 declare function AvailablePageSchemaSections(): AvailablePageSchemaSections;
@@ -743,7 +737,7 @@ type AvailablePagePredicate = {
 /** @returns {MarketplaceThemeSchema} */
 declare function MarketplaceThemeSchema(): MarketplaceThemeSchema;
 type MarketplaceThemeSchema = {
-    themes?: MarketplaceTheme[];
+    items?: MarketplaceTheme[];
     page?: PaginationSchema;
 };
 /** @returns {MarketplaceTheme} */
@@ -825,6 +819,10 @@ type MarketplaceTheme = {
      * - Template theme ID
      */
     template_theme_id?: string;
+    /**
+     * - Theme type
+     */
+    theme_type?: string;
 };
 /** @returns {PaymentInfo} */
 declare function PaymentInfo(): PaymentInfo;
@@ -1037,6 +1035,7 @@ type PaginationSchema = {
 declare function BlitzkriegApiErrorSchema(): BlitzkriegApiErrorSchema;
 type BlitzkriegApiErrorSchema = {
     message?: string;
+    level?: string;
 };
 /** @returns {BlitzkriegInternalServerErrorSchema} */
 declare function BlitzkriegInternalServerErrorSchema(): BlitzkriegInternalServerErrorSchema;
@@ -1108,6 +1107,7 @@ type ThemesSchema = {
      */
     company_id?: number;
     src?: string;
+    global_sections?: any[];
 };
 /** @returns {Font} */
 declare function Font(): Font;
@@ -1441,6 +1441,7 @@ type SectionItem = {
      * - Label for the section
      */
     label?: string;
+    preset?: any;
 };
 /** @returns {GlobalSchema} */
 declare function GlobalSchema(): GlobalSchema;
@@ -1483,13 +1484,11 @@ type Preset = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
-    size?: number;
+    sections?: Section[];
+    /**
+     * - The value of the page.
+     */
+    value?: string;
 };
 /** @returns {SectionProps} */
 declare function SectionProps(): SectionProps;
@@ -1679,10 +1678,3 @@ type CreateNewTheme = {
     current?: string;
     pages?: Page[];
 };
-/**
- * Enum: PageType Used By: Theme
- *
- * @returns {PageType}
- */
-declare function PageType(): PageType;
-type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

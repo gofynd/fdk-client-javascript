@@ -108,7 +108,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @typedef GetFollowerCountByIdParam
  * @property {string} collectionType - Type of collection, i.e. products,
  *   brands, or collections.
- * @property {string} collectionId - The ID of the collection type.
+ * @property {number} collectionId - The ID of the collection type.
  */
 
 /**
@@ -143,7 +143,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
 /**
  * @typedef GetProductBundlesBySlugParam
  * @property {string} [slug] - Product slug for which bundles need to be fetched.
- * @property {string} [id] - Product uid
+ * @property {number} [id] - Product uid
  */
 
 /**
@@ -170,6 +170,8 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  *   /service/application/catalog/v1.0/products/sizes
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
+ * @property {string} [pincode] - The PIN Code of the area near which the
+ *   selling locations should be searched, e.g. 400059.
  * @property {number} [moq] - An Integer indication the Minimum Order Quantity
  *   of a product, e.g. 100.
  */
@@ -182,6 +184,8 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/sizes
+ * @property {string} [pincode] - The 6-digit PIN Code of the area near which
+ *   the selling locations should be searched, e.g. 400059
  * @property {string} [strategy] - Sort stores on the basis of strategy. eg,
  *   fast-delivery, low-price, optimal.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -200,7 +204,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
 
 /**
  * @typedef GetProductStockByIdsParam
- * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed)
+ * @property {number} [itemId] - The Item ID of the product (Max. 50 allowed)
  * @property {string} [alu] - ALU of the product (limited upto 50 ALU identifier
  *   in a single request)
  * @property {string} [skuCode] - Stock-keeping Unit of the product (limited
@@ -273,7 +277,6 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  *   to retreive the nearest stores, e.g. 72.8691788
  * @property {number} [longitude] - Longitude of the location from where one
  *   wants to retreive the nearest stores, e.g. 19.1174114
- * @property {string} [tags] - Search stores based on tags.
  */
 
 /**
@@ -386,7 +389,7 @@ class CatalogApplicationValidator {
   static getFollowerCountById() {
     return Joi.object({
       collectionType: Joi.string().allow("").required(),
-      collectionId: Joi.string().allow("").required(),
+      collectionId: Joi.number().required(),
     }).required();
   }
 
@@ -423,7 +426,7 @@ class CatalogApplicationValidator {
   static getProductBundlesBySlug() {
     return Joi.object({
       slug: Joi.string().allow(""),
-      id: Joi.string().allow(""),
+      id: Joi.number(),
     });
   }
 
@@ -447,6 +450,7 @@ class CatalogApplicationValidator {
       slug: Joi.string().allow("").required(),
       size: Joi.string().allow("").required(),
       storeId: Joi.number(),
+      pincode: Joi.string().allow(""),
       moq: Joi.number(),
     }).required();
   }
@@ -456,6 +460,7 @@ class CatalogApplicationValidator {
     return Joi.object({
       slug: Joi.string().allow("").required(),
       size: Joi.string().allow("").required(),
+      pincode: Joi.string().allow(""),
       strategy: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -473,7 +478,7 @@ class CatalogApplicationValidator {
   /** @returns {GetProductStockByIdsParam} */
   static getProductStockByIds() {
     return Joi.object({
-      itemId: Joi.string().allow(""),
+      itemId: Joi.number(),
       alu: Joi.string().allow(""),
       skuCode: Joi.string().allow(""),
       ean: Joi.string().allow(""),
@@ -535,7 +540,6 @@ class CatalogApplicationValidator {
       range: Joi.number(),
       latitude: Joi.number(),
       longitude: Joi.number(),
-      tags: Joi.string().allow(""),
     });
   }
 

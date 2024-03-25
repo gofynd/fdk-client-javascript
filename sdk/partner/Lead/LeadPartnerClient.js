@@ -129,7 +129,7 @@ class Lead {
    *   the ticket filters
    * @param {string} [arg.q] - Search through ticket titles and description
    * @param {string} [arg.status] - Filter tickets on status
-   * @param {LeadPartnerModel.PriorityEnum} [arg.priority] - Filter tickets on priority
+   * @param {string} [arg.priority] - Filter tickets on priority
    * @param {string} [arg.category] - Filter tickets on category
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
@@ -710,6 +710,156 @@ class Lead {
   }
 
   /**
+   * @param {LeadPartnerValidator.OpenVideoRoomParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LeadPartnerModel.CreateVideoRoomResponse>} - Success response
+   * @name openVideoRoom
+   * @summary: Open video room.
+   * @description: Initiate and open a video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/openVideoRoom/).
+   */
+  async openVideoRoom(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LeadPartnerValidator.openVideoRoom().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadPartnerValidator.openVideoRoom().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Lead > openVideoRoom \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/lead/v1.0/organization/${this.config.organizationId}/video/room`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LeadPartnerModel.CreateVideoRoomResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Lead > openVideoRoom \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LeadPartnerValidator.CloseVideoRoomParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LeadPartnerModel.CloseVideoRoomResponse>} - Success response
+   * @name closeVideoRoom
+   * @summary: Close video room.
+   * @description: Terminate and close an active video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/closeVideoRoom/).
+   */
+  async closeVideoRoom(
+    { uniqueName, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LeadPartnerValidator.closeVideoRoom().validate(
+      {
+        uniqueName,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadPartnerValidator.closeVideoRoom().validate(
+      {
+        uniqueName,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Lead > closeVideoRoom \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/partner/lead/v1.0/organization/${this.config.organizationId}/video/room/${uniqueName}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LeadPartnerModel.CloseVideoRoomResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Lead > closeVideoRoom \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {LeadPartnerValidator.GetGeneralConfigParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
@@ -775,6 +925,79 @@ class Lead {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for partner > Lead > getGeneralConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LeadPartnerValidator.GetPartnerGeneralConfigParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<LeadPartnerModel.GeneralConfigResponse>} - Success response
+   * @name getPartnerGeneralConfig
+   * @summary: Get general support configuration.
+   * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getPartnerGeneralConfig/).
+   */
+  async getPartnerGeneralConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = LeadPartnerValidator.getPartnerGeneralConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LeadPartnerValidator.getPartnerGeneralConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Lead > getPartnerGeneralConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/lead/v1.0/general-config`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = LeadPartnerModel.GeneralConfigResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Lead > getPartnerGeneralConfig \n ${res_error}`,
         });
       }
     }

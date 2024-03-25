@@ -110,6 +110,10 @@ export = UserPlatformApplicationValidator;
  * @property {number} [groupUid] - To get User Groups with given uid
  */
 /**
+ * @typedef GetUsersByByGroupIdParam
+ * @property {string} groupId - Numeric ID allotted to a User Group
+ */
+/**
  * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number or email ID of a customer.
  * @property {string[]} [query] - The search queries. Mobile numbers or email
@@ -192,6 +196,8 @@ declare class UserPlatformApplicationValidator {
     static getUserGroupById(): GetUserGroupByIdParam;
     /** @returns {GetUserGroupsParam} */
     static getUserGroups(): GetUserGroupsParam;
+    /** @returns {GetUsersByByGroupIdParam} */
+    static getUsersByByGroupId(): GetUsersByByGroupIdParam;
     /** @returns {SearchUsersParam} */
     static searchUsers(): SearchUsersParam;
     /** @returns {UnDeleteUserParam} */
@@ -210,7 +216,7 @@ declare class UserPlatformApplicationValidator {
     static updateUserGroupPartially(): UpdateUserGroupPartiallyParam;
 }
 declare namespace UserPlatformApplicationValidator {
-    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
+    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, GetUsersByByGroupIdParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
 }
 type ArchiveUserParam = {
     body: UserPlatformModel.ArchiveUserRequestSchema;
@@ -413,6 +419,12 @@ type GetUserGroupsParam = {
      */
     groupUid?: number;
 };
+type GetUsersByByGroupIdParam = {
+    /**
+     * - Numeric ID allotted to a User Group
+     */
+    groupId: string;
+};
 type SearchUsersParam = {
     /**
      * - The search query. Mobile number or email ID of a customer.
@@ -472,4 +484,4 @@ type UpdateUserGroupPartiallyParam = {
     body: UserPlatformModel.PartialUserGroupUpdateSchema;
 };
 type GetPlatformConfigParam = any;
-import UserPlatformModel = require("./UserPlatformModel");
+import UserPlatformModel = require("sdk/output/javascript/code/sdk/platform/User/UserPlatformModel");

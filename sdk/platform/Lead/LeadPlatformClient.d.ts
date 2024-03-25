@@ -33,25 +33,15 @@ declare class Lead {
      */
     editPlatformTicket({ id, body, requestHeaders }?: LeadPlatformValidator.EditPlatformTicketParam, { responseHeaders }?: object): Promise<LeadPlatformModel.Ticket>;
     /**
-     * @param {LeadPlatformValidator.GetFeedbacksParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.TicketFeedbackList>} - Success response
-     * @name getFeedbacks
-     * @summary: Get feedbacks.
-     * @description: Retrieve feedback information related to a ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getFeedbacks/).
-     */
-    getFeedbacks({ id, requestHeaders }?: LeadPlatformValidator.GetFeedbacksParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketFeedbackList>;
-    /**
      * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
+     * @returns {Promise<LeadPlatformModel.GeneralConfigResponse>} - Success response
      * @name getGeneralConfig
      * @summary: Get general configuration.
      * @description: Retrieve general configuration settings related to support system for company tickets - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
      */
-    getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
+    getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.GeneralConfigResponse>;
     /**
      * @param {LeadPlatformValidator.GetPlatformTicketParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -83,6 +73,31 @@ declare class Lead {
      */
     getPlatformTickets({ items, filters, q, status, priority, category, pageNo, pageSize, requestHeaders, }?: LeadPlatformValidator.GetPlatformTicketsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketList>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.items] - Decides that the reponse will contain the
+     *   list of tickets
+     * @param {boolean} [arg.filters] - Decides that the reponse will contain
+     *   the ticket filters
+     * @param {string} [arg.q] - Search through ticket titles and description
+     * @param {string} [arg.status] - Filter tickets on status
+     * @param {string} [arg.priority] - Filter tickets on priority
+     * @param {string} [arg.category] - Filter tickets on category
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @returns {Paginator<LeadPlatformModel.TicketList>}
+     * @summary: Get platform tickets.
+     * @description: Retrieve a list of tickets created within the platform at company level
+     */
+    getPlatformTicketsPaginator({ items, filters, q, status, priority, category, pageSize, }?: {
+        items?: boolean;
+        filters?: boolean;
+        q?: string;
+        status?: string;
+        priority?: string;
+        category?: string;
+        pageSize?: number;
+    }): Paginator<LeadPlatformModel.TicketList>;
+    /**
      * @param {LeadPlatformValidator.GetPlatformVideoParticipantsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -105,16 +120,7 @@ declare class Lead {
      * @description: Retrieve an access token for a platform video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTokenForPlatformVideoRoom/).
      */
     getTokenForPlatformVideoRoom({ uniqueName, requestHeaders }?: LeadPlatformValidator.GetTokenForPlatformVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
-    /**
-     * @param {LeadPlatformValidator.SubmitFeedbackParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.TicketFeedback>} - Success response
-     * @name submitFeedback
-     * @summary: Submit feedback.
-     * @description: Provide feedback on a ticket and it's resolution. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/submitFeedback/).
-     */
-    submitFeedback({ id, body, requestHeaders }?: LeadPlatformValidator.SubmitFeedbackParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketFeedback>;
 }
-import LeadPlatformValidator = require("./LeadPlatformValidator");
-import LeadPlatformModel = require("./LeadPlatformModel");
+import LeadPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformValidator");
+import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

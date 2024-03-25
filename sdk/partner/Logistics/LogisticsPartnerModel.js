@@ -39,13 +39,11 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [current] - Current page number
+ * @property {boolean} [has_next] - Next page available
+ * @property {boolean} [has_previous] - Previous page available
+ * @property {number} [item_total] - Total records
+ * @property {number} [size] - Current page size
  */
 
 /**
@@ -248,12 +246,10 @@ class LogisticsPartnerModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      has_previous: Joi.boolean(),
-      has_next: Joi.boolean(),
       current: Joi.number(),
-      type: Joi.string().allow("").required(),
+      has_next: Joi.boolean(),
+      has_previous: Joi.boolean(),
+      item_total: Joi.number(),
       size: Joi.number(),
     });
   }

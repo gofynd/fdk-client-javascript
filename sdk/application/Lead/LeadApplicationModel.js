@@ -3,7 +3,7 @@ const Joi = require("joi");
 /**
  * @typedef TicketHistoryPayload
  * @property {Object} value - Details of history event
- * @property {HistoryTypeEnum} type
+ * @property {string} type
  */
 
 /**
@@ -20,6 +20,7 @@ const Joi = require("joi");
 /**
  * @typedef GetParticipantsInsideVideoRoomResponse
  * @property {Participant[]} participants - List of participants of the video room
+ * @property {Object} [room]
  */
 
 /**
@@ -31,22 +32,22 @@ const Joi = require("joi");
 
 /**
  * @typedef UserSchema
- * @property {string} [application_id]
- * @property {string} [user_id]
- * @property {string} [first_name]
- * @property {Object} [meta]
- * @property {string} [last_name]
- * @property {PhoneNumber[]} [phone_numbers]
- * @property {Email[]} [emails]
- * @property {string} [gender]
- * @property {string} [dob]
- * @property {boolean} [active]
- * @property {string} [profile_pic_url]
- * @property {string} [username]
- * @property {string} [account_type]
- * @property {string} [_id]
- * @property {string} [created_at]
- * @property {string} [updated_at]
+ * @property {string} [first_name] - First name
+ * @property {string} [last_name] - Last name
+ * @property {PhoneNumber[]} [phone_numbers] - List of phone numbers
+ * @property {Email[]} [emails] - List of email addresses
+ * @property {UserPasswordHistory[]} [password_history]
+ * @property {string} [gender] - Gender of user
+ * @property {boolean} [active] - Is account active
+ * @property {string} [profile_pic_url] - URL for profile pic
+ * @property {string} [username] - Username of user
+ * @property {string} [account_type] - Type of account
+ * @property {string} [uid] - Unique identifier of user
+ * @property {Debug} [debug]
+ * @property {boolean} [has_old_password_hash] - Denotes if user has old password hash
+ * @property {string} [_id] - Unique identifier of user
+ * @property {string} [created_at] - Time of user creation
+ * @property {string} [updated_at] - Last time of user details update
  */
 
 /**
@@ -56,6 +57,12 @@ const Joi = require("joi");
  * @property {boolean} [verified] - Denotes it's a verified phone number
  * @property {string} [phone] - Phone number
  * @property {number} [country_code] - Country code
+ */
+
+/**
+ * @typedef UserPasswordHistory
+ * @property {string} [salt]
+ * @property {string} [hash]
  */
 
 /**
@@ -76,6 +83,21 @@ const Joi = require("joi");
  * @typedef SubmitCustomFormResponse
  * @property {string} message - Success message for form submission
  * @property {Ticket} [ticket]
+ * @property {string[]} [notified_to]
+ * @property {FormResponse} [response]
+ */
+
+/**
+ * @typedef FormResponse
+ * @property {string} [application_id]
+ * @property {string} [form_slug]
+ * @property {Object[]} [response]
+ * @property {string} [created_by]
+ * @property {CreatedOn} [created_on]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {number} [__v]
  */
 
 /**
@@ -87,6 +109,7 @@ const Joi = require("joi");
 /**
  * @typedef CreatedOn
  * @property {string} user_agent - Useragent details
+ * @property {string} [platform]
  */
 
 /**
@@ -107,7 +130,7 @@ const Joi = require("joi");
  * @typedef AddTicketPayload
  * @property {Object} [created_by] - Creator of the ticket
  * @property {string} [status] - Status of the ticket
- * @property {PriorityEnum} [priority]
+ * @property {string} [priority]
  * @property {string} category - Category of the ticket
  * @property {TicketContent} content
  * @property {Object} [_custom_json] - Optional custom data that needs to be sent
@@ -116,7 +139,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Priority
- * @property {PriorityEnum} key
+ * @property {string} key - Priority value of the ticket like urgent, low, medium, high.
  * @property {string} display - Display text for priority
  * @property {string} color - Color for priority
  */
@@ -150,7 +173,6 @@ const Joi = require("joi");
  * @property {string} [header_image] - Form header image that will be shown to the user
  * @property {string} title - Form title that will be shown to the user
  * @property {string} [description] - Form description that will be shown to the user
- * @property {Priority} priority
  * @property {boolean} login_required - Denotes if login is required to make a
  *   form response submission
  * @property {boolean} should_notify - Denotes if new response submission for
@@ -161,7 +183,12 @@ const Joi = require("joi");
  * @property {Object[]} inputs - List of all the form fields
  * @property {CreatedOn} [created_on]
  * @property {PollForAssignment} [poll_for_assignment]
+ * @property {string[]} [available_assignees]
  * @property {string} _id - Unique identifier for the form
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {number} [__v]
+ * @property {string} [created_by]
  */
 
 /**
@@ -175,7 +202,7 @@ const Joi = require("joi");
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory} [sub_categories]
+ * @property {TicketCategory[]} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -186,10 +213,11 @@ const Joi = require("joi");
  * @property {Object} value - Data of the history event
  * @property {string} ticket_id - Readable ticket number
  * @property {CreatedOn} [created_on]
- * @property {Object} [created_by] - User who created the history event
+ * @property {string} [created_by] - User who created the history event
  * @property {string} _id - Unique identifier of the history event
  * @property {string} [updated_at] - Time of last update of the history event
  * @property {string} [created_at] - Time of creation of the history event
+ * @property {number} [__v]
  */
 
 /**
@@ -214,11 +242,24 @@ const Joi = require("joi");
  * @property {string} _id - Unique identifier for the ticket
  * @property {string} [updated_at] - Time when the ticket was last updated
  * @property {string} [created_at] - Time when the ticket was created
+ * @property {string} [video_room_id]
+ * @property {string[]} [subscribers]
+ * @property {Object[]} [additional_info]
+ * @property {number} [__v]
+ * @property {TicketAsset[]} [attachments] - List of all attachments related to the form
  */
 
-/** @typedef {"low" | "medium" | "high" | "urgent"} PriorityEnum */
+/**
+ * @typedef NotFoundError
+ * @property {string} [message]
+ */
 
-/** @typedef {"rating" | "log" | "comment" | "thread"} HistoryTypeEnum */
+/**
+ * @typedef Error4XX
+ * @property {Object} [message]
+ * @property {string} [stack]
+ * @property {string} [sentry]
+ */
 
 /**
  * @typedef {| "image"
@@ -239,7 +280,7 @@ class LeadApplicationModel {
   static TicketHistoryPayload() {
     return Joi.object({
       value: Joi.any().required(),
-      type: LeadApplicationModel.HistoryTypeEnum().required(),
+      type: Joi.string().allow("").required(),
     });
   }
 
@@ -264,6 +305,7 @@ class LeadApplicationModel {
       participants: Joi.array()
         .items(LeadApplicationModel.Participant())
         .required(),
+      room: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -279,19 +321,21 @@ class LeadApplicationModel {
   /** @returns {UserSchema} */
   static UserSchema() {
     return Joi.object({
-      application_id: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
-      meta: Joi.any(),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(LeadApplicationModel.PhoneNumber()),
       emails: Joi.array().items(LeadApplicationModel.Email()),
+      password_history: Joi.array().items(
+        LeadApplicationModel.UserPasswordHistory()
+      ),
       gender: Joi.string().allow(""),
-      dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),
       username: Joi.string().allow(""),
       account_type: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
+      debug: LeadApplicationModel.Debug(),
+      has_old_password_hash: Joi.boolean(),
       _id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
@@ -306,6 +350,14 @@ class LeadApplicationModel {
       verified: Joi.boolean(),
       phone: Joi.string().allow(""),
       country_code: Joi.number(),
+    });
+  }
+
+  /** @returns {UserPasswordHistory} */
+  static UserPasswordHistory() {
+    return Joi.object({
+      salt: Joi.string().allow(""),
+      hash: Joi.string().allow(""),
     });
   }
 
@@ -332,6 +384,23 @@ class LeadApplicationModel {
     return Joi.object({
       message: Joi.string().allow("").required(),
       ticket: LeadApplicationModel.Ticket(),
+      notified_to: Joi.array().items(Joi.string().allow("")),
+      response: LeadApplicationModel.FormResponse(),
+    });
+  }
+
+  /** @returns {FormResponse} */
+  static FormResponse() {
+    return Joi.object({
+      application_id: Joi.string().allow(""),
+      form_slug: Joi.string().allow(""),
+      response: Joi.array().items(Joi.any()),
+      created_by: Joi.string().allow(""),
+      created_on: LeadApplicationModel.CreatedOn(),
+      _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      __v: Joi.number(),
     });
   }
 
@@ -347,6 +416,7 @@ class LeadApplicationModel {
   static CreatedOn() {
     return Joi.object({
       user_agent: Joi.string().allow("").required(),
+      platform: Joi.string().allow(""),
     });
   }
 
@@ -373,7 +443,7 @@ class LeadApplicationModel {
     return Joi.object({
       created_by: Joi.any(),
       status: Joi.string().allow(""),
-      priority: LeadApplicationModel.PriorityEnum(),
+      priority: Joi.string().allow(""),
       category: Joi.string().allow("").required(),
       content: LeadApplicationModel.TicketContent().required(),
       _custom_json: Joi.any(),
@@ -384,7 +454,7 @@ class LeadApplicationModel {
   /** @returns {Priority} */
   static Priority() {
     return Joi.object({
-      key: LeadApplicationModel.PriorityEnum().required(),
+      key: Joi.string().allow("").required(),
       display: Joi.string().allow("").required(),
       color: Joi.string().allow("").required(),
     });
@@ -426,7 +496,6 @@ class LeadApplicationModel {
       header_image: Joi.string().allow(""),
       title: Joi.string().allow("").required(),
       description: Joi.string().allow(""),
-      priority: LeadApplicationModel.Priority().required(),
       login_required: Joi.boolean().required(),
       should_notify: Joi.boolean().required(),
       success_message: Joi.string().allow(""),
@@ -434,7 +503,12 @@ class LeadApplicationModel {
       inputs: Joi.array().items(Joi.any()).required(),
       created_on: LeadApplicationModel.CreatedOn(),
       poll_for_assignment: LeadApplicationModel.PollForAssignment(),
+      available_assignees: Joi.array().items(Joi.string().allow("")),
       _id: Joi.string().allow("").required(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      __v: Joi.number(),
+      created_by: Joi.string().allow(""),
     });
   }
 
@@ -452,7 +526,7 @@ class LeadApplicationModel {
     return Joi.object({
       display: Joi.string().allow("").required(),
       key: Joi.string().allow("").required(),
-      sub_categories: Joi.link("#TicketCategory"),
+      sub_categories: Joi.array().items(Joi.link("#TicketCategory")),
       group_id: Joi.number(),
       feedback_form: LeadApplicationModel.FeedbackForm(),
     }).id("TicketCategory");
@@ -462,13 +536,14 @@ class LeadApplicationModel {
   static TicketHistory() {
     return Joi.object({
       type: Joi.string().allow("").required(),
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
       ticket_id: Joi.string().allow("").required(),
       created_on: LeadApplicationModel.CreatedOn(),
-      created_by: Joi.any(),
+      created_by: Joi.string().allow(""),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
+      __v: Joi.number(),
     });
   }
 
@@ -493,41 +568,28 @@ class LeadApplicationModel {
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
+      video_room_id: Joi.string().allow(""),
+      subscribers: Joi.array().items(Joi.string().allow("")),
+      additional_info: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+      __v: Joi.number(),
+      attachments: Joi.array().items(LeadApplicationModel.TicketAsset()),
     });
   }
 
-  /**
-   * Enum: PriorityEnum Used By: Lead
-   *
-   * @returns {PriorityEnum}
-   */
-  static PriorityEnum() {
-    return Joi.string().valid(
-      "low",
-
-      "medium",
-
-      "high",
-
-      "urgent"
-    );
+  /** @returns {NotFoundError} */
+  static NotFoundError() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
   }
 
-  /**
-   * Enum: HistoryTypeEnum Used By: Lead
-   *
-   * @returns {HistoryTypeEnum}
-   */
-  static HistoryTypeEnum() {
-    return Joi.string().valid(
-      "rating",
-
-      "log",
-
-      "comment",
-
-      "thread"
-    );
+  /** @returns {Error4XX} */
+  static Error4XX() {
+    return Joi.object({
+      message: Joi.object().pattern(/\S/, Joi.any()),
+      stack: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
+    });
   }
 
   /**

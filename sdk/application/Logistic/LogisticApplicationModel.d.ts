@@ -1,5 +1,116 @@
 export = LogisticApplicationModel;
 /**
+ * @typedef ListViewResponseV2
+ * @property {ListViewItemsV2[]} items
+ * @property {ZoneDataItem} page
+ */
+/**
+ * @typedef ListViewItemsV2
+ * @property {string} zone_id
+ * @property {string} name
+ * @property {string} type
+ * @property {GeoArea[]} geo_areas
+ * @property {string} slug
+ * @property {ListViewProductV2} stores
+ * @property {boolean} is_active
+ * @property {ListViewProductV2} product
+ * @property {number} company_id
+ * @property {string} application_id
+ * @property {string} created_by
+ * @property {string} created_on
+ * @property {string} modified_by
+ * @property {string} modified_on
+ * @property {string} [stage]
+ * @property {Summary} [summary]
+ */
+/**
+ * @typedef GeoArea
+ * @property {string} id
+ * @property {string} [type]
+ * @property {string} name
+ */
+/**
+ * @typedef ListViewProductV2
+ * @property {string} type
+ * @property {string[]} values
+ */
+/**
+ * @typedef Summary
+ * @property {number} [stores_count]
+ * @property {number} [products_count]
+ * @property {Region[]} [regions]
+ */
+/**
+ * @typedef ZoneDataItem
+ * @property {boolean} has_next
+ * @property {number} item_total
+ * @property {number} size
+ * @property {number} current
+ * @property {string} type
+ */
+/**
+ * @typedef Region
+ * @property {string} uid
+ * @property {string} display_name
+ * @property {string} sub_type
+ * @property {string[]} parent_id
+ * @property {string} parent_uid
+ */
+/**
+ * @typedef GeoAreaGetResponseBody
+ * @property {GeoAreaItemResponse[]} [items]
+ * @property {Page2} [page]
+ */
+/**
+ * @typedef GeoAreaItemResponse
+ * @property {string} geoarea_id
+ * @property {string} name
+ * @property {string} slug
+ * @property {boolean} is_active
+ * @property {string} region_type
+ * @property {string} [type]
+ * @property {AreaExpandedV2[]} [areas]
+ * @property {string} created_on
+ * @property {string} modified_on
+ * @property {string} created_by
+ * @property {string} modified_by
+ */
+/**
+ * @typedef Page2
+ * @property {number} size
+ * @property {number} item_total
+ * @property {string} type
+ * @property {number} current
+ * @property {boolean} has_next
+ */
+/**
+ * @typedef AreaExpandedV2
+ * @property {Country} country
+ * @property {RegionV2[]} regions
+ */
+/**
+ * @typedef RegionV2
+ * @property {string} [uid]
+ * @property {string} [display_name]
+ * @property {string} [sub_type]
+ * @property {string[]} [parent_id]
+ */
+/**
+ * @typedef Country
+ * @property {string} uid
+ * @property {string} display_name
+ */
+/**
+ * @typedef ServiceabilityZoneErrorResponse
+ * @property {ServiceabilityErrorResponse[]} error
+ */
+/**
+ * @typedef ServiceabilityErrorResponse
+ * @property {string} message
+ * @property {string} value
+ * @property {string} type
+ */
+/**
  * @typedef GetStoreResponse
  * @property {StoreItemResponse[]} [items]
  * @property {Page} [page]
@@ -338,13 +449,12 @@ export = LogisticApplicationModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
  * @property {number} [size]
+ * @property {number} [item_total]
+ * @property {boolean} [has_previous]
+ * @property {number} [current]
+ * @property {string} [type]
  */
 /**
  * @typedef Localities
@@ -353,6 +463,7 @@ export = LogisticApplicationModel;
  * @property {string} [display_name]
  * @property {string[]} [parent_ids]
  * @property {string} [type]
+ * @property {LocalityParent[]} [localities]
  */
 /**
  * @typedef LocalityParent
@@ -383,8 +494,134 @@ export = LogisticApplicationModel;
 declare class LogisticApplicationModel {
 }
 declare namespace LogisticApplicationModel {
-    export { GetStoreResponse, StoreItemResponse, ValidateAddressRequest, PincodeParentsResponse, PincodeMetaResponse, PincodeErrorSchemaResponse, CountryMetaResponse, PincodeLatLongData, PincodeDataResponse, PincodeApiResponse, TATCategoryRequest, TATArticlesRequest, TATLocationDetailsRequest, TATViewRequest, TATErrorSchemaResponse, TATTimestampResponse, TATFormattedResponse, TATPromiseResponse, TATArticlesResponse, TATLocationDetailsResponse, TATViewResponse, DP, LogisticsResponse, CountryEntityResponse, CountryListResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, ReAssignStoreRequest, ReAssignStoreResponse, CountryHierarchy, CurrencyObject, CountryObject, GetCountries, GetOneOrAllPath, GetOneOrAllQuery, GetOneOrAllParams, GetOneOrAll, LengthValidation, FieldValidationRegex, FieldValidation, GetCountryFieldsAddressValues, GetCountryFieldsAddress, GetCountryFieldsAddressTemplate, GetCountryFields, GetCountry, Page, Localities, LocalityParent, GetLocalities, GetLocality, ErrorResponse };
+    export { ListViewResponseV2, ListViewItemsV2, GeoArea, ListViewProductV2, Summary, ZoneDataItem, Region, GeoAreaGetResponseBody, GeoAreaItemResponse, Page2, AreaExpandedV2, RegionV2, Country, ServiceabilityZoneErrorResponse, ServiceabilityErrorResponse, GetStoreResponse, StoreItemResponse, ValidateAddressRequest, PincodeParentsResponse, PincodeMetaResponse, PincodeErrorSchemaResponse, CountryMetaResponse, PincodeLatLongData, PincodeDataResponse, PincodeApiResponse, TATCategoryRequest, TATArticlesRequest, TATLocationDetailsRequest, TATViewRequest, TATErrorSchemaResponse, TATTimestampResponse, TATFormattedResponse, TATPromiseResponse, TATArticlesResponse, TATLocationDetailsResponse, TATViewResponse, DP, LogisticsResponse, CountryEntityResponse, CountryListResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, ReAssignStoreRequest, ReAssignStoreResponse, CountryHierarchy, CurrencyObject, CountryObject, GetCountries, GetOneOrAllPath, GetOneOrAllQuery, GetOneOrAllParams, GetOneOrAll, LengthValidation, FieldValidationRegex, FieldValidation, GetCountryFieldsAddressValues, GetCountryFieldsAddress, GetCountryFieldsAddressTemplate, GetCountryFields, GetCountry, Page, Localities, LocalityParent, GetLocalities, GetLocality, ErrorResponse };
 }
+/** @returns {ListViewResponseV2} */
+declare function ListViewResponseV2(): ListViewResponseV2;
+type ListViewResponseV2 = {
+    items: ListViewItemsV2[];
+    page: ZoneDataItem;
+};
+/** @returns {ListViewItemsV2} */
+declare function ListViewItemsV2(): ListViewItemsV2;
+type ListViewItemsV2 = {
+    zone_id: string;
+    name: string;
+    type: string;
+    geo_areas: GeoArea[];
+    slug: string;
+    stores: ListViewProductV2;
+    is_active: boolean;
+    product: ListViewProductV2;
+    company_id: number;
+    application_id: string;
+    created_by: string;
+    created_on: string;
+    modified_by: string;
+    modified_on: string;
+    stage?: string;
+    summary?: Summary;
+};
+/** @returns {GeoArea} */
+declare function GeoArea(): GeoArea;
+type GeoArea = {
+    id: string;
+    type?: string;
+    name: string;
+};
+/** @returns {ListViewProductV2} */
+declare function ListViewProductV2(): ListViewProductV2;
+type ListViewProductV2 = {
+    type: string;
+    values: string[];
+};
+/** @returns {Summary} */
+declare function Summary(): Summary;
+type Summary = {
+    stores_count?: number;
+    products_count?: number;
+    regions?: Region[];
+};
+/** @returns {ZoneDataItem} */
+declare function ZoneDataItem(): ZoneDataItem;
+type ZoneDataItem = {
+    has_next: boolean;
+    item_total: number;
+    size: number;
+    current: number;
+    type: string;
+};
+/** @returns {Region} */
+declare function Region(): Region;
+type Region = {
+    uid: string;
+    display_name: string;
+    sub_type: string;
+    parent_id: string[];
+    parent_uid: string;
+};
+/** @returns {GeoAreaGetResponseBody} */
+declare function GeoAreaGetResponseBody(): GeoAreaGetResponseBody;
+type GeoAreaGetResponseBody = {
+    items?: GeoAreaItemResponse[];
+    page?: Page2;
+};
+/** @returns {GeoAreaItemResponse} */
+declare function GeoAreaItemResponse(): GeoAreaItemResponse;
+type GeoAreaItemResponse = {
+    geoarea_id: string;
+    name: string;
+    slug: string;
+    is_active: boolean;
+    region_type: string;
+    type?: string;
+    areas?: AreaExpandedV2[];
+    created_on: string;
+    modified_on: string;
+    created_by: string;
+    modified_by: string;
+};
+/** @returns {Page2} */
+declare function Page2(): Page2;
+type Page2 = {
+    size: number;
+    item_total: number;
+    type: string;
+    current: number;
+    has_next: boolean;
+};
+/** @returns {AreaExpandedV2} */
+declare function AreaExpandedV2(): AreaExpandedV2;
+type AreaExpandedV2 = {
+    country: Country;
+    regions: RegionV2[];
+};
+/** @returns {RegionV2} */
+declare function RegionV2(): RegionV2;
+type RegionV2 = {
+    uid?: string;
+    display_name?: string;
+    sub_type?: string;
+    parent_id?: string[];
+};
+/** @returns {Country} */
+declare function Country(): Country;
+type Country = {
+    uid: string;
+    display_name: string;
+};
+/** @returns {ServiceabilityZoneErrorResponse} */
+declare function ServiceabilityZoneErrorResponse(): ServiceabilityZoneErrorResponse;
+type ServiceabilityZoneErrorResponse = {
+    error: ServiceabilityErrorResponse[];
+};
+/** @returns {ServiceabilityErrorResponse} */
+declare function ServiceabilityErrorResponse(): ServiceabilityErrorResponse;
+type ServiceabilityErrorResponse = {
+    message: string;
+    value: string;
+    type: string;
+};
 /** @returns {GetStoreResponse} */
 declare function GetStoreResponse(): GetStoreResponse;
 type GetStoreResponse = {
@@ -806,13 +1043,12 @@ type GetCountry = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
     has_next?: boolean;
-    current?: number;
-    type: string;
     size?: number;
+    item_total?: number;
+    has_previous?: boolean;
+    current?: number;
+    type?: string;
 };
 /** @returns {Localities} */
 declare function Localities(): Localities;
@@ -822,6 +1058,7 @@ type Localities = {
     display_name?: string;
     parent_ids?: string[];
     type?: string;
+    localities?: LocalityParent[];
 };
 /** @returns {LocalityParent} */
 declare function LocalityParent(): LocalityParent;

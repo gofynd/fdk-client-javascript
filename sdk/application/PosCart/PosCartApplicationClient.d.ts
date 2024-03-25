@@ -319,5 +319,5 @@ declare class PosCart {
      */
     validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, requestHeaders, }?: PosCartApplicationValidator.ValidateCouponForPaymentParam, { responseHeaders }?: object): Promise<PosCartApplicationModel.PaymentCouponValidate>;
 }
-import PosCartApplicationValidator = require("./PosCartApplicationValidator");
-import PosCartApplicationModel = require("./PosCartApplicationModel");
+import PosCartApplicationValidator = require("sdk/output/javascript/code/sdk/application/PosCart/PosCartApplicationValidator");
+import PosCartApplicationModel = require("sdk/output/javascript/code/sdk/application/PosCart/PosCartApplicationModel");

@@ -44,6 +44,11 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  */
 
 /**
+ * @typedef ConfirmPaymentParam
+ * @property {PaymentApplicationModel.PaymentConfirmationRequest} body
+ */
+
+/**
  * @typedef CreateOrderHandlerPaymentLinkParam
  * @property {PaymentApplicationModel.CreateOrderUserRequest} body
  */
@@ -66,6 +71,12 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 /**
  * @typedef CustomerOnboardParam
  * @property {PaymentApplicationModel.CustomerOnboardingRequest} body
+ */
+
+/**
+ * @typedef DeleteBeneficiaryDetailsParam
+ * @property {string} beneficiaryId - This is a String value that contains
+ *   beneficiary_id as value.
  */
 
 /**
@@ -102,6 +113,11 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  *   remove temporary cache files on payment gateway and replace with the latest one.
  */
 
+/**
+ * @typedef GetBenficiaryOrderParam
+ * @property {PaymentApplicationModel.RefundOrderBenRequest} body
+ */
+
 /** @typedef GetEpaylaterBannerDetailsParam */
 
 /**
@@ -113,6 +129,12 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 /**
  * @typedef GetPaymentLinkParam
  * @property {string} [paymentLinkId]
+ */
+
+/**
+ * @typedef GetPaymentLinkIdParam
+ * @property {string} id
+ * @property {string} paymentLinkId
  */
 
 /**
@@ -152,11 +174,44 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  *   anonymous user.
  */
 
+/**
+ * @typedef GetRefundOptionsParam
+ * @property {string} configuration - Config Type - Options include 'merchant',
+ *   'customer', or 'default'.
+ * @property {string} [productType] - Product Type either 1P and 3P
+ * @property {string} [amount] - Refunded amount
+ * @property {string} [orderType] - Order Type - Options are 'PickAtStore' or
+ *   'HomeDelivery'.
+ */
+
 /** @typedef GetRupifiBannerDetailsParam */
+
+/**
+ * @typedef GetSelectedRefundOptionParam
+ * @property {string} shipmentId - Shipment Id
+ * @property {string} orderId - Order Id
+ */
 
 /**
  * @typedef GetUserBeneficiariesDetailParam
  * @property {string} orderId - A unique number used for identifying and
+ *   tracking your orders.
+ */
+
+/**
+ * @typedef GetUserBeneficiariesDetailV2Param
+ * @property {string} [orderId] - A unique number used for identifying and
+ *   tracking your orders.
+ * @property {string} [shipmentId] - A unique number used for identifying and
+ *   tracking your orders.
+ * @property {string} [mop] - Mode of payment for which beneficiary data required
+ */
+
+/**
+ * @typedef GetotpOrderBeneficiariesDetailParam
+ * @property {string} orderId - A unique number used for identifying and
+ *   tracking your orders.
+ * @property {string} requestHash - A unique number used for identifying and
  *   tracking your orders.
  */
 
@@ -187,7 +242,7 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef PollingPaymentLinkParam
- * @property {string} [paymentLinkId]
+ * @property {string} paymentLinkId
  */
 
 /**
@@ -214,8 +269,28 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  */
 
 /**
+ * @typedef SetRefundOptionforShipmentParam
+ * @property {PaymentApplicationModel.ShipmentRefundRequest} body
+ */
+
+/**
+ * @typedef UpdateActiveCardsParam
+ * @property {PaymentApplicationModel.UpdateAggregatorCardRequest} body
+ */
+
+/**
  * @typedef UpdateDefaultBeneficiaryParam
  * @property {PaymentApplicationModel.SetDefaultBeneficiaryRequest} body
+ */
+
+/**
+ * @typedef UpdateUserCardParam
+ * @property {PaymentApplicationModel.UpdateAggregatorCardRequest} body
+ */
+
+/**
+ * @typedef ValidateBeneficiaryAddressParam
+ * @property {PaymentApplicationModel.ValidateValidateAddressRequest} body
  */
 
 /**
@@ -312,6 +387,13 @@ class PaymentApplicationValidator {
     });
   }
 
+  /** @returns {ConfirmPaymentParam} */
+  static confirmPayment() {
+    return Joi.object({
+      body: PaymentApplicationModel.PaymentConfirmationRequest().required(),
+    }).required();
+  }
+
   /** @returns {CreateOrderHandlerPaymentLinkParam} */
   static createOrderHandlerPaymentLink() {
     return Joi.object({
@@ -344,6 +426,13 @@ class PaymentApplicationValidator {
   static customerOnboard() {
     return Joi.object({
       body: PaymentApplicationModel.CustomerOnboardingRequest().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteBeneficiaryDetailsParam} */
+  static deleteBeneficiaryDetails() {
+    return Joi.object({
+      beneficiaryId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -395,6 +484,13 @@ class PaymentApplicationValidator {
     });
   }
 
+  /** @returns {GetBenficiaryOrderParam} */
+  static getBenficiaryOrder() {
+    return Joi.object({
+      body: PaymentApplicationModel.RefundOrderBenRequest().required(),
+    }).required();
+  }
+
   /** @returns {GetEpaylaterBannerDetailsParam} */
   static getEpaylaterBannerDetails() {
     return Joi.object({});
@@ -412,6 +508,14 @@ class PaymentApplicationValidator {
     return Joi.object({
       paymentLinkId: Joi.string().allow(""),
     });
+  }
+
+  /** @returns {GetPaymentLinkIdParam} */
+  static getPaymentLinkId() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      paymentLinkId: Joi.string().allow("").required(),
+    }).required();
   }
 
   /** @returns {GetPaymentModeRoutesParam} */
@@ -451,15 +555,50 @@ class PaymentApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetRefundOptionsParam} */
+  static getRefundOptions() {
+    return Joi.object({
+      configuration: Joi.string().allow("").required(),
+      productType: Joi.string().allow(""),
+      amount: Joi.string().allow(""),
+      orderType: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetRupifiBannerDetailsParam} */
   static getRupifiBannerDetails() {
     return Joi.object({});
+  }
+
+  /** @returns {GetSelectedRefundOptionParam} */
+  static getSelectedRefundOption() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      orderId: Joi.string().allow("").required(),
+    }).required();
   }
 
   /** @returns {GetUserBeneficiariesDetailParam} */
   static getUserBeneficiariesDetail() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetUserBeneficiariesDetailV2Param} */
+  static getUserBeneficiariesDetailV2() {
+    return Joi.object({
+      orderId: Joi.string().allow(""),
+      shipmentId: Joi.string().allow(""),
+      mop: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetotpOrderBeneficiariesDetailParam} */
+  static getotpOrderBeneficiariesDetail() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+      requestHash: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -501,8 +640,8 @@ class PaymentApplicationValidator {
   /** @returns {PollingPaymentLinkParam} */
   static pollingPaymentLink() {
     return Joi.object({
-      paymentLinkId: Joi.string().allow(""),
-    });
+      paymentLinkId: Joi.string().allow("").required(),
+    }).required();
   }
 
   /** @returns {RedirectToAggregatorParam} */
@@ -534,10 +673,38 @@ class PaymentApplicationValidator {
     }).required();
   }
 
+  /** @returns {SetRefundOptionforShipmentParam} */
+  static setRefundOptionforShipment() {
+    return Joi.object({
+      body: PaymentApplicationModel.ShipmentRefundRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateActiveCardsParam} */
+  static updateActiveCards() {
+    return Joi.object({
+      body: PaymentApplicationModel.UpdateAggregatorCardRequest().required(),
+    }).required();
+  }
+
   /** @returns {UpdateDefaultBeneficiaryParam} */
   static updateDefaultBeneficiary() {
     return Joi.object({
       body: PaymentApplicationModel.SetDefaultBeneficiaryRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateUserCardParam} */
+  static updateUserCard() {
+    return Joi.object({
+      body: PaymentApplicationModel.UpdateAggregatorCardRequest().required(),
+    }).required();
+  }
+
+  /** @returns {ValidateBeneficiaryAddressParam} */
+  static validateBeneficiaryAddress() {
+    return Joi.object({
+      body: PaymentApplicationModel.ValidateValidateAddressRequest().required(),
     }).required();
   }
 

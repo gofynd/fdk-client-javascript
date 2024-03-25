@@ -8,5 +8,8 @@ declare class LeadValidator {
     static getTicketHistory(): any;
     static getTokenForVideoRoom(): any;
     static getVideoParticipants(): any;
+    static openVideoRoom(): any;
+    static closeVideoRoom(): any;
     static getGeneralConfig(): any;
+    static getPartnerGeneralConfig(): any;
 }

@@ -34,7 +34,7 @@ declare class Configuration {
      * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
      * @name getAppApiTokens
      * @summary: Get application API tokens.
-     * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
+     * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
      */
     getAppApiTokens({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.TokenResponse>;
     /**
@@ -61,6 +61,25 @@ declare class Configuration {
      * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
      */
     getAppCompanies({ uid, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetAppCompaniesParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.CompaniesResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     *   on Fynd Platform
+     * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+     *   application (sales channel website) created within a business account
+     * @param {number} [arg.uid] - UID of companies to be fetched
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @returns {Paginator<ConfigurationPlatformModel.CompaniesResponse>}
+     * @summary: Get application companies.
+     * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+     */
+    getAppCompaniesPaginator({ companyId, applicationId, uid, pageSize }?: {
+        companyId: number;
+        applicationId: string;
+        uid?: number;
+        pageSize?: number;
+    }): Paginator<ConfigurationPlatformModel.CompaniesResponse>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetAppContactInfoParam} arg
      *   - Arg object
@@ -113,6 +132,23 @@ declare class Configuration {
      */
     getAppStores({ pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetAppStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.StoresResponse>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     *   on Fynd Platform
+     * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+     *   application (sales channel website) created within a business account
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @returns {Paginator<ConfigurationPlatformModel.StoresResponse>}
+     * @summary: Get application stores.
+     * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+     */
+    getAppStoresPaginator({ companyId, applicationId, pageSize }?: {
+        companyId: number;
+        applicationId: string;
+        pageSize?: number;
+    }): Paginator<ConfigurationPlatformModel.StoresResponse>;
+    /**
      * @param {ConfigurationPlatformApplicationValidator.GetAppSupportedCurrencyParam} arg
      *   - Arg object
      *
@@ -131,12 +167,24 @@ declare class Configuration {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.ApplicationById>} - Success response
+     * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
      * @name getApplicationById
      * @summary: Get application by ID.
      * @description: Retrieve detailed information about a specific application. Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationById/).
      */
-    getApplicationById({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.ApplicationById>;
+    getApplicationById({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.Application>;
+    /**
+     * @param {ConfigurationPlatformApplicationValidator.GetApplicationConfigurationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigurationPlatformModel.OwnerAppConfig>} - Success response
+     * @name getApplicationConfiguration
+     * @summary: Get Application configuration.
+     * @description: Retrieve configuration details of inventory pricing_strategy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationConfiguration/).
+     */
+    getApplicationConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OwnerAppConfig>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetBuildConfigParam} arg
      *   - Arg object
@@ -220,10 +268,29 @@ declare class Configuration {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ConfigurationPlatformModel.OrderingStores>} - Success response
      * @name getOrderingStoresByFilter
-     * @summary: Get ordering stores by filter.
-     * @description: Retrieve ordering stores based on specified filters. Use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoresByFilter/).
+     * @summary: Get ordering store by filter
+     * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoresByFilter/).
      */
     getOrderingStoresByFilter({ body, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStores>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     *   on Fynd Platform
+     * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+     *   application (sales channel website) created within a business account
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {ConfigurationPlatformModel.FilterOrderingStoreRequest} arg.body
+     * @returns {Paginator<ConfigurationPlatformModel.OrderingStores>}
+     * @summary: Get ordering store by filter
+     * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+     */
+    getOrderingStoresByFilterPaginator({ companyId, applicationId, pageSize, body, }?: {
+        companyId: number;
+        applicationId: string;
+        pageSize?: number;
+        body: ConfigurationPlatformModel.FilterOrderingStoreRequest;
+    }): Paginator<ConfigurationPlatformModel.OrderingStores>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.GetPreviousVersionsParam} arg
      *   - Arg object
@@ -246,10 +313,29 @@ declare class Configuration {
      * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponse>} -
      *   Success response
      * @name getStaffOrderingStores
-     * @summary: Get staff ordering stores.
-     * @description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStaffOrderingStores/).
+     * @summary: Get deployment stores
+     * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStaffOrderingStores/).
      */
     getStaffOrderingStores({ pageNo, pageSize, q, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStoresResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     *   on Fynd Platform
+     * @param {string} arg.applicationId - Alphanumeric ID allotted to an
+     *   application (sales channel website) created within a business account
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {string} [arg.q] - Store code or name of the ordering store.
+     * @returns {Paginator<ConfigurationPlatformModel.OrderingStoresResponse>}
+     * @summary: Get deployment stores
+     * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+     */
+    getStaffOrderingStoresPaginator({ companyId, applicationId, pageSize, q, }?: {
+        companyId: number;
+        applicationId: string;
+        pageSize?: number;
+        q?: string;
+    }): Paginator<ConfigurationPlatformModel.OrderingStoresResponse>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
      *   - Arg object
@@ -402,5 +488,6 @@ declare class Configuration {
      */
     updateOrderingStoreConfig({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.UpdateOrderingStoreConfigParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DeploymentMeta>;
 }
-import ConfigurationPlatformApplicationValidator = require("./ConfigurationPlatformApplicationValidator");
-import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
+import ConfigurationPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformApplicationValidator");
+import ConfigurationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

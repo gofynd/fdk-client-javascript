@@ -11,6 +11,7 @@ const Joi = require("joi");
  * @property {string} [_id]
  * @property {string} [updated_at]
  * @property {string} [created_at]
+ * @property {number} [__v]
  */
 
 /**
@@ -30,12 +31,14 @@ const Joi = require("joi");
  * @property {string} [_id]
  * @property {string} [robots_txt]
  * @property {boolean} [sitemap_enabled]
- * @property {string} [additonal_sitemap]
+ * @property {string} [additional_sitemap]
+ * @property {SEOSitemap} [sitemap]
  * @property {boolean} [cannonical_enabled]
  * @property {CustomMetaTag[]} [custom_meta_tags]
  * @property {Detail} [details]
  * @property {string} [created_at]
  * @property {string} [updated_at]
+ * @property {number} [__v]
  */
 
 /**
@@ -59,15 +62,17 @@ const Joi = require("joi");
 
 /**
  * @typedef SEOSchemaMarkupTemplate
- * @property {string} [id]
+ * @property {string} [_id]
  * @property {string} [title]
  * @property {string} [page_type]
  * @property {string} [description]
  * @property {string} [schema]
+ * @property {Object} [target_json]
  * @property {boolean} [active]
  * @property {string} [created_at]
  * @property {string} [updated_at]
  * @property {string} [application]
+ * @property {number} [__v]
  */
 
 /**
@@ -136,6 +141,7 @@ const Joi = require("joi");
  * @property {string} [reading_time]
  * @property {string} [slug]
  * @property {string[]} [tags]
+ * @property {string} [publish_date]
  * @property {SEO} [seo]
  * @property {CronSchedule} [_schedule]
  * @property {string} [title]
@@ -149,7 +155,7 @@ const Joi = require("joi");
  * @property {string} [title]
  * @property {SEOMetaItem[]} [meta_tags]
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {SEObreadcrumb[]} [breadcrumbs]
  * @property {string} [canonical_url]
  */
 
@@ -203,7 +209,6 @@ const Joi = require("joi");
 /**
  * @typedef Action
  * @property {ActionPage} [page]
- * @property {ActionPage} [popup]
  * @property {string} [type]
  */
 
@@ -212,7 +217,7 @@ const Joi = require("joi");
  * @property {Object} [params]
  * @property {Object} [query]
  * @property {string} [url]
- * @property {PageType} type
+ * @property {string} [type]
  */
 
 /**
@@ -227,24 +232,6 @@ const Joi = require("joi");
  * @property {string} [display]
  * @property {number} [sort_order]
  * @property {NavigationReference[]} [sub_navigation]
- */
-
-/**
- * @typedef ConfigurationSchema
- * @property {number} [sleep_time]
- * @property {boolean} [start_on_launch]
- * @property {number} [duration]
- * @property {string} [slide_direction]
- */
-
-/**
- * @typedef SlideshowMedia
- * @property {string} [type]
- * @property {string} [url]
- * @property {string} [bg_color]
- * @property {number} [duration]
- * @property {boolean} [auto_decide_duration]
- * @property {Action} [action]
  */
 
 /**
@@ -267,10 +254,16 @@ const Joi = require("joi");
  * @property {string} [service]
  * @property {string} [operation_id]
  * @property {string} [type]
+ * @property {boolean} [is_selected]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {string} [company]
+ * @property {string} [application]
  * @property {string} [url]
  * @property {string} [content]
  * @property {DataLoaderSourceSchema} [__source]
  * @property {string} [_id]
+ * @property {number} [__v]
  */
 
 /**
@@ -312,6 +305,7 @@ const Joi = require("joi");
  * @property {string} [application]
  * @property {string} [icon_url]
  * @property {Object} [_custom_json]
+ * @property {number} [__v]
  */
 
 /**
@@ -334,6 +328,7 @@ const Joi = require("joi");
  * @property {string} [application]
  * @property {string} [icon_url]
  * @property {Object} [_custom_json]
+ * @property {number} [__v]
  */
 
 /**
@@ -344,6 +339,7 @@ const Joi = require("joi");
  * @property {string} [question]
  * @property {string} [answer]
  * @property {string[]} [tags]
+ * @property {number} [__v]
  */
 
 /**
@@ -383,6 +379,7 @@ const Joi = require("joi");
  * @property {string} [application]
  * @property {boolean} [archived]
  * @property {Object} [_custom_json]
+ * @property {number} [__v]
  */
 
 /**
@@ -410,6 +407,7 @@ const Joi = require("joi");
  * @property {Orientation} [orientation]
  * @property {number} [version]
  * @property {NavigationReference[]} [navigation]
+ * @property {number} [__v]
  */
 
 /**
@@ -443,6 +441,14 @@ const Joi = require("joi");
  * @property {SEO} [seo]
  * @property {Object} [visibility]
  * @property {boolean} [archived]
+ * @property {number} [__v]
+ * @property {SanitizedContent[]} [sanitized_content]
+ */
+
+/**
+ * @typedef SanitizedContent
+ * @property {string} [type]
+ * @property {string} [value]
  */
 
 /**
@@ -456,26 +462,7 @@ const Joi = require("joi");
  * @property {string} [start]
  * @property {string} [end]
  * @property {number} [duration]
- */
-
-/**
- * @typedef SlideshowGetResponse
- * @property {SlideshowSchema[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef SlideshowSchema
- * @property {string} [_id]
- * @property {string} [slug]
- * @property {DateMeta} [date_meta]
- * @property {string} [application]
- * @property {string} [platform]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia[]} [media]
- * @property {boolean} [active]
- * @property {boolean} [archived]
- * @property {Object} [_custom_json]
+ * @property {NextSchedule[]} [next_schedule]
  */
 
 /**
@@ -524,7 +511,9 @@ const Joi = require("joi");
  * @typedef TagsSchema
  * @property {string} [application]
  * @property {string} [_id]
+ * @property {string} [company]
  * @property {TagSchema[]} [tags]
+ * @property {number} [__v]
  */
 
 /**
@@ -537,6 +526,7 @@ const Joi = require("joi");
  * @property {string} [position]
  * @property {Object} [attributes]
  * @property {string} [content]
+ * @property {string[]} [compatible_engines]
  * @property {Object[]} [pages]
  * @property {TagSourceSchema} [__source]
  */
@@ -548,22 +538,17 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CustomObjectFieldValue
- * @property {Object} [value]
- */
-
-/**
  * @typedef CustomObjectListItemDefinationSchema
  * @property {string} [_id]
  * @property {string} [name]
  * @property {string} [type]
+ * @property {string} [display_name_key]
  */
 
 /**
  * @typedef CustomObjectFieldSchema
  * @property {string} [_id]
  * @property {string} [key]
- * @property {CustomObjectFieldValue[]} [value]
  * @property {string} [type]
  * @property {string} [definition_id]
  */
@@ -572,15 +557,11 @@ const Joi = require("joi");
  * @typedef CustomObjectByIdSchema
  * @property {string} [_id]
  * @property {string} [status]
+ * @property {string} [slug]
  * @property {string} [display_name]
  * @property {CustomObjectListItemDefinationSchema} [definition]
  * @property {Object[]} [references]
  * @property {CustomObjectFieldSchema[]} [fields]
- */
-
-/**
- * @typedef CustomFieldValue
- * @property {Object} [value]
  */
 
 /**
@@ -590,7 +571,6 @@ const Joi = require("joi");
  * @property {string} [key]
  * @property {string} [resource]
  * @property {string} [creator]
- * @property {CustomFieldValue[]} [value]
  * @property {string} [resource_id]
  * @property {string} [type]
  * @property {boolean} [multi_value]
@@ -611,52 +591,61 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef {| "about-us"
- *   | "addresses"
- *   | "blog"
- *   | "brands"
- *   | "cards"
- *   | "cart"
- *   | "categories"
- *   | "brand"
- *   | "category"
- *   | "collection"
- *   | "collections"
- *   | "contact-us"
- *   | "external"
- *   | "faq"
- *   | "freshchat"
- *   | "home"
- *   | "notification-settings"
- *   | "orders"
- *   | "page"
- *   | "policy"
- *   | "product"
- *   | "product-request"
- *   | "products"
- *   | "profile"
- *   | "profile-order-shipment"
- *   | "profile-basic"
- *   | "profile-company"
- *   | "profile-emails"
- *   | "profile-phones"
- *   | "rate-us"
- *   | "refer-earn"
- *   | "settings"
- *   | "shared-cart"
- *   | "tnc"
- *   | "track-order"
- *   | "wishlist"
- *   | "sections"
- *   | "form"
- *   | "cart-delivery"
- *   | "cart-payment"
- *   | "cart-review"
- *   | "login"
- *   | "register"
- *   | "shipping-policy"
- *   | "return-policy"
- *   | "order-status"} PageType
+ * @typedef FieldValidations
+ * @property {string} [name]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef FieldDefinitionSchema
+ * @property {string} [_id]
+ * @property {string} [creator]
+ * @property {string} [resource]
+ * @property {string} [name]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {FieldValidations[]} [validations]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {boolean} [required]
+ * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [type_name]
+ * @property {number} [invalid_fields_count]
+ */
+
+/**
+ * @typedef CustomFieldDefinitionsSchema
+ * @property {FieldDefinitionSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CustomFieldDefinitionDetailResSchema
+ * @property {string} [creator]
+ * @property {string} [resource]
+ * @property {string} [name]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {boolean} [required]
+ * @property {boolean} [is_deleted]
+ * @property {string} [_id]
+ * @property {Object[]} [validations]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
  */
 
 class ContentApplicationModel {
@@ -672,6 +661,7 @@ class ContentApplicationModel {
       _id: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
+      __v: Joi.number(),
     });
   }
 
@@ -697,7 +687,8 @@ class ContentApplicationModel {
       _id: Joi.string().allow(""),
       robots_txt: Joi.string().allow(""),
       sitemap_enabled: Joi.boolean(),
-      additonal_sitemap: Joi.string().allow(""),
+      additional_sitemap: Joi.string().allow(""),
+      sitemap: ContentApplicationModel.SEOSitemap(),
       cannonical_enabled: Joi.boolean(),
       custom_meta_tags: Joi.array().items(
         ContentApplicationModel.CustomMetaTag()
@@ -705,6 +696,7 @@ class ContentApplicationModel {
       details: ContentApplicationModel.Detail(),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
+      __v: Joi.number(),
     });
   }
 
@@ -738,15 +730,17 @@ class ContentApplicationModel {
   /** @returns {SEOSchemaMarkupTemplate} */
   static SEOSchemaMarkupTemplate() {
     return Joi.object({
-      id: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
       title: Joi.string().allow(""),
       page_type: Joi.string().allow(""),
       description: Joi.string().allow(""),
       schema: Joi.string().allow(""),
+      target_json: Joi.object().pattern(/\S/, Joi.any()),
       active: Joi.boolean(),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       application: Joi.string().allow(""),
+      __v: Joi.number(),
     });
   }
 
@@ -833,6 +827,7 @@ class ContentApplicationModel {
       reading_time: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
+      publish_date: Joi.string().allow(""),
       seo: ContentApplicationModel.SEO(),
       _schedule: ContentApplicationModel.CronSchedule(),
       title: Joi.string().allow(""),
@@ -848,7 +843,7 @@ class ContentApplicationModel {
       title: Joi.string().allow(""),
       meta_tags: Joi.array().items(ContentApplicationModel.SEOMetaItem()),
       sitemap: ContentApplicationModel.SEOSitemap(),
-      breadcrumb: Joi.array().items(ContentApplicationModel.SEObreadcrumb()),
+      breadcrumbs: Joi.array().items(ContentApplicationModel.SEObreadcrumb()),
       canonical_url: Joi.string().allow(""),
     });
   }
@@ -920,7 +915,6 @@ class ContentApplicationModel {
   static Action() {
     return Joi.object({
       page: ContentApplicationModel.ActionPage(),
-      popup: ContentApplicationModel.ActionPage(),
       type: Joi.string().allow(""),
     });
   }
@@ -937,7 +931,7 @@ class ContentApplicationModel {
         Joi.array().items(Joi.string().allow(""))
       ),
       url: Joi.string().allow(""),
-      type: ContentApplicationModel.PageType().required(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -955,28 +949,6 @@ class ContentApplicationModel {
       sort_order: Joi.number(),
       sub_navigation: Joi.array().items(Joi.link("#NavigationReference")),
     }).id("NavigationReference");
-  }
-
-  /** @returns {ConfigurationSchema} */
-  static ConfigurationSchema() {
-    return Joi.object({
-      sleep_time: Joi.number(),
-      start_on_launch: Joi.boolean(),
-      duration: Joi.number(),
-      slide_direction: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SlideshowMedia} */
-  static SlideshowMedia() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-      bg_color: Joi.string().allow(""),
-      duration: Joi.number(),
-      auto_decide_duration: Joi.boolean(),
-      action: ContentApplicationModel.Action(),
-    });
   }
 
   /** @returns {AnnouncementsResponseSchema} */
@@ -1005,10 +977,16 @@ class ContentApplicationModel {
       service: Joi.string().allow(""),
       operation_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
+      is_selected: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      company: Joi.string().allow(""),
+      application: Joi.string().allow(""),
       url: Joi.string().allow(""),
       content: Joi.string().allow(""),
       __source: ContentApplicationModel.DataLoaderSourceSchema(),
       _id: Joi.string().allow(""),
+      __v: Joi.number(),
     });
   }
 
@@ -1060,6 +1038,7 @@ class ContentApplicationModel {
       application: Joi.string().allow(""),
       icon_url: Joi.string().allow(""),
       _custom_json: Joi.any(),
+      __v: Joi.number(),
     });
   }
 
@@ -1086,6 +1065,7 @@ class ContentApplicationModel {
       application: Joi.string().allow(""),
       icon_url: Joi.string().allow(""),
       _custom_json: Joi.any(),
+      __v: Joi.number(),
     });
   }
 
@@ -1098,6 +1078,7 @@ class ContentApplicationModel {
       question: Joi.string().allow(""),
       answer: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
+      __v: Joi.number(),
     });
   }
 
@@ -1147,6 +1128,7 @@ class ContentApplicationModel {
       application: Joi.string().allow(""),
       archived: Joi.boolean(),
       _custom_json: Joi.any(),
+      __v: Joi.number(),
     });
   }
 
@@ -1182,6 +1164,7 @@ class ContentApplicationModel {
       navigation: Joi.array().items(
         ContentApplicationModel.NavigationReference()
       ),
+      __v: Joi.number(),
     });
   }
 
@@ -1218,6 +1201,18 @@ class ContentApplicationModel {
       seo: ContentApplicationModel.SEO(),
       visibility: Joi.any(),
       archived: Joi.boolean(),
+      __v: Joi.number(),
+      sanitized_content: Joi.array().items(
+        ContentApplicationModel.SanitizedContent()
+      ),
+    });
+  }
+
+  /** @returns {SanitizedContent} */
+  static SanitizedContent() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -1235,30 +1230,7 @@ class ContentApplicationModel {
       start: Joi.string().allow(""),
       end: Joi.string().allow(""),
       duration: Joi.number(),
-    });
-  }
-
-  /** @returns {SlideshowGetResponse} */
-  static SlideshowGetResponse() {
-    return Joi.object({
-      items: Joi.array().items(ContentApplicationModel.SlideshowSchema()),
-      page: ContentApplicationModel.Page(),
-    });
-  }
-
-  /** @returns {SlideshowSchema} */
-  static SlideshowSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-      date_meta: ContentApplicationModel.DateMeta(),
-      application: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
-      configuration: ContentApplicationModel.ConfigurationSchema(),
-      media: Joi.array().items(ContentApplicationModel.SlideshowMedia()),
-      active: Joi.boolean(),
-      archived: Joi.boolean(),
-      _custom_json: Joi.any(),
+      next_schedule: Joi.array().items(ContentApplicationModel.NextSchedule()),
     });
   }
 
@@ -1321,7 +1293,9 @@ class ContentApplicationModel {
     return Joi.object({
       application: Joi.string().allow(""),
       _id: Joi.string().allow(""),
+      company: Joi.string().allow(""),
       tags: Joi.array().items(ContentApplicationModel.TagSchema()),
+      __v: Joi.number(),
     });
   }
 
@@ -1336,6 +1310,7 @@ class ContentApplicationModel {
       position: Joi.string().allow(""),
       attributes: Joi.any(),
       content: Joi.string().allow(""),
+      compatible_engines: Joi.array().items(Joi.string().allow("")),
       pages: Joi.array().items(Joi.any()),
       __source: ContentApplicationModel.TagSourceSchema(),
     });
@@ -1349,19 +1324,13 @@ class ContentApplicationModel {
     });
   }
 
-  /** @returns {CustomObjectFieldValue} */
-  static CustomObjectFieldValue() {
-    return Joi.object({
-      value: Joi.any(),
-    });
-  }
-
   /** @returns {CustomObjectListItemDefinationSchema} */
   static CustomObjectListItemDefinationSchema() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       type: Joi.string().allow(""),
+      display_name_key: Joi.string().allow(""),
     });
   }
 
@@ -1370,9 +1339,6 @@ class ContentApplicationModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       key: Joi.string().allow(""),
-      value: Joi.array().items(
-        ContentApplicationModel.CustomObjectFieldValue()
-      ),
       type: Joi.string().allow(""),
       definition_id: Joi.string().allow(""),
     });
@@ -1383,19 +1349,13 @@ class ContentApplicationModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       status: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
       definition: ContentApplicationModel.CustomObjectListItemDefinationSchema(),
       references: Joi.array().items(Joi.any()),
       fields: Joi.array().items(
         ContentApplicationModel.CustomObjectFieldSchema()
       ),
-    });
-  }
-
-  /** @returns {CustomFieldValue} */
-  static CustomFieldValue() {
-    return Joi.object({
-      value: Joi.any(),
     });
   }
 
@@ -1407,7 +1367,6 @@ class ContentApplicationModel {
       key: Joi.string().allow(""),
       resource: Joi.string().allow(""),
       creator: Joi.string().allow(""),
-      value: Joi.array().items(ContentApplicationModel.CustomFieldValue()),
       resource_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
       multi_value: Joi.boolean(),
@@ -1430,105 +1389,72 @@ class ContentApplicationModel {
     });
   }
 
-  /**
-   * Enum: PageType Used By: Content
-   *
-   * @returns {PageType}
-   */
-  static PageType() {
-    return Joi.string().valid(
-      "about-us",
+  /** @returns {FieldValidations} */
+  static FieldValidations() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
 
-      "addresses",
+  /** @returns {FieldDefinitionSchema} */
+  static FieldDefinitionSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      creator: Joi.string().allow(""),
+      resource: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      namespace: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      multi_value: Joi.boolean(),
+      validations: Joi.array().items(
+        ContentApplicationModel.FieldValidations()
+      ),
+      company_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      required: Joi.boolean(),
+      is_deleted: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      type_name: Joi.string().allow(""),
+      invalid_fields_count: Joi.number(),
+    });
+  }
 
-      "blog",
+  /** @returns {CustomFieldDefinitionsSchema} */
+  static CustomFieldDefinitionsSchema() {
+    return Joi.object({
+      items: Joi.array().items(ContentApplicationModel.FieldDefinitionSchema()),
+      page: ContentApplicationModel.Page(),
+    });
+  }
 
-      "brands",
-
-      "cards",
-
-      "cart",
-
-      "categories",
-
-      "brand",
-
-      "category",
-
-      "collection",
-
-      "collections",
-
-      "contact-us",
-
-      "external",
-
-      "faq",
-
-      "freshchat",
-
-      "home",
-
-      "notification-settings",
-
-      "orders",
-
-      "page",
-
-      "policy",
-
-      "product",
-
-      "product-request",
-
-      "products",
-
-      "profile",
-
-      "profile-order-shipment",
-
-      "profile-basic",
-
-      "profile-company",
-
-      "profile-emails",
-
-      "profile-phones",
-
-      "rate-us",
-
-      "refer-earn",
-
-      "settings",
-
-      "shared-cart",
-
-      "tnc",
-
-      "track-order",
-
-      "wishlist",
-
-      "sections",
-
-      "form",
-
-      "cart-delivery",
-
-      "cart-payment",
-
-      "cart-review",
-
-      "login",
-
-      "register",
-
-      "shipping-policy",
-
-      "return-policy",
-
-      "order-status"
-    );
+  /** @returns {CustomFieldDefinitionDetailResSchema} */
+  static CustomFieldDefinitionDetailResSchema() {
+    return Joi.object({
+      creator: Joi.string().allow(""),
+      resource: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      namespace: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      multi_value: Joi.boolean(),
+      company_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      required: Joi.boolean(),
+      is_deleted: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      validations: Joi.array().items(Joi.any()),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
   }
 }
 module.exports = ContentApplicationModel;

@@ -9,6 +9,8 @@ const ThemeApplicationModel = require("./ThemeApplicationModel");
 
 /** @typedef GetAppliedThemeParam */
 
+/** @typedef GetAppliedThemeV1Param */
+
 /**
  * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
@@ -19,6 +21,11 @@ const ThemeApplicationModel = require("./ThemeApplicationModel");
 
 /**
  * @typedef GetThemeForPreviewParam
+ * @property {string} themeId - ID of the theme to be retrieved
+ */
+
+/**
+ * @typedef GetThemeForPreviewV1Param
  * @property {string} themeId - ID of the theme to be retrieved
  */
 
@@ -35,6 +42,11 @@ class ThemeApplicationValidator {
     return Joi.object({});
   }
 
+  /** @returns {GetAppliedThemeV1Param} */
+  static getAppliedThemeV1() {
+    return Joi.object({});
+  }
+
   /** @returns {GetPageParam} */
   static getPage() {
     return Joi.object({
@@ -47,6 +59,13 @@ class ThemeApplicationValidator {
 
   /** @returns {GetThemeForPreviewParam} */
   static getThemeForPreview() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetThemeForPreviewV1Param} */
+  static getThemeForPreviewV1() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();

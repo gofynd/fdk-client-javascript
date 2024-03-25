@@ -23,10 +23,6 @@ export = ServiceabilityPlatformValidator;
  * @typedef CreatePackageMaterialRuleParam
  * @property {ServiceabilityPlatformModel.PackageRule} body
  */
-/**
- * @typedef CreateZoneParam
- * @property {ServiceabilityPlatformModel.CreateZoneData} body
- */
 /** @typedef GetAllStoresParam */
 /**
  * @typedef GetBulkServiceabilityParam
@@ -68,10 +64,11 @@ export = ServiceabilityPlatformValidator;
  * @property {string} [stage] - Stage of the account. enabled/disabled
  * @property {string} [paymentMode] - Filters dp accounts based on payment mode
  * @property {string} [transportType] - Filters dp accounts based on transport_type
+ * @property {string[]} [accountIds] - Filters dp accounts based on their ids
  */
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
+ * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
  */
 /**
  * @typedef GetPackageMaterialListParam
@@ -104,23 +101,6 @@ export = ServiceabilityPlatformValidator;
  * @property {string} regionId - Unique identifier of a region
  */
 /**
- * @typedef GetZoneByIdParam
- * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
- */
-/**
- * @typedef GetZonesParam
- * @property {number} [pageNo] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {boolean} [isActive] - Status of Zone (either active or inactive)
- * @property {string} [channelId] - Zones filtered by an application
- * @property {string} [q] - Search with name as a free text
- * @property {string} [country] - ISO2 code of the country
- * @property {string} [state] - State name
- * @property {string} [city] - City name
- * @property {string} [pincode] - Pincode value to search zones
- * @property {string} [sector] - Sector value to search zones
- */
-/**
  * @typedef UpdateCompanyConfigurationParam
  * @property {ServiceabilityPlatformModel.CompanyConfig} body
  */
@@ -148,11 +128,6 @@ export = ServiceabilityPlatformValidator;
  * @property {string} regionId - Unique identifier of a region
  * @property {ServiceabilityPlatformModel.ServiceabilityModel} body
  */
-/**
- * @typedef UpdateZoneByIdParam
- * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
- * @property {ServiceabilityPlatformModel.UpdateZoneData} body
- */
 declare class ServiceabilityPlatformValidator {
     /** @returns {BulkServiceabilityParam} */
     static bulkServiceability(): BulkServiceabilityParam;
@@ -164,8 +139,6 @@ declare class ServiceabilityPlatformValidator {
     static createPackageMaterial(): CreatePackageMaterialParam;
     /** @returns {CreatePackageMaterialRuleParam} */
     static createPackageMaterialRule(): CreatePackageMaterialRuleParam;
-    /** @returns {CreateZoneParam} */
-    static createZone(): CreateZoneParam;
     /** @returns {GetAllStoresParam} */
     static getAllStores(): any;
     /** @returns {GetBulkServiceabilityParam} */
@@ -190,10 +163,6 @@ declare class ServiceabilityPlatformValidator {
     static getPackageMaterials(): GetPackageMaterialsParam;
     /** @returns {GetServiceabilityParam} */
     static getServiceability(): GetServiceabilityParam;
-    /** @returns {GetZoneByIdParam} */
-    static getZoneById(): GetZoneByIdParam;
-    /** @returns {GetZonesParam} */
-    static getZones(): GetZonesParam;
     /** @returns {UpdateCompanyConfigurationParam} */
     static updateCompanyConfiguration(): UpdateCompanyConfigurationParam;
     /** @returns {UpdateCourierPartnerAccountParam} */
@@ -204,11 +173,9 @@ declare class ServiceabilityPlatformValidator {
     static updatePackageMaterials(): UpdatePackageMaterialsParam;
     /** @returns {UpdateServiceabilityParam} */
     static updateServiceability(): UpdateServiceabilityParam;
-    /** @returns {UpdateZoneByIdParam} */
-    static updateZoneById(): UpdateZoneByIdParam;
 }
 declare namespace ServiceabilityPlatformValidator {
-    export { BulkServiceabilityParam, BulkTatParam, CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, CreateZoneParam, GetAllStoresParam, GetBulkServiceabilityParam, GetBulkTatParam, GetCompanyConfigurationParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRulesParam, GetPackageMaterialsParam, GetServiceabilityParam, GetZoneByIdParam, GetZonesParam, UpdateCompanyConfigurationParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, UpdateServiceabilityParam, UpdateZoneByIdParam };
+    export { BulkServiceabilityParam, BulkTatParam, CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, GetAllStoresParam, GetBulkServiceabilityParam, GetBulkTatParam, GetCompanyConfigurationParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRulesParam, GetPackageMaterialsParam, GetServiceabilityParam, UpdateCompanyConfigurationParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, UpdateServiceabilityParam };
 }
 type BulkServiceabilityParam = {
     /**
@@ -240,9 +207,6 @@ type CreatePackageMaterialParam = {
 };
 type CreatePackageMaterialRuleParam = {
     body: ServiceabilityPlatformModel.PackageRule;
-};
-type CreateZoneParam = {
-    body: ServiceabilityPlatformModel.CreateZoneData;
 };
 type GetBulkServiceabilityParam = {
     /**
@@ -363,9 +327,13 @@ type GetCourierPartnerAccountsParam = {
      * - Filters dp accounts based on transport_type
      */
     transportType?: string;
+    /**
+     * - Filters dp accounts based on their ids
+     */
+    accountIds?: string[];
 };
 type GetOptimalLocationsParam = {
-    body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema;
+    body: ServiceabilityPlatformModel.ReAssignStoreRequest;
 };
 type GetPackageMaterialListParam = {
     /**
@@ -431,54 +399,6 @@ type GetServiceabilityParam = {
      */
     regionId: string;
 };
-type GetZoneByIdParam = {
-    /**
-     * - A `zone_id` is a unique identifier for a particular zone.
-     */
-    zoneId: string;
-};
-type GetZonesParam = {
-    /**
-     * - Index of the item to start returning with
-     */
-    pageNo?: number;
-    /**
-     * - Determines the items to be displayed in a page
-     */
-    pageSize?: number;
-    /**
-     * - Status of Zone (either active or inactive)
-     */
-    isActive?: boolean;
-    /**
-     * - Zones filtered by an application
-     */
-    channelId?: string;
-    /**
-     * - Search with name as a free text
-     */
-    q?: string;
-    /**
-     * - ISO2 code of the country
-     */
-    country?: string;
-    /**
-     * - State name
-     */
-    state?: string;
-    /**
-     * - City name
-     */
-    city?: string;
-    /**
-     * - Pincode value to search zones
-     */
-    pincode?: string;
-    /**
-     * - Sector value to search zones
-     */
-    sector?: string;
-};
 type UpdateCompanyConfigurationParam = {
     body: ServiceabilityPlatformModel.CompanyConfig;
 };
@@ -520,13 +440,6 @@ type UpdateServiceabilityParam = {
     regionId: string;
     body: ServiceabilityPlatformModel.ServiceabilityModel;
 };
-type UpdateZoneByIdParam = {
-    /**
-     * - A `zone_id` is a unique identifier for a particular zone.
-     */
-    zoneId: string;
-    body: ServiceabilityPlatformModel.UpdateZoneData;
-};
 type GetAllStoresParam = any;
 type GetCompanyConfigurationParam = any;
-import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
+import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");

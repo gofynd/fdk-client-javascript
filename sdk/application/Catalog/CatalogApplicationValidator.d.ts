@@ -93,7 +93,7 @@ export = CatalogApplicationValidator;
  * @typedef GetFollowerCountByIdParam
  * @property {string} collectionType - Type of collection, i.e. products,
  *   brands, or collections.
- * @property {string} collectionId - The ID of the collection type.
+ * @property {number} collectionId - The ID of the collection type.
  */
 /**
  * @typedef GetHomeProductsParam
@@ -124,7 +124,7 @@ export = CatalogApplicationValidator;
 /**
  * @typedef GetProductBundlesBySlugParam
  * @property {string} [slug] - Product slug for which bundles need to be fetched.
- * @property {string} [id] - Product uid
+ * @property {number} [id] - Product uid
  */
 /**
  * @typedef GetProductComparisonBySlugsParam
@@ -148,6 +148,8 @@ export = CatalogApplicationValidator;
  *   /service/application/catalog/v1.0/products/sizes
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
+ * @property {string} [pincode] - The PIN Code of the area near which the
+ *   selling locations should be searched, e.g. 400059.
  * @property {number} [moq] - An Integer indication the Minimum Order Quantity
  *   of a product, e.g. 100.
  */
@@ -159,6 +161,8 @@ export = CatalogApplicationValidator;
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/sizes
+ * @property {string} [pincode] - The 6-digit PIN Code of the area near which
+ *   the selling locations should be searched, e.g. 400059
  * @property {string} [strategy] - Sort stores on the basis of strategy. eg,
  *   fast-delivery, low-price, optimal.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -175,7 +179,7 @@ export = CatalogApplicationValidator;
  */
 /**
  * @typedef GetProductStockByIdsParam
- * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed)
+ * @property {number} [itemId] - The Item ID of the product (Max. 50 allowed)
  * @property {string} [alu] - ALU of the product (limited upto 50 ALU identifier
  *   in a single request)
  * @property {string} [skuCode] - Stock-keeping Unit of the product (limited
@@ -242,7 +246,6 @@ export = CatalogApplicationValidator;
  *   to retreive the nearest stores, e.g. 72.8691788
  * @property {number} [longitude] - Longitude of the location from where one
  *   wants to retreive the nearest stores, e.g. 19.1174114
- * @property {string} [tags] - Search stores based on tags.
  */
 /**
  * @typedef UnfollowByIdParam
@@ -483,7 +486,7 @@ type GetFollowerCountByIdParam = {
     /**
      * - The ID of the collection type.
      */
-    collectionId: string;
+    collectionId: number;
 };
 type GetHomeProductsParam = {
     /**
@@ -549,7 +552,7 @@ type GetProductBundlesBySlugParam = {
     /**
      * - Product uid
      */
-    id?: string;
+    id?: number;
 };
 type GetProductComparisonBySlugsParam = {
     /**
@@ -586,6 +589,11 @@ type GetProductPriceBySlugParam = {
      */
     storeId?: number;
     /**
+     * - The PIN Code of the area near which the
+     * selling locations should be searched, e.g. 400059.
+     */
+    pincode?: string;
+    /**
      * - An Integer indication the Minimum Order Quantity
      * of a product, e.g. 100.
      */
@@ -604,6 +612,11 @@ type GetProductSellersBySlugParam = {
      * /service/application/catalog/v1.0/products/sizes
      */
     size: string;
+    /**
+     * - The 6-digit PIN Code of the area near which
+     * the selling locations should be searched, e.g. 400059
+     */
+    pincode?: string;
     /**
      * - Sort stores on the basis of strategy. eg,
      * fast-delivery, low-price, optimal.
@@ -636,7 +649,7 @@ type GetProductStockByIdsParam = {
     /**
      * - The Item ID of the product (Max. 50 allowed)
      */
-    itemId?: string;
+    itemId?: number;
     /**
      * - ALU of the product (limited upto 50 ALU identifier
      * in a single request)
@@ -772,10 +785,6 @@ type GetStoresParam = {
      * wants to retreive the nearest stores, e.g. 19.1174114
      */
     longitude?: number;
-    /**
-     * - Search stores based on tags.
-     */
-    tags?: string;
 };
 type UnfollowByIdParam = {
     /**

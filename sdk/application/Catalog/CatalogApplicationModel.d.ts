@@ -17,10 +17,20 @@ export = CatalogApplicationModel;
  * @property {string} [alt]
  */
 /**
+ * @typedef QueryParams
+ * @property {string[]} [category]
+ * @property {string[]} [brand]
+ * @property {string[]} [department]
+ */
+/**
+ * @typedef Params
+ * @property {string[]} [slug]
+ */
+/**
  * @typedef ProductListingActionPage
  * @property {string} [type]
- * @property {Object} [query]
- * @property {Object} [params]
+ * @property {QueryParams} [query]
+ * @property {Params} [params]
  */
 /**
  * @typedef ProductListingAction
@@ -33,7 +43,9 @@ export = CatalogApplicationModel;
  * @property {Media} [logo]
  * @property {string} [description]
  * @property {string} [name]
+ * @property {string} [type]
  * @property {ProductListingAction} [action]
+ * @property {Object} [_custom_json]
  */
 /**
  * @typedef ProductDepartment
@@ -50,7 +62,7 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef NetQuantity
- * @property {Object} [unit] - The unit of measurement used for the net quantity
+ * @property {string} [unit] - The unit of measurement used for the net quantity
  *   of the product.
  * @property {number} [value] - The value of the net quantity of the product.
  */
@@ -61,8 +73,37 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef ApplicationItemSEO
- * @property {Object} [title] - The SEO title of the item
- * @property {Object} [description] - The SEO description of the item
+ * @property {string} [title] - The SEO title of the item
+ * @property {string} [description] - The SEO description of the item
+ * @property {ApplicationItemSeoSitemap} [sitemap]
+ * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs]
+ * @property {ApplicationItemSeoMetaTags[]} [meta_tags]
+ * @property {string} [canonical_url] - The SEO canonical URL of the item
+ */
+/**
+ * @typedef ApplicationItemSeoSitemap
+ * @property {number} [priority] - The SEO priority of the item
+ * @property {string} [frequency] - The SEO frequency of the item
+ */
+/**
+ * @typedef ApplicationItemSeoAction
+ * @property {Object} [page] - The SEO page information of the item
+ * @property {string} [type] - The SEO type of the item
+ */
+/**
+ * @typedef ApplicationItemSeoBreadcrumbs
+ * @property {string} [url] - The SEO URL of the item
+ * @property {ApplicationItemSeoAction} [action]
+ */
+/**
+ * @typedef ApplicationItemSeoMetaTagItem
+ * @property {string} [key] - The SEO key of the item
+ * @property {string} [value] - The SEO value of the item
+ */
+/**
+ * @typedef ApplicationItemSeoMetaTags
+ * @property {string} [title] - The SEO title of the product
+ * @property {ApplicationItemSeoMetaTagItem[]} [items] - The SEO items for the product
  */
 /**
  * @typedef ProductDetailAttribute
@@ -95,6 +136,7 @@ export = CatalogApplicationModel;
  * @typedef ProductListingPrice
  * @property {Price} [effective]
  * @property {Price} [marked]
+ * @property {Price} [selling]
  */
 /**
  * @typedef ProductSizesPrice
@@ -105,6 +147,12 @@ export = CatalogApplicationModel;
 /**
  * @typedef ProductDetail
  * @property {number} [uid]
+ * @property {string[]} [sizes]
+ * @property {string[]} [identifiers]
+ * @property {boolean} [is_tryout]
+ * @property {string} [channel]
+ * @property {DiscountMeta} [discount_meta]
+ * @property {ProductVariantResponse[]} [variants]
  * @property {ProductDetailCustomOrder} [custom_order]
  * @property {ProductCategoryMap} [category_map]
  * @property {NetQuantity} [net_quantity]
@@ -141,10 +189,22 @@ export = CatalogApplicationModel;
  * @property {ProductBrand} [brand]
  * @property {ProductDepartment} [department]
  * @property {string} [teaser_tag]
+ * @property {Object} [promo_meta]
+ * @property {number} [no_of_boxes]
+ * @property {string} [template_tag]
+ * @property {boolean} [sellable]
+ */
+/**
+ * @typedef NotServiceableError
+ * @property {string} [message]
+ * @property {boolean} [is_serviceable]
  */
 /**
  * @typedef ErrorResponse
  * @property {string} [error]
+ * @property {Object} [errors]
+ * @property {number} [code]
+ * @property {string} [message]
  */
 /**
  * @typedef Dimension
@@ -162,7 +222,7 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef DiscountMeta
- * @property {boolean} timer - Determines whether the discount countdown is
+ * @property {boolean} [timer] - Determines whether the discount countdown is
  *   visible or not.
  * @property {number} [start_timer_in_minutes] - The time in minutes before the
  *   discount ends when the countdown timer should start.
@@ -217,6 +277,12 @@ export = CatalogApplicationModel;
  * @property {number} [count]
  */
 /**
+ * @typedef MOQ
+ * @property {number} [maximum]
+ * @property {number} [minimum]
+ * @property {number} [increment_unit]
+ */
+/**
  * @typedef ProductSizes
  * @property {ProductSize[]} [sizes]
  * @property {ProductSizesPrice} [price]
@@ -226,6 +292,10 @@ export = CatalogApplicationModel;
  * @property {string} [discount]
  * @property {ProductSizeStores} [stores]
  * @property {DiscountMeta} [discount_meta]
+ * @property {MOQ} [moq]
+ * @property {string[]} [tags]
+ * @property {Object} [custom_order]
+ * @property {string} [product_name]
  */
 /**
  * @typedef AttributeDetail
@@ -266,12 +336,14 @@ export = CatalogApplicationModel;
  * @property {string} [name]
  * @property {string} [value]
  * @property {string} [slug]
+ * @property {Object} [_custom_json]
  * @property {ProductListingAction} [action]
  */
 /**
  * @typedef ProductVariantResponse
  * @property {string} [display_type]
  * @property {string} [header]
+ * @property {string} [logo]
  * @property {ProductVariantItemResponse[]} [items]
  * @property {string} [key]
  */
@@ -304,16 +376,30 @@ export = CatalogApplicationModel;
  * @property {number} [count]
  */
 /**
+ * @typedef ArticleIdentifier
+ * @property {string} [ean]
+ * @property {string} [alu]
+ * @property {string} [upc]
+ * @property {string} [sku_code]
+ */
+/**
  * @typedef ProductStockStatusItem
  * @property {string} [uid]
  * @property {number} [quantity]
+ * @property {BrandItem} [brand]
+ * @property {string} [seller_identifier]
+ * @property {number} [price_effective]
+ * @property {number} [price_selling]
+ * @property {number} [price_marked]
+ * @property {DiscountMeta} [discount_meta]
+ * @property {Object} [discount_applied]
  * @property {StoreDetail} [store]
  * @property {string} [size]
  * @property {ProductStockPrice} [price]
  * @property {CompanyDetail} [company]
  * @property {number} [item_id]
  * @property {Seller} [seller]
- * @property {Object} [identifier]
+ * @property {ArticleIdentifier} [identifier]
  */
 /**
  * @typedef ProductStockStatusResponse
@@ -321,13 +407,14 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
  * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
  * @property {number} [size]
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [total]
+ * @property {string} type
+ * @property {number} [item_total]
  */
 /**
  * @typedef ProductStockPolling
@@ -344,6 +431,9 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef ProductListingDetail
+ * @property {boolean} [is_tryout]
+ * @property {string} [channel]
+ * @property {DiscountMeta} [discount_meta]
  * @property {number} [uid]
  * @property {ProductDetailCustomOrder} [custom_order]
  * @property {string[]} [sizes]
@@ -434,6 +524,7 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef BrandItem
+ * @property {number} [id]
  * @property {number} [uid]
  * @property {Media} [logo]
  * @property {string} [description]
@@ -456,6 +547,8 @@ export = CatalogApplicationModel;
  * @property {string} [description]
  * @property {ImageUrls} [banners]
  * @property {Object} [_custom_json]
+ * @property {string} [slug]
+ * @property {Object} [_app]
  * @property {string} [name]
  */
 /**
@@ -472,6 +565,7 @@ export = CatalogApplicationModel;
  * @property {string} [name]
  * @property {string} [slug]
  * @property {ProductListingAction} [action]
+ * @property {number} [priority]
  */
 /**
  * @typedef SecondLevelChild
@@ -482,6 +576,7 @@ export = CatalogApplicationModel;
  * @property {string} [name]
  * @property {string} [slug]
  * @property {ProductListingAction} [action]
+ * @property {number} [priority]
  */
 /**
  * @typedef Child
@@ -492,6 +587,7 @@ export = CatalogApplicationModel;
  * @property {string} [name]
  * @property {string} [slug]
  * @property {ProductListingAction} [action]
+ * @property {number} [priority]
  */
 /**
  * @typedef CategoryItems
@@ -501,6 +597,8 @@ export = CatalogApplicationModel;
  * @property {string} name
  * @property {string} slug
  * @property {ProductListingAction} action
+ * @property {number} [priority]
+ * @property {Object} [_custom_json]
  */
 /**
  * @typedef DepartmentCategoryTree
@@ -524,12 +622,14 @@ export = CatalogApplicationModel;
  * @property {ImageUrls} [banners]
  * @property {Object} [_custom_json]
  * @property {string} [name]
+ * @property {Object} [_app]
  */
 /**
  * @typedef HomeListingResponse
  * @property {ProductListingDetail[]} [items]
  * @property {Page} page
  * @property {string} [message]
+ * @property {string} [sort_on]
  */
 /**
  * @typedef Department
@@ -558,8 +658,22 @@ export = CatalogApplicationModel;
 /**
  * @typedef CollectionQuery
  * @property {string} op
- * @property {Object[]} value
+ * @property {string[]} value
  * @property {string} attribute
+ */
+/**
+ * @typedef NextSchedule
+ * @property {string} [start] - The start time of the next schedule
+ * @property {string} [end] - The end time of the next schedule
+ */
+/**
+ * @typedef Schedule
+ * @property {string} [cron] - The cron expression for the schedule
+ * @property {NextSchedule[]} [next_schedule] - List of next schedules
+ * @property {number} [duration] - The duration of the job in seconds
+ * @property {string} [start] - The start time of the job
+ * @property {string} [end] - The end time of the job
+ * @property {Object} [metadata]
  */
 /**
  * @typedef GetCollectionDetailNest
@@ -569,7 +683,6 @@ export = CatalogApplicationModel;
  * @property {Object} [meta]
  * @property {ImageUrls} [banners]
  * @property {Object} [cron]
- * @property {Object} [_schedule]
  * @property {CollectionQuery[]} [query]
  * @property {string} [description]
  * @property {string} [type]
@@ -583,8 +696,13 @@ export = CatalogApplicationModel;
  * @property {boolean} [allow_facets]
  * @property {Media} [logo]
  * @property {number} [priority]
- * @property {string[]} [tags]
+ * @property {string[]} [tag]
  * @property {string} [app_id]
+ * @property {boolean} [published]
+ * @property {string[]} [tags]
+ * @property {Object} [_locale_language]
+ * @property {Object} [seo]
+ * @property {Schedule} [_schedule]
  */
 /**
  * @typedef CollectionListingFilterTag
@@ -611,12 +729,18 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef CollectionDetailResponse
+ * @property {string} [uid]
+ * @property {boolean} [published]
+ * @property {string[]} [tags]
+ * @property {Object} [_locale_language]
+ * @property {Object} [seo]
+ * @property {ProductListingAction} [action]
  * @property {boolean} [is_active]
  * @property {string} [sort_on]
  * @property {Object} [meta]
  * @property {ImageUrls} [banners]
  * @property {Object} [cron]
- * @property {Object} [_schedule]
+ * @property {Schedule} [_schedule]
  * @property {CollectionQuery[]} [query]
  * @property {string} [description]
  * @property {string} [type]
@@ -667,13 +791,12 @@ export = CatalogApplicationModel;
  * @property {string} [store_email]
  * @property {string} [state]
  * @property {string} [country]
- * @property {number} [pincode]
+ * @property {string} [pincode]
  * @property {string} [city]
  * @property {string} [address]
  * @property {string} [store_code]
  * @property {LatLong} [lat_long]
  * @property {string} [name]
- * @property {string[]} [tags]
  */
 /**
  * @typedef StoreListingResponse
@@ -707,16 +830,22 @@ export = CatalogApplicationModel;
  * @property {SellerPhoneNumber} [mobile_no]
  */
 /**
+ * @typedef AddressLatLong
+ * @property {string} [type]
+ * @property {number[]} [coordinates]
+ */
+/**
  * @typedef StoreAddressSerializer
  * @property {number} [latitude]
  * @property {string} [state]
  * @property {string} [country]
  * @property {string} [landmark]
  * @property {string} [address1]
- * @property {number} [pincode]
+ * @property {string} [pincode]
  * @property {string} [city]
  * @property {number} [longitude]
  * @property {string} [address2]
+ * @property {AddressLatLong} [lat_long]
  */
 /**
  * @typedef AppStore
@@ -759,6 +888,9 @@ export = CatalogApplicationModel;
  * @property {Object} [_custom_json]
  * @property {string} [name]
  * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {number} [company_id]
+ * @property {string} [display_name]
+ * @property {string} [store_type]
  */
 /**
  * @typedef UserDetail
@@ -770,8 +902,8 @@ export = CatalogApplicationModel;
 /**
  * @typedef Size
  * @property {number} [quantity] - The quantity of this size available
- * @property {Object} [value] - The value of the size
- * @property {Object} [display] - The display string for the size
+ * @property {string} [value] - The value of the size
+ * @property {string} [display] - The display string for the size
  * @property {boolean} [is_available] - Whether or not this size is available
  */
 /**
@@ -779,31 +911,31 @@ export = CatalogApplicationModel;
  * @property {number} [max_effective] - The maximum effective price of the product group.
  * @property {number} [min_effective] - The minimum effective price of the product group.
  * @property {number} [min_marked] - The minimum marked price of the product group.
- * @property {Object} [currency] - The currency code for the prices.
+ * @property {string} [currency] - The currency code for the prices.
  * @property {number} [max_marked] - The maximum marked price of the product group.
  */
 /**
  * @typedef ProductDetails
- * @property {Object} [template_tag] - The template tag of the product
+ * @property {string} [template_tag] - The template tag of the product
  * @property {number} [rating_count] - The number of ratings the product has received
- * @property {Object} [image_nature] - The nature of the product's images
+ * @property {string} [image_nature] - The nature of the product's images
  * @property {boolean} [has_variant] - Whether or not the product has a variant
- * @property {Object} [description] - The long description of the product
+ * @property {string} [description] - The long description of the product
  * @property {boolean} [out_of_stock] - Whether or not the product is out of stock
  * @property {number} [hsn_code] - The HSN code of the product
  * @property {Object} [grouped_attributes] - A dictionary of grouped product attributes
- * @property {Object} [item_code] - The item code of the product
- * @property {Object} [name] - The name of the product
- * @property {Object} [country_of_origin] - The country of origin for the product
- * @property {Object} [short_description] - The short description of the product
+ * @property {string} [item_code] - The item code of the product
+ * @property {string} [name] - The name of the product
+ * @property {string} [country_of_origin] - The country of origin for the product
+ * @property {string} [short_description] - The short description of the product
  * @property {Object[]} [media] - A list of media objects for the product
  * @property {Object} [attributes] - A dictionary of product attributes
  * @property {boolean} [is_set] - Whether or not the product is a set of items
- * @property {Object[]} [images] - A list of image URLs for the product
- * @property {Object} [slug] - The slug of the product
+ * @property {string[]} [images] - A list of image URLs for the product
+ * @property {string} [slug] - The slug of the product
  * @property {number} [rating] - The rating of the product
  * @property {Object} [identifier] - A dictionary of product identifiers
- * @property {Object[]} [highlights] - A list of highlights for the product
+ * @property {string[]} [highlights] - A list of highlights for the product
  * @property {number} [brand_uid] - The unique ID of the product's brand
  */
 /**
@@ -813,10 +945,10 @@ export = CatalogApplicationModel;
  * @property {number} max_quantity - The maximum quantity of the product that
  *   can be added to the cart.
  * @property {Size[]} [sizes] - The available sizes for the product.
- * @property {ProductGroupPrice} [price] - The price details for the product group.
+ * @property {ProductGroupPrice} [price]
  * @property {boolean} [auto_select] - A flag indicating whether the product
  *   should be automatically selected.
- * @property {ProductDetails} [product_details] - The details of the product.
+ * @property {string} [product_details] - The details of the product.
  * @property {number} [min_quantity] - The minimum quantity of the product that
  *   can be added to the cart.
  * @property {boolean} [allow_remove] - A flag indicating whether the product
@@ -828,23 +960,22 @@ export = CatalogApplicationModel;
  * @property {string} [logo] - The URL for the logo of the product grouping.
  * @property {boolean} [is_active] - Whether the product grouping is active.
  * @property {Object} [meta] - A dictionary containing metadata information.
- * @property {UserDetail} [verified_by] - User details of the verifier of the
+ * @property {string} [verified_by] - User details of the verifier of the
  *   document, if applicable
  * @property {string} created_on - Timestamp of the creation of the document
  * @property {number} [company_id] - The ID of the company that owns the product grouping.
- * @property {Object[]} [page_visibility] - A list of page visibilities of the
+ * @property {string[]} [page_visibility] - A list of page visibilities of the
  *   product grouping.
  * @property {string} modified_on - Timestamp of the last modification of the document
- * @property {UserDetail} [created_by] - User details of the creator of the document
- * @property {UserDetail} [modified_by] - User details of the last modifier of
- *   the document
+ * @property {Object} [created_by] - User details of the creator of the document
+ * @property {Object} [modified_by] - User details of the last modifier of the document
  * @property {ProductInGroup[]} products - A list of products in the grouping.
  * @property {boolean} [same_store_assignment] - Whether the products are
  *   assigned to the same store.
- * @property {Object} [_id]
- * @property {Object} name - The name of the product grouping.
- * @property {Object} [choice] - The choice of the product grouping.
- * @property {Object} [slug] - The unique identifier for the product grouping.
+ * @property {string} [_id]
+ * @property {string} name - The name of the product grouping.
+ * @property {string} [choice] - The choice of the product grouping.
+ * @property {string} [slug] - The unique identifier for the product grouping.
  * @property {string} [verified_on] - Timestamp of when the document was
  *   verified, if applicable
  */
@@ -866,7 +997,7 @@ export = CatalogApplicationModel;
 /**
  * @typedef StrategyWiseListingSchemaV3
  * @property {number} [distance]
- * @property {number} [pincode]
+ * @property {string} [pincode]
  * @property {number} [tat]
  * @property {number} [quantity]
  */
@@ -936,7 +1067,7 @@ export = CatalogApplicationModel;
  * @property {string} [max]
  */
 /**
- * @typedef ProductSizePriceResponseV3
+ * @typedef ProductSizePriceResponseV4
  * @property {StoreV3} [store]
  * @property {ArticleAssignmentV3} [article_assignment]
  * @property {boolean} [is_cod]
@@ -948,35 +1079,38 @@ export = CatalogApplicationModel;
  * @property {string} [article_id]
  * @property {boolean} [is_gift]
  * @property {ProductSetV3} [set]
- * @property {number} [seller_count]
  * @property {ProductStockPriceV3} [price_per_piece]
  * @property {DiscountMeta} [discount_meta]
  * @property {string} [discount]
  * @property {number[]} [long_lat]
- * @property {string} [special_badge]
  * @property {ProductStockPriceV3} [price]
  * @property {ProductStockUnitPriceV3} [price_per_unit]
- * @property {number} [pincode]
+ * @property {string} [pincode]
+ * @property {string[]} [trader]
+ * @property {string[]} [tags]
+ * @property {boolean} [is_serviceable]
  * @property {MarketPlaceSttributesSchemaV3[]} [marketplace_attributes]
  * @property {SellerV3} [seller]
  * @property {PromiseSchema} [delivery_promise]
+ * @property {string} [product_name]
+ * @property {Object} [_custom_json]
  */
 /**
- * @typedef ProductSizeSellerFilterSchemaV3
+ * @typedef ProductSizeSellerFilterSchemaV4
  * @property {string} [name]
  * @property {boolean} [is_selected]
  * @property {string} [value]
  */
 /**
- * @typedef ProductSizeSellersResponseV3
- * @property {ProductSizePriceResponseV3[]} [items]
+ * @typedef ProductSizeSellersResponseV4
+ * @property {ProductSizePriceResponseV4[]} [items]
  * @property {Page} page
- * @property {ProductSizeSellerFilterSchemaV3[]} [sort_on]
+ * @property {ProductSizeSellerFilterSchemaV4[]} [sort_on]
  */
 declare class CatalogApplicationModel {
 }
 declare namespace CatalogApplicationModel {
-    export { ProductDetailCustomOrder, Meta, Media, ProductListingActionPage, ProductListingAction, ProductBrand, ProductDepartment, ProductCategoryMap, NetQuantity, CustomMetaFields, ApplicationItemSEO, ProductDetailAttribute, ProductDetailGroupedAttribute, ApplicationItemMOQ, Price, ProductListingPrice, ProductSizesPrice, ProductDetail, ErrorResponse, Dimension, Weight, DiscountMeta, ProductSize, SizeChartValues, ColumnHeader, ColumnHeaders, SizeChart, ProductSizeStores, ProductSizes, AttributeDetail, AttributeMetadata, ProductsComparisonResponse, ProductCompareResponse, ProductFrequentlyComparedSimilarResponse, ProductVariantItemResponse, ProductVariantResponse, ProductVariantsResponse, StoreDetail, ProductStockPrice, CompanyDetail, Seller, ProductStockStatusItem, ProductStockStatusResponse, Page, ProductStockPolling, ProductVariantListingResponse, ProductListingDetail, ProductFiltersValue, ProductFiltersKey, ProductFilters, ProductSortOn, ProductListingResponse, ImageUrls, BrandItem, BrandListingResponse, BrandDetailResponse, CategoryBanner, ThirdLevelChild, SecondLevelChild, Child, CategoryItems, DepartmentCategoryTree, DepartmentIdentifier, CategoryListingResponse, CategoryMetaResponse, HomeListingResponse, Department, DepartmentResponse, AutocompleteItem, AutoCompleteResponse, CollectionQuery, GetCollectionDetailNest, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, GetCollectionListingResponse, CollectionDetailResponse, GetFollowListingResponse, FollowPostResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, LatLong, Store, StoreListingResponse, StoreDepartments, CompanyStore, SellerPhoneNumber, StoreManagerSerializer, StoreAddressSerializer, AppStore, ApplicationStoreListing, Time, StoreTiming, StoreDetails, UserDetail, Size, ProductGroupPrice, ProductDetails, ProductInGroup, ProductGroupingModel, ProductBundle, StoreV3, ArticleAssignmentV3, StrategyWiseListingSchemaV3, DetailsSchemaV3, SellerGroupAttributes, ReturnConfigSchemaV3, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductStockPriceV3, ProductStockUnitPriceV3, MarketPlaceSttributesSchemaV3, SellerV3, PromiseSchema, ProductSizePriceResponseV3, ProductSizeSellerFilterSchemaV3, ProductSizeSellersResponseV3 };
+    export { ProductDetailCustomOrder, Meta, Media, QueryParams, Params, ProductListingActionPage, ProductListingAction, ProductBrand, ProductDepartment, ProductCategoryMap, NetQuantity, CustomMetaFields, ApplicationItemSEO, ApplicationItemSeoSitemap, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, ProductDetailAttribute, ProductDetailGroupedAttribute, ApplicationItemMOQ, Price, ProductListingPrice, ProductSizesPrice, ProductDetail, NotServiceableError, ErrorResponse, Dimension, Weight, DiscountMeta, ProductSize, SizeChartValues, ColumnHeader, ColumnHeaders, SizeChart, ProductSizeStores, MOQ, ProductSizes, AttributeDetail, AttributeMetadata, ProductsComparisonResponse, ProductCompareResponse, ProductFrequentlyComparedSimilarResponse, ProductVariantItemResponse, ProductVariantResponse, ProductVariantsResponse, StoreDetail, ProductStockPrice, CompanyDetail, Seller, ArticleIdentifier, ProductStockStatusItem, ProductStockStatusResponse, Page, ProductStockPolling, ProductVariantListingResponse, ProductListingDetail, ProductFiltersValue, ProductFiltersKey, ProductFilters, ProductSortOn, ProductListingResponse, ImageUrls, BrandItem, BrandListingResponse, BrandDetailResponse, CategoryBanner, ThirdLevelChild, SecondLevelChild, Child, CategoryItems, DepartmentCategoryTree, DepartmentIdentifier, CategoryListingResponse, CategoryMetaResponse, HomeListingResponse, Department, DepartmentResponse, AutocompleteItem, AutoCompleteResponse, CollectionQuery, NextSchedule, Schedule, GetCollectionDetailNest, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, GetCollectionListingResponse, CollectionDetailResponse, GetFollowListingResponse, FollowPostResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, LatLong, Store, StoreListingResponse, StoreDepartments, CompanyStore, SellerPhoneNumber, StoreManagerSerializer, AddressLatLong, StoreAddressSerializer, AppStore, ApplicationStoreListing, Time, StoreTiming, StoreDetails, UserDetail, Size, ProductGroupPrice, ProductDetails, ProductInGroup, ProductGroupingModel, ProductBundle, StoreV3, ArticleAssignmentV3, StrategyWiseListingSchemaV3, DetailsSchemaV3, SellerGroupAttributes, ReturnConfigSchemaV3, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductStockPriceV3, ProductStockUnitPriceV3, MarketPlaceSttributesSchemaV3, SellerV3, PromiseSchema, ProductSizePriceResponseV4, ProductSizeSellerFilterSchemaV4, ProductSizeSellersResponseV4 };
 }
 /** @returns {ProductDetailCustomOrder} */
 declare function ProductDetailCustomOrder(): ProductDetailCustomOrder;
@@ -998,12 +1132,24 @@ type Media = {
     meta?: Meta;
     alt?: string;
 };
+/** @returns {QueryParams} */
+declare function QueryParams(): QueryParams;
+type QueryParams = {
+    category?: string[];
+    brand?: string[];
+    department?: string[];
+};
+/** @returns {Params} */
+declare function Params(): Params;
+type Params = {
+    slug?: string[];
+};
 /** @returns {ProductListingActionPage} */
 declare function ProductListingActionPage(): ProductListingActionPage;
 type ProductListingActionPage = {
     type?: string;
-    query?: any;
-    params?: any;
+    query?: QueryParams;
+    params?: Params;
 };
 /** @returns {ProductListingAction} */
 declare function ProductListingAction(): ProductListingAction;
@@ -1018,7 +1164,9 @@ type ProductBrand = {
     logo?: Media;
     description?: string;
     name?: string;
+    type?: string;
     action?: ProductListingAction;
+    _custom_json?: any;
 };
 /** @returns {ProductDepartment} */
 declare function ProductDepartment(): ProductDepartment;
@@ -1042,7 +1190,7 @@ type NetQuantity = {
      * - The unit of measurement used for the net quantity
      * of the product.
      */
-    unit?: any;
+    unit?: string;
     /**
      * - The value of the net quantity of the product.
      */
@@ -1066,11 +1214,75 @@ type ApplicationItemSEO = {
     /**
      * - The SEO title of the item
      */
-    title?: any;
+    title?: string;
     /**
      * - The SEO description of the item
      */
-    description?: any;
+    description?: string;
+    sitemap?: ApplicationItemSeoSitemap;
+    breadcrumbs?: ApplicationItemSeoBreadcrumbs[];
+    meta_tags?: ApplicationItemSeoMetaTags[];
+    /**
+     * - The SEO canonical URL of the item
+     */
+    canonical_url?: string;
+};
+/** @returns {ApplicationItemSeoSitemap} */
+declare function ApplicationItemSeoSitemap(): ApplicationItemSeoSitemap;
+type ApplicationItemSeoSitemap = {
+    /**
+     * - The SEO priority of the item
+     */
+    priority?: number;
+    /**
+     * - The SEO frequency of the item
+     */
+    frequency?: string;
+};
+/** @returns {ApplicationItemSeoAction} */
+declare function ApplicationItemSeoAction(): ApplicationItemSeoAction;
+type ApplicationItemSeoAction = {
+    /**
+     * - The SEO page information of the item
+     */
+    page?: any;
+    /**
+     * - The SEO type of the item
+     */
+    type?: string;
+};
+/** @returns {ApplicationItemSeoBreadcrumbs} */
+declare function ApplicationItemSeoBreadcrumbs(): ApplicationItemSeoBreadcrumbs;
+type ApplicationItemSeoBreadcrumbs = {
+    /**
+     * - The SEO URL of the item
+     */
+    url?: string;
+    action?: ApplicationItemSeoAction;
+};
+/** @returns {ApplicationItemSeoMetaTagItem} */
+declare function ApplicationItemSeoMetaTagItem(): ApplicationItemSeoMetaTagItem;
+type ApplicationItemSeoMetaTagItem = {
+    /**
+     * - The SEO key of the item
+     */
+    key?: string;
+    /**
+     * - The SEO value of the item
+     */
+    value?: string;
+};
+/** @returns {ApplicationItemSeoMetaTags} */
+declare function ApplicationItemSeoMetaTags(): ApplicationItemSeoMetaTags;
+type ApplicationItemSeoMetaTags = {
+    /**
+     * - The SEO title of the product
+     */
+    title?: string;
+    /**
+     * - The SEO items for the product
+     */
+    items?: ApplicationItemSeoMetaTagItem[];
 };
 /** @returns {ProductDetailAttribute} */
 declare function ProductDetailAttribute(): ProductDetailAttribute;
@@ -1129,6 +1341,7 @@ declare function ProductListingPrice(): ProductListingPrice;
 type ProductListingPrice = {
     effective?: Price;
     marked?: Price;
+    selling?: Price;
 };
 /** @returns {ProductSizesPrice} */
 declare function ProductSizesPrice(): ProductSizesPrice;
@@ -1141,6 +1354,12 @@ type ProductSizesPrice = {
 declare function ProductDetail(): ProductDetail;
 type ProductDetail = {
     uid?: number;
+    sizes?: string[];
+    identifiers?: string[];
+    is_tryout?: boolean;
+    channel?: string;
+    discount_meta?: DiscountMeta;
+    variants?: ProductVariantResponse[];
     custom_order?: ProductDetailCustomOrder;
     category_map?: ProductCategoryMap;
     net_quantity?: NetQuantity;
@@ -1177,11 +1396,24 @@ type ProductDetail = {
     brand?: ProductBrand;
     department?: ProductDepartment;
     teaser_tag?: string;
+    promo_meta?: any;
+    no_of_boxes?: number;
+    template_tag?: string;
+    sellable?: boolean;
+};
+/** @returns {NotServiceableError} */
+declare function NotServiceableError(): NotServiceableError;
+type NotServiceableError = {
+    message?: string;
+    is_serviceable?: boolean;
 };
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
     error?: string;
+    errors?: any;
+    code?: number;
+    message?: string;
 };
 /** @returns {Dimension} */
 declare function Dimension(): Dimension;
@@ -1230,7 +1462,7 @@ type DiscountMeta = {
      * - Determines whether the discount countdown is
      * visible or not.
      */
-    timer: boolean;
+    timer?: boolean;
     /**
      * - The time in minutes before the
      * discount ends when the countdown timer should start.
@@ -1298,6 +1530,13 @@ declare function ProductSizeStores(): ProductSizeStores;
 type ProductSizeStores = {
     count?: number;
 };
+/** @returns {MOQ} */
+declare function MOQ(): MOQ;
+type MOQ = {
+    maximum?: number;
+    minimum?: number;
+    increment_unit?: number;
+};
 /** @returns {ProductSizes} */
 declare function ProductSizes(): ProductSizes;
 type ProductSizes = {
@@ -1309,6 +1548,10 @@ type ProductSizes = {
     discount?: string;
     stores?: ProductSizeStores;
     discount_meta?: DiscountMeta;
+    moq?: MOQ;
+    tags?: string[];
+    custom_order?: any;
+    product_name?: string;
 };
 /** @returns {AttributeDetail} */
 declare function AttributeDetail(): AttributeDetail;
@@ -1355,6 +1598,7 @@ type ProductVariantItemResponse = {
     name?: string;
     value?: string;
     slug?: string;
+    _custom_json?: any;
     action?: ProductListingAction;
 };
 /** @returns {ProductVariantResponse} */
@@ -1362,6 +1606,7 @@ declare function ProductVariantResponse(): ProductVariantResponse;
 type ProductVariantResponse = {
     display_type?: string;
     header?: string;
+    logo?: string;
     items?: ProductVariantItemResponse[];
     key?: string;
 };
@@ -1398,18 +1643,33 @@ type Seller = {
     name?: string;
     count?: number;
 };
+/** @returns {ArticleIdentifier} */
+declare function ArticleIdentifier(): ArticleIdentifier;
+type ArticleIdentifier = {
+    ean?: string;
+    alu?: string;
+    upc?: string;
+    sku_code?: string;
+};
 /** @returns {ProductStockStatusItem} */
 declare function ProductStockStatusItem(): ProductStockStatusItem;
 type ProductStockStatusItem = {
     uid?: string;
     quantity?: number;
+    brand?: BrandItem;
+    seller_identifier?: string;
+    price_effective?: number;
+    price_selling?: number;
+    price_marked?: number;
+    discount_meta?: DiscountMeta;
+    discount_applied?: any;
     store?: StoreDetail;
     size?: string;
     price?: ProductStockPrice;
     company?: CompanyDetail;
     item_id?: number;
     seller?: Seller;
-    identifier?: any;
+    identifier?: ArticleIdentifier;
 };
 /** @returns {ProductStockStatusResponse} */
 declare function ProductStockStatusResponse(): ProductStockStatusResponse;
@@ -1419,13 +1679,14 @@ type ProductStockStatusResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
     next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
     size?: number;
+    current?: number;
+    has_next?: boolean;
+    has_previous?: boolean;
+    total?: number;
+    type: string;
+    item_total?: number;
 };
 /** @returns {ProductStockPolling} */
 declare function ProductStockPolling(): ProductStockPolling;
@@ -1445,6 +1706,9 @@ type ProductVariantListingResponse = {
 /** @returns {ProductListingDetail} */
 declare function ProductListingDetail(): ProductListingDetail;
 type ProductListingDetail = {
+    is_tryout?: boolean;
+    channel?: string;
+    discount_meta?: DiscountMeta;
     uid?: number;
     custom_order?: ProductDetailCustomOrder;
     sizes?: string[];
@@ -1542,6 +1806,7 @@ type ImageUrls = {
 /** @returns {BrandItem} */
 declare function BrandItem(): BrandItem;
 type BrandItem = {
+    id?: number;
     uid?: number;
     logo?: Media;
     description?: string;
@@ -1566,6 +1831,8 @@ type BrandDetailResponse = {
     description?: string;
     banners?: ImageUrls;
     _custom_json?: any;
+    slug?: string;
+    _app?: any;
     name?: string;
 };
 /** @returns {CategoryBanner} */
@@ -1584,6 +1851,7 @@ type ThirdLevelChild = {
     name?: string;
     slug?: string;
     action?: ProductListingAction;
+    priority?: number;
 };
 /** @returns {SecondLevelChild} */
 declare function SecondLevelChild(): SecondLevelChild;
@@ -1595,6 +1863,7 @@ type SecondLevelChild = {
     name?: string;
     slug?: string;
     action?: ProductListingAction;
+    priority?: number;
 };
 /** @returns {Child} */
 declare function Child(): Child;
@@ -1606,6 +1875,7 @@ type Child = {
     name?: string;
     slug?: string;
     action?: ProductListingAction;
+    priority?: number;
 };
 /** @returns {CategoryItems} */
 declare function CategoryItems(): CategoryItems;
@@ -1616,6 +1886,8 @@ type CategoryItems = {
     name: string;
     slug: string;
     action: ProductListingAction;
+    priority?: number;
+    _custom_json?: any;
 };
 /** @returns {DepartmentCategoryTree} */
 declare function DepartmentCategoryTree(): DepartmentCategoryTree;
@@ -1643,6 +1915,7 @@ type CategoryMetaResponse = {
     banners?: ImageUrls;
     _custom_json?: any;
     name?: string;
+    _app?: any;
 };
 /** @returns {HomeListingResponse} */
 declare function HomeListingResponse(): HomeListingResponse;
@@ -1650,6 +1923,7 @@ type HomeListingResponse = {
     items?: ProductListingDetail[];
     page: Page;
     message?: string;
+    sort_on?: string;
 };
 /** @returns {Department} */
 declare function Department(): Department;
@@ -1683,8 +1957,45 @@ type AutoCompleteResponse = {
 declare function CollectionQuery(): CollectionQuery;
 type CollectionQuery = {
     op: string;
-    value: any[];
+    value: string[];
     attribute: string;
+};
+/** @returns {NextSchedule} */
+declare function NextSchedule(): NextSchedule;
+type NextSchedule = {
+    /**
+     * - The start time of the next schedule
+     */
+    start?: string;
+    /**
+     * - The end time of the next schedule
+     */
+    end?: string;
+};
+/** @returns {Schedule} */
+declare function Schedule(): Schedule;
+type Schedule = {
+    /**
+     * - The cron expression for the schedule
+     */
+    cron?: string;
+    /**
+     * - List of next schedules
+     */
+    next_schedule?: NextSchedule[];
+    /**
+     * - The duration of the job in seconds
+     */
+    duration?: number;
+    /**
+     * - The start time of the job
+     */
+    start?: string;
+    /**
+     * - The end time of the job
+     */
+    end?: string;
+    metadata?: any;
 };
 /** @returns {GetCollectionDetailNest} */
 declare function GetCollectionDetailNest(): GetCollectionDetailNest;
@@ -1695,7 +2006,6 @@ type GetCollectionDetailNest = {
     meta?: any;
     banners?: ImageUrls;
     cron?: any;
-    _schedule?: any;
     query?: CollectionQuery[];
     description?: string;
     type?: string;
@@ -1709,8 +2019,13 @@ type GetCollectionDetailNest = {
     allow_facets?: boolean;
     logo?: Media;
     priority?: number;
-    tags?: string[];
+    tag?: string[];
     app_id?: string;
+    published?: boolean;
+    tags?: string[];
+    _locale_language?: any;
+    seo?: any;
+    _schedule?: Schedule;
 };
 /** @returns {CollectionListingFilterTag} */
 declare function CollectionListingFilterTag(): CollectionListingFilterTag;
@@ -1742,12 +2057,18 @@ type GetCollectionListingResponse = {
 /** @returns {CollectionDetailResponse} */
 declare function CollectionDetailResponse(): CollectionDetailResponse;
 type CollectionDetailResponse = {
+    uid?: string;
+    published?: boolean;
+    tags?: string[];
+    _locale_language?: any;
+    seo?: any;
+    action?: ProductListingAction;
     is_active?: boolean;
     sort_on?: string;
     meta?: any;
     banners?: ImageUrls;
     cron?: any;
-    _schedule?: any;
+    _schedule?: Schedule;
     query?: CollectionQuery[];
     description?: string;
     type?: string;
@@ -1805,13 +2126,12 @@ type Store = {
     store_email?: string;
     state?: string;
     country?: string;
-    pincode?: number;
+    pincode?: string;
     city?: string;
     address?: string;
     store_code?: string;
     lat_long?: LatLong;
     name?: string;
-    tags?: string[];
 };
 /** @returns {StoreListingResponse} */
 declare function StoreListingResponse(): StoreListingResponse;
@@ -1849,6 +2169,12 @@ type StoreManagerSerializer = {
     email?: string;
     mobile_no?: SellerPhoneNumber;
 };
+/** @returns {AddressLatLong} */
+declare function AddressLatLong(): AddressLatLong;
+type AddressLatLong = {
+    type?: string;
+    coordinates?: number[];
+};
 /** @returns {StoreAddressSerializer} */
 declare function StoreAddressSerializer(): StoreAddressSerializer;
 type StoreAddressSerializer = {
@@ -1857,10 +2183,11 @@ type StoreAddressSerializer = {
     country?: string;
     landmark?: string;
     address1?: string;
-    pincode?: number;
+    pincode?: string;
     city?: string;
     longitude?: number;
     address2?: string;
+    lat_long?: AddressLatLong;
 };
 /** @returns {AppStore} */
 declare function AppStore(): AppStore;
@@ -1908,6 +2235,9 @@ type StoreDetails = {
     _custom_json?: any;
     name?: string;
     contact_numbers?: SellerPhoneNumber[];
+    company_id?: number;
+    display_name?: string;
+    store_type?: string;
 };
 /** @returns {UserDetail} */
 declare function UserDetail(): UserDetail;
@@ -1939,11 +2269,11 @@ type Size = {
     /**
      * - The value of the size
      */
-    value?: any;
+    value?: string;
     /**
      * - The display string for the size
      */
-    display?: any;
+    display?: string;
     /**
      * - Whether or not this size is available
      */
@@ -1967,7 +2297,7 @@ type ProductGroupPrice = {
     /**
      * - The currency code for the prices.
      */
-    currency?: any;
+    currency?: string;
     /**
      * - The maximum marked price of the product group.
      */
@@ -1979,7 +2309,7 @@ type ProductDetails = {
     /**
      * - The template tag of the product
      */
-    template_tag?: any;
+    template_tag?: string;
     /**
      * - The number of ratings the product has received
      */
@@ -1987,7 +2317,7 @@ type ProductDetails = {
     /**
      * - The nature of the product's images
      */
-    image_nature?: any;
+    image_nature?: string;
     /**
      * - Whether or not the product has a variant
      */
@@ -1995,7 +2325,7 @@ type ProductDetails = {
     /**
      * - The long description of the product
      */
-    description?: any;
+    description?: string;
     /**
      * - Whether or not the product is out of stock
      */
@@ -2011,19 +2341,19 @@ type ProductDetails = {
     /**
      * - The item code of the product
      */
-    item_code?: any;
+    item_code?: string;
     /**
      * - The name of the product
      */
-    name?: any;
+    name?: string;
     /**
      * - The country of origin for the product
      */
-    country_of_origin?: any;
+    country_of_origin?: string;
     /**
      * - The short description of the product
      */
-    short_description?: any;
+    short_description?: string;
     /**
      * - A list of media objects for the product
      */
@@ -2039,11 +2369,11 @@ type ProductDetails = {
     /**
      * - A list of image URLs for the product
      */
-    images?: any[];
+    images?: string[];
     /**
      * - The slug of the product
      */
-    slug?: any;
+    slug?: string;
     /**
      * - The rating of the product
      */
@@ -2055,7 +2385,7 @@ type ProductDetails = {
     /**
      * - A list of highlights for the product
      */
-    highlights?: any[];
+    highlights?: string[];
     /**
      * - The unique ID of the product's brand
      */
@@ -2078,9 +2408,6 @@ type ProductInGroup = {
      * - The available sizes for the product.
      */
     sizes?: Size[];
-    /**
-     * - The price details for the product group.
-     */
     price?: ProductGroupPrice;
     /**
      * - A flag indicating whether the product
@@ -2090,7 +2417,7 @@ type ProductInGroup = {
     /**
      * - The details of the product.
      */
-    product_details?: ProductDetails;
+    product_details?: string;
     /**
      * - The minimum quantity of the product that
      * can be added to the cart.
@@ -2125,7 +2452,7 @@ type ProductGroupingModel = {
      * - User details of the verifier of the
      * document, if applicable
      */
-    verified_by?: UserDetail;
+    verified_by?: string;
     /**
      * - Timestamp of the creation of the document
      */
@@ -2138,7 +2465,7 @@ type ProductGroupingModel = {
      * - A list of page visibilities of the
      * product grouping.
      */
-    page_visibility?: any[];
+    page_visibility?: string[];
     /**
      * - Timestamp of the last modification of the document
      */
@@ -2146,12 +2473,11 @@ type ProductGroupingModel = {
     /**
      * - User details of the creator of the document
      */
-    created_by?: UserDetail;
+    created_by?: any;
     /**
-     * - User details of the last modifier of
-     * the document
+     * - User details of the last modifier of the document
      */
-    modified_by?: UserDetail;
+    modified_by?: any;
     /**
      * - A list of products in the grouping.
      */
@@ -2161,19 +2487,19 @@ type ProductGroupingModel = {
      * assigned to the same store.
      */
     same_store_assignment?: boolean;
-    _id?: any;
+    _id?: string;
     /**
      * - The name of the product grouping.
      */
-    name: any;
+    name: string;
     /**
      * - The choice of the product grouping.
      */
-    choice?: any;
+    choice?: string;
     /**
      * - The unique identifier for the product grouping.
      */
-    slug?: any;
+    slug?: string;
     /**
      * - Timestamp of when the document was
      * verified, if applicable
@@ -2202,7 +2528,7 @@ type ArticleAssignmentV3 = {
 declare function StrategyWiseListingSchemaV3(): StrategyWiseListingSchemaV3;
 type StrategyWiseListingSchemaV3 = {
     distance?: number;
-    pincode?: number;
+    pincode?: string;
     tat?: number;
     quantity?: number;
 };
@@ -2297,9 +2623,9 @@ type PromiseSchema = {
     min?: string;
     max?: string;
 };
-/** @returns {ProductSizePriceResponseV3} */
-declare function ProductSizePriceResponseV3(): ProductSizePriceResponseV3;
-type ProductSizePriceResponseV3 = {
+/** @returns {ProductSizePriceResponseV4} */
+declare function ProductSizePriceResponseV4(): ProductSizePriceResponseV4;
+type ProductSizePriceResponseV4 = {
     store?: StoreV3;
     article_assignment?: ArticleAssignmentV3;
     is_cod?: boolean;
@@ -2311,30 +2637,33 @@ type ProductSizePriceResponseV3 = {
     article_id?: string;
     is_gift?: boolean;
     set?: ProductSetV3;
-    seller_count?: number;
     price_per_piece?: ProductStockPriceV3;
     discount_meta?: DiscountMeta;
     discount?: string;
     long_lat?: number[];
-    special_badge?: string;
     price?: ProductStockPriceV3;
     price_per_unit?: ProductStockUnitPriceV3;
-    pincode?: number;
+    pincode?: string;
+    trader?: string[];
+    tags?: string[];
+    is_serviceable?: boolean;
     marketplace_attributes?: MarketPlaceSttributesSchemaV3[];
     seller?: SellerV3;
     delivery_promise?: PromiseSchema;
+    product_name?: string;
+    _custom_json?: any;
 };
-/** @returns {ProductSizeSellerFilterSchemaV3} */
-declare function ProductSizeSellerFilterSchemaV3(): ProductSizeSellerFilterSchemaV3;
-type ProductSizeSellerFilterSchemaV3 = {
+/** @returns {ProductSizeSellerFilterSchemaV4} */
+declare function ProductSizeSellerFilterSchemaV4(): ProductSizeSellerFilterSchemaV4;
+type ProductSizeSellerFilterSchemaV4 = {
     name?: string;
     is_selected?: boolean;
     value?: string;
 };
-/** @returns {ProductSizeSellersResponseV3} */
-declare function ProductSizeSellersResponseV3(): ProductSizeSellersResponseV3;
-type ProductSizeSellersResponseV3 = {
-    items?: ProductSizePriceResponseV3[];
+/** @returns {ProductSizeSellersResponseV4} */
+declare function ProductSizeSellersResponseV4(): ProductSizeSellersResponseV4;
+type ProductSizeSellersResponseV4 = {
+    items?: ProductSizePriceResponseV4[];
     page: Page;
-    sort_on?: ProductSizeSellerFilterSchemaV3[];
+    sort_on?: ProductSizeSellerFilterSchemaV4[];
 };

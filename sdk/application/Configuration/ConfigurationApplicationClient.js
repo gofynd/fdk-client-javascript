@@ -28,10 +28,10 @@ class Configuration {
       getOrderingStoreCookie:
         "/service/application/configuration/v1.0/ordering-store/select",
       getOrderingStores:
-        "/service/application/configuration/v1.0/ordering-store/stores",
-      getOwnerInfo: "/service/application/configuration/v1.0/about",
+        "/service/application/configuration/v2.0/ordering-store/stores",
+      getOwnerInfo: "/service/application/configuration/v2.0/about",
       getStoreDetailById:
-        "/service/application/configuration/v1.0/ordering-store/stores/{store_id}",
+        "/service/application/configuration/v2.0/ordering-store/stores/{store_id}",
       removeOrderingStoreCookie:
         "/service/application/configuration/v1.0/ordering-store/select",
     };
@@ -225,6 +225,50 @@ class Configuration {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on orders.
+   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+   *   retrieving staff members working at a particular ordering store.
+   * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+   *   the details of a particular staff member.
+   * @param {string} [arg.userName] - User name of the member
+   * @returns {Paginator<ConfigurationApplicationModel.AppStaffListResponse>}
+   * @summary: Lists app staff members.
+   * @description: Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+   */
+  getAppStaffListPaginator({
+    pageSize,
+    orderIncent,
+    orderingStore,
+    user,
+    userName,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAppStaffList({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        orderIncent: orderIncent,
+        orderingStore: orderingStore,
+        user: user,
+        userName: userName,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -1046,8 +1090,8 @@ class Configuration {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.OrderingStores>} - Success response
    * @name getOrderingStores
-   * @summary: Lists order-enabled stores.
-   * @description: Retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
+   * @summary: Get all deployment stores
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
    */
   async getOrderingStores(
     { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
@@ -1124,6 +1168,36 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @returns {Paginator<ConfigurationApplicationModel.OrderingStores>}
+   * @summary: Get all deployment stores
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+   */
+  getOrderingStoresPaginator({ pageSize, q } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getOrderingStores({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationApplicationValidator.GetOwnerInfoParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -1131,8 +1205,8 @@ class Configuration {
    *   - Success response
    *
    * @name getOwnerInfo
-   * @summary: Retrieves application owner details.
-   * @description: Retrieve the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. Also retrieves the seller and owner information such as address, email address, and phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
+   * @summary: Get sales channel, owner and seller information
+   * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
    */
   async getOwnerInfo(
     { requestHeaders } = { requestHeaders: {} },
@@ -1210,8 +1284,8 @@ class Configuration {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.OrderingStore>} - Success response
    * @name getStoreDetailById
-   * @summary: Retrieves store details by ID.
-   * @description: Retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
+   * @summary: Get ordering store details
+   * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
    */
   async getStoreDetailById(
     { storeId, requestHeaders } = { requestHeaders: {} },

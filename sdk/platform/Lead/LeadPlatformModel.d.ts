@@ -1,5 +1,38 @@
 export = LeadPlatformModel;
 /**
+ * @typedef GeneralConfigResponse
+ * @property {string} [_id]
+ * @property {SupportCommunicationSchema[]} [support_communication]
+ * @property {boolean} [show_communication_info]
+ * @property {boolean} [show_support_dris]
+ * @property {string} [type]
+ * @property {GeneralConfigIntegrationSchema} [integration]
+ * @property {boolean} [allow_ticket_creation]
+ * @property {boolean} [show_listing]
+ * @property {string[]} [available_integration]
+ * @property {boolean} [enable_dris]
+ * @property {SupportSchema} [support_email]
+ * @property {SupportSchema} [support_phone]
+ * @property {SupportSchema} [support_faq]
+ */
+/**
+ * @typedef SupportSchema
+ * @property {string} [value]
+ * @property {string} [description]
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef SupportCommunicationSchema
+ * @property {string} [type]
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef GeneralConfigIntegrationSchema
+ * @property {string} [type]
+ */
+/**
  * @typedef TicketList
  * @property {Ticket[]} [items] - List of tickets
  * @property {Filter} [filters]
@@ -32,7 +65,7 @@ export = LeadPlatformModel;
  * @property {Object[]} inputs - List of all the form components
  * @property {string} [description] - Description of the form
  * @property {string} [header_image] - Header image that is to be shown for the form
- * @property {PriorityEnum} priority
+ * @property {string} priority
  * @property {boolean} [should_notify] - Indicates if staff should be notified
  *   when a response is received
  * @property {string} [success_message] - Success message that will be shown on submission
@@ -43,8 +76,7 @@ export = LeadPlatformModel;
  * @property {string} title - Title for the form
  * @property {Object[]} inputs - List of all the form components
  * @property {string} [description] - Description of the form
- * @property {PriorityEnum} priority
- * @property {string} [header_image] - Header image that is to be shown for the form
+ * @property {string} priority
  * @property {boolean} [should_notify] - Indicates if staff should be notified
  *   when a response is received
  * @property {boolean} [login_required] - Denotes if login is required to make a
@@ -60,7 +92,7 @@ export = LeadPlatformModel;
  * @property {string} [source] - Denotes if the ticket was created at company or
  *   application level
  * @property {string} [status] - Denotes in what state is the ticket
- * @property {PriorityEnum} [priority]
+ * @property {string} [priority]
  * @property {AgentChangePayload} [assigned_to]
  * @property {string[]} [tags] - Tags relevant to ticket
  */
@@ -91,12 +123,14 @@ export = LeadPlatformModel;
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
  * @property {Status[]} statuses - List of possible statuses for tickets
- * @property {Object[]} assignees - List of support staff availble for tickets assignment
+ * @property {Object[]} [assignees] - List of support staff availble for tickets
+ *   assignment
+ * @property {Object} [all_categories]
  */
 /**
  * @typedef TicketHistoryPayload
  * @property {Object} value - Details of history event
- * @property {HistoryTypeEnum} type
+ * @property {string} type
  */
 /**
  * @typedef GetTokenForVideoRoomResponse
@@ -105,6 +139,7 @@ export = LeadPlatformModel;
 /**
  * @typedef GetParticipantsInsideVideoRoomResponse
  * @property {Participant[]} participants - List of participants of the video room
+ * @property {Object} [room]
  */
 /**
  * @typedef Participant
@@ -114,23 +149,22 @@ export = LeadPlatformModel;
  */
 /**
  * @typedef UserSchema
- * @property {string} [application_id]
- * @property {string} [user_id]
- * @property {string} [first_name]
- * @property {Object} [meta]
- * @property {string} [last_name]
- * @property {PhoneNumber[]} [phone_numbers]
- * @property {Email[]} [emails]
- * @property {string} [gender]
- * @property {string} [dob]
- * @property {boolean} [active]
- * @property {string} [profile_pic_url]
- * @property {string} [username]
- * @property {string} [account_type]
- * @property {string} [_id]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- * @property {string} [external_id]
+ * @property {string} [first_name] - First name
+ * @property {string} [last_name] - Last name
+ * @property {PhoneNumber[]} [phone_numbers] - List of phone numbers
+ * @property {Email[]} [emails] - List of email addresses
+ * @property {UserPasswordHistory[]} [password_history]
+ * @property {string} [gender] - Gender of user
+ * @property {boolean} [active] - Is account active
+ * @property {string} [profile_pic_url] - URL for profile pic
+ * @property {string} [username] - Username of user
+ * @property {string} [account_type] - Type of account
+ * @property {string} [uid] - Unique identifier of user
+ * @property {Debug} [debug]
+ * @property {boolean} [has_old_password_hash] - Denotes if user has old password hash
+ * @property {string} [_id] - Unique identifier of user
+ * @property {string} [created_at] - Time of user creation
+ * @property {string} [updated_at] - Last time of user details update
  */
 /**
  * @typedef PhoneNumber
@@ -139,6 +173,11 @@ export = LeadPlatformModel;
  * @property {boolean} [verified] - Denotes it's a verified phone number
  * @property {string} [phone] - Phone number
  * @property {number} [country_code] - Country code
+ */
+/**
+ * @typedef UserPasswordHistory
+ * @property {string} [salt]
+ * @property {string} [hash]
  */
 /**
  * @typedef Email
@@ -160,6 +199,7 @@ export = LeadPlatformModel;
 /**
  * @typedef CreatedOn
  * @property {string} user_agent - Useragent details
+ * @property {string} [platform]
  */
 /**
  * @typedef TicketAsset
@@ -177,14 +217,15 @@ export = LeadPlatformModel;
  * @typedef AddTicketPayload
  * @property {Object} [created_by] - Creator of the ticket
  * @property {string} [status] - Status of the ticket
- * @property {PriorityEnum} [priority]
+ * @property {string} [priority]
  * @property {string} category - Category of the ticket
  * @property {TicketContent} content
  * @property {Object} [_custom_json] - Optional custom data that needs to be sent
+ * @property {string[]} [subscribers]
  */
 /**
  * @typedef Priority
- * @property {PriorityEnum} key
+ * @property {string} key - Priority value of the ticket like urgent, low, medium, high.
  * @property {string} display - Display text for priority
  * @property {string} color - Color for priority
  */
@@ -223,7 +264,6 @@ export = LeadPlatformModel;
  * @property {string} [header_image] - Form header image that will be shown to the user
  * @property {string} title - Form title that will be shown to the user
  * @property {string} [description] - Form description that will be shown to the user
- * @property {Priority} priority
  * @property {boolean} login_required - Denotes if login is required to make a
  *   form response submission
  * @property {boolean} should_notify - Denotes if new response submission for
@@ -234,7 +274,12 @@ export = LeadPlatformModel;
  * @property {Object[]} inputs - List of all the form fields
  * @property {CreatedOn} [created_on]
  * @property {PollForAssignment} [poll_for_assignment]
+ * @property {string[]} [available_assignees]
  * @property {string} _id - Unique identifier for the form
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {number} [__v]
+ * @property {string} [created_by]
  */
 /**
  * @typedef FeedbackForm
@@ -246,7 +291,7 @@ export = LeadPlatformModel;
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory} [sub_categories]
+ * @property {TicketCategory[]} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -254,7 +299,6 @@ export = LeadPlatformModel;
  * @typedef FeedbackResponseItem
  * @property {string} display - Question/Title of the form field
  * @property {string} key - Key of the form field
- * @property {string} value - User response value for the form field
  */
 /**
  * @typedef TicketFeedback
@@ -266,6 +310,7 @@ export = LeadPlatformModel;
  * @property {Object} [user] - User who submitted the feedback
  * @property {string} [updated_at] - Time when the feedback was last updated
  * @property {string} [created_at] - Time when the feedback was created
+ * @property {number} [__v]
  */
 /**
  * @typedef TicketHistory
@@ -273,10 +318,11 @@ export = LeadPlatformModel;
  * @property {Object} value - Data of the history event
  * @property {string} ticket_id - Readable ticket number
  * @property {CreatedOn} [created_on]
- * @property {Object} [created_by] - User who created the history event
+ * @property {string} [created_by] - User who created the history event
  * @property {string} _id - Unique identifier of the history event
  * @property {string} [updated_at] - Time of last update of the history event
  * @property {string} [created_at] - Time of creation of the history event
+ * @property {number} [__v]
  */
 /**
  * @typedef Ticket
@@ -300,13 +346,22 @@ export = LeadPlatformModel;
  * @property {string} _id - Unique identifier for the ticket
  * @property {string} [updated_at] - Time when the ticket was last updated
  * @property {string} [created_at] - Time when the ticket was created
+ * @property {string} [video_room_id]
+ * @property {string[]} [subscribers]
+ * @property {Object[]} [additional_info]
+ * @property {number} [__v]
+ * @property {TicketAsset[]} [attachments] - List of all attachments related to the form
  */
 /**
- * @typedef ErrorMessage
+ * @typedef Error4XX
+ * @property {Object} [message]
+ * @property {string} [stack]
+ * @property {string} [sentry]
+ */
+/**
+ * @typedef NotFoundError
  * @property {string} [message]
  */
-/** @typedef {"low" | "medium" | "high" | "urgent"} PriorityEnum */
-/** @typedef {"rating" | "log" | "comment" | "thread"} HistoryTypeEnum */
 /**
  * @typedef {| "image"
  *   | "video"
@@ -318,12 +373,49 @@ export = LeadPlatformModel;
  *   | "shipment"
  *   | "order"} TicketAssetTypeEnum
  */
-/** @typedef {"platform_panel" | "sales_channel"} TicketSourceEnum */
+/** @typedef {"platform_panel" | "sales_channel" | "partner_panel"} TicketSourceEnum */
 declare class LeadPlatformModel {
 }
 declare namespace LeadPlatformModel {
-    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, NotifyUser, Filter, TicketHistoryPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, ErrorMessage, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { GeneralConfigResponse, SupportSchema, SupportCommunicationSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, NotifyUser, Filter, TicketHistoryPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, UserPasswordHistory, Email, Debug, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, Error4XX, NotFoundError, TicketAssetTypeEnum, TicketSourceEnum };
 }
+/** @returns {GeneralConfigResponse} */
+declare function GeneralConfigResponse(): GeneralConfigResponse;
+type GeneralConfigResponse = {
+    _id?: string;
+    support_communication?: SupportCommunicationSchema[];
+    show_communication_info?: boolean;
+    show_support_dris?: boolean;
+    type?: string;
+    integration?: GeneralConfigIntegrationSchema;
+    allow_ticket_creation?: boolean;
+    show_listing?: boolean;
+    available_integration?: string[];
+    enable_dris?: boolean;
+    support_email?: SupportSchema;
+    support_phone?: SupportSchema;
+    support_faq?: SupportSchema;
+};
+/** @returns {SupportSchema} */
+declare function SupportSchema(): SupportSchema;
+type SupportSchema = {
+    value?: string;
+    description?: string;
+    enabled?: boolean;
+};
+/** @returns {SupportCommunicationSchema} */
+declare function SupportCommunicationSchema(): SupportCommunicationSchema;
+type SupportCommunicationSchema = {
+    type?: string;
+    title?: string;
+    description?: string;
+    enabled?: boolean;
+};
+/** @returns {GeneralConfigIntegrationSchema} */
+declare function GeneralConfigIntegrationSchema(): GeneralConfigIntegrationSchema;
+type GeneralConfigIntegrationSchema = {
+    type?: string;
+};
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
 type TicketList = {
@@ -386,7 +478,7 @@ type CreateCustomFormPayload = {
      * - Header image that is to be shown for the form
      */
     header_image?: string;
-    priority: PriorityEnum;
+    priority: string;
     /**
      * - Indicates if staff should be notified
      * when a response is received
@@ -413,11 +505,7 @@ type EditCustomFormPayload = {
      * - Description of the form
      */
     description?: string;
-    priority: PriorityEnum;
-    /**
-     * - Header image that is to be shown for the form
-     */
-    header_image?: string;
+    priority: string;
     /**
      * - Indicates if staff should be notified
      * when a response is received
@@ -455,7 +543,7 @@ type EditTicketPayload = {
      * - Denotes in what state is the ticket
      */
     status?: string;
-    priority?: PriorityEnum;
+    priority?: string;
     assigned_to?: AgentChangePayload;
     /**
      * - Tags relevant to ticket
@@ -526,9 +614,11 @@ type Filter = {
      */
     statuses: Status[];
     /**
-     * - List of support staff availble for tickets assignment
+     * - List of support staff availble for tickets
+     * assignment
      */
-    assignees: any[];
+    assignees?: any[];
+    all_categories?: any;
 };
 /** @returns {TicketHistoryPayload} */
 declare function TicketHistoryPayload(): TicketHistoryPayload;
@@ -537,7 +627,7 @@ type TicketHistoryPayload = {
      * - Details of history event
      */
     value: any;
-    type: HistoryTypeEnum;
+    type: string;
 };
 /** @returns {GetTokenForVideoRoomResponse} */
 declare function GetTokenForVideoRoomResponse(): GetTokenForVideoRoomResponse;
@@ -554,6 +644,7 @@ type GetParticipantsInsideVideoRoomResponse = {
      * - List of participants of the video room
      */
     participants: Participant[];
+    room?: any;
 };
 /** @returns {Participant} */
 declare function Participant(): Participant;
@@ -571,23 +662,64 @@ type Participant = {
 /** @returns {UserSchema} */
 declare function UserSchema(): UserSchema;
 type UserSchema = {
-    application_id?: string;
-    user_id?: string;
+    /**
+     * - First name
+     */
     first_name?: string;
-    meta?: any;
+    /**
+     * - Last name
+     */
     last_name?: string;
+    /**
+     * - List of phone numbers
+     */
     phone_numbers?: PhoneNumber[];
+    /**
+     * - List of email addresses
+     */
     emails?: Email[];
+    password_history?: UserPasswordHistory[];
+    /**
+     * - Gender of user
+     */
     gender?: string;
-    dob?: string;
+    /**
+     * - Is account active
+     */
     active?: boolean;
+    /**
+     * - URL for profile pic
+     */
     profile_pic_url?: string;
+    /**
+     * - Username of user
+     */
     username?: string;
+    /**
+     * - Type of account
+     */
     account_type?: string;
+    /**
+     * - Unique identifier of user
+     */
+    uid?: string;
+    debug?: Debug;
+    /**
+     * - Denotes if user has old password hash
+     */
+    has_old_password_hash?: boolean;
+    /**
+     * - Unique identifier of user
+     */
     _id?: string;
+    /**
+     * - Time of user creation
+     */
     created_at?: string;
+    /**
+     * - Last time of user details update
+     */
     updated_at?: string;
-    external_id?: string;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
@@ -612,6 +744,12 @@ type PhoneNumber = {
      * - Country code
      */
     country_code?: number;
+};
+/** @returns {UserPasswordHistory} */
+declare function UserPasswordHistory(): UserPasswordHistory;
+type UserPasswordHistory = {
+    salt?: string;
+    hash?: string;
 };
 /** @returns {Email} */
 declare function Email(): Email;
@@ -664,6 +802,7 @@ type CreatedOn = {
      * - Useragent details
      */
     user_agent: string;
+    platform?: string;
 };
 /** @returns {TicketAsset} */
 declare function TicketAsset(): TicketAsset;
@@ -705,7 +844,7 @@ type AddTicketPayload = {
      * - Status of the ticket
      */
     status?: string;
-    priority?: PriorityEnum;
+    priority?: string;
     /**
      * - Category of the ticket
      */
@@ -715,11 +854,15 @@ type AddTicketPayload = {
      * - Optional custom data that needs to be sent
      */
     _custom_json?: any;
+    subscribers?: string[];
 };
 /** @returns {Priority} */
 declare function Priority(): Priority;
 type Priority = {
-    key: PriorityEnum;
+    /**
+     * - Priority value of the ticket like urgent, low, medium, high.
+     */
+    key: string;
     /**
      * - Display text for priority
      */
@@ -821,7 +964,6 @@ type CustomForm = {
      * - Form description that will be shown to the user
      */
     description?: string;
-    priority: Priority;
     /**
      * - Denotes if login is required to make a
      * form response submission
@@ -844,10 +986,15 @@ type CustomForm = {
     inputs: any[];
     created_on?: CreatedOn;
     poll_for_assignment?: PollForAssignment;
+    available_assignees?: string[];
     /**
      * - Unique identifier for the form
      */
     _id: string;
+    created_at?: string;
+    updated_at?: string;
+    __v?: number;
+    created_by?: string;
 };
 /** @returns {FeedbackForm} */
 declare function FeedbackForm(): FeedbackForm;
@@ -876,7 +1023,7 @@ type TicketCategory = {
      * - Category key value identifier
      */
     key: string;
-    sub_categories?: TicketCategory;
+    sub_categories?: TicketCategory[];
     /**
      * - Group id of category releted data
      */
@@ -894,10 +1041,6 @@ type FeedbackResponseItem = {
      * - Key of the form field
      */
     key: string;
-    /**
-     * - User response value for the form field
-     */
-    value: string;
 };
 /** @returns {TicketFeedback} */
 declare function TicketFeedback(): TicketFeedback;
@@ -931,6 +1074,7 @@ type TicketFeedback = {
      * - Time when the feedback was created
      */
     created_at?: string;
+    __v?: number;
 };
 /** @returns {TicketHistory} */
 declare function TicketHistory(): TicketHistory;
@@ -951,7 +1095,7 @@ type TicketHistory = {
     /**
      * - User who created the history event
      */
-    created_by?: any;
+    created_by?: string;
     /**
      * - Unique identifier of the history event
      */
@@ -964,6 +1108,7 @@ type TicketHistory = {
      * - Time of creation of the history event
      */
     created_at?: string;
+    __v?: number;
 };
 /** @returns {Ticket} */
 declare function Ticket(): Ticket;
@@ -1021,26 +1166,27 @@ type Ticket = {
      * - Time when the ticket was created
      */
     created_at?: string;
+    video_room_id?: string;
+    subscribers?: string[];
+    additional_info?: any[];
+    __v?: number;
+    /**
+     * - List of all attachments related to the form
+     */
+    attachments?: TicketAsset[];
 };
-/** @returns {ErrorMessage} */
-declare function ErrorMessage(): ErrorMessage;
-type ErrorMessage = {
+/** @returns {Error4XX} */
+declare function Error4XX(): Error4XX;
+type Error4XX = {
+    message?: any;
+    stack?: string;
+    sentry?: string;
+};
+/** @returns {NotFoundError} */
+declare function NotFoundError(): NotFoundError;
+type NotFoundError = {
     message?: string;
 };
-/**
- * Enum: PriorityEnum Used By: Lead
- *
- * @returns {PriorityEnum}
- */
-declare function PriorityEnum(): PriorityEnum;
-type PriorityEnum = "low" | "medium" | "high" | "urgent";
-/**
- * Enum: HistoryTypeEnum Used By: Lead
- *
- * @returns {HistoryTypeEnum}
- */
-declare function HistoryTypeEnum(): HistoryTypeEnum;
-type HistoryTypeEnum = "rating" | "log" | "comment" | "thread";
 /**
  * Enum: TicketAssetTypeEnum Used By: Lead
  *
@@ -1054,4 +1200,4 @@ type TicketAssetTypeEnum = "image" | "video" | "file" | "youtube" | "product" | 
  * @returns {TicketSourceEnum}
  */
 declare function TicketSourceEnum(): TicketSourceEnum;
-type TicketSourceEnum = "platform_panel" | "sales_channel";
+type TicketSourceEnum = "platform_panel" | "sales_channel" | "partner_panel";

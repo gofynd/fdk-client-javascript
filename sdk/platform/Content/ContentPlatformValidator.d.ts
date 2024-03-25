@@ -19,15 +19,21 @@ export = ContentPlatformValidator;
  */
 /**
  * @typedef DeleteCustomFieldDefinitionParam
- * @property {string} definitionId
+ * @property {string} id
+ */
+/**
+ * @typedef DeleteCustomFieldsByResourceIdParam
+ * @property {string} resource
+ * @property {string} resourceId
+ * @property {string} ids
  */
 /**
  * @typedef DeleteCustomObjectParam
- * @property {string} metaobjectId
+ * @property {string} id
  */
 /**
  * @typedef DeleteCustomObjectDefinitionParam
- * @property {string} definitionId
+ * @property {string} id
  */
 /**
  * @typedef ExportCustomObjectEntriesParam
@@ -35,7 +41,7 @@ export = ContentPlatformValidator;
  */
 /**
  * @typedef GetCustomFieldDefinitionParam
- * @property {string} definitionId
+ * @property {string} id
  */
 /**
  * @typedef GetCustomFieldDefinitionsParam
@@ -44,6 +50,12 @@ export = ContentPlatformValidator;
  * @property {string} [resources]
  * @property {string} [types]
  * @property {string} [search]
+ */
+/**
+ * @typedef GetCustomFieldJobsParam
+ * @property {string} page
+ * @property {string} pageSize
+ * @property {string} actionType
  */
 /** @typedef GetCustomFieldTypesParam */
 /**
@@ -57,11 +69,11 @@ export = ContentPlatformValidator;
  */
 /**
  * @typedef GetCustomObjectParam
- * @property {string} metaobjectId
+ * @property {string} id
  */
 /**
  * @typedef GetCustomObjectDefinitionParam
- * @property {string} definitionId
+ * @property {string} id
  */
 /**
  * @typedef GetCustomObjectDefinitionsParam
@@ -92,18 +104,24 @@ export = ContentPlatformValidator;
  * @property {string} definitionId
  */
 /**
+ * @typedef UpdateCustomFieldByResourceIdParam
+ * @property {string} resource
+ * @property {string} resourceId
+ * @property {ContentPlatformModel.CustomFieldRequestSchema} body
+ */
+/**
  * @typedef UpdateCustomFieldDefinitionParam
- * @property {string} definitionId
+ * @property {string} id
  * @property {ContentPlatformModel.CustomFieldDefinitionRequestSchema} body
  */
 /**
  * @typedef UpdateCustomObjectParam
- * @property {string} metaobjectId
+ * @property {string} id
  * @property {ContentPlatformModel.CustomObjectRequestSchema} body
  */
 /**
  * @typedef UpdateCustomObjectDefinitionParam
- * @property {string} definitionId
+ * @property {string} id
  * @property {ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema} body
  */
 declare class ContentPlatformValidator {
@@ -117,6 +135,8 @@ declare class ContentPlatformValidator {
     static createCustomObjectDefinition(): CreateCustomObjectDefinitionParam;
     /** @returns {DeleteCustomFieldDefinitionParam} */
     static deleteCustomFieldDefinition(): DeleteCustomFieldDefinitionParam;
+    /** @returns {DeleteCustomFieldsByResourceIdParam} */
+    static deleteCustomFieldsByResourceId(): DeleteCustomFieldsByResourceIdParam;
     /** @returns {DeleteCustomObjectParam} */
     static deleteCustomObject(): DeleteCustomObjectParam;
     /** @returns {DeleteCustomObjectDefinitionParam} */
@@ -127,6 +147,8 @@ declare class ContentPlatformValidator {
     static getCustomFieldDefinition(): GetCustomFieldDefinitionParam;
     /** @returns {GetCustomFieldDefinitionsParam} */
     static getCustomFieldDefinitions(): GetCustomFieldDefinitionsParam;
+    /** @returns {GetCustomFieldJobsParam} */
+    static getCustomFieldJobs(): GetCustomFieldJobsParam;
     /** @returns {GetCustomFieldTypesParam} */
     static getCustomFieldTypes(): any;
     /** @returns {GetCustomFieldsParam} */
@@ -149,6 +171,8 @@ declare class ContentPlatformValidator {
     static importCustomObjectEntries(): ImportCustomObjectEntriesParam;
     /** @returns {SampleCustomObjectBulkEntryParam} */
     static sampleCustomObjectBulkEntry(): SampleCustomObjectBulkEntryParam;
+    /** @returns {UpdateCustomFieldByResourceIdParam} */
+    static updateCustomFieldByResourceId(): UpdateCustomFieldByResourceIdParam;
     /** @returns {UpdateCustomFieldDefinitionParam} */
     static updateCustomFieldDefinition(): UpdateCustomFieldDefinitionParam;
     /** @returns {UpdateCustomObjectParam} */
@@ -157,7 +181,7 @@ declare class ContentPlatformValidator {
     static updateCustomObjectDefinition(): UpdateCustomObjectDefinitionParam;
 }
 declare namespace ContentPlatformValidator {
-    export { CreateCustomFieldByResourceIdParam, CreateCustomFieldDefinitionParam, CreateCustomObjectParam, CreateCustomObjectDefinitionParam, DeleteCustomFieldDefinitionParam, DeleteCustomObjectParam, DeleteCustomObjectDefinitionParam, ExportCustomObjectEntriesParam, GetCustomFieldDefinitionParam, GetCustomFieldDefinitionsParam, GetCustomFieldTypesParam, GetCustomFieldsParam, GetCustomFieldsByResourceIdParam, GetCustomObjectParam, GetCustomObjectDefinitionParam, GetCustomObjectDefinitionsParam, GetCustomObjectsParam, GetJobsParam, GetResourcesParam, ImportCustomObjectEntriesParam, SampleCustomObjectBulkEntryParam, UpdateCustomFieldDefinitionParam, UpdateCustomObjectParam, UpdateCustomObjectDefinitionParam };
+    export { CreateCustomFieldByResourceIdParam, CreateCustomFieldDefinitionParam, CreateCustomObjectParam, CreateCustomObjectDefinitionParam, DeleteCustomFieldDefinitionParam, DeleteCustomFieldsByResourceIdParam, DeleteCustomObjectParam, DeleteCustomObjectDefinitionParam, ExportCustomObjectEntriesParam, GetCustomFieldDefinitionParam, GetCustomFieldDefinitionsParam, GetCustomFieldJobsParam, GetCustomFieldTypesParam, GetCustomFieldsParam, GetCustomFieldsByResourceIdParam, GetCustomObjectParam, GetCustomObjectDefinitionParam, GetCustomObjectDefinitionsParam, GetCustomObjectsParam, GetJobsParam, GetResourcesParam, ImportCustomObjectEntriesParam, SampleCustomObjectBulkEntryParam, UpdateCustomFieldByResourceIdParam, UpdateCustomFieldDefinitionParam, UpdateCustomObjectParam, UpdateCustomObjectDefinitionParam };
 }
 type CreateCustomFieldByResourceIdParam = {
     resource: string;
@@ -174,19 +198,24 @@ type CreateCustomObjectDefinitionParam = {
     body: ContentPlatformModel.CustomObjectDefinitionRequestSchema;
 };
 type DeleteCustomFieldDefinitionParam = {
-    definitionId: string;
+    id: string;
+};
+type DeleteCustomFieldsByResourceIdParam = {
+    resource: string;
+    resourceId: string;
+    ids: string;
 };
 type DeleteCustomObjectParam = {
-    metaobjectId: string;
+    id: string;
 };
 type DeleteCustomObjectDefinitionParam = {
-    definitionId: string;
+    id: string;
 };
 type ExportCustomObjectEntriesParam = {
     definitionId: string;
 };
 type GetCustomFieldDefinitionParam = {
-    definitionId: string;
+    id: string;
 };
 type GetCustomFieldDefinitionsParam = {
     pageNo: string;
@@ -194,6 +223,11 @@ type GetCustomFieldDefinitionsParam = {
     resources?: string;
     types?: string;
     search?: string;
+};
+type GetCustomFieldJobsParam = {
+    page: string;
+    pageSize: string;
+    actionType: string;
 };
 type GetCustomFieldsParam = {
     resource: string;
@@ -203,10 +237,10 @@ type GetCustomFieldsByResourceIdParam = {
     resourceId: string;
 };
 type GetCustomObjectParam = {
-    metaobjectId: string;
+    id: string;
 };
 type GetCustomObjectDefinitionParam = {
-    definitionId: string;
+    id: string;
 };
 type GetCustomObjectDefinitionsParam = {
     pageNo: string;
@@ -230,18 +264,23 @@ type ImportCustomObjectEntriesParam = {
 type SampleCustomObjectBulkEntryParam = {
     definitionId: string;
 };
+type UpdateCustomFieldByResourceIdParam = {
+    resource: string;
+    resourceId: string;
+    body: ContentPlatformModel.CustomFieldRequestSchema;
+};
 type UpdateCustomFieldDefinitionParam = {
-    definitionId: string;
+    id: string;
     body: ContentPlatformModel.CustomFieldDefinitionRequestSchema;
 };
 type UpdateCustomObjectParam = {
-    metaobjectId: string;
+    id: string;
     body: ContentPlatformModel.CustomObjectRequestSchema;
 };
 type UpdateCustomObjectDefinitionParam = {
-    definitionId: string;
+    id: string;
     body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema;
 };
 type GetCustomFieldTypesParam = any;
 type GetResourcesParam = any;
-import ContentPlatformModel = require("./ContentPlatformModel");
+import ContentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformModel");

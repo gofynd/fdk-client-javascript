@@ -73,6 +73,72 @@ export = ServiceabilityPlatformModel;
  * @property {number} total_active_zones
  */
 /**
+ * @typedef ProductSchema
+ * @property {string} type
+ * @property {number[]} values
+ */
+/**
+ * @typedef StoresSchema
+ * @property {string} type
+ * @property {number[]} values
+ */
+/**
+ * @typedef SummarySchema
+ * @property {number} [stores_count]
+ * @property {number} [products_count]
+ * @property {RegionSchema[]} [regions]
+ */
+/**
+ * @typedef RegionSchema
+ * @property {string} [name]
+ * @property {number} [count]
+ */
+/**
+ * @typedef ServiceabilityDeleteErrorResponse
+ * @property {ServiceabilityErrorResponse[]} error
+ */
+/**
+ * @typedef ListViewResponseV2
+ * @property {ListViewItemsV2[]} items
+ * @property {ZoneDataItem} page
+ */
+/**
+ * @typedef ListViewItemsV2
+ * @property {string} zone_id
+ * @property {string} name
+ * @property {string} type
+ * @property {GeoArea[]} geo_areas
+ * @property {string} slug
+ * @property {ListViewProductV2} stores
+ * @property {boolean} is_active
+ * @property {ListViewProductV2} product
+ * @property {number} company_id
+ * @property {string} application_id
+ * @property {string} created_by
+ * @property {string} created_on
+ * @property {string} modified_by
+ * @property {string} modified_on
+ * @property {string} [stage]
+ * @property {Summary} [summary]
+ */
+/**
+ * @typedef Summary
+ * @property {number} [stores_count]
+ * @property {number} [products_count]
+ * @property {Region[]} [regions]
+ */
+/**
+ * @typedef GeoArea
+ * @property {string} id
+ * @property {string} [type]
+ * @property {string} name
+ */
+/**
+ * @typedef ListViewProductV2
+ * @property {string} type
+ * @property {string[]} values
+ */
+/**
  * @typedef ZoneDataItem
  * @property {boolean} has_next
  * @property {number} item_total
@@ -136,6 +202,40 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [state]
  */
 /**
+ * @typedef UpdateZoneDataV2
+ * @property {string} [zone_id]
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {string} [slug]
+ * @property {string[]} [geo_areas]
+ * @property {number} [company_id]
+ * @property {string} [application_id]
+ * @property {boolean} [is_active]
+ * @property {ProductSchema} [product]
+ * @property {StoresSchema} [stores]
+ */
+/**
+ * @typedef ZoneUpdateSuccessResponse
+ * @property {string} name
+ * @property {string} slug
+ * @property {number} company_id
+ * @property {string} type
+ * @property {string} application_id
+ * @property {boolean} is_active
+ * @property {string[]} geo_areas
+ * @property {ProductSchema} product
+ * @property {StoresSchema} stores
+ * @property {string} zone_id
+ * @property {string} created_by
+ * @property {string} created_on
+ * @property {string} modified_by
+ * @property {string} modified_on
+ */
+/**
+ * @typedef ZoneDeleteSuccessResponse
+ * @property {string} message
+ */
+/**
  * @typedef UpdateZoneData
  * @property {string} zone_id
  * @property {string} name
@@ -185,13 +285,58 @@ export = ServiceabilityPlatformModel;
  * @property {string} slug
  * @property {number} [company_id]
  * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
+ * @property {ProductSchema} product
+ * @property {StoresSchema} stores
+ * @property {SummarySchema} [summary]
+ * @property {string} [created_by]
+ * @property {string} [created_on]
+ * @property {string} [modified_by]
+ * @property {string} [modified_on]
+ * @property {string} [stage]
+ * @property {string} [overlapping_file_url]
+ * @property {string[]} geo_areas
+ * @property {string} type
+ * @property {string[]} [overlapping_zone_names]
+ */
+/**
+ * @typedef CreateZoneV2Data
+ * @property {boolean} is_active
+ * @property {string} slug
+ * @property {string} type
+ * @property {string} name
+ * @property {number} company_id
+ * @property {string} application_id
+ * @property {string[]} geo_areas
+ * @property {ZoneStores} stores
+ * @property {ZoneProduct} product
+ */
+/**
+ * @typedef ZoneStores
+ * @property {string} type
+ * @property {number[]} values
+ */
+/**
+ * @typedef ZoneProduct
+ * @property {string} type
+ * @property {number[]} values
+ */
+/**
+ * @typedef ZoneResponseV2
+ * @property {string} name
+ * @property {string} slug
+ * @property {number} company_id
+ * @property {string} type
+ * @property {string} application_id
+ * @property {boolean} is_active
+ * @property {string[]} geo_areas
+ * @property {ListViewProductV2} stores
+ * @property {ListViewProductV2} product
+ * @property {string} created_by
+ * @property {string} created_on
+ * @property {string} modified_by
+ * @property {string} modified_on
+ * @property {string} stage
+ * @property {string} zone_id
  */
 /**
  * @typedef CreateZoneData
@@ -383,6 +528,25 @@ export = ServiceabilityPlatformModel;
  * @property {ItemResponse[]} [items]
  */
 /**
+ * @typedef ReAssignStoreRequest
+ * @property {string} to_pincode
+ * @property {string} identifier
+ * @property {Object} configuration
+ * @property {string[]} ignored_locations
+ * @property {Object[]} articles
+ */
+/**
+ * @typedef ServiceabilityZoneErrorResponse
+ * @property {ServiceabilityErrorResponse[]} error
+ */
+/**
+ * @typedef ReAssignStoreResponse
+ * @property {string} to_pincode
+ * @property {boolean} success
+ * @property {Object} error
+ * @property {Object[]} [articles]
+ */
+/**
  * @typedef PincodeMopData
  * @property {number[]} pincodes
  * @property {string} country
@@ -522,6 +686,143 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} is_own_account
  */
 /**
+ * @typedef GeoAreaRequestBody
+ * @property {boolean} is_active
+ * @property {string} name
+ * @property {string} slug
+ * @property {string} type
+ * @property {Area[]} areas
+ * @property {string} region_type
+ */
+/**
+ * @typedef ConflictingErrorResponse
+ * @property {ErrorResponseDetail} detail
+ */
+/**
+ * @typedef ErrorResponseItem
+ * @property {string} message
+ * @property {string} error_name
+ * @property {number} error_code
+ * @property {string} value
+ * @property {ConflictingArea[]} conflicting_areas
+ */
+/**
+ * @typedef ConflictingArea
+ * @property {string} geoarea_id
+ * @property {string} name
+ */
+/**
+ * @typedef ErrorResponseDetail
+ * @property {ErrorResponseItem[]} items
+ */
+/**
+ * @typedef GeoAreaResponseBody
+ * @property {string} name
+ * @property {string} slug
+ * @property {boolean} is_active
+ * @property {Area[]} areas
+ * @property {string} region_type
+ * @property {string} type
+ * @property {string} created_on
+ * @property {string} modified_on
+ * @property {string} created_by
+ * @property {string} modified_by
+ * @property {string} geoarea_id
+ */
+/**
+ * @typedef GeoAreaPutResponseBody
+ * @property {string} [name]
+ * @property {string} [geoarea_id]
+ * @property {string} [slug]
+ * @property {boolean} [is_active]
+ * @property {Area[]} [areas]
+ * @property {string} [region_type]
+ * @property {string} [type]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {string} [created_by]
+ * @property {string} [modified_by]
+ */
+/**
+ * @typedef Area
+ * @property {string[]} [regions]
+ * @property {string} [country]
+ */
+/**
+ * @typedef Region
+ * @property {string} uid
+ * @property {string} display_name
+ * @property {string} sub_type
+ * @property {string[]} parent_id
+ * @property {string} parent_uid
+ */
+/**
+ * @typedef RegionV2
+ * @property {string} [uid]
+ * @property {string} [display_name]
+ * @property {string} [sub_type]
+ * @property {string[]} [parent_id]
+ */
+/**
+ * @typedef Country
+ * @property {string} uid
+ * @property {string} display_name
+ */
+/**
+ * @typedef AreaExpanded
+ * @property {Country} country
+ * @property {Region[]} regions
+ */
+/**
+ * @typedef AreaExpandedV2
+ * @property {Country} country
+ * @property {RegionV2[]} regions
+ */
+/**
+ * @typedef GeoAreaResponse
+ * @property {string} name
+ * @property {string} [geoarea_id]
+ * @property {boolean} is_active
+ * @property {string} type
+ * @property {string} region_type
+ * @property {AreaExpanded[]} areas
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {string} [created_by]
+ * @property {string} [modified_by]
+ */
+/**
+ * @typedef GeoAreaCount
+ * @property {number} pincode
+ * @property {number} state
+ * @property {number} city
+ * @property {number} sector
+ */
+/**
+ * @typedef GeoAreaGetResponseBody
+ * @property {GeoAreaItemResponse[]} [items]
+ * @property {Page2} [page]
+ */
+/**
+ * @typedef GeoAreaItemResponse
+ * @property {string} geoarea_id
+ * @property {string} name
+ * @property {string} slug
+ * @property {boolean} is_active
+ * @property {string} region_type
+ * @property {string} [type]
+ * @property {AreaExpandedV2[]} [areas]
+ * @property {string} created_on
+ * @property {string} modified_on
+ * @property {string} created_by
+ * @property {string} modified_by
+ */
+/**
+ * @typedef ErrorResponseV2
+ * @property {boolean} value
+ * @property {string} error
+ */
+/**
  * @typedef ErrorResponse
  * @property {string} value
  * @property {string} message
@@ -534,13 +835,20 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
+ * @property {number} size
+ * @property {number} item_total
+ * @property {boolean} has_previous
  * @property {string} type
- * @property {number} [size]
+ * @property {number} current
+ * @property {boolean} has_next
+ */
+/**
+ * @typedef Page2
+ * @property {number} size
+ * @property {number} item_total
+ * @property {string} type
+ * @property {number} current
+ * @property {boolean} has_next
  */
 /**
  * @typedef CourierPartnerList
@@ -596,6 +904,7 @@ export = ServiceabilityPlatformModel;
  * @property {CourierPartnerList[]} [cp_list]
  * @property {string} name
  * @property {CourierPartnerRuleConditions} conditions
+ * @property {string[]} [manual_priority]
  * @property {string[]} sort
  */
 /**
@@ -619,10 +928,73 @@ export = ServiceabilityPlatformModel;
  * @property {string} [serviceability_type]
  */
 /**
+ * @typedef BuyboxConfig
+ * @property {boolean} show_seller
+ * @property {boolean} enable_selection
+ * @property {boolean} is_seller_buybox_enabled
+ */
+/**
+ * @typedef BuyboxRuleConfig
+ * @property {string[]} [store_type_priority]
+ * @property {string[]} [store_tag_priority]
+ * @property {string[]} [sort]
+ */
+/**
+ * @typedef PromiseType
+ * @property {string} display_name
+ * @property {string} slug
+ * @property {string} description
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ */
+/**
+ * @typedef StorePromiseAttributeConfig
+ * @property {boolean} [is_operational_timing_enabled]
+ * @property {boolean} [is_order_acceptance_timing_enabled]
+ * @property {boolean} [is_average_processing_time]
+ * @property {boolean} [is_holiday_enabled]
+ */
+/**
+ * @typedef DeliveryServiceAttributeConfig
+ * @property {boolean} [is_pickup_cutoff_time_enabled]
+ * @property {boolean} [is_service_tat_enabled]
+ * @property {boolean} [is_holiday_enabled]
+ */
+/**
+ * @typedef BufferField
+ * @property {string} [unit]
+ * @property {number} [value]
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef PromiseConfig
+ * @property {StorePromiseAttributeConfig} [store_attributes]
+ * @property {DeliveryServiceAttributeConfig} [delivery_service_attributes]
+ * @property {BufferField} [buffer_field]
+ */
+/**
  * @typedef ApplicationConfig
  * @property {string[]} [rule_ids]
  * @property {string[]} [sort]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string[]} [manual_priority]
  * @property {ZoneConfig} [zones]
+ * @property {BuyboxConfig} [buybox_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseType[]} [promise_types]
+ * @property {PromiseConfig} [promise_config]
+ */
+/**
+ * @typedef ApplicationConfigPatchRequest
+ * @property {BuyboxConfig} [buybox_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseType[]} [promise_types]
+ * @property {PromiseConfig} [promise_config]
+ */
+/**
+ * @typedef ApplicationConfigPatchResponse
+ * @property {boolean} [success]
  */
 /**
  * @typedef BulkRegionJobSerializer
@@ -672,6 +1044,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  */
 /**
  * @typedef CustomerRadiusSchema
@@ -705,6 +1078,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  */
@@ -726,6 +1100,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [type_based_priority]
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [manual_priority]
  * @property {string[]} [sort]
  */
 /**
@@ -737,6 +1112,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  */
@@ -749,6 +1125,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  * @property {number} [company_id]
@@ -922,79 +1299,10 @@ export = ServiceabilityPlatformModel;
  * @typedef RulePriorityResponse
  * @property {boolean} [success]
  */
-/**
- * @typedef ArticleAssignment
- * @property {string} [level]
- * @property {string} [strategy] - The strategy parameter allows users to
- *   specify the desired approach or criteria for selecting optimal locations.
- */
-/**
- * @typedef ServiceabilityLocation
- * @property {string} longitude - The longitude of the serviceability location.
- * @property {string} latitude - The latitude of the serviceability location.
- */
-/**
- * @typedef LocationDetailsServiceability
- * @property {string} [pincode] - The pincode of the serviceability location.
- * @property {string} [sector] - The sector of the serviceability location.
- * @property {string} [state] - The state of the serviceability location.
- * @property {string} country - The country of the serviceability location.
- * @property {string} [city] - The city of the serviceability location.
- * @property {string} country_iso_code - The ISO code of the country.
- * @property {ServiceabilityLocation} [location]
- */
-/**
- * @typedef OptimalLocationsArticles
- * @property {number} item_id
- * @property {string} size
- * @property {string} quantity
- * @property {string} [group_id]
- * @property {boolean} [is_primary_item]
- * @property {Object} [meta]
- * @property {ArticleAssignment} article_assignment
- * @property {number[]} ignore_locations
- * @property {number[]} assign_locations
- * @property {number} [seller_id]
- * @property {number} [store_id]
- */
-/**
- * @typedef OptimlLocationsRequestSchema
- * @property {string} channel_id
- * @property {string} channel_type
- * @property {string} [channel_identifier]
- * @property {LocationDetailsServiceability} to_serviceability
- * @property {OptimalLocationsArticles} [article]
- */
-/**
- * @typedef OptimalLocationArticlesResponse
- * @property {number} item_id
- * @property {string} size
- * @property {number} quantity
- * @property {string} [group_id]
- * @property {boolean} [is_primary_item]
- * @property {Object} [meta]
- * @property {ArticleAssignment} article_assignment
- * @property {number} [seller_id]
- * @property {number[]} ignore_locations
- * @property {number[]} assign_locations
- * @property {number} price_effective
- * @property {number} mto_quantity
- * @property {string} _id
- * @property {string} uid
- */
-/**
- * @typedef OptimalLocationAssignedStoresResponse
- * @property {number} store_id
- * @property {OptimalLocationArticlesResponse[]} articles
- */
-/**
- * @typedef OptimalLocationsResponse
- * @property {OptimalLocationAssignedStoresResponse[]} assigned_stores
- */
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, ArticleAssignment, ServiceabilityLocation, LocationDetailsServiceability, OptimalLocationsArticles, OptimlLocationsRequestSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse };
+    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ProductSchema, StoresSchema, SummarySchema, RegionSchema, ServiceabilityDeleteErrorResponse, ListViewResponseV2, ListViewItemsV2, Summary, GeoArea, ListViewProductV2, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneDataV2, ZoneUpdateSuccessResponse, ZoneDeleteSuccessResponse, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneV2Data, ZoneStores, ZoneProduct, ZoneResponseV2, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, ReAssignStoreRequest, ServiceabilityZoneErrorResponse, ReAssignStoreResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, GeoAreaRequestBody, ConflictingErrorResponse, ErrorResponseItem, ConflictingArea, ErrorResponseDetail, GeoAreaResponseBody, GeoAreaPutResponseBody, Area, Region, RegionV2, Country, AreaExpanded, AreaExpandedV2, GeoAreaResponse, GeoAreaCount, GeoAreaGetResponseBody, GeoAreaItemResponse, ErrorResponseV2, ErrorResponse, CourierPartnerAccountFailureResponse, Page, Page2, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, BuyboxConfig, BuyboxRuleConfig, PromiseType, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, PromiseConfig, ApplicationConfig, ApplicationConfigPatchRequest, ApplicationConfigPatchResponse, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse };
 }
 /** @returns {UpdateZoneConfigRequest} */
 declare function UpdateZoneConfigRequest(): UpdateZoneConfigRequest;
@@ -1081,6 +1389,82 @@ type ListViewSummary = {
     total_pincodes_served: number;
     total_active_zones: number;
 };
+/** @returns {ProductSchema} */
+declare function ProductSchema(): ProductSchema;
+type ProductSchema = {
+    type: string;
+    values: number[];
+};
+/** @returns {StoresSchema} */
+declare function StoresSchema(): StoresSchema;
+type StoresSchema = {
+    type: string;
+    values: number[];
+};
+/** @returns {SummarySchema} */
+declare function SummarySchema(): SummarySchema;
+type SummarySchema = {
+    stores_count?: number;
+    products_count?: number;
+    regions?: RegionSchema[];
+};
+/** @returns {RegionSchema} */
+declare function RegionSchema(): RegionSchema;
+type RegionSchema = {
+    name?: string;
+    count?: number;
+};
+/** @returns {ServiceabilityDeleteErrorResponse} */
+declare function ServiceabilityDeleteErrorResponse(): ServiceabilityDeleteErrorResponse;
+type ServiceabilityDeleteErrorResponse = {
+    error: ServiceabilityErrorResponse[];
+};
+/** @returns {ListViewResponseV2} */
+declare function ListViewResponseV2(): ListViewResponseV2;
+type ListViewResponseV2 = {
+    items: ListViewItemsV2[];
+    page: ZoneDataItem;
+};
+/** @returns {ListViewItemsV2} */
+declare function ListViewItemsV2(): ListViewItemsV2;
+type ListViewItemsV2 = {
+    zone_id: string;
+    name: string;
+    type: string;
+    geo_areas: GeoArea[];
+    slug: string;
+    stores: ListViewProductV2;
+    is_active: boolean;
+    product: ListViewProductV2;
+    company_id: number;
+    application_id: string;
+    created_by: string;
+    created_on: string;
+    modified_by: string;
+    modified_on: string;
+    stage?: string;
+    summary?: Summary;
+};
+/** @returns {Summary} */
+declare function Summary(): Summary;
+type Summary = {
+    stores_count?: number;
+    products_count?: number;
+    regions?: Region[];
+};
+/** @returns {GeoArea} */
+declare function GeoArea(): GeoArea;
+type GeoArea = {
+    id: string;
+    type?: string;
+    name: string;
+};
+/** @returns {ListViewProductV2} */
+declare function ListViewProductV2(): ListViewProductV2;
+type ListViewProductV2 = {
+    type: string;
+    values: string[];
+};
 /** @returns {ZoneDataItem} */
 declare function ZoneDataItem(): ZoneDataItem;
 type ZoneDataItem = {
@@ -1154,6 +1538,43 @@ type ZoneMappingType = {
     pincode?: string[];
     state?: string[];
 };
+/** @returns {UpdateZoneDataV2} */
+declare function UpdateZoneDataV2(): UpdateZoneDataV2;
+type UpdateZoneDataV2 = {
+    zone_id?: string;
+    name?: string;
+    type?: string;
+    slug?: string;
+    geo_areas?: string[];
+    company_id?: number;
+    application_id?: string;
+    is_active?: boolean;
+    product?: ProductSchema;
+    stores?: StoresSchema;
+};
+/** @returns {ZoneUpdateSuccessResponse} */
+declare function ZoneUpdateSuccessResponse(): ZoneUpdateSuccessResponse;
+type ZoneUpdateSuccessResponse = {
+    name: string;
+    slug: string;
+    company_id: number;
+    type: string;
+    application_id: string;
+    is_active: boolean;
+    geo_areas: string[];
+    product: ProductSchema;
+    stores: StoresSchema;
+    zone_id: string;
+    created_by: string;
+    created_on: string;
+    modified_by: string;
+    modified_on: string;
+};
+/** @returns {ZoneDeleteSuccessResponse} */
+declare function ZoneDeleteSuccessResponse(): ZoneDeleteSuccessResponse;
+type ZoneDeleteSuccessResponse = {
+    message: string;
+};
 /** @returns {UpdateZoneData} */
 declare function UpdateZoneData(): UpdateZoneData;
 type UpdateZoneData = {
@@ -1210,13 +1631,62 @@ type GetZoneByIdSchema = {
     slug: string;
     company_id?: number;
     is_active: boolean;
-    channels: GetZoneDataViewChannels[];
-    product: ZoneProductTypes;
-    store_ids: number[];
-    region_type: string;
-    mapping: ZoneMappingType[];
-    assignment_preference?: string;
-    stores_count: number;
+    product: ProductSchema;
+    stores: StoresSchema;
+    summary?: SummarySchema;
+    created_by?: string;
+    created_on?: string;
+    modified_by?: string;
+    modified_on?: string;
+    stage?: string;
+    overlapping_file_url?: string;
+    geo_areas: string[];
+    type: string;
+    overlapping_zone_names?: string[];
+};
+/** @returns {CreateZoneV2Data} */
+declare function CreateZoneV2Data(): CreateZoneV2Data;
+type CreateZoneV2Data = {
+    is_active: boolean;
+    slug: string;
+    type: string;
+    name: string;
+    company_id: number;
+    application_id: string;
+    geo_areas: string[];
+    stores: ZoneStores;
+    product: ZoneProduct;
+};
+/** @returns {ZoneStores} */
+declare function ZoneStores(): ZoneStores;
+type ZoneStores = {
+    type: string;
+    values: number[];
+};
+/** @returns {ZoneProduct} */
+declare function ZoneProduct(): ZoneProduct;
+type ZoneProduct = {
+    type: string;
+    values: number[];
+};
+/** @returns {ZoneResponseV2} */
+declare function ZoneResponseV2(): ZoneResponseV2;
+type ZoneResponseV2 = {
+    name: string;
+    slug: string;
+    company_id: number;
+    type: string;
+    application_id: string;
+    is_active: boolean;
+    geo_areas: string[];
+    stores: ListViewProductV2;
+    product: ListViewProductV2;
+    created_by: string;
+    created_on: string;
+    modified_by: string;
+    modified_on: string;
+    stage: string;
+    zone_id: string;
 };
 /** @returns {CreateZoneData} */
 declare function CreateZoneData(): CreateZoneData;
@@ -1433,6 +1903,28 @@ type GetStoresViewResponse = {
     page: ServiceabilityPageResponse;
     items?: ItemResponse[];
 };
+/** @returns {ReAssignStoreRequest} */
+declare function ReAssignStoreRequest(): ReAssignStoreRequest;
+type ReAssignStoreRequest = {
+    to_pincode: string;
+    identifier: string;
+    configuration: any;
+    ignored_locations: string[];
+    articles: any[];
+};
+/** @returns {ServiceabilityZoneErrorResponse} */
+declare function ServiceabilityZoneErrorResponse(): ServiceabilityZoneErrorResponse;
+type ServiceabilityZoneErrorResponse = {
+    error: ServiceabilityErrorResponse[];
+};
+/** @returns {ReAssignStoreResponse} */
+declare function ReAssignStoreResponse(): ReAssignStoreResponse;
+type ReAssignStoreResponse = {
+    to_pincode: string;
+    success: boolean;
+    error: any;
+    articles?: any[];
+};
 /** @returns {PincodeMopData} */
 declare function PincodeMopData(): PincodeMopData;
 type PincodeMopData = {
@@ -1591,6 +2083,161 @@ type CourierAccount = {
     stage: string;
     is_own_account: boolean;
 };
+/** @returns {GeoAreaRequestBody} */
+declare function GeoAreaRequestBody(): GeoAreaRequestBody;
+type GeoAreaRequestBody = {
+    is_active: boolean;
+    name: string;
+    slug: string;
+    type: string;
+    areas: Area[];
+    region_type: string;
+};
+/** @returns {ConflictingErrorResponse} */
+declare function ConflictingErrorResponse(): ConflictingErrorResponse;
+type ConflictingErrorResponse = {
+    detail: ErrorResponseDetail;
+};
+/** @returns {ErrorResponseItem} */
+declare function ErrorResponseItem(): ErrorResponseItem;
+type ErrorResponseItem = {
+    message: string;
+    error_name: string;
+    error_code: number;
+    value: string;
+    conflicting_areas: ConflictingArea[];
+};
+/** @returns {ConflictingArea} */
+declare function ConflictingArea(): ConflictingArea;
+type ConflictingArea = {
+    geoarea_id: string;
+    name: string;
+};
+/** @returns {ErrorResponseDetail} */
+declare function ErrorResponseDetail(): ErrorResponseDetail;
+type ErrorResponseDetail = {
+    items: ErrorResponseItem[];
+};
+/** @returns {GeoAreaResponseBody} */
+declare function GeoAreaResponseBody(): GeoAreaResponseBody;
+type GeoAreaResponseBody = {
+    name: string;
+    slug: string;
+    is_active: boolean;
+    areas: Area[];
+    region_type: string;
+    type: string;
+    created_on: string;
+    modified_on: string;
+    created_by: string;
+    modified_by: string;
+    geoarea_id: string;
+};
+/** @returns {GeoAreaPutResponseBody} */
+declare function GeoAreaPutResponseBody(): GeoAreaPutResponseBody;
+type GeoAreaPutResponseBody = {
+    name?: string;
+    geoarea_id?: string;
+    slug?: string;
+    is_active?: boolean;
+    areas?: Area[];
+    region_type?: string;
+    type?: string;
+    created_on?: string;
+    modified_on?: string;
+    created_by?: string;
+    modified_by?: string;
+};
+/** @returns {Area} */
+declare function Area(): Area;
+type Area = {
+    regions?: string[];
+    country?: string;
+};
+/** @returns {Region} */
+declare function Region(): Region;
+type Region = {
+    uid: string;
+    display_name: string;
+    sub_type: string;
+    parent_id: string[];
+    parent_uid: string;
+};
+/** @returns {RegionV2} */
+declare function RegionV2(): RegionV2;
+type RegionV2 = {
+    uid?: string;
+    display_name?: string;
+    sub_type?: string;
+    parent_id?: string[];
+};
+/** @returns {Country} */
+declare function Country(): Country;
+type Country = {
+    uid: string;
+    display_name: string;
+};
+/** @returns {AreaExpanded} */
+declare function AreaExpanded(): AreaExpanded;
+type AreaExpanded = {
+    country: Country;
+    regions: Region[];
+};
+/** @returns {AreaExpandedV2} */
+declare function AreaExpandedV2(): AreaExpandedV2;
+type AreaExpandedV2 = {
+    country: Country;
+    regions: RegionV2[];
+};
+/** @returns {GeoAreaResponse} */
+declare function GeoAreaResponse(): GeoAreaResponse;
+type GeoAreaResponse = {
+    name: string;
+    geoarea_id?: string;
+    is_active: boolean;
+    type: string;
+    region_type: string;
+    areas: AreaExpanded[];
+    created_on?: string;
+    modified_on?: string;
+    created_by?: string;
+    modified_by?: string;
+};
+/** @returns {GeoAreaCount} */
+declare function GeoAreaCount(): GeoAreaCount;
+type GeoAreaCount = {
+    pincode: number;
+    state: number;
+    city: number;
+    sector: number;
+};
+/** @returns {GeoAreaGetResponseBody} */
+declare function GeoAreaGetResponseBody(): GeoAreaGetResponseBody;
+type GeoAreaGetResponseBody = {
+    items?: GeoAreaItemResponse[];
+    page?: Page2;
+};
+/** @returns {GeoAreaItemResponse} */
+declare function GeoAreaItemResponse(): GeoAreaItemResponse;
+type GeoAreaItemResponse = {
+    geoarea_id: string;
+    name: string;
+    slug: string;
+    is_active: boolean;
+    region_type: string;
+    type?: string;
+    areas?: AreaExpandedV2[];
+    created_on: string;
+    modified_on: string;
+    created_by: string;
+    modified_by: string;
+};
+/** @returns {ErrorResponseV2} */
+declare function ErrorResponseV2(): ErrorResponseV2;
+type ErrorResponseV2 = {
+    value: boolean;
+    error: string;
+};
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
@@ -1607,13 +2254,21 @@ type CourierPartnerAccountFailureResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
+    size: number;
+    item_total: number;
+    has_previous: boolean;
     type: string;
-    size?: number;
+    current: number;
+    has_next: boolean;
+};
+/** @returns {Page2} */
+declare function Page2(): Page2;
+type Page2 = {
+    size: number;
+    item_total: number;
+    type: string;
+    current: number;
+    has_next: boolean;
 };
 /** @returns {CourierPartnerList} */
 declare function CourierPartnerList(): CourierPartnerList;
@@ -1676,6 +2331,7 @@ type CourierPartnerRule = {
     cp_list?: CourierPartnerList[];
     name: string;
     conditions: CourierPartnerRuleConditions;
+    manual_priority?: string[];
     sort: string[];
 };
 /** @returns {FailureResponse} */
@@ -1702,12 +2358,84 @@ declare function ZoneConfig(): ZoneConfig;
 type ZoneConfig = {
     serviceability_type?: string;
 };
+/** @returns {BuyboxConfig} */
+declare function BuyboxConfig(): BuyboxConfig;
+type BuyboxConfig = {
+    show_seller: boolean;
+    enable_selection: boolean;
+    is_seller_buybox_enabled: boolean;
+};
+/** @returns {BuyboxRuleConfig} */
+declare function BuyboxRuleConfig(): BuyboxRuleConfig;
+type BuyboxRuleConfig = {
+    store_type_priority?: string[];
+    store_tag_priority?: string[];
+    sort?: string[];
+};
+/** @returns {PromiseType} */
+declare function PromiseType(): PromiseType;
+type PromiseType = {
+    display_name: string;
+    slug: string;
+    description: string;
+    is_active: boolean;
+    is_default: boolean;
+};
+/** @returns {StorePromiseAttributeConfig} */
+declare function StorePromiseAttributeConfig(): StorePromiseAttributeConfig;
+type StorePromiseAttributeConfig = {
+    is_operational_timing_enabled?: boolean;
+    is_order_acceptance_timing_enabled?: boolean;
+    is_average_processing_time?: boolean;
+    is_holiday_enabled?: boolean;
+};
+/** @returns {DeliveryServiceAttributeConfig} */
+declare function DeliveryServiceAttributeConfig(): DeliveryServiceAttributeConfig;
+type DeliveryServiceAttributeConfig = {
+    is_pickup_cutoff_time_enabled?: boolean;
+    is_service_tat_enabled?: boolean;
+    is_holiday_enabled?: boolean;
+};
+/** @returns {BufferField} */
+declare function BufferField(): BufferField;
+type BufferField = {
+    unit?: string;
+    value?: number;
+    enabled?: boolean;
+};
+/** @returns {PromiseConfig} */
+declare function PromiseConfig(): PromiseConfig;
+type PromiseConfig = {
+    store_attributes?: StorePromiseAttributeConfig;
+    delivery_service_attributes?: DeliveryServiceAttributeConfig;
+    buffer_field?: BufferField;
+};
 /** @returns {ApplicationConfig} */
 declare function ApplicationConfig(): ApplicationConfig;
 type ApplicationConfig = {
     rule_ids?: string[];
     sort?: string[];
+    application_id?: string;
+    company_id?: number;
+    manual_priority?: string[];
     zones?: ZoneConfig;
+    buybox_config?: BuyboxConfig;
+    buybox_rule_config?: BuyboxRuleConfig;
+    promise_types?: PromiseType[];
+    promise_config?: PromiseConfig;
+};
+/** @returns {ApplicationConfigPatchRequest} */
+declare function ApplicationConfigPatchRequest(): ApplicationConfigPatchRequest;
+type ApplicationConfigPatchRequest = {
+    buybox_config?: BuyboxConfig;
+    buybox_rule_config?: BuyboxRuleConfig;
+    promise_types?: PromiseType[];
+    promise_config?: PromiseConfig;
+};
+/** @returns {ApplicationConfigPatchResponse} */
+declare function ApplicationConfigPatchResponse(): ApplicationConfigPatchResponse;
+type ApplicationConfigPatchResponse = {
+    success?: boolean;
 };
 /** @returns {BulkRegionJobSerializer} */
 declare function BulkRegionJobSerializer(): BulkRegionJobSerializer;
@@ -1764,6 +2492,7 @@ type StoreRuleConfigData = {
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
     sort?: string[];
+    manual_priority?: string[];
 };
 /** @returns {CustomerRadiusSchema} */
 declare function CustomerRadiusSchema(): CustomerRadiusSchema;
@@ -1800,6 +2529,7 @@ type StoreRuleDataSchema = {
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
     sort?: string[];
+    manual_priority?: string[];
     conditions?: StoreRuleConditionSchema;
     is_active?: boolean;
 };
@@ -1824,6 +2554,7 @@ type CreateStoreRuleRequestSchema = {
     type_based_priority?: string[];
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
+    manual_priority?: string[];
     sort?: string[];
 };
 /** @returns {StoreRuleResponseSchema} */
@@ -1836,6 +2567,7 @@ type StoreRuleResponseSchema = {
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
     sort?: string[];
+    manual_priority?: string[];
     conditions?: StoreRuleConditionSchema;
     is_active?: boolean;
 };
@@ -1849,6 +2581,7 @@ type StoreRuleUpdateResponseSchema = {
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
     sort?: string[];
+    manual_priority?: string[];
     conditions?: StoreRuleConditionSchema;
     is_active?: boolean;
     company_id?: number;
@@ -2040,108 +2773,4 @@ type RulePriorityRequest = {
 declare function RulePriorityResponse(): RulePriorityResponse;
 type RulePriorityResponse = {
     success?: boolean;
-};
-/** @returns {ArticleAssignment} */
-declare function ArticleAssignment(): ArticleAssignment;
-type ArticleAssignment = {
-    level?: string;
-    /**
-     * - The strategy parameter allows users to
-     * specify the desired approach or criteria for selecting optimal locations.
-     */
-    strategy?: string;
-};
-/** @returns {ServiceabilityLocation} */
-declare function ServiceabilityLocation(): ServiceabilityLocation;
-type ServiceabilityLocation = {
-    /**
-     * - The longitude of the serviceability location.
-     */
-    longitude: string;
-    /**
-     * - The latitude of the serviceability location.
-     */
-    latitude: string;
-};
-/** @returns {LocationDetailsServiceability} */
-declare function LocationDetailsServiceability(): LocationDetailsServiceability;
-type LocationDetailsServiceability = {
-    /**
-     * - The pincode of the serviceability location.
-     */
-    pincode?: string;
-    /**
-     * - The sector of the serviceability location.
-     */
-    sector?: string;
-    /**
-     * - The state of the serviceability location.
-     */
-    state?: string;
-    /**
-     * - The country of the serviceability location.
-     */
-    country: string;
-    /**
-     * - The city of the serviceability location.
-     */
-    city?: string;
-    /**
-     * - The ISO code of the country.
-     */
-    country_iso_code: string;
-    location?: ServiceabilityLocation;
-};
-/** @returns {OptimalLocationsArticles} */
-declare function OptimalLocationsArticles(): OptimalLocationsArticles;
-type OptimalLocationsArticles = {
-    item_id: number;
-    size: string;
-    quantity: string;
-    group_id?: string;
-    is_primary_item?: boolean;
-    meta?: any;
-    article_assignment: ArticleAssignment;
-    ignore_locations: number[];
-    assign_locations: number[];
-    seller_id?: number;
-    store_id?: number;
-};
-/** @returns {OptimlLocationsRequestSchema} */
-declare function OptimlLocationsRequestSchema(): OptimlLocationsRequestSchema;
-type OptimlLocationsRequestSchema = {
-    channel_id: string;
-    channel_type: string;
-    channel_identifier?: string;
-    to_serviceability: LocationDetailsServiceability;
-    article?: OptimalLocationsArticles;
-};
-/** @returns {OptimalLocationArticlesResponse} */
-declare function OptimalLocationArticlesResponse(): OptimalLocationArticlesResponse;
-type OptimalLocationArticlesResponse = {
-    item_id: number;
-    size: string;
-    quantity: number;
-    group_id?: string;
-    is_primary_item?: boolean;
-    meta?: any;
-    article_assignment: ArticleAssignment;
-    seller_id?: number;
-    ignore_locations: number[];
-    assign_locations: number[];
-    price_effective: number;
-    mto_quantity: number;
-    _id: string;
-    uid: string;
-};
-/** @returns {OptimalLocationAssignedStoresResponse} */
-declare function OptimalLocationAssignedStoresResponse(): OptimalLocationAssignedStoresResponse;
-type OptimalLocationAssignedStoresResponse = {
-    store_id: number;
-    articles: OptimalLocationArticlesResponse[];
-};
-/** @returns {OptimalLocationsResponse} */
-declare function OptimalLocationsResponse(): OptimalLocationsResponse;
-type OptimalLocationsResponse = {
-    assigned_stores: OptimalLocationAssignedStoresResponse[];
 };

@@ -1,3 +1,5 @@
+const Catalog = require("./Catalog/CatalogPartnerClient");
+
 const FileStorage = require("./FileStorage/FileStoragePartnerClient");
 
 const Lead = require("./Lead/LeadPartnerClient");
@@ -24,6 +26,7 @@ class PartnerClient {
    */
   constructor(config) {
     this.config = config;
+    this.catalog = new Catalog(config);
     this.fileStorage = new FileStorage(config);
     this.lead = new Lead(config);
     this.logistics = new Logistics(config);

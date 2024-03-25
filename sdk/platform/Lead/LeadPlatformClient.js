@@ -256,87 +256,10 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.GetFeedbacksParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.TicketFeedbackList>} - Success response
-   * @name getFeedbacks
-   * @summary: Get feedbacks.
-   * @description: Retrieve feedback information related to a ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getFeedbacks/).
-   */
-  async getFeedbacks(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = LeadPlatformValidator.getFeedbacks().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadPlatformValidator.getFeedbacks().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > getFeedbacks \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LeadPlatformModel.TicketFeedbackList().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > getFeedbacks \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
+   * @returns {Promise<LeadPlatformModel.GeneralConfigResponse>} - Success response
    * @name getGeneralConfig
    * @summary: Get general configuration.
    * @description: Retrieve general configuration settings related to support system for company tickets - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
@@ -388,7 +311,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadPlatformModel.CloseVideoRoomResponse().validate(responseData, {
+    } = LeadPlatformModel.GeneralConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -677,6 +600,56 @@ class Lead {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.items] - Decides that the reponse will contain the
+   *   list of tickets
+   * @param {boolean} [arg.filters] - Decides that the reponse will contain
+   *   the ticket filters
+   * @param {string} [arg.q] - Search through ticket titles and description
+   * @param {string} [arg.status] - Filter tickets on status
+   * @param {string} [arg.priority] - Filter tickets on priority
+   * @param {string} [arg.category] - Filter tickets on category
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 12.
+   * @returns {Paginator<LeadPlatformModel.TicketList>}
+   * @summary: Get platform tickets.
+   * @description: Retrieve a list of tickets created within the platform at company level
+   */
+  getPlatformTicketsPaginator({
+    items,
+    filters,
+    q,
+    status,
+    priority,
+    category,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getPlatformTickets({
+        items: items,
+        filters: filters,
+        q: q,
+        status: status,
+        priority: priority,
+        category: category,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {LeadPlatformValidator.GetPlatformVideoParticipantsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -834,85 +807,6 @@ class Lead {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Lead > getTokenForPlatformVideoRoom \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {LeadPlatformValidator.SubmitFeedbackParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.TicketFeedback>} - Success response
-   * @name submitFeedback
-   * @summary: Submit feedback.
-   * @description: Provide feedback on a ticket and it's resolution. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/submitFeedback/).
-   */
-  async submitFeedback(
-    { id, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = LeadPlatformValidator.submitFeedback().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadPlatformValidator.submitFeedback().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > submitFeedback \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LeadPlatformModel.TicketFeedback().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > submitFeedback \n ${res_error}`,
         });
       }
     }

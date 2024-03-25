@@ -11,6 +11,7 @@ export = WebhookPublicModel;
  * @property {string} [description]
  * @property {string} [created_on]
  * @property {string} [updated_on]
+ * @property {string} [group]
  */
 /**
  * @typedef EventConfigResponse
@@ -107,6 +108,7 @@ type EventConfig = {
     description?: string;
     created_on?: string;
     updated_on?: string;
+    group?: string;
 };
 /** @returns {EventConfigResponse} */
 declare function EventConfigResponse(): EventConfigResponse;

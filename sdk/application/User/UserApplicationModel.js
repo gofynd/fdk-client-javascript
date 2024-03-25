@@ -12,36 +12,36 @@ const Joi = require("joi");
 
 /**
  * @typedef DeleteApplicationUserRequestSchema
- * @property {string} [user_id]
- * @property {string} [reason]
- * @property {string} [reason_id]
+ * @property {string} user_id
+ * @property {string} reason
+ * @property {string} reason_id
  * @property {string} [request_id]
- * @property {string} [otp]
+ * @property {string} otp
  */
 
 /**
  * @typedef EditEmailRequestSchema
- * @property {string} [email]
+ * @property {string} email
  */
 
 /**
  * @typedef SendVerificationLinkMobileRequestSchema
  * @property {boolean} [verified]
  * @property {boolean} [active]
- * @property {string} [country_code]
- * @property {string} [phone]
+ * @property {string} country_code
+ * @property {string} phone
  * @property {boolean} [primary]
  */
 
 /**
  * @typedef EditMobileRequestSchema
- * @property {string} [country_code]
- * @property {string} [phone]
+ * @property {string} country_code
+ * @property {string} phone
  */
 
 /**
  * @typedef EditProfileRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {EditProfileMobileSchema} [mobile]
@@ -63,52 +63,54 @@ const Joi = require("joi");
 
 /**
  * @typedef SendEmailOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
+ * @property {string} email
+ * @property {string} action
  * @property {string} [token]
  * @property {string} [register_token]
  */
 
 /**
  * @typedef SendEmailForgotOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
+ * @property {string} email
+ * @property {string} action
  * @property {string} [token]
  */
 
 /**
  * @typedef VerifyEmailOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
+ * @property {string} email
+ * @property {string} [request_id]
+ * @property {string} action
  * @property {string} [register_token]
- * @property {string} [otp]
+ * @property {string} otp
  */
 
 /**
  * @typedef VerifyEmailForgotOtpRequestSchema
- * @property {string} [email]
- * @property {string} [otp]
+ * @property {string} email
+ * @property {string} otp
+ * @property {string} [request_id]
  */
 
 /**
  * @typedef VerifyOtpRequestSchema
- * @property {string} [request_id]
+ * @property {string} request_id
  * @property {string} [register_token]
- * @property {string} [otp]
+ * @property {string} otp
  */
 
 /**
  * @typedef VerifyMobileForgotOtpRequestSchema
- * @property {string} [request_id]
- * @property {string} [otp]
+ * @property {string} request_id
+ * @property {string} otp
  */
 
 /**
  * @typedef SendMobileOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
- * @property {string} [mobile]
- * @property {string} [country_code]
- * @property {string} [action]
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
+ * @property {string} mobile
+ * @property {string} country_code
+ * @property {string} action
  * @property {string} [token]
  * @property {string} [android_hash]
  * @property {string} [force]
@@ -116,17 +118,17 @@ const Joi = require("joi");
 
 /**
  * @typedef SendMobileForgotOtpRequestSchema
- * @property {string} [mobile]
- * @property {string} [country_code]
- * @property {string} [action]
+ * @property {string} mobile
+ * @property {string} country_code
+ * @property {string} action
  * @property {string} [token]
  * @property {string} [android_hash]
  */
 
 /**
  * @typedef UpdatePasswordRequestSchema
- * @property {string} [old_password]
- * @property {string} [new_password]
+ * @property {string} old_password
+ * @property {string} new_password
  */
 
 /**
@@ -142,50 +144,44 @@ const Joi = require("joi");
 
 /**
  * @typedef TokenRequestBodySchema
- * @property {string} [token]
+ * @property {string} token
  */
 
 /**
  * @typedef ForgotPasswordRequestSchema
- * @property {string} [code]
- * @property {string} [password]
+ * @property {string} code
+ * @property {string} password
  */
 
 /**
  * @typedef CodeRequestBodySchema
- * @property {string} [code]
+ * @property {string} code
  */
 
 /**
  * @typedef SendResetPasswordEmailRequestSchema
- * @property {string} [email]
- */
-
-/**
- * @typedef SendResetPasswordMobileRequestSchema
- * @property {string} [country_code]
- * @property {string} [mobile]
+ * @property {string} email
  */
 
 /**
  * @typedef PasswordLoginRequestSchema
- * @property {string} [password]
- * @property {string} [username]
+ * @property {string} password
+ * @property {string} username
  */
 
 /**
  * @typedef SendOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
- * @property {string} [country_code]
- * @property {string} [mobile]
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
+ * @property {string} country_code
+ * @property {string} mobile
  * @property {string} [android_hash]
  */
 
 /**
  * @typedef OAuthRequestSchema
  * @property {boolean} [is_signed_in]
- * @property {OAuthRequestSchemaOauth2} [oauth2]
- * @property {OAuthRequestSchemaProfile} [profile]
+ * @property {OAuthRequestSchemaOauth2} oauth2
+ * @property {OAuthRequestSchemaProfile} profile
  */
 
 /**
@@ -230,6 +226,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef EmailOtp
+ * @property {string} [request_id]
+ * @property {number} [resend_timer]
+ */
+
+/**
  * @typedef ProfileEditSuccess
  * @property {UserSchema} [user]
  * @property {string} [register_token]
@@ -239,6 +241,7 @@ const Joi = require("joi");
  * @property {boolean} [verify_email_otp]
  * @property {boolean} [verify_mobile_otp]
  * @property {string} [email]
+ * @property {EmailOtp} [email_otp]
  * @property {string} [request_id]
  * @property {string} [country_code]
  * @property {string} [mobile]
@@ -281,6 +284,7 @@ const Joi = require("joi");
 /**
  * @typedef RegisterFormSuccess
  * @property {string} [email]
+ * @property {EmailOtp} [email_otp]
  * @property {number} [resend_timer]
  * @property {string} [resend_token]
  * @property {string} [resend_email_token]
@@ -331,6 +335,7 @@ const Joi = require("joi");
  * @typedef EmailOtpSuccess
  * @property {boolean} [success]
  * @property {string} [resend_email_token]
+ * @property {EmailOtp} [email_otp]
  */
 
 /**
@@ -379,7 +384,7 @@ const Joi = require("joi");
 
 /**
  * @typedef OAuthRequestSchemaOauth2
- * @property {string} [access_token]
+ * @property {string} access_token
  * @property {number} [expiry]
  * @property {string} [refresh_token]
  */
@@ -414,6 +419,8 @@ const Joi = require("joi");
  * @property {boolean} [active]
  * @property {boolean} [forgot_password]
  * @property {Login} [login]
+ * @property {AccountLockout} [account_lockout]
+ * @property {PasswordSettings} [password_settings]
  * @property {boolean} [skip_captcha]
  * @property {string} [name]
  * @property {MetaSchema} [meta]
@@ -443,9 +450,44 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PasswordConfigs
+ * @property {number} [length]
+ * @property {boolean} [require_special_character]
+ * @property {boolean} [require_number]
+ * @property {boolean} [require_capital_character]
+ */
+
+/**
+ * @typedef PasswordHistory
+ * @property {boolean} [required]
+ * @property {number} [count]
+ */
+
+/**
+ * @typedef PasswordExpiry
+ * @property {boolean} [required]
+ * @property {number} [duration]
+ */
+
+/**
+ * @typedef PasswordSettings
+ * @property {PasswordConfigs} [configs]
+ * @property {PasswordHistory} [history]
+ * @property {PasswordExpiry} [expiry]
+ */
+
+/**
+ * @typedef AccountLockout
+ * @property {boolean} [enable]
+ * @property {number} [attempts]
+ * @property {number} [duration]
+ */
+
+/**
  * @typedef Login
  * @property {boolean} [password]
  * @property {boolean} [otp]
+ * @property {string} [via]
  */
 
 /**
@@ -465,6 +507,7 @@ const Joi = require("joi");
  * @typedef RequiredFields
  * @property {PlatformEmail} [email]
  * @property {PlatformMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 
 /**
@@ -480,9 +523,15 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PlatformPassword
+ * @property {boolean} [is_required]
+ */
+
+/**
  * @typedef RegisterRequiredFields
  * @property {RegisterRequiredFieldsEmail} [email]
  * @property {RegisterRequiredFieldsMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 
 /**
@@ -546,9 +595,17 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef UserPasswordHistory
+ * @property {string} [salt]
+ * @property {string} [hash]
+ */
+
+/**
  * @typedef UserSchema
  * @property {string} [application_id]
  * @property {string} [user_id]
+ * @property {string} [password_last_modified]
+ * @property {UserPasswordHistory[]} [password_history]
  * @property {string} [first_name]
  * @property {Object} [meta]
  * @property {string} [last_name]
@@ -586,32 +643,32 @@ class UserApplicationModel {
   /** @returns {UpdateUserAttributesRequest} */
   static UpdateUserAttributesRequest() {
     return Joi.object({
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
   /** @returns {UserAttributes} */
   static UserAttributes() {
     return Joi.object({
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
   /** @returns {DeleteApplicationUserRequestSchema} */
   static DeleteApplicationUserRequestSchema() {
     return Joi.object({
-      user_id: Joi.string().allow(""),
-      reason: Joi.string().allow(""),
-      reason_id: Joi.string().allow(""),
+      user_id: Joi.string().allow("").required(),
+      reason: Joi.string().allow("").required(),
+      reason_id: Joi.string().allow("").required(),
       request_id: Joi.string().allow(""),
-      otp: Joi.string().allow(""),
+      otp: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {EditEmailRequestSchema} */
   static EditEmailRequestSchema() {
     return Joi.object({
-      email: Joi.string().allow(""),
+      email: Joi.string().allow("").required(),
     });
   }
 
@@ -620,8 +677,8 @@ class UserApplicationModel {
     return Joi.object({
       verified: Joi.boolean(),
       active: Joi.boolean(),
-      country_code: Joi.string().allow(""),
-      phone: Joi.string().allow(""),
+      country_code: Joi.string().allow("").required(),
+      phone: Joi.string().allow("").required(),
       primary: Joi.boolean(),
     });
   }
@@ -629,15 +686,15 @@ class UserApplicationModel {
   /** @returns {EditMobileRequestSchema} */
   static EditMobileRequestSchema() {
     return Joi.object({
-      country_code: Joi.string().allow(""),
-      phone: Joi.string().allow(""),
+      country_code: Joi.string().allow("").required(),
+      phone: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {EditProfileRequestSchema} */
   static EditProfileRequestSchema() {
     return Joi.object({
-      encrypt_otp: Joi.boolean(),
+      ci: Joi.boolean(),
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       mobile: UserApplicationModel.EditProfileMobileSchema(),
@@ -663,8 +720,8 @@ class UserApplicationModel {
   /** @returns {SendEmailOtpRequestSchema} */
   static SendEmailOtpRequestSchema() {
     return Joi.object({
-      email: Joi.string().allow(""),
-      action: Joi.string().allow(""),
+      email: Joi.string().allow("").required(),
+      action: Joi.string().allow("").required(),
       token: Joi.string().allow(""),
       register_token: Joi.string().allow(""),
     });
@@ -673,8 +730,8 @@ class UserApplicationModel {
   /** @returns {SendEmailForgotOtpRequestSchema} */
   static SendEmailForgotOtpRequestSchema() {
     return Joi.object({
-      email: Joi.string().allow(""),
-      action: Joi.string().allow(""),
+      email: Joi.string().allow("").required(),
+      action: Joi.string().allow("").required(),
       token: Joi.string().allow(""),
     });
   }
@@ -682,45 +739,47 @@ class UserApplicationModel {
   /** @returns {VerifyEmailOtpRequestSchema} */
   static VerifyEmailOtpRequestSchema() {
     return Joi.object({
-      email: Joi.string().allow(""),
-      action: Joi.string().allow(""),
+      email: Joi.string().allow("").required(),
+      request_id: Joi.string().allow(""),
+      action: Joi.string().allow("").required(),
       register_token: Joi.string().allow(""),
-      otp: Joi.string().allow(""),
+      otp: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {VerifyEmailForgotOtpRequestSchema} */
   static VerifyEmailForgotOtpRequestSchema() {
     return Joi.object({
-      email: Joi.string().allow(""),
-      otp: Joi.string().allow(""),
+      email: Joi.string().allow("").required(),
+      otp: Joi.string().allow("").required(),
+      request_id: Joi.string().allow(""),
     });
   }
 
   /** @returns {VerifyOtpRequestSchema} */
   static VerifyOtpRequestSchema() {
     return Joi.object({
-      request_id: Joi.string().allow(""),
+      request_id: Joi.string().allow("").required(),
       register_token: Joi.string().allow(""),
-      otp: Joi.string().allow(""),
+      otp: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {VerifyMobileForgotOtpRequestSchema} */
   static VerifyMobileForgotOtpRequestSchema() {
     return Joi.object({
-      request_id: Joi.string().allow(""),
-      otp: Joi.string().allow(""),
+      request_id: Joi.string().allow("").required(),
+      otp: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {SendMobileOtpRequestSchema} */
   static SendMobileOtpRequestSchema() {
     return Joi.object({
-      encrypt_otp: Joi.boolean(),
-      mobile: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
-      action: Joi.string().allow(""),
+      ci: Joi.boolean(),
+      mobile: Joi.string().allow("").required(),
+      country_code: Joi.string().allow("").required(),
+      action: Joi.string().allow("").required(),
       token: Joi.string().allow(""),
       android_hash: Joi.string().allow(""),
       force: Joi.string().allow(""),
@@ -730,9 +789,9 @@ class UserApplicationModel {
   /** @returns {SendMobileForgotOtpRequestSchema} */
   static SendMobileForgotOtpRequestSchema() {
     return Joi.object({
-      mobile: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
-      action: Joi.string().allow(""),
+      mobile: Joi.string().allow("").required(),
+      country_code: Joi.string().allow("").required(),
+      action: Joi.string().allow("").required(),
       token: Joi.string().allow(""),
       android_hash: Joi.string().allow(""),
     });
@@ -741,8 +800,8 @@ class UserApplicationModel {
   /** @returns {UpdatePasswordRequestSchema} */
   static UpdatePasswordRequestSchema() {
     return Joi.object({
-      old_password: Joi.string().allow(""),
-      new_password: Joi.string().allow(""),
+      old_password: Joi.string().allow("").required(),
+      new_password: Joi.string().allow("").required(),
     });
   }
 
@@ -762,54 +821,46 @@ class UserApplicationModel {
   /** @returns {TokenRequestBodySchema} */
   static TokenRequestBodySchema() {
     return Joi.object({
-      token: Joi.string().allow(""),
+      token: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {ForgotPasswordRequestSchema} */
   static ForgotPasswordRequestSchema() {
     return Joi.object({
-      code: Joi.string().allow(""),
-      password: Joi.string().allow(""),
+      code: Joi.string().allow("").required(),
+      password: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {CodeRequestBodySchema} */
   static CodeRequestBodySchema() {
     return Joi.object({
-      code: Joi.string().allow(""),
+      code: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {SendResetPasswordEmailRequestSchema} */
   static SendResetPasswordEmailRequestSchema() {
     return Joi.object({
-      email: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SendResetPasswordMobileRequestSchema} */
-  static SendResetPasswordMobileRequestSchema() {
-    return Joi.object({
-      country_code: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
+      email: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {PasswordLoginRequestSchema} */
   static PasswordLoginRequestSchema() {
     return Joi.object({
-      password: Joi.string().allow(""),
-      username: Joi.string().allow(""),
+      password: Joi.string().allow("").required(),
+      username: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {SendOtpRequestSchema} */
   static SendOtpRequestSchema() {
     return Joi.object({
-      encrypt_otp: Joi.boolean(),
-      country_code: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
+      ci: Joi.boolean(),
+      country_code: Joi.string().allow("").required(),
+      mobile: Joi.string().allow("").required(),
       android_hash: Joi.string().allow(""),
     });
   }
@@ -818,8 +869,8 @@ class UserApplicationModel {
   static OAuthRequestSchema() {
     return Joi.object({
       is_signed_in: Joi.boolean(),
-      oauth2: UserApplicationModel.OAuthRequestSchemaOauth2(),
-      profile: UserApplicationModel.OAuthRequestSchemaProfile(),
+      oauth2: UserApplicationModel.OAuthRequestSchemaOauth2().required(),
+      profile: UserApplicationModel.OAuthRequestSchemaProfile().required(),
     });
   }
 
@@ -874,6 +925,14 @@ class UserApplicationModel {
     });
   }
 
+  /** @returns {EmailOtp} */
+  static EmailOtp() {
+    return Joi.object({
+      request_id: Joi.string().allow(""),
+      resend_timer: Joi.number(),
+    });
+  }
+
   /** @returns {ProfileEditSuccess} */
   static ProfileEditSuccess() {
     return Joi.object({
@@ -885,6 +944,7 @@ class UserApplicationModel {
       verify_email_otp: Joi.boolean(),
       verify_mobile_otp: Joi.boolean(),
       email: Joi.string().allow(""),
+      email_otp: UserApplicationModel.EmailOtp(),
       request_id: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
@@ -939,6 +999,7 @@ class UserApplicationModel {
   static RegisterFormSuccess() {
     return Joi.object({
       email: Joi.string().allow(""),
+      email_otp: UserApplicationModel.EmailOtp(),
       resend_timer: Joi.number(),
       resend_token: Joi.string().allow(""),
       resend_email_token: Joi.string().allow(""),
@@ -1001,6 +1062,7 @@ class UserApplicationModel {
     return Joi.object({
       success: Joi.boolean(),
       resend_email_token: Joi.string().allow(""),
+      email_otp: UserApplicationModel.EmailOtp(),
     });
   }
 
@@ -1065,7 +1127,7 @@ class UserApplicationModel {
   /** @returns {OAuthRequestSchemaOauth2} */
   static OAuthRequestSchemaOauth2() {
     return Joi.object({
-      access_token: Joi.string().allow(""),
+      access_token: Joi.string().allow("").required(),
       expiry: Joi.number(),
       refresh_token: Joi.string().allow(""),
     });
@@ -1108,6 +1170,8 @@ class UserApplicationModel {
       active: Joi.boolean(),
       forgot_password: Joi.boolean(),
       login: UserApplicationModel.Login(),
+      account_lockout: UserApplicationModel.AccountLockout(),
+      password_settings: UserApplicationModel.PasswordSettings(),
       skip_captcha: Joi.boolean(),
       name: Joi.string().allow(""),
       meta: UserApplicationModel.MetaSchema(),
@@ -1121,8 +1185,8 @@ class UserApplicationModel {
       social_tokens: UserApplicationModel.SocialTokens(),
       created_at: Joi.string().allow(""),
       register: Joi.boolean(),
-      mobile_image: Joi.string().allow(""),
-      desktop_image: Joi.string().allow(""),
+      mobile_image: Joi.string().allow("").allow(null),
+      desktop_image: Joi.string().allow("").allow(null),
       delete_account_day: Joi.number(),
       delete_account_reasons: Joi.array().items(
         UserApplicationModel.DeleteAccountReasons()
@@ -1141,11 +1205,56 @@ class UserApplicationModel {
     });
   }
 
+  /** @returns {PasswordConfigs} */
+  static PasswordConfigs() {
+    return Joi.object({
+      length: Joi.number(),
+      require_special_character: Joi.boolean(),
+      require_number: Joi.boolean(),
+      require_capital_character: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PasswordHistory} */
+  static PasswordHistory() {
+    return Joi.object({
+      required: Joi.boolean(),
+      count: Joi.number(),
+    });
+  }
+
+  /** @returns {PasswordExpiry} */
+  static PasswordExpiry() {
+    return Joi.object({
+      required: Joi.boolean(),
+      duration: Joi.number(),
+    });
+  }
+
+  /** @returns {PasswordSettings} */
+  static PasswordSettings() {
+    return Joi.object({
+      configs: UserApplicationModel.PasswordConfigs(),
+      history: UserApplicationModel.PasswordHistory(),
+      expiry: UserApplicationModel.PasswordExpiry(),
+    });
+  }
+
+  /** @returns {AccountLockout} */
+  static AccountLockout() {
+    return Joi.object({
+      enable: Joi.boolean(),
+      attempts: Joi.number(),
+      duration: Joi.number(),
+    });
+  }
+
   /** @returns {Login} */
   static Login() {
     return Joi.object({
       password: Joi.boolean(),
       otp: Joi.boolean(),
+      via: Joi.string().allow(""),
     });
   }
 
@@ -1171,6 +1280,7 @@ class UserApplicationModel {
     return Joi.object({
       email: UserApplicationModel.PlatformEmail(),
       mobile: UserApplicationModel.PlatformMobile(),
+      password: UserApplicationModel.PlatformPassword(),
     });
   }
 
@@ -1190,11 +1300,19 @@ class UserApplicationModel {
     });
   }
 
+  /** @returns {PlatformPassword} */
+  static PlatformPassword() {
+    return Joi.object({
+      is_required: Joi.boolean(),
+    });
+  }
+
   /** @returns {RegisterRequiredFields} */
   static RegisterRequiredFields() {
     return Joi.object({
       email: UserApplicationModel.RegisterRequiredFieldsEmail(),
       mobile: UserApplicationModel.RegisterRequiredFieldsMobile(),
+      password: UserApplicationModel.PlatformPassword(),
     });
   }
 
@@ -1278,17 +1396,29 @@ class UserApplicationModel {
     });
   }
 
+  /** @returns {UserPasswordHistory} */
+  static UserPasswordHistory() {
+    return Joi.object({
+      salt: Joi.string().allow(""),
+      hash: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {UserSchema} */
   static UserSchema() {
     return Joi.object({
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
+      password_last_modified: Joi.string().allow(""),
+      password_history: Joi.array().items(
+        UserApplicationModel.UserPasswordHistory()
+      ),
       first_name: Joi.string().allow(""),
       meta: Joi.any(),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserApplicationModel.PhoneNumber()),
       emails: Joi.array().items(UserApplicationModel.Email()),
-      gender: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),

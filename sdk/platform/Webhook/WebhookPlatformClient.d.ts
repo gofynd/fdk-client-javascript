@@ -154,6 +154,18 @@ declare class Webhook {
      */
     registerSubscriberToEvent({ body, requestHeaders }?: WebhookPlatformValidator.RegisterSubscriberToEventParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigResponse>;
     /**
+     * @param {WebhookPlatformValidator.RegisterSubscriberToEventV2Param} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<WebhookPlatformModel.SubscriberConfigResponse>} -
+     *   Success response
+     * @name registerSubscriberToEventV2
+     * @summary: Register Subscriber.
+     * @description: Register Subscriber.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEventV2/).
+     */
+    registerSubscriberToEventV2({ body, requestHeaders }?: WebhookPlatformValidator.RegisterSubscriberToEventV2Param, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigResponse>;
+    /**
      * @param {WebhookPlatformValidator.UpdateSubscriberConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -164,6 +176,18 @@ declare class Webhook {
      * @description: Modify and update subscriber configuration settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberConfig/).
      */
     updateSubscriberConfig({ body, requestHeaders }?: WebhookPlatformValidator.UpdateSubscriberConfigParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigResponse>;
+    /**
+     * @param {WebhookPlatformValidator.UpdateSubscriberV2Param} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<WebhookPlatformModel.SubscriberConfigResponse>} -
+     *   Success response
+     * @name updateSubscriberV2
+     * @summary: Update Subscriber.
+     * @description: Update Subscriber.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberV2/).
+     */
+    updateSubscriberV2({ body, requestHeaders }?: WebhookPlatformValidator.UpdateSubscriberV2Param, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigResponse>;
 }
-import WebhookPlatformValidator = require("./WebhookPlatformValidator");
-import WebhookPlatformModel = require("./WebhookPlatformModel");
+import WebhookPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Webhook/WebhookPlatformValidator");
+import WebhookPlatformModel = require("sdk/output/javascript/code/sdk/platform/Webhook/WebhookPlatformModel");

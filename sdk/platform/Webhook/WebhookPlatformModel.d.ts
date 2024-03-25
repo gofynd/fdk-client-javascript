@@ -86,13 +86,13 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [current] - The current page number.
+ * @property {boolean} [has_next] - Indicates if there is a next page.
+ * @property {boolean} [has_previous] - Indicates if there is a previous page.
+ * @property {number} [total_page]
+ * @property {number} [item_total] - The total number of items.
+ * @property {number} [size] - The number of items per page.
+ * @property {string} [type] - Type of the response (e.g., "number").
  */
 /**
  * @typedef PingWebhook
@@ -108,6 +108,14 @@ export = WebhookPlatformModel;
  * @property {number} [code] - The HTTP status code of the ping response (e.g., 200).
  */
 /**
+ * @typedef SubscriberEventMapping
+ * @property {number} [id]
+ * @property {number} [event_id]
+ * @property {number} [subscriber_id]
+ * @property {string} [topic]
+ * @property {string} [created_on]
+ */
+/**
  * @typedef EventConfig
  * @property {number} [id]
  * @property {string} [event_name]
@@ -115,6 +123,7 @@ export = WebhookPlatformModel;
  * @property {string} [event_category]
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
  * @property {Object} [event_schema]
+ * @property {string} [group]
  * @property {string} [version]
  * @property {string} [display_name]
  * @property {string} [description]
@@ -205,17 +214,11 @@ export = WebhookPlatformModel;
  * @property {string} [secret]
  */
 /**
- * @typedef SubscriberEventMapping
- * @property {number} [id]
- * @property {number} [event_id]
- * @property {number} [subscriber_id]
- * @property {string} [created_on]
- */
-/**
  * @typedef SubscriberResponse
  * @property {number} [id]
  * @property {string} [modified_by]
  * @property {string} [name]
+ * @property {string} [provider]
  * @property {string} [webhook_url]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
@@ -226,6 +229,24 @@ export = WebhookPlatformModel;
  * @property {string} [type]
  * @property {AuthMeta} [auth_meta]
  * @property {EventConfig[]} [event_configs]
+ */
+/**
+ * @typedef Events
+ * @property {string} [slug]
+ * @property {string} [topic]
+ */
+/**
+ * @typedef SubscriberConfigRequestV2
+ * @property {number} [id]
+ * @property {string} [name]
+ * @property {string} [webhook_url]
+ * @property {string} [provider]
+ * @property {Association} [association]
+ * @property {Object} [custom_headers]
+ * @property {SubscriberStatus} [status]
+ * @property {string} [email_id]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Events[]} [events]
  */
 /**
  * @typedef SubscriberConfig
@@ -245,6 +266,7 @@ export = WebhookPlatformModel;
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {SubscriberStatus} [status]
@@ -260,11 +282,11 @@ export = WebhookPlatformModel;
  * @property {SubscriberResponse[]} [items]
  * @property {Page} [page]
  */
-/** @typedef {"" | "" | ""} SubscriberStatus */
+/** @typedef {"active" | "inactive" | "blocked"} SubscriberStatus */
 declare class WebhookPlatformModel {
 }
 declare namespace WebhookPlatformModel {
-    export { Error, Event, RetryEventRequest, Item, RetryCountResponse, RetrySuccessResponse, Err, RetryFailureResponse, RetryStatusResponse, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AuthMeta, SubscriberEventMapping, SubscriberResponse, SubscriberConfig, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
+    export { Error, Event, RetryEventRequest, Item, RetryCountResponse, RetrySuccessResponse, Err, RetryFailureResponse, RetryStatusResponse, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, SubscriberEventMapping, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AuthMeta, SubscriberResponse, Events, SubscriberConfigRequestV2, SubscriberConfig, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
 }
 /** @returns {Error} */
 declare function Error(): Error;
@@ -412,13 +434,31 @@ type EventProcessReportObject = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
+    /**
+     * - The current page number.
+     */
     current?: number;
-    type: string;
+    /**
+     * - Indicates if there is a next page.
+     */
+    has_next?: boolean;
+    /**
+     * - Indicates if there is a previous page.
+     */
+    has_previous?: boolean;
+    total_page?: number;
+    /**
+     * - The total number of items.
+     */
+    item_total?: number;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
+    /**
+     * - Type of the response (e.g., "number").
+     */
+    type?: string;
 };
 /** @returns {PingWebhook} */
 declare function PingWebhook(): PingWebhook;
@@ -453,6 +493,15 @@ type PingWebhookResponse = {
      */
     code?: number;
 };
+/** @returns {SubscriberEventMapping} */
+declare function SubscriberEventMapping(): SubscriberEventMapping;
+type SubscriberEventMapping = {
+    id?: number;
+    event_id?: number;
+    subscriber_id?: number;
+    topic?: string;
+    created_on?: string;
+};
 /** @returns {EventConfig} */
 declare function EventConfig(): EventConfig;
 type EventConfig = {
@@ -462,6 +511,7 @@ type EventConfig = {
     event_category?: string;
     subscriber_event_mapping?: SubscriberEventMapping;
     event_schema?: any;
+    group?: string;
     version?: string;
     display_name?: string;
     description?: string;
@@ -619,20 +669,13 @@ type AuthMeta = {
     type?: string;
     secret?: string;
 };
-/** @returns {SubscriberEventMapping} */
-declare function SubscriberEventMapping(): SubscriberEventMapping;
-type SubscriberEventMapping = {
-    id?: number;
-    event_id?: number;
-    subscriber_id?: number;
-    created_on?: string;
-};
 /** @returns {SubscriberResponse} */
 declare function SubscriberResponse(): SubscriberResponse;
 type SubscriberResponse = {
     id?: number;
     modified_by?: string;
     name?: string;
+    provider?: string;
     webhook_url?: string;
     association?: Association;
     custom_headers?: any;
@@ -643,6 +686,26 @@ type SubscriberResponse = {
     type?: string;
     auth_meta?: AuthMeta;
     event_configs?: EventConfig[];
+};
+/** @returns {Events} */
+declare function Events(): Events;
+type Events = {
+    slug?: string;
+    topic?: string;
+};
+/** @returns {SubscriberConfigRequestV2} */
+declare function SubscriberConfigRequestV2(): SubscriberConfigRequestV2;
+type SubscriberConfigRequestV2 = {
+    id?: number;
+    name?: string;
+    webhook_url?: string;
+    provider?: string;
+    association?: Association;
+    custom_headers?: any;
+    status?: SubscriberStatus;
+    email_id?: string;
+    auth_meta?: AuthMeta;
+    events?: Events[];
 };
 /** @returns {SubscriberConfig} */
 declare function SubscriberConfig(): SubscriberConfig;
@@ -664,6 +727,7 @@ type SubscriberConfigResponse = {
     modified_by?: string;
     name?: string;
     webhook_url?: string;
+    provider?: string;
     association?: Association;
     custom_headers?: any;
     status?: SubscriberStatus;
@@ -686,4 +750,4 @@ type SubscriberConfigList = {
  * @returns {SubscriberStatus}
  */
 declare function SubscriberStatus(): SubscriberStatus;
-type SubscriberStatus = "" | "" | "";
+type SubscriberStatus = "active" | "inactive" | "blocked";

@@ -26,10 +26,14 @@ class Cart {
       getBulkDiscountOffers: "/service/application/cart/v1.0/bulk-price",
       getCart: "/service/application/cart/v1.0/detail",
       getCartLastModified: "/service/application/cart/v1.0/detail",
+      getCartMetaConfig:
+        "/service/application/cart/v1.0/cart/configuration/{cart_meta_id}",
+      getCartMetaConfigs: "/service/application/cart/v1.0/cart/configuration",
       getCartShareLink: "/service/application/cart/v1.0/share-cart",
       getCartSharedItems: "/service/application/cart/v1.0/share-cart/{token}",
       getCoupons: "/service/application/cart/v1.0/coupon",
       getItemCount: "/service/application/cart/v1.0/basic",
+      getItemCountV2: "/service/application/cart/v2.0/basic",
       getLadderOffers: "/service/application/cart/v1.0/available-ladder-prices",
       getPromotionOffers: "/service/application/cart/v1.0/available-promotions",
       getShipments: "/service/application/cart/v1.0/shipment",
@@ -147,13 +151,13 @@ class Cart {
    * @description: Adds selected items to the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addItems/).
    */
   async addItems(
-    { body, i, b, areaCode, buyNow, id, requestHeaders } = {
+    { body, i, b, areaCode, buyNow, id, cartType, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow, id },
+      { body, i, b, areaCode, buyNow, id, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -162,7 +166,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow, id },
+      { body, i, b, areaCode, buyNow, id, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -178,6 +182,7 @@ class Cart {
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
     query_params["id"] = id;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -314,11 +319,13 @@ class Cart {
    * @description: Applies user’s reward points to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyRewardPoints/).
    */
   async applyRewardPoints(
-    { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
+    { body, id, i, b, buyNow, cartType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.applyRewardPoints().validate(
-      { body, id, i, b, buyNow },
+      { body, id, i, b, buyNow, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -329,7 +336,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.applyRewardPoints().validate(
-      { body, id, i, b, buyNow },
+      { body, id, i, b, buyNow, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -344,6 +351,7 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["buy_now"] = buyNow;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -557,11 +565,11 @@ class Cart {
    * @description: Removes all items and resets the user's cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/deleteCart/).
    */
   async deleteCart(
-    { id, requestHeaders } = { requestHeaders: {} },
+    { body, id, cartType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.deleteCart().validate(
-      { id },
+      { body, id, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -570,7 +578,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.deleteCart().validate(
-      { id },
+      { body, id, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -582,6 +590,7 @@ class Cart {
 
     const query_params = {};
     query_params["id"] = id;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -593,7 +602,7 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined,
+      body,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -642,12 +651,13 @@ class Cart {
       checkoutMode,
       tags,
       isDefault,
+      userId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getAddressById().validate(
-      { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
+      { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -658,7 +668,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.getAddressById().validate(
-      { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
+      { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -675,6 +685,7 @@ class Cart {
     query_params["checkout_mode"] = checkoutMode;
     query_params["tags"] = tags;
     query_params["is_default"] = isDefault;
+    query_params["user_id"] = userId;
 
     const xHeaders = {};
 
@@ -734,12 +745,13 @@ class Cart {
       checkoutMode,
       tags,
       isDefault,
+      userId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getAddresses().validate(
-      { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
+      { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -750,7 +762,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.getAddresses().validate(
-      { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
+      { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -767,6 +779,7 @@ class Cart {
     query_params["checkout_mode"] = checkoutMode;
     query_params["tags"] = tags;
     query_params["is_default"] = isDefault;
+    query_params["user_id"] = userId;
 
     const xHeaders = {};
 
@@ -819,11 +832,13 @@ class Cart {
    * @description: Lists available bulk discount offers for cart items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
    */
   async getBulkDiscountOffers(
-    { itemId, articleId, uid, slug, requestHeaders } = { requestHeaders: {} },
+    { itemId, articleId, uid, slug, cartType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getBulkDiscountOffers().validate(
-      { itemId, articleId, uid, slug },
+      { itemId, articleId, uid, slug, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -834,7 +849,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.getBulkDiscountOffers().validate(
-      { itemId, articleId, uid, slug },
+      { itemId, articleId, uid, slug, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -849,6 +864,7 @@ class Cart {
     query_params["article_id"] = articleId;
     query_params["uid"] = uid;
     query_params["slug"] = slug;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -901,13 +917,21 @@ class Cart {
    * @description: Retrieve the current state and items in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
    */
   async getCart(
-    { id, i, b, c, assignCardId, areaCode, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      id,
+      i,
+      b,
+      c,
+      assignCardId,
+      areaCode,
+      buyNow,
+      cartType,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getCart().validate(
-      { id, i, b, c, assignCardId, areaCode, buyNow },
+      { id, i, b, c, assignCardId, areaCode, buyNow, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -916,7 +940,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.getCart().validate(
-      { id, i, b, c, assignCardId, areaCode, buyNow },
+      { id, i, b, c, assignCardId, areaCode, buyNow, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -934,6 +958,7 @@ class Cart {
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -1045,6 +1070,164 @@ class Cart {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Cart > getCartLastModified \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartApplicationValidator.GetCartMetaConfigParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartApplicationModel.CartConfigDetailResponse>} -
+   *   Success response
+   * @name getCartMetaConfig
+   * @summary: Get cart configuration by id
+   * @description: Get cart configuration by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartMetaConfig/).
+   */
+  async getCartMetaConfig(
+    { cartMetaId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CartApplicationValidator.getCartMetaConfig().validate(
+      { cartMetaId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartApplicationValidator.getCartMetaConfig().validate(
+      { cartMetaId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Cart > getCartMetaConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCartMetaConfig"],
+        params: { cartMetaId },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartApplicationModel.CartConfigDetailResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Cart > getCartMetaConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartApplicationValidator.GetCartMetaConfigsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartApplicationModel.CartMetaConfigListResponse>} -
+   *   Success response
+   * @name getCartMetaConfigs
+   * @summary: Get cart configuration
+   * @description: Get cart configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartMetaConfigs/).
+   */
+  async getCartMetaConfigs(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CartApplicationValidator.getCartMetaConfigs().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartApplicationValidator.getCartMetaConfigs().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Cart > getCartMetaConfigs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCartMetaConfigs"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartApplicationModel.CartMetaConfigListResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Cart > getCartMetaConfigs \n ${res_error}`,
         });
       }
     }
@@ -1370,6 +1553,86 @@ class Cart {
   }
 
   /**
+   * @param {CartApplicationValidator.GetItemCountV2Param} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartApplicationModel.CartItemCountResponseV2>} - Success response
+   * @name getItemCountV2
+   * @summary: Count items in the cart according to cart_type
+   * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCountV2/).
+   */
+  async getItemCountV2(
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CartApplicationValidator.getItemCountV2().validate(
+      { id, buyNow },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartApplicationValidator.getItemCountV2().validate(
+      { id, buyNow },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Cart > getItemCountV2 \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["buy_now"] = buyNow;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getItemCountV2"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartApplicationModel.CartItemCountResponseV2().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Cart > getItemCountV2 \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CartApplicationValidator.GetLadderOffersParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -1548,13 +1811,30 @@ class Cart {
    * @description: Retrieve shipment details for items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getShipments/).
    */
   async getShipments(
-    { p, id, buyNow, addressId, areaCode, orderType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      pickAtStoreUid,
+      orderingStoreId,
+      i,
+      p,
+      id,
+      addressId,
+      areaCode,
+      orderType,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getShipments().validate(
-      { p, id, buyNow, addressId, areaCode, orderType },
+      {
+        pickAtStoreUid,
+        orderingStoreId,
+        i,
+        p,
+        id,
+        addressId,
+        areaCode,
+        orderType,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1565,7 +1845,16 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.getShipments().validate(
-      { p, id, buyNow, addressId, areaCode, orderType },
+      {
+        pickAtStoreUid,
+        orderingStoreId,
+        i,
+        p,
+        id,
+        addressId,
+        areaCode,
+        orderType,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1576,9 +1865,11 @@ class Cart {
     }
 
     const query_params = {};
+    query_params["pick_at_store_uid"] = pickAtStoreUid;
+    query_params["ordering_store_id"] = orderingStoreId;
+    query_params["i"] = i;
     query_params["p"] = p;
     query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
     query_params["address_id"] = addressId;
     query_params["area_code"] = areaCode;
     query_params["order_type"] = orderType;
@@ -1712,11 +2003,11 @@ class Cart {
    * @description: Removes an applied coupon from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeCoupon/).
    */
   async removeCoupon(
-    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.removeCoupon().validate(
-      { id, buyNow },
+      { id, buyNow, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1727,7 +2018,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.removeCoupon().validate(
-      { id, buyNow },
+      { id, buyNow, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1740,6 +2031,7 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -1874,11 +2166,11 @@ class Cart {
    * @description: Chooses a payment mode for the checkout process. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
-    { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { body, id, buyNow, orderType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.selectPaymentMode().validate(
-      { body, id, buyNow },
+      { body, id, buyNow, orderType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1889,7 +2181,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.selectPaymentMode().validate(
-      { body, id, buyNow },
+      { body, id, buyNow, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1902,6 +2194,7 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -2029,8 +2322,8 @@ class Cart {
    * @returns {Promise<CartApplicationModel.UpdateCartDetailResponse>} -
    *   Success response
    * @name updateCart
-   * @summary: Update cart.
-   * @description: Modifies items and quantities in the existing cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
+   * @summary: Update items in the cart
+   * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation: Operation for current api call. update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
    */
   async updateCart(
     { body, id, i, b, areaCode, buyNow, cartType, requestHeaders } = {
@@ -2193,17 +2486,17 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
-   * @summary: Update with shared items.
-   * @description: Updates the cart with items from a shared link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
+   * @summary: Merge or replace existing cart
+   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
-    { token, action, requestHeaders } = { requestHeaders: {} },
+    { token, action, cartId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CartApplicationValidator.updateCartWithSharedItems().validate(
-      { token, action },
+      { token, action, cartId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2214,7 +2507,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.updateCartWithSharedItems().validate(
-      { token, action },
+      { token, action, cartId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2225,6 +2518,7 @@ class Cart {
     }
 
     const query_params = {};
+    query_params["cart_id"] = cartId;
 
     const xHeaders = {};
 

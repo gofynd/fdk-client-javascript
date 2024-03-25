@@ -112,6 +112,7 @@ const Joi = require("joi");
 /**
  * @typedef Prices
  * @property {number} [delivery_charge]
+ * @property {number} [tcs_charge]
  * @property {number} [coupon_value]
  * @property {number} [brand_calculated_amount]
  * @property {number} [value_of_good]
@@ -187,6 +188,7 @@ const Joi = require("joi");
  * @typedef FinancialBreakup
  * @property {number} [coupon_value]
  * @property {number} [delivery_charge]
+ * @property {number} [tcs_charge]
  * @property {number} [brand_calculated_amount]
  * @property {number} [value_of_good]
  * @property {number} [price_marked]
@@ -324,6 +326,8 @@ const Joi = require("joi");
  * @property {Object} [return_meta]
  * @property {string} [delivery_date]
  * @property {OrderRequest} [order]
+ * @property {Object} [meta]
+ * @property {boolean} [can_pay_remaining_amount]
  */
 
 /**
@@ -742,6 +746,7 @@ class OrderApplicationModel {
   static Prices() {
     return Joi.object({
       delivery_charge: Joi.number(),
+      tcs_charge: Joi.number().allow(null),
       coupon_value: Joi.number(),
       brand_calculated_amount: Joi.number(),
       value_of_good: Joi.number(),
@@ -831,6 +836,7 @@ class OrderApplicationModel {
     return Joi.object({
       coupon_value: Joi.number(),
       delivery_charge: Joi.number(),
+      tcs_charge: Joi.number().allow(null),
       brand_calculated_amount: Joi.number(),
       value_of_good: Joi.number(),
       price_marked: Joi.number(),
@@ -984,6 +990,8 @@ class OrderApplicationModel {
       return_meta: Joi.any(),
       delivery_date: Joi.string().allow("").allow(null),
       order: OrderApplicationModel.OrderRequest(),
+      meta: Joi.any(),
+      can_pay_remaining_amount: Joi.boolean(),
     });
   }
 

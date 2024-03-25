@@ -22,6 +22,7 @@ export = ContentPlatformModel;
  * @property {string} [_id]
  * @property {string} [updated_at]
  * @property {string} [created_at]
+ * @property {number} [__v]
  */
 /**
  * @typedef ApplicationLegalFAQ
@@ -36,7 +37,7 @@ export = ContentPlatformModel;
  * @property {string} [redirect_to]
  * @property {string} [updated_at]
  * @property {string} [created_at]
- * @property {PathSourceSchema} [__source]
+ * @property {number} [__v]
  */
 /**
  * @typedef PathSourceSchema
@@ -49,8 +50,8 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef SeoSchema
- * @property {string} [app]
  * @property {string} [_id]
+ * @property {string} [app]
  * @property {string} [robots_txt]
  * @property {boolean} [sitemap_enabled]
  * @property {string} [additional_sitemap]
@@ -59,6 +60,8 @@ export = ContentPlatformModel;
  * @property {Detail} [details]
  * @property {string} [created_at]
  * @property {string} [updated_at]
+ * @property {number} [__v]
+ * @property {SEOSitemap} [sitemap]
  */
 /**
  * @typedef CustomMetaTag
@@ -79,27 +82,50 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef SEOSchemaMarkupTemplate
- * @property {string} [id]
+ * @property {string} [_id]
  * @property {string} [title]
  * @property {string} [page_type]
  * @property {string} [schema]
  * @property {string} [description]
  * @property {boolean} [active]
+ * @property {string} [application]
  * @property {string} [created_at]
  * @property {string} [updated_at]
- * @property {string} [application]
  * @property {Object} [target_json]
+ * @property {number} [__v]
  */
 /**
  * @typedef SEOSchemaMarkupTemplateRequestBody
  * @property {string} [title]
  * @property {string} [page_type]
- * @property {string} [schema]
  * @property {string} [description]
+ * @property {string} [schema]
  * @property {Object} [target_json]
  * @property {boolean} [active]
  * @property {string} [created_at]
- * @property {string} [updated_at]
+ */
+/**
+ * @typedef DeletPathMappingSchema
+ * @property {string} [message]
+ * @property {PathMappingSchema} [data]
+ */
+/**
+ * @typedef CreatePathMappingSchema
+ * @property {string} [message]
+ * @property {PathMappingSchema} [data]
+ */
+/**
+ * @typedef GetAllPathMappingSchema
+ * @property {string} [message]
+ * @property {GetPathSchema} [data]
+ */
+/**
+ * @typedef GetPathSchema
+ * @property {PathMappingSchema[]} [docs]
+ * @property {number} [page]
+ * @property {number} [limit]
+ * @property {number} [pages]
+ * @property {number} [total]
  */
 /**
  * @typedef AnnouncementPageSchema
@@ -140,10 +166,10 @@ export = ContentPlatformModel;
  * @typedef DefaultSEOSchemaMarkupTemplate
  * @property {string} [page_type]
  * @property {string} [schema]
- * @property {Object} [target_json]
  */
 /**
  * @typedef ScheduleSchema
+ * @property {boolean} [published]
  * @property {string} [cron]
  * @property {string} [start]
  * @property {string} [end]
@@ -194,6 +220,7 @@ export = ContentPlatformModel;
  * @property {CronSchedule} [_schedule]
  * @property {string} [title]
  * @property {DateMeta} [date_meta]
+ * @property {string} [publish_date]
  */
 /**
  * @typedef SEO
@@ -202,7 +229,7 @@ export = ContentPlatformModel;
  * @property {string} [title]
  * @property {SEOMetaItem[]} [meta_tags]
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {SEObreadcrumb[]} [breadcrumbs]
  * @property {string} [canonical_url]
  */
 /**
@@ -246,6 +273,7 @@ export = ContentPlatformModel;
  * @property {string} [slug]
  * @property {string[]} [tags]
  * @property {string} [title]
+ * @property {string} [publish_date]
  * @property {SEO} [seo]
  * @property {CronSchedule} [_schedule]
  */
@@ -260,6 +288,10 @@ export = ContentPlatformModel;
  * @property {AdminAnnouncementSchema} [data]
  */
 /**
+ * @typedef DataLoaderItemsResponseSchema
+ * @property {DataLoaderResponseSchema[]} [items]
+ */
+/**
  * @typedef DataLoaderResponseSchema
  * @property {string} [application]
  * @property {string} [company]
@@ -270,11 +302,15 @@ export = ContentPlatformModel;
  * @property {string} [type]
  * @property {string} [url]
  * @property {string} [content]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {number} [__v]
+ * @property {boolean} [is_selected]
  * @property {DataLoaderSourceSchema} [__source]
  */
 /**
  * @typedef DataLoaderResetResponseSchema
- * @property {boolean} [reset]
+ * @property {boolean} [resetted]
  */
 /**
  * @typedef LocaleLanguage
@@ -289,7 +325,6 @@ export = ContentPlatformModel;
 /**
  * @typedef Action
  * @property {ActionPage} [page]
- * @property {ActionPage} [popup]
  * @property {string} [type]
  */
 /**
@@ -297,7 +332,7 @@ export = ContentPlatformModel;
  * @property {Object} [params]
  * @property {Object} [query]
  * @property {string} [url]
- * @property {PageType} type
+ * @property {string} [type]
  */
 /**
  * @typedef NavigationReference
@@ -314,27 +349,17 @@ export = ContentPlatformModel;
  * @property {NavigationReference[]} [sub_navigation]
  */
 /**
+ * @typedef AssignmentReference
+ * @property {string} [platform]
+ * @property {string} [orientation]
+ * @property {string} [position]
+ */
+/**
  * @typedef CronBasedScheduleSchema
  * @property {boolean} [enabled]
  * @property {string} [cron]
  * @property {string} [start]
  * @property {string} [end]
- */
-/**
- * @typedef ConfigurationSchema
- * @property {number} [sleep_time]
- * @property {boolean} [start_on_launch]
- * @property {number} [duration]
- * @property {string} [slide_direction]
- */
-/**
- * @typedef SlideshowMedia
- * @property {string} [type]
- * @property {string} [url]
- * @property {string} [bg_color]
- * @property {number} [duration]
- * @property {boolean} [auto_decide_duration]
- * @property {Action} [action]
  */
 /**
  * @typedef UpdateHandpickedSchema
@@ -372,19 +397,41 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef DataLoaderSchema
+ * @property {string} [_id]
+ * @property {string} [url]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {string} [application]
+ * @property {string} [company]
  * @property {string} [name]
  * @property {string} [service]
  * @property {string} [operation_id]
+ * @property {boolean} [is_selected]
  * @property {string} [type]
- * @property {string} [url]
- * @property {string} [content]
  * @property {DataLoaderSourceSchema} [__source]
- * @property {string} [_id]
+ * @property {number} [__v]
  */
 /**
  * @typedef DataLoaderSourceSchema
  * @property {string} [type]
  * @property {string} [id]
+ */
+/**
+ * @typedef TagSpecSchema
+ * @property {string} [name]
+ * @property {string} [description]
+ */
+/**
+ * @typedef ServerSchema
+ * @property {string} [url]
+ */
+/**
+ * @typedef DataLoadersApiSpecSchema
+ * @property {Object} [info]
+ * @property {ServerSchema[]} [servers]
+ * @property {TagSpecSchema[]} [tags]
+ * @property {string} [openapi]
+ * @property {Object} [paths]
  */
 /**
  * @typedef DataLoadersSchema
@@ -400,7 +447,6 @@ export = ContentPlatformModel;
  * @property {number} [status]
  * @property {string} [code]
  * @property {string} [exception]
- * @property {string} [info]
  * @property {string} [request_id]
  * @property {string} [stack_trace]
  * @property {Object} [meta]
@@ -420,6 +466,7 @@ export = ContentPlatformModel;
  * @property {string} [application]
  * @property {string} [icon_url]
  * @property {Object} [_custom_json]
+ * @property {number} [__v]
  */
 /**
  * @typedef ChildrenSchema
@@ -436,15 +483,15 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef FAQCategorySchema
- * @property {number} [index]
+ * @property {string} [_id]
+ * @property {string} [application]
  * @property {string} [title]
  * @property {string} [description]
- * @property {ChildrenSchema[]} [children]
- * @property {string} [_id]
+ * @property {number} [index]
  * @property {string} [slug]
- * @property {string} [application]
+ * @property {ChildrenSchema[]} [children]
  * @property {string} [icon_url]
- * @property {Object} [_custom_json]
+ * @property {number} [__v]
  */
 /**
  * @typedef FaqSchema
@@ -454,6 +501,7 @@ export = ContentPlatformModel;
  * @property {string} [question]
  * @property {string} [answer]
  * @property {string[]} [tags]
+ * @property {number} [__v]
  */
 /**
  * @typedef FAQ
@@ -519,6 +567,7 @@ export = ContentPlatformModel;
  * @property {string} [application]
  * @property {boolean} [archived]
  * @property {Object} [_custom_json]
+ * @property {number} [__v]
  */
 /**
  * @typedef DefaultNavigationResponse
@@ -547,6 +596,8 @@ export = ContentPlatformModel;
  * @property {Orientation} [orientation]
  * @property {number} [version]
  * @property {NavigationReference[]} [navigation]
+ * @property {AssignmentReference[]} [assignments]
+ * @property {number} [__v]
  */
 /**
  * @typedef NavigationRequest
@@ -554,7 +605,14 @@ export = ContentPlatformModel;
  * @property {string} [slug]
  * @property {string[]} [platform]
  * @property {Orientation} [orientation]
+ * @property {NavigationAssignment[]} [assignments]
  * @property {NavigationReference[]} [navigation]
+ */
+/**
+ * @typedef NavigationAssignment
+ * @property {string} [platform]
+ * @property {string} [orientation]
+ * @property {string} [position]
  */
 /**
  * @typedef PageGetResponse
@@ -578,34 +636,55 @@ export = ContentPlatformModel;
  * @property {PageSpecParam[]} [query]
  */
 /**
+ * @typedef PageResponseError
+ * @property {string} [errors]
+ */
+/**
  * @typedef PageSchema
  * @property {string} [_id]
  * @property {string} [application]
- * @property {string[]} [component_ids] - Components can be used to store
- *   multiple components
- * @property {Object[]} [content]
+ * @property {string} [platform]
+ * @property {string} [title]
+ * @property {string} [slug]
+ * @property {string} [type]
+ * @property {string[]} [tags]
  * @property {string} [content_path]
+ * @property {string} [orientation]
+ * @property {string} [description]
+ * @property {boolean} [published]
  * @property {CreatedBySchema} [created_by]
  * @property {DateMeta} [date_meta]
- * @property {string} [description]
  * @property {Asset} [feature_image]
- * @property {Object[]} [page_meta]
  * @property {ScheduleSchema} [_schedule]
- * @property {Object} [_custom_json]
- * @property {string} [orientation]
- * @property {string} [platform]
- * @property {boolean} [published]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- * @property {string} [type]
+ * @property {PageMeta[]} [page_meta]
  * @property {SEO} [seo]
- * @property {Object} [visibility]
+ * @property {string[]} [component_ids]
  * @property {boolean} [archived]
+ * @property {number} [__v]
+ * @property {PageContent[]} [content]
+ * @property {SanitizedContent[]} [sanitized_content]
+ */
+/**
+ * @typedef SanitizedContent
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+/**
+ * @typedef PageMeta
+ * @property {string} [key]
+ */
+/**
+ * @typedef PageContent
+ * @property {string} [type]
+ * @property {string} [value]
  */
 /**
  * @typedef CreatedBySchema
  * @property {string} [id]
+ */
+/**
+ * @typedef PageRequestVisibility
+ * @property {boolean} [test]
  */
 /**
  * @typedef PageRequest
@@ -614,7 +693,7 @@ export = ContentPlatformModel;
  * @property {Author} [author]
  * @property {Object} [_custom_json]
  * @property {string} [orientation]
- * @property {Object[]} [content]
+ * @property {PageContent[]} [content]
  * @property {Asset} [feature_image]
  * @property {boolean} [published]
  * @property {string} [reading_time]
@@ -622,6 +701,10 @@ export = ContentPlatformModel;
  * @property {string[]} [tags]
  * @property {SEO} [seo]
  * @property {string} [title]
+ * @property {string} [platform]
+ * @property {string} [type]
+ * @property {string} [description]
+ * @property {PageRequestVisibility} [visibility]
  */
 /**
  * @typedef CronSchedule
@@ -629,6 +712,7 @@ export = ContentPlatformModel;
  * @property {string} [start]
  * @property {string} [end]
  * @property {number} [duration]
+ * @property {NextSchedule[]} [next_schedule]
  */
 /**
  * @typedef PagePublishRequest
@@ -636,35 +720,29 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef PageMetaSchema
- * @property {NavigationSchema[]} [system_pages]
- * @property {PageSchema[]} [custom_pages]
+ * @property {SystemPages[]} [system_pages]
+ * @property {CustomePages[]} [custom_pages]
  * @property {string} [application_id]
  */
 /**
- * @typedef SlideshowGetResponse
- * @property {SlideshowSchema[]} [items]
- * @property {Page} [page]
+ * @typedef CustomePages
+ * @property {string} [display]
+ * @property {string} [slug]
  */
 /**
- * @typedef SlideshowSchema
- * @property {string} [_id]
- * @property {string} [slug]
- * @property {DateMeta} [date_meta]
- * @property {string} [application]
- * @property {string} [platform]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia[]} [media]
- * @property {boolean} [active]
- * @property {boolean} [archived]
- * @property {Object} [_custom_json]
+ * @typedef SystemPagesActionPage
+ * @property {string} [type]
  */
 /**
- * @typedef SlideshowRequest
- * @property {string} [slug]
- * @property {string} [platform]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia} [media]
- * @property {boolean} [active]
+ * @typedef SystemPagesAction
+ * @property {SystemPagesActionPage} [page]
+ * @property {string} [type]
+ */
+/**
+ * @typedef SystemPages
+ * @property {string} [display]
+ * @property {SystemPagesAction} [action]
+ * @property {string} [page_type]
  */
 /**
  * @typedef Support
@@ -706,6 +784,8 @@ export = ContentPlatformModel;
  * @typedef TagsSchema
  * @property {string} [application]
  * @property {string} [_id]
+ * @property {string} [company]
+ * @property {number} [__v]
  * @property {TagSchema[]} [tags]
  */
 /**
@@ -718,6 +798,7 @@ export = ContentPlatformModel;
  * @property {string} [position]
  * @property {Object} [attributes]
  * @property {string} [content]
+ * @property {Object[]} [compatible_engines]
  * @property {Object[]} [pages]
  * @property {TagSourceSchema} [__source]
  */
@@ -740,7 +821,29 @@ export = ContentPlatformModel;
  * @typedef FieldValidations
  * @property {string} [name]
  * @property {string} [type]
- * @property {Object} [value]
+ */
+/**
+ * @typedef ApplicationFieldDefinitionSchema
+ * @property {string} [_id]
+ * @property {string} [creator]
+ * @property {string} [resource]
+ * @property {string} [name]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {FieldValidations[]} [validations]
+ * @property {string} [company_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {boolean} [required]
+ * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [type_name]
+ * @property {number} [invalid_fields_count]
+ * @property {string} [application_id]
  */
 /**
  * @typedef FieldDefinitionSchema
@@ -765,6 +868,11 @@ export = ContentPlatformModel;
  * @property {number} [invalid_fields_count]
  */
 /**
+ * @typedef ApplicationCustomFieldDefinitionsSchema
+ * @property {ApplicationFieldDefinitionSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
  * @typedef CustomFieldDefinitionsSchema
  * @property {FieldDefinitionSchema[]} [items]
  * @property {Page} [page]
@@ -778,11 +886,12 @@ export = ContentPlatformModel;
  * @property {boolean} [multi_value]
  * @property {string} [name]
  * @property {string} [description]
+ * @property {string} [creator]
  * @property {FieldValidations[]} [validations]
  */
 /**
  * @typedef CustomObjectCustomFieldDefinitions
- * @property {string} [id]
+ * @property {string} [_id]
  * @property {string} [type]
  * @property {string} [description]
  * @property {string} [name]
@@ -798,7 +907,7 @@ export = ContentPlatformModel;
  * @property {string} [description]
  * @property {string} [name]
  * @property {string} [display_name_key]
- * @property {CustomObjectCustomFieldDefinitions[]} [field_definitions]
+ * @property {CustomFieldDefinitionDetailResSchema[]} [field_definitions]
  */
 /**
  * @typedef CustomFieldDefinitionDetailResSchema
@@ -827,17 +936,12 @@ export = ContentPlatformModel;
  * @property {string} [message]
  */
 /**
- * @typedef CustomFieldValue
- * @property {Object} [value]
- */
-/**
  * @typedef CustomFieldSchema
  * @property {string} [_id]
  * @property {string} [namespace]
  * @property {string} [key]
  * @property {string} [resource]
  * @property {string} [creator]
- * @property {CustomFieldValue[]} [value]
  * @property {string} [resource_id]
  * @property {string} [type]
  * @property {boolean} [multi_value]
@@ -856,12 +960,16 @@ export = ContentPlatformModel;
  * @property {Page} [page]
  */
 /**
+ * @typedef CustomFieldsDeleteSchema
+ * @property {boolean} [success]
+ * @property {string} [message]
+ */
+/**
  * @typedef CustomFieldsResponseByResourceIdSchema
  * @property {CustomFieldSchema[]} [items]
  */
 /**
  * @typedef CustomField
- * @property {Object[]} [value]
  * @property {string} [definition_id]
  */
 /**
@@ -877,9 +985,13 @@ export = ContentPlatformModel;
  * @property {string} [created_by]
  * @property {string} [updated_by]
  * @property {string} [status]
+ * @property {string} [slug]
  * @property {string} [type]
  * @property {string} [display_name]
  * @property {string} [definition_id]
+ * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
  * @property {CustomFieldSchema[]} [fields]
  */
 /**
@@ -909,6 +1021,7 @@ export = ContentPlatformModel;
  * @property {string} [_id]
  * @property {string} [created_at]
  * @property {string} [updated_at]
+ * @property {string} [application_id]
  */
 /**
  * @typedef CustomObjectDefinitionSchema
@@ -920,6 +1033,10 @@ export = ContentPlatformModel;
  * @property {string} [creator]
  * @property {string} [created_by]
  * @property {string} [updated_by]
+ * @property {string} [application_id]
+ * @property {string} [company_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
  * @property {CustomObjectCustomFieldDefinitionResSchema[]} [field_definitions]
  */
 /**
@@ -929,20 +1046,22 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef CustomObjectEntryBulkUploadResponse
- * @property {string} [url]
- * @property {number} [total_records]
+ * @property {string} [message]
+ * @property {string} [task_id]
  */
 /**
  * @typedef CustomObjectListItemDefinationSchema
  * @property {string} [_id]
  * @property {string} [name]
  * @property {string} [type]
+ * @property {string} [display_name_key]
  */
 /**
  * @typedef CustomObjectListItemSchema
  * @property {string} [_id]
  * @property {string} [definition_id]
  * @property {string} [status]
+ * @property {string} [slug]
  * @property {string} [updated_at]
  * @property {string} [display_name]
  * @property {CustomObjectListItemDefinationSchema} [definition]
@@ -957,14 +1076,18 @@ export = ContentPlatformModel;
  * @typedef CustomObjectFieldSchema
  * @property {string} [_id]
  * @property {string} [key]
- * @property {Object[]} [value]
  * @property {string} [type]
  * @property {string} [definition_id]
+ */
+/**
+ * @typedef MetafieldTypesSchema
+ * @property {CustomFieldTypeSchema} [metafield_types]
  */
 /**
  * @typedef CustomObjectByIdSchema
  * @property {string} [_id]
  * @property {string} [status]
+ * @property {string} [slug]
  * @property {string} [display_name]
  * @property {CustomObjectListItemDefinationSchema} [definition]
  * @property {Object[]} [references]
@@ -983,7 +1106,7 @@ export = ContentPlatformModel;
  * @property {string} [mo_defintion_type]
  */
 /**
- * @typedef CustomObjectJobSchema
+ * @typedef JobSchema
  * @property {string} [_id]
  * @property {string[]} [jobs]
  * @property {string[]} [finished_jobs]
@@ -991,7 +1114,6 @@ export = ContentPlatformModel;
  * @property {string[]} [errors_occured]
  * @property {string} [company_id]
  * @property {string} [creator]
- * @property {string} [url]
  * @property {string} [status]
  * @property {string} [action_type]
  * @property {string} [entity]
@@ -1004,10 +1126,16 @@ export = ContentPlatformModel;
  * @property {string} [created_by]
  * @property {string} [created_at]
  * @property {string} [updated_at]
+ * @property {string} [application_id]
+ */
+/**
+ * @typedef CustomFieldBulkEntry
+ * @property {JobSchema[]} [items]
+ * @property {Page} [page]
  */
 /**
  * @typedef CustomObjectBulkEntry
- * @property {CustomObjectJobSchema[]} [items]
+ * @property {JobSchema[]} [items]
  * @property {Page} [page]
  */
 /**
@@ -1025,15 +1153,8 @@ export = ContentPlatformModel;
  * @property {Url} [url]
  * @property {Metaobject} [metaobject]
  * @property {Product} [product]
- */
-/**
- * @typedef SupportedValidationsMetaExampleSchema
- * @property {string} [name]
- * @property {string} [value]
- */
-/**
- * @typedef SupportedValidationsMetaSchema
- * @property {SupportedValidationsMetaExampleSchema[]} [examples]
+ * @property {HTML} [html]
+ * @property {Duration} [duration]
  */
 /**
  * @typedef SupportedValidationsSchema
@@ -1041,7 +1162,21 @@ export = ContentPlatformModel;
  * @property {string} [type]
  * @property {string} [display]
  * @property {boolean} [required]
- * @property {SupportedValidationsMetaSchema} [meta]
+ */
+/**
+ * @typedef Duration
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [type]
+ * @property {string} [category]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef HTML
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
  */
 /**
  * @typedef StringSingleLine
@@ -1145,6 +1280,7 @@ export = ContentPlatformModel;
  * @property {string} [category]
  * @property {string} [type]
  * @property {SupportedValidationsSchema[]} [supported_validations]
+ * @property {string[]} [scope]
  */
 /**
  * @typedef CustomObjectEntry
@@ -1163,11 +1299,11 @@ export = ContentPlatformModel;
 /**
  * @typedef CustomObjectEntryFieldSchema
  * @property {string} [definition_id]
- * @property {Object[]} [value]
  */
 /**
  * @typedef CustomObjectRequestSchema
  * @property {string} [status]
+ * @property {string} [slug]
  * @property {string} [definition_id]
  * @property {CustomObjectEntryFieldSchema[]} [fields]
  */
@@ -1176,59 +1312,10 @@ export = ContentPlatformModel;
  * @property {string} [url]
  * @property {number} [total_records]
  */
-/** @typedef {"title" | "description"} GenerationEntityType */
-/**
- * @typedef {| "about-us"
- *   | "addresses"
- *   | "blog"
- *   | "brands"
- *   | "cards"
- *   | "cart"
- *   | "categories"
- *   | "brand"
- *   | "category"
- *   | "collection"
- *   | "collections"
- *   | "contact-us"
- *   | "external"
- *   | "faq"
- *   | "freshchat"
- *   | "home"
- *   | "notification-settings"
- *   | "orders"
- *   | "page"
- *   | "policy"
- *   | "product"
- *   | "product-request"
- *   | "products"
- *   | "profile"
- *   | "profile-order-shipment"
- *   | "profile-basic"
- *   | "profile-company"
- *   | "profile-emails"
- *   | "profile-phones"
- *   | "rate-us"
- *   | "refer-earn"
- *   | "settings"
- *   | "shared-cart"
- *   | "tnc"
- *   | "track-order"
- *   | "wishlist"
- *   | "sections"
- *   | "form"
- *   | "cart-delivery"
- *   | "cart-payment"
- *   | "cart-review"
- *   | "login"
- *   | "register"
- *   | "shipping-policy"
- *   | "return-policy"
- *   | "order-status"} PageType
- */
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, ActionPage, NavigationReference, CronBasedScheduleSchema, ConfigurationSchema, SlideshowMedia, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectCustomFieldDefinitionResSchema, CustomObjectDefinitionSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadResponse, CustomObjectListItemDefinationSchema, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldSchema, CustomObjectByIdSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, CustomObjectJobSchema, CustomObjectBulkEntry, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectRequestSchema, CustomObjectBulkSchema, GenerationEntityType, PageType };
+    export { GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, DeletPathMappingSchema, CreatePathMappingSchema, GetAllPathMappingSchema, GetPathSchema, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderItemsResponseSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, ActionPage, NavigationReference, AssignmentReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, TagSpecSchema, ServerSchema, DataLoadersApiSpecSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, NavigationAssignment, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageResponseError, PageSchema, SanitizedContent, PageMeta, PageContent, CreatedBySchema, PageRequestVisibility, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, CustomePages, SystemPagesActionPage, SystemPagesAction, SystemPages, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, ApplicationFieldDefinitionSchema, FieldDefinitionSchema, ApplicationCustomFieldDefinitionsSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectCustomFieldDefinitionResSchema, CustomObjectDefinitionSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadResponse, CustomObjectListItemDefinationSchema, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldSchema, MetafieldTypesSchema, CustomObjectByIdSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, CustomFieldTypeSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectRequestSchema, CustomObjectBulkSchema };
 }
 /** @returns {GenerateSEOContent} */
 declare function GenerateSEOContent(): GenerateSEOContent;
@@ -1256,6 +1343,7 @@ type ApplicationLegal = {
     _id?: string;
     updated_at?: string;
     created_at?: string;
+    __v?: number;
 };
 /** @returns {ApplicationLegalFAQ} */
 declare function ApplicationLegalFAQ(): ApplicationLegalFAQ;
@@ -1272,7 +1360,7 @@ type PathMappingSchema = {
     redirect_to?: string;
     updated_at?: string;
     created_at?: string;
-    __source?: PathSourceSchema;
+    __v?: number;
 };
 /** @returns {PathSourceSchema} */
 declare function PathSourceSchema(): PathSourceSchema;
@@ -1288,8 +1376,8 @@ type SeoComponent = {
 /** @returns {SeoSchema} */
 declare function SeoSchema(): SeoSchema;
 type SeoSchema = {
-    app?: string;
     _id?: string;
+    app?: string;
     robots_txt?: string;
     sitemap_enabled?: boolean;
     additional_sitemap?: string;
@@ -1298,6 +1386,8 @@ type SeoSchema = {
     details?: Detail;
     created_at?: string;
     updated_at?: string;
+    __v?: number;
+    sitemap?: SEOSitemap;
 };
 /** @returns {CustomMetaTag} */
 declare function CustomMetaTag(): CustomMetaTag;
@@ -1322,28 +1412,55 @@ type SeoSchemaComponent = {
 /** @returns {SEOSchemaMarkupTemplate} */
 declare function SEOSchemaMarkupTemplate(): SEOSchemaMarkupTemplate;
 type SEOSchemaMarkupTemplate = {
-    id?: string;
+    _id?: string;
     title?: string;
     page_type?: string;
     schema?: string;
     description?: string;
     active?: boolean;
+    application?: string;
     created_at?: string;
     updated_at?: string;
-    application?: string;
     target_json?: any;
+    __v?: number;
 };
 /** @returns {SEOSchemaMarkupTemplateRequestBody} */
 declare function SEOSchemaMarkupTemplateRequestBody(): SEOSchemaMarkupTemplateRequestBody;
 type SEOSchemaMarkupTemplateRequestBody = {
     title?: string;
     page_type?: string;
-    schema?: string;
     description?: string;
+    schema?: string;
     target_json?: any;
     active?: boolean;
     created_at?: string;
-    updated_at?: string;
+};
+/** @returns {DeletPathMappingSchema} */
+declare function DeletPathMappingSchema(): DeletPathMappingSchema;
+type DeletPathMappingSchema = {
+    message?: string;
+    data?: PathMappingSchema;
+};
+/** @returns {CreatePathMappingSchema} */
+declare function CreatePathMappingSchema(): CreatePathMappingSchema;
+type CreatePathMappingSchema = {
+    message?: string;
+    data?: PathMappingSchema;
+};
+/** @returns {GetAllPathMappingSchema} */
+declare function GetAllPathMappingSchema(): GetAllPathMappingSchema;
+type GetAllPathMappingSchema = {
+    message?: string;
+    data?: GetPathSchema;
+};
+/** @returns {GetPathSchema} */
+declare function GetPathSchema(): GetPathSchema;
+type GetPathSchema = {
+    docs?: PathMappingSchema[];
+    page?: number;
+    limit?: number;
+    pages?: number;
+    total?: number;
 };
 /** @returns {AnnouncementPageSchema} */
 declare function AnnouncementPageSchema(): AnnouncementPageSchema;
@@ -1390,11 +1507,11 @@ declare function DefaultSEOSchemaMarkupTemplate(): DefaultSEOSchemaMarkupTemplat
 type DefaultSEOSchemaMarkupTemplate = {
     page_type?: string;
     schema?: string;
-    target_json?: any;
 };
 /** @returns {ScheduleSchema} */
 declare function ScheduleSchema(): ScheduleSchema;
 type ScheduleSchema = {
+    published?: boolean;
     cron?: string;
     start?: string;
     end?: string;
@@ -1451,6 +1568,7 @@ type BlogSchema = {
     _schedule?: CronSchedule;
     title?: string;
     date_meta?: DateMeta;
+    publish_date?: string;
 };
 /** @returns {SEO} */
 declare function SEO(): SEO;
@@ -1460,7 +1578,7 @@ type SEO = {
     title?: string;
     meta_tags?: SEOMetaItem[];
     sitemap?: SEOSitemap;
-    breadcrumb?: SEObreadcrumb[];
+    breadcrumbs?: SEObreadcrumb[];
     canonical_url?: string;
 };
 /** @returns {SEOImage} */
@@ -1511,6 +1629,7 @@ type BlogRequest = {
     slug?: string;
     tags?: string[];
     title?: string;
+    publish_date?: string;
     seo?: SEO;
     _schedule?: CronSchedule;
 };
@@ -1526,6 +1645,11 @@ type CreateAnnouncementSchema = {
     message?: string;
     data?: AdminAnnouncementSchema;
 };
+/** @returns {DataLoaderItemsResponseSchema} */
+declare function DataLoaderItemsResponseSchema(): DataLoaderItemsResponseSchema;
+type DataLoaderItemsResponseSchema = {
+    items?: DataLoaderResponseSchema[];
+};
 /** @returns {DataLoaderResponseSchema} */
 declare function DataLoaderResponseSchema(): DataLoaderResponseSchema;
 type DataLoaderResponseSchema = {
@@ -1538,12 +1662,16 @@ type DataLoaderResponseSchema = {
     type?: string;
     url?: string;
     content?: string;
+    created_at?: string;
+    modified_at?: string;
+    __v?: number;
+    is_selected?: boolean;
     __source?: DataLoaderSourceSchema;
 };
 /** @returns {DataLoaderResetResponseSchema} */
 declare function DataLoaderResetResponseSchema(): DataLoaderResetResponseSchema;
 type DataLoaderResetResponseSchema = {
-    reset?: boolean;
+    resetted?: boolean;
 };
 /** @returns {LocaleLanguage} */
 declare function LocaleLanguage(): LocaleLanguage;
@@ -1561,7 +1689,6 @@ type Language = {
 declare function Action(): Action;
 type Action = {
     page?: ActionPage;
-    popup?: ActionPage;
     type?: string;
 };
 /** @returns {ActionPage} */
@@ -1570,7 +1697,7 @@ type ActionPage = {
     params?: any;
     query?: any;
     url?: string;
-    type: PageType;
+    type?: string;
 };
 /** @returns {NavigationReference} */
 declare function NavigationReference(): NavigationReference;
@@ -1587,6 +1714,13 @@ type NavigationReference = {
     schedule?: CronBasedScheduleSchema;
     sub_navigation?: NavigationReference[];
 };
+/** @returns {AssignmentReference} */
+declare function AssignmentReference(): AssignmentReference;
+type AssignmentReference = {
+    platform?: string;
+    orientation?: string;
+    position?: string;
+};
 /** @returns {CronBasedScheduleSchema} */
 declare function CronBasedScheduleSchema(): CronBasedScheduleSchema;
 type CronBasedScheduleSchema = {
@@ -1594,24 +1728,6 @@ type CronBasedScheduleSchema = {
     cron?: string;
     start?: string;
     end?: string;
-};
-/** @returns {ConfigurationSchema} */
-declare function ConfigurationSchema(): ConfigurationSchema;
-type ConfigurationSchema = {
-    sleep_time?: number;
-    start_on_launch?: boolean;
-    duration?: number;
-    slide_direction?: string;
-};
-/** @returns {SlideshowMedia} */
-declare function SlideshowMedia(): SlideshowMedia;
-type SlideshowMedia = {
-    type?: string;
-    url?: string;
-    bg_color?: string;
-    duration?: number;
-    auto_decide_duration?: boolean;
-    action?: Action;
 };
 /** @returns {UpdateHandpickedSchema} */
 declare function UpdateHandpickedSchema(): UpdateHandpickedSchema;
@@ -1655,20 +1771,45 @@ type CreateTagRequestSchema = {
 /** @returns {DataLoaderSchema} */
 declare function DataLoaderSchema(): DataLoaderSchema;
 type DataLoaderSchema = {
+    _id?: string;
+    url?: string;
+    created_at?: string;
+    modified_at?: string;
+    application?: string;
+    company?: string;
     name?: string;
     service?: string;
     operation_id?: string;
+    is_selected?: boolean;
     type?: string;
-    url?: string;
-    content?: string;
     __source?: DataLoaderSourceSchema;
-    _id?: string;
+    __v?: number;
 };
 /** @returns {DataLoaderSourceSchema} */
 declare function DataLoaderSourceSchema(): DataLoaderSourceSchema;
 type DataLoaderSourceSchema = {
     type?: string;
     id?: string;
+};
+/** @returns {TagSpecSchema} */
+declare function TagSpecSchema(): TagSpecSchema;
+type TagSpecSchema = {
+    name?: string;
+    description?: string;
+};
+/** @returns {ServerSchema} */
+declare function ServerSchema(): ServerSchema;
+type ServerSchema = {
+    url?: string;
+};
+/** @returns {DataLoadersApiSpecSchema} */
+declare function DataLoadersApiSpecSchema(): DataLoadersApiSpecSchema;
+type DataLoadersApiSpecSchema = {
+    info?: any;
+    servers?: ServerSchema[];
+    tags?: TagSpecSchema[];
+    openapi?: string;
+    paths?: any;
 };
 /** @returns {DataLoadersSchema} */
 declare function DataLoadersSchema(): DataLoadersSchema;
@@ -1687,7 +1828,6 @@ type ContentAPIError = {
     status?: number;
     code?: string;
     exception?: string;
-    info?: string;
     request_id?: string;
     stack_trace?: string;
     meta?: any;
@@ -1709,6 +1849,7 @@ type CategorySchema = {
     application?: string;
     icon_url?: string;
     _custom_json?: any;
+    __v?: number;
 };
 /** @returns {ChildrenSchema} */
 declare function ChildrenSchema(): ChildrenSchema;
@@ -1728,15 +1869,15 @@ type CategoryRequestSchema = {
 /** @returns {FAQCategorySchema} */
 declare function FAQCategorySchema(): FAQCategorySchema;
 type FAQCategorySchema = {
-    index?: number;
+    _id?: string;
+    application?: string;
     title?: string;
     description?: string;
-    children?: ChildrenSchema[];
-    _id?: string;
+    index?: number;
     slug?: string;
-    application?: string;
+    children?: ChildrenSchema[];
     icon_url?: string;
-    _custom_json?: any;
+    __v?: number;
 };
 /** @returns {FaqSchema} */
 declare function FaqSchema(): FaqSchema;
@@ -1747,6 +1888,7 @@ type FaqSchema = {
     question?: string;
     answer?: string;
     tags?: string[];
+    __v?: number;
 };
 /** @returns {FAQ} */
 declare function FAQ(): FAQ;
@@ -1824,6 +1966,7 @@ type LandingPageSchema = {
     application?: string;
     archived?: boolean;
     _custom_json?: any;
+    __v?: number;
 };
 /** @returns {DefaultNavigationResponse} */
 declare function DefaultNavigationResponse(): DefaultNavigationResponse;
@@ -1856,6 +1999,8 @@ type NavigationSchema = {
     orientation?: Orientation;
     version?: number;
     navigation?: NavigationReference[];
+    assignments?: AssignmentReference[];
+    __v?: number;
 };
 /** @returns {NavigationRequest} */
 declare function NavigationRequest(): NavigationRequest;
@@ -1864,7 +2009,15 @@ type NavigationRequest = {
     slug?: string;
     platform?: string[];
     orientation?: Orientation;
+    assignments?: NavigationAssignment[];
     navigation?: NavigationReference[];
+};
+/** @returns {NavigationAssignment} */
+declare function NavigationAssignment(): NavigationAssignment;
+type NavigationAssignment = {
+    platform?: string;
+    orientation?: string;
+    position?: string;
 };
 /** @returns {PageGetResponse} */
 declare function PageGetResponse(): PageGetResponse;
@@ -1891,40 +2044,63 @@ type PageSpecItem = {
     params?: PageSpecParam[];
     query?: PageSpecParam[];
 };
+/** @returns {PageResponseError} */
+declare function PageResponseError(): PageResponseError;
+type PageResponseError = {
+    errors?: string;
+};
 /** @returns {PageSchema} */
 declare function PageSchema(): PageSchema;
 type PageSchema = {
     _id?: string;
     application?: string;
-    /**
-     * - Components can be used to store
-     * multiple components
-     */
-    component_ids?: string[];
-    content?: any[];
+    platform?: string;
+    title?: string;
+    slug?: string;
+    type?: string;
+    tags?: string[];
     content_path?: string;
+    orientation?: string;
+    description?: string;
+    published?: boolean;
     created_by?: CreatedBySchema;
     date_meta?: DateMeta;
-    description?: string;
     feature_image?: Asset;
-    page_meta?: any[];
     _schedule?: ScheduleSchema;
-    _custom_json?: any;
-    orientation?: string;
-    platform?: string;
-    published?: boolean;
-    slug?: string;
-    tags?: string[];
-    title?: string;
-    type?: string;
+    page_meta?: PageMeta[];
     seo?: SEO;
-    visibility?: any;
+    component_ids?: string[];
     archived?: boolean;
+    __v?: number;
+    content?: PageContent[];
+    sanitized_content?: SanitizedContent[];
+};
+/** @returns {SanitizedContent} */
+declare function SanitizedContent(): SanitizedContent;
+type SanitizedContent = {
+    type?: string;
+    value?: string;
+};
+/** @returns {PageMeta} */
+declare function PageMeta(): PageMeta;
+type PageMeta = {
+    key?: string;
+};
+/** @returns {PageContent} */
+declare function PageContent(): PageContent;
+type PageContent = {
+    type?: string;
+    value?: string;
 };
 /** @returns {CreatedBySchema} */
 declare function CreatedBySchema(): CreatedBySchema;
 type CreatedBySchema = {
     id?: string;
+};
+/** @returns {PageRequestVisibility} */
+declare function PageRequestVisibility(): PageRequestVisibility;
+type PageRequestVisibility = {
+    test?: boolean;
 };
 /** @returns {PageRequest} */
 declare function PageRequest(): PageRequest;
@@ -1934,7 +2110,7 @@ type PageRequest = {
     author?: Author;
     _custom_json?: any;
     orientation?: string;
-    content?: any[];
+    content?: PageContent[];
     feature_image?: Asset;
     published?: boolean;
     reading_time?: string;
@@ -1942,6 +2118,10 @@ type PageRequest = {
     tags?: string[];
     seo?: SEO;
     title?: string;
+    platform?: string;
+    type?: string;
+    description?: string;
+    visibility?: PageRequestVisibility;
 };
 /** @returns {CronSchedule} */
 declare function CronSchedule(): CronSchedule;
@@ -1950,6 +2130,7 @@ type CronSchedule = {
     start?: string;
     end?: string;
     duration?: number;
+    next_schedule?: NextSchedule[];
 };
 /** @returns {PagePublishRequest} */
 declare function PagePublishRequest(): PagePublishRequest;
@@ -1959,38 +2140,33 @@ type PagePublishRequest = {
 /** @returns {PageMetaSchema} */
 declare function PageMetaSchema(): PageMetaSchema;
 type PageMetaSchema = {
-    system_pages?: NavigationSchema[];
-    custom_pages?: PageSchema[];
+    system_pages?: SystemPages[];
+    custom_pages?: CustomePages[];
     application_id?: string;
 };
-/** @returns {SlideshowGetResponse} */
-declare function SlideshowGetResponse(): SlideshowGetResponse;
-type SlideshowGetResponse = {
-    items?: SlideshowSchema[];
-    page?: Page;
-};
-/** @returns {SlideshowSchema} */
-declare function SlideshowSchema(): SlideshowSchema;
-type SlideshowSchema = {
-    _id?: string;
+/** @returns {CustomePages} */
+declare function CustomePages(): CustomePages;
+type CustomePages = {
+    display?: string;
     slug?: string;
-    date_meta?: DateMeta;
-    application?: string;
-    platform?: string;
-    configuration?: ConfigurationSchema;
-    media?: SlideshowMedia[];
-    active?: boolean;
-    archived?: boolean;
-    _custom_json?: any;
 };
-/** @returns {SlideshowRequest} */
-declare function SlideshowRequest(): SlideshowRequest;
-type SlideshowRequest = {
-    slug?: string;
-    platform?: string;
-    configuration?: ConfigurationSchema;
-    media?: SlideshowMedia;
-    active?: boolean;
+/** @returns {SystemPagesActionPage} */
+declare function SystemPagesActionPage(): SystemPagesActionPage;
+type SystemPagesActionPage = {
+    type?: string;
+};
+/** @returns {SystemPagesAction} */
+declare function SystemPagesAction(): SystemPagesAction;
+type SystemPagesAction = {
+    page?: SystemPagesActionPage;
+    type?: string;
+};
+/** @returns {SystemPages} */
+declare function SystemPages(): SystemPages;
+type SystemPages = {
+    display?: string;
+    action?: SystemPagesAction;
+    page_type?: string;
 };
 /** @returns {Support} */
 declare function Support(): Support;
@@ -2039,6 +2215,8 @@ declare function TagsSchema(): TagsSchema;
 type TagsSchema = {
     application?: string;
     _id?: string;
+    company?: string;
+    __v?: number;
     tags?: TagSchema[];
 };
 /** @returns {TagSchema} */
@@ -2052,6 +2230,7 @@ type TagSchema = {
     position?: string;
     attributes?: any;
     content?: string;
+    compatible_engines?: any[];
     pages?: any[];
     __source?: TagSourceSchema;
 };
@@ -2087,7 +2266,30 @@ declare function FieldValidations(): FieldValidations;
 type FieldValidations = {
     name?: string;
     type?: string;
-    value?: any;
+};
+/** @returns {ApplicationFieldDefinitionSchema} */
+declare function ApplicationFieldDefinitionSchema(): ApplicationFieldDefinitionSchema;
+type ApplicationFieldDefinitionSchema = {
+    _id?: string;
+    creator?: string;
+    resource?: string;
+    name?: string;
+    namespace?: string;
+    key?: string;
+    description?: string;
+    type?: string;
+    multi_value?: boolean;
+    validations?: FieldValidations[];
+    company_id?: string;
+    created_by?: string;
+    updated_by?: string;
+    required?: boolean;
+    is_deleted?: boolean;
+    created_at?: string;
+    updated_at?: string;
+    type_name?: string;
+    invalid_fields_count?: number;
+    application_id?: string;
 };
 /** @returns {FieldDefinitionSchema} */
 declare function FieldDefinitionSchema(): FieldDefinitionSchema;
@@ -2112,6 +2314,12 @@ type FieldDefinitionSchema = {
     type_name?: string;
     invalid_fields_count?: number;
 };
+/** @returns {ApplicationCustomFieldDefinitionsSchema} */
+declare function ApplicationCustomFieldDefinitionsSchema(): ApplicationCustomFieldDefinitionsSchema;
+type ApplicationCustomFieldDefinitionsSchema = {
+    items?: ApplicationFieldDefinitionSchema[];
+    page?: Page;
+};
 /** @returns {CustomFieldDefinitionsSchema} */
 declare function CustomFieldDefinitionsSchema(): CustomFieldDefinitionsSchema;
 type CustomFieldDefinitionsSchema = {
@@ -2128,12 +2336,13 @@ type CustomFieldDefinitionRequestSchema = {
     multi_value?: boolean;
     name?: string;
     description?: string;
+    creator?: string;
     validations?: FieldValidations[];
 };
 /** @returns {CustomObjectCustomFieldDefinitions} */
 declare function CustomObjectCustomFieldDefinitions(): CustomObjectCustomFieldDefinitions;
 type CustomObjectCustomFieldDefinitions = {
-    id?: string;
+    _id?: string;
     type?: string;
     description?: string;
     name?: string;
@@ -2150,7 +2359,7 @@ type CustomObjectDefinitionUpdateRequestSchema = {
     description?: string;
     name?: string;
     display_name_key?: string;
-    field_definitions?: CustomObjectCustomFieldDefinitions[];
+    field_definitions?: CustomFieldDefinitionDetailResSchema[];
 };
 /** @returns {CustomFieldDefinitionDetailResSchema} */
 declare function CustomFieldDefinitionDetailResSchema(): CustomFieldDefinitionDetailResSchema;
@@ -2180,11 +2389,6 @@ type CustomDataDeleteSchema = {
     success?: boolean;
     message?: string;
 };
-/** @returns {CustomFieldValue} */
-declare function CustomFieldValue(): CustomFieldValue;
-type CustomFieldValue = {
-    value?: any;
-};
 /** @returns {CustomFieldSchema} */
 declare function CustomFieldSchema(): CustomFieldSchema;
 type CustomFieldSchema = {
@@ -2193,7 +2397,6 @@ type CustomFieldSchema = {
     key?: string;
     resource?: string;
     creator?: string;
-    value?: CustomFieldValue[];
     resource_id?: string;
     type?: string;
     multi_value?: boolean;
@@ -2212,6 +2415,12 @@ type CustomFieldsResponseSchema = {
     items?: CustomFieldSchema[];
     page?: Page;
 };
+/** @returns {CustomFieldsDeleteSchema} */
+declare function CustomFieldsDeleteSchema(): CustomFieldsDeleteSchema;
+type CustomFieldsDeleteSchema = {
+    success?: boolean;
+    message?: string;
+};
 /** @returns {CustomFieldsResponseByResourceIdSchema} */
 declare function CustomFieldsResponseByResourceIdSchema(): CustomFieldsResponseByResourceIdSchema;
 type CustomFieldsResponseByResourceIdSchema = {
@@ -2220,7 +2429,6 @@ type CustomFieldsResponseByResourceIdSchema = {
 /** @returns {CustomField} */
 declare function CustomField(): CustomField;
 type CustomField = {
-    value?: any[];
     definition_id?: string;
 };
 /** @returns {CustomFieldRequestSchema} */
@@ -2238,9 +2446,13 @@ type CustomObjectSchema = {
     created_by?: string;
     updated_by?: string;
     status?: string;
+    slug?: string;
     type?: string;
     display_name?: string;
     definition_id?: string;
+    is_deleted?: boolean;
+    created_at?: string;
+    updated_at?: string;
     fields?: CustomFieldSchema[];
 };
 /** @returns {CustomObjectDefinitionRequestSchema} */
@@ -2272,6 +2484,7 @@ type CustomObjectCustomFieldDefinitionResSchema = {
     _id?: string;
     created_at?: string;
     updated_at?: string;
+    application_id?: string;
 };
 /** @returns {CustomObjectDefinitionSchema} */
 declare function CustomObjectDefinitionSchema(): CustomObjectDefinitionSchema;
@@ -2284,6 +2497,10 @@ type CustomObjectDefinitionSchema = {
     creator?: string;
     created_by?: string;
     updated_by?: string;
+    application_id?: string;
+    company_id?: string;
+    created_at?: string;
+    updated_at?: string;
     field_definitions?: CustomObjectCustomFieldDefinitionResSchema[];
 };
 /** @returns {CustomObjectDefinitionDeleteResponseSchema} */
@@ -2295,8 +2512,8 @@ type CustomObjectDefinitionDeleteResponseSchema = {
 /** @returns {CustomObjectEntryBulkUploadResponse} */
 declare function CustomObjectEntryBulkUploadResponse(): CustomObjectEntryBulkUploadResponse;
 type CustomObjectEntryBulkUploadResponse = {
-    url?: string;
-    total_records?: number;
+    message?: string;
+    task_id?: string;
 };
 /** @returns {CustomObjectListItemDefinationSchema} */
 declare function CustomObjectListItemDefinationSchema(): CustomObjectListItemDefinationSchema;
@@ -2304,6 +2521,7 @@ type CustomObjectListItemDefinationSchema = {
     _id?: string;
     name?: string;
     type?: string;
+    display_name_key?: string;
 };
 /** @returns {CustomObjectListItemSchema} */
 declare function CustomObjectListItemSchema(): CustomObjectListItemSchema;
@@ -2311,6 +2529,7 @@ type CustomObjectListItemSchema = {
     _id?: string;
     definition_id?: string;
     status?: string;
+    slug?: string;
     updated_at?: string;
     display_name?: string;
     definition?: CustomObjectListItemDefinationSchema;
@@ -2327,15 +2546,20 @@ declare function CustomObjectFieldSchema(): CustomObjectFieldSchema;
 type CustomObjectFieldSchema = {
     _id?: string;
     key?: string;
-    value?: any[];
     type?: string;
     definition_id?: string;
+};
+/** @returns {MetafieldTypesSchema} */
+declare function MetafieldTypesSchema(): MetafieldTypesSchema;
+type MetafieldTypesSchema = {
+    metafield_types?: CustomFieldTypeSchema;
 };
 /** @returns {CustomObjectByIdSchema} */
 declare function CustomObjectByIdSchema(): CustomObjectByIdSchema;
 type CustomObjectByIdSchema = {
     _id?: string;
     status?: string;
+    slug?: string;
     display_name?: string;
     definition?: CustomObjectListItemDefinationSchema;
     references?: any[];
@@ -2355,9 +2579,9 @@ type CustomObjectMetaSchema = {
     mo_error_count?: number;
     mo_defintion_type?: string;
 };
-/** @returns {CustomObjectJobSchema} */
-declare function CustomObjectJobSchema(): CustomObjectJobSchema;
-type CustomObjectJobSchema = {
+/** @returns {JobSchema} */
+declare function JobSchema(): JobSchema;
+type JobSchema = {
     _id?: string;
     jobs?: string[];
     finished_jobs?: string[];
@@ -2365,7 +2589,6 @@ type CustomObjectJobSchema = {
     errors_occured?: string[];
     company_id?: string;
     creator?: string;
-    url?: string;
     status?: string;
     action_type?: string;
     entity?: string;
@@ -2378,11 +2601,18 @@ type CustomObjectJobSchema = {
     created_by?: string;
     created_at?: string;
     updated_at?: string;
+    application_id?: string;
+};
+/** @returns {CustomFieldBulkEntry} */
+declare function CustomFieldBulkEntry(): CustomFieldBulkEntry;
+type CustomFieldBulkEntry = {
+    items?: JobSchema[];
+    page?: Page;
 };
 /** @returns {CustomObjectBulkEntry} */
 declare function CustomObjectBulkEntry(): CustomObjectBulkEntry;
 type CustomObjectBulkEntry = {
-    items?: CustomObjectJobSchema[];
+    items?: JobSchema[];
     page?: Page;
 };
 /** @returns {CustomFieldTypeSchema} */
@@ -2401,17 +2631,8 @@ type CustomFieldTypeSchema = {
     url?: Url;
     metaobject?: Metaobject;
     product?: Product;
-};
-/** @returns {SupportedValidationsMetaExampleSchema} */
-declare function SupportedValidationsMetaExampleSchema(): SupportedValidationsMetaExampleSchema;
-type SupportedValidationsMetaExampleSchema = {
-    name?: string;
-    value?: string;
-};
-/** @returns {SupportedValidationsMetaSchema} */
-declare function SupportedValidationsMetaSchema(): SupportedValidationsMetaSchema;
-type SupportedValidationsMetaSchema = {
-    examples?: SupportedValidationsMetaExampleSchema[];
+    html?: HTML;
+    duration?: Duration;
 };
 /** @returns {SupportedValidationsSchema} */
 declare function SupportedValidationsSchema(): SupportedValidationsSchema;
@@ -2420,7 +2641,23 @@ type SupportedValidationsSchema = {
     type?: string;
     display?: string;
     required?: boolean;
-    meta?: SupportedValidationsMetaSchema;
+};
+/** @returns {Duration} */
+declare function Duration(): Duration;
+type Duration = {
+    name?: string;
+    list_enabled?: boolean;
+    type?: string;
+    category?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {HTML} */
+declare function HTML(): HTML;
+type HTML = {
+    name?: string;
+    list_enabled?: boolean;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
 };
 /** @returns {StringSingleLine} */
 declare function StringSingleLine(): StringSingleLine;
@@ -2537,6 +2774,7 @@ type Product = {
     category?: string;
     type?: string;
     supported_validations?: SupportedValidationsSchema[];
+    scope?: string[];
 };
 /** @returns {CustomObjectEntry} */
 declare function CustomObjectEntry(): CustomObjectEntry;
@@ -2558,12 +2796,12 @@ type CustomObjectDefinitionsSchema = {
 declare function CustomObjectEntryFieldSchema(): CustomObjectEntryFieldSchema;
 type CustomObjectEntryFieldSchema = {
     definition_id?: string;
-    value?: any[];
 };
 /** @returns {CustomObjectRequestSchema} */
 declare function CustomObjectRequestSchema(): CustomObjectRequestSchema;
 type CustomObjectRequestSchema = {
     status?: string;
+    slug?: string;
     definition_id?: string;
     fields?: CustomObjectEntryFieldSchema[];
 };
@@ -2573,17 +2811,3 @@ type CustomObjectBulkSchema = {
     url?: string;
     total_records?: number;
 };
-/**
- * Enum: GenerationEntityType Used By: Content
- *
- * @returns {GenerationEntityType}
- */
-declare function GenerationEntityType(): GenerationEntityType;
-type GenerationEntityType = "title" | "description";
-/**
- * Enum: PageType Used By: Content
- *
- * @returns {PageType}
- */
-declare function PageType(): PageType;
-type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

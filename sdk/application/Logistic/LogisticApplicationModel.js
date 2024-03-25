@@ -1,6 +1,132 @@
 const Joi = require("joi");
 
 /**
+ * @typedef ListViewResponseV2
+ * @property {ListViewItemsV2[]} items
+ * @property {ZoneDataItem} page
+ */
+
+/**
+ * @typedef ListViewItemsV2
+ * @property {string} zone_id
+ * @property {string} name
+ * @property {string} type
+ * @property {GeoArea[]} geo_areas
+ * @property {string} slug
+ * @property {ListViewProductV2} stores
+ * @property {boolean} is_active
+ * @property {ListViewProductV2} product
+ * @property {number} company_id
+ * @property {string} application_id
+ * @property {string} created_by
+ * @property {string} created_on
+ * @property {string} modified_by
+ * @property {string} modified_on
+ * @property {string} [stage]
+ * @property {Summary} [summary]
+ */
+
+/**
+ * @typedef GeoArea
+ * @property {string} id
+ * @property {string} [type]
+ * @property {string} name
+ */
+
+/**
+ * @typedef ListViewProductV2
+ * @property {string} type
+ * @property {string[]} values
+ */
+
+/**
+ * @typedef Summary
+ * @property {number} [stores_count]
+ * @property {number} [products_count]
+ * @property {Region[]} [regions]
+ */
+
+/**
+ * @typedef ZoneDataItem
+ * @property {boolean} has_next
+ * @property {number} item_total
+ * @property {number} size
+ * @property {number} current
+ * @property {string} type
+ */
+
+/**
+ * @typedef Region
+ * @property {string} uid
+ * @property {string} display_name
+ * @property {string} sub_type
+ * @property {string[]} parent_id
+ * @property {string} parent_uid
+ */
+
+/**
+ * @typedef GeoAreaGetResponseBody
+ * @property {GeoAreaItemResponse[]} [items]
+ * @property {Page2} [page]
+ */
+
+/**
+ * @typedef GeoAreaItemResponse
+ * @property {string} geoarea_id
+ * @property {string} name
+ * @property {string} slug
+ * @property {boolean} is_active
+ * @property {string} region_type
+ * @property {string} [type]
+ * @property {AreaExpandedV2[]} [areas]
+ * @property {string} created_on
+ * @property {string} modified_on
+ * @property {string} created_by
+ * @property {string} modified_by
+ */
+
+/**
+ * @typedef Page2
+ * @property {number} size
+ * @property {number} item_total
+ * @property {string} type
+ * @property {number} current
+ * @property {boolean} has_next
+ */
+
+/**
+ * @typedef AreaExpandedV2
+ * @property {Country} country
+ * @property {RegionV2[]} regions
+ */
+
+/**
+ * @typedef RegionV2
+ * @property {string} [uid]
+ * @property {string} [display_name]
+ * @property {string} [sub_type]
+ * @property {string[]} [parent_id]
+ */
+
+/**
+ * @typedef Country
+ * @property {string} uid
+ * @property {string} display_name
+ */
+
+/**
+ * @typedef ServiceabilityZoneErrorResponse
+ * @property {ServiceabilityErrorResponse[]} error
+ */
+
+/**
+ * @typedef ServiceabilityErrorResponse
+ * @property {string} message
+ * @property {string} value
+ * @property {string} type
+ */
+
+/**
  * @typedef GetStoreResponse
  * @property {StoreItemResponse[]} [items]
  * @property {Page} [page]
@@ -384,13 +510,12 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
  * @property {number} [size]
+ * @property {number} [item_total]
+ * @property {boolean} [has_previous]
+ * @property {number} [current]
+ * @property {string} [type]
  */
 
 /**
@@ -400,6 +525,7 @@ const Joi = require("joi");
  * @property {string} [display_name]
  * @property {string[]} [parent_ids]
  * @property {string} [type]
+ * @property {LocalityParent[]} [localities]
  */
 
 /**
@@ -433,6 +559,170 @@ const Joi = require("joi");
  */
 
 class LogisticApplicationModel {
+  /** @returns {ListViewResponseV2} */
+  static ListViewResponseV2() {
+    return Joi.object({
+      items: Joi.array()
+        .items(LogisticApplicationModel.ListViewItemsV2())
+        .required(),
+      page: LogisticApplicationModel.ZoneDataItem().required(),
+    });
+  }
+
+  /** @returns {ListViewItemsV2} */
+  static ListViewItemsV2() {
+    return Joi.object({
+      zone_id: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+      geo_areas: Joi.array()
+        .items(LogisticApplicationModel.GeoArea())
+        .required(),
+      slug: Joi.string().allow("").required(),
+      stores: LogisticApplicationModel.ListViewProductV2().required(),
+      is_active: Joi.boolean().required(),
+      product: LogisticApplicationModel.ListViewProductV2().required(),
+      company_id: Joi.number().required(),
+      application_id: Joi.string().allow("").required(),
+      created_by: Joi.string().allow("").required(),
+      created_on: Joi.string().allow("").required(),
+      modified_by: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      stage: Joi.string().allow(""),
+      summary: LogisticApplicationModel.Summary(),
+    });
+  }
+
+  /** @returns {GeoArea} */
+  static GeoArea() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      type: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ListViewProductV2} */
+  static ListViewProductV2() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      values: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {Summary} */
+  static Summary() {
+    return Joi.object({
+      stores_count: Joi.number(),
+      products_count: Joi.number(),
+      regions: Joi.array().items(LogisticApplicationModel.Region()),
+    });
+  }
+
+  /** @returns {ZoneDataItem} */
+  static ZoneDataItem() {
+    return Joi.object({
+      has_next: Joi.boolean().required(),
+      item_total: Joi.number().required(),
+      size: Joi.number().required(),
+      current: Joi.number().required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {Region} */
+  static Region() {
+    return Joi.object({
+      uid: Joi.string().allow("").required(),
+      display_name: Joi.string().allow("").required(),
+      sub_type: Joi.string().allow("").required(),
+      parent_id: Joi.array().items(Joi.string().allow("")).required(),
+      parent_uid: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {GeoAreaGetResponseBody} */
+  static GeoAreaGetResponseBody() {
+    return Joi.object({
+      items: Joi.array().items(LogisticApplicationModel.GeoAreaItemResponse()),
+      page: LogisticApplicationModel.Page2(),
+    });
+  }
+
+  /** @returns {GeoAreaItemResponse} */
+  static GeoAreaItemResponse() {
+    return Joi.object({
+      geoarea_id: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
+      region_type: Joi.string().allow("").required(),
+      type: Joi.string().allow(""),
+      areas: Joi.array().items(LogisticApplicationModel.AreaExpandedV2()),
+      created_on: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      created_by: Joi.string().allow("").required(),
+      modified_by: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {Page2} */
+  static Page2() {
+    return Joi.object({
+      size: Joi.number().required(),
+      item_total: Joi.number().required(),
+      type: Joi.string().allow("").required(),
+      current: Joi.number().required(),
+      has_next: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {AreaExpandedV2} */
+  static AreaExpandedV2() {
+    return Joi.object({
+      country: LogisticApplicationModel.Country().required(),
+      regions: Joi.array()
+        .items(LogisticApplicationModel.RegionV2())
+        .required(),
+    });
+  }
+
+  /** @returns {RegionV2} */
+  static RegionV2() {
+    return Joi.object({
+      uid: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      parent_id: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {Country} */
+  static Country() {
+    return Joi.object({
+      uid: Joi.string().allow("").required(),
+      display_name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ServiceabilityZoneErrorResponse} */
+  static ServiceabilityZoneErrorResponse() {
+    return Joi.object({
+      error: Joi.array()
+        .items(LogisticApplicationModel.ServiceabilityErrorResponse())
+        .required(),
+    });
+  }
+
+  /** @returns {ServiceabilityErrorResponse} */
+  static ServiceabilityErrorResponse() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {GetStoreResponse} */
   static GetStoreResponse() {
     return Joi.object({
@@ -914,13 +1204,12 @@ class LogisticApplicationModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      has_previous: Joi.boolean(),
       has_next: Joi.boolean(),
-      current: Joi.number(),
-      type: Joi.string().allow("").required(),
       size: Joi.number(),
+      item_total: Joi.number(),
+      has_previous: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -932,6 +1221,7 @@ class LogisticApplicationModel {
       display_name: Joi.string().allow(""),
       parent_ids: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
+      localities: Joi.array().items(LogisticApplicationModel.LocalityParent()),
     });
   }
 

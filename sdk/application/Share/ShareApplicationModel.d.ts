@@ -54,6 +54,8 @@ export = ShareApplicationModel;
 /**
  * @typedef UrlInfo
  * @property {string} [hash]
+ * @property {string} [url_hash]
+ * @property {string} [alias]
  */
 /**
  * @typedef ShortLinkRes
@@ -160,6 +162,8 @@ type ShortLinkReq = {
 declare function UrlInfo(): UrlInfo;
 type UrlInfo = {
     hash?: string;
+    url_hash?: string;
+    alias?: string;
 };
 /** @returns {ShortLinkRes} */
 declare function ShortLinkRes(): ShortLinkRes;

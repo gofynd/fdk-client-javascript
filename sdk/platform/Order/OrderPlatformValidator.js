@@ -48,6 +48,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef DeleteuserviewsParam
+ * @property {string} id - Id of view
+ */
+
+/**
  * @typedef DispatchManifestsParam
  * @property {string} manifestId
  * @property {OrderPlatformModel.DispatchManifest} body
@@ -81,12 +86,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef FetchRefundModeConfigParam
  * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
- */
-
-/**
- * @typedef GenerateInvoiceIDParam
- * @property {string} invoiceType - Mention the type of invoice id to generate
- * @property {OrderPlatformModel.GenerateInvoiceIDRequest} body
  */
 
 /**
@@ -257,8 +256,18 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   company order
  * @property {string} [customerId]
  * @property {string} [orderType]
- * @property {boolean} [allowInactive] - Flag indicating whether inactive
- *   shipments are allowed
+ */
+
+/**
+ * @typedef GetRefundConfigurationParam
+ * @property {string} appId
+ */
+
+/** @typedef GetRefundEnableStateListParam */
+
+/**
+ * @typedef GetRefundStateConfigurationParam
+ * @property {string} appId
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -269,8 +278,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [shipmentId] - Shipment Id
  * @property {boolean} [fetchActiveShipment] - Flag to fetch active or
  *   deactivated shipments
- * @property {boolean} [allowInactive] - Flag indicating whether inactive
- *   shipments are allowed
  */
 
 /**
@@ -339,6 +346,14 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [groupEntity] - Name of group entity
  */
 
+/** @typedef GetuserviewsParam */
+
+/**
+ * @typedef GlobalfiltersParam
+ * @property {string} showIn - Name of view to get filters for
+ * @property {string} requestSource - Name of site (Platform/Admin)
+ */
+
 /**
  * @typedef InvalidateShipmentCacheParam
  * @property {OrderPlatformModel.InvalidateShipmentCachePayload} body
@@ -355,8 +370,25 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef PostRefundConfigurationParam
+ * @property {string} appId
+ * @property {OrderPlatformModel.RefundStateConfigurationManualSchema} body
+ */
+
+/**
+ * @typedef PostRefundStateConfigurationParam
+ * @property {string} appId
+ * @property {OrderPlatformModel.PostRefundStateConfiguration} body
+ */
+
+/**
  * @typedef PostShipmentHistoryParam
  * @property {OrderPlatformModel.PostShipmentHistory} body
+ */
+
+/**
+ * @typedef PostuserviewsParam
+ * @property {OrderPlatformModel.UserViewsResponse} body
  */
 
 /**
@@ -421,6 +453,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef UpdateShipmentTrackingParam
  * @property {OrderPlatformModel.CourierPartnerTrackingDetails} body
+ */
+
+/**
+ * @typedef UpdateuserviewsParam
+ * @property {OrderPlatformModel.UserViewsResponse} body
  */
 
 /**
@@ -494,6 +531,13 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {DeleteuserviewsParam} */
+  static deleteuserviews() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {DispatchManifestsParam} */
   static dispatchManifests() {
     return Joi.object({
@@ -541,14 +585,6 @@ class OrderPlatformValidator {
   static fetchRefundModeConfig() {
     return Joi.object({
       body: OrderPlatformModel.RefundModeConfigRequestPayload().required(),
-    }).required();
-  }
-
-  /** @returns {GenerateInvoiceIDParam} */
-  static generateInvoiceID() {
-    return Joi.object({
-      invoiceType: Joi.string().allow("").required(),
-      body: OrderPlatformModel.GenerateInvoiceIDRequest().required(),
     }).required();
   }
 
@@ -747,7 +783,25 @@ class OrderPlatformValidator {
       showCrossCompanyData: Joi.boolean(),
       customerId: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
-      allowInactive: Joi.boolean(),
+    }).required();
+  }
+
+  /** @returns {GetRefundConfigurationParam} */
+  static getRefundConfiguration() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetRefundEnableStateListParam} */
+  static getRefundEnableStateList() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetRefundStateConfigurationParam} */
+  static getRefundStateConfiguration() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -762,7 +816,6 @@ class OrderPlatformValidator {
       channelShipmentId: Joi.string().allow(""),
       shipmentId: Joi.string().allow(""),
       fetchActiveShipment: Joi.boolean(),
-      allowInactive: Joi.boolean(),
     }).required();
   }
 
@@ -840,6 +893,19 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {GetuserviewsParam} */
+  static getuserviews() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GlobalfiltersParam} */
+  static globalfilters() {
+    return Joi.object({
+      showIn: Joi.string().allow("").required(),
+      requestSource: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {InvalidateShipmentCacheParam} */
   static invalidateShipmentCache() {
     return Joi.object({
@@ -861,10 +927,33 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {PostRefundConfigurationParam} */
+  static postRefundConfiguration() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.RefundStateConfigurationManualSchema().required(),
+    }).required();
+  }
+
+  /** @returns {PostRefundStateConfigurationParam} */
+  static postRefundStateConfiguration() {
+    return Joi.object({
+      appId: Joi.string().allow("").required(),
+      body: OrderPlatformModel.PostRefundStateConfiguration().required(),
+    }).required();
+  }
+
   /** @returns {PostShipmentHistoryParam} */
   static postShipmentHistory() {
     return Joi.object({
       body: OrderPlatformModel.PostShipmentHistory().required(),
+    }).required();
+  }
+
+  /** @returns {PostuserviewsParam} */
+  static postuserviews() {
+    return Joi.object({
+      body: OrderPlatformModel.UserViewsResponse().required(),
     }).required();
   }
 
@@ -949,6 +1038,13 @@ class OrderPlatformValidator {
   static updateShipmentTracking() {
     return Joi.object({
       body: OrderPlatformModel.CourierPartnerTrackingDetails().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateuserviewsParam} */
+  static updateuserviews() {
+    return Joi.object({
+      body: OrderPlatformModel.UserViewsResponse().required(),
     }).required();
   }
 

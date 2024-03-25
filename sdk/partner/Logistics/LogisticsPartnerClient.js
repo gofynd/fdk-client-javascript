@@ -1113,7 +1113,7 @@ class Logistics {
    * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
    */
   async getCountries(
-    { onboarding, pageNo, pageSize, q, requestHeaders } = {
+    { onboarding, pageNo, pageSize, q, hierarchy, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -1124,6 +1124,7 @@ class Logistics {
         pageNo,
         pageSize,
         q,
+        hierarchy,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1140,6 +1141,7 @@ class Logistics {
         pageNo,
         pageSize,
         q,
+        hierarchy,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1155,6 +1157,7 @@ class Logistics {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
+    query_params["hierarchy"] = hierarchy;
 
     const response = await PartnerAPIClient.execute(
       this.config,

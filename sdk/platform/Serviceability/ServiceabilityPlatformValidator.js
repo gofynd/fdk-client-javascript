@@ -31,11 +31,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {ServiceabilityPlatformModel.PackageRule} body
  */
 
-/**
- * @typedef CreateZoneParam
- * @property {ServiceabilityPlatformModel.CreateZoneData} body
- */
-
 /** @typedef GetAllStoresParam */
 
 /**
@@ -82,11 +77,12 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {string} [stage] - Stage of the account. enabled/disabled
  * @property {string} [paymentMode] - Filters dp accounts based on payment mode
  * @property {string} [transportType] - Filters dp accounts based on transport_type
+ * @property {string[]} [accountIds] - Filters dp accounts based on their ids
  */
 
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
+ * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
  */
 
 /**
@@ -125,25 +121,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef GetZoneByIdParam
- * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
- */
-
-/**
- * @typedef GetZonesParam
- * @property {number} [pageNo] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {boolean} [isActive] - Status of Zone (either active or inactive)
- * @property {string} [channelId] - Zones filtered by an application
- * @property {string} [q] - Search with name as a free text
- * @property {string} [country] - ISO2 code of the country
- * @property {string} [state] - State name
- * @property {string} [city] - City name
- * @property {string} [pincode] - Pincode value to search zones
- * @property {string} [sector] - Sector value to search zones
- */
-
-/**
  * @typedef UpdateCompanyConfigurationParam
  * @property {ServiceabilityPlatformModel.CompanyConfig} body
  */
@@ -174,12 +151,6 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {string} schemeId - Unique identifier of a scheme
  * @property {string} regionId - Unique identifier of a region
  * @property {ServiceabilityPlatformModel.ServiceabilityModel} body
- */
-
-/**
- * @typedef UpdateZoneByIdParam
- * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
- * @property {ServiceabilityPlatformModel.UpdateZoneData} body
  */
 
 class ServiceabilityPlatformValidator {
@@ -219,13 +190,6 @@ class ServiceabilityPlatformValidator {
   static createPackageMaterialRule() {
     return Joi.object({
       body: ServiceabilityPlatformModel.PackageRule().required(),
-    }).required();
-  }
-
-  /** @returns {CreateZoneParam} */
-  static createZone() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.CreateZoneData().required(),
     }).required();
   }
 
@@ -288,13 +252,14 @@ class ServiceabilityPlatformValidator {
       stage: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       transportType: Joi.string().allow(""),
+      accountIds: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 
   /** @returns {GetOptimalLocationsParam} */
   static getOptimalLocations() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema().required(),
+      body: ServiceabilityPlatformModel.ReAssignStoreRequest().required(),
     }).required();
   }
 
@@ -341,29 +306,6 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetZoneByIdParam} */
-  static getZoneById() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetZonesParam} */
-  static getZones() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      isActive: Joi.boolean(),
-      channelId: Joi.string().allow(""),
-      q: Joi.string().allow(""),
-      country: Joi.string().allow(""),
-      state: Joi.string().allow(""),
-      city: Joi.string().allow(""),
-      pincode: Joi.string().allow(""),
-      sector: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {UpdateCompanyConfigurationParam} */
   static updateCompanyConfiguration() {
     return Joi.object({
@@ -402,14 +344,6 @@ class ServiceabilityPlatformValidator {
       schemeId: Joi.string().allow("").required(),
       regionId: Joi.string().allow("").required(),
       body: ServiceabilityPlatformModel.ServiceabilityModel().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateZoneByIdParam} */
-  static updateZoneById() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.UpdateZoneData().required(),
     }).required();
   }
 }

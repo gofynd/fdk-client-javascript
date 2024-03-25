@@ -183,6 +183,35 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] -
+   * @param {string} [arg.q] - Search param by name or domain
+   * @returns {Paginator<ConfigurationPlatformModel.ApplicationsResponse>}
+   * @summary: Get applications.
+   * @description: Retrieve a list of available applications. Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
+   */
+  getApplicationsPaginator({ pageSize, q } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getApplications({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationPlatformValidator.GetAvailableOptInsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -191,7 +220,7 @@ class Configuration {
    *
    * @name getAvailableOptIns
    * @summary: Get available opt-ins.
-   * @description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAvailableOptIns/).
+   * @description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAvailableOptIns/).
    */
   async getAvailableOptIns(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -267,6 +296,34 @@ class Configuration {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @returns {Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
+   * @summary: Get available opt-ins.
+   * @description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company.
+   */
+  getAvailableOptInsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAvailableOptIns({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -438,6 +495,36 @@ class Configuration {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {ConfigurationPlatformModel.CompanyByBrandsRequest} arg.body
+   * @returns {Paginator<ConfigurationPlatformModel.CompanyByBrandsResponse>}
+   * @summary: Get company by brands.
+   * @description: Retrieve companies associated with specific brands. Retrieve a list of companies by the brands they deal.
+   */
+  getCompanyByBrandsPaginator({ pageSize, body } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getCompanyByBrands({
+        body: body,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -1124,6 +1211,34 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @returns {Paginator<ConfigurationPlatformModel.OtherSellerApplications>}
+   * @summary: Get other seller applications.
+   * @description: Retrieve applications from other sellers. Retrieve all other seller applications that were not created within the current company. but have opted for the current company's inventory.
+   */
+  getOtherSellerApplicationsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getOtherSellerApplications({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationPlatformValidator.GetSelectedOptInsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -1215,14 +1330,46 @@ class Configuration {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.level - Store or company
+   * @param {number} arg.uid - Unique identifier of the selected integration level.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @returns {Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
+   * @summary: Get selected opt-ins.
+   * @description: Retrieve a list of selected opt-ins. Retrieve the store-level/company-level integrations configured in a company
+   */
+  getSelectedOptInsPaginator({ level, uid, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSelectedOptIns({
+        level: level,
+        uid: uid,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ConfigurationPlatformValidator.GetStoreByBrandsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponse>} -
    *   Success response
    * @name getStoreByBrands
-   * @summary: Get store by brands.
-   * @description: Retrieve stores associated with specific brands. Retrieve a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoreByBrands/).
+   * @summary: Get stores by brand uids for the current company
+   * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoreByBrands/).
    */
   async getStoreByBrands(
     { body, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -1269,7 +1416,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/stores-by-brands`,
+      `/service/platform/configuration/v2.0/company/${this.config.companyId}/inventory/stores-by-brands`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1300,6 +1447,36 @@ class Configuration {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {ConfigurationPlatformModel.StoreByBrandsRequest} arg.body
+   * @returns {Paginator<ConfigurationPlatformModel.StoreByBrandsResponse>}
+   * @summary: Get stores by brand uids for the current company
+   * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
+   */
+  getStoreByBrandsPaginator({ pageSize, body } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getStoreByBrands({
+        body: body,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**

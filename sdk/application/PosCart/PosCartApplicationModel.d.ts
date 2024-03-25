@@ -49,7 +49,8 @@ export = PosCartApplicationModel;
  *   article for free gift item promotions
  * @property {Ownership} [ownership] - Ownership of promotion
  * @property {CartCurrency} [currency]
- * @property {string} [promotion_group] - Promotion group for the promotion
+ * @property {string} [promotion_group] - Promotion type of current promotion
+ * @property {Object} [meta] - Meta object for extra data
  */
 /**
  * @typedef LoyaltyPoints
@@ -920,9 +921,13 @@ type AppliedPromotion = {
     ownership?: Ownership;
     currency?: CartCurrency;
     /**
-     * - Promotion group for the promotion
+     * - Promotion type of current promotion
      */
     promotion_group?: string;
+    /**
+     * - Meta object for extra data
+     */
+    meta?: any;
 };
 /** @returns {LoyaltyPoints} */
 declare function LoyaltyPoints(): LoyaltyPoints;

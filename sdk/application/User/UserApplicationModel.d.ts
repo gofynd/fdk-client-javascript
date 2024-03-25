@@ -9,32 +9,32 @@ export = UserApplicationModel;
  */
 /**
  * @typedef DeleteApplicationUserRequestSchema
- * @property {string} [user_id]
- * @property {string} [reason]
- * @property {string} [reason_id]
+ * @property {string} user_id
+ * @property {string} reason
+ * @property {string} reason_id
  * @property {string} [request_id]
- * @property {string} [otp]
+ * @property {string} otp
  */
 /**
  * @typedef EditEmailRequestSchema
- * @property {string} [email]
+ * @property {string} email
  */
 /**
  * @typedef SendVerificationLinkMobileRequestSchema
  * @property {boolean} [verified]
  * @property {boolean} [active]
- * @property {string} [country_code]
- * @property {string} [phone]
+ * @property {string} country_code
+ * @property {string} phone
  * @property {boolean} [primary]
  */
 /**
  * @typedef EditMobileRequestSchema
- * @property {string} [country_code]
- * @property {string} [phone]
+ * @property {string} country_code
+ * @property {string} phone
  */
 /**
  * @typedef EditProfileRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {EditProfileMobileSchema} [mobile]
@@ -54,62 +54,64 @@ export = UserApplicationModel;
  */
 /**
  * @typedef SendEmailOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
+ * @property {string} email
+ * @property {string} action
  * @property {string} [token]
  * @property {string} [register_token]
  */
 /**
  * @typedef SendEmailForgotOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
+ * @property {string} email
+ * @property {string} action
  * @property {string} [token]
  */
 /**
  * @typedef VerifyEmailOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
+ * @property {string} email
+ * @property {string} [request_id]
+ * @property {string} action
  * @property {string} [register_token]
- * @property {string} [otp]
+ * @property {string} otp
  */
 /**
  * @typedef VerifyEmailForgotOtpRequestSchema
- * @property {string} [email]
- * @property {string} [otp]
+ * @property {string} email
+ * @property {string} otp
+ * @property {string} [request_id]
  */
 /**
  * @typedef VerifyOtpRequestSchema
- * @property {string} [request_id]
+ * @property {string} request_id
  * @property {string} [register_token]
- * @property {string} [otp]
+ * @property {string} otp
  */
 /**
  * @typedef VerifyMobileForgotOtpRequestSchema
- * @property {string} [request_id]
- * @property {string} [otp]
+ * @property {string} request_id
+ * @property {string} otp
  */
 /**
  * @typedef SendMobileOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
- * @property {string} [mobile]
- * @property {string} [country_code]
- * @property {string} [action]
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
+ * @property {string} mobile
+ * @property {string} country_code
+ * @property {string} action
  * @property {string} [token]
  * @property {string} [android_hash]
  * @property {string} [force]
  */
 /**
  * @typedef SendMobileForgotOtpRequestSchema
- * @property {string} [mobile]
- * @property {string} [country_code]
- * @property {string} [action]
+ * @property {string} mobile
+ * @property {string} country_code
+ * @property {string} action
  * @property {string} [token]
  * @property {string} [android_hash]
  */
 /**
  * @typedef UpdatePasswordRequestSchema
- * @property {string} [old_password]
- * @property {string} [new_password]
+ * @property {string} old_password
+ * @property {string} new_password
  */
 /**
  * @typedef FormRegisterRequestSchema
@@ -123,43 +125,38 @@ export = UserApplicationModel;
  */
 /**
  * @typedef TokenRequestBodySchema
- * @property {string} [token]
+ * @property {string} token
  */
 /**
  * @typedef ForgotPasswordRequestSchema
- * @property {string} [code]
- * @property {string} [password]
+ * @property {string} code
+ * @property {string} password
  */
 /**
  * @typedef CodeRequestBodySchema
- * @property {string} [code]
+ * @property {string} code
  */
 /**
  * @typedef SendResetPasswordEmailRequestSchema
- * @property {string} [email]
- */
-/**
- * @typedef SendResetPasswordMobileRequestSchema
- * @property {string} [country_code]
- * @property {string} [mobile]
+ * @property {string} email
  */
 /**
  * @typedef PasswordLoginRequestSchema
- * @property {string} [password]
- * @property {string} [username]
+ * @property {string} password
+ * @property {string} username
  */
 /**
  * @typedef SendOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
- * @property {string} [country_code]
- * @property {string} [mobile]
+ * @property {boolean} [ci] - Set to true if you want to encrypt the OTP.
+ * @property {string} country_code
+ * @property {string} mobile
  * @property {string} [android_hash]
  */
 /**
  * @typedef OAuthRequestSchema
  * @property {boolean} [is_signed_in]
- * @property {OAuthRequestSchemaOauth2} [oauth2]
- * @property {OAuthRequestSchemaProfile} [profile]
+ * @property {OAuthRequestSchemaOauth2} oauth2
+ * @property {OAuthRequestSchemaProfile} profile
  */
 /**
  * @typedef OAuthRequestAppleSchema
@@ -198,6 +195,11 @@ export = UserApplicationModel;
  * @property {boolean} [user_exists]
  */
 /**
+ * @typedef EmailOtp
+ * @property {string} [request_id]
+ * @property {number} [resend_timer]
+ */
+/**
  * @typedef ProfileEditSuccess
  * @property {UserSchema} [user]
  * @property {string} [register_token]
@@ -207,6 +209,7 @@ export = UserApplicationModel;
  * @property {boolean} [verify_email_otp]
  * @property {boolean} [verify_mobile_otp]
  * @property {string} [email]
+ * @property {EmailOtp} [email_otp]
  * @property {string} [request_id]
  * @property {string} [country_code]
  * @property {string} [mobile]
@@ -243,6 +246,7 @@ export = UserApplicationModel;
 /**
  * @typedef RegisterFormSuccess
  * @property {string} [email]
+ * @property {EmailOtp} [email_otp]
  * @property {number} [resend_timer]
  * @property {string} [resend_token]
  * @property {string} [resend_email_token]
@@ -287,6 +291,7 @@ export = UserApplicationModel;
  * @typedef EmailOtpSuccess
  * @property {boolean} [success]
  * @property {string} [resend_email_token]
+ * @property {EmailOtp} [email_otp]
  */
 /**
  * @typedef SessionListSuccess
@@ -327,7 +332,7 @@ export = UserApplicationModel;
  */
 /**
  * @typedef OAuthRequestSchemaOauth2
- * @property {string} [access_token]
+ * @property {string} access_token
  * @property {number} [expiry]
  * @property {string} [refresh_token]
  */
@@ -358,6 +363,8 @@ export = UserApplicationModel;
  * @property {boolean} [active]
  * @property {boolean} [forgot_password]
  * @property {Login} [login]
+ * @property {AccountLockout} [account_lockout]
+ * @property {PasswordSettings} [password_settings]
  * @property {boolean} [skip_captcha]
  * @property {string} [name]
  * @property {MetaSchema} [meta]
@@ -385,9 +392,39 @@ export = UserApplicationModel;
  * @property {string} [background_color]
  */
 /**
+ * @typedef PasswordConfigs
+ * @property {number} [length]
+ * @property {boolean} [require_special_character]
+ * @property {boolean} [require_number]
+ * @property {boolean} [require_capital_character]
+ */
+/**
+ * @typedef PasswordHistory
+ * @property {boolean} [required]
+ * @property {number} [count]
+ */
+/**
+ * @typedef PasswordExpiry
+ * @property {boolean} [required]
+ * @property {number} [duration]
+ */
+/**
+ * @typedef PasswordSettings
+ * @property {PasswordConfigs} [configs]
+ * @property {PasswordHistory} [history]
+ * @property {PasswordExpiry} [expiry]
+ */
+/**
+ * @typedef AccountLockout
+ * @property {boolean} [enable]
+ * @property {number} [attempts]
+ * @property {number} [duration]
+ */
+/**
  * @typedef Login
  * @property {boolean} [password]
  * @property {boolean} [otp]
+ * @property {string} [via]
  */
 /**
  * @typedef MetaSchema
@@ -404,6 +441,7 @@ export = UserApplicationModel;
  * @typedef RequiredFields
  * @property {PlatformEmail} [email]
  * @property {PlatformMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 /**
  * @typedef PlatformEmail
@@ -416,9 +454,14 @@ export = UserApplicationModel;
  * @property {string} [level]
  */
 /**
+ * @typedef PlatformPassword
+ * @property {boolean} [is_required]
+ */
+/**
  * @typedef RegisterRequiredFields
  * @property {RegisterRequiredFieldsEmail} [email]
  * @property {RegisterRequiredFieldsMobile} [mobile]
+ * @property {PlatformPassword} [password]
  */
 /**
  * @typedef RegisterRequiredFieldsEmail
@@ -471,9 +514,16 @@ export = UserApplicationModel;
  * @property {boolean} [is_rolling]
  */
 /**
+ * @typedef UserPasswordHistory
+ * @property {string} [salt]
+ * @property {string} [hash]
+ */
+/**
  * @typedef UserSchema
  * @property {string} [application_id]
  * @property {string} [user_id]
+ * @property {string} [password_last_modified]
+ * @property {UserPasswordHistory[]} [password_history]
  * @property {string} [first_name]
  * @property {Object} [meta]
  * @property {string} [last_name]
@@ -507,7 +557,7 @@ export = UserApplicationModel;
 declare class UserApplicationModel {
 }
 declare namespace UserApplicationModel {
-    export { UpdateUserAttributesRequest, UserAttributes, DeleteApplicationUserRequestSchema, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, EditProfileMobileSchema, SendEmailOtpRequestSchema, SendEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailForgotOtpRequestSchema, VerifyOtpRequestSchema, VerifyMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileForgotOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, OAuthRequestAppleSchema, UserObjectSchema, AuthSuccess, UserExistsResponse, SendOtpResponse, ProfileEditSuccess, LoginSuccess, ResetForgotPasswordSuccess, VerifyOtpSuccess, VerifyForgotOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, DeleteUserSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, APIError, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UserSchema, PhoneNumber, Email };
+    export { UpdateUserAttributesRequest, UserAttributes, DeleteApplicationUserRequestSchema, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, EditProfileMobileSchema, SendEmailOtpRequestSchema, SendEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailForgotOtpRequestSchema, VerifyOtpRequestSchema, VerifyMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileForgotOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, OAuthRequestAppleSchema, UserObjectSchema, AuthSuccess, UserExistsResponse, SendOtpResponse, EmailOtp, ProfileEditSuccess, LoginSuccess, ResetForgotPasswordSuccess, VerifyOtpSuccess, VerifyForgotOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, DeleteUserSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, APIError, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, PlatformSchema, LookAndFeel, PasswordConfigs, PasswordHistory, PasswordExpiry, PasswordSettings, AccountLockout, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, PlatformPassword, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UserPasswordHistory, UserSchema, PhoneNumber, Email };
 }
 /** @returns {UpdateUserAttributesRequest} */
 declare function UpdateUserAttributesRequest(): UpdateUserAttributesRequest;
@@ -522,31 +572,31 @@ type UserAttributes = {
 /** @returns {DeleteApplicationUserRequestSchema} */
 declare function DeleteApplicationUserRequestSchema(): DeleteApplicationUserRequestSchema;
 type DeleteApplicationUserRequestSchema = {
-    user_id?: string;
-    reason?: string;
-    reason_id?: string;
+    user_id: string;
+    reason: string;
+    reason_id: string;
     request_id?: string;
-    otp?: string;
+    otp: string;
 };
 /** @returns {EditEmailRequestSchema} */
 declare function EditEmailRequestSchema(): EditEmailRequestSchema;
 type EditEmailRequestSchema = {
-    email?: string;
+    email: string;
 };
 /** @returns {SendVerificationLinkMobileRequestSchema} */
 declare function SendVerificationLinkMobileRequestSchema(): SendVerificationLinkMobileRequestSchema;
 type SendVerificationLinkMobileRequestSchema = {
     verified?: boolean;
     active?: boolean;
-    country_code?: string;
-    phone?: string;
+    country_code: string;
+    phone: string;
     primary?: boolean;
 };
 /** @returns {EditMobileRequestSchema} */
 declare function EditMobileRequestSchema(): EditMobileRequestSchema;
 type EditMobileRequestSchema = {
-    country_code?: string;
-    phone?: string;
+    country_code: string;
+    phone: string;
 };
 /** @returns {EditProfileRequestSchema} */
 declare function EditProfileRequestSchema(): EditProfileRequestSchema;
@@ -554,7 +604,7 @@ type EditProfileRequestSchema = {
     /**
      * - Set to true if you want to encrypt the OTP.
      */
-    encrypt_otp?: boolean;
+    ci?: boolean;
     first_name?: string;
     last_name?: string;
     mobile?: EditProfileMobileSchema;
@@ -576,44 +626,46 @@ type EditProfileMobileSchema = {
 /** @returns {SendEmailOtpRequestSchema} */
 declare function SendEmailOtpRequestSchema(): SendEmailOtpRequestSchema;
 type SendEmailOtpRequestSchema = {
-    email?: string;
-    action?: string;
+    email: string;
+    action: string;
     token?: string;
     register_token?: string;
 };
 /** @returns {SendEmailForgotOtpRequestSchema} */
 declare function SendEmailForgotOtpRequestSchema(): SendEmailForgotOtpRequestSchema;
 type SendEmailForgotOtpRequestSchema = {
-    email?: string;
-    action?: string;
+    email: string;
+    action: string;
     token?: string;
 };
 /** @returns {VerifyEmailOtpRequestSchema} */
 declare function VerifyEmailOtpRequestSchema(): VerifyEmailOtpRequestSchema;
 type VerifyEmailOtpRequestSchema = {
-    email?: string;
-    action?: string;
+    email: string;
+    request_id?: string;
+    action: string;
     register_token?: string;
-    otp?: string;
+    otp: string;
 };
 /** @returns {VerifyEmailForgotOtpRequestSchema} */
 declare function VerifyEmailForgotOtpRequestSchema(): VerifyEmailForgotOtpRequestSchema;
 type VerifyEmailForgotOtpRequestSchema = {
-    email?: string;
-    otp?: string;
+    email: string;
+    otp: string;
+    request_id?: string;
 };
 /** @returns {VerifyOtpRequestSchema} */
 declare function VerifyOtpRequestSchema(): VerifyOtpRequestSchema;
 type VerifyOtpRequestSchema = {
-    request_id?: string;
+    request_id: string;
     register_token?: string;
-    otp?: string;
+    otp: string;
 };
 /** @returns {VerifyMobileForgotOtpRequestSchema} */
 declare function VerifyMobileForgotOtpRequestSchema(): VerifyMobileForgotOtpRequestSchema;
 type VerifyMobileForgotOtpRequestSchema = {
-    request_id?: string;
-    otp?: string;
+    request_id: string;
+    otp: string;
 };
 /** @returns {SendMobileOtpRequestSchema} */
 declare function SendMobileOtpRequestSchema(): SendMobileOtpRequestSchema;
@@ -621,10 +673,10 @@ type SendMobileOtpRequestSchema = {
     /**
      * - Set to true if you want to encrypt the OTP.
      */
-    encrypt_otp?: boolean;
-    mobile?: string;
-    country_code?: string;
-    action?: string;
+    ci?: boolean;
+    mobile: string;
+    country_code: string;
+    action: string;
     token?: string;
     android_hash?: string;
     force?: string;
@@ -632,17 +684,17 @@ type SendMobileOtpRequestSchema = {
 /** @returns {SendMobileForgotOtpRequestSchema} */
 declare function SendMobileForgotOtpRequestSchema(): SendMobileForgotOtpRequestSchema;
 type SendMobileForgotOtpRequestSchema = {
-    mobile?: string;
-    country_code?: string;
-    action?: string;
+    mobile: string;
+    country_code: string;
+    action: string;
     token?: string;
     android_hash?: string;
 };
 /** @returns {UpdatePasswordRequestSchema} */
 declare function UpdatePasswordRequestSchema(): UpdatePasswordRequestSchema;
 type UpdatePasswordRequestSchema = {
-    old_password?: string;
-    new_password?: string;
+    old_password: string;
+    new_password: string;
 };
 /** @returns {FormRegisterRequestSchema} */
 declare function FormRegisterRequestSchema(): FormRegisterRequestSchema;
@@ -658,35 +710,29 @@ type FormRegisterRequestSchema = {
 /** @returns {TokenRequestBodySchema} */
 declare function TokenRequestBodySchema(): TokenRequestBodySchema;
 type TokenRequestBodySchema = {
-    token?: string;
+    token: string;
 };
 /** @returns {ForgotPasswordRequestSchema} */
 declare function ForgotPasswordRequestSchema(): ForgotPasswordRequestSchema;
 type ForgotPasswordRequestSchema = {
-    code?: string;
-    password?: string;
+    code: string;
+    password: string;
 };
 /** @returns {CodeRequestBodySchema} */
 declare function CodeRequestBodySchema(): CodeRequestBodySchema;
 type CodeRequestBodySchema = {
-    code?: string;
+    code: string;
 };
 /** @returns {SendResetPasswordEmailRequestSchema} */
 declare function SendResetPasswordEmailRequestSchema(): SendResetPasswordEmailRequestSchema;
 type SendResetPasswordEmailRequestSchema = {
-    email?: string;
-};
-/** @returns {SendResetPasswordMobileRequestSchema} */
-declare function SendResetPasswordMobileRequestSchema(): SendResetPasswordMobileRequestSchema;
-type SendResetPasswordMobileRequestSchema = {
-    country_code?: string;
-    mobile?: string;
+    email: string;
 };
 /** @returns {PasswordLoginRequestSchema} */
 declare function PasswordLoginRequestSchema(): PasswordLoginRequestSchema;
 type PasswordLoginRequestSchema = {
-    password?: string;
-    username?: string;
+    password: string;
+    username: string;
 };
 /** @returns {SendOtpRequestSchema} */
 declare function SendOtpRequestSchema(): SendOtpRequestSchema;
@@ -694,17 +740,17 @@ type SendOtpRequestSchema = {
     /**
      * - Set to true if you want to encrypt the OTP.
      */
-    encrypt_otp?: boolean;
-    country_code?: string;
-    mobile?: string;
+    ci?: boolean;
+    country_code: string;
+    mobile: string;
     android_hash?: string;
 };
 /** @returns {OAuthRequestSchema} */
 declare function OAuthRequestSchema(): OAuthRequestSchema;
 type OAuthRequestSchema = {
     is_signed_in?: boolean;
-    oauth2?: OAuthRequestSchemaOauth2;
-    profile?: OAuthRequestSchemaProfile;
+    oauth2: OAuthRequestSchemaOauth2;
+    profile: OAuthRequestSchemaProfile;
 };
 /** @returns {OAuthRequestAppleSchema} */
 declare function OAuthRequestAppleSchema(): OAuthRequestAppleSchema;
@@ -747,6 +793,12 @@ type SendOtpResponse = {
     verify_mobile_otp?: boolean;
     user_exists?: boolean;
 };
+/** @returns {EmailOtp} */
+declare function EmailOtp(): EmailOtp;
+type EmailOtp = {
+    request_id?: string;
+    resend_timer?: number;
+};
 /** @returns {ProfileEditSuccess} */
 declare function ProfileEditSuccess(): ProfileEditSuccess;
 type ProfileEditSuccess = {
@@ -758,6 +810,7 @@ type ProfileEditSuccess = {
     verify_email_otp?: boolean;
     verify_mobile_otp?: boolean;
     email?: string;
+    email_otp?: EmailOtp;
     request_id?: string;
     country_code?: string;
     mobile?: string;
@@ -800,6 +853,7 @@ type ResetPasswordSuccess = {
 declare function RegisterFormSuccess(): RegisterFormSuccess;
 type RegisterFormSuccess = {
     email?: string;
+    email_otp?: EmailOtp;
     resend_timer?: number;
     resend_token?: string;
     resend_email_token?: string;
@@ -850,6 +904,7 @@ declare function EmailOtpSuccess(): EmailOtpSuccess;
 type EmailOtpSuccess = {
     success?: boolean;
     resend_email_token?: string;
+    email_otp?: EmailOtp;
 };
 /** @returns {SessionListSuccess} */
 declare function SessionListSuccess(): SessionListSuccess;
@@ -901,7 +956,7 @@ type FormRegisterRequestSchemaPhone = {
 /** @returns {OAuthRequestSchemaOauth2} */
 declare function OAuthRequestSchemaOauth2(): OAuthRequestSchemaOauth2;
 type OAuthRequestSchemaOauth2 = {
-    access_token?: string;
+    access_token: string;
     expiry?: number;
     refresh_token?: string;
 };
@@ -936,6 +991,8 @@ type PlatformSchema = {
     active?: boolean;
     forgot_password?: boolean;
     login?: Login;
+    account_lockout?: AccountLockout;
+    password_settings?: PasswordSettings;
     skip_captcha?: boolean;
     name?: string;
     meta?: MetaSchema;
@@ -963,11 +1020,46 @@ type LookAndFeel = {
     card_position?: string;
     background_color?: string;
 };
+/** @returns {PasswordConfigs} */
+declare function PasswordConfigs(): PasswordConfigs;
+type PasswordConfigs = {
+    length?: number;
+    require_special_character?: boolean;
+    require_number?: boolean;
+    require_capital_character?: boolean;
+};
+/** @returns {PasswordHistory} */
+declare function PasswordHistory(): PasswordHistory;
+type PasswordHistory = {
+    required?: boolean;
+    count?: number;
+};
+/** @returns {PasswordExpiry} */
+declare function PasswordExpiry(): PasswordExpiry;
+type PasswordExpiry = {
+    required?: boolean;
+    duration?: number;
+};
+/** @returns {PasswordSettings} */
+declare function PasswordSettings(): PasswordSettings;
+type PasswordSettings = {
+    configs?: PasswordConfigs;
+    history?: PasswordHistory;
+    expiry?: PasswordExpiry;
+};
+/** @returns {AccountLockout} */
+declare function AccountLockout(): AccountLockout;
+type AccountLockout = {
+    enable?: boolean;
+    attempts?: number;
+    duration?: number;
+};
 /** @returns {Login} */
 declare function Login(): Login;
 type Login = {
     password?: boolean;
     otp?: boolean;
+    via?: string;
 };
 /** @returns {MetaSchema} */
 declare function MetaSchema(): MetaSchema;
@@ -987,6 +1079,7 @@ declare function RequiredFields(): RequiredFields;
 type RequiredFields = {
     email?: PlatformEmail;
     mobile?: PlatformMobile;
+    password?: PlatformPassword;
 };
 /** @returns {PlatformEmail} */
 declare function PlatformEmail(): PlatformEmail;
@@ -1000,11 +1093,17 @@ type PlatformMobile = {
     is_required?: boolean;
     level?: string;
 };
+/** @returns {PlatformPassword} */
+declare function PlatformPassword(): PlatformPassword;
+type PlatformPassword = {
+    is_required?: boolean;
+};
 /** @returns {RegisterRequiredFields} */
 declare function RegisterRequiredFields(): RegisterRequiredFields;
 type RegisterRequiredFields = {
     email?: RegisterRequiredFieldsEmail;
     mobile?: RegisterRequiredFieldsMobile;
+    password?: PlatformPassword;
 };
 /** @returns {RegisterRequiredFieldsEmail} */
 declare function RegisterRequiredFieldsEmail(): RegisterRequiredFieldsEmail;
@@ -1066,11 +1165,19 @@ type SessionExpiry = {
     type?: string;
     is_rolling?: boolean;
 };
+/** @returns {UserPasswordHistory} */
+declare function UserPasswordHistory(): UserPasswordHistory;
+type UserPasswordHistory = {
+    salt?: string;
+    hash?: string;
+};
 /** @returns {UserSchema} */
 declare function UserSchema(): UserSchema;
 type UserSchema = {
     application_id?: string;
     user_id?: string;
+    password_last_modified?: string;
+    password_history?: UserPasswordHistory[];
     first_name?: string;
     meta?: any;
     last_name?: string;

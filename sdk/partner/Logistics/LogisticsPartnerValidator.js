@@ -116,6 +116,7 @@ class LogisticsValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+      hierarchy: Joi.string().allow(""),
     }).required();
   }
 }

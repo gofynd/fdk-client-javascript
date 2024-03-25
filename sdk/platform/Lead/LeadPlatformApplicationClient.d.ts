@@ -151,5 +151,5 @@ declare class Lead {
      */
     openVideoRoom({ body, requestHeaders }?: LeadPlatformApplicationValidator.OpenVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CreateVideoRoomResponse>;
 }
-import LeadPlatformApplicationValidator = require("./LeadPlatformApplicationValidator");
-import LeadPlatformModel = require("./LeadPlatformModel");
+import LeadPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformApplicationValidator");
+import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");

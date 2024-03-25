@@ -1,11 +1,11 @@
 export = WebhookPartnerModel;
 /**
- * @typedef UpdateSubscriberResponse
- * @property {string} [message]
- */
-/**
  * @typedef UpdateSubscriberRequest
  * @property {string} [status]
+ */
+/**
+ * @typedef UpdateSubscriberResponse
+ * @property {string} [message]
  */
 /**
  * @typedef Association
@@ -24,6 +24,7 @@ export = WebhookPartnerModel;
  * @property {number} [id]
  * @property {number} [event_id]
  * @property {number} [subscriber_id]
+ * @property {string} [topic]
  * @property {string} [created_on]
  */
 /**
@@ -38,6 +39,7 @@ export = WebhookPartnerModel;
  * @property {string} [description]
  * @property {string} [created_on]
  * @property {string} [updated_on]
+ * @property {string} [group]
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
  */
 /**
@@ -60,10 +62,6 @@ export = WebhookPartnerModel;
  * @property {string} [version]
  * @property {string} [category]
  * @property {number} [count]
- */
-/**
- * @typedef DownloadReponse
- * @property {string} [file_name]
  */
 /**
  * @typedef HistoryFilters
@@ -179,13 +177,13 @@ export = WebhookPartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [current] - The current page number.
+ * @property {boolean} [has_next] - Indicates if there is a next page.
+ * @property {boolean} [has_previous] - Indicates if there is a previous page.
+ * @property {number} [total_page]
+ * @property {number} [item_total] - The total number of items.
+ * @property {number} [size] - The number of items per page.
+ * @property {string} [type] - Type of the response (e.g., "number").
  */
 /**
  * @typedef DeliveryEventLevelSchema
@@ -215,6 +213,7 @@ export = WebhookPartnerModel;
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {string} [status]
@@ -229,17 +228,17 @@ export = WebhookPartnerModel;
 declare class WebhookPartnerModel {
 }
 declare namespace WebhookPartnerModel {
-    export { UpdateSubscriberResponse, UpdateSubscriberRequest, Association, AuthMeta, SubscriberEventMapping, EventConfigResponse, SubscriberConfigResponse, InvalidEventsRequest, InvalidEventsResponse, DownloadReponse, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, HistoryPayload, CancelDownloadResponse, FilterReportResponse, DeliveryTsResponse, DeliveryTsSchema, DeliveryDetailsRequest, EventDeliveryDetailSchema, DeliveryDetailsResponse, EventProcessReportObject, Page, DeliveryEventLevelSchema, DeliverySummaryResponse, DeliverySummarySchema, ItemSchema };
+    export { UpdateSubscriberRequest, UpdateSubscriberResponse, Association, AuthMeta, SubscriberEventMapping, EventConfigResponse, SubscriberConfigResponse, InvalidEventsRequest, InvalidEventsResponse, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, HistoryPayload, CancelDownloadResponse, FilterReportResponse, DeliveryTsResponse, DeliveryTsSchema, DeliveryDetailsRequest, EventDeliveryDetailSchema, DeliveryDetailsResponse, EventProcessReportObject, Page, DeliveryEventLevelSchema, DeliverySummaryResponse, DeliverySummarySchema, ItemSchema };
 }
-/** @returns {UpdateSubscriberResponse} */
-declare function UpdateSubscriberResponse(): UpdateSubscriberResponse;
-type UpdateSubscriberResponse = {
-    message?: string;
-};
 /** @returns {UpdateSubscriberRequest} */
 declare function UpdateSubscriberRequest(): UpdateSubscriberRequest;
 type UpdateSubscriberRequest = {
     status?: string;
+};
+/** @returns {UpdateSubscriberResponse} */
+declare function UpdateSubscriberResponse(): UpdateSubscriberResponse;
+type UpdateSubscriberResponse = {
+    message?: string;
 };
 /** @returns {Association} */
 declare function Association(): Association;
@@ -261,6 +260,7 @@ type SubscriberEventMapping = {
     id?: number;
     event_id?: number;
     subscriber_id?: number;
+    topic?: string;
     created_on?: string;
 };
 /** @returns {EventConfigResponse} */
@@ -276,6 +276,7 @@ type EventConfigResponse = {
     description?: string;
     created_on?: string;
     updated_on?: string;
+    group?: string;
     subscriber_event_mapping?: SubscriberEventMapping;
 };
 /** @returns {SubscriberConfigResponse} */
@@ -301,11 +302,6 @@ type InvalidEventsResponse = {
     version?: string;
     category?: string;
     count?: number;
-};
-/** @returns {DownloadReponse} */
-declare function DownloadReponse(): DownloadReponse;
-type DownloadReponse = {
-    file_name?: string;
 };
 /** @returns {HistoryFilters} */
 declare function HistoryFilters(): HistoryFilters;
@@ -513,13 +509,31 @@ type EventProcessReportObject = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
+    /**
+     * - The current page number.
+     */
     current?: number;
-    type: string;
+    /**
+     * - Indicates if there is a next page.
+     */
+    has_next?: boolean;
+    /**
+     * - Indicates if there is a previous page.
+     */
+    has_previous?: boolean;
+    total_page?: number;
+    /**
+     * - The total number of items.
+     */
+    item_total?: number;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
+    /**
+     * - Type of the response (e.g., "number").
+     */
+    type?: string;
 };
 /** @returns {DeliveryEventLevelSchema} */
 declare function DeliveryEventLevelSchema(): DeliveryEventLevelSchema;
@@ -553,6 +567,7 @@ type ItemSchema = {
     modified_by?: string;
     name?: string;
     webhook_url?: string;
+    provider?: string;
     association?: Association;
     custom_headers?: any;
     status?: string;

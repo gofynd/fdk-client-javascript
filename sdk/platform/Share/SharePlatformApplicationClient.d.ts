@@ -24,18 +24,6 @@ declare class Share {
      */
     getShortLinkByHash({ hash, requestHeaders }?: SharePlatformApplicationValidator.GetShortLinkByHashParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkRes>;
     /**
-     * @param {SharePlatformApplicationValidator.GetShortLinkClickStatsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<SharePlatformModel.ClickStatsResponse>} - Success response
-     * @name getShortLinkClickStats
-     * @summary: Get short link click statistics.
-     * @description: Retrieve statistics and analytics for clicks on a short link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkClickStats/).
-     */
-    getShortLinkClickStats({ surlId, requestHeaders }?: SharePlatformApplicationValidator.GetShortLinkClickStatsParam, { responseHeaders }?: object): Promise<SharePlatformModel.ClickStatsResponse>;
-    /**
      * @param {SharePlatformApplicationValidator.GetShortLinksParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -58,5 +46,5 @@ declare class Share {
      */
     updateShortLinkById({ id, body, requestHeaders }?: SharePlatformApplicationValidator.UpdateShortLinkByIdParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkRes>;
 }
-import SharePlatformApplicationValidator = require("./SharePlatformApplicationValidator");
-import SharePlatformModel = require("./SharePlatformModel");
+import SharePlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformApplicationValidator");
+import SharePlatformModel = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformModel");

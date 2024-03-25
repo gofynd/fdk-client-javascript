@@ -15,55 +15,55 @@ class Catalog {
     this._conf = _conf;
     this._relativeUrls = {
       followById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-      getBrandDetailBySlug: "/service/application/catalog/v1.0/brands/{slug}/",
-      getBrands: "/service/application/catalog/v1.0/brands/",
-      getCategories: "/service/application/catalog/v1.0/categories/",
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}",
+      getBrandDetailBySlug: "/service/application/catalog/v1.0/brands/{slug}",
+      getBrands: "/service/application/catalog/v1.0/brands",
+      getCategories: "/service/application/catalog/v1.0/categories",
       getCategoryDetailBySlug:
-        "/service/application/catalog/v1.0/categories/{slug}/",
+        "/service/application/catalog/v1.0/categories/{slug}",
       getCollectionDetailBySlug:
-        "/service/application/catalog/v1.0/collections/{slug}/",
+        "/service/application/catalog/v1.0/collections/{slug}",
       getCollectionItemsBySlug:
-        "/service/application/catalog/v1.0/collections/{slug}/items/",
-      getCollections: "/service/application/catalog/v1.0/collections/",
+        "/service/application/catalog/v1.0/collections/{slug}/items",
+      getCollections: "/service/application/catalog/v1.0/collections",
       getComparedFrequentlyProductBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently/",
-      getDepartments: "/service/application/catalog/v1.0/departments/",
-      getFollowIds: "/service/application/catalog/v1.0/follow/ids/",
+        "/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently",
+      getDepartments: "/service/application/catalog/v1.0/departments",
+      getFollowIds: "/service/application/catalog/v1.0/follow/ids",
       getFollowedListing:
-        "/service/application/catalog/v1.0/follow/{collection_type}/",
+        "/service/application/catalog/v1.0/follow/{collection_type}",
       getFollowerCountById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
-      getHomeProducts: "/service/application/catalog/v1.0/home/listing/",
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count",
+      getHomeProducts: "/service/application/catalog/v1.0/home/listing",
       getInStockLocations:
-        "/service/application/catalog/v1.0/in-stock/locations/",
+        "/service/application/catalog/v2.0/in-stock/locations",
       getLocationDetailsById:
-        "/service/application/catalog/v1.0/locations/{location_id}/",
+        "/service/application/catalog/v2.0/locations/{location_id}",
       getProductBundlesBySlug:
-        "/service/application/catalog/v1.0/product-grouping/",
+        "/service/application/catalog/v1.0/product-grouping",
       getProductComparisonBySlugs:
-        "/service/application/catalog/v1.0/products/compare/",
+        "/service/application/catalog/v1.0/products/compare",
       getProductDetailBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/",
+        "/service/application/catalog/v1.0/products/{slug}",
       getProductPriceBySlug:
-        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/",
+        "/service/application/catalog/v4.0/products/{slug}/sizes/{size}/price",
       getProductSellersBySlug:
-        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/",
+        "/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers",
       getProductSizesBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/sizes/",
+        "/service/application/catalog/v1.0/products/{slug}/sizes",
       getProductStockByIds:
-        "/service/application/catalog/v1.0/products/stock-status/",
+        "/service/application/catalog/v1.0/products/stock-status",
       getProductStockForTimeByIds:
-        "/service/application/catalog/v1.0/products/stock-status/poll/",
+        "/service/application/catalog/v1.0/products/stock-status/poll",
       getProductVariantsBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/variants/",
-      getProducts: "/service/application/catalog/v1.0/products/",
-      getSearchResults: "/service/application/catalog/v1.0/auto-complete/",
+        "/service/application/catalog/v1.0/products/{slug}/variants",
+      getProducts: "/service/application/catalog/v1.0/products",
+      getSearchResults: "/service/application/catalog/v1.0/auto-complete",
       getSimilarComparisonProductBySlug:
-        "/service/application/catalog/v1.0/products/{slug}/similar/compare/",
-      getStores: "/service/application/catalog/v1.0/locations/",
+        "/service/application/catalog/v1.0/products/{slug}/similar/compare",
+      getStores: "/service/application/catalog/v2.0/locations",
       unfollowById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -1420,8 +1420,8 @@ class Catalog {
    * @returns {Promise<CatalogApplicationModel.ApplicationStoreListing>} -
    *   Success response
    * @name getInStockLocations
-   * @summary: Finds in-stock locations for products.
-   * @description: Lists locations where specified products are currently in stock. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
+   * @summary: Get store meta information.
+   * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
    */
   async getInStockLocations(
     {
@@ -1522,8 +1522,8 @@ class Catalog {
    * @param {number} [arg.longitude] - Longitude of the location from where
    *   one wants to retreive the nearest stores, e.g. 19.1174114
    * @returns {Paginator<CatalogApplicationModel.ApplicationStoreListing>}
-   * @summary: Finds in-stock locations for products.
-   * @description: Lists locations where specified products are currently in stock.
+   * @summary: Get store meta information.
+   * @description: Use this API to get a list of stores in a specific application.
    */
   getInStockLocationsPaginator({
     pageSize,
@@ -1563,8 +1563,8 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.StoreDetails>} - Success response
    * @name getLocationDetailsById
-   * @summary: Retrieves location details by ID.
-   * @description: Retrieves detailed information about a specific location using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
+   * @summary: Get store meta information.
+   * @description: Use this API to get meta details for a store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
    */
   async getLocationDetailsById(
     { locationId, requestHeaders } = { requestHeaders: {} },
@@ -1887,20 +1887,22 @@ class Catalog {
    * @param {CatalogApplicationValidator.GetProductPriceBySlugParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CatalogApplicationModel.ProductSizePriceResponseV3>} -
+   * @returns {Promise<CatalogApplicationModel.ProductSizePriceResponseV4>} -
    *   Success response
    * @name getProductPriceBySlug
-   * @summary: Retrieves product price by slug.
-   * @description: Retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
+   * @summary: Get the price of a product size at a PIN Code
+   * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
    */
   async getProductPriceBySlug(
-    { slug, size, storeId, moq, requestHeaders } = { requestHeaders: {} },
+    { slug, size, storeId, pincode, moq, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CatalogApplicationValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, moq },
+      { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1911,7 +1913,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogApplicationValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, moq },
+      { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1923,6 +1925,7 @@ class Catalog {
 
     const query_params = {};
     query_params["store_id"] = storeId;
+    query_params["pincode"] = pincode;
     query_params["moq"] = moq;
 
     const xHeaders = {};
@@ -1947,7 +1950,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogApplicationModel.ProductSizePriceResponseV3().validate(
+    } = CatalogApplicationModel.ProductSizePriceResponseV4().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1970,15 +1973,15 @@ class Catalog {
    * @param {CatalogApplicationValidator.GetProductSellersBySlugParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>}
+   * @returns {Promise<CatalogApplicationModel.ProductSizeSellersResponseV4>}
    *   - Success response
    *
    * @name getProductSellersBySlug
-   * @summary: Lists sellers for a product by slug.
-   * @description: Retrieve a list of all sellers offering a specific product identified by its slug.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
+   * @summary: Get the sellers of a product size at a PIN Code
+   * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
    */
   async getProductSellersBySlug(
-    { slug, size, strategy, pageNo, pageSize, requestHeaders } = {
+    { slug, size, pincode, strategy, pageNo, pageSize, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -1986,7 +1989,7 @@ class Catalog {
     const {
       error,
     } = CatalogApplicationValidator.getProductSellersBySlug().validate(
-      { slug, size, strategy, pageNo, pageSize },
+      { slug, size, pincode, strategy, pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1997,7 +2000,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogApplicationValidator.getProductSellersBySlug().validate(
-      { slug, size, strategy, pageNo, pageSize },
+      { slug, size, pincode, strategy, pageNo, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2008,6 +2011,7 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["pincode"] = pincode;
     query_params["strategy"] = strategy;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2034,7 +2038,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogApplicationModel.ProductSizeSellersResponseV3().validate(
+    } = CatalogApplicationModel.ProductSizeSellersResponseV4().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2061,14 +2065,22 @@ class Catalog {
    * @param {string} arg.size - A string indicating the size of the product,
    *   e.g. S, M, XL. You can get slug value from the endpoint
    *   /service/application/catalog/v1.0/products/sizes
+   * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
+   *   which the selling locations should be searched, e.g. 400059
    * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
    *   eg, fast-delivery, low-price, optimal.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<CatalogApplicationModel.ProductSizeSellersResponseV3>}
-   * @summary: Lists sellers for a product by slug.
-   * @description: Retrieve a list of all sellers offering a specific product identified by its slug.
+   * @returns {Paginator<CatalogApplicationModel.ProductSizeSellersResponseV4>}
+   * @summary: Get the sellers of a product size at a PIN Code
+   * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
-  getProductSellersBySlugPaginator({ slug, size, strategy, pageSize } = {}) {
+  getProductSellersBySlugPaginator({
+    slug,
+    size,
+    pincode,
+    strategy,
+    pageSize,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -2077,6 +2089,7 @@ class Catalog {
       const data = await this.getProductSellersBySlug({
         slug: slug,
         size: size,
+        pincode: pincode,
         strategy: strategy,
         pageNo: pageNo,
         pageSize: pageSize,
@@ -2763,8 +2776,8 @@ class Catalog {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.StoreListingResponse>} - Success response
    * @name getStores
-   * @summary: Lists available stores.
-   * @description: Retrieves a list of all physical or online stores. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
+   * @summary: Get store meta information.
+   * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
    */
   async getStores(
     {
@@ -2775,13 +2788,12 @@ class Catalog {
       range,
       latitude,
       longitude,
-      tags,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getStores().validate(
-      { pageNo, pageSize, q, city, range, latitude, longitude, tags },
+      { pageNo, pageSize, q, city, range, latitude, longitude },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2792,7 +2804,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogApplicationValidator.getStores().validate(
-      { pageNo, pageSize, q, city, range, latitude, longitude, tags },
+      { pageNo, pageSize, q, city, range, latitude, longitude },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2810,7 +2822,6 @@ class Catalog {
     query_params["range"] = range;
     query_params["latitude"] = latitude;
     query_params["longitude"] = longitude;
-    query_params["tags"] = tags;
 
     const xHeaders = {};
 
@@ -2864,20 +2875,11 @@ class Catalog {
    *   wants to retreive the nearest stores, e.g. 72.8691788
    * @param {number} [arg.longitude] - Longitude of the location from where
    *   one wants to retreive the nearest stores, e.g. 19.1174114
-   * @param {string} [arg.tags] - Search stores based on tags.
    * @returns {Paginator<CatalogApplicationModel.StoreListingResponse>}
-   * @summary: Lists available stores.
-   * @description: Retrieves a list of all physical or online stores.
+   * @summary: Get store meta information.
+   * @description: Use this API to get a list of stores in a specific application.
    */
-  getStoresPaginator({
-    pageSize,
-    q,
-    city,
-    range,
-    latitude,
-    longitude,
-    tags,
-  } = {}) {
+  getStoresPaginator({ pageSize, q, city, range, latitude, longitude } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -2891,7 +2893,6 @@ class Catalog {
         range: range,
         latitude: latitude,
         longitude: longitude,
-        tags: tags,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

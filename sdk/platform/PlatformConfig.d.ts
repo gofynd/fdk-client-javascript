@@ -33,7 +33,7 @@ declare class PlatformConfig {
         apiKey: string;
         apiSecret: string;
         useAutoRenewTimer?: boolean;
-        logLevel?: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
+        logLevel?: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR";
     }, options?: {
         strictResponseCheck?: boolean;
     });
@@ -43,7 +43,7 @@ declare class PlatformConfig {
     apiSecret: string;
     useAutoRenewTimer: boolean;
     oauthClient: OauthClient;
-    logLevel: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
+    logLevel: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR";
     extraHeaders: any[];
     options: {
         strictResponseCheck: boolean;
@@ -53,7 +53,7 @@ declare class PlatformConfig {
      *
      * @param {logLevelEnum} level - The log level to set.
      */
-    setLogLevel(level: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR"): void;
+    setLogLevel(level: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR"): void;
     /**
      * Retrieves the access token from the OAuth client.
      *
@@ -62,4 +62,4 @@ declare class PlatformConfig {
      */
     getAccessToken(): Promise<string>;
 }
-import OauthClient = require("./OAuthClient");
+import OauthClient = require("sdk/output/javascript/code/sdk/platform/OAuthClient");

@@ -11,12 +11,29 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  * @property {number} [pageNo] - Page number.
  * @property {number} [pageSize] - Page size.
  * @property {string} [q] - Search.
+ * @property {string} [hierarchy] - Get countries with only certain hierarchy present..
  */
 
 /**
  * @typedef GetCountryParam
  * @property {string} countryIsoCode - The `country_iso_code` is ISO-2 (alpha-2)
  *   code for the country.
+ */
+
+/**
+ * @typedef GetGeoAreasParam
+ * @property {string} applicationId - A `application_id` is a unique identifier
+ *   for an application.
+ * @property {number} companyId - A `company_id` is a unique identifier for a
+ *   particular sale channel.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {boolean} [isActive] - Status of GeoAreas (either active or inactive)
+ * @property {string} [q] - Search with name as a free text
+ * @property {string} [countryIsoCode] - ISO2 code of the country
+ * @property {string} [state] - State name
+ * @property {string} [city] - City name
+ * @property {string} [pincode] - Pincode value to search geoareas
+ * @property {string} [sector] - Sector value to search geoareas
  */
 
 /**
@@ -31,6 +48,8 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  * @property {number} [pageNo] - Page number.
  * @property {number} [pageSize] - Page size.
  * @property {string} [q] - Search.
+ * @property {string} [name] - Search with full name.
+ * @property {string} [namesList] - Search with multiple full names
  */
 
 /**
@@ -69,18 +88,27 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  */
 
 /**
- * @typedef GetPincodeCityParam
- * @property {string} pincode - A `pincode` contains a specific address of a location.
- */
-
-/**
  * @typedef GetPincodeZonesParam
  * @property {LogisticApplicationModel.GetZoneFromPincodeViewRequest} body
  */
 
 /**
- * @typedef GetTatProductParam
- * @property {LogisticApplicationModel.TATViewRequest} body
+ * @typedef GetZonesParam
+ * @property {number} companyId - The unique identifier for the company.
+ * @property {string} applicationId - A `application_id` is a unique identifier
+ *   for a particular sale channel.
+ * @property {string} [stage] - Identifies the specific stage of zone bing requested.
+ * @property {number} [pageSize] - Defines the number of items displayed per page.
+ * @property {string} [zoneIds] - Defines the specific zones with the given ids
+ *   to be displayed.
+ * @property {boolean} [isActive] - Status of Zone (either active or inactive)
+ * @property {string} [q] - Search with name as a free text.
+ * @property {string} [country] - Name of the country.
+ * @property {string} [countryIsoCode] - ISO2 code of the country.
+ * @property {string} [pincode] - PIN Code of the country.
+ * @property {string} [state] - State of the country.
+ * @property {string} [city] - City of the country.
+ * @property {string} [sector] - Sector name of mentioned address.
  */
 
 /**
@@ -103,6 +131,7 @@ class LogisticApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+      hierarchy: Joi.string().allow(""),
     });
   }
 
@@ -110,6 +139,22 @@ class LogisticApplicationValidator {
   static getCountry() {
     return Joi.object({
       countryIsoCode: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetGeoAreasParam} */
+  static getGeoAreas() {
+    return Joi.object({
+      applicationId: Joi.string().allow("").required(),
+      companyId: Joi.number().required(),
+      pageSize: Joi.number(),
+      isActive: Joi.boolean(),
+      q: Joi.string().allow(""),
+      countryIsoCode: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
     }).required();
   }
 
@@ -123,6 +168,8 @@ class LogisticApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      namesList: Joi.string().allow(""),
     }).required();
   }
 
@@ -159,13 +206,6 @@ class LogisticApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetPincodeCityParam} */
-  static getPincodeCity() {
-    return Joi.object({
-      pincode: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetPincodeZonesParam} */
   static getPincodeZones() {
     return Joi.object({
@@ -173,10 +213,22 @@ class LogisticApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetTatProductParam} */
-  static getTatProduct() {
+  /** @returns {GetZonesParam} */
+  static getZones() {
     return Joi.object({
-      body: LogisticApplicationModel.TATViewRequest().required(),
+      companyId: Joi.number().required(),
+      applicationId: Joi.string().allow("").required(),
+      stage: Joi.string().allow(""),
+      pageSize: Joi.number(),
+      zoneIds: Joi.string().allow(""),
+      isActive: Joi.boolean(),
+      q: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      countryIsoCode: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
     }).required();
   }
 

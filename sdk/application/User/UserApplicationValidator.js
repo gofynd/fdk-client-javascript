@@ -4,13 +4,11 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef AddEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 
 /**
  * @typedef AddMobileNumberParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditMobileRequestSchema} body
  */
 
@@ -69,7 +67,6 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef LoginWithAppleIOSParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestAppleSchema} body
  */
 
@@ -80,31 +77,26 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef LoginWithFacebookParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
  * @typedef LoginWithGoogleParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
  * @typedef LoginWithGoogleAndroidParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
  * @typedef LoginWithGoogleIOSParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
  * @typedef LoginWithOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendOtpRequestSchema} body
  */
 
@@ -117,7 +109,6 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef RegisterWithFormParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.FormRegisterRequestSchema} body
  */
 
@@ -128,38 +119,27 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef SendForgotOTPOnEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendEmailForgotOtpRequestSchema} body
  */
 
 /**
  * @typedef SendForgotOTPOnMobileParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendMobileForgotOtpRequestSchema} body
  */
 
 /**
  * @typedef SendOTPOnEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendEmailOtpRequestSchema} body
  */
 
 /**
  * @typedef SendOTPOnMobileParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendMobileOtpRequestSchema} body
  */
 
 /**
  * @typedef SendResetPasswordEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendResetPasswordEmailRequestSchema} body
- */
-
-/**
- * @typedef SendResetPasswordMobileParam
- * @property {string} [platform] - ID of the application
- * @property {UserApplicationModel.SendResetPasswordMobileRequestSchema} body
  */
 
 /**
@@ -169,13 +149,11 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef SendVerificationLinkToEmailParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 
 /**
  * @typedef SendVerificationLinkToMobileParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
  */
 
@@ -196,7 +174,6 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef UpdateProfileParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditProfileRequestSchema} body
  */
 
@@ -217,13 +194,11 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef VerifyEmailForgotOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyEmailForgotOtpRequestSchema} body
  */
 
 /**
  * @typedef VerifyEmailOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyEmailOtpRequestSchema} body
  */
 
@@ -234,13 +209,11 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef VerifyMobileForgotOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyMobileForgotOtpRequestSchema} body
  */
 
 /**
  * @typedef VerifyMobileOTPParam
- * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyOtpRequestSchema} body
  */
 
@@ -248,7 +221,6 @@ class UserApplicationValidator {
   /** @returns {AddEmailParam} */
   static addEmail() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.EditEmailRequestSchema().required(),
     }).required();
   }
@@ -256,7 +228,6 @@ class UserApplicationValidator {
   /** @returns {AddMobileNumberParam} */
   static addMobileNumber() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.EditMobileRequestSchema().required(),
     }).required();
   }
@@ -330,7 +301,6 @@ class UserApplicationValidator {
   /** @returns {LoginWithAppleIOSParam} */
   static loginWithAppleIOS() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.OAuthRequestAppleSchema().required(),
     }).required();
   }
@@ -345,7 +315,6 @@ class UserApplicationValidator {
   /** @returns {LoginWithFacebookParam} */
   static loginWithFacebook() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.OAuthRequestSchema().required(),
     }).required();
   }
@@ -353,7 +322,6 @@ class UserApplicationValidator {
   /** @returns {LoginWithGoogleParam} */
   static loginWithGoogle() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.OAuthRequestSchema().required(),
     }).required();
   }
@@ -361,7 +329,6 @@ class UserApplicationValidator {
   /** @returns {LoginWithGoogleAndroidParam} */
   static loginWithGoogleAndroid() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.OAuthRequestSchema().required(),
     }).required();
   }
@@ -369,7 +336,6 @@ class UserApplicationValidator {
   /** @returns {LoginWithGoogleIOSParam} */
   static loginWithGoogleIOS() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.OAuthRequestSchema().required(),
     }).required();
   }
@@ -377,7 +343,6 @@ class UserApplicationValidator {
   /** @returns {LoginWithOTPParam} */
   static loginWithOTP() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.SendOtpRequestSchema().required(),
     }).required();
   }
@@ -397,7 +362,6 @@ class UserApplicationValidator {
   /** @returns {RegisterWithFormParam} */
   static registerWithForm() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.FormRegisterRequestSchema().required(),
     }).required();
   }
@@ -412,7 +376,6 @@ class UserApplicationValidator {
   /** @returns {SendForgotOTPOnEmailParam} */
   static sendForgotOTPOnEmail() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.SendEmailForgotOtpRequestSchema().required(),
     }).required();
   }
@@ -420,7 +383,6 @@ class UserApplicationValidator {
   /** @returns {SendForgotOTPOnMobileParam} */
   static sendForgotOTPOnMobile() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.SendMobileForgotOtpRequestSchema().required(),
     }).required();
   }
@@ -428,7 +390,6 @@ class UserApplicationValidator {
   /** @returns {SendOTPOnEmailParam} */
   static sendOTPOnEmail() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.SendEmailOtpRequestSchema().required(),
     }).required();
   }
@@ -436,7 +397,6 @@ class UserApplicationValidator {
   /** @returns {SendOTPOnMobileParam} */
   static sendOTPOnMobile() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.SendMobileOtpRequestSchema().required(),
     }).required();
   }
@@ -444,16 +404,7 @@ class UserApplicationValidator {
   /** @returns {SendResetPasswordEmailParam} */
   static sendResetPasswordEmail() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.SendResetPasswordEmailRequestSchema().required(),
-    }).required();
-  }
-
-  /** @returns {SendResetPasswordMobileParam} */
-  static sendResetPasswordMobile() {
-    return Joi.object({
-      platform: Joi.string().allow(""),
-      body: UserApplicationModel.SendResetPasswordMobileRequestSchema().required(),
     }).required();
   }
 
@@ -467,7 +418,6 @@ class UserApplicationValidator {
   /** @returns {SendVerificationLinkToEmailParam} */
   static sendVerificationLinkToEmail() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.EditEmailRequestSchema().required(),
     }).required();
   }
@@ -475,7 +425,6 @@ class UserApplicationValidator {
   /** @returns {SendVerificationLinkToMobileParam} */
   static sendVerificationLinkToMobile() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.SendVerificationLinkMobileRequestSchema().required(),
     }).required();
   }
@@ -504,7 +453,6 @@ class UserApplicationValidator {
   /** @returns {UpdateProfileParam} */
   static updateProfile() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.EditProfileRequestSchema().required(),
     }).required();
   }
@@ -533,7 +481,6 @@ class UserApplicationValidator {
   /** @returns {VerifyEmailForgotOTPParam} */
   static verifyEmailForgotOTP() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.VerifyEmailForgotOtpRequestSchema().required(),
     }).required();
   }
@@ -541,7 +488,6 @@ class UserApplicationValidator {
   /** @returns {VerifyEmailOTPParam} */
   static verifyEmailOTP() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.VerifyEmailOtpRequestSchema().required(),
     }).required();
   }
@@ -556,7 +502,6 @@ class UserApplicationValidator {
   /** @returns {VerifyMobileForgotOTPParam} */
   static verifyMobileForgotOTP() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.VerifyMobileForgotOtpRequestSchema().required(),
     }).required();
   }
@@ -564,7 +509,6 @@ class UserApplicationValidator {
   /** @returns {VerifyMobileOTPParam} */
   static verifyMobileOTP() {
     return Joi.object({
-      platform: Joi.string().allow(""),
       body: UserApplicationModel.VerifyOtpRequestSchema().required(),
     }).required();
   }

@@ -41,11 +41,6 @@ export = CommunicationApplicationModel;
  * @property {CommunicationConsentChannels} [channels]
  */
 /**
- * @typedef BadRequestSchema
- * @property {string} [status] - Response status.
- * @property {string} [message] - Failure message.
- */
-/**
  * @typedef PushtokenReq
  * @property {string} [action]
  * @property {string} [bundle_identifier]
@@ -67,10 +62,32 @@ export = CommunicationApplicationModel;
  * @property {string} [updated_at]
  * @property {string} [expired_at]
  */
+/**
+ * @typedef OtpConfigurationExpiryDuration
+ * @property {number} time
+ * @property {string} denomination
+ */
+/**
+ * @typedef OtpConfigurationExpiry
+ * @property {OtpConfigurationExpiryDuration} duration
+ * @property {string} type
+ */
+/**
+ * @typedef OtpConfigurationRateLimit
+ * @property {number} [duration]
+ * @property {number} [limit]
+ */
+/**
+ * @typedef OtpConfiguration
+ * @property {number} otp_length
+ * @property {string} type
+ * @property {OtpConfigurationExpiry} expiry
+ * @property {OtpConfigurationRateLimit} [rate_limit]
+ */
 declare class CommunicationApplicationModel {
 }
 declare namespace CommunicationApplicationModel {
-    export { CommunicationConsentReq, CommunicationConsentRes, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentChannels, CommunicationConsent, BadRequestSchema, PushtokenReq, PushtokenRes };
+    export { CommunicationConsentReq, CommunicationConsentRes, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentChannels, CommunicationConsent, PushtokenReq, PushtokenRes, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfigurationRateLimit, OtpConfiguration };
 }
 /** @returns {CommunicationConsentReq} */
 declare function CommunicationConsentReq(): CommunicationConsentReq;
@@ -120,18 +137,6 @@ type CommunicationConsent = {
     user_id?: string;
     channels?: CommunicationConsentChannels;
 };
-/** @returns {BadRequestSchema} */
-declare function BadRequestSchema(): BadRequestSchema;
-type BadRequestSchema = {
-    /**
-     * - Response status.
-     */
-    status?: string;
-    /**
-     * - Failure message.
-     */
-    message?: string;
-};
 /** @returns {PushtokenReq} */
 declare function PushtokenReq(): PushtokenReq;
 type PushtokenReq = {
@@ -155,4 +160,30 @@ type PushtokenRes = {
     created_at?: string;
     updated_at?: string;
     expired_at?: string;
+};
+/** @returns {OtpConfigurationExpiryDuration} */
+declare function OtpConfigurationExpiryDuration(): OtpConfigurationExpiryDuration;
+type OtpConfigurationExpiryDuration = {
+    time: number;
+    denomination: string;
+};
+/** @returns {OtpConfigurationExpiry} */
+declare function OtpConfigurationExpiry(): OtpConfigurationExpiry;
+type OtpConfigurationExpiry = {
+    duration: OtpConfigurationExpiryDuration;
+    type: string;
+};
+/** @returns {OtpConfigurationRateLimit} */
+declare function OtpConfigurationRateLimit(): OtpConfigurationRateLimit;
+type OtpConfigurationRateLimit = {
+    duration?: number;
+    limit?: number;
+};
+/** @returns {OtpConfiguration} */
+declare function OtpConfiguration(): OtpConfiguration;
+type OtpConfiguration = {
+    otp_length: number;
+    type: string;
+    expiry: OtpConfigurationExpiry;
+    rate_limit?: OtpConfigurationRateLimit;
 };

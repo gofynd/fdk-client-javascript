@@ -98,6 +98,7 @@ export = OrderApplicationModel;
 /**
  * @typedef Prices
  * @property {number} [delivery_charge]
+ * @property {number} [tcs_charge]
  * @property {number} [coupon_value]
  * @property {number} [brand_calculated_amount]
  * @property {number} [value_of_good]
@@ -167,6 +168,7 @@ export = OrderApplicationModel;
  * @typedef FinancialBreakup
  * @property {number} [coupon_value]
  * @property {number} [delivery_charge]
+ * @property {number} [tcs_charge]
  * @property {number} [brand_calculated_amount]
  * @property {number} [value_of_good]
  * @property {number} [price_marked]
@@ -298,6 +300,8 @@ export = OrderApplicationModel;
  * @property {Object} [return_meta]
  * @property {string} [delivery_date]
  * @property {OrderRequest} [order]
+ * @property {Object} [meta]
+ * @property {boolean} [can_pay_remaining_amount]
  */
 /**
  * @typedef BagsForReorderArticleAssignment
@@ -651,6 +655,7 @@ type ShipmentTotalDetails = {
 declare function Prices(): Prices;
 type Prices = {
     delivery_charge?: number;
+    tcs_charge?: number;
     coupon_value?: number;
     brand_calculated_amount?: number;
     value_of_good?: number;
@@ -726,6 +731,7 @@ declare function FinancialBreakup(): FinancialBreakup;
 type FinancialBreakup = {
     coupon_value?: number;
     delivery_charge?: number;
+    tcs_charge?: number;
     brand_calculated_amount?: number;
     value_of_good?: number;
     price_marked?: number;
@@ -863,6 +869,8 @@ type Shipments = {
     return_meta?: any;
     delivery_date?: string;
     order?: OrderRequest;
+    meta?: any;
+    can_pay_remaining_amount?: boolean;
 };
 /** @returns {BagsForReorderArticleAssignment} */
 declare function BagsForReorderArticleAssignment(): BagsForReorderArticleAssignment;
