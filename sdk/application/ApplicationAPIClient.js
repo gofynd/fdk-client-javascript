@@ -47,7 +47,6 @@ class APIClient {
       headers: { ...headers, ...extraHeaders, ...xHeaders },
       responseHeaders: options.responseHeaders,
     };
-    rawRequest = JSON.parse(JSON.stringify(rawRequest));
 
     return fdkAxios.request(rawRequest);
   }

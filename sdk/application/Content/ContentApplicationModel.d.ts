@@ -181,15 +181,9 @@ export = ContentApplicationModel;
  */
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
- * @property {string} [type]
- */
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {string} [type]
+ * @property {ActionPage} [popup]
  */
 /**
  * @typedef NavigationReference
@@ -576,10 +570,65 @@ export = ContentApplicationModel;
  * @property {string} [created_at]
  * @property {string} [updated_at]
  */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class ContentApplicationModel {
 }
 declare namespace ContentApplicationModel {
-    export { ApplicationLegal, ApplicationLegalFAQ, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, AnnouncementSchema, ScheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, LocaleLanguage, Language, Action, ActionPage, NavigationReference, AnnouncementsResponseSchema, FaqResponseSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, FAQCategorySchema, FaqSchema, GetFaqSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageSchema, NavigationGetResponse, Orientation, NavigationSchema, PageGetResponse, PageSchema, SanitizedContent, CreatedBySchema, CronSchedule, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, CustomObjectListItemDefinationSchema, CustomObjectFieldSchema, CustomObjectByIdSchema, CustomFieldSchema, CustomFieldsResponseByResourceIdSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionDetailResSchema };
+    export { ApplicationLegal, ApplicationLegalFAQ, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, AnnouncementSchema, ScheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, LocaleLanguage, Language, Action, NavigationReference, AnnouncementsResponseSchema, FaqResponseSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, FAQCategorySchema, FaqSchema, GetFaqSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageSchema, NavigationGetResponse, Orientation, NavigationSchema, PageGetResponse, PageSchema, SanitizedContent, CreatedBySchema, CronSchedule, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, CustomObjectListItemDefinationSchema, CustomObjectFieldSchema, CustomObjectByIdSchema, CustomFieldSchema, CustomFieldsResponseByResourceIdSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionDetailResSchema, ActionPage, PageType };
 }
 /** @returns {ApplicationLegal} */
 declare function ApplicationLegal(): ApplicationLegal;
@@ -790,16 +839,9 @@ type Language = {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    type?: string;
     page?: ActionPage;
-    type?: string;
-};
-/** @returns {ActionPage} */
-declare function ActionPage(): ActionPage;
-type ActionPage = {
-    params?: any;
-    query?: any;
-    url?: string;
-    type?: string;
+    popup?: ActionPage;
 };
 /** @returns {NavigationReference} */
 declare function NavigationReference(): NavigationReference;
@@ -1238,3 +1280,18 @@ type CustomFieldDefinitionDetailResSchema = {
     created_at?: string;
     updated_at?: string;
 };
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/**
+ * Enum: PageType Used By: Content
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

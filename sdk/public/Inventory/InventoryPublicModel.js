@@ -11,13 +11,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {string} type
- * @property {number} [size]
- * @property {number} [current]
- * @property {boolean} [has_next]
  * @property {number} [item_total]
  * @property {string} [next_id]
  * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -218,13 +218,13 @@ class InventoryPublicModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      type: Joi.string().allow("").required(),
-      size: Joi.number(),
-      current: Joi.number(),
-      has_next: Joi.boolean(),
       item_total: Joi.number(),
       next_id: Joi.string().allow(""),
       has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
     });
   }
 

@@ -2,13 +2,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [current]
- * @property {number} [size]
  * @property {number} [item_total]
- * @property {number} [total_page]
- * @property {boolean} [has_next]
+ * @property {string} [next_id]
  * @property {boolean} [has_previous]
- * @property {string} [type]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -40,13 +40,13 @@ class AnalyticsPlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      current: Joi.number(),
-      size: Joi.number(),
       item_total: Joi.number(),
-      total_page: Joi.number(),
-      has_next: Joi.boolean(),
+      next_id: Joi.string().allow(""),
       has_previous: Joi.boolean(),
-      type: Joi.string().allow(""),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
     });
   }
 

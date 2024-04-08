@@ -56,7 +56,7 @@ export = CatalogPlatformModel;
 /**
  * @typedef GetQueryFiltersKeysResponse
  * @property {ProductFiltersKeysOnly[]} [filters]
- * @property {Object} operators
+ * @property {Object} [operators]
  * @property {ProductSortOn[]} [sort_on]
  */
 /**
@@ -314,19 +314,9 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
- * @property {string} [type]
- */
-/**
- * @typedef ActionProperties
- * @property {string[]} [category]
- * @property {string[]} [department]
- * @property {string[]} [collection]
- */
-/**
- * @typedef ActionPage
- * @property {ActionProperties} [query]
- * @property {string} [type]
+ * @property {ActionPage} [popup]
  */
 /**
  * @typedef AllSizes
@@ -1714,6 +1704,7 @@ export = CatalogPlatformModel;
  * @property {Object} [variants]
  * @property {VerifiedBy} [verified_by]
  * @property {string} [verified_on]
+ * @property {string[]} [store_id_list]
  */
 /**
  * @typedef RawProductListingResponse
@@ -3096,6 +3087,8 @@ export = CatalogPlatformModel;
  * @property {boolean} [is_gift]
  * @property {Object} [moq]
  * @property {Object} [seo]
+ * @property {Object} [_custom_json] - Custom JSON data for the item
+ * @property {MetaFields[]} [_custom_meta] - Custom meta fields for the item
  */
 /**
  * @typedef PTErrorResponse
@@ -3107,13 +3100,13 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
  * @property {number} [item_total]
  * @property {string} [next_id]
- * @property {number} [size]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
  * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef PageResponse
@@ -4949,10 +4942,65 @@ export = CatalogPlatformModel;
  * @property {Object} [error]
  * @property {number} [code]
  */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { StoreTagsResponseSchema, DiscountMeta, ProductMinMaxPrice, ProductPrice, ProductPricesPage, ProductPriceItem, ProductPrices, ProductFiltersKeysOnly, GetQueryFiltersKeysResponse, GetQueryFiltersValuesResponse, GTINSchema, SetSizeSchema, SizeDistributionSchema, InventorySetSchema, InvSizeSchema, InventoryRequestSchema, ItemQuerySchema, SuccessResponseSchema, CompanyDRIListResponseSchema, CompanyDRIResponseSchema, SearchResponseSchema, MerchandisingQuery, MerchandisingSearchQuery, MerchandisingFilter, MerchandisingRuleQuery, MerchQuery, MerchandisingRulesList, MerchDataItem, MerchSearchQuery, MerchQueryCondition, MerchFilter, SuccessResponseMerchandising, MerchandiseQueryResponse, Filter, MerchandisingRuleQueryPart, MerchandisingRuleQueryPost, MerchandisingRuleSave, PinItem, PinItemRequest, PinRequest, PinResponse, HideAttribute, HideAttributeRequest, HideResponse, HideRequest, PostBoostAttribute, BoostAttribute, GetMerchandisingRuleBoostAction, PostMerchandisingRuleBoostAction, GetMerchandisingRuleBuryAction, Action, ActionProperties, ActionPage, AllSizes, AllowSingleRequest, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponse, AppConfiguration, AppConfigurationCreateDetail, AppConfigurationDetail, AppConfigurationsResponse, AppConfigurationsSort, ValueConfigType, AppConfigurationsFilter, AppConfigurationsFilterResponse, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductListingResponse, OperatorsResponse, ApplicationStoreJson, AppReturnConfigResponse, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponse, Brand, BrandLogo, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnDataResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, BulkInventoryGetItems, BulkProductUploadJob, BulkProductJob, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, ChannelListResponse, ChannelDetailResponse, ChannelItem, ChannelValidation, ProductValidation, BrandValidationItem, CompanyValidation, LocationValidation, CategoryCreateResponse, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryRequestBody, CategoryResponse, CategoryUpdateResponse, Child, CollectionBadge, CollectionBanner, CollectionBannerResponse, BadgeDetail, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionImageResponse, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductDetailsGroups, ConfigurationProductDetailsConfig, ConfigurationProductDetailsAttribute, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, RerankingBoostItems, GetSearchRerankDetailResponse, BoostItem, GetSearchRerankItemResponse, GetSearchRerankResponse, CreateSearchRerankResponse, UpdateSearchRerankResponse, UpdateSearchRerankRequest, CreateSearchRerankRequest, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteAppCategoryReturnConfig, DeleteResponse, DeleteSearchConfigurationResponse, DeleteSearchRerankConfigurationResponse, Department, DepartmentCategoryTree, PollErrorResponse, DepartmentCreateErrorResponse, ProductBundleCreateErrorResponse, DepartmentCreateResponse, DepartmentCreateUpdate, DepartmentErrorResponse, DepartmentIdentifier, DepartmentModel, DepartmentResponse, ValidationFailedResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, CategoryErrorResponse, FilerList, RawProduct, RawProductListingResponse, GTIN, GenderDetail, GetAddressSerializer, GetAllSizes, FilterResponse, ValueItem, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, FilterItem, CompareFilter, SimilarFilter, VariantFilter, DetailFilter, DetailFilterValues, DisplayType, SimilarItem, VariantItem, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponse, GetConfigMetadataValues, AttributeType, DataType, ListingValueConfigType, ListingDataType, GetListingConfigResponse, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetCollectionDetailResponse, CommonResponseSchemaCollection, GetQueryFiltersResponse, GetCollectionItemsResponseSchema, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, Guide, HSNCodesResponse, HSNData, HSNDataInsertV2, Hierarchy, HsnCode, SlabObject, UpdateHsnCodesObject, UpdateHsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJobResponse, InventoryExportItem, InventoryExportJob, InventoryExportJobListFilters, InventoryExportJobListStats, InventoryExportJobList, InventoryExportJobListResponse, InventoryExportQuantityFilter, ExportPatchRequest, InventoryExportRequest, EditInventoryDataDownloadsResponse, EditInventoryDownloadsResponse, InventoryExportFiltersResponse, Stats, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryIdentifier, InventoryGeoLocation, InventoryMobileNumber, InventoryAddress, InventoryManager, InventoryStore, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, ItemQuery, Items, PriceRange, ProductPriceRangeSchema, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, MOQData, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, GuideHeaders, GuideValues, Header, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, NetQuantity, NetQuantityResponse, NextSchedule, OptInPostRequest, OptinCompanyBrandDetailsView, OptinAddress, OptinDocument, OptinBusinessCountryInfo, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponse, PTErrorResponse, Page, PageResponse, PageResponse1, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, InventoryBulkJob, ProductBulkResponse, InventoryBulkResponse, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSizesSchema, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, PatchProductDownloadsDataResponse, PatchProductDownloadsResponse, ProductDownloadFilters, CreateProductDownloadsDataResponse, CreateProductDownloadsResponse, GetProductDownloadsResponse, ProductDownloadsResponse, ProductFilters, ProductFiltersKey, ProductFiltersValue, ApplicationCategoryAction, ApplicationCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, PageAction, ActionObject, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductVerificationModel, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductReturnConfigBaseSerializer, CategorySubSchema, CategoryProduct, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductSortOnv2, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, CompanyVerificationStats, CompanyVerificationResponse, ProductVariantsResponse, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, Sitemap, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, SitemapDetail, SeoDetail, SetSize, SingleCategoryResponse, VariantTypesResponse, VariantTypeItem, SingleProductResponse, Size, SizeDistribution, SizeGuideResponse, Time, Timing, StoreItem, UserSchemaCustom, Manager, MobileNo, IntegrationType, Address, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateValidationData, TemplatesResponse, TemplatesValidationResponse, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, UpdatedResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, CreatedBy, Marketplaces, GetAllMarketplaces, CreateMarketplaceOptinRequest, UpdateMarketplaceOptinRequest, CreateMarketplaceOptinResponse, GetProductTemplateSlugItems, GetProductTemplateSlugResponse, UpdateMarketplaceOptinResponse, AutocompleteRequestSchema, AutocompleteUpsertResponseSchema, AutocompleteErrorResponseSchema, AutocompleteResponseSchema, ProductListingActionPage, ProductListingAction, AutocompleteItem, AutocompletePreviewResponseSchema, CreateAppPriceFactoryRequestSchema, CreateAppPriceFactoryResponse, ErrorDetails, AppPriceFactory, EditAppPriceFactoryRequestSchema, GetAppPriceFactoryResponse, CreateAppPriceFactoryProduct, PriceFactorySizes, CompanySizes, CreateAppPriceFactoryProductItem, CreatePriceFactoryProductRequest, CreateAppPriceFactoryProductResponse, UpdateAppPriceFactoryProductRequest, UpdateAppPriceFactoryProductResponse, CreateAppPriceFactoryProductRequest, FailedRecordsData, CreatePriceFactoryProductResponse, CreateAppPriceFactoryProductsResponse, CreateAppPriceFactoryProductBulkJobRequest, CreateAppPriceFactoryProductExportJobRequest, CreateAppPriceFactoryProductExportJobResponse, AppPriceFactoryProductExportPollJobResponse, CreateAppPriceFactoryProductExportJobPollResponse, CreateAppPriceFactoryProductBulkJobResponse, CreateAppPriceFactoryProductBulkJobValidateResponse, CreateAppPriceFactoryProductBulkJobPollResponse, SynonymListResponseSchema, SynonymResponseSchema, SynonymListErrorResponseSchema, SynonymCreateRequestSchema, SynonymCreateResponseSchema, SynonymUpdateResponseSchema, SynonymCreateErrorSchema, SynonymDeleteErrorSchema, SynonymDeleteResponseSchema, SynonymUploadRequestSchema, SynonymUploadResponseSchema, SynonymExportResponseSchema, SynonymUploadErrorSchema, SynonymBulkValidateRequestSchema, SynonymBulkValidateResponseSchema, SynonymBulkValidateErrorSchema, SynonymBulkProcessRequestSchema, SynonymBulkProcessResponseSchema, SynonymBulkProcessErrorSchema, SynonymBulkPollResponseSchema, SynonymBulkPollErrorSchema, PriceFactoryErrorSchema, PriceFactoryCreateErrorSchema };
+    export { StoreTagsResponseSchema, DiscountMeta, ProductMinMaxPrice, ProductPrice, ProductPricesPage, ProductPriceItem, ProductPrices, ProductFiltersKeysOnly, GetQueryFiltersKeysResponse, GetQueryFiltersValuesResponse, GTINSchema, SetSizeSchema, SizeDistributionSchema, InventorySetSchema, InvSizeSchema, InventoryRequestSchema, ItemQuerySchema, SuccessResponseSchema, CompanyDRIListResponseSchema, CompanyDRIResponseSchema, SearchResponseSchema, MerchandisingQuery, MerchandisingSearchQuery, MerchandisingFilter, MerchandisingRuleQuery, MerchQuery, MerchandisingRulesList, MerchDataItem, MerchSearchQuery, MerchQueryCondition, MerchFilter, SuccessResponseMerchandising, MerchandiseQueryResponse, Filter, MerchandisingRuleQueryPart, MerchandisingRuleQueryPost, MerchandisingRuleSave, PinItem, PinItemRequest, PinRequest, PinResponse, HideAttribute, HideAttributeRequest, HideResponse, HideRequest, PostBoostAttribute, BoostAttribute, GetMerchandisingRuleBoostAction, PostMerchandisingRuleBoostAction, GetMerchandisingRuleBuryAction, Action, AllSizes, AllowSingleRequest, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponse, AppConfiguration, AppConfigurationCreateDetail, AppConfigurationDetail, AppConfigurationsResponse, AppConfigurationsSort, ValueConfigType, AppConfigurationsFilter, AppConfigurationsFilterResponse, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductListingResponse, OperatorsResponse, ApplicationStoreJson, AppReturnConfigResponse, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponse, Brand, BrandLogo, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnDataResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, BulkInventoryGetItems, BulkProductUploadJob, BulkProductJob, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, ChannelListResponse, ChannelDetailResponse, ChannelItem, ChannelValidation, ProductValidation, BrandValidationItem, CompanyValidation, LocationValidation, CategoryCreateResponse, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryRequestBody, CategoryResponse, CategoryUpdateResponse, Child, CollectionBadge, CollectionBanner, CollectionBannerResponse, BadgeDetail, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionImageResponse, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductDetailsGroups, ConfigurationProductDetailsConfig, ConfigurationProductDetailsAttribute, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, RerankingBoostItems, GetSearchRerankDetailResponse, BoostItem, GetSearchRerankItemResponse, GetSearchRerankResponse, CreateSearchRerankResponse, UpdateSearchRerankResponse, UpdateSearchRerankRequest, CreateSearchRerankRequest, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteAppCategoryReturnConfig, DeleteResponse, DeleteSearchConfigurationResponse, DeleteSearchRerankConfigurationResponse, Department, DepartmentCategoryTree, PollErrorResponse, DepartmentCreateErrorResponse, ProductBundleCreateErrorResponse, DepartmentCreateResponse, DepartmentCreateUpdate, DepartmentErrorResponse, DepartmentIdentifier, DepartmentModel, DepartmentResponse, ValidationFailedResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, CategoryErrorResponse, FilerList, RawProduct, RawProductListingResponse, GTIN, GenderDetail, GetAddressSerializer, GetAllSizes, FilterResponse, ValueItem, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, FilterItem, CompareFilter, SimilarFilter, VariantFilter, DetailFilter, DetailFilterValues, DisplayType, SimilarItem, VariantItem, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponse, GetConfigMetadataValues, AttributeType, DataType, ListingValueConfigType, ListingDataType, GetListingConfigResponse, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetCollectionDetailResponse, CommonResponseSchemaCollection, GetQueryFiltersResponse, GetCollectionItemsResponseSchema, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, Guide, HSNCodesResponse, HSNData, HSNDataInsertV2, Hierarchy, HsnCode, SlabObject, UpdateHsnCodesObject, UpdateHsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJobResponse, InventoryExportItem, InventoryExportJob, InventoryExportJobListFilters, InventoryExportJobListStats, InventoryExportJobList, InventoryExportJobListResponse, InventoryExportQuantityFilter, ExportPatchRequest, InventoryExportRequest, EditInventoryDataDownloadsResponse, EditInventoryDownloadsResponse, InventoryExportFiltersResponse, Stats, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryIdentifier, InventoryGeoLocation, InventoryMobileNumber, InventoryAddress, InventoryManager, InventoryStore, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, ItemQuery, Items, PriceRange, ProductPriceRangeSchema, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, MOQData, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, GuideHeaders, GuideValues, Header, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, NetQuantity, NetQuantityResponse, NextSchedule, OptInPostRequest, OptinCompanyBrandDetailsView, OptinAddress, OptinDocument, OptinBusinessCountryInfo, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponse, PTErrorResponse, Page, PageResponse, PageResponse1, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, InventoryBulkJob, ProductBulkResponse, InventoryBulkResponse, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSizesSchema, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, PatchProductDownloadsDataResponse, PatchProductDownloadsResponse, ProductDownloadFilters, CreateProductDownloadsDataResponse, CreateProductDownloadsResponse, GetProductDownloadsResponse, ProductDownloadsResponse, ProductFilters, ProductFiltersKey, ProductFiltersValue, ApplicationCategoryAction, ApplicationCategoryItem, CategoryPageAction, CategoryQuery, CategoryImage, ProductListingDetail, PageAction, ActionObject, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductVerificationModel, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductReturnConfigBaseSerializer, CategorySubSchema, CategoryProduct, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductSortOnv2, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, CompanyVerificationStats, CompanyVerificationResponse, ProductVariantsResponse, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, Sitemap, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, SitemapDetail, SeoDetail, SetSize, SingleCategoryResponse, VariantTypesResponse, VariantTypeItem, SingleProductResponse, Size, SizeDistribution, SizeGuideResponse, Time, Timing, StoreItem, UserSchemaCustom, Manager, MobileNo, IntegrationType, Address, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateValidationData, TemplatesResponse, TemplatesValidationResponse, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, UpdatedResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, CreatedBy, Marketplaces, GetAllMarketplaces, CreateMarketplaceOptinRequest, UpdateMarketplaceOptinRequest, CreateMarketplaceOptinResponse, GetProductTemplateSlugItems, GetProductTemplateSlugResponse, UpdateMarketplaceOptinResponse, AutocompleteRequestSchema, AutocompleteUpsertResponseSchema, AutocompleteErrorResponseSchema, AutocompleteResponseSchema, ProductListingActionPage, ProductListingAction, AutocompleteItem, AutocompletePreviewResponseSchema, CreateAppPriceFactoryRequestSchema, CreateAppPriceFactoryResponse, ErrorDetails, AppPriceFactory, EditAppPriceFactoryRequestSchema, GetAppPriceFactoryResponse, CreateAppPriceFactoryProduct, PriceFactorySizes, CompanySizes, CreateAppPriceFactoryProductItem, CreatePriceFactoryProductRequest, CreateAppPriceFactoryProductResponse, UpdateAppPriceFactoryProductRequest, UpdateAppPriceFactoryProductResponse, CreateAppPriceFactoryProductRequest, FailedRecordsData, CreatePriceFactoryProductResponse, CreateAppPriceFactoryProductsResponse, CreateAppPriceFactoryProductBulkJobRequest, CreateAppPriceFactoryProductExportJobRequest, CreateAppPriceFactoryProductExportJobResponse, AppPriceFactoryProductExportPollJobResponse, CreateAppPriceFactoryProductExportJobPollResponse, CreateAppPriceFactoryProductBulkJobResponse, CreateAppPriceFactoryProductBulkJobValidateResponse, CreateAppPriceFactoryProductBulkJobPollResponse, SynonymListResponseSchema, SynonymResponseSchema, SynonymListErrorResponseSchema, SynonymCreateRequestSchema, SynonymCreateResponseSchema, SynonymUpdateResponseSchema, SynonymCreateErrorSchema, SynonymDeleteErrorSchema, SynonymDeleteResponseSchema, SynonymUploadRequestSchema, SynonymUploadResponseSchema, SynonymExportResponseSchema, SynonymUploadErrorSchema, SynonymBulkValidateRequestSchema, SynonymBulkValidateResponseSchema, SynonymBulkValidateErrorSchema, SynonymBulkProcessRequestSchema, SynonymBulkProcessResponseSchema, SynonymBulkProcessErrorSchema, SynonymBulkPollResponseSchema, SynonymBulkPollErrorSchema, PriceFactoryErrorSchema, PriceFactoryCreateErrorSchema, ActionPage, PageType };
 }
 /** @returns {StoreTagsResponseSchema} */
 declare function StoreTagsResponseSchema(): StoreTagsResponseSchema;
@@ -5020,7 +5068,7 @@ type ProductFiltersKeysOnly = {
 declare function GetQueryFiltersKeysResponse(): GetQueryFiltersKeysResponse;
 type GetQueryFiltersKeysResponse = {
     filters?: ProductFiltersKeysOnly[];
-    operators: any;
+    operators?: any;
     sort_on?: ProductSortOn[];
 };
 /** @returns {GetQueryFiltersValuesResponse} */
@@ -5347,21 +5395,9 @@ type GetMerchandisingRuleBuryAction = {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    type?: string;
     page?: ActionPage;
-    type?: string;
-};
-/** @returns {ActionProperties} */
-declare function ActionProperties(): ActionProperties;
-type ActionProperties = {
-    category?: string[];
-    department?: string[];
-    collection?: string[];
-};
-/** @returns {ActionPage} */
-declare function ActionPage(): ActionPage;
-type ActionPage = {
-    query?: ActionProperties;
-    type?: string;
+    popup?: ActionPage;
 };
 /** @returns {AllSizes} */
 declare function AllSizes(): AllSizes;
@@ -7289,6 +7325,7 @@ type RawProduct = {
     variants?: any;
     verified_by?: VerifiedBy;
     verified_on?: string;
+    store_id_list?: string[];
 };
 /** @returns {RawProductListingResponse} */
 declare function RawProductListingResponse(): RawProductListingResponse;
@@ -9389,6 +9426,14 @@ type OwnerAppItemResponse = {
     is_gift?: boolean;
     moq?: any;
     seo?: any;
+    /**
+     * - Custom JSON data for the item
+     */
+    _custom_json?: any;
+    /**
+     * - Custom meta fields for the item
+     */
+    _custom_meta?: MetaFields[];
 };
 /** @returns {PTErrorResponse} */
 declare function PTErrorResponse(): PTErrorResponse;
@@ -9402,13 +9447,13 @@ type PTErrorResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
     item_total?: number;
     next_id?: string;
-    size?: number;
+    has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
     type: string;
+    size?: number;
 };
 /** @returns {PageResponse} */
 declare function PageResponse(): PageResponse;
@@ -11711,3 +11756,18 @@ type PriceFactoryCreateErrorSchema = {
     error?: any;
     code?: number;
 };
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/**
+ * Enum: PageType Used By: Catalog
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

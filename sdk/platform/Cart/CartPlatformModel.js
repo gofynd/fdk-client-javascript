@@ -1174,6 +1174,7 @@ const Joi = require("joi");
 
 /**
  * @typedef AppliedPromotion
+ * @property {string} [id] - Promotion id of current promotion
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {number} [original_article_quantity]
@@ -3924,6 +3925,7 @@ class CartPlatformModel {
   /** @returns {AppliedPromotion} */
   static AppliedPromotion() {
     return Joi.object({
+      id: Joi.string().allow(""),
       article_quantity: Joi.number(),
       original_article_quantity: Joi.number(),
       ownership: CartPlatformModel.Ownership2(),

@@ -256,7 +256,7 @@ const Joi = require("joi");
  * @property {Object} value - Data of the history event
  * @property {string} ticket_id - Readable ticket number
  * @property {CreatedOn} [created_on]
- * @property {string} [created_by] - User who created the history event
+ * @property {Object} [created_by] - User who created the history event
  * @property {string} _id - Unique identifier of the history event
  * @property {string} [updated_at] - Time of last update of the history event
  * @property {string} [created_at] - Time of creation of the history event
@@ -641,7 +641,7 @@ class LeadPartnerModel {
       value: Joi.object().pattern(/\S/, Joi.any()).required(),
       ticket_id: Joi.string().allow("").required(),
       created_on: LeadPartnerModel.CreatedOn(),
-      created_by: Joi.string().allow(""),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),

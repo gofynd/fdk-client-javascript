@@ -1,6 +1,309 @@
 const Joi = require("joi");
 
 /**
+ * @typedef ErrorResponseV3
+ * @property {boolean} [success]
+ * @property {ErrorObject} [error]
+ */
+
+/**
+ * @typedef ErrorObject
+ * @property {string} [type]
+ * @property {string} [value]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef ValidateAddressRequest
+ * @property {string} [address] - A string representing the complete address,
+ *   combining address line 1, address line 2, area, landmark, sector, city,
+ *   state, and pincode. This provides a comprehensive view of the address details.
+ * @property {string} [address1] - A string representing the first line of the
+ *   address, typically containing street or building information.
+ * @property {string} [address2] - A string representing the second line of the
+ *   address, which can be used for additional address details if needed.
+ * @property {string} [area] - A string specifying the locality or area
+ *   associated with the address.
+ * @property {string} [landmark] - A string representing a prominent nearby
+ *   landmark that aids in locating the address.
+ * @property {string} [pincode] - A string indicating the postal code or PIN
+ *   code of the address area.
+ * @property {string} [sector] - A string specifying the sector or district of
+ *   the address if applicable.
+ * @property {string} [city] - A string denoting the city or municipality of the address.
+ * @property {string} [state] - A string indicating the state or province of the address.
+ * @property {string} [name] - A string representing the recipient's name or the
+ *   organization name associated with the address.
+ * @property {string} [phone] - An integer representing the recipient's contact
+ *   phone number.
+ * @property {string} [email] - A string containing the recipient's email address.
+ * @property {string} [country_iso_code] - A string containing the recipient's
+ *   email address.
+ */
+
+/**
+ * @typedef CountryObject
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string[]} [timezones]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [phone_code]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {CurrencyObject} [currency]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef GetCountries
+ * @property {CountryObject[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CurrencyObject
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [symbol]
+ */
+
+/**
+ * @typedef CountryHierarchy
+ * @property {string} [display_name]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef GetCountry
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string[]} [timezones]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [phone_code]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {CurrencyObject} [currency]
+ * @property {string} [type]
+ * @property {GetCountryFields} [fields]
+ */
+
+/**
+ * @typedef GetCountryFields
+ * @property {GetCountryFieldsAddress[]} address
+ * @property {string[]} serviceability_fields
+ * @property {GetCountryFieldsAddressTemplate} address_template
+ */
+
+/**
+ * @typedef GetCountryFieldsAddressTemplate
+ * @property {string} checkout_form
+ * @property {string} store_os_form
+ * @property {string} default_display
+ */
+
+/**
+ * @typedef FieldValidation
+ * @property {string} [type]
+ * @property {FieldValidationRegex} [regex]
+ */
+
+/**
+ * @typedef FieldValidationRegex
+ * @property {string} [value]
+ * @property {LengthValidation} [length]
+ */
+
+/**
+ * @typedef LengthValidation
+ * @property {number} [min]
+ * @property {number} [max]
+ */
+
+/**
+ * @typedef GetOneOrAllQuery
+ * @property {string} [country]
+ * @property {string} [state]
+ * @property {string} [city]
+ * @property {string} [sector]
+ */
+
+/**
+ * @typedef GetOneOrAllPath
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef GetOneOrAllParams
+ * @property {GetOneOrAllPath} [path]
+ * @property {GetOneOrAllQuery} [query]
+ */
+
+/**
+ * @typedef GetOneOrAll
+ * @property {string} [operation_id]
+ * @property {GetOneOrAllParams} [params]
+ */
+
+/**
+ * @typedef GetCountryFieldsAddressValues
+ * @property {GetOneOrAll} [get_one]
+ * @property {GetOneOrAll} [get_all]
+ */
+
+/**
+ * @typedef GetCountryFieldsAddress
+ * @property {string} display_name
+ * @property {string} slug
+ * @property {boolean} required
+ * @property {boolean} [edit]
+ * @property {string} input
+ * @property {FieldValidation} [validation]
+ * @property {GetCountryFieldsAddressValues} [values]
+ * @property {string} [error_text]
+ */
+
+/**
+ * @typedef PincodeLatLongData
+ * @property {string} [type]
+ * @property {number[]} [coordinates]
+ */
+
+/**
+ * @typedef Localities
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string[]} [parent_ids]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {PincodeLatLongData} [lat_long]
+ * @property {string} [parent_uid]
+ * @property {LocalityParent[]} [localities]
+ */
+
+/**
+ * @typedef GetLocalities
+ * @property {Localities[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef LocalityParent
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {Object} [meta]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ * @property {Object} [serviceability]
+ * @property {string} [parent_uid]
+ */
+
+/**
+ * @typedef GetLocality
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {Object} [meta]
+ * @property {string[]} [parent_ids]
+ * @property {string} [parent_uid]
+ * @property {string} [type]
+ * @property {LocalityParent[]} [localities]
+ */
+
+/**
+ * @typedef ApplicationConfigPutResponse
+ * @property {string[]} [rule_ids]
+ * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ */
+
+/**
+ * @typedef PromiseType
+ * @property {string} display_name
+ * @property {string} slug
+ * @property {string} description
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ */
+
+/**
+ * @typedef BuyboxRuleConfig
+ * @property {string[]} [store_type_priority]
+ * @property {string[]} [store_tag_priority]
+ * @property {string[]} [sort]
+ */
+
+/**
+ * @typedef CourierPartnerConfig
+ * @property {string[]} [rule_ids]
+ * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
+ */
+
+/**
+ * @typedef ZoneConfig
+ * @property {string} [serviceability_type]
+ * @property {number} [active_count]
+ * @property {number} [total_count]
+ */
+
+/**
+ * @typedef ApplicationConfigGetResponse
+ * @property {ZoneConfig} [zones]
+ * @property {CourierPartnerConfig} [courier_partner_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseConfig} [promise_config]
+ */
+
+/**
+ * @typedef ApplicationConfigPutRequest
+ * @property {string[]} [rule_ids]
+ * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
+ */
+
+/**
+ * @typedef InstallCourierPartnerItemsSchema
+ * @property {string} [base_url]
+ * @property {Object} [callbacks]
+ * @property {string} [contact_email]
+ * @property {string} [created_at]
+ * @property {string} [description]
+ * @property {string} [developed_by_name]
+ * @property {string} [ext_version]
+ * @property {string} [extension_type]
+ * @property {boolean} [is_coming_soon]
+ * @property {boolean} [is_hidden]
+ * @property {boolean} [is_installed]
+ * @property {string} [launch_type]
+ * @property {Object} [logo]
+ * @property {string} [modified_at]
+ * @property {string} [name]
+ * @property {string} [organization_id]
+ * @property {Object} [partner]
+ * @property {string[]} [scope]
+ * @property {string[]} [whitelisted_urls]
+ * @property {number} [__v]
+ * @property {string} [_id]
+ */
+
+/**
+ * @typedef InstallCourierPartnerResponseSchema
+ * @property {InstallCourierPartnerItemsSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
  * @typedef UpdateZoneConfigRequest
  * @property {string} [serviceability_type]
  */
@@ -145,7 +448,7 @@ const Joi = require("joi");
  * @typedef Summary
  * @property {number} [stores_count]
  * @property {number} [products_count]
- * @property {Region[]} [regions]
+ * @property {RegionSchema[]} [regions]
  */
 
 /**
@@ -354,6 +657,36 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ZoneBulkExport
+ * @property {string} [batch_id]
+ */
+
+/**
+ * @typedef GetZoneBulkExport
+ * @property {ZoneBulkItem[]} [items]
+ */
+
+/**
+ * @typedef ZoneBulkItem
+ * @property {string} [batch_id]
+ * @property {string} [file_path]
+ * @property {number} [total]
+ * @property {number} [failed]
+ * @property {string} [error_file_url]
+ * @property {string} [action]
+ * @property {string} [updated_at]
+ * @property {string} [updated_by]
+ * @property {string} [type]
+ * @property {string} [stage]
+ */
+
+/**
+ * @typedef CreateBulkZoneData
+ * @property {string} [file_url]
+ * @property {string} [product_type]
+ */
+
+/**
  * @typedef ZoneStores
  * @property {string} type
  * @property {number[]} values
@@ -382,6 +715,43 @@ const Joi = require("joi");
  * @property {string} modified_on
  * @property {string} stage
  * @property {string} zone_id
+ */
+
+/**
+ * @typedef CreateBulkZoneResponse
+ * @property {string} [zone_id]
+ */
+
+/**
+ * @typedef GetBulkZoneHistory
+ * @property {BulkZoneItems[]} [items]
+ * @property {PageV2} [page]
+ */
+
+/**
+ * @typedef BulkZoneItems
+ * @property {string} [batch_id]
+ * @property {string} [entity_type]
+ * @property {string} [error_file_url]
+ * @property {string} [file_path]
+ * @property {string} [file_name]
+ * @property {string} [updated_at]
+ * @property {string} [updated_by]
+ * @property {string} [stage]
+ */
+
+/**
+ * @typedef PageV2
+ * @property {string} [type]
+ * @property {number} [size]
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ */
+
+/**
+ * @typedef BulkCreateZoneExport
+ * @property {string} [placeholder]
  */
 
 /**
@@ -649,9 +1019,10 @@ const Joi = require("joi");
 
 /**
  * @typedef CommonError
- * @property {string} [status_code]
- * @property {Object} [error]
- * @property {string} [success]
+ * @property {string} [batch_id]
+ * @property {number} [status_code]
+ * @property {ErrorResponse[]} [error]
+ * @property {boolean} [success]
  */
 
 /**
@@ -664,6 +1035,8 @@ const Joi = require("joi");
  * @typedef PincodeBulkViewResponse
  * @property {string} batch_id
  * @property {string} s3_url
+ * @property {number} [status_code]
+ * @property {boolean} [success]
  */
 
 /**
@@ -676,9 +1049,15 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PincodeCodDataSchema
+ * @property {string} [pincode]
+ * @property {boolean} [active]
+ */
+
+/**
  * @typedef PincodeCodStatusListingResponse
  * @property {string} country
- * @property {PincodeCodStatusListingResponse[]} data
+ * @property {PincodeCodDataSchema[]} data
  * @property {boolean} success
  * @property {Error[]} [errors]
  * @property {PincodeCodStatusListingPage} page
@@ -780,6 +1159,34 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BulkGeoAreaRequestBody
+ * @property {string} [file_url]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef BulkGeoAreaResponse
+ * @property {string} [geoarea_id]
+ */
+
+/**
+ * @typedef BulkGeoAreaGetResponse
+ * @property {string} [batch_id]
+ * @property {string} [file_path]
+ * @property {number} [total]
+ * @property {number} [failed]
+ * @property {string} [error_file_url]
+ * @property {string} [action]
+ * @property {string} [updated_at]
+ * @property {string} [updated_by]
+ * @property {string} [type]
+ * @property {string} [stage]
+ * @property {string} [file_url]
+ */
+
+/**
  * @typedef GeoAreaRequestBody
  * @property {boolean} is_active
  * @property {string} name
@@ -787,6 +1194,11 @@ const Joi = require("joi");
  * @property {string} type
  * @property {Area[]} areas
  * @property {string} region_type
+ */
+
+/**
+ * @typedef GeoAreaErrorResponse
+ * @property {GeoAreaResponseDetail[]} [error]
  */
 
 /**
@@ -807,6 +1219,13 @@ const Joi = require("joi");
  * @typedef ConflictingArea
  * @property {string} geoarea_id
  * @property {string} name
+ */
+
+/**
+ * @typedef GeoAreaResponseDetail
+ * @property {string} [type]
+ * @property {string} [value]
+ * @property {string} [message]
  */
 
 /**
@@ -856,7 +1275,6 @@ const Joi = require("joi");
  * @property {string} display_name
  * @property {string} sub_type
  * @property {string[]} parent_id
- * @property {string} parent_uid
  */
 
 /**
@@ -888,7 +1306,9 @@ const Joi = require("joi");
 /**
  * @typedef GeoAreaResponse
  * @property {string} name
- * @property {string} [geoarea_id]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string} geoarea_id
  * @property {boolean} is_active
  * @property {string} type
  * @property {string} region_type
@@ -897,14 +1317,6 @@ const Joi = require("joi");
  * @property {string} [modified_on]
  * @property {string} [created_by]
  * @property {string} [modified_by]
- */
-
-/**
- * @typedef GeoAreaCount
- * @property {number} pincode
- * @property {number} state
- * @property {number} city
- * @property {number} sector
  */
 
 /**
@@ -930,7 +1342,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ErrorResponseV2
- * @property {boolean} value
+ * @property {boolean} success
  * @property {string} error
  */
 
@@ -939,6 +1351,21 @@ const Joi = require("joi");
  * @property {string} value
  * @property {string} message
  * @property {string} type
+ * @property {string} [error]
+ */
+
+/**
+ * @typedef PackageMaterialNotFound
+ * @property {number} [status_code]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef PackageMaterialsErrorResponse
+ * @property {string} [value]
+ * @property {string} [message]
+ * @property {string} [type]
+ * @property {string} [error]
  */
 
 /**
@@ -949,12 +1376,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} size
- * @property {number} item_total
- * @property {boolean} has_previous
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
  * @property {string} type
- * @property {number} current
- * @property {boolean} has_next
+ * @property {number} [size]
  */
 
 /**
@@ -968,20 +1396,21 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierPartnerList
- * @property {string} extension_id
- * @property {string} account_id
- * @property {string} name
- * @property {boolean} is_self_ship
+ * @property {string} [extension_id]
+ * @property {string} [account_id]
+ * @property {string} [name]
+ * @property {boolean} [is_self_ship]
+ * @property {Object} [scheme_rules]
+ * @property {string} [stage]
  */
 
 /**
  * @typedef LocationRuleValues
- * @property {string} id
+ * @property {string} uid
  * @property {string} [sub_type]
- * @property {string} [name]
  * @property {string} [display_name]
- * @property {string} [parent_id]
- * @property {string[]} [parent_ids]
+ * @property {string} [parent_uid]
+ * @property {string[]} [parent_id]
  */
 
 /**
@@ -1011,23 +1440,76 @@ const Joi = require("joi");
  * @property {StringComparisonOperations} [zone_ids]
  * @property {IntComparisonOperations} [department_ids]
  * @property {IntComparisonOperations} [brand_ids]
- * @property {ArithmeticOperations} [order_place_date]
+ * @property {ArithmeticOperationsV2} [order_place_date]
  * @property {IntComparisonOperations} [store_ids]
  * @property {StringComparisonOperations} [store_type]
  * @property {StringComparisonOperations} [store_tags]
  * @property {ArithmeticOperations} [shipment_weight]
  * @property {ArithmeticOperations} [shipment_cost]
  * @property {ArithmeticOperations} [shipment_volumetric_weight]
+ * @property {IntComparisonOperations} [company_ids]
+ * @property {StringComparisonOperations} [promise_types]
+ */
+
+/**
+ * @typedef CourierPartnerRuleResponseConditions
+ * @property {LocationRule} [forward]
+ * @property {LocationRule} [reverse]
+ * @property {StringComparisonOperations} [payment_mode]
+ * @property {IntComparisonOperations} [category_ids]
+ * @property {IntComparisonOperations} [product_ids]
+ * @property {StringComparisonOperations} [product_tags]
+ * @property {StringComparisonOperations} [zone_ids]
+ * @property {IntComparisonOperations} [department_ids]
+ * @property {IntComparisonOperations} [brand_ids]
+ * @property {ArithmeticOperationsV2} [order_place_date]
+ * @property {IntComparisonOperations} [store_ids]
+ * @property {StringComparisonOperations} [store_type]
+ * @property {StringComparisonOperations} [store_tags]
+ * @property {ArithmeticOperations} [shipment_weight]
+ * @property {ArithmeticOperations} [shipment_cost]
+ * @property {ArithmeticOperations} [shipment_volumetric_weight]
+ * @property {IntComparisonOperations} [company_ids]
+ * @property {StringComparisonOperations} [promise_types]
  */
 
 /**
  * @typedef CourierPartnerRule
+ * @property {string} [id]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
  * @property {boolean} is_active
  * @property {CourierPartnerList[]} [cp_list]
  * @property {string} name
  * @property {CourierPartnerRuleConditions} conditions
  * @property {string[]} [manual_priority]
  * @property {string[]} sort
+ * @property {string} type
+ */
+
+/**
+ * @typedef CourierPartnerRuleResponse
+ * @property {boolean} is_active
+ * @property {CourierPartnerList[]} [cp_list]
+ * @property {string} name
+ * @property {CourierPartnerRuleResponseConditions} conditions
+ * @property {string[]} [manual_priority]
+ * @property {string[]} sort
+ * @property {string} type
+ */
+
+/**
+ * @typedef CourierPartnerRuleResponseSchema
+ * @property {string} [id]
+ * @property {boolean} is_active
+ * @property {CourierPartnerList[]} [cp_list]
+ * @property {string} name
+ * @property {CourierPartnerRuleResponseConditions} conditions
+ * @property {string[]} [manual_priority]
+ * @property {string[]} sort
+ * @property {string} type
+ * @property {string} [application_id]
+ * @property {number} [company_id]
  */
 
 /**
@@ -1038,43 +1520,15 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierPartnerRulesListResponse
- * @property {CourierPartnerRule[]} items
+ * @property {CourierPartnerRuleResponseSchema[]} items
  * @property {Page} page
  */
 
 /**
  * @typedef CompanyConfig
- * @property {string[]} rule_ids
- * @property {string[]} sort
- * @property {boolean} [logistics_as_actual]
- */
-
-/**
- * @typedef ZoneConfig
- * @property {string} [serviceability_type]
- */
-
-/**
- * @typedef BuyboxConfig
- * @property {boolean} show_seller
- * @property {boolean} enable_selection
- * @property {boolean} is_seller_buybox_enabled
- */
-
-/**
- * @typedef BuyboxRuleConfig
- * @property {string[]} [store_type_priority]
- * @property {string[]} [store_tag_priority]
+ * @property {number} [company_id]
  * @property {string[]} [sort]
- */
-
-/**
- * @typedef PromiseType
- * @property {string} display_name
- * @property {string} slug
- * @property {string} description
- * @property {boolean} is_active
- * @property {boolean} is_default
+ * @property {string} [logistics_as_actual]
  */
 
 /**
@@ -1114,7 +1568,6 @@ const Joi = require("joi");
  * @property {number} [company_id]
  * @property {string[]} [manual_priority]
  * @property {ZoneConfig} [zones]
- * @property {BuyboxConfig} [buybox_config]
  * @property {BuyboxRuleConfig} [buybox_rule_config]
  * @property {PromiseType[]} [promise_types]
  * @property {PromiseConfig} [promise_config]
@@ -1122,9 +1575,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ApplicationConfigPatchRequest
- * @property {BuyboxConfig} [buybox_config]
+ * @property {CourierPartnerConfig} [courier_partner_config]
  * @property {BuyboxRuleConfig} [buybox_rule_config]
- * @property {PromiseType[]} [promise_types]
  * @property {PromiseConfig} [promise_config]
  */
 
@@ -1210,7 +1662,7 @@ const Joi = require("joi");
  * @property {StringComparisonOperations} [product_tags]
  * @property {IntComparisonOperations} [product_ids]
  * @property {StringComparisonOperations} [store_tags]
- * @property {ArithmeticOperations} [order_place_date]
+ * @property {ArithmeticOperationsV2} [order_place_date]
  * @property {StringComparisonOperations} [zone_ids]
  */
 
@@ -1231,7 +1683,7 @@ const Joi = require("joi");
 
 /**
  * @typedef StorePrioritySchema
- * @property {string} [id]
+ * @property {number} [id]
  * @property {string} [name]
  */
 
@@ -1319,6 +1771,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierPartnerSchemeModel
+ * @property {string} [name]
  * @property {string} extension_id
  * @property {string} scheme_id
  * @property {ArithmeticOperations} weight
@@ -1332,6 +1785,8 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierAccountResponse
+ * @property {number} [company_id]
+ * @property {string} [extension_id]
  * @property {string} account_id
  * @property {string} scheme_id
  * @property {boolean} is_self_ship
@@ -1352,23 +1807,25 @@ const Joi = require("joi");
  * @property {number} width
  * @property {number} height
  * @property {number} length
- * @property {PackageMaterialRule[]} [rules]
- * @property {number[]} store_ids
  * @property {number} weight
- * @property {number} error_rate
- * @property {string} package_type
- * @property {string} size
- * @property {string[]} [media]
- * @property {Channel[]} channels
- * @property {boolean} [track_inventory]
- * @property {string} status
+ * @property {boolean} [auto_calculate]
  * @property {number} [max_weight]
  * @property {number} [package_vol_weight]
- * @property {boolean} [auto_calculate]
+ * @property {number} error_rate
+ * @property {Channel[]} channels
+ * @property {string} package_type
+ * @property {string} size
+ * @property {boolean} [track_inventory]
+ * @property {PackageMaterialRule[]} [rules]
+ * @property {number[]} store_ids
+ * @property {PackageMpStores[]} [mp_stores]
+ * @property {string[]} [media]
+ * @property {string} status
  */
 
 /**
  * @typedef PackageMaterialResponse
+ * @property {number} [company_id]
  * @property {string} name
  * @property {string} [id]
  * @property {number} [item_id]
@@ -1384,10 +1841,12 @@ const Joi = require("joi");
  * @property {string[]} [media]
  * @property {Channel[]} channels
  * @property {boolean} [track_inventory]
+ * @property {boolean} [is_active]
  * @property {string} status
  * @property {number} [max_weight]
  * @property {number} [package_vol_weight]
  * @property {boolean} [auto_calculate]
+ * @property {PackageMpStores[]} [mp_stores]
  */
 
 /**
@@ -1398,26 +1857,62 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PackageRule
+ * @typedef PackageMpStores
+ * @property {string} [app_name]
+ * @property {string} [app_id]
+ * @property {number[]} [store_ids]
+ * @property {Object} [store_data]
+ */
+
+/**
+ * @typedef PackageRuleRequest
  * @property {string} name
- * @property {number} company_id
+ * @property {string} company_id
+ * @property {PackageRuleCategory} [category_id]
+ * @property {PackageRuleProduct} [product_id]
+ * @property {PackageRuleProductTag} [product_tag]
+ * @property {PackageRuleDepartmentId} [department_id]
+ * @property {PackageRuleProductAttributes} [product_attributes]
  * @property {string} type
  * @property {boolean} [is_active]
- * @property {PackageRuleProductTag} [product_tag]
- * @property {PackageRuleProduct} [product_id]
- * @property {PackageRuleCategory} [category_id]
+ */
+
+/**
+ * @typedef PackageRule
+ * @property {string} name
+ * @property {string} [id]
+ * @property {number} [item_id]
+ * @property {number} [width]
+ * @property {number} [height]
+ * @property {number} [length]
+ * @property {PackageMaterialRule[]} [rules]
+ * @property {number[]} [store_ids]
+ * @property {number} [weight]
+ * @property {number} [error_rate]
+ * @property {string} [package_type]
+ * @property {string} [size]
+ * @property {string[]} [media]
+ * @property {Channel[]} [channels]
+ * @property {boolean} [track_inventory]
+ * @property {string} [status]
+ * @property {number} [max_weight]
+ * @property {number} [package_vol_weight]
+ * @property {boolean} [auto_calculate]
+ * @property {PackageMpStores[]} [mp_stores]
  */
 
 /**
  * @typedef PackageRuleResponse
- * @property {string} [id]
- * @property {string} name
- * @property {number} company_id
- * @property {string} type
  * @property {boolean} [is_active]
+ * @property {number} company_id
  * @property {PackageRuleProductTag} [product_tag]
- * @property {PackageRuleProduct} [product_id]
+ * @property {PackageRuleDepartmentId} [department_id]
+ * @property {PackageRuleProductAttributes} [product_attributes]
+ * @property {string} name
  * @property {PackageRuleCategory} [category_id]
+ * @property {PackageRuleProduct} [product_id]
+ * @property {string} type
+ * @property {string} [id]
  */
 
 /**
@@ -1428,13 +1923,13 @@ const Joi = require("joi");
 
 /**
  * @typedef PackageMaterialRuleList
- * @property {PackageRuleResponse} [items]
+ * @property {PackageRuleResponse[]} [items]
  * @property {Page} [page]
  */
 
 /**
  * @typedef PackageMaterialList
- * @property {PackageMaterialResponse} [items]
+ * @property {Object} [items]
  * @property {Page} [page]
  */
 
@@ -1450,6 +1945,16 @@ const Joi = require("joi");
 
 /**
  * @typedef PackageRuleCategory
+ * @property {number[]} [includes]
+ */
+
+/**
+ * @typedef PackageRuleProductAttributes
+ * @property {string[]} [includes]
+ */
+
+/**
+ * @typedef PackageRuleDepartmentId
  * @property {number[]} [includes]
  */
 
@@ -1470,7 +1975,399 @@ const Joi = require("joi");
  * @property {boolean} [success]
  */
 
+/**
+ * @typedef CompanySelfShip
+ * @property {boolean} is_active
+ * @property {number} tat
+ * @property {string} unit
+ */
+
+/**
+ * @typedef ArithmeticOperationsV2
+ * @property {string} [lt]
+ * @property {string} [gt]
+ * @property {string} [lte]
+ * @property {string} [gte]
+ */
+
+/**
+ * @typedef CompanyConfigurationShema
+ * @property {string[]} [sort]
+ */
+
 class ServiceabilityPlatformModel {
+  /** @returns {ErrorResponseV3} */
+  static ErrorResponseV3() {
+    return Joi.object({
+      success: Joi.boolean(),
+      error: ServiceabilityPlatformModel.ErrorObject(),
+    });
+  }
+
+  /** @returns {ErrorObject} */
+  static ErrorObject() {
+    return Joi.object({
+      type: Joi.string().allow("").allow(null),
+      value: Joi.string().allow("").allow(null),
+      message: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {ValidateAddressRequest} */
+  static ValidateAddressRequest() {
+    return Joi.object({
+      address: Joi.string().allow(""),
+      address1: Joi.string().allow(""),
+      address2: Joi.string().allow(""),
+      area: Joi.string().allow(""),
+      landmark: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      phone: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CountryObject} */
+  static CountryObject() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")),
+      hierarchy: Joi.array().items(
+        ServiceabilityPlatformModel.CountryHierarchy()
+      ),
+      phone_code: Joi.string().allow(""),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
+      currency: ServiceabilityPlatformModel.CurrencyObject(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetCountries} */
+  static GetCountries() {
+    return Joi.object({
+      items: Joi.array().items(ServiceabilityPlatformModel.CountryObject()),
+      page: ServiceabilityPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CurrencyObject} */
+  static CurrencyObject() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      symbol: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CountryHierarchy} */
+  static CountryHierarchy() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetCountry} */
+  static GetCountry() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")),
+      hierarchy: Joi.array().items(
+        ServiceabilityPlatformModel.CountryHierarchy()
+      ),
+      phone_code: Joi.string().allow(""),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
+      currency: ServiceabilityPlatformModel.CurrencyObject(),
+      type: Joi.string().allow(""),
+      fields: ServiceabilityPlatformModel.GetCountryFields(),
+    });
+  }
+
+  /** @returns {GetCountryFields} */
+  static GetCountryFields() {
+    return Joi.object({
+      address: Joi.array()
+        .items(ServiceabilityPlatformModel.GetCountryFieldsAddress())
+        .required(),
+      serviceability_fields: Joi.array()
+        .items(Joi.string().allow(""))
+        .required(),
+      address_template: ServiceabilityPlatformModel.GetCountryFieldsAddressTemplate().required(),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddressTemplate} */
+  static GetCountryFieldsAddressTemplate() {
+    return Joi.object({
+      checkout_form: Joi.string().allow("").required(),
+      store_os_form: Joi.string().allow("").required(),
+      default_display: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {FieldValidation} */
+  static FieldValidation() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      regex: ServiceabilityPlatformModel.FieldValidationRegex(),
+    });
+  }
+
+  /** @returns {FieldValidationRegex} */
+  static FieldValidationRegex() {
+    return Joi.object({
+      value: Joi.string().allow(""),
+      length: ServiceabilityPlatformModel.LengthValidation(),
+    });
+  }
+
+  /** @returns {LengthValidation} */
+  static LengthValidation() {
+    return Joi.object({
+      min: Joi.number().allow(null),
+      max: Joi.number().allow(null),
+    });
+  }
+
+  /** @returns {GetOneOrAllQuery} */
+  static GetOneOrAllQuery() {
+    return Joi.object({
+      country: Joi.string().allow("").allow(null),
+      state: Joi.string().allow("").allow(null),
+      city: Joi.string().allow("").allow(null),
+      sector: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {GetOneOrAllPath} */
+  static GetOneOrAllPath() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetOneOrAllParams} */
+  static GetOneOrAllParams() {
+    return Joi.object({
+      path: ServiceabilityPlatformModel.GetOneOrAllPath(),
+      query: ServiceabilityPlatformModel.GetOneOrAllQuery(),
+    });
+  }
+
+  /** @returns {GetOneOrAll} */
+  static GetOneOrAll() {
+    return Joi.object({
+      operation_id: Joi.string().allow(""),
+      params: ServiceabilityPlatformModel.GetOneOrAllParams(),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddressValues} */
+  static GetCountryFieldsAddressValues() {
+    return Joi.object({
+      get_one: ServiceabilityPlatformModel.GetOneOrAll(),
+      get_all: ServiceabilityPlatformModel.GetOneOrAll(),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddress} */
+  static GetCountryFieldsAddress() {
+    return Joi.object({
+      display_name: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      required: Joi.boolean().required(),
+      edit: Joi.boolean(),
+      input: Joi.string().allow("").required(),
+      validation: ServiceabilityPlatformModel.FieldValidation(),
+      values: ServiceabilityPlatformModel.GetCountryFieldsAddressValues(),
+      error_text: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {PincodeLatLongData} */
+  static PincodeLatLongData() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      coordinates: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {Localities} */
+  static Localities() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      parent_ids: Joi.array().items(Joi.string().allow("")),
+      meta: Joi.any(),
+      type: Joi.string().allow(""),
+      lat_long: ServiceabilityPlatformModel.PincodeLatLongData(),
+      parent_uid: Joi.string().allow("").allow(null),
+      localities: Joi.array().items(
+        ServiceabilityPlatformModel.LocalityParent()
+      ),
+    });
+  }
+
+  /** @returns {GetLocalities} */
+  static GetLocalities() {
+    return Joi.object({
+      items: Joi.array().items(ServiceabilityPlatformModel.Localities()),
+      page: ServiceabilityPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {LocalityParent} */
+  static LocalityParent() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      meta: Joi.any(),
+      parent_ids: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
+      serviceability: Joi.any(),
+      parent_uid: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {GetLocality} */
+  static GetLocality() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      meta: Joi.any(),
+      parent_ids: Joi.array().items(Joi.string().allow("")),
+      parent_uid: Joi.string().allow("").allow(null),
+      type: Joi.string().allow(""),
+      localities: Joi.array().items(
+        ServiceabilityPlatformModel.LocalityParent()
+      ),
+    });
+  }
+
+  /** @returns {ApplicationConfigPutResponse} */
+  static ApplicationConfigPutResponse() {
+    return Joi.object({
+      rule_ids: Joi.array().items(Joi.string().allow("")),
+      sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
+    });
+  }
+
+  /** @returns {PromiseType} */
+  static PromiseType() {
+    return Joi.object({
+      display_name: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      description: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
+      is_default: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {BuyboxRuleConfig} */
+  static BuyboxRuleConfig() {
+    return Joi.object({
+      store_type_priority: Joi.array().items(Joi.string().allow("")),
+      store_tag_priority: Joi.array().items(Joi.string().allow("")),
+      sort: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {CourierPartnerConfig} */
+  static CourierPartnerConfig() {
+    return Joi.object({
+      rule_ids: Joi.array().items(Joi.string().allow("")),
+      sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {ZoneConfig} */
+  static ZoneConfig() {
+    return Joi.object({
+      serviceability_type: Joi.string().allow(""),
+      active_count: Joi.number(),
+      total_count: Joi.number(),
+    });
+  }
+
+  /** @returns {ApplicationConfigGetResponse} */
+  static ApplicationConfigGetResponse() {
+    return Joi.object({
+      zones: ServiceabilityPlatformModel.ZoneConfig(),
+      courier_partner_config: ServiceabilityPlatformModel.CourierPartnerConfig(),
+      buybox_rule_config: ServiceabilityPlatformModel.BuyboxRuleConfig(),
+      promise_config: ServiceabilityPlatformModel.PromiseConfig(),
+    });
+  }
+
+  /** @returns {ApplicationConfigPutRequest} */
+  static ApplicationConfigPutRequest() {
+    return Joi.object({
+      rule_ids: Joi.array().items(Joi.string().allow("")),
+      sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {InstallCourierPartnerItemsSchema} */
+  static InstallCourierPartnerItemsSchema() {
+    return Joi.object({
+      base_url: Joi.string().allow(""),
+      callbacks: Joi.any(),
+      contact_email: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      developed_by_name: Joi.string().allow(""),
+      ext_version: Joi.string().allow(""),
+      extension_type: Joi.string().allow(""),
+      is_coming_soon: Joi.boolean(),
+      is_hidden: Joi.boolean(),
+      is_installed: Joi.boolean(),
+      launch_type: Joi.string().allow(""),
+      logo: Joi.any(),
+      modified_at: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      organization_id: Joi.string().allow(""),
+      partner: Joi.any(),
+      scope: Joi.array().items(Joi.string().allow("")),
+      whitelisted_urls: Joi.array().items(Joi.string().allow("")),
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InstallCourierPartnerResponseSchema} */
+  static InstallCourierPartnerResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(
+        ServiceabilityPlatformModel.InstallCourierPartnerItemsSchema()
+      ),
+      page: ServiceabilityPlatformModel.Page(),
+    });
+  }
+
   /** @returns {UpdateZoneConfigRequest} */
   static UpdateZoneConfigRequest() {
     return Joi.object({
@@ -1667,7 +2564,7 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       stores_count: Joi.number(),
       products_count: Joi.number(),
-      regions: Joi.array().items(ServiceabilityPlatformModel.Region()),
+      regions: Joi.array().items(ServiceabilityPlatformModel.RegionSchema()),
     });
   }
 
@@ -1912,7 +2809,7 @@ class ServiceabilityPlatformModel {
       modified_by: Joi.string().allow(""),
       modified_on: Joi.string().allow(""),
       stage: Joi.string().allow(""),
-      overlapping_file_url: Joi.string().allow(""),
+      overlapping_file_url: Joi.string().allow("").allow(null),
       geo_areas: Joi.array().items(Joi.string().allow("")).required(),
       type: Joi.string().allow("").required(),
       overlapping_zone_names: Joi.array().items(Joi.string().allow("")),
@@ -1931,6 +2828,44 @@ class ServiceabilityPlatformModel {
       geo_areas: Joi.array().items(Joi.string().allow("")).required(),
       stores: ServiceabilityPlatformModel.ZoneStores().required(),
       product: ServiceabilityPlatformModel.ZoneProduct().required(),
+    });
+  }
+
+  /** @returns {ZoneBulkExport} */
+  static ZoneBulkExport() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetZoneBulkExport} */
+  static GetZoneBulkExport() {
+    return Joi.object({
+      items: Joi.array().items(ServiceabilityPlatformModel.ZoneBulkItem()),
+    });
+  }
+
+  /** @returns {ZoneBulkItem} */
+  static ZoneBulkItem() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+      file_path: Joi.string().allow("").allow(null),
+      total: Joi.number(),
+      failed: Joi.number(),
+      error_file_url: Joi.string().allow("").allow(null),
+      action: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      stage: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateBulkZoneData} */
+  static CreateBulkZoneData() {
+    return Joi.object({
+      file_url: Joi.string().allow(""),
+      product_type: Joi.string().allow(""),
     });
   }
 
@@ -1968,6 +2903,53 @@ class ServiceabilityPlatformModel {
       modified_on: Joi.string().allow("").required(),
       stage: Joi.string().allow("").required(),
       zone_id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CreateBulkZoneResponse} */
+  static CreateBulkZoneResponse() {
+    return Joi.object({
+      zone_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetBulkZoneHistory} */
+  static GetBulkZoneHistory() {
+    return Joi.object({
+      items: Joi.array().items(ServiceabilityPlatformModel.BulkZoneItems()),
+      page: ServiceabilityPlatformModel.PageV2(),
+    });
+  }
+
+  /** @returns {BulkZoneItems} */
+  static BulkZoneItems() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+      entity_type: Joi.string().allow(""),
+      error_file_url: Joi.string().allow("").allow(null),
+      file_path: Joi.string().allow(""),
+      file_name: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      updated_by: Joi.string().allow("").allow(null),
+      stage: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PageV2} */
+  static PageV2() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      size: Joi.number(),
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      item_total: Joi.number(),
+    });
+  }
+
+  /** @returns {BulkCreateZoneExport} */
+  static BulkCreateZoneExport() {
+    return Joi.object({
+      placeholder: Joi.string().allow(""),
     });
   }
 
@@ -2317,9 +3299,10 @@ class ServiceabilityPlatformModel {
   /** @returns {CommonError} */
   static CommonError() {
     return Joi.object({
-      status_code: Joi.string().allow(""),
-      error: Joi.any(),
-      success: Joi.string().allow(""),
+      batch_id: Joi.string().allow(""),
+      status_code: Joi.number(),
+      error: Joi.array().items(ServiceabilityPlatformModel.ErrorResponse()),
+      success: Joi.boolean(),
     });
   }
 
@@ -2336,6 +3319,8 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       batch_id: Joi.string().allow("").required(),
       s3_url: Joi.string().allow("").required(),
+      status_code: Joi.number(),
+      success: Joi.boolean(),
     });
   }
 
@@ -2350,18 +3335,26 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {PincodeCodDataSchema} */
+  static PincodeCodDataSchema() {
+    return Joi.object({
+      pincode: Joi.string().allow(""),
+      active: Joi.boolean(),
+    });
+  }
+
   /** @returns {PincodeCodStatusListingResponse} */
   static PincodeCodStatusListingResponse() {
     return Joi.object({
       country: Joi.string().allow("").required(),
       data: Joi.array()
-        .items(Joi.link("#PincodeCodStatusListingResponse"))
+        .items(ServiceabilityPlatformModel.PincodeCodDataSchema())
         .required(),
       success: Joi.boolean().required(),
       errors: Joi.array().items(ServiceabilityPlatformModel.Error()),
       page: ServiceabilityPlatformModel.PincodeCodStatusListingPage().required(),
       summary: ServiceabilityPlatformModel.PincodeCodStatusListingSummary().required(),
-    }).id("PincodeCodStatusListingResponse");
+    });
   }
 
   /** @returns {Error} */
@@ -2484,6 +3477,40 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {BulkGeoAreaRequestBody} */
+  static BulkGeoAreaRequestBody() {
+    return Joi.object({
+      file_url: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BulkGeoAreaResponse} */
+  static BulkGeoAreaResponse() {
+    return Joi.object({
+      geoarea_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BulkGeoAreaGetResponse} */
+  static BulkGeoAreaGetResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+      file_path: Joi.string().allow("").allow(null),
+      total: Joi.number(),
+      failed: Joi.number(),
+      error_file_url: Joi.string().allow("").allow(null),
+      action: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      stage: Joi.string().allow(""),
+      file_url: Joi.string().allow("").allow(null),
+    });
+  }
+
   /** @returns {GeoAreaRequestBody} */
   static GeoAreaRequestBody() {
     return Joi.object({
@@ -2493,6 +3520,15 @@ class ServiceabilityPlatformModel {
       type: Joi.string().allow("").required(),
       areas: Joi.array().items(ServiceabilityPlatformModel.Area()).required(),
       region_type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {GeoAreaErrorResponse} */
+  static GeoAreaErrorResponse() {
+    return Joi.object({
+      error: Joi.array().items(
+        ServiceabilityPlatformModel.GeoAreaResponseDetail()
+      ),
     });
   }
 
@@ -2521,6 +3557,15 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       geoarea_id: Joi.string().allow("").required(),
       name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {GeoAreaResponseDetail} */
+  static GeoAreaResponseDetail() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -2582,7 +3627,6 @@ class ServiceabilityPlatformModel {
       display_name: Joi.string().allow("").required(),
       sub_type: Joi.string().allow("").required(),
       parent_id: Joi.array().items(Joi.string().allow("")).required(),
-      parent_uid: Joi.string().allow("").required(),
     });
   }
 
@@ -2628,7 +3672,9 @@ class ServiceabilityPlatformModel {
   static GeoAreaResponse() {
     return Joi.object({
       name: Joi.string().allow("").required(),
-      geoarea_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
+      geoarea_id: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
       type: Joi.string().allow("").required(),
       region_type: Joi.string().allow("").required(),
@@ -2639,16 +3685,6 @@ class ServiceabilityPlatformModel {
       modified_on: Joi.string().allow(""),
       created_by: Joi.string().allow(""),
       modified_by: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GeoAreaCount} */
-  static GeoAreaCount() {
-    return Joi.object({
-      pincode: Joi.number().required(),
-      state: Joi.number().required(),
-      city: Joi.number().required(),
-      sector: Joi.number().required(),
     });
   }
 
@@ -2682,7 +3718,7 @@ class ServiceabilityPlatformModel {
   /** @returns {ErrorResponseV2} */
   static ErrorResponseV2() {
     return Joi.object({
-      value: Joi.boolean().required(),
+      success: Joi.boolean().required(),
       error: Joi.string().allow("").required(),
     });
   }
@@ -2693,6 +3729,25 @@ class ServiceabilityPlatformModel {
       value: Joi.string().allow("").required(),
       message: Joi.string().allow("").required(),
       type: Joi.string().allow("").required(),
+      error: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PackageMaterialNotFound} */
+  static PackageMaterialNotFound() {
+    return Joi.object({
+      status_code: Joi.number(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PackageMaterialsErrorResponse} */
+  static PackageMaterialsErrorResponse() {
+    return Joi.object({
+      value: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      error: Joi.string().allow(""),
     });
   }
 
@@ -2709,12 +3764,13 @@ class ServiceabilityPlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      size: Joi.number().required(),
-      item_total: Joi.number().required(),
-      has_previous: Joi.boolean().required(),
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
       type: Joi.string().allow("").required(),
-      current: Joi.number().required(),
-      has_next: Joi.boolean().required(),
+      size: Joi.number(),
     });
   }
 
@@ -2732,22 +3788,23 @@ class ServiceabilityPlatformModel {
   /** @returns {CourierPartnerList} */
   static CourierPartnerList() {
     return Joi.object({
-      extension_id: Joi.string().allow("").required(),
-      account_id: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-      is_self_ship: Joi.boolean().required(),
+      extension_id: Joi.string().allow(""),
+      account_id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      is_self_ship: Joi.boolean(),
+      scheme_rules: Joi.any(),
+      stage: Joi.string().allow(""),
     });
   }
 
   /** @returns {LocationRuleValues} */
   static LocationRuleValues() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      uid: Joi.string().allow("").required(),
       sub_type: Joi.string().allow(""),
-      name: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
-      parent_id: Joi.string().allow(""),
-      parent_ids: Joi.array().items(Joi.string().allow("")),
+      parent_uid: Joi.string().allow(""),
+      parent_id: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2787,19 +3844,48 @@ class ServiceabilityPlatformModel {
       zone_ids: ServiceabilityPlatformModel.StringComparisonOperations(),
       department_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
       brand_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
-      order_place_date: ServiceabilityPlatformModel.ArithmeticOperations(),
+      order_place_date: ServiceabilityPlatformModel.ArithmeticOperationsV2(),
       store_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
       store_type: ServiceabilityPlatformModel.StringComparisonOperations(),
       store_tags: ServiceabilityPlatformModel.StringComparisonOperations(),
       shipment_weight: ServiceabilityPlatformModel.ArithmeticOperations(),
       shipment_cost: ServiceabilityPlatformModel.ArithmeticOperations(),
       shipment_volumetric_weight: ServiceabilityPlatformModel.ArithmeticOperations(),
+      company_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
+      promise_types: ServiceabilityPlatformModel.StringComparisonOperations(),
+    });
+  }
+
+  /** @returns {CourierPartnerRuleResponseConditions} */
+  static CourierPartnerRuleResponseConditions() {
+    return Joi.object({
+      forward: ServiceabilityPlatformModel.LocationRule(),
+      reverse: ServiceabilityPlatformModel.LocationRule(),
+      payment_mode: ServiceabilityPlatformModel.StringComparisonOperations(),
+      category_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
+      product_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
+      product_tags: ServiceabilityPlatformModel.StringComparisonOperations(),
+      zone_ids: ServiceabilityPlatformModel.StringComparisonOperations(),
+      department_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
+      brand_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
+      order_place_date: ServiceabilityPlatformModel.ArithmeticOperationsV2(),
+      store_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
+      store_type: ServiceabilityPlatformModel.StringComparisonOperations(),
+      store_tags: ServiceabilityPlatformModel.StringComparisonOperations(),
+      shipment_weight: ServiceabilityPlatformModel.ArithmeticOperations(),
+      shipment_cost: ServiceabilityPlatformModel.ArithmeticOperations(),
+      shipment_volumetric_weight: ServiceabilityPlatformModel.ArithmeticOperations(),
+      company_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
+      promise_types: ServiceabilityPlatformModel.StringComparisonOperations(),
     });
   }
 
   /** @returns {CourierPartnerRule} */
   static CourierPartnerRule() {
     return Joi.object({
+      id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
       is_active: Joi.boolean().required(),
       cp_list: Joi.array().items(
         ServiceabilityPlatformModel.CourierPartnerList()
@@ -2808,6 +3894,40 @@ class ServiceabilityPlatformModel {
       conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions().required(),
       manual_priority: Joi.array().items(Joi.string().allow("")),
       sort: Joi.array().items(Joi.string().allow("")).required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CourierPartnerRuleResponse} */
+  static CourierPartnerRuleResponse() {
+    return Joi.object({
+      is_active: Joi.boolean().required(),
+      cp_list: Joi.array().items(
+        ServiceabilityPlatformModel.CourierPartnerList()
+      ),
+      name: Joi.string().allow("").required(),
+      conditions: ServiceabilityPlatformModel.CourierPartnerRuleResponseConditions().required(),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
+      sort: Joi.array().items(Joi.string().allow("")).required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CourierPartnerRuleResponseSchema} */
+  static CourierPartnerRuleResponseSchema() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      is_active: Joi.boolean().required(),
+      cp_list: Joi.array().items(
+        ServiceabilityPlatformModel.CourierPartnerList()
+      ),
+      name: Joi.string().allow("").required(),
+      conditions: ServiceabilityPlatformModel.CourierPartnerRuleResponseConditions().required(),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
+      sort: Joi.array().items(Joi.string().allow("")).required(),
+      type: Joi.string().allow("").required(),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
     });
   }
 
@@ -2825,7 +3945,7 @@ class ServiceabilityPlatformModel {
   static CourierPartnerRulesListResponse() {
     return Joi.object({
       items: Joi.array()
-        .items(ServiceabilityPlatformModel.CourierPartnerRule())
+        .items(ServiceabilityPlatformModel.CourierPartnerRuleResponseSchema())
         .required(),
       page: ServiceabilityPlatformModel.Page().required(),
     });
@@ -2834,45 +3954,9 @@ class ServiceabilityPlatformModel {
   /** @returns {CompanyConfig} */
   static CompanyConfig() {
     return Joi.object({
-      rule_ids: Joi.array().items(Joi.string().allow("")).required(),
-      sort: Joi.array().items(Joi.string().allow("")).required(),
-      logistics_as_actual: Joi.boolean(),
-    });
-  }
-
-  /** @returns {ZoneConfig} */
-  static ZoneConfig() {
-    return Joi.object({
-      serviceability_type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {BuyboxConfig} */
-  static BuyboxConfig() {
-    return Joi.object({
-      show_seller: Joi.boolean().required(),
-      enable_selection: Joi.boolean().required(),
-      is_seller_buybox_enabled: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {BuyboxRuleConfig} */
-  static BuyboxRuleConfig() {
-    return Joi.object({
-      store_type_priority: Joi.array().items(Joi.string().allow("")),
-      store_tag_priority: Joi.array().items(Joi.string().allow("")),
+      company_id: Joi.number(),
       sort: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {PromiseType} */
-  static PromiseType() {
-    return Joi.object({
-      display_name: Joi.string().allow("").required(),
-      slug: Joi.string().allow("").required(),
-      description: Joi.string().allow("").required(),
-      is_active: Joi.boolean().required(),
-      is_default: Joi.boolean().required(),
+      logistics_as_actual: Joi.string().allow(""),
     });
   }
 
@@ -2922,7 +4006,6 @@ class ServiceabilityPlatformModel {
       company_id: Joi.number(),
       manual_priority: Joi.array().items(Joi.string().allow("")),
       zones: ServiceabilityPlatformModel.ZoneConfig(),
-      buybox_config: ServiceabilityPlatformModel.BuyboxConfig(),
       buybox_rule_config: ServiceabilityPlatformModel.BuyboxRuleConfig(),
       promise_types: Joi.array().items(
         ServiceabilityPlatformModel.PromiseType()
@@ -2934,11 +4017,8 @@ class ServiceabilityPlatformModel {
   /** @returns {ApplicationConfigPatchRequest} */
   static ApplicationConfigPatchRequest() {
     return Joi.object({
-      buybox_config: ServiceabilityPlatformModel.BuyboxConfig(),
+      courier_partner_config: ServiceabilityPlatformModel.CourierPartnerConfig(),
       buybox_rule_config: ServiceabilityPlatformModel.BuyboxRuleConfig(),
-      promise_types: Joi.array().items(
-        ServiceabilityPlatformModel.PromiseType()
-      ),
       promise_config: ServiceabilityPlatformModel.PromiseConfig(),
     });
   }
@@ -3048,7 +4128,7 @@ class ServiceabilityPlatformModel {
       product_tags: ServiceabilityPlatformModel.StringComparisonOperations(),
       product_ids: ServiceabilityPlatformModel.IntComparisonOperations(),
       store_tags: ServiceabilityPlatformModel.StringComparisonOperations(),
-      order_place_date: ServiceabilityPlatformModel.ArithmeticOperations(),
+      order_place_date: ServiceabilityPlatformModel.ArithmeticOperationsV2(),
       zone_ids: ServiceabilityPlatformModel.StringComparisonOperations(),
     });
   }
@@ -3075,7 +4155,7 @@ class ServiceabilityPlatformModel {
   /** @returns {StorePrioritySchema} */
   static StorePrioritySchema() {
     return Joi.object({
-      id: Joi.string().allow(""),
+      id: Joi.number(),
       name: Joi.string().allow(""),
     });
   }
@@ -3185,6 +4265,7 @@ class ServiceabilityPlatformModel {
   /** @returns {CourierPartnerSchemeModel} */
   static CourierPartnerSchemeModel() {
     return Joi.object({
+      name: Joi.string().allow(""),
       extension_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
       weight: ServiceabilityPlatformModel.ArithmeticOperations().required(),
@@ -3200,6 +4281,8 @@ class ServiceabilityPlatformModel {
   /** @returns {CourierAccountResponse} */
   static CourierAccountResponse() {
     return Joi.object({
+      company_id: Joi.number(),
+      extension_id: Joi.string().allow(""),
       account_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
       is_self_ship: Joi.boolean().required(),
@@ -3226,29 +4309,33 @@ class ServiceabilityPlatformModel {
       width: Joi.number().required(),
       height: Joi.number().required(),
       length: Joi.number().required(),
+      weight: Joi.number().required(),
+      auto_calculate: Joi.boolean(),
+      max_weight: Joi.number(),
+      package_vol_weight: Joi.number(),
+      error_rate: Joi.number().required(),
+      channels: Joi.array()
+        .items(ServiceabilityPlatformModel.Channel())
+        .required(),
+      package_type: Joi.string().allow("").required(),
+      size: Joi.string().allow("").required(),
+      track_inventory: Joi.boolean(),
       rules: Joi.array().items(
         ServiceabilityPlatformModel.PackageMaterialRule()
       ),
       store_ids: Joi.array().items(Joi.number()).required(),
-      weight: Joi.number().required(),
-      error_rate: Joi.number().required(),
-      package_type: Joi.string().allow("").required(),
-      size: Joi.string().allow("").required(),
+      mp_stores: Joi.array().items(
+        ServiceabilityPlatformModel.PackageMpStores()
+      ),
       media: Joi.array().items(Joi.string().allow("")),
-      channels: Joi.array()
-        .items(ServiceabilityPlatformModel.Channel())
-        .required(),
-      track_inventory: Joi.boolean(),
       status: Joi.string().allow("").required(),
-      max_weight: Joi.number(),
-      package_vol_weight: Joi.number(),
-      auto_calculate: Joi.boolean(),
     });
   }
 
   /** @returns {PackageMaterialResponse} */
   static PackageMaterialResponse() {
     return Joi.object({
+      company_id: Joi.number(),
       name: Joi.string().allow("").required(),
       id: Joi.string().allow(""),
       item_id: Joi.number(),
@@ -3268,10 +4355,14 @@ class ServiceabilityPlatformModel {
         .items(ServiceabilityPlatformModel.Channel())
         .required(),
       track_inventory: Joi.boolean(),
+      is_active: Joi.boolean(),
       status: Joi.string().allow("").required(),
       max_weight: Joi.number(),
       package_vol_weight: Joi.number(),
       auto_calculate: Joi.boolean(),
+      mp_stores: Joi.array().items(
+        ServiceabilityPlatformModel.PackageMpStores()
+      ),
     });
   }
 
@@ -3284,30 +4375,74 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {PackageMpStores} */
+  static PackageMpStores() {
+    return Joi.object({
+      app_name: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
+      store_ids: Joi.array().items(Joi.number()),
+      store_data: Joi.any(),
+    });
+  }
+
+  /** @returns {PackageRuleRequest} */
+  static PackageRuleRequest() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      company_id: Joi.string().allow("").required(),
+      category_id: ServiceabilityPlatformModel.PackageRuleCategory(),
+      product_id: ServiceabilityPlatformModel.PackageRuleProduct(),
+      product_tag: ServiceabilityPlatformModel.PackageRuleProductTag(),
+      department_id: ServiceabilityPlatformModel.PackageRuleDepartmentId(),
+      product_attributes: ServiceabilityPlatformModel.PackageRuleProductAttributes(),
+      type: Joi.string().allow("").required(),
+      is_active: Joi.boolean(),
+    });
+  }
+
   /** @returns {PackageRule} */
   static PackageRule() {
     return Joi.object({
       name: Joi.string().allow("").required(),
-      company_id: Joi.number().required(),
-      type: Joi.string().allow("").required(),
-      is_active: Joi.boolean(),
-      product_tag: ServiceabilityPlatformModel.PackageRuleProductTag(),
-      product_id: ServiceabilityPlatformModel.PackageRuleProduct(),
-      category_id: ServiceabilityPlatformModel.PackageRuleCategory(),
+      id: Joi.string().allow(""),
+      item_id: Joi.number(),
+      width: Joi.number(),
+      height: Joi.number(),
+      length: Joi.number(),
+      rules: Joi.array().items(
+        ServiceabilityPlatformModel.PackageMaterialRule()
+      ),
+      store_ids: Joi.array().items(Joi.number()),
+      weight: Joi.number(),
+      error_rate: Joi.number(),
+      package_type: Joi.string().allow(""),
+      size: Joi.string().allow(""),
+      media: Joi.array().items(Joi.string().allow("")),
+      channels: Joi.array().items(ServiceabilityPlatformModel.Channel()),
+      track_inventory: Joi.boolean(),
+      status: Joi.string().allow(""),
+      max_weight: Joi.number(),
+      package_vol_weight: Joi.number(),
+      auto_calculate: Joi.boolean(),
+      mp_stores: Joi.array().items(
+        ServiceabilityPlatformModel.PackageMpStores()
+      ),
     });
   }
 
   /** @returns {PackageRuleResponse} */
   static PackageRuleResponse() {
     return Joi.object({
-      id: Joi.string().allow(""),
-      name: Joi.string().allow("").required(),
-      company_id: Joi.number().required(),
-      type: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
+      company_id: Joi.number().required(),
       product_tag: ServiceabilityPlatformModel.PackageRuleProductTag(),
-      product_id: ServiceabilityPlatformModel.PackageRuleProduct(),
+      department_id: ServiceabilityPlatformModel.PackageRuleDepartmentId(),
+      product_attributes: ServiceabilityPlatformModel.PackageRuleProductAttributes(),
+      name: Joi.string().allow("").required(),
       category_id: ServiceabilityPlatformModel.PackageRuleCategory(),
+      product_id: ServiceabilityPlatformModel.PackageRuleProduct(),
+      type: Joi.string().allow("").required(),
+      id: Joi.string().allow(""),
     });
   }
 
@@ -3322,7 +4457,9 @@ class ServiceabilityPlatformModel {
   /** @returns {PackageMaterialRuleList} */
   static PackageMaterialRuleList() {
     return Joi.object({
-      items: ServiceabilityPlatformModel.PackageRuleResponse(),
+      items: Joi.array().items(
+        ServiceabilityPlatformModel.PackageRuleResponse()
+      ),
       page: ServiceabilityPlatformModel.Page(),
     });
   }
@@ -3330,7 +4467,7 @@ class ServiceabilityPlatformModel {
   /** @returns {PackageMaterialList} */
   static PackageMaterialList() {
     return Joi.object({
-      items: ServiceabilityPlatformModel.PackageMaterialResponse(),
+      items: Joi.any(),
       page: ServiceabilityPlatformModel.Page(),
     });
   }
@@ -3356,6 +4493,20 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {PackageRuleProductAttributes} */
+  static PackageRuleProductAttributes() {
+    return Joi.object({
+      includes: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {PackageRuleDepartmentId} */
+  static PackageRuleDepartmentId() {
+    return Joi.object({
+      includes: Joi.array().items(Joi.number()),
+    });
+  }
+
   /** @returns {PackageMaterialRuleQuantity} */
   static PackageMaterialRuleQuantity() {
     return Joi.object({
@@ -3376,6 +4527,32 @@ class ServiceabilityPlatformModel {
   static RulePriorityResponse() {
     return Joi.object({
       success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CompanySelfShip} */
+  static CompanySelfShip() {
+    return Joi.object({
+      is_active: Joi.boolean().required(),
+      tat: Joi.number().required(),
+      unit: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ArithmeticOperationsV2} */
+  static ArithmeticOperationsV2() {
+    return Joi.object({
+      lt: Joi.string().allow(""),
+      gt: Joi.string().allow(""),
+      lte: Joi.string().allow(""),
+      gte: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CompanyConfigurationShema} */
+  static CompanyConfigurationShema() {
+    return Joi.object({
+      sort: Joi.array().items(Joi.string().allow("")),
     });
   }
 }

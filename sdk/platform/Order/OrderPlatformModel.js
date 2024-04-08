@@ -2029,12 +2029,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {string} [type]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
  * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
- * @property {number} [total]
- * @property {number} [size]
  * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -6087,12 +6088,13 @@ class OrderPlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      type: Joi.string().allow("").allow(null),
-      has_previous: Joi.boolean().allow(null),
-      has_next: Joi.boolean().allow(null),
-      total: Joi.number().allow(null),
-      size: Joi.number().allow(null),
-      current: Joi.number().allow(null),
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
     });
   }
 

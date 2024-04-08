@@ -89,6 +89,7 @@ export = CartApplicationModel;
  */
 /**
  * @typedef AppliedPromotion
+ * @property {string} [id] - Promotion id of current promotion
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {number} [original_article_quantity]
@@ -1422,6 +1423,10 @@ type Ownership2 = {
 /** @returns {AppliedPromotion} */
 declare function AppliedPromotion(): AppliedPromotion;
 type AppliedPromotion = {
+    /**
+     * - Promotion id of current promotion
+     */
+    id?: string;
     /**
      * - Quantity of article on which
      * promotion is applicable

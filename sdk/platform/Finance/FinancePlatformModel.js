@@ -37,11 +37,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_count]
- * @property {number} [current]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
  * @property {number} [size]
- * @property {string} [type]
  */
 
 /**
@@ -921,11 +923,13 @@ class FinancePlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      item_count: Joi.number(),
-      current: Joi.number(),
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
       has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
       size: Joi.number(),
-      type: Joi.string().allow(""),
     });
   }
 

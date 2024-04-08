@@ -31,11 +31,13 @@ export = FinancePlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_count]
- * @property {number} [current]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
  * @property {number} [size]
- * @property {string} [type]
  */
 /**
  * @typedef Currency
@@ -797,11 +799,13 @@ type GenerateReportReq = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_count?: number;
-    current?: number;
+    item_total?: number;
+    next_id?: string;
+    has_previous?: boolean;
     has_next?: boolean;
+    current?: number;
+    type: string;
     size?: number;
-    type?: string;
 };
 /** @returns {Currency} */
 declare function Currency(): Currency;

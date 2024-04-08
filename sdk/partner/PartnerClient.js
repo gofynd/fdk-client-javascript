@@ -6,6 +6,8 @@ const Lead = require("./Lead/LeadPartnerClient");
 
 const Logistics = require("./Logistics/LogisticsPartnerClient");
 
+const Payment = require("./Payment/PaymentPartnerClient");
+
 const Theme = require("./Theme/ThemePartnerClient");
 
 const Webhook = require("./Webhook/WebhookPartnerClient");
@@ -30,6 +32,7 @@ class PartnerClient {
     this.fileStorage = new FileStorage(config);
     this.lead = new Lead(config);
     this.logistics = new Logistics(config);
+    this.payment = new Payment(config);
     this.theme = new Theme(config);
     this.webhook = new Webhook(config);
   }

@@ -3,6 +3,11 @@ const Joi = require("joi");
 const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
+ * @typedef CreateAppPushtokenParam
+ * @property {CommunicationPlatformModel.PushtokenReq} body
+ */
+
+/**
  * @typedef CreateAudienceParam
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
@@ -10,6 +15,11 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 /**
  * @typedef CreateCampaignParam
  * @property {CommunicationPlatformModel.CampaignReq} body
+ */
+
+/**
+ * @typedef CreateCommunicationLogsParam
+ * @property {CommunicationPlatformModel.Log} body
  */
 
 /**
@@ -51,6 +61,11 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @typedef DeleteAudienceByIdParam
  * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.AudienceReq} body
+ */
+
+/**
+ * @typedef DeleteCampaignByIdParam
+ * @property {string} id - Event subscription id
  */
 
 /**
@@ -119,6 +134,8 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {string} [sort] - To sort based on created_at
  * @property {Object} [query]
  */
+
+/** @typedef GetDefaultEmailProvidersParam */
 
 /** @typedef GetDefaultSmsProvidersParam */
 
@@ -267,6 +284,11 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
+ * @typedef SendEngineCommunicationSynchronouslyParam
+ * @property {CommunicationPlatformModel.EngineRequest} body
+ */
+
+/**
  * @typedef SendOtpParam
  * @property {boolean} [ci] - Common Information
  * @property {CommunicationPlatformModel.SendOtpCommsReq} body
@@ -280,6 +302,11 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 /**
  * @typedef UpdateAppProvidersParam
  * @property {CommunicationPlatformModel.AppProviderReq} body
+ */
+
+/**
+ * @typedef UpdateAppProvidersGlobalProviderParam
+ * @property {CommunicationPlatformModel.AppProvidersGlobalProviderRequest} body
  */
 
 /**
@@ -306,7 +333,10 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
 
-/** @typedef UpdateOtpConfigurationParam */
+/**
+ * @typedef UpdateOtpConfigurationParam
+ * @property {CommunicationPlatformModel.OtpConfiguration} body
+ */
 
 /**
  * @typedef UpdateSmsProviderByIdParam
@@ -326,6 +356,13 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 class CommunicationPlatformApplicationValidator {
+  /** @returns {CreateAppPushtokenParam} */
+  static createAppPushtoken() {
+    return Joi.object({
+      body: CommunicationPlatformModel.PushtokenReq().required(),
+    }).required();
+  }
+
   /** @returns {CreateAudienceParam} */
   static createAudience() {
     return Joi.object({
@@ -337,6 +374,13 @@ class CommunicationPlatformApplicationValidator {
   static createCampaign() {
     return Joi.object({
       body: CommunicationPlatformModel.CampaignReq().required(),
+    }).required();
+  }
+
+  /** @returns {CreateCommunicationLogsParam} */
+  static createCommunicationLogs() {
+    return Joi.object({
+      body: CommunicationPlatformModel.Log().required(),
     }).required();
   }
 
@@ -394,6 +438,13 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: CommunicationPlatformModel.AudienceReq().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteCampaignByIdParam} */
+  static deleteCampaignById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -487,6 +538,11 @@ class CommunicationPlatformApplicationValidator {
       sort: Joi.string().allow(""),
       query: Joi.any(),
     }).required();
+  }
+
+  /** @returns {GetDefaultEmailProvidersParam} */
+  static getDefaultEmailProviders() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetDefaultSmsProvidersParam} */
@@ -698,6 +754,13 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {SendEngineCommunicationSynchronouslyParam} */
+  static sendEngineCommunicationSynchronously() {
+    return Joi.object({
+      body: CommunicationPlatformModel.EngineRequest().required(),
+    }).required();
+  }
+
   /** @returns {SendOtpParam} */
   static sendOtp() {
     return Joi.object({
@@ -717,6 +780,13 @@ class CommunicationPlatformApplicationValidator {
   static updateAppProviders() {
     return Joi.object({
       body: CommunicationPlatformModel.AppProviderReq().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateAppProvidersGlobalProviderParam} */
+  static updateAppProvidersGlobalProvider() {
+    return Joi.object({
+      body: CommunicationPlatformModel.AppProvidersGlobalProviderRequest().required(),
     }).required();
   }
 
@@ -754,7 +824,9 @@ class CommunicationPlatformApplicationValidator {
 
   /** @returns {UpdateOtpConfigurationParam} */
   static updateOtpConfiguration() {
-    return Joi.object({}).required();
+    return Joi.object({
+      body: CommunicationPlatformModel.OtpConfiguration().required(),
+    }).required();
   }
 
   /** @returns {UpdateSmsProviderByIdParam} */

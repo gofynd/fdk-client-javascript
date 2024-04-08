@@ -1,13 +1,19 @@
 export = LogisticApplicationValidator;
+/**
+ * @typedef CreateShipmentsParam
+ * @property {number} companyId - The ID of the company.
+ * @property {string} applicationId - The ID of the application.
+ * @property {LogisticApplicationModel.GenerateShipmentsRequest} body
+ */
 /** @typedef GetAllCountriesParam */
 /**
  * @typedef GetCountriesParam
- * @property {boolean} [onboarding] - Only fetch countries which allowed for
+ * @property {boolean} [onboard] - Only fetch countries which allowed for
  *   onboard on Platform.
  * @property {number} [pageNo] - Page number.
  * @property {number} [pageSize] - Page size.
  * @property {string} [q] - Search.
- * @property {string} [hierarchy] - Get countries with only certain hierarchy present..
+ * @property {string} [hierarchy] - Hierarchy.
  */
 /**
  * @typedef GetCountryParam
@@ -41,8 +47,8 @@ export = LogisticApplicationValidator;
  * @property {number} [pageNo] - Page number.
  * @property {number} [pageSize] - Page size.
  * @property {string} [q] - Search.
- * @property {string} [name] - Search with full name.
- * @property {string} [namesList] - Search with multiple full names
+ * @property {string} [name] - Search for localities. Either provide a full name
+ *   or a search term.
  */
 /**
  * @typedef GetLocalityParam
@@ -57,41 +63,14 @@ export = LogisticApplicationValidator;
  * @property {string} [city] - A `city` contains a specific value of the city.
  */
 /**
- * @typedef GetLocationsParam
- * @property {string} xApplicationId - A `x-application-id` is a unique
- *   identifier for a particular sale channel.
- * @property {string} xApplicationData - A `x-application-data` is a unique
- *   identifier for a particular sale channel.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country `iso2` code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
- * @property {number} [pincode] - A `pincode` contains a specific value of the city.
- * @property {string} [sector] - A `sector` contains a specific value of the city.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
- */
-/**
- * @typedef GetOptimalLocationsParam
- * @property {LogisticApplicationModel.ReAssignStoreRequest} body
- */
-/**
- * @typedef GetPincodeZonesParam
- * @property {LogisticApplicationModel.GetZoneFromPincodeViewRequest} body
- */
-/**
  * @typedef GetZonesParam
  * @property {number} companyId - The unique identifier for the company.
  * @property {string} applicationId - A `application_id` is a unique identifier
  *   for a particular sale channel.
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
  * @property {number} [pageSize] - Defines the number of items displayed per page.
- * @property {string} [zoneIds] - Defines the specific zones with the given ids
- *   to be displayed.
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
  * @property {string} [q] - Search with name as a free text.
- * @property {string} [country] - Name of the country.
  * @property {string} [countryIsoCode] - ISO2 code of the country.
  * @property {string} [pincode] - PIN Code of the country.
  * @property {string} [state] - State of the country.
@@ -105,6 +84,8 @@ export = LogisticApplicationValidator;
  * @property {LogisticApplicationModel.ValidateAddressRequest} body
  */
 declare class LogisticApplicationValidator {
+    /** @returns {CreateShipmentsParam} */
+    static createShipments(): CreateShipmentsParam;
     /** @returns {GetAllCountriesParam} */
     static getAllCountries(): any;
     /** @returns {GetCountriesParam} */
@@ -117,26 +98,31 @@ declare class LogisticApplicationValidator {
     static getLocalities(): GetLocalitiesParam;
     /** @returns {GetLocalityParam} */
     static getLocality(): GetLocalityParam;
-    /** @returns {GetLocationsParam} */
-    static getLocations(): GetLocationsParam;
-    /** @returns {GetOptimalLocationsParam} */
-    static getOptimalLocations(): GetOptimalLocationsParam;
-    /** @returns {GetPincodeZonesParam} */
-    static getPincodeZones(): GetPincodeZonesParam;
     /** @returns {GetZonesParam} */
     static getZones(): GetZonesParam;
     /** @returns {ValidateAddressParam} */
     static validateAddress(): ValidateAddressParam;
 }
 declare namespace LogisticApplicationValidator {
-    export { GetAllCountriesParam, GetCountriesParam, GetCountryParam, GetGeoAreasParam, GetLocalitiesParam, GetLocalityParam, GetLocationsParam, GetOptimalLocationsParam, GetPincodeZonesParam, GetZonesParam, ValidateAddressParam };
+    export { CreateShipmentsParam, GetAllCountriesParam, GetCountriesParam, GetCountryParam, GetGeoAreasParam, GetLocalitiesParam, GetLocalityParam, GetZonesParam, ValidateAddressParam };
 }
+type CreateShipmentsParam = {
+    /**
+     * - The ID of the company.
+     */
+    companyId: number;
+    /**
+     * - The ID of the application.
+     */
+    applicationId: string;
+    body: LogisticApplicationModel.GenerateShipmentsRequest;
+};
 type GetCountriesParam = {
     /**
      * - Only fetch countries which allowed for
      * onboard on Platform.
      */
-    onboarding?: boolean;
+    onboard?: boolean;
     /**
      * - Page number.
      */
@@ -150,7 +136,7 @@ type GetCountriesParam = {
      */
     q?: string;
     /**
-     * - Get countries with only certain hierarchy present..
+     * - Hierarchy.
      */
     hierarchy?: string;
 };
@@ -238,13 +224,10 @@ type GetLocalitiesParam = {
      */
     q?: string;
     /**
-     * - Search with full name.
+     * - Search for localities. Either provide a full name
+     * or a search term.
      */
     name?: string;
-    /**
-     * - Search with multiple full names
-     */
-    namesList?: string;
 };
 type GetLocalityParam = {
     /**
@@ -272,54 +255,6 @@ type GetLocalityParam = {
      */
     city?: string;
 };
-type GetLocationsParam = {
-    /**
-     * - A `x-application-id` is a unique
-     * identifier for a particular sale channel.
-     */
-    xApplicationId: string;
-    /**
-     * - A `x-application-data` is a unique
-     * identifier for a particular sale channel.
-     */
-    xApplicationData: string;
-    /**
-     * - A `country` contains a specific value of the
-     * country `iso2` code.
-     */
-    country?: string;
-    /**
-     * - A `state` contains a specific value of the
-     * state, province.
-     */
-    state?: string;
-    /**
-     * - A `city` contains a specific value of the city.
-     */
-    city?: string;
-    /**
-     * - A `pincode` contains a specific value of the city.
-     */
-    pincode?: number;
-    /**
-     * - A `sector` contains a specific value of the city.
-     */
-    sector?: string;
-    /**
-     * - Page number.
-     */
-    pageNo?: number;
-    /**
-     * - Page size.
-     */
-    pageSize?: number;
-};
-type GetOptimalLocationsParam = {
-    body: LogisticApplicationModel.ReAssignStoreRequest;
-};
-type GetPincodeZonesParam = {
-    body: LogisticApplicationModel.GetZoneFromPincodeViewRequest;
-};
 type GetZonesParam = {
     /**
      * - The unique identifier for the company.
@@ -339,11 +274,6 @@ type GetZonesParam = {
      */
     pageSize?: number;
     /**
-     * - Defines the specific zones with the given ids
-     * to be displayed.
-     */
-    zoneIds?: string;
-    /**
      * - Status of Zone (either active or inactive)
      */
     isActive?: boolean;
@@ -351,10 +281,6 @@ type GetZonesParam = {
      * - Search with name as a free text.
      */
     q?: string;
-    /**
-     * - Name of the country.
-     */
-    country?: string;
     /**
      * - ISO2 code of the country.
      */

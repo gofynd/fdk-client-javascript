@@ -180,6 +180,11 @@ export = PaymentApplicationModel;
  * @property {string} [message]
  * @property {number} [amount]
  * @property {string} [user_id]
+ * @property {string} [customer_mobile_number]
+ * @property {number} [total_credited_balance]
+ * @property {boolean} [is_cn_locked]
+ * @property {number} [total_locked_amount]
+ * @property {number} [allowed_redemption_amount]
  */
 /**
  * @typedef ChargeCustomerRequest
@@ -700,16 +705,16 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} account_no - Account NUmber of the Account Holder
+ * @property {string} [account_no] - Account NUmber of the Account Holder
  * @property {string} [address] - Address of the User
  * @property {string} [mobile] - Moblie Number of the User
- * @property {string} bank_name - Bank Name of the Account
+ * @property {string} [bank_name] - Bank Name of the Account
  * @property {string} [comment] - Remarks added by The user
- * @property {string} ifsc_code - Ifsc Code of the Account
+ * @property {string} [ifsc_code] - Ifsc Code of the Account
  * @property {string} [email]
  * @property {string} [vpa]
- * @property {string} branch_name - Branch Name of the Account
- * @property {string} account_holder - Name of the Account Holder
+ * @property {string} [branch_name] - Branch Name of the Account
+ * @property {string} [account_holder] - Name of the Account Holder
  * @property {string} [wallet]
  * @property {string} [beneficiary_id]
  */
@@ -1284,6 +1289,7 @@ export = PaymentApplicationModel;
  * @property {string} [name] - Name of the Transfer Mode.
  * @property {string} [utr] - Unique Transaction Reference of the refund.
  * @property {string} [notes] - Any optional notes regarding the transaction.
+ * @property {string} [billing_employee_code] - Billing Employee Code
  */
 /**
  * @typedef ShipmentRefundRequest
@@ -1313,6 +1319,9 @@ export = PaymentApplicationModel;
  * @typedef RefundOptionsPriority
  * @property {string[]} [payment_modes]
  * @property {RefundItem[]} [items]
+ * @property {string[]} [payment_gateways] - List of all offline payment gateways.
+ * @property {string[]} [offline_refund_collect_type] - List of all offline
+ *   Refund Collect Types.
  */
 /**
  * @typedef RefundItem
@@ -2036,6 +2045,11 @@ type ValidateCustomerData = {
     message?: string;
     amount?: number;
     user_id?: string;
+    customer_mobile_number?: string;
+    total_credited_balance?: number;
+    is_cn_locked?: boolean;
+    total_locked_amount?: number;
+    allowed_redemption_amount?: number;
 };
 /** @returns {ChargeCustomerRequest} */
 declare function ChargeCustomerRequest(): ChargeCustomerRequest;
@@ -3323,7 +3337,7 @@ type BeneficiaryModeDetails = {
     /**
      * - Account NUmber of the Account Holder
      */
-    account_no: string;
+    account_no?: string;
     /**
      * - Address of the User
      */
@@ -3335,7 +3349,7 @@ type BeneficiaryModeDetails = {
     /**
      * - Bank Name of the Account
      */
-    bank_name: string;
+    bank_name?: string;
     /**
      * - Remarks added by The user
      */
@@ -3343,17 +3357,17 @@ type BeneficiaryModeDetails = {
     /**
      * - Ifsc Code of the Account
      */
-    ifsc_code: string;
+    ifsc_code?: string;
     email?: string;
     vpa?: string;
     /**
      * - Branch Name of the Account
      */
-    branch_name: string;
+    branch_name?: string;
     /**
      * - Name of the Account Holder
      */
-    account_holder: string;
+    account_holder?: string;
     wallet?: string;
     beneficiary_id?: string;
 };
@@ -4812,6 +4826,10 @@ type ShipmentRefundRequestMeta = {
      * - Any optional notes regarding the transaction.
      */
     notes?: string;
+    /**
+     * - Billing Employee Code
+     */
+    billing_employee_code?: string;
 };
 /** @returns {ShipmentRefundRequest} */
 declare function ShipmentRefundRequest(): ShipmentRefundRequest;
@@ -4878,6 +4896,15 @@ declare function RefundOptionsPriority(): RefundOptionsPriority;
 type RefundOptionsPriority = {
     payment_modes?: string[];
     items?: RefundItem[];
+    /**
+     * - List of all offline payment gateways.
+     */
+    payment_gateways?: string[];
+    /**
+     * - List of all offline
+     * Refund Collect Types.
+     */
+    offline_refund_collect_type?: string[];
 };
 /** @returns {RefundItem} */
 declare function RefundItem(): RefundItem;

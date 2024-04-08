@@ -158,6 +158,17 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef APIError
+ * @property {string} [code]
+ * @property {string} [message]
+ * @property {string} [info] - Error code description link
+ * @property {string} [request_id]
+ * @property {string} [error]
+ * @property {Object} [meta]
+ * @property {boolean} [authenticated]
+ */
+
+/**
  * @typedef SessionListResponseInfo
  * @property {string} [session_id]
  * @property {string} [user_agent]
@@ -575,17 +586,6 @@ const Joi = require("joi");
  * @property {boolean} [verified] - Is the email verified
  */
 
-/**
- * @typedef APIError
- * @property {string} [code]
- * @property {string} [message]
- * @property {string} [info] - Error code description link
- * @property {string} [request_id]
- * @property {string} [error]
- * @property {Object} [meta]
- * @property {boolean} [authenticated]
- */
-
 class UserPlatformModel {
   /** @returns {SuccessMessageResponse} */
   static SuccessMessageResponse() {
@@ -780,6 +780,19 @@ class UserPlatformModel {
     return Joi.object({
       user_id: Joi.string().allow(""),
       session_ids: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {APIError} */
+  static APIError() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      info: Joi.string().allow(""),
+      request_id: Joi.string().allow(""),
+      error: Joi.string().allow(""),
+      meta: Joi.any(),
+      authenticated: Joi.boolean(),
     });
   }
 
@@ -1288,19 +1301,6 @@ class UserPlatformModel {
       active: Joi.boolean(),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
-    });
-  }
-
-  /** @returns {APIError} */
-  static APIError() {
-    return Joi.object({
-      code: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      info: Joi.string().allow(""),
-      request_id: Joi.string().allow(""),
-      error: Joi.string().allow(""),
-      meta: Joi.any(),
-      authenticated: Joi.boolean(),
     });
   }
 }

@@ -1798,12 +1798,13 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Page
- * @property {string} [type]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
  * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
- * @property {number} [total]
- * @property {number} [size]
  * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef BagReasonMeta
@@ -5563,12 +5564,13 @@ type PageInfo = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    type?: string;
+    item_total?: number;
+    next_id?: string;
     has_previous?: boolean;
     has_next?: boolean;
-    total?: number;
-    size?: number;
     current?: number;
+    type: string;
+    size?: number;
 };
 /** @returns {BagReasonMeta} */
 declare function BagReasonMeta(): BagReasonMeta;

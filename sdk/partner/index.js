@@ -10,6 +10,8 @@ module.exports = {
 
     LogisticsPartnerModel: require("./Logistics/LogisticsPartnerModel"),
 
+    PaymentPartnerModel: require("./Payment/PaymentPartnerModel"),
+
     ThemePartnerModel: require("./Theme/ThemePartnerModel"),
 
     WebhookPartnerModel: require("./Webhook/WebhookPartnerModel"),

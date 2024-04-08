@@ -223,7 +223,7 @@ export = LeadPartnerModel;
  * @property {Object} value - Data of the history event
  * @property {string} ticket_id - Readable ticket number
  * @property {CreatedOn} [created_on]
- * @property {string} [created_by] - User who created the history event
+ * @property {Object} [created_by] - User who created the history event
  * @property {string} _id - Unique identifier of the history event
  * @property {string} [updated_at] - Time of last update of the history event
  * @property {string} [created_at] - Time of creation of the history event
@@ -764,7 +764,7 @@ type TicketHistory = {
     /**
      * - User who created the history event
      */
-    created_by?: string;
+    created_by?: any;
     /**
      * - Unique identifier of the history event
      */

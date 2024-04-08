@@ -1,15 +1,29 @@
 const { PlatformConfig, PlatformClient } = require("../../index.js");
 require("dotenv").config();
+const { fdkAxios } = require("../../sdk/common/AxiosHelper.js");
+const { convertStringToBase64 } = require("../../sdk/common/utils.js");
+const MockAdapter = require("axios-mock-adapter");
+
+const mock = new MockAdapter(fdkAxios);
 let platformClient;
 
 beforeAll(async () => {
   try {
+    const domain = "https://api.fyndx1.de";
+    const companyId = 1;
+    const apiKey = "64dcc7db66634407f85c7c0e";
+    const secret = "T_DJ3T_uR6Zl-O1";
     let platformConfig = new PlatformConfig({
-      companyId: 1,
-      domain: "https://api.fyndx1.de",
-      apiKey: process.env.API_KEY,
-      apiSecret: process.env.API_SECRET,
+      companyId: companyId,
+      domain: domain,
+      apiKey: apiKey,
+      apiSecret: secret,
     });
+    mock
+      .onPost(
+        `${domain}/service/panel/authentication/v1.0/company/${companyId}/oauth/token`
+      )
+      .reply(200, convertStringToBase64(`${apiKey}:${secret}`));
     const token = await platformConfig.oauthClient.getAccesstokenObj({
       grant_type: "client_credentials",
     });
@@ -23,6 +37,16 @@ beforeAll(async () => {
         location: { longitude: "", latitude: "" },
       },
     });
+    mock
+      .onGet(
+        `${domain}/service/platform/lead/v1.0/company/${companyId}/general-config`
+      )
+      .reply(200, { success: "true" });
+    mock
+      .onGet(
+        `${domain}/service/common/configuration/v1.0/application/search-application`
+      )
+      .reply(200, { success: "true" });
   } catch (err) {
     console.log(err);
   }

@@ -1442,8 +1442,6 @@ const Joi = require("joi");
 
 /**
  * @typedef PricingStrategy
- * @property {boolean} [is_active] - Indicates whether the pricing strategy is
- *   active or not active
  * @property {string} [value] - Indicates the pricing strategy value.
  */
 
@@ -1490,14 +1488,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {string} type - Page type
- * @property {number} [size] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {number} [current] - Current page number
- * @property {boolean} [has_next] - Next page is present or not
- * @property {number} [item_total] - Total number of items to retrieve
- * @property {string} [next_id] - Next page ID
- * @property {boolean} [has_previous] - Previous page is present or not
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -3320,7 +3317,6 @@ class ConfigurationPlatformModel {
   /** @returns {PricingStrategy} */
   static PricingStrategy() {
     return Joi.object({
-      is_active: Joi.boolean(),
       value: Joi.string().allow(""),
     });
   }
@@ -3376,13 +3372,13 @@ class ConfigurationPlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      type: Joi.string().allow("").required(),
-      size: Joi.number(),
-      current: Joi.number(),
-      has_next: Joi.boolean(),
       item_total: Joi.number(),
       next_id: Joi.string().allow(""),
       has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
     });
   }
 

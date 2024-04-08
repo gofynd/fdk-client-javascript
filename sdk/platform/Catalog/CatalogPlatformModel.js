@@ -65,7 +65,7 @@ const Joi = require("joi");
 /**
  * @typedef GetQueryFiltersKeysResponse
  * @property {ProductFiltersKeysOnly[]} [filters]
- * @property {Object} operators
+ * @property {Object} [operators]
  * @property {ProductSortOn[]} [sort_on]
  */
 
@@ -365,21 +365,9 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
- * @property {string} [type]
- */
-
-/**
- * @typedef ActionProperties
- * @property {string[]} [category]
- * @property {string[]} [department]
- * @property {string[]} [collection]
- */
-
-/**
- * @typedef ActionPage
- * @property {ActionProperties} [query]
- * @property {string} [type]
+ * @property {ActionPage} [popup]
  */
 
 /**
@@ -1935,6 +1923,7 @@ const Joi = require("joi");
  * @property {Object} [variants]
  * @property {VerifiedBy} [verified_by]
  * @property {string} [verified_on]
+ * @property {string[]} [store_id_list]
  */
 
 /**
@@ -3480,6 +3469,8 @@ const Joi = require("joi");
  * @property {boolean} [is_gift]
  * @property {Object} [moq]
  * @property {Object} [seo]
+ * @property {Object} [_custom_json] - Custom JSON data for the item
+ * @property {MetaFields[]} [_custom_meta] - Custom meta fields for the item
  */
 
 /**
@@ -3493,13 +3484,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
  * @property {number} [item_total]
  * @property {string} [next_id]
- * @property {number} [size]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
  * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -5545,6 +5536,63 @@ const Joi = require("joi");
  * @property {number} [code]
  */
 
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
+
 class CatalogPlatformModel {
   /** @returns {StoreTagsResponseSchema} */
   static StoreTagsResponseSchema() {
@@ -5628,7 +5676,7 @@ class CatalogPlatformModel {
   static GetQueryFiltersKeysResponse() {
     return Joi.object({
       filters: Joi.array().items(CatalogPlatformModel.ProductFiltersKeysOnly()),
-      operators: Joi.object().pattern(/\S/, Joi.string().allow("")).required(),
+      operators: Joi.object().pattern(/\S/, Joi.string().allow("")),
       sort_on: Joi.array().items(CatalogPlatformModel.ProductSortOn()),
     });
   }
@@ -6018,25 +6066,9 @@ class CatalogPlatformModel {
   /** @returns {Action} */
   static Action() {
     return Joi.object({
+      type: Joi.string().allow(""),
       page: CatalogPlatformModel.ActionPage(),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ActionProperties} */
-  static ActionProperties() {
-    return Joi.object({
-      category: Joi.array().items(Joi.string().allow("")),
-      department: Joi.array().items(Joi.string().allow("")),
-      collection: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {ActionPage} */
-  static ActionPage() {
-    return Joi.object({
-      query: CatalogPlatformModel.ActionProperties(),
-      type: Joi.string().allow(""),
+      popup: CatalogPlatformModel.ActionPage(),
     });
   }
 
@@ -7941,6 +7973,7 @@ class CatalogPlatformModel {
       variants: Joi.any(),
       verified_by: CatalogPlatformModel.VerifiedBy(),
       verified_on: Joi.string().allow(""),
+      store_id_list: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -9797,6 +9830,8 @@ class CatalogPlatformModel {
       is_gift: Joi.boolean(),
       moq: Joi.any(),
       seo: Joi.any(),
+      _custom_json: Joi.any(),
+      _custom_meta: Joi.array().items(CatalogPlatformModel.MetaFields()),
     });
   }
 
@@ -9814,13 +9849,13 @@ class CatalogPlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
       item_total: Joi.number(),
       next_id: Joi.string().allow(""),
-      size: Joi.number(),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
       type: Joi.string().allow("").required(),
+      size: Joi.number(),
     });
   }
 
@@ -12307,6 +12342,123 @@ class CatalogPlatformModel {
       error: Joi.any(),
       code: Joi.number(),
     });
+  }
+
+  /** @returns {ActionPage} */
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      query: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      url: Joi.string().allow(""),
+      type: CatalogPlatformModel.PageType().required(),
+    });
+  }
+
+  /**
+   * Enum: PageType Used By: Catalog
+   *
+   * @returns {PageType}
+   */
+  static PageType() {
+    return Joi.string().valid(
+      "about-us",
+
+      "addresses",
+
+      "blog",
+
+      "brands",
+
+      "cards",
+
+      "cart",
+
+      "categories",
+
+      "brand",
+
+      "category",
+
+      "collection",
+
+      "collections",
+
+      "contact-us",
+
+      "external",
+
+      "faq",
+
+      "freshchat",
+
+      "home",
+
+      "notification-settings",
+
+      "orders",
+
+      "page",
+
+      "policy",
+
+      "product",
+
+      "product-request",
+
+      "products",
+
+      "profile",
+
+      "profile-order-shipment",
+
+      "profile-basic",
+
+      "profile-company",
+
+      "profile-emails",
+
+      "profile-phones",
+
+      "rate-us",
+
+      "refer-earn",
+
+      "settings",
+
+      "shared-cart",
+
+      "tnc",
+
+      "track-order",
+
+      "wishlist",
+
+      "sections",
+
+      "form",
+
+      "cart-delivery",
+
+      "cart-payment",
+
+      "cart-review",
+
+      "login",
+
+      "register",
+
+      "shipping-policy",
+
+      "return-policy",
+
+      "order-status"
+    );
   }
 }
 module.exports = CatalogPlatformModel;

@@ -8,8 +8,8 @@ declare class OAuthClient extends BaseOAuthClient {
         grant_type: any;
         refresh_token: any;
         code: any;
-    }): Promise<any>;
-    getOfflineAccessToken(scopes: any, code: any): Promise<any>;
-    getOfflineAccessTokenObj(scopes: any, code: any): Promise<any>;
+    }): Promise<import("sdk/node_modules/axios").AxiosResponse<any, any>>;
+    getOfflineAccessToken(scopes: any, code: any): Promise<import("sdk/node_modules/axios").AxiosResponse<any, any>>;
+    getOfflineAccessTokenObj(scopes: any, code: any): Promise<import("sdk/node_modules/axios").AxiosResponse<any, any>>;
 }
 import BaseOAuthClient = require("sdk/output/javascript/code/sdk/common/BaseOAuthClient");

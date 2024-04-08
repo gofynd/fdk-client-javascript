@@ -201,6 +201,11 @@ const Joi = require("joi");
  * @property {string} [message]
  * @property {number} [amount]
  * @property {string} [user_id]
+ * @property {string} [customer_mobile_number]
+ * @property {number} [total_credited_balance]
+ * @property {boolean} [is_cn_locked]
+ * @property {number} [total_locked_amount]
+ * @property {number} [allowed_redemption_amount]
  */
 
 /**
@@ -780,16 +785,16 @@ const Joi = require("joi");
 
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} account_no - Account NUmber of the Account Holder
+ * @property {string} [account_no] - Account NUmber of the Account Holder
  * @property {string} [address] - Address of the User
  * @property {string} [mobile] - Moblie Number of the User
- * @property {string} bank_name - Bank Name of the Account
+ * @property {string} [bank_name] - Bank Name of the Account
  * @property {string} [comment] - Remarks added by The user
- * @property {string} ifsc_code - Ifsc Code of the Account
+ * @property {string} [ifsc_code] - Ifsc Code of the Account
  * @property {string} [email]
  * @property {string} [vpa]
- * @property {string} branch_name - Branch Name of the Account
- * @property {string} account_holder - Name of the Account Holder
+ * @property {string} [branch_name] - Branch Name of the Account
+ * @property {string} [account_holder] - Name of the Account Holder
  * @property {string} [wallet]
  * @property {string} [beneficiary_id]
  */
@@ -1432,6 +1437,7 @@ const Joi = require("joi");
  * @property {string} [name] - Name of the Transfer Mode.
  * @property {string} [utr] - Unique Transaction Reference of the refund.
  * @property {string} [notes] - Any optional notes regarding the transaction.
+ * @property {string} [billing_employee_code] - Billing Employee Code
  */
 
 /**
@@ -1465,6 +1471,9 @@ const Joi = require("joi");
  * @typedef RefundOptionsPriority
  * @property {string[]} [payment_modes]
  * @property {RefundItem[]} [items]
+ * @property {string[]} [payment_gateways] - List of all offline payment gateways.
+ * @property {string[]} [offline_refund_collect_type] - List of all offline
+ *   Refund Collect Types.
  */
 
 /**
@@ -2076,6 +2085,11 @@ class PaymentApplicationModel {
       message: Joi.string().allow(""),
       amount: Joi.number(),
       user_id: Joi.string().allow(""),
+      customer_mobile_number: Joi.string().allow(""),
+      total_credited_balance: Joi.number(),
+      is_cn_locked: Joi.boolean(),
+      total_locked_amount: Joi.number(),
+      allowed_redemption_amount: Joi.number(),
     });
   }
 
@@ -2783,16 +2797,16 @@ class PaymentApplicationModel {
   /** @returns {BeneficiaryModeDetails} */
   static BeneficiaryModeDetails() {
     return Joi.object({
-      account_no: Joi.string().allow("").required(),
+      account_no: Joi.string().allow(""),
       address: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
-      bank_name: Joi.string().allow("").required(),
+      bank_name: Joi.string().allow(""),
       comment: Joi.string().allow(""),
-      ifsc_code: Joi.string().allow("").required(),
+      ifsc_code: Joi.string().allow(""),
       email: Joi.string().allow("").allow(null),
       vpa: Joi.string().allow(""),
-      branch_name: Joi.string().allow("").required(),
-      account_holder: Joi.string().allow("").required(),
+      branch_name: Joi.string().allow(""),
+      account_holder: Joi.string().allow(""),
       wallet: Joi.string().allow("").allow(null),
       beneficiary_id: Joi.string().allow(""),
     });
@@ -3565,6 +3579,7 @@ class PaymentApplicationModel {
       name: Joi.string().allow(""),
       utr: Joi.string().allow(""),
       notes: Joi.string().allow("").allow(null),
+      billing_employee_code: Joi.string().allow("").allow(null),
     });
   }
 
@@ -3606,6 +3621,8 @@ class PaymentApplicationModel {
     return Joi.object({
       payment_modes: Joi.array().items(Joi.string().allow("")),
       items: Joi.array().items(PaymentApplicationModel.RefundItem()),
+      payment_gateways: Joi.array().items(Joi.string().allow("")),
+      offline_refund_collect_type: Joi.array().items(Joi.string().allow("")),
     });
   }
 

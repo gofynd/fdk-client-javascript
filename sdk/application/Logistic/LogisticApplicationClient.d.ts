@@ -3,20 +3,30 @@ declare class Logistic {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
+        createShipments: string;
         getAllCountries: string;
         getCountries: string;
         getCountry: string;
         getGeoAreas: string;
         getLocalities: string;
         getLocality: string;
-        getLocations: string;
-        getOptimalLocations: string;
-        getPincodeZones: string;
         getZones: string;
         validateAddress: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
+    /**
+     * @param {LogisticApplicationValidator.CreateShipmentsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.GenerateShipmentsAndCourierPartnerResponse>}
+     *   - Success response
+     *
+     * @name createShipments
+     * @summary: Create and return shipments.
+     * @description: Create and return shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/createShipments/).
+     */
+    createShipments({ companyId, applicationId, body, requestHeaders }?: LogisticApplicationValidator.CreateShipmentsParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GenerateShipmentsAndCourierPartnerResponse>;
     /**
      * @param {LogisticApplicationValidator.GetAllCountriesParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -36,21 +46,20 @@ declare class Logistic {
      * @summary: Get all countries and associated data.
      * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountries/).
      */
-    getCountries({ onboarding, pageNo, pageSize, q, hierarchy, requestHeaders }?: LogisticApplicationValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetCountries>;
+    getCountries({ onboard, pageNo, pageSize, q, hierarchy, requestHeaders }?: LogisticApplicationValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetCountries>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.onboarding] - Only fetch countries which allowed
-     *   for onboard on Platform.
+     * @param {boolean} [arg.onboard] - Only fetch countries which allowed for
+     *   onboard on Platform.
      * @param {number} [arg.pageSize] - Page size.
      * @param {string} [arg.q] - Search.
-     * @param {string} [arg.hierarchy] - Get countries with only certain
-     *   hierarchy present..
+     * @param {string} [arg.hierarchy] - Hierarchy.
      * @returns {Paginator<LogisticApplicationModel.GetCountries>}
      * @summary: Get all countries and associated data.
      * @description: Retrieve of all countries.
      */
-    getCountriesPaginator({ onboarding, pageSize, q, hierarchy }?: {
-        onboarding?: boolean;
+    getCountriesPaginator({ onboard, pageSize, q, hierarchy }?: {
+        onboard?: boolean;
         pageSize?: number;
         q?: string;
         hierarchy?: string;
@@ -85,7 +94,7 @@ declare class Logistic {
      * @summary: Get Localities.
      * @description: Get Localities data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalities/).
      */
-    getLocalities({ localityType, country, state, city, pageNo, pageSize, q, name, namesList, requestHeaders, }?: LogisticApplicationValidator.GetLocalitiesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetLocalities>;
+    getLocalities({ localityType, country, state, city, pageNo, pageSize, q, name, requestHeaders, }?: LogisticApplicationValidator.GetLocalitiesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetLocalities>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.localityType - A `locality_type` contains unique
@@ -97,13 +106,13 @@ declare class Logistic {
      * @param {string} [arg.city] - A `city` contains a specific value of the city.
      * @param {number} [arg.pageSize] - Page size.
      * @param {string} [arg.q] - Search.
-     * @param {string} [arg.name] - Search with full name.
-     * @param {string} [arg.namesList] - Search with multiple full names
+     * @param {string} [arg.name] - Search for localities. Either provide a full
+     *   name or a search term.
      * @returns {Paginator<LogisticApplicationModel.GetLocalities>}
      * @summary: Get Localities.
      * @description: Get Localities data.
      */
-    getLocalitiesPaginator({ localityType, country, state, city, pageSize, q, name, namesList, }?: {
+    getLocalitiesPaginator({ localityType, country, state, city, pageSize, q, name, }?: {
         localityType: string;
         country?: string;
         state?: string;
@@ -111,7 +120,6 @@ declare class Logistic {
         pageSize?: number;
         q?: string;
         name?: string;
-        namesList?: string;
     }): Paginator<LogisticApplicationModel.GetLocalities>;
     /**
      * @param {LogisticApplicationValidator.GetLocalityParam} arg - Arg object.
@@ -124,39 +132,6 @@ declare class Logistic {
      */
     getLocality({ localityType, localityValue, country, state, city, requestHeaders }?: LogisticApplicationValidator.GetLocalityParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetLocality>;
     /**
-     * @param {LogisticApplicationValidator.GetLocationsParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LogisticApplicationModel.GetStoreResponse>} - Success response
-     * @name getLocations
-     * @summary: Fetches available locations.
-     * @description: Retrieves a list of all locations of countries, states, cities.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocations/).
-     */
-    getLocations({ xApplicationId, xApplicationData, country, state, city, pincode, sector, pageNo, pageSize, requestHeaders, }?: LogisticApplicationValidator.GetLocationsParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetStoreResponse>;
-    /**
-     * @param {LogisticApplicationValidator.GetOptimalLocationsParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
-     *   Success response
-     * @name getOptimalLocations
-     * @summary: Finds optimal locations.
-     * @description: Retrieve the most efficient locations for logistics purposes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
-     */
-    getOptimalLocations({ body, requestHeaders }?: LogisticApplicationValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.ReAssignStoreResponse>;
-    /**
-     * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>}
-     *   - Success response
-     *
-     * @name getPincodeZones
-     * @summary: Fetches zones by pincode.
-     * @description: Retreive the logistical zones corresponding to a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
-     */
-    getPincodeZones({ body, requestHeaders }?: LogisticApplicationValidator.GetPincodeZonesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>;
-    /**
      * @param {LogisticApplicationValidator.GetZonesParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -165,7 +140,7 @@ declare class Logistic {
      * @summary: Shows zones defined at the application level
      * @description: Displays the list of zones defined at the application level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getZones/).
      */
-    getZones({ companyId, applicationId, stage, pageSize, zoneIds, isActive, q, country, countryIsoCode, pincode, state, city, sector, requestHeaders, }?: LogisticApplicationValidator.GetZonesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.ListViewResponseV2>;
+    getZones({ companyId, applicationId, stage, pageSize, isActive, q, countryIsoCode, pincode, state, city, sector, requestHeaders, }?: LogisticApplicationValidator.GetZonesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.ListViewResponseV2>;
     /**
      * @param {LogisticApplicationValidator.ValidateAddressParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -178,6 +153,6 @@ declare class Logistic {
      */
     validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: LogisticApplicationValidator.ValidateAddressParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.ValidateAddressRequest>;
 }
-import LogisticApplicationModel = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationModel");
 import LogisticApplicationValidator = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationValidator");
+import LogisticApplicationModel = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationModel");
 import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

@@ -221,17 +221,9 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
- * @property {string} [type]
- */
-
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {string} [type]
  */
 
 /**
@@ -711,6 +703,63 @@ const Joi = require("joi");
  * @property {CompanyThemeMeta} [meta]
  */
 
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
+
 class ThemePlatformModel {
   /** @returns {MarketplaceTheme} */
   static MarketplaceTheme() {
@@ -990,25 +1039,9 @@ class ThemePlatformModel {
   /** @returns {Action} */
   static Action() {
     return Joi.object({
+      type: Joi.string().allow(""),
       page: ThemePlatformModel.ActionPage(),
       popup: ThemePlatformModel.ActionPage(),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ActionPage} */
-  static ActionPage() {
-    return Joi.object({
-      params: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      query: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      url: Joi.string().allow(""),
-      type: Joi.string().allow(""),
     });
   }
 
@@ -1608,6 +1641,123 @@ class ThemePlatformModel {
       is_private: Joi.boolean(),
       meta: ThemePlatformModel.CompanyThemeMeta(),
     });
+  }
+
+  /** @returns {ActionPage} */
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      query: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      url: Joi.string().allow(""),
+      type: ThemePlatformModel.PageType().required(),
+    });
+  }
+
+  /**
+   * Enum: PageType Used By: Theme
+   *
+   * @returns {PageType}
+   */
+  static PageType() {
+    return Joi.string().valid(
+      "about-us",
+
+      "addresses",
+
+      "blog",
+
+      "brands",
+
+      "cards",
+
+      "cart",
+
+      "categories",
+
+      "brand",
+
+      "category",
+
+      "collection",
+
+      "collections",
+
+      "contact-us",
+
+      "external",
+
+      "faq",
+
+      "freshchat",
+
+      "home",
+
+      "notification-settings",
+
+      "orders",
+
+      "page",
+
+      "policy",
+
+      "product",
+
+      "product-request",
+
+      "products",
+
+      "profile",
+
+      "profile-order-shipment",
+
+      "profile-basic",
+
+      "profile-company",
+
+      "profile-emails",
+
+      "profile-phones",
+
+      "rate-us",
+
+      "refer-earn",
+
+      "settings",
+
+      "shared-cart",
+
+      "tnc",
+
+      "track-order",
+
+      "wishlist",
+
+      "sections",
+
+      "form",
+
+      "cart-delivery",
+
+      "cart-payment",
+
+      "cart-review",
+
+      "login",
+
+      "register",
+
+      "shipping-policy",
+
+      "return-policy",
+
+      "order-status"
+    );
   }
 }
 module.exports = ThemePlatformModel;

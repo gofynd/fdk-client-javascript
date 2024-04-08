@@ -269,6 +269,7 @@ const Joi = require("joi");
  * @property {string[]} [seller_identifiers]
  * @property {string} [value]
  * @property {string} [display]
+ * @property {ProductSetV3} [set]
  */
 
 /**
@@ -461,14 +462,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [total]
- * @property {string} type
  * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -763,6 +763,7 @@ const Joi = require("joi");
  * @typedef GetCollectionDetailNest
  * @property {boolean} [is_active]
  * @property {string} [uid]
+ * @property {string} [_id]
  * @property {string} [sort_on]
  * @property {Object} [meta]
  * @property {ImageUrls} [banners]
@@ -844,6 +845,7 @@ const Joi = require("joi");
  * @property {number} [priority]
  * @property {string[]} [tag]
  * @property {string} [app_id]
+ * @property {string} [_id]
  */
 
 /**
@@ -1579,6 +1581,7 @@ class CatalogApplicationModel {
       seller_identifiers: Joi.array().items(Joi.string().allow("")),
       value: Joi.string().allow(""),
       display: Joi.string().allow(""),
+      set: CatalogApplicationModel.ProductSetV3(),
     });
   }
 
@@ -1829,14 +1832,13 @@ class CatalogApplicationModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      next_id: Joi.string().allow("").allow(null),
-      size: Joi.number(),
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      total: Joi.number(),
-      type: Joi.string().allow("").required(),
       item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
     });
   }
 
@@ -2205,6 +2207,7 @@ class CatalogApplicationModel {
     return Joi.object({
       is_active: Joi.boolean(),
       uid: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
       sort_on: Joi.string().allow(""),
       meta: Joi.any(),
       banners: CatalogApplicationModel.ImageUrls(),
@@ -2302,6 +2305,7 @@ class CatalogApplicationModel {
       priority: Joi.number(),
       tag: Joi.array().items(Joi.string().allow("")),
       app_id: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
     });
   }
 

@@ -682,7 +682,7 @@ class Payment {
    * @description: API to update merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/createMerchantRefundPriority/).
    */
   async createMerchantRefundPriority(
-    { configType, body, requestHeaders } = { requestHeaders: {} },
+    { configType, businessUnit, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -690,6 +690,7 @@ class Payment {
     } = PaymentPlatformApplicationValidator.createMerchantRefundPriority().validate(
       {
         configType,
+        businessUnit,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -704,6 +705,7 @@ class Payment {
     } = PaymentPlatformApplicationValidator.createMerchantRefundPriority().validate(
       {
         configType,
+        businessUnit,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -720,7 +722,7 @@ class Payment {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund_priority/config/${configType}`,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund_priority/config/${configType}/${businessUnit}`,
       query_params,
       body,
       requestHeaders,
@@ -2035,7 +2037,7 @@ class Payment {
    * @description: API to get merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantRefundPriority/).
    */
   async getMerchantRefundPriority(
-    { configType, requestHeaders } = { requestHeaders: {} },
+    { configType, businessUnit, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -2043,6 +2045,7 @@ class Payment {
     } = PaymentPlatformApplicationValidator.getMerchantRefundPriority().validate(
       {
         configType,
+        businessUnit,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2056,6 +2059,7 @@ class Payment {
     } = PaymentPlatformApplicationValidator.getMerchantRefundPriority().validate(
       {
         configType,
+        businessUnit,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2071,7 +2075,7 @@ class Payment {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund_priority/config/${configType}`,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund_priority/config/${configType}/${businessUnit}`,
       query_params,
       undefined,
       requestHeaders,
@@ -5324,7 +5328,7 @@ class Payment {
    * @description: API to update merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateMerchantRefundPriority/).
    */
   async updateMerchantRefundPriority(
-    { configType, body, requestHeaders } = { requestHeaders: {} },
+    { configType, businessUnit, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -5332,6 +5336,7 @@ class Payment {
     } = PaymentPlatformApplicationValidator.updateMerchantRefundPriority().validate(
       {
         configType,
+        businessUnit,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -5346,6 +5351,7 @@ class Payment {
     } = PaymentPlatformApplicationValidator.updateMerchantRefundPriority().validate(
       {
         configType,
+        businessUnit,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -5362,7 +5368,7 @@ class Payment {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund_priority/config/${configType}`,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund_priority/config/${configType}/${businessUnit}`,
       query_params,
       body,
       requestHeaders,

@@ -720,7 +720,7 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef SetBUPaymentLimit
- * @property {string} buisness_unit - Business Unit - 'storefront'/ 'pos'
+ * @property {string} [buisness_unit] - Business Unit - 'storefront'/ 'pos'
  * @property {SetUserPaymentLimitConfig} config
  */
 /**
@@ -801,11 +801,13 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} size - Total number of pages
- * @property {boolean} has_next - Whether there exist next page or not
- * @property {number} current - Current page number
- * @property {string} type - Type of pagination used
- * @property {number} item_total - Total number of items
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef EdcDeviceListResponse
@@ -1026,6 +1028,11 @@ export = PaymentPlatformModel;
  * @property {string} [message]
  * @property {number} [amount]
  * @property {string} [user_id]
+ * @property {string} [customer_mobile_number]
+ * @property {number} [total_credited_balance]
+ * @property {boolean} [is_cn_locked]
+ * @property {number} [total_locked_amount]
+ * @property {number} [allowed_redemption_amount]
  */
 /**
  * @typedef GetPaymentLinkResponse
@@ -1515,6 +1522,7 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef RefundSourcesPriority
+ * @property {boolean} [enabled] - Refund source is enabled or not
  * @property {string} description - Description of refund source
  * @property {number} priority - Priority of refund source, 0 being highest
  * @property {string} source - Source of refund
@@ -1524,6 +1532,7 @@ export = PaymentPlatformModel;
  * @property {string} configuration - Configuration for merchant or customer
  * @property {boolean} success - Success
  * @property {boolean} apportion - Apportion refund to multiple sources
+ * @property {string} business_unit - Business unit either pos or storefront
  * @property {RefundSourcesPriority[]} refund_sources_priority - Refund sources priority
  * @property {string} [message] - Message
  */
@@ -1819,6 +1828,7 @@ export = PaymentPlatformModel;
  * @property {string} [name] - Name of the Transfer Mode.
  * @property {string} [utr] - Unique Transaction Reference of the refund.
  * @property {string} [notes] - Any optional notes regarding the transaction.
+ * @property {string} [billing_employee_code] - Billing Employee Code
  */
 /**
  * @typedef ShipmentRefundRequest
@@ -1848,6 +1858,9 @@ export = PaymentPlatformModel;
  * @typedef RefundOptionsPriority
  * @property {string[]} [payment_modes]
  * @property {RefundItem[]} [items]
+ * @property {string[]} [payment_gateways] - List of all offline payment gateways.
+ * @property {string[]} [offline_refund_collect_type] - List of all offline
+ *   Refund Collect Types.
  */
 /**
  * @typedef RefundItem
@@ -3453,7 +3466,7 @@ type SetBUPaymentLimit = {
     /**
      * - Business Unit - 'storefront'/ 'pos'
      */
-    buisness_unit: string;
+    buisness_unit?: string;
     config: SetUserPaymentLimitConfig;
 };
 /** @returns {SetCODForUserRequest} */
@@ -3657,26 +3670,13 @@ type EdcDeviceUpdateResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    /**
-     * - Total number of pages
-     */
-    size: number;
-    /**
-     * - Whether there exist next page or not
-     */
-    has_next: boolean;
-    /**
-     * - Current page number
-     */
-    current: number;
-    /**
-     * - Type of pagination used
-     */
+    item_total?: number;
+    next_id?: string;
+    has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
     type: string;
-    /**
-     * - Total number of items
-     */
-    item_total: number;
+    size?: number;
 };
 /** @returns {EdcDeviceListResponse} */
 declare function EdcDeviceListResponse(): EdcDeviceListResponse;
@@ -4202,6 +4202,11 @@ type ValidateCustomerData = {
     message?: string;
     amount?: number;
     user_id?: string;
+    customer_mobile_number?: string;
+    total_credited_balance?: number;
+    is_cn_locked?: boolean;
+    total_locked_amount?: number;
+    allowed_redemption_amount?: number;
 };
 /** @returns {GetPaymentLinkResponse} */
 declare function GetPaymentLinkResponse(): GetPaymentLinkResponse;
@@ -5305,6 +5310,10 @@ type RefundSessionResponseSerializer = {
 declare function RefundSourcesPriority(): RefundSourcesPriority;
 type RefundSourcesPriority = {
     /**
+     * - Refund source is enabled or not
+     */
+    enabled?: boolean;
+    /**
      * - Description of refund source
      */
     description: string;
@@ -5332,6 +5341,10 @@ type RefundPriorityResponseSerializer = {
      * - Apportion refund to multiple sources
      */
     apportion: boolean;
+    /**
+     * - Business unit either pos or storefront
+     */
+    business_unit: string;
     /**
      * - Refund sources priority
      */
@@ -6041,6 +6054,10 @@ type ShipmentRefundRequestMeta = {
      * - Any optional notes regarding the transaction.
      */
     notes?: string;
+    /**
+     * - Billing Employee Code
+     */
+    billing_employee_code?: string;
 };
 /** @returns {ShipmentRefundRequest} */
 declare function ShipmentRefundRequest(): ShipmentRefundRequest;
@@ -6107,6 +6124,15 @@ declare function RefundOptionsPriority(): RefundOptionsPriority;
 type RefundOptionsPriority = {
     payment_modes?: string[];
     items?: RefundItem[];
+    /**
+     * - List of all offline payment gateways.
+     */
+    payment_gateways?: string[];
+    /**
+     * - List of all offline
+     * Refund Collect Types.
+     */
+    offline_refund_collect_type?: string[];
 };
 /** @returns {RefundItem} */
 declare function RefundItem(): RefundItem;

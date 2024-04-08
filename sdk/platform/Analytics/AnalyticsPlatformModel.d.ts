@@ -1,13 +1,13 @@
 export = AnalyticsPlatformModel;
 /**
  * @typedef Page
- * @property {number} [current]
- * @property {number} [size]
  * @property {number} [item_total]
- * @property {number} [total_page]
- * @property {boolean} [has_next]
+ * @property {string} [next_id]
  * @property {boolean} [has_previous]
- * @property {string} [type]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef ConditionsSchema
@@ -38,13 +38,13 @@ declare namespace AnalyticsPlatformModel {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    current?: number;
-    size?: number;
     item_total?: number;
-    total_page?: number;
-    has_next?: boolean;
+    next_id?: string;
     has_previous?: boolean;
-    type?: string;
+    has_next?: boolean;
+    current?: number;
+    type: string;
+    size?: number;
 };
 /** @returns {ConditionsSchema} */
 declare function ConditionsSchema(): ConditionsSchema;

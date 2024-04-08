@@ -604,8 +604,6 @@ const Joi = require("joi");
  * @typedef UserSchema
  * @property {string} [application_id]
  * @property {string} [user_id]
- * @property {string} [password_last_modified]
- * @property {UserPasswordHistory[]} [password_history]
  * @property {string} [first_name]
  * @property {Object} [meta]
  * @property {string} [last_name]
@@ -620,23 +618,25 @@ const Joi = require("joi");
  * @property {string} [_id]
  * @property {string} [created_at]
  * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {string} [rr_id]
  */
 
 /**
  * @typedef PhoneNumber
- * @property {boolean} [active]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [phone]
- * @property {number} [country_code]
+ * @property {string} [phone] - Phone number
+ * @property {number} [country_code] - Country code
+ * @property {boolean} [active] - Is the phone number active
+ * @property {boolean} [primary] - Is it a primary phone number
+ * @property {boolean} [verified] - Is the phone number verified
  */
 
 /**
  * @typedef Email
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [email]
- * @property {boolean} [active]
+ * @property {string} [email] - Email address
+ * @property {boolean} [active] - Is the email active
+ * @property {boolean} [primary] - Is it a primary email
+ * @property {boolean} [verified] - Is the email verified
  */
 
 class UserApplicationModel {
@@ -1409,10 +1409,6 @@ class UserApplicationModel {
     return Joi.object({
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
-      password_last_modified: Joi.string().allow(""),
-      password_history: Joi.array().items(
-        UserApplicationModel.UserPasswordHistory()
-      ),
       first_name: Joi.string().allow(""),
       meta: Joi.any(),
       last_name: Joi.string().allow(""),
@@ -1427,27 +1423,29 @@ class UserApplicationModel {
       _id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
+      external_id: Joi.string().allow(""),
+      rr_id: Joi.string().allow(""),
     });
   }
 
   /** @returns {PhoneNumber} */
   static PhoneNumber() {
     return Joi.object({
+      phone: Joi.string().allow(""),
+      country_code: Joi.number(),
       active: Joi.boolean(),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
-      phone: Joi.string().allow(""),
-      country_code: Joi.number(),
     });
   }
 
   /** @returns {Email} */
   static Email() {
     return Joi.object({
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
       email: Joi.string().allow(""),
       active: Joi.boolean(),
+      primary: Joi.boolean(),
+      verified: Joi.boolean(),
     });
   }
 }

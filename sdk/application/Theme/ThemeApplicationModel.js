@@ -52,17 +52,9 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
- * @property {string} [type]
- */
-
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {string} [type]
  */
 
 /**
@@ -329,7 +321,41 @@ const Joi = require("joi");
  * @property {AuthConfig} [auth]
  * @property {PaletteConfig} [palette]
  * @property {Object} [order_tracking]
- * @property {Object} [manifest]
+ * @property {ManifestConfig} [manifest]
+ */
+
+/**
+ * @typedef ManifestConfig
+ * @property {boolean} [active]
+ * @property {string} [name]
+ * @property {string} [description]
+ * @property {boolean} [install_desktop]
+ * @property {boolean} [install_mobile]
+ * @property {string} [button_text]
+ * @property {IconManifest[]} [icons]
+ * @property {ScreenshotManifest[]} [screenshots]
+ * @property {ShortcutManifest[]} [shortcuts]
+ */
+
+/**
+ * @typedef IconManifest
+ * @property {string} [src]
+ * @property {string} [type]
+ * @property {string} [sizes]
+ * @property {string} [icon_opacity]
+ */
+
+/**
+ * @typedef ScreenshotManifest
+ * @property {string} [src]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ShortcutManifest
+ * @property {string} [name]
+ * @property {string} [url]
+ * @property {IconManifest[]} [icons]
  */
 
 /**
@@ -546,6 +572,63 @@ const Joi = require("joi");
  * @property {string} [message]
  */
 
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
+
 class ThemeApplicationModel {
   /** @returns {AllAvailablePageSchema} */
   static AllAvailablePageSchema() {
@@ -618,25 +701,9 @@ class ThemeApplicationModel {
   /** @returns {Action} */
   static Action() {
     return Joi.object({
+      type: Joi.string().allow(""),
       page: ThemeApplicationModel.ActionPage(),
       popup: ThemeApplicationModel.ActionPage(),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ActionPage} */
-  static ActionPage() {
-    return Joi.object({
-      params: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      query: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      url: Joi.string().allow(""),
-      type: Joi.string().allow(""),
     });
   }
 
@@ -960,7 +1027,51 @@ class ThemeApplicationModel {
       auth: ThemeApplicationModel.AuthConfig(),
       palette: ThemeApplicationModel.PaletteConfig(),
       order_tracking: Joi.any(),
-      manifest: Joi.any(),
+      manifest: ThemeApplicationModel.ManifestConfig(),
+    });
+  }
+
+  /** @returns {ManifestConfig} */
+  static ManifestConfig() {
+    return Joi.object({
+      active: Joi.boolean(),
+      name: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      install_desktop: Joi.boolean(),
+      install_mobile: Joi.boolean(),
+      button_text: Joi.string().allow(""),
+      icons: Joi.array().items(ThemeApplicationModel.IconManifest()),
+      screenshots: Joi.array().items(
+        ThemeApplicationModel.ScreenshotManifest()
+      ),
+      shortcuts: Joi.array().items(ThemeApplicationModel.ShortcutManifest()),
+    });
+  }
+
+  /** @returns {IconManifest} */
+  static IconManifest() {
+    return Joi.object({
+      src: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      sizes: Joi.string().allow(""),
+      icon_opacity: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ScreenshotManifest} */
+  static ScreenshotManifest() {
+    return Joi.object({
+      src: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ShortcutManifest} */
+  static ShortcutManifest() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      icons: Joi.array().items(ThemeApplicationModel.IconManifest()),
     });
   }
 
@@ -1242,6 +1353,123 @@ class ThemeApplicationModel {
     return Joi.object({
       message: Joi.string().allow(""),
     });
+  }
+
+  /** @returns {ActionPage} */
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      query: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      url: Joi.string().allow(""),
+      type: ThemeApplicationModel.PageType().required(),
+    });
+  }
+
+  /**
+   * Enum: PageType Used By: Theme
+   *
+   * @returns {PageType}
+   */
+  static PageType() {
+    return Joi.string().valid(
+      "about-us",
+
+      "addresses",
+
+      "blog",
+
+      "brands",
+
+      "cards",
+
+      "cart",
+
+      "categories",
+
+      "brand",
+
+      "category",
+
+      "collection",
+
+      "collections",
+
+      "contact-us",
+
+      "external",
+
+      "faq",
+
+      "freshchat",
+
+      "home",
+
+      "notification-settings",
+
+      "orders",
+
+      "page",
+
+      "policy",
+
+      "product",
+
+      "product-request",
+
+      "products",
+
+      "profile",
+
+      "profile-order-shipment",
+
+      "profile-basic",
+
+      "profile-company",
+
+      "profile-emails",
+
+      "profile-phones",
+
+      "rate-us",
+
+      "refer-earn",
+
+      "settings",
+
+      "shared-cart",
+
+      "tnc",
+
+      "track-order",
+
+      "wishlist",
+
+      "sections",
+
+      "form",
+
+      "cart-delivery",
+
+      "cart-payment",
+
+      "cart-review",
+
+      "login",
+
+      "register",
+
+      "shipping-policy",
+
+      "return-policy",
+
+      "order-status"
+    );
   }
 }
 module.exports = ThemeApplicationModel;

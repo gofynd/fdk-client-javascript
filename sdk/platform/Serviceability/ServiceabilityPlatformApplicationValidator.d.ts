@@ -1,5 +1,17 @@
 export = ServiceabilityPlatformApplicationValidator;
 /**
+ * @typedef CreateBulkExportParam
+ * @property {ServiceabilityPlatformModel.BulkCreateZoneExport} body
+ */
+/**
+ * @typedef CreateBulkGeoAreaParam
+ * @property {ServiceabilityPlatformModel.BulkGeoAreaRequestBody} body
+ */
+/**
+ * @typedef CreateBulkZoneParam
+ * @property {ServiceabilityPlatformModel.CreateBulkZoneData} body
+ */
+/**
  * @typedef CreateCourierPartnerRuleParam
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
@@ -21,10 +33,18 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /** @typedef GetApplicationConfigParam */
 /** @typedef GetApplicationConfigurationParam */
-/** @typedef GetApplicationServiceabilitySelfShipmentParam */
+/**
+ * @typedef GetBulkExportParam
+ * @property {string} batchId - A `batch_id` is a unique identifier for a particular zone.
+ */
+/**
+ * @typedef GetBulkGeoAreaParam
+ * @property {string} geoareaId - A unique identifier for the GeoArea.
+ */
+/** @typedef GetBulkZoneParam */
 /**
  * @typedef GetCourierPartnerRuleParam
- * @property {string} ruleId - A `rule_id` is a unique identifier for a rule.
+ * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  */
 /**
  * @typedef GetCourierPartnerRulesParam
@@ -66,11 +86,8 @@ export = ServiceabilityPlatformApplicationValidator;
  * @typedef GetZonesParam
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
  * @property {number} [pageSize] - Defines the number of items displayed per page.
- * @property {string} [zoneIds] - Defines the specific zones with the given ids
- *   to be displayed.
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
  * @property {string} [q] - Search with name as a free text.
- * @property {string} [country] - Name of the country.
  * @property {string} [countryIsoCode] - ISO2 code of the country.
  * @property {string} [pincode] - PIN Code of the country.
  * @property {string} [state] - State of the country.
@@ -86,12 +103,8 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.ApplicationConfigPatchRequest} body
  */
 /**
- * @typedef PatchApplicationServiceabilitySelfShipmentParam
- * @property {ServiceabilityPlatformModel.SelfShipResponse} body
- */
-/**
  * @typedef UpdateApplicationConfigurationParam
- * @property {ServiceabilityPlatformModel.ApplicationConfig} body
+ * @property {ServiceabilityPlatformModel.ApplicationConfigPutRequest} body
  */
 /**
  * @typedef UpdateCourierPartnerRulePriorityParam
@@ -99,7 +112,7 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateCourierRuleParam
- * @property {string} ruleId - A `rule_id` is a unique identifier for a particular Dp.
+ * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
 /**
@@ -124,6 +137,10 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
 /**
+ * @typedef UpdateStoreRulePriorityParam
+ * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
+ */
+/**
  * @typedef UpdateStoreRulesParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
  *   particular rule object.
@@ -139,6 +156,12 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.UpdateZoneDataV2} body
  */
 declare class ServiceabilityPlatformApplicationValidator {
+    /** @returns {CreateBulkExportParam} */
+    static createBulkExport(): CreateBulkExportParam;
+    /** @returns {CreateBulkGeoAreaParam} */
+    static createBulkGeoArea(): CreateBulkGeoAreaParam;
+    /** @returns {CreateBulkZoneParam} */
+    static createBulkZone(): CreateBulkZoneParam;
     /** @returns {CreateCourierPartnerRuleParam} */
     static createCourierPartnerRule(): CreateCourierPartnerRuleParam;
     /** @returns {CreateGeoAreaParam} */
@@ -153,8 +176,12 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getApplicationConfig(): any;
     /** @returns {GetApplicationConfigurationParam} */
     static getApplicationConfiguration(): any;
-    /** @returns {GetApplicationServiceabilitySelfShipmentParam} */
-    static getApplicationServiceabilitySelfShipment(): any;
+    /** @returns {GetBulkExportParam} */
+    static getBulkExport(): GetBulkExportParam;
+    /** @returns {GetBulkGeoAreaParam} */
+    static getBulkGeoArea(): GetBulkGeoAreaParam;
+    /** @returns {GetBulkZoneParam} */
+    static getBulkZone(): any;
     /** @returns {GetCourierPartnerRuleParam} */
     static getCourierPartnerRule(): GetCourierPartnerRuleParam;
     /** @returns {GetCourierPartnerRulesParam} */
@@ -175,8 +202,6 @@ declare class ServiceabilityPlatformApplicationValidator {
     static insertApplicationConfig(): InsertApplicationConfigParam;
     /** @returns {PatchApplicationConfigurationParam} */
     static patchApplicationConfiguration(): PatchApplicationConfigurationParam;
-    /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
-    static patchApplicationServiceabilitySelfShipment(): PatchApplicationServiceabilitySelfShipmentParam;
     /** @returns {UpdateApplicationConfigurationParam} */
     static updateApplicationConfiguration(): UpdateApplicationConfigurationParam;
     /** @returns {UpdateCourierPartnerRulePriorityParam} */
@@ -193,6 +218,8 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updatePincodeCoDListing(): UpdatePincodeCoDListingParam;
     /** @returns {UpdatePincodeMopViewParam} */
     static updatePincodeMopView(): UpdatePincodeMopViewParam;
+    /** @returns {UpdateStoreRulePriorityParam} */
+    static updateStoreRulePriority(): UpdateStoreRulePriorityParam;
     /** @returns {UpdateStoreRulesParam} */
     static updateStoreRules(): UpdateStoreRulesParam;
     /** @returns {UpdateStoreRulesConfigParam} */
@@ -201,8 +228,17 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updateZone(): UpdateZoneParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateCourierPartnerRuleParam, CreateGeoAreaParam, CreateStoreRulesParam, CreateZoneParam, DeleteZoneParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetGeoAreaParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam };
+    export { CreateBulkExportParam, CreateBulkGeoAreaParam, CreateBulkZoneParam, CreateCourierPartnerRuleParam, CreateGeoAreaParam, CreateStoreRulesParam, CreateZoneParam, DeleteZoneParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetBulkExportParam, GetBulkGeoAreaParam, GetBulkZoneParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetGeoAreaParam, GetGeoAreasParam, GetStoreRuleParam, GetStoreRulesParam, GetZoneParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationConfigurationParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdateGeoAreaParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulePriorityParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam, UpdateZoneParam };
 }
+type CreateBulkExportParam = {
+    body: ServiceabilityPlatformModel.BulkCreateZoneExport;
+};
+type CreateBulkGeoAreaParam = {
+    body: ServiceabilityPlatformModel.BulkGeoAreaRequestBody;
+};
+type CreateBulkZoneParam = {
+    body: ServiceabilityPlatformModel.CreateBulkZoneData;
+};
 type CreateCourierPartnerRuleParam = {
     body: ServiceabilityPlatformModel.CourierPartnerRule;
 };
@@ -221,11 +257,23 @@ type DeleteZoneParam = {
      */
     zoneId: string;
 };
+type GetBulkExportParam = {
+    /**
+     * - A `batch_id` is a unique identifier for a particular zone.
+     */
+    batchId: string;
+};
+type GetBulkGeoAreaParam = {
+    /**
+     * - A unique identifier for the GeoArea.
+     */
+    geoareaId: string;
+};
 type GetCourierPartnerRuleParam = {
     /**
-     * - A `rule_id` is a unique identifier for a rule.
+     * - A `rule_uid` is a unique identifier for a particular Dp.
      */
-    ruleId: string;
+    ruleUid: string;
 };
 type GetCourierPartnerRulesParam = {
     /**
@@ -309,11 +357,6 @@ type GetZonesParam = {
      */
     pageSize?: number;
     /**
-     * - Defines the specific zones with the given ids
-     * to be displayed.
-     */
-    zoneIds?: string;
-    /**
      * - Status of Zone (either active or inactive)
      */
     isActive?: boolean;
@@ -321,10 +364,6 @@ type GetZonesParam = {
      * - Search with name as a free text.
      */
     q?: string;
-    /**
-     * - Name of the country.
-     */
-    country?: string;
     /**
      * - ISO2 code of the country.
      */
@@ -352,20 +391,17 @@ type InsertApplicationConfigParam = {
 type PatchApplicationConfigurationParam = {
     body: ServiceabilityPlatformModel.ApplicationConfigPatchRequest;
 };
-type PatchApplicationServiceabilitySelfShipmentParam = {
-    body: ServiceabilityPlatformModel.SelfShipResponse;
-};
 type UpdateApplicationConfigurationParam = {
-    body: ServiceabilityPlatformModel.ApplicationConfig;
+    body: ServiceabilityPlatformModel.ApplicationConfigPutRequest;
 };
 type UpdateCourierPartnerRulePriorityParam = {
     body: ServiceabilityPlatformModel.RulePriorityRequest;
 };
 type UpdateCourierRuleParam = {
     /**
-     * - A `rule_id` is a unique identifier for a particular Dp.
+     * - A `rule_uid` is a unique identifier for a particular Dp.
      */
-    ruleId: string;
+    ruleUid: string;
     body: ServiceabilityPlatformModel.CourierPartnerRule;
 };
 type UpdateGeoAreaParam = {
@@ -387,6 +423,9 @@ type UpdatePincodeCoDListingParam = {
 type UpdatePincodeMopViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopData;
 };
+type UpdateStoreRulePriorityParam = {
+    body: ServiceabilityPlatformModel.RulePriorityRequest;
+};
 type UpdateStoreRulesParam = {
     /**
      * - A `rule_uid` is a unique identifier for a
@@ -407,5 +446,5 @@ type UpdateZoneParam = {
 };
 type GetApplicationConfigParam = any;
 type GetApplicationConfigurationParam = any;
-type GetApplicationServiceabilitySelfShipmentParam = any;
+type GetBulkZoneParam = any;
 import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");

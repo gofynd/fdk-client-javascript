@@ -208,16 +208,9 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
- * @property {string} [type]
- */
-
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {string} [type]
+ * @property {ActionPage} [popup]
  */
 
 /**
@@ -648,6 +641,63 @@ const Joi = require("joi");
  * @property {string} [updated_at]
  */
 
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
+
 class ContentApplicationModel {
   /** @returns {ApplicationLegal} */
   static ApplicationLegal() {
@@ -914,24 +964,9 @@ class ContentApplicationModel {
   /** @returns {Action} */
   static Action() {
     return Joi.object({
+      type: Joi.string().allow(""),
       page: ContentApplicationModel.ActionPage(),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ActionPage} */
-  static ActionPage() {
-    return Joi.object({
-      params: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      query: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      url: Joi.string().allow(""),
-      type: Joi.string().allow(""),
+      popup: ContentApplicationModel.ActionPage(),
     });
   }
 
@@ -1455,6 +1490,123 @@ class ContentApplicationModel {
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
     });
+  }
+
+  /** @returns {ActionPage} */
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      query: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      url: Joi.string().allow(""),
+      type: ContentApplicationModel.PageType().required(),
+    });
+  }
+
+  /**
+   * Enum: PageType Used By: Content
+   *
+   * @returns {PageType}
+   */
+  static PageType() {
+    return Joi.string().valid(
+      "about-us",
+
+      "addresses",
+
+      "blog",
+
+      "brands",
+
+      "cards",
+
+      "cart",
+
+      "categories",
+
+      "brand",
+
+      "category",
+
+      "collection",
+
+      "collections",
+
+      "contact-us",
+
+      "external",
+
+      "faq",
+
+      "freshchat",
+
+      "home",
+
+      "notification-settings",
+
+      "orders",
+
+      "page",
+
+      "policy",
+
+      "product",
+
+      "product-request",
+
+      "products",
+
+      "profile",
+
+      "profile-order-shipment",
+
+      "profile-basic",
+
+      "profile-company",
+
+      "profile-emails",
+
+      "profile-phones",
+
+      "rate-us",
+
+      "refer-earn",
+
+      "settings",
+
+      "shared-cart",
+
+      "tnc",
+
+      "track-order",
+
+      "wishlist",
+
+      "sections",
+
+      "form",
+
+      "cart-delivery",
+
+      "cart-payment",
+
+      "cart-review",
+
+      "login",
+
+      "register",
+
+      "shipping-policy",
+
+      "return-policy",
+
+      "order-status"
+    );
   }
 }
 module.exports = ContentApplicationModel;

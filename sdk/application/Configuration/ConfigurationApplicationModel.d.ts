@@ -566,14 +566,13 @@ export = ConfigurationApplicationModel;
  */
 /**
  * @typedef Page
- * @property {string} type - Page type
- * @property {number} [size] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {number} [current] - Current page number
- * @property {boolean} [has_next] - Next page is present or not
- * @property {number} [item_total] - Total number of items to retrieve
- * @property {string} [next_id] - Next page ID
- * @property {boolean} [has_previous] - Previous page is present or not
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef ApplicationInformation
@@ -1915,35 +1914,13 @@ type UserPhoneNumber = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    /**
-     * - Page type
-     */
-    type: string;
-    /**
-     * - The number of items to retrieve in each page.
-     * Default value is 10.
-     */
-    size?: number;
-    /**
-     * - Current page number
-     */
-    current?: number;
-    /**
-     * - Next page is present or not
-     */
-    has_next?: boolean;
-    /**
-     * - Total number of items to retrieve
-     */
     item_total?: number;
-    /**
-     * - Next page ID
-     */
     next_id?: string;
-    /**
-     * - Previous page is present or not
-     */
     has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
+    type: string;
+    size?: number;
 };
 /** @returns {ApplicationInformation} */
 declare function ApplicationInformation(): ApplicationInformation;

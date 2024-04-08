@@ -47,6 +47,7 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef CreateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
+ * @property {string} businessUnit - Business unit storefront or pos
  * @property {PaymentPlatformModel.RefundPriorityRequestSerializer} body
  */
 
@@ -137,6 +138,7 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef GetMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
+ * @property {string} businessUnit - Business unit storefront or pos
  */
 
 /** @typedef GetPGConfigAggregatorsParam */
@@ -363,6 +365,7 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef UpdateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
+ * @property {string} businessUnit - Business unit storefront or pos
  * @property {PaymentPlatformModel.RefundPriorityRequestSerializer} body
  */
 
@@ -462,6 +465,7 @@ class PaymentPlatformApplicationValidator {
   static createMerchantRefundPriority() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
+      businessUnit: Joi.string().allow("").required(),
       body: PaymentPlatformModel.RefundPriorityRequestSerializer().required(),
     }).required();
   }
@@ -583,6 +587,7 @@ class PaymentPlatformApplicationValidator {
   static getMerchantRefundPriority() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
+      businessUnit: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -882,6 +887,7 @@ class PaymentPlatformApplicationValidator {
   static updateMerchantRefundPriority() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
+      businessUnit: Joi.string().allow("").required(),
       body: PaymentPlatformModel.RefundPriorityRequestSerializer().required(),
     }).required();
   }

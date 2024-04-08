@@ -238,6 +238,7 @@ export = CatalogApplicationModel;
  * @property {string[]} [seller_identifiers]
  * @property {string} [value]
  * @property {string} [display]
+ * @property {ProductSetV3} [set]
  */
 /**
  * @typedef SizeChartValues
@@ -407,14 +408,13 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef Page
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [total]
- * @property {string} type
  * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef ProductStockPolling
@@ -679,6 +679,7 @@ export = CatalogApplicationModel;
  * @typedef GetCollectionDetailNest
  * @property {boolean} [is_active]
  * @property {string} [uid]
+ * @property {string} [_id]
  * @property {string} [sort_on]
  * @property {Object} [meta]
  * @property {ImageUrls} [banners]
@@ -755,6 +756,7 @@ export = CatalogApplicationModel;
  * @property {number} [priority]
  * @property {string[]} [tag]
  * @property {string} [app_id]
+ * @property {string} [_id]
  */
 /**
  * @typedef GetFollowListingResponse
@@ -1487,6 +1489,7 @@ type ProductSize = {
     seller_identifiers?: string[];
     value?: string;
     display?: string;
+    set?: ProductSetV3;
 };
 /** @returns {SizeChartValues} */
 declare function SizeChartValues(): SizeChartValues;
@@ -1679,14 +1682,13 @@ type ProductStockStatusResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    next_id?: string;
-    size?: number;
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    total?: number;
-    type: string;
     item_total?: number;
+    next_id?: string;
+    has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
+    type: string;
+    size?: number;
 };
 /** @returns {ProductStockPolling} */
 declare function ProductStockPolling(): ProductStockPolling;
@@ -2002,6 +2004,7 @@ declare function GetCollectionDetailNest(): GetCollectionDetailNest;
 type GetCollectionDetailNest = {
     is_active?: boolean;
     uid?: string;
+    _id?: string;
     sort_on?: string;
     meta?: any;
     banners?: ImageUrls;
@@ -2083,6 +2086,7 @@ type CollectionDetailResponse = {
     priority?: number;
     tag?: string[];
     app_id?: string;
+    _id?: string;
 };
 /** @returns {GetFollowListingResponse} */
 declare function GetFollowListingResponse(): GetFollowListingResponse;

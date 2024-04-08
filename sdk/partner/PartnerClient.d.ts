@@ -17,6 +17,7 @@ declare class PartnerClient {
     fileStorage: FileStorage;
     lead: Lead;
     logistics: Logistics;
+    payment: Payment;
     theme: Theme;
     webhook: Webhook;
     /**
@@ -31,5 +32,6 @@ import Catalog = require("sdk/output/javascript/code/sdk/partner/Catalog/Catalog
 import FileStorage = require("sdk/output/javascript/code/sdk/partner/FileStorage/FileStoragePartnerClient");
 import Lead = require("sdk/output/javascript/code/sdk/partner/Lead/LeadPartnerClient");
 import Logistics = require("sdk/output/javascript/code/sdk/partner/Logistics/LogisticsPartnerClient");
+import Payment = require("sdk/output/javascript/code/sdk/partner/Payment/PaymentPartnerClient");
 import Theme = require("sdk/output/javascript/code/sdk/partner/Theme/ThemePartnerClient");
 import Webhook = require("sdk/output/javascript/code/sdk/partner/Webhook/WebhookPartnerClient");

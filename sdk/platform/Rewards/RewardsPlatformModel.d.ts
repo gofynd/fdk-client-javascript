@@ -50,13 +50,13 @@ export = RewardsPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
  * @property {number} [item_total]
  * @property {string} [next_id]
- * @property {number} [size]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
  * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef Offer
@@ -226,13 +226,13 @@ type RewardsRule = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
     item_total?: number;
     next_id?: string;
-    size?: number;
+    has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
     type: string;
+    size?: number;
 };
 /** @returns {Offer} */
 declare function Offer(): Offer;

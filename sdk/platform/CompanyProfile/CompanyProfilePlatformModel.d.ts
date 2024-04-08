@@ -198,7 +198,7 @@ export = CompanyProfilePlatformModel;
  * @property {number} [uid]
  * @property {BrandBannerSerializer} banner
  * @property {string} name
- * @property {string} [slug]
+ * @property {string} [slug_key]
  */
 /**
  * @typedef CompanySocialAccounts
@@ -248,13 +248,13 @@ export = CompanyProfilePlatformModel;
  */
 /**
  * @typedef Page
- * @property {boolean} [has_previous]
  * @property {number} [item_total]
  * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- * @property {number} [current]
+ * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef CompanyBrandListSerializer
@@ -655,7 +655,7 @@ type CreateUpdateBrandRequestSerializer = {
     uid?: number;
     banner: BrandBannerSerializer;
     name: string;
-    slug?: string;
+    slug_key?: string;
 };
 /** @returns {CompanySocialAccounts} */
 declare function CompanySocialAccounts(): CompanySocialAccounts;
@@ -710,13 +710,13 @@ type CompanyBrandSerializer = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    has_previous?: boolean;
     item_total?: number;
     next_id?: string;
-    size?: number;
-    type: string;
-    current?: number;
+    has_previous?: boolean;
     has_next?: boolean;
+    current?: number;
+    type: string;
+    size?: number;
 };
 /** @returns {CompanyBrandListSerializer} */
 declare function CompanyBrandListSerializer(): CompanyBrandListSerializer;

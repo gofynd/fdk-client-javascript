@@ -370,16 +370,9 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
- * @property {string} [type]
- */
-
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {string} [type]
+ * @property {ActionPage} [popup]
  */
 
 /**
@@ -389,7 +382,6 @@ const Joi = require("joi");
  * @property {LocaleLanguage} [_locale_language]
  * @property {string} [image]
  * @property {string} [type]
- * @property {Action} [action]
  * @property {boolean} [active]
  * @property {string} [display]
  * @property {number} [sort_order]
@@ -640,7 +632,6 @@ const Joi = require("joi");
 /**
  * @typedef LandingPageSchema
  * @property {string} [slug]
- * @property {Action} [action]
  * @property {string[]} [platform]
  * @property {CreatedBySchema} [created_by]
  * @property {DateMeta} [date_meta]
@@ -1485,6 +1476,63 @@ const Joi = require("joi");
  * @property {number} [total_records]
  */
 
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
+
 class ContentPlatformModel {
   /** @returns {GenerateSEOContent} */
   static GenerateSEOContent() {
@@ -1949,24 +1997,9 @@ class ContentPlatformModel {
   /** @returns {Action} */
   static Action() {
     return Joi.object({
+      type: Joi.string().allow(""),
       page: ContentPlatformModel.ActionPage(),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ActionPage} */
-  static ActionPage() {
-    return Joi.object({
-      params: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      query: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      url: Joi.string().allow(""),
-      type: Joi.string().allow(""),
+      popup: ContentPlatformModel.ActionPage(),
     });
   }
 
@@ -1978,7 +2011,6 @@ class ContentPlatformModel {
       _locale_language: ContentPlatformModel.LocaleLanguage(),
       image: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      action: ContentPlatformModel.Action(),
       active: Joi.boolean(),
       display: Joi.string().allow(""),
       sort_order: Joi.number(),
@@ -2295,7 +2327,6 @@ class ContentPlatformModel {
   static LandingPageSchema() {
     return Joi.object({
       slug: Joi.string().allow(""),
-      action: ContentPlatformModel.Action(),
       platform: Joi.array().items(Joi.string().allow("")),
       created_by: ContentPlatformModel.CreatedBySchema(),
       date_meta: ContentPlatformModel.DateMeta(),
@@ -3369,6 +3400,123 @@ class ContentPlatformModel {
       url: Joi.string().allow(""),
       total_records: Joi.number(),
     });
+  }
+
+  /** @returns {ActionPage} */
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      query: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      url: Joi.string().allow(""),
+      type: ContentPlatformModel.PageType().required(),
+    });
+  }
+
+  /**
+   * Enum: PageType Used By: Content
+   *
+   * @returns {PageType}
+   */
+  static PageType() {
+    return Joi.string().valid(
+      "about-us",
+
+      "addresses",
+
+      "blog",
+
+      "brands",
+
+      "cards",
+
+      "cart",
+
+      "categories",
+
+      "brand",
+
+      "category",
+
+      "collection",
+
+      "collections",
+
+      "contact-us",
+
+      "external",
+
+      "faq",
+
+      "freshchat",
+
+      "home",
+
+      "notification-settings",
+
+      "orders",
+
+      "page",
+
+      "policy",
+
+      "product",
+
+      "product-request",
+
+      "products",
+
+      "profile",
+
+      "profile-order-shipment",
+
+      "profile-basic",
+
+      "profile-company",
+
+      "profile-emails",
+
+      "profile-phones",
+
+      "rate-us",
+
+      "refer-earn",
+
+      "settings",
+
+      "shared-cart",
+
+      "tnc",
+
+      "track-order",
+
+      "wishlist",
+
+      "sections",
+
+      "form",
+
+      "cart-delivery",
+
+      "cart-payment",
+
+      "cart-review",
+
+      "login",
+
+      "register",
+
+      "shipping-policy",
+
+      "return-policy",
+
+      "order-status"
+    );
   }
 }
 module.exports = ContentPlatformModel;

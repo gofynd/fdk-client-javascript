@@ -1,5 +1,9 @@
 export = LogisticsPartnerModel;
 /**
+ * @typedef ErrorResponseV1
+ * @property {string} [error]
+ */
+/**
  * @typedef BulkRegionServiceabilityTatRequest
  * @property {string} country
  * @property {string} region
@@ -33,11 +37,13 @@ export = LogisticsPartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [current] - Current page number
- * @property {boolean} [has_next] - Next page available
- * @property {boolean} [has_previous] - Previous page available
- * @property {number} [item_total] - Total records
- * @property {number} [size] - Current page size
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef BulkRegionJobSerializer
@@ -86,6 +92,8 @@ export = LogisticsPartnerModel;
  */
 /**
  * @typedef CourierAccountResponse
+ * @property {number} [company_id]
+ * @property {string} [extension_id]
  * @property {string} account_id
  * @property {string} scheme_id
  * @property {boolean} is_self_ship
@@ -146,35 +154,46 @@ export = LogisticsPartnerModel;
  * @property {CourierPartnerSchemeFeatures} feature
  */
 /**
- * @typedef GetCountries
- * @property {GetCountriesItems[]} items
- * @property {Page} page
+ * @typedef CountryHierarchy
+ * @property {string} [display_name]
+ * @property {string} [slug]
  */
 /**
- * @typedef GetCountriesItems
+ * @typedef CurrencyObject
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [symbol]
+ */
+/**
+ * @typedef CountryObject
  * @property {string} [id]
  * @property {string} [name]
+ * @property {string} [display_name]
  * @property {string} [iso2]
  * @property {string} [iso3]
  * @property {string[]} [timezones]
- * @property {HierarchyItems[]} [hierarchy]
+ * @property {CountryHierarchy[]} [hierarchy]
  * @property {string} [phone_code]
- * @property {string} [currency]
- * @property {string} [type]
  * @property {string} [latitude]
  * @property {string} [longitude]
- * @property {string} [display_name]
+ * @property {CurrencyObject} [currency]
+ * @property {string} [type]
  */
 /**
- * @typedef HierarchyItems
- * @property {string} [display_name]
- * @property {string} [slug]
+ * @typedef GetCountries
+ * @property {CountryObject[]} [items]
+ * @property {Page} [page]
  */
 declare class LogisticsPartnerModel {
 }
 declare namespace LogisticsPartnerModel {
-    export { BulkRegionServiceabilityTatRequest, BulkRegionServiceabilityTatResponseItemData, ErrorResponse, FailureResponse, BulkRegionServiceabilityTatResponse, Page, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, CourierAccount, CourierPartnerAccountFailureResponse, CompanyCourierPartnerAccountListResponse, CourierAccountResponse, CourierPartnerSchemeModel, CourierPartnerSchemeFeatures, ArithmeticOperations, CourierPartnerSchemeUpdateRequest, GetCountries, GetCountriesItems, HierarchyItems };
+    export { ErrorResponseV1, BulkRegionServiceabilityTatRequest, BulkRegionServiceabilityTatResponseItemData, ErrorResponse, FailureResponse, BulkRegionServiceabilityTatResponse, Page, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, CourierAccount, CourierPartnerAccountFailureResponse, CompanyCourierPartnerAccountListResponse, CourierAccountResponse, CourierPartnerSchemeModel, CourierPartnerSchemeFeatures, ArithmeticOperations, CourierPartnerSchemeUpdateRequest, CountryHierarchy, CurrencyObject, CountryObject, GetCountries };
 }
+/** @returns {ErrorResponseV1} */
+declare function ErrorResponseV1(): ErrorResponseV1;
+type ErrorResponseV1 = {
+    error?: string;
+};
 /** @returns {BulkRegionServiceabilityTatRequest} */
 declare function BulkRegionServiceabilityTatRequest(): BulkRegionServiceabilityTatRequest;
 type BulkRegionServiceabilityTatRequest = {
@@ -215,25 +234,12 @@ type BulkRegionServiceabilityTatResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    /**
-     * - Current page number
-     */
-    current?: number;
-    /**
-     * - Next page available
-     */
-    has_next?: boolean;
-    /**
-     * - Previous page available
-     */
-    has_previous?: boolean;
-    /**
-     * - Total records
-     */
     item_total?: number;
-    /**
-     * - Current page size
-     */
+    next_id?: string;
+    has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
+    type: string;
     size?: number;
 };
 /** @returns {BulkRegionJobSerializer} */
@@ -290,6 +296,8 @@ type CompanyCourierPartnerAccountListResponse = {
 /** @returns {CourierAccountResponse} */
 declare function CourierAccountResponse(): CourierAccountResponse;
 type CourierAccountResponse = {
+    company_id?: number;
+    extension_id?: string;
     account_id: string;
     scheme_id: string;
     is_self_ship: boolean;
@@ -353,31 +361,38 @@ type CourierPartnerSchemeUpdateRequest = {
     stage: string;
     feature: CourierPartnerSchemeFeatures;
 };
-/** @returns {GetCountries} */
-declare function GetCountries(): GetCountries;
-type GetCountries = {
-    items: GetCountriesItems[];
-    page: Page;
+/** @returns {CountryHierarchy} */
+declare function CountryHierarchy(): CountryHierarchy;
+type CountryHierarchy = {
+    display_name?: string;
+    slug?: string;
 };
-/** @returns {GetCountriesItems} */
-declare function GetCountriesItems(): GetCountriesItems;
-type GetCountriesItems = {
+/** @returns {CurrencyObject} */
+declare function CurrencyObject(): CurrencyObject;
+type CurrencyObject = {
+    code?: string;
+    name?: string;
+    symbol?: string;
+};
+/** @returns {CountryObject} */
+declare function CountryObject(): CountryObject;
+type CountryObject = {
     id?: string;
     name?: string;
+    display_name?: string;
     iso2?: string;
     iso3?: string;
     timezones?: string[];
-    hierarchy?: HierarchyItems[];
+    hierarchy?: CountryHierarchy[];
     phone_code?: string;
-    currency?: string;
-    type?: string;
     latitude?: string;
     longitude?: string;
-    display_name?: string;
+    currency?: CurrencyObject;
+    type?: string;
 };
-/** @returns {HierarchyItems} */
-declare function HierarchyItems(): HierarchyItems;
-type HierarchyItems = {
-    display_name?: string;
-    slug?: string;
+/** @returns {GetCountries} */
+declare function GetCountries(): GetCountries;
+type GetCountries = {
+    items?: CountryObject[];
+    page?: Page;
 };

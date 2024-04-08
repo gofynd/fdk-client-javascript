@@ -4,6 +4,18 @@ declare class Communication {
     config: any;
     applicationId: any;
     /**
+     * @param {CommunicationPlatformApplicationValidator.CreateAppPushtokenParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.PushtokenRes>} - Success response
+     * @name createAppPushtoken
+     * @summary: Create app push token.
+     * @description: Create the push token of the user.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAppPushtoken/).
+     */
+    createAppPushtoken({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateAppPushtokenParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.PushtokenRes>;
+    /**
      * @param {CommunicationPlatformApplicationValidator.CreateAudienceParam} arg
      *   - Arg object
      *
@@ -27,6 +39,18 @@ declare class Communication {
      * @description: Add a new communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createCampaign/).
      */
     createCampaign({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateCampaignParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.Campaign>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.CreateCommunicationLogsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Log>} - Success response
+     * @name createCommunicationLogs
+     * @summary: Retrieve logs and records of communication activities.
+     * @description: Retrieve logs and records of communication activities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createCommunicationLogs/).
+     */
+    createCommunicationLogs({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.CreateCommunicationLogsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.Log>;
     /**
      * @param {CommunicationPlatformApplicationValidator.CreateEmailProviderParam} arg
      *   - Arg object
@@ -127,6 +151,18 @@ declare class Communication {
      * @description: Remove a specific custom communication audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteAudienceById/).
      */
     deleteAudienceById({ id, body, requestHeaders }?: CommunicationPlatformApplicationValidator.DeleteAudienceByIdParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.BasicDelete>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.DeleteCampaignByIdParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.BasicDelete>} - Success response
+     * @name deleteCampaignById
+     * @summary: Update campaign by ID.
+     * @description: Modify the settings of a specific communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteCampaignById/).
+     */
+    deleteCampaignById({ id, requestHeaders }?: CommunicationPlatformApplicationValidator.DeleteCampaignByIdParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.BasicDelete>;
     /**
      * @param {CommunicationPlatformApplicationValidator.DeleteEmailProviderByIdParam} arg
      *   - Arg object
@@ -309,6 +345,19 @@ declare class Communication {
         sort?: string;
         query?: any;
     }): Paginator<CommunicationPlatformModel.Logs>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetDefaultEmailProvidersParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.DefaultEmailProviders[]>} -
+     *   Success response
+     * @name getDefaultEmailProviders
+     * @summary: Get app providers.
+     * @description: Retrieve a list of app  providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDefaultEmailProviders/).
+     */
+    getDefaultEmailProviders({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationPlatformModel.DefaultEmailProviders[]>;
     /**
      * @param {CommunicationPlatformApplicationValidator.GetDefaultSmsProvidersParam} arg
      *   - Arg object
@@ -762,6 +811,19 @@ declare class Communication {
      */
     sendCommunicationSynchronously({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.SendCommunicationSynchronouslyParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SendInstantResponse>;
     /**
+     * @param {CommunicationPlatformApplicationValidator.SendEngineCommunicationSynchronouslyParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SendInstantResponse>} -
+     *   Success response
+     * @name sendEngineCommunicationSynchronously
+     * @summary: Send communication asynchronously.
+     * @description: Initiate and send communication with the option for asynchronous processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendEngineCommunicationSynchronously/).
+     */
+    sendEngineCommunicationSynchronously({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.SendEngineCommunicationSynchronouslyParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SendInstantResponse>;
+    /**
      * @param {CommunicationPlatformApplicationValidator.SendOtpParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -796,6 +858,20 @@ declare class Communication {
      * @description: Modify provider information for the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAppProviders/).
      */
     updateAppProviders({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.UpdateAppProvidersParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.AppProvider>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.UpdateAppProvidersGlobalProviderParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponse>}
+     *   - Success response
+     *
+     * @name updateAppProvidersGlobalProvider
+     * @summary: Get global app providers.
+     * @description: Retrieve a list of global app  providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAppProvidersGlobalProvider/).
+     */
+    updateAppProvidersGlobalProvider({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.UpdateAppProvidersGlobalProviderParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponse>;
     /**
      * @param {CommunicationPlatformApplicationValidator.UpdateAudienceByIdParam} arg
      *   - Arg object
@@ -855,7 +931,7 @@ declare class Communication {
      * @summary: Update/insert otp configurations
      * @description: Update otp-configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateOtpConfiguration/).
      */
-    updateOtpConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationPlatformModel.OtpConfiguration>;
+    updateOtpConfiguration({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.UpdateOtpConfigurationParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.OtpConfiguration>;
     /**
      * @param {CommunicationPlatformApplicationValidator.UpdateSmsProviderByIdParam} arg
      *   - Arg object

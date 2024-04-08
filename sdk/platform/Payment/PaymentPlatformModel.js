@@ -804,7 +804,7 @@ const Joi = require("joi");
 
 /**
  * @typedef SetBUPaymentLimit
- * @property {string} buisness_unit - Business Unit - 'storefront'/ 'pos'
+ * @property {string} [buisness_unit] - Business Unit - 'storefront'/ 'pos'
  * @property {SetUserPaymentLimitConfig} config
  */
 
@@ -897,11 +897,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} size - Total number of pages
- * @property {boolean} has_next - Whether there exist next page or not
- * @property {number} current - Current page number
- * @property {string} type - Type of pagination used
- * @property {number} item_total - Total number of items
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -1148,6 +1150,11 @@ const Joi = require("joi");
  * @property {string} [message]
  * @property {number} [amount]
  * @property {string} [user_id]
+ * @property {string} [customer_mobile_number]
+ * @property {number} [total_credited_balance]
+ * @property {boolean} [is_cn_locked]
+ * @property {number} [total_locked_amount]
+ * @property {number} [allowed_redemption_amount]
  */
 
 /**
@@ -1686,6 +1693,7 @@ const Joi = require("joi");
 
 /**
  * @typedef RefundSourcesPriority
+ * @property {boolean} [enabled] - Refund source is enabled or not
  * @property {string} description - Description of refund source
  * @property {number} priority - Priority of refund source, 0 being highest
  * @property {string} source - Source of refund
@@ -1696,6 +1704,7 @@ const Joi = require("joi");
  * @property {string} configuration - Configuration for merchant or customer
  * @property {boolean} success - Success
  * @property {boolean} apportion - Apportion refund to multiple sources
+ * @property {string} business_unit - Business unit either pos or storefront
  * @property {RefundSourcesPriority[]} refund_sources_priority - Refund sources priority
  * @property {string} [message] - Message
  */
@@ -2030,6 +2039,7 @@ const Joi = require("joi");
  * @property {string} [name] - Name of the Transfer Mode.
  * @property {string} [utr] - Unique Transaction Reference of the refund.
  * @property {string} [notes] - Any optional notes regarding the transaction.
+ * @property {string} [billing_employee_code] - Billing Employee Code
  */
 
 /**
@@ -2063,6 +2073,9 @@ const Joi = require("joi");
  * @typedef RefundOptionsPriority
  * @property {string[]} [payment_modes]
  * @property {RefundItem[]} [items]
+ * @property {string[]} [payment_gateways] - List of all offline payment gateways.
+ * @property {string[]} [offline_refund_collect_type] - List of all offline
+ *   Refund Collect Types.
  */
 
 /**
@@ -3293,7 +3306,7 @@ class PaymentPlatformModel {
   /** @returns {SetBUPaymentLimit} */
   static SetBUPaymentLimit() {
     return Joi.object({
-      buisness_unit: Joi.string().allow("").required(),
+      buisness_unit: Joi.string().allow(""),
       config: PaymentPlatformModel.SetUserPaymentLimitConfig().required(),
     });
   }
@@ -3410,11 +3423,13 @@ class PaymentPlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      size: Joi.number().required(),
-      has_next: Joi.boolean().required(),
-      current: Joi.number().required(),
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
       type: Joi.string().allow("").required(),
-      item_total: Joi.number().required(),
+      size: Joi.number(),
     });
   }
 
@@ -3716,6 +3731,11 @@ class PaymentPlatformModel {
       message: Joi.string().allow(""),
       amount: Joi.number(),
       user_id: Joi.string().allow(""),
+      customer_mobile_number: Joi.string().allow(""),
+      total_credited_balance: Joi.number(),
+      is_cn_locked: Joi.boolean(),
+      total_locked_amount: Joi.number(),
+      allowed_redemption_amount: Joi.number(),
     });
   }
 
@@ -4332,6 +4352,7 @@ class PaymentPlatformModel {
   /** @returns {RefundSourcesPriority} */
   static RefundSourcesPriority() {
     return Joi.object({
+      enabled: Joi.boolean(),
       description: Joi.string().allow("").required(),
       priority: Joi.number().required(),
       source: Joi.string().allow("").required(),
@@ -4344,6 +4365,7 @@ class PaymentPlatformModel {
       configuration: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
       apportion: Joi.boolean().required(),
+      business_unit: Joi.string().allow("").required(),
       refund_sources_priority: Joi.array()
         .items(PaymentPlatformModel.RefundSourcesPriority())
         .required(),
@@ -4760,6 +4782,7 @@ class PaymentPlatformModel {
       name: Joi.string().allow(""),
       utr: Joi.string().allow(""),
       notes: Joi.string().allow("").allow(null),
+      billing_employee_code: Joi.string().allow("").allow(null),
     });
   }
 
@@ -4801,6 +4824,8 @@ class PaymentPlatformModel {
     return Joi.object({
       payment_modes: Joi.array().items(Joi.string().allow("")),
       items: Joi.array().items(PaymentPlatformModel.RefundItem()),
+      payment_gateways: Joi.array().items(Joi.string().allow("")),
+      offline_refund_collect_type: Joi.array().items(Joi.string().allow("")),
     });
   }
 

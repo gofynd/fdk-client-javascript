@@ -2,16 +2,23 @@ const Joi = require("joi");
 
 const LogisticApplicationModel = require("./LogisticApplicationModel");
 
+/**
+ * @typedef CreateShipmentsParam
+ * @property {number} companyId - The ID of the company.
+ * @property {string} applicationId - The ID of the application.
+ * @property {LogisticApplicationModel.GenerateShipmentsRequest} body
+ */
+
 /** @typedef GetAllCountriesParam */
 
 /**
  * @typedef GetCountriesParam
- * @property {boolean} [onboarding] - Only fetch countries which allowed for
+ * @property {boolean} [onboard] - Only fetch countries which allowed for
  *   onboard on Platform.
  * @property {number} [pageNo] - Page number.
  * @property {number} [pageSize] - Page size.
  * @property {string} [q] - Search.
- * @property {string} [hierarchy] - Get countries with only certain hierarchy present..
+ * @property {string} [hierarchy] - Hierarchy.
  */
 
 /**
@@ -48,8 +55,8 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  * @property {number} [pageNo] - Page number.
  * @property {number} [pageSize] - Page size.
  * @property {string} [q] - Search.
- * @property {string} [name] - Search with full name.
- * @property {string} [namesList] - Search with multiple full names
+ * @property {string} [name] - Search for localities. Either provide a full name
+ *   or a search term.
  */
 
 /**
@@ -66,44 +73,14 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  */
 
 /**
- * @typedef GetLocationsParam
- * @property {string} xApplicationId - A `x-application-id` is a unique
- *   identifier for a particular sale channel.
- * @property {string} xApplicationData - A `x-application-data` is a unique
- *   identifier for a particular sale channel.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country `iso2` code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
- * @property {number} [pincode] - A `pincode` contains a specific value of the city.
- * @property {string} [sector] - A `sector` contains a specific value of the city.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
- */
-
-/**
- * @typedef GetOptimalLocationsParam
- * @property {LogisticApplicationModel.ReAssignStoreRequest} body
- */
-
-/**
- * @typedef GetPincodeZonesParam
- * @property {LogisticApplicationModel.GetZoneFromPincodeViewRequest} body
- */
-
-/**
  * @typedef GetZonesParam
  * @property {number} companyId - The unique identifier for the company.
  * @property {string} applicationId - A `application_id` is a unique identifier
  *   for a particular sale channel.
  * @property {string} [stage] - Identifies the specific stage of zone bing requested.
  * @property {number} [pageSize] - Defines the number of items displayed per page.
- * @property {string} [zoneIds] - Defines the specific zones with the given ids
- *   to be displayed.
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
  * @property {string} [q] - Search with name as a free text.
- * @property {string} [country] - Name of the country.
  * @property {string} [countryIsoCode] - ISO2 code of the country.
  * @property {string} [pincode] - PIN Code of the country.
  * @property {string} [state] - State of the country.
@@ -119,6 +96,15 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  */
 
 class LogisticApplicationValidator {
+  /** @returns {CreateShipmentsParam} */
+  static createShipments() {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      applicationId: Joi.string().allow("").required(),
+      body: LogisticApplicationModel.GenerateShipmentsRequest().required(),
+    }).required();
+  }
+
   /** @returns {GetAllCountriesParam} */
   static getAllCountries() {
     return Joi.object({});
@@ -127,7 +113,7 @@ class LogisticApplicationValidator {
   /** @returns {GetCountriesParam} */
   static getCountries() {
     return Joi.object({
-      onboarding: Joi.boolean(),
+      onboard: Joi.boolean(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
@@ -169,7 +155,6 @@ class LogisticApplicationValidator {
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      namesList: Joi.string().allow(""),
     }).required();
   }
 
@@ -184,35 +169,6 @@ class LogisticApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetLocationsParam} */
-  static getLocations() {
-    return Joi.object({
-      xApplicationId: Joi.string().allow("").required(),
-      xApplicationData: Joi.string().allow("").required(),
-      country: Joi.string().allow(""),
-      state: Joi.string().allow(""),
-      city: Joi.string().allow(""),
-      pincode: Joi.number(),
-      sector: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetOptimalLocationsParam} */
-  static getOptimalLocations() {
-    return Joi.object({
-      body: LogisticApplicationModel.ReAssignStoreRequest().required(),
-    }).required();
-  }
-
-  /** @returns {GetPincodeZonesParam} */
-  static getPincodeZones() {
-    return Joi.object({
-      body: LogisticApplicationModel.GetZoneFromPincodeViewRequest().required(),
-    }).required();
-  }
-
   /** @returns {GetZonesParam} */
   static getZones() {
     return Joi.object({
@@ -220,10 +176,8 @@ class LogisticApplicationValidator {
       applicationId: Joi.string().allow("").required(),
       stage: Joi.string().allow(""),
       pageSize: Joi.number(),
-      zoneIds: Joi.string().allow(""),
       isActive: Joi.boolean(),
       q: Joi.string().allow(""),
-      country: Joi.string().allow(""),
       countryIsoCode: Joi.string().allow(""),
       pincode: Joi.string().allow(""),
       state: Joi.string().allow(""),

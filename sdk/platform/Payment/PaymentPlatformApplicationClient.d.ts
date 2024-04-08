@@ -113,7 +113,7 @@ declare class Payment {
      * @summary: API to create merchant refund priority
      * @description: API to update merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/createMerchantRefundPriority/).
      */
-    createMerchantRefundPriority({ configType, body, requestHeaders }?: PaymentPlatformApplicationValidator.CreateMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
+    createMerchantRefundPriority({ configType, businessUnit, body, requestHeaders }?: PaymentPlatformApplicationValidator.CreateMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
     /**
      * @param {PaymentPlatformApplicationValidator.CreatePaymentLinkParam} arg
      *   - Arg object
@@ -313,7 +313,7 @@ declare class Payment {
      * @summary: API to get merchant refund priority
      * @description: API to get merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantRefundPriority/).
      */
-    getMerchantRefundPriority({ configType, requestHeaders }?: PaymentPlatformApplicationValidator.GetMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
+    getMerchantRefundPriority({ configType, businessUnit, requestHeaders }?: PaymentPlatformApplicationValidator.GetMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetPGConfigAggregatorsParam} arg
      *   - Arg object
@@ -802,7 +802,7 @@ declare class Payment {
      * @summary: API to update merchant refund priority
      * @description: API to update merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateMerchantRefundPriority/).
      */
-    updateMerchantRefundPriority({ configType, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
+    updateMerchantRefundPriority({ configType, businessUnit, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
     /**
      * @param {PaymentPlatformApplicationValidator.UpdatePaymentSessionParam} arg
      *   - Arg object

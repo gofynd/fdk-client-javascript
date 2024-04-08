@@ -61,7 +61,7 @@ class PartnerPlatformModel {
   static RemoveProxyResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
-      data: Joi.any(),
+      data: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

@@ -138,6 +138,16 @@ export = UserPlatformModel;
  * @property {string[]} [session_ids]
  */
 /**
+ * @typedef APIError
+ * @property {string} [code]
+ * @property {string} [message]
+ * @property {string} [info] - Error code description link
+ * @property {string} [request_id]
+ * @property {string} [error]
+ * @property {Object} [meta]
+ * @property {boolean} [authenticated]
+ */
+/**
  * @typedef SessionListResponseInfo
  * @property {string} [session_id]
  * @property {string} [user_agent]
@@ -508,20 +518,10 @@ export = UserPlatformModel;
  * @property {boolean} [primary] - Is it a primary email
  * @property {boolean} [verified] - Is the email verified
  */
-/**
- * @typedef APIError
- * @property {string} [code]
- * @property {string} [message]
- * @property {string} [info] - Error code description link
- * @property {string} [request_id]
- * @property {string} [error]
- * @property {Object} [meta]
- * @property {boolean} [authenticated]
- */
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, PasswordConfigs, PasswordHistory, PasswordExpiry, PasswordSettings, AccountLockout, Login, MetaSchema, Social, PlatformPassword, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserPasswordHistory, UserSchema, UserSearchSchema, PhoneNumber, Email, APIError };
+    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, PasswordConfigs, PasswordHistory, PasswordExpiry, PasswordSettings, AccountLockout, Login, MetaSchema, Social, PlatformPassword, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserPasswordHistory, UserSchema, UserSearchSchema, PhoneNumber, Email };
 }
 /** @returns {SuccessMessageResponse} */
 declare function SuccessMessageResponse(): SuccessMessageResponse;
@@ -796,6 +796,20 @@ declare function SessionsDeleteResponseSchema(): SessionsDeleteResponseSchema;
 type SessionsDeleteResponseSchema = {
     user_id?: string;
     session_ids?: string[];
+};
+/** @returns {APIError} */
+declare function APIError(): APIError;
+type APIError = {
+    code?: string;
+    message?: string;
+    /**
+     * - Error code description link
+     */
+    info?: string;
+    request_id?: string;
+    error?: string;
+    meta?: any;
+    authenticated?: boolean;
 };
 /** @returns {SessionListResponseInfo} */
 declare function SessionListResponseInfo(): SessionListResponseInfo;
@@ -1265,18 +1279,4 @@ type Email = {
      * - Is the email verified
      */
     verified?: boolean;
-};
-/** @returns {APIError} */
-declare function APIError(): APIError;
-type APIError = {
-    code?: string;
-    message?: string;
-    /**
-     * - Error code description link
-     */
-    info?: string;
-    request_id?: string;
-    error?: string;
-    meta?: any;
-    authenticated?: boolean;
 };

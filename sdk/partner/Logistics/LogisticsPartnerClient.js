@@ -687,6 +687,7 @@ class Logistics {
       stage,
       paymentMode,
       transportType,
+      accountIds,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -701,6 +702,7 @@ class Logistics {
         stage,
         paymentMode,
         transportType,
+        accountIds,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -719,6 +721,7 @@ class Logistics {
         stage,
         paymentMode,
         transportType,
+        accountIds,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -735,6 +738,7 @@ class Logistics {
     query_params["stage"] = stage;
     query_params["payment_mode"] = paymentMode;
     query_params["transport_type"] = transportType;
+    query_params["account_ids"] = accountIds;
 
     const response = await PartnerAPIClient.execute(
       this.config,
@@ -778,7 +782,7 @@ class Logistics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierAccount>} - Success response
    * @name updateCourierPartnerAccount
    * @summary: Update Courier Account in database.
    * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
@@ -838,7 +842,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierAccountResponse().validate(responseData, {
+    } = LogisticsPartnerModel.CourierAccount().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -986,7 +990,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/scheme/`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/scheme`,
       query_params,
       body,
       requestHeaders,
@@ -1113,14 +1117,14 @@ class Logistics {
    * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
    */
   async getCountries(
-    { onboarding, pageNo, pageSize, q, hierarchy, requestHeaders } = {
+    { onboard, pageNo, pageSize, q, hierarchy, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = LogisticsPartnerValidator.getCountries().validate(
       {
-        onboarding,
+        onboard,
         pageNo,
         pageSize,
         q,
@@ -1137,7 +1141,7 @@ class Logistics {
       error: warrning,
     } = LogisticsPartnerValidator.getCountries().validate(
       {
-        onboarding,
+        onboard,
         pageNo,
         pageSize,
         q,
@@ -1153,7 +1157,7 @@ class Logistics {
     }
 
     const query_params = {};
-    query_params["onboarding"] = onboarding;
+    query_params["onboard"] = onboard;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
@@ -1193,6 +1197,40 @@ class Logistics {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.onboard] - Only fetch countries which allowed for
+   *   onboard on Platform.
+   * @param {number} [arg.pageSize] - Page size.
+   * @param {string} [arg.q] - Search.
+   * @param {string} [arg.hierarchy] - Hierarchy.
+   * @returns {Paginator<LogisticsPartnerModel.GetCountries>}
+   * @summary: Get all countries and associated data.
+   * @description: Retrieve of all countries.
+   */
+  getCountriesPaginator({ onboard, pageSize, q, hierarchy } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getCountries({
+        onboard: onboard,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+        hierarchy: hierarchy,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 }
 module.exports = Logistics;

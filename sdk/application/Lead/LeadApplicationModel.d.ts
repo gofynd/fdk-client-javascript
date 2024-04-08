@@ -26,47 +26,24 @@ export = LeadApplicationModel;
  */
 /**
  * @typedef UserSchema
- * @property {string} [first_name] - First name
- * @property {string} [last_name] - Last name
- * @property {PhoneNumber[]} [phone_numbers] - List of phone numbers
- * @property {Email[]} [emails] - List of email addresses
- * @property {UserPasswordHistory[]} [password_history]
- * @property {string} [gender] - Gender of user
- * @property {boolean} [active] - Is account active
- * @property {string} [profile_pic_url] - URL for profile pic
- * @property {string} [username] - Username of user
- * @property {string} [account_type] - Type of account
- * @property {string} [uid] - Unique identifier of user
- * @property {Debug} [debug]
- * @property {boolean} [has_old_password_hash] - Denotes if user has old password hash
- * @property {string} [_id] - Unique identifier of user
- * @property {string} [created_at] - Time of user creation
- * @property {string} [updated_at] - Last time of user details update
- */
-/**
- * @typedef PhoneNumber
- * @property {boolean} [active] - Denotes if the phone number is active
- * @property {boolean} [primary] - Denotes it's the primary phone number for the account
- * @property {boolean} [verified] - Denotes it's a verified phone number
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- */
-/**
- * @typedef UserPasswordHistory
- * @property {string} [salt]
- * @property {string} [hash]
- */
-/**
- * @typedef Email
- * @property {boolean} [primary] - Denotes it's the primary email for the account
- * @property {boolean} [verified] - Denotes it's a verified email
- * @property {string} [email] - Email Address
- * @property {boolean} [active] - Denotes if the email is active
- */
-/**
- * @typedef Debug
- * @property {string} [source] - Source of user
- * @property {string} [platform] - Platform of user
+ * @property {string} [application_id]
+ * @property {string} [user_id]
+ * @property {string} [first_name]
+ * @property {Object} [meta]
+ * @property {string} [last_name]
+ * @property {PhoneNumber[]} [phone_numbers]
+ * @property {Email[]} [emails]
+ * @property {string} [gender]
+ * @property {string} [dob]
+ * @property {boolean} [active]
+ * @property {string} [profile_pic_url]
+ * @property {string} [username]
+ * @property {string} [account_type]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {string} [rr_id]
  */
 /**
  * @typedef SubmitCustomFormResponse
@@ -233,6 +210,21 @@ export = LeadApplicationModel;
  * @property {string} [sentry]
  */
 /**
+ * @typedef PhoneNumber
+ * @property {string} [phone] - Phone number
+ * @property {number} [country_code] - Country code
+ * @property {boolean} [active] - Is the phone number active
+ * @property {boolean} [primary] - Is it a primary phone number
+ * @property {boolean} [verified] - Is the phone number verified
+ */
+/**
+ * @typedef Email
+ * @property {string} [email] - Email address
+ * @property {boolean} [active] - Is the email active
+ * @property {boolean} [primary] - Is it a primary email
+ * @property {boolean} [verified] - Is the email verified
+ */
+/**
  * @typedef {| "image"
  *   | "video"
  *   | "file"
@@ -247,7 +239,7 @@ export = LeadApplicationModel;
 declare class LeadApplicationModel {
 }
 declare namespace LeadApplicationModel {
-    export { TicketHistoryPayload, CustomFormSubmissionPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, UserPasswordHistory, Email, Debug, SubmitCustomFormResponse, FormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, TicketHistory, Ticket, NotFoundError, Error4XX, TicketAssetTypeEnum, TicketSourceEnum };
+    export { TicketHistoryPayload, CustomFormSubmissionPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, SubmitCustomFormResponse, FormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, TicketHistory, Ticket, NotFoundError, Error4XX, PhoneNumber, Email, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {TicketHistoryPayload} */
 declare function TicketHistoryPayload(): TicketHistoryPayload;
@@ -303,126 +295,24 @@ type Participant = {
 /** @returns {UserSchema} */
 declare function UserSchema(): UserSchema;
 type UserSchema = {
-    /**
-     * - First name
-     */
+    application_id?: string;
+    user_id?: string;
     first_name?: string;
-    /**
-     * - Last name
-     */
+    meta?: any;
     last_name?: string;
-    /**
-     * - List of phone numbers
-     */
     phone_numbers?: PhoneNumber[];
-    /**
-     * - List of email addresses
-     */
     emails?: Email[];
-    password_history?: UserPasswordHistory[];
-    /**
-     * - Gender of user
-     */
     gender?: string;
-    /**
-     * - Is account active
-     */
+    dob?: string;
     active?: boolean;
-    /**
-     * - URL for profile pic
-     */
     profile_pic_url?: string;
-    /**
-     * - Username of user
-     */
     username?: string;
-    /**
-     * - Type of account
-     */
     account_type?: string;
-    /**
-     * - Unique identifier of user
-     */
-    uid?: string;
-    debug?: Debug;
-    /**
-     * - Denotes if user has old password hash
-     */
-    has_old_password_hash?: boolean;
-    /**
-     * - Unique identifier of user
-     */
     _id?: string;
-    /**
-     * - Time of user creation
-     */
     created_at?: string;
-    /**
-     * - Last time of user details update
-     */
     updated_at?: string;
-};
-/** @returns {PhoneNumber} */
-declare function PhoneNumber(): PhoneNumber;
-type PhoneNumber = {
-    /**
-     * - Denotes if the phone number is active
-     */
-    active?: boolean;
-    /**
-     * - Denotes it's the primary phone number for the account
-     */
-    primary?: boolean;
-    /**
-     * - Denotes it's a verified phone number
-     */
-    verified?: boolean;
-    /**
-     * - Phone number
-     */
-    phone?: string;
-    /**
-     * - Country code
-     */
-    country_code?: number;
-};
-/** @returns {UserPasswordHistory} */
-declare function UserPasswordHistory(): UserPasswordHistory;
-type UserPasswordHistory = {
-    salt?: string;
-    hash?: string;
-};
-/** @returns {Email} */
-declare function Email(): Email;
-type Email = {
-    /**
-     * - Denotes it's the primary email for the account
-     */
-    primary?: boolean;
-    /**
-     * - Denotes it's a verified email
-     */
-    verified?: boolean;
-    /**
-     * - Email Address
-     */
-    email?: string;
-    /**
-     * - Denotes if the email is active
-     */
-    active?: boolean;
-};
-/** @returns {Debug} */
-declare function Debug(): Debug;
-type Debug = {
-    /**
-     * - Source of user
-     */
-    source?: string;
-    /**
-     * - Platform of user
-     */
-    platform?: string;
+    external_id?: string;
+    rr_id?: string;
 };
 /** @returns {SubmitCustomFormResponse} */
 declare function SubmitCustomFormResponse(): SubmitCustomFormResponse;
@@ -788,6 +678,50 @@ type Error4XX = {
     message?: any;
     stack?: string;
     sentry?: string;
+};
+/** @returns {PhoneNumber} */
+declare function PhoneNumber(): PhoneNumber;
+type PhoneNumber = {
+    /**
+     * - Phone number
+     */
+    phone?: string;
+    /**
+     * - Country code
+     */
+    country_code?: number;
+    /**
+     * - Is the phone number active
+     */
+    active?: boolean;
+    /**
+     * - Is it a primary phone number
+     */
+    primary?: boolean;
+    /**
+     * - Is the phone number verified
+     */
+    verified?: boolean;
+};
+/** @returns {Email} */
+declare function Email(): Email;
+type Email = {
+    /**
+     * - Email address
+     */
+    email?: string;
+    /**
+     * - Is the email active
+     */
+    active?: boolean;
+    /**
+     * - Is it a primary email
+     */
+    primary?: boolean;
+    /**
+     * - Is the email verified
+     */
+    verified?: boolean;
 };
 /**
  * Enum: TicketAssetTypeEnum Used By: Lead

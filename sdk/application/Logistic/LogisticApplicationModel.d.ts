@@ -1,5 +1,229 @@
 export = LogisticApplicationModel;
 /**
+ * @typedef PackagingDimension
+ * @property {number} length - The length dimension of packaging.
+ * @property {number} width - The width dimension of packaging.
+ * @property {number} height - The height dimension of packaging.
+ */
+/**
+ * @typedef ShipmentArticleMeta
+ * @property {boolean} [is_set] - A boolean indicating whether the article is a set.
+ * @property {Object} [set] - An ArticleSet object describing the attributes of
+ *   the set, if the article is a set.
+ * @property {boolean} [is_set_article] - A boolean indicating whether the
+ *   article is included in the set.
+ * @property {number} [set_quantity] - It represents the number of set of this article
+ * @property {string} [split_article_id] - This key is used to identify the
+ *   bundle products
+ * @property {string[]} [promo_ids] - The list of promo ids applied on this article
+ */
+/**
+ * @typedef DeliveryTat
+ * @property {number} [min] - The minimum tat in integer.
+ * @property {number} [max] - The maximum tat in integer.
+ */
+/**
+ * @typedef CourierPartnerPromiseData
+ * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
+ * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
+ * @property {DeliveryTat} [attributes]
+ */
+/**
+ * @typedef PromiseMeta
+ * @property {PromiseData} [seller_promise]
+ * @property {CourierPartnerPromiseData} [courier_partner_promise]
+ * @property {PromiseData} [customer_initial_promise]
+ */
+/**
+ * @typedef PromiseData
+ * @property {string} [min] - The minimum promised delivery time in ISO 8601 format.
+ * @property {string} [max] - The maximum promised delivery time in ISO 8601 format.
+ */
+/**
+ * @typedef CourierPartnersTat
+ * @property {number} min - The minimum transit time.
+ * @property {number} max - The maximum transit time.
+ */
+/**
+ * @typedef AreaCode
+ * @property {string} [source] - The starting area code.
+ * @property {string} [destination] - The ending area code.
+ */
+/**
+ * @typedef SetSize
+ * @property {number} pieces - The number of pieces in the set.
+ * @property {string} size - The size description of the set.
+ */
+/**
+ * @typedef ArticleSizeDistribution
+ * @property {SetSize[]} sizes - A collection of different size options and
+ *   their corresponding pieces.
+ */
+/**
+ * @typedef SetSizeItem
+ * @property {number} [pieces]
+ * @property {string} [size]
+ */
+/**
+ * @typedef SetSizeDistribution
+ * @property {SetSizeItem[]} [sizes]
+ */
+/**
+ * @typedef PromiseObject
+ * @property {PromiseData} [customer_promise]
+ * @property {PromiseMeta} [meta]
+ */
+/**
+ * @typedef ShipmentCourierPartners
+ * @property {string} extension_id - The ID of the courier partner.
+ * @property {string} scheme_id - The scheme ID of the courier partner.
+ * @property {AreaCode} area_code
+ * @property {CourierPartnersTat} tat
+ * @property {string} display_name - The display name of the courier partner.
+ * @property {boolean} is_qc_enabled - A boolean indicating quality control by
+ *   the courier partner.
+ * @property {boolean} is_self_ship - A boolean indicating it is self delivery DP support.
+ */
+/**
+ * @typedef ShipmentsArticles
+ * @property {string} id - The ID of the shipment article.
+ * @property {number} quantity - The quantity of the shipment article.
+ * @property {number} item_id - The Item ID of the article.
+ * @property {string} size - The size of the article.
+ * @property {boolean} [is_set] - A boolean indicating whether the article is a set.
+ * @property {ArticleSet} [set]
+ * @property {string} sla - SLA in UTC format of article
+ * @property {ShipmentArticleMeta} [meta]
+ */
+/**
+ * @typedef ArticleReturnReason
+ * @property {string[]} [qc_type] - List of string having return reason values
+ */
+/**
+ * @typedef ArticleDeliverySlots
+ * @property {string} delivery_date - The delivery date for the article.
+ * @property {string} min_slot - The minimum delivery time slot.
+ * @property {string} max_slot - The maximum delivery time slot.
+ */
+/**
+ * @typedef ArticleSet
+ * @property {string} name - The name of the article set.
+ * @property {number} quantity - The quantity of the article set.
+ * @property {ArticleSizeDistribution} size_distribution
+ */
+/**
+ * @typedef ArticleDimension
+ * @property {number} height - The height of the article.
+ * @property {boolean} is_default - A boolean indicating whether this dimension
+ *   is the default dimension.
+ * @property {number} length - The length of the article.
+ * @property {string} unit - The unit of measurement used for the dimensions.
+ * @property {number} width - The width of the article.
+ */
+/**
+ * @typedef ArticleAttributes
+ * @property {string} battery_operated - Yes/no indicating whether the article
+ *   is powered by batteries.
+ * @property {string} is_flammable - Yes/no indicating whether the article is
+ *   considered flammable or poses a fire hazard.
+ */
+/**
+ * @typedef ArticleWeight
+ * @property {number} shipping - The weight of the article for shipping
+ *   purposes, typically measured in a specified unit.
+ * @property {string} unit - The unit of measurement used for the weight value
+ *   (e.g., kilogram, pounds).
+ * @property {boolean} is_default - A boolean indicating whether this weight is
+ *   the default weight for the article.
+ */
+/**
+ * @typedef ServiceabilityLocation
+ * @property {string} longitude - The longitude of the serviceability location.
+ * @property {string} latitude - The latitude of the serviceability location.
+ */
+/**
+ * @typedef Shipments
+ * @property {number} fulfillment_id - The fulfillment ID.
+ * @property {number} count - Shipment replication count.
+ * @property {ShipmentsArticles[]} articles - A list of articles in the shipment.
+ * @property {ShipmentCourierPartners[]} courier_partners
+ * @property {PromiseObject} [promise]
+ * @property {string[]} [tags] - Tags associated with the shipment.
+ * @property {boolean} is_mto - A boolean indicating if the courier partner
+ *   supports "Made to Order" service.
+ * @property {boolean} is_gift - A boolean indicating if the courier partner
+ *   supports gift shipments.
+ * @property {boolean} is_locked - A boolean indicating if the courier partner is locked.
+ * @property {Packaging} packaging
+ * @property {ArticleDeliverySlots} [delivery_slots]
+ * @property {number} weight - Actual weight of the shipment.
+ * @property {number} volumetric_weight - Volumetric weight of the shipment.
+ * @property {boolean} is_auto_assign - A boolean indicating auto-assignment of
+ *   the fullfilment location.
+ * @property {string} shipment_type - Shipment type i.e. whether is single
+ *   article single shipment or bulk shipment.
+ * @property {Object} from_serviceability
+ */
+/**
+ * @typedef LocationDetailsArticle
+ * @property {string} id - The ID of the article.
+ * @property {number} item_id - The Item ID of the article.
+ * @property {string[]} tags - Tags assigned to Item.
+ * @property {string} size - The size of the article.
+ * @property {string} [group_id] - The group ID of the article.
+ * @property {ArticleWeight} weight
+ * @property {ArticleAttributes} [attributes]
+ * @property {number} category_id - The category ID of the article.
+ * @property {number} department_id
+ * @property {ArticleDimension} dimension
+ * @property {number} price - Final Price of the article after discounts
+ * @property {number} brand_id - The brand ID of the article.
+ * @property {number} quantity - The quantity of the article.
+ * @property {number} [manufacturing_time] - The manufacturing time of the article.
+ * @property {string} [manufacturing_time_unit] - The unit of measurement for
+ *   manufacturing time.
+ * @property {number} [mto_quantity] - The "Made to Order" quantity of the article.
+ * @property {boolean} is_gift - A boolean indicating whether the article is a gift.
+ * @property {boolean} is_set - A boolean indicating whether the article is a set.
+ * @property {ArticleSet} [set]
+ * @property {number} [set_quantity] - The quantity of the article set.
+ * @property {ArticleDeliverySlots} [delivery_slots]
+ * @property {ArticleReturnReason} [return_reason]
+ */
+/**
+ * @typedef LocationDetailsServiceability
+ * @property {string} [pincode] - The pincode of the serviceability location.
+ * @property {string} [sector] - The sector of the serviceability location.
+ * @property {string} [state] - The state of the serviceability location.
+ * @property {string} country - The country of the serviceability location.
+ * @property {string} [city] - The city of the serviceability location.
+ * @property {string} country_iso_code - The ISO code of the country.
+ * @property {ServiceabilityLocation} [location]
+ */
+/**
+ * @typedef GenerateShipmentsLocationArticles
+ * @property {number} fulfillment_id - The fulfillment ID.
+ * @property {LocationDetailsServiceability} from_serviceability
+ * @property {string} fulfillment_type - The type of fulfillment.
+ * @property {string[]} fulfillment_tags - Fulfillment level tags
+ * @property {LocationDetailsArticle[]} articles - A list of articles and their details.
+ * @property {boolean} [ewaybill_enabled]
+ * @property {boolean} [is_home_delivery]
+ */
+/**
+ * @typedef GenerateShipmentsRequest
+ * @property {LocationDetailsServiceability} to_serviceability
+ * @property {GenerateShipmentsLocationArticles[]} location_articles - A list of
+ *   location-based article details.
+ * @property {string} journey - The journey details for the shipment.
+ * @property {string} [payment_mode] - The payment mode for the shipment.
+ */
+/**
+ * @typedef GenerateShipmentsAndCourierPartnerResponse
+ * @property {Shipments[]} shipments - A list of generated shipments.
+ * @property {boolean} is_cod_available - A boolean indicating if COD (COD) is available.
+ */
+/**
  * @typedef ListViewResponseV2
  * @property {ListViewItemsV2[]} items
  * @property {ZoneDataItem} page
@@ -38,7 +262,12 @@ export = LogisticApplicationModel;
  * @typedef Summary
  * @property {number} [stores_count]
  * @property {number} [products_count]
- * @property {Region[]} [regions]
+ * @property {RegionSchema[]} [regions]
+ */
+/**
+ * @typedef RegionSchema
+ * @property {string} [name]
+ * @property {number} [count]
  */
 /**
  * @typedef ZoneDataItem
@@ -150,6 +379,8 @@ export = LogisticApplicationModel;
  * @property {string} [phone] - An integer representing the recipient's contact
  *   phone number.
  * @property {string} [email] - A string containing the recipient's email address.
+ * @property {string} [country_iso_code] - A string containing the recipient's
+ *   email address.
  */
 /**
  * @typedef PincodeParentsResponse
@@ -170,14 +401,9 @@ export = LogisticApplicationModel;
  * @property {string} [type]
  */
 /**
- * @typedef CountryMetaResponse
- * @property {string} [country_code]
- * @property {string} [isd_code]
- */
-/**
  * @typedef PincodeLatLongData
  * @property {string} [type]
- * @property {string[]} [coordinates]
+ * @property {number[]} [coordinates]
  */
 /**
  * @typedef PincodeDataResponse
@@ -294,16 +520,28 @@ export = LogisticApplicationModel;
  * @property {Object} [dp]
  */
 /**
- * @typedef CountryEntityResponse
- * @property {CountryMetaResponse} [meta]
+ * @typedef CountryMetaResponse
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {CurrencyObject} [currency]
+ * @property {string} [phone_code]
+ * @property {string} [parent_id]
+ * @property {string} [zone]
+ * @property {string[]} [deliverables]
+ * @property {CountryHierarchy[]} [hierarchy]
  * @property {LogisticsResponse} [logistics]
+ */
+/**
+ * @typedef CountryEntityResponse
  * @property {string} [display_name]
- * @property {string} [type]
  * @property {boolean} [is_active]
  * @property {string} [parent_id]
  * @property {string} [sub_type]
  * @property {string} [name]
  * @property {string} [uid]
+ * @property {Object} [lat_long]
+ * @property {CountryMetaResponse} [meta]
+ * @property {LogisticsResponse} [logistics]
  */
 /**
  * @typedef CountryListResponse
@@ -337,7 +575,7 @@ export = LogisticApplicationModel;
  */
 /**
  * @typedef CountryHierarchy
- * @property {string} [name]
+ * @property {string} [display_name]
  * @property {string} [slug]
  */
 /**
@@ -368,8 +606,8 @@ export = LogisticApplicationModel;
  */
 /**
  * @typedef GetOneOrAllPath
- * @property {string} [locality_type]
- * @property {string} [locality_value]
+ * @property {string} [type]
+ * @property {string} [value]
  */
 /**
  * @typedef GetOneOrAllQuery
@@ -415,6 +653,7 @@ export = LogisticApplicationModel;
  * @property {boolean} required
  * @property {boolean} [edit]
  * @property {string} input
+ * @property {string} [pre_fill]
  * @property {FieldValidation} [validation]
  * @property {GetCountryFieldsAddressValues} [values]
  * @property {string} [error_text]
@@ -449,12 +688,13 @@ export = LogisticApplicationModel;
  */
 /**
  * @typedef Page
- * @property {boolean} [has_next]
- * @property {number} [size]
  * @property {number} [item_total]
+ * @property {string} [next_id]
  * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
  * @property {number} [current]
- * @property {string} [type]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef Localities
@@ -462,7 +702,10 @@ export = LogisticApplicationModel;
  * @property {string} [name]
  * @property {string} [display_name]
  * @property {string[]} [parent_ids]
+ * @property {Object} [meta]
  * @property {string} [type]
+ * @property {PincodeLatLongData} [lat_long]
+ * @property {string} [parent_uid]
  * @property {LocalityParent[]} [localities]
  */
 /**
@@ -470,8 +713,17 @@ export = LogisticApplicationModel;
  * @property {string} [id]
  * @property {string} [name]
  * @property {string} [display_name]
+ * @property {Object} [meta]
  * @property {string[]} [parent_ids]
  * @property {string} [type]
+ * @property {Object} [serviceability]
+ * @property {string} [parent_uid]
+ */
+/**
+ * @typedef ErrorObject
+ * @property {string} [type]
+ * @property {string} [value]
+ * @property {string} [message]
  */
 /**
  * @typedef GetLocalities
@@ -483,7 +735,9 @@ export = LogisticApplicationModel;
  * @property {string} [id]
  * @property {string} [name]
  * @property {string} [display_name]
+ * @property {Object} [meta]
  * @property {string[]} [parent_ids]
+ * @property {string} [parent_uid]
  * @property {string} [type]
  * @property {LocalityParent[]} [localities]
  */
@@ -491,11 +745,701 @@ export = LogisticApplicationModel;
  * @typedef ErrorResponse
  * @property {string} [error]
  */
+/**
+ * @typedef ErrorResponseV2
+ * @property {string} [message]
+ */
+/**
+ * @typedef ErrorResponseV3
+ * @property {boolean} [success]
+ * @property {ErrorObject} [error]
+ */
+/**
+ * @typedef ShipmentRequest
+ * @property {ServiceabilityNew} [to_serviceability]
+ * @property {LocationArticle[]} [location_articles]
+ * @property {string} [journey]
+ * @property {string} [payment_mode]
+ */
+/**
+ * @typedef LocationArticle
+ * @property {number} [fulfillment_id]
+ * @property {ServiceabilityNew} [from_serviceability]
+ * @property {string} [fulfillment_type]
+ * @property {string[]} [fulfillment_tags]
+ * @property {Article[]} [articles]
+ */
+/**
+ * @typedef Article
+ * @property {string} [id]
+ * @property {number} [item_id]
+ * @property {string[]} [tags]
+ * @property {string} [size]
+ * @property {number} [price]
+ * @property {Weight} [weight]
+ * @property {Attributes} [attributes]
+ * @property {number} [category_id]
+ * @property {Dimension} [dimension]
+ * @property {number} [brand_id]
+ * @property {number} [department_id]
+ * @property {number} [quantity]
+ * @property {number} [manufacturing_time]
+ * @property {string} [manufacturing_time_unit]
+ * @property {number} [mto_quantity]
+ * @property {boolean} [is_gift]
+ * @property {boolean} [is_set]
+ * @property {Set} [set]
+ * @property {number} [set_quantity]
+ * @property {DeliverySlots} [delivery_slots]
+ */
+/**
+ * @typedef Weight
+ * @property {number} [shipping]
+ * @property {string} [unit]
+ * @property {boolean} [is_default]
+ */
+/**
+ * @typedef Attributes
+ * @property {string} [battery_operated]
+ * @property {string} [is_flammable]
+ */
+/**
+ * @typedef Dimension
+ * @property {number} [height]
+ * @property {boolean} [is_default]
+ * @property {number} [length]
+ * @property {string} [unit]
+ * @property {number} [width]
+ */
+/**
+ * @typedef Set
+ * @property {string} [name]
+ * @property {number} [quantity]
+ * @property {SetSizeDistribution} [size_distribution]
+ */
+/**
+ * @typedef DeliverySlots
+ * @property {string} [delivery_date]
+ * @property {string} [min_slot]
+ * @property {string} [max_slot]
+ */
+/**
+ * @typedef ServiceabilityNew
+ * @property {string} [state]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [sector]
+ * @property {string} [country_iso_code]
+ * @property {Location} [location]
+ * @property {string} [pincode]
+ */
+/**
+ * @typedef Location
+ * @property {string} [longitude]
+ * @property {string} [latitude]
+ */
+/**
+ * @typedef ShipmentResponse
+ * @property {ShipmentItem[]} [shipments]
+ * @property {boolean} [is_cod_available]
+ */
+/**
+ * @typedef Meta
+ * @property {number} [shipment_cost]
+ */
+/**
+ * @typedef ShipmentItem
+ * @property {number} [fulfillment_id]
+ * @property {string[]} [fulfillment_tags]
+ * @property {string} [fulfillment_type]
+ * @property {ServiceabilityNew} [from_serviceability]
+ * @property {Article[]} [articles]
+ * @property {CourierPartner[]} [courier_partners]
+ * @property {Promise} [promise]
+ * @property {string[]} [tags]
+ * @property {boolean} [is_mto]
+ * @property {boolean} [is_gift]
+ * @property {boolean} [is_locked]
+ * @property {Packaging} [packaging]
+ * @property {DeliverySlots} [delivery_slots]
+ * @property {number} [count]
+ * @property {number} [volumetric_weight]
+ * @property {string} [ewaybill_enabled]
+ * @property {boolean} [mps]
+ * @property {Meta} [meta]
+ * @property {number} [weight]
+ * @property {string} [shipment_type]
+ * @property {boolean} [is_auto_assign]
+ * @property {boolean} [is_cod_available]
+ */
+/**
+ * @typedef TAT
+ * @property {number} [min]
+ * @property {number} [max]
+ */
+/**
+ * @typedef CourierPartner
+ * @property {string} [extension_id]
+ * @property {string} [scheme_id]
+ * @property {AreaCode} [area_code]
+ * @property {TAT} [tat]
+ * @property {string} [display_name]
+ * @property {boolean} [is_qc_enabled]
+ * @property {boolean} [is_self_ship]
+ * @property {boolean} [is_own_account]
+ * @property {number} [ndr_attempts]
+ * @property {string} [forward_pickup_cutoff]
+ * @property {string} [reverse_pickup_cutoff]
+ */
+/**
+ * @typedef Promise
+ * @property {PromiseDetails} [customer_promise]
+ * @property {PromiseMeta} [meta]
+ */
+/**
+ * @typedef PromiseDetails
+ * @property {string} [min]
+ * @property {string} [max]
+ */
+/**
+ * @typedef Packaging
+ * @property {string} name - The name of the packaging.
+ * @property {string} id - The ID of the packaging.
+ * @property {PackagingDimension} dimension
+ */
 declare class LogisticApplicationModel {
 }
 declare namespace LogisticApplicationModel {
-    export { ListViewResponseV2, ListViewItemsV2, GeoArea, ListViewProductV2, Summary, ZoneDataItem, Region, GeoAreaGetResponseBody, GeoAreaItemResponse, Page2, AreaExpandedV2, RegionV2, Country, ServiceabilityZoneErrorResponse, ServiceabilityErrorResponse, GetStoreResponse, StoreItemResponse, ValidateAddressRequest, PincodeParentsResponse, PincodeMetaResponse, PincodeErrorSchemaResponse, CountryMetaResponse, PincodeLatLongData, PincodeDataResponse, PincodeApiResponse, TATCategoryRequest, TATArticlesRequest, TATLocationDetailsRequest, TATViewRequest, TATErrorSchemaResponse, TATTimestampResponse, TATFormattedResponse, TATPromiseResponse, TATArticlesResponse, TATLocationDetailsResponse, TATViewResponse, DP, LogisticsResponse, CountryEntityResponse, CountryListResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, ReAssignStoreRequest, ReAssignStoreResponse, CountryHierarchy, CurrencyObject, CountryObject, GetCountries, GetOneOrAllPath, GetOneOrAllQuery, GetOneOrAllParams, GetOneOrAll, LengthValidation, FieldValidationRegex, FieldValidation, GetCountryFieldsAddressValues, GetCountryFieldsAddress, GetCountryFieldsAddressTemplate, GetCountryFields, GetCountry, Page, Localities, LocalityParent, GetLocalities, GetLocality, ErrorResponse };
+    export { PackagingDimension, ShipmentArticleMeta, DeliveryTat, CourierPartnerPromiseData, PromiseMeta, PromiseData, CourierPartnersTat, AreaCode, SetSize, ArticleSizeDistribution, SetSizeItem, SetSizeDistribution, PromiseObject, ShipmentCourierPartners, ShipmentsArticles, ArticleReturnReason, ArticleDeliverySlots, ArticleSet, ArticleDimension, ArticleAttributes, ArticleWeight, ServiceabilityLocation, Shipments, LocationDetailsArticle, LocationDetailsServiceability, GenerateShipmentsLocationArticles, GenerateShipmentsRequest, GenerateShipmentsAndCourierPartnerResponse, ListViewResponseV2, ListViewItemsV2, GeoArea, ListViewProductV2, Summary, RegionSchema, ZoneDataItem, Region, GeoAreaGetResponseBody, GeoAreaItemResponse, Page2, AreaExpandedV2, RegionV2, Country, ServiceabilityZoneErrorResponse, ServiceabilityErrorResponse, GetStoreResponse, StoreItemResponse, ValidateAddressRequest, PincodeParentsResponse, PincodeMetaResponse, PincodeErrorSchemaResponse, PincodeLatLongData, PincodeDataResponse, PincodeApiResponse, TATCategoryRequest, TATArticlesRequest, TATLocationDetailsRequest, TATViewRequest, TATErrorSchemaResponse, TATTimestampResponse, TATFormattedResponse, TATPromiseResponse, TATArticlesResponse, TATLocationDetailsResponse, TATViewResponse, DP, LogisticsResponse, CountryMetaResponse, CountryEntityResponse, CountryListResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, ReAssignStoreRequest, ReAssignStoreResponse, CountryHierarchy, CurrencyObject, CountryObject, GetCountries, GetOneOrAllPath, GetOneOrAllQuery, GetOneOrAllParams, GetOneOrAll, LengthValidation, FieldValidationRegex, FieldValidation, GetCountryFieldsAddressValues, GetCountryFieldsAddress, GetCountryFieldsAddressTemplate, GetCountryFields, GetCountry, Page, Localities, LocalityParent, ErrorObject, GetLocalities, GetLocality, ErrorResponse, ErrorResponseV2, ErrorResponseV3, ShipmentRequest, LocationArticle, Article, Weight, Attributes, Dimension, Set, DeliverySlots, ServiceabilityNew, Location, ShipmentResponse, Meta, ShipmentItem, TAT, CourierPartner, Promise, PromiseDetails, Packaging };
 }
+/** @returns {PackagingDimension} */
+declare function PackagingDimension(): PackagingDimension;
+type PackagingDimension = {
+    /**
+     * - The length dimension of packaging.
+     */
+    length: number;
+    /**
+     * - The width dimension of packaging.
+     */
+    width: number;
+    /**
+     * - The height dimension of packaging.
+     */
+    height: number;
+};
+/** @returns {ShipmentArticleMeta} */
+declare function ShipmentArticleMeta(): ShipmentArticleMeta;
+type ShipmentArticleMeta = {
+    /**
+     * - A boolean indicating whether the article is a set.
+     */
+    is_set?: boolean;
+    /**
+     * - An ArticleSet object describing the attributes of
+     * the set, if the article is a set.
+     */
+    set?: any;
+    /**
+     * - A boolean indicating whether the
+     * article is included in the set.
+     */
+    is_set_article?: boolean;
+    /**
+     * - It represents the number of set of this article
+     */
+    set_quantity?: number;
+    /**
+     * - This key is used to identify the
+     * bundle products
+     */
+    split_article_id?: string;
+    /**
+     * - The list of promo ids applied on this article
+     */
+    promo_ids?: string[];
+};
+/** @returns {DeliveryTat} */
+declare function DeliveryTat(): DeliveryTat;
+type DeliveryTat = {
+    /**
+     * - The minimum tat in integer.
+     */
+    min?: number;
+    /**
+     * - The maximum tat in integer.
+     */
+    max?: number;
+};
+/** @returns {CourierPartnerPromiseData} */
+declare function CourierPartnerPromiseData(): CourierPartnerPromiseData;
+type CourierPartnerPromiseData = {
+    /**
+     * - The minimum promised delivery time in ISO 8601 format.
+     */
+    min?: string;
+    /**
+     * - The maximum promised delivery time in ISO 8601 format.
+     */
+    max?: string;
+    attributes?: DeliveryTat;
+};
+/** @returns {PromiseMeta} */
+declare function PromiseMeta(): PromiseMeta;
+type PromiseMeta = {
+    seller_promise?: PromiseData;
+    courier_partner_promise?: CourierPartnerPromiseData;
+    customer_initial_promise?: PromiseData;
+};
+/** @returns {PromiseData} */
+declare function PromiseData(): PromiseData;
+type PromiseData = {
+    /**
+     * - The minimum promised delivery time in ISO 8601 format.
+     */
+    min?: string;
+    /**
+     * - The maximum promised delivery time in ISO 8601 format.
+     */
+    max?: string;
+};
+/** @returns {CourierPartnersTat} */
+declare function CourierPartnersTat(): CourierPartnersTat;
+type CourierPartnersTat = {
+    /**
+     * - The minimum transit time.
+     */
+    min: number;
+    /**
+     * - The maximum transit time.
+     */
+    max: number;
+};
+/** @returns {AreaCode} */
+declare function AreaCode(): AreaCode;
+type AreaCode = {
+    /**
+     * - The starting area code.
+     */
+    source?: string;
+    /**
+     * - The ending area code.
+     */
+    destination?: string;
+};
+/** @returns {SetSize} */
+declare function SetSize(): SetSize;
+type SetSize = {
+    /**
+     * - The number of pieces in the set.
+     */
+    pieces: number;
+    /**
+     * - The size description of the set.
+     */
+    size: string;
+};
+/** @returns {ArticleSizeDistribution} */
+declare function ArticleSizeDistribution(): ArticleSizeDistribution;
+type ArticleSizeDistribution = {
+    /**
+     * - A collection of different size options and
+     * their corresponding pieces.
+     */
+    sizes: SetSize[];
+};
+/** @returns {SetSizeItem} */
+declare function SetSizeItem(): SetSizeItem;
+type SetSizeItem = {
+    pieces?: number;
+    size?: string;
+};
+/** @returns {SetSizeDistribution} */
+declare function SetSizeDistribution(): SetSizeDistribution;
+type SetSizeDistribution = {
+    sizes?: SetSizeItem[];
+};
+/** @returns {PromiseObject} */
+declare function PromiseObject(): PromiseObject;
+type PromiseObject = {
+    customer_promise?: PromiseData;
+    meta?: PromiseMeta;
+};
+/** @returns {ShipmentCourierPartners} */
+declare function ShipmentCourierPartners(): ShipmentCourierPartners;
+type ShipmentCourierPartners = {
+    /**
+     * - The ID of the courier partner.
+     */
+    extension_id: string;
+    /**
+     * - The scheme ID of the courier partner.
+     */
+    scheme_id: string;
+    area_code: AreaCode;
+    tat: CourierPartnersTat;
+    /**
+     * - The display name of the courier partner.
+     */
+    display_name: string;
+    /**
+     * - A boolean indicating quality control by
+     * the courier partner.
+     */
+    is_qc_enabled: boolean;
+    /**
+     * - A boolean indicating it is self delivery DP support.
+     */
+    is_self_ship: boolean;
+};
+/** @returns {ShipmentsArticles} */
+declare function ShipmentsArticles(): ShipmentsArticles;
+type ShipmentsArticles = {
+    /**
+     * - The ID of the shipment article.
+     */
+    id: string;
+    /**
+     * - The quantity of the shipment article.
+     */
+    quantity: number;
+    /**
+     * - The Item ID of the article.
+     */
+    item_id: number;
+    /**
+     * - The size of the article.
+     */
+    size: string;
+    /**
+     * - A boolean indicating whether the article is a set.
+     */
+    is_set?: boolean;
+    set?: ArticleSet;
+    /**
+     * - SLA in UTC format of article
+     */
+    sla: string;
+    meta?: ShipmentArticleMeta;
+};
+/** @returns {ArticleReturnReason} */
+declare function ArticleReturnReason(): ArticleReturnReason;
+type ArticleReturnReason = {
+    /**
+     * - List of string having return reason values
+     */
+    qc_type?: string[];
+};
+/** @returns {ArticleDeliverySlots} */
+declare function ArticleDeliverySlots(): ArticleDeliverySlots;
+type ArticleDeliverySlots = {
+    /**
+     * - The delivery date for the article.
+     */
+    delivery_date: string;
+    /**
+     * - The minimum delivery time slot.
+     */
+    min_slot: string;
+    /**
+     * - The maximum delivery time slot.
+     */
+    max_slot: string;
+};
+/** @returns {ArticleSet} */
+declare function ArticleSet(): ArticleSet;
+type ArticleSet = {
+    /**
+     * - The name of the article set.
+     */
+    name: string;
+    /**
+     * - The quantity of the article set.
+     */
+    quantity: number;
+    size_distribution: ArticleSizeDistribution;
+};
+/** @returns {ArticleDimension} */
+declare function ArticleDimension(): ArticleDimension;
+type ArticleDimension = {
+    /**
+     * - The height of the article.
+     */
+    height: number;
+    /**
+     * - A boolean indicating whether this dimension
+     * is the default dimension.
+     */
+    is_default: boolean;
+    /**
+     * - The length of the article.
+     */
+    length: number;
+    /**
+     * - The unit of measurement used for the dimensions.
+     */
+    unit: string;
+    /**
+     * - The width of the article.
+     */
+    width: number;
+};
+/** @returns {ArticleAttributes} */
+declare function ArticleAttributes(): ArticleAttributes;
+type ArticleAttributes = {
+    /**
+     * - Yes/no indicating whether the article
+     * is powered by batteries.
+     */
+    battery_operated: string;
+    /**
+     * - Yes/no indicating whether the article is
+     * considered flammable or poses a fire hazard.
+     */
+    is_flammable: string;
+};
+/** @returns {ArticleWeight} */
+declare function ArticleWeight(): ArticleWeight;
+type ArticleWeight = {
+    /**
+     * - The weight of the article for shipping
+     * purposes, typically measured in a specified unit.
+     */
+    shipping: number;
+    /**
+     * - The unit of measurement used for the weight value
+     * (e.g., kilogram, pounds).
+     */
+    unit: string;
+    /**
+     * - A boolean indicating whether this weight is
+     * the default weight for the article.
+     */
+    is_default: boolean;
+};
+/** @returns {ServiceabilityLocation} */
+declare function ServiceabilityLocation(): ServiceabilityLocation;
+type ServiceabilityLocation = {
+    /**
+     * - The longitude of the serviceability location.
+     */
+    longitude: string;
+    /**
+     * - The latitude of the serviceability location.
+     */
+    latitude: string;
+};
+/** @returns {Shipments} */
+declare function Shipments(): Shipments;
+type Shipments = {
+    /**
+     * - The fulfillment ID.
+     */
+    fulfillment_id: number;
+    /**
+     * - Shipment replication count.
+     */
+    count: number;
+    /**
+     * - A list of articles in the shipment.
+     */
+    articles: ShipmentsArticles[];
+    courier_partners: ShipmentCourierPartners[];
+    promise?: PromiseObject;
+    /**
+     * - Tags associated with the shipment.
+     */
+    tags?: string[];
+    /**
+     * - A boolean indicating if the courier partner
+     * supports "Made to Order" service.
+     */
+    is_mto: boolean;
+    /**
+     * - A boolean indicating if the courier partner
+     * supports gift shipments.
+     */
+    is_gift: boolean;
+    /**
+     * - A boolean indicating if the courier partner is locked.
+     */
+    is_locked: boolean;
+    packaging: Packaging;
+    delivery_slots?: ArticleDeliverySlots;
+    /**
+     * - Actual weight of the shipment.
+     */
+    weight: number;
+    /**
+     * - Volumetric weight of the shipment.
+     */
+    volumetric_weight: number;
+    /**
+     * - A boolean indicating auto-assignment of
+     * the fullfilment location.
+     */
+    is_auto_assign: boolean;
+    /**
+     * - Shipment type i.e. whether is single
+     * article single shipment or bulk shipment.
+     */
+    shipment_type: string;
+    from_serviceability: any;
+};
+/** @returns {LocationDetailsArticle} */
+declare function LocationDetailsArticle(): LocationDetailsArticle;
+type LocationDetailsArticle = {
+    /**
+     * - The ID of the article.
+     */
+    id: string;
+    /**
+     * - The Item ID of the article.
+     */
+    item_id: number;
+    /**
+     * - Tags assigned to Item.
+     */
+    tags: string[];
+    /**
+     * - The size of the article.
+     */
+    size: string;
+    /**
+     * - The group ID of the article.
+     */
+    group_id?: string;
+    weight: ArticleWeight;
+    attributes?: ArticleAttributes;
+    /**
+     * - The category ID of the article.
+     */
+    category_id: number;
+    department_id: number;
+    dimension: ArticleDimension;
+    /**
+     * - Final Price of the article after discounts
+     */
+    price: number;
+    /**
+     * - The brand ID of the article.
+     */
+    brand_id: number;
+    /**
+     * - The quantity of the article.
+     */
+    quantity: number;
+    /**
+     * - The manufacturing time of the article.
+     */
+    manufacturing_time?: number;
+    /**
+     * - The unit of measurement for
+     * manufacturing time.
+     */
+    manufacturing_time_unit?: string;
+    /**
+     * - The "Made to Order" quantity of the article.
+     */
+    mto_quantity?: number;
+    /**
+     * - A boolean indicating whether the article is a gift.
+     */
+    is_gift: boolean;
+    /**
+     * - A boolean indicating whether the article is a set.
+     */
+    is_set: boolean;
+    set?: ArticleSet;
+    /**
+     * - The quantity of the article set.
+     */
+    set_quantity?: number;
+    delivery_slots?: ArticleDeliverySlots;
+    return_reason?: ArticleReturnReason;
+};
+/** @returns {LocationDetailsServiceability} */
+declare function LocationDetailsServiceability(): LocationDetailsServiceability;
+type LocationDetailsServiceability = {
+    /**
+     * - The pincode of the serviceability location.
+     */
+    pincode?: string;
+    /**
+     * - The sector of the serviceability location.
+     */
+    sector?: string;
+    /**
+     * - The state of the serviceability location.
+     */
+    state?: string;
+    /**
+     * - The country of the serviceability location.
+     */
+    country: string;
+    /**
+     * - The city of the serviceability location.
+     */
+    city?: string;
+    /**
+     * - The ISO code of the country.
+     */
+    country_iso_code: string;
+    location?: ServiceabilityLocation;
+};
+/** @returns {GenerateShipmentsLocationArticles} */
+declare function GenerateShipmentsLocationArticles(): GenerateShipmentsLocationArticles;
+type GenerateShipmentsLocationArticles = {
+    /**
+     * - The fulfillment ID.
+     */
+    fulfillment_id: number;
+    from_serviceability: LocationDetailsServiceability;
+    /**
+     * - The type of fulfillment.
+     */
+    fulfillment_type: string;
+    /**
+     * - Fulfillment level tags
+     */
+    fulfillment_tags: string[];
+    /**
+     * - A list of articles and their details.
+     */
+    articles: LocationDetailsArticle[];
+    ewaybill_enabled?: boolean;
+    is_home_delivery?: boolean;
+};
+/** @returns {GenerateShipmentsRequest} */
+declare function GenerateShipmentsRequest(): GenerateShipmentsRequest;
+type GenerateShipmentsRequest = {
+    to_serviceability: LocationDetailsServiceability;
+    /**
+     * - A list of
+     * location-based article details.
+     */
+    location_articles: GenerateShipmentsLocationArticles[];
+    /**
+     * - The journey details for the shipment.
+     */
+    journey: string;
+    /**
+     * - The payment mode for the shipment.
+     */
+    payment_mode?: string;
+};
+/** @returns {GenerateShipmentsAndCourierPartnerResponse} */
+declare function GenerateShipmentsAndCourierPartnerResponse(): GenerateShipmentsAndCourierPartnerResponse;
+type GenerateShipmentsAndCourierPartnerResponse = {
+    /**
+     * - A list of generated shipments.
+     */
+    shipments: Shipments[];
+    /**
+     * - A boolean indicating if COD (COD) is available.
+     */
+    is_cod_available: boolean;
+};
 /** @returns {ListViewResponseV2} */
 declare function ListViewResponseV2(): ListViewResponseV2;
 type ListViewResponseV2 = {
@@ -540,7 +1484,13 @@ declare function Summary(): Summary;
 type Summary = {
     stores_count?: number;
     products_count?: number;
-    regions?: Region[];
+    regions?: RegionSchema[];
+};
+/** @returns {RegionSchema} */
+declare function RegionSchema(): RegionSchema;
+type RegionSchema = {
+    name?: string;
+    count?: number;
 };
 /** @returns {ZoneDataItem} */
 declare function ZoneDataItem(): ZoneDataItem;
@@ -701,6 +1651,11 @@ type ValidateAddressRequest = {
      * - A string containing the recipient's email address.
      */
     email?: string;
+    /**
+     * - A string containing the recipient's
+     * email address.
+     */
+    country_iso_code?: string;
 };
 /** @returns {PincodeParentsResponse} */
 declare function PincodeParentsResponse(): PincodeParentsResponse;
@@ -723,17 +1678,11 @@ type PincodeErrorSchemaResponse = {
     value?: string;
     type?: string;
 };
-/** @returns {CountryMetaResponse} */
-declare function CountryMetaResponse(): CountryMetaResponse;
-type CountryMetaResponse = {
-    country_code?: string;
-    isd_code?: string;
-};
 /** @returns {PincodeLatLongData} */
 declare function PincodeLatLongData(): PincodeLatLongData;
 type PincodeLatLongData = {
     type?: string;
-    coordinates?: string[];
+    coordinates?: number[];
 };
 /** @returns {PincodeDataResponse} */
 declare function PincodeDataResponse(): PincodeDataResponse;
@@ -864,18 +1813,31 @@ declare function LogisticsResponse(): LogisticsResponse;
 type LogisticsResponse = {
     dp?: any;
 };
+/** @returns {CountryMetaResponse} */
+declare function CountryMetaResponse(): CountryMetaResponse;
+type CountryMetaResponse = {
+    iso2?: string;
+    iso3?: string;
+    currency?: CurrencyObject;
+    phone_code?: string;
+    parent_id?: string;
+    zone?: string;
+    deliverables?: string[];
+    hierarchy?: CountryHierarchy[];
+    logistics?: LogisticsResponse;
+};
 /** @returns {CountryEntityResponse} */
 declare function CountryEntityResponse(): CountryEntityResponse;
 type CountryEntityResponse = {
-    meta?: CountryMetaResponse;
-    logistics?: LogisticsResponse;
     display_name?: string;
-    type?: string;
     is_active?: boolean;
     parent_id?: string;
     sub_type?: string;
     name?: string;
     uid?: string;
+    lat_long?: any;
+    meta?: CountryMetaResponse;
+    logistics?: LogisticsResponse;
 };
 /** @returns {CountryListResponse} */
 declare function CountryListResponse(): CountryListResponse;
@@ -915,7 +1877,7 @@ type ReAssignStoreResponse = {
 /** @returns {CountryHierarchy} */
 declare function CountryHierarchy(): CountryHierarchy;
 type CountryHierarchy = {
-    name?: string;
+    display_name?: string;
     slug?: string;
 };
 /** @returns {CurrencyObject} */
@@ -950,8 +1912,8 @@ type GetCountries = {
 /** @returns {GetOneOrAllPath} */
 declare function GetOneOrAllPath(): GetOneOrAllPath;
 type GetOneOrAllPath = {
-    locality_type?: string;
-    locality_value?: string;
+    type?: string;
+    value?: string;
 };
 /** @returns {GetOneOrAllQuery} */
 declare function GetOneOrAllQuery(): GetOneOrAllQuery;
@@ -1005,6 +1967,7 @@ type GetCountryFieldsAddress = {
     required: boolean;
     edit?: boolean;
     input: string;
+    pre_fill?: string;
     validation?: FieldValidation;
     values?: GetCountryFieldsAddressValues;
     error_text?: string;
@@ -1043,12 +2006,13 @@ type GetCountry = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    has_next?: boolean;
-    size?: number;
     item_total?: number;
+    next_id?: string;
     has_previous?: boolean;
+    has_next?: boolean;
     current?: number;
-    type?: string;
+    type: string;
+    size?: number;
 };
 /** @returns {Localities} */
 declare function Localities(): Localities;
@@ -1057,7 +2021,10 @@ type Localities = {
     name?: string;
     display_name?: string;
     parent_ids?: string[];
+    meta?: any;
     type?: string;
+    lat_long?: PincodeLatLongData;
+    parent_uid?: string;
     localities?: LocalityParent[];
 };
 /** @returns {LocalityParent} */
@@ -1066,8 +2033,18 @@ type LocalityParent = {
     id?: string;
     name?: string;
     display_name?: string;
+    meta?: any;
     parent_ids?: string[];
     type?: string;
+    serviceability?: any;
+    parent_uid?: string;
+};
+/** @returns {ErrorObject} */
+declare function ErrorObject(): ErrorObject;
+type ErrorObject = {
+    type?: string;
+    value?: string;
+    message?: string;
 };
 /** @returns {GetLocalities} */
 declare function GetLocalities(): GetLocalities;
@@ -1081,7 +2058,9 @@ type GetLocality = {
     id?: string;
     name?: string;
     display_name?: string;
+    meta?: any;
     parent_ids?: string[];
+    parent_uid?: string;
     type?: string;
     localities?: LocalityParent[];
 };
@@ -1089,4 +2068,192 @@ type GetLocality = {
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
     error?: string;
+};
+/** @returns {ErrorResponseV2} */
+declare function ErrorResponseV2(): ErrorResponseV2;
+type ErrorResponseV2 = {
+    message?: string;
+};
+/** @returns {ErrorResponseV3} */
+declare function ErrorResponseV3(): ErrorResponseV3;
+type ErrorResponseV3 = {
+    success?: boolean;
+    error?: ErrorObject;
+};
+/** @returns {ShipmentRequest} */
+declare function ShipmentRequest(): ShipmentRequest;
+type ShipmentRequest = {
+    to_serviceability?: ServiceabilityNew;
+    location_articles?: LocationArticle[];
+    journey?: string;
+    payment_mode?: string;
+};
+/** @returns {LocationArticle} */
+declare function LocationArticle(): LocationArticle;
+type LocationArticle = {
+    fulfillment_id?: number;
+    from_serviceability?: ServiceabilityNew;
+    fulfillment_type?: string;
+    fulfillment_tags?: string[];
+    articles?: Article[];
+};
+/** @returns {Article} */
+declare function Article(): Article;
+type Article = {
+    id?: string;
+    item_id?: number;
+    tags?: string[];
+    size?: string;
+    price?: number;
+    weight?: Weight;
+    attributes?: Attributes;
+    category_id?: number;
+    dimension?: Dimension;
+    brand_id?: number;
+    department_id?: number;
+    quantity?: number;
+    manufacturing_time?: number;
+    manufacturing_time_unit?: string;
+    mto_quantity?: number;
+    is_gift?: boolean;
+    is_set?: boolean;
+    set?: Set;
+    set_quantity?: number;
+    delivery_slots?: DeliverySlots;
+};
+/** @returns {Weight} */
+declare function Weight(): Weight;
+type Weight = {
+    shipping?: number;
+    unit?: string;
+    is_default?: boolean;
+};
+/** @returns {Attributes} */
+declare function Attributes(): Attributes;
+type Attributes = {
+    battery_operated?: string;
+    is_flammable?: string;
+};
+/** @returns {Dimension} */
+declare function Dimension(): Dimension;
+type Dimension = {
+    height?: number;
+    is_default?: boolean;
+    length?: number;
+    unit?: string;
+    width?: number;
+};
+/** @returns {Set} */
+declare function Set(): Set;
+type Set = {
+    name?: string;
+    quantity?: number;
+    size_distribution?: SetSizeDistribution;
+};
+/** @returns {DeliverySlots} */
+declare function DeliverySlots(): DeliverySlots;
+type DeliverySlots = {
+    delivery_date?: string;
+    min_slot?: string;
+    max_slot?: string;
+};
+/** @returns {ServiceabilityNew} */
+declare function ServiceabilityNew(): ServiceabilityNew;
+type ServiceabilityNew = {
+    state?: string;
+    city?: string;
+    country?: string;
+    sector?: string;
+    country_iso_code?: string;
+    location?: Location;
+    pincode?: string;
+};
+/** @returns {Location} */
+declare function Location(): Location;
+type Location = {
+    longitude?: string;
+    latitude?: string;
+};
+/** @returns {ShipmentResponse} */
+declare function ShipmentResponse(): ShipmentResponse;
+type ShipmentResponse = {
+    shipments?: ShipmentItem[];
+    is_cod_available?: boolean;
+};
+/** @returns {Meta} */
+declare function Meta(): Meta;
+type Meta = {
+    shipment_cost?: number;
+};
+/** @returns {ShipmentItem} */
+declare function ShipmentItem(): ShipmentItem;
+type ShipmentItem = {
+    fulfillment_id?: number;
+    fulfillment_tags?: string[];
+    fulfillment_type?: string;
+    from_serviceability?: ServiceabilityNew;
+    articles?: Article[];
+    courier_partners?: CourierPartner[];
+    promise?: Promise;
+    tags?: string[];
+    is_mto?: boolean;
+    is_gift?: boolean;
+    is_locked?: boolean;
+    packaging?: Packaging;
+    delivery_slots?: DeliverySlots;
+    count?: number;
+    volumetric_weight?: number;
+    ewaybill_enabled?: string;
+    mps?: boolean;
+    meta?: Meta;
+    weight?: number;
+    shipment_type?: string;
+    is_auto_assign?: boolean;
+    is_cod_available?: boolean;
+};
+/** @returns {TAT} */
+declare function TAT(): TAT;
+type TAT = {
+    min?: number;
+    max?: number;
+};
+/** @returns {CourierPartner} */
+declare function CourierPartner(): CourierPartner;
+type CourierPartner = {
+    extension_id?: string;
+    scheme_id?: string;
+    area_code?: AreaCode;
+    tat?: TAT;
+    display_name?: string;
+    is_qc_enabled?: boolean;
+    is_self_ship?: boolean;
+    is_own_account?: boolean;
+    ndr_attempts?: number;
+    forward_pickup_cutoff?: string;
+    reverse_pickup_cutoff?: string;
+};
+/** @returns {Promise} */
+declare function Promise(): Promise;
+type Promise = {
+    customer_promise?: PromiseDetails;
+    meta?: PromiseMeta;
+};
+/** @returns {PromiseDetails} */
+declare function PromiseDetails(): PromiseDetails;
+type PromiseDetails = {
+    min?: string;
+    max?: string;
+};
+/** @returns {Packaging} */
+declare function Packaging(): Packaging;
+type Packaging = {
+    /**
+     * - The name of the packaging.
+     */
+    name: string;
+    /**
+     * - The ID of the packaging.
+     */
+    id: string;
+    dimension: PackagingDimension;
 };

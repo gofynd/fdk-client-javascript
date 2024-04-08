@@ -32,51 +32,24 @@ const Joi = require("joi");
 
 /**
  * @typedef UserSchema
- * @property {string} [first_name] - First name
- * @property {string} [last_name] - Last name
- * @property {PhoneNumber[]} [phone_numbers] - List of phone numbers
- * @property {Email[]} [emails] - List of email addresses
- * @property {UserPasswordHistory[]} [password_history]
- * @property {string} [gender] - Gender of user
- * @property {boolean} [active] - Is account active
- * @property {string} [profile_pic_url] - URL for profile pic
- * @property {string} [username] - Username of user
- * @property {string} [account_type] - Type of account
- * @property {string} [uid] - Unique identifier of user
- * @property {Debug} [debug]
- * @property {boolean} [has_old_password_hash] - Denotes if user has old password hash
- * @property {string} [_id] - Unique identifier of user
- * @property {string} [created_at] - Time of user creation
- * @property {string} [updated_at] - Last time of user details update
- */
-
-/**
- * @typedef PhoneNumber
- * @property {boolean} [active] - Denotes if the phone number is active
- * @property {boolean} [primary] - Denotes it's the primary phone number for the account
- * @property {boolean} [verified] - Denotes it's a verified phone number
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- */
-
-/**
- * @typedef UserPasswordHistory
- * @property {string} [salt]
- * @property {string} [hash]
- */
-
-/**
- * @typedef Email
- * @property {boolean} [primary] - Denotes it's the primary email for the account
- * @property {boolean} [verified] - Denotes it's a verified email
- * @property {string} [email] - Email Address
- * @property {boolean} [active] - Denotes if the email is active
- */
-
-/**
- * @typedef Debug
- * @property {string} [source] - Source of user
- * @property {string} [platform] - Platform of user
+ * @property {string} [application_id]
+ * @property {string} [user_id]
+ * @property {string} [first_name]
+ * @property {Object} [meta]
+ * @property {string} [last_name]
+ * @property {PhoneNumber[]} [phone_numbers]
+ * @property {Email[]} [emails]
+ * @property {string} [gender]
+ * @property {string} [dob]
+ * @property {boolean} [active]
+ * @property {string} [profile_pic_url]
+ * @property {string} [username]
+ * @property {string} [account_type]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {string} [rr_id]
  */
 
 /**
@@ -262,6 +235,23 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PhoneNumber
+ * @property {string} [phone] - Phone number
+ * @property {number} [country_code] - Country code
+ * @property {boolean} [active] - Is the phone number active
+ * @property {boolean} [primary] - Is it a primary phone number
+ * @property {boolean} [verified] - Is the phone number verified
+ */
+
+/**
+ * @typedef Email
+ * @property {string} [email] - Email address
+ * @property {boolean} [active] - Is the email active
+ * @property {boolean} [primary] - Is it a primary email
+ * @property {boolean} [verified] - Is the email verified
+ */
+
+/**
  * @typedef {| "image"
  *   | "video"
  *   | "file"
@@ -321,61 +311,24 @@ class LeadApplicationModel {
   /** @returns {UserSchema} */
   static UserSchema() {
     return Joi.object({
+      application_id: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
+      meta: Joi.any(),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(LeadApplicationModel.PhoneNumber()),
       emails: Joi.array().items(LeadApplicationModel.Email()),
-      password_history: Joi.array().items(
-        LeadApplicationModel.UserPasswordHistory()
-      ),
-      gender: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
+      dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),
       username: Joi.string().allow(""),
       account_type: Joi.string().allow(""),
-      uid: Joi.string().allow(""),
-      debug: LeadApplicationModel.Debug(),
-      has_old_password_hash: Joi.boolean(),
       _id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PhoneNumber} */
-  static PhoneNumber() {
-    return Joi.object({
-      active: Joi.boolean(),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-      phone: Joi.string().allow(""),
-      country_code: Joi.number(),
-    });
-  }
-
-  /** @returns {UserPasswordHistory} */
-  static UserPasswordHistory() {
-    return Joi.object({
-      salt: Joi.string().allow(""),
-      hash: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Email} */
-  static Email() {
-    return Joi.object({
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-      email: Joi.string().allow(""),
-      active: Joi.boolean(),
-    });
-  }
-
-  /** @returns {Debug} */
-  static Debug() {
-    return Joi.object({
-      source: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
+      external_id: Joi.string().allow(""),
+      rr_id: Joi.string().allow(""),
     });
   }
 
@@ -589,6 +542,27 @@ class LeadApplicationModel {
       message: Joi.object().pattern(/\S/, Joi.any()),
       stack: Joi.string().allow(""),
       sentry: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PhoneNumber} */
+  static PhoneNumber() {
+    return Joi.object({
+      phone: Joi.string().allow(""),
+      country_code: Joi.number(),
+      active: Joi.boolean(),
+      primary: Joi.boolean(),
+      verified: Joi.boolean(),
+    });
+  }
+
+  /** @returns {Email} */
+  static Email() {
+    return Joi.object({
+      email: Joi.string().allow(""),
+      active: Joi.boolean(),
+      primary: Joi.boolean(),
+      verified: Joi.boolean(),
     });
   }
 

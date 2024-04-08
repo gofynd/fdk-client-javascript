@@ -7,10 +7,9 @@ const BillingPublicModel = require("./BillingPublicModel");
  * @property {string} planId - Plan unique id.
  */
 
-/**
- * @typedef GetStandardPlansParam
- * @property {string} platformType - The type of platform for which plans are requested.
- */
+/** @typedef GetStandardPlansParam */
+
+/** @typedef PlanListParam */
 
 class BillingPublicValidator {
   /** @returns {GetPlanDetailsParam} */
@@ -22,9 +21,12 @@ class BillingPublicValidator {
 
   /** @returns {GetStandardPlansParam} */
   static getStandardPlans() {
-    return Joi.object({
-      platformType: Joi.string().allow("").required(),
-    }).required();
+    return Joi.object({});
+  }
+
+  /** @returns {PlanListParam} */
+  static planList() {
+    return Joi.object({});
   }
 }
 

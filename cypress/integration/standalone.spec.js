@@ -1,3 +1,7 @@
+const { fdkAxios } = require('../../sdk/common/AxiosHelper.js');
+const MockAdapter = require('axios-mock-adapter');
+
+const mock = new MockAdapter(fdkAxios);
 describe('Testing generated standalone JS', () => {
 
     before(async () => {
@@ -17,6 +21,7 @@ describe('Testing generated standalone JS', () => {
                 applicationToken: "9502d710-5a22-11e9-a001-57d85417c280",
                 });
             let applicationClient = new ApplicationClient(config);
+            mock.onGet(applicationClient.catalog._urls.getProducts).reply(200, {items:['Test Product 1']});
             let products = await applicationClient.catalog.getProducts();
             cy.expect(products.items.length).to.be.greaterThan(0);
     });

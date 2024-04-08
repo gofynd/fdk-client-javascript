@@ -522,8 +522,6 @@ export = UserApplicationModel;
  * @typedef UserSchema
  * @property {string} [application_id]
  * @property {string} [user_id]
- * @property {string} [password_last_modified]
- * @property {UserPasswordHistory[]} [password_history]
  * @property {string} [first_name]
  * @property {Object} [meta]
  * @property {string} [last_name]
@@ -538,21 +536,23 @@ export = UserApplicationModel;
  * @property {string} [_id]
  * @property {string} [created_at]
  * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {string} [rr_id]
  */
 /**
  * @typedef PhoneNumber
- * @property {boolean} [active]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [phone]
- * @property {number} [country_code]
+ * @property {string} [phone] - Phone number
+ * @property {number} [country_code] - Country code
+ * @property {boolean} [active] - Is the phone number active
+ * @property {boolean} [primary] - Is it a primary phone number
+ * @property {boolean} [verified] - Is the phone number verified
  */
 /**
  * @typedef Email
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [email]
- * @property {boolean} [active]
+ * @property {string} [email] - Email address
+ * @property {boolean} [active] - Is the email active
+ * @property {boolean} [primary] - Is it a primary email
+ * @property {boolean} [verified] - Is the email verified
  */
 declare class UserApplicationModel {
 }
@@ -1176,8 +1176,6 @@ declare function UserSchema(): UserSchema;
 type UserSchema = {
     application_id?: string;
     user_id?: string;
-    password_last_modified?: string;
-    password_history?: UserPasswordHistory[];
     first_name?: string;
     meta?: any;
     last_name?: string;
@@ -1192,21 +1190,50 @@ type UserSchema = {
     _id?: string;
     created_at?: string;
     updated_at?: string;
+    external_id?: string;
+    rr_id?: string;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
 type PhoneNumber = {
-    active?: boolean;
-    primary?: boolean;
-    verified?: boolean;
+    /**
+     * - Phone number
+     */
     phone?: string;
+    /**
+     * - Country code
+     */
     country_code?: number;
+    /**
+     * - Is the phone number active
+     */
+    active?: boolean;
+    /**
+     * - Is it a primary phone number
+     */
+    primary?: boolean;
+    /**
+     * - Is the phone number verified
+     */
+    verified?: boolean;
 };
 /** @returns {Email} */
 declare function Email(): Email;
 type Email = {
-    primary?: boolean;
-    verified?: boolean;
+    /**
+     * - Email address
+     */
     email?: string;
+    /**
+     * - Is the email active
+     */
     active?: boolean;
+    /**
+     * - Is it a primary email
+     */
+    primary?: boolean;
+    /**
+     * - Is the email verified
+     */
+    verified?: boolean;
 };

@@ -44,16 +44,9 @@ export = ThemeApplicationModel;
  */
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
- * @property {string} [type]
- */
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {string} [type]
  */
 /**
  * @typedef AvailablePageSeo
@@ -291,7 +284,37 @@ export = ThemeApplicationModel;
  * @property {AuthConfig} [auth]
  * @property {PaletteConfig} [palette]
  * @property {Object} [order_tracking]
- * @property {Object} [manifest]
+ * @property {ManifestConfig} [manifest]
+ */
+/**
+ * @typedef ManifestConfig
+ * @property {boolean} [active]
+ * @property {string} [name]
+ * @property {string} [description]
+ * @property {boolean} [install_desktop]
+ * @property {boolean} [install_mobile]
+ * @property {string} [button_text]
+ * @property {IconManifest[]} [icons]
+ * @property {ScreenshotManifest[]} [screenshots]
+ * @property {ShortcutManifest[]} [shortcuts]
+ */
+/**
+ * @typedef IconManifest
+ * @property {string} [src]
+ * @property {string} [type]
+ * @property {string} [sizes]
+ * @property {string} [icon_opacity]
+ */
+/**
+ * @typedef ScreenshotManifest
+ * @property {string} [src]
+ * @property {string} [type]
+ */
+/**
+ * @typedef ShortcutManifest
+ * @property {string} [name]
+ * @property {string} [url]
+ * @property {IconManifest[]} [icons]
  */
 /**
  * @typedef Colors
@@ -474,10 +497,65 @@ export = ThemeApplicationModel;
  * @typedef BlitzkriegApiErrorSchema
  * @property {string} [message]
  */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class ThemeApplicationModel {
 }
 declare namespace ThemeApplicationModel {
-    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, ActionPage, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema };
+    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, ManifestConfig, IconManifest, ScreenshotManifest, ShortcutManifest, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema, ActionPage, PageType };
 }
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -532,17 +610,9 @@ type SEObreadcrumb = {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    type?: string;
     page?: ActionPage;
     popup?: ActionPage;
-    type?: string;
-};
-/** @returns {ActionPage} */
-declare function ActionPage(): ActionPage;
-type ActionPage = {
-    params?: any;
-    query?: any;
-    url?: string;
-    type?: string;
 };
 /** @returns {AvailablePageSeo} */
 declare function AvailablePageSeo(): AvailablePageSeo;
@@ -1061,7 +1131,41 @@ type StaticProps = {
     auth?: AuthConfig;
     palette?: PaletteConfig;
     order_tracking?: any;
-    manifest?: any;
+    manifest?: ManifestConfig;
+};
+/** @returns {ManifestConfig} */
+declare function ManifestConfig(): ManifestConfig;
+type ManifestConfig = {
+    active?: boolean;
+    name?: string;
+    description?: string;
+    install_desktop?: boolean;
+    install_mobile?: boolean;
+    button_text?: string;
+    icons?: IconManifest[];
+    screenshots?: ScreenshotManifest[];
+    shortcuts?: ShortcutManifest[];
+};
+/** @returns {IconManifest} */
+declare function IconManifest(): IconManifest;
+type IconManifest = {
+    src?: string;
+    type?: string;
+    sizes?: string;
+    icon_opacity?: string;
+};
+/** @returns {ScreenshotManifest} */
+declare function ScreenshotManifest(): ScreenshotManifest;
+type ScreenshotManifest = {
+    src?: string;
+    type?: string;
+};
+/** @returns {ShortcutManifest} */
+declare function ShortcutManifest(): ShortcutManifest;
+type ShortcutManifest = {
+    name?: string;
+    url?: string;
+    icons?: IconManifest[];
 };
 /** @returns {Colors} */
 declare function Colors(): Colors;
@@ -1427,3 +1531,18 @@ declare function BlitzkriegApiErrorSchema(): BlitzkriegApiErrorSchema;
 type BlitzkriegApiErrorSchema = {
     message?: string;
 };
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/**
+ * Enum: PageType Used By: Theme
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

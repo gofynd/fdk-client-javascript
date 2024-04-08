@@ -9,7 +9,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
-const axios = require("axios");
+const { fdkAxios } = require("../../common/AxiosHelper.js");
 
 class FileStorage {
   constructor(config, applicationId) {
@@ -2201,10 +2201,16 @@ FileStorage.prototype.upload = function ({
         },
       });
       if (dataObj.upload && dataObj.upload.url) {
-        await axios.put(dataObj.upload.url, data, {
+        let rawRequest = {
+          method: "PUT",
+          url: dataObj.upload.url,
+          data: data,
+          headers: {
+            "Content-Type": content_type,
+          },
           withCredentials: false,
-          headers: { "Content-Type": content_type },
-        });
+        };
+        await fdkAxios.request(rawRequest);
       } else {
         reject({ message: "Failed to upload file" });
       }

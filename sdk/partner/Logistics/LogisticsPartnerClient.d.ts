@@ -93,19 +93,19 @@ declare class Logistics {
      * @summary: Getting Courier Account list of a company.
      * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
      */
-    getCourierPartnerAccounts({ companyId, pageNo, pageSize, stage, paymentMode, transportType, requestHeaders, }?: LogisticsPartnerValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponse>;
+    getCourierPartnerAccounts({ companyId, pageNo, pageSize, stage, paymentMode, transportType, accountIds, requestHeaders, }?: LogisticsPartnerValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponse>;
     /**
      * @param {LogisticsPartnerValidator.UpdateCourierPartnerAccountParam} arg
      *   - Arg object.
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
+     * @returns {Promise<LogisticsPartnerModel.CourierAccount>} - Success response
      * @name updateCourierPartnerAccount
      * @summary: Update Courier Account in database.
      * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
      */
-    updateCourierPartnerAccount({ companyId, accountId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountResponse>;
+    updateCourierPartnerAccount({ companyId, accountId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccount>;
     /**
      * @param {LogisticsPartnerValidator.GetCourierPartnerAccountParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -150,6 +150,24 @@ declare class Logistics {
      * @summary: Get all countries and associated data.
      * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
      */
-    getCountries({ onboarding, pageNo, pageSize, q, hierarchy, requestHeaders }?: LogisticsPartnerValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.GetCountries>;
+    getCountries({ onboard, pageNo, pageSize, q, hierarchy, requestHeaders }?: LogisticsPartnerValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.GetCountries>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.onboard] - Only fetch countries which allowed for
+     *   onboard on Platform.
+     * @param {number} [arg.pageSize] - Page size.
+     * @param {string} [arg.q] - Search.
+     * @param {string} [arg.hierarchy] - Hierarchy.
+     * @returns {Paginator<LogisticsPartnerModel.GetCountries>}
+     * @summary: Get all countries and associated data.
+     * @description: Retrieve of all countries.
+     */
+    getCountriesPaginator({ onboard, pageSize, q, hierarchy }?: {
+        onboard?: boolean;
+        pageSize?: number;
+        q?: string;
+        hierarchy?: string;
+    }): Paginator<LogisticsPartnerModel.GetCountries>;
 }
 import LogisticsPartnerModel = require("sdk/output/javascript/code/sdk/partner/Logistics/LogisticsPartnerModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

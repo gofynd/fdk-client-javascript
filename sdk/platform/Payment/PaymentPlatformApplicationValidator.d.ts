@@ -36,6 +36,7 @@ export = PaymentPlatformApplicationValidator;
 /**
  * @typedef CreateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
+ * @property {string} businessUnit - Business unit storefront or pos
  * @property {PaymentPlatformModel.RefundPriorityRequestSerializer} body
  */
 /**
@@ -110,6 +111,7 @@ export = PaymentPlatformApplicationValidator;
 /**
  * @typedef GetMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
+ * @property {string} businessUnit - Business unit storefront or pos
  */
 /** @typedef GetPGConfigAggregatorsParam */
 /** @typedef GetPaymentCodeOptionParam */
@@ -297,6 +299,7 @@ export = PaymentPlatformApplicationValidator;
 /**
  * @typedef UpdateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
+ * @property {string} businessUnit - Business unit storefront or pos
  * @property {PaymentPlatformModel.RefundPriorityRequestSerializer} body
  */
 /**
@@ -507,6 +510,10 @@ type CreateMerchantRefundPriorityParam = {
      * - Configuration for merchant or customer
      */
     configType: string;
+    /**
+     * - Business unit storefront or pos
+     */
+    businessUnit: string;
     body: PaymentPlatformModel.RefundPriorityRequestSerializer;
 };
 type CreatePaymentLinkParam = {
@@ -598,6 +605,10 @@ type GetMerchantRefundPriorityParam = {
      * - Configuration for merchant or customer
      */
     configType: string;
+    /**
+     * - Business unit storefront or pos
+     */
+    businessUnit: string;
 };
 type GetPaymentLinkParam = {
     paymentLinkId: string;
@@ -839,6 +850,10 @@ type UpdateMerchantRefundPriorityParam = {
      * - Configuration for merchant or customer
      */
     configType: string;
+    /**
+     * - Business unit storefront or pos
+     */
+    businessUnit: string;
     body: PaymentPlatformModel.RefundPriorityRequestSerializer;
 };
 type UpdatePaymentSessionParam = {

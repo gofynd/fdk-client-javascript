@@ -325,7 +325,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/debug/order_status`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/debug/order_status/`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -419,7 +419,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/click2call`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/click2call/`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -1551,7 +1551,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/announcements`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/announcements/`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -5088,7 +5088,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/send-sms`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/send-sms/`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },

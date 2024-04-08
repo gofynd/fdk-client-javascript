@@ -1,6 +1,76 @@
 const Joi = require("joi");
 
 /**
+ * @typedef AppProvidersGlobalProviderRequestObjProvider
+ * @property {string} [provider]
+ */
+
+/**
+ * @typedef AppProvidersGlobalProviderRequestObj
+ * @property {AppProvidersGlobalProviderRequestObjProvider} [transaction]
+ * @property {AppProvidersGlobalProviderRequestObjProvider} [otp]
+ */
+
+/**
+ * @typedef AppProvidersGlobalProviderRequest
+ * @property {AppProvidersGlobalProviderRequestObj} [email]
+ * @property {AppProvidersGlobalProviderRequestObj} [sms]
+ */
+
+/**
+ * @typedef UpdateAppProvidersGlobalProviderResponseEmailSmsObj
+ * @property {string} [default_provider]
+ * @property {string} [otp_provider]
+ */
+
+/**
+ * @typedef UpdateAppProvidersGlobalProviderResponse
+ * @property {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} [email]
+ * @property {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} [sms]
+ * @property {string} [_id]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef DefaultEmailProvidersFromAddresses
+ * @property {string} [name]
+ * @property {string} [email]
+ * @property {boolean} [is_default]
+ */
+
+/**
+ * @typedef DefaultEmailProviders
+ * @property {string} [_id]
+ * @property {DefaultEmailProvidersFromAddresses[]} [from_address]
+ * @property {string} [name]
+ * @property {boolean} [is_default]
+ */
+
+/**
+ * @typedef PushtokenReq
+ * @property {string} [action]
+ * @property {string} [bundle_identifier]
+ * @property {string} [push_token]
+ * @property {string} [unique_device_id]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef PushtokenRes
+ * @property {string} [_id]
+ * @property {string} [bundle_identifier]
+ * @property {string} [push_token]
+ * @property {string} [unique_device_id]
+ * @property {string} [type]
+ * @property {string} [platform]
+ * @property {string} [application_id]
+ * @property {string} [user_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [expired_at]
+ */
+
+/**
  * @typedef SendInstantResponse
  * @property {boolean} [success]
  * @property {string} [provider]
@@ -272,17 +342,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BadRequestSchema
- * @property {string} [status] - Response status.
- * @property {string} [message] - Failure message.
- */
-
-/**
- * @typedef NotFound
- * @property {string} [message] - Failure message.
- */
-
-/**
  * @typedef AudienceReq
  * @property {string} [name]
  * @property {string} [description]
@@ -520,14 +579,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PayloadStructure
- * @property {Object[]} [data]
- * @property {PayloadEmailStructure} [email]
- * @property {PayloadSmsStructure} [sms]
- * @property {string} [application]
- */
-
-/**
  * @typedef EventSubscriptionTemplateSms
  * @property {boolean} [subscribed]
  * @property {Object} [template]
@@ -712,7 +763,7 @@ const Joi = require("joi");
 /**
  * @typedef SendOtpSmsCommsTemplate
  * @property {string} [key]
- * @property {string} [value]
+ * @property {Object} [value]
  */
 
 /**
@@ -730,7 +781,7 @@ const Joi = require("joi");
 /**
  * @typedef SendOtpEmailCommsTemplate
  * @property {string} [key]
- * @property {string} [value]
+ * @property {Object} [value]
  */
 
 /**
@@ -802,12 +853,6 @@ const Joi = require("joi");
  * @property {string} [country_code]
  * @property {string} [message]
  * @property {string} [email]
- */
-
-/**
- * @typedef VerifyOtpCommsErrorRes
- * @property {boolean} [success]
- * @property {string} [message]
  */
 
 /**
@@ -975,41 +1020,19 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {string} type
- * @property {number} [size]
- * @property {number} [current]
- * @property {boolean} [has_next]
  * @property {number} [item_total]
  * @property {string} [next_id]
  * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
  * @typedef BasicDelete
  * @property {boolean} [acknowledged]
  * @property {number} [deleted_count]
- */
-
-/**
- * @typedef GenericError
- * @property {Message} [message]
- * @property {string} [sentry]
- */
-
-/**
- * @typedef GenericDelete
- * @property {string} [message]
- * @property {boolean} [acknowledged]
- * @property {number} [affected]
- * @property {string} [operation]
- */
-
-/**
- * @typedef Message
- * @property {string} [message]
- * @property {boolean} [success]
- * @property {string} [info]
- * @property {string} [operation]
  */
 
 /**
@@ -1040,12 +1063,102 @@ const Joi = require("joi");
  * @property {number} otp_length
  * @property {string} type
  * @property {OtpConfigurationExpiry} expiry
- * @property {OtpConfigRateLimit} [rate_limit]
+ * @property {OtpConfigRateLimit} rate_limit
  * @property {string} [application_id]
  * @property {string} [company_id]
  */
 
 class CommunicationPlatformModel {
+  /** @returns {AppProvidersGlobalProviderRequestObjProvider} */
+  static AppProvidersGlobalProviderRequestObjProvider() {
+    return Joi.object({
+      provider: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AppProvidersGlobalProviderRequestObj} */
+  static AppProvidersGlobalProviderRequestObj() {
+    return Joi.object({
+      transaction: CommunicationPlatformModel.AppProvidersGlobalProviderRequestObjProvider(),
+      otp: CommunicationPlatformModel.AppProvidersGlobalProviderRequestObjProvider(),
+    });
+  }
+
+  /** @returns {AppProvidersGlobalProviderRequest} */
+  static AppProvidersGlobalProviderRequest() {
+    return Joi.object({
+      email: CommunicationPlatformModel.AppProvidersGlobalProviderRequestObj(),
+      sms: CommunicationPlatformModel.AppProvidersGlobalProviderRequestObj(),
+    });
+  }
+
+  /** @returns {UpdateAppProvidersGlobalProviderResponseEmailSmsObj} */
+  static UpdateAppProvidersGlobalProviderResponseEmailSmsObj() {
+    return Joi.object({
+      default_provider: Joi.string().allow("").allow(null),
+      otp_provider: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {UpdateAppProvidersGlobalProviderResponse} */
+  static UpdateAppProvidersGlobalProviderResponse() {
+    return Joi.object({
+      email: CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponseEmailSmsObj(),
+      sms: CommunicationPlatformModel.UpdateAppProvidersGlobalProviderResponseEmailSmsObj(),
+      _id: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DefaultEmailProvidersFromAddresses} */
+  static DefaultEmailProvidersFromAddresses() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+    });
+  }
+
+  /** @returns {DefaultEmailProviders} */
+  static DefaultEmailProviders() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      from_address: Joi.array().items(
+        CommunicationPlatformModel.DefaultEmailProvidersFromAddresses()
+      ),
+      name: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PushtokenReq} */
+  static PushtokenReq() {
+    return Joi.object({
+      action: Joi.string().allow(""),
+      bundle_identifier: Joi.string().allow(""),
+      push_token: Joi.string().allow(""),
+      unique_device_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PushtokenRes} */
+  static PushtokenRes() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      bundle_identifier: Joi.string().allow(""),
+      push_token: Joi.string().allow(""),
+      unique_device_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      platform: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      expired_at: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {SendInstantResponse} */
   static SendInstantResponse() {
     return Joi.object({
@@ -1401,21 +1514,6 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {BadRequestSchema} */
-  static BadRequestSchema() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {NotFound} */
-  static NotFound() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {AudienceReq} */
   static AudienceReq() {
     return Joi.object({
@@ -1711,16 +1809,6 @@ class CommunicationPlatformModel {
     });
   }
 
-  /** @returns {PayloadStructure} */
-  static PayloadStructure() {
-    return Joi.object({
-      data: Joi.array().items(Joi.any()),
-      email: CommunicationPlatformModel.PayloadEmailStructure(),
-      sms: CommunicationPlatformModel.PayloadSmsStructure(),
-      application: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {EventSubscriptionTemplateSms} */
   static EventSubscriptionTemplateSms() {
     return Joi.object({
@@ -1953,7 +2041,7 @@ class CommunicationPlatformModel {
   static SendOtpSmsCommsTemplate() {
     return Joi.object({
       key: Joi.string().allow(""),
-      value: Joi.string().allow(""),
+      value: Joi.any(),
     });
   }
 
@@ -1977,7 +2065,7 @@ class CommunicationPlatformModel {
   static SendOtpEmailCommsTemplate() {
     return Joi.object({
       key: Joi.string().allow(""),
-      value: Joi.string().allow(""),
+      value: Joi.any(),
     });
   }
 
@@ -2067,14 +2155,6 @@ class CommunicationPlatformModel {
       country_code: Joi.string().allow(""),
       message: Joi.string().allow(""),
       email: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {VerifyOtpCommsErrorRes} */
-  static VerifyOtpCommsErrorRes() {
-    return Joi.object({
-      success: Joi.boolean(),
-      message: Joi.string().allow(""),
     });
   }
 
@@ -2272,13 +2352,13 @@ class CommunicationPlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow("").allow(null),
-      has_previous: Joi.boolean(),
     });
   }
 
@@ -2287,34 +2367,6 @@ class CommunicationPlatformModel {
     return Joi.object({
       acknowledged: Joi.boolean(),
       deleted_count: Joi.number(),
-    });
-  }
-
-  /** @returns {GenericError} */
-  static GenericError() {
-    return Joi.object({
-      message: CommunicationPlatformModel.Message(),
-      sentry: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GenericDelete} */
-  static GenericDelete() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      acknowledged: Joi.boolean(),
-      affected: Joi.number(),
-      operation: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Message} */
-  static Message() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
-      info: Joi.string().allow(""),
-      operation: Joi.string().allow(""),
     });
   }
 
@@ -2355,7 +2407,7 @@ class CommunicationPlatformModel {
       otp_length: Joi.number().required(),
       type: Joi.string().allow("").required(),
       expiry: CommunicationPlatformModel.OtpConfigurationExpiry().required(),
-      rate_limit: CommunicationPlatformModel.OtpConfigRateLimit(),
+      rate_limit: CommunicationPlatformModel.OtpConfigRateLimit().required(),
       application_id: Joi.string().allow(""),
       company_id: Joi.string().allow(""),
     });

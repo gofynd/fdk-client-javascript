@@ -2,13 +2,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
  * @property {number} [item_total]
  * @property {string} [next_id]
- * @property {number} [size]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
  * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -113,13 +113,13 @@ class CatalogPartnerModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
       item_total: Joi.number(),
       next_id: Joi.string().allow(""),
-      size: Joi.number(),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
       type: Joi.string().allow("").required(),
+      size: Joi.number(),
     });
   }
 

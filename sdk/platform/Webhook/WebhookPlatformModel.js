@@ -100,13 +100,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [current] - The current page number.
- * @property {boolean} [has_next] - Indicates if there is a next page.
- * @property {boolean} [has_previous] - Indicates if there is a previous page.
- * @property {number} [total_page]
- * @property {number} [item_total] - The total number of items.
- * @property {number} [size] - The number of items per page.
- * @property {string} [type] - Type of the response (e.g., "number").
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -450,13 +450,13 @@ class WebhookPlatformModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      total_page: Joi.number(),
       item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
       size: Joi.number(),
-      type: Joi.string().allow(""),
     });
   }
 

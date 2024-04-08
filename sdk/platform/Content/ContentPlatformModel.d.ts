@@ -324,15 +324,9 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
- * @property {string} [type]
- */
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {string} [type]
+ * @property {ActionPage} [popup]
  */
 /**
  * @typedef NavigationReference
@@ -341,7 +335,6 @@ export = ContentPlatformModel;
  * @property {LocaleLanguage} [_locale_language]
  * @property {string} [image]
  * @property {string} [type]
- * @property {Action} [action]
  * @property {boolean} [active]
  * @property {string} [display]
  * @property {number} [sort_order]
@@ -559,7 +552,6 @@ export = ContentPlatformModel;
 /**
  * @typedef LandingPageSchema
  * @property {string} [slug]
- * @property {Action} [action]
  * @property {string[]} [platform]
  * @property {CreatedBySchema} [created_by]
  * @property {DateMeta} [date_meta]
@@ -1312,10 +1304,65 @@ export = ContentPlatformModel;
  * @property {string} [url]
  * @property {number} [total_records]
  */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, DeletPathMappingSchema, CreatePathMappingSchema, GetAllPathMappingSchema, GetPathSchema, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderItemsResponseSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, ActionPage, NavigationReference, AssignmentReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, TagSpecSchema, ServerSchema, DataLoadersApiSpecSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, NavigationAssignment, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageResponseError, PageSchema, SanitizedContent, PageMeta, PageContent, CreatedBySchema, PageRequestVisibility, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, CustomePages, SystemPagesActionPage, SystemPagesAction, SystemPages, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, ApplicationFieldDefinitionSchema, FieldDefinitionSchema, ApplicationCustomFieldDefinitionsSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectCustomFieldDefinitionResSchema, CustomObjectDefinitionSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadResponse, CustomObjectListItemDefinationSchema, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldSchema, MetafieldTypesSchema, CustomObjectByIdSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, CustomFieldTypeSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectRequestSchema, CustomObjectBulkSchema };
+    export { GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, DeletPathMappingSchema, CreatePathMappingSchema, GetAllPathMappingSchema, GetPathSchema, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderItemsResponseSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, AssignmentReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, TagSpecSchema, ServerSchema, DataLoadersApiSpecSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, NavigationAssignment, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageResponseError, PageSchema, SanitizedContent, PageMeta, PageContent, CreatedBySchema, PageRequestVisibility, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, CustomePages, SystemPagesActionPage, SystemPagesAction, SystemPages, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, ApplicationFieldDefinitionSchema, FieldDefinitionSchema, ApplicationCustomFieldDefinitionsSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectCustomFieldDefinitionResSchema, CustomObjectDefinitionSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadResponse, CustomObjectListItemDefinationSchema, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldSchema, MetafieldTypesSchema, CustomObjectByIdSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, CustomFieldTypeSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectRequestSchema, CustomObjectBulkSchema, ActionPage, PageType };
 }
 /** @returns {GenerateSEOContent} */
 declare function GenerateSEOContent(): GenerateSEOContent;
@@ -1688,16 +1735,9 @@ type Language = {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    type?: string;
     page?: ActionPage;
-    type?: string;
-};
-/** @returns {ActionPage} */
-declare function ActionPage(): ActionPage;
-type ActionPage = {
-    params?: any;
-    query?: any;
-    url?: string;
-    type?: string;
+    popup?: ActionPage;
 };
 /** @returns {NavigationReference} */
 declare function NavigationReference(): NavigationReference;
@@ -1707,7 +1747,6 @@ type NavigationReference = {
     _locale_language?: LocaleLanguage;
     image?: string;
     type?: string;
-    action?: Action;
     active?: boolean;
     display?: string;
     sort_order?: number;
@@ -1958,7 +1997,6 @@ type LandingPageGetResponse = {
 declare function LandingPageSchema(): LandingPageSchema;
 type LandingPageSchema = {
     slug?: string;
-    action?: Action;
     platform?: string[];
     created_by?: CreatedBySchema;
     date_meta?: DateMeta;
@@ -2811,3 +2849,18 @@ type CustomObjectBulkSchema = {
     url?: string;
     total_records?: number;
 };
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/**
+ * Enum: PageType Used By: Content
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

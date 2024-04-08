@@ -1,11 +1,19 @@
 export = CommunicationPlatformApplicationValidator;
 /**
+ * @typedef CreateAppPushtokenParam
+ * @property {CommunicationPlatformModel.PushtokenReq} body
+ */
+/**
  * @typedef CreateAudienceParam
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 /**
  * @typedef CreateCampaignParam
  * @property {CommunicationPlatformModel.CampaignReq} body
+ */
+/**
+ * @typedef CreateCommunicationLogsParam
+ * @property {CommunicationPlatformModel.Log} body
  */
 /**
  * @typedef CreateEmailProviderParam
@@ -39,6 +47,10 @@ export = CommunicationPlatformApplicationValidator;
  * @typedef DeleteAudienceByIdParam
  * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.AudienceReq} body
+ */
+/**
+ * @typedef DeleteCampaignByIdParam
+ * @property {string} id - Event subscription id
  */
 /**
  * @typedef DeleteEmailProviderByIdParam
@@ -95,6 +107,7 @@ export = CommunicationPlatformApplicationValidator;
  * @property {string} [sort] - To sort based on created_at
  * @property {Object} [query]
  */
+/** @typedef GetDefaultEmailProvidersParam */
 /** @typedef GetDefaultSmsProvidersParam */
 /** @typedef GetDummyDatasourcesParam */
 /**
@@ -214,6 +227,10 @@ export = CommunicationPlatformApplicationValidator;
  * @property {CommunicationPlatformModel.EngineRequest} body
  */
 /**
+ * @typedef SendEngineCommunicationSynchronouslyParam
+ * @property {CommunicationPlatformModel.EngineRequest} body
+ */
+/**
  * @typedef SendOtpParam
  * @property {boolean} [ci] - Common Information
  * @property {CommunicationPlatformModel.SendOtpCommsReq} body
@@ -225,6 +242,10 @@ export = CommunicationPlatformApplicationValidator;
 /**
  * @typedef UpdateAppProvidersParam
  * @property {CommunicationPlatformModel.AppProviderReq} body
+ */
+/**
+ * @typedef UpdateAppProvidersGlobalProviderParam
+ * @property {CommunicationPlatformModel.AppProvidersGlobalProviderRequest} body
  */
 /**
  * @typedef UpdateAudienceByIdParam
@@ -246,7 +267,10 @@ export = CommunicationPlatformApplicationValidator;
  * @property {string} id - Event subscription id
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
-/** @typedef UpdateOtpConfigurationParam */
+/**
+ * @typedef UpdateOtpConfigurationParam
+ * @property {CommunicationPlatformModel.OtpConfiguration} body
+ */
 /**
  * @typedef UpdateSmsProviderByIdParam
  * @property {string} id - Event subscription id
@@ -262,10 +286,14 @@ export = CommunicationPlatformApplicationValidator;
  * @property {CommunicationPlatformModel.VerifyOtpCommsReq} body
  */
 declare class CommunicationPlatformApplicationValidator {
+    /** @returns {CreateAppPushtokenParam} */
+    static createAppPushtoken(): CreateAppPushtokenParam;
     /** @returns {CreateAudienceParam} */
     static createAudience(): CreateAudienceParam;
     /** @returns {CreateCampaignParam} */
     static createCampaign(): CreateCampaignParam;
+    /** @returns {CreateCommunicationLogsParam} */
+    static createCommunicationLogs(): CreateCommunicationLogsParam;
     /** @returns {CreateEmailProviderParam} */
     static createEmailProvider(): CreateEmailProviderParam;
     /** @returns {CreateEmailTemplateParam} */
@@ -282,6 +310,8 @@ declare class CommunicationPlatformApplicationValidator {
     static createSmsTemplate(): CreateSmsTemplateParam;
     /** @returns {DeleteAudienceByIdParam} */
     static deleteAudienceById(): DeleteAudienceByIdParam;
+    /** @returns {DeleteCampaignByIdParam} */
+    static deleteCampaignById(): DeleteCampaignByIdParam;
     /** @returns {DeleteEmailProviderByIdParam} */
     static deleteEmailProviderById(): DeleteEmailProviderByIdParam;
     /** @returns {DeleteEmailTemplateByIdParam} */
@@ -306,6 +336,8 @@ declare class CommunicationPlatformApplicationValidator {
     static getCampaigns(): GetCampaignsParam;
     /** @returns {GetCommunicationLogsParam} */
     static getCommunicationLogs(): GetCommunicationLogsParam;
+    /** @returns {GetDefaultEmailProvidersParam} */
+    static getDefaultEmailProviders(): any;
     /** @returns {GetDefaultSmsProvidersParam} */
     static getDefaultSmsProviders(): any;
     /** @returns {GetDummyDatasourcesParam} */
@@ -362,12 +394,16 @@ declare class CommunicationPlatformApplicationValidator {
     static sendCommunicationAsynchronously(): SendCommunicationAsynchronouslyParam;
     /** @returns {SendCommunicationSynchronouslyParam} */
     static sendCommunicationSynchronously(): SendCommunicationSynchronouslyParam;
+    /** @returns {SendEngineCommunicationSynchronouslyParam} */
+    static sendEngineCommunicationSynchronously(): SendEngineCommunicationSynchronouslyParam;
     /** @returns {SendOtpParam} */
     static sendOtp(): SendOtpParam;
     /** @returns {TriggerCampaignJobParam} */
     static triggerCampaignJob(): TriggerCampaignJobParam;
     /** @returns {UpdateAppProvidersParam} */
     static updateAppProviders(): UpdateAppProvidersParam;
+    /** @returns {UpdateAppProvidersGlobalProviderParam} */
+    static updateAppProvidersGlobalProvider(): UpdateAppProvidersGlobalProviderParam;
     /** @returns {UpdateAudienceByIdParam} */
     static updateAudienceById(): UpdateAudienceByIdParam;
     /** @returns {UpdateCampaignByIdParam} */
@@ -377,7 +413,7 @@ declare class CommunicationPlatformApplicationValidator {
     /** @returns {UpdateEmailTemplateByIdParam} */
     static updateEmailTemplateById(): UpdateEmailTemplateByIdParam;
     /** @returns {UpdateOtpConfigurationParam} */
-    static updateOtpConfiguration(): any;
+    static updateOtpConfiguration(): UpdateOtpConfigurationParam;
     /** @returns {UpdateSmsProviderByIdParam} */
     static updateSmsProviderById(): UpdateSmsProviderByIdParam;
     /** @returns {UpdateSmsTemplateByIdParam} */
@@ -386,13 +422,19 @@ declare class CommunicationPlatformApplicationValidator {
     static verfiyOtp(): VerfiyOtpParam;
 }
 declare namespace CommunicationPlatformApplicationValidator {
-    export { CreateAudienceParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateEventSubscriptionsParam, CreateEventSubscriptionsByBulkParam, CreateJobsParam, CreateSmsProviderParam, CreateSmsTemplateParam, DeleteAudienceByIdParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteEventSubscriptionsByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, EditEventSubscriptionsParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultSmsProvidersParam, GetDummyDatasourcesParam, GetDummyDatasourcesMetaParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetEventSubscriptionsByIdParam, GetGlobalProvidersParam, GetGlobalVariablesParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetNSampleRecordsFromCsvByGetParam, GetOtpConfigurationParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, PostGlobalVariablesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateOtpConfigurationParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, VerfiyOtpParam };
+    export { CreateAppPushtokenParam, CreateAudienceParam, CreateCampaignParam, CreateCommunicationLogsParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateEventSubscriptionsParam, CreateEventSubscriptionsByBulkParam, CreateJobsParam, CreateSmsProviderParam, CreateSmsTemplateParam, DeleteAudienceByIdParam, DeleteCampaignByIdParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteEventSubscriptionsByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, EditEventSubscriptionsParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultEmailProvidersParam, GetDefaultSmsProvidersParam, GetDummyDatasourcesParam, GetDummyDatasourcesMetaParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetEventSubscriptionsByIdParam, GetGlobalProvidersParam, GetGlobalVariablesParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetNSampleRecordsFromCsvByGetParam, GetOtpConfigurationParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, PostGlobalVariablesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendEngineCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAppProvidersGlobalProviderParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateOtpConfigurationParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, VerfiyOtpParam };
 }
+type CreateAppPushtokenParam = {
+    body: CommunicationPlatformModel.PushtokenReq;
+};
 type CreateAudienceParam = {
     body: CommunicationPlatformModel.AudienceReq;
 };
 type CreateCampaignParam = {
     body: CommunicationPlatformModel.CampaignReq;
+};
+type CreateCommunicationLogsParam = {
+    body: CommunicationPlatformModel.Log;
 };
 type CreateEmailProviderParam = {
     body: CommunicationPlatformModel.EmailProviderReq;
@@ -421,6 +463,12 @@ type DeleteAudienceByIdParam = {
      */
     id: string;
     body: CommunicationPlatformModel.AudienceReq;
+};
+type DeleteCampaignByIdParam = {
+    /**
+     * - Event subscription id
+     */
+    id: string;
 };
 type DeleteEmailProviderByIdParam = {
     /**
@@ -744,6 +792,9 @@ type SendCommunicationAsynchronouslyParam = {
 type SendCommunicationSynchronouslyParam = {
     body: CommunicationPlatformModel.EngineRequest;
 };
+type SendEngineCommunicationSynchronouslyParam = {
+    body: CommunicationPlatformModel.EngineRequest;
+};
 type SendOtpParam = {
     /**
      * - Common Information
@@ -756,6 +807,9 @@ type TriggerCampaignJobParam = {
 };
 type UpdateAppProvidersParam = {
     body: CommunicationPlatformModel.AppProviderReq;
+};
+type UpdateAppProvidersGlobalProviderParam = {
+    body: CommunicationPlatformModel.AppProvidersGlobalProviderRequest;
 };
 type UpdateAudienceByIdParam = {
     /**
@@ -785,6 +839,9 @@ type UpdateEmailTemplateByIdParam = {
     id: string;
     body: CommunicationPlatformModel.EmailTemplateReq;
 };
+type UpdateOtpConfigurationParam = {
+    body: CommunicationPlatformModel.OtpConfiguration;
+};
 type UpdateSmsProviderByIdParam = {
     /**
      * - Event subscription id
@@ -803,6 +860,7 @@ type VerfiyOtpParam = {
     body: CommunicationPlatformModel.VerifyOtpCommsReq;
 };
 type GetAppProvidersParam = any;
+type GetDefaultEmailProvidersParam = any;
 type GetDefaultSmsProvidersParam = any;
 type GetDummyDatasourcesParam = any;
 type GetGlobalProvidersParam = any;
@@ -810,5 +868,4 @@ type GetGlobalVariablesParam = any;
 type GetOtpConfigurationParam = any;
 type GetSystemEmailTemplatesParam = any;
 type GetSystemSmsTemplatesParam = any;
-type UpdateOtpConfigurationParam = any;
 import CommunicationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformModel");

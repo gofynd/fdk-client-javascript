@@ -1,5 +1,5 @@
 const { isAbsoluteURL, combineURLs } = require("./utils");
-const axios = require("axios");
+const axios = require("axios").default;
 const querystring = require("query-string");
 const { sign } = require("@gofynd/fp-signature");
 const { FDKServerResponseError } = require("./FDKError");

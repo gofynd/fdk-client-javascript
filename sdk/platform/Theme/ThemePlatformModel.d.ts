@@ -193,16 +193,9 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
- * @property {string} [type]
- */
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {string} [type]
  */
 /**
  * @typedef AvailablePageSeo
@@ -619,10 +612,65 @@ export = ThemePlatformModel;
  * @property {boolean} [is_private] - Whether the theme is private or not
  * @property {CompanyThemeMeta} [meta]
  */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class ThemePlatformModel {
 }
 declare namespace ThemePlatformModel {
-    export { MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeReq, CompanyThemeSchema, CompanyThemeReqSchema, CompanyThemeResponse, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, ActionPage, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradableResponse, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Prop, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyResponse, AppliedThemes, CompanyPrivateTheme };
+    export { MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeReq, CompanyThemeSchema, CompanyThemeReqSchema, CompanyThemeResponse, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradableResponse, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Prop, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyResponse, AppliedThemes, CompanyPrivateTheme, ActionPage, PageType };
 }
 /** @returns {MarketplaceTheme} */
 declare function MarketplaceTheme(): MarketplaceTheme;
@@ -1047,17 +1095,9 @@ type SEObreadcrumb = {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    type?: string;
     page?: ActionPage;
     popup?: ActionPage;
-    type?: string;
-};
-/** @returns {ActionPage} */
-declare function ActionPage(): ActionPage;
-type ActionPage = {
-    params?: any;
-    query?: any;
-    url?: string;
-    type?: string;
 };
 /** @returns {AvailablePageSeo} */
 declare function AvailablePageSeo(): AvailablePageSeo;
@@ -1872,3 +1912,18 @@ type CompanyPrivateTheme = {
     is_private?: boolean;
     meta?: CompanyThemeMeta;
 };
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/**
+ * Enum: PageType Used By: Theme
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

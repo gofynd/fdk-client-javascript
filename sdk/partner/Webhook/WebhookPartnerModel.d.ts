@@ -177,13 +177,13 @@ export = WebhookPartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [current] - The current page number.
- * @property {boolean} [has_next] - Indicates if there is a next page.
- * @property {boolean} [has_previous] - Indicates if there is a previous page.
- * @property {number} [total_page]
- * @property {number} [item_total] - The total number of items.
- * @property {number} [size] - The number of items per page.
- * @property {string} [type] - Type of the response (e.g., "number").
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef DeliveryEventLevelSchema
@@ -509,31 +509,13 @@ type EventProcessReportObject = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    /**
-     * - The current page number.
-     */
-    current?: number;
-    /**
-     * - Indicates if there is a next page.
-     */
-    has_next?: boolean;
-    /**
-     * - Indicates if there is a previous page.
-     */
-    has_previous?: boolean;
-    total_page?: number;
-    /**
-     * - The total number of items.
-     */
     item_total?: number;
-    /**
-     * - The number of items per page.
-     */
+    next_id?: string;
+    has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
+    type: string;
     size?: number;
-    /**
-     * - Type of the response (e.g., "number").
-     */
-    type?: string;
 };
 /** @returns {DeliveryEventLevelSchema} */
 declare function DeliveryEventLevelSchema(): DeliveryEventLevelSchema;
