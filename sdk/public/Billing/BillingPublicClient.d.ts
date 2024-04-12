@@ -5,7 +5,6 @@ declare class Billing {
     _relativeUrls: {
         getPlanDetails: string;
         getStandardPlans: string;
-        planList: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -27,19 +26,10 @@ declare class Billing {
      * @returns {Promise<BillingPublicModel.DetailList>} - Success response
      * @name getStandardPlans
      * @summary: Get Standard/Public Plans
-     * @description: Get Standard/Public Plans. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/billing/getStandardPlans/).
+     * @description: Get Standard/Public Plans.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/billing/getStandardPlans/).
      */
-    getStandardPlans({ requestHeaders }?: any, { responseHeaders }?: object): Promise<BillingPublicModel.DetailList>;
-    /**
-     * @param {BillingPublicValidator.PlanListParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<BillingPublicModel.PlanList[]>} - Success response
-     * @name planList
-     * @summary: Get List of all plans
-     * @description: Get List of all plans - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/billing/planList/).
-     */
-    planList({ requestHeaders }?: any, { responseHeaders }?: object): Promise<BillingPublicModel.PlanList[]>;
+    getStandardPlans({ platformType, requestHeaders }?: BillingPublicValidator.GetStandardPlansParam, { responseHeaders }?: object): Promise<BillingPublicModel.DetailList>;
 }
 import BillingPublicValidator = require("sdk/output/javascript/code/sdk/public/Billing/BillingPublicValidator");
 import BillingPublicModel = require("sdk/output/javascript/code/sdk/public/Billing/BillingPublicModel");

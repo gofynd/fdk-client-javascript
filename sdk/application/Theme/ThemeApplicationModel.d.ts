@@ -284,37 +284,7 @@ export = ThemeApplicationModel;
  * @property {AuthConfig} [auth]
  * @property {PaletteConfig} [palette]
  * @property {Object} [order_tracking]
- * @property {ManifestConfig} [manifest]
- */
-/**
- * @typedef ManifestConfig
- * @property {boolean} [active]
- * @property {string} [name]
- * @property {string} [description]
- * @property {boolean} [install_desktop]
- * @property {boolean} [install_mobile]
- * @property {string} [button_text]
- * @property {IconManifest[]} [icons]
- * @property {ScreenshotManifest[]} [screenshots]
- * @property {ShortcutManifest[]} [shortcuts]
- */
-/**
- * @typedef IconManifest
- * @property {string} [src]
- * @property {string} [type]
- * @property {string} [sizes]
- * @property {string} [icon_opacity]
- */
-/**
- * @typedef ScreenshotManifest
- * @property {string} [src]
- * @property {string} [type]
- */
-/**
- * @typedef ShortcutManifest
- * @property {string} [name]
- * @property {string} [url]
- * @property {IconManifest[]} [icons]
+ * @property {Object} [manifest]
  */
 /**
  * @typedef Colors
@@ -555,7 +525,7 @@ export = ThemeApplicationModel;
 declare class ThemeApplicationModel {
 }
 declare namespace ThemeApplicationModel {
-    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, ManifestConfig, IconManifest, ScreenshotManifest, ShortcutManifest, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema, ActionPage, PageType };
+    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema, ActionPage, PageType };
 }
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -1131,41 +1101,7 @@ type StaticProps = {
     auth?: AuthConfig;
     palette?: PaletteConfig;
     order_tracking?: any;
-    manifest?: ManifestConfig;
-};
-/** @returns {ManifestConfig} */
-declare function ManifestConfig(): ManifestConfig;
-type ManifestConfig = {
-    active?: boolean;
-    name?: string;
-    description?: string;
-    install_desktop?: boolean;
-    install_mobile?: boolean;
-    button_text?: string;
-    icons?: IconManifest[];
-    screenshots?: ScreenshotManifest[];
-    shortcuts?: ShortcutManifest[];
-};
-/** @returns {IconManifest} */
-declare function IconManifest(): IconManifest;
-type IconManifest = {
-    src?: string;
-    type?: string;
-    sizes?: string;
-    icon_opacity?: string;
-};
-/** @returns {ScreenshotManifest} */
-declare function ScreenshotManifest(): ScreenshotManifest;
-type ScreenshotManifest = {
-    src?: string;
-    type?: string;
-};
-/** @returns {ShortcutManifest} */
-declare function ShortcutManifest(): ShortcutManifest;
-type ShortcutManifest = {
-    name?: string;
-    url?: string;
-    icons?: IconManifest[];
+    manifest?: any;
 };
 /** @returns {Colors} */
 declare function Colors(): Colors;

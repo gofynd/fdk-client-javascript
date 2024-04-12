@@ -3,18 +3,18 @@ export = BillingPublicValidator;
  * @typedef GetPlanDetailsParam
  * @property {string} planId - Plan unique id.
  */
-/** @typedef GetStandardPlansParam */
-/** @typedef PlanListParam */
+/**
+ * @typedef GetStandardPlansParam
+ * @property {string} platformType - The type of platform for which plans are requested.
+ */
 declare class BillingPublicValidator {
     /** @returns {GetPlanDetailsParam} */
     static getPlanDetails(): GetPlanDetailsParam;
     /** @returns {GetStandardPlansParam} */
-    static getStandardPlans(): any;
-    /** @returns {PlanListParam} */
-    static planList(): any;
+    static getStandardPlans(): GetStandardPlansParam;
 }
 declare namespace BillingPublicValidator {
-    export { GetPlanDetailsParam, GetStandardPlansParam, PlanListParam };
+    export { GetPlanDetailsParam, GetStandardPlansParam };
 }
 type GetPlanDetailsParam = {
     /**
@@ -22,5 +22,9 @@ type GetPlanDetailsParam = {
      */
     planId: string;
 };
-type GetStandardPlansParam = any;
-type PlanListParam = any;
+type GetStandardPlansParam = {
+    /**
+     * - The type of platform for which plans are requested.
+     */
+    platformType: string;
+};

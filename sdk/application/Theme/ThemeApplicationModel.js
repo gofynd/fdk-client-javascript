@@ -321,41 +321,7 @@ const Joi = require("joi");
  * @property {AuthConfig} [auth]
  * @property {PaletteConfig} [palette]
  * @property {Object} [order_tracking]
- * @property {ManifestConfig} [manifest]
- */
-
-/**
- * @typedef ManifestConfig
- * @property {boolean} [active]
- * @property {string} [name]
- * @property {string} [description]
- * @property {boolean} [install_desktop]
- * @property {boolean} [install_mobile]
- * @property {string} [button_text]
- * @property {IconManifest[]} [icons]
- * @property {ScreenshotManifest[]} [screenshots]
- * @property {ShortcutManifest[]} [shortcuts]
- */
-
-/**
- * @typedef IconManifest
- * @property {string} [src]
- * @property {string} [type]
- * @property {string} [sizes]
- * @property {string} [icon_opacity]
- */
-
-/**
- * @typedef ScreenshotManifest
- * @property {string} [src]
- * @property {string} [type]
- */
-
-/**
- * @typedef ShortcutManifest
- * @property {string} [name]
- * @property {string} [url]
- * @property {IconManifest[]} [icons]
+ * @property {Object} [manifest]
  */
 
 /**
@@ -1027,51 +993,7 @@ class ThemeApplicationModel {
       auth: ThemeApplicationModel.AuthConfig(),
       palette: ThemeApplicationModel.PaletteConfig(),
       order_tracking: Joi.any(),
-      manifest: ThemeApplicationModel.ManifestConfig(),
-    });
-  }
-
-  /** @returns {ManifestConfig} */
-  static ManifestConfig() {
-    return Joi.object({
-      active: Joi.boolean(),
-      name: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      install_desktop: Joi.boolean(),
-      install_mobile: Joi.boolean(),
-      button_text: Joi.string().allow(""),
-      icons: Joi.array().items(ThemeApplicationModel.IconManifest()),
-      screenshots: Joi.array().items(
-        ThemeApplicationModel.ScreenshotManifest()
-      ),
-      shortcuts: Joi.array().items(ThemeApplicationModel.ShortcutManifest()),
-    });
-  }
-
-  /** @returns {IconManifest} */
-  static IconManifest() {
-    return Joi.object({
-      src: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      sizes: Joi.string().allow(""),
-      icon_opacity: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ScreenshotManifest} */
-  static ScreenshotManifest() {
-    return Joi.object({
-      src: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ShortcutManifest} */
-  static ShortcutManifest() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-      icons: Joi.array().items(ThemeApplicationModel.IconManifest()),
+      manifest: Joi.any(),
     });
   }
 

@@ -1,69 +1,6 @@
 const Joi = require("joi");
 
 /**
- * @typedef PaymentCollectRes
- * @property {string} [transaction_id]
- * @property {string} [current_status]
- */
-
-/**
- * @typedef SubscriptionChargeRes
- * @property {string} [_id]
- * @property {string} [product_suit_id]
- * @property {string} [entity_id]
- * @property {string} [entity_type]
- * @property {string} [name]
- * @property {string} [status]
- * @property {number} [trial_days]
- * @property {string} [activated_on]
- * @property {string} [cancelled_on]
- * @property {boolean} [is_test]
- * @property {string} [created_at]
- * @property {string} [modified_at]
- * @property {string} [company_id]
- * @property {Object[]} [line_items]
- */
-
-/**
- * @typedef PostDowngradeRes
- * @property {boolean} [success]
- * @property {DowngradeRes} [data]
- */
-
-/**
- * @typedef DowngradeRes
- * @property {string} [_id]
- * @property {string} [status]
- * @property {string} [subscriber_id]
- * @property {boolean} [activated]
- * @property {string} [created_at]
- * @property {string} [modified_at]
- * @property {string} [plan_id]
- * @property {string} [reason]
- * @property {string} [request_user_id]
- * @property {string} [subscription_id]
- */
-
-/**
- * @typedef PaymentStatusData
- * @property {string} [_id]
- * @property {string} [journey]
- * @property {Object[]} [webhook_response]
- * @property {string} [aggregator_status]
- * @property {string} [current_status]
- * @property {string} [created_at]
- * @property {string} [modified_at]
- * @property {number} [__v]
- * @property {string} [aggregator_order_id]
- */
-
-/**
- * @typedef PaymentStatusResponse
- * @property {string} [status]
- * @property {PaymentStatusData} [data]
- */
-
-/**
  * @typedef BadRequest
  * @property {string} [message] - Failure message.
  */
@@ -71,8 +8,6 @@ const Joi = require("joi");
 /**
  * @typedef ResourceNotFound
  * @property {string} [message] - Resource not found with {id}
- * @property {Object} [code]
- * @property {Object} [success]
  */
 
 /**
@@ -94,15 +29,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PlanMeta
- * @property {string} [seller_status]
- * @property {string} [company]
- * @property {string} [plan_platform_display_name]
- */
-
-/**
  * @typedef Plan
- * @property {Object[]} [fee_components]
  * @property {PlanRecurring} [recurring]
  * @property {boolean} [is_trial_plan]
  * @property {string} [plan_group]
@@ -122,16 +49,6 @@ const Joi = require("joi");
  * @property {string} [product_suite_id]
  * @property {string} [created_at]
  * @property {string} [modified_at]
- * @property {Taxation} [taxation]
- * @property {OneTimeFees} [one_time_fees]
- * @property {CreditLine} [credit_line]
- * @property {string} [current_status]
- * @property {string} [channel_type]
- * @property {Object[]} [company_ids]
- * @property {string} [platform]
- * @property {string} [activated_on]
- * @property {PlanMeta} [meta]
- * @property {string} [created_by]
  */
 
 /**
@@ -142,21 +59,21 @@ const Joi = require("joi");
 
 /**
  * @typedef EntityChargePrice
- * @property {number} [amount] - Amount for price. Minimum value 1
- * @property {string} [currency_code]
+ * @property {number} amount - Amount for price. Minimum value 1
+ * @property {string} currency_code
  */
 
 /**
  * @typedef EntityChargeRecurring
- * @property {string} [interval]
+ * @property {string} interval
  */
 
 /**
  * @typedef ChargeLineItem
- * @property {string} [name]
- * @property {string} [term]
- * @property {string} [pricing_type]
- * @property {EntityChargePrice} [price]
+ * @property {string} name
+ * @property {string} term
+ * @property {string} pricing_type
+ * @property {EntityChargePrice} price
  * @property {EntityChargeRecurring} [recurring]
  * @property {number} [capped_amount]
  * @property {number} [trial_days]
@@ -166,19 +83,19 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateSubscriptionCharge
- * @property {string} [name]
+ * @property {string} name
  * @property {number} [trial_days]
- * @property {ChargeLineItem[]} [line_items]
+ * @property {ChargeLineItem[]} line_items
  * @property {boolean} [is_test]
- * @property {string} [return_url]
+ * @property {string} return_url
  */
 
 /**
  * @typedef OneTimeChargeItem
- * @property {string} [name]
+ * @property {string} name
  * @property {string} [term]
- * @property {string} [pricing_type]
- * @property {EntityChargePrice} [price]
+ * @property {string} pricing_type
+ * @property {EntityChargePrice} price
  * @property {number} [capped_amount]
  * @property {boolean} [is_test]
  * @property {Object} [metadata]
@@ -186,10 +103,10 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateOneTimeCharge
- * @property {string} [name]
- * @property {OneTimeChargeItem} [charge]
+ * @property {string} name
+ * @property {OneTimeChargeItem} charge
  * @property {boolean} [is_test]
- * @property {string} [return_url]
+ * @property {string} return_url
  */
 
 /**
@@ -231,45 +148,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ChargeRecurring
- * @property {string} [interval]
- * @property {number} [interval_time]
- */
-
-/**
- * @typedef ChargeDetails
- * @property {string} [_id]
- * @property {string} [entity_type]
- * @property {string} [entity_id]
- * @property {string} [name]
- * @property {string} [term]
- * @property {string} [charge_type]
- * @property {string} [pricing_type]
- * @property {EntityChargePrice} [price]
- * @property {ChargeRecurring} [recurring]
- * @property {string} [status]
- * @property {number} [capped_amount]
- * @property {string} [activated_on]
- * @property {string} [cancelled_on]
- * @property {string} [billing_date]
- * @property {SubscriptionTrialPeriod} [current_period]
- * @property {string} [modified_at]
- * @property {string} [created_at]
- * @property {boolean} [is_test]
- * @property {string} [company_id]
- * @property {Object} [meta]
- * @property {number} [__v]
- */
-
-/**
  * @typedef OneTimeChargeEntity
- * @property {string} [term]
- * @property {string} [charge_type]
- * @property {number} [capped_amount]
- * @property {string} [billing_date]
- * @property {string} [created_at]
- * @property {string} [modified_at]
- * @property {number} [__v]
  * @property {string} [_id]
  * @property {string} [name]
  * @property {string} [status]
@@ -288,13 +167,8 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateOneTimeChargeResponse
- * @property {Charge} [charge]
+ * @property {OneTimeChargeEntity} [charge]
  * @property {string} [confirm_url]
- */
-
-/**
- * @typedef Charge
- * @property {OneTimeChargeEntity} [final_charge]
  */
 
 /**
@@ -437,13 +311,6 @@ const Joi = require("joi");
 /**
  * @typedef InvoicesData
  * @property {string} [_id]
- * @property {Object} [documents]
- * @property {Object} [payment]
- * @property {number} [old_settlement]
- * @property {number} [credit_balance]
- * @property {Object} [discount]
- * @property {Object} [taxation]
- * @property {number} [credit_note_amount]
  * @property {InvoicesDataClient} [client]
  * @property {boolean} [auto_advance]
  * @property {string} [currency]
@@ -508,11 +375,6 @@ const Joi = require("joi");
  * @property {string} [created_at]
  * @property {string} [modified_at]
  * @property {Object} [data]
- * @property {Object} [documents]
- * @property {boolean} [consent]
- * @property {boolean} [comms]
- * @property {number} [credit_balance]
- * @property {BusinessCountryInfo} [business_country_info]
  */
 
 /**
@@ -551,7 +413,6 @@ const Joi = require("joi");
 
 /**
  * @typedef Subscription
- * @property {Object} [meta]
  * @property {SubscriptionCurrentPeriod} [current_period]
  * @property {SubscriptionPauseCollection} [pause_collection]
  * @property {SubscriptionTrial} [trial]
@@ -569,9 +430,6 @@ const Joi = require("joi");
  * @property {string} [modified_at]
  * @property {string} [latest_invoice]
  * @property {string} [channel_type]
- * @property {boolean} [freezed]
- * @property {string} [cancel_at]
- * @property {string} [canceled_at]
  */
 
 /**
@@ -582,7 +440,6 @@ const Joi = require("joi");
  * @property {Plan} [next_plan]
  * @property {Subscription[]} [current_subscriptions]
  * @property {number} [mandate_amount]
- * @property {string} [message]
  */
 
 /**
@@ -638,29 +495,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef IntentReq
- * @property {string} [unique_external_id]
- * @property {string} [plan_id]
- */
-
-/**
- * @typedef PutIntentReq
- * @property {string} [unique_external_id]
- * @property {string} [setup_intent_id]
- * @property {string} [payment_method_id]
- * @property {boolean} [set_default]
- */
-
-/**
  * @typedef SubscriptionActivateReq
  * @property {string} [unique_id]
  * @property {string} [type]
  * @property {string} [product_suite]
  * @property {string} [plan_id]
  * @property {string} [payment_method]
- * @property {string} [subscription_id]
- * @property {string} [coupon]
- * @property {Object} [meta]
  */
 
 /**
@@ -715,9 +555,38 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef EntityDetail
- * @property {string} [entity]
- * @property {Subscription} [item]
+ * @typedef Features
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string} [description]
+ * @property {string} [group]
+ * @property {boolean} [enabled]
+ * @property {string} [display_text]
+ */
+
+/**
+ * @typedef FeeComponents
+ * @property {string[]} [brand]
+ * @property {string[]} [location]
+ * @property {Object[]} [channel]
+ * @property {string} [business_lead]
+ * @property {string} [settlement_type]
+ * @property {Object} [settle_cycle_period]
+ * @property {Object[]} [components]
+ */
+
+/**
+ * @typedef Details
+ * @property {FeeComponents[]} [fee_components]
+ * @property {Features[]} [features]
+ */
+
+/**
+ * @typedef EntityResponse
+ * @property {boolean} [success]
+ * @property {number} [page]
+ * @property {number} [page_size]
+ * @property {Details[]} [items]
  */
 
 /**
@@ -745,7 +614,6 @@ const Joi = require("joi");
 /**
  * @typedef Documents
  * @property {string} [pan]
- * @property {string} [gst]
  */
 
 /**
@@ -777,9 +645,8 @@ const Joi = require("joi");
 /**
  * @typedef SubscriberData
  * @property {boolean} [pg_user_exists]
- * @property {Object} [id]
+ * @property {string} [id]
  * @property {string} [pg_customer_id]
- * @property {string} [default_payment_method]
  */
 
 /**
@@ -828,7 +695,7 @@ const Joi = require("joi");
  * @property {string} [currency]
  * @property {string} [subscriber_id]
  * @property {string} [description]
- * @property {Object} [is_test]
+ * @property {boolean} [is_test]
  * @property {EndingBalance} [ending_balance]
  * @property {PaymentData} [payment]
  * @property {string} [type]
@@ -875,56 +742,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef MethodChecks
- * @property {string} [address_line1_check]
- * @property {string} [address_postal_code_check]
- * @property {string} [cvc_check]
- */
-
-/**
- * @typedef MethodNetworks
- * @property {string[]} [available]
- * @property {string} [preferred]
- */
-
-/**
- * @typedef MethodSecureUsage
- * @property {boolean} [supported]
- */
-
-/**
- * @typedef MethodDetails
- * @property {string} [id]
- * @property {string} [type]
- * @property {boolean} [mandate_available]
- * @property {number} [mandate_amount]
- * @property {string} [pg_payment_method_id]
- * @property {boolean} [is_default]
- * @property {SubscriptionMethodData} [data]
- */
-
-/**
- * @typedef SubscriptionMethodData
- * @property {string} [brand]
- * @property {MethodChecks} [checks]
- * @property {string} [country]
- * @property {number} [exp_month]
- * @property {number} [exp_year]
- * @property {string} [fingerprint]
- * @property {string} [funding]
- * @property {string} [generated_from]
- * @property {string} [last4]
- * @property {MethodNetworks} [networks]
- * @property {MethodSecureUsage} [three_d_secure_usage]
- * @property {string} [wallet]
- * @property {string} [name]
- * @property {boolean} [is_default]
- */
-
-/**
  * @typedef SubscriptionMethods
  * @property {boolean} [success]
- * @property {MethodDetails[]} [data]
+ * @property {string[]} [data]
  */
 
 /**
@@ -943,7 +763,6 @@ const Joi = require("joi");
  * @typedef PlanChangeData
  * @property {number} [total]
  * @property {number} [credit_note_amount]
- * @property {number} [settlement]
  * @property {number} [taxable_amount]
  * @property {number} [gst_amount]
  * @property {number} [gross_total]
@@ -952,13 +771,8 @@ const Joi = require("joi");
 
 /**
  * @typedef PlanChangeDetails
- * @property {string} [status]
+ * @property {boolean} [success]
  * @property {PlanChangeData} [data]
- */
-
-/**
- * @typedef TransactionMeta
- * @property {string} [invoice_id]
  */
 
 /**
@@ -971,7 +785,7 @@ const Joi = require("joi");
  * @property {number} [amount]
  * @property {string} [entity_type]
  * @property {string} [collection_type]
- * @property {TransactionMeta} [meta]
+ * @property {Meta} [meta]
  * @property {string} [created_at]
  * @property {string} [modified_at]
  */
@@ -988,271 +802,7 @@ const Joi = require("joi");
  * @property {PaymentItems[]} [payment_options]
  */
 
-/**
- * @typedef TopupReq
- * @property {number} [amount]
- * @property {string} [currency]
- * @property {string} [provider_type]
- */
-
-/**
- * @typedef SetupMandateReq
- * @property {string} [intent_id]
- * @property {string} [payment_method_id]
- */
-
-/**
- * @typedef SetupPaymentReq
- * @property {string} [payment_method]
- * @property {string} [payment_id]
- * @property {string} [plan_id]
- * @property {string} [invoice_id]
- */
-
-/**
- * @typedef SubscriptionRenewReq
- * @property {string} [invoice_id]
- * @property {string} [entity_type]
- * @property {string} [collection_type]
- * @property {string} [callback_url]
- * @property {RenewMeta} [meta]
- */
-
-/**
- * @typedef RenewMeta
- * @property {boolean} [invoice_payment]
- * @property {boolean} [renew]
- */
-
-/**
- * @typedef SubscriptionMethodsReq
- * @property {string} [unique_external_id]
- * @property {string} [setup_intent_id]
- * @property {string} [pg_payment_method_id]
- * @property {boolean} [set_default]
- */
-
-/**
- * @typedef CreditTransactionResponse
- * @property {number} [total] - Total number of transactions
- * @property {number} [limit] - Maximum number of transactions per page
- * @property {number} [page] - Current page number
- * @property {number} [pages] - Total number of pages
- * @property {CreditTransaction[]} [items]
- */
-
-/**
- * @typedef DowngradePlanReq
- * @property {string} [unique_id]
- * @property {string} [type]
- * @property {string} [product_suite]
- * @property {string} [plan_id]
- * @property {string} [reason]
- * @property {string} [platform]
- */
-
-/**
- * @typedef Taxation
- * @property {number} [gst] - GST percentage
- */
-
-/**
- * @typedef OneTimeFees
- * @property {number} [developement]
- * @property {number} [marketing]
- */
-
-/**
- * @typedef CreditLine
- * @property {boolean} [is_active]
- */
-
-/**
- * @typedef StatusMessage
- * @property {string} [status]
- * @property {string} [message]
- * @property {boolean} [success]
- * @property {string} [code]
- */
-
-/**
- * @typedef PaymentCollectReq
- * @property {string} [transaction_id]
- * @property {boolean} [credit_balance]
- * @property {string} [payment_mode]
- * @property {string} [payment_method]
- * @property {string} [invoice_id]
- */
-
-/**
- * @typedef SubscriptionRenewResMeta
- * @property {boolean} [invoice_payment]
- * @property {boolean} [renew]
- */
-
-/**
- * @typedef SubscriptionRenewRes
- * @property {string} [redirect_url]
- * @property {string} [transaction_id]
- * @property {string} [current_status]
- * @property {SubscriptionRenewResMeta} [meta]
- */
-
-/**
- * @typedef SetupIntentRes
- * @property {boolean} [success]
- * @property {SetupIntentData} [data]
- */
-
-/**
- * @typedef SetupIntentData
- * @property {string} [id]
- * @property {string} [client_secret]
- * @property {Object} [customer]
- * @property {string} [status]
- */
-
-/**
- * @typedef SetupPayment
- * @property {string} [id]
- * @property {string} [status]
- * @property {Object} [customer]
- * @property {string} [client_secret]
- * @property {string} [payment_method]
- * @property {string} [mandate]
- * @property {PaymentMethodOptions} [payment_method_options]
- */
-
-/**
- * @typedef PaymentMethodOptions
- * @property {Card} [card]
- */
-
-/**
- * @typedef Card
- * @property {MandateOptions} [mandate_options]
- */
-
-/**
- * @typedef MandateOptions
- * @property {number} [amount]
- */
-
-/**
- * @typedef Message
- * @property {string} [message]
- */
-
-/**
- * @typedef TopupRes
- * @property {string} [status]
- * @property {string} [aggregator_order_id]
- * @property {number} [amount]
- * @property {string} [currency]
- * @property {string} [transaction_id]
- */
-
-/**
- * @typedef CancelTopupReq
- * @property {string} [order_id]
- */
-
-/**
- * @typedef CancelTopupRes
- * @property {string} [_id]
- * @property {string} [subscriber_id]
- * @property {number} [amount]
- * @property {string} [currency]
- * @property {string} [aggregator]
- * @property {string} [aggregator_order_id]
- * @property {string} [created_at]
- * @property {string} [modified_at]
- * @property {number} [__v]
- * @property {string} [aggregator_status]
- * @property {string} [current_status]
- */
-
-/**
- * @typedef DefaultReq
- * @property {string} [payment_method_id]
- */
-
 class BillingPlatformModel {
-  /** @returns {PaymentCollectRes} */
-  static PaymentCollectRes() {
-    return Joi.object({
-      transaction_id: Joi.string().allow(""),
-      current_status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscriptionChargeRes} */
-  static SubscriptionChargeRes() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      product_suit_id: Joi.string().allow(""),
-      entity_id: Joi.string().allow(""),
-      entity_type: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      trial_days: Joi.number(),
-      activated_on: Joi.string().allow(""),
-      cancelled_on: Joi.string().allow(""),
-      is_test: Joi.boolean(),
-      created_at: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      company_id: Joi.string().allow(""),
-      line_items: Joi.array().items(Joi.any()),
-    });
-  }
-
-  /** @returns {PostDowngradeRes} */
-  static PostDowngradeRes() {
-    return Joi.object({
-      success: Joi.boolean(),
-      data: BillingPlatformModel.DowngradeRes(),
-    });
-  }
-
-  /** @returns {DowngradeRes} */
-  static DowngradeRes() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      subscriber_id: Joi.string().allow(""),
-      activated: Joi.boolean(),
-      created_at: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      plan_id: Joi.string().allow(""),
-      reason: Joi.string().allow(""),
-      request_user_id: Joi.string().allow(""),
-      subscription_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PaymentStatusData} */
-  static PaymentStatusData() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      journey: Joi.string().allow(""),
-      webhook_response: Joi.array().items(Joi.any()),
-      aggregator_status: Joi.string().allow(""),
-      current_status: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      __v: Joi.number(),
-      aggregator_order_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PaymentStatusResponse} */
-  static PaymentStatusResponse() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      data: BillingPlatformModel.PaymentStatusData(),
-    });
-  }
-
   /** @returns {BadRequest} */
   static BadRequest() {
     return Joi.object({
@@ -1264,8 +814,6 @@ class BillingPlatformModel {
   static ResourceNotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
-      code: Joi.any(),
-      success: Joi.any(),
     });
   }
 
@@ -1293,19 +841,9 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {PlanMeta} */
-  static PlanMeta() {
-    return Joi.object({
-      seller_status: Joi.string().allow(""),
-      company: Joi.string().allow(""),
-      plan_platform_display_name: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {Plan} */
   static Plan() {
     return Joi.object({
-      fee_components: Joi.array().items(Joi.any()),
       recurring: BillingPlatformModel.PlanRecurring(),
       is_trial_plan: Joi.boolean(),
       plan_group: Joi.string().allow(""),
@@ -1325,16 +863,6 @@ class BillingPlatformModel {
       product_suite_id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       modified_at: Joi.string().allow(""),
-      taxation: BillingPlatformModel.Taxation(),
-      one_time_fees: BillingPlatformModel.OneTimeFees(),
-      credit_line: BillingPlatformModel.CreditLine(),
-      current_status: Joi.string().allow(""),
-      channel_type: Joi.string().allow(""),
-      company_ids: Joi.array().items(Joi.any()),
-      platform: Joi.string().allow(""),
-      activated_on: Joi.string().allow(""),
-      meta: BillingPlatformModel.PlanMeta(),
-      created_by: Joi.string().allow(""),
     });
   }
 
@@ -1349,25 +877,25 @@ class BillingPlatformModel {
   /** @returns {EntityChargePrice} */
   static EntityChargePrice() {
     return Joi.object({
-      amount: Joi.number(),
-      currency_code: Joi.string().allow(""),
+      amount: Joi.number().required(),
+      currency_code: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {EntityChargeRecurring} */
   static EntityChargeRecurring() {
     return Joi.object({
-      interval: Joi.string().allow(""),
+      interval: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {ChargeLineItem} */
   static ChargeLineItem() {
     return Joi.object({
-      name: Joi.string().allow(""),
-      term: Joi.string().allow(""),
-      pricing_type: Joi.string().allow(""),
-      price: BillingPlatformModel.EntityChargePrice(),
+      name: Joi.string().allow("").required(),
+      term: Joi.string().allow("").required(),
+      pricing_type: Joi.string().allow("").required(),
+      price: BillingPlatformModel.EntityChargePrice().required(),
       recurring: BillingPlatformModel.EntityChargeRecurring(),
       capped_amount: Joi.number(),
       trial_days: Joi.number(),
@@ -1379,21 +907,23 @@ class BillingPlatformModel {
   /** @returns {CreateSubscriptionCharge} */
   static CreateSubscriptionCharge() {
     return Joi.object({
-      name: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
       trial_days: Joi.number(),
-      line_items: Joi.array().items(BillingPlatformModel.ChargeLineItem()),
+      line_items: Joi.array()
+        .items(BillingPlatformModel.ChargeLineItem())
+        .required(),
       is_test: Joi.boolean(),
-      return_url: Joi.string().allow(""),
+      return_url: Joi.string().allow("").required(),
     });
   }
 
   /** @returns {OneTimeChargeItem} */
   static OneTimeChargeItem() {
     return Joi.object({
-      name: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
       term: Joi.string().allow(""),
-      pricing_type: Joi.string().allow(""),
-      price: BillingPlatformModel.EntityChargePrice(),
+      pricing_type: Joi.string().allow("").required(),
+      price: BillingPlatformModel.EntityChargePrice().required(),
       capped_amount: Joi.number(),
       is_test: Joi.boolean(),
       metadata: Joi.any(),
@@ -1403,10 +933,10 @@ class BillingPlatformModel {
   /** @returns {CreateOneTimeCharge} */
   static CreateOneTimeCharge() {
     return Joi.object({
-      name: Joi.string().allow(""),
-      charge: BillingPlatformModel.OneTimeChargeItem(),
+      name: Joi.string().allow("").required(),
+      charge: BillingPlatformModel.OneTimeChargeItem().required(),
       is_test: Joi.boolean(),
-      return_url: Joi.string().allow(""),
+      return_url: Joi.string().allow("").required(),
     });
   }
 
@@ -1454,56 +984,14 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {ChargeRecurring} */
-  static ChargeRecurring() {
-    return Joi.object({
-      interval: Joi.string().allow(""),
-      interval_time: Joi.number(),
-    });
-  }
-
-  /** @returns {ChargeDetails} */
-  static ChargeDetails() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      entity_type: Joi.string().allow(""),
-      entity_id: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      term: Joi.string().allow(""),
-      charge_type: Joi.string().allow(""),
-      pricing_type: Joi.string().allow(""),
-      price: BillingPlatformModel.EntityChargePrice(),
-      recurring: BillingPlatformModel.ChargeRecurring(),
-      status: Joi.string().allow(""),
-      capped_amount: Joi.number(),
-      activated_on: Joi.string().allow(""),
-      cancelled_on: Joi.string().allow(""),
-      billing_date: Joi.string().allow(""),
-      current_period: BillingPlatformModel.SubscriptionTrialPeriod(),
-      modified_at: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      is_test: Joi.boolean(),
-      company_id: Joi.string().allow(""),
-      meta: Joi.any(),
-      __v: Joi.number(),
-    });
-  }
-
   /** @returns {OneTimeChargeEntity} */
   static OneTimeChargeEntity() {
     return Joi.object({
-      term: Joi.string().allow(""),
-      charge_type: Joi.string().allow(""),
-      capped_amount: Joi.number(),
-      billing_date: Joi.string().allow("").allow(null),
-      created_at: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      __v: Joi.number(),
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      activated_on: Joi.string().allow("").allow(null),
-      cancelled_on: Joi.string().allow("").allow(null),
+      activated_on: Joi.string().allow(""),
+      cancelled_on: Joi.string().allow(""),
       metadata: Joi.any(),
       return_url: Joi.string().allow(""),
       is_test: Joi.boolean(),
@@ -1519,15 +1007,8 @@ class BillingPlatformModel {
   /** @returns {CreateOneTimeChargeResponse} */
   static CreateOneTimeChargeResponse() {
     return Joi.object({
-      charge: BillingPlatformModel.Charge(),
+      charge: BillingPlatformModel.OneTimeChargeEntity(),
       confirm_url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Charge} */
-  static Charge() {
-    return Joi.object({
-      final_charge: BillingPlatformModel.OneTimeChargeEntity(),
     });
   }
 
@@ -1702,13 +1183,6 @@ class BillingPlatformModel {
   static InvoicesData() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      documents: Joi.any(),
-      payment: Joi.any(),
-      old_settlement: Joi.number().allow(null),
-      credit_balance: Joi.number(),
-      discount: Joi.any(),
-      taxation: Joi.any(),
-      credit_note_amount: Joi.number(),
       client: BillingPlatformModel.InvoicesDataClient(),
       auto_advance: Joi.boolean(),
       currency: Joi.string().allow(""),
@@ -1783,11 +1257,6 @@ class BillingPlatformModel {
       created_at: Joi.string().allow(""),
       modified_at: Joi.string().allow(""),
       data: Joi.any(),
-      documents: Joi.any(),
-      consent: Joi.boolean(),
-      comms: Joi.boolean(),
-      credit_balance: Joi.number(),
-      business_country_info: BillingPlatformModel.BusinessCountryInfo(),
     });
   }
 
@@ -1838,7 +1307,6 @@ class BillingPlatformModel {
   /** @returns {Subscription} */
   static Subscription() {
     return Joi.object({
-      meta: Joi.any(),
       current_period: BillingPlatformModel.SubscriptionCurrentPeriod(),
       pause_collection: BillingPlatformModel.SubscriptionPauseCollection(),
       trial: BillingPlatformModel.SubscriptionTrial(),
@@ -1856,9 +1324,6 @@ class BillingPlatformModel {
       modified_at: Joi.string().allow(""),
       latest_invoice: Joi.string().allow(""),
       channel_type: Joi.string().allow(""),
-      freezed: Joi.boolean(),
-      cancel_at: Joi.string().allow(""),
-      canceled_at: Joi.string().allow(""),
     });
   }
 
@@ -1873,7 +1338,6 @@ class BillingPlatformModel {
         BillingPlatformModel.Subscription()
       ),
       mandate_amount: Joi.number(),
-      message: Joi.string().allow(""),
     });
   }
 
@@ -1945,24 +1409,6 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {IntentReq} */
-  static IntentReq() {
-    return Joi.object({
-      unique_external_id: Joi.string().allow(""),
-      plan_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PutIntentReq} */
-  static PutIntentReq() {
-    return Joi.object({
-      unique_external_id: Joi.string().allow(""),
-      setup_intent_id: Joi.string().allow(""),
-      payment_method_id: Joi.string().allow(""),
-      set_default: Joi.boolean(),
-    });
-  }
-
   /** @returns {SubscriptionActivateReq} */
   static SubscriptionActivateReq() {
     return Joi.object({
@@ -1971,9 +1417,6 @@ class BillingPlatformModel {
       product_suite: Joi.string().allow(""),
       plan_id: Joi.string().allow(""),
       payment_method: Joi.string().allow(""),
-      subscription_id: Joi.string().allow(""),
-      coupon: Joi.string().allow(""),
-      meta: Joi.any(),
     });
   }
 
@@ -2042,11 +1485,46 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {EntityDetail} */
-  static EntityDetail() {
+  /** @returns {Features} */
+  static Features() {
     return Joi.object({
-      entity: Joi.string().allow(""),
-      item: BillingPlatformModel.Subscription(),
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      group: Joi.string().allow(""),
+      enabled: Joi.boolean(),
+      display_text: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FeeComponents} */
+  static FeeComponents() {
+    return Joi.object({
+      brand: Joi.array().items(Joi.string().allow("")),
+      location: Joi.array().items(Joi.string().allow("")),
+      channel: Joi.array().items(Joi.any()),
+      business_lead: Joi.string().allow(""),
+      settlement_type: Joi.string().allow(""),
+      settle_cycle_period: Joi.any(),
+      components: Joi.array().items(Joi.any()),
+    });
+  }
+
+  /** @returns {Details} */
+  static Details() {
+    return Joi.object({
+      fee_components: Joi.array().items(BillingPlatformModel.FeeComponents()),
+      features: Joi.array().items(BillingPlatformModel.Features()),
+    });
+  }
+
+  /** @returns {EntityResponse} */
+  static EntityResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+      page: Joi.number(),
+      page_size: Joi.number(),
+      items: Joi.array().items(BillingPlatformModel.Details()),
     });
   }
 
@@ -2080,7 +1558,6 @@ class BillingPlatformModel {
   static Documents() {
     return Joi.object({
       pan: Joi.string().allow(""),
-      gst: Joi.string().allow(""),
     });
   }
 
@@ -2120,9 +1597,8 @@ class BillingPlatformModel {
   static SubscriberData() {
     return Joi.object({
       pg_user_exists: Joi.boolean(),
-      id: Joi.any(),
+      id: Joi.string().allow(""),
       pg_customer_id: Joi.string().allow(""),
-      default_payment_method: Joi.string().allow(""),
     });
   }
 
@@ -2181,7 +1657,7 @@ class BillingPlatformModel {
       currency: Joi.string().allow(""),
       subscriber_id: Joi.string().allow(""),
       description: Joi.string().allow(""),
-      is_test: Joi.any(),
+      is_test: Joi.boolean(),
       ending_balance: BillingPlatformModel.EndingBalance(),
       payment: BillingPlatformModel.PaymentData(),
       type: Joi.string().allow(""),
@@ -2240,68 +1716,11 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {MethodChecks} */
-  static MethodChecks() {
-    return Joi.object({
-      address_line1_check: Joi.string().allow(""),
-      address_postal_code_check: Joi.string().allow(""),
-      cvc_check: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {MethodNetworks} */
-  static MethodNetworks() {
-    return Joi.object({
-      available: Joi.array().items(Joi.string().allow("")),
-      preferred: Joi.string().allow("").allow(null),
-    });
-  }
-
-  /** @returns {MethodSecureUsage} */
-  static MethodSecureUsage() {
-    return Joi.object({
-      supported: Joi.boolean(),
-    });
-  }
-
-  /** @returns {MethodDetails} */
-  static MethodDetails() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      mandate_available: Joi.boolean(),
-      mandate_amount: Joi.number(),
-      pg_payment_method_id: Joi.string().allow(""),
-      is_default: Joi.boolean(),
-      data: BillingPlatformModel.SubscriptionMethodData(),
-    });
-  }
-
-  /** @returns {SubscriptionMethodData} */
-  static SubscriptionMethodData() {
-    return Joi.object({
-      brand: Joi.string().allow(""),
-      checks: BillingPlatformModel.MethodChecks(),
-      country: Joi.string().allow(""),
-      exp_month: Joi.number(),
-      exp_year: Joi.number(),
-      fingerprint: Joi.string().allow(""),
-      funding: Joi.string().allow(""),
-      generated_from: Joi.string().allow("").allow(null),
-      last4: Joi.string().allow(""),
-      networks: BillingPlatformModel.MethodNetworks(),
-      three_d_secure_usage: BillingPlatformModel.MethodSecureUsage(),
-      wallet: Joi.string().allow("").allow(null),
-      name: Joi.string().allow(""),
-      is_default: Joi.boolean(),
-    });
-  }
-
   /** @returns {SubscriptionMethods} */
   static SubscriptionMethods() {
     return Joi.object({
       success: Joi.boolean(),
-      data: Joi.array().items(BillingPlatformModel.MethodDetails()),
+      data: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2326,7 +1745,6 @@ class BillingPlatformModel {
     return Joi.object({
       total: Joi.number(),
       credit_note_amount: Joi.number(),
-      settlement: Joi.number(),
       taxable_amount: Joi.number(),
       gst_amount: Joi.number(),
       gross_total: Joi.number(),
@@ -2337,15 +1755,8 @@ class BillingPlatformModel {
   /** @returns {PlanChangeDetails} */
   static PlanChangeDetails() {
     return Joi.object({
-      status: Joi.string().allow(""),
+      success: Joi.boolean(),
       data: BillingPlatformModel.PlanChangeData(),
-    });
-  }
-
-  /** @returns {TransactionMeta} */
-  static TransactionMeta() {
-    return Joi.object({
-      invoice_id: Joi.string().allow(""),
     });
   }
 
@@ -2360,7 +1771,7 @@ class BillingPlatformModel {
       amount: Joi.number(),
       entity_type: Joi.string().allow(""),
       collection_type: Joi.string().allow(""),
-      meta: BillingPlatformModel.TransactionMeta(),
+      meta: BillingPlatformModel.Meta(),
       created_at: Joi.string().allow(""),
       modified_at: Joi.string().allow(""),
     });
@@ -2379,247 +1790,6 @@ class BillingPlatformModel {
   static GetPaymentOptions() {
     return Joi.object({
       payment_options: Joi.array().items(BillingPlatformModel.PaymentItems()),
-    });
-  }
-
-  /** @returns {TopupReq} */
-  static TopupReq() {
-    return Joi.object({
-      amount: Joi.number(),
-      currency: Joi.string().allow(""),
-      provider_type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SetupMandateReq} */
-  static SetupMandateReq() {
-    return Joi.object({
-      intent_id: Joi.string().allow(""),
-      payment_method_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SetupPaymentReq} */
-  static SetupPaymentReq() {
-    return Joi.object({
-      payment_method: Joi.string().allow(""),
-      payment_id: Joi.string().allow(""),
-      plan_id: Joi.string().allow(""),
-      invoice_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscriptionRenewReq} */
-  static SubscriptionRenewReq() {
-    return Joi.object({
-      invoice_id: Joi.string().allow(""),
-      entity_type: Joi.string().allow(""),
-      collection_type: Joi.string().allow(""),
-      callback_url: Joi.string().allow(""),
-      meta: BillingPlatformModel.RenewMeta(),
-    });
-  }
-
-  /** @returns {RenewMeta} */
-  static RenewMeta() {
-    return Joi.object({
-      invoice_payment: Joi.boolean(),
-      renew: Joi.boolean(),
-    });
-  }
-
-  /** @returns {SubscriptionMethodsReq} */
-  static SubscriptionMethodsReq() {
-    return Joi.object({
-      unique_external_id: Joi.string().allow(""),
-      setup_intent_id: Joi.string().allow(""),
-      pg_payment_method_id: Joi.string().allow(""),
-      set_default: Joi.boolean(),
-    });
-  }
-
-  /** @returns {CreditTransactionResponse} */
-  static CreditTransactionResponse() {
-    return Joi.object({
-      total: Joi.number(),
-      limit: Joi.number(),
-      page: Joi.number(),
-      pages: Joi.number(),
-      items: Joi.array().items(BillingPlatformModel.CreditTransaction()),
-    });
-  }
-
-  /** @returns {DowngradePlanReq} */
-  static DowngradePlanReq() {
-    return Joi.object({
-      unique_id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      product_suite: Joi.string().allow(""),
-      plan_id: Joi.string().allow(""),
-      reason: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Taxation} */
-  static Taxation() {
-    return Joi.object({
-      gst: Joi.number(),
-    });
-  }
-
-  /** @returns {OneTimeFees} */
-  static OneTimeFees() {
-    return Joi.object({
-      developement: Joi.number().allow(null),
-      marketing: Joi.number().allow(null),
-    });
-  }
-
-  /** @returns {CreditLine} */
-  static CreditLine() {
-    return Joi.object({
-      is_active: Joi.boolean(),
-    });
-  }
-
-  /** @returns {StatusMessage} */
-  static StatusMessage() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
-      code: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PaymentCollectReq} */
-  static PaymentCollectReq() {
-    return Joi.object({
-      transaction_id: Joi.string().allow(""),
-      credit_balance: Joi.boolean(),
-      payment_mode: Joi.string().allow(""),
-      payment_method: Joi.string().allow(""),
-      invoice_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscriptionRenewResMeta} */
-  static SubscriptionRenewResMeta() {
-    return Joi.object({
-      invoice_payment: Joi.boolean(),
-      renew: Joi.boolean(),
-    });
-  }
-
-  /** @returns {SubscriptionRenewRes} */
-  static SubscriptionRenewRes() {
-    return Joi.object({
-      redirect_url: Joi.string().allow(""),
-      transaction_id: Joi.string().allow(""),
-      current_status: Joi.string().allow(""),
-      meta: BillingPlatformModel.SubscriptionRenewResMeta(),
-    });
-  }
-
-  /** @returns {SetupIntentRes} */
-  static SetupIntentRes() {
-    return Joi.object({
-      success: Joi.boolean(),
-      data: BillingPlatformModel.SetupIntentData(),
-    });
-  }
-
-  /** @returns {SetupIntentData} */
-  static SetupIntentData() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      client_secret: Joi.string().allow(""),
-      customer: Joi.any(),
-      status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SetupPayment} */
-  static SetupPayment() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      customer: Joi.any(),
-      client_secret: Joi.string().allow(""),
-      payment_method: Joi.string().allow(""),
-      mandate: Joi.string().allow(""),
-      payment_method_options: BillingPlatformModel.PaymentMethodOptions(),
-    });
-  }
-
-  /** @returns {PaymentMethodOptions} */
-  static PaymentMethodOptions() {
-    return Joi.object({
-      card: BillingPlatformModel.Card(),
-    });
-  }
-
-  /** @returns {Card} */
-  static Card() {
-    return Joi.object({
-      mandate_options: BillingPlatformModel.MandateOptions(),
-    });
-  }
-
-  /** @returns {MandateOptions} */
-  static MandateOptions() {
-    return Joi.object({
-      amount: Joi.number(),
-    });
-  }
-
-  /** @returns {Message} */
-  static Message() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {TopupRes} */
-  static TopupRes() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      aggregator_order_id: Joi.string().allow(""),
-      amount: Joi.number(),
-      currency: Joi.string().allow(""),
-      transaction_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CancelTopupReq} */
-  static CancelTopupReq() {
-    return Joi.object({
-      order_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CancelTopupRes} */
-  static CancelTopupRes() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      subscriber_id: Joi.string().allow(""),
-      amount: Joi.number(),
-      currency: Joi.string().allow(""),
-      aggregator: Joi.string().allow(""),
-      aggregator_order_id: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      __v: Joi.number(),
-      aggregator_status: Joi.string().allow(""),
-      current_status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DefaultReq} */
-  static DefaultReq() {
-    return Joi.object({
-      payment_method_id: Joi.string().allow(""),
     });
   }
 }
