@@ -68,8 +68,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.SaveAddressResponse>} - Success response
    * @name addAddress
-   * @summary: Add address to an account
-   * @description: Use this API to add an address to an account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addAddress/).
+   * @summary: Add new address
+   * @description: Saves a new address for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addAddress/).
    */
   async addAddress(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -147,8 +147,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.AddCartDetailResponse>} -
    *   Success response
    * @name addItems
-   * @summary: Add items to cart
-   * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addItems/).
+   * @summary: Add to cart
+   * @description: Adds selected items to the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addItems/).
    */
   async addItems(
     { body, i, b, areaCode, buyNow, id, requestHeaders } = {
@@ -230,8 +230,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name applyCoupon
-   * @summary: Apply Coupon
-   * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyCoupon/).
+   * @summary: Apply coupon
+   * @description: Applies a coupon code to get discounts on cart items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyCoupon/).
    */
   async applyCoupon(
     { body, i, b, p, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -313,8 +313,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name applyRewardPoints
-   * @summary: Apply reward points at cart
-   * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyRewardPoints/).
+   * @summary: Use reward points
+   * @description: Applies user’s reward points to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyRewardPoints/).
    */
   async applyRewardPoints(
     { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -395,8 +395,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartCheckoutResponse>} - Success response
    * @name checkoutCart
-   * @summary: Checkout all items in the cart
-   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/checkoutCart/).
+   * @summary: Checkout cart
+   * @description: Initiates the checkout process for the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/checkoutCart/).
    */
   async checkoutCart(
     { body, id, requestHeaders } = { requestHeaders: {} },
@@ -474,8 +474,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.Address>} - Success response
    * @name getAddressById
-   * @summary: Fetch a single address by its ID
-   * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddressById/).
+   * @summary: Fetch address
+   * @description: Retrieves a saved address using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddressById/).
    */
   async getAddressById(
     {
@@ -567,8 +567,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.GetAddressesResponse>} - Success response
    * @name getAddresses
-   * @summary: Fetch address
-   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddresses/).
+   * @summary: Get saved addresses
+   * @description: Retrieve all saved addresses for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddresses/).
    */
   async getAddresses(
     {
@@ -662,8 +662,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.CartDeliveryModesResponse>} -
    *   Success response
    * @name getAvailableDeliveryModes
-   * @summary: Get available delivery modes for cart
-   * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAvailableDeliveryModes/).
+   * @summary: Delivery options
+   * @description: Lists available delivery modes for the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAvailableDeliveryModes/).
    */
   async getAvailableDeliveryModes(
     { areaCode, id, requestHeaders } = { requestHeaders: {} },
@@ -744,8 +744,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.BulkPriceResponse>} - Success response
    * @name getBulkDiscountOffers
-   * @summary: Get discount offers based on quantity
-   * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getBulkDiscountOffers/).
+   * @summary: Bulk discounts
+   * @description: Lists available bulk discount offers for cart items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getBulkDiscountOffers/).
    */
   async getBulkDiscountOffers(
     { itemId, articleId, uid, slug, requestHeaders } = { requestHeaders: {} },
@@ -828,8 +828,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name getCart
-   * @summary: Fetch all items added to the cart
-   * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCart/).
+   * @summary: Retrieve cart details
+   * @description: Retrieve the current state and items in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCart/).
    */
   async getCart(
     { id, i, b, c, assignCardId, areaCode, buyNow, requestHeaders } = {
@@ -913,8 +913,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<any>} - Success response
    * @name getCartLastModified
-   * @summary: Fetch last-modified timestamp
-   * @description: Use this API to fetch Last-Modified timestamp in header metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartLastModified/).
+   * @summary: Cart modification time
+   * @description: Gets the last modified timestamp for the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartLastModified/).
    */
   async getCartLastModified(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -992,8 +992,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.GetShareCartLinkResponse>} -
    *   Success response
    * @name getCartShareLink
-   * @summary: Generate token for sharing the cart
-   * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartShareLink/).
+   * @summary: Share cart link
+   * @description: Generates a shareable link for the current cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartShareLink/).
    */
   async getCartShareLink(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1070,8 +1070,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
    * @name getCartSharedItems
-   * @summary: Get details of a shared cart
-   * @description: Use this API to get the shared cart details as per the token generated using the share-cart API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartSharedItems/).
+   * @summary: Shared cart items
+   * @description: Retrieves items from a shared cart link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartSharedItems/).
    */
   async getCartSharedItems(
     { token, requestHeaders } = { requestHeaders: {} },
@@ -1148,8 +1148,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.GetCouponResponse>} - Success response
    * @name getCoupons
-   * @summary: Fetch Coupon
-   * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCoupons/).
+   * @summary: List available coupons
+   * @description: Retrieve coupons that can be applied to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCoupons/).
    */
   async getCoupons(
     { id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -1229,8 +1229,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.CartItemCountResponse>} -
    *   Success response
    * @name getItemCount
-   * @summary: Count items in the cart
-   * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getItemCount/).
+   * @summary: Count cart items
+   * @description: Gets the total number of items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getItemCount/).
    */
   async getItemCount(
     { id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -1310,8 +1310,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
    *   Success response
    * @name getShipments
-   * @summary: Get delivery date and options before checkout
-   * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getShipments/).
+   * @summary: List shipments
+   * @description: Retrieve shipment details for items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getShipments/).
    */
   async getShipments(
     {
@@ -1420,8 +1420,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.StoreDetailsResponse>} - Success response
    * @name getStoreAddressByUid
-   * @summary: Get list of stores for give uids
-   * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getStoreAddressByUid/).
+   * @summary: Store address
+   * @description: Gets the address of the store by its UID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getStoreAddressByUid/).
    */
   async getStoreAddressByUid(
     { storeUid, requestHeaders } = { requestHeaders: {} },
@@ -1502,8 +1502,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.DeleteAddressResponse>} -
    *   Success response
    * @name removeAddress
-   * @summary: Remove address associated with an account
-   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeAddress/).
+   * @summary: Delete address
+   * @description: Removes a saved address from the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeAddress/).
    */
   async removeAddress(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1580,8 +1580,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name removeCoupon
-   * @summary: Remove Coupon Applied
-   * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeCoupon/).
+   * @summary: Remove coupon
+   * @description: Removes an applied coupon from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeCoupon/).
    */
   async removeCoupon(
     { id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -1660,8 +1660,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name selectAddress
-   * @summary: Select an address from available addresses
-   * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectAddress/).
+   * @summary: Choose delivery address
+   * @description: Selects an address for the cart's delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectAddress/).
    */
   async selectAddress(
     { body, cartId, buyNow, i, b, requestHeaders } = { requestHeaders: {} },
@@ -1742,8 +1742,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name selectPaymentMode
-   * @summary: Update cart payment
-   * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectPaymentMode/).
+   * @summary: Pick payment method
+   * @description: Chooses a payment mode for the checkout process. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectPaymentMode/).
    */
   async selectPaymentMode(
     { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -1823,8 +1823,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.UpdateAddressResponse>} -
    *   Success response
    * @name updateAddress
-   * @summary: Update address added to an account
-   * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address  can be updated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateAddress/).
+   * @summary: Update address
+   * @description: Modifies a saved address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateAddress/).
    */
   async updateAddress(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -1902,8 +1902,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.UpdateCartDetailResponse>} -
    *   Success response
    * @name updateCart
-   * @summary: Update items in the cart
-   * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCart/).
+   * @summary: Update cart
+   * @description: Modifies items and quantities in the existing cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCart/).
    */
   async updateCart(
     { body, id, i, b, areaCode, buyNow, requestHeaders } = {
@@ -1987,8 +1987,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartMetaResponse>} - Success response
    * @name updateCartMeta
-   * @summary: Update the cart meta
-   * @description: Use this API to update cart meta like checkout_mode and gstin. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartMeta/).
+   * @summary: Update cart metadata
+   * @description: Adds or modifies metadata for the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartMeta/).
    */
   async updateCartMeta(
     { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -2069,8 +2069,8 @@ class PosCart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
-   * @summary: Merge or replace existing cart
-   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartWithSharedItems/).
+   * @summary: Update with shared items
+   * @description: Updates the cart with items from a shared link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
     { token, action, requestHeaders } = { requestHeaders: {} },
@@ -2150,8 +2150,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
    *   Success response
    * @name updateShipments
-   * @summary: Update shipment delivery type and quantity before checkout
-   * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateShipments/).
+   * @summary: Update shipments
+   * @description: Modifies shipment details for items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateShipments/).
    */
   async updateShipments(
     { body, i, p, id, addressId, areaCode, orderType, requestHeaders } = {
@@ -2238,8 +2238,8 @@ class PosCart {
    * @returns {Promise<PosCartApplicationModel.PaymentCouponValidate>} -
    *   Success response
    * @name validateCouponForPayment
-   * @summary: Verify the coupon eligibility against the payment mode
-   * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/validateCouponForPayment/).
+   * @summary: Validate coupon
+   * @description: Checks if a coupon is valid for the selected payment mode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/validateCouponForPayment/).
    */
   async validateCouponForPayment(
     {

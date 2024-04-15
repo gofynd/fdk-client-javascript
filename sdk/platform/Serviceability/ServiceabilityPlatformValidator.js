@@ -86,7 +86,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
+ * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
  */
 
 /**
@@ -294,7 +294,7 @@ class ServiceabilityPlatformValidator {
   /** @returns {GetOptimalLocationsParam} */
   static getOptimalLocations() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ReAssignStoreRequest().required(),
+      body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema().required(),
     }).required();
   }
 

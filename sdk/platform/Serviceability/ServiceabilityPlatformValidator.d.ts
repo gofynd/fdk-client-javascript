@@ -71,7 +71,7 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
+ * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
  */
 /**
  * @typedef GetPackageMaterialListParam
@@ -365,7 +365,7 @@ type GetCourierPartnerAccountsParam = {
     transportType?: string;
 };
 type GetOptimalLocationsParam = {
-    body: ServiceabilityPlatformModel.ReAssignStoreRequest;
+    body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema;
 };
 type GetPackageMaterialListParam = {
     /**

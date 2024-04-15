@@ -4,14 +4,14 @@ const BillingPublicModel = require("./BillingPublicModel");
 
 /**
  * @typedef GetStandardPlansParam
- * @property {string} platformType - The type of platform for which plans are requested.
+ * @property {string} platform - The type of platform for which plans are requested.
  */
 
 class BillingPublicValidator {
   /** @returns {GetStandardPlansParam} */
   static getStandardPlans() {
     return Joi.object({
-      platformType: Joi.string().allow("").required(),
+      platform: Joi.string().allow("").required(),
     }).required();
   }
 }

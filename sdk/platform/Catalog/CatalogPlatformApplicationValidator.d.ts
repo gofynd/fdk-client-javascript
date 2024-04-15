@@ -2,7 +2,7 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef AddCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
- * @property {CatalogPlatformModel.CollectionItemUpdate} body
+ * @property {CatalogPlatformModel.CollectionItemUpdateSchema} body
  */
 /**
  * @typedef CreateAppCategoryReturnConfigurationParam
@@ -211,6 +211,29 @@ export = CatalogPlatformApplicationValidator;
  *   Default is 12.
  * @property {string} [q] - Search query with brand name.Use this parameter to
  *   search department by name.
+ */
+/**
+ * @typedef GetApplicationFilterKeysParam
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ */
+/**
+ * @typedef GetApplicationFilterValuesParam
+ * @property {string} filterKey - A `filter_key` is a filter key for a for which
+ *   all the available filter values will returned. channel.
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {string} [collectionId] - A `collection_id` is a unique identifier
+ *   for a particular collection. channel.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 10.
+ * @property {string} [q] - Get Values filtered by q string
  */
 /** @typedef GetAutocompleteConfigParam */
 /**
@@ -452,6 +475,10 @@ declare class CatalogPlatformApplicationValidator {
     static getApplicationCategoryListing(): GetApplicationCategoryListingParam;
     /** @returns {GetApplicationDepartmentListingParam} */
     static getApplicationDepartmentListing(): GetApplicationDepartmentListingParam;
+    /** @returns {GetApplicationFilterKeysParam} */
+    static getApplicationFilterKeys(): GetApplicationFilterKeysParam;
+    /** @returns {GetApplicationFilterValuesParam} */
+    static getApplicationFilterValues(): GetApplicationFilterValuesParam;
     /** @returns {GetAutocompleteConfigParam} */
     static getAutocompleteConfig(): any;
     /** @returns {GetAutocompleteKeywordDetailParam} */
@@ -520,14 +547,14 @@ declare class CatalogPlatformApplicationValidator {
     static updateSearchKeywords(): UpdateSearchKeywordsParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
+    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
 }
 type AddCollectionItemsParam = {
     /**
      * - A `id` is a unique identifier of a collection.
      */
     id: string;
-    body: CatalogPlatformModel.CollectionItemUpdate;
+    body: CatalogPlatformModel.CollectionItemUpdateSchema;
 };
 type CreateAppCategoryReturnConfigurationParam = {
     body: CatalogPlatformModel.BaseAppCategoryReturnConfig;
@@ -905,6 +932,48 @@ type GetApplicationDepartmentListingParam = {
     /**
      * - Search query with brand name.Use this parameter to
      * search department by name.
+     */
+    q?: string;
+};
+type GetApplicationFilterKeysParam = {
+    /**
+     * - The search filter parameters for collection items.
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     */
+    c?: string;
+};
+type GetApplicationFilterValuesParam = {
+    /**
+     * - A `filter_key` is a filter key for a for which
+     * all the available filter values will returned. channel.
+     */
+    filterKey: string;
+    /**
+     * - The search filter parameters for collection items.
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     */
+    c?: string;
+    /**
+     * - A `collection_id` is a unique identifier
+     * for a particular collection. channel.
+     */
+    collectionId?: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 10.
+     */
+    pageSize?: number;
+    /**
+     * - Get Values filtered by q string
      */
     q?: string;
 };

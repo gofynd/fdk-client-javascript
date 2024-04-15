@@ -37,6 +37,8 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  * @property {string} [endDate] - UTC Start Date in ISO format
  * @property {string} [customMeta] - A filter and retrieve data using special
  *   fields included for special use-cases
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 
 /**
@@ -137,6 +139,7 @@ class OrderApplicationValidator {
       startDate: Joi.string().allow(""),
       endDate: Joi.string().allow(""),
       customMeta: Joi.string().allow(""),
+      allowInactive: Joi.boolean(),
     });
   }
 

@@ -21,8 +21,8 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
    * @name closeVideoRoom
-   * @summary: Close the video room and force all participants to leave.
-   * @description: Close the video room and force all participants to leave. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/closeVideoRoom/).
+   * @summary: Close video room
+   * @description: Terminate and close an active video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/closeVideoRoom/).
    */
   async closeVideoRoom(
     { uniqueName, requestHeaders } = { requestHeaders: {} },
@@ -100,8 +100,8 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name createCustomForm
-   * @summary: Creates a new custom form
-   * @description: Creates a new custom form for given application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createCustomForm/).
+   * @summary: Create custom form
+   * @description: Create a new custom form for application users to fill - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createCustomForm/).
    */
   async createCustomForm(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -339,8 +339,8 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name editCustomForm
-   * @summary: Edit the given custom form
-   * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
+   * @summary: Edit custom form
+   * @description: Modify the content and assosciated settings of a custom form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
    */
   async editCustomForm(
     { slug, body, requestHeaders } = { requestHeaders: {} },
@@ -499,8 +499,8 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name getCustomForm
-   * @summary: Get specific custom form using it's slug
-   * @description: Get specific custom form using it's slug, this is used to view the form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForm/).
+   * @summary: Get custom form
+   * @description: Retrieve information about a custom form which includes corresponding field details and any validation regex required against that field or not - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForm/).
    */
   async getCustomForm(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -576,8 +576,8 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.CustomFormList>} - Success response
    * @name getCustomForms
-   * @summary: Get list of custom form
-   * @description: Get list of custom form for given application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForms/).
+   * @summary: Get custom forms
+   * @description: Retrieve a list of available custom forms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForms/).
    */
   async getCustomForms(
     { requestHeaders } = { requestHeaders: {} },
@@ -1067,8 +1067,8 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.CreateVideoRoomResponse>} - Success response
    * @name openVideoRoom
-   * @summary: Open a video room.
-   * @description: Open a video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/openVideoRoom/).
+   * @summary: Open video room
+   * @description: Initiate and open a video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/openVideoRoom/).
    */
   async openVideoRoom(
     { body, requestHeaders } = { requestHeaders: {} },

@@ -57,7 +57,7 @@ declare class Content {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
      * @name deleteCustomFieldDefinition
-     * @summary: Delete custom fields definition.
+     * @summary: Delete custom fields definition
      * @description: Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldDefinition/).
      */
     deleteCustomFieldDefinition({ definitionId, requestHeaders }?: ContentPlatformValidator.DeleteCustomFieldDefinitionParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomDataDeleteSchema>;
@@ -201,7 +201,7 @@ declare class Content {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ContentPlatformModel.CustomObjectBulkEntry>} - Success response
      * @name getJobs
-     * @summary: Fetch bulk import and export job list.
+     * @summary: Fetch bulk import and export job list
      * @description: Use this api to get list of jobs of bulk import and exports - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getJobs/).
      */
     getJobs({ page, pageSize, actionType, requestHeaders }?: ContentPlatformValidator.GetJobsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectBulkEntry>;

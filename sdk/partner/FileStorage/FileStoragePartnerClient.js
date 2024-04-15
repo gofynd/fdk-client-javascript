@@ -20,7 +20,7 @@ class FileStorage {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<FileStoragePartnerModel.StartResponse>} - Success response
    * @name startUpload
-   * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
+   * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob
    * @description: Uploads an arbitrarily sized buffer or blob.
    *
    * It has three Major Steps:
@@ -118,7 +118,7 @@ class FileStorage {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<FileStoragePartnerModel.CompleteResponse>} - Success response
    * @name completeUpload
-   * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+   * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process
    * @description: Uploads an arbitrarily sized buffer or blob.
    *
    * It has three Major Steps:

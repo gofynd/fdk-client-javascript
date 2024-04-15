@@ -18,7 +18,9 @@ export = SharePlatformApplicationValidator;
  * @property {number} [pageSize] - Current page size
  * @property {string} [createdBy] - Short link creator
  * @property {string} [active] - Short link active status
- * @property {string} [q] - Search text for original and short url
+ * @property {string} [shortUrl] - Search for short url
+ * @property {string} [originalUrl] - Search for original url
+ * @property {string} [title] - Search text for title
  */
 /**
  * @typedef UpdateShortLinkByIdParam
@@ -74,9 +76,17 @@ type GetShortLinksParam = {
      */
     active?: string;
     /**
-     * - Search text for original and short url
+     * - Search for short url
      */
-    q?: string;
+    shortUrl?: string;
+    /**
+     * - Search for original url
+     */
+    originalUrl?: string;
+    /**
+     * - Search text for title
+     */
+    title?: string;
 };
 type UpdateShortLinkByIdParam = {
     /**

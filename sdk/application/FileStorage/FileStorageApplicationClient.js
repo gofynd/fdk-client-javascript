@@ -9,7 +9,7 @@ const FileStorageApplicationValidator = require("./FileStorageApplicationValidat
 const FileStorageApplicationModel = require("./FileStorageApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
-const axios = require("axios");
+const { fdkAxios } = require("../../common/AxiosHelper.js");
 
 class FileStorage {
   constructor(_conf) {
@@ -43,26 +43,8 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
    * @name completeUpload
-   * @summary: Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
-   * @description: Use this API to perform the third step of uploading (i.e. **Complete**) an arbitrarily sized buffer or blob.
-   *
-   * The three major steps are:
-   * Start
-   * Upload
-   * Complete
-   *
-   * ### Start
-   * Initiates the assets upload using `startUpload`.
-   * It returns a storage link in response.
-   *
-   * ### Upload
-   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-   * Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
-   *
-   * ### Complete
-   * After successfully upload, call the `completeUpload` API to finish the upload process.
-   * This operation will return the URL of the uploaded file.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
+   * @summary: Finalizes upload process
+   * @description: Complete the process of uploading the file, and will return the URL of the uploaded file - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
    */
   async completeUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -139,8 +121,8 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
    * @name signUrls
-   * @summary: Explain here
-   * @description: Describe here - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
+   * @summary: Signs file URLs
+   * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
    */
   async signUrls(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -217,26 +199,8 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
    * @name startUpload
-   * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
-   * @description: Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
-   *
-   * The three major steps are:
-   * Start
-   * Upload
-   * Complete
-   *
-   * ### Start
-   * Initiates the assets upload using `startUpload`.
-   * It returns a storage link in response.
-   *
-   * ### Upload
-   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-   * Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
-   *
-   * ### Complete
-   * After successfully upload, call the `completeUpload` API to finish the upload process.
-   * This operation will return the URL of the uploaded file.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
+   * @summary: Initiates file upload
+   * @description: Starts the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
    */
   async startUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -336,10 +300,16 @@ FileStorage.prototype.upload = function ({
         },
       });
       if (dataObj.upload && dataObj.upload.url) {
-        await axios.put(dataObj.upload.url, data, {
+        let rawRequest = {
+          method: "PUT",
+          url: dataObj.upload.url,
+          data: data,
+          headers: {
+            "Content-Type": content_type,
+          },
           withCredentials: false,
-          headers: { "Content-Type": content_type },
-        });
+        };
+        await fdkAxios.request(rawRequest);
       } else {
         reject({ message: "Failed to upload file" });
       }

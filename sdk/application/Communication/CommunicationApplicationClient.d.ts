@@ -18,8 +18,8 @@ declare class Communication {
      * @returns {Promise<CommunicationApplicationModel.CommunicationConsent>} -
      *   Success response
      * @name getCommunicationConsent
-     * @summary: Get communication consent
-     * @description: Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/getCommunicationConsent/).
+     * @summary: Retrieves communication consent status
+     * @description: Retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/getCommunicationConsent/).
      */
     getCommunicationConsent({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationApplicationModel.CommunicationConsent>;
     /**
@@ -29,8 +29,8 @@ declare class Communication {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CommunicationApplicationModel.PushtokenRes>} - Success response
      * @name upsertAppPushtoken
-     * @summary: Upsert push token of a user
-     * @description: Use this API to update and insert the push token of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertAppPushtoken/).
+     * @summary: Updates or adds app push token
+     * @description: Update the push token of the user.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertAppPushtoken/).
      */
     upsertAppPushtoken({ body, requestHeaders }?: CommunicationApplicationValidator.UpsertAppPushtokenParam, { responseHeaders }?: object): Promise<CommunicationApplicationModel.PushtokenRes>;
     /**
@@ -43,8 +43,8 @@ declare class Communication {
      *   - Success response
      *
      * @name upsertCommunicationConsent
-     * @summary: Upsert communication consent
-     * @description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertCommunicationConsent/).
+     * @summary: Updates or inserts consent settings
+     * @description: Update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertCommunicationConsent/).
      */
     upsertCommunicationConsent({ body, requestHeaders }?: CommunicationApplicationValidator.UpsertCommunicationConsentParam, { responseHeaders }?: object): Promise<CommunicationApplicationModel.CommunicationConsentRes>;
 }

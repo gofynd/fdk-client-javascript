@@ -21,8 +21,8 @@ class Partner {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
    * @name addProxyPath
-   * @summary: Create proxy URL for the external URL
-   * @description: Use this API to generate proxy URL for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
+   * @summary: Add proxy path
+   * @description: Create and add a new proxy path. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
    */
   async addProxyPath(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -102,8 +102,8 @@ class Partner {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
    * @name removeProxyPath
-   * @summary: Remove proxy URL for the external URL
-   * @description: Use this API to remove the proxy URL which is already generated for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
+   * @summary: Remove proxy path
+   * @description: Delete a proxy path from the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
    */
   async removeProxyPath(
     { extensionId, attachedPath, requestHeaders } = { requestHeaders: {} },

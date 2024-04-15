@@ -1,7 +1,7 @@
 export = ContentPublicValidator;
 /**
  * @typedef GetCredentialsByEntityParam
- * @property {string} [entity] - Server Type
+ * @property {string} entity - Server Type
  */
 declare class ContentPublicValidator {
     /** @returns {GetCredentialsByEntityParam} */
@@ -14,5 +14,5 @@ type GetCredentialsByEntityParam = {
     /**
      * - Server Type
      */
-    entity?: string;
+    entity: string;
 };

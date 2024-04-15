@@ -676,7 +676,7 @@ class Logistics {
    *   - Success response
    *
    * @name getCourierPartnerAccounts
-   * @summary: Getting Courier Account list of a company.
+   * @summary: Getting Courier Account list of a company
    * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
@@ -780,7 +780,7 @@ class Logistics {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
    * @name updateCourierPartnerAccount
-   * @summary: Update Courier Account in database.
+   * @summary: Update Courier Account in database
    * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
    */
   async updateCourierPartnerAccount(
@@ -863,7 +863,7 @@ class Logistics {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
    * @name getCourierPartnerAccount
-   * @summary: Getting Courier Account of a company from database.
+   * @summary: Getting Courier Account of a company from database
    * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
    */
   async getCourierPartnerAccount(
@@ -1109,7 +1109,7 @@ class Logistics {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<LogisticsPartnerModel.GetCountries>} - Success response
    * @name getCountries
-   * @summary: Get all countries and associated data.
+   * @summary: Get all countries and associated data
    * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
    */
   async getCountries(

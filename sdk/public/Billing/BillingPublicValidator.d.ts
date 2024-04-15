@@ -1,7 +1,7 @@
 export = BillingPublicValidator;
 /**
  * @typedef GetStandardPlansParam
- * @property {string} platformType - The type of platform for which plans are requested.
+ * @property {string} platform - The type of platform for which plans are requested.
  */
 declare class BillingPublicValidator {
     /** @returns {GetStandardPlansParam} */
@@ -14,5 +14,5 @@ type GetStandardPlansParam = {
     /**
      * - The type of platform for which plans are requested.
      */
-    platformType: string;
+    platform: string;
 };

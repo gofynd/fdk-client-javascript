@@ -5,7 +5,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef AddCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
- * @property {CatalogPlatformModel.CollectionItemUpdate} body
+ * @property {CatalogPlatformModel.CollectionItemUpdateSchema} body
  */
 
 /**
@@ -246,6 +246,31 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   search department by name.
  */
 
+/**
+ * @typedef GetApplicationFilterKeysParam
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ */
+
+/**
+ * @typedef GetApplicationFilterValuesParam
+ * @property {string} filterKey - A `filter_key` is a filter key for a for which
+ *   all the available filter values will returned. channel.
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {string} [collectionId] - A `collection_id` is a unique identifier
+ *   for a particular collection. channel.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 10.
+ * @property {string} [q] - Get Values filtered by q string
+ */
+
 /** @typedef GetAutocompleteConfigParam */
 
 /**
@@ -461,7 +486,7 @@ class CatalogPlatformApplicationValidator {
   static addCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CollectionItemUpdate().required(),
+      body: CatalogPlatformModel.CollectionItemUpdateSchema().required(),
     }).required();
   }
 
@@ -713,6 +738,25 @@ class CatalogPlatformApplicationValidator {
   /** @returns {GetApplicationDepartmentListingParam} */
   static getApplicationDepartmentListing() {
     return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetApplicationFilterKeysParam} */
+  static getApplicationFilterKeys() {
+    return Joi.object({
+      c: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetApplicationFilterValuesParam} */
+  static getApplicationFilterValues() {
+    return Joi.object({
+      filterKey: Joi.string().allow("").required(),
+      c: Joi.string().allow(""),
+      collectionId: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),

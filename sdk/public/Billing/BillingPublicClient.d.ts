@@ -17,7 +17,7 @@ declare class Billing {
      * @description: Get Standard/Public Plans.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/billing/getStandardPlans/).
      */
-    getStandardPlans({ platformType, requestHeaders }?: BillingPublicValidator.GetStandardPlansParam, { responseHeaders }?: object): Promise<BillingPublicModel.DetailList>;
+    getStandardPlans({ platform, requestHeaders }?: BillingPublicValidator.GetStandardPlansParam, { responseHeaders }?: object): Promise<BillingPublicModel.DetailList>;
 }
 import BillingPublicValidator = require("./BillingPublicValidator");
 import BillingPublicModel = require("./BillingPublicModel");

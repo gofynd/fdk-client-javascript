@@ -90,7 +90,7 @@ declare class Logistics {
      *   - Success response
      *
      * @name getCourierPartnerAccounts
-     * @summary: Getting Courier Account list of a company.
+     * @summary: Getting Courier Account list of a company
      * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
      */
     getCourierPartnerAccounts({ companyId, pageNo, pageSize, stage, paymentMode, transportType, requestHeaders, }?: LogisticsPartnerValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CompanyCourierPartnerAccountListResponse>;
@@ -102,7 +102,7 @@ declare class Logistics {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
      * @name updateCourierPartnerAccount
-     * @summary: Update Courier Account in database.
+     * @summary: Update Courier Account in database
      * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
      */
     updateCourierPartnerAccount({ companyId, accountId, body, requestHeaders }?: LogisticsPartnerValidator.UpdateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountResponse>;
@@ -112,7 +112,7 @@ declare class Logistics {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
      * @name getCourierPartnerAccount
-     * @summary: Getting Courier Account of a company from database.
+     * @summary: Getting Courier Account of a company from database
      * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
      */
     getCourierPartnerAccount({ companyId, accountId, requestHeaders }?: LogisticsPartnerValidator.GetCourierPartnerAccountParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.CourierAccountResponse>;
@@ -147,7 +147,7 @@ declare class Logistics {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<LogisticsPartnerModel.GetCountries>} - Success response
      * @name getCountries
-     * @summary: Get all countries and associated data.
+     * @summary: Get all countries and associated data
      * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
      */
     getCountries({ onboarding, pageNo, pageSize, q, requestHeaders }?: LogisticsPartnerValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.GetCountries>;

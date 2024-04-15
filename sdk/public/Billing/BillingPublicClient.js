@@ -43,11 +43,11 @@ class Billing {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/billing/getStandardPlans/).
    */
   async getStandardPlans(
-    { platformType, requestHeaders } = { requestHeaders: {} },
+    { platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = BillingPublicValidator.getStandardPlans().validate(
-      { platformType },
+      { platform },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -58,7 +58,7 @@ class Billing {
     const {
       error: warrning,
     } = BillingPublicValidator.getStandardPlans().validate(
-      { platformType },
+      { platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -69,7 +69,7 @@ class Billing {
     }
 
     const query_params = {};
-    query_params["platform_type"] = platformType;
+    query_params["platform"] = platform;
 
     const xHeaders = {};
 

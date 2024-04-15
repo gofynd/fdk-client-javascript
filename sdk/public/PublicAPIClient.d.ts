@@ -11,7 +11,7 @@ declare class PublicAPIClient {
      * @param {object} query
      * @param {object} body
      */
-    static execute(conf: object, method: string, url: string, query: object, body: object, xHeaders: any, options: any): any;
+    static execute(conf: object, method: string, url: string, query: object, body: object, xHeaders: any, options: any): Promise<import("axios").AxiosResponse<any, any>>;
 }
 declare namespace PublicAPIClient {
     export { Options };

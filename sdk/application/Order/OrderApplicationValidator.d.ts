@@ -31,6 +31,8 @@ export = OrderApplicationValidator;
  * @property {string} [endDate] - UTC Start Date in ISO format
  * @property {string} [customMeta] - A filter and retrieve data using special
  *   fields included for special use-cases
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 /**
  * @typedef GetPosOrderByIdParam
@@ -183,6 +185,11 @@ type GetOrdersParam = {
      * fields included for special use-cases
      */
     customMeta?: string;
+    /**
+     * - Flag indicating whether inactive
+     * shipments are allowed
+     */
+    allowInactive?: boolean;
 };
 type GetPosOrderByIdParam = {
     /**

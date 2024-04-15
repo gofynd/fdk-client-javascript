@@ -279,7 +279,7 @@ class Serviceability {
    *   - Success response
    *
    * @name createPackageMaterial
-   * @summary: Upsert of PackageMaterial in database.
+   * @summary: Upsert of PackageMaterial in database
    * @description: This API returns response of upsert of PackageMaterial in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterial/).
    */
   async createPackageMaterial(
@@ -363,7 +363,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
    *   Success response
    * @name createPackageMaterialRule
-   * @summary: Upsert of Package Material Rule in database.
+   * @summary: Upsert of Package Material Rule in database
    * @description: This API returns response of upsert of Package Material Rule in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterialRule/).
    */
   async createPackageMaterialRule(
@@ -444,8 +444,8 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
    * @name createZone
-   * @summary: Creates a new Zone
-   * @description: Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
+   * @summary: Create zone
+   * @description: Generate and add a new zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
    */
   async createZone(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -524,8 +524,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
    *   Success response
    * @name getAllStores
-   * @summary: GET stores data
-   * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
+   * @summary: Get all stores
+   * @description: Retrieve a list of all available stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
    */
   async getAllStores(
     { requestHeaders } = { requestHeaders: {} },
@@ -849,7 +849,7 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.CompanyConfig>} - Success response
    * @name getCompanyConfiguration
-   * @summary: Get All Courier Rules applied to company.
+   * @summary: Get All Courier Rules applied to company
    * @description: This API returns all Courier Rules applied for company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCompanyConfiguration/).
    */
   async getCompanyConfiguration(
@@ -929,7 +929,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponse>} -
    *   Success response
    * @name getCourierPartnerAccount
-   * @summary: Getting Courier Account of a company from database.
+   * @summary: Getting Courier Account of a company from database
    * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccount/).
    */
   async getCourierPartnerAccount(
@@ -1014,7 +1014,7 @@ class Serviceability {
    *   - Success response
    *
    * @name getCourierPartnerAccounts
-   * @summary: Getting Courier Account list of a company.
+   * @summary: Getting Courier Account list of a company
    * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
@@ -1108,11 +1108,12 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>}
+   *   - Success response
+   *
    * @name getOptimalLocations
-   * @summary: Get serviceable store of the item
-   * @description: This API returns serviceable store of the item. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
+   * @summary: Retrieve optimal locations
+   * @description: Retrieve optimal locations based on the specific criteria - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1153,7 +1154,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/optimal-locations`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1167,7 +1168,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ReAssignStoreResponse().validate(
+    } = ServiceabilityPlatformModel.OptimalLocationsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1195,7 +1196,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialList>} -
    *   Success response
    * @name getPackageMaterialList
-   * @summary: Fetching of PackageMaterials from database.
+   * @summary: Fetching of PackageMaterials from database
    * @description: This API returns response of PackageMaterials from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialList/).
    */
   async getPackageMaterialList(
@@ -1294,7 +1295,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
    *   Success response
    * @name getPackageMaterialRule
-   * @summary: Fetching of Package Material from database.
+   * @summary: Fetching of Package Material from database
    * @description: This API returns response of Package Material from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialRule/).
    */
   async getPackageMaterialRule(
@@ -1379,7 +1380,7 @@ class Serviceability {
    *   - Success response
    *
    * @name getPackageMaterialRules
-   * @summary: Fetching of Package Material Rules from database.
+   * @summary: Fetching of Package Material Rules from database
    * @description: This API returns response of Package Materials Rules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialRules/).
    */
   async getPackageMaterialRules(
@@ -1469,7 +1470,7 @@ class Serviceability {
    *   - Success response
    *
    * @name getPackageMaterials
-   * @summary: Fetching of Package Material from database.
+   * @summary: Fetching of Package Material from database
    * @description: This API returns response of Package Material from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterials/).
    */
   async getPackageMaterials(
@@ -1839,7 +1840,7 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.CompanyConfig>} - Success response
    * @name updateCompanyConfiguration
-   * @summary: Apply Courier Rule to company.
+   * @summary: Apply Courier Rule to company
    * @description: Apply Courier Rule to company with rules priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCompanyConfiguration/).
    */
   async updateCompanyConfiguration(
@@ -1923,7 +1924,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponse>} -
    *   Success response
    * @name updateCourierPartnerAccount
-   * @summary: Update Courier Account in database.
+   * @summary: Update Courier Account in database
    * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerAccount/).
    */
   async updateCourierPartnerAccount(
@@ -2009,7 +2010,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
    *   Success response
    * @name updatePackageMaterialRule
-   * @summary: Fetching of Package Material Rules into database.
+   * @summary: Fetching of Package Material Rules into database
    * @description: This API updates Package Material Rules into mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePackageMaterialRule/).
    */
   async updatePackageMaterialRule(
@@ -2096,7 +2097,7 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePackageMaterials
-   * @summary: Update Package Material to database.
+   * @summary: Update Package Material to database
    * @description: This API updates Package Materials from into mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePackageMaterials/).
    */
   async updatePackageMaterials(

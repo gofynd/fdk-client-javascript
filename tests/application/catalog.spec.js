@@ -1,6 +1,11 @@
 const { ApplicationConfig, ApplicationClient } = require("../../index.js");
 require("dotenv").config();
+const { fdkAxios } = require("../../sdk/common/AxiosHelper.js");
+const MockAdapter = require("axios-mock-adapter");
+
+// Create a new instance of the mock adapter
 let applicationClient;
+const mock = new MockAdapter(fdkAxios);
 
 beforeAll(() => {
   const config = new ApplicationConfig({
@@ -21,6 +26,13 @@ beforeAll(() => {
     city: "Ahmedabad",
     location: { longitude: "72.585022", latitude: "23.033863" },
   });
+  mock
+    .onGet(applicationClient.catalog._urls.getProducts)
+    .reply(200, { items: ["Test Product 1"] });
+  mock
+    .onGet(applicationClient.common._urls.searchApplication)
+    .reply(200, { success: true });
+  mock.onGet(applicationClient.content._urls.getNavigations).reply(200, {});
 });
 
 afterAll(() => {

@@ -1,47 +1,34 @@
 const Joi = require("joi");
 
 /**
- * @typedef ArithmeticOperations
- * @property {number} [gt]
- * @property {number} [gte]
- * @property {number} [lt]
- * @property {number} [lte]
- */
-
-/**
- * @typedef BulkRegionJobSerializer
- * @property {string} action
- * @property {string} country
- * @property {string} [file_path]
- * @property {string} region
- */
-
-/**
- * @typedef BulkRegionResponse
- * @property {BulkRegionResponseItemData[]} items
- * @property {Page} page
- */
-
-/**
- * @typedef BulkRegionResponseItemData
- * @property {string} action
- * @property {string} batch_id
- * @property {string} country
- * @property {string} [error_file_path]
- * @property {number} [failed]
- * @property {Object[]} [failed_records]
- * @property {string} file_path
- * @property {string} region
- * @property {string} status
- * @property {number} [success]
- * @property {number} [total]
- */
-
-/**
  * @typedef BulkRegionServiceabilityTatRequest
  * @property {string} country
  * @property {string} region
  * @property {string} type
+ */
+
+/**
+ * @typedef BulkRegionServiceabilityTatResponseItemData
+ * @property {string} [country]
+ * @property {string} [region]
+ * @property {string} [type]
+ * @property {string} [batch_id]
+ * @property {string} [status]
+ * @property {Object[]} [failed_records]
+ * @property {string} [file_path]
+ */
+
+/**
+ * @typedef ErrorResponse
+ * @property {string} value
+ * @property {string} message
+ * @property {string} type
+ */
+
+/**
+ * @typedef FailureResponse
+ * @property {boolean} success
+ * @property {ErrorResponse[]} error
  */
 
 /**
@@ -51,14 +38,59 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkRegionServiceabilityTatResponseItemData
- * @property {string} [batch_id]
- * @property {string} [country]
- * @property {Object[]} [failed_records]
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
+ * @typedef BulkRegionJobSerializer
  * @property {string} [file_path]
- * @property {string} [region]
- * @property {string} [status]
- * @property {string} [type]
+ * @property {string} country
+ * @property {string} action
+ * @property {string} region
+ */
+
+/**
+ * @typedef BulkRegionResponseItemData
+ * @property {string} file_path
+ * @property {number} [failed]
+ * @property {Object[]} [failed_records]
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} country
+ * @property {number} [success]
+ * @property {string} region
+ * @property {string} status
+ * @property {number} [total]
+ * @property {string} [error_file_path]
+ */
+
+/**
+ * @typedef BulkRegionResponse
+ * @property {BulkRegionResponseItemData[]} items
+ * @property {Page} page
+ */
+
+/**
+ * @typedef CourierAccount
+ * @property {string} extension_id
+ * @property {string} account_id
+ * @property {string} scheme_id
+ * @property {boolean} is_self_ship
+ * @property {string} stage
+ * @property {boolean} is_own_account
+ */
+
+/**
+ * @typedef CourierPartnerAccountFailureResponse
+ * @property {boolean} success
+ * @property {ErrorResponse[]} error
  */
 
 /**
@@ -68,90 +100,69 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CourierAccount
- * @property {string} account_id
- * @property {string} extension_id
- * @property {boolean} is_own_account
- * @property {boolean} is_self_ship
- * @property {string} scheme_id
- * @property {string} stage
- */
-
-/**
  * @typedef CourierAccountResponse
  * @property {string} account_id
- * @property {boolean} is_own_account
- * @property {boolean} is_self_ship
  * @property {string} scheme_id
- * @property {CourierPartnerSchemeModel} scheme_rules
+ * @property {boolean} is_self_ship
  * @property {string} stage
- */
-
-/**
- * @typedef CourierPartnerAccountFailureResponse
- * @property {ErrorResponse[]} error
- * @property {boolean} success
- */
-
-/**
- * @typedef CourierPartnerSchemeFeatures
- * @property {boolean} [cold_storage_goods]
- * @property {boolean} [dangerous_goods]
- * @property {boolean} [doorstep_exchange]
- * @property {boolean} [doorstep_qc]
- * @property {boolean} [doorstep_return]
- * @property {boolean} [ewaybill]
- * @property {boolean} [fragile_goods]
- * @property {boolean} [mps]
- * @property {boolean} [multi_pick_multi_drop]
- * @property {boolean} [multi_pick_single_drop]
- * @property {boolean} [ndr]
- * @property {number} [ndr_attempts]
- * @property {boolean} [openbox_delivery]
- * @property {boolean} [product_installation]
- * @property {boolean} [qr]
- * @property {boolean} [restricted_goods]
- * @property {boolean} [single_pick_multi_drop]
- * @property {string} [status_updates]
+ * @property {boolean} is_own_account
+ * @property {CourierPartnerSchemeModel} scheme_rules
  */
 
 /**
  * @typedef CourierPartnerSchemeModel
- * @property {string} delivery_type
  * @property {string} extension_id
- * @property {CourierPartnerSchemeFeatures} feature
- * @property {string} name
- * @property {string[]} payment_mode
- * @property {string} region
  * @property {string} scheme_id
- * @property {string} stage
- * @property {string} transport_type
+ * @property {string} name
  * @property {ArithmeticOperations} weight
+ * @property {string} transport_type
+ * @property {string} region
+ * @property {string} delivery_type
+ * @property {string[]} payment_mode
+ * @property {string} stage
+ * @property {CourierPartnerSchemeFeatures} feature
+ */
+
+/**
+ * @typedef CourierPartnerSchemeFeatures
+ * @property {boolean} [doorstep_qc]
+ * @property {boolean} [qr]
+ * @property {boolean} [mps]
+ * @property {boolean} [ndr]
+ * @property {number} [ndr_attempts]
+ * @property {boolean} [dangerous_goods]
+ * @property {boolean} [fragile_goods]
+ * @property {boolean} [restricted_goods]
+ * @property {boolean} [cold_storage_goods]
+ * @property {boolean} [doorstep_exchange]
+ * @property {boolean} [doorstep_return]
+ * @property {boolean} [product_installation]
+ * @property {boolean} [openbox_delivery]
+ * @property {string} [status_updates]
+ * @property {boolean} [multi_pick_single_drop]
+ * @property {boolean} [single_pick_multi_drop]
+ * @property {boolean} [multi_pick_multi_drop]
+ * @property {boolean} [ewaybill]
+ */
+
+/**
+ * @typedef ArithmeticOperations
+ * @property {number} [lt]
+ * @property {number} [gt]
+ * @property {number} [lte]
+ * @property {number} [gte]
  */
 
 /**
  * @typedef CourierPartnerSchemeUpdateRequest
- * @property {string} delivery_type
- * @property {CourierPartnerSchemeFeatures} feature
  * @property {string} name
- * @property {string[]} payment_mode
- * @property {string} region
- * @property {string} stage
- * @property {string} transport_type
  * @property {ArithmeticOperations} weight
- */
-
-/**
- * @typedef ErrorResponse
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-
-/**
- * @typedef FailureResponse
- * @property {ErrorResponse[]} error
- * @property {boolean} success
+ * @property {string} transport_type
+ * @property {string} region
+ * @property {string} delivery_type
+ * @property {string[]} payment_mode
+ * @property {string} stage
+ * @property {CourierPartnerSchemeFeatures} feature
  */
 
 /**
@@ -162,18 +173,18 @@ const Joi = require("joi");
 
 /**
  * @typedef GetCountriesItems
- * @property {string} [currency]
- * @property {string} [display_name]
- * @property {HierarchyItems[]} [hierarchy]
  * @property {string} [id]
+ * @property {string} [name]
  * @property {string} [iso2]
  * @property {string} [iso3]
+ * @property {string[]} [timezones]
+ * @property {HierarchyItems[]} [hierarchy]
+ * @property {string} [phone_code]
+ * @property {string} [currency]
+ * @property {string} [type]
  * @property {string} [latitude]
  * @property {string} [longitude]
- * @property {string} [name]
- * @property {string} [phone_code]
- * @property {string[]} [timezones]
- * @property {string} [type]
+ * @property {string} [display_name]
  */
 
 /**
@@ -182,71 +193,45 @@ const Joi = require("joi");
  * @property {string} [slug]
  */
 
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-
 class LogisticsPartnerModel {
-  /** @returns {ArithmeticOperations} */
-  static ArithmeticOperations() {
-    return Joi.object({
-      gt: Joi.number(),
-      gte: Joi.number(),
-      lt: Joi.number(),
-      lte: Joi.number(),
-    });
-  }
-
-  /** @returns {BulkRegionJobSerializer} */
-  static BulkRegionJobSerializer() {
-    return Joi.object({
-      action: Joi.string().allow("").required(),
-      country: Joi.string().allow("").required(),
-      file_path: Joi.string().allow(""),
-      region: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {BulkRegionResponse} */
-  static BulkRegionResponse() {
-    return Joi.object({
-      items: Joi.array()
-        .items(LogisticsPartnerModel.BulkRegionResponseItemData())
-        .required(),
-      page: LogisticsPartnerModel.Page().required(),
-    });
-  }
-
-  /** @returns {BulkRegionResponseItemData} */
-  static BulkRegionResponseItemData() {
-    return Joi.object({
-      action: Joi.string().allow("").required(),
-      batch_id: Joi.string().allow("").required(),
-      country: Joi.string().allow("").required(),
-      error_file_path: Joi.string().allow(""),
-      failed: Joi.number(),
-      failed_records: Joi.array().items(Joi.any()),
-      file_path: Joi.string().allow("").required(),
-      region: Joi.string().allow("").required(),
-      status: Joi.string().allow("").required(),
-      success: Joi.number(),
-      total: Joi.number(),
-    });
-  }
-
   /** @returns {BulkRegionServiceabilityTatRequest} */
   static BulkRegionServiceabilityTatRequest() {
     return Joi.object({
       country: Joi.string().allow("").required(),
       region: Joi.string().allow("").required(),
       type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {BulkRegionServiceabilityTatResponseItemData} */
+  static BulkRegionServiceabilityTatResponseItemData() {
+    return Joi.object({
+      country: Joi.string().allow(""),
+      region: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      batch_id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      failed_records: Joi.array().items(Joi.any()),
+      file_path: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ErrorResponse} */
+  static ErrorResponse() {
+    return Joi.object({
+      value: Joi.string().allow("").required(),
+      message: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {FailureResponse} */
+  static FailureResponse() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      error: Joi.array()
+        .items(LogisticsPartnerModel.ErrorResponse())
+        .required(),
     });
   }
 
@@ -260,16 +245,75 @@ class LogisticsPartnerModel {
     });
   }
 
-  /** @returns {BulkRegionServiceabilityTatResponseItemData} */
-  static BulkRegionServiceabilityTatResponseItemData() {
+  /** @returns {Page} */
+  static Page() {
     return Joi.object({
-      batch_id: Joi.string().allow(""),
-      country: Joi.string().allow(""),
-      failed_records: Joi.array().items(Joi.any()),
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
+    });
+  }
+
+  /** @returns {BulkRegionJobSerializer} */
+  static BulkRegionJobSerializer() {
+    return Joi.object({
       file_path: Joi.string().allow(""),
-      region: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      type: Joi.string().allow(""),
+      country: Joi.string().allow("").required(),
+      action: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {BulkRegionResponseItemData} */
+  static BulkRegionResponseItemData() {
+    return Joi.object({
+      file_path: Joi.string().allow("").required(),
+      failed: Joi.number(),
+      failed_records: Joi.array().items(Joi.any()),
+      action: Joi.string().allow("").required(),
+      batch_id: Joi.string().allow("").required(),
+      country: Joi.string().allow("").required(),
+      success: Joi.number(),
+      region: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      total: Joi.number(),
+      error_file_path: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BulkRegionResponse} */
+  static BulkRegionResponse() {
+    return Joi.object({
+      items: Joi.array()
+        .items(LogisticsPartnerModel.BulkRegionResponseItemData())
+        .required(),
+      page: LogisticsPartnerModel.Page().required(),
+    });
+  }
+
+  /** @returns {CourierAccount} */
+  static CourierAccount() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      account_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow("").required(),
+      is_self_ship: Joi.boolean().required(),
+      stage: Joi.string().allow("").required(),
+      is_own_account: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {CourierPartnerAccountFailureResponse} */
+  static CourierPartnerAccountFailureResponse() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      error: Joi.array()
+        .items(LogisticsPartnerModel.ErrorResponse())
+        .required(),
     });
   }
 
@@ -283,110 +327,79 @@ class LogisticsPartnerModel {
     });
   }
 
-  /** @returns {CourierAccount} */
-  static CourierAccount() {
-    return Joi.object({
-      account_id: Joi.string().allow("").required(),
-      extension_id: Joi.string().allow("").required(),
-      is_own_account: Joi.boolean().required(),
-      is_self_ship: Joi.boolean().required(),
-      scheme_id: Joi.string().allow("").required(),
-      stage: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {CourierAccountResponse} */
   static CourierAccountResponse() {
     return Joi.object({
       account_id: Joi.string().allow("").required(),
-      is_own_account: Joi.boolean().required(),
-      is_self_ship: Joi.boolean().required(),
       scheme_id: Joi.string().allow("").required(),
-      scheme_rules: LogisticsPartnerModel.CourierPartnerSchemeModel().required(),
+      is_self_ship: Joi.boolean().required(),
       stage: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CourierPartnerAccountFailureResponse} */
-  static CourierPartnerAccountFailureResponse() {
-    return Joi.object({
-      error: Joi.array()
-        .items(LogisticsPartnerModel.ErrorResponse())
-        .required(),
-      success: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {CourierPartnerSchemeFeatures} */
-  static CourierPartnerSchemeFeatures() {
-    return Joi.object({
-      cold_storage_goods: Joi.boolean(),
-      dangerous_goods: Joi.boolean(),
-      doorstep_exchange: Joi.boolean(),
-      doorstep_qc: Joi.boolean(),
-      doorstep_return: Joi.boolean(),
-      ewaybill: Joi.boolean(),
-      fragile_goods: Joi.boolean(),
-      mps: Joi.boolean(),
-      multi_pick_multi_drop: Joi.boolean(),
-      multi_pick_single_drop: Joi.boolean(),
-      ndr: Joi.boolean(),
-      ndr_attempts: Joi.number(),
-      openbox_delivery: Joi.boolean(),
-      product_installation: Joi.boolean(),
-      qr: Joi.boolean(),
-      restricted_goods: Joi.boolean(),
-      single_pick_multi_drop: Joi.boolean(),
-      status_updates: Joi.string().allow(""),
+      is_own_account: Joi.boolean().required(),
+      scheme_rules: LogisticsPartnerModel.CourierPartnerSchemeModel().required(),
     });
   }
 
   /** @returns {CourierPartnerSchemeModel} */
   static CourierPartnerSchemeModel() {
     return Joi.object({
-      delivery_type: Joi.string().allow("").required(),
       extension_id: Joi.string().allow("").required(),
-      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures().required(),
-      name: Joi.string().allow("").required(),
-      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
-      region: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
-      stage: Joi.string().allow("").required(),
-      transport_type: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
       weight: LogisticsPartnerModel.ArithmeticOperations().required(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures().required(),
+    });
+  }
+
+  /** @returns {CourierPartnerSchemeFeatures} */
+  static CourierPartnerSchemeFeatures() {
+    return Joi.object({
+      doorstep_qc: Joi.boolean(),
+      qr: Joi.boolean(),
+      mps: Joi.boolean(),
+      ndr: Joi.boolean(),
+      ndr_attempts: Joi.number(),
+      dangerous_goods: Joi.boolean(),
+      fragile_goods: Joi.boolean(),
+      restricted_goods: Joi.boolean(),
+      cold_storage_goods: Joi.boolean(),
+      doorstep_exchange: Joi.boolean(),
+      doorstep_return: Joi.boolean(),
+      product_installation: Joi.boolean(),
+      openbox_delivery: Joi.boolean(),
+      status_updates: Joi.string().allow(""),
+      multi_pick_single_drop: Joi.boolean(),
+      single_pick_multi_drop: Joi.boolean(),
+      multi_pick_multi_drop: Joi.boolean(),
+      ewaybill: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ArithmeticOperations} */
+  static ArithmeticOperations() {
+    return Joi.object({
+      lt: Joi.number(),
+      gt: Joi.number(),
+      lte: Joi.number(),
+      gte: Joi.number(),
     });
   }
 
   /** @returns {CourierPartnerSchemeUpdateRequest} */
   static CourierPartnerSchemeUpdateRequest() {
     return Joi.object({
-      delivery_type: Joi.string().allow("").required(),
-      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures().required(),
       name: Joi.string().allow("").required(),
-      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
-      region: Joi.string().allow("").required(),
-      stage: Joi.string().allow("").required(),
-      transport_type: Joi.string().allow("").required(),
       weight: LogisticsPartnerModel.ArithmeticOperations().required(),
-    });
-  }
-
-  /** @returns {ErrorResponse} */
-  static ErrorResponse() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {FailureResponse} */
-  static FailureResponse() {
-    return Joi.object({
-      error: Joi.array()
-        .items(LogisticsPartnerModel.ErrorResponse())
-        .required(),
-      success: Joi.boolean().required(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures().required(),
     });
   }
 
@@ -403,18 +416,18 @@ class LogisticsPartnerModel {
   /** @returns {GetCountriesItems} */
   static GetCountriesItems() {
     return Joi.object({
-      currency: Joi.string().allow(""),
-      display_name: Joi.string().allow(""),
-      hierarchy: Joi.array().items(LogisticsPartnerModel.HierarchyItems()),
       id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
       iso2: Joi.string().allow(""),
       iso3: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")),
+      hierarchy: Joi.array().items(LogisticsPartnerModel.HierarchyItems()),
+      phone_code: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      type: Joi.string().allow(""),
       latitude: Joi.string().allow(""),
       longitude: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      phone_code: Joi.string().allow(""),
-      timezones: Joi.array().items(Joi.string().allow("")),
-      type: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
     });
   }
 
@@ -423,19 +436,6 @@ class LogisticsPartnerModel {
     return Joi.object({
       display_name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
 }

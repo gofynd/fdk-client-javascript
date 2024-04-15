@@ -24,7 +24,9 @@ const SharePlatformModel = require("./SharePlatformModel");
  * @property {number} [pageSize] - Current page size
  * @property {string} [createdBy] - Short link creator
  * @property {string} [active] - Short link active status
- * @property {string} [q] - Search text for original and short url
+ * @property {string} [shortUrl] - Search for short url
+ * @property {string} [originalUrl] - Search for original url
+ * @property {string} [title] - Search text for title
  */
 
 /**
@@ -62,7 +64,9 @@ class SharePlatformApplicationValidator {
       pageSize: Joi.number(),
       createdBy: Joi.string().allow(""),
       active: Joi.string().allow(""),
-      q: Joi.string().allow(""),
+      shortUrl: Joi.string().allow(""),
+      originalUrl: Joi.string().allow(""),
+      title: Joi.string().allow(""),
     }).required();
   }
 

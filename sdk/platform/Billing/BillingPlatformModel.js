@@ -6,77 +6,55 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CancelSubscriptionReq
- * @property {string} [product_suite]
- * @property {string} [subscription_id]
- * @property {string} [type]
- * @property {string} [unique_id]
+ * @typedef ResourceNotFound
+ * @property {string} [message] - Resource not found with {id}
  */
 
 /**
- * @typedef CancelSubscriptionRes
- * @property {Subscription} [data]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef ChargeLineItem
- * @property {number} [capped_amount]
- * @property {boolean} [is_test]
- * @property {Object} [metadata]
- * @property {string} name
- * @property {EntityChargePrice} price
- * @property {string} pricing_type
- * @property {EntityChargeRecurring} [recurring]
- * @property {string} term
- * @property {number} [trial_days]
+ * @typedef InternalServerError
+ * @property {string} [message] - Internal server Server error
+ * @property {string} [code] - Error code
  */
 
 /**
  * @typedef CheckValidityResponse
- * @property {number} [discount_amount]
  * @property {boolean} [is_valid]
+ * @property {number} [discount_amount]
  */
 
 /**
- * @typedef CreateOneTimeCharge
- * @property {OneTimeChargeItem} charge
- * @property {boolean} [is_test]
- * @property {string} name
- * @property {string} return_url
+ * @typedef PlanRecurring
+ * @property {string} [interval]
+ * @property {number} [interval_count]
  */
 
 /**
- * @typedef CreateOneTimeChargeResponse
- * @property {OneTimeChargeEntity} [charge]
- * @property {string} [confirm_url]
+ * @typedef Plan
+ * @property {PlanRecurring} [recurring]
+ * @property {boolean} [is_trial_plan]
+ * @property {string} [plan_group]
+ * @property {string[]} [tag_lines]
+ * @property {string} [currency]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_visible]
+ * @property {number} [trial_period]
+ * @property {string[]} [addons]
+ * @property {string[]} [tags]
+ * @property {string} [type]
+ * @property {string} [country]
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [description]
+ * @property {number} [amount]
+ * @property {string} [product_suite_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
  */
 
 /**
- * @typedef CreateSubscriptionCharge
- * @property {boolean} [is_test]
- * @property {ChargeLineItem[]} line_items
- * @property {string} name
- * @property {string} return_url
- * @property {number} [trial_days]
- */
-
-/**
- * @typedef CreateSubscriptionResponse
- * @property {string} [confirm_url]
- * @property {EntitySubscription} [subscription]
- */
-
-/**
- * @typedef CurrentPeriod
- * @property {string} [end_date]
+ * @typedef SubscriptionTrialPeriod
  * @property {string} [start_date]
- */
-
-/**
- * @typedef Details
- * @property {Features[]} [features]
- * @property {FeeComponents[]} [fee_components]
+ * @property {string} [end_date]
  */
 
 /**
@@ -91,153 +69,166 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef EntityResponse
- * @property {Details[]} [items]
- * @property {number} [page]
- * @property {number} [page_size]
- * @property {boolean} [success]
+ * @typedef ChargeLineItem
+ * @property {string} name
+ * @property {string} term
+ * @property {string} pricing_type
+ * @property {EntityChargePrice} price
+ * @property {EntityChargeRecurring} [recurring]
+ * @property {number} [capped_amount]
+ * @property {number} [trial_days]
+ * @property {boolean} [is_test]
+ * @property {Object} [metadata]
+ */
+
+/**
+ * @typedef CreateSubscriptionCharge
+ * @property {string} name
+ * @property {number} [trial_days]
+ * @property {ChargeLineItem[]} line_items
+ * @property {boolean} [is_test]
+ * @property {string} return_url
+ */
+
+/**
+ * @typedef OneTimeChargeItem
+ * @property {string} name
+ * @property {string} [term]
+ * @property {string} pricing_type
+ * @property {EntityChargePrice} price
+ * @property {number} [capped_amount]
+ * @property {boolean} [is_test]
+ * @property {Object} [metadata]
+ */
+
+/**
+ * @typedef CreateOneTimeCharge
+ * @property {string} name
+ * @property {OneTimeChargeItem} charge
+ * @property {boolean} [is_test]
+ * @property {string} return_url
+ */
+
+/**
+ * @typedef CurrentPeriod
+ * @property {string} [start_date]
+ * @property {string} [end_date]
+ */
+
+/**
+ * @typedef SubscriptionCharge
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [term] - Brief description for a charge
+ * @property {string} [pricing_type]
+ * @property {EntityChargePrice} [price]
+ * @property {EntityChargeRecurring} [recurring]
+ * @property {number} [capped_amount]
+ * @property {string} [activated_on]
+ * @property {string} [cancelled_on]
+ * @property {string} [billing_date]
+ * @property {CurrentPeriod} [current_period]
+ * @property {string} [status]
+ * @property {boolean} [is_test]
+ * @property {Object} [metadata]
  */
 
 /**
  * @typedef EntitySubscription
  * @property {string} [_id]
- * @property {string} [activated_on]
- * @property {string} [cancelled_on]
- * @property {number} [company_id]
- * @property {SubscriptionCharge[]} [line_items]
- * @property {Object} [metadata]
  * @property {string} [name]
  * @property {string} [status]
+ * @property {number} [company_id]
+ * @property {string} [activated_on]
+ * @property {string} [cancelled_on]
  * @property {number} [trial_days]
  * @property {SubscriptionTrialPeriod} [trial_period]
+ * @property {Object} [metadata]
+ * @property {SubscriptionCharge[]} [line_items]
  */
 
 /**
- * @typedef Features
- * @property {string} [description]
- * @property {string} [display_text]
- * @property {boolean} [enabled]
- * @property {string} [group]
- * @property {string} [name]
- * @property {string} [slug]
- */
-
-/**
- * @typedef FeeComponents
- * @property {string[]} [brand]
- * @property {string} [business_lead]
- * @property {Object[]} [channel]
- * @property {Object[]} [components]
- * @property {string[]} [location]
- * @property {Object} [settle_cycle_period]
- * @property {string} [settlement_type]
- */
-
-/**
- * @typedef InternalServerError
- * @property {string} [code] - Error code
- * @property {string} [message] - Internal server Server error
- */
-
-/**
- * @typedef Invoice
- * @property {InvoiceDetails} [invoice]
- * @property {InvoiceItems[]} [invoice_items]
- */
-
-/**
- * @typedef InvoiceDetails
+ * @typedef OneTimeChargeEntity
  * @property {string} [_id]
- * @property {number} [attemp]
- * @property {boolean} [auto_advance]
- * @property {InvoiceDetailsClient} [client]
- * @property {string} [collection_method]
- * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [current_status]
- * @property {string} [hash_identifier]
- * @property {string} [invoice_url]
- * @property {string} [modified_at]
- * @property {string} [next_action_time]
- * @property {string} [number]
- * @property {boolean} [paid]
- * @property {InvoicePaymentMethod} [payment_method]
- * @property {InvoiceDetailsPeriod} [period]
- * @property {Object} [pg_data]
- * @property {string} [receipt_number]
- * @property {string} [statement_descriptor]
- * @property {InvoiceDetailsStatusTrail[]} [status_trail]
+ * @property {string} [name]
+ * @property {string} [status]
+ * @property {string} [activated_on]
+ * @property {string} [cancelled_on]
+ * @property {Object} [metadata]
+ * @property {string} [return_url]
+ * @property {boolean} [is_test]
+ * @property {string} [pricing_type]
  * @property {string} [subscriber_id]
- * @property {string} [subscription]
- * @property {number} [subtotal]
- * @property {number} [total]
+ * @property {string} [entity_type]
+ * @property {string} [entity_id]
+ * @property {Object} [meta]
+ * @property {EntityChargePrice} [price]
+ */
+
+/**
+ * @typedef CreateOneTimeChargeResponse
+ * @property {OneTimeChargeEntity} [charge]
+ * @property {string} [confirm_url]
+ */
+
+/**
+ * @typedef CreateSubscriptionResponse
+ * @property {EntitySubscription} [subscription]
+ * @property {string} [confirm_url]
+ */
+
+/**
+ * @typedef InvoiceDetailsPeriod
+ * @property {string} [start]
+ * @property {string} [end]
  */
 
 /**
  * @typedef InvoiceDetailsClient
  * @property {string[]} [address_lines]
- * @property {string} [email]
  * @property {string} [name]
+ * @property {string} [email]
  * @property {string} [phone]
- */
-
-/**
- * @typedef InvoiceDetailsPeriod
- * @property {string} [end]
- * @property {string} [start]
  */
 
 /**
  * @typedef InvoiceDetailsStatusTrail
  * @property {string} [_id]
- * @property {string} [timestamp]
  * @property {string} [value]
+ * @property {string} [timestamp]
  */
 
 /**
- * @typedef InvoiceItems
- * @property {string} [_id]
- * @property {number} [amount]
- * @property {string} [created_at]
+ * @typedef InvoicePaymentMethod
+ * @property {string} [pg_payment_method_id]
+ */
+
+/**
+ * @typedef InvoiceDetails
+ * @property {InvoiceDetailsPeriod} [period]
+ * @property {InvoiceDetailsClient} [client]
+ * @property {boolean} [auto_advance]
  * @property {string} [currency]
- * @property {string} [description]
- * @property {string} [invoice_id]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {InvoiceItemsPeriod} [period]
- * @property {InvoiceItemsPlan} [plan]
- * @property {number} [quantity]
- * @property {string} [type]
- * @property {number} [unit_amount]
- */
-
-/**
- * @typedef InvoiceItemsPeriod
- * @property {string} [end]
- * @property {string} [start]
- */
-
-/**
- * @typedef InvoiceItemsPlan
+ * @property {boolean} [paid]
+ * @property {number} [attemp]
  * @property {string} [_id]
- * @property {string[]} [addons]
- * @property {number} [amount]
- * @property {string} [country]
+ * @property {string} [collection_method]
+ * @property {string} [subscriber_id]
+ * @property {string} [invoice_url]
+ * @property {string} [number]
+ * @property {Object} [pg_data]
+ * @property {string} [receipt_number]
+ * @property {string} [statement_descriptor]
+ * @property {string} [current_status]
+ * @property {InvoiceDetailsStatusTrail[]} [status_trail]
+ * @property {number} [subtotal]
+ * @property {number} [total]
+ * @property {string} [subscription]
+ * @property {string} [next_action_time]
  * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_trial_plan]
- * @property {boolean} [is_visible]
  * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [plan_group]
- * @property {string} [product_suite_id]
- * @property {InvoiceItemsPlanRecurring} [recurring]
- * @property {string[]} [tag_lines]
- * @property {string[]} [tags]
- * @property {number} [trial_period]
- * @property {string} [type]
+ * @property {string} [hash_identifier]
+ * @property {InvoicePaymentMethod} [payment_method]
  */
 
 /**
@@ -247,55 +238,69 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InvoicePaymentMethod
- * @property {string} [pg_payment_method_id]
- */
-
-/**
- * @typedef Invoices
- * @property {InvoicesData[]} [data]
- * @property {number} [end]
- * @property {number} [limit]
- * @property {number} [page]
- * @property {number} [start]
- * @property {number} [total]
- */
-
-/**
- * @typedef InvoicesData
- * @property {string} [_id]
- * @property {number} [attemp]
- * @property {boolean} [auto_advance]
- * @property {InvoicesDataClient} [client]
- * @property {string} [collection_method]
- * @property {string} [created_at]
+ * @typedef InvoiceItemsPlan
+ * @property {InvoiceItemsPlanRecurring} [recurring]
+ * @property {boolean} [is_trial_plan]
+ * @property {string} [plan_group]
+ * @property {string[]} [tag_lines]
  * @property {string} [currency]
- * @property {string} [current_status]
- * @property {string} [hash_identifier]
- * @property {InvoiceItems[]} [invoice_items]
- * @property {string} [invoice_url]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_visible]
+ * @property {number} [trial_period]
+ * @property {string[]} [addons]
+ * @property {string[]} [tags]
+ * @property {string} [type]
+ * @property {string} [country]
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [description]
+ * @property {number} [amount]
+ * @property {string} [product_suite_id]
+ * @property {string} [created_at]
  * @property {string} [modified_at]
- * @property {string} [next_action_time]
- * @property {string} [number]
- * @property {boolean} [paid]
- * @property {InvoicesDataPaymentMethod} [payment_method]
- * @property {InvoicesDataPeriod} [period]
- * @property {Object} [pg_data]
- * @property {string} [receipt_number]
- * @property {string} [statement_descriptor]
- * @property {InvoiceDetailsStatusTrail[]} [status_trail]
- * @property {string} [subscriber_id]
- * @property {string} [subscription]
- * @property {number} [subtotal]
- * @property {number} [total]
+ */
+
+/**
+ * @typedef InvoiceItemsPeriod
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+
+/**
+ * @typedef InvoiceItems
+ * @property {string} [_id]
+ * @property {string} [currency]
+ * @property {InvoiceItemsPlan} [plan]
+ * @property {string} [name]
+ * @property {number} [quantity]
+ * @property {string} [description]
+ * @property {InvoiceItemsPeriod} [period]
+ * @property {number} [unit_amount]
+ * @property {number} [amount]
+ * @property {string} [type]
+ * @property {string} [invoice_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ */
+
+/**
+ * @typedef Invoice
+ * @property {InvoiceDetails} [invoice]
+ * @property {InvoiceItems[]} [invoice_items]
  */
 
 /**
  * @typedef InvoicesDataClient
- * @property {string[]} [address_lines]
- * @property {string} [email]
  * @property {string} [name]
+ * @property {string} [email]
  * @property {string} [phone]
+ * @property {string[]} [address_lines]
+ */
+
+/**
+ * @typedef InvoicesDataPeriod
+ * @property {string} [start]
+ * @property {string} [end]
  */
 
 /**
@@ -304,212 +309,137 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InvoicesDataPeriod
- * @property {string} [end]
- * @property {string} [start]
- */
-
-/**
- * @typedef Meta
- * @property {boolean} [is_custom_plan]
- * @property {boolean} [is_plan_upgrade]
- * @property {boolean} [subscribe]
- */
-
-/**
- * @typedef OneTimeChargeEntity
+ * @typedef InvoicesData
  * @property {string} [_id]
- * @property {string} [activated_on]
- * @property {string} [cancelled_on]
- * @property {string} [entity_id]
- * @property {string} [entity_type]
- * @property {boolean} [is_test]
- * @property {Object} [meta]
- * @property {Object} [metadata]
- * @property {string} [name]
- * @property {EntityChargePrice} [price]
- * @property {string} [pricing_type]
- * @property {string} [return_url]
- * @property {string} [status]
+ * @property {InvoicesDataClient} [client]
+ * @property {boolean} [auto_advance]
+ * @property {string} [currency]
+ * @property {boolean} [paid]
+ * @property {number} [attemp]
+ * @property {string} [collection_method]
  * @property {string} [subscriber_id]
+ * @property {string} [invoice_url]
+ * @property {string} [number]
+ * @property {Object} [pg_data]
+ * @property {InvoicesDataPeriod} [period]
+ * @property {string} [receipt_number]
+ * @property {string} [statement_descriptor]
+ * @property {string} [current_status]
+ * @property {InvoiceDetailsStatusTrail[]} [status_trail]
+ * @property {number} [subtotal]
+ * @property {number} [total]
+ * @property {string} [subscription]
+ * @property {string} [next_action_time]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {string} [hash_identifier]
+ * @property {InvoicesDataPaymentMethod} [payment_method]
+ * @property {InvoiceItems[]} [invoice_items]
  */
 
 /**
- * @typedef OneTimeChargeItem
- * @property {number} [capped_amount]
- * @property {boolean} [is_test]
- * @property {Object} [metadata]
- * @property {string} name
- * @property {EntityChargePrice} price
- * @property {string} pricing_type
- * @property {string} [term]
+ * @typedef Invoices
+ * @property {InvoicesData[]} [data]
+ * @property {number} [start]
+ * @property {number} [end]
+ * @property {number} [limit]
+ * @property {number} [page]
+ * @property {number} [total]
  */
 
 /**
  * @typedef Phone
- * @property {string} [phone_country_code]
  * @property {string} [phone_number]
- */
-
-/**
- * @typedef Plan
- * @property {string} [_id]
- * @property {string[]} [addons]
- * @property {number} [amount]
- * @property {string} [country]
- * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_trial_plan]
- * @property {boolean} [is_visible]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [plan_group]
- * @property {string} [product_suite_id]
- * @property {PlanRecurring} [recurring]
- * @property {string[]} [tag_lines]
- * @property {string[]} [tags]
- * @property {number} [trial_period]
- * @property {string} [type]
- */
-
-/**
- * @typedef PlanRecurring
- * @property {string} [interval]
- * @property {number} [interval_count]
- */
-
-/**
- * @typedef PlanStatusUpdateReq
- * @property {string} [plan_id]
- * @property {string} [reason]
- * @property {string} [seller_status]
- */
-
-/**
- * @typedef ResourceNotFound
- * @property {string} [message] - Resource not found with {id}
- */
-
-/**
- * @typedef SubscribePlanRes
- * @property {string} [current_status]
- * @property {Meta} [meta]
- * @property {string} [redirect_url]
- * @property {string} [transaction_id]
- */
-
-/**
- * @typedef Subscription
- * @property {string} [_id]
- * @property {boolean} [cancel_at_period_end]
- * @property {string} [channel_type]
- * @property {string} [collection_method]
- * @property {string} [created_at]
- * @property {SubscriptionCurrentPeriod} [current_period]
- * @property {string} [current_status]
- * @property {SubscriptionInvoiceSettings} [invoice_settings]
- * @property {boolean} [is_active]
- * @property {string} [latest_invoice]
- * @property {string} [modified_at]
- * @property {SubscriptionPauseCollection} [pause_collection]
- * @property {Plan} [plan_data]
- * @property {string} [plan_id]
- * @property {string} [product_suite_id]
- * @property {string} [subscriber_id]
- * @property {SubscriptionTrial} [trial]
- */
-
-/**
- * @typedef SubscriptionActivateReq
- * @property {string} [payment_method]
- * @property {string} [plan_id]
- * @property {string} [product_suite]
- * @property {string} [type]
- * @property {string} [unique_id]
- */
-
-/**
- * @typedef SubscriptionActivateRes
- * @property {Subscription} [data]
- * @property {boolean} [success]
+ * @property {string} [phone_country_code]
  */
 
 /**
  * @typedef SubscriptionBillingAddress
- * @property {string} [city]
  * @property {string} [country]
+ * @property {string} [state]
+ * @property {string} [city]
  * @property {string} [line1]
  * @property {string} [line2]
  * @property {string} [postal_code]
- * @property {string} [state]
- */
-
-/**
- * @typedef SubscriptionCharge
- * @property {string} [_id]
- * @property {string} [activated_on]
- * @property {string} [billing_date]
- * @property {string} [cancelled_on]
- * @property {number} [capped_amount]
- * @property {CurrentPeriod} [current_period]
- * @property {boolean} [is_test]
- * @property {Object} [metadata]
- * @property {string} [name]
- * @property {EntityChargePrice} [price]
- * @property {string} [pricing_type]
- * @property {EntityChargeRecurring} [recurring]
- * @property {string} [status]
- * @property {string} [term] - Brief description for a charge
- */
-
-/**
- * @typedef SubscriptionCurrentPeriod
- * @property {string} [end]
- * @property {string} [start]
  */
 
 /**
  * @typedef SubscriptionCustomer
- * @property {string} [_id]
- * @property {SubscriptionBillingAddress} [billing_address]
- * @property {string} [created_at]
- * @property {Object} [data]
- * @property {string} [email]
- * @property {string} [modified_at]
- * @property {string} [name]
  * @property {Phone} [phone]
- * @property {string} [type]
+ * @property {SubscriptionBillingAddress} [billing_address]
+ * @property {string} [_id]
  * @property {string} [unique_id]
+ * @property {string} [type]
+ * @property {string} [name]
+ * @property {string} [email]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {Object} [data]
  */
 
 /**
  * @typedef SubscriptionCustomerCreate
- * @property {SubscriptionBillingAddress} [billing_address]
- * @property {string} [email]
- * @property {string} [name]
  * @property {Phone} [phone]
- * @property {string} [type]
+ * @property {SubscriptionBillingAddress} [billing_address]
  * @property {string} [unique_id]
+ * @property {string} [type]
+ * @property {string} [name]
+ * @property {string} [email]
+ */
+
+/**
+ * @typedef SubscriptionCurrentPeriod
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+
+/**
+ * @typedef SubscriptionPauseCollection
+ * @property {string} [behavior]
+ * @property {string} [resume_at]
+ */
+
+/**
+ * @typedef SubscriptionTrial
+ * @property {string} [start]
+ * @property {string} [end]
  */
 
 /**
  * @typedef SubscriptionInvoiceSettings
- * @property {boolean} [charging]
  * @property {boolean} [generation]
+ * @property {boolean} [charging]
  */
 
 /**
- * @typedef SubscriptionLimit
- * @property {SubscriptionLimitApplication} [application]
- * @property {SubscriptionLimitExtensions} [extensions]
- * @property {SubscriptionLimitIntegrations} [integrations]
- * @property {boolean} [is_trial_plan]
- * @property {SubscriptionLimitMarketplace} [marketplace]
- * @property {SubscriptionLimitOtherPlatform} [other_platform]
- * @property {SubscriptionLimitProducts} [products]
- * @property {SubscriptionLimitTeam} [team]
+ * @typedef Subscription
+ * @property {SubscriptionCurrentPeriod} [current_period]
+ * @property {SubscriptionPauseCollection} [pause_collection]
+ * @property {SubscriptionTrial} [trial]
+ * @property {SubscriptionInvoiceSettings} [invoice_settings]
+ * @property {boolean} [is_active]
+ * @property {boolean} [cancel_at_period_end]
+ * @property {string} [_id]
+ * @property {string} [subscriber_id]
+ * @property {string} [plan_id]
+ * @property {string} [product_suite_id]
+ * @property {Plan} [plan_data]
+ * @property {string} [current_status]
+ * @property {string} [collection_method]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {string} [latest_invoice]
+ * @property {string} [channel_type]
+ */
+
+/**
+ * @typedef SubscriptionStatus
+ * @property {boolean} [is_enabled]
+ * @property {Subscription} [subscription]
+ * @property {InvoicesData} [latest_invoice]
+ * @property {Plan} [next_plan]
+ * @property {Subscription[]} [current_subscriptions]
+ * @property {string} [mandate_amount]
  */
 
 /**
@@ -517,6 +447,27 @@ const Joi = require("joi");
  * @property {boolean} [enabled]
  * @property {number} [hard_limit]
  * @property {number} [soft_limit]
+ */
+
+/**
+ * @typedef SubscriptionLimitMarketplace
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef SubscriptionLimitOtherPlatform
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef SubscriptionLimitTeam
+ * @property {number} [limit]
+ */
+
+/**
+ * @typedef SubscriptionLimitProducts
+ * @property {boolean} [bulk]
+ * @property {number} [limit]
  */
 
 /**
@@ -532,61 +483,110 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SubscriptionLimitMarketplace
- * @property {boolean} [enabled]
+ * @typedef SubscriptionLimit
+ * @property {SubscriptionLimitApplication} [application]
+ * @property {SubscriptionLimitMarketplace} [marketplace]
+ * @property {SubscriptionLimitOtherPlatform} [other_platform]
+ * @property {SubscriptionLimitTeam} [team]
+ * @property {SubscriptionLimitProducts} [products]
+ * @property {SubscriptionLimitExtensions} [extensions]
+ * @property {SubscriptionLimitIntegrations} [integrations]
+ * @property {boolean} [is_trial_plan]
  */
 
 /**
- * @typedef SubscriptionLimitOtherPlatform
- * @property {boolean} [enabled]
+ * @typedef SubscriptionActivateReq
+ * @property {string} [unique_id]
+ * @property {string} [type]
+ * @property {string} [product_suite]
+ * @property {string} [plan_id]
+ * @property {string} [payment_method]
  */
 
 /**
- * @typedef SubscriptionLimitProducts
- * @property {boolean} [bulk]
- * @property {number} [limit]
+ * @typedef SubscriptionActivateRes
+ * @property {boolean} [success]
+ * @property {Subscription} [data]
  */
 
 /**
- * @typedef SubscriptionLimitTeam
- * @property {number} [limit]
+ * @typedef CancelSubscriptionReq
+ * @property {string} [unique_id]
+ * @property {string} [type]
+ * @property {string} [product_suite]
+ * @property {string} [subscription_id]
  */
 
 /**
- * @typedef SubscriptionPauseCollection
- * @property {string} [behavior]
- * @property {string} [resume_at]
+ * @typedef CancelSubscriptionRes
+ * @property {boolean} [success]
+ * @property {Subscription} [data]
  */
 
 /**
- * @typedef SubscriptionStatus
- * @property {Subscription[]} [current_subscriptions]
- * @property {boolean} [is_enabled]
- * @property {InvoicesData} [latest_invoice]
- * @property {string} [mandate_amount]
- * @property {Plan} [next_plan]
- * @property {Subscription} [subscription]
- */
-
-/**
- * @typedef SubscriptionTrial
- * @property {string} [end]
- * @property {string} [start]
- */
-
-/**
- * @typedef SubscriptionTrialPeriod
- * @property {string} [end_date]
- * @property {string} [start_date]
+ * @typedef PlanStatusUpdateReq
+ * @property {string} [plan_id]
+ * @property {string} [reason]
+ * @property {string} [seller_status]
  */
 
 /**
  * @typedef SunscribePlan
- * @property {string} [callback_url]
- * @property {string} [collection_type]
  * @property {string} [entity_type]
- * @property {Meta} [meta]
+ * @property {string} [collection_type]
  * @property {string} [plan_id]
+ * @property {string} [callback_url]
+ * @property {Meta} [meta]
+ */
+
+/**
+ * @typedef Meta
+ * @property {boolean} [subscribe]
+ * @property {boolean} [is_custom_plan]
+ * @property {boolean} [is_plan_upgrade]
+ */
+
+/**
+ * @typedef SubscribePlanRes
+ * @property {string} [redirect_url]
+ * @property {string} [transaction_id]
+ * @property {string} [current_status]
+ * @property {Meta} [meta]
+ */
+
+/**
+ * @typedef Features
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string} [description]
+ * @property {string} [group]
+ * @property {boolean} [enabled]
+ * @property {string} [display_text]
+ */
+
+/**
+ * @typedef FeeComponents
+ * @property {string[]} [brand]
+ * @property {string[]} [location]
+ * @property {Object[]} [channel]
+ * @property {string} [business_lead]
+ * @property {string} [settlement_type]
+ * @property {Object} [settle_cycle_period]
+ * @property {Object[]} [components]
+ */
+
+/**
+ * @typedef Details
+ * @property {FeeComponents[]} [fee_components]
+ * @property {Features[]} [features]
+ */
+
+/**
+ * @typedef EntityResponse
+ * @property {boolean} [success]
+ * @property {number} [page]
+ * @property {number} [page_size]
+ * @property {Details[]} [items]
  */
 
 class BillingPlatformModel {
@@ -597,99 +597,67 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {CancelSubscriptionReq} */
-  static CancelSubscriptionReq() {
+  /** @returns {ResourceNotFound} */
+  static ResourceNotFound() {
     return Joi.object({
-      product_suite: Joi.string().allow(""),
-      subscription_id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      unique_id: Joi.string().allow(""),
+      message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CancelSubscriptionRes} */
-  static CancelSubscriptionRes() {
+  /** @returns {InternalServerError} */
+  static InternalServerError() {
     return Joi.object({
-      data: BillingPlatformModel.Subscription(),
-      success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {ChargeLineItem} */
-  static ChargeLineItem() {
-    return Joi.object({
-      capped_amount: Joi.number(),
-      is_test: Joi.boolean(),
-      metadata: Joi.any(),
-      name: Joi.string().allow("").required(),
-      price: BillingPlatformModel.EntityChargePrice().required(),
-      pricing_type: Joi.string().allow("").required(),
-      recurring: BillingPlatformModel.EntityChargeRecurring(),
-      term: Joi.string().allow("").required(),
-      trial_days: Joi.number(),
+      message: Joi.string().allow(""),
+      code: Joi.string().allow(""),
     });
   }
 
   /** @returns {CheckValidityResponse} */
   static CheckValidityResponse() {
     return Joi.object({
-      discount_amount: Joi.number(),
       is_valid: Joi.boolean(),
+      discount_amount: Joi.number(),
     });
   }
 
-  /** @returns {CreateOneTimeCharge} */
-  static CreateOneTimeCharge() {
+  /** @returns {PlanRecurring} */
+  static PlanRecurring() {
     return Joi.object({
-      charge: BillingPlatformModel.OneTimeChargeItem().required(),
-      is_test: Joi.boolean(),
-      name: Joi.string().allow("").required(),
-      return_url: Joi.string().allow("").required(),
+      interval: Joi.string().allow(""),
+      interval_count: Joi.number(),
     });
   }
 
-  /** @returns {CreateOneTimeChargeResponse} */
-  static CreateOneTimeChargeResponse() {
+  /** @returns {Plan} */
+  static Plan() {
     return Joi.object({
-      charge: BillingPlatformModel.OneTimeChargeEntity(),
-      confirm_url: Joi.string().allow(""),
+      recurring: BillingPlatformModel.PlanRecurring(),
+      is_trial_plan: Joi.boolean(),
+      plan_group: Joi.string().allow(""),
+      tag_lines: Joi.array().items(Joi.string().allow("")),
+      currency: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      is_visible: Joi.boolean(),
+      trial_period: Joi.number(),
+      addons: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      amount: Joi.number(),
+      product_suite_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CreateSubscriptionCharge} */
-  static CreateSubscriptionCharge() {
+  /** @returns {SubscriptionTrialPeriod} */
+  static SubscriptionTrialPeriod() {
     return Joi.object({
-      is_test: Joi.boolean(),
-      line_items: Joi.array()
-        .items(BillingPlatformModel.ChargeLineItem())
-        .required(),
-      name: Joi.string().allow("").required(),
-      return_url: Joi.string().allow("").required(),
-      trial_days: Joi.number(),
-    });
-  }
-
-  /** @returns {CreateSubscriptionResponse} */
-  static CreateSubscriptionResponse() {
-    return Joi.object({
-      confirm_url: Joi.string().allow(""),
-      subscription: BillingPlatformModel.EntitySubscription(),
-    });
-  }
-
-  /** @returns {CurrentPeriod} */
-  static CurrentPeriod() {
-    return Joi.object({
-      end_date: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Details} */
-  static Details() {
-    return Joi.object({
-      features: Joi.array().items(BillingPlatformModel.Features()),
-      fee_components: Joi.array().items(BillingPlatformModel.FeeComponents()),
+      end_date: Joi.string().allow(""),
     });
   }
 
@@ -708,13 +676,82 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {EntityResponse} */
-  static EntityResponse() {
+  /** @returns {ChargeLineItem} */
+  static ChargeLineItem() {
     return Joi.object({
-      items: Joi.array().items(BillingPlatformModel.Details()),
-      page: Joi.number(),
-      page_size: Joi.number(),
-      success: Joi.boolean(),
+      name: Joi.string().allow("").required(),
+      term: Joi.string().allow("").required(),
+      pricing_type: Joi.string().allow("").required(),
+      price: BillingPlatformModel.EntityChargePrice().required(),
+      recurring: BillingPlatformModel.EntityChargeRecurring(),
+      capped_amount: Joi.number(),
+      trial_days: Joi.number(),
+      is_test: Joi.boolean(),
+      metadata: Joi.any(),
+    });
+  }
+
+  /** @returns {CreateSubscriptionCharge} */
+  static CreateSubscriptionCharge() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      trial_days: Joi.number(),
+      line_items: Joi.array()
+        .items(BillingPlatformModel.ChargeLineItem())
+        .required(),
+      is_test: Joi.boolean(),
+      return_url: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OneTimeChargeItem} */
+  static OneTimeChargeItem() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      term: Joi.string().allow(""),
+      pricing_type: Joi.string().allow("").required(),
+      price: BillingPlatformModel.EntityChargePrice().required(),
+      capped_amount: Joi.number(),
+      is_test: Joi.boolean(),
+      metadata: Joi.any(),
+    });
+  }
+
+  /** @returns {CreateOneTimeCharge} */
+  static CreateOneTimeCharge() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      charge: BillingPlatformModel.OneTimeChargeItem().required(),
+      is_test: Joi.boolean(),
+      return_url: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CurrentPeriod} */
+  static CurrentPeriod() {
+    return Joi.object({
+      start_date: Joi.string().allow(""),
+      end_date: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriptionCharge} */
+  static SubscriptionCharge() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      term: Joi.string().allow(""),
+      pricing_type: Joi.string().allow(""),
+      price: BillingPlatformModel.EntityChargePrice(),
+      recurring: BillingPlatformModel.EntityChargeRecurring(),
+      capped_amount: Joi.number(),
+      activated_on: Joi.string().allow(""),
+      cancelled_on: Joi.string().allow(""),
+      billing_date: Joi.string().allow(""),
+      current_period: BillingPlatformModel.CurrentPeriod(),
+      status: Joi.string().allow(""),
+      is_test: Joi.boolean(),
+      metadata: Joi.any(),
     });
   }
 
@@ -722,88 +759,59 @@ class BillingPlatformModel {
   static EntitySubscription() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      activated_on: Joi.string().allow(""),
-      cancelled_on: Joi.string().allow(""),
-      company_id: Joi.number(),
-      line_items: Joi.array().items(BillingPlatformModel.SubscriptionCharge()),
-      metadata: Joi.any(),
       name: Joi.string().allow(""),
       status: Joi.string().allow(""),
+      company_id: Joi.number(),
+      activated_on: Joi.string().allow(""),
+      cancelled_on: Joi.string().allow(""),
       trial_days: Joi.number(),
       trial_period: BillingPlatformModel.SubscriptionTrialPeriod(),
+      metadata: Joi.any(),
+      line_items: Joi.array().items(BillingPlatformModel.SubscriptionCharge()),
     });
   }
 
-  /** @returns {Features} */
-  static Features() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      display_text: Joi.string().allow(""),
-      enabled: Joi.boolean(),
-      group: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {FeeComponents} */
-  static FeeComponents() {
-    return Joi.object({
-      brand: Joi.array().items(Joi.string().allow("")),
-      business_lead: Joi.string().allow(""),
-      channel: Joi.array().items(Joi.any()),
-      components: Joi.array().items(Joi.any()),
-      location: Joi.array().items(Joi.string().allow("")),
-      settle_cycle_period: Joi.any(),
-      settlement_type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InternalServerError} */
-  static InternalServerError() {
-    return Joi.object({
-      code: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Invoice} */
-  static Invoice() {
-    return Joi.object({
-      invoice: BillingPlatformModel.InvoiceDetails(),
-      invoice_items: Joi.array().items(BillingPlatformModel.InvoiceItems()),
-    });
-  }
-
-  /** @returns {InvoiceDetails} */
-  static InvoiceDetails() {
+  /** @returns {OneTimeChargeEntity} */
+  static OneTimeChargeEntity() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      attemp: Joi.number(),
-      auto_advance: Joi.boolean(),
-      client: BillingPlatformModel.InvoiceDetailsClient(),
-      collection_method: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      currency: Joi.string().allow(""),
-      current_status: Joi.string().allow(""),
-      hash_identifier: Joi.string().allow(""),
-      invoice_url: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      next_action_time: Joi.string().allow(""),
-      number: Joi.string().allow(""),
-      paid: Joi.boolean(),
-      payment_method: BillingPlatformModel.InvoicePaymentMethod(),
-      period: BillingPlatformModel.InvoiceDetailsPeriod(),
-      pg_data: Joi.any(),
-      receipt_number: Joi.string().allow(""),
-      statement_descriptor: Joi.string().allow(""),
-      status_trail: Joi.array().items(
-        BillingPlatformModel.InvoiceDetailsStatusTrail()
-      ),
+      name: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      activated_on: Joi.string().allow(""),
+      cancelled_on: Joi.string().allow(""),
+      metadata: Joi.any(),
+      return_url: Joi.string().allow(""),
+      is_test: Joi.boolean(),
+      pricing_type: Joi.string().allow(""),
       subscriber_id: Joi.string().allow(""),
-      subscription: Joi.string().allow(""),
-      subtotal: Joi.number(),
-      total: Joi.number(),
+      entity_type: Joi.string().allow(""),
+      entity_id: Joi.string().allow(""),
+      meta: Joi.any(),
+      price: BillingPlatformModel.EntityChargePrice(),
+    });
+  }
+
+  /** @returns {CreateOneTimeChargeResponse} */
+  static CreateOneTimeChargeResponse() {
+    return Joi.object({
+      charge: BillingPlatformModel.OneTimeChargeEntity(),
+      confirm_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateSubscriptionResponse} */
+  static CreateSubscriptionResponse() {
+    return Joi.object({
+      subscription: BillingPlatformModel.EntitySubscription(),
+      confirm_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InvoiceDetailsPeriod} */
+  static InvoiceDetailsPeriod() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
     });
   }
 
@@ -811,17 +819,9 @@ class BillingPlatformModel {
   static InvoiceDetailsClient() {
     return Joi.object({
       address_lines: Joi.array().items(Joi.string().allow("")),
-      email: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      email: Joi.string().allow(""),
       phone: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvoiceDetailsPeriod} */
-  static InvoiceDetailsPeriod() {
-    return Joi.object({
-      end: Joi.string().allow(""),
-      start: Joi.string().allow(""),
     });
   }
 
@@ -829,60 +829,47 @@ class BillingPlatformModel {
   static InvoiceDetailsStatusTrail() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      timestamp: Joi.string().allow(""),
       value: Joi.string().allow(""),
+      timestamp: Joi.string().allow(""),
     });
   }
 
-  /** @returns {InvoiceItems} */
-  static InvoiceItems() {
+  /** @returns {InvoicePaymentMethod} */
+  static InvoicePaymentMethod() {
     return Joi.object({
-      _id: Joi.string().allow(""),
-      amount: Joi.number(),
-      created_at: Joi.string().allow(""),
+      pg_payment_method_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InvoiceDetails} */
+  static InvoiceDetails() {
+    return Joi.object({
+      period: BillingPlatformModel.InvoiceDetailsPeriod(),
+      client: BillingPlatformModel.InvoiceDetailsClient(),
+      auto_advance: Joi.boolean(),
       currency: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      invoice_id: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      period: BillingPlatformModel.InvoiceItemsPeriod(),
-      plan: BillingPlatformModel.InvoiceItemsPlan(),
-      quantity: Joi.number(),
-      type: Joi.string().allow(""),
-      unit_amount: Joi.number(),
-    });
-  }
-
-  /** @returns {InvoiceItemsPeriod} */
-  static InvoiceItemsPeriod() {
-    return Joi.object({
-      end: Joi.string().allow(""),
-      start: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvoiceItemsPlan} */
-  static InvoiceItemsPlan() {
-    return Joi.object({
+      paid: Joi.boolean(),
+      attemp: Joi.number(),
       _id: Joi.string().allow(""),
-      addons: Joi.array().items(Joi.string().allow("")),
-      amount: Joi.number(),
-      country: Joi.string().allow(""),
+      collection_method: Joi.string().allow(""),
+      subscriber_id: Joi.string().allow(""),
+      invoice_url: Joi.string().allow(""),
+      number: Joi.string().allow(""),
+      pg_data: Joi.any(),
+      receipt_number: Joi.string().allow(""),
+      statement_descriptor: Joi.string().allow(""),
+      current_status: Joi.string().allow(""),
+      status_trail: Joi.array().items(
+        BillingPlatformModel.InvoiceDetailsStatusTrail()
+      ),
+      subtotal: Joi.number(),
+      total: Joi.number(),
+      subscription: Joi.string().allow(""),
+      next_action_time: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      currency: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      is_trial_plan: Joi.boolean(),
-      is_visible: Joi.boolean(),
       modified_at: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      plan_group: Joi.string().allow(""),
-      product_suite_id: Joi.string().allow(""),
-      recurring: BillingPlatformModel.InvoiceItemsPlanRecurring(),
-      tag_lines: Joi.array().items(Joi.string().allow("")),
-      tags: Joi.array().items(Joi.string().allow("")),
-      trial_period: Joi.number(),
-      type: Joi.string().allow(""),
+      hash_identifier: Joi.string().allow(""),
+      payment_method: BillingPlatformModel.InvoicePaymentMethod(),
     });
   }
 
@@ -894,65 +881,81 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {InvoicePaymentMethod} */
-  static InvoicePaymentMethod() {
+  /** @returns {InvoiceItemsPlan} */
+  static InvoiceItemsPlan() {
     return Joi.object({
-      pg_payment_method_id: Joi.string().allow(""),
+      recurring: BillingPlatformModel.InvoiceItemsPlanRecurring(),
+      is_trial_plan: Joi.boolean(),
+      plan_group: Joi.string().allow(""),
+      tag_lines: Joi.array().items(Joi.string().allow("")),
+      currency: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      is_visible: Joi.boolean(),
+      trial_period: Joi.number(),
+      addons: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      amount: Joi.number(),
+      product_suite_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
     });
   }
 
-  /** @returns {Invoices} */
-  static Invoices() {
+  /** @returns {InvoiceItemsPeriod} */
+  static InvoiceItemsPeriod() {
     return Joi.object({
-      data: Joi.array().items(BillingPlatformModel.InvoicesData()),
-      end: Joi.number(),
-      limit: Joi.number(),
-      page: Joi.number(),
-      start: Joi.number(),
-      total: Joi.number(),
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
     });
   }
 
-  /** @returns {InvoicesData} */
-  static InvoicesData() {
+  /** @returns {InvoiceItems} */
+  static InvoiceItems() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      attemp: Joi.number(),
-      auto_advance: Joi.boolean(),
-      client: BillingPlatformModel.InvoicesDataClient(),
-      collection_method: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
       currency: Joi.string().allow(""),
-      current_status: Joi.string().allow(""),
-      hash_identifier: Joi.string().allow(""),
-      invoice_items: Joi.array().items(BillingPlatformModel.InvoiceItems()),
-      invoice_url: Joi.string().allow(""),
+      plan: BillingPlatformModel.InvoiceItemsPlan(),
+      name: Joi.string().allow(""),
+      quantity: Joi.number(),
+      description: Joi.string().allow(""),
+      period: BillingPlatformModel.InvoiceItemsPeriod(),
+      unit_amount: Joi.number(),
+      amount: Joi.number(),
+      type: Joi.string().allow(""),
+      invoice_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
       modified_at: Joi.string().allow(""),
-      next_action_time: Joi.string().allow(""),
-      number: Joi.string().allow(""),
-      paid: Joi.boolean(),
-      payment_method: BillingPlatformModel.InvoicesDataPaymentMethod(),
-      period: BillingPlatformModel.InvoicesDataPeriod(),
-      pg_data: Joi.any(),
-      receipt_number: Joi.string().allow(""),
-      statement_descriptor: Joi.string().allow(""),
-      status_trail: Joi.array().items(
-        BillingPlatformModel.InvoiceDetailsStatusTrail()
-      ),
-      subscriber_id: Joi.string().allow(""),
-      subscription: Joi.string().allow(""),
-      subtotal: Joi.number(),
-      total: Joi.number(),
+    });
+  }
+
+  /** @returns {Invoice} */
+  static Invoice() {
+    return Joi.object({
+      invoice: BillingPlatformModel.InvoiceDetails(),
+      invoice_items: Joi.array().items(BillingPlatformModel.InvoiceItems()),
     });
   }
 
   /** @returns {InvoicesDataClient} */
   static InvoicesDataClient() {
     return Joi.object({
-      address_lines: Joi.array().items(Joi.string().allow("")),
-      email: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      email: Joi.string().allow(""),
       phone: Joi.string().allow(""),
+      address_lines: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {InvoicesDataPeriod} */
+  static InvoicesDataPeriod() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
     });
   }
 
@@ -963,252 +966,165 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {InvoicesDataPeriod} */
-  static InvoicesDataPeriod() {
-    return Joi.object({
-      end: Joi.string().allow(""),
-      start: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Meta} */
-  static Meta() {
-    return Joi.object({
-      is_custom_plan: Joi.boolean(),
-      is_plan_upgrade: Joi.boolean(),
-      subscribe: Joi.boolean(),
-    });
-  }
-
-  /** @returns {OneTimeChargeEntity} */
-  static OneTimeChargeEntity() {
+  /** @returns {InvoicesData} */
+  static InvoicesData() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      activated_on: Joi.string().allow(""),
-      cancelled_on: Joi.string().allow(""),
-      entity_id: Joi.string().allow(""),
-      entity_type: Joi.string().allow(""),
-      is_test: Joi.boolean(),
-      meta: Joi.any(),
-      metadata: Joi.any(),
-      name: Joi.string().allow(""),
-      price: BillingPlatformModel.EntityChargePrice(),
-      pricing_type: Joi.string().allow(""),
-      return_url: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      client: BillingPlatformModel.InvoicesDataClient(),
+      auto_advance: Joi.boolean(),
+      currency: Joi.string().allow(""),
+      paid: Joi.boolean(),
+      attemp: Joi.number(),
+      collection_method: Joi.string().allow(""),
       subscriber_id: Joi.string().allow(""),
+      invoice_url: Joi.string().allow(""),
+      number: Joi.string().allow(""),
+      pg_data: Joi.any(),
+      period: BillingPlatformModel.InvoicesDataPeriod(),
+      receipt_number: Joi.string().allow(""),
+      statement_descriptor: Joi.string().allow(""),
+      current_status: Joi.string().allow(""),
+      status_trail: Joi.array().items(
+        BillingPlatformModel.InvoiceDetailsStatusTrail()
+      ),
+      subtotal: Joi.number(),
+      total: Joi.number(),
+      subscription: Joi.string().allow(""),
+      next_action_time: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      hash_identifier: Joi.string().allow(""),
+      payment_method: BillingPlatformModel.InvoicesDataPaymentMethod(),
+      invoice_items: Joi.array().items(BillingPlatformModel.InvoiceItems()),
     });
   }
 
-  /** @returns {OneTimeChargeItem} */
-  static OneTimeChargeItem() {
+  /** @returns {Invoices} */
+  static Invoices() {
     return Joi.object({
-      capped_amount: Joi.number(),
-      is_test: Joi.boolean(),
-      metadata: Joi.any(),
-      name: Joi.string().allow("").required(),
-      price: BillingPlatformModel.EntityChargePrice().required(),
-      pricing_type: Joi.string().allow("").required(),
-      term: Joi.string().allow(""),
+      data: Joi.array().items(BillingPlatformModel.InvoicesData()),
+      start: Joi.number(),
+      end: Joi.number(),
+      limit: Joi.number(),
+      page: Joi.number(),
+      total: Joi.number(),
     });
   }
 
   /** @returns {Phone} */
   static Phone() {
     return Joi.object({
-      phone_country_code: Joi.string().allow(""),
       phone_number: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Plan} */
-  static Plan() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      addons: Joi.array().items(Joi.string().allow("")),
-      amount: Joi.number(),
-      country: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      currency: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      is_trial_plan: Joi.boolean(),
-      is_visible: Joi.boolean(),
-      modified_at: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      plan_group: Joi.string().allow(""),
-      product_suite_id: Joi.string().allow(""),
-      recurring: BillingPlatformModel.PlanRecurring(),
-      tag_lines: Joi.array().items(Joi.string().allow("")),
-      tags: Joi.array().items(Joi.string().allow("")),
-      trial_period: Joi.number(),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PlanRecurring} */
-  static PlanRecurring() {
-    return Joi.object({
-      interval: Joi.string().allow(""),
-      interval_count: Joi.number(),
-    });
-  }
-
-  /** @returns {PlanStatusUpdateReq} */
-  static PlanStatusUpdateReq() {
-    return Joi.object({
-      plan_id: Joi.string().allow(""),
-      reason: Joi.string().allow(""),
-      seller_status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ResourceNotFound} */
-  static ResourceNotFound() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscribePlanRes} */
-  static SubscribePlanRes() {
-    return Joi.object({
-      current_status: Joi.string().allow(""),
-      meta: BillingPlatformModel.Meta(),
-      redirect_url: Joi.string().allow(""),
-      transaction_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Subscription} */
-  static Subscription() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      cancel_at_period_end: Joi.boolean(),
-      channel_type: Joi.string().allow(""),
-      collection_method: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      current_period: BillingPlatformModel.SubscriptionCurrentPeriod(),
-      current_status: Joi.string().allow(""),
-      invoice_settings: BillingPlatformModel.SubscriptionInvoiceSettings(),
-      is_active: Joi.boolean(),
-      latest_invoice: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      pause_collection: BillingPlatformModel.SubscriptionPauseCollection(),
-      plan_data: BillingPlatformModel.Plan(),
-      plan_id: Joi.string().allow(""),
-      product_suite_id: Joi.string().allow(""),
-      subscriber_id: Joi.string().allow(""),
-      trial: BillingPlatformModel.SubscriptionTrial(),
-    });
-  }
-
-  /** @returns {SubscriptionActivateReq} */
-  static SubscriptionActivateReq() {
-    return Joi.object({
-      payment_method: Joi.string().allow(""),
-      plan_id: Joi.string().allow(""),
-      product_suite: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      unique_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscriptionActivateRes} */
-  static SubscriptionActivateRes() {
-    return Joi.object({
-      data: BillingPlatformModel.Subscription(),
-      success: Joi.boolean(),
+      phone_country_code: Joi.string().allow(""),
     });
   }
 
   /** @returns {SubscriptionBillingAddress} */
   static SubscriptionBillingAddress() {
     return Joi.object({
-      city: Joi.string().allow(""),
       country: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      city: Joi.string().allow(""),
       line1: Joi.string().allow(""),
       line2: Joi.string().allow(""),
       postal_code: Joi.string().allow(""),
-      state: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscriptionCharge} */
-  static SubscriptionCharge() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      activated_on: Joi.string().allow(""),
-      billing_date: Joi.string().allow(""),
-      cancelled_on: Joi.string().allow(""),
-      capped_amount: Joi.number(),
-      current_period: BillingPlatformModel.CurrentPeriod(),
-      is_test: Joi.boolean(),
-      metadata: Joi.any(),
-      name: Joi.string().allow(""),
-      price: BillingPlatformModel.EntityChargePrice(),
-      pricing_type: Joi.string().allow(""),
-      recurring: BillingPlatformModel.EntityChargeRecurring(),
-      status: Joi.string().allow(""),
-      term: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscriptionCurrentPeriod} */
-  static SubscriptionCurrentPeriod() {
-    return Joi.object({
-      end: Joi.string().allow(""),
-      start: Joi.string().allow(""),
     });
   }
 
   /** @returns {SubscriptionCustomer} */
   static SubscriptionCustomer() {
     return Joi.object({
-      _id: Joi.string().allow(""),
-      billing_address: BillingPlatformModel.SubscriptionBillingAddress(),
-      created_at: Joi.string().allow(""),
-      data: Joi.any(),
-      email: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      name: Joi.string().allow(""),
       phone: BillingPlatformModel.Phone(),
-      type: Joi.string().allow(""),
+      billing_address: BillingPlatformModel.SubscriptionBillingAddress(),
+      _id: Joi.string().allow(""),
       unique_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      data: Joi.any(),
     });
   }
 
   /** @returns {SubscriptionCustomerCreate} */
   static SubscriptionCustomerCreate() {
     return Joi.object({
-      billing_address: BillingPlatformModel.SubscriptionBillingAddress(),
-      email: Joi.string().allow(""),
-      name: Joi.string().allow(""),
       phone: BillingPlatformModel.Phone(),
-      type: Joi.string().allow(""),
+      billing_address: BillingPlatformModel.SubscriptionBillingAddress(),
       unique_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriptionCurrentPeriod} */
+  static SubscriptionCurrentPeriod() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriptionPauseCollection} */
+  static SubscriptionPauseCollection() {
+    return Joi.object({
+      behavior: Joi.string().allow(""),
+      resume_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriptionTrial} */
+  static SubscriptionTrial() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
     });
   }
 
   /** @returns {SubscriptionInvoiceSettings} */
   static SubscriptionInvoiceSettings() {
     return Joi.object({
-      charging: Joi.boolean(),
       generation: Joi.boolean(),
+      charging: Joi.boolean(),
     });
   }
 
-  /** @returns {SubscriptionLimit} */
-  static SubscriptionLimit() {
+  /** @returns {Subscription} */
+  static Subscription() {
     return Joi.object({
-      application: BillingPlatformModel.SubscriptionLimitApplication(),
-      extensions: BillingPlatformModel.SubscriptionLimitExtensions(),
-      integrations: BillingPlatformModel.SubscriptionLimitIntegrations(),
-      is_trial_plan: Joi.boolean(),
-      marketplace: BillingPlatformModel.SubscriptionLimitMarketplace(),
-      other_platform: BillingPlatformModel.SubscriptionLimitOtherPlatform(),
-      products: BillingPlatformModel.SubscriptionLimitProducts(),
-      team: BillingPlatformModel.SubscriptionLimitTeam(),
+      current_period: BillingPlatformModel.SubscriptionCurrentPeriod(),
+      pause_collection: BillingPlatformModel.SubscriptionPauseCollection(),
+      trial: BillingPlatformModel.SubscriptionTrial(),
+      invoice_settings: BillingPlatformModel.SubscriptionInvoiceSettings(),
+      is_active: Joi.boolean(),
+      cancel_at_period_end: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      subscriber_id: Joi.string().allow(""),
+      plan_id: Joi.string().allow(""),
+      product_suite_id: Joi.string().allow(""),
+      plan_data: BillingPlatformModel.Plan(),
+      current_status: Joi.string().allow(""),
+      collection_method: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      latest_invoice: Joi.string().allow(""),
+      channel_type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriptionStatus} */
+  static SubscriptionStatus() {
+    return Joi.object({
+      is_enabled: Joi.boolean(),
+      subscription: BillingPlatformModel.Subscription(),
+      latest_invoice: BillingPlatformModel.InvoicesData(),
+      next_plan: BillingPlatformModel.Plan(),
+      current_subscriptions: Joi.array().items(
+        BillingPlatformModel.Subscription()
+      ),
+      mandate_amount: Joi.string().allow(""),
     });
   }
 
@@ -1218,6 +1134,35 @@ class BillingPlatformModel {
       enabled: Joi.boolean(),
       hard_limit: Joi.number(),
       soft_limit: Joi.number(),
+    });
+  }
+
+  /** @returns {SubscriptionLimitMarketplace} */
+  static SubscriptionLimitMarketplace() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SubscriptionLimitOtherPlatform} */
+  static SubscriptionLimitOtherPlatform() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SubscriptionLimitTeam} */
+  static SubscriptionLimitTeam() {
+    return Joi.object({
+      limit: Joi.number(),
+    });
+  }
+
+  /** @returns {SubscriptionLimitProducts} */
+  static SubscriptionLimitProducts() {
+    return Joi.object({
+      bulk: Joi.boolean(),
+      limit: Joi.number(),
     });
   }
 
@@ -1237,81 +1182,136 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {SubscriptionLimitMarketplace} */
-  static SubscriptionLimitMarketplace() {
+  /** @returns {SubscriptionLimit} */
+  static SubscriptionLimit() {
     return Joi.object({
-      enabled: Joi.boolean(),
+      application: BillingPlatformModel.SubscriptionLimitApplication(),
+      marketplace: BillingPlatformModel.SubscriptionLimitMarketplace(),
+      other_platform: BillingPlatformModel.SubscriptionLimitOtherPlatform(),
+      team: BillingPlatformModel.SubscriptionLimitTeam(),
+      products: BillingPlatformModel.SubscriptionLimitProducts(),
+      extensions: BillingPlatformModel.SubscriptionLimitExtensions(),
+      integrations: BillingPlatformModel.SubscriptionLimitIntegrations(),
+      is_trial_plan: Joi.boolean(),
     });
   }
 
-  /** @returns {SubscriptionLimitOtherPlatform} */
-  static SubscriptionLimitOtherPlatform() {
+  /** @returns {SubscriptionActivateReq} */
+  static SubscriptionActivateReq() {
     return Joi.object({
-      enabled: Joi.boolean(),
+      unique_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      product_suite: Joi.string().allow(""),
+      plan_id: Joi.string().allow(""),
+      payment_method: Joi.string().allow(""),
     });
   }
 
-  /** @returns {SubscriptionLimitProducts} */
-  static SubscriptionLimitProducts() {
+  /** @returns {SubscriptionActivateRes} */
+  static SubscriptionActivateRes() {
     return Joi.object({
-      bulk: Joi.boolean(),
-      limit: Joi.number(),
+      success: Joi.boolean(),
+      data: BillingPlatformModel.Subscription(),
     });
   }
 
-  /** @returns {SubscriptionLimitTeam} */
-  static SubscriptionLimitTeam() {
+  /** @returns {CancelSubscriptionReq} */
+  static CancelSubscriptionReq() {
     return Joi.object({
-      limit: Joi.number(),
+      unique_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      product_suite: Joi.string().allow(""),
+      subscription_id: Joi.string().allow(""),
     });
   }
 
-  /** @returns {SubscriptionPauseCollection} */
-  static SubscriptionPauseCollection() {
+  /** @returns {CancelSubscriptionRes} */
+  static CancelSubscriptionRes() {
     return Joi.object({
-      behavior: Joi.string().allow(""),
-      resume_at: Joi.string().allow(""),
+      success: Joi.boolean(),
+      data: BillingPlatformModel.Subscription(),
     });
   }
 
-  /** @returns {SubscriptionStatus} */
-  static SubscriptionStatus() {
+  /** @returns {PlanStatusUpdateReq} */
+  static PlanStatusUpdateReq() {
     return Joi.object({
-      current_subscriptions: Joi.array().items(
-        BillingPlatformModel.Subscription()
-      ),
-      is_enabled: Joi.boolean(),
-      latest_invoice: BillingPlatformModel.InvoicesData(),
-      mandate_amount: Joi.string().allow(""),
-      next_plan: BillingPlatformModel.Plan(),
-      subscription: BillingPlatformModel.Subscription(),
-    });
-  }
-
-  /** @returns {SubscriptionTrial} */
-  static SubscriptionTrial() {
-    return Joi.object({
-      end: Joi.string().allow(""),
-      start: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SubscriptionTrialPeriod} */
-  static SubscriptionTrialPeriod() {
-    return Joi.object({
-      end_date: Joi.string().allow(""),
-      start_date: Joi.string().allow(""),
+      plan_id: Joi.string().allow(""),
+      reason: Joi.string().allow(""),
+      seller_status: Joi.string().allow(""),
     });
   }
 
   /** @returns {SunscribePlan} */
   static SunscribePlan() {
     return Joi.object({
-      callback_url: Joi.string().allow(""),
-      collection_type: Joi.string().allow(""),
       entity_type: Joi.string().allow(""),
-      meta: BillingPlatformModel.Meta(),
+      collection_type: Joi.string().allow(""),
       plan_id: Joi.string().allow(""),
+      callback_url: Joi.string().allow(""),
+      meta: BillingPlatformModel.Meta(),
+    });
+  }
+
+  /** @returns {Meta} */
+  static Meta() {
+    return Joi.object({
+      subscribe: Joi.boolean(),
+      is_custom_plan: Joi.boolean(),
+      is_plan_upgrade: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SubscribePlanRes} */
+  static SubscribePlanRes() {
+    return Joi.object({
+      redirect_url: Joi.string().allow(""),
+      transaction_id: Joi.string().allow(""),
+      current_status: Joi.string().allow(""),
+      meta: BillingPlatformModel.Meta(),
+    });
+  }
+
+  /** @returns {Features} */
+  static Features() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      group: Joi.string().allow(""),
+      enabled: Joi.boolean(),
+      display_text: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FeeComponents} */
+  static FeeComponents() {
+    return Joi.object({
+      brand: Joi.array().items(Joi.string().allow("")),
+      location: Joi.array().items(Joi.string().allow("")),
+      channel: Joi.array().items(Joi.any()),
+      business_lead: Joi.string().allow(""),
+      settlement_type: Joi.string().allow(""),
+      settle_cycle_period: Joi.any(),
+      components: Joi.array().items(Joi.any()),
+    });
+  }
+
+  /** @returns {Details} */
+  static Details() {
+    return Joi.object({
+      fee_components: Joi.array().items(BillingPlatformModel.FeeComponents()),
+      features: Joi.array().items(BillingPlatformModel.Features()),
+    });
+  }
+
+  /** @returns {EntityResponse} */
+  static EntityResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+      page: Joi.number(),
+      page_size: Joi.number(),
+      items: Joi.array().items(BillingPlatformModel.Details()),
     });
   }
 }

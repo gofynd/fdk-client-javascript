@@ -20,9 +20,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.CancelResponse>} - Success response
    * @name cancelJobByName
-   * @summary: Cancel a report export.
-   * @description: Cancel the export of a specific report for a company.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/cancelJobByName/).
+   * @summary: Cancel job by name
+   * @description: Cancel a specific job by its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/cancelJobByName/).
    */
   async cancelJobByName(
     { filename, requestHeaders } = { requestHeaders: {} },
@@ -100,9 +99,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.DownloadReportResponse>} - Success response
    * @name downloadDeliveryReport
-   * @summary: Download processed events report for a company.
-   * @description: Download reports for a specific company based on the provided filters.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/downloadDeliveryReport/).
+   * @summary: Download delivery report
+   * @description: Download detailed delivery reports for events. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/downloadDeliveryReport/).
    */
   async downloadDeliveryReport(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -182,9 +180,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.EventConfigResponse>} - Success response
    * @name fetchAllEventConfigurations
-   * @summary: Get All Webhook Events.
-   * @description: To fetch all webhook events.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/fetchAllEventConfigurations/).
+   * @summary: Fetch all event configurations
+   * @description: Retrieve all configurations for event handling. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/fetchAllEventConfigurations/).
    */
   async fetchAllEventConfigurations(
     { requestHeaders } = { requestHeaders: {} },
@@ -260,9 +257,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.EventProcessReports>} - Success response
    * @name getDeliveryReports
-   * @summary: Get processed events report for a company.
-   * @description: Retrieve a list of processed events for a specific company based on the provided filters.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getDeliveryReports/).
+   * @summary: Get delivery reports
+   * @description: Retrieve reports on the delivery status of events. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getDeliveryReports/).
    */
   async getDeliveryReports(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -340,9 +336,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.RetryCountResponse>} - Success response
    * @name getEventCounts
-   * @summary: Get the count of failed events for a company within a specified date range.
-   * @description: Retrieves the count of failed events for a specific company within the specified date range. The user can filter the count based on specific event types if provided.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getEventCounts/).
+   * @summary: Get event counts
+   * @description: Retrieve the counts of events based on their status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getEventCounts/).
    */
   async getEventCounts(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -420,9 +415,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.HistoryResponse>} - Success response
    * @name getHistoricalReports
-   * @summary: Get report download history.
-   * @description: Retrieve history reports for a specific company based on the provided filters.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getHistoricalReports/).
+   * @summary: Get historical reports
+   * @description: Retrieve historical reports of webhook events. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getHistoricalReports/).
    */
   async getHistoricalReports(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -500,9 +494,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.RetryStatusResponse>} - Success response
    * @name getManualRetryStatus
-   * @summary: Get the retry status for a company's failed events.
-   * @description: Retrieves the status of retry for a specific company's failed events. This endpoint returns the total number of events, the count of successfully retried events, the count of failed retry attempts, and the overall status of the retry process.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getManualRetryStatus/).
+   * @summary: Get manual retry status
+   * @description: Check the status of a manual retry operation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getManualRetryStatus/).
    */
   async getManualRetryStatus(
     { requestHeaders } = { requestHeaders: {} },
@@ -576,9 +569,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.ReportFilterResponse[]>} - Success response
    * @name getReportFilters
-   * @summary: Get filters for a company.
-   * @description: Retrieve filters for a specific company based on the provided subscriber IDs.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getReportFilters/).
+   * @summary: Get report filters
+   * @description: Retrieve filters used for generating reports. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getReportFilters/).
    */
   async getReportFilters(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -653,8 +645,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
    * @name getSubscriberById
-   * @summary: Get Subscriber By Subscriber ID
-   * @description: Get Subscriber By Subscriber ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscriberById/).
+   * @summary: Get subscriber by ID
+   * @description: Retrieve a subscriber's details by their unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscriberById/).
    */
   async getSubscriberById(
     { subscriberId, requestHeaders } = { requestHeaders: {} },
@@ -732,9 +724,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
    * @name getSubscribersByCompany
-   * @summary: Get Subscribers By CompanyId.
-   * @description: Get Subscribers By Company ID.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByCompany/).
+   * @summary: Get subscribers by company
+   * @description: Retrieve subscribers associated with a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByCompany/).
    */
   async getSubscribersByCompany(
     { pageNo, pageSize, extensionId, requestHeaders } = { requestHeaders: {} },
@@ -821,8 +812,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
    * @name getSubscribersByExtensionId
-   * @summary: Get Subscribers By Extension ID
-   * @description: Get Subscribers By ExtensionID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByExtensionId/).
+   * @summary: Get subscribers by extension ID
+   * @description: Retrieve subscribers associated with a specific extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByExtensionId/).
    */
   async getSubscribersByExtensionId(
     { extensionId, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -908,9 +899,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
    * @name manualRetryCancel
-   * @summary: Cancel the active manual retry for a company's failed events.
-   * @description: Cancels the active manual retry for a specific company's failed events. If a manual retry is currently in progress, it will be cancelled.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryCancel/).
+   * @summary: Manual retry cancellation
+   * @description: Cancel a manual retry operation for a failed event. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryCancel/).
    */
   async manualRetryCancel(
     { requestHeaders } = { requestHeaders: {} },
@@ -981,9 +971,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.RetrySuccessResponse>} - Success response
    * @name manualRetryOfFailedEvent
-   * @summary: Initiate a manual retry for event processing.
-   * @description: Initiates a manual retry for event processing for a specific company. This endpoint allows the user to specify the date range (start_date and end_date) within which the events should be retried.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryOfFailedEvent/).
+   * @summary: Manual retry of failed event
+   * @description: Trigger a manual retry for an event that failed to deliver. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryOfFailedEvent/).
    */
   async manualRetryOfFailedEvent(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1063,9 +1052,8 @@ class Webhook {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.PingWebhookResponse>} - Success response
    * @name pingWebhook
-   * @summary: Ping and validate webhook url.
-   * @description: Ping and validate webhook url.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/pingWebhook/).
+   * @summary: Ping webhook
+   * @description: Send a test ping to a webhook for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/pingWebhook/).
    */
   async pingWebhook(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1142,9 +1130,8 @@ class Webhook {
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigResponse>} -
    *   Success response
    * @name registerSubscriberToEvent
-   * @summary: Register Subscriber.
-   * @description: Register Subscriber.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEvent/).
+   * @summary: Register subscriber to event
+   * @description: Add a subscriber to receive events of a specific type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEvent/).
    */
   async registerSubscriberToEvent(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1225,8 +1212,8 @@ class Webhook {
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigResponse>} -
    *   Success response
    * @name updateSubscriberConfig
-   * @summary: Update Subscriber
-   * @description: Update Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberConfig/).
+   * @summary: Update subscriber config
+   * @description: Modify and update subscriber configuration settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberConfig/).
    */
   async updateSubscriberConfig(
     { body, requestHeaders } = { requestHeaders: {} },

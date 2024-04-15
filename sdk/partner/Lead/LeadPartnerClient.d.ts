@@ -116,7 +116,7 @@ declare class Lead {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<LeadPartnerModel.GeneralConfigResponse>} - Success response
      * @name getGeneralConfig
-     * @summary: Get general support configuration.
+     * @summary: Get general support configuration
      * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getGeneralConfig/).
      */
     getGeneralConfig({ requestHeaders }?: LeadPartnerValidator.GetGeneralConfigParam, { responseHeaders }?: object): Promise<LeadPartnerModel.GeneralConfigResponse>;

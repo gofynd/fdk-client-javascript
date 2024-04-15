@@ -10,28 +10,28 @@ const Joi = require("joi");
 /**
  * @typedef AddProxyResponse
  * @property {string} [_id]
- * @property {string} [application_id]
  * @property {string} [attached_path]
- * @property {string} [company_id]
- * @property {string} [created_at]
- * @property {string} [extension_id]
- * @property {string} [modified_at]
  * @property {string} [proxy_url]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [extension_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ */
+
+/**
+ * @typedef RemoveProxyResponse
+ * @property {string} [message]
+ * @property {Object} [data]
  */
 
 /**
  * @typedef APIError
  * @property {string} [code]
+ * @property {string} [message]
  * @property {string} [info] - Error code description link
- * @property {string} [message]
- * @property {Object} [meta]
  * @property {string} [request_id]
- */
-
-/**
- * @typedef RemoveProxyResponse
- * @property {Object} [data]
- * @property {string} [message]
+ * @property {Object} [meta]
  */
 
 class PartnerPlatformModel {
@@ -47,13 +47,21 @@ class PartnerPlatformModel {
   static AddProxyResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      application_id: Joi.string().allow(""),
       attached_path: Joi.string().allow(""),
-      company_id: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      extension_id: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
       proxy_url: Joi.string().allow(""),
+      company_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      extension_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RemoveProxyResponse} */
+  static RemoveProxyResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      data: Joi.any(),
     });
   }
 
@@ -61,18 +69,10 @@ class PartnerPlatformModel {
   static APIError() {
     return Joi.object({
       code: Joi.string().allow(""),
+      message: Joi.string().allow(""),
       info: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      meta: Joi.any(),
       request_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {RemoveProxyResponse} */
-  static RemoveProxyResponse() {
-    return Joi.object({
-      data: Joi.any(),
-      message: Joi.string().allow(""),
+      meta: Joi.any(),
     });
   }
 }

@@ -98,8 +98,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.BlockUserSuccess>} - Success response
    * @name blockOrUnblockUsers
-   * @summary: Block/Unblock user
-   * @description: Block/Unblock user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/blockOrUnblockUsers/).
+   * @summary: Block/unblock users
+   * @description: Control user access by blocking or unblocking their accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/blockOrUnblockUsers/).
    */
   async blockOrUnblockUsers(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -178,7 +178,7 @@ class User {
    * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
    * @name createUser
    * @summary: Create user
-   * @description: Create user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUser/).
+   * @description: Register and add a new user to the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUser/).
    */
   async createUser(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -336,8 +336,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name createUserGroup
-   * @summary: Create an User Group
-   * @description: Use this API to create new user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserGroup/).
+   * @summary: Create user group
+   * @description: Form and add a new user group. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserGroup/).
    */
   async createUserGroup(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -417,7 +417,7 @@ class User {
    *   Success response
    * @name createUserSession
    * @summary: Create user session
-   * @description: Create user session - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserSession/).
+   * @description: Establish a session for user interactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserSession/).
    */
   async createUserSession(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -498,8 +498,8 @@ class User {
    * @returns {Promise<UserPlatformModel.SessionsDeleteResponseSchema>} -
    *   Success response
    * @name deleteActiveSessions
-   * @summary: Delete a list of all session for a user
-   * @description: Use this API to Delete a list of session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteActiveSessions/).
+   * @summary: Delete active sessions
+   * @description: End multiple active user sessions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteActiveSessions/).
    */
   async deleteActiveSessions(
     { id, reason, requestHeaders } = { requestHeaders: {} },
@@ -582,8 +582,8 @@ class User {
    * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
    *   Success response
    * @name deleteSession
-   * @summary: Delete a session for a user
-   * @description: Use this API to Delete a session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteSession/).
+   * @summary: Delete session
+   * @description: Terminate an active user session. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteSession/).
    */
   async deleteSession(
     { id, sessionId, reason, requestHeaders } = { requestHeaders: {} },
@@ -818,8 +818,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.SessionListResponseSchema>} - Success response
    * @name getActiveSessions
-   * @summary: Get a list of all session with info for a user
-   * @description: Use this API to retrieve a list of session with info of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getActiveSessions/).
+   * @summary: Get active sessions
+   * @description: Retrieve a list of currently active user sessions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getActiveSessions/).
    */
   async getActiveSessions(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -898,8 +898,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
    * @name getCustomers
-   * @summary: Get a list of customers
-   * @description: Use this API to retrieve a list of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getCustomers/).
+   * @summary: Get customers
+   * @description: Retrieve a list of customer profiles. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getCustomers/).
    */
   async getCustomers(
     { q, pageSize, pageNo, requestHeaders } = { requestHeaders: {} },
@@ -982,8 +982,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
    * @name getPlatformConfig
-   * @summary: Get platform configurations
-   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getPlatformConfig/).
+   * @summary: Get platform config
+   * @description: Retrieve configuration settings for the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getPlatformConfig/).
    */
   async getPlatformConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -1496,8 +1496,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name getUserGroupById
-   * @summary: Get an User Group by Id
-   * @description: Use this API to get details of an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroupById/).
+   * @summary: Get user group by ID
+   * @description: Retrieve a user group by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroupById/).
    */
   async getUserGroupById(
     { groupId, requestHeaders } = { requestHeaders: {} },
@@ -1576,8 +1576,8 @@ class User {
    * @returns {Promise<UserPlatformModel.UserGroupListResponseSchema>} -
    *   Success response
    * @name getUserGroups
-   * @summary: Get User Groups mathcing criteria
-   * @description: Use this API to get User Groups mathing criteria passed in query - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
+   * @summary: Get user groups
+   * @description: Retrieve a list of user groups. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
    */
   async getUserGroups(
     { pageNo, pageSize, name, type, status, groupUid, requestHeaders } = {
@@ -1671,8 +1671,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserSearchResponseSchema>} - Success response
    * @name searchUsers
-   * @summary: Search an existing user.
-   * @description: Use this API to retrieve an existing user from a list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/searchUsers/).
+   * @summary: Search users
+   * @description: Search and filter user profiles. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/searchUsers/).
    */
   async searchUsers(
     { q, query, requestHeaders } = { requestHeaders: {} },
@@ -1752,8 +1752,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UnDeleteUserSuccess>} - Success response
    * @name unDeleteUser
-   * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
-   * @description: undelete user who deleted from application and have not elapsed the platform configured delete days - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/unDeleteUser/).
+   * @summary: Undelete user
+   * @description: Restore a previously deleted user account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/unDeleteUser/).
    */
   async unDeleteUser(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1831,8 +1831,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
    * @name updatePlatformConfig
-   * @summary: Update platform configurations
-   * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updatePlatformConfig/).
+   * @summary: Update platform config
+   * @description: Modify and update platform configuration settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updatePlatformConfig/).
    */
   async updatePlatformConfig(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1911,7 +1911,7 @@ class User {
    * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
    * @name updateUser
    * @summary: Update user
-   * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUser/).
+   * @description: Modify and update user profile information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUser/).
    */
   async updateUser(
     { userId, body, requestHeaders } = { requestHeaders: {} },
@@ -2159,8 +2159,8 @@ class User {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name updateUserGroup
-   * @summary: Update an User Group
-   * @description: Use this API to update an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroup/).
+   * @summary: Update user group
+   * @description: Modify and update user group details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroup/).
    */
   async updateUserGroup(
     { groupId, body, requestHeaders } = { requestHeaders: {} },
@@ -2243,7 +2243,7 @@ class User {
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name updateUserGroupPartially
    * @summary: Add or Remove an user from particular user group and update user group details
-   * @description: Use this API to update user group details and add or remove an user to the user group. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroupPartially/).
+   * @description: Update user group partially on the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroupPartially/).
    */
   async updateUserGroupPartially(
     { groupId, body, requestHeaders } = { requestHeaders: {} },

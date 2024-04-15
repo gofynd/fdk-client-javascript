@@ -9,7 +9,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
-const axios = require("axios");
+const { fdkAxios } = require("../../common/AxiosHelper.js");
 
 class FileStorage {
   constructor(config, applicationId) {
@@ -25,26 +25,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name appCompleteUpload
-   * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-   * @description: Uploads an arbitrarily sized buffer or blob.
-   *
-   * It has three Major Steps:
-   * Start
-   * Upload
-   * Complete
-   *
-   * ### Start
-   * Initiates the assets upload using `appStartUpload`.
-   * It returns the storage link in response.
-   *
-   * ### Upload
-   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-   * Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-   *
-   * ### Complete
-   * After successfully upload, call `appCompleteUpload` api to complete the upload process.
-   * This operation will return the url for the uploaded file.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
+   * @summary: Application complete upload
+   * @description: Finish uploading a file from an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
    */
   async appCompleteUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -126,8 +108,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name appCopyFiles
-   * @summary: Copy Files
-   * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
+   * @summary: Application copy files
+   * @description: Copy files from an application to another location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
    */
   async appCopyFiles(
     { body, sync, requestHeaders } = { requestHeaders: {} },
@@ -208,26 +190,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name appStartUpload
-   * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-   * @description: Uploads an arbitrarily sized buffer or blob.
-   *
-   * It has three Major Steps:
-   * Start
-   * Upload
-   * Complete
-   *
-   * ### Start
-   * Initiates the assets upload using `appStartUpload`.
-   * It returns the storage link in response.
-   *
-   * ### Upload
-   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-   * Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-   *
-   * ### Complete
-   * After successfully upload, call `appCompleteUpload` api to complete the upload process.
-   * This operation will return the url for the uploaded file.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
+   * @summary: Application start upload
+   * @description: Start uploading a file from an application and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
    */
   async appStartUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -309,8 +273,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name appbrowse
-   * @summary: Browse Files
-   * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
+   * @summary: Application browse files
+   * @description: Browse files within an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
    */
   async appbrowse(
     { namespace, page, limit, search, requestHeaders } = { requestHeaders: {} },
@@ -491,7 +455,7 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name generatePaymentReceipt
-   * @summary: Generate Payment Receipt for Jiomart Digital
+   * @summary: Generate payment receipt
    * @description: Generate Payment Receipt for Jiomart Digital - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/generatePaymentReceipt/).
    */
   async generatePaymentReceipt(
@@ -659,8 +623,8 @@ class FileStorage {
    * @returns {Promise<FileStoragePlatformModel.DummyTemplateDataItems>} -
    *   Success response
    * @name getDefaultPdfData
-   * @summary: Get Dummy pdf data for invoice or label
-   * @description: Get Dummy pdf data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
+   * @summary: Get default PDF data
+   * @description: Retrieve default data for PDF generation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
    */
   async getDefaultPdfData(
     { pdfTypeId, countryCode, requestHeaders } = { requestHeaders: {} },
@@ -745,8 +709,8 @@ class FileStorage {
    * @returns {Promise<FileStoragePlatformModel.PdfDefaultTemplateSuccess>} -
    *   Success response
    * @name getDefaultPdfTemplate
-   * @summary: Default html template
-   * @description: Get default html template data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
+   * @summary: Get default PDF template
+   * @description: Retrieve the default PDF template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
    */
   async getDefaultPdfTemplate(
     { pdfTypeId, format, countryCode, requestHeaders } = { requestHeaders: {} },
@@ -832,8 +796,8 @@ class FileStorage {
    * @returns {Promise<FileStoragePlatformModel.InvoiceTypesResponse>} -
    *   Success response
    * @name getPdfTypes
-   * @summary: Get all the supported invoice pdf types
-   * @description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
+   * @summary: Get PDF types
+   * @description: Retrieve a list of available PDF types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
    */
   async getPdfTypes(
     { countryCode, requestHeaders } = { requestHeaders: {} },
@@ -915,8 +879,8 @@ class FileStorage {
    * @returns {Promise<FileStoragePlatformModel.PdfConfigSaveSuccess>} -
    *   Success response
    * @name saveHtmlTemplate
-   * @summary: Update html template for invoice or label
-   * @description: Update html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/saveHtmlTemplate/).
+   * @summary: Save HTML template
+   * @description: Store an HTML template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/saveHtmlTemplate/).
    */
   async saveHtmlTemplate(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -997,8 +961,8 @@ class FileStorage {
    * @returns {Promise<FileStoragePlatformModel.PdfConfigSaveSuccess>} -
    *   Success response
    * @name updateHtmlTemplate
-   * @summary: Update html template for invoice or label
-   * @description: Update html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/updateHtmlTemplate/).
+   * @summary: Update HTML Template
+   * @description: Update the HTML Template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/updateHtmlTemplate/).
    */
   async updateHtmlTemplate(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -1101,10 +1065,16 @@ FileStorage.prototype.upload = function ({
         },
       });
       if (dataObj.upload && dataObj.upload.url) {
-        await axios.put(dataObj.upload.url, data, {
+        let rawRequest = {
+          method: "PUT",
+          url: dataObj.upload.url,
+          data: data,
+          headers: {
+            "Content-Type": content_type,
+          },
           withCredentials: false,
-          headers: { "Content-Type": content_type },
-        });
+        };
+        await fdkAxios.request(rawRequest);
       } else {
         reject({ message: "Failed to upload file" });
       }
