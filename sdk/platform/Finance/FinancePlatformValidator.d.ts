@@ -5,23 +5,23 @@ export = FinancePlatformValidator;
  */
 /**
  * @typedef CreateSellerCreditNoteConfigParam
- * @property {FinancePlatformModel.CreateSellerCreditNoteConfigReq} body
+ * @property {FinancePlatformModel.CreateSellerCreditNoteConfigRequest} body
  */
 /**
  * @typedef CreditNoteDetailsParam
- * @property {FinancePlatformModel.CreditNoteDetailsReq} body
+ * @property {FinancePlatformModel.CreditNoteDetailsRequest} body
  */
 /**
  * @typedef CreditlineDataplatformParam
- * @property {FinancePlatformModel.CreditlineDataPlatformReq} body
+ * @property {FinancePlatformModel.CreditlineDataPlatformRequest} body
  */
 /**
  * @typedef DeleteConfigParam
- * @property {FinancePlatformModel.DeleteConfigReq} body
+ * @property {FinancePlatformModel.DeleteConfigRequest} body
  */
 /**
  * @typedef DownloadCreditDebitNoteParam
- * @property {FinancePlatformModel.DownloadCreditDebitNoteReq} body
+ * @property {FinancePlatformModel.DownloadCreditDebitNoteRequest} body
  */
 /**
  * @typedef DownloadReportParam
@@ -29,15 +29,15 @@ export = FinancePlatformValidator;
  */
 /**
  * @typedef DownloadReportCustomerCnParam
- * @property {FinancePlatformModel.DownloadReportCustomerCnReq} body
+ * @property {FinancePlatformModel.DownloadReportCustomerCnRequest} body
  */
 /**
  * @typedef GenerateReportParam
- * @property {FinancePlatformModel.GenerateReportReq} body
+ * @property {FinancePlatformModel.GenerateReportRequest} body
  */
 /**
  * @typedef GenerateReportCustomerCnParam
- * @property {FinancePlatformModel.GenerateReportCustomerCnReq} body
+ * @property {FinancePlatformModel.GenerateReportCustomerCnRequest} body
  */
 /**
  * @typedef GetAffiliateParam
@@ -45,27 +45,27 @@ export = FinancePlatformValidator;
  */
 /**
  * @typedef GetCnConfigParam
- * @property {FinancePlatformModel.GetCnConfigReq} body
+ * @property {FinancePlatformModel.GetCnConfigRequest} body
  */
 /**
  * @typedef GetCustomerCreditBalanceParam
- * @property {FinancePlatformModel.GetCustomerCreditBalanceReq} body
+ * @property {FinancePlatformModel.GetCustomerCreditBalanceRequest} body
  */
 /**
  * @typedef GetDataParam
- * @property {FinancePlatformModel.GetEngineReq} body
+ * @property {FinancePlatformModel.GetEngineRequest} body
  */
 /**
  * @typedef GetPdfUrlViewParam
- * @property {FinancePlatformModel.GetPdfUrlViewReq} body
+ * @property {FinancePlatformModel.GetPdfUrlViewRequest} body
  */
 /**
  * @typedef GetReasonParam
- * @property {FinancePlatformModel.GetReasonReq} body
+ * @property {FinancePlatformModel.GetReasonRequest} body
  */
 /**
  * @typedef GetReportListParam
- * @property {FinancePlatformModel.GetReportListReq} body
+ * @property {FinancePlatformModel.GetReportListRequest} body
  */
 /**
  * @typedef GetReportingFiltersParam
@@ -73,47 +73,28 @@ export = FinancePlatformValidator;
  * @property {string} [affiliateId] - Affiliate id.
  */
 /**
- * @typedef InvoiceActivityLogsParam
- * @property {string} invoiceNumber - Invoice Number for which the data will be
- *   returned. Invoice_number is required.
- */
-/**
  * @typedef InvoiceListingParam
- * @property {FinancePlatformModel.InvoiceListingReq} body
+ * @property {FinancePlatformModel.InvoiceListingRequest} body
  */
 /**
  * @typedef InvoicePDFParam
- * @property {FinancePlatformModel.InvoicePdfReq} body
- */
-/**
- * @typedef InvoicePaymentDetailsParam
- * @property {string} invoiceNumber - Invoice Number for which the data will be
- *   returned.Invoice_Number is required.
- */
-/**
- * @typedef InvoicePaymentOptionsParam
- * @property {FinancePlatformModel.InvoicePaymentOptionsReq} body
+ * @property {FinancePlatformModel.InvoicePdfRequest} body
  */
 /**
  * @typedef InvoiceTypeParam
- * @property {FinancePlatformModel.InvoiceTypeReq} body
+ * @property {FinancePlatformModel.InvoiceTypeRequest} body
  */
 /**
  * @typedef IsCnRefundMethodParam
- * @property {FinancePlatformModel.IsCnRefundMethodReq} body
+ * @property {FinancePlatformModel.IsCnRefundMethodRequest} body
  */
 /**
  * @typedef IsCreditlinePlatformParam
- * @property {FinancePlatformModel.IsCreditlinePlatformReq} body
+ * @property {FinancePlatformModel.IsCreditlinePlatformRequest} body
  */
-/** @typedef OrderFreezeParam */
 /**
  * @typedef PaymentProcessParam
- * @property {FinancePlatformModel.PaymentProcessReq} body
- */
-/**
- * @typedef UnlockCreditNoteParam
- * @property {FinancePlatformModel.UnlockCreditNoteReq} body
+ * @property {FinancePlatformModel.PaymentProcessRequest} body
  */
 declare class FinancePlatformValidator {
     /** @returns {ChannelDisplayNameParam} */
@@ -152,31 +133,21 @@ declare class FinancePlatformValidator {
     static getReportList(): GetReportListParam;
     /** @returns {GetReportingFiltersParam} */
     static getReportingFilters(): GetReportingFiltersParam;
-    /** @returns {InvoiceActivityLogsParam} */
-    static invoiceActivityLogs(): InvoiceActivityLogsParam;
     /** @returns {InvoiceListingParam} */
     static invoiceListing(): InvoiceListingParam;
     /** @returns {InvoicePDFParam} */
     static invoicePDF(): InvoicePDFParam;
-    /** @returns {InvoicePaymentDetailsParam} */
-    static invoicePaymentDetails(): InvoicePaymentDetailsParam;
-    /** @returns {InvoicePaymentOptionsParam} */
-    static invoicePaymentOptions(): InvoicePaymentOptionsParam;
     /** @returns {InvoiceTypeParam} */
     static invoiceType(): InvoiceTypeParam;
     /** @returns {IsCnRefundMethodParam} */
     static isCnRefundMethod(): IsCnRefundMethodParam;
     /** @returns {IsCreditlinePlatformParam} */
     static isCreditlinePlatform(): IsCreditlinePlatformParam;
-    /** @returns {OrderFreezeParam} */
-    static orderFreeze(): any;
     /** @returns {PaymentProcessParam} */
     static paymentProcess(): PaymentProcessParam;
-    /** @returns {UnlockCreditNoteParam} */
-    static unlockCreditNote(): UnlockCreditNoteParam;
 }
 declare namespace FinancePlatformValidator {
-    export { ChannelDisplayNameParam, CreateSellerCreditNoteConfigParam, CreditNoteDetailsParam, CreditlineDataplatformParam, DeleteConfigParam, DownloadCreditDebitNoteParam, DownloadReportParam, DownloadReportCustomerCnParam, GenerateReportParam, GenerateReportCustomerCnParam, GetAffiliateParam, GetCnConfigParam, GetCustomerCreditBalanceParam, GetDataParam, GetPdfUrlViewParam, GetReasonParam, GetReportListParam, GetReportingFiltersParam, InvoiceActivityLogsParam, InvoiceListingParam, InvoicePDFParam, InvoicePaymentDetailsParam, InvoicePaymentOptionsParam, InvoiceTypeParam, IsCnRefundMethodParam, IsCreditlinePlatformParam, OrderFreezeParam, PaymentProcessParam, UnlockCreditNoteParam };
+    export { ChannelDisplayNameParam, CreateSellerCreditNoteConfigParam, CreditNoteDetailsParam, CreditlineDataplatformParam, DeleteConfigParam, DownloadCreditDebitNoteParam, DownloadReportParam, DownloadReportCustomerCnParam, GenerateReportParam, GenerateReportCustomerCnParam, GetAffiliateParam, GetCnConfigParam, GetCustomerCreditBalanceParam, GetDataParam, GetPdfUrlViewParam, GetReasonParam, GetReportListParam, GetReportingFiltersParam, InvoiceListingParam, InvoicePDFParam, InvoiceTypeParam, IsCnRefundMethodParam, IsCreditlinePlatformParam, PaymentProcessParam };
 }
 type ChannelDisplayNameParam = {
     /**
@@ -185,52 +156,52 @@ type ChannelDisplayNameParam = {
     filterKey: string;
 };
 type CreateSellerCreditNoteConfigParam = {
-    body: FinancePlatformModel.CreateSellerCreditNoteConfigReq;
+    body: FinancePlatformModel.CreateSellerCreditNoteConfigRequest;
 };
 type CreditNoteDetailsParam = {
-    body: FinancePlatformModel.CreditNoteDetailsReq;
+    body: FinancePlatformModel.CreditNoteDetailsRequest;
 };
 type CreditlineDataplatformParam = {
-    body: FinancePlatformModel.CreditlineDataPlatformReq;
+    body: FinancePlatformModel.CreditlineDataPlatformRequest;
 };
 type DeleteConfigParam = {
-    body: FinancePlatformModel.DeleteConfigReq;
+    body: FinancePlatformModel.DeleteConfigRequest;
 };
 type DownloadCreditDebitNoteParam = {
-    body: FinancePlatformModel.DownloadCreditDebitNoteReq;
+    body: FinancePlatformModel.DownloadCreditDebitNoteRequest;
 };
 type DownloadReportParam = {
     body: FinancePlatformModel.DownloadReport;
 };
 type DownloadReportCustomerCnParam = {
-    body: FinancePlatformModel.DownloadReportCustomerCnReq;
+    body: FinancePlatformModel.DownloadReportCustomerCnRequest;
 };
 type GenerateReportParam = {
-    body: FinancePlatformModel.GenerateReportReq;
+    body: FinancePlatformModel.GenerateReportRequest;
 };
 type GenerateReportCustomerCnParam = {
-    body: FinancePlatformModel.GenerateReportCustomerCnReq;
+    body: FinancePlatformModel.GenerateReportCustomerCnRequest;
 };
 type GetAffiliateParam = {
     body: FinancePlatformModel.GetAffiliate;
 };
 type GetCnConfigParam = {
-    body: FinancePlatformModel.GetCnConfigReq;
+    body: FinancePlatformModel.GetCnConfigRequest;
 };
 type GetCustomerCreditBalanceParam = {
-    body: FinancePlatformModel.GetCustomerCreditBalanceReq;
+    body: FinancePlatformModel.GetCustomerCreditBalanceRequest;
 };
 type GetDataParam = {
-    body: FinancePlatformModel.GetEngineReq;
+    body: FinancePlatformModel.GetEngineRequest;
 };
 type GetPdfUrlViewParam = {
-    body: FinancePlatformModel.GetPdfUrlViewReq;
+    body: FinancePlatformModel.GetPdfUrlViewRequest;
 };
 type GetReasonParam = {
-    body: FinancePlatformModel.GetReasonReq;
+    body: FinancePlatformModel.GetReasonRequest;
 };
 type GetReportListParam = {
-    body: FinancePlatformModel.GetReportListReq;
+    body: FinancePlatformModel.GetReportListRequest;
 };
 type GetReportingFiltersParam = {
     /**
@@ -242,43 +213,22 @@ type GetReportingFiltersParam = {
      */
     affiliateId?: string;
 };
-type InvoiceActivityLogsParam = {
-    /**
-     * - Invoice Number for which the data will be
-     * returned. Invoice_number is required.
-     */
-    invoiceNumber: string;
-};
 type InvoiceListingParam = {
-    body: FinancePlatformModel.InvoiceListingReq;
+    body: FinancePlatformModel.InvoiceListingRequest;
 };
 type InvoicePDFParam = {
-    body: FinancePlatformModel.InvoicePdfReq;
-};
-type InvoicePaymentDetailsParam = {
-    /**
-     * - Invoice Number for which the data will be
-     * returned.Invoice_Number is required.
-     */
-    invoiceNumber: string;
-};
-type InvoicePaymentOptionsParam = {
-    body: FinancePlatformModel.InvoicePaymentOptionsReq;
+    body: FinancePlatformModel.InvoicePdfRequest;
 };
 type InvoiceTypeParam = {
-    body: FinancePlatformModel.InvoiceTypeReq;
+    body: FinancePlatformModel.InvoiceTypeRequest;
 };
 type IsCnRefundMethodParam = {
-    body: FinancePlatformModel.IsCnRefundMethodReq;
+    body: FinancePlatformModel.IsCnRefundMethodRequest;
 };
 type IsCreditlinePlatformParam = {
-    body: FinancePlatformModel.IsCreditlinePlatformReq;
+    body: FinancePlatformModel.IsCreditlinePlatformRequest;
 };
 type PaymentProcessParam = {
-    body: FinancePlatformModel.PaymentProcessReq;
+    body: FinancePlatformModel.PaymentProcessRequest;
 };
-type UnlockCreditNoteParam = {
-    body: FinancePlatformModel.UnlockCreditNoteReq;
-};
-type OrderFreezeParam = any;
-import FinancePlatformModel = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformModel");
+import FinancePlatformModel = require("./FinancePlatformModel");

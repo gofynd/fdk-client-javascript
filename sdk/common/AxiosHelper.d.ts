@@ -1,1 +1,1 @@
-export const fdkAxios: import("axios").AxiosInstance;
+export const fdkAxios: any;

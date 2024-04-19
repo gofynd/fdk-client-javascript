@@ -1,40 +1,26 @@
 export = ThemePlatformValidator;
 /**
  * @typedef AddMarketplaceThemeToCompanyParam
- * @property {ThemePlatformModel.CompanyThemeReqSchema} body
+ * @property {ThemePlatformModel.ThemeReq} body
  */
 /**
  * @typedef DeleteCompanyThemeParam
  * @property {string} themeId - The ID of the theme.
  */
-/**
- * @typedef GetCompanyLevelPrivateThemesParam
- * @property {string} [searchText] - Search Text to match the Theme Names and
- *   return the response.
- */
-/**
- * @typedef GetCompanyLevelThemesParam
- * @property {string} [searchText] - Search Text to match the Theme Names and
- *   return the response.
- */
-/** @typedef GetDefaultMarketplaceThemeParam */
+/** @typedef GetCompanyLevelThemesParam */
 declare class ThemePlatformValidator {
     /** @returns {AddMarketplaceThemeToCompanyParam} */
     static addMarketplaceThemeToCompany(): AddMarketplaceThemeToCompanyParam;
     /** @returns {DeleteCompanyThemeParam} */
     static deleteCompanyTheme(): DeleteCompanyThemeParam;
-    /** @returns {GetCompanyLevelPrivateThemesParam} */
-    static getCompanyLevelPrivateThemes(): GetCompanyLevelPrivateThemesParam;
     /** @returns {GetCompanyLevelThemesParam} */
-    static getCompanyLevelThemes(): GetCompanyLevelThemesParam;
-    /** @returns {GetDefaultMarketplaceThemeParam} */
-    static getDefaultMarketplaceTheme(): any;
+    static getCompanyLevelThemes(): any;
 }
 declare namespace ThemePlatformValidator {
-    export { AddMarketplaceThemeToCompanyParam, DeleteCompanyThemeParam, GetCompanyLevelPrivateThemesParam, GetCompanyLevelThemesParam, GetDefaultMarketplaceThemeParam };
+    export { AddMarketplaceThemeToCompanyParam, DeleteCompanyThemeParam, GetCompanyLevelThemesParam };
 }
 type AddMarketplaceThemeToCompanyParam = {
-    body: ThemePlatformModel.CompanyThemeReqSchema;
+    body: ThemePlatformModel.ThemeReq;
 };
 type DeleteCompanyThemeParam = {
     /**
@@ -42,19 +28,5 @@ type DeleteCompanyThemeParam = {
      */
     themeId: string;
 };
-type GetCompanyLevelPrivateThemesParam = {
-    /**
-     * - Search Text to match the Theme Names and
-     * return the response.
-     */
-    searchText?: string;
-};
-type GetCompanyLevelThemesParam = {
-    /**
-     * - Search Text to match the Theme Names and
-     * return the response.
-     */
-    searchText?: string;
-};
-type GetDefaultMarketplaceThemeParam = any;
-import ThemePlatformModel = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformModel");
+type GetCompanyLevelThemesParam = any;
+import ThemePlatformModel = require("./ThemePlatformModel");

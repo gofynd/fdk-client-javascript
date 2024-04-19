@@ -12,8 +12,6 @@ const CompanyProfile = require("./CompanyProfile/CompanyProfilePlatformClient");
 
 const Configuration = require("./Configuration/ConfigurationPlatformClient");
 
-const Content = require("./Content/ContentPlatformClient");
-
 const Discount = require("./Discount/DiscountPlatformClient");
 
 const FileStorage = require("./FileStorage/FileStoragePlatformClient");
@@ -24,11 +22,11 @@ const Inventory = require("./Inventory/InventoryPlatformClient");
 
 const Lead = require("./Lead/LeadPlatformClient");
 
-const Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
-
 const Order = require("./Order/OrderPlatformClient");
 
 const Payment = require("./Payment/PaymentPlatformClient");
+
+const Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
 
 const Theme = require("./Theme/ThemePlatformClient");
 
@@ -65,8 +63,6 @@ class PlatformClient {
 
     this.configuration = new Configuration(config);
 
-    this.content = new Content(config);
-
     this.discount = new Discount(config);
 
     this.fileStorage = new FileStorage(config);
@@ -77,11 +73,11 @@ class PlatformClient {
 
     this.lead = new Lead(config);
 
-    this.serviceability = new Serviceability(config);
-
     this.order = new Order(config);
 
     this.payment = new Payment(config);
+
+    this.serviceability = new Serviceability(config);
 
     this.theme = new Theme(config);
 

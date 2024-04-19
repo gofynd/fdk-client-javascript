@@ -16,14 +16,7 @@ class Content {
     this._relativeUrls = {
       getAnnouncements: "/service/application/content/v1.0/announcements",
       getBlog: "/service/application/content/v1.0/blogs/{slug}",
-      getBlogs: "/service/application/content/v1.0/blogs",
-      getCustomFieldDefinition:
-        "/service/application/content/v1.0/metafields/definitions/{id}",
-      getCustomFieldDefinitions:
-        "/service/application/content/v1.0/metafields/definitions",
-      getCustomFields:
-        "/service/application/content/v1.0/metafields/{resource}",
-      getCustomObject: "/service/application/content/v1.0/metaobjects/{id}",
+      getBlogs: "/service/application/content/v1.0/blogs/",
       getDataLoaders: "/service/application/content/v1.0/data-loader",
       getFaqBySlug: "/service/application/content/v1.0/faq/{slug}",
       getFaqCategories: "/service/application/content/v1.0/faq/categories",
@@ -34,13 +27,12 @@ class Content {
         "/service/application/content/v1.0/faq/category/{slug}/faqs",
       getLandingPage: "/service/application/content/v1.0/landing-page",
       getLegalInformation: "/service/application/content/v1.0/legal",
-      getNavigations: "/service/application/content/v1.0/navigations",
+      getNavigations: "/service/application/content/v1.0/navigations/",
       getPage: "/service/application/content/v2.0/pages/{slug}",
-      getPageV1: "/service/application/content/v1.0/pages/{slug}",
-      getPages: "/service/application/content/v2.0/pages",
-      getPagesV1: "/service/application/content/v1.0/pages",
+      getPages: "/service/application/content/v2.0/pages/",
       getSEOConfiguration: "/service/application/content/v1.0/seo",
-      getSEOMarkupSchemas: "/service/application/content/v1.0/seo/schema",
+      getSlideshow: "/service/application/content/v1.0/slideshow/{slug}",
+      getSlideshows: "/service/application/content/v1.0/slideshow/",
       getSupportInformation: "/service/application/content/v1.0/support",
       getTags: "/service/application/content/v1.0/tags",
     };
@@ -68,8 +60,8 @@ class Content {
    *   - Success response
    *
    * @name getAnnouncements
-   * @summary: Fetches announcements of an Application
-   * @description: Retrieves all current announcements in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getAnnouncements/).
+   * @summary: Get live announcements
+   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getAnnouncements/).
    */
   async getAnnouncements(
     { requestHeaders } = { requestHeaders: {} },
@@ -146,8 +138,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.BlogSchema>} - Success response
    * @name getBlog
-   * @summary: Retrieves a single blog post.
-   * @description: Retrieves all information relate to a specific blog such as it's contents, author, publish date, SEO related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
+   * @summary: Get a blog
+   * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
    */
   async getBlog(
     { slug, rootId, requestHeaders } = { requestHeaders: {} },
@@ -223,8 +215,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.BlogGetResponse>} - Success response
    * @name getBlogs
-   * @summary: Lists all blog posts
-   * @description: Retrieve all the blogs which are present in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
+   * @summary: Get a list of blogs
+   * @description: Use this API to get all the blogs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
    */
   async getBlogs(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -299,8 +291,8 @@ class Content {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Paginator<ContentApplicationModel.BlogGetResponse>}
-   * @summary: Lists all blog posts
-   * @description: Retrieve all the blogs which are present in the application.
+   * @summary: Get a list of blogs
+   * @description: Use this API to get all the blogs.
    */
   getBlogsPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
@@ -323,340 +315,13 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.GetCustomFieldDefinitionParam} arg -
-   *   Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ContentApplicationModel.CustomFieldDefinitionDetailResSchema>}
-   *   - Success response
-   *
-   * @name getCustomFieldDefinition
-   * @summary: Get custom fields definition by id
-   * @description: Use this API to retrieve the definitions of custom fields using definition_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldDefinition/).
-   */
-  async getCustomFieldDefinition(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentApplicationValidator.getCustomFieldDefinition().validate(
-      { id },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentApplicationValidator.getCustomFieldDefinition().validate(
-      { id },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Content > getCustomFieldDefinition \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getCustomFieldDefinition"],
-        params: { id },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentApplicationModel.CustomFieldDefinitionDetailResSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Content > getCustomFieldDefinition \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentApplicationValidator.GetCustomFieldDefinitionsParam} arg
-   *   - Arg object.
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ContentApplicationModel.CustomFieldDefinitionsSchema>}
-   *   - Success response
-   *
-   * @name getCustomFieldDefinitions
-   * @summary: Get custom fields definitions
-   * @description: Use this API to retrieve the definitions of custom fields. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldDefinitions/).
-   */
-  async getCustomFieldDefinitions(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentApplicationValidator.getCustomFieldDefinitions().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentApplicationValidator.getCustomFieldDefinitions().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Content > getCustomFieldDefinitions \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getCustomFieldDefinitions"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentApplicationModel.CustomFieldDefinitionsSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Content > getCustomFieldDefinitions \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentApplicationValidator.GetCustomFieldsParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ContentApplicationModel.CustomFieldsResponseByResourceIdSchema>}
-   *   - Success response
-   *
-   * @name getCustomFields
-   * @summary: Get list of custom fields of given resource and resource_ids in the query params.
-   * @description: Use this API to retrieve the custom fields for given resource and resource_ids in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFields/).
-   */
-  async getCustomFields(
-    { resource, resourceIds, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ContentApplicationValidator.getCustomFields().validate(
-      { resource, resourceIds },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentApplicationValidator.getCustomFields().validate(
-      { resource, resourceIds },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Content > getCustomFields \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["resource_ids"] = resourceIds;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getCustomFields"],
-        params: { resource },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentApplicationModel.CustomFieldsResponseByResourceIdSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Content > getCustomFields \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentApplicationValidator.GetCustomObjectParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ContentApplicationModel.CustomObjectByIdSchema>} -
-   *   Success response
-   * @name getCustomObject
-   * @summary: Get custom object details
-   * @description: Use this API to retrieve the custom object details, their fields details with definitions and references. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObject/).
-   */
-  async getCustomObject(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ContentApplicationValidator.getCustomObject().validate(
-      { id },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentApplicationValidator.getCustomObject().validate(
-      { id },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Content > getCustomObject \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getCustomObject"],
-        params: { id },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentApplicationModel.CustomObjectByIdSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Content > getCustomObject \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ContentApplicationValidator.GetDataLoadersParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.DataLoadersSchema>} - Success response
    * @name getDataLoaders
-   * @summary: Retrieves data loaders enabled for an application
-   * @description: Retrieves all the data loaders that are added and enabled for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDataLoaders/).
+   * @summary: Get the data loaders associated with an application
+   * @description: Use this API to get all selected data loaders of the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDataLoaders/).
    */
   async getDataLoaders(
     { requestHeaders } = { requestHeaders: {} },
@@ -733,8 +398,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.FaqSchema>} - Success response
    * @name getFaqBySlug
-   * @summary: Retrieves FAQ by slug.
-   * @description: Retrieves a specific FAQ using its slug identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqBySlug/).
+   * @summary: Get an FAQ
+   * @description: Use this API to get a particular FAQ by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqBySlug/).
    */
   async getFaqBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -812,8 +477,8 @@ class Content {
    * @returns {Promise<ContentApplicationModel.GetFaqCategoriesSchema>} -
    *   Success response
    * @name getFaqCategories
-   * @summary: Lists FAQ categories.
-   * @description: Retrieve categories for organizing FAQs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategories/).
+   * @summary: Get a list of FAQ categories
+   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategories/).
    */
   async getFaqCategories(
     { requestHeaders } = { requestHeaders: {} },
@@ -891,8 +556,8 @@ class Content {
    * @returns {Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>} -
    *   Success response
    * @name getFaqCategoryBySlug
-   * @summary: Retrieves FAQ category by slug.
-   * @description: Retrieve a specific FAQ category using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategoryBySlug/).
+   * @summary: Get the FAQ category
+   * @description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategoryBySlug/).
    */
   async getFaqCategoryBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -971,8 +636,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.FaqResponseSchema>} - Success response
    * @name getFaqs
-   * @summary: Fetches FAQs of an applicaiton
-   * @description: Retrieves a list of frequently asked questions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqs/).
+   * @summary: Get a list of FAQs
+   * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqs/).
    */
   async getFaqs(
     { requestHeaders } = { requestHeaders: {} },
@@ -1047,8 +712,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.GetFaqSchema>} - Success response
    * @name getFaqsByCategorySlug
-   * @summary: Retrieves FAQs by category.
-   * @description: Retrieves FAQs belonging to a specific category slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqsByCategorySlug/).
+   * @summary: Get FAQs using the slug of FAQ category
+   * @description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqsByCategorySlug/).
    */
   async getFaqsByCategorySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -1127,8 +792,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.LandingPageSchema>} - Success response
    * @name getLandingPage
-   * @summary: Fetches landing page.
-   * @description: Gets the content of the application's landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
+   * @summary: Get the landing page
+   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
    */
   async getLandingPage(
     { requestHeaders } = { requestHeaders: {} },
@@ -1205,8 +870,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.ApplicationLegal>} - Success response
    * @name getLegalInformation
-   * @summary: Retrieves legal information.
-   * @description: Retrieve legal policies for an application which includes Terms and conditions, return policy, shipping policy and privacy policy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLegalInformation/).
+   * @summary: Get legal information
+   * @description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLegalInformation/).
    */
   async getLegalInformation(
     { requestHeaders } = { requestHeaders: {} },
@@ -1286,8 +951,8 @@ class Content {
    * @returns {Promise<ContentApplicationModel.NavigationGetResponse>} -
    *   Success response
    * @name getNavigations
-   * @summary: Retrieves navigation items
-   * @description: Retrieves the navigation link items which can be powered to genreate menus on application's website or equivalent mobile apps - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
+   * @summary: Get the navigation
+   * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
    */
   async getNavigations(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -1364,8 +1029,8 @@ class Content {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Paginator<ContentApplicationModel.NavigationGetResponse>}
-   * @summary: Retrieves navigation items
-   * @description: Retrieves the navigation link items which can be powered to genreate menus on application's website or equivalent mobile apps
+   * @summary: Get the navigation
+   * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
    */
   getNavigationsPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
@@ -1393,8 +1058,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.PageSchema>} - Success response
    * @name getPage
-   * @summary: Single page details.
-   * @description: Retrieve detailed information for a specific page within the theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
+   * @summary: Get a page
+   * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
    */
   async getPage(
     { slug, rootId, requestHeaders } = { requestHeaders: {} },
@@ -1465,92 +1130,13 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.GetPageV1Param} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ContentApplicationModel.PageSchema>} - Success response
-   * @name getPageV1
-   * @summary: Single page details.
-   * @description: Retrieve detailed information for a specific page within the theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPageV1/).
-   */
-  async getPageV1(
-    { slug, rootId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ContentApplicationValidator.getPageV1().validate(
-      { slug, rootId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentApplicationValidator.getPageV1().validate(
-      { slug, rootId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Content > getPageV1 \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["root_id"] = rootId;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPageV1"],
-        params: { slug },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentApplicationModel.PageSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Content > getPageV1 \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ContentApplicationValidator.GetPagesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.PageGetResponse>} - Success response
    * @name getPages
-   * @summary: Lists all pages.
-   * @description: Retrieve all available content pages in the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
+   * @summary: Get all pages
+   * @description: Use this API to get a list of pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
    */
   async getPages(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -1625,8 +1211,8 @@ class Content {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Paginator<ContentApplicationModel.PageGetResponse>}
-   * @summary: Lists all pages.
-   * @description: Retrieve all available content pages in the app.
+   * @summary: Get all pages
+   * @description: Use this API to get a list of pages.
    */
   getPagesPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
@@ -1649,120 +1235,13 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.GetPagesV1Param} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ContentApplicationModel.PageGetResponse>} - Success response
-   * @name getPagesV1
-   * @summary: Lists all pages.
-   * @description: Retrieve all available content pages in the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPagesV1/).
-   */
-  async getPagesV1(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ContentApplicationValidator.getPagesV1().validate(
-      { pageNo, pageSize },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentApplicationValidator.getPagesV1().validate(
-      { pageNo, pageSize },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Content > getPagesV1 \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPagesV1"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentApplicationModel.PageGetResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Content > getPagesV1 \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<ContentApplicationModel.PageGetResponse>}
-   * @summary: Lists all pages.
-   * @description: Retrieve all available content pages in the app.
-   */
-  getPagesV1Paginator({ pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPagesV1({
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
    * @param {ContentApplicationValidator.GetSEOConfigurationParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.SeoComponent>} - Success response
    * @name getSEOConfiguration
-   * @summary: Retrieves SEO settings of an applicaiton
-   * @description: Retrieve search engine optimization configurations of an application. Details include the title, description and an image - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOConfiguration/).
+   * @summary: Get the SEO of an application
+   * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOConfiguration/).
    */
   async getSEOConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -1836,22 +1315,20 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.GetSEOMarkupSchemasParam} arg - Arg object.
+   * @param {ContentApplicationValidator.GetSlideshowParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ContentApplicationModel.SeoSchemaComponent>} - Success response
-   * @name getSEOMarkupSchemas
-   * @summary: Get SEO Markup schemas of an application
-   * @description: Use this API to get all SEO Markup schema Templates setup for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOMarkupSchemas/).
+   * @returns {Promise<ContentApplicationModel.SlideshowSchema>} - Success response
+   * @name getSlideshow
+   * @summary: Get a slideshow
+   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshow/).
    */
-  async getSEOMarkupSchemas(
-    { pageType, active, requestHeaders } = { requestHeaders: {} },
+  async getSlideshow(
+    { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = ContentApplicationValidator.getSEOMarkupSchemas().validate(
-      { pageType, active },
+    const { error } = ContentApplicationValidator.getSlideshow().validate(
+      { slug },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1861,20 +1338,18 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentApplicationValidator.getSEOMarkupSchemas().validate(
-      { pageType, active },
+    } = ContentApplicationValidator.getSlideshow().validate(
+      { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Content > getSEOMarkupSchemas \n ${warrning}`,
+        message: `Parameter Validation warrnings for application > Content > getSlideshow \n ${warrning}`,
       });
     }
 
     const query_params = {};
-    query_params["page_type"] = pageType;
-    query_params["active"] = active;
 
     const xHeaders = {};
 
@@ -1882,7 +1357,87 @@ class Content {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getSEOMarkupSchemas"],
+        url: this._urls["getSlideshow"],
+        params: { slug },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.SlideshowSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Content > getSlideshow \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentApplicationValidator.GetSlideshowsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.SlideshowGetResponse>} - Success response
+   * @name getSlideshows
+   * @summary: Get the slideshows
+   * @description: Use this API to get a list of slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
+   */
+  async getSlideshows(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ContentApplicationValidator.getSlideshows().validate(
+      { pageNo, pageSize },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getSlideshows().validate(
+      { pageNo, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Content > getSlideshows \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getSlideshows"],
         params: {},
       }),
       query_params,
@@ -1898,7 +1453,7 @@ class Content {
 
     const {
       error: res_error,
-    } = ContentApplicationModel.SeoSchemaComponent().validate(responseData, {
+    } = ContentApplicationModel.SlideshowGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1909,7 +1464,7 @@ class Content {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for application > Content > getSEOMarkupSchemas \n ${res_error}`,
+          message: `Response Validation Warnings for application > Content > getSlideshows \n ${res_error}`,
         });
       }
     }
@@ -1918,13 +1473,40 @@ class Content {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<ContentApplicationModel.SlideshowGetResponse>}
+   * @summary: Get the slideshows
+   * @description: Use this API to get a list of slideshows along with their details.
+   */
+  getSlideshowsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSlideshows({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ContentApplicationValidator.GetSupportInformationParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.Support>} - Success response
    * @name getSupportInformation
-   * @summary: Retrieves support related info of an applicaiton
-   * @description: Retrieves customer support contact details. Contact Details can be either phone number or email-id or both. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportInformation/).
+   * @summary: Get the support information
+   * @description: Use this API to get contact details for customer support including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportInformation/).
    */
   async getSupportInformation(
     { requestHeaders } = { requestHeaders: {} },
@@ -2003,8 +1585,8 @@ class Content {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.TagsSchema>} - Success response
    * @name getTags
-   * @summary: Retrieves HTML tags
-   * @description: Retrieve any HTML tags to power additional functionalities within an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTags/).
+   * @summary: Get the tags associated with an application
+   * @description: Use this API to get all the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTags/).
    */
   async getTags(
     { requestHeaders } = { requestHeaders: {} },

@@ -16,7 +16,7 @@ class APIClient {
    * @param {Options} options
    */
   static async execute(conf, method, url, query, body, xHeaders, options) {
-    const token = await conf.oauthClient.getAccessToken();
+    const token = await conf.oauthClient.getNewAccessToken();
 
     const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
       acc = { ...acc, ...curr };
@@ -36,6 +36,7 @@ class APIClient {
       },
       responseHeaders: options.responseHeaders,
     };
+    rawRequest = JSON.parse(JSON.stringify(rawRequest));
 
     return fdkAxios.request(rawRequest);
   }

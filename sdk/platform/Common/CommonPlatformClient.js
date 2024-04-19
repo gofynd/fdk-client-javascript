@@ -20,8 +20,8 @@ class Common {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommonPlatformModel.Locations>} - Success response
    * @name getLocations
-   * @summary: Get company locations.
-   * @description: Retrieve a list of locations associated with the company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/common/getLocations/).
+   * @summary: Get countries, states, cities
+   * @description: Retrieve a list of countries, states, or cities based on the provided location_type and id parameters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/common/getLocations/).
    */
   async getLocations(
     { locationType, id, requestHeaders } = { requestHeaders: {} },
@@ -95,7 +95,7 @@ class Common {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommonPlatformModel.ApplicationResponse>} - Success response
    * @name searchApplication
-   * @summary: Search for applications.
+   * @summary: Search Application
    * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/common/searchApplication/).
    */
   async searchApplication(

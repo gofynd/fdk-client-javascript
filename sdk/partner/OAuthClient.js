@@ -68,37 +68,18 @@ class OAuthClient extends BaseOAuthClient {
     }
   }
 
-  async renewAccessToken(isOfflineToken = false) {
-    try {
-      Logger({ level: "INFO", message: "Renewing partner access token..." });
-      let res;
-      if (isOfflineToken) {
-        let requestCacheKey = `${this.config.apiKey}:${this.config.organizationId}`;
-        if (!refreshTokenRequestCache[requestCacheKey]) {
-          refreshTokenRequestCache[requestCacheKey] = this.getAccesstokenObj({
-            grant_type: "refresh_token",
-            refresh_token: this.refreshToken,
-          });
-        }
-        res = await refreshTokenRequestCache[requestCacheKey].finally(() => {
-          delete refreshTokenRequestCache[requestCacheKey];
-        });
-      } else {
-        res = await this.getAccesstokenObj({
-          grant_type: "refresh_token",
-          refresh_token: this.refreshToken,
-        });
-      }
+  async renewAccessToken(isOfflineToken = true) {
+    if (isOfflineToken) {
+      await this.getNewAccessToken();
+    } else {
+      res = await this.getAccesstokenObj({
+        grant_type: "refresh_token",
+        refresh_token: this.refreshToken,
+      });
+      res.expires_at =
+        res.expires_at || new Date().getTime() + res.expires_in * 1000;
       this.setToken(res);
-      this.token_expires_at =
-        new Date().getTime() + this.token_expires_in * 1000;
-      Logger({ level: "INFO", message: "Done." });
       return res;
-    } catch (error) {
-      if (error.isAxiosError) {
-        throw new FDKTokenIssueError(error.message);
-      }
-      throw error;
     }
   }
 

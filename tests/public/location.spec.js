@@ -1,9 +1,5 @@
 const { PublicConfig, PublicClient } = require("../../index.js");
 require("dotenv").config();
-const { fdkAxios } = require("../../sdk/common/AxiosHelper.js");
-const MockAdapter = require("axios-mock-adapter");
-
-const mock = new MockAdapter(fdkAxios);
 
 beforeAll(() => {
   // setupCookieInterceptor();
@@ -17,12 +13,6 @@ beforeAll(() => {
   publicClient.setExtraHeaders({
     "x-public-header": { pincode: "", country: "" },
   });
-  mock
-    .onGet(publicClient.configuration._urls.getLocations)
-    .reply(200, { items: ["Location 1"] });
-  mock
-    .onGet(publicClient.configuration._urls.searchApplication)
-    .reply(200, { success: "true" });
 });
 
 afterAll(() => {

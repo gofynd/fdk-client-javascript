@@ -1,864 +1,15 @@
 export = CatalogApplicationModel;
 /**
- * @typedef ProductDetailCustomOrder
- * @property {number} [manufacturing_time]
- * @property {string} [manufacturing_time_unit]
- * @property {boolean} [is_custom_order]
- */
-/**
- * @typedef Meta
- * @property {string} [source]
- */
-/**
- * @typedef Media
- * @property {string} [url]
- * @property {string} [type]
- * @property {Meta} [meta]
- * @property {string} [alt]
- */
-/**
- * @typedef QueryParams
- * @property {string[]} [category]
- * @property {string[]} [brand]
- * @property {string[]} [department]
- */
-/**
- * @typedef Params
- * @property {string[]} [slug]
- */
-/**
- * @typedef ProductListingActionPage
- * @property {string} [type]
- * @property {QueryParams} [query]
- * @property {Params} [params]
- */
-/**
- * @typedef ProductListingAction
- * @property {string} [type]
- * @property {ProductListingActionPage} [page]
- */
-/**
- * @typedef ProductBrand
- * @property {number} [uid]
- * @property {Media} [logo]
- * @property {string} [description]
- * @property {string} [name]
- * @property {string} [type]
- * @property {ProductListingAction} [action]
- * @property {Object} [_custom_json]
- */
-/**
- * @typedef ProductDepartment
- * @property {number} [uid]
- * @property {Media} [logo]
- * @property {string} [slug]
- * @property {string} [name]
- */
-/**
- * @typedef ProductCategoryMap
- * @property {ProductBrand} [l1]
- * @property {ProductBrand} [l2]
- * @property {ProductBrand} [l3]
- */
-/**
- * @typedef NetQuantity
- * @property {string} [unit] - The unit of measurement used for the net quantity
- *   of the product.
- * @property {number} [value] - The value of the net quantity of the product.
- */
-/**
- * @typedef CustomMetaFields
- * @property {string} value - A value to store in the custom field.
- * @property {string} key - A key to store a custom field.
+ * @typedef ApplicationItemMOQ
+ * @property {number} [increment_unit] - The minimum quantity increment in which
+ *   the item can be purchased.
+ * @property {number} [maximum] - The maximum quantity allowed for purchase.
+ * @property {number} [minimum] - The minimum quantity required for purchase.
  */
 /**
  * @typedef ApplicationItemSEO
- * @property {string} [title] - The SEO title of the item
- * @property {string} [description] - The SEO description of the item
- * @property {ApplicationItemSeoSitemap} [sitemap]
- * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs]
- * @property {ApplicationItemSeoMetaTags[]} [meta_tags]
- * @property {string} [canonical_url] - The SEO canonical URL of the item
- */
-/**
- * @typedef ApplicationItemSeoSitemap
- * @property {number} [priority] - The SEO priority of the item
- * @property {string} [frequency] - The SEO frequency of the item
- */
-/**
- * @typedef ApplicationItemSeoAction
- * @property {Object} [page] - The SEO page information of the item
- * @property {string} [type] - The SEO type of the item
- */
-/**
- * @typedef ApplicationItemSeoBreadcrumbs
- * @property {string} [url] - The SEO URL of the item
- * @property {ApplicationItemSeoAction} [action]
- */
-/**
- * @typedef ApplicationItemSeoMetaTagItem
- * @property {string} [key] - The SEO key of the item
- * @property {string} [value] - The SEO value of the item
- */
-/**
- * @typedef ApplicationItemSeoMetaTags
- * @property {string} [title] - The SEO title of the product
- * @property {ApplicationItemSeoMetaTagItem[]} [items] - The SEO items for the product
- */
-/**
- * @typedef ProductDetailAttribute
- * @property {string} [value]
- * @property {string} [type]
- * @property {string} [key]
- */
-/**
- * @typedef ProductDetailGroupedAttribute
- * @property {string} [title]
- * @property {ProductDetailAttribute[]} [details]
- */
-/**
- * @typedef ApplicationItemMOQ
- * @property {number} [minimum] - The minimum quantity required for purchase.
- * @property {number} [maximum] - The maximum quantity allowed for purchase.
- * @property {number} [increment_unit] - The minimum quantity increment in which
- *   the item can be purchased.
- */
-/**
- * @typedef Price
- * @property {number} [min] - The minimum price for the product across stores.
- * @property {string} [currency_symbol] - The currency symbol for the currency
- *   in which the product is available.
- * @property {string} [currency_code] - The currency code for the currency in
- *   which the product is available.
- * @property {number} [max] - The maximum price for the product across stores.
- */
-/**
- * @typedef ProductListingPrice
- * @property {Price} [effective]
- * @property {Price} [marked]
- * @property {Price} [selling]
- */
-/**
- * @typedef ProductSizesPrice
- * @property {Price} [effective]
- * @property {Price} [marked]
- * @property {Price} [selling]
- */
-/**
- * @typedef ProductDetail
- * @property {number} [uid]
- * @property {string[]} [sizes]
- * @property {string[]} [identifiers]
- * @property {boolean} [is_tryout]
- * @property {string} [channel]
- * @property {DiscountMeta} [discount_meta]
- * @property {ProductVariantResponse[]} [variants]
- * @property {ProductDetailCustomOrder} [custom_order]
- * @property {ProductCategoryMap} [category_map]
- * @property {NetQuantity} [net_quantity]
- * @property {number} [rating_count]
- * @property {CustomMetaFields[]} [_custom_meta]
- * @property {string[]} [similars]
- * @property {string[]} [tags]
- * @property {ApplicationItemSEO} [seo]
- * @property {string} [image_nature]
- * @property {boolean} [has_variant]
- * @property {string} [item_type]
- * @property {string} [description]
- * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
- * @property {Media[]} [medias]
- * @property {string} [color]
- * @property {string} [type]
- * @property {string} [product_online_date]
- * @property {Object} [_custom_json]
- * @property {string} [item_code]
- * @property {string} [name]
- * @property {ApplicationItemMOQ} [moq]
- * @property {string} [short_description]
- * @property {ProductBrand[]} [categories]
- * @property {Object} [attributes]
- * @property {string} [discount]
- * @property {string[]} [tryouts]
- * @property {string} slug
- * @property {ProductListingAction} [action]
- * @property {number} [rating]
- * @property {boolean} [is_dependent]
- * @property {string[]} [product_group_tag]
- * @property {string[]} [highlights]
- * @property {ProductListingPrice} [price]
- * @property {ProductBrand} [brand]
- * @property {ProductDepartment} [department]
- * @property {string} [teaser_tag]
- * @property {Object} [promo_meta]
- * @property {number} [no_of_boxes]
- * @property {string} [template_tag]
- * @property {boolean} [sellable]
- */
-/**
- * @typedef NotServiceableError
- * @property {string} [message]
- * @property {boolean} [is_serviceable]
- */
-/**
- * @typedef ErrorResponse
- * @property {string} [error]
- * @property {Object} [errors]
- * @property {number} [code]
- * @property {string} [message]
- */
-/**
- * @typedef Dimension
- * @property {string} unit - The unit of dimension
- * @property {number} height - The height of the product
- * @property {number} length - The length of the product
- * @property {number} width - The width of the product
- * @property {boolean} is_default - Whether the dimension is the default one or not
- */
-/**
- * @typedef Weight
- * @property {string} unit - The unit of weight
- * @property {number} shipping - The shipping weight of the product
- * @property {boolean} is_default - Whether the weight is the default one or not
- */
-/**
- * @typedef DiscountMeta
- * @property {boolean} [timer] - Determines whether the discount countdown is
- *   visible or not.
- * @property {number} [start_timer_in_minutes] - The time in minutes before the
- *   discount ends when the countdown timer should start.
- * @property {string} [start] - The start time of the live discount.
- * @property {string} [end] - The end time of the live discount.
- */
-/**
- * @typedef ProductSize
- * @property {number} [quantity]
- * @property {Dimension} [dimension]
- * @property {Weight} [weight]
- * @property {boolean} [is_available]
- * @property {string[]} [seller_identifiers]
- * @property {string} [value]
- * @property {string} [display]
- * @property {ProductSetV3} [set]
- */
-/**
- * @typedef SizeChartValues
- * @property {string} [col_3]
- * @property {string} [col_6]
- * @property {string} [col_2]
- * @property {string} [col_4]
- * @property {string} [col_1]
- * @property {string} [col_5]
- */
-/**
- * @typedef ColumnHeader
- * @property {boolean} [convertable]
- * @property {string} [value]
- */
-/**
- * @typedef ColumnHeaders
- * @property {ColumnHeader} [col_3]
- * @property {ColumnHeader} [col_6]
- * @property {ColumnHeader} [col_2]
- * @property {ColumnHeader} [col_4]
- * @property {ColumnHeader} [col_1]
- * @property {ColumnHeader} [col_5]
- */
-/**
- * @typedef SizeChart
- * @property {string} [unit]
- * @property {string} [image]
- * @property {string} [size_tip]
- * @property {SizeChartValues[]} [sizes]
- * @property {string} [description]
- * @property {string} [title]
- * @property {ColumnHeaders} [headers]
- */
-/**
- * @typedef ProductSizeStores
- * @property {number} [count]
- */
-/**
- * @typedef MOQ
- * @property {number} [maximum]
- * @property {number} [minimum]
- * @property {number} [increment_unit]
- */
-/**
- * @typedef ProductSizes
- * @property {ProductSize[]} [sizes]
- * @property {ProductSizesPrice} [price]
- * @property {SizeChart} [size_chart]
- * @property {boolean} [sellable]
- * @property {boolean} [multi_size]
- * @property {string} [discount]
- * @property {ProductSizeStores} [stores]
- * @property {DiscountMeta} [discount_meta]
- * @property {MOQ} [moq]
- * @property {string[]} [tags]
- * @property {Object} [custom_order]
- * @property {string} [product_name]
- */
-/**
- * @typedef AttributeDetail
- * @property {string} [logo]
- * @property {string} [description]
- * @property {string} [display]
- * @property {string} [key]
- */
-/**
- * @typedef AttributeMetadata
- * @property {string} [title]
- * @property {AttributeDetail[]} [details]
- */
-/**
- * @typedef ProductsComparisonResponse
- * @property {ProductDetail[]} [items]
- * @property {AttributeMetadata[]} [attributes_metadata]
- */
-/**
- * @typedef ProductCompareResponse
- * @property {string} [title]
- * @property {ProductDetail[]} [items]
- * @property {AttributeMetadata[]} [attributes_metadata]
- * @property {string} [subtitle]
- */
-/**
- * @typedef ProductFrequentlyComparedSimilarResponse
- * @property {ProductCompareResponse} [similars]
- */
-/**
- * @typedef ProductVariantItemResponse
- * @property {number} [uid]
- * @property {string} [color_name]
- * @property {string} [color]
- * @property {Media[]} [medias]
- * @property {boolean} [is_available]
- * @property {CustomMetaFields[]} [_custom_meta]
- * @property {string} [name]
- * @property {string} [value]
- * @property {string} [slug]
- * @property {Object} [_custom_json]
- * @property {ProductListingAction} [action]
- */
-/**
- * @typedef ProductVariantResponse
- * @property {string} [display_type]
- * @property {string} [header]
- * @property {string} [logo]
- * @property {ProductVariantItemResponse[]} [items]
- * @property {string} [key]
- */
-/**
- * @typedef ProductVariantsResponse
- * @property {ProductVariantResponse[]} [variants]
- */
-/**
- * @typedef StoreDetail
- * @property {string} [name]
- * @property {string} [city]
- * @property {number} [id]
- * @property {string} [code]
- */
-/**
- * @typedef ProductStockPrice
- * @property {number} [effective]
- * @property {string} [currency]
- * @property {number} [marked]
- */
-/**
- * @typedef CompanyDetail
- * @property {string} [name]
- * @property {number} [id]
- */
-/**
- * @typedef Seller
- * @property {number} [uid]
- * @property {string} [name]
- * @property {number} [count]
- */
-/**
- * @typedef ArticleIdentifier
- * @property {string} [ean]
- * @property {string} [alu]
- * @property {string} [upc]
- * @property {string} [sku_code]
- */
-/**
- * @typedef ProductStockStatusItem
- * @property {string} [uid]
- * @property {number} [quantity]
- * @property {BrandItem} [brand]
- * @property {string} [seller_identifier]
- * @property {number} [price_effective]
- * @property {number} [price_selling]
- * @property {number} [price_marked]
- * @property {DiscountMeta} [discount_meta]
- * @property {Object} [discount_applied]
- * @property {StoreDetail} [store]
- * @property {string} [size]
- * @property {ProductStockPrice} [price]
- * @property {CompanyDetail} [company]
- * @property {number} [item_id]
- * @property {Seller} [seller]
- * @property {ArticleIdentifier} [identifier]
- */
-/**
- * @typedef ProductStockStatusResponse
- * @property {ProductStockStatusItem[]} [items]
- */
-/**
- * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
- */
-/**
- * @typedef ProductStockPolling
- * @property {ProductStockStatusItem[]} [items]
- * @property {Page} page
- */
-/**
- * @typedef ProductVariantListingResponse
- * @property {string} [header]
- * @property {ProductVariantItemResponse[]} [items]
- * @property {number} [total]
- * @property {string} [key]
- * @property {string} [display_type]
- */
-/**
- * @typedef ProductListingDetail
- * @property {boolean} [is_tryout]
- * @property {string} [channel]
- * @property {DiscountMeta} [discount_meta]
- * @property {number} [uid]
- * @property {ProductDetailCustomOrder} [custom_order]
- * @property {string[]} [sizes]
- * @property {ProductCategoryMap} [category_map]
- * @property {NetQuantity} [net_quantity]
- * @property {number} [rating_count]
- * @property {CustomMetaFields[]} [_custom_meta]
- * @property {string[]} [similars]
- * @property {string[]} [tags]
- * @property {ApplicationItemSEO} [seo]
- * @property {string} [image_nature]
- * @property {boolean} [has_variant]
- * @property {string} [item_type]
- * @property {string} [description]
- * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
- * @property {Media[]} [medias]
- * @property {string} [color]
- * @property {string} [type]
- * @property {string} [product_online_date]
- * @property {Object} [_custom_json]
- * @property {string} [item_code]
- * @property {string} [name]
- * @property {ApplicationItemMOQ} [moq]
- * @property {string} [short_description]
- * @property {ProductBrand[]} [categories]
- * @property {boolean} [sellable]
- * @property {Object} [attributes]
- * @property {ProductVariantListingResponse[]} [variants]
- * @property {string} [discount]
- * @property {string[]} [tryouts]
- * @property {string[]} [identifiers]
- * @property {string} slug
- * @property {ProductListingAction} [action]
- * @property {number} [rating]
- * @property {boolean} [is_dependent]
- * @property {string[]} [product_group_tag]
- * @property {string[]} [highlights]
- * @property {ProductListingPrice} [price]
- * @property {ProductBrand} [brand]
- * @property {string} [teaser_tag]
- */
-/**
- * @typedef ProductFiltersValue
- * @property {number} [min]
- * @property {string} [display_format]
- * @property {number} [selected_max]
- * @property {string} [value]
- * @property {string} [query_format]
- * @property {string} [currency_symbol]
- * @property {number} [selected_min]
- * @property {string} [currency_code]
- * @property {boolean} is_selected
- * @property {string} display
- * @property {number} [count]
- * @property {number} [max]
- */
-/**
- * @typedef ProductFiltersKey
- * @property {string} [logo]
- * @property {string} name
- * @property {string} [kind]
- * @property {string} display
- */
-/**
- * @typedef ProductFilters
- * @property {ProductFiltersValue[]} values
- * @property {ProductFiltersKey} key
- */
-/**
- * @typedef ProductSortOn
- * @property {string} [logo]
- * @property {boolean} [is_selected]
- * @property {string} [name]
- * @property {string} [value]
- * @property {string} [display]
- */
-/**
- * @typedef ProductListingResponse
- * @property {ProductListingDetail[]} [items]
- * @property {ProductFilters[]} [filters]
- * @property {Page} page
- * @property {ProductSortOn[]} [sort_on]
- */
-/**
- * @typedef ImageUrls
- * @property {Media} [portrait]
- * @property {Media} [landscape]
- */
-/**
- * @typedef BrandItem
- * @property {number} [id]
- * @property {number} [uid]
- * @property {Media} [logo]
- * @property {string} [description]
- * @property {ImageUrls} [banners]
- * @property {string[]} [departments]
- * @property {string} [discount]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {ProductListingAction} [action]
- */
-/**
- * @typedef BrandListingResponse
- * @property {BrandItem[]} [items]
- * @property {Page} page
- */
-/**
- * @typedef BrandDetailResponse
- * @property {Media} [logo]
- * @property {number} [uid]
- * @property {string} [description]
- * @property {ImageUrls} [banners]
- * @property {Object} [_custom_json]
- * @property {string} [slug]
- * @property {Object} [_app]
- * @property {string} [name]
- */
-/**
- * @typedef CategoryBanner
- * @property {Media} portrait
- * @property {Media} landscape
- */
-/**
- * @typedef ThirdLevelChild
- * @property {number} [uid]
- * @property {ImageUrls} [banners]
- * @property {Object[]} [childs]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {ProductListingAction} [action]
- * @property {number} [priority]
- */
-/**
- * @typedef SecondLevelChild
- * @property {number} [uid]
- * @property {ImageUrls} [banners]
- * @property {ThirdLevelChild[]} [childs]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {ProductListingAction} [action]
- * @property {number} [priority]
- */
-/**
- * @typedef Child
- * @property {number} [uid]
- * @property {ImageUrls} [banners]
- * @property {SecondLevelChild[]} [childs]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {ProductListingAction} [action]
- * @property {number} [priority]
- */
-/**
- * @typedef CategoryItems
- * @property {number} uid
- * @property {CategoryBanner} banners
- * @property {Child[]} [childs]
- * @property {string} name
- * @property {string} slug
- * @property {ProductListingAction} action
- * @property {number} [priority]
- * @property {Object} [_custom_json]
- */
-/**
- * @typedef DepartmentCategoryTree
- * @property {CategoryItems[]} [items]
- * @property {string} department
- */
-/**
- * @typedef DepartmentIdentifier
- * @property {number} [uid]
- * @property {string} [slug]
- */
-/**
- * @typedef CategoryListingResponse
- * @property {DepartmentCategoryTree[]} [data]
- * @property {DepartmentIdentifier[]} [departments]
- */
-/**
- * @typedef CategoryMetaResponse
- * @property {Media} [logo]
- * @property {number} [uid]
- * @property {ImageUrls} [banners]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {Object} [_app]
- */
-/**
- * @typedef HomeListingResponse
- * @property {ProductListingDetail[]} [items]
- * @property {Page} page
- * @property {string} [message]
- * @property {string} [sort_on]
- */
-/**
- * @typedef Department
- * @property {number} [uid]
- * @property {Media} [logo]
- * @property {number} [priority_order]
- * @property {string} [name]
- * @property {string} [slug]
- */
-/**
- * @typedef DepartmentResponse
- * @property {Department[]} [items]
- */
-/**
- * @typedef AutocompleteItem
- * @property {Media} [logo]
- * @property {string} [display]
- * @property {string} [type]
- * @property {Object} [_custom_json]
- * @property {ProductListingAction} [action]
- */
-/**
- * @typedef AutoCompleteResponse
- * @property {AutocompleteItem[]} [items]
- */
-/**
- * @typedef CollectionQuery
- * @property {string} op
- * @property {string[]} value
- * @property {string} attribute
- */
-/**
- * @typedef NextSchedule
- * @property {string} [start] - The start time of the next schedule
- * @property {string} [end] - The end time of the next schedule
- */
-/**
- * @typedef Schedule
- * @property {string} [cron] - The cron expression for the schedule
- * @property {NextSchedule[]} [next_schedule] - List of next schedules
- * @property {number} [duration] - The duration of the job in seconds
- * @property {string} [start] - The start time of the job
- * @property {string} [end] - The end time of the job
- * @property {Object} [metadata]
- */
-/**
- * @typedef GetCollectionDetailNest
- * @property {boolean} [is_active]
- * @property {string} [uid]
- * @property {string} [_id]
- * @property {string} [sort_on]
- * @property {Object} [meta]
- * @property {ImageUrls} [banners]
- * @property {Object} [cron]
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
- * @property {string} [type]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {boolean} [allow_sort]
- * @property {string[]} [visible_facets_keys]
- * @property {Object} [badge]
- * @property {string} [slug]
- * @property {ProductListingAction} [action]
- * @property {boolean} [allow_facets]
- * @property {Media} [logo]
- * @property {number} [priority]
- * @property {string[]} [tag]
- * @property {string} [app_id]
- * @property {boolean} [published]
- * @property {string[]} [tags]
- * @property {Object} [_locale_language]
- * @property {Object} [seo]
- * @property {Schedule} [_schedule]
- */
-/**
- * @typedef CollectionListingFilterTag
- * @property {string} [name]
- * @property {boolean} [is_selected]
- * @property {string} [display]
- */
-/**
- * @typedef CollectionListingFilterType
- * @property {string} [name]
- * @property {boolean} [is_selected]
- * @property {string} [display]
- */
-/**
- * @typedef CollectionListingFilter
- * @property {CollectionListingFilterTag[]} [tags]
- * @property {CollectionListingFilterType[]} [type]
- */
-/**
- * @typedef GetCollectionListingResponse
- * @property {GetCollectionDetailNest[]} [items]
- * @property {CollectionListingFilter} [filters]
- * @property {Page} page
- */
-/**
- * @typedef CollectionDetailResponse
- * @property {string} [uid]
- * @property {boolean} [published]
- * @property {string[]} [tags]
- * @property {Object} [_locale_language]
- * @property {Object} [seo]
- * @property {ProductListingAction} [action]
- * @property {boolean} [is_active]
- * @property {string} [sort_on]
- * @property {Object} [meta]
- * @property {ImageUrls} [banners]
- * @property {Object} [cron]
- * @property {Schedule} [_schedule]
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
- * @property {string} [type]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {boolean} [allow_sort]
- * @property {string[]} [visible_facets_keys]
- * @property {Object} [badge]
- * @property {string} [slug]
- * @property {boolean} [allow_facets]
- * @property {Media} [logo]
- * @property {number} [priority]
- * @property {string[]} [tag]
- * @property {string} [app_id]
- * @property {string} [_id]
- */
-/**
- * @typedef GetFollowListingResponse
- * @property {ProductListingDetail[]} items
- * @property {Page} page
- */
-/**
- * @typedef FollowPostResponse
- * @property {string} message
- * @property {string} id
- */
-/**
- * @typedef FollowerCountResponse
- * @property {number} [count]
- */
-/**
- * @typedef FollowIdsData
- * @property {number[]} [products]
- * @property {number[]} [collections]
- * @property {number[]} [brands]
- */
-/**
- * @typedef FollowIdsResponse
- * @property {FollowIdsData} [data]
- */
-/**
- * @typedef LatLong
- * @property {number[]} [coordinates]
- * @property {string} [type]
- */
-/**
- * @typedef Store
- * @property {number} [uid]
- * @property {string} [store_email]
- * @property {string} [state]
- * @property {string} [country]
- * @property {string} [pincode]
- * @property {string} [city]
- * @property {string} [address]
- * @property {string} [store_code]
- * @property {LatLong} [lat_long]
- * @property {string} [name]
- */
-/**
- * @typedef StoreListingResponse
- * @property {Store[]} items
- * @property {Page} page
- */
-/**
- * @typedef StoreDepartments
- * @property {number} [uid]
- * @property {Object} [logo]
- * @property {number} [priority_order]
- * @property {string} [name]
- * @property {string} [slug]
- */
-/**
- * @typedef CompanyStore
- * @property {number} [uid]
- * @property {string} [name]
- * @property {string} [company_type]
- * @property {string} [business_type]
- */
-/**
- * @typedef SellerPhoneNumber
- * @property {number} country_code
- * @property {string} number
- */
-/**
- * @typedef StoreManagerSerializer
- * @property {string} [name]
- * @property {string} [email]
- * @property {SellerPhoneNumber} [mobile_no]
- */
-/**
- * @typedef AddressLatLong
- * @property {string} [type]
- * @property {number[]} [coordinates]
- */
-/**
- * @typedef StoreAddressSerializer
- * @property {number} [latitude]
- * @property {string} [state]
- * @property {string} [country]
- * @property {string} [landmark]
- * @property {string} [address1]
- * @property {string} [pincode]
- * @property {string} [city]
- * @property {number} [longitude]
- * @property {string} [address2]
- * @property {AddressLatLong} [lat_long]
- */
-/**
- * @typedef AppStore
- * @property {number} [uid]
- * @property {StoreDepartments[]} [departments]
- * @property {CompanyStore} [company]
- * @property {StoreManagerSerializer} [manager]
- * @property {string} [store_code]
- * @property {StoreAddressSerializer} [address]
- * @property {string} [name]
- * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {Object} [description] - The SEO description of the item
+ * @property {Object} [title] - The SEO title of the item
  */
 /**
  * @typedef ApplicationStoreListing
@@ -867,158 +18,610 @@ export = CatalogApplicationModel;
  * @property {Page} [page]
  */
 /**
- * @typedef Time
- * @property {number} [hour]
- * @property {number} [minute]
- */
-/**
- * @typedef StoreTiming
- * @property {boolean} [open]
- * @property {Time} [closing]
- * @property {string} [weekday]
- * @property {Time} [opening]
- */
-/**
- * @typedef StoreDetails
- * @property {number} [uid]
- * @property {StoreDepartments[]} [departments]
- * @property {CompanyStore} [company]
- * @property {StoreManagerSerializer} [manager]
- * @property {string} [store_code]
- * @property {StoreTiming[]} [timing]
+ * @typedef AppStore
  * @property {StoreAddressSerializer} [address]
- * @property {Object} [_custom_json]
- * @property {string} [name]
+ * @property {CompanyStore} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {number} [company_id]
- * @property {string} [display_name]
- * @property {string} [store_type]
+ * @property {StoreDepartments[]} [departments]
+ * @property {StoreManagerSerializer} [manager]
+ * @property {string} [name]
+ * @property {string} [store_code]
+ * @property {number} [uid]
  */
 /**
- * @typedef UserDetail
- * @property {boolean} [super_user] - A flag indicating whether the user is a super user.
- * @property {string} [contact] - The contact details of the user.
- * @property {string} username - The username of the user.
- * @property {string} user_id - The user ID of the user.
+ * @typedef ArticleAssignmentV3
+ * @property {string} [level]
+ * @property {string} [strategy]
  */
 /**
- * @typedef Size
- * @property {number} [quantity] - The quantity of this size available
- * @property {string} [value] - The value of the size
- * @property {string} [display] - The display string for the size
- * @property {boolean} [is_available] - Whether or not this size is available
+ * @typedef AttributeDetail
+ * @property {string} [description]
+ * @property {string} [display]
+ * @property {string} [key]
+ * @property {string} [logo]
  */
 /**
- * @typedef ProductGroupPrice
- * @property {number} [max_effective] - The maximum effective price of the product group.
- * @property {number} [min_effective] - The minimum effective price of the product group.
- * @property {number} [min_marked] - The minimum marked price of the product group.
- * @property {string} [currency] - The currency code for the prices.
- * @property {number} [max_marked] - The maximum marked price of the product group.
+ * @typedef AttributeMetadata
+ * @property {AttributeDetail[]} [details]
+ * @property {string} [title]
  */
 /**
- * @typedef ProductDetails
- * @property {string} [template_tag] - The template tag of the product
- * @property {number} [rating_count] - The number of ratings the product has received
- * @property {string} [image_nature] - The nature of the product's images
- * @property {boolean} [has_variant] - Whether or not the product has a variant
- * @property {string} [description] - The long description of the product
- * @property {boolean} [out_of_stock] - Whether or not the product is out of stock
- * @property {number} [hsn_code] - The HSN code of the product
- * @property {Object} [grouped_attributes] - A dictionary of grouped product attributes
- * @property {string} [item_code] - The item code of the product
- * @property {string} [name] - The name of the product
- * @property {string} [country_of_origin] - The country of origin for the product
- * @property {string} [short_description] - The short description of the product
- * @property {Object[]} [media] - A list of media objects for the product
- * @property {Object} [attributes] - A dictionary of product attributes
- * @property {boolean} [is_set] - Whether or not the product is a set of items
- * @property {string[]} [images] - A list of image URLs for the product
- * @property {string} [slug] - The slug of the product
- * @property {number} [rating] - The rating of the product
- * @property {Object} [identifier] - A dictionary of product identifiers
- * @property {string[]} [highlights] - A list of highlights for the product
- * @property {number} [brand_uid] - The unique ID of the product's brand
+ * @typedef AutocompleteItem
+ * @property {Object} [_custom_json]
+ * @property {ProductListingAction} [action]
+ * @property {string} [display]
+ * @property {Media} [logo]
+ * @property {string} [type]
  */
 /**
- * @typedef ProductInGroup
- * @property {boolean} [auto_add_to_cart] - A flag indicating whether the
- *   product should be automatically added to the cart.
- * @property {number} max_quantity - The maximum quantity of the product that
- *   can be added to the cart.
- * @property {Size[]} [sizes] - The available sizes for the product.
- * @property {ProductGroupPrice} [price]
- * @property {boolean} [auto_select] - A flag indicating whether the product
- *   should be automatically selected.
- * @property {string} [product_details] - The details of the product.
- * @property {number} [min_quantity] - The minimum quantity of the product that
- *   can be added to the cart.
- * @property {boolean} [allow_remove] - A flag indicating whether the product
- *   can be removed from the cart.
- * @property {number} product_uid - The unique ID of the product in the group.
+ * @typedef AutoCompleteResponse
+ * @property {AutocompleteItem[]} [items]
  */
 /**
- * @typedef ProductGroupingModel
- * @property {string} [logo] - The URL for the logo of the product grouping.
- * @property {boolean} [is_active] - Whether the product grouping is active.
- * @property {Object} [meta] - A dictionary containing metadata information.
- * @property {string} [verified_by] - User details of the verifier of the
- *   document, if applicable
- * @property {string} created_on - Timestamp of the creation of the document
- * @property {number} [company_id] - The ID of the company that owns the product grouping.
- * @property {string[]} [page_visibility] - A list of page visibilities of the
- *   product grouping.
- * @property {string} modified_on - Timestamp of the last modification of the document
- * @property {Object} [created_by] - User details of the creator of the document
- * @property {Object} [modified_by] - User details of the last modifier of the document
- * @property {ProductInGroup[]} products - A list of products in the grouping.
- * @property {boolean} [same_store_assignment] - Whether the products are
- *   assigned to the same store.
- * @property {string} [_id]
- * @property {string} name - The name of the product grouping.
- * @property {string} [choice] - The choice of the product grouping.
- * @property {string} [slug] - The unique identifier for the product grouping.
- * @property {string} [verified_on] - Timestamp of when the document was
- *   verified, if applicable
+ * @typedef BrandDetailResponse
+ * @property {Object} [_custom_json]
+ * @property {ImageUrls} [banners]
+ * @property {string} [description]
+ * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef BrandItem
+ * @property {ProductListingAction} [action]
+ * @property {ImageUrls} [banners]
+ * @property {string[]} [departments]
+ * @property {string} [description]
+ * @property {string} [discount]
+ * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef BrandListingResponse
+ * @property {BrandItem[]} [items]
+ * @property {Page} page
+ */
+/**
+ * @typedef CategoryBanner
+ * @property {Media} landscape
+ * @property {Media} portrait
+ */
+/**
+ * @typedef CategoryItems
+ * @property {ProductListingAction} action
+ * @property {CategoryBanner} banners
+ * @property {Child[]} [childs]
+ * @property {string} name
+ * @property {string} slug
+ * @property {number} uid
+ */
+/**
+ * @typedef CategoryListingResponse
+ * @property {DepartmentCategoryTree[]} [data]
+ * @property {DepartmentIdentifier[]} [departments]
+ */
+/**
+ * @typedef CategoryMetaResponse
+ * @property {Object} [_custom_json]
+ * @property {ImageUrls} [banners]
+ * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef Child
+ * @property {Object} [_custom_json]
+ * @property {ProductListingAction} [action]
+ * @property {ImageUrls} [banners]
+ * @property {SecondLevelChild[]} [childs]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef CollectionDetailResponse
+ * @property {Object} [_custom_json]
+ * @property {Object} [_schedule]
+ * @property {boolean} [allow_facets]
+ * @property {boolean} [allow_sort]
+ * @property {string} [app_id]
+ * @property {Object} [badge]
+ * @property {ImageUrls} [banners]
+ * @property {Object} [cron]
+ * @property {string} [description]
+ * @property {boolean} [is_active]
+ * @property {Media} [logo]
+ * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {number} [priority]
+ * @property {CollectionQuery[]} [query]
+ * @property {string} [slug]
+ * @property {string} [sort_on]
+ * @property {string[]} [tag]
+ * @property {string} [type]
+ * @property {string[]} [visible_facets_keys]
+ */
+/**
+ * @typedef CollectionListingFilter
+ * @property {CollectionListingFilterTag[]} [tags]
+ * @property {CollectionListingFilterType[]} [type]
+ */
+/**
+ * @typedef CollectionListingFilterTag
+ * @property {string} [display]
+ * @property {boolean} [is_selected]
+ * @property {string} [name]
+ */
+/**
+ * @typedef CollectionListingFilterType
+ * @property {string} [display]
+ * @property {boolean} [is_selected]
+ * @property {string} [name]
+ */
+/**
+ * @typedef CollectionQuery
+ * @property {string} attribute
+ * @property {string} op
+ * @property {Object[]} value
+ */
+/**
+ * @typedef ColumnHeader
+ * @property {boolean} [convertable]
+ * @property {string} [value]
+ */
+/**
+ * @typedef ColumnHeaders
+ * @property {ColumnHeader} [col_1]
+ * @property {ColumnHeader} [col_2]
+ * @property {ColumnHeader} [col_3]
+ * @property {ColumnHeader} [col_4]
+ * @property {ColumnHeader} [col_5]
+ * @property {ColumnHeader} [col_6]
+ */
+/**
+ * @typedef CompanyDetail
+ * @property {number} [id]
+ * @property {string} [name]
+ */
+/**
+ * @typedef CompanyStore
+ * @property {string} [business_type]
+ * @property {string} [company_type]
+ * @property {string} [name]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef CustomMetaFields
+ * @property {string} key - A key to store a custom field.
+ * @property {string} value - A value to store in the custom field.
+ */
+/**
+ * @typedef Department
+ * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {number} [priority_order]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef DepartmentCategoryTree
+ * @property {string} department
+ * @property {CategoryItems[]} [items]
+ */
+/**
+ * @typedef DepartmentIdentifier
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef DepartmentResponse
+ * @property {Department[]} [items]
+ */
+/**
+ * @typedef DetailsSchemaV3
+ * @property {string} [key]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+/**
+ * @typedef Dimension
+ * @property {number} height - The height of the product
+ * @property {boolean} is_default - Whether the dimension is the default one or not
+ * @property {number} length - The length of the product
+ * @property {string} unit - The unit of dimension
+ * @property {number} width - The width of the product
+ */
+/**
+ * @typedef DiscountMeta
+ * @property {string} [end] - The end time of the live discount.
+ * @property {string} [start] - The start time of the live discount.
+ * @property {number} [start_timer_in_minutes] - The time in minutes before the
+ *   discount ends when the countdown timer should start.
+ * @property {boolean} timer - Determines whether the discount countdown is
+ *   visible or not.
+ */
+/**
+ * @typedef ErrorResponse
+ * @property {string} [error]
+ */
+/**
+ * @typedef FollowerCountResponse
+ * @property {number} [count]
+ */
+/**
+ * @typedef FollowIdsData
+ * @property {number[]} [brands]
+ * @property {number[]} [collections]
+ * @property {number[]} [products]
+ */
+/**
+ * @typedef FollowIdsResponse
+ * @property {FollowIdsData} [data]
+ */
+/**
+ * @typedef FollowPostResponse
+ * @property {string} id
+ * @property {string} message
+ */
+/**
+ * @typedef GetCollectionDetailNest
+ * @property {Object} [_custom_json]
+ * @property {Object} [_schedule]
+ * @property {ProductListingAction} [action]
+ * @property {boolean} [allow_facets]
+ * @property {boolean} [allow_sort]
+ * @property {string} [app_id]
+ * @property {Object} [badge]
+ * @property {ImageUrls} [banners]
+ * @property {Object} [cron]
+ * @property {string} [description]
+ * @property {boolean} [is_active]
+ * @property {Media} [logo]
+ * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {number} [priority]
+ * @property {CollectionQuery[]} [query]
+ * @property {string} [slug]
+ * @property {string} [sort_on]
+ * @property {string[]} [tag]
+ * @property {string} [type]
+ * @property {string} [uid]
+ * @property {string[]} [visible_facets_keys]
+ */
+/**
+ * @typedef GetCollectionListingResponse
+ * @property {CollectionListingFilter} [filters]
+ * @property {GetCollectionDetailNest[]} [items]
+ * @property {Page} page
+ */
+/**
+ * @typedef GetFollowListingResponse
+ * @property {ProductListingDetail[]} items
+ * @property {Page} page
+ */
+/**
+ * @typedef HomeListingResponse
+ * @property {ProductListingDetail[]} [items]
+ * @property {string} [message]
+ * @property {Page} page
+ */
+/**
+ * @typedef ImageUrls
+ * @property {Media} [landscape]
+ * @property {Media} [portrait]
+ */
+/**
+ * @typedef LatLong
+ * @property {number[]} [coordinates]
+ * @property {string} [type]
+ */
+/**
+ * @typedef MarketPlaceSttributesSchemaV3
+ * @property {DetailsSchemaV3[]} [details]
+ * @property {string} [title]
+ */
+/**
+ * @typedef Media
+ * @property {string} [alt]
+ * @property {Meta} [meta]
+ * @property {string} [type]
+ * @property {string} [url]
+ */
+/**
+ * @typedef Meta
+ * @property {string} [source]
+ */
+/**
+ * @typedef NetQuantity
+ * @property {Object} [unit] - The unit of measurement used for the net quantity
+ *   of the product.
+ * @property {number} [value] - The value of the net quantity of the product.
+ */
+/**
+ * @typedef Page
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
+ */
+/**
+ * @typedef Price
+ * @property {string} [currency_code] - The currency code for the currency in
+ *   which the product is available.
+ * @property {string} [currency_symbol] - The currency symbol for the currency
+ *   in which the product is available.
+ * @property {number} [max] - The maximum price for the product across stores.
+ * @property {number} [min] - The minimum price for the product across stores.
+ */
+/**
+ * @typedef ProductBrand
+ * @property {ProductListingAction} [action]
+ * @property {string} [description]
+ * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {number} [uid]
  */
 /**
  * @typedef ProductBundle
  * @property {ProductGroupingModel[]} [items]
  */
 /**
- * @typedef StoreV3
- * @property {number} [uid]
- * @property {string} [name]
- * @property {number} [count]
+ * @typedef ProductCategoryMap
+ * @property {ProductBrand} [l1]
+ * @property {ProductBrand} [l2]
+ * @property {ProductBrand} [l3]
  */
 /**
- * @typedef ArticleAssignmentV3
- * @property {string} [strategy]
- * @property {string} [level]
- */
-/**
- * @typedef StrategyWiseListingSchemaV3
- * @property {number} [distance]
- * @property {string} [pincode]
- * @property {number} [tat]
- * @property {number} [quantity]
- */
-/**
- * @typedef DetailsSchemaV3
- * @property {string} [value]
- * @property {string} [type]
- * @property {string} [key]
- */
-/**
- * @typedef SellerGroupAttributes
+ * @typedef ProductCompareResponse
+ * @property {AttributeMetadata[]} [attributes_metadata]
+ * @property {ProductDetail[]} [items]
+ * @property {string} [subtitle]
  * @property {string} [title]
- * @property {DetailsSchemaV3[]} [details]
  */
 /**
- * @typedef ReturnConfigSchemaV3
- * @property {string} [unit]
- * @property {boolean} [returnable]
- * @property {number} [time]
+ * @typedef ProductDepartment
+ * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef ProductDetail
+ * @property {Object} [_custom_json]
+ * @property {CustomMetaFields[]} [_custom_meta]
+ * @property {ProductListingAction} [action]
+ * @property {Object} [attributes]
+ * @property {ProductBrand} [brand]
+ * @property {ProductBrand[]} [categories]
+ * @property {ProductCategoryMap} [category_map]
+ * @property {string} [color]
+ * @property {ProductDetailCustomOrder} [custom_order]
+ * @property {ProductDepartment} [department]
+ * @property {string} [description]
+ * @property {string} [discount]
+ * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
+ * @property {boolean} [has_variant]
+ * @property {string[]} [highlights]
+ * @property {string} [image_nature]
+ * @property {boolean} [is_dependent]
+ * @property {string} [item_code]
+ * @property {string} [item_type]
+ * @property {Media[]} [medias]
+ * @property {ApplicationItemMOQ} [moq]
+ * @property {string} [name]
+ * @property {NetQuantity} [net_quantity]
+ * @property {ProductListingPrice} [price]
+ * @property {string[]} [product_group_tag]
+ * @property {string} [product_online_date]
+ * @property {number} [rating]
+ * @property {number} [rating_count]
+ * @property {ApplicationItemSEO} [seo]
+ * @property {string} [short_description]
+ * @property {string[]} [similars]
+ * @property {string} slug
+ * @property {string[]} [tags]
+ * @property {string} [teaser_tag]
+ * @property {string[]} [tryouts]
+ * @property {string} [type]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef ProductDetailAttribute
+ * @property {string} [key]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+/**
+ * @typedef ProductDetailCustomOrder
+ * @property {boolean} [is_custom_order]
+ * @property {number} [manufacturing_time]
+ * @property {string} [manufacturing_time_unit]
+ */
+/**
+ * @typedef ProductDetailGroupedAttribute
+ * @property {ProductDetailAttribute[]} [details]
+ * @property {string} [title]
+ */
+/**
+ * @typedef ProductDetails
+ * @property {Object} [attributes] - A dictionary of product attributes
+ * @property {number} [brand_uid] - The unique ID of the product's brand
+ * @property {Object} [country_of_origin] - The country of origin for the product
+ * @property {Object} [description] - The long description of the product
+ * @property {Object} [grouped_attributes] - A dictionary of grouped product attributes
+ * @property {boolean} [has_variant] - Whether or not the product has a variant
+ * @property {Object[]} [highlights] - A list of highlights for the product
+ * @property {number} [hsn_code] - The HSN code of the product
+ * @property {Object} [identifier] - A dictionary of product identifiers
+ * @property {Object} [image_nature] - The nature of the product's images
+ * @property {Object[]} [images] - A list of image URLs for the product
+ * @property {boolean} [is_set] - Whether or not the product is a set of items
+ * @property {Object} [item_code] - The item code of the product
+ * @property {Object[]} [media] - A list of media objects for the product
+ * @property {Object} [name] - The name of the product
+ * @property {boolean} [out_of_stock] - Whether or not the product is out of stock
+ * @property {number} [rating] - The rating of the product
+ * @property {number} [rating_count] - The number of ratings the product has received
+ * @property {Object} [short_description] - The short description of the product
+ * @property {Object} [slug] - The slug of the product
+ * @property {Object} [template_tag] - The template tag of the product
+ */
+/**
+ * @typedef ProductFilters
+ * @property {ProductFiltersKey} key
+ * @property {ProductFiltersValue[]} values
+ */
+/**
+ * @typedef ProductFiltersKey
+ * @property {string} display
+ * @property {string} [kind]
+ * @property {string} [logo]
+ * @property {string} name
+ */
+/**
+ * @typedef ProductFiltersValue
+ * @property {number} [count]
+ * @property {string} [currency_code]
+ * @property {string} [currency_symbol]
+ * @property {string} display
+ * @property {string} [display_format]
+ * @property {boolean} is_selected
+ * @property {number} [max]
+ * @property {number} [min]
+ * @property {string} [query_format]
+ * @property {number} [selected_max]
+ * @property {number} [selected_min]
+ * @property {string} [value]
+ */
+/**
+ * @typedef ProductFrequentlyComparedSimilarResponse
+ * @property {ProductCompareResponse} [similars]
+ */
+/**
+ * @typedef ProductGroupingModel
+ * @property {Object} [_id]
+ * @property {Object} [choice] - The choice of the product grouping.
+ * @property {number} [company_id] - The ID of the company that owns the product grouping.
+ * @property {UserDetail} [created_by] - User details of the creator of the document
+ * @property {string} created_on - Timestamp of the creation of the document
+ * @property {boolean} [is_active] - Whether the product grouping is active.
+ * @property {string} [logo] - The URL for the logo of the product grouping.
+ * @property {Object} [meta] - A dictionary containing metadata information.
+ * @property {UserDetail} [modified_by] - User details of the last modifier of
+ *   the document
+ * @property {string} modified_on - Timestamp of the last modification of the document
+ * @property {Object} name - The name of the product grouping.
+ * @property {Object[]} [page_visibility] - A list of page visibilities of the
+ *   product grouping.
+ * @property {ProductInGroup[]} products - A list of products in the grouping.
+ * @property {boolean} [same_store_assignment] - Whether the products are
+ *   assigned to the same store.
+ * @property {Object} [slug] - The unique identifier for the product grouping.
+ * @property {UserDetail} [verified_by] - User details of the verifier of the
+ *   document, if applicable
+ * @property {string} [verified_on] - Timestamp of when the document was
+ *   verified, if applicable
+ */
+/**
+ * @typedef ProductGroupPrice
+ * @property {Object} [currency] - The currency code for the prices.
+ * @property {number} [max_effective] - The maximum effective price of the product group.
+ * @property {number} [max_marked] - The maximum marked price of the product group.
+ * @property {number} [min_effective] - The minimum effective price of the product group.
+ * @property {number} [min_marked] - The minimum marked price of the product group.
+ */
+/**
+ * @typedef ProductInGroup
+ * @property {boolean} [allow_remove] - A flag indicating whether the product
+ *   can be removed from the cart.
+ * @property {boolean} [auto_add_to_cart] - A flag indicating whether the
+ *   product should be automatically added to the cart.
+ * @property {boolean} [auto_select] - A flag indicating whether the product
+ *   should be automatically selected.
+ * @property {number} max_quantity - The maximum quantity of the product that
+ *   can be added to the cart.
+ * @property {number} [min_quantity] - The minimum quantity of the product that
+ *   can be added to the cart.
+ * @property {ProductGroupPrice} [price] - The price details for the product group.
+ * @property {ProductDetails} [product_details] - The details of the product.
+ * @property {number} product_uid - The unique ID of the product in the group.
+ * @property {Size[]} [sizes] - The available sizes for the product.
+ */
+/**
+ * @typedef ProductListingAction
+ * @property {ProductListingActionPage} [page]
+ * @property {string} [type]
+ */
+/**
+ * @typedef ProductListingActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [type]
+ */
+/**
+ * @typedef ProductListingDetail
+ * @property {Object} [_custom_json]
+ * @property {CustomMetaFields[]} [_custom_meta]
+ * @property {ProductListingAction} [action]
+ * @property {Object} [attributes]
+ * @property {ProductBrand} [brand]
+ * @property {ProductBrand[]} [categories]
+ * @property {ProductCategoryMap} [category_map]
+ * @property {string} [color]
+ * @property {ProductDetailCustomOrder} [custom_order]
+ * @property {string} [description]
+ * @property {string} [discount]
+ * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
+ * @property {boolean} [has_variant]
+ * @property {string[]} [highlights]
+ * @property {string[]} [identifiers]
+ * @property {string} [image_nature]
+ * @property {boolean} [is_dependent]
+ * @property {string} [item_code]
+ * @property {string} [item_type]
+ * @property {Media[]} [medias]
+ * @property {ApplicationItemMOQ} [moq]
+ * @property {string} [name]
+ * @property {NetQuantity} [net_quantity]
+ * @property {ProductListingPrice} [price]
+ * @property {string[]} [product_group_tag]
+ * @property {string} [product_online_date]
+ * @property {number} [rating]
+ * @property {number} [rating_count]
+ * @property {boolean} [sellable]
+ * @property {ApplicationItemSEO} [seo]
+ * @property {string} [short_description]
+ * @property {string[]} [similars]
+ * @property {string[]} [sizes]
+ * @property {string} slug
+ * @property {string[]} [tags]
+ * @property {string} [teaser_tag]
+ * @property {string[]} [tryouts]
+ * @property {string} [type]
+ * @property {number} [uid]
+ * @property {ProductVariantListingResponse[]} [variants]
+ */
+/**
+ * @typedef ProductListingPrice
+ * @property {Price} [effective]
+ * @property {Price} [marked]
+ */
+/**
+ * @typedef ProductListingResponse
+ * @property {ProductFilters[]} [filters]
+ * @property {ProductListingDetail[]} [items]
+ * @property {Page} page
+ * @property {ProductSortOn[]} [sort_on]
+ */
+/**
+ * @typedef ProductsComparisonResponse
+ * @property {AttributeMetadata[]} [attributes_metadata]
+ * @property {ProductDetail[]} [items]
  */
 /**
  * @typedef ProductSetDistributionSizeV3
@@ -1035,789 +638,450 @@ export = CatalogApplicationModel;
  * @property {ProductSetDistributionV3} [size_distribution]
  */
 /**
+ * @typedef ProductSize
+ * @property {Dimension} [dimension]
+ * @property {string} [display]
+ * @property {boolean} [is_available]
+ * @property {number} [quantity]
+ * @property {string[]} [seller_identifiers]
+ * @property {string} [value]
+ * @property {Weight} [weight]
+ */
+/**
+ * @typedef ProductSizePriceResponseV3
+ * @property {ArticleAssignmentV3} [article_assignment]
+ * @property {string} [article_id]
+ * @property {PromiseSchema} [delivery_promise]
+ * @property {string} [discount]
+ * @property {DiscountMeta} [discount_meta]
+ * @property {SellerGroupAttributes[]} [grouped_attributes]
+ * @property {boolean} [is_cod]
+ * @property {boolean} [is_gift]
+ * @property {string} [item_type]
+ * @property {number[]} [long_lat]
+ * @property {MarketPlaceSttributesSchemaV3[]} [marketplace_attributes]
+ * @property {number} [pincode]
+ * @property {ProductStockPriceV3} [price]
+ * @property {ProductStockPriceV3} [price_per_piece]
+ * @property {ProductStockUnitPriceV3} [price_per_unit]
+ * @property {number} [quantity]
+ * @property {ReturnConfigSchemaV3} [return_config]
+ * @property {SellerV3} [seller]
+ * @property {number} [seller_count]
+ * @property {ProductSetV3} [set]
+ * @property {string} [special_badge]
+ * @property {StoreV3} [store]
+ * @property {StrategyWiseListingSchemaV3[]} [strategy_wise_listing]
+ */
+/**
+ * @typedef ProductSizes
+ * @property {string} [discount]
+ * @property {DiscountMeta} [discount_meta]
+ * @property {boolean} [multi_size]
+ * @property {ProductSizesPrice} [price]
+ * @property {boolean} [sellable]
+ * @property {SizeChart} [size_chart]
+ * @property {ProductSize[]} [sizes]
+ * @property {ProductSizeStores} [stores]
+ */
+/**
+ * @typedef ProductSizeSellerFilterSchemaV3
+ * @property {boolean} [is_selected]
+ * @property {string} [name]
+ * @property {string} [value]
+ */
+/**
+ * @typedef ProductSizeSellersResponseV3
+ * @property {ProductSizePriceResponseV3[]} [items]
+ * @property {Page} page
+ * @property {ProductSizeSellerFilterSchemaV3[]} [sort_on]
+ */
+/**
+ * @typedef ProductSizesPrice
+ * @property {Price} [effective]
+ * @property {Price} [marked]
+ * @property {Price} [selling]
+ */
+/**
+ * @typedef ProductSizeStores
+ * @property {number} [count]
+ */
+/**
+ * @typedef ProductSortOn
+ * @property {string} [display]
+ * @property {boolean} [is_selected]
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {string} [value]
+ */
+/**
+ * @typedef ProductStockPolling
+ * @property {ProductStockStatusItem[]} [items]
+ * @property {Page} page
+ */
+/**
+ * @typedef ProductStockPrice
+ * @property {string} [currency]
+ * @property {number} [effective]
+ * @property {number} [marked]
+ */
+/**
  * @typedef ProductStockPriceV3
- * @property {number} [effective] - The effective or final price for the product
- *   at the given pincode.
  * @property {string} [currency_code] - The currency code for which the product
  *   is available
  * @property {string} [currency_symbol] - The currency symbol for the currency
  *   in which the product is available.
+ * @property {number} [effective] - The effective or final price for the product
+ *   at the given pincode.
  * @property {number} [marked] - The marked price of the product.
  * @property {number} [selling] - The selling price of the product.
  */
 /**
- * @typedef ProductStockUnitPriceV3
- * @property {string} [unit]
- * @property {string} [currency_symbol]
- * @property {string} [currency_code]
- * @property {number} [price]
- */
-/**
- * @typedef MarketPlaceSttributesSchemaV3
- * @property {string} [title]
- * @property {DetailsSchemaV3[]} [details]
- */
-/**
- * @typedef SellerV3
- * @property {number} [uid]
- * @property {string} [name]
- * @property {number} [count]
- */
-/**
- * @typedef PromiseSchema
- * @property {string} [min]
- * @property {string} [max]
- */
-/**
- * @typedef ProductSizePriceResponseV4
- * @property {StoreV3} [store]
- * @property {ArticleAssignmentV3} [article_assignment]
- * @property {boolean} [is_cod]
- * @property {StrategyWiseListingSchemaV3[]} [strategy_wise_listing]
+ * @typedef ProductStockStatusItem
+ * @property {CompanyDetail} [company]
+ * @property {Object} [identifier]
+ * @property {number} [item_id]
+ * @property {ProductStockPrice} [price]
  * @property {number} [quantity]
- * @property {string} [item_type]
- * @property {SellerGroupAttributes[]} [grouped_attributes]
- * @property {ReturnConfigSchemaV3} [return_config]
- * @property {string} [article_id]
- * @property {boolean} [is_gift]
- * @property {ProductSetV3} [set]
- * @property {ProductStockPriceV3} [price_per_piece]
- * @property {DiscountMeta} [discount_meta]
- * @property {string} [discount]
- * @property {number[]} [long_lat]
- * @property {ProductStockPriceV3} [price]
- * @property {ProductStockUnitPriceV3} [price_per_unit]
- * @property {string} [pincode]
- * @property {string[]} [trader]
- * @property {string[]} [tags]
- * @property {boolean} [is_serviceable]
- * @property {MarketPlaceSttributesSchemaV3[]} [marketplace_attributes]
- * @property {SellerV3} [seller]
- * @property {PromiseSchema} [delivery_promise]
- * @property {string} [product_name]
- * @property {Object} [_custom_json]
+ * @property {Seller} [seller]
+ * @property {string} [size]
+ * @property {StoreDetail} [store]
+ * @property {string} [uid]
  */
 /**
- * @typedef ProductSizeSellerFilterSchemaV4
+ * @typedef ProductStockStatusResponse
+ * @property {ProductStockStatusItem[]} [items]
+ */
+/**
+ * @typedef ProductStockUnitPriceV3
+ * @property {string} [currency_code]
+ * @property {string} [currency_symbol]
+ * @property {number} [price]
+ * @property {string} [unit]
+ */
+/**
+ * @typedef ProductVariantItemResponse
+ * @property {CustomMetaFields[]} [_custom_meta]
+ * @property {ProductListingAction} [action]
+ * @property {string} [color]
+ * @property {string} [color_name]
+ * @property {boolean} [is_available]
+ * @property {Media[]} [medias]
  * @property {string} [name]
- * @property {boolean} [is_selected]
+ * @property {string} [slug]
+ * @property {number} [uid]
  * @property {string} [value]
  */
 /**
- * @typedef ProductSizeSellersResponseV4
- * @property {ProductSizePriceResponseV4[]} [items]
+ * @typedef ProductVariantListingResponse
+ * @property {string} [display_type]
+ * @property {string} [header]
+ * @property {ProductVariantItemResponse[]} [items]
+ * @property {string} [key]
+ * @property {number} [total]
+ */
+/**
+ * @typedef ProductVariantResponse
+ * @property {string} [display_type]
+ * @property {string} [header]
+ * @property {ProductVariantItemResponse[]} [items]
+ * @property {string} [key]
+ */
+/**
+ * @typedef ProductVariantsResponse
+ * @property {ProductVariantResponse[]} [variants]
+ */
+/**
+ * @typedef PromiseSchema
+ * @property {string} [max]
+ * @property {string} [min]
+ */
+/**
+ * @typedef ReturnConfigSchemaV3
+ * @property {boolean} [returnable]
+ * @property {number} [time]
+ * @property {string} [unit]
+ */
+/**
+ * @typedef SecondLevelChild
+ * @property {Object} [_custom_json]
+ * @property {ProductListingAction} [action]
+ * @property {ImageUrls} [banners]
+ * @property {ThirdLevelChild[]} [childs]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef Seller
+ * @property {number} [count]
+ * @property {string} [name]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef SellerGroupAttributes
+ * @property {DetailsSchemaV3[]} [details]
+ * @property {string} [title]
+ */
+/**
+ * @typedef SellerPhoneNumber
+ * @property {number} country_code
+ * @property {string} number
+ */
+/**
+ * @typedef SellerV3
+ * @property {number} [count]
+ * @property {string} [name]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef Size
+ * @property {Object} [display] - The display string for the size
+ * @property {boolean} [is_available] - Whether or not this size is available
+ * @property {number} [quantity] - The quantity of this size available
+ * @property {Object} [value] - The value of the size
+ */
+/**
+ * @typedef SizeChart
+ * @property {string} [description]
+ * @property {ColumnHeaders} [headers]
+ * @property {string} [image]
+ * @property {string} [size_tip]
+ * @property {SizeChartValues[]} [sizes]
+ * @property {string} [title]
+ * @property {string} [unit]
+ */
+/**
+ * @typedef SizeChartValues
+ * @property {string} [col_1]
+ * @property {string} [col_2]
+ * @property {string} [col_3]
+ * @property {string} [col_4]
+ * @property {string} [col_5]
+ * @property {string} [col_6]
+ */
+/**
+ * @typedef Store
+ * @property {string} [address]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {LatLong} [lat_long]
+ * @property {string} [name]
+ * @property {number} [pincode]
+ * @property {string} [state]
+ * @property {string} [store_code]
+ * @property {string} [store_email]
+ * @property {string[]} [tags]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef StoreAddressSerializer
+ * @property {string} [address1]
+ * @property {string} [address2]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [landmark]
+ * @property {number} [latitude]
+ * @property {number} [longitude]
+ * @property {number} [pincode]
+ * @property {string} [state]
+ */
+/**
+ * @typedef StoreDepartments
+ * @property {Object} [logo]
+ * @property {string} [name]
+ * @property {number} [priority_order]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef StoreDetail
+ * @property {string} [city]
+ * @property {string} [code]
+ * @property {number} [id]
+ * @property {string} [name]
+ */
+/**
+ * @typedef StoreDetails
+ * @property {Object} [_custom_json]
+ * @property {StoreAddressSerializer} [address]
+ * @property {CompanyStore} [company]
+ * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {StoreDepartments[]} [departments]
+ * @property {StoreManagerSerializer} [manager]
+ * @property {string} [name]
+ * @property {string} [store_code]
+ * @property {StoreTiming[]} [timing]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef StoreListingResponse
+ * @property {Store[]} items
  * @property {Page} page
- * @property {ProductSizeSellerFilterSchemaV4[]} [sort_on]
+ */
+/**
+ * @typedef StoreManagerSerializer
+ * @property {string} [email]
+ * @property {SellerPhoneNumber} [mobile_no]
+ * @property {string} [name]
+ */
+/**
+ * @typedef StoreTiming
+ * @property {Time} [closing]
+ * @property {boolean} [open]
+ * @property {Time} [opening]
+ * @property {string} [weekday]
+ */
+/**
+ * @typedef StoreV3
+ * @property {number} [count]
+ * @property {string} [name]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef StrategyWiseListingSchemaV3
+ * @property {number} [distance]
+ * @property {number} [pincode]
+ * @property {number} [quantity]
+ * @property {number} [tat]
+ */
+/**
+ * @typedef ThirdLevelChild
+ * @property {Object} [_custom_json]
+ * @property {ProductListingAction} [action]
+ * @property {ImageUrls} [banners]
+ * @property {Object[]} [childs]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
+ * @typedef Time
+ * @property {number} [hour]
+ * @property {number} [minute]
+ */
+/**
+ * @typedef UserDetail
+ * @property {string} [contact] - The contact details of the user.
+ * @property {boolean} [super_user] - A flag indicating whether the user is a super user.
+ * @property {string} user_id - The user ID of the user.
+ * @property {string} username - The username of the user.
+ */
+/**
+ * @typedef Weight
+ * @property {boolean} is_default - Whether the weight is the default one or not
+ * @property {number} shipping - The shipping weight of the product
+ * @property {string} unit - The unit of weight
  */
 declare class CatalogApplicationModel {
 }
 declare namespace CatalogApplicationModel {
-    export { ProductDetailCustomOrder, Meta, Media, QueryParams, Params, ProductListingActionPage, ProductListingAction, ProductBrand, ProductDepartment, ProductCategoryMap, NetQuantity, CustomMetaFields, ApplicationItemSEO, ApplicationItemSeoSitemap, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, ProductDetailAttribute, ProductDetailGroupedAttribute, ApplicationItemMOQ, Price, ProductListingPrice, ProductSizesPrice, ProductDetail, NotServiceableError, ErrorResponse, Dimension, Weight, DiscountMeta, ProductSize, SizeChartValues, ColumnHeader, ColumnHeaders, SizeChart, ProductSizeStores, MOQ, ProductSizes, AttributeDetail, AttributeMetadata, ProductsComparisonResponse, ProductCompareResponse, ProductFrequentlyComparedSimilarResponse, ProductVariantItemResponse, ProductVariantResponse, ProductVariantsResponse, StoreDetail, ProductStockPrice, CompanyDetail, Seller, ArticleIdentifier, ProductStockStatusItem, ProductStockStatusResponse, Page, ProductStockPolling, ProductVariantListingResponse, ProductListingDetail, ProductFiltersValue, ProductFiltersKey, ProductFilters, ProductSortOn, ProductListingResponse, ImageUrls, BrandItem, BrandListingResponse, BrandDetailResponse, CategoryBanner, ThirdLevelChild, SecondLevelChild, Child, CategoryItems, DepartmentCategoryTree, DepartmentIdentifier, CategoryListingResponse, CategoryMetaResponse, HomeListingResponse, Department, DepartmentResponse, AutocompleteItem, AutoCompleteResponse, CollectionQuery, NextSchedule, Schedule, GetCollectionDetailNest, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, GetCollectionListingResponse, CollectionDetailResponse, GetFollowListingResponse, FollowPostResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, LatLong, Store, StoreListingResponse, StoreDepartments, CompanyStore, SellerPhoneNumber, StoreManagerSerializer, AddressLatLong, StoreAddressSerializer, AppStore, ApplicationStoreListing, Time, StoreTiming, StoreDetails, UserDetail, Size, ProductGroupPrice, ProductDetails, ProductInGroup, ProductGroupingModel, ProductBundle, StoreV3, ArticleAssignmentV3, StrategyWiseListingSchemaV3, DetailsSchemaV3, SellerGroupAttributes, ReturnConfigSchemaV3, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductStockPriceV3, ProductStockUnitPriceV3, MarketPlaceSttributesSchemaV3, SellerV3, PromiseSchema, ProductSizePriceResponseV4, ProductSizeSellerFilterSchemaV4, ProductSizeSellersResponseV4 };
+    export { ApplicationItemMOQ, ApplicationItemSEO, ApplicationStoreListing, AppStore, ArticleAssignmentV3, AttributeDetail, AttributeMetadata, AutocompleteItem, AutoCompleteResponse, BrandDetailResponse, BrandItem, BrandListingResponse, CategoryBanner, CategoryItems, CategoryListingResponse, CategoryMetaResponse, Child, CollectionDetailResponse, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, ColumnHeader, ColumnHeaders, CompanyDetail, CompanyStore, CustomMetaFields, Department, DepartmentCategoryTree, DepartmentIdentifier, DepartmentResponse, DetailsSchemaV3, Dimension, DiscountMeta, ErrorResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, FollowPostResponse, GetCollectionDetailNest, GetCollectionListingResponse, GetFollowListingResponse, HomeListingResponse, ImageUrls, LatLong, MarketPlaceSttributesSchemaV3, Media, Meta, NetQuantity, Page, Price, ProductBrand, ProductBundle, ProductCategoryMap, ProductCompareResponse, ProductDepartment, ProductDetail, ProductDetailAttribute, ProductDetailCustomOrder, ProductDetailGroupedAttribute, ProductDetails, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductFrequentlyComparedSimilarResponse, ProductGroupingModel, ProductGroupPrice, ProductInGroup, ProductListingAction, ProductListingActionPage, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductsComparisonResponse, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductSize, ProductSizePriceResponseV3, ProductSizes, ProductSizeSellerFilterSchemaV3, ProductSizeSellersResponseV3, ProductSizesPrice, ProductSizeStores, ProductSortOn, ProductStockPolling, ProductStockPrice, ProductStockPriceV3, ProductStockStatusItem, ProductStockStatusResponse, ProductStockUnitPriceV3, ProductVariantItemResponse, ProductVariantListingResponse, ProductVariantResponse, ProductVariantsResponse, PromiseSchema, ReturnConfigSchemaV3, SecondLevelChild, Seller, SellerGroupAttributes, SellerPhoneNumber, SellerV3, Size, SizeChart, SizeChartValues, Store, StoreAddressSerializer, StoreDepartments, StoreDetail, StoreDetails, StoreListingResponse, StoreManagerSerializer, StoreTiming, StoreV3, StrategyWiseListingSchemaV3, ThirdLevelChild, Time, UserDetail, Weight };
 }
-/** @returns {ProductDetailCustomOrder} */
-declare function ProductDetailCustomOrder(): ProductDetailCustomOrder;
-type ProductDetailCustomOrder = {
-    manufacturing_time?: number;
-    manufacturing_time_unit?: string;
-    is_custom_order?: boolean;
-};
-/** @returns {Meta} */
-declare function Meta(): Meta;
-type Meta = {
-    source?: string;
-};
-/** @returns {Media} */
-declare function Media(): Media;
-type Media = {
-    url?: string;
-    type?: string;
-    meta?: Meta;
-    alt?: string;
-};
-/** @returns {QueryParams} */
-declare function QueryParams(): QueryParams;
-type QueryParams = {
-    category?: string[];
-    brand?: string[];
-    department?: string[];
-};
-/** @returns {Params} */
-declare function Params(): Params;
-type Params = {
-    slug?: string[];
-};
-/** @returns {ProductListingActionPage} */
-declare function ProductListingActionPage(): ProductListingActionPage;
-type ProductListingActionPage = {
-    type?: string;
-    query?: QueryParams;
-    params?: Params;
-};
-/** @returns {ProductListingAction} */
-declare function ProductListingAction(): ProductListingAction;
-type ProductListingAction = {
-    type?: string;
-    page?: ProductListingActionPage;
-};
-/** @returns {ProductBrand} */
-declare function ProductBrand(): ProductBrand;
-type ProductBrand = {
-    uid?: number;
-    logo?: Media;
-    description?: string;
-    name?: string;
-    type?: string;
-    action?: ProductListingAction;
-    _custom_json?: any;
-};
-/** @returns {ProductDepartment} */
-declare function ProductDepartment(): ProductDepartment;
-type ProductDepartment = {
-    uid?: number;
-    logo?: Media;
-    slug?: string;
-    name?: string;
-};
-/** @returns {ProductCategoryMap} */
-declare function ProductCategoryMap(): ProductCategoryMap;
-type ProductCategoryMap = {
-    l1?: ProductBrand;
-    l2?: ProductBrand;
-    l3?: ProductBrand;
-};
-/** @returns {NetQuantity} */
-declare function NetQuantity(): NetQuantity;
-type NetQuantity = {
-    /**
-     * - The unit of measurement used for the net quantity
-     * of the product.
-     */
-    unit?: string;
-    /**
-     * - The value of the net quantity of the product.
-     */
-    value?: number;
-};
-/** @returns {CustomMetaFields} */
-declare function CustomMetaFields(): CustomMetaFields;
-type CustomMetaFields = {
-    /**
-     * - A value to store in the custom field.
-     */
-    value: string;
-    /**
-     * - A key to store a custom field.
-     */
-    key: string;
-};
-/** @returns {ApplicationItemSEO} */
-declare function ApplicationItemSEO(): ApplicationItemSEO;
-type ApplicationItemSEO = {
-    /**
-     * - The SEO title of the item
-     */
-    title?: string;
-    /**
-     * - The SEO description of the item
-     */
-    description?: string;
-    sitemap?: ApplicationItemSeoSitemap;
-    breadcrumbs?: ApplicationItemSeoBreadcrumbs[];
-    meta_tags?: ApplicationItemSeoMetaTags[];
-    /**
-     * - The SEO canonical URL of the item
-     */
-    canonical_url?: string;
-};
-/** @returns {ApplicationItemSeoSitemap} */
-declare function ApplicationItemSeoSitemap(): ApplicationItemSeoSitemap;
-type ApplicationItemSeoSitemap = {
-    /**
-     * - The SEO priority of the item
-     */
-    priority?: number;
-    /**
-     * - The SEO frequency of the item
-     */
-    frequency?: string;
-};
-/** @returns {ApplicationItemSeoAction} */
-declare function ApplicationItemSeoAction(): ApplicationItemSeoAction;
-type ApplicationItemSeoAction = {
-    /**
-     * - The SEO page information of the item
-     */
-    page?: any;
-    /**
-     * - The SEO type of the item
-     */
-    type?: string;
-};
-/** @returns {ApplicationItemSeoBreadcrumbs} */
-declare function ApplicationItemSeoBreadcrumbs(): ApplicationItemSeoBreadcrumbs;
-type ApplicationItemSeoBreadcrumbs = {
-    /**
-     * - The SEO URL of the item
-     */
-    url?: string;
-    action?: ApplicationItemSeoAction;
-};
-/** @returns {ApplicationItemSeoMetaTagItem} */
-declare function ApplicationItemSeoMetaTagItem(): ApplicationItemSeoMetaTagItem;
-type ApplicationItemSeoMetaTagItem = {
-    /**
-     * - The SEO key of the item
-     */
-    key?: string;
-    /**
-     * - The SEO value of the item
-     */
-    value?: string;
-};
-/** @returns {ApplicationItemSeoMetaTags} */
-declare function ApplicationItemSeoMetaTags(): ApplicationItemSeoMetaTags;
-type ApplicationItemSeoMetaTags = {
-    /**
-     * - The SEO title of the product
-     */
-    title?: string;
-    /**
-     * - The SEO items for the product
-     */
-    items?: ApplicationItemSeoMetaTagItem[];
-};
-/** @returns {ProductDetailAttribute} */
-declare function ProductDetailAttribute(): ProductDetailAttribute;
-type ProductDetailAttribute = {
-    value?: string;
-    type?: string;
-    key?: string;
-};
-/** @returns {ProductDetailGroupedAttribute} */
-declare function ProductDetailGroupedAttribute(): ProductDetailGroupedAttribute;
-type ProductDetailGroupedAttribute = {
-    title?: string;
-    details?: ProductDetailAttribute[];
-};
 /** @returns {ApplicationItemMOQ} */
 declare function ApplicationItemMOQ(): ApplicationItemMOQ;
 type ApplicationItemMOQ = {
-    /**
-     * - The minimum quantity required for purchase.
-     */
-    minimum?: number;
-    /**
-     * - The maximum quantity allowed for purchase.
-     */
-    maximum?: number;
     /**
      * - The minimum quantity increment in which
      * the item can be purchased.
      */
     increment_unit?: number;
-};
-/** @returns {Price} */
-declare function Price(): Price;
-type Price = {
     /**
-     * - The minimum price for the product across stores.
+     * - The maximum quantity allowed for purchase.
      */
-    min?: number;
-    /**
-     * - The currency symbol for the currency
-     * in which the product is available.
-     */
-    currency_symbol?: string;
-    /**
-     * - The currency code for the currency in
-     * which the product is available.
-     */
-    currency_code?: string;
-    /**
-     * - The maximum price for the product across stores.
-     */
-    max?: number;
-};
-/** @returns {ProductListingPrice} */
-declare function ProductListingPrice(): ProductListingPrice;
-type ProductListingPrice = {
-    effective?: Price;
-    marked?: Price;
-    selling?: Price;
-};
-/** @returns {ProductSizesPrice} */
-declare function ProductSizesPrice(): ProductSizesPrice;
-type ProductSizesPrice = {
-    effective?: Price;
-    marked?: Price;
-    selling?: Price;
-};
-/** @returns {ProductDetail} */
-declare function ProductDetail(): ProductDetail;
-type ProductDetail = {
-    uid?: number;
-    sizes?: string[];
-    identifiers?: string[];
-    is_tryout?: boolean;
-    channel?: string;
-    discount_meta?: DiscountMeta;
-    variants?: ProductVariantResponse[];
-    custom_order?: ProductDetailCustomOrder;
-    category_map?: ProductCategoryMap;
-    net_quantity?: NetQuantity;
-    rating_count?: number;
-    _custom_meta?: CustomMetaFields[];
-    similars?: string[];
-    tags?: string[];
-    seo?: ApplicationItemSEO;
-    image_nature?: string;
-    has_variant?: boolean;
-    item_type?: string;
-    description?: string;
-    grouped_attributes?: ProductDetailGroupedAttribute[];
-    medias?: Media[];
-    color?: string;
-    type?: string;
-    product_online_date?: string;
-    _custom_json?: any;
-    item_code?: string;
-    name?: string;
-    moq?: ApplicationItemMOQ;
-    short_description?: string;
-    categories?: ProductBrand[];
-    attributes?: any;
-    discount?: string;
-    tryouts?: string[];
-    slug: string;
-    action?: ProductListingAction;
-    rating?: number;
-    is_dependent?: boolean;
-    product_group_tag?: string[];
-    highlights?: string[];
-    price?: ProductListingPrice;
-    brand?: ProductBrand;
-    department?: ProductDepartment;
-    teaser_tag?: string;
-    promo_meta?: any;
-    no_of_boxes?: number;
-    template_tag?: string;
-    sellable?: boolean;
-};
-/** @returns {NotServiceableError} */
-declare function NotServiceableError(): NotServiceableError;
-type NotServiceableError = {
-    message?: string;
-    is_serviceable?: boolean;
-};
-/** @returns {ErrorResponse} */
-declare function ErrorResponse(): ErrorResponse;
-type ErrorResponse = {
-    error?: string;
-    errors?: any;
-    code?: number;
-    message?: string;
-};
-/** @returns {Dimension} */
-declare function Dimension(): Dimension;
-type Dimension = {
-    /**
-     * - The unit of dimension
-     */
-    unit: string;
-    /**
-     * - The height of the product
-     */
-    height: number;
-    /**
-     * - The length of the product
-     */
-    length: number;
-    /**
-     * - The width of the product
-     */
-    width: number;
-    /**
-     * - Whether the dimension is the default one or not
-     */
-    is_default: boolean;
-};
-/** @returns {Weight} */
-declare function Weight(): Weight;
-type Weight = {
-    /**
-     * - The unit of weight
-     */
-    unit: string;
-    /**
-     * - The shipping weight of the product
-     */
-    shipping: number;
-    /**
-     * - Whether the weight is the default one or not
-     */
-    is_default: boolean;
-};
-/** @returns {DiscountMeta} */
-declare function DiscountMeta(): DiscountMeta;
-type DiscountMeta = {
-    /**
-     * - Determines whether the discount countdown is
-     * visible or not.
-     */
-    timer?: boolean;
-    /**
-     * - The time in minutes before the
-     * discount ends when the countdown timer should start.
-     */
-    start_timer_in_minutes?: number;
-    /**
-     * - The start time of the live discount.
-     */
-    start?: string;
-    /**
-     * - The end time of the live discount.
-     */
-    end?: string;
-};
-/** @returns {ProductSize} */
-declare function ProductSize(): ProductSize;
-type ProductSize = {
-    quantity?: number;
-    dimension?: Dimension;
-    weight?: Weight;
-    is_available?: boolean;
-    seller_identifiers?: string[];
-    value?: string;
-    display?: string;
-    set?: ProductSetV3;
-};
-/** @returns {SizeChartValues} */
-declare function SizeChartValues(): SizeChartValues;
-type SizeChartValues = {
-    col_3?: string;
-    col_6?: string;
-    col_2?: string;
-    col_4?: string;
-    col_1?: string;
-    col_5?: string;
-};
-/** @returns {ColumnHeader} */
-declare function ColumnHeader(): ColumnHeader;
-type ColumnHeader = {
-    convertable?: boolean;
-    value?: string;
-};
-/** @returns {ColumnHeaders} */
-declare function ColumnHeaders(): ColumnHeaders;
-type ColumnHeaders = {
-    col_3?: ColumnHeader;
-    col_6?: ColumnHeader;
-    col_2?: ColumnHeader;
-    col_4?: ColumnHeader;
-    col_1?: ColumnHeader;
-    col_5?: ColumnHeader;
-};
-/** @returns {SizeChart} */
-declare function SizeChart(): SizeChart;
-type SizeChart = {
-    unit?: string;
-    image?: string;
-    size_tip?: string;
-    sizes?: SizeChartValues[];
-    description?: string;
-    title?: string;
-    headers?: ColumnHeaders;
-};
-/** @returns {ProductSizeStores} */
-declare function ProductSizeStores(): ProductSizeStores;
-type ProductSizeStores = {
-    count?: number;
-};
-/** @returns {MOQ} */
-declare function MOQ(): MOQ;
-type MOQ = {
     maximum?: number;
+    /**
+     * - The minimum quantity required for purchase.
+     */
     minimum?: number;
-    increment_unit?: number;
 };
-/** @returns {ProductSizes} */
-declare function ProductSizes(): ProductSizes;
-type ProductSizes = {
-    sizes?: ProductSize[];
-    price?: ProductSizesPrice;
-    size_chart?: SizeChart;
-    sellable?: boolean;
-    multi_size?: boolean;
-    discount?: string;
-    stores?: ProductSizeStores;
-    discount_meta?: DiscountMeta;
-    moq?: MOQ;
-    tags?: string[];
-    custom_order?: any;
-    product_name?: string;
+/** @returns {ApplicationItemSEO} */
+declare function ApplicationItemSEO(): ApplicationItemSEO;
+type ApplicationItemSEO = {
+    /**
+     * - The SEO description of the item
+     */
+    description?: any;
+    /**
+     * - The SEO title of the item
+     */
+    title?: any;
+};
+/** @returns {ApplicationStoreListing} */
+declare function ApplicationStoreListing(): ApplicationStoreListing;
+type ApplicationStoreListing = {
+    filters?: any[];
+    items?: AppStore[];
+    page?: Page;
+};
+/** @returns {AppStore} */
+declare function AppStore(): AppStore;
+type AppStore = {
+    address?: StoreAddressSerializer;
+    company?: CompanyStore;
+    contact_numbers?: SellerPhoneNumber[];
+    departments?: StoreDepartments[];
+    manager?: StoreManagerSerializer;
+    name?: string;
+    store_code?: string;
+    uid?: number;
+};
+/** @returns {ArticleAssignmentV3} */
+declare function ArticleAssignmentV3(): ArticleAssignmentV3;
+type ArticleAssignmentV3 = {
+    level?: string;
+    strategy?: string;
 };
 /** @returns {AttributeDetail} */
 declare function AttributeDetail(): AttributeDetail;
 type AttributeDetail = {
-    logo?: string;
     description?: string;
     display?: string;
     key?: string;
+    logo?: string;
 };
 /** @returns {AttributeMetadata} */
 declare function AttributeMetadata(): AttributeMetadata;
 type AttributeMetadata = {
-    title?: string;
     details?: AttributeDetail[];
-};
-/** @returns {ProductsComparisonResponse} */
-declare function ProductsComparisonResponse(): ProductsComparisonResponse;
-type ProductsComparisonResponse = {
-    items?: ProductDetail[];
-    attributes_metadata?: AttributeMetadata[];
-};
-/** @returns {ProductCompareResponse} */
-declare function ProductCompareResponse(): ProductCompareResponse;
-type ProductCompareResponse = {
     title?: string;
-    items?: ProductDetail[];
-    attributes_metadata?: AttributeMetadata[];
-    subtitle?: string;
 };
-/** @returns {ProductFrequentlyComparedSimilarResponse} */
-declare function ProductFrequentlyComparedSimilarResponse(): ProductFrequentlyComparedSimilarResponse;
-type ProductFrequentlyComparedSimilarResponse = {
-    similars?: ProductCompareResponse;
-};
-/** @returns {ProductVariantItemResponse} */
-declare function ProductVariantItemResponse(): ProductVariantItemResponse;
-type ProductVariantItemResponse = {
-    uid?: number;
-    color_name?: string;
-    color?: string;
-    medias?: Media[];
-    is_available?: boolean;
-    _custom_meta?: CustomMetaFields[];
-    name?: string;
-    value?: string;
-    slug?: string;
+/** @returns {AutocompleteItem} */
+declare function AutocompleteItem(): AutocompleteItem;
+type AutocompleteItem = {
     _custom_json?: any;
     action?: ProductListingAction;
-};
-/** @returns {ProductVariantResponse} */
-declare function ProductVariantResponse(): ProductVariantResponse;
-type ProductVariantResponse = {
-    display_type?: string;
-    header?: string;
-    logo?: string;
-    items?: ProductVariantItemResponse[];
-    key?: string;
-};
-/** @returns {ProductVariantsResponse} */
-declare function ProductVariantsResponse(): ProductVariantsResponse;
-type ProductVariantsResponse = {
-    variants?: ProductVariantResponse[];
-};
-/** @returns {StoreDetail} */
-declare function StoreDetail(): StoreDetail;
-type StoreDetail = {
-    name?: string;
-    city?: string;
-    id?: number;
-    code?: string;
-};
-/** @returns {ProductStockPrice} */
-declare function ProductStockPrice(): ProductStockPrice;
-type ProductStockPrice = {
-    effective?: number;
-    currency?: string;
-    marked?: number;
-};
-/** @returns {CompanyDetail} */
-declare function CompanyDetail(): CompanyDetail;
-type CompanyDetail = {
-    name?: string;
-    id?: number;
-};
-/** @returns {Seller} */
-declare function Seller(): Seller;
-type Seller = {
-    uid?: number;
-    name?: string;
-    count?: number;
-};
-/** @returns {ArticleIdentifier} */
-declare function ArticleIdentifier(): ArticleIdentifier;
-type ArticleIdentifier = {
-    ean?: string;
-    alu?: string;
-    upc?: string;
-    sku_code?: string;
-};
-/** @returns {ProductStockStatusItem} */
-declare function ProductStockStatusItem(): ProductStockStatusItem;
-type ProductStockStatusItem = {
-    uid?: string;
-    quantity?: number;
-    brand?: BrandItem;
-    seller_identifier?: string;
-    price_effective?: number;
-    price_selling?: number;
-    price_marked?: number;
-    discount_meta?: DiscountMeta;
-    discount_applied?: any;
-    store?: StoreDetail;
-    size?: string;
-    price?: ProductStockPrice;
-    company?: CompanyDetail;
-    item_id?: number;
-    seller?: Seller;
-    identifier?: ArticleIdentifier;
-};
-/** @returns {ProductStockStatusResponse} */
-declare function ProductStockStatusResponse(): ProductStockStatusResponse;
-type ProductStockStatusResponse = {
-    items?: ProductStockStatusItem[];
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
-    size?: number;
-};
-/** @returns {ProductStockPolling} */
-declare function ProductStockPolling(): ProductStockPolling;
-type ProductStockPolling = {
-    items?: ProductStockStatusItem[];
-    page: Page;
-};
-/** @returns {ProductVariantListingResponse} */
-declare function ProductVariantListingResponse(): ProductVariantListingResponse;
-type ProductVariantListingResponse = {
-    header?: string;
-    items?: ProductVariantItemResponse[];
-    total?: number;
-    key?: string;
-    display_type?: string;
-};
-/** @returns {ProductListingDetail} */
-declare function ProductListingDetail(): ProductListingDetail;
-type ProductListingDetail = {
-    is_tryout?: boolean;
-    channel?: string;
-    discount_meta?: DiscountMeta;
-    uid?: number;
-    custom_order?: ProductDetailCustomOrder;
-    sizes?: string[];
-    category_map?: ProductCategoryMap;
-    net_quantity?: NetQuantity;
-    rating_count?: number;
-    _custom_meta?: CustomMetaFields[];
-    similars?: string[];
-    tags?: string[];
-    seo?: ApplicationItemSEO;
-    image_nature?: string;
-    has_variant?: boolean;
-    item_type?: string;
-    description?: string;
-    grouped_attributes?: ProductDetailGroupedAttribute[];
-    medias?: Media[];
-    color?: string;
-    type?: string;
-    product_online_date?: string;
-    _custom_json?: any;
-    item_code?: string;
-    name?: string;
-    moq?: ApplicationItemMOQ;
-    short_description?: string;
-    categories?: ProductBrand[];
-    sellable?: boolean;
-    attributes?: any;
-    variants?: ProductVariantListingResponse[];
-    discount?: string;
-    tryouts?: string[];
-    identifiers?: string[];
-    slug: string;
-    action?: ProductListingAction;
-    rating?: number;
-    is_dependent?: boolean;
-    product_group_tag?: string[];
-    highlights?: string[];
-    price?: ProductListingPrice;
-    brand?: ProductBrand;
-    teaser_tag?: string;
-};
-/** @returns {ProductFiltersValue} */
-declare function ProductFiltersValue(): ProductFiltersValue;
-type ProductFiltersValue = {
-    min?: number;
-    display_format?: string;
-    selected_max?: number;
-    value?: string;
-    query_format?: string;
-    currency_symbol?: string;
-    selected_min?: number;
-    currency_code?: string;
-    is_selected: boolean;
-    display: string;
-    count?: number;
-    max?: number;
-};
-/** @returns {ProductFiltersKey} */
-declare function ProductFiltersKey(): ProductFiltersKey;
-type ProductFiltersKey = {
-    logo?: string;
-    name: string;
-    kind?: string;
-    display: string;
-};
-/** @returns {ProductFilters} */
-declare function ProductFilters(): ProductFilters;
-type ProductFilters = {
-    values: ProductFiltersValue[];
-    key: ProductFiltersKey;
-};
-/** @returns {ProductSortOn} */
-declare function ProductSortOn(): ProductSortOn;
-type ProductSortOn = {
-    logo?: string;
-    is_selected?: boolean;
-    name?: string;
-    value?: string;
     display?: string;
+    logo?: Media;
+    type?: string;
 };
-/** @returns {ProductListingResponse} */
-declare function ProductListingResponse(): ProductListingResponse;
-type ProductListingResponse = {
-    items?: ProductListingDetail[];
-    filters?: ProductFilters[];
-    page: Page;
-    sort_on?: ProductSortOn[];
+/** @returns {AutoCompleteResponse} */
+declare function AutoCompleteResponse(): AutoCompleteResponse;
+type AutoCompleteResponse = {
+    items?: AutocompleteItem[];
 };
-/** @returns {ImageUrls} */
-declare function ImageUrls(): ImageUrls;
-type ImageUrls = {
-    portrait?: Media;
-    landscape?: Media;
+/** @returns {BrandDetailResponse} */
+declare function BrandDetailResponse(): BrandDetailResponse;
+type BrandDetailResponse = {
+    _custom_json?: any;
+    banners?: ImageUrls;
+    description?: string;
+    logo?: Media;
+    name?: string;
+    uid?: number;
 };
 /** @returns {BrandItem} */
 declare function BrandItem(): BrandItem;
 type BrandItem = {
-    id?: number;
-    uid?: number;
-    logo?: Media;
-    description?: string;
+    action?: ProductListingAction;
     banners?: ImageUrls;
     departments?: string[];
+    description?: string;
     discount?: string;
+    logo?: Media;
     name?: string;
     slug?: string;
-    action?: ProductListingAction;
+    uid?: number;
 };
 /** @returns {BrandListingResponse} */
 declare function BrandListingResponse(): BrandListingResponse;
@@ -1825,83 +1089,21 @@ type BrandListingResponse = {
     items?: BrandItem[];
     page: Page;
 };
-/** @returns {BrandDetailResponse} */
-declare function BrandDetailResponse(): BrandDetailResponse;
-type BrandDetailResponse = {
-    logo?: Media;
-    uid?: number;
-    description?: string;
-    banners?: ImageUrls;
-    _custom_json?: any;
-    slug?: string;
-    _app?: any;
-    name?: string;
-};
 /** @returns {CategoryBanner} */
 declare function CategoryBanner(): CategoryBanner;
 type CategoryBanner = {
-    portrait: Media;
     landscape: Media;
-};
-/** @returns {ThirdLevelChild} */
-declare function ThirdLevelChild(): ThirdLevelChild;
-type ThirdLevelChild = {
-    uid?: number;
-    banners?: ImageUrls;
-    childs?: any[];
-    _custom_json?: any;
-    name?: string;
-    slug?: string;
-    action?: ProductListingAction;
-    priority?: number;
-};
-/** @returns {SecondLevelChild} */
-declare function SecondLevelChild(): SecondLevelChild;
-type SecondLevelChild = {
-    uid?: number;
-    banners?: ImageUrls;
-    childs?: ThirdLevelChild[];
-    _custom_json?: any;
-    name?: string;
-    slug?: string;
-    action?: ProductListingAction;
-    priority?: number;
-};
-/** @returns {Child} */
-declare function Child(): Child;
-type Child = {
-    uid?: number;
-    banners?: ImageUrls;
-    childs?: SecondLevelChild[];
-    _custom_json?: any;
-    name?: string;
-    slug?: string;
-    action?: ProductListingAction;
-    priority?: number;
+    portrait: Media;
 };
 /** @returns {CategoryItems} */
 declare function CategoryItems(): CategoryItems;
 type CategoryItems = {
-    uid: number;
+    action: ProductListingAction;
     banners: CategoryBanner;
     childs?: Child[];
     name: string;
     slug: string;
-    action: ProductListingAction;
-    priority?: number;
-    _custom_json?: any;
-};
-/** @returns {DepartmentCategoryTree} */
-declare function DepartmentCategoryTree(): DepartmentCategoryTree;
-type DepartmentCategoryTree = {
-    items?: CategoryItems[];
-    department: string;
-};
-/** @returns {DepartmentIdentifier} */
-declare function DepartmentIdentifier(): DepartmentIdentifier;
-type DepartmentIdentifier = {
-    uid?: number;
-    slug?: string;
+    uid: number;
 };
 /** @returns {CategoryListingResponse} */
 declare function CategoryListingResponse(): CategoryListingResponse;
@@ -1912,137 +1114,46 @@ type CategoryListingResponse = {
 /** @returns {CategoryMetaResponse} */
 declare function CategoryMetaResponse(): CategoryMetaResponse;
 type CategoryMetaResponse = {
-    logo?: Media;
-    uid?: number;
-    banners?: ImageUrls;
     _custom_json?: any;
+    banners?: ImageUrls;
+    logo?: Media;
     name?: string;
-    _app?: any;
-};
-/** @returns {HomeListingResponse} */
-declare function HomeListingResponse(): HomeListingResponse;
-type HomeListingResponse = {
-    items?: ProductListingDetail[];
-    page: Page;
-    message?: string;
-    sort_on?: string;
-};
-/** @returns {Department} */
-declare function Department(): Department;
-type Department = {
     uid?: number;
-    logo?: Media;
-    priority_order?: number;
-    name?: string;
-    slug?: string;
 };
-/** @returns {DepartmentResponse} */
-declare function DepartmentResponse(): DepartmentResponse;
-type DepartmentResponse = {
-    items?: Department[];
-};
-/** @returns {AutocompleteItem} */
-declare function AutocompleteItem(): AutocompleteItem;
-type AutocompleteItem = {
-    logo?: Media;
-    display?: string;
-    type?: string;
+/** @returns {Child} */
+declare function Child(): Child;
+type Child = {
     _custom_json?: any;
     action?: ProductListingAction;
+    banners?: ImageUrls;
+    childs?: SecondLevelChild[];
+    name?: string;
+    slug?: string;
+    uid?: number;
 };
-/** @returns {AutoCompleteResponse} */
-declare function AutoCompleteResponse(): AutoCompleteResponse;
-type AutoCompleteResponse = {
-    items?: AutocompleteItem[];
-};
-/** @returns {CollectionQuery} */
-declare function CollectionQuery(): CollectionQuery;
-type CollectionQuery = {
-    op: string;
-    value: string[];
-    attribute: string;
-};
-/** @returns {NextSchedule} */
-declare function NextSchedule(): NextSchedule;
-type NextSchedule = {
-    /**
-     * - The start time of the next schedule
-     */
-    start?: string;
-    /**
-     * - The end time of the next schedule
-     */
-    end?: string;
-};
-/** @returns {Schedule} */
-declare function Schedule(): Schedule;
-type Schedule = {
-    /**
-     * - The cron expression for the schedule
-     */
-    cron?: string;
-    /**
-     * - List of next schedules
-     */
-    next_schedule?: NextSchedule[];
-    /**
-     * - The duration of the job in seconds
-     */
-    duration?: number;
-    /**
-     * - The start time of the job
-     */
-    start?: string;
-    /**
-     * - The end time of the job
-     */
-    end?: string;
-    metadata?: any;
-};
-/** @returns {GetCollectionDetailNest} */
-declare function GetCollectionDetailNest(): GetCollectionDetailNest;
-type GetCollectionDetailNest = {
-    is_active?: boolean;
-    uid?: string;
-    _id?: string;
-    sort_on?: string;
-    meta?: any;
+/** @returns {CollectionDetailResponse} */
+declare function CollectionDetailResponse(): CollectionDetailResponse;
+type CollectionDetailResponse = {
+    _custom_json?: any;
+    _schedule?: any;
+    allow_facets?: boolean;
+    allow_sort?: boolean;
+    app_id?: string;
+    badge?: any;
     banners?: ImageUrls;
     cron?: any;
-    query?: CollectionQuery[];
     description?: string;
-    type?: string;
-    _custom_json?: any;
-    name?: string;
-    allow_sort?: boolean;
-    visible_facets_keys?: string[];
-    badge?: any;
-    slug?: string;
-    action?: ProductListingAction;
-    allow_facets?: boolean;
+    is_active?: boolean;
     logo?: Media;
+    meta?: any;
+    name?: string;
     priority?: number;
+    query?: CollectionQuery[];
+    slug?: string;
+    sort_on?: string;
     tag?: string[];
-    app_id?: string;
-    published?: boolean;
-    tags?: string[];
-    _locale_language?: any;
-    seo?: any;
-    _schedule?: Schedule;
-};
-/** @returns {CollectionListingFilterTag} */
-declare function CollectionListingFilterTag(): CollectionListingFilterTag;
-type CollectionListingFilterTag = {
-    name?: string;
-    is_selected?: boolean;
-    display?: string;
-};
-/** @returns {CollectionListingFilterType} */
-declare function CollectionListingFilterType(): CollectionListingFilterType;
-type CollectionListingFilterType = {
-    name?: string;
-    is_selected?: boolean;
-    display?: string;
+    type?: string;
+    visible_facets_keys?: string[];
 };
 /** @returns {CollectionListingFilter} */
 declare function CollectionListingFilter(): CollectionListingFilter;
@@ -2050,55 +1161,152 @@ type CollectionListingFilter = {
     tags?: CollectionListingFilterTag[];
     type?: CollectionListingFilterType[];
 };
-/** @returns {GetCollectionListingResponse} */
-declare function GetCollectionListingResponse(): GetCollectionListingResponse;
-type GetCollectionListingResponse = {
-    items?: GetCollectionDetailNest[];
-    filters?: CollectionListingFilter;
-    page: Page;
-};
-/** @returns {CollectionDetailResponse} */
-declare function CollectionDetailResponse(): CollectionDetailResponse;
-type CollectionDetailResponse = {
-    uid?: string;
-    published?: boolean;
-    tags?: string[];
-    _locale_language?: any;
-    seo?: any;
-    action?: ProductListingAction;
-    is_active?: boolean;
-    sort_on?: string;
-    meta?: any;
-    banners?: ImageUrls;
-    cron?: any;
-    _schedule?: Schedule;
-    query?: CollectionQuery[];
-    description?: string;
-    type?: string;
-    _custom_json?: any;
+/** @returns {CollectionListingFilterTag} */
+declare function CollectionListingFilterTag(): CollectionListingFilterTag;
+type CollectionListingFilterTag = {
+    display?: string;
+    is_selected?: boolean;
     name?: string;
-    allow_sort?: boolean;
-    visible_facets_keys?: string[];
-    badge?: any;
-    slug?: string;
-    allow_facets?: boolean;
+};
+/** @returns {CollectionListingFilterType} */
+declare function CollectionListingFilterType(): CollectionListingFilterType;
+type CollectionListingFilterType = {
+    display?: string;
+    is_selected?: boolean;
+    name?: string;
+};
+/** @returns {CollectionQuery} */
+declare function CollectionQuery(): CollectionQuery;
+type CollectionQuery = {
+    attribute: string;
+    op: string;
+    value: any[];
+};
+/** @returns {ColumnHeader} */
+declare function ColumnHeader(): ColumnHeader;
+type ColumnHeader = {
+    convertable?: boolean;
+    value?: string;
+};
+/** @returns {ColumnHeaders} */
+declare function ColumnHeaders(): ColumnHeaders;
+type ColumnHeaders = {
+    col_1?: ColumnHeader;
+    col_2?: ColumnHeader;
+    col_3?: ColumnHeader;
+    col_4?: ColumnHeader;
+    col_5?: ColumnHeader;
+    col_6?: ColumnHeader;
+};
+/** @returns {CompanyDetail} */
+declare function CompanyDetail(): CompanyDetail;
+type CompanyDetail = {
+    id?: number;
+    name?: string;
+};
+/** @returns {CompanyStore} */
+declare function CompanyStore(): CompanyStore;
+type CompanyStore = {
+    business_type?: string;
+    company_type?: string;
+    name?: string;
+    uid?: number;
+};
+/** @returns {CustomMetaFields} */
+declare function CustomMetaFields(): CustomMetaFields;
+type CustomMetaFields = {
+    /**
+     * - A key to store a custom field.
+     */
+    key: string;
+    /**
+     * - A value to store in the custom field.
+     */
+    value: string;
+};
+/** @returns {Department} */
+declare function Department(): Department;
+type Department = {
     logo?: Media;
-    priority?: number;
-    tag?: string[];
-    app_id?: string;
-    _id?: string;
+    name?: string;
+    priority_order?: number;
+    slug?: string;
+    uid?: number;
 };
-/** @returns {GetFollowListingResponse} */
-declare function GetFollowListingResponse(): GetFollowListingResponse;
-type GetFollowListingResponse = {
-    items: ProductListingDetail[];
-    page: Page;
+/** @returns {DepartmentCategoryTree} */
+declare function DepartmentCategoryTree(): DepartmentCategoryTree;
+type DepartmentCategoryTree = {
+    department: string;
+    items?: CategoryItems[];
 };
-/** @returns {FollowPostResponse} */
-declare function FollowPostResponse(): FollowPostResponse;
-type FollowPostResponse = {
-    message: string;
-    id: string;
+/** @returns {DepartmentIdentifier} */
+declare function DepartmentIdentifier(): DepartmentIdentifier;
+type DepartmentIdentifier = {
+    slug?: string;
+    uid?: number;
+};
+/** @returns {DepartmentResponse} */
+declare function DepartmentResponse(): DepartmentResponse;
+type DepartmentResponse = {
+    items?: Department[];
+};
+/** @returns {DetailsSchemaV3} */
+declare function DetailsSchemaV3(): DetailsSchemaV3;
+type DetailsSchemaV3 = {
+    key?: string;
+    type?: string;
+    value?: string;
+};
+/** @returns {Dimension} */
+declare function Dimension(): Dimension;
+type Dimension = {
+    /**
+     * - The height of the product
+     */
+    height: number;
+    /**
+     * - Whether the dimension is the default one or not
+     */
+    is_default: boolean;
+    /**
+     * - The length of the product
+     */
+    length: number;
+    /**
+     * - The unit of dimension
+     */
+    unit: string;
+    /**
+     * - The width of the product
+     */
+    width: number;
+};
+/** @returns {DiscountMeta} */
+declare function DiscountMeta(): DiscountMeta;
+type DiscountMeta = {
+    /**
+     * - The end time of the live discount.
+     */
+    end?: string;
+    /**
+     * - The start time of the live discount.
+     */
+    start?: string;
+    /**
+     * - The time in minutes before the
+     * discount ends when the countdown timer should start.
+     */
+    start_timer_in_minutes?: number;
+    /**
+     * - Determines whether the discount countdown is
+     * visible or not.
+     */
+    timer: boolean;
+};
+/** @returns {ErrorResponse} */
+declare function ErrorResponse(): ErrorResponse;
+type ErrorResponse = {
+    error?: string;
 };
 /** @returns {FollowerCountResponse} */
 declare function FollowerCountResponse(): FollowerCountResponse;
@@ -2108,14 +1316,72 @@ type FollowerCountResponse = {
 /** @returns {FollowIdsData} */
 declare function FollowIdsData(): FollowIdsData;
 type FollowIdsData = {
-    products?: number[];
-    collections?: number[];
     brands?: number[];
+    collections?: number[];
+    products?: number[];
 };
 /** @returns {FollowIdsResponse} */
 declare function FollowIdsResponse(): FollowIdsResponse;
 type FollowIdsResponse = {
     data?: FollowIdsData;
+};
+/** @returns {FollowPostResponse} */
+declare function FollowPostResponse(): FollowPostResponse;
+type FollowPostResponse = {
+    id: string;
+    message: string;
+};
+/** @returns {GetCollectionDetailNest} */
+declare function GetCollectionDetailNest(): GetCollectionDetailNest;
+type GetCollectionDetailNest = {
+    _custom_json?: any;
+    _schedule?: any;
+    action?: ProductListingAction;
+    allow_facets?: boolean;
+    allow_sort?: boolean;
+    app_id?: string;
+    badge?: any;
+    banners?: ImageUrls;
+    cron?: any;
+    description?: string;
+    is_active?: boolean;
+    logo?: Media;
+    meta?: any;
+    name?: string;
+    priority?: number;
+    query?: CollectionQuery[];
+    slug?: string;
+    sort_on?: string;
+    tag?: string[];
+    type?: string;
+    uid?: string;
+    visible_facets_keys?: string[];
+};
+/** @returns {GetCollectionListingResponse} */
+declare function GetCollectionListingResponse(): GetCollectionListingResponse;
+type GetCollectionListingResponse = {
+    filters?: CollectionListingFilter;
+    items?: GetCollectionDetailNest[];
+    page: Page;
+};
+/** @returns {GetFollowListingResponse} */
+declare function GetFollowListingResponse(): GetFollowListingResponse;
+type GetFollowListingResponse = {
+    items: ProductListingDetail[];
+    page: Page;
+};
+/** @returns {HomeListingResponse} */
+declare function HomeListingResponse(): HomeListingResponse;
+type HomeListingResponse = {
+    items?: ProductListingDetail[];
+    message?: string;
+    page: Page;
+};
+/** @returns {ImageUrls} */
+declare function ImageUrls(): ImageUrls;
+type ImageUrls = {
+    landscape?: Media;
+    portrait?: Media;
 };
 /** @returns {LatLong} */
 declare function LatLong(): LatLong;
@@ -2123,365 +1389,342 @@ type LatLong = {
     coordinates?: number[];
     type?: string;
 };
-/** @returns {Store} */
-declare function Store(): Store;
-type Store = {
-    uid?: number;
-    store_email?: string;
-    state?: string;
-    country?: string;
-    pincode?: string;
-    city?: string;
-    address?: string;
-    store_code?: string;
-    lat_long?: LatLong;
+/** @returns {MarketPlaceSttributesSchemaV3} */
+declare function MarketPlaceSttributesSchemaV3(): MarketPlaceSttributesSchemaV3;
+type MarketPlaceSttributesSchemaV3 = {
+    details?: DetailsSchemaV3[];
+    title?: string;
+};
+/** @returns {Media} */
+declare function Media(): Media;
+type Media = {
+    alt?: string;
+    meta?: Meta;
+    type?: string;
+    url?: string;
+};
+/** @returns {Meta} */
+declare function Meta(): Meta;
+type Meta = {
+    source?: string;
+};
+/** @returns {NetQuantity} */
+declare function NetQuantity(): NetQuantity;
+type NetQuantity = {
+    /**
+     * - The unit of measurement used for the net quantity
+     * of the product.
+     */
+    unit?: any;
+    /**
+     * - The value of the net quantity of the product.
+     */
+    value?: number;
+};
+/** @returns {Page} */
+declare function Page(): Page;
+type Page = {
+    current?: number;
+    has_next?: boolean;
+    has_previous?: boolean;
+    item_total?: number;
+    next_id?: string;
+    size?: number;
+    type: string;
+};
+/** @returns {Price} */
+declare function Price(): Price;
+type Price = {
+    /**
+     * - The currency code for the currency in
+     * which the product is available.
+     */
+    currency_code?: string;
+    /**
+     * - The currency symbol for the currency
+     * in which the product is available.
+     */
+    currency_symbol?: string;
+    /**
+     * - The maximum price for the product across stores.
+     */
+    max?: number;
+    /**
+     * - The minimum price for the product across stores.
+     */
+    min?: number;
+};
+/** @returns {ProductBrand} */
+declare function ProductBrand(): ProductBrand;
+type ProductBrand = {
+    action?: ProductListingAction;
+    description?: string;
+    logo?: Media;
     name?: string;
-};
-/** @returns {StoreListingResponse} */
-declare function StoreListingResponse(): StoreListingResponse;
-type StoreListingResponse = {
-    items: Store[];
-    page: Page;
-};
-/** @returns {StoreDepartments} */
-declare function StoreDepartments(): StoreDepartments;
-type StoreDepartments = {
     uid?: number;
-    logo?: any;
-    priority_order?: number;
+};
+/** @returns {ProductBundle} */
+declare function ProductBundle(): ProductBundle;
+type ProductBundle = {
+    items?: ProductGroupingModel[];
+};
+/** @returns {ProductCategoryMap} */
+declare function ProductCategoryMap(): ProductCategoryMap;
+type ProductCategoryMap = {
+    l1?: ProductBrand;
+    l2?: ProductBrand;
+    l3?: ProductBrand;
+};
+/** @returns {ProductCompareResponse} */
+declare function ProductCompareResponse(): ProductCompareResponse;
+type ProductCompareResponse = {
+    attributes_metadata?: AttributeMetadata[];
+    items?: ProductDetail[];
+    subtitle?: string;
+    title?: string;
+};
+/** @returns {ProductDepartment} */
+declare function ProductDepartment(): ProductDepartment;
+type ProductDepartment = {
+    logo?: Media;
     name?: string;
     slug?: string;
-};
-/** @returns {CompanyStore} */
-declare function CompanyStore(): CompanyStore;
-type CompanyStore = {
     uid?: number;
-    name?: string;
-    company_type?: string;
-    business_type?: string;
 };
-/** @returns {SellerPhoneNumber} */
-declare function SellerPhoneNumber(): SellerPhoneNumber;
-type SellerPhoneNumber = {
-    country_code: number;
-    number: string;
-};
-/** @returns {StoreManagerSerializer} */
-declare function StoreManagerSerializer(): StoreManagerSerializer;
-type StoreManagerSerializer = {
-    name?: string;
-    email?: string;
-    mobile_no?: SellerPhoneNumber;
-};
-/** @returns {AddressLatLong} */
-declare function AddressLatLong(): AddressLatLong;
-type AddressLatLong = {
-    type?: string;
-    coordinates?: number[];
-};
-/** @returns {StoreAddressSerializer} */
-declare function StoreAddressSerializer(): StoreAddressSerializer;
-type StoreAddressSerializer = {
-    latitude?: number;
-    state?: string;
-    country?: string;
-    landmark?: string;
-    address1?: string;
-    pincode?: string;
-    city?: string;
-    longitude?: number;
-    address2?: string;
-    lat_long?: AddressLatLong;
-};
-/** @returns {AppStore} */
-declare function AppStore(): AppStore;
-type AppStore = {
-    uid?: number;
-    departments?: StoreDepartments[];
-    company?: CompanyStore;
-    manager?: StoreManagerSerializer;
-    store_code?: string;
-    address?: StoreAddressSerializer;
-    name?: string;
-    contact_numbers?: SellerPhoneNumber[];
-};
-/** @returns {ApplicationStoreListing} */
-declare function ApplicationStoreListing(): ApplicationStoreListing;
-type ApplicationStoreListing = {
-    filters?: any[];
-    items?: AppStore[];
-    page?: Page;
-};
-/** @returns {Time} */
-declare function Time(): Time;
-type Time = {
-    hour?: number;
-    minute?: number;
-};
-/** @returns {StoreTiming} */
-declare function StoreTiming(): StoreTiming;
-type StoreTiming = {
-    open?: boolean;
-    closing?: Time;
-    weekday?: string;
-    opening?: Time;
-};
-/** @returns {StoreDetails} */
-declare function StoreDetails(): StoreDetails;
-type StoreDetails = {
-    uid?: number;
-    departments?: StoreDepartments[];
-    company?: CompanyStore;
-    manager?: StoreManagerSerializer;
-    store_code?: string;
-    timing?: StoreTiming[];
-    address?: StoreAddressSerializer;
+/** @returns {ProductDetail} */
+declare function ProductDetail(): ProductDetail;
+type ProductDetail = {
     _custom_json?: any;
+    _custom_meta?: CustomMetaFields[];
+    action?: ProductListingAction;
+    attributes?: any;
+    brand?: ProductBrand;
+    categories?: ProductBrand[];
+    category_map?: ProductCategoryMap;
+    color?: string;
+    custom_order?: ProductDetailCustomOrder;
+    department?: ProductDepartment;
+    description?: string;
+    discount?: string;
+    grouped_attributes?: ProductDetailGroupedAttribute[];
+    has_variant?: boolean;
+    highlights?: string[];
+    image_nature?: string;
+    is_dependent?: boolean;
+    item_code?: string;
+    item_type?: string;
+    medias?: Media[];
+    moq?: ApplicationItemMOQ;
     name?: string;
-    contact_numbers?: SellerPhoneNumber[];
-    company_id?: number;
-    display_name?: string;
-    store_type?: string;
+    net_quantity?: NetQuantity;
+    price?: ProductListingPrice;
+    product_group_tag?: string[];
+    product_online_date?: string;
+    rating?: number;
+    rating_count?: number;
+    seo?: ApplicationItemSEO;
+    short_description?: string;
+    similars?: string[];
+    slug: string;
+    tags?: string[];
+    teaser_tag?: string;
+    tryouts?: string[];
+    type?: string;
+    uid?: number;
 };
-/** @returns {UserDetail} */
-declare function UserDetail(): UserDetail;
-type UserDetail = {
-    /**
-     * - A flag indicating whether the user is a super user.
-     */
-    super_user?: boolean;
-    /**
-     * - The contact details of the user.
-     */
-    contact?: string;
-    /**
-     * - The username of the user.
-     */
-    username: string;
-    /**
-     * - The user ID of the user.
-     */
-    user_id: string;
-};
-/** @returns {Size} */
-declare function Size(): Size;
-type Size = {
-    /**
-     * - The quantity of this size available
-     */
-    quantity?: number;
-    /**
-     * - The value of the size
-     */
+/** @returns {ProductDetailAttribute} */
+declare function ProductDetailAttribute(): ProductDetailAttribute;
+type ProductDetailAttribute = {
+    key?: string;
+    type?: string;
     value?: string;
-    /**
-     * - The display string for the size
-     */
-    display?: string;
-    /**
-     * - Whether or not this size is available
-     */
-    is_available?: boolean;
 };
-/** @returns {ProductGroupPrice} */
-declare function ProductGroupPrice(): ProductGroupPrice;
-type ProductGroupPrice = {
-    /**
-     * - The maximum effective price of the product group.
-     */
-    max_effective?: number;
-    /**
-     * - The minimum effective price of the product group.
-     */
-    min_effective?: number;
-    /**
-     * - The minimum marked price of the product group.
-     */
-    min_marked?: number;
-    /**
-     * - The currency code for the prices.
-     */
-    currency?: string;
-    /**
-     * - The maximum marked price of the product group.
-     */
-    max_marked?: number;
+/** @returns {ProductDetailCustomOrder} */
+declare function ProductDetailCustomOrder(): ProductDetailCustomOrder;
+type ProductDetailCustomOrder = {
+    is_custom_order?: boolean;
+    manufacturing_time?: number;
+    manufacturing_time_unit?: string;
+};
+/** @returns {ProductDetailGroupedAttribute} */
+declare function ProductDetailGroupedAttribute(): ProductDetailGroupedAttribute;
+type ProductDetailGroupedAttribute = {
+    details?: ProductDetailAttribute[];
+    title?: string;
 };
 /** @returns {ProductDetails} */
 declare function ProductDetails(): ProductDetails;
 type ProductDetails = {
     /**
-     * - The template tag of the product
+     * - A dictionary of product attributes
      */
-    template_tag?: string;
+    attributes?: any;
     /**
-     * - The number of ratings the product has received
+     * - The unique ID of the product's brand
      */
-    rating_count?: number;
+    brand_uid?: number;
     /**
-     * - The nature of the product's images
+     * - The country of origin for the product
      */
-    image_nature?: string;
-    /**
-     * - Whether or not the product has a variant
-     */
-    has_variant?: boolean;
+    country_of_origin?: any;
     /**
      * - The long description of the product
      */
-    description?: string;
-    /**
-     * - Whether or not the product is out of stock
-     */
-    out_of_stock?: boolean;
-    /**
-     * - The HSN code of the product
-     */
-    hsn_code?: number;
+    description?: any;
     /**
      * - A dictionary of grouped product attributes
      */
     grouped_attributes?: any;
     /**
-     * - The item code of the product
+     * - Whether or not the product has a variant
      */
-    item_code?: string;
+    has_variant?: boolean;
     /**
-     * - The name of the product
+     * - A list of highlights for the product
      */
-    name?: string;
+    highlights?: any[];
     /**
-     * - The country of origin for the product
+     * - The HSN code of the product
      */
-    country_of_origin?: string;
-    /**
-     * - The short description of the product
-     */
-    short_description?: string;
-    /**
-     * - A list of media objects for the product
-     */
-    media?: any[];
-    /**
-     * - A dictionary of product attributes
-     */
-    attributes?: any;
-    /**
-     * - Whether or not the product is a set of items
-     */
-    is_set?: boolean;
-    /**
-     * - A list of image URLs for the product
-     */
-    images?: string[];
-    /**
-     * - The slug of the product
-     */
-    slug?: string;
-    /**
-     * - The rating of the product
-     */
-    rating?: number;
+    hsn_code?: number;
     /**
      * - A dictionary of product identifiers
      */
     identifier?: any;
     /**
-     * - A list of highlights for the product
+     * - The nature of the product's images
      */
-    highlights?: string[];
+    image_nature?: any;
     /**
-     * - The unique ID of the product's brand
+     * - A list of image URLs for the product
      */
-    brand_uid?: number;
+    images?: any[];
+    /**
+     * - Whether or not the product is a set of items
+     */
+    is_set?: boolean;
+    /**
+     * - The item code of the product
+     */
+    item_code?: any;
+    /**
+     * - A list of media objects for the product
+     */
+    media?: any[];
+    /**
+     * - The name of the product
+     */
+    name?: any;
+    /**
+     * - Whether or not the product is out of stock
+     */
+    out_of_stock?: boolean;
+    /**
+     * - The rating of the product
+     */
+    rating?: number;
+    /**
+     * - The number of ratings the product has received
+     */
+    rating_count?: number;
+    /**
+     * - The short description of the product
+     */
+    short_description?: any;
+    /**
+     * - The slug of the product
+     */
+    slug?: any;
+    /**
+     * - The template tag of the product
+     */
+    template_tag?: any;
 };
-/** @returns {ProductInGroup} */
-declare function ProductInGroup(): ProductInGroup;
-type ProductInGroup = {
-    /**
-     * - A flag indicating whether the
-     * product should be automatically added to the cart.
-     */
-    auto_add_to_cart?: boolean;
-    /**
-     * - The maximum quantity of the product that
-     * can be added to the cart.
-     */
-    max_quantity: number;
-    /**
-     * - The available sizes for the product.
-     */
-    sizes?: Size[];
-    price?: ProductGroupPrice;
-    /**
-     * - A flag indicating whether the product
-     * should be automatically selected.
-     */
-    auto_select?: boolean;
-    /**
-     * - The details of the product.
-     */
-    product_details?: string;
-    /**
-     * - The minimum quantity of the product that
-     * can be added to the cart.
-     */
-    min_quantity?: number;
-    /**
-     * - A flag indicating whether the product
-     * can be removed from the cart.
-     */
-    allow_remove?: boolean;
-    /**
-     * - The unique ID of the product in the group.
-     */
-    product_uid: number;
+/** @returns {ProductFilters} */
+declare function ProductFilters(): ProductFilters;
+type ProductFilters = {
+    key: ProductFiltersKey;
+    values: ProductFiltersValue[];
+};
+/** @returns {ProductFiltersKey} */
+declare function ProductFiltersKey(): ProductFiltersKey;
+type ProductFiltersKey = {
+    display: string;
+    kind?: string;
+    logo?: string;
+    name: string;
+};
+/** @returns {ProductFiltersValue} */
+declare function ProductFiltersValue(): ProductFiltersValue;
+type ProductFiltersValue = {
+    count?: number;
+    currency_code?: string;
+    currency_symbol?: string;
+    display: string;
+    display_format?: string;
+    is_selected: boolean;
+    max?: number;
+    min?: number;
+    query_format?: string;
+    selected_max?: number;
+    selected_min?: number;
+    value?: string;
+};
+/** @returns {ProductFrequentlyComparedSimilarResponse} */
+declare function ProductFrequentlyComparedSimilarResponse(): ProductFrequentlyComparedSimilarResponse;
+type ProductFrequentlyComparedSimilarResponse = {
+    similars?: ProductCompareResponse;
 };
 /** @returns {ProductGroupingModel} */
 declare function ProductGroupingModel(): ProductGroupingModel;
 type ProductGroupingModel = {
+    _id?: any;
     /**
-     * - The URL for the logo of the product grouping.
+     * - The choice of the product grouping.
      */
-    logo?: string;
-    /**
-     * - Whether the product grouping is active.
-     */
-    is_active?: boolean;
-    /**
-     * - A dictionary containing metadata information.
-     */
-    meta?: any;
-    /**
-     * - User details of the verifier of the
-     * document, if applicable
-     */
-    verified_by?: string;
-    /**
-     * - Timestamp of the creation of the document
-     */
-    created_on: string;
+    choice?: any;
     /**
      * - The ID of the company that owns the product grouping.
      */
     company_id?: number;
     /**
-     * - A list of page visibilities of the
-     * product grouping.
+     * - User details of the creator of the document
      */
-    page_visibility?: string[];
+    created_by?: UserDetail;
+    /**
+     * - Timestamp of the creation of the document
+     */
+    created_on: string;
+    /**
+     * - Whether the product grouping is active.
+     */
+    is_active?: boolean;
+    /**
+     * - The URL for the logo of the product grouping.
+     */
+    logo?: string;
+    /**
+     * - A dictionary containing metadata information.
+     */
+    meta?: any;
+    /**
+     * - User details of the last modifier of
+     * the document
+     */
+    modified_by?: UserDetail;
     /**
      * - Timestamp of the last modification of the document
      */
     modified_on: string;
     /**
-     * - User details of the creator of the document
+     * - The name of the product grouping.
      */
-    created_by?: any;
+    name: any;
     /**
-     * - User details of the last modifier of the document
+     * - A list of page visibilities of the
+     * product grouping.
      */
-    modified_by?: any;
+    page_visibility?: any[];
     /**
      * - A list of products in the grouping.
      */
@@ -2491,70 +1734,166 @@ type ProductGroupingModel = {
      * assigned to the same store.
      */
     same_store_assignment?: boolean;
-    _id?: string;
-    /**
-     * - The name of the product grouping.
-     */
-    name: string;
-    /**
-     * - The choice of the product grouping.
-     */
-    choice?: string;
     /**
      * - The unique identifier for the product grouping.
      */
-    slug?: string;
+    slug?: any;
+    /**
+     * - User details of the verifier of the
+     * document, if applicable
+     */
+    verified_by?: UserDetail;
     /**
      * - Timestamp of when the document was
      * verified, if applicable
      */
     verified_on?: string;
 };
-/** @returns {ProductBundle} */
-declare function ProductBundle(): ProductBundle;
-type ProductBundle = {
-    items?: ProductGroupingModel[];
+/** @returns {ProductGroupPrice} */
+declare function ProductGroupPrice(): ProductGroupPrice;
+type ProductGroupPrice = {
+    /**
+     * - The currency code for the prices.
+     */
+    currency?: any;
+    /**
+     * - The maximum effective price of the product group.
+     */
+    max_effective?: number;
+    /**
+     * - The maximum marked price of the product group.
+     */
+    max_marked?: number;
+    /**
+     * - The minimum effective price of the product group.
+     */
+    min_effective?: number;
+    /**
+     * - The minimum marked price of the product group.
+     */
+    min_marked?: number;
 };
-/** @returns {StoreV3} */
-declare function StoreV3(): StoreV3;
-type StoreV3 = {
-    uid?: number;
-    name?: string;
-    count?: number;
+/** @returns {ProductInGroup} */
+declare function ProductInGroup(): ProductInGroup;
+type ProductInGroup = {
+    /**
+     * - A flag indicating whether the product
+     * can be removed from the cart.
+     */
+    allow_remove?: boolean;
+    /**
+     * - A flag indicating whether the
+     * product should be automatically added to the cart.
+     */
+    auto_add_to_cart?: boolean;
+    /**
+     * - A flag indicating whether the product
+     * should be automatically selected.
+     */
+    auto_select?: boolean;
+    /**
+     * - The maximum quantity of the product that
+     * can be added to the cart.
+     */
+    max_quantity: number;
+    /**
+     * - The minimum quantity of the product that
+     * can be added to the cart.
+     */
+    min_quantity?: number;
+    /**
+     * - The price details for the product group.
+     */
+    price?: ProductGroupPrice;
+    /**
+     * - The details of the product.
+     */
+    product_details?: ProductDetails;
+    /**
+     * - The unique ID of the product in the group.
+     */
+    product_uid: number;
+    /**
+     * - The available sizes for the product.
+     */
+    sizes?: Size[];
 };
-/** @returns {ArticleAssignmentV3} */
-declare function ArticleAssignmentV3(): ArticleAssignmentV3;
-type ArticleAssignmentV3 = {
-    strategy?: string;
-    level?: string;
-};
-/** @returns {StrategyWiseListingSchemaV3} */
-declare function StrategyWiseListingSchemaV3(): StrategyWiseListingSchemaV3;
-type StrategyWiseListingSchemaV3 = {
-    distance?: number;
-    pincode?: string;
-    tat?: number;
-    quantity?: number;
-};
-/** @returns {DetailsSchemaV3} */
-declare function DetailsSchemaV3(): DetailsSchemaV3;
-type DetailsSchemaV3 = {
-    value?: string;
+/** @returns {ProductListingAction} */
+declare function ProductListingAction(): ProductListingAction;
+type ProductListingAction = {
+    page?: ProductListingActionPage;
     type?: string;
-    key?: string;
 };
-/** @returns {SellerGroupAttributes} */
-declare function SellerGroupAttributes(): SellerGroupAttributes;
-type SellerGroupAttributes = {
-    title?: string;
-    details?: DetailsSchemaV3[];
+/** @returns {ProductListingActionPage} */
+declare function ProductListingActionPage(): ProductListingActionPage;
+type ProductListingActionPage = {
+    params?: any;
+    query?: any;
+    type?: string;
 };
-/** @returns {ReturnConfigSchemaV3} */
-declare function ReturnConfigSchemaV3(): ReturnConfigSchemaV3;
-type ReturnConfigSchemaV3 = {
-    unit?: string;
-    returnable?: boolean;
-    time?: number;
+/** @returns {ProductListingDetail} */
+declare function ProductListingDetail(): ProductListingDetail;
+type ProductListingDetail = {
+    _custom_json?: any;
+    _custom_meta?: CustomMetaFields[];
+    action?: ProductListingAction;
+    attributes?: any;
+    brand?: ProductBrand;
+    categories?: ProductBrand[];
+    category_map?: ProductCategoryMap;
+    color?: string;
+    custom_order?: ProductDetailCustomOrder;
+    description?: string;
+    discount?: string;
+    grouped_attributes?: ProductDetailGroupedAttribute[];
+    has_variant?: boolean;
+    highlights?: string[];
+    identifiers?: string[];
+    image_nature?: string;
+    is_dependent?: boolean;
+    item_code?: string;
+    item_type?: string;
+    medias?: Media[];
+    moq?: ApplicationItemMOQ;
+    name?: string;
+    net_quantity?: NetQuantity;
+    price?: ProductListingPrice;
+    product_group_tag?: string[];
+    product_online_date?: string;
+    rating?: number;
+    rating_count?: number;
+    sellable?: boolean;
+    seo?: ApplicationItemSEO;
+    short_description?: string;
+    similars?: string[];
+    sizes?: string[];
+    slug: string;
+    tags?: string[];
+    teaser_tag?: string;
+    tryouts?: string[];
+    type?: string;
+    uid?: number;
+    variants?: ProductVariantListingResponse[];
+};
+/** @returns {ProductListingPrice} */
+declare function ProductListingPrice(): ProductListingPrice;
+type ProductListingPrice = {
+    effective?: Price;
+    marked?: Price;
+};
+/** @returns {ProductListingResponse} */
+declare function ProductListingResponse(): ProductListingResponse;
+type ProductListingResponse = {
+    filters?: ProductFilters[];
+    items?: ProductListingDetail[];
+    page: Page;
+    sort_on?: ProductSortOn[];
+};
+/** @returns {ProductsComparisonResponse} */
+declare function ProductsComparisonResponse(): ProductsComparisonResponse;
+type ProductsComparisonResponse = {
+    attributes_metadata?: AttributeMetadata[];
+    items?: ProductDetail[];
 };
 /** @returns {ProductSetDistributionSizeV3} */
 declare function ProductSetDistributionSizeV3(): ProductSetDistributionSizeV3;
@@ -2573,14 +1912,107 @@ type ProductSetV3 = {
     quantity?: number;
     size_distribution?: ProductSetDistributionV3;
 };
+/** @returns {ProductSize} */
+declare function ProductSize(): ProductSize;
+type ProductSize = {
+    dimension?: Dimension;
+    display?: string;
+    is_available?: boolean;
+    quantity?: number;
+    seller_identifiers?: string[];
+    value?: string;
+    weight?: Weight;
+};
+/** @returns {ProductSizePriceResponseV3} */
+declare function ProductSizePriceResponseV3(): ProductSizePriceResponseV3;
+type ProductSizePriceResponseV3 = {
+    article_assignment?: ArticleAssignmentV3;
+    article_id?: string;
+    delivery_promise?: PromiseSchema;
+    discount?: string;
+    discount_meta?: DiscountMeta;
+    grouped_attributes?: SellerGroupAttributes[];
+    is_cod?: boolean;
+    is_gift?: boolean;
+    item_type?: string;
+    long_lat?: number[];
+    marketplace_attributes?: MarketPlaceSttributesSchemaV3[];
+    pincode?: number;
+    price?: ProductStockPriceV3;
+    price_per_piece?: ProductStockPriceV3;
+    price_per_unit?: ProductStockUnitPriceV3;
+    quantity?: number;
+    return_config?: ReturnConfigSchemaV3;
+    seller?: SellerV3;
+    seller_count?: number;
+    set?: ProductSetV3;
+    special_badge?: string;
+    store?: StoreV3;
+    strategy_wise_listing?: StrategyWiseListingSchemaV3[];
+};
+/** @returns {ProductSizes} */
+declare function ProductSizes(): ProductSizes;
+type ProductSizes = {
+    discount?: string;
+    discount_meta?: DiscountMeta;
+    multi_size?: boolean;
+    price?: ProductSizesPrice;
+    sellable?: boolean;
+    size_chart?: SizeChart;
+    sizes?: ProductSize[];
+    stores?: ProductSizeStores;
+};
+/** @returns {ProductSizeSellerFilterSchemaV3} */
+declare function ProductSizeSellerFilterSchemaV3(): ProductSizeSellerFilterSchemaV3;
+type ProductSizeSellerFilterSchemaV3 = {
+    is_selected?: boolean;
+    name?: string;
+    value?: string;
+};
+/** @returns {ProductSizeSellersResponseV3} */
+declare function ProductSizeSellersResponseV3(): ProductSizeSellersResponseV3;
+type ProductSizeSellersResponseV3 = {
+    items?: ProductSizePriceResponseV3[];
+    page: Page;
+    sort_on?: ProductSizeSellerFilterSchemaV3[];
+};
+/** @returns {ProductSizesPrice} */
+declare function ProductSizesPrice(): ProductSizesPrice;
+type ProductSizesPrice = {
+    effective?: Price;
+    marked?: Price;
+    selling?: Price;
+};
+/** @returns {ProductSizeStores} */
+declare function ProductSizeStores(): ProductSizeStores;
+type ProductSizeStores = {
+    count?: number;
+};
+/** @returns {ProductSortOn} */
+declare function ProductSortOn(): ProductSortOn;
+type ProductSortOn = {
+    display?: string;
+    is_selected?: boolean;
+    logo?: string;
+    name?: string;
+    value?: string;
+};
+/** @returns {ProductStockPolling} */
+declare function ProductStockPolling(): ProductStockPolling;
+type ProductStockPolling = {
+    items?: ProductStockStatusItem[];
+    page: Page;
+};
+/** @returns {ProductStockPrice} */
+declare function ProductStockPrice(): ProductStockPrice;
+type ProductStockPrice = {
+    currency?: string;
+    effective?: number;
+    marked?: number;
+};
 /** @returns {ProductStockPriceV3} */
 declare function ProductStockPriceV3(): ProductStockPriceV3;
 type ProductStockPriceV3 = {
-    /**
-     * - The effective or final price for the product
-     * at the given pincode.
-     */
-    effective?: number;
     /**
      * - The currency code for which the product
      * is available
@@ -2592,6 +2024,11 @@ type ProductStockPriceV3 = {
      */
     currency_symbol?: string;
     /**
+     * - The effective or final price for the product
+     * at the given pincode.
+     */
+    effective?: number;
+    /**
      * - The marked price of the product.
      */
     marked?: number;
@@ -2600,74 +2037,304 @@ type ProductStockPriceV3 = {
      */
     selling?: number;
 };
+/** @returns {ProductStockStatusItem} */
+declare function ProductStockStatusItem(): ProductStockStatusItem;
+type ProductStockStatusItem = {
+    company?: CompanyDetail;
+    identifier?: any;
+    item_id?: number;
+    price?: ProductStockPrice;
+    quantity?: number;
+    seller?: Seller;
+    size?: string;
+    store?: StoreDetail;
+    uid?: string;
+};
+/** @returns {ProductStockStatusResponse} */
+declare function ProductStockStatusResponse(): ProductStockStatusResponse;
+type ProductStockStatusResponse = {
+    items?: ProductStockStatusItem[];
+};
 /** @returns {ProductStockUnitPriceV3} */
 declare function ProductStockUnitPriceV3(): ProductStockUnitPriceV3;
 type ProductStockUnitPriceV3 = {
-    unit?: string;
-    currency_symbol?: string;
     currency_code?: string;
+    currency_symbol?: string;
     price?: number;
+    unit?: string;
 };
-/** @returns {MarketPlaceSttributesSchemaV3} */
-declare function MarketPlaceSttributesSchemaV3(): MarketPlaceSttributesSchemaV3;
-type MarketPlaceSttributesSchemaV3 = {
-    title?: string;
-    details?: DetailsSchemaV3[];
-};
-/** @returns {SellerV3} */
-declare function SellerV3(): SellerV3;
-type SellerV3 = {
-    uid?: number;
+/** @returns {ProductVariantItemResponse} */
+declare function ProductVariantItemResponse(): ProductVariantItemResponse;
+type ProductVariantItemResponse = {
+    _custom_meta?: CustomMetaFields[];
+    action?: ProductListingAction;
+    color?: string;
+    color_name?: string;
+    is_available?: boolean;
+    medias?: Media[];
     name?: string;
-    count?: number;
+    slug?: string;
+    uid?: number;
+    value?: string;
+};
+/** @returns {ProductVariantListingResponse} */
+declare function ProductVariantListingResponse(): ProductVariantListingResponse;
+type ProductVariantListingResponse = {
+    display_type?: string;
+    header?: string;
+    items?: ProductVariantItemResponse[];
+    key?: string;
+    total?: number;
+};
+/** @returns {ProductVariantResponse} */
+declare function ProductVariantResponse(): ProductVariantResponse;
+type ProductVariantResponse = {
+    display_type?: string;
+    header?: string;
+    items?: ProductVariantItemResponse[];
+    key?: string;
+};
+/** @returns {ProductVariantsResponse} */
+declare function ProductVariantsResponse(): ProductVariantsResponse;
+type ProductVariantsResponse = {
+    variants?: ProductVariantResponse[];
 };
 /** @returns {PromiseSchema} */
 declare function PromiseSchema(): PromiseSchema;
 type PromiseSchema = {
-    min?: string;
     max?: string;
+    min?: string;
 };
-/** @returns {ProductSizePriceResponseV4} */
-declare function ProductSizePriceResponseV4(): ProductSizePriceResponseV4;
-type ProductSizePriceResponseV4 = {
-    store?: StoreV3;
-    article_assignment?: ArticleAssignmentV3;
-    is_cod?: boolean;
-    strategy_wise_listing?: StrategyWiseListingSchemaV3[];
-    quantity?: number;
-    item_type?: string;
-    grouped_attributes?: SellerGroupAttributes[];
-    return_config?: ReturnConfigSchemaV3;
-    article_id?: string;
-    is_gift?: boolean;
-    set?: ProductSetV3;
-    price_per_piece?: ProductStockPriceV3;
-    discount_meta?: DiscountMeta;
-    discount?: string;
-    long_lat?: number[];
-    price?: ProductStockPriceV3;
-    price_per_unit?: ProductStockUnitPriceV3;
-    pincode?: string;
-    trader?: string[];
-    tags?: string[];
-    is_serviceable?: boolean;
-    marketplace_attributes?: MarketPlaceSttributesSchemaV3[];
-    seller?: SellerV3;
-    delivery_promise?: PromiseSchema;
-    product_name?: string;
+/** @returns {ReturnConfigSchemaV3} */
+declare function ReturnConfigSchemaV3(): ReturnConfigSchemaV3;
+type ReturnConfigSchemaV3 = {
+    returnable?: boolean;
+    time?: number;
+    unit?: string;
+};
+/** @returns {SecondLevelChild} */
+declare function SecondLevelChild(): SecondLevelChild;
+type SecondLevelChild = {
     _custom_json?: any;
-};
-/** @returns {ProductSizeSellerFilterSchemaV4} */
-declare function ProductSizeSellerFilterSchemaV4(): ProductSizeSellerFilterSchemaV4;
-type ProductSizeSellerFilterSchemaV4 = {
+    action?: ProductListingAction;
+    banners?: ImageUrls;
+    childs?: ThirdLevelChild[];
     name?: string;
-    is_selected?: boolean;
-    value?: string;
+    slug?: string;
+    uid?: number;
 };
-/** @returns {ProductSizeSellersResponseV4} */
-declare function ProductSizeSellersResponseV4(): ProductSizeSellersResponseV4;
-type ProductSizeSellersResponseV4 = {
-    items?: ProductSizePriceResponseV4[];
+/** @returns {Seller} */
+declare function Seller(): Seller;
+type Seller = {
+    count?: number;
+    name?: string;
+    uid?: number;
+};
+/** @returns {SellerGroupAttributes} */
+declare function SellerGroupAttributes(): SellerGroupAttributes;
+type SellerGroupAttributes = {
+    details?: DetailsSchemaV3[];
+    title?: string;
+};
+/** @returns {SellerPhoneNumber} */
+declare function SellerPhoneNumber(): SellerPhoneNumber;
+type SellerPhoneNumber = {
+    country_code: number;
+    number: string;
+};
+/** @returns {SellerV3} */
+declare function SellerV3(): SellerV3;
+type SellerV3 = {
+    count?: number;
+    name?: string;
+    uid?: number;
+};
+/** @returns {Size} */
+declare function Size(): Size;
+type Size = {
+    /**
+     * - The display string for the size
+     */
+    display?: any;
+    /**
+     * - Whether or not this size is available
+     */
+    is_available?: boolean;
+    /**
+     * - The quantity of this size available
+     */
+    quantity?: number;
+    /**
+     * - The value of the size
+     */
+    value?: any;
+};
+/** @returns {SizeChart} */
+declare function SizeChart(): SizeChart;
+type SizeChart = {
+    description?: string;
+    headers?: ColumnHeaders;
+    image?: string;
+    size_tip?: string;
+    sizes?: SizeChartValues[];
+    title?: string;
+    unit?: string;
+};
+/** @returns {SizeChartValues} */
+declare function SizeChartValues(): SizeChartValues;
+type SizeChartValues = {
+    col_1?: string;
+    col_2?: string;
+    col_3?: string;
+    col_4?: string;
+    col_5?: string;
+    col_6?: string;
+};
+/** @returns {Store} */
+declare function Store(): Store;
+type Store = {
+    address?: string;
+    city?: string;
+    country?: string;
+    lat_long?: LatLong;
+    name?: string;
+    pincode?: number;
+    state?: string;
+    store_code?: string;
+    store_email?: string;
+    tags?: string[];
+    uid?: number;
+};
+/** @returns {StoreAddressSerializer} */
+declare function StoreAddressSerializer(): StoreAddressSerializer;
+type StoreAddressSerializer = {
+    address1?: string;
+    address2?: string;
+    city?: string;
+    country?: string;
+    landmark?: string;
+    latitude?: number;
+    longitude?: number;
+    pincode?: number;
+    state?: string;
+};
+/** @returns {StoreDepartments} */
+declare function StoreDepartments(): StoreDepartments;
+type StoreDepartments = {
+    logo?: any;
+    name?: string;
+    priority_order?: number;
+    slug?: string;
+    uid?: number;
+};
+/** @returns {StoreDetail} */
+declare function StoreDetail(): StoreDetail;
+type StoreDetail = {
+    city?: string;
+    code?: string;
+    id?: number;
+    name?: string;
+};
+/** @returns {StoreDetails} */
+declare function StoreDetails(): StoreDetails;
+type StoreDetails = {
+    _custom_json?: any;
+    address?: StoreAddressSerializer;
+    company?: CompanyStore;
+    contact_numbers?: SellerPhoneNumber[];
+    departments?: StoreDepartments[];
+    manager?: StoreManagerSerializer;
+    name?: string;
+    store_code?: string;
+    timing?: StoreTiming[];
+    uid?: number;
+};
+/** @returns {StoreListingResponse} */
+declare function StoreListingResponse(): StoreListingResponse;
+type StoreListingResponse = {
+    items: Store[];
     page: Page;
-    sort_on?: ProductSizeSellerFilterSchemaV4[];
+};
+/** @returns {StoreManagerSerializer} */
+declare function StoreManagerSerializer(): StoreManagerSerializer;
+type StoreManagerSerializer = {
+    email?: string;
+    mobile_no?: SellerPhoneNumber;
+    name?: string;
+};
+/** @returns {StoreTiming} */
+declare function StoreTiming(): StoreTiming;
+type StoreTiming = {
+    closing?: Time;
+    open?: boolean;
+    opening?: Time;
+    weekday?: string;
+};
+/** @returns {StoreV3} */
+declare function StoreV3(): StoreV3;
+type StoreV3 = {
+    count?: number;
+    name?: string;
+    uid?: number;
+};
+/** @returns {StrategyWiseListingSchemaV3} */
+declare function StrategyWiseListingSchemaV3(): StrategyWiseListingSchemaV3;
+type StrategyWiseListingSchemaV3 = {
+    distance?: number;
+    pincode?: number;
+    quantity?: number;
+    tat?: number;
+};
+/** @returns {ThirdLevelChild} */
+declare function ThirdLevelChild(): ThirdLevelChild;
+type ThirdLevelChild = {
+    _custom_json?: any;
+    action?: ProductListingAction;
+    banners?: ImageUrls;
+    childs?: any[];
+    name?: string;
+    slug?: string;
+    uid?: number;
+};
+/** @returns {Time} */
+declare function Time(): Time;
+type Time = {
+    hour?: number;
+    minute?: number;
+};
+/** @returns {UserDetail} */
+declare function UserDetail(): UserDetail;
+type UserDetail = {
+    /**
+     * - The contact details of the user.
+     */
+    contact?: string;
+    /**
+     * - A flag indicating whether the user is a super user.
+     */
+    super_user?: boolean;
+    /**
+     * - The user ID of the user.
+     */
+    user_id: string;
+    /**
+     * - The username of the user.
+     */
+    username: string;
+};
+/** @returns {Weight} */
+declare function Weight(): Weight;
+type Weight = {
+    /**
+     * - Whether the weight is the default one or not
+     */
+    is_default: boolean;
+    /**
+     * - The shipping weight of the product
+     */
+    shipping: number;
+    /**
+     * - The unit of weight
+     */
+    unit: string;
 };

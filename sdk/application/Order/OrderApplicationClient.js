@@ -62,8 +62,8 @@ class Order {
    * @returns {Promise<OrderApplicationModel.CustomerDetailsResponse>} -
    *   Success response
    * @name getCustomerDetailsByShipmentId
-   * @summary: Retrieves shipment customer.
-   * @description: Retrieve customer details such as mobile number using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
+   * @summary: Get Customer Details by Shipment Id
+   * @description: Use this API to retrieve customer details such as mobileno using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
    */
   async getCustomerDetailsByShipmentId(
     { orderId, shipmentId, requestHeaders } = { requestHeaders: {} },
@@ -143,8 +143,8 @@ class Order {
    * @returns {Promise<OrderApplicationModel.ResponseGetInvoiceShipment>} -
    *   Success response
    * @name getInvoiceByShipmentId
-   * @summary: Retrieves invoice for shipment.
-   * @description: Retrieve the invoice corresponding to a specific shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getInvoiceByShipmentId/).
+   * @summary: Get Invoice of a shipment
+   * @description: Use this API to retrieve shipment invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getInvoiceByShipmentId/).
    */
   async getInvoiceByShipmentId(
     { shipmentId, requestHeaders } = { requestHeaders: {} },
@@ -223,15 +223,15 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
    * @name getOrderById
-   * @summary: Fetches order by ID.
-   * @description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
+   * @summary: Get details of an order
+   * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
    */
   async getOrderById(
-    { orderId, allowInactive, requestHeaders } = { requestHeaders: {} },
+    { orderId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.getOrderById().validate(
-      { orderId, allowInactive },
+      { orderId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -242,7 +242,7 @@ class Order {
     const {
       error: warrning,
     } = OrderApplicationValidator.getOrderById().validate(
-      { orderId, allowInactive },
+      { orderId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -253,7 +253,6 @@ class Order {
     }
 
     const query_params = {};
-    query_params["allow_inactive"] = allowInactive;
 
     const xHeaders = {};
 
@@ -302,8 +301,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.OrderList>} - Success response
    * @name getOrders
-   * @summary: Lists customer orders.
-   * @description: Retrieves all orders associated with a customer account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
+   * @summary: Get all orders
+   * @description: Use this API to retrieve all the orders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
    */
   async getOrders(
     {
@@ -312,24 +311,13 @@ class Order {
       pageSize,
       fromDate,
       toDate,
-      startDate,
-      endDate,
       customMeta,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.getOrders().validate(
-      {
-        status,
-        pageNo,
-        pageSize,
-        fromDate,
-        toDate,
-        startDate,
-        endDate,
-        customMeta,
-      },
+      { status, pageNo, pageSize, fromDate, toDate, customMeta },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -338,16 +326,7 @@ class Order {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = OrderApplicationValidator.getOrders().validate(
-      {
-        status,
-        pageNo,
-        pageSize,
-        fromDate,
-        toDate,
-        startDate,
-        endDate,
-        customMeta,
-      },
+      { status, pageNo, pageSize, fromDate, toDate, customMeta },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -363,8 +342,6 @@ class Order {
     query_params["page_size"] = pageSize;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
     query_params["custom_meta"] = customMeta;
 
     const xHeaders = {};
@@ -414,8 +391,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
    * @name getPosOrderById
-   * @summary: Retrieves POS order details.
-   * @description: Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getPosOrderById/).
+   * @summary: Get POS Order
+   * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getPosOrderById/).
    */
   async getPosOrderById(
     { orderId, requestHeaders } = { requestHeaders: {} },
@@ -492,8 +469,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentBagReasons>} - Success response
    * @name getShipmentBagReasons
-   * @summary: Lists bag reasons.
-   * @description: Retrieves reasons that led to the cancellation for the status of shipment bags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
+   * @summary: Get reasons behind full or partial cancellation of a shipment
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
    */
   async getShipmentBagReasons(
     { shipmentId, bagId, requestHeaders } = { requestHeaders: {} },
@@ -572,15 +549,15 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentById>} - Success response
    * @name getShipmentById
-   * @summary: Fetches shipment by ID.
-   * @description: Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
+   * @summary: Get details of a shipment
+   * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
    */
   async getShipmentById(
-    { shipmentId, allowInactive, requestHeaders } = { requestHeaders: {} },
+    { shipmentId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.getShipmentById().validate(
-      { shipmentId, allowInactive },
+      { shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -591,7 +568,7 @@ class Order {
     const {
       error: warrning,
     } = OrderApplicationValidator.getShipmentById().validate(
-      { shipmentId, allowInactive },
+      { shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -602,7 +579,6 @@ class Order {
     }
 
     const query_params = {};
-    query_params["allow_inactive"] = allowInactive;
 
     const xHeaders = {};
 
@@ -651,8 +627,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentReasons>} - Success response
    * @name getShipmentReasons
-   * @summary: Lists shipment reasons.
-   * @description: Retrieve reasons explaining various shipment statuses. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
+   * @summary: Get reasons behind full or partial cancellation of a shipment
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
    */
   async getShipmentReasons(
     { shipmentId, requestHeaders } = { requestHeaders: {} },
@@ -730,8 +706,8 @@ class Order {
    * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponse>} -
    *   Success response
    * @name sendOtpToShipmentCustomer
-   * @summary: Sends OTP to customer.
-   * @description: Sends a one-time password (OTP) to the customer for shipment verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
+   * @summary: Send and Resend Otp code to Order-Shipment customer
+   * @description: Use this API to send OTP to the customer of the mapped Shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
    */
   async sendOtpToShipmentCustomer(
     { orderId, shipmentId, requestHeaders } = { requestHeaders: {} },
@@ -810,8 +786,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentTrack>} - Success response
    * @name trackShipment
-   * @summary: Tracks shipment status.
-   * @description: Track Shipment by shipment id, for application based on application Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/trackShipment/).
+   * @summary: Track shipment
+   * @description: Track Shipment by shipment id, for application based on application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/trackShipment/).
    */
   async trackShipment(
     { shipmentId, requestHeaders } = { requestHeaders: {} },
@@ -890,8 +866,8 @@ class Order {
    *   - Success response
    *
    * @name updateShipmentStatus
-   * @summary: Updates shipment status.
-   * @description: Modifies the current status of a specific shipment using its shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
+   * @summary: Update the shipment status
+   * @description: Use this API to update the status of a shipment using its shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
    */
   async updateShipmentStatus(
     { shipmentId, body, requestHeaders } = { requestHeaders: {} },
@@ -968,8 +944,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.VerifyOtpResponse>} - Success response
    * @name verifyOtpShipmentCustomer
-   * @summary: Verifies OTP.
-   * @description: Confirms the OTP sent to the shipment customer for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
+   * @summary: Verify Otp code
+   * @description: Use this API to verify OTP and create a session token with custom payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
    */
   async verifyOtpShipmentCustomer(
     { orderId, shipmentId, body, requestHeaders } = { requestHeaders: {} },

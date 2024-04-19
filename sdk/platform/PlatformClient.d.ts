@@ -11,7 +11,7 @@ declare class PlatformClient {
      * @param {import("./PlatformConfig")} config - The application configuration.
      */
     constructor(config: import("./PlatformConfig"));
-    config: import("sdk/output/javascript/code/sdk/platform/PlatformConfig");
+    config: import("./PlatformConfig");
     auditTrail: AuditTrail;
     billing: Billing;
     catalog: Catalog;
@@ -19,15 +19,14 @@ declare class PlatformClient {
     communication: Communication;
     companyProfile: CompanyProfile;
     configuration: Configuration;
-    content: Content;
     discount: Discount;
     fileStorage: FileStorage;
     finance: Finance;
     inventory: Inventory;
     lead: Lead;
-    serviceability: Serviceability;
     order: Order;
     payment: Payment;
+    serviceability: Serviceability;
     theme: Theme;
     webhook: Webhook;
     /**
@@ -48,22 +47,21 @@ declare class PlatformClient {
      */
     setExtraHeaders(header: object): void;
 }
-import AuditTrail = require("sdk/output/javascript/code/sdk/platform/AuditTrail/AuditTrailPlatformClient");
-import Billing = require("sdk/output/javascript/code/sdk/platform/Billing/BillingPlatformClient");
-import Catalog = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformClient");
-import Common = require("sdk/output/javascript/code/sdk/platform/Common/CommonPlatformClient");
-import Communication = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformClient");
-import CompanyProfile = require("sdk/output/javascript/code/sdk/platform/CompanyProfile/CompanyProfilePlatformClient");
-import Configuration = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformClient");
-import Content = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformClient");
-import Discount = require("sdk/output/javascript/code/sdk/platform/Discount/DiscountPlatformClient");
-import FileStorage = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformClient");
-import Finance = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformClient");
-import Inventory = require("sdk/output/javascript/code/sdk/platform/Inventory/InventoryPlatformClient");
-import Lead = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformClient");
-import Serviceability = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformClient");
-import Order = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformClient");
-import Payment = require("sdk/output/javascript/code/sdk/platform/Payment/PaymentPlatformClient");
-import Theme = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformClient");
-import Webhook = require("sdk/output/javascript/code/sdk/platform/Webhook/WebhookPlatformClient");
-import PlatformApplicationClient = require("sdk/output/javascript/code/sdk/platform/PlatformApplicationClient");
+import AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
+import Billing = require("./Billing/BillingPlatformClient");
+import Catalog = require("./Catalog/CatalogPlatformClient");
+import Common = require("./Common/CommonPlatformClient");
+import Communication = require("./Communication/CommunicationPlatformClient");
+import CompanyProfile = require("./CompanyProfile/CompanyProfilePlatformClient");
+import Configuration = require("./Configuration/ConfigurationPlatformClient");
+import Discount = require("./Discount/DiscountPlatformClient");
+import FileStorage = require("./FileStorage/FileStoragePlatformClient");
+import Finance = require("./Finance/FinancePlatformClient");
+import Inventory = require("./Inventory/InventoryPlatformClient");
+import Lead = require("./Lead/LeadPlatformClient");
+import Order = require("./Order/OrderPlatformClient");
+import Payment = require("./Payment/PaymentPlatformClient");
+import Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
+import Theme = require("./Theme/ThemePlatformClient");
+import Webhook = require("./Webhook/WebhookPlatformClient");
+import PlatformApplicationClient = require("./PlatformApplicationClient");

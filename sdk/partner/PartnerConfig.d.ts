@@ -33,7 +33,7 @@ declare class PartnerConfig {
         apiSecret: string;
         scope?: string;
         useAutoRenewTimer?: boolean;
-        logLevel?: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR";
+        logLevel?: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
     }, options?: {
         strictResponseCheck?: boolean;
     });
@@ -44,7 +44,7 @@ declare class PartnerConfig {
     scope: string;
     useAutoRenewTimer: boolean;
     oauthClient: OauthClient;
-    logLevel: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR";
+    logLevel: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
     extraHeaders: any[];
     options: {
         strictResponseCheck: boolean;
@@ -54,7 +54,7 @@ declare class PartnerConfig {
      *
      * @param {logLevelEnum} level - The log level to set.
      */
-    setLogLevel(level: "DEBUG" | "TRACE" | "INFO" | "WARN" | "ERROR"): void;
+    setLogLevel(level: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR"): void;
     /**
      * Retrieves the access token from the OAuth client.
      *
@@ -63,4 +63,4 @@ declare class PartnerConfig {
      */
     getAccessToken(): Promise<string>;
 }
-import OauthClient = require("sdk/output/javascript/code/sdk/partner/OAuthClient");
+import OauthClient = require("./OAuthClient");

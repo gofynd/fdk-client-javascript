@@ -18,12 +18,12 @@ export = CompanyProfilePlatformValidator;
  */
 /**
  * @typedef EditBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
+ * @property {string} brandId - Id of the brand to be viewed.
  * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 /**
  * @typedef GetBrandParam
- * @property {number} brandId - Id of the brand to be viewed.
+ * @property {string} brandId - Id of the brand to be viewed.
  */
 /**
  * @typedef GetBrandsParam
@@ -36,7 +36,7 @@ export = CompanyProfilePlatformValidator;
 /** @typedef GetCompanyMetricsParam */
 /**
  * @typedef GetLocationDetailParam
- * @property {number} locationId - Id of the location which you want to view.
+ * @property {string} locationId - Id of the location which you want to view.
  */
 /** @typedef GetLocationTagsParam */
 /**
@@ -51,10 +51,6 @@ export = CompanyProfilePlatformValidator;
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
  * @property {number[]} [locationIds] - Helps to filter stores on the basis of uids.
- * @property {string[]} [types] - Helps to get the location list on the basis of
- *   multiple location type.
- * @property {string[]} [tags] - Helps to get the location list on the basis of
- *   multiple location tag.
  */
 /**
  * @typedef UpdateCompanyParam
@@ -62,7 +58,7 @@ export = CompanyProfilePlatformValidator;
  */
 /**
  * @typedef UpdateLocationParam
- * @property {number} locationId - Id of the location which you want to edit.
+ * @property {string} locationId - Id of the location which you want to edit.
  * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 declare class CompanyProfilePlatformValidator {
@@ -114,14 +110,14 @@ type EditBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
-    brandId: number;
+    brandId: string;
     body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
 };
 type GetBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
-    brandId: number;
+    brandId: string;
 };
 type GetBrandsParam = {
     /**
@@ -143,7 +139,7 @@ type GetLocationDetailParam = {
     /**
      * - Id of the location which you want to view.
      */
-    locationId: number;
+    locationId: string;
 };
 type GetLocationsParam = {
     /**
@@ -174,16 +170,6 @@ type GetLocationsParam = {
      * - Helps to filter stores on the basis of uids.
      */
     locationIds?: number[];
-    /**
-     * - Helps to get the location list on the basis of
-     * multiple location type.
-     */
-    types?: string[];
-    /**
-     * - Helps to get the location list on the basis of
-     * multiple location tag.
-     */
-    tags?: string[];
 };
 type UpdateCompanyParam = {
     body: CompanyProfilePlatformModel.UpdateCompany;
@@ -192,10 +178,10 @@ type UpdateLocationParam = {
     /**
      * - Id of the location which you want to edit.
      */
-    locationId: number;
+    locationId: string;
     body: CompanyProfilePlatformModel.LocationSerializer;
 };
 type CbsOnboardGetParam = any;
 type GetCompanyMetricsParam = any;
 type GetLocationTagsParam = any;
-import CompanyProfilePlatformModel = require("sdk/output/javascript/code/sdk/platform/CompanyProfile/CompanyProfilePlatformModel");
+import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");

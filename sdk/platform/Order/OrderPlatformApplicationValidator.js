@@ -3,24 +3,6 @@ const Joi = require("joi");
 const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
- * @typedef CreateRuleParam
- * @property {OrderPlatformModel.RuleRequest} body
- */
-
-/**
- * @typedef DeleteRuleParam
- * @property {string} ruleId
- */
-
-/**
- * @typedef FailedOrderLogsParam
- * @property {number} [pageNo] - Page Number
- * @property {number} [pageSize] - Page Size
- * @property {string} [searchType] - Search type for filter
- * @property {string} [searchValue] - Search value for filter
- */
-
-/**
  * @typedef GetApplicationShipmentsParam
  * @property {string} [lane]
  * @property {string} [searchType]
@@ -45,31 +27,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef GetQuestionsParam
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- * @property {string} [q] - To search questions using query
- * @property {string} [isActive] - To get active questions
- */
-
-/**
- * @typedef GetRuleByIdParam
- * @property {string} ruleId
- */
-
-/**
- * @typedef GetRuleLaneConfigParam
- * @property {string} [searchValue]
- */
-
-/**
- * @typedef GetRuleListParam
- * @property {OrderPlatformModel.RuleListRequest} body
- */
-
-/** @typedef GetRuleParametersParam */
-
-/**
  * @typedef GetShipmentBagReasonsParam
  * @property {string} shipmentId - ID of the bag. An order may contain multiple
  *   items and may get divided into one or more shipment, each having its own ID.
@@ -81,42 +38,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} shipmentId - Shipment Id
  */
 
-/**
- * @typedef UpdateRuleParam
- * @property {string} ruleId
- * @property {OrderPlatformModel.RuleUpdateRequest} body
- */
-
-/**
- * @typedef UpdateRulePositionParam
- * @property {OrderPlatformModel.UpdateRulePositionRequest} body
- */
-
 class OrderPlatformApplicationValidator {
-  /** @returns {CreateRuleParam} */
-  static createRule() {
-    return Joi.object({
-      body: OrderPlatformModel.RuleRequest().required(),
-    }).required();
-  }
-
-  /** @returns {DeleteRuleParam} */
-  static deleteRule() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {FailedOrderLogsParam} */
-  static failedOrderLogs() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      searchType: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {GetApplicationShipmentsParam} */
   static getApplicationShipments() {
     return Joi.object({
@@ -145,42 +67,6 @@ class OrderPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetQuestionsParam} */
-  static getQuestions() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
-      isActive: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetRuleByIdParam} */
-  static getRuleById() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetRuleLaneConfigParam} */
-  static getRuleLaneConfig() {
-    return Joi.object({
-      searchValue: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetRuleListParam} */
-  static getRuleList() {
-    return Joi.object({
-      body: OrderPlatformModel.RuleListRequest().required(),
-    }).required();
-  }
-
-  /** @returns {GetRuleParametersParam} */
-  static getRuleParameters() {
-    return Joi.object({}).required();
-  }
-
   /** @returns {GetShipmentBagReasonsParam} */
   static getShipmentBagReasons() {
     return Joi.object({
@@ -193,21 +79,6 @@ class OrderPlatformApplicationValidator {
   static trackShipmentPlatform() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {UpdateRuleParam} */
-  static updateRule() {
-    return Joi.object({
-      ruleId: Joi.string().allow("").required(),
-      body: OrderPlatformModel.RuleUpdateRequest().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateRulePositionParam} */
-  static updateRulePosition() {
-    return Joi.object({
-      body: OrderPlatformModel.UpdateRulePositionRequest().required(),
     }).required();
   }
 }

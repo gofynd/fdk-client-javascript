@@ -80,7 +80,7 @@ class ThemeValidator {
       applicationId: Joi.string().allow("").required(),
       themeId: Joi.string().allow("").required(),
 
-      body: ThemeModel.ThemesSchema().required(),
+      body: ThemeModel.UpdateThemeRequestBody().required(),
     }).required();
   }
 
@@ -150,30 +150,6 @@ class ThemeValidator {
       themeSlug: Joi.string().allow("").required(),
       pageSize: Joi.number(),
       pageNo: Joi.number(),
-    }).required();
-  }
-
-  static createTheme() {
-    return Joi.object({
-      companyId: Joi.number().required(),
-      applicationId: Joi.string().allow("").required(),
-
-      body: ThemeModel.ThemesSchema().required(),
-    }).required();
-  }
-
-  static getOrgnaizationDefaultTheme() {
-    return Joi.object({
-      companyId: Joi.number().required(),
-      applicationId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getSystemPage() {
-    return Joi.object({
-      companyId: Joi.number().required(),
-      applicationId: Joi.string().allow("").required(),
-      pageValue: Joi.string().allow("").required(),
     }).required();
   }
 }

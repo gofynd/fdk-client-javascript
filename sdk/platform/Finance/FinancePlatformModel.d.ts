@@ -1,201 +1,168 @@
 export = FinancePlatformModel;
 /**
- * @typedef OrederFreezeResponse
+ * @typedef ChannelDisplayName
+ * @property {string} [platform_pos]
+ */
+/**
+ * @typedef ChannelDisplayNameResponse
+ * @property {ChannelDisplayName} [data]
  * @property {boolean} [success]
- * @property {boolean} [oms_freeze]
- * @property {string} [source]
  */
 /**
- * @typedef GenerateReportMeta
- * @property {string} [brand]
- * @property {string} [company]
- * @property {string} [channel]
+ * @typedef CnDetails
+ * @property {string} [channel_of_issuance]
+ * @property {string} [date_issued]
+ * @property {string} [expiry_date]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [ordering_channel]
+ * @property {string} [shipment_id]
+ * @property {string} [staff_id]
+ * @property {string} [store_id]
  */
 /**
- * @typedef GenerateReportFilters
- * @property {string[]} [brand]
- * @property {string[]} [company]
- * @property {string[]} [channel]
- */
-/**
- * @typedef GenerateReportPlatform
- * @property {string} [start_date]
+ * @typedef CnDownloadReport
+ * @property {string} [affiliate_id]
  * @property {string} [end_date]
- * @property {GenerateReportMeta} [meta]
- * @property {string} [report_id]
- * @property {GenerateReportFilters} [filters]
- */
-/**
- * @typedef GenerateReportReq
- * @property {GenerateReportPlatform} [data]
- */
-/**
- * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
- */
-/**
- * @typedef Currency
- * @property {string} [code]
- * @property {string} [symbol]
- * @property {string} [name]
- */
-/**
- * @typedef GenerateReportJson
- * @property {Object} [data]
- * @property {number} [item_count]
- * @property {Page} [page]
- * @property {string} [end_date]
- * @property {string} [start_date]
- * @property {string[][]} [items]
- * @property {string[]} [headers]
- */
-/**
- * @typedef Error
- * @property {number} [status]
- * @property {string} [reason]
- * @property {boolean} [success]
- * @property {string} [message]
- * @property {string} [code]
- * @property {string} [exception]
- * @property {string} [info]
- * @property {string} [request_id]
- * @property {string} [stack_trace]
- * @property {ErrorMeta} [meta]
- */
-/**
- * @typedef ErrorMeta
- * @property {ErrorMetaItems[]} [columns_errors]
- */
-/**
- * @typedef ErrorMetaItems
- * @property {number} [code]
- * @property {string} [message]
- */
-/**
- * @typedef DownloadReport
- * @property {DownloadReportData} [data]
- */
-/**
- * @typedef DownloadReportData
  * @property {number} [page]
- * @property {number} [page_size]
+ * @property {number} [pagesize]
+ * @property {string} [search]
+ * @property {string} [search_type]
  * @property {string} [start_date]
- * @property {string} [end_date]
+ * @property {string[]} [status]
  */
 /**
- * @typedef DownloadReportItems
- * @property {string} [start_date]
+ * @typedef CnGenerateReport
+ * @property {string} [affiliate_id]
  * @property {string} [end_date]
- * @property {GenerateReportMeta} [meta]
+ * @property {CnGenerateReportFilters} [filters]
+ * @property {GenerateReportFilters} [meta]
+ * @property {number} [page]
+ * @property {number} [pagesize]
  * @property {string} [report_id]
- * @property {GenerateReportFilters} [filters]
- * @property {string} [type_of_request]
+ * @property {string} [search]
+ * @property {string} [search_type]
+ * @property {string} [start_date]
  */
 /**
- * @typedef DownloadReportList
- * @property {DownloadReportItems[]} [items]
- * @property {Page} [page]
- * @property {number} [item_count]
+ * @typedef CnGenerateReportFilters
+ * @property {string[]} [channel_of_issuance]
+ * @property {string[]} [ordering_channel]
+ * @property {string[]} [staff_id]
+ * @property {number[]} [store_id]
+ * @property {string[]} [types_of_transaction]
+ * @property {string[]} [utilisation]
  */
 /**
- * @typedef GetEngineFilters
- * @property {string} [config_field]
+ * @typedef CnGenerateReportItems
+ * @property {string} [credit_note_number]
+ * @property {string} [date_issued]
+ * @property {string} [expiry_date]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [shipment_id]
  * @property {string} [status]
- * @property {boolean} [is_active]
+ * @property {number} [total_amount]
+ */
+/**
+ * @typedef CnReferenceNumber
+ * @property {string} [cn_reference_number]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfig
+ * @property {string} [affiliate_id]
+ * @property {string} [currency_type]
+ * @property {boolean} [is_cn_as_refund_method]
+ * @property {CreditNoteConfigNotificationEvents} [notification_events]
+ * @property {string[]} [ordering_channel]
+ * @property {string} [sales_channel_name]
+ * @property {number} [seller_id]
+ * @property {string[]} [slug_values]
+ * @property {string[]} [source_channel]
+ * @property {number} [validity]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfigRequest
+ * @property {CreateSellerCreditNoteConfig} [data]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfigResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef CreditlineDataPlatformPayload
+ * @property {string} [end_end]
+ * @property {number} [page]
+ * @property {number} [pagesize]
  * @property {string} [seller_id]
+ * @property {string} [start_end]
  */
 /**
- * @typedef GetEngineData
- * @property {string} [status]
- * @property {GetEngineFilters} [filters]
- * @property {string[]} [project]
- * @property {string} [table_name]
- * @property {Object} [search]
- * @property {number} [page]
- * @property {number} [page_size]
- * @property {string} [order_by]
+ * @typedef CreditlineDataPlatformRequest
+ * @property {CreditlineDataPlatformPayload} [data]
  */
 /**
- * @typedef GetEngineReq
- * @property {GetEngineData} [data]
- */
-/**
- * @typedef GetEngineResponse
- * @property {boolean} [success]
+ * @typedef CreditlineDataPlatformResponse
+ * @property {number} [code]
+ * @property {string[]} [headers]
+ * @property {number} [item_count]
  * @property {Object[]} [items]
- * @property {Page} [page]
- * @property {number} [item_count]
+ * @property {string} [message]
+ * @property {Object} [page]
+ * @property {boolean} [show_mr]
  */
 /**
- * @typedef GetReason
- * @property {string} [reason_type]
+ * @typedef CreditNoteConfigNotificationEvents
+ * @property {number} [expiration_reminder_to_customer]
  */
 /**
- * @typedef GetReasonReq
- * @property {GetReason} [data]
+ * @typedef CreditNoteDetails
+ * @property {number} [available_cn_balance]
+ * @property {number} [cn_amount]
+ * @property {Object} [cn_details]
+ * @property {string} [cn_reference_number]
+ * @property {string} [cn_status]
+ * @property {string} [customer_mobile_number]
+ * @property {RedemptionDetails[]} [redemption_details]
+ * @property {number} [remaining_cn_amount]
  */
 /**
- * @typedef ReasonItem
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
+ * @typedef CreditNoteDetailsRequest
+ * @property {CnReferenceNumber} [data]
  */
 /**
- * @typedef GetReasonResponse
+ * @typedef CreditNoteDetailsResponse
+ * @property {CreditNoteDetails} [data]
  * @property {boolean} [success]
- * @property {ReasonItem[]} [item_list]
- * @property {number} [item_count]
- * @property {Page} [page]
  */
 /**
- * @typedef GetReportListData
- * @property {string} [role_name]
- * @property {boolean} [listing_enabled]
+ * @typedef DeleteConfig
+ * @property {string} [affiliate_id]
+ * @property {number} [seller_id]
+ * @property {string[]} [slug_values]
  */
 /**
- * @typedef GetReportListReq
- * @property {GetReportListData} [data]
+ * @typedef DeleteConfigRequest
+ * @property {DeleteConfig} [data]
  */
 /**
- * @typedef GetAffiliate
- * @property {number} [company_id]
- */
-/**
- * @typedef GetReportListResponse
+ * @typedef DeleteConfigResponse
+ * @property {string} [message]
  * @property {boolean} [success]
- * @property {ReportItem[]} [items]
- * @property {Page} [page]
- * @property {number} [total_count]
- */
-/**
- * @typedef ReportItem
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [description]
- * @property {string[]} [allowed_filters]
- * @property {Object} [config_meta]
- * @property {string} [report_type]
- * @property {string} [display_date]
- */
-/**
- * @typedef GetAffiliateResponse
- * @property {string} [reason]
- * @property {boolean} [success]
- * @property {Object[]} [docs]
  */
 /**
  * @typedef DownloadCreditDebitNote
  * @property {string[]} [note_id]
  */
 /**
- * @typedef DownloadCreditDebitNoteReq
+ * @typedef DownloadCreditDebitNoteRequest
  * @property {DownloadCreditDebitNote} [data]
+ */
+/**
+ * @typedef DownloadCreditDebitNoteResponse
+ * @property {DownloadCreditDebitNoteResponseData[]} [data]
+ * @property {boolean} [success]
  */
 /**
  * @typedef DownloadCreditDebitNoteResponseData
@@ -203,308 +170,138 @@ export = FinancePlatformModel;
  * @property {string} [pdf_s3_url]
  */
 /**
- * @typedef DownloadCreditDebitNoteResponse
- * @property {boolean} [success]
- * @property {DownloadCreditDebitNoteResponseData[]} [data]
- */
-/**
- * @typedef PaymentProcessPayload
- * @property {string} [platform]
- * @property {number} [amount]
- * @property {string} [transaction_type]
- * @property {string} [source_reference]
- * @property {number} [total_amount]
- * @property {Object} [meta]
- * @property {string} [currency]
- * @property {string} [seller_id]
- * @property {string} [mode_of_payment]
- * @property {string} [invoice_number]
- */
-/**
- * @typedef PaymentProcessReq
- * @property {PaymentProcessPayload} [data]
- */
-/**
- * @typedef PaymentProcessResponse
- * @property {number} [code]
- * @property {string} [message]
- * @property {Object} [meta]
- * @property {string} [transaction_id]
- * @property {string} [redirect_url]
- */
-/**
- * @typedef CreditlineDataPlatformPayload
- * @property {number} [page]
- * @property {string} [seller_id]
+ * @typedef DownloadReport
  * @property {string} [end_date]
- * @property {string} [start_date]
- * @property {number} [page_size]
- */
-/**
- * @typedef CreditlineDataPlatformReq
- * @property {CreditlineDataPlatformPayload} [data]
- */
-/**
- * @typedef CreditlineDataPlatformResponse
- * @property {Object[]} [items]
- * @property {number} [code]
- * @property {boolean} [show_mr]
- * @property {Page} [page]
- * @property {string} [message]
- * @property {string[]} [headers]
- * @property {number} [item_count]
- */
-/**
- * @typedef IsCreditlinePayload
- * @property {string} [seller_id]
- */
-/**
- * @typedef IsCreditlinePlatformReq
- * @property {IsCreditlinePayload} [data]
- */
-/**
- * @typedef IsCreditlinePlatformResponse
- * @property {boolean} [is_creditline_opted]
- * @property {number} [code]
- */
-/**
- * @typedef InvoiceTypePayloadData
- * @property {boolean} [is_active]
- */
-/**
- * @typedef InvoiceTypeReq
- * @property {InvoiceTypePayloadData} [data]
- */
-/**
- * @typedef InvoiceTypeResponseItems
- * @property {string} [text]
- * @property {string} [value]
- */
-/**
- * @typedef InvoiceTypeResponse
- * @property {boolean} [success]
- * @property {InvoiceTypeResponseItems[]} [invoice_type_list]
- * @property {InvoiceTypeResponseItems[]} [payment_status_list]
- */
-/**
- * @typedef InoviceListingPayloadDataFilters
- * @property {string[]} [payment_status]
- * @property {string[]} [invoice_type]
- * @property {string[]} [company_id]
- */
-/**
- * @typedef InvoiceListingPayloadData
- * @property {number} [page_size]
  * @property {number} [page]
+ * @property {number} [pagesize]
  * @property {string} [start_date]
+ */
+/**
+ * @typedef DownloadReportCustomerCnRequest
+ * @property {CnDownloadReport} [data]
+ */
+/**
+ * @typedef DownloadReportCustomerCnResponse
+ * @property {DownloadReportResponseData[]} [data]
+ */
+/**
+ * @typedef DownloadReportItems
  * @property {string} [end_date]
- * @property {string} [search]
- * @property {InoviceListingPayloadDataFilters} [filters]
+ * @property {GenerateReportFilters} [filters]
+ * @property {GenerateReportMeta} [meta]
+ * @property {string} [report_id]
+ * @property {string} [start_date]
+ * @property {string} [type_of_request]
  */
 /**
- * @typedef InvoiceListingReq
- * @property {InvoiceListingPayloadData} [data]
- */
-/**
- * @typedef UnpaidInvoiceDataItems
- * @property {number} [total_unpaid_invoice_count]
- * @property {string} [currency]
- * @property {number} [total_unpaid_amount]
- */
-/**
- * @typedef InvoiceListingResponseItems
- * @property {number} [amount]
- * @property {string} [company]
- * @property {string} [status]
- * @property {string} [due_date]
- * @property {string} [invoice_date]
- * @property {string} [invoice_type]
- * @property {string} [period]
- * @property {string} [invoice_number]
- * @property {boolean} [is_downloadable]
- * @property {string} [invoice_id]
- * @property {Currency} [currency]
- */
-/**
- * @typedef InvoiceListingResponse
- * @property {boolean} [success]
- * @property {string[]} [headers]
- * @property {UnpaidInvoiceDataItems} [unpaid_invoice_data]
- * @property {InvoiceListingResponseItems[]} [items]
- * @property {Page} [page]
+ * @typedef DownloadReportList
  * @property {number} [item_count]
+ * @property {DownloadReportItems[]} [items]
+ * @property {Page} [page]
  */
 /**
- * @typedef InvoicePdfPayloadData
- * @property {string[]} [invoice_number]
- */
-/**
- * @typedef InvoicePdfReq
- * @property {InvoicePdfPayloadData} [data]
- */
-/**
- * @typedef InvoicePdfResponse
- * @property {boolean} [success]
- * @property {string[]} [data]
- * @property {string[]} [error]
- */
-/**
- * @typedef IsCnRefundMethodData
- * @property {string} [affiliate_id]
- * @property {boolean} [toggle_edit_required]
- * @property {number} [seller_id]
- */
-/**
- * @typedef IsCnRefundMethodReq
- * @property {IsCnRefundMethodData} [data]
- */
-/**
- * @typedef IsCnRefundMethodResponseData
- * @property {boolean} [is_first_time_user]
- */
-/**
- * @typedef IsCnRefundMethodResponse
- * @property {boolean} [success]
- * @property {IsCnRefundMethodResponseData} [data]
- */
-/**
- * @typedef CreditNoteConfigNotificationEvents
- * @property {number} [expiration_reminder_to_customer]
- */
-/**
- * @typedef CreateSellerCreditNoteConfig
- * @property {boolean} [is_cn_as_refund_method]
- * @property {string} [affiliate_id]
- * @property {string[]} [source_channel]
- * @property {number} [seller_id]
- * @property {CreditNoteConfigNotificationEvents} [notification_events]
- * @property {string} [sales_channel_name]
- * @property {string[]} [ordering_channel]
- * @property {number} [validity]
- * @property {string} [currency_type]
- * @property {string[]} [slug_values]
- */
-/**
- * @typedef CreateSellerCreditNoteConfigReq
- * @property {CreateSellerCreditNoteConfig} [data]
- */
-/**
- * @typedef CreateSellerCreditNoteConfigResponse
- * @property {boolean} [success]
- * @property {string} [message]
- */
-/**
- * @typedef DeleteConfig
- * @property {string} [affiliate_id]
- * @property {string[]} [slug_values]
- * @property {number} [seller_id]
- */
-/**
- * @typedef DeleteConfigReq
- * @property {DeleteConfig} [data]
- */
-/**
- * @typedef DeleteConfigResponse
- * @property {boolean} [success]
- * @property {string} [message]
- */
-/**
- * @typedef ChannelDisplayNameItems
- * @property {string} [key]
- * @property {string} [value]
- */
-/**
- * @typedef ChannelDisplayNameResponse
- * @property {boolean} [success]
- * @property {ChannelDisplayNameItems[]} [items]
- */
-/**
- * @typedef CnReferenceNumber
- * @property {string} [cn_reference_number]
- */
-/**
- * @typedef GetPdfUrlViewReq
- * @property {CnReferenceNumber} [data]
- */
-/**
- * @typedef GetPdfUrlViewResponseData
- * @property {string} [s3_pdf_link]
- * @property {string} [cn_reference_number]
- */
-/**
- * @typedef GetPdfUrlViewResponse
- * @property {boolean} [success]
- * @property {GetPdfUrlViewResponseData} [data]
- */
-/**
- * @typedef CreditNoteDetailsReq
- * @property {CnReferenceNumber} [data]
- */
-/**
- * @typedef CnDetails
- * @property {string} [staff_id]
- * @property {string} [expiry_date]
- * @property {string} [channel_of_issuance]
- * @property {string} [order_id]
- * @property {string} [date_issued]
- * @property {string} [ordering_channel]
- * @property {string} [shipment_id]
- * @property {string} [store_id]
- * @property {string} [invoice_number]
- */
-/**
- * @typedef RedemptionDetails
- * @property {Object} [meta]
- * @property {string} [staff_id]
+ * @typedef DownloadReportResponseData
  * @property {string} [created_at]
- * @property {string} [order_id]
- * @property {string} [store_id]
- * @property {string} [shipment_id]
- * @property {string} [ordering_channel]
- * @property {number} [amount_debited]
- * @property {string} [invoice_number]
+ * @property {string} [display_name]
+ * @property {string} [download_link]
+ * @property {string} [end_date]
+ * @property {Object} [filters]
+ * @property {string} [full_name]
+ * @property {Object} [meta]
+ * @property {string} [msg]
+ * @property {string} [report_config_id]
+ * @property {string} [report_name]
+ * @property {Object} [request_dict]
+ * @property {string} [requested_by]
+ * @property {string} [start_date]
+ * @property {string} [status]
  */
 /**
- * @typedef CreditNoteDetails
- * @property {string} [currency]
- * @property {number} [current_amount_used]
- * @property {string} [cn_status]
- * @property {string} [customer_mobile_number]
- * @property {string} [cn_reference_number]
- * @property {CnDetails} [cn_details]
- * @property {RedemptionDetails[]} [redemption_details]
- * @property {number} [remaining_cn_amount]
- * @property {number} [available_cn_balance]
- * @property {number} [cn_amount]
- */
-/**
- * @typedef CreditNoteDetailsResponse
+ * @typedef Error
+ * @property {string} [reason]
  * @property {boolean} [success]
- * @property {CreditNoteDetails} [data]
  */
 /**
- * @typedef GetCustomerCreditBalance
- * @property {string} [affiliate_id]
- * @property {number} [seller_id]
- * @property {string} [customer_mobile_number]
+ * @typedef GenerateReportCustomerCnRequest
+ * @property {CnGenerateReport} [data]
  */
 /**
- * @typedef GetCustomerCreditBalanceReq
- * @property {GetCustomerCreditBalance} [data]
+ * @typedef GenerateReportCustomerCnResponse
+ * @property {GenerateReportCustomerCnResponseData} [data]
  */
 /**
- * @typedef GetCustomerCreditBalanceResponseData
- * @property {string} [customer_mobile_number]
- * @property {number} [total_credited_balance]
+ * @typedef GenerateReportCustomerCnResponseData
+ * @property {string[]} [allowed_filters]
+ * @property {string} [end_date]
+ * @property {string[]} [headers]
+ * @property {number} [item_count]
+ * @property {CnGenerateReportItems[]} [items]
+ * @property {Page} [page]
+ * @property {string[]} [primary_headers]
+ * @property {Object} [row_header_display_order]
+ * @property {string} [start_date]
  */
 /**
- * @typedef GetCustomerCreditBalanceResponse
+ * @typedef GenerateReportFilters
+ * @property {string[]} [brand]
+ * @property {string[]} [channel]
+ * @property {string[]} [company]
+ */
+/**
+ * @typedef GenerateReportJson
+ * @property {string} [end_date]
+ * @property {string[]} [headers]
+ * @property {number} [item_count]
+ * @property {string[][]} [items]
+ * @property {Page} [page]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef GenerateReportMeta
+ * @property {string} [brand]
+ * @property {string} [channel]
+ * @property {string} [company]
+ */
+/**
+ * @typedef GenerateReportPlatform
+ * @property {string} [end_date]
+ * @property {GenerateReportFilters} [filters]
+ * @property {GenerateReportMeta} [meta]
+ * @property {string} [report_id]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef GenerateReportRequest
+ * @property {GenerateReportPlatform} [data]
+ */
+/**
+ * @typedef GetAffiliate
+ * @property {number} [company_id]
+ */
+/**
+ * @typedef GetAffiliateResponse
+ * @property {Object[]} [docs]
  * @property {boolean} [success]
- * @property {GetCustomerCreditBalanceResponseData} [data]
  */
 /**
- * @typedef GetCnConfigReq
+ * @typedef GetCnConfigRequest
  * @property {DeleteConfig} [data]
+ */
+/**
+ * @typedef GetCnConfigResponse
+ * @property {GetCnConfigResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetCnConfigResponseData
+ * @property {string} [affiliate_id]
+ * @property {string} [currency_type]
+ * @property {boolean} [is_cn_as_refund_method]
+ * @property {GetCnConfigResponseMeta} [meta]
+ * @property {CreditNoteConfigNotificationEvents} [notification_events]
+ * @property {string[]} [redemption_ordering_channel]
+ * @property {number} [seller_id]
+ * @property {number} [validity]
  */
 /**
  * @typedef GetCnConfigResponseMeta
@@ -512,483 +309,474 @@ export = FinancePlatformModel;
  * @property {string[]} [source_channel]
  */
 /**
- * @typedef GetCnConfigResponseData
- * @property {boolean} [is_cn_as_refund_method]
+ * @typedef GetCustomerCreditBalance
  * @property {string} [affiliate_id]
- * @property {Object} [meta]
+ * @property {string} [customer_mobile_number]
  * @property {number} [seller_id]
- * @property {CreditNoteConfigNotificationEvents} [notification_events]
- * @property {number} [validity]
- * @property {string[]} [redemption_ordering_channel]
- * @property {string} [currency_type]
  */
 /**
- * @typedef GetCnConfigResponse
+ * @typedef GetCustomerCreditBalanceRequest
+ * @property {GetCustomerCreditBalance} [data]
+ */
+/**
+ * @typedef GetCustomerCreditBalanceResponse
+ * @property {GetCustomerCreditBalanceResponseData} [data]
  * @property {boolean} [success]
- * @property {GetCnConfigResponseData} [data]
  */
 /**
- * @typedef CnGenerateReportFilters
- * @property {string[]} [staff_id]
- * @property {string[]} [channel_of_issuance]
- * @property {string[]} [utilisation]
- * @property {string[]} [ordering_channel]
- * @property {number[]} [store_id]
- * @property {string[]} [type_of_transaction]
- * @property {string[]} [issuance_channel]
+ * @typedef GetCustomerCreditBalanceResponseData
+ * @property {string} [customer_mobile_number]
+ * @property {number} [total_credited_balance]
  */
 /**
- * @typedef CnGenerateReport
- * @property {number} [page]
- * @property {string} [end_date]
- * @property {number} [page_size]
- * @property {CnGenerateReportFilters} [filters]
- * @property {string} [affiliate_id]
- * @property {GenerateReportFilters} [meta]
- * @property {string} [search]
- * @property {string} [report_id]
- * @property {string} [search_type]
- * @property {string} [start_date]
- */
-/**
- * @typedef GenerateReportCustomerCnReq
- * @property {CnGenerateReport} [data]
- */
-/**
- * @typedef CnGenerateReportItems
- * @property {string} [expiry_date]
- * @property {string} [status]
- * @property {number} [total_amount]
- * @property {string} [order_id]
- * @property {string} [date_issued]
- * @property {string} [shipment_id]
- * @property {string} [invoice_number]
- * @property {string} [credit_note_number]
- */
-/**
- * @typedef GenerateReportCustomerCnResponseData
- * @property {boolean} [success]
- * @property {string} [message]
- * @property {CnGenerateReportItems[]} [items]
- * @property {Object} [row_header_display_order]
- * @property {string} [end_date]
- * @property {Page} [page]
- * @property {string[]} [headers]
- * @property {string[]} [primary_headers]
- * @property {string[]} [allowed_filters]
- * @property {string} [start_date]
- * @property {number} [item_count]
- */
-/**
- * @typedef GenerateReportCustomerCnResponse
- * @property {GenerateReportCustomerCnResponseData} [data]
- */
-/**
- * @typedef CnDownloadReport
- * @property {number} [page]
- * @property {string} [start_date]
- * @property {string} [end_date]
- * @property {string} [affiliate_id]
- * @property {string} [search]
- * @property {string} [status]
- * @property {string} [search_type]
- * @property {number} [page_size]
- */
-/**
- * @typedef DownloadReportCustomerCnReq
- * @property {CnDownloadReport} [data]
- */
-/**
- * @typedef DownloadReportResponseData
- * @property {string} [report_config_id]
- * @property {string} [full_name]
- * @property {string} [requested_by]
- * @property {string} [start_date]
- * @property {string} [end_date]
- * @property {Object} [request_dict]
- * @property {string} [download_link]
- * @property {string} [created_at]
- * @property {Object} [meta]
- * @property {string} [msg]
- * @property {string} [report_name]
- * @property {string} [status]
- * @property {string} [display_name]
+ * @typedef GetEngineData
  * @property {Object} [filters]
+ * @property {string[]} [project]
+ * @property {string} [table_name]
  */
 /**
- * @typedef DownloadReportCustomerCnResponse
- * @property {DownloadReportResponseData[]} [items]
- * @property {DownloadReportResponseData[]} [data]
+ * @typedef GetEngineRequest
+ * @property {GetEngineData} [data]
+ */
+/**
+ * @typedef GetEngineResponse
  * @property {number} [item_count]
+ * @property {Object[]} [items]
  * @property {Page} [page]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetPdfUrlViewRequest
+ * @property {CnReferenceNumber} [data]
+ */
+/**
+ * @typedef GetPdfUrlViewResponse
+ * @property {GetPdfUrlViewResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetPdfUrlViewResponseData
+ * @property {string} [cn_reference_number]
+ * @property {string} [s3_pdf_link]
+ */
+/**
+ * @typedef GetReason
+ * @property {string} [reason_type]
+ */
+/**
+ * @typedef GetReasonRequest
+ * @property {GetReason} [data]
+ */
+/**
+ * @typedef GetReasonResponse
+ * @property {number} [item_count]
+ * @property {ReasonItem[]} [item_list]
+ * @property {Page} [page]
+ * @property {boolean} [success]
  */
 /**
  * @typedef GetReportingFilters
- * @property {string} [text]
- * @property {string} [type]
  * @property {Object[]} [options]
- * @property {string} [value]
- */
-/**
- * @typedef GetReportingNestedFilters
- * @property {string} [text]
- * @property {Object[]} [options]
- * @property {boolean} [required]
- * @property {string} [placeholder_text]
- * @property {string} [type]
- * @property {string} [value]
- */
-/**
- * @typedef GetReportingFiltersReasonOptions
- * @property {string} [text]
- * @property {string} [value]
- * @property {string} [placeholder_text]
- */
-/**
- * @typedef GetReportingFiltersReason
  * @property {string} [text]
  * @property {string} [type]
  * @property {string} [value]
- * @property {GetReportingFiltersReasonOptions[]} [options]
  */
 /**
  * @typedef GetReportingFiltersResponse
- * @property {GetReportingFiltersReason} [reason]
- * @property {GetReportingFilters} [search]
  * @property {GetReportingNestedFilters[]} [filters]
+ * @property {GetReportingFilters} [search]
  * @property {GetReportingFilters} [status]
  */
 /**
- * @typedef InvoicePaymentOptionsPayloadData
- * @property {string} [invoice_number]
- */
-/**
- * @typedef InvoicePaymentOptionsReq
- * @property {InvoicePaymentOptionsPayloadData} [data]
- */
-/**
- * @typedef InvoicePaymentOptionsResponsePayableAmounts
- * @property {number} [amount]
- * @property {string} [amount_key]
- * @property {string} [header]
- */
-/**
- * @typedef InvoicePaymentOptionsResponseDeductedAmounts
- * @property {number} [amount]
- * @property {string} [header]
- * @property {string} [amount_key]
- * @property {boolean} [is_payable]
- * @property {string} [symbol]
- */
-/**
- * @typedef InvoicePaymentOptionsResponseData
- * @property {Currency} [currency]
- * @property {string} [invoice_type]
- * @property {InvoicePaymentOptionsResponsePayableAmounts[]} [display_amounts]
- * @property {Object} [total_amount]
- * @property {Object} [deducted_amounts]
- * @property {InvoicePaymentOptionsResponsePayableAmounts[]} [payable_amounts]
- */
-/**
- * @typedef InvoicePaymentOptionsResponse
- * @property {string} [reason]
- * @property {InvoicePaymentOptionsResponseData} [data]
- * @property {boolean} [success]
- */
-/**
- * @typedef PaymentDetail
- * @property {string} [display_name]
+ * @typedef GetReportingNestedFilters
+ * @property {Object[]} [options]
+ * @property {string} [placeholder_text]
+ * @property {boolean} [required]
+ * @property {string} [text]
+ * @property {string} [type]
  * @property {string} [value]
  */
 /**
- * @typedef PaidInvoicePaymentDetail
- * @property {PaymentDetail[]} [payment_details]
- * @property {string} [date_of_payment]
- * @property {number} [amount]
+ * @typedef GetReportListData
+ * @property {boolean} [listing_enabled]
+ * @property {string} [role_name]
  */
 /**
- * @typedef InvoicePaymentDetailsResponseData
- * @property {PaidInvoicePaymentDetail[]} [paid_invoice_payment_details]
- * @property {Object[]} [failed_attempts_details]
+ * @typedef GetReportListRequest
+ * @property {GetReportListData} [data]
  */
 /**
- * @typedef InvoicePaymentDetailsResponse
- * @property {string} [reason]
- * @property {InvoicePaymentDetailsResponseData} [data]
+ * @typedef GetReportListResponse
+ * @property {ReportItem[]} [items]
+ * @property {Page} [page]
  * @property {boolean} [success]
- * @property {boolean} [payment_details_visible]
+ * @property {number} [total_count]
  */
 /**
- * @typedef InvoiceActivityLogsResponseData
- * @property {string} [performed_by]
+ * @typedef InoviceListingPayloadDataFilters
+ * @property {string[]} [company_id]
+ * @property {string[]} [invoice_type]
+ * @property {string[]} [payment_status]
+ */
+/**
+ * @typedef InvoiceListingPayloadData
+ * @property {string} [end_date]
+ * @property {InoviceListingPayloadDataFilters} [filters]
+ * @property {number} [page]
+ * @property {number} [page_size]
+ * @property {string} [search]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef InvoiceListingRequest
+ * @property {InvoiceListingPayloadData} [data]
+ */
+/**
+ * @typedef InvoiceListingResponse
+ * @property {number} [item_count]
+ * @property {InvoiceListingResponseItems[]} [items]
+ * @property {Page} [page]
+ * @property {UnpaidInvoiceDataItems} [unpaid_invoice_data]
+ */
+/**
+ * @typedef InvoiceListingResponseItems
+ * @property {string} [amount]
+ * @property {string} [company]
+ * @property {string} [due_date]
+ * @property {string} [invoice_date]
+ * @property {string} [invoice_id]
+ * @property {string} [invoice_number]
+ * @property {string} [invoice_type]
+ * @property {boolean} [is_downloadable]
+ * @property {string} [period]
  * @property {string} [status]
- * @property {string} [reason]
- * @property {boolean} [is_resolved]
- * @property {number} [retry_attempts]
- * @property {number} [max_retry_attempts]
  */
 /**
- * @typedef InvoiceActivityLogsResponse
- * @property {InvoiceActivityLogsResponseData[]} [data]
+ * @typedef InvoicePdfPayloadData
+ * @property {string[]} [invoice_number]
  */
 /**
- * @typedef InvoiceActivityLogError
- * @property {string} [reason]
+ * @typedef InvoicePdfRequest
+ * @property {InvoicePdfPayloadData} [data]
  */
 /**
- * @typedef UnlockCreditNoteRequestData
+ * @typedef InvoicePdfResponse
+ * @property {string[]} [data]
+ * @property {string[]} [error]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef InvoiceTypePayloadData
+ * @property {boolean} [is_active]
+ */
+/**
+ * @typedef InvoiceTypeRequest
+ * @property {InvoiceTypePayloadData} [data]
+ */
+/**
+ * @typedef InvoiceTypeResponse
+ * @property {InvoiceTypeResponseItems[]} [invoice_type_list]
+ * @property {InvoiceTypeResponseItems[]} [payment_status_list]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef InvoiceTypeResponseItems
+ * @property {string} [text]
+ * @property {string} [value]
+ */
+/**
+ * @typedef IsCnRefundMethodData
+ * @property {string} [affiliate_id]
+ * @property {number} [seller_id]
+ * @property {boolean} [toggle_edit_required]
+ */
+/**
+ * @typedef IsCnRefundMethodRequest
+ * @property {IsCnRefundMethodData} [data]
+ */
+/**
+ * @typedef IsCnRefundMethodResponse
+ * @property {IsCnRefundMethodResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef IsCnRefundMethodResponseData
+ * @property {boolean} [is_first_time_user]
+ */
+/**
+ * @typedef IsCreditlinePayload
  * @property {string} [seller_id]
- * @property {string[]} [locked_credit_notes]
- * @property {string} [unlock_reason]
+ */
+/**
+ * @typedef IsCreditlinePlatformRequest
+ * @property {IsCreditlinePayload} [data]
+ */
+/**
+ * @typedef IsCreditlinePlatformResponse
+ * @property {number} [code]
+ * @property {boolean} [is_creditline_opted]
+ */
+/**
+ * @typedef Page
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
+ */
+/**
+ * @typedef PaymentProcessPayload
+ * @property {string} [amount]
+ * @property {string} [currency]
+ * @property {string} [invoice_number]
+ * @property {Object} [meta]
+ * @property {string} [mode_of_payment]
+ * @property {string} [platform]
+ * @property {string} [seller_id]
+ * @property {string} [source_reference]
+ * @property {string} [total_amount]
+ * @property {string} [transaction_type]
+ */
+/**
+ * @typedef PaymentProcessRequest
+ * @property {PaymentProcessPayload} [data]
+ */
+/**
+ * @typedef PaymentProcessResponse
+ * @property {number} [code]
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [redirect_url]
+ * @property {string} [transaction_id]
+ */
+/**
+ * @typedef ReasonItem
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {string} [name]
+ */
+/**
+ * @typedef RedemptionDetails
+ * @property {number} [amount_debited]
+ * @property {string} [created_at]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [ordering_channel]
+ * @property {string} [shipment_id]
+ * @property {string} [staff_id]
+ * @property {string} [store_id]
+ */
+/**
+ * @typedef ReportItem
+ * @property {string[]} [allowed_filters]
+ * @property {Object} [config_meta]
  * @property {string} [description]
+ * @property {string} [display_date]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [report_type]
  */
 /**
- * @typedef UnlockCreditNoteReq
- * @property {UnlockCreditNoteRequestData} [data]
- */
-/**
- * @typedef UnlockCreditNoteResponseData
- * @property {boolean} [is_cn_unlocked]
- * @property {string} [status]
- */
-/**
- * @typedef UnlockCreditNoteResponse
- * @property {boolean} [success]
- * @property {UnlockCreditNoteResponseData} [data]
+ * @typedef UnpaidInvoiceDataItems
+ * @property {string} [currency]
+ * @property {number} [total_unpaid_amount]
+ * @property {number} [total_unpaid_invoice_count]
  */
 declare class FinancePlatformModel {
 }
 declare namespace FinancePlatformModel {
-    export { OrederFreezeResponse, GenerateReportMeta, GenerateReportFilters, GenerateReportPlatform, GenerateReportReq, Page, Currency, GenerateReportJson, Error, ErrorMeta, ErrorMetaItems, DownloadReport, DownloadReportData, DownloadReportItems, DownloadReportList, GetEngineFilters, GetEngineData, GetEngineReq, GetEngineResponse, GetReason, GetReasonReq, ReasonItem, GetReasonResponse, GetReportListData, GetReportListReq, GetAffiliate, GetReportListResponse, ReportItem, GetAffiliateResponse, DownloadCreditDebitNote, DownloadCreditDebitNoteReq, DownloadCreditDebitNoteResponseData, DownloadCreditDebitNoteResponse, PaymentProcessPayload, PaymentProcessReq, PaymentProcessResponse, CreditlineDataPlatformPayload, CreditlineDataPlatformReq, CreditlineDataPlatformResponse, IsCreditlinePayload, IsCreditlinePlatformReq, IsCreditlinePlatformResponse, InvoiceTypePayloadData, InvoiceTypeReq, InvoiceTypeResponseItems, InvoiceTypeResponse, InoviceListingPayloadDataFilters, InvoiceListingPayloadData, InvoiceListingReq, UnpaidInvoiceDataItems, InvoiceListingResponseItems, InvoiceListingResponse, InvoicePdfPayloadData, InvoicePdfReq, InvoicePdfResponse, IsCnRefundMethodData, IsCnRefundMethodReq, IsCnRefundMethodResponseData, IsCnRefundMethodResponse, CreditNoteConfigNotificationEvents, CreateSellerCreditNoteConfig, CreateSellerCreditNoteConfigReq, CreateSellerCreditNoteConfigResponse, DeleteConfig, DeleteConfigReq, DeleteConfigResponse, ChannelDisplayNameItems, ChannelDisplayNameResponse, CnReferenceNumber, GetPdfUrlViewReq, GetPdfUrlViewResponseData, GetPdfUrlViewResponse, CreditNoteDetailsReq, CnDetails, RedemptionDetails, CreditNoteDetails, CreditNoteDetailsResponse, GetCustomerCreditBalance, GetCustomerCreditBalanceReq, GetCustomerCreditBalanceResponseData, GetCustomerCreditBalanceResponse, GetCnConfigReq, GetCnConfigResponseMeta, GetCnConfigResponseData, GetCnConfigResponse, CnGenerateReportFilters, CnGenerateReport, GenerateReportCustomerCnReq, CnGenerateReportItems, GenerateReportCustomerCnResponseData, GenerateReportCustomerCnResponse, CnDownloadReport, DownloadReportCustomerCnReq, DownloadReportResponseData, DownloadReportCustomerCnResponse, GetReportingFilters, GetReportingNestedFilters, GetReportingFiltersReasonOptions, GetReportingFiltersReason, GetReportingFiltersResponse, InvoicePaymentOptionsPayloadData, InvoicePaymentOptionsReq, InvoicePaymentOptionsResponsePayableAmounts, InvoicePaymentOptionsResponseDeductedAmounts, InvoicePaymentOptionsResponseData, InvoicePaymentOptionsResponse, PaymentDetail, PaidInvoicePaymentDetail, InvoicePaymentDetailsResponseData, InvoicePaymentDetailsResponse, InvoiceActivityLogsResponseData, InvoiceActivityLogsResponse, InvoiceActivityLogError, UnlockCreditNoteRequestData, UnlockCreditNoteReq, UnlockCreditNoteResponseData, UnlockCreditNoteResponse };
+    export { ChannelDisplayName, ChannelDisplayNameResponse, CnDetails, CnDownloadReport, CnGenerateReport, CnGenerateReportFilters, CnGenerateReportItems, CnReferenceNumber, CreateSellerCreditNoteConfig, CreateSellerCreditNoteConfigRequest, CreateSellerCreditNoteConfigResponse, CreditlineDataPlatformPayload, CreditlineDataPlatformRequest, CreditlineDataPlatformResponse, CreditNoteConfigNotificationEvents, CreditNoteDetails, CreditNoteDetailsRequest, CreditNoteDetailsResponse, DeleteConfig, DeleteConfigRequest, DeleteConfigResponse, DownloadCreditDebitNote, DownloadCreditDebitNoteRequest, DownloadCreditDebitNoteResponse, DownloadCreditDebitNoteResponseData, DownloadReport, DownloadReportCustomerCnRequest, DownloadReportCustomerCnResponse, DownloadReportItems, DownloadReportList, DownloadReportResponseData, Error, GenerateReportCustomerCnRequest, GenerateReportCustomerCnResponse, GenerateReportCustomerCnResponseData, GenerateReportFilters, GenerateReportJson, GenerateReportMeta, GenerateReportPlatform, GenerateReportRequest, GetAffiliate, GetAffiliateResponse, GetCnConfigRequest, GetCnConfigResponse, GetCnConfigResponseData, GetCnConfigResponseMeta, GetCustomerCreditBalance, GetCustomerCreditBalanceRequest, GetCustomerCreditBalanceResponse, GetCustomerCreditBalanceResponseData, GetEngineData, GetEngineRequest, GetEngineResponse, GetPdfUrlViewRequest, GetPdfUrlViewResponse, GetPdfUrlViewResponseData, GetReason, GetReasonRequest, GetReasonResponse, GetReportingFilters, GetReportingFiltersResponse, GetReportingNestedFilters, GetReportListData, GetReportListRequest, GetReportListResponse, InoviceListingPayloadDataFilters, InvoiceListingPayloadData, InvoiceListingRequest, InvoiceListingResponse, InvoiceListingResponseItems, InvoicePdfPayloadData, InvoicePdfRequest, InvoicePdfResponse, InvoiceTypePayloadData, InvoiceTypeRequest, InvoiceTypeResponse, InvoiceTypeResponseItems, IsCnRefundMethodData, IsCnRefundMethodRequest, IsCnRefundMethodResponse, IsCnRefundMethodResponseData, IsCreditlinePayload, IsCreditlinePlatformRequest, IsCreditlinePlatformResponse, Page, PaymentProcessPayload, PaymentProcessRequest, PaymentProcessResponse, ReasonItem, RedemptionDetails, ReportItem, UnpaidInvoiceDataItems };
 }
-/** @returns {OrederFreezeResponse} */
-declare function OrederFreezeResponse(): OrederFreezeResponse;
-type OrederFreezeResponse = {
+/** @returns {ChannelDisplayName} */
+declare function ChannelDisplayName(): ChannelDisplayName;
+type ChannelDisplayName = {
+    platform_pos?: string;
+};
+/** @returns {ChannelDisplayNameResponse} */
+declare function ChannelDisplayNameResponse(): ChannelDisplayNameResponse;
+type ChannelDisplayNameResponse = {
+    data?: ChannelDisplayName;
     success?: boolean;
-    oms_freeze?: boolean;
-    source?: string;
 };
-/** @returns {GenerateReportMeta} */
-declare function GenerateReportMeta(): GenerateReportMeta;
-type GenerateReportMeta = {
-    brand?: string;
-    company?: string;
-    channel?: string;
+/** @returns {CnDetails} */
+declare function CnDetails(): CnDetails;
+type CnDetails = {
+    channel_of_issuance?: string;
+    date_issued?: string;
+    expiry_date?: string;
+    invoice_number?: string;
+    order_id?: string;
+    ordering_channel?: string;
+    shipment_id?: string;
+    staff_id?: string;
+    store_id?: string;
 };
-/** @returns {GenerateReportFilters} */
-declare function GenerateReportFilters(): GenerateReportFilters;
-type GenerateReportFilters = {
-    brand?: string[];
-    company?: string[];
-    channel?: string[];
-};
-/** @returns {GenerateReportPlatform} */
-declare function GenerateReportPlatform(): GenerateReportPlatform;
-type GenerateReportPlatform = {
-    start_date?: string;
+/** @returns {CnDownloadReport} */
+declare function CnDownloadReport(): CnDownloadReport;
+type CnDownloadReport = {
+    affiliate_id?: string;
     end_date?: string;
-    meta?: GenerateReportMeta;
-    report_id?: string;
-    filters?: GenerateReportFilters;
-};
-/** @returns {GenerateReportReq} */
-declare function GenerateReportReq(): GenerateReportReq;
-type GenerateReportReq = {
-    data?: GenerateReportPlatform;
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
-    size?: number;
-};
-/** @returns {Currency} */
-declare function Currency(): Currency;
-type Currency = {
-    code?: string;
-    symbol?: string;
-    name?: string;
-};
-/** @returns {GenerateReportJson} */
-declare function GenerateReportJson(): GenerateReportJson;
-type GenerateReportJson = {
-    data?: any;
-    item_count?: number;
-    page?: Page;
-    end_date?: string;
-    start_date?: string;
-    items?: string[][];
-    headers?: string[];
-};
-/** @returns {Error} */
-declare function Error(): Error;
-type Error = {
-    status?: number;
-    reason?: string;
-    success?: boolean;
-    message?: string;
-    code?: string;
-    exception?: string;
-    info?: string;
-    request_id?: string;
-    stack_trace?: string;
-    meta?: ErrorMeta;
-};
-/** @returns {ErrorMeta} */
-declare function ErrorMeta(): ErrorMeta;
-type ErrorMeta = {
-    columns_errors?: ErrorMetaItems[];
-};
-/** @returns {ErrorMetaItems} */
-declare function ErrorMetaItems(): ErrorMetaItems;
-type ErrorMetaItems = {
-    code?: number;
-    message?: string;
-};
-/** @returns {DownloadReport} */
-declare function DownloadReport(): DownloadReport;
-type DownloadReport = {
-    data?: DownloadReportData;
-};
-/** @returns {DownloadReportData} */
-declare function DownloadReportData(): DownloadReportData;
-type DownloadReportData = {
     page?: number;
-    page_size?: number;
+    pagesize?: number;
+    search?: string;
+    search_type?: string;
     start_date?: string;
-    end_date?: string;
+    status?: string[];
 };
-/** @returns {DownloadReportItems} */
-declare function DownloadReportItems(): DownloadReportItems;
-type DownloadReportItems = {
-    start_date?: string;
+/** @returns {CnGenerateReport} */
+declare function CnGenerateReport(): CnGenerateReport;
+type CnGenerateReport = {
+    affiliate_id?: string;
     end_date?: string;
-    meta?: GenerateReportMeta;
+    filters?: CnGenerateReportFilters;
+    meta?: GenerateReportFilters;
+    page?: number;
+    pagesize?: number;
     report_id?: string;
-    filters?: GenerateReportFilters;
-    type_of_request?: string;
+    search?: string;
+    search_type?: string;
+    start_date?: string;
 };
-/** @returns {DownloadReportList} */
-declare function DownloadReportList(): DownloadReportList;
-type DownloadReportList = {
-    items?: DownloadReportItems[];
-    page?: Page;
-    item_count?: number;
+/** @returns {CnGenerateReportFilters} */
+declare function CnGenerateReportFilters(): CnGenerateReportFilters;
+type CnGenerateReportFilters = {
+    channel_of_issuance?: string[];
+    ordering_channel?: string[];
+    staff_id?: string[];
+    store_id?: number[];
+    types_of_transaction?: string[];
+    utilisation?: string[];
 };
-/** @returns {GetEngineFilters} */
-declare function GetEngineFilters(): GetEngineFilters;
-type GetEngineFilters = {
-    config_field?: string;
+/** @returns {CnGenerateReportItems} */
+declare function CnGenerateReportItems(): CnGenerateReportItems;
+type CnGenerateReportItems = {
+    credit_note_number?: string;
+    date_issued?: string;
+    expiry_date?: string;
+    invoice_number?: string;
+    order_id?: string;
+    shipment_id?: string;
     status?: string;
-    is_active?: boolean;
+    total_amount?: number;
+};
+/** @returns {CnReferenceNumber} */
+declare function CnReferenceNumber(): CnReferenceNumber;
+type CnReferenceNumber = {
+    cn_reference_number?: string;
+};
+/** @returns {CreateSellerCreditNoteConfig} */
+declare function CreateSellerCreditNoteConfig(): CreateSellerCreditNoteConfig;
+type CreateSellerCreditNoteConfig = {
+    affiliate_id?: string;
+    currency_type?: string;
+    is_cn_as_refund_method?: boolean;
+    notification_events?: CreditNoteConfigNotificationEvents;
+    ordering_channel?: string[];
+    sales_channel_name?: string;
+    seller_id?: number;
+    slug_values?: string[];
+    source_channel?: string[];
+    validity?: number;
+};
+/** @returns {CreateSellerCreditNoteConfigRequest} */
+declare function CreateSellerCreditNoteConfigRequest(): CreateSellerCreditNoteConfigRequest;
+type CreateSellerCreditNoteConfigRequest = {
+    data?: CreateSellerCreditNoteConfig;
+};
+/** @returns {CreateSellerCreditNoteConfigResponse} */
+declare function CreateSellerCreditNoteConfigResponse(): CreateSellerCreditNoteConfigResponse;
+type CreateSellerCreditNoteConfigResponse = {
+    message?: string;
+    success?: boolean;
+};
+/** @returns {CreditlineDataPlatformPayload} */
+declare function CreditlineDataPlatformPayload(): CreditlineDataPlatformPayload;
+type CreditlineDataPlatformPayload = {
+    end_end?: string;
+    page?: number;
+    pagesize?: number;
     seller_id?: string;
+    start_end?: string;
 };
-/** @returns {GetEngineData} */
-declare function GetEngineData(): GetEngineData;
-type GetEngineData = {
-    status?: string;
-    filters?: GetEngineFilters;
-    project?: string[];
-    table_name?: string;
-    search?: any;
-    page?: number;
-    page_size?: number;
-    order_by?: string;
+/** @returns {CreditlineDataPlatformRequest} */
+declare function CreditlineDataPlatformRequest(): CreditlineDataPlatformRequest;
+type CreditlineDataPlatformRequest = {
+    data?: CreditlineDataPlatformPayload;
 };
-/** @returns {GetEngineReq} */
-declare function GetEngineReq(): GetEngineReq;
-type GetEngineReq = {
-    data?: GetEngineData;
-};
-/** @returns {GetEngineResponse} */
-declare function GetEngineResponse(): GetEngineResponse;
-type GetEngineResponse = {
-    success?: boolean;
+/** @returns {CreditlineDataPlatformResponse} */
+declare function CreditlineDataPlatformResponse(): CreditlineDataPlatformResponse;
+type CreditlineDataPlatformResponse = {
+    code?: number;
+    headers?: string[];
+    item_count?: number;
     items?: any[];
-    page?: Page;
-    item_count?: number;
+    message?: string;
+    page?: any;
+    show_mr?: boolean;
 };
-/** @returns {GetReason} */
-declare function GetReason(): GetReason;
-type GetReason = {
-    reason_type?: string;
+/** @returns {CreditNoteConfigNotificationEvents} */
+declare function CreditNoteConfigNotificationEvents(): CreditNoteConfigNotificationEvents;
+type CreditNoteConfigNotificationEvents = {
+    expiration_reminder_to_customer?: number;
 };
-/** @returns {GetReasonReq} */
-declare function GetReasonReq(): GetReasonReq;
-type GetReasonReq = {
-    data?: GetReason;
+/** @returns {CreditNoteDetails} */
+declare function CreditNoteDetails(): CreditNoteDetails;
+type CreditNoteDetails = {
+    available_cn_balance?: number;
+    cn_amount?: number;
+    cn_details?: any;
+    cn_reference_number?: string;
+    cn_status?: string;
+    customer_mobile_number?: string;
+    redemption_details?: RedemptionDetails[];
+    remaining_cn_amount?: number;
 };
-/** @returns {ReasonItem} */
-declare function ReasonItem(): ReasonItem;
-type ReasonItem = {
-    id?: string;
-    name?: string;
-    display_name?: string;
+/** @returns {CreditNoteDetailsRequest} */
+declare function CreditNoteDetailsRequest(): CreditNoteDetailsRequest;
+type CreditNoteDetailsRequest = {
+    data?: CnReferenceNumber;
 };
-/** @returns {GetReasonResponse} */
-declare function GetReasonResponse(): GetReasonResponse;
-type GetReasonResponse = {
+/** @returns {CreditNoteDetailsResponse} */
+declare function CreditNoteDetailsResponse(): CreditNoteDetailsResponse;
+type CreditNoteDetailsResponse = {
+    data?: CreditNoteDetails;
     success?: boolean;
-    item_list?: ReasonItem[];
-    item_count?: number;
-    page?: Page;
 };
-/** @returns {GetReportListData} */
-declare function GetReportListData(): GetReportListData;
-type GetReportListData = {
-    role_name?: string;
-    listing_enabled?: boolean;
+/** @returns {DeleteConfig} */
+declare function DeleteConfig(): DeleteConfig;
+type DeleteConfig = {
+    affiliate_id?: string;
+    seller_id?: number;
+    slug_values?: string[];
 };
-/** @returns {GetReportListReq} */
-declare function GetReportListReq(): GetReportListReq;
-type GetReportListReq = {
-    data?: GetReportListData;
+/** @returns {DeleteConfigRequest} */
+declare function DeleteConfigRequest(): DeleteConfigRequest;
+type DeleteConfigRequest = {
+    data?: DeleteConfig;
 };
-/** @returns {GetAffiliate} */
-declare function GetAffiliate(): GetAffiliate;
-type GetAffiliate = {
-    company_id?: number;
-};
-/** @returns {GetReportListResponse} */
-declare function GetReportListResponse(): GetReportListResponse;
-type GetReportListResponse = {
+/** @returns {DeleteConfigResponse} */
+declare function DeleteConfigResponse(): DeleteConfigResponse;
+type DeleteConfigResponse = {
+    message?: string;
     success?: boolean;
-    items?: ReportItem[];
-    page?: Page;
-    total_count?: number;
-};
-/** @returns {ReportItem} */
-declare function ReportItem(): ReportItem;
-type ReportItem = {
-    id?: string;
-    name?: string;
-    description?: string;
-    allowed_filters?: string[];
-    config_meta?: any;
-    report_type?: string;
-    display_date?: string;
-};
-/** @returns {GetAffiliateResponse} */
-declare function GetAffiliateResponse(): GetAffiliateResponse;
-type GetAffiliateResponse = {
-    reason?: string;
-    success?: boolean;
-    docs?: any[];
 };
 /** @returns {DownloadCreditDebitNote} */
 declare function DownloadCreditDebitNote(): DownloadCreditDebitNote;
 type DownloadCreditDebitNote = {
     note_id?: string[];
 };
-/** @returns {DownloadCreditDebitNoteReq} */
-declare function DownloadCreditDebitNoteReq(): DownloadCreditDebitNoteReq;
-type DownloadCreditDebitNoteReq = {
+/** @returns {DownloadCreditDebitNoteRequest} */
+declare function DownloadCreditDebitNoteRequest(): DownloadCreditDebitNoteRequest;
+type DownloadCreditDebitNoteRequest = {
     data?: DownloadCreditDebitNote;
+};
+/** @returns {DownloadCreditDebitNoteResponse} */
+declare function DownloadCreditDebitNoteResponse(): DownloadCreditDebitNoteResponse;
+type DownloadCreditDebitNoteResponse = {
+    data?: DownloadCreditDebitNoteResponseData[];
+    success?: boolean;
 };
 /** @returns {DownloadCreditDebitNoteResponseData} */
 declare function DownloadCreditDebitNoteResponseData(): DownloadCreditDebitNoteResponseData;
@@ -996,29 +784,440 @@ type DownloadCreditDebitNoteResponseData = {
     id?: string;
     pdf_s3_url?: string;
 };
-/** @returns {DownloadCreditDebitNoteResponse} */
-declare function DownloadCreditDebitNoteResponse(): DownloadCreditDebitNoteResponse;
-type DownloadCreditDebitNoteResponse = {
+/** @returns {DownloadReport} */
+declare function DownloadReport(): DownloadReport;
+type DownloadReport = {
+    end_date?: string;
+    page?: number;
+    pagesize?: number;
+    start_date?: string;
+};
+/** @returns {DownloadReportCustomerCnRequest} */
+declare function DownloadReportCustomerCnRequest(): DownloadReportCustomerCnRequest;
+type DownloadReportCustomerCnRequest = {
+    data?: CnDownloadReport;
+};
+/** @returns {DownloadReportCustomerCnResponse} */
+declare function DownloadReportCustomerCnResponse(): DownloadReportCustomerCnResponse;
+type DownloadReportCustomerCnResponse = {
+    data?: DownloadReportResponseData[];
+};
+/** @returns {DownloadReportItems} */
+declare function DownloadReportItems(): DownloadReportItems;
+type DownloadReportItems = {
+    end_date?: string;
+    filters?: GenerateReportFilters;
+    meta?: GenerateReportMeta;
+    report_id?: string;
+    start_date?: string;
+    type_of_request?: string;
+};
+/** @returns {DownloadReportList} */
+declare function DownloadReportList(): DownloadReportList;
+type DownloadReportList = {
+    item_count?: number;
+    items?: DownloadReportItems[];
+    page?: Page;
+};
+/** @returns {DownloadReportResponseData} */
+declare function DownloadReportResponseData(): DownloadReportResponseData;
+type DownloadReportResponseData = {
+    created_at?: string;
+    display_name?: string;
+    download_link?: string;
+    end_date?: string;
+    filters?: any;
+    full_name?: string;
+    meta?: any;
+    msg?: string;
+    report_config_id?: string;
+    report_name?: string;
+    request_dict?: any;
+    requested_by?: string;
+    start_date?: string;
+    status?: string;
+};
+/** @returns {Error} */
+declare function Error(): Error;
+type Error = {
+    reason?: string;
     success?: boolean;
-    data?: DownloadCreditDebitNoteResponseData[];
+};
+/** @returns {GenerateReportCustomerCnRequest} */
+declare function GenerateReportCustomerCnRequest(): GenerateReportCustomerCnRequest;
+type GenerateReportCustomerCnRequest = {
+    data?: CnGenerateReport;
+};
+/** @returns {GenerateReportCustomerCnResponse} */
+declare function GenerateReportCustomerCnResponse(): GenerateReportCustomerCnResponse;
+type GenerateReportCustomerCnResponse = {
+    data?: GenerateReportCustomerCnResponseData;
+};
+/** @returns {GenerateReportCustomerCnResponseData} */
+declare function GenerateReportCustomerCnResponseData(): GenerateReportCustomerCnResponseData;
+type GenerateReportCustomerCnResponseData = {
+    allowed_filters?: string[];
+    end_date?: string;
+    headers?: string[];
+    item_count?: number;
+    items?: CnGenerateReportItems[];
+    page?: Page;
+    primary_headers?: string[];
+    row_header_display_order?: any;
+    start_date?: string;
+};
+/** @returns {GenerateReportFilters} */
+declare function GenerateReportFilters(): GenerateReportFilters;
+type GenerateReportFilters = {
+    brand?: string[];
+    channel?: string[];
+    company?: string[];
+};
+/** @returns {GenerateReportJson} */
+declare function GenerateReportJson(): GenerateReportJson;
+type GenerateReportJson = {
+    end_date?: string;
+    headers?: string[];
+    item_count?: number;
+    items?: string[][];
+    page?: Page;
+    start_date?: string;
+};
+/** @returns {GenerateReportMeta} */
+declare function GenerateReportMeta(): GenerateReportMeta;
+type GenerateReportMeta = {
+    brand?: string;
+    channel?: string;
+    company?: string;
+};
+/** @returns {GenerateReportPlatform} */
+declare function GenerateReportPlatform(): GenerateReportPlatform;
+type GenerateReportPlatform = {
+    end_date?: string;
+    filters?: GenerateReportFilters;
+    meta?: GenerateReportMeta;
+    report_id?: string;
+    start_date?: string;
+};
+/** @returns {GenerateReportRequest} */
+declare function GenerateReportRequest(): GenerateReportRequest;
+type GenerateReportRequest = {
+    data?: GenerateReportPlatform;
+};
+/** @returns {GetAffiliate} */
+declare function GetAffiliate(): GetAffiliate;
+type GetAffiliate = {
+    company_id?: number;
+};
+/** @returns {GetAffiliateResponse} */
+declare function GetAffiliateResponse(): GetAffiliateResponse;
+type GetAffiliateResponse = {
+    docs?: any[];
+    success?: boolean;
+};
+/** @returns {GetCnConfigRequest} */
+declare function GetCnConfigRequest(): GetCnConfigRequest;
+type GetCnConfigRequest = {
+    data?: DeleteConfig;
+};
+/** @returns {GetCnConfigResponse} */
+declare function GetCnConfigResponse(): GetCnConfigResponse;
+type GetCnConfigResponse = {
+    data?: GetCnConfigResponseData;
+    success?: boolean;
+};
+/** @returns {GetCnConfigResponseData} */
+declare function GetCnConfigResponseData(): GetCnConfigResponseData;
+type GetCnConfigResponseData = {
+    affiliate_id?: string;
+    currency_type?: string;
+    is_cn_as_refund_method?: boolean;
+    meta?: GetCnConfigResponseMeta;
+    notification_events?: CreditNoteConfigNotificationEvents;
+    redemption_ordering_channel?: string[];
+    seller_id?: number;
+    validity?: number;
+};
+/** @returns {GetCnConfigResponseMeta} */
+declare function GetCnConfigResponseMeta(): GetCnConfigResponseMeta;
+type GetCnConfigResponseMeta = {
+    reason?: string;
+    source_channel?: string[];
+};
+/** @returns {GetCustomerCreditBalance} */
+declare function GetCustomerCreditBalance(): GetCustomerCreditBalance;
+type GetCustomerCreditBalance = {
+    affiliate_id?: string;
+    customer_mobile_number?: string;
+    seller_id?: number;
+};
+/** @returns {GetCustomerCreditBalanceRequest} */
+declare function GetCustomerCreditBalanceRequest(): GetCustomerCreditBalanceRequest;
+type GetCustomerCreditBalanceRequest = {
+    data?: GetCustomerCreditBalance;
+};
+/** @returns {GetCustomerCreditBalanceResponse} */
+declare function GetCustomerCreditBalanceResponse(): GetCustomerCreditBalanceResponse;
+type GetCustomerCreditBalanceResponse = {
+    data?: GetCustomerCreditBalanceResponseData;
+    success?: boolean;
+};
+/** @returns {GetCustomerCreditBalanceResponseData} */
+declare function GetCustomerCreditBalanceResponseData(): GetCustomerCreditBalanceResponseData;
+type GetCustomerCreditBalanceResponseData = {
+    customer_mobile_number?: string;
+    total_credited_balance?: number;
+};
+/** @returns {GetEngineData} */
+declare function GetEngineData(): GetEngineData;
+type GetEngineData = {
+    filters?: any;
+    project?: string[];
+    table_name?: string;
+};
+/** @returns {GetEngineRequest} */
+declare function GetEngineRequest(): GetEngineRequest;
+type GetEngineRequest = {
+    data?: GetEngineData;
+};
+/** @returns {GetEngineResponse} */
+declare function GetEngineResponse(): GetEngineResponse;
+type GetEngineResponse = {
+    item_count?: number;
+    items?: any[];
+    page?: Page;
+    success?: boolean;
+};
+/** @returns {GetPdfUrlViewRequest} */
+declare function GetPdfUrlViewRequest(): GetPdfUrlViewRequest;
+type GetPdfUrlViewRequest = {
+    data?: CnReferenceNumber;
+};
+/** @returns {GetPdfUrlViewResponse} */
+declare function GetPdfUrlViewResponse(): GetPdfUrlViewResponse;
+type GetPdfUrlViewResponse = {
+    data?: GetPdfUrlViewResponseData;
+    success?: boolean;
+};
+/** @returns {GetPdfUrlViewResponseData} */
+declare function GetPdfUrlViewResponseData(): GetPdfUrlViewResponseData;
+type GetPdfUrlViewResponseData = {
+    cn_reference_number?: string;
+    s3_pdf_link?: string;
+};
+/** @returns {GetReason} */
+declare function GetReason(): GetReason;
+type GetReason = {
+    reason_type?: string;
+};
+/** @returns {GetReasonRequest} */
+declare function GetReasonRequest(): GetReasonRequest;
+type GetReasonRequest = {
+    data?: GetReason;
+};
+/** @returns {GetReasonResponse} */
+declare function GetReasonResponse(): GetReasonResponse;
+type GetReasonResponse = {
+    item_count?: number;
+    item_list?: ReasonItem[];
+    page?: Page;
+    success?: boolean;
+};
+/** @returns {GetReportingFilters} */
+declare function GetReportingFilters(): GetReportingFilters;
+type GetReportingFilters = {
+    options?: any[];
+    text?: string;
+    type?: string;
+    value?: string;
+};
+/** @returns {GetReportingFiltersResponse} */
+declare function GetReportingFiltersResponse(): GetReportingFiltersResponse;
+type GetReportingFiltersResponse = {
+    filters?: GetReportingNestedFilters[];
+    search?: GetReportingFilters;
+    status?: GetReportingFilters;
+};
+/** @returns {GetReportingNestedFilters} */
+declare function GetReportingNestedFilters(): GetReportingNestedFilters;
+type GetReportingNestedFilters = {
+    options?: any[];
+    placeholder_text?: string;
+    required?: boolean;
+    text?: string;
+    type?: string;
+    value?: string;
+};
+/** @returns {GetReportListData} */
+declare function GetReportListData(): GetReportListData;
+type GetReportListData = {
+    listing_enabled?: boolean;
+    role_name?: string;
+};
+/** @returns {GetReportListRequest} */
+declare function GetReportListRequest(): GetReportListRequest;
+type GetReportListRequest = {
+    data?: GetReportListData;
+};
+/** @returns {GetReportListResponse} */
+declare function GetReportListResponse(): GetReportListResponse;
+type GetReportListResponse = {
+    items?: ReportItem[];
+    page?: Page;
+    success?: boolean;
+    total_count?: number;
+};
+/** @returns {InoviceListingPayloadDataFilters} */
+declare function InoviceListingPayloadDataFilters(): InoviceListingPayloadDataFilters;
+type InoviceListingPayloadDataFilters = {
+    company_id?: string[];
+    invoice_type?: string[];
+    payment_status?: string[];
+};
+/** @returns {InvoiceListingPayloadData} */
+declare function InvoiceListingPayloadData(): InvoiceListingPayloadData;
+type InvoiceListingPayloadData = {
+    end_date?: string;
+    filters?: InoviceListingPayloadDataFilters;
+    page?: number;
+    page_size?: number;
+    search?: string;
+    start_date?: string;
+};
+/** @returns {InvoiceListingRequest} */
+declare function InvoiceListingRequest(): InvoiceListingRequest;
+type InvoiceListingRequest = {
+    data?: InvoiceListingPayloadData;
+};
+/** @returns {InvoiceListingResponse} */
+declare function InvoiceListingResponse(): InvoiceListingResponse;
+type InvoiceListingResponse = {
+    item_count?: number;
+    items?: InvoiceListingResponseItems[];
+    page?: Page;
+    unpaid_invoice_data?: UnpaidInvoiceDataItems;
+};
+/** @returns {InvoiceListingResponseItems} */
+declare function InvoiceListingResponseItems(): InvoiceListingResponseItems;
+type InvoiceListingResponseItems = {
+    amount?: string;
+    company?: string;
+    due_date?: string;
+    invoice_date?: string;
+    invoice_id?: string;
+    invoice_number?: string;
+    invoice_type?: string;
+    is_downloadable?: boolean;
+    period?: string;
+    status?: string;
+};
+/** @returns {InvoicePdfPayloadData} */
+declare function InvoicePdfPayloadData(): InvoicePdfPayloadData;
+type InvoicePdfPayloadData = {
+    invoice_number?: string[];
+};
+/** @returns {InvoicePdfRequest} */
+declare function InvoicePdfRequest(): InvoicePdfRequest;
+type InvoicePdfRequest = {
+    data?: InvoicePdfPayloadData;
+};
+/** @returns {InvoicePdfResponse} */
+declare function InvoicePdfResponse(): InvoicePdfResponse;
+type InvoicePdfResponse = {
+    data?: string[];
+    error?: string[];
+    success?: boolean;
+};
+/** @returns {InvoiceTypePayloadData} */
+declare function InvoiceTypePayloadData(): InvoiceTypePayloadData;
+type InvoiceTypePayloadData = {
+    is_active?: boolean;
+};
+/** @returns {InvoiceTypeRequest} */
+declare function InvoiceTypeRequest(): InvoiceTypeRequest;
+type InvoiceTypeRequest = {
+    data?: InvoiceTypePayloadData;
+};
+/** @returns {InvoiceTypeResponse} */
+declare function InvoiceTypeResponse(): InvoiceTypeResponse;
+type InvoiceTypeResponse = {
+    invoice_type_list?: InvoiceTypeResponseItems[];
+    payment_status_list?: InvoiceTypeResponseItems[];
+    success?: boolean;
+};
+/** @returns {InvoiceTypeResponseItems} */
+declare function InvoiceTypeResponseItems(): InvoiceTypeResponseItems;
+type InvoiceTypeResponseItems = {
+    text?: string;
+    value?: string;
+};
+/** @returns {IsCnRefundMethodData} */
+declare function IsCnRefundMethodData(): IsCnRefundMethodData;
+type IsCnRefundMethodData = {
+    affiliate_id?: string;
+    seller_id?: number;
+    toggle_edit_required?: boolean;
+};
+/** @returns {IsCnRefundMethodRequest} */
+declare function IsCnRefundMethodRequest(): IsCnRefundMethodRequest;
+type IsCnRefundMethodRequest = {
+    data?: IsCnRefundMethodData;
+};
+/** @returns {IsCnRefundMethodResponse} */
+declare function IsCnRefundMethodResponse(): IsCnRefundMethodResponse;
+type IsCnRefundMethodResponse = {
+    data?: IsCnRefundMethodResponseData;
+    success?: boolean;
+};
+/** @returns {IsCnRefundMethodResponseData} */
+declare function IsCnRefundMethodResponseData(): IsCnRefundMethodResponseData;
+type IsCnRefundMethodResponseData = {
+    is_first_time_user?: boolean;
+};
+/** @returns {IsCreditlinePayload} */
+declare function IsCreditlinePayload(): IsCreditlinePayload;
+type IsCreditlinePayload = {
+    seller_id?: string;
+};
+/** @returns {IsCreditlinePlatformRequest} */
+declare function IsCreditlinePlatformRequest(): IsCreditlinePlatformRequest;
+type IsCreditlinePlatformRequest = {
+    data?: IsCreditlinePayload;
+};
+/** @returns {IsCreditlinePlatformResponse} */
+declare function IsCreditlinePlatformResponse(): IsCreditlinePlatformResponse;
+type IsCreditlinePlatformResponse = {
+    code?: number;
+    is_creditline_opted?: boolean;
+};
+/** @returns {Page} */
+declare function Page(): Page;
+type Page = {
+    current?: number;
+    has_next?: boolean;
+    has_previous?: boolean;
+    item_total?: number;
+    next_id?: string;
+    size?: number;
+    type: string;
 };
 /** @returns {PaymentProcessPayload} */
 declare function PaymentProcessPayload(): PaymentProcessPayload;
 type PaymentProcessPayload = {
-    platform?: string;
-    amount?: number;
-    transaction_type?: string;
-    source_reference?: string;
-    total_amount?: number;
-    meta?: any;
+    amount?: string;
     currency?: string;
-    seller_id?: string;
-    mode_of_payment?: string;
     invoice_number?: string;
+    meta?: any;
+    mode_of_payment?: string;
+    platform?: string;
+    seller_id?: string;
+    source_reference?: string;
+    total_amount?: string;
+    transaction_type?: string;
 };
-/** @returns {PaymentProcessReq} */
-declare function PaymentProcessReq(): PaymentProcessReq;
-type PaymentProcessReq = {
+/** @returns {PaymentProcessRequest} */
+declare function PaymentProcessRequest(): PaymentProcessRequest;
+type PaymentProcessRequest = {
     data?: PaymentProcessPayload;
 };
 /** @returns {PaymentProcessResponse} */
@@ -1027,611 +1226,43 @@ type PaymentProcessResponse = {
     code?: number;
     message?: string;
     meta?: any;
-    transaction_id?: string;
     redirect_url?: string;
+    transaction_id?: string;
 };
-/** @returns {CreditlineDataPlatformPayload} */
-declare function CreditlineDataPlatformPayload(): CreditlineDataPlatformPayload;
-type CreditlineDataPlatformPayload = {
-    page?: number;
-    seller_id?: string;
-    end_date?: string;
-    start_date?: string;
-    page_size?: number;
-};
-/** @returns {CreditlineDataPlatformReq} */
-declare function CreditlineDataPlatformReq(): CreditlineDataPlatformReq;
-type CreditlineDataPlatformReq = {
-    data?: CreditlineDataPlatformPayload;
-};
-/** @returns {CreditlineDataPlatformResponse} */
-declare function CreditlineDataPlatformResponse(): CreditlineDataPlatformResponse;
-type CreditlineDataPlatformResponse = {
-    items?: any[];
-    code?: number;
-    show_mr?: boolean;
-    page?: Page;
-    message?: string;
-    headers?: string[];
-    item_count?: number;
-};
-/** @returns {IsCreditlinePayload} */
-declare function IsCreditlinePayload(): IsCreditlinePayload;
-type IsCreditlinePayload = {
-    seller_id?: string;
-};
-/** @returns {IsCreditlinePlatformReq} */
-declare function IsCreditlinePlatformReq(): IsCreditlinePlatformReq;
-type IsCreditlinePlatformReq = {
-    data?: IsCreditlinePayload;
-};
-/** @returns {IsCreditlinePlatformResponse} */
-declare function IsCreditlinePlatformResponse(): IsCreditlinePlatformResponse;
-type IsCreditlinePlatformResponse = {
-    is_creditline_opted?: boolean;
-    code?: number;
-};
-/** @returns {InvoiceTypePayloadData} */
-declare function InvoiceTypePayloadData(): InvoiceTypePayloadData;
-type InvoiceTypePayloadData = {
-    is_active?: boolean;
-};
-/** @returns {InvoiceTypeReq} */
-declare function InvoiceTypeReq(): InvoiceTypeReq;
-type InvoiceTypeReq = {
-    data?: InvoiceTypePayloadData;
-};
-/** @returns {InvoiceTypeResponseItems} */
-declare function InvoiceTypeResponseItems(): InvoiceTypeResponseItems;
-type InvoiceTypeResponseItems = {
-    text?: string;
-    value?: string;
-};
-/** @returns {InvoiceTypeResponse} */
-declare function InvoiceTypeResponse(): InvoiceTypeResponse;
-type InvoiceTypeResponse = {
-    success?: boolean;
-    invoice_type_list?: InvoiceTypeResponseItems[];
-    payment_status_list?: InvoiceTypeResponseItems[];
-};
-/** @returns {InoviceListingPayloadDataFilters} */
-declare function InoviceListingPayloadDataFilters(): InoviceListingPayloadDataFilters;
-type InoviceListingPayloadDataFilters = {
-    payment_status?: string[];
-    invoice_type?: string[];
-    company_id?: string[];
-};
-/** @returns {InvoiceListingPayloadData} */
-declare function InvoiceListingPayloadData(): InvoiceListingPayloadData;
-type InvoiceListingPayloadData = {
-    page_size?: number;
-    page?: number;
-    start_date?: string;
-    end_date?: string;
-    search?: string;
-    filters?: InoviceListingPayloadDataFilters;
-};
-/** @returns {InvoiceListingReq} */
-declare function InvoiceListingReq(): InvoiceListingReq;
-type InvoiceListingReq = {
-    data?: InvoiceListingPayloadData;
-};
-/** @returns {UnpaidInvoiceDataItems} */
-declare function UnpaidInvoiceDataItems(): UnpaidInvoiceDataItems;
-type UnpaidInvoiceDataItems = {
-    total_unpaid_invoice_count?: number;
-    currency?: string;
-    total_unpaid_amount?: number;
-};
-/** @returns {InvoiceListingResponseItems} */
-declare function InvoiceListingResponseItems(): InvoiceListingResponseItems;
-type InvoiceListingResponseItems = {
-    amount?: number;
-    company?: string;
-    status?: string;
-    due_date?: string;
-    invoice_date?: string;
-    invoice_type?: string;
-    period?: string;
-    invoice_number?: string;
-    is_downloadable?: boolean;
-    invoice_id?: string;
-    currency?: Currency;
-};
-/** @returns {InvoiceListingResponse} */
-declare function InvoiceListingResponse(): InvoiceListingResponse;
-type InvoiceListingResponse = {
-    success?: boolean;
-    headers?: string[];
-    unpaid_invoice_data?: UnpaidInvoiceDataItems;
-    items?: InvoiceListingResponseItems[];
-    page?: Page;
-    item_count?: number;
-};
-/** @returns {InvoicePdfPayloadData} */
-declare function InvoicePdfPayloadData(): InvoicePdfPayloadData;
-type InvoicePdfPayloadData = {
-    invoice_number?: string[];
-};
-/** @returns {InvoicePdfReq} */
-declare function InvoicePdfReq(): InvoicePdfReq;
-type InvoicePdfReq = {
-    data?: InvoicePdfPayloadData;
-};
-/** @returns {InvoicePdfResponse} */
-declare function InvoicePdfResponse(): InvoicePdfResponse;
-type InvoicePdfResponse = {
-    success?: boolean;
-    data?: string[];
-    error?: string[];
-};
-/** @returns {IsCnRefundMethodData} */
-declare function IsCnRefundMethodData(): IsCnRefundMethodData;
-type IsCnRefundMethodData = {
-    affiliate_id?: string;
-    toggle_edit_required?: boolean;
-    seller_id?: number;
-};
-/** @returns {IsCnRefundMethodReq} */
-declare function IsCnRefundMethodReq(): IsCnRefundMethodReq;
-type IsCnRefundMethodReq = {
-    data?: IsCnRefundMethodData;
-};
-/** @returns {IsCnRefundMethodResponseData} */
-declare function IsCnRefundMethodResponseData(): IsCnRefundMethodResponseData;
-type IsCnRefundMethodResponseData = {
-    is_first_time_user?: boolean;
-};
-/** @returns {IsCnRefundMethodResponse} */
-declare function IsCnRefundMethodResponse(): IsCnRefundMethodResponse;
-type IsCnRefundMethodResponse = {
-    success?: boolean;
-    data?: IsCnRefundMethodResponseData;
-};
-/** @returns {CreditNoteConfigNotificationEvents} */
-declare function CreditNoteConfigNotificationEvents(): CreditNoteConfigNotificationEvents;
-type CreditNoteConfigNotificationEvents = {
-    expiration_reminder_to_customer?: number;
-};
-/** @returns {CreateSellerCreditNoteConfig} */
-declare function CreateSellerCreditNoteConfig(): CreateSellerCreditNoteConfig;
-type CreateSellerCreditNoteConfig = {
-    is_cn_as_refund_method?: boolean;
-    affiliate_id?: string;
-    source_channel?: string[];
-    seller_id?: number;
-    notification_events?: CreditNoteConfigNotificationEvents;
-    sales_channel_name?: string;
-    ordering_channel?: string[];
-    validity?: number;
-    currency_type?: string;
-    slug_values?: string[];
-};
-/** @returns {CreateSellerCreditNoteConfigReq} */
-declare function CreateSellerCreditNoteConfigReq(): CreateSellerCreditNoteConfigReq;
-type CreateSellerCreditNoteConfigReq = {
-    data?: CreateSellerCreditNoteConfig;
-};
-/** @returns {CreateSellerCreditNoteConfigResponse} */
-declare function CreateSellerCreditNoteConfigResponse(): CreateSellerCreditNoteConfigResponse;
-type CreateSellerCreditNoteConfigResponse = {
-    success?: boolean;
-    message?: string;
-};
-/** @returns {DeleteConfig} */
-declare function DeleteConfig(): DeleteConfig;
-type DeleteConfig = {
-    affiliate_id?: string;
-    slug_values?: string[];
-    seller_id?: number;
-};
-/** @returns {DeleteConfigReq} */
-declare function DeleteConfigReq(): DeleteConfigReq;
-type DeleteConfigReq = {
-    data?: DeleteConfig;
-};
-/** @returns {DeleteConfigResponse} */
-declare function DeleteConfigResponse(): DeleteConfigResponse;
-type DeleteConfigResponse = {
-    success?: boolean;
-    message?: string;
-};
-/** @returns {ChannelDisplayNameItems} */
-declare function ChannelDisplayNameItems(): ChannelDisplayNameItems;
-type ChannelDisplayNameItems = {
-    key?: string;
-    value?: string;
-};
-/** @returns {ChannelDisplayNameResponse} */
-declare function ChannelDisplayNameResponse(): ChannelDisplayNameResponse;
-type ChannelDisplayNameResponse = {
-    success?: boolean;
-    items?: ChannelDisplayNameItems[];
-};
-/** @returns {CnReferenceNumber} */
-declare function CnReferenceNumber(): CnReferenceNumber;
-type CnReferenceNumber = {
-    cn_reference_number?: string;
-};
-/** @returns {GetPdfUrlViewReq} */
-declare function GetPdfUrlViewReq(): GetPdfUrlViewReq;
-type GetPdfUrlViewReq = {
-    data?: CnReferenceNumber;
-};
-/** @returns {GetPdfUrlViewResponseData} */
-declare function GetPdfUrlViewResponseData(): GetPdfUrlViewResponseData;
-type GetPdfUrlViewResponseData = {
-    s3_pdf_link?: string;
-    cn_reference_number?: string;
-};
-/** @returns {GetPdfUrlViewResponse} */
-declare function GetPdfUrlViewResponse(): GetPdfUrlViewResponse;
-type GetPdfUrlViewResponse = {
-    success?: boolean;
-    data?: GetPdfUrlViewResponseData;
-};
-/** @returns {CreditNoteDetailsReq} */
-declare function CreditNoteDetailsReq(): CreditNoteDetailsReq;
-type CreditNoteDetailsReq = {
-    data?: CnReferenceNumber;
-};
-/** @returns {CnDetails} */
-declare function CnDetails(): CnDetails;
-type CnDetails = {
-    staff_id?: string;
-    expiry_date?: string;
-    channel_of_issuance?: string;
-    order_id?: string;
-    date_issued?: string;
-    ordering_channel?: string;
-    shipment_id?: string;
-    store_id?: string;
-    invoice_number?: string;
+/** @returns {ReasonItem} */
+declare function ReasonItem(): ReasonItem;
+type ReasonItem = {
+    display_name?: string;
+    id?: string;
+    name?: string;
 };
 /** @returns {RedemptionDetails} */
 declare function RedemptionDetails(): RedemptionDetails;
 type RedemptionDetails = {
-    meta?: any;
-    staff_id?: string;
-    created_at?: string;
-    order_id?: string;
-    store_id?: string;
-    shipment_id?: string;
-    ordering_channel?: string;
     amount_debited?: number;
-    invoice_number?: string;
-};
-/** @returns {CreditNoteDetails} */
-declare function CreditNoteDetails(): CreditNoteDetails;
-type CreditNoteDetails = {
-    currency?: string;
-    current_amount_used?: number;
-    cn_status?: string;
-    customer_mobile_number?: string;
-    cn_reference_number?: string;
-    cn_details?: CnDetails;
-    redemption_details?: RedemptionDetails[];
-    remaining_cn_amount?: number;
-    available_cn_balance?: number;
-    cn_amount?: number;
-};
-/** @returns {CreditNoteDetailsResponse} */
-declare function CreditNoteDetailsResponse(): CreditNoteDetailsResponse;
-type CreditNoteDetailsResponse = {
-    success?: boolean;
-    data?: CreditNoteDetails;
-};
-/** @returns {GetCustomerCreditBalance} */
-declare function GetCustomerCreditBalance(): GetCustomerCreditBalance;
-type GetCustomerCreditBalance = {
-    affiliate_id?: string;
-    seller_id?: number;
-    customer_mobile_number?: string;
-};
-/** @returns {GetCustomerCreditBalanceReq} */
-declare function GetCustomerCreditBalanceReq(): GetCustomerCreditBalanceReq;
-type GetCustomerCreditBalanceReq = {
-    data?: GetCustomerCreditBalance;
-};
-/** @returns {GetCustomerCreditBalanceResponseData} */
-declare function GetCustomerCreditBalanceResponseData(): GetCustomerCreditBalanceResponseData;
-type GetCustomerCreditBalanceResponseData = {
-    customer_mobile_number?: string;
-    total_credited_balance?: number;
-};
-/** @returns {GetCustomerCreditBalanceResponse} */
-declare function GetCustomerCreditBalanceResponse(): GetCustomerCreditBalanceResponse;
-type GetCustomerCreditBalanceResponse = {
-    success?: boolean;
-    data?: GetCustomerCreditBalanceResponseData;
-};
-/** @returns {GetCnConfigReq} */
-declare function GetCnConfigReq(): GetCnConfigReq;
-type GetCnConfigReq = {
-    data?: DeleteConfig;
-};
-/** @returns {GetCnConfigResponseMeta} */
-declare function GetCnConfigResponseMeta(): GetCnConfigResponseMeta;
-type GetCnConfigResponseMeta = {
-    reason?: string;
-    source_channel?: string[];
-};
-/** @returns {GetCnConfigResponseData} */
-declare function GetCnConfigResponseData(): GetCnConfigResponseData;
-type GetCnConfigResponseData = {
-    is_cn_as_refund_method?: boolean;
-    affiliate_id?: string;
-    meta?: any;
-    seller_id?: number;
-    notification_events?: CreditNoteConfigNotificationEvents;
-    validity?: number;
-    redemption_ordering_channel?: string[];
-    currency_type?: string;
-};
-/** @returns {GetCnConfigResponse} */
-declare function GetCnConfigResponse(): GetCnConfigResponse;
-type GetCnConfigResponse = {
-    success?: boolean;
-    data?: GetCnConfigResponseData;
-};
-/** @returns {CnGenerateReportFilters} */
-declare function CnGenerateReportFilters(): CnGenerateReportFilters;
-type CnGenerateReportFilters = {
-    staff_id?: string[];
-    channel_of_issuance?: string[];
-    utilisation?: string[];
-    ordering_channel?: string[];
-    store_id?: number[];
-    type_of_transaction?: string[];
-    issuance_channel?: string[];
-};
-/** @returns {CnGenerateReport} */
-declare function CnGenerateReport(): CnGenerateReport;
-type CnGenerateReport = {
-    page?: number;
-    end_date?: string;
-    page_size?: number;
-    filters?: CnGenerateReportFilters;
-    affiliate_id?: string;
-    meta?: GenerateReportFilters;
-    search?: string;
-    report_id?: string;
-    search_type?: string;
-    start_date?: string;
-};
-/** @returns {GenerateReportCustomerCnReq} */
-declare function GenerateReportCustomerCnReq(): GenerateReportCustomerCnReq;
-type GenerateReportCustomerCnReq = {
-    data?: CnGenerateReport;
-};
-/** @returns {CnGenerateReportItems} */
-declare function CnGenerateReportItems(): CnGenerateReportItems;
-type CnGenerateReportItems = {
-    expiry_date?: string;
-    status?: string;
-    total_amount?: number;
-    order_id?: string;
-    date_issued?: string;
-    shipment_id?: string;
-    invoice_number?: string;
-    credit_note_number?: string;
-};
-/** @returns {GenerateReportCustomerCnResponseData} */
-declare function GenerateReportCustomerCnResponseData(): GenerateReportCustomerCnResponseData;
-type GenerateReportCustomerCnResponseData = {
-    success?: boolean;
-    message?: string;
-    items?: CnGenerateReportItems[];
-    row_header_display_order?: any;
-    end_date?: string;
-    page?: Page;
-    headers?: string[];
-    primary_headers?: string[];
-    allowed_filters?: string[];
-    start_date?: string;
-    item_count?: number;
-};
-/** @returns {GenerateReportCustomerCnResponse} */
-declare function GenerateReportCustomerCnResponse(): GenerateReportCustomerCnResponse;
-type GenerateReportCustomerCnResponse = {
-    data?: GenerateReportCustomerCnResponseData;
-};
-/** @returns {CnDownloadReport} */
-declare function CnDownloadReport(): CnDownloadReport;
-type CnDownloadReport = {
-    page?: number;
-    start_date?: string;
-    end_date?: string;
-    affiliate_id?: string;
-    search?: string;
-    status?: string;
-    search_type?: string;
-    page_size?: number;
-};
-/** @returns {DownloadReportCustomerCnReq} */
-declare function DownloadReportCustomerCnReq(): DownloadReportCustomerCnReq;
-type DownloadReportCustomerCnReq = {
-    data?: CnDownloadReport;
-};
-/** @returns {DownloadReportResponseData} */
-declare function DownloadReportResponseData(): DownloadReportResponseData;
-type DownloadReportResponseData = {
-    report_config_id?: string;
-    full_name?: string;
-    requested_by?: string;
-    start_date?: string;
-    end_date?: string;
-    request_dict?: any;
-    download_link?: string;
     created_at?: string;
-    meta?: any;
-    msg?: string;
-    report_name?: string;
-    status?: string;
-    display_name?: string;
-    filters?: any;
-};
-/** @returns {DownloadReportCustomerCnResponse} */
-declare function DownloadReportCustomerCnResponse(): DownloadReportCustomerCnResponse;
-type DownloadReportCustomerCnResponse = {
-    items?: DownloadReportResponseData[];
-    data?: DownloadReportResponseData[];
-    item_count?: number;
-    page?: Page;
-};
-/** @returns {GetReportingFilters} */
-declare function GetReportingFilters(): GetReportingFilters;
-type GetReportingFilters = {
-    text?: string;
-    type?: string;
-    options?: any[];
-    value?: string;
-};
-/** @returns {GetReportingNestedFilters} */
-declare function GetReportingNestedFilters(): GetReportingNestedFilters;
-type GetReportingNestedFilters = {
-    text?: string;
-    options?: any[];
-    required?: boolean;
-    placeholder_text?: string;
-    type?: string;
-    value?: string;
-};
-/** @returns {GetReportingFiltersReasonOptions} */
-declare function GetReportingFiltersReasonOptions(): GetReportingFiltersReasonOptions;
-type GetReportingFiltersReasonOptions = {
-    text?: string;
-    value?: string;
-    placeholder_text?: string;
-};
-/** @returns {GetReportingFiltersReason} */
-declare function GetReportingFiltersReason(): GetReportingFiltersReason;
-type GetReportingFiltersReason = {
-    text?: string;
-    type?: string;
-    value?: string;
-    options?: GetReportingFiltersReasonOptions[];
-};
-/** @returns {GetReportingFiltersResponse} */
-declare function GetReportingFiltersResponse(): GetReportingFiltersResponse;
-type GetReportingFiltersResponse = {
-    reason?: GetReportingFiltersReason;
-    search?: GetReportingFilters;
-    filters?: GetReportingNestedFilters[];
-    status?: GetReportingFilters;
-};
-/** @returns {InvoicePaymentOptionsPayloadData} */
-declare function InvoicePaymentOptionsPayloadData(): InvoicePaymentOptionsPayloadData;
-type InvoicePaymentOptionsPayloadData = {
     invoice_number?: string;
+    order_id?: string;
+    ordering_channel?: string;
+    shipment_id?: string;
+    staff_id?: string;
+    store_id?: string;
 };
-/** @returns {InvoicePaymentOptionsReq} */
-declare function InvoicePaymentOptionsReq(): InvoicePaymentOptionsReq;
-type InvoicePaymentOptionsReq = {
-    data?: InvoicePaymentOptionsPayloadData;
-};
-/** @returns {InvoicePaymentOptionsResponsePayableAmounts} */
-declare function InvoicePaymentOptionsResponsePayableAmounts(): InvoicePaymentOptionsResponsePayableAmounts;
-type InvoicePaymentOptionsResponsePayableAmounts = {
-    amount?: number;
-    amount_key?: string;
-    header?: string;
-};
-/** @returns {InvoicePaymentOptionsResponseDeductedAmounts} */
-declare function InvoicePaymentOptionsResponseDeductedAmounts(): InvoicePaymentOptionsResponseDeductedAmounts;
-type InvoicePaymentOptionsResponseDeductedAmounts = {
-    amount?: number;
-    header?: string;
-    amount_key?: string;
-    is_payable?: boolean;
-    symbol?: string;
-};
-/** @returns {InvoicePaymentOptionsResponseData} */
-declare function InvoicePaymentOptionsResponseData(): InvoicePaymentOptionsResponseData;
-type InvoicePaymentOptionsResponseData = {
-    currency?: Currency;
-    invoice_type?: string;
-    display_amounts?: InvoicePaymentOptionsResponsePayableAmounts[];
-    total_amount?: any;
-    deducted_amounts?: any;
-    payable_amounts?: InvoicePaymentOptionsResponsePayableAmounts[];
-};
-/** @returns {InvoicePaymentOptionsResponse} */
-declare function InvoicePaymentOptionsResponse(): InvoicePaymentOptionsResponse;
-type InvoicePaymentOptionsResponse = {
-    reason?: string;
-    data?: InvoicePaymentOptionsResponseData;
-    success?: boolean;
-};
-/** @returns {PaymentDetail} */
-declare function PaymentDetail(): PaymentDetail;
-type PaymentDetail = {
-    display_name?: string;
-    value?: string;
-};
-/** @returns {PaidInvoicePaymentDetail} */
-declare function PaidInvoicePaymentDetail(): PaidInvoicePaymentDetail;
-type PaidInvoicePaymentDetail = {
-    payment_details?: PaymentDetail[];
-    date_of_payment?: string;
-    amount?: number;
-};
-/** @returns {InvoicePaymentDetailsResponseData} */
-declare function InvoicePaymentDetailsResponseData(): InvoicePaymentDetailsResponseData;
-type InvoicePaymentDetailsResponseData = {
-    paid_invoice_payment_details?: PaidInvoicePaymentDetail[];
-    failed_attempts_details?: any[];
-};
-/** @returns {InvoicePaymentDetailsResponse} */
-declare function InvoicePaymentDetailsResponse(): InvoicePaymentDetailsResponse;
-type InvoicePaymentDetailsResponse = {
-    reason?: string;
-    data?: InvoicePaymentDetailsResponseData;
-    success?: boolean;
-    payment_details_visible?: boolean;
-};
-/** @returns {InvoiceActivityLogsResponseData} */
-declare function InvoiceActivityLogsResponseData(): InvoiceActivityLogsResponseData;
-type InvoiceActivityLogsResponseData = {
-    performed_by?: string;
-    status?: string;
-    reason?: string;
-    is_resolved?: boolean;
-    retry_attempts?: number;
-    max_retry_attempts?: number;
-};
-/** @returns {InvoiceActivityLogsResponse} */
-declare function InvoiceActivityLogsResponse(): InvoiceActivityLogsResponse;
-type InvoiceActivityLogsResponse = {
-    data?: InvoiceActivityLogsResponseData[];
-};
-/** @returns {InvoiceActivityLogError} */
-declare function InvoiceActivityLogError(): InvoiceActivityLogError;
-type InvoiceActivityLogError = {
-    reason?: string;
-};
-/** @returns {UnlockCreditNoteRequestData} */
-declare function UnlockCreditNoteRequestData(): UnlockCreditNoteRequestData;
-type UnlockCreditNoteRequestData = {
-    seller_id?: string;
-    locked_credit_notes?: string[];
-    unlock_reason?: string;
+/** @returns {ReportItem} */
+declare function ReportItem(): ReportItem;
+type ReportItem = {
+    allowed_filters?: string[];
+    config_meta?: any;
     description?: string;
+    display_date?: string;
+    id?: string;
+    name?: string;
+    report_type?: string;
 };
-/** @returns {UnlockCreditNoteReq} */
-declare function UnlockCreditNoteReq(): UnlockCreditNoteReq;
-type UnlockCreditNoteReq = {
-    data?: UnlockCreditNoteRequestData;
-};
-/** @returns {UnlockCreditNoteResponseData} */
-declare function UnlockCreditNoteResponseData(): UnlockCreditNoteResponseData;
-type UnlockCreditNoteResponseData = {
-    is_cn_unlocked?: boolean;
-    status?: string;
-};
-/** @returns {UnlockCreditNoteResponse} */
-declare function UnlockCreditNoteResponse(): UnlockCreditNoteResponse;
-type UnlockCreditNoteResponse = {
-    success?: boolean;
-    data?: UnlockCreditNoteResponseData;
+/** @returns {UnpaidInvoiceDataItems} */
+declare function UnpaidInvoiceDataItems(): UnpaidInvoiceDataItems;
+type UnpaidInvoiceDataItems = {
+    currency?: string;
+    total_unpaid_amount?: number;
+    total_unpaid_invoice_count?: number;
 };

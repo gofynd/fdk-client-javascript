@@ -14,8 +14,8 @@ declare class Common {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CommonApplicationModel.Locations>} - Success response
      * @name getLocations
-     * @summary: Fetches available locations.
-     * @description: Retrieves a list of all locations of countries, states, cities.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
+     * @summary: Get countries, states, cities
+     * @description: Get countries, states, cities - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
      */
     getLocations({ locationType, id, requestHeaders }?: CommonApplicationValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CommonApplicationModel.Locations>;
     /**
@@ -24,10 +24,10 @@ declare class Common {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<CommonApplicationModel.ApplicationResponse>} - Success response
      * @name searchApplication
-     * @summary: Searches through applications.
-     * @description: Provide application name or domain url.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
+     * @summary: Search Application
+     * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
      */
     searchApplication({ authorization, query, requestHeaders }?: CommonApplicationValidator.SearchApplicationParam, { responseHeaders }?: object): Promise<CommonApplicationModel.ApplicationResponse>;
 }
-import CommonApplicationValidator = require("sdk/output/javascript/code/sdk/application/Common/CommonApplicationValidator");
-import CommonApplicationModel = require("sdk/output/javascript/code/sdk/application/Common/CommonApplicationModel");
+import CommonApplicationValidator = require("./CommonApplicationValidator");
+import CommonApplicationModel = require("./CommonApplicationModel");

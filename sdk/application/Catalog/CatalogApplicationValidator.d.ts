@@ -93,7 +93,7 @@ export = CatalogApplicationValidator;
  * @typedef GetFollowerCountByIdParam
  * @property {string} collectionType - Type of collection, i.e. products,
  *   brands, or collections.
- * @property {number} collectionId - The ID of the collection type.
+ * @property {string} collectionId - The ID of the collection type.
  */
 /**
  * @typedef GetHomeProductsParam
@@ -124,7 +124,7 @@ export = CatalogApplicationValidator;
 /**
  * @typedef GetProductBundlesBySlugParam
  * @property {string} [slug] - Product slug for which bundles need to be fetched.
- * @property {number} [id] - Product uid
+ * @property {string} [id] - Product uid
  */
 /**
  * @typedef GetProductComparisonBySlugsParam
@@ -179,7 +179,7 @@ export = CatalogApplicationValidator;
  */
 /**
  * @typedef GetProductStockByIdsParam
- * @property {number} [itemId] - The Item ID of the product (Max. 50 allowed)
+ * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed)
  * @property {string} [alu] - ALU of the product (limited upto 50 ALU identifier
  *   in a single request)
  * @property {string} [skuCode] - Stock-keeping Unit of the product (limited
@@ -246,6 +246,7 @@ export = CatalogApplicationValidator;
  *   to retreive the nearest stores, e.g. 72.8691788
  * @property {number} [longitude] - Longitude of the location from where one
  *   wants to retreive the nearest stores, e.g. 19.1174114
+ * @property {string} [tags] - Search stores based on tags.
  */
 /**
  * @typedef UnfollowByIdParam
@@ -486,7 +487,7 @@ type GetFollowerCountByIdParam = {
     /**
      * - The ID of the collection type.
      */
-    collectionId: number;
+    collectionId: string;
 };
 type GetHomeProductsParam = {
     /**
@@ -552,7 +553,7 @@ type GetProductBundlesBySlugParam = {
     /**
      * - Product uid
      */
-    id?: number;
+    id?: string;
 };
 type GetProductComparisonBySlugsParam = {
     /**
@@ -649,7 +650,7 @@ type GetProductStockByIdsParam = {
     /**
      * - The Item ID of the product (Max. 50 allowed)
      */
-    itemId?: number;
+    itemId?: string;
     /**
      * - ALU of the product (limited upto 50 ALU identifier
      * in a single request)
@@ -785,6 +786,10 @@ type GetStoresParam = {
      * wants to retreive the nearest stores, e.g. 19.1174114
      */
     longitude?: number;
+    /**
+     * - Search stores based on tags.
+     */
+    tags?: string;
 };
 type UnfollowByIdParam = {
     /**

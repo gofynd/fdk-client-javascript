@@ -152,7 +152,28 @@ declare class CompanyProfile {
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
      */
-    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, types, tags, requestHeaders, }?: CompanyProfilePlatformValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
+    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, requestHeaders }?: CompanyProfilePlatformValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.storeType] - Helps to sort the location list on the
+     *   basis of location type.
+     * @param {string} [arg.q] - Query that is to be searched.
+     * @param {string} [arg.stage] - To filter companies on basis of verified or
+     *   unverified companies.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 10.
+     * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+     * @returns {Paginator<CompanyProfilePlatformModel.LocationListSerializer>}
+     * @summary: Get list of locations
+     * @description: This API allows to view all the locations associated to a company.
+     */
+    getLocationsPaginator({ storeType, q, stage, pageSize, locationIds }?: {
+        storeType?: string;
+        q?: string;
+        stage?: string;
+        pageSize?: number;
+        locationIds?: number[];
+    }): Paginator<CompanyProfilePlatformModel.LocationListSerializer>;
     /**
      * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -176,6 +197,6 @@ declare class CompanyProfile {
      */
     updateLocation({ locationId, body, requestHeaders }?: CompanyProfilePlatformValidator.UpdateLocationParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
 }
-import CompanyProfilePlatformModel = require("sdk/output/javascript/code/sdk/platform/CompanyProfile/CompanyProfilePlatformModel");
-import CompanyProfilePlatformValidator = require("sdk/output/javascript/code/sdk/platform/CompanyProfile/CompanyProfilePlatformValidator");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
+import CompanyProfilePlatformValidator = require("./CompanyProfilePlatformValidator");
+import Paginator = require("../../common/Paginator");

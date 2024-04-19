@@ -98,8 +98,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.AddCartDetailResponse>} - Success response
    * @name addItems
-   * @summary: Add items to the cart.
-   * @description: Add items to the shopping cart  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addItems/).
+   * @summary: Add items to abandoned cart
+   * @description: Use this API to add items to the abandoned cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addItems/).
    */
   async addItems(
     { cartId, body, b, requestHeaders } = { requestHeaders: {} },
@@ -178,7 +178,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.AddPriceAdjustmentParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.AddPriceAdjustmentResponse>} - Success response
+   * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
    * @name addPriceAdjustment
    * @summary: Create new price adjustment
    * @description: Create new price adjustment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addPriceAdjustment/).
@@ -234,7 +234,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartPlatformModel.AddPriceAdjustmentResponse().validate(responseData, {
+    } = CartPlatformModel.PriceAdjustmentResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -259,8 +259,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name applyCoupon
-   * @summary: Apply a coupon to the cart.
-   * @description: Apply a selected coupon to the items in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/applyCoupon/).
+   * @summary: Apply Coupon for platform pos user
+   * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/applyCoupon/).
    */
   async applyCoupon(
     { body, i, b, p, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -355,8 +355,8 @@ class Cart {
    *   - Success response
    *
    * @name checkCartServiceability
-   * @summary: Check cart serviceability.
-   * @description: Verify if the items in the cart are serviceable. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkCartServiceability/).
+   * @summary: Check Pincode Serviceability
+   * @description: Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkCartServiceability/).
    */
   async checkCartServiceability(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -434,8 +434,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.OpenApiCheckoutResponse>} - Success response
    * @name checkoutCart
-   * @summary: Proceed to cart checkout.
-   * @description: Initiate the checkout process for the items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkoutCart/).
+   * @summary: Create Fynd order with cart details
+   * @description: Generate Fynd order for cart details send with provided `cart_items` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkoutCart/).
    */
   async checkoutCart(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -511,7 +511,7 @@ class Cart {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.CartMetaConfigAddResponse>} - Success response
+   * @returns {Promise<CartPlatformModel.CartMetaConfigAdd>} - Success response
    * @name createCartMetaConfig
    * @summary: Create new cart meta configuration
    * @description: Create new cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCartMetaConfig/).
@@ -567,7 +567,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartPlatformModel.CartMetaConfigAddResponse().validate(responseData, {
+    } = CartPlatformModel.CartMetaConfigAdd().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -590,10 +590,10 @@ class Cart {
    * @param {CartPlatformApplicationValidator.CreateCouponParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.CouponDetailResponse>} - Success response
+   * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name createCoupon
-   * @summary: Create a new coupon.
-   * @description: Generate and add a new coupon to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCoupon/).
+   * @summary: Create new coupon
+   * @description: Create new coupon - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCoupon/).
    */
   async createCoupon(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -644,7 +644,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartPlatformModel.CouponDetailResponse().validate(responseData, {
+    } = CartPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -669,8 +669,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PromotionAdd>} - Success response
    * @name createPromotion
-   * @summary: Create a new promotion.
-   * @description: Generate and add a new promotion to the cart system  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createPromotion/).
+   * @summary: Create new promotion
+   * @description: Create new promotion - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createPromotion/).
    */
   async createPromotion(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -748,18 +748,17 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.DeleteCartDetailResponse>} - Success response
    * @name deleteCart
-   * @summary: Delete a cart.
-   * @description: Delete a specific shopping cart from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/deleteCart/).
+   * @summary: Delete cart once user made successful checkout
+   * @description: Use this API to delete the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/deleteCart/).
    */
   async deleteCart(
-    { body, id, cartType, requestHeaders } = { requestHeaders: {} },
+    { body, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.deleteCart().validate(
       {
         body,
         id,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -774,7 +773,6 @@ class Cart {
       {
         body,
         id,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -787,7 +785,6 @@ class Cart {
 
     const query_params = {};
     query_params["id"] = id;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -826,87 +823,6 @@ class Cart {
   }
 
   /**
-   * @param {CartPlatformApplicationValidator.DeleteCartMetaConfigParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
-   * @name deleteCartMetaConfig
-   * @summary: Delete cart meta configuration
-   * @description: Delete cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/deleteCartMetaConfig/).
-   */
-  async deleteCartMetaConfig(
-    { cartMetaId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CartPlatformApplicationValidator.deleteCartMetaConfig().validate(
-      {
-        cartMetaId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartPlatformApplicationValidator.deleteCartMetaConfig().validate(
-      {
-        cartMetaId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Cart > deleteCartMetaConfig \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration/${cartMetaId}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CartPlatformModel.SuccessMessage().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Cart > deleteCartMetaConfig \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CartPlatformApplicationValidator.FetchAndvalidateCartItemsParam} arg
    *   - Arg object
    *
@@ -914,8 +830,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.OpenapiCartDetailsResponse>} - Success response
    * @name fetchAndvalidateCartItems
-   * @summary: Fetch and validate cart items.
-   * @description: Retrieve and validate items currently in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchAndvalidateCartItems/).
+   * @summary: Fetch Cart Details
+   * @description: Get all the details of cart for a list of provided `cart_items` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchAndvalidateCartItems/).
    */
   async fetchAndvalidateCartItems(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -988,13 +904,88 @@ class Cart {
   }
 
   /**
+   * @param {CartPlatformApplicationValidator.FetchCartMetaConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.CartMetaConfigAdd>} - Success response
+   * @name fetchCartMetaConfig
+   * @summary: Fetch cart meta configuration
+   * @description: Fetch cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchCartMetaConfig/).
+   */
+  async fetchCartMetaConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CartPlatformApplicationValidator.fetchCartMetaConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.fetchCartMetaConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > fetchCartMetaConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.CartMetaConfigAdd().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > fetchCartMetaConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CartPlatformApplicationValidator.GetAbandonedCartParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.AbandonedCartResponse>} - Success response
    * @name getAbandonedCart
-   * @summary: Retrieve abandoned carts.
-   * @description: Retrieve abandoned carts for analysis and potential recovery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCart/).
+   * @summary: Get with abandoned cart list
+   * @description: Get abandoned cart list with pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCart/).
    */
   async getAbandonedCart(
     {
@@ -1105,8 +1096,8 @@ class Cart {
    * @param {string} [arg.lastId] -
    * @param {string} [arg.sortOn] -
    * @returns {Paginator<CartPlatformModel.AbandonedCartResponse>}
-   * @summary: Retrieve abandoned carts.
-   * @description: Retrieve abandoned carts for analysis and potential recovery.
+   * @summary: Get with abandoned cart list
+   * @description: Get abandoned cart list with pagination
    */
   getAbandonedCartPaginator({
     companyId,
@@ -1152,8 +1143,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name getAbandonedCartDetails
-   * @summary: Get abandoned cart details.
-   * @description: Retrieve detailed information about a specific abandoned cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCartDetails/).
+   * @summary: Fetch all items added to the cart
+   * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCartDetails/).
    */
   async getAbandonedCartDetails(
     { id, i, b, c, requestHeaders } = { requestHeaders: {} },
@@ -1353,7 +1344,7 @@ class Cart {
    *   Success response
    * @name getAddresses
    * @summary: Fetch address
-   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAddresses/).
+   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id  mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAddresses/).
    */
   async getAddresses(
     {
@@ -1457,19 +1448,17 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.GetCouponResponse>} - Success response
    * @name getAppCoupons
-   * @summary: Get app-specific coupons.
-   * @description: Retrieve coupons specific to the mobile app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAppCoupons/).
+   * @summary: Fetch Coupon
+   * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAppCoupons/).
    */
   async getAppCoupons(
-    { id, buyNow, slug, storeId, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getAppCoupons().validate(
       {
         id,
         buyNow,
-        slug,
-        storeId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1484,8 +1473,6 @@ class Cart {
       {
         id,
         buyNow,
-        slug,
-        storeId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1499,8 +1486,6 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
-    query_params["slug"] = slug;
-    query_params["store_id"] = storeId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1546,8 +1531,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDeliveryModesResponse>} - Success response
    * @name getAvailableDeliveryModes
-   * @summary: Get available delivery modes.
-   * @description: Retrieve a list of available delivery modes for cart checkout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAvailableDeliveryModes/).
+   * @summary: Get available delivery modes for cart
+   * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAvailableDeliveryModes/).
    */
   async getAvailableDeliveryModes(
     { areaCode, id, requestHeaders } = { requestHeaders: {} },
@@ -1633,7 +1618,7 @@ class Cart {
    * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCart/).
    */
   async getCart(
-    { id, userId, i, b, assignCardId, buyNow, cartType, requestHeaders } = {
+    { id, userId, i, b, assignCardId, buyNow, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -1646,7 +1631,6 @@ class Cart {
         b,
         assignCardId,
         buyNow,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1665,7 +1649,6 @@ class Cart {
         b,
         assignCardId,
         buyNow,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1683,7 +1666,6 @@ class Cart {
     query_params["b"] = b;
     query_params["assign_card_id"] = assignCardId;
     query_params["buy_now"] = buyNow;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1727,8 +1709,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.MultiCartResponse>} - Success response
    * @name getCartList
-   * @summary: Retrieve a list of carts.
-   * @description: Retrieve a list of saved shopping carts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartList/).
+   * @summary: Get cart list for store os user
+   * @description: Get all carts for the store os user which is created for customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartList/).
    */
   async getCartList(
     { fromDate, toDate, filterOn, requestHeaders } = { requestHeaders: {} },
@@ -1798,161 +1780,6 @@ class Cart {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Cart > getCartList \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CartPlatformApplicationValidator.GetCartMetaConfigParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.CartMetaConfigDetailResponse>} -
-   *   Success response
-   * @name getCartMetaConfig
-   * @summary: Get cart meta configuration by id
-   * @description: Get cart meta configuration by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartMetaConfig/).
-   */
-  async getCartMetaConfig(
-    { cartMetaId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CartPlatformApplicationValidator.getCartMetaConfig().validate(
-      {
-        cartMetaId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartPlatformApplicationValidator.getCartMetaConfig().validate(
-      {
-        cartMetaId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Cart > getCartMetaConfig \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration/${cartMetaId}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CartPlatformModel.CartMetaConfigDetailResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Cart > getCartMetaConfig \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CartPlatformApplicationValidator.GetCartMetaConfigsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.CartMetaConfigListResponse>} - Success response
-   * @name getCartMetaConfigs
-   * @summary: Fetch cart meta configuration
-   * @description: Fetch cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartMetaConfigs/).
-   */
-  async getCartMetaConfigs(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CartPlatformApplicationValidator.getCartMetaConfigs().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartPlatformApplicationValidator.getCartMetaConfigs().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Cart > getCartMetaConfigs \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CartPlatformModel.CartMetaConfigListResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Cart > getCartMetaConfigs \n ${res_error}`,
         });
       }
     }
@@ -2045,8 +1872,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SharedCartResponse>} - Success response
    * @name getCartSharedItems
-   * @summary: Get items shared via a cart link.
-   * @description: Retrieve the items shared with you via a cart link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartSharedItems/).
+   * @summary: Get details of a shared cart
+   * @description: Use this API to get the shared cart details as per the token generated using the share-cart API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartSharedItems/).
    */
   async getCartSharedItems(
     { token, requestHeaders } = { requestHeaders: {} },
@@ -2124,8 +1951,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CouponUpdate>} - Success response
    * @name getCouponById
-   * @summary: Get coupon details by ID.
-   * @description: Retrieve detailed information about a specific coupon using its unique ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponById/).
+   * @summary: Get with single coupon details or coupon list
+   * @description: Get single coupon details with `id` in path param - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponById/).
    */
   async getCouponById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2201,8 +2028,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getCouponCodeExists
-   * @summary: Check if a coupon code exists.
-   * @description: Verify the existence of a specific coupon code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponCodeExists/).
+   * @summary: Check if coupon is already created with coupon code
+   * @description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponCodeExists/).
    */
   async getCouponCodeExists(
     { code, requestHeaders } = { requestHeaders: {} },
@@ -2279,10 +2106,10 @@ class Cart {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.CouponOptions>} - Success response
+   * @returns {Promise<Object>} - Success response
    * @name getCouponOptionValues
-   * @summary: Get coupon option values.
-   * @description: Retrieve available values for coupon options. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponOptionValues/).
+   * @summary: Get coupon options enums with display values
+   * @description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponOptionValues/).
    */
   async getCouponOptionValues(
     { requestHeaders } = { requestHeaders: {} },
@@ -2329,9 +2156,7 @@ class Cart {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = CartPlatformModel.CouponOptions().validate(responseData, {
+    const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2351,86 +2176,13 @@ class Cart {
   }
 
   /**
-   * @param {CartPlatformApplicationValidator.GetCouponTagsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.TagsViewResponse>} - Success response
-   * @name getCouponTags
-   * @summary: Get a list of all coupon tags associated with a application.
-   * @description: This API helps to get coupon tags data associated to a particular application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponTags/).
-   */
-  async getCouponTags(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = CartPlatformApplicationValidator.getCouponTags().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartPlatformApplicationValidator.getCouponTags().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Cart > getCouponTags \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon-tags`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CartPlatformModel.TagsViewResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Cart > getCouponTags \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CartPlatformApplicationValidator.GetCouponsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CouponsResponse>} - Success response
    * @name getCoupons
-   * @summary: Retrieve available coupons.
-   * @description: Retrieve a list of available coupons for use in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCoupons/).
+   * @summary: Get with single coupon details or coupon list
+   * @description: Get coupon list with pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCoupons/).
    */
   async getCoupons(
     {
@@ -2544,8 +2296,8 @@ class Cart {
    * @param {string} [arg.typeSlug] -
    * @param {string} [arg.code] -
    * @returns {Paginator<CartPlatformModel.CouponsResponse>}
-   * @summary: Retrieve available coupons.
-   * @description: Retrieve a list of available coupons for use in the shopping cart.
+   * @summary: Get with single coupon details or coupon list
+   * @description: Get coupon list with pagination
    */
   getCouponsPaginator({
     companyId,
@@ -2595,14 +2347,13 @@ class Cart {
    * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getItemCount/).
    */
   async getItemCount(
-    { id, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getItemCount().validate(
       {
         id,
         buyNow,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2617,7 +2368,6 @@ class Cart {
       {
         id,
         buyNow,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2631,7 +2381,6 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2757,8 +2506,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.ActivePromosResponse>} - Success response
    * @name getPromosCouponConfig
-   * @summary: Get promotion and coupon configuration.
-   * @description: Retrieve configuration settings for promotions and coupons. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromosCouponConfig/).
+   * @summary: Fetch all promos that are set as active
+   * @description: Use this API to get list of all the active promos/coupons. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromosCouponConfig/).
    */
   async getPromosCouponConfig(
     { entityType, isHidden, requestHeaders } = { requestHeaders: {} },
@@ -2840,8 +2589,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PromotionUpdate>} - Success response
    * @name getPromotionById
-   * @summary: Get promotion details by ID.
-   * @description: Retrieve detailed information about a specific promotion using its unique ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionById/).
+   * @summary: Get with single promotion details or promotion list
+   * @description: Get single promotion details with `id` in path param - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionById/).
    */
   async getPromotionById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2921,8 +2670,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getPromotionCodeExists
-   * @summary: Check if a promotion code exists.
-   * @description: Verify the existence of a specific promotion code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionCodeExists/).
+   * @summary: Check if promotion is already created with promotion code
+   * @description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionCodeExists/).
    */
   async getPromotionCodeExists(
     { code, requestHeaders } = { requestHeaders: {} },
@@ -2994,88 +2743,13 @@ class Cart {
   }
 
   /**
-   * @param {CartPlatformApplicationValidator.GetPromotionTagsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.TagsViewResponse>} - Success response
-   * @name getPromotionTags
-   * @summary: Get a list of all Promotion tags associated with a application.
-   * @description: This API helps to get Promotion tags data associated to a particular application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionTags/).
-   */
-  async getPromotionTags(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = CartPlatformApplicationValidator.getPromotionTags().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartPlatformApplicationValidator.getPromotionTags().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Cart > getPromotionTags \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promo-tags`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CartPlatformModel.TagsViewResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Cart > getPromotionTags \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CartPlatformApplicationValidator.GetPromotionsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PromotionsResponse>} - Success response
    * @name getPromotions
-   * @summary: Retrieve available promotions.
-   * @description: Retrieve a list of available promotions to apply to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotions/).
+   * @summary: Get promotion list
+   * @description: Get promotion list with pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotions/).
    */
   async getPromotions(
     {
@@ -3189,8 +2863,8 @@ class Cart {
    * @param {string} [arg.fpPanel] -
    * @param {string} [arg.promotionId] -
    * @returns {Paginator<CartPlatformModel.PromotionsResponse>}
-   * @summary: Retrieve available promotions.
-   * @description: Retrieve a list of available promotions to apply to the cart.
+   * @summary: Get promotion list
+   * @description: Get promotion list with pagination
    */
   getPromotionsPaginator({
     companyId,
@@ -3348,8 +3022,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.StoreDetailsResponse>} - Success response
    * @name getStoreAddressByUid
-   * @summary: Get store address by UID.
-   * @description: Retrieve the store address using a unique identifier (UID). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getStoreAddressByUid/).
+   * @summary: Get list of stores for give uids
+   * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getStoreAddressByUid/).
    */
   async getStoreAddressByUid(
     { storeUid, requestHeaders } = { requestHeaders: {} },
@@ -3428,8 +3102,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.OverrideCheckoutResponse>} - Success response
    * @name overrideCart
-   * @summary: Override the cart.
-   * @description: Override the current cart with a new configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/overrideCart/).
+   * @summary: Create Fynd order with overriding cart details
+   * @description: Generate Fynd order while overriding cart details sent with provided `cart_items` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/overrideCart/).
    */
   async overrideCart(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -3505,13 +3179,11 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.AddCartDetailResponse>} - Success response
    * @name platformAddItems
-   * @summary: Add items via platform integration.
-   * @description: Add items to the cart through platform integration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformAddItems/).
+   * @summary: Add items to cart
+   * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformAddItems/).
    */
   async platformAddItems(
-    { body, i, b, buyNow, id, cartType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { body, i, b, buyNow, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3523,7 +3195,6 @@ class Cart {
         b,
         buyNow,
         id,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3541,7 +3212,6 @@ class Cart {
         b,
         buyNow,
         id,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3557,7 +3227,6 @@ class Cart {
     query_params["b"] = b;
     query_params["buy_now"] = buyNow;
     query_params["id"] = id;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3603,11 +3272,11 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartCheckoutResponse>} - Success response
    * @name platformCheckoutCart
-   * @summary: Platform-specific cart checkout.
-   * @description: Initiate cart checkout through platform-specific integration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCart/).
+   * @summary: Checkout all items in the cart
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCart/).
    */
   async platformCheckoutCart(
-    { body, id, cartType, requestHeaders } = { requestHeaders: {} },
+    { body, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3616,7 +3285,6 @@ class Cart {
       {
         body,
         id,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3631,7 +3299,6 @@ class Cart {
       {
         body,
         id,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3644,7 +3311,6 @@ class Cart {
 
     const query_params = {};
     query_params["id"] = id;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3690,11 +3356,11 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartCheckoutResponse>} - Success response
    * @name platformCheckoutCartV2
-   * @summary: Platform-specific cart checkout v2.
-   * @description: Initiate cart checkout through an updated platform-specific integration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCartV2/).
+   * @summary: Checkout all items in the cart
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCartV2/).
    */
   async platformCheckoutCartV2(
-    { body, id, cartType, requestHeaders } = { requestHeaders: {} },
+    { body, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3703,7 +3369,6 @@ class Cart {
       {
         body,
         id,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3718,7 +3383,6 @@ class Cart {
       {
         body,
         id,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3731,7 +3395,6 @@ class Cart {
 
     const query_params = {};
     query_params["id"] = id;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3779,9 +3442,7 @@ class Cart {
    * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call. update_item for update items. remove_item for removing items.item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity  item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformUpdateCart/).
    */
   async platformUpdateCart(
-    { body, id, i, b, buyNow, cartType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3793,7 +3454,6 @@ class Cart {
         i,
         b,
         buyNow,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3811,7 +3471,6 @@ class Cart {
         i,
         b,
         buyNow,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3827,7 +3486,6 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["buy_now"] = buyNow;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3871,8 +3529,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.DeleteAddressResponse>} - Success response
    * @name removeAddress
-   * @summary: Remove a user address.
-   * @description: Delete an existing user address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeAddress/).
+   * @summary: Remove address associated with an account
+   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeAddress/).
    */
   async removeAddress(
     { id, userId, requestHeaders } = { requestHeaders: {} },
@@ -3951,18 +3609,17 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name removeCoupon
-   * @summary: Remove a coupon from the cart.
-   * @description: Remove a coupon from the items in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeCoupon/).
+   * @summary: Remove Applied Coupon for platform pos user
+   * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeCoupon/).
    */
   async removeCoupon(
-    { uid, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
+    { uid, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.removeCoupon().validate(
       {
         uid,
         buyNow,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3977,7 +3634,6 @@ class Cart {
       {
         uid,
         buyNow,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3991,7 +3647,6 @@ class Cart {
     const query_params = {};
     query_params["uid"] = uid;
     query_params["buy_now"] = buyNow;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4037,8 +3692,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name removePriceAdjustment
-   * @summary: Remove price adjustments.
-   * @description: Remove price adjustments applied to items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removePriceAdjustment/).
+   * @summary: Remove price adjustment
+   * @description: Remove price adjustment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removePriceAdjustment/).
    */
   async removePriceAdjustment(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -4205,8 +3860,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name selectPaymentMode
-   * @summary: Select a payment mode.
-   * @description: Choose a payment mode for cart checkout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentMode/).
+   * @summary: Update cart payment
+   * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
     { body, id, buyNow, orderType, requestHeaders } = { requestHeaders: {} },
@@ -4293,8 +3948,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name selectPaymentModeV2
-   * @summary: Select a payment mode v2.
-   * @description: Choose a payment mode for cart checkout in the updated platform integration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentModeV2/).
+   * @summary: Update cart payment
+   * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentModeV2/).
    */
   async selectPaymentModeV2(
     { body, id, buyNow, orderType, requestHeaders } = { requestHeaders: {} },
@@ -4542,8 +4197,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartMetaResponse>} - Success response
    * @name updateCartMeta
-   * @summary: Update cart metadata.
-   * @description: Modify the metadata associated with the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMeta/).
+   * @summary: Update the cart meta for platform pos user
+   * @description: Use this API to update cart meta like checkout_mode and gstin. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMeta/).
    */
   async updateCartMeta(
     { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -4629,8 +4284,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartMetaConfigUpdate>} - Success response
    * @name updateCartMetaConfig
-   * @summary: Update cart metadata configuration.
-   * @description: Modify the configuration settings for cart metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMetaConfig/).
+   * @summary: Update cart meta configuration
+   * @description: Update cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMetaConfig/).
    */
   async updateCartMetaConfig(
     { cartMetaId, body, requestHeaders } = { requestHeaders: {} },
@@ -4710,8 +4365,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.UserCartMappingResponse>} - Success response
    * @name updateCartUser
-   * @summary: Update cart user details.
-   * @description: Modify user-related details for a shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartUser/).
+   * @summary: Update user id for store os customer
+   * @description: Update user id for store os customer after creating customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartUser/).
    */
   async updateCartUser(
     { body, id, requestHeaders } = { requestHeaders: {} },
@@ -4794,8 +4449,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
-   * @summary: Update cart with shared items.
-   * @description: Modify your cart by adding shared items from a cart link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartWithSharedItems/).
+   * @summary: Merge or replace existing cart
+   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
     { token, action, cartId, requestHeaders } = { requestHeaders: {} },
@@ -4876,10 +4531,10 @@ class Cart {
    * @param {CartPlatformApplicationValidator.UpdateCouponParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.CouponDetailResponse>} - Success response
+   * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name updateCoupon
-   * @summary: Update a coupon.
-   * @description: Modify the details and settings of an existing coupon in the cart system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCoupon/).
+   * @summary: Update existing coupon configuration
+   * @description: Update coupon with id sent in `id` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCoupon/).
    */
   async updateCoupon(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -4932,7 +4587,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartPlatformModel.CouponDetailResponse().validate(responseData, {
+    } = CartPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4959,8 +4614,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name updateCouponPartially
-   * @summary: Partially update a coupon.
-   * @description: Make partial modifications to the settings of an existing coupon in the cart system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCouponPartially/).
+   * @summary: Update coupon archive state and schedule
+   * @description: Update archive/unarchive and change schedule for coupon - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCouponPartially/).
    */
   async updateCouponPartially(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5040,11 +4695,10 @@ class Cart {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.UpdatePriceAdjustmentResponse>} -
-   *   Success response
+   * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
    * @name updatePriceAdjustment
-   * @summary: Update price adjustments.
-   * @description: Modify price adjustments for items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePriceAdjustment/).
+   * @summary: Update price adjustment configuration
+   * @description: Update price adjustment configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePriceAdjustment/).
    */
   async updatePriceAdjustment(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5099,10 +4753,10 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartPlatformModel.UpdatePriceAdjustmentResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CartPlatformModel.PriceAdjustmentResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -5124,8 +4778,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PromotionUpdate>} - Success response
    * @name updatePromotion
-   * @summary: Update a promotion.
-   * @description: Modify the details and settings of an existing promotion in the cart system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotion/).
+   * @summary: Update existing promotion configuration
+   * @description: Update promotion with id sent in `id` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotion/).
    */
   async updatePromotion(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5207,8 +4861,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name updatePromotionPartially
-   * @summary: Partially update a promotion.
-   * @description: Make partial modifications to the settings of an existing promotion in the cart system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotionPartially/).
+   * @summary: Update promotion publish state and schedule
+   * @description: Update publish/unpublish and change schedule for promotion - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotionPartially/).
    */
   async updatePromotionPartially(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -5289,8 +4943,8 @@ class Cart {
    * @returns {Promise<CartPlatformModel.PlatformCartShipmentsResponse>} -
    *   Success response
    * @name updateShipments
-   * @summary: Update shipment details.
-   * @description: Modify the details and settings of cart shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateShipments/).
+   * @summary: Update shipment delivery type and quantity before checkout
+   * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateShipments/).
    */
   async updateShipments(
     { body, i, p, id, addressId, areaCode, orderType, requestHeaders } = {
@@ -5390,8 +5044,8 @@ class Cart {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PaymentCouponValidate>} - Success response
    * @name validateCouponForPayment
-   * @summary: Validate a coupon for payment.
-   * @description: Verify the validity of a coupon code for the payment process. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/validateCouponForPayment/).
+   * @summary: Verify the coupon eligibility against the payment mode
+   * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/validateCouponForPayment/).
    */
   async validateCouponForPayment(
     {
@@ -5402,11 +5056,6 @@ class Cart {
       paymentIdentifier,
       aggregatorName,
       merchantCode,
-      iin,
-      network,
-      type,
-      cardId,
-      cartType,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -5422,11 +5071,6 @@ class Cart {
         paymentIdentifier,
         aggregatorName,
         merchantCode,
-        iin,
-        network,
-        type,
-        cardId,
-        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -5446,11 +5090,6 @@ class Cart {
         paymentIdentifier,
         aggregatorName,
         merchantCode,
-        iin,
-        network,
-        type,
-        cardId,
-        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -5469,11 +5108,6 @@ class Cart {
     query_params["payment_identifier"] = paymentIdentifier;
     query_params["aggregator_name"] = aggregatorName;
     query_params["merchant_code"] = merchantCode;
-    query_params["iin"] = iin;
-    query_params["network"] = network;
-    query_params["type"] = type;
-    query_params["card_id"] = cardId;
-    query_params["cart_type"] = cartType;
 
     const response = await PlatformAPIClient.execute(
       this.config,

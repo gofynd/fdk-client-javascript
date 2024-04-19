@@ -1,5 +1,3 @@
-const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
-
 const Cart = require("./Cart/CartPlatformApplicationClient");
 
 const Catalog = require("./Catalog/CatalogPlatformApplicationClient");
@@ -14,8 +12,6 @@ const FileStorage = require("./FileStorage/FileStoragePlatformApplicationClient"
 
 const Lead = require("./Lead/LeadPlatformApplicationClient");
 
-const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
-
 const Order = require("./Order/OrderPlatformApplicationClient");
 
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
@@ -23,6 +19,8 @@ const Partner = require("./Partner/PartnerPlatformApplicationClient");
 const Payment = require("./Payment/PaymentPlatformApplicationClient");
 
 const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
+
+const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
 
 const Share = require("./Share/SharePlatformApplicationClient");
 
@@ -49,8 +47,6 @@ class PlatformApplicationClient {
     this.companyId = config.companyId;
     this.applicationId = applicationId;
 
-    this.analytics = new Analytics(config, applicationId);
-
     this.cart = new Cart(config, applicationId);
 
     this.catalog = new Catalog(config, applicationId);
@@ -65,8 +61,6 @@ class PlatformApplicationClient {
 
     this.lead = new Lead(config, applicationId);
 
-    this.serviceability = new Serviceability(config, applicationId);
-
     this.order = new Order(config, applicationId);
 
     this.partner = new Partner(config, applicationId);
@@ -74,6 +68,8 @@ class PlatformApplicationClient {
     this.payment = new Payment(config, applicationId);
 
     this.rewards = new Rewards(config, applicationId);
+
+    this.serviceability = new Serviceability(config, applicationId);
 
     this.share = new Share(config, applicationId);
 

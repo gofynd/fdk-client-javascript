@@ -149,4 +149,4 @@ type UpdateUserStatusParam = {
 };
 type GetRewardsConfigurationParam = any;
 type ShowOffersParam = any;
-import RewardsPlatformModel = require("sdk/output/javascript/code/sdk/platform/Rewards/RewardsPlatformModel");
+import RewardsPlatformModel = require("./RewardsPlatformModel");

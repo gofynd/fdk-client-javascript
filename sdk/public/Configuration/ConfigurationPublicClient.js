@@ -14,9 +14,9 @@ class Configuration {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getLocations: "/service/public/configuration/v1.0/location",
+      getLocations: "/service/common/configuration/v1.0/location",
       searchApplication:
-        "/service/public/configuration/v1.0/application/search-application",
+        "/service/common/configuration/v1.0/application/search-application",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -120,8 +120,8 @@ class Configuration {
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
    * @name searchApplication
-   * @summary: Search application.
-   * @description: Provide application name or domain url. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
+   * @summary: Search Application
+   * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
    */
   async searchApplication(
     { authorization, query, requestHeaders } = { requestHeaders: {} },

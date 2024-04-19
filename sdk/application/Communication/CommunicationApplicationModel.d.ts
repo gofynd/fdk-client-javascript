@@ -1,32 +1,14 @@
 export = CommunicationApplicationModel;
 /**
- * @typedef CommunicationConsentReq
- * @property {string} [response]
- * @property {string} [action]
- * @property {string} [channel]
+ * @typedef BadRequestSchema
+ * @property {string} [message] - Failure message.
+ * @property {string} [status] - Response status.
  */
 /**
- * @typedef CommunicationConsentRes
+ * @typedef CommunicationConsent
  * @property {string} [app_id]
- * @property {string} [user_id]
  * @property {CommunicationConsentChannels} [channels]
- */
-/**
- * @typedef CommunicationConsentChannelsEmail
- * @property {string} [response]
- * @property {string} [display_name]
- */
-/**
- * @typedef CommunicationConsentChannelsSms
- * @property {string} [response]
- * @property {string} [display_name]
- */
-/**
- * @typedef CommunicationConsentChannelsWhatsapp
- * @property {string} [response]
- * @property {string} [display_name]
- * @property {string} [country_code]
- * @property {string} [phone_number]
+ * @property {string} [user_id]
  */
 /**
  * @typedef CommunicationConsentChannels
@@ -35,93 +17,79 @@ export = CommunicationApplicationModel;
  * @property {CommunicationConsentChannelsWhatsapp} [whatsapp]
  */
 /**
- * @typedef CommunicationConsent
+ * @typedef CommunicationConsentChannelsEmail
+ * @property {string} [display_name]
+ * @property {string} [response]
+ */
+/**
+ * @typedef CommunicationConsentChannelsSms
+ * @property {string} [display_name]
+ * @property {string} [response]
+ */
+/**
+ * @typedef CommunicationConsentChannelsWhatsapp
+ * @property {string} [country_code]
+ * @property {string} [display_name]
+ * @property {string} [phone_number]
+ * @property {string} [response]
+ */
+/**
+ * @typedef CommunicationConsentReq
+ * @property {string} [action]
+ * @property {string} [channel]
+ * @property {string} [response]
+ */
+/**
+ * @typedef CommunicationConsentRes
  * @property {string} [app_id]
- * @property {string} [user_id]
  * @property {CommunicationConsentChannels} [channels]
+ * @property {string} [user_id]
  */
 /**
  * @typedef PushtokenReq
  * @property {string} [action]
  * @property {string} [bundle_identifier]
  * @property {string} [push_token]
- * @property {string} [unique_device_id]
  * @property {string} [type]
+ * @property {string} [unique_device_id]
  */
 /**
  * @typedef PushtokenRes
  * @property {string} [_id]
- * @property {string} [bundle_identifier]
- * @property {string} [push_token]
- * @property {string} [unique_device_id]
- * @property {string} [type]
- * @property {string} [platform]
  * @property {string} [application_id]
- * @property {string} [user_id]
+ * @property {string} [bundle_identifier]
  * @property {string} [created_at]
- * @property {string} [updated_at]
  * @property {string} [expired_at]
- */
-/**
- * @typedef OtpConfigurationExpiryDuration
- * @property {number} time
- * @property {string} denomination
- */
-/**
- * @typedef OtpConfigurationExpiry
- * @property {OtpConfigurationExpiryDuration} duration
- * @property {string} type
- */
-/**
- * @typedef OtpConfigurationRateLimit
- * @property {number} [duration]
- * @property {number} [limit]
- */
-/**
- * @typedef OtpConfiguration
- * @property {number} otp_length
- * @property {string} type
- * @property {OtpConfigurationExpiry} expiry
- * @property {OtpConfigurationRateLimit} [rate_limit]
+ * @property {string} [platform]
+ * @property {string} [push_token]
+ * @property {string} [type]
+ * @property {string} [unique_device_id]
+ * @property {string} [updated_at]
+ * @property {string} [user_id]
  */
 declare class CommunicationApplicationModel {
 }
 declare namespace CommunicationApplicationModel {
-    export { CommunicationConsentReq, CommunicationConsentRes, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentChannels, CommunicationConsent, PushtokenReq, PushtokenRes, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfigurationRateLimit, OtpConfiguration };
+    export { BadRequestSchema, CommunicationConsent, CommunicationConsentChannels, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentReq, CommunicationConsentRes, PushtokenReq, PushtokenRes };
 }
-/** @returns {CommunicationConsentReq} */
-declare function CommunicationConsentReq(): CommunicationConsentReq;
-type CommunicationConsentReq = {
-    response?: string;
-    action?: string;
-    channel?: string;
+/** @returns {BadRequestSchema} */
+declare function BadRequestSchema(): BadRequestSchema;
+type BadRequestSchema = {
+    /**
+     * - Failure message.
+     */
+    message?: string;
+    /**
+     * - Response status.
+     */
+    status?: string;
 };
-/** @returns {CommunicationConsentRes} */
-declare function CommunicationConsentRes(): CommunicationConsentRes;
-type CommunicationConsentRes = {
+/** @returns {CommunicationConsent} */
+declare function CommunicationConsent(): CommunicationConsent;
+type CommunicationConsent = {
     app_id?: string;
-    user_id?: string;
     channels?: CommunicationConsentChannels;
-};
-/** @returns {CommunicationConsentChannelsEmail} */
-declare function CommunicationConsentChannelsEmail(): CommunicationConsentChannelsEmail;
-type CommunicationConsentChannelsEmail = {
-    response?: string;
-    display_name?: string;
-};
-/** @returns {CommunicationConsentChannelsSms} */
-declare function CommunicationConsentChannelsSms(): CommunicationConsentChannelsSms;
-type CommunicationConsentChannelsSms = {
-    response?: string;
-    display_name?: string;
-};
-/** @returns {CommunicationConsentChannelsWhatsapp} */
-declare function CommunicationConsentChannelsWhatsapp(): CommunicationConsentChannelsWhatsapp;
-type CommunicationConsentChannelsWhatsapp = {
-    response?: string;
-    display_name?: string;
-    country_code?: string;
-    phone_number?: string;
+    user_id?: string;
 };
 /** @returns {CommunicationConsentChannels} */
 declare function CommunicationConsentChannels(): CommunicationConsentChannels;
@@ -130,12 +98,39 @@ type CommunicationConsentChannels = {
     sms?: CommunicationConsentChannelsSms;
     whatsapp?: CommunicationConsentChannelsWhatsapp;
 };
-/** @returns {CommunicationConsent} */
-declare function CommunicationConsent(): CommunicationConsent;
-type CommunicationConsent = {
+/** @returns {CommunicationConsentChannelsEmail} */
+declare function CommunicationConsentChannelsEmail(): CommunicationConsentChannelsEmail;
+type CommunicationConsentChannelsEmail = {
+    display_name?: string;
+    response?: string;
+};
+/** @returns {CommunicationConsentChannelsSms} */
+declare function CommunicationConsentChannelsSms(): CommunicationConsentChannelsSms;
+type CommunicationConsentChannelsSms = {
+    display_name?: string;
+    response?: string;
+};
+/** @returns {CommunicationConsentChannelsWhatsapp} */
+declare function CommunicationConsentChannelsWhatsapp(): CommunicationConsentChannelsWhatsapp;
+type CommunicationConsentChannelsWhatsapp = {
+    country_code?: string;
+    display_name?: string;
+    phone_number?: string;
+    response?: string;
+};
+/** @returns {CommunicationConsentReq} */
+declare function CommunicationConsentReq(): CommunicationConsentReq;
+type CommunicationConsentReq = {
+    action?: string;
+    channel?: string;
+    response?: string;
+};
+/** @returns {CommunicationConsentRes} */
+declare function CommunicationConsentRes(): CommunicationConsentRes;
+type CommunicationConsentRes = {
     app_id?: string;
-    user_id?: string;
     channels?: CommunicationConsentChannels;
+    user_id?: string;
 };
 /** @returns {PushtokenReq} */
 declare function PushtokenReq(): PushtokenReq;
@@ -143,47 +138,21 @@ type PushtokenReq = {
     action?: string;
     bundle_identifier?: string;
     push_token?: string;
-    unique_device_id?: string;
     type?: string;
+    unique_device_id?: string;
 };
 /** @returns {PushtokenRes} */
 declare function PushtokenRes(): PushtokenRes;
 type PushtokenRes = {
     _id?: string;
-    bundle_identifier?: string;
-    push_token?: string;
-    unique_device_id?: string;
-    type?: string;
-    platform?: string;
     application_id?: string;
-    user_id?: string;
+    bundle_identifier?: string;
     created_at?: string;
-    updated_at?: string;
     expired_at?: string;
-};
-/** @returns {OtpConfigurationExpiryDuration} */
-declare function OtpConfigurationExpiryDuration(): OtpConfigurationExpiryDuration;
-type OtpConfigurationExpiryDuration = {
-    time: number;
-    denomination: string;
-};
-/** @returns {OtpConfigurationExpiry} */
-declare function OtpConfigurationExpiry(): OtpConfigurationExpiry;
-type OtpConfigurationExpiry = {
-    duration: OtpConfigurationExpiryDuration;
-    type: string;
-};
-/** @returns {OtpConfigurationRateLimit} */
-declare function OtpConfigurationRateLimit(): OtpConfigurationRateLimit;
-type OtpConfigurationRateLimit = {
-    duration?: number;
-    limit?: number;
-};
-/** @returns {OtpConfiguration} */
-declare function OtpConfiguration(): OtpConfiguration;
-type OtpConfiguration = {
-    otp_length: number;
-    type: string;
-    expiry: OtpConfigurationExpiry;
-    rate_limit?: OtpConfigurationRateLimit;
+    platform?: string;
+    push_token?: string;
+    type?: string;
+    unique_device_id?: string;
+    updated_at?: string;
+    user_id?: string;
 };

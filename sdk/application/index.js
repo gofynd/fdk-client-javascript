@@ -33,7 +33,5 @@ module.exports = {
     ThemeApplicationModel: require("./Theme/ThemeApplicationModel"),
 
     UserApplicationModel: require("./User/UserApplicationModel"),
-
-    WebhookApplicationModel: require("./Webhook/WebhookApplicationModel"),
   },
 };

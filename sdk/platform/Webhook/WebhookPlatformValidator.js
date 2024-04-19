@@ -4,7 +4,7 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
 
 /**
  * @typedef CancelJobByNameParam
- * @property {string} filename
+ * @property {string} filename - Filename of the specific report export to cancel.
  */
 
 /**
@@ -21,7 +21,7 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
 
 /**
  * @typedef GetEventCountsParam
- * @property {WebhookPlatformModel.RetryEventRequest} body
+ * @property {WebhookPlatformModel.EventProcessRequest} body
  */
 
 /**
@@ -52,14 +52,14 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
  * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {string} extensionId - Extension_id
+ * @property {string} extensionId - Extension id
  */
 
 /** @typedef ManualRetryCancelParam */
 
 /**
  * @typedef ManualRetryOfFailedEventParam
- * @property {WebhookPlatformModel.RetryEventRequest} body
+ * @property {WebhookPlatformModel.EventProcessRequest} body
  */
 
 /**
@@ -73,18 +73,8 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
  */
 
 /**
- * @typedef RegisterSubscriberToEventV2Param
- * @property {WebhookPlatformModel.SubscriberConfigRequestV2} body
- */
-
-/**
  * @typedef UpdateSubscriberConfigParam
  * @property {WebhookPlatformModel.SubscriberConfig} body
- */
-
-/**
- * @typedef UpdateSubscriberV2Param
- * @property {WebhookPlatformModel.SubscriberConfigRequestV2} body
  */
 
 class WebhookPlatformValidator {
@@ -117,7 +107,7 @@ class WebhookPlatformValidator {
   /** @returns {GetEventCountsParam} */
   static getEventCounts() {
     return Joi.object({
-      body: WebhookPlatformModel.RetryEventRequest().required(),
+      body: WebhookPlatformModel.EventProcessRequest().required(),
     }).required();
   }
 
@@ -173,7 +163,7 @@ class WebhookPlatformValidator {
   /** @returns {ManualRetryOfFailedEventParam} */
   static manualRetryOfFailedEvent() {
     return Joi.object({
-      body: WebhookPlatformModel.RetryEventRequest().required(),
+      body: WebhookPlatformModel.EventProcessRequest().required(),
     }).required();
   }
 
@@ -191,24 +181,10 @@ class WebhookPlatformValidator {
     }).required();
   }
 
-  /** @returns {RegisterSubscriberToEventV2Param} */
-  static registerSubscriberToEventV2() {
-    return Joi.object({
-      body: WebhookPlatformModel.SubscriberConfigRequestV2().required(),
-    }).required();
-  }
-
   /** @returns {UpdateSubscriberConfigParam} */
   static updateSubscriberConfig() {
     return Joi.object({
       body: WebhookPlatformModel.SubscriberConfig().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateSubscriberV2Param} */
-  static updateSubscriberV2() {
-    return Joi.object({
-      body: WebhookPlatformModel.SubscriberConfigRequestV2().required(),
     }).required();
   }
 }

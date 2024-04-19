@@ -19,24 +19,6 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
-/**
- * @typedef GetCustomFieldDefinitionParam
- * @property {string} id
- */
-
-/** @typedef GetCustomFieldDefinitionsParam */
-
-/**
- * @typedef GetCustomFieldsParam
- * @property {string} resource
- * @property {string} resourceIds
- */
-
-/**
- * @typedef GetCustomObjectParam
- * @property {string} id
- */
-
 /** @typedef GetDataLoadersParam */
 
 /**
@@ -84,22 +66,7 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  */
 
 /**
- * @typedef GetPageV1Param
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   a page. You can get slug value from the endpoint
- *   /service/application/content/v2.0/pages/.
- * @property {string} [rootId] - ID given to the HTML element
- */
-
-/**
  * @typedef GetPagesParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- */
-
-/**
- * @typedef GetPagesV1Param
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -108,10 +75,17 @@ const ContentApplicationModel = require("./ContentApplicationModel");
 /** @typedef GetSEOConfigurationParam */
 
 /**
- * @typedef GetSEOMarkupSchemasParam
- * @property {string} [pageType] - The type of page against which schema
- *   template was created
- * @property {boolean} [active] - Boolean value for fetching seo schema.
+ * @typedef GetSlideshowParam
+ * @property {string} slug - A short, human-readable, URL-friendly identifier of
+ *   a slideshow. You can get slug value from the endpoint
+ *   /service/application/content/v1.0/slideshow/.
+ */
+
+/**
+ * @typedef GetSlideshowsParam
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
 /** @typedef GetSupportInformationParam */
@@ -138,33 +112,6 @@ class ContentApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
     });
-  }
-
-  /** @returns {GetCustomFieldDefinitionParam} */
-  static getCustomFieldDefinition() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetCustomFieldDefinitionsParam} */
-  static getCustomFieldDefinitions() {
-    return Joi.object({});
-  }
-
-  /** @returns {GetCustomFieldsParam} */
-  static getCustomFields() {
-    return Joi.object({
-      resource: Joi.string().allow("").required(),
-      resourceIds: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetCustomObjectParam} */
-  static getCustomObject() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
   }
 
   /** @returns {GetDataLoadersParam} */
@@ -229,24 +176,8 @@ class ContentApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetPageV1Param} */
-  static getPageV1() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-      rootId: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {GetPagesParam} */
   static getPages() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    });
-  }
-
-  /** @returns {GetPagesV1Param} */
-  static getPagesV1() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -258,11 +189,18 @@ class ContentApplicationValidator {
     return Joi.object({});
   }
 
-  /** @returns {GetSEOMarkupSchemasParam} */
-  static getSEOMarkupSchemas() {
+  /** @returns {GetSlideshowParam} */
+  static getSlideshow() {
     return Joi.object({
-      pageType: Joi.string().allow(""),
-      active: Joi.boolean(),
+      slug: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetSlideshowsParam} */
+  static getSlideshows() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     });
   }
 

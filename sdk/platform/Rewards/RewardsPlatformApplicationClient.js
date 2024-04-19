@@ -22,7 +22,7 @@ class Rewards {
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name getGiveawayById
    * @summary: Get giveaway by ID.
-   * @description: Retrieve specific giveaway details by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getGiveawayById/).
+   * @description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getGiveawayById/).
    */
   async getGiveawayById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -100,8 +100,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
    * @name getOfferByName
-   * @summary: Get offer by name.
-   * @description: Retrieve an offer by its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getOfferByName/).
+   * @summary: Fetch a offer by its name
+   * @description: Fetch the specific offer details and configuration by the name of the offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getOfferByName/).
    */
   async getOfferByName(
     { name, requestHeaders } = { requestHeaders: {} },
@@ -177,8 +177,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.ConfigurationRes>} - Success response
    * @name getRewardsConfiguration
-   * @summary: Get rewards configuration.
-   * @description: Retrieve the configuration settings for the rewards program. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getRewardsConfiguration/).
+   * @summary: Get all valid android paths
+   * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getRewardsConfiguration/).
    */
   async getRewardsConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -252,8 +252,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.UserRes>} - Success response
    * @name getUserDetails
-   * @summary: Get user details.
-   * @description: Retrieve comprehensive details about a user in the rewards program. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserDetails/).
+   * @summary: Get user reward details
+   * @description: Fetches the user details and the user reward details with their current reward points for the specific user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserDetails/).
    */
   async getUserDetails(
     { userId, requestHeaders } = { requestHeaders: {} },
@@ -329,8 +329,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.HistoryRes>} - Success response
    * @name getUserPointsHistory
-   * @summary: Get user points history.
-   * @description: Retrieve the history of points earned and redeemed by a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserPointsHistory/).
+   * @summary: Get all transactions of reward points
+   * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserPointsHistory/).
    */
   async getUserPointsHistory(
     { userId, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -417,8 +417,8 @@ class Rewards {
    * @param {string} arg.applicationId - Application id
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Paginator<RewardsPlatformModel.HistoryRes>}
-   * @summary: Get user points history.
-   * @description: Retrieve the history of points earned and redeemed by a user.
+   * @summary: Get all transactions of reward points
+   * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
    */
   getUserPointsHistoryPaginator({
     userId,
@@ -454,8 +454,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name saveGiveAway
-   * @summary: Save giveaway.
-   * @description: Store and manage details of a giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/saveGiveAway/).
+   * @summary: List of giveaways of the current application.
+   * @description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/saveGiveAway/).
    */
   async saveGiveAway(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -535,8 +535,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.SetConfigurationRes>} - Success response
    * @name setRewardsConfiguration
-   * @summary: Set rewards configuration.
-   * @description: Configure and modify the settings for the rewards program. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/setRewardsConfiguration/).
+   * @summary: Updates the collection with given android paths.
+   * @description: Updates the configuration or inserts new records with the given android paths. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/setRewardsConfiguration/).
    */
   async setRewardsConfiguration(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -614,8 +614,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
    * @name showGiveaways
-   * @summary: Display giveaways.
-   * @description: Retrieve and display available giveaways. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
+   * @summary: List of giveaways of the current application.
+   * @description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
    */
   async showGiveaways(
     { pageId, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -697,8 +697,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Offer[]>} - Success response
    * @name showOffers
-   * @summary: Show offers.
-   * @description: Display available offers for users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showOffers/).
+   * @summary: List of offers of the current application.
+   * @description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showOffers/).
    */
   async showOffers(
     { requestHeaders } = { requestHeaders: {} },
@@ -767,8 +767,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name updateGiveAway
-   * @summary: Update giveaway.
-   * @description: Modify and update information about a giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateGiveAway/).
+   * @summary: Updates the giveaway by it's ID.
+   * @description: Make the necessary updates to the giveaway based on its giveaway ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateGiveAway/).
    */
   async updateGiveAway(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -850,8 +850,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
    * @name updateOfferByName
-   * @summary: Update offer by name.
-   * @description: Modify and manage an offer using its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateOfferByName/).
+   * @summary: Update offer by name
+   * @description: Update the specific offer details and its configuration by offer name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateOfferByName/).
    */
   async updateOfferByName(
     { name, body, requestHeaders } = { requestHeaders: {} },
@@ -933,8 +933,8 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.AppUser>} - Success response
    * @name updateUserStatus
-   * @summary: Update user status.
-   * @description: Change and update the status of a user in the rewards system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateUserStatus/).
+   * @summary: Update user status
+   * @description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateUserStatus/).
    */
   async updateUserStatus(
     { userId, body, requestHeaders } = { requestHeaders: {} },

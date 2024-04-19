@@ -108,7 +108,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @typedef GetFollowerCountByIdParam
  * @property {string} collectionType - Type of collection, i.e. products,
  *   brands, or collections.
- * @property {number} collectionId - The ID of the collection type.
+ * @property {string} collectionId - The ID of the collection type.
  */
 
 /**
@@ -143,7 +143,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
 /**
  * @typedef GetProductBundlesBySlugParam
  * @property {string} [slug] - Product slug for which bundles need to be fetched.
- * @property {number} [id] - Product uid
+ * @property {string} [id] - Product uid
  */
 
 /**
@@ -204,7 +204,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
 
 /**
  * @typedef GetProductStockByIdsParam
- * @property {number} [itemId] - The Item ID of the product (Max. 50 allowed)
+ * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed)
  * @property {string} [alu] - ALU of the product (limited upto 50 ALU identifier
  *   in a single request)
  * @property {string} [skuCode] - Stock-keeping Unit of the product (limited
@@ -277,6 +277,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  *   to retreive the nearest stores, e.g. 72.8691788
  * @property {number} [longitude] - Longitude of the location from where one
  *   wants to retreive the nearest stores, e.g. 19.1174114
+ * @property {string} [tags] - Search stores based on tags.
  */
 
 /**
@@ -389,7 +390,7 @@ class CatalogApplicationValidator {
   static getFollowerCountById() {
     return Joi.object({
       collectionType: Joi.string().allow("").required(),
-      collectionId: Joi.number().required(),
+      collectionId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -426,7 +427,7 @@ class CatalogApplicationValidator {
   static getProductBundlesBySlug() {
     return Joi.object({
       slug: Joi.string().allow(""),
-      id: Joi.number(),
+      id: Joi.string().allow(""),
     });
   }
 
@@ -478,7 +479,7 @@ class CatalogApplicationValidator {
   /** @returns {GetProductStockByIdsParam} */
   static getProductStockByIds() {
     return Joi.object({
-      itemId: Joi.number(),
+      itemId: Joi.string().allow(""),
       alu: Joi.string().allow(""),
       skuCode: Joi.string().allow(""),
       ean: Joi.string().allow(""),
@@ -540,6 +541,7 @@ class CatalogApplicationValidator {
       range: Joi.number(),
       latitude: Joi.number(),
       longitude: Joi.number(),
+      tags: Joi.string().allow(""),
     });
   }
 

@@ -46,11 +46,7 @@ const BillingPlatformModel = require("./BillingPlatformModel");
 
 /** @typedef GetEnterprisePlansParam */
 
-/**
- * @typedef GetFeatureLimitConfigParam
- * @property {string} [productSuite]
- * @property {string} [type]
- */
+/** @typedef GetFeatureLimitConfigParam */
 
 /**
  * @typedef GetInvoiceByIdParam
@@ -59,43 +55,12 @@ const BillingPlatformModel = require("./BillingPlatformModel");
 
 /** @typedef GetInvoicesParam */
 
-/**
- * @typedef GetPaymentOptionsParam
- * @property {string} transactionId - ID of the payment transaction.
- */
-
-/**
- * @typedef GetPaymentTransactionParam
- * @property {string} transactionId - Payment Transaction unique id.
- */
-
 /** @typedef GetSubscriptionParam */
 
 /**
  * @typedef GetSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
- */
-
-/**
- * @typedef GetentityDetailParam
- * @property {string} entityName - Entity name.
- * @property {string} [entityId] - Entity unique id.
- * @property {string} channel - Ordering channel.
- * @property {string} [component] - The coponents the user would like to know.
- * @property {string} [componentName] - The name of component the preferred to be fetched.
- */
-
-/**
- * @typedef GlobalSettingsParam
- * @property {number} pageNo - Number of pages needed
- * @property {number} pageSize - Number of items to be there in page
- * @property {Object} query - Field which will be used in db query
- */
-
-/**
- * @typedef PaymentOptionsParam
- * @property {string} code - Payment options unique code.
  */
 
 /**
@@ -108,28 +73,9 @@ const BillingPlatformModel = require("./BillingPlatformModel");
  * @property {BillingPlatformModel.SunscribePlan} body
  */
 
-/** @typedef SubscriptionConfigsParam */
-
-/**
- * @typedef SubscriptionMethodsParam
- * @property {Object} uniqueExternalId - Unique id for external company
- */
-
-/**
- * @typedef SubscriptionPlanChangeParam
- * @property {string} [productSuite]
- * @property {number} [uniqueId]
- * @property {string} [platform]
- */
-
 /**
  * @typedef UpsertCustomerDetailParam
  * @property {BillingPlatformModel.SubscriptionCustomerCreate} body
- */
-
-/**
- * @typedef VerifyPaymentParam
- * @property {BillingPlatformModel.VerifyPaymentReq} body
  */
 
 class BillingPlatformValidator {
@@ -199,10 +145,7 @@ class BillingPlatformValidator {
 
   /** @returns {GetFeatureLimitConfigParam} */
   static getFeatureLimitConfig() {
-    return Joi.object({
-      productSuite: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    }).required();
+    return Joi.object({}).required();
   }
 
   /** @returns {GetInvoiceByIdParam} */
@@ -217,20 +160,6 @@ class BillingPlatformValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetPaymentOptionsParam} */
-  static getPaymentOptions() {
-    return Joi.object({
-      transactionId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetPaymentTransactionParam} */
-  static getPaymentTransaction() {
-    return Joi.object({
-      transactionId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetSubscriptionParam} */
   static getSubscription() {
     return Joi.object({}).required();
@@ -241,33 +170,6 @@ class BillingPlatformValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       subscriptionId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetentityDetailParam} */
-  static getentityDetail() {
-    return Joi.object({
-      entityName: Joi.string().allow("").required(),
-      entityId: Joi.string().allow(""),
-      channel: Joi.string().allow("").required(),
-      component: Joi.string().allow(""),
-      componentName: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GlobalSettingsParam} */
-  static globalSettings() {
-    return Joi.object({
-      pageNo: Joi.number().required(),
-      pageSize: Joi.number().required(),
-      query: Joi.any().required(),
-    }).required();
-  }
-
-  /** @returns {PaymentOptionsParam} */
-  static paymentOptions() {
-    return Joi.object({
-      code: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -285,38 +187,10 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {SubscriptionConfigsParam} */
-  static subscriptionConfigs() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {SubscriptionMethodsParam} */
-  static subscriptionMethods() {
-    return Joi.object({
-      uniqueExternalId: Joi.any().required(),
-    }).required();
-  }
-
-  /** @returns {SubscriptionPlanChangeParam} */
-  static subscriptionPlanChange() {
-    return Joi.object({
-      productSuite: Joi.string().allow(""),
-      uniqueId: Joi.number(),
-      platform: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {UpsertCustomerDetailParam} */
   static upsertCustomerDetail() {
     return Joi.object({
       body: BillingPlatformModel.SubscriptionCustomerCreate().required(),
-    }).required();
-  }
-
-  /** @returns {VerifyPaymentParam} */
-  static verifyPayment() {
-    return Joi.object({
-      body: BillingPlatformModel.VerifyPaymentReq().required(),
     }).required();
   }
 }

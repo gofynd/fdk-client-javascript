@@ -21,8 +21,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.Domain>} - Success response
    * @name addDomain
-   * @summary: Add domain.
-   * @description: Add a new domain. Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/addDomain/).
+   * @summary: Add new domain to current sales channel
+   * @description: Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/addDomain/).
    */
   async addDomain(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -102,8 +102,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name changeDomainType
-   * @summary: Change domain type.
-   * @description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/changeDomainType/).
+   * @summary: Change the type of domain in the current sales channel
+   * @description: Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/changeDomainType/).
    */
   async changeDomainType(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -183,8 +183,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name getAppApiTokens
-   * @summary: Get application API tokens.
-   * @description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
+   * @summary: Get social tokens for the sales channel
+   * @description: Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
    */
   async getAppApiTokens(
     { requestHeaders } = { requestHeaders: {} },
@@ -260,7 +260,7 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
    * @name getAppBasicDetails
-   * @summary: Get application basic details.
+   * @summary: Get sales channel details
    * @description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppBasicDetails/).
    */
   async getAppBasicDetails(
@@ -337,8 +337,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.CompaniesResponse>} - Success response
    * @name getAppCompanies
-   * @summary: Get application companies.
-   * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
+   * @summary: Get companies enabled in the sales channel inventory
+   * @description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
    */
   async getAppCompanies(
     { uid, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -419,7 +419,7 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
    *   on Fynd Platform
    * @param {string} arg.applicationId - Alphanumeric ID allotted to an
    *   application (sales channel website) created within a business account
@@ -427,8 +427,8 @@ class Configuration {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
    * @returns {Paginator<ConfigurationPlatformModel.CompaniesResponse>}
-   * @summary: Get application companies.
-   * @description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+   * @summary: Get companies enabled in the sales channel inventory
+   * @description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
    */
   getAppCompaniesPaginator({ companyId, applicationId, uid, pageSize } = {}) {
     const paginator = new Paginator();
@@ -462,7 +462,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
    *   Success response
    * @name getAppContactInfo
-   * @summary: Get application contact information.
+   * @summary: Get current information of the sales channel
    * @description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppContactInfo/).
    */
   async getAppContactInfo(
@@ -540,8 +540,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
    *   Success response
    * @name getAppCurrencyConfig
-   * @summary: Get application currency configuration.
-   * @description: Retrieve a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCurrencyConfig/).
+   * @summary: Get currencies supported in the application
+   * @description: Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCurrencyConfig/).
    */
   async getAppCurrencyConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -618,7 +618,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponse>} -
    *   Success response
    * @name getAppFeatures
-   * @summary: Get application features.
+   * @summary: Get the sales channel configuration and features
    * @description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppFeatures/).
    */
   async getAppFeatures(
@@ -695,8 +695,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.StoresResponse>} - Success response
    * @name getAppStores
-   * @summary: Get application stores.
-   * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppStores/).
+   * @summary: Get stores enabled in the sales channel inventory
+   * @description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppStores/).
    */
   async getAppStores(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -774,15 +774,15 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
    *   on Fynd Platform
    * @param {string} arg.applicationId - Alphanumeric ID allotted to an
    *   application (sales channel website) created within a business account
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
    * @returns {Paginator<ConfigurationPlatformModel.StoresResponse>}
-   * @summary: Get application stores.
-   * @description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+   * @summary: Get stores enabled in the sales channel inventory
+   * @description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
    */
   getAppStoresPaginator({ companyId, applicationId, pageSize } = {}) {
     const paginator = new Paginator();
@@ -815,8 +815,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponse>} -
    *   Success response
    * @name getAppSupportedCurrency
-   * @summary: Get supported currencies.
-   * @description: Retrieve a list of supported currencies for the application. A list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppSupportedCurrency/).
+   * @summary: Get currencies enabled in the application
+   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppSupportedCurrency/).
    */
   async getAppSupportedCurrency(
     { requestHeaders } = { requestHeaders: {} },
@@ -892,8 +892,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
    * @name getApplicationById
-   * @summary: Get application by ID.
-   * @description: Retrieve detailed information about a specific application. Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationById/).
+   * @summary: Get sales channel data by ID
+   * @description: Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationById/).
    */
   async getApplicationById(
     { requestHeaders } = { requestHeaders: {} },
@@ -962,83 +962,6 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.GetApplicationConfigurationParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPlatformModel.OwnerAppConfig>} - Success response
-   * @name getApplicationConfiguration
-   * @summary: Get Application configuration.
-   * @description: Retrieve configuration details of inventory pricing_strategy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationConfiguration/).
-   */
-  async getApplicationConfiguration(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ConfigurationPlatformApplicationValidator.getApplicationConfiguration().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationPlatformApplicationValidator.getApplicationConfiguration().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Configuration > getApplicationConfiguration \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/owner-application/${this.applicationId}/configuration`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ConfigurationPlatformModel.OwnerAppConfig().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Configuration > getApplicationConfiguration \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ConfigurationPlatformApplicationValidator.GetBuildConfigParam} arg
    *   - Arg object
    *
@@ -1047,8 +970,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
    *   Success response
    * @name getBuildConfig
-   * @summary: Get build configuration.
-   * @description: Retrieve latest build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getBuildConfig/).
+   * @summary: Get configuration of latest mobile build
+   * @description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getBuildConfig/).
    */
   async getBuildConfig(
     { platformType, requestHeaders } = { requestHeaders: {} },
@@ -1129,8 +1052,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponse>} -
    *   Success response
    * @name getDomainStatus
-   * @summary: Get domain status.
-   * @description: Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainStatus/).
+   * @summary: Get the status of connected domain
+   * @description: Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainStatus/).
    */
   async getDomainStatus(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1208,8 +1131,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name getDomains
-   * @summary: Get domains.
-   * @description: Get list of domains.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
+   * @summary: Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
+   * @description: Get list of domains - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
    */
   async getDomains(
     { requestHeaders } = { requestHeaders: {} },
@@ -1286,8 +1209,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
    * @name getInventoryConfig
-   * @summary: Get inventory configuration.
-   * @description: Retrieve configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getInventoryConfig/).
+   * @summary: Get sales channel configuration
+   * @description: Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getInventoryConfig/).
    */
   async getInventoryConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -1364,8 +1287,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.OrderingStoreConfig>} -
    *   Success response
    * @name getOrderingStoreConfig
-   * @summary: Get ordering store configuration.
-   * @description: Retrieve configuration settings for ordering stores. Retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreConfig/).
+   * @summary: Get ordering store config
+   * @description: Fetch the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreConfig/).
    */
   async getOrderingStoreConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -1569,7 +1492,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/configuration/v2.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
       query_params,
       body,
       requestHeaders,
@@ -1604,7 +1527,7 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
    *   on Fynd Platform
    * @param {string} arg.applicationId - Alphanumeric ID allotted to an
    *   application (sales channel website) created within a business account
@@ -1652,8 +1575,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.BuildVersionHistory>} -
    *   Success response
    * @name getPreviousVersions
-   * @summary: Get previous versions.
-   * @description: Retrieve version details of the app, this includes the build status, build date, version name, latest version, and a lot more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getPreviousVersions/).
+   * @summary: Get details of previous mobile builds
+   * @description: Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getPreviousVersions/).
    */
   async getPreviousVersions(
     { platformType, requestHeaders } = { requestHeaders: {} },
@@ -1781,7 +1704,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/configuration/v2.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/staff-stores`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/staff-stores`,
       query_params,
       undefined,
       requestHeaders,
@@ -1816,7 +1739,7 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
    *   on Fynd Platform
    * @param {string} arg.applicationId - Alphanumeric ID allotted to an
    *   application (sales channel website) created within a business account
@@ -1863,7 +1786,7 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
    * @name modifyAppFeatures
-   * @summary: Modify application features.
+   * @summary: Update features of application
    * @description: Update features of application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/modifyAppFeatures/).
    */
   async modifyAppFeatures(
@@ -1945,7 +1868,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
    * @name partiallyUpdateInventoryConfig
-   * @summary: Partially update inventory configuration.
+   * @summary: Partially update sales channel configuration
    * @description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/partiallyUpdateInventoryConfig/).
    */
   async partiallyUpdateInventoryConfig(
@@ -2027,8 +1950,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
    *   Success response
    * @name removeDomainById
-   * @summary: Remove domain by ID.
-   * @description: Delete a specific domain from the application. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
+   * @summary: Remove attached domain from current sales channel
+   * @description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
    */
   async removeDomainById(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2186,8 +2109,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name updateAppApiTokens
-   * @summary: Update application API tokens.
-   * @description: Add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppApiTokens/).
+   * @summary: Add or update social tokens for the sales channel
+   * @description: Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppApiTokens/).
    */
   async updateAppApiTokens(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2267,7 +2190,7 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
    * @name updateAppBasicDetails
-   * @summary: Update application basic details.
+   * @summary: Update sales channel details
    * @description: Modify sales channel details like name, description, logo, domain, company ID, and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppBasicDetails/).
    */
   async updateAppBasicDetails(
@@ -2349,7 +2272,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
    *   Success response
    * @name updateAppContactInfo
-   * @summary: Update application contact information.
+   * @summary: Save or update current information of the sales channel
    * @description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppContactInfo/).
    */
   async updateAppContactInfo(
@@ -2431,8 +2354,8 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
    *   Success response
    * @name updateAppCurrencyConfig
-   * @summary: Update application currency configuration.
-   * @description: Modify currency configuration settings for the application. Add and edit the currencies supported in the application. Initially, INR will be enabled by default. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppCurrencyConfig/).
+   * @summary: Update initial sales channel supported currency
+   * @description: Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppCurrencyConfig/).
    */
   async updateAppCurrencyConfig(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2512,7 +2435,7 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
    * @name updateAppFeatures
-   * @summary: Update application features.
+   * @summary: Update the sales channel configuration and features
    * @description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppFeatures/).
    */
   async updateAppFeatures(
@@ -2594,7 +2517,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
    *   Success response
    * @name updateBuildConfig
-   * @summary: Update build configuration.
+   * @summary: Update the configuration for next mobile build
    * @description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateBuildConfig/).
    */
   async updateBuildConfig(
@@ -2678,7 +2601,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
    * @name updateInventoryConfig
-   * @summary: Update inventory configuration.
+   * @summary: Update sales channel configuration
    * @description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateInventoryConfig/).
    */
   async updateInventoryConfig(
@@ -2759,8 +2682,8 @@ class Configuration {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DeploymentMeta>} - Success response
    * @name updateOrderingStoreConfig
-   * @summary: Update ordering store configuration.
-   * @description: Modify configuration settings for ordering stores. Edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateOrderingStoreConfig/).
+   * @summary: Add/Update ordering store config
+   * @description: Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateOrderingStoreConfig/).
    */
   async updateOrderingStoreConfig(
     { body, requestHeaders } = { requestHeaders: {} },

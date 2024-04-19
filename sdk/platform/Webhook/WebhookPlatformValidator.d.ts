@@ -1,7 +1,7 @@
 export = WebhookPlatformValidator;
 /**
  * @typedef CancelJobByNameParam
- * @property {string} filename
+ * @property {string} filename - Filename of the specific report export to cancel.
  */
 /**
  * @typedef DownloadDeliveryReportParam
@@ -14,7 +14,7 @@ export = WebhookPlatformValidator;
  */
 /**
  * @typedef GetEventCountsParam
- * @property {WebhookPlatformModel.RetryEventRequest} body
+ * @property {WebhookPlatformModel.EventProcessRequest} body
  */
 /**
  * @typedef GetHistoricalReportsParam
@@ -39,12 +39,12 @@ export = WebhookPlatformValidator;
  * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {string} extensionId - Extension_id
+ * @property {string} extensionId - Extension id
  */
 /** @typedef ManualRetryCancelParam */
 /**
  * @typedef ManualRetryOfFailedEventParam
- * @property {WebhookPlatformModel.RetryEventRequest} body
+ * @property {WebhookPlatformModel.EventProcessRequest} body
  */
 /**
  * @typedef PingWebhookParam
@@ -55,16 +55,8 @@ export = WebhookPlatformValidator;
  * @property {WebhookPlatformModel.SubscriberConfig} body
  */
 /**
- * @typedef RegisterSubscriberToEventV2Param
- * @property {WebhookPlatformModel.SubscriberConfigRequestV2} body
- */
-/**
  * @typedef UpdateSubscriberConfigParam
  * @property {WebhookPlatformModel.SubscriberConfig} body
- */
-/**
- * @typedef UpdateSubscriberV2Param
- * @property {WebhookPlatformModel.SubscriberConfigRequestV2} body
  */
 declare class WebhookPlatformValidator {
     /** @returns {CancelJobByNameParam} */
@@ -97,17 +89,16 @@ declare class WebhookPlatformValidator {
     static pingWebhook(): PingWebhookParam;
     /** @returns {RegisterSubscriberToEventParam} */
     static registerSubscriberToEvent(): RegisterSubscriberToEventParam;
-    /** @returns {RegisterSubscriberToEventV2Param} */
-    static registerSubscriberToEventV2(): RegisterSubscriberToEventV2Param;
     /** @returns {UpdateSubscriberConfigParam} */
     static updateSubscriberConfig(): UpdateSubscriberConfigParam;
-    /** @returns {UpdateSubscriberV2Param} */
-    static updateSubscriberV2(): UpdateSubscriberV2Param;
 }
 declare namespace WebhookPlatformValidator {
-    export { CancelJobByNameParam, DownloadDeliveryReportParam, FetchAllEventConfigurationsParam, GetDeliveryReportsParam, GetEventCountsParam, GetHistoricalReportsParam, GetManualRetryStatusParam, GetReportFiltersParam, GetSubscriberByIdParam, GetSubscribersByCompanyParam, GetSubscribersByExtensionIdParam, ManualRetryCancelParam, ManualRetryOfFailedEventParam, PingWebhookParam, RegisterSubscriberToEventParam, RegisterSubscriberToEventV2Param, UpdateSubscriberConfigParam, UpdateSubscriberV2Param };
+    export { CancelJobByNameParam, DownloadDeliveryReportParam, FetchAllEventConfigurationsParam, GetDeliveryReportsParam, GetEventCountsParam, GetHistoricalReportsParam, GetManualRetryStatusParam, GetReportFiltersParam, GetSubscriberByIdParam, GetSubscribersByCompanyParam, GetSubscribersByExtensionIdParam, ManualRetryCancelParam, ManualRetryOfFailedEventParam, PingWebhookParam, RegisterSubscriberToEventParam, UpdateSubscriberConfigParam };
 }
 type CancelJobByNameParam = {
+    /**
+     * - Filename of the specific report export to cancel.
+     */
     filename: string;
 };
 type DownloadDeliveryReportParam = {
@@ -117,7 +108,7 @@ type GetDeliveryReportsParam = {
     body: WebhookPlatformModel.EventProcessRequest;
 };
 type GetEventCountsParam = {
-    body: WebhookPlatformModel.RetryEventRequest;
+    body: WebhookPlatformModel.EventProcessRequest;
 };
 type GetHistoricalReportsParam = {
     body: WebhookPlatformModel.HistoryPayload;
@@ -155,12 +146,12 @@ type GetSubscribersByExtensionIdParam = {
      */
     pageSize?: number;
     /**
-     * - Extension_id
+     * - Extension id
      */
     extensionId: string;
 };
 type ManualRetryOfFailedEventParam = {
-    body: WebhookPlatformModel.RetryEventRequest;
+    body: WebhookPlatformModel.EventProcessRequest;
 };
 type PingWebhookParam = {
     body: WebhookPlatformModel.PingWebhook;
@@ -168,16 +159,10 @@ type PingWebhookParam = {
 type RegisterSubscriberToEventParam = {
     body: WebhookPlatformModel.SubscriberConfig;
 };
-type RegisterSubscriberToEventV2Param = {
-    body: WebhookPlatformModel.SubscriberConfigRequestV2;
-};
 type UpdateSubscriberConfigParam = {
     body: WebhookPlatformModel.SubscriberConfig;
-};
-type UpdateSubscriberV2Param = {
-    body: WebhookPlatformModel.SubscriberConfigRequestV2;
 };
 type FetchAllEventConfigurationsParam = any;
 type GetManualRetryStatusParam = any;
 type ManualRetryCancelParam = any;
-import WebhookPlatformModel = require("sdk/output/javascript/code/sdk/platform/Webhook/WebhookPlatformModel");
+import WebhookPlatformModel = require("./WebhookPlatformModel");

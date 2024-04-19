@@ -45,7 +45,7 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
  * @typedef GetIntegrationByIdParam
- * @property {string} id - Integration id
+ * @property {number} id - Integration id
  */
 
 /**
@@ -182,7 +182,7 @@ class ConfigurationPlatformValidator {
   /** @returns {GetIntegrationByIdParam} */
   static getIntegrationById() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      id: Joi.number().required(),
     }).required();
   }
 
