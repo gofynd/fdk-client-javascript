@@ -493,7 +493,7 @@ Success
   "data": [
     {
       "id": "2b9c0729-3fa0-4565-8fcb-e822c87a95f9",
-      "pdf_s3_url": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/documents/daytrader/PDFs/123/07-2023/FS/FS-C27-A00003-24_123_07-2023.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230726%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230726T153559Z&X-Amz-Expires=604800&X-Amz-Signature=f7793b1afb0983ea4b51d8ae2e5792df3319141422d13f81b0de5ce644ffd139&X-Amz-SignedHeaders=host"
+      "pdf_s3_url": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com"
     }
   ]
 }
@@ -660,7 +660,7 @@ Success
       "start_date": "2023-04-21",
       "end_date": "2023-04-22",
       "msg": "",
-      "download_link": "https://opex-test-bucket.s3.amazonaws.com/csv/credit%20note%20report_2023-04-21_2023-04-22_1681799353.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230418%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230418T062915Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a92612927b39a630e894e9179b531d2af3954223a6dc16788275a52675c8a7bf"
+      "download_link": "https://opex-test-bucket.s3.amazonaws.com/csv/credit%20note%20report_2023-04-21_2023-04-22_1681799353.csv.gz"
     },
     {
       "request_dict": {},
@@ -676,7 +676,7 @@ Success
       "start_date": "2023-04-21",
       "end_date": "2023-04-22",
       "msg": "",
-      "download_link": "https://opex-test-bucket.s3.amazonaws.com/csv/credit%20note%20report_2023-04-21_2023-04-22_1681799353.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230418%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230418T062915Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=a92612927b39a630e894e9179b531d2af3954223a6dc16788275a52675c8a7bf"
+      "download_link": "https://opex-test-bucket.s3.amazonaws.com/csv/credit%20note%20report_2023-04-21_2023-04-22_1681799353.csv.gz"
     }
   ],
   "item_count": 1,
@@ -1396,7 +1396,7 @@ Success
   "success": true,
   "data": {
     "cn_reference_number": "6078OMR000006-23",
-    "s3_pdf_link": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/documents/invoice_a4/PDFs/16814985547851457553_invoice_a4.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230427%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230427T044807Z&X-Amz-Expires=604800&X-Amz-Signature=970ffe76016175a309d8042cbdbd0eaab623cf4c3b6ac968604fe710df855504&X-Amz-SignedHeaders=host"
+    "s3_pdf_link": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com"
   }
 }
 ```
@@ -1912,7 +1912,7 @@ Success
 {
   "success": true,
   "data": [
-    "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/documents/daytrader/PDFs/61/07-2023/FY/FY-I-A23004-FY24_61_07-2023.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230727%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T190229Z&X-Amz-Expires=604800&X-Amz-Signature=b8642e8764ea320332b5ccb825fe7427872d8fe31b4a3cafafb6c89dd854d9c3&X-Amz-SignedHeaders=host"
+    "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com"
   ],
   "error": []
 }
