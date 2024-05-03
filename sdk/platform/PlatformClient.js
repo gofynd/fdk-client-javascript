@@ -20,8 +20,6 @@ const FileStorage = require("./FileStorage/FileStoragePlatformClient");
 
 const Finance = require("./Finance/FinancePlatformClient");
 
-const Inventory = require("./Inventory/InventoryPlatformClient");
-
 const Lead = require("./Lead/LeadPlatformClient");
 
 const Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
@@ -72,8 +70,6 @@ class PlatformClient {
     this.fileStorage = new FileStorage(config);
 
     this.finance = new Finance(config);
-
-    this.inventory = new Inventory(config);
 
     this.lead = new Lead(config);
 

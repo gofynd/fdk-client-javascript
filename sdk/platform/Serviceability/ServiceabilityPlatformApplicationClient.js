@@ -24,8 +24,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
    *   Success response
    * @name createCourierPartnerRule
-   * @summary: Create Courier Rules
-   * @description: Creates Courier Rules with rule configuration and dp priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
+   * @summary: Create rourier rule
+   * @description: Creates a rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
    */
   async createCourierPartnerRule(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -107,8 +107,8 @@ class Serviceability {
    *   - Success response
    *
    * @name createStoreRules
-   * @summary: Create Store Rule
-   * @description: Create Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createStoreRules/).
+   * @summary: Create store rule
+   * @description: Create a rule within the order routing rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createStoreRules/).
    */
   async createStoreRules(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -189,8 +189,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
    *   Success response
    * @name getApplicationConfig
-   * @summary: Get Application Configuration
-   * @description: Get Application Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfig/).
+   * @summary: Get store rule configuration
+   * @description: Retrieves information about the order routing setup for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfig/).
    */
   async getApplicationConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -267,8 +267,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfig>} -
    *   Success response
    * @name getApplicationConfiguration
-   * @summary: Get All Courier Rules applied to application
-   * @description: This API returns all the Courier Rules applied to an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
+   * @summary: Get delivery configuration
+   * @description: Retrieves information about the delivery setup for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
    */
   async getApplicationConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -346,8 +346,8 @@ class Serviceability {
    *   - Success response
    *
    * @name getApplicationServiceabilitySelfShipment
-   * @summary: Self-ship configuration of application
-   * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceabilitySelfShipment/).
+   * @summary: Get self ship configuration
+   * @description: Retrieves the self ship setup for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceabilitySelfShipment/).
    */
   async getApplicationServiceabilitySelfShipment(
     { requestHeaders } = { requestHeaders: {} },
@@ -424,8 +424,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
    *   Success response
    * @name getCourierPartnerRule
-   * @summary: Fetch of Courier Rule
-   * @description: This API returns Courier Rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRule/).
+   * @summary: Get courier rule
+   * @description: Retrieves a single rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRule/).
    */
   async getCourierPartnerRule(
     { ruleId, requestHeaders } = { requestHeaders: {} },
@@ -507,8 +507,8 @@ class Serviceability {
    *   - Success response
    *
    * @name getCourierPartnerRules
-   * @summary: Fetch Courier Rules List
-   * @description: This API returns Courier Rules List - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRules/).
+   * @summary: Get courier rules
+   * @description: Retrieve a list of rules within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRules/).
    */
   async getCourierPartnerRules(
     { pageNo, pageSize, status, requestHeaders } = { requestHeaders: {} },
@@ -596,8 +596,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.StoreRuleDataSchema>} -
    *   Success response
    * @name getStoreRule
-   * @summary: Get Single Store Rule
-   * @description: Get Single Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRule/).
+   * @summary: Get store rule
+   * @description: Retrieves a single rule within the order routing rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRule/).
    */
   async getStoreRule(
     { ruleUid, requestHeaders } = { requestHeaders: {} },
@@ -679,8 +679,8 @@ class Serviceability {
    *   - Success response
    *
    * @name getStoreRules
-   * @summary: Get Multiple Store Rules
-   * @description: Get Multiple Store Rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRules/).
+   * @summary: Get store rules
+   * @description: Retrieves an existing order routing setup for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRules/).
    */
   async getStoreRules(
     { pageNo, pageSize, status, requestHeaders } = { requestHeaders: {} },
@@ -768,8 +768,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
    *   Success response
    * @name insertApplicationConfig
-   * @summary: Insert Application Configuration
-   * @description: Insert Application Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/insertApplicationConfig/).
+   * @summary: Create store rule configuration
+   * @description: Creates a order routing setup for an application, which involves updating sorting settings or rule priorities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/insertApplicationConfig/).
    */
   async insertApplicationConfig(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -851,8 +851,8 @@ class Serviceability {
    *   - Success response
    *
    * @name patchApplicationServiceabilitySelfShipment
-   * @summary: Self-ship configuration of application
-   * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationServiceabilitySelfShipment/).
+   * @summary: Update self ship configuration
+   * @description: Updates self ship setup for an existing application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationServiceabilitySelfShipment/).
    */
   async patchApplicationServiceabilitySelfShipment(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -933,8 +933,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfig>} -
    *   Success response
    * @name updateApplicationConfiguration
-   * @summary: Apply configuration to an application
-   * @description: Apply configuration to application to set DP rules and Zone configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationConfiguration/).
+   * @summary: Update delivery configuration
+   * @description: Updates an existing delivery setup for an application, which involves updating sorting settings or rule priorities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationConfiguration/).
    */
   async updateApplicationConfiguration(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1015,8 +1015,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResponse>} -
    *   Success response
    * @name updateCourierPartnerRulePriority
-   * @summary: Updates Courier Partner Rules Priority for a sales channel
-   * @description: Updates Courier Partner Rules Priority for a sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerRulePriority/).
+   * @summary: Update courier partner rule priority
+   * @description: Updates a courier partner rule priority for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerRulePriority/).
    */
   async updateCourierPartnerRulePriority(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1097,8 +1097,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
    *   Success response
    * @name updateCourierRule
-   * @summary: Updating of Courier Rule
-   * @description: This API updates and returns Courier Rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
+   * @summary: Update courier rule
+   * @description: Updates an existing rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
    */
   async updateCourierRule(
     { ruleId, body, requestHeaders } = { requestHeaders: {} },
@@ -1182,8 +1182,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeAuditHistory
-   * @summary: Update pincode audit history
-   * @description: Modify and update audit history records for pincode-related activities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
+   * @summary: Get audit trail
+   * @description: Retrieves the history of changes made to cash on delivery settings for pincodes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
    */
   async updatePincodeAuditHistory(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1265,8 +1265,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeBulkView
-   * @summary: Update pincode bulk view
-   * @description: Modify and update views related to bulk operations on pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
+   * @summary: Bulk update pincode COD support
+   * @description: Updates the cash on delivery settings for multiple specified pin codes simultaneously. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
    */
   async updatePincodeBulkView(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1348,8 +1348,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePincodeCoDListing
-   * @summary: Update pincode CoD (Cash on Delivery) listing
-   * @description: Modify and update listings for CoD based on pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
+   * @summary: Get COD enabled pincodes
+   * @description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
    */
   async updatePincodeCoDListing(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1430,8 +1430,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
    *   Success response
    * @name updatePincodeMopView
-   * @summary: Update pincode MOP (Mode of Payment) view
-   * @description: Modify and update views related to pincode MOP. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
+   * @summary: Update pincode COD support
+   * @description: Modify and update views related to pincode MOP (Mode of Payment). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
    */
   async updatePincodeMopView(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1513,8 +1513,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updateStoreRules
-   * @summary: Update Store Rule
-   * @description: Update Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRules/).
+   * @summary: Update store rule
+   * @description: Updates an existing rule within the order routing rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRules/).
    */
   async updateStoreRules(
     { ruleUid, body, requestHeaders } = { requestHeaders: {} },
@@ -1597,8 +1597,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
    *   Success response
    * @name updateStoreRulesConfig
-   * @summary: Update Store Rule Configuration
-   * @description: Update Store Rule Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRulesConfig/).
+   * @summary: Update store rules configuration
+   * @description: Updates an existing order routing setup for a single application, which involves updating sorting settings or rule priorities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRulesConfig/).
    */
   async updateStoreRulesConfig(
     { body, requestHeaders } = { requestHeaders: {} },

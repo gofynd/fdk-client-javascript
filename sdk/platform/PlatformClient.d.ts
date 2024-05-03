@@ -23,7 +23,6 @@ declare class PlatformClient {
     discount: Discount;
     fileStorage: FileStorage;
     finance: Finance;
-    inventory: Inventory;
     lead: Lead;
     serviceability: Serviceability;
     order: Order;
@@ -59,7 +58,6 @@ import Content = require("./Content/ContentPlatformClient");
 import Discount = require("./Discount/DiscountPlatformClient");
 import FileStorage = require("./FileStorage/FileStoragePlatformClient");
 import Finance = require("./Finance/FinancePlatformClient");
-import Inventory = require("./Inventory/InventoryPlatformClient");
 import Lead = require("./Lead/LeadPlatformClient");
 import Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
 import Order = require("./Order/OrderPlatformClient");

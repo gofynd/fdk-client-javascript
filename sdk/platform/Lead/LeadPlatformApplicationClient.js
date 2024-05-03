@@ -179,7 +179,7 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
    * @name createNewHistory
-   * @summary: Create history for specific application level ticket
+   * @summary: Create ticket history interaction
    * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createNewHistory/).
    */
   async createNewHistory(
@@ -420,7 +420,7 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name editNewTicket
-   * @summary: Edits ticket details of a application level ticket
+   * @summary: Update Ticket Details
    * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editNewTicket/).
    */
   async editNewTicket(
@@ -500,7 +500,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name getCustomForm
    * @summary: Get custom form
-   * @description: Retrieve information about a custom form which includes corresponding field details and any validation regex required against that field or not - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForm/).
+   * @description: Get information about a custom form which includes corresponding field details and any validation regex required against that field or not - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForm/).
    */
   async getCustomForm(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -577,7 +577,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.CustomFormList>} - Success response
    * @name getCustomForms
    * @summary: Get custom forms
-   * @description: Retrieve a list of available custom forms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForms/).
+   * @description: List all available custom forms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForms/).
    */
   async getCustomForms(
     { requestHeaders } = { requestHeaders: {} },
@@ -651,8 +651,8 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name getNewTicket
-   * @summary: Retreives ticket details of a application level ticket
-   * @description: Retreives ticket details of a application level ticket with ticket ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicket/).
+   * @summary: Get Ticket Details
+   * @description: Get ticket details of a application level ticket with ticket ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicket/).
    */
   async getNewTicket(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -728,7 +728,7 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
    * @name getNewTicketHistory
-   * @summary: Gets history list for specific application level ticket
+   * @summary: Get ticket history interaction
    * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicketHistory/).
    */
   async getNewTicketHistory(
@@ -807,7 +807,7 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
    * @name getNewTickets
-   * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
+   * @summary: List sales channel tickets
    * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTickets/).
    */
   async getNewTickets(
@@ -905,7 +905,7 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
    *   Success response
    * @name getNewTokenForVideoRoom
-   * @summary: Get Token to join a specific Video Room using it's unqiue name
+   * @summary: Get video Room Token
    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTokenForVideoRoom/).
    */
   async getNewTokenForVideoRoom(
@@ -988,7 +988,7 @@ class Lead {
    *   - Success response
    *
    * @name getNewVideoParticipants
-   * @summary: Get participants of a specific Video Room using it's unique name
+   * @summary: List video Room Participants
    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewVideoParticipants/).
    */
   async getNewVideoParticipants(

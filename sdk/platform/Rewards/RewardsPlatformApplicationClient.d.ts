@@ -9,7 +9,7 @@ declare class Rewards {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
      * @name getGiveawayById
-     * @summary: Get giveaway by ID
+     * @summary: Get a giveaway
      * @description: Retrieve specific giveaway details by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getGiveawayById/).
      */
     getGiveawayById({ id, requestHeaders }?: RewardsPlatformApplicationValidator.GetGiveawayByIdParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.Giveaway>;
@@ -41,7 +41,7 @@ declare class Rewards {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<RewardsPlatformModel.UserRes>} - Success response
      * @name getUserDetails
-     * @summary: Get user details
+     * @summary: Get a user
      * @description: Retrieve comprehensive details about a user in the rewards program. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserDetails/).
      */
     getUserDetails({ userId, requestHeaders }?: RewardsPlatformApplicationValidator.GetUserDetailsParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.UserRes>;
@@ -53,7 +53,7 @@ declare class Rewards {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<RewardsPlatformModel.HistoryRes>} - Success response
      * @name getUserPointsHistory
-     * @summary: Get user points history
+     * @summary: Get reward user points history
      * @description: Retrieve the history of points earned and redeemed by a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserPointsHistory/).
      */
     getUserPointsHistory({ userId, pageId, pageSize, requestHeaders }?: RewardsPlatformApplicationValidator.GetUserPointsHistoryParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.HistoryRes>;
@@ -63,7 +63,7 @@ declare class Rewards {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
      * @name saveGiveAway
-     * @summary: Save giveaway
+     * @summary: Create a giveaway
      * @description: Store and manage details of a giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/saveGiveAway/).
      */
     saveGiveAway({ body, requestHeaders }?: RewardsPlatformApplicationValidator.SaveGiveAwayParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.Giveaway>;
@@ -85,7 +85,7 @@ declare class Rewards {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
      * @name showGiveaways
-     * @summary: Display giveaways
+     * @summary: List giveaways
      * @description: Retrieve and display available giveaways. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
      */
     showGiveaways({ pageId, pageSize, requestHeaders }?: RewardsPlatformApplicationValidator.ShowGiveawaysParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.GiveawayResponse>;
@@ -95,7 +95,7 @@ declare class Rewards {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<RewardsPlatformModel.Offer[]>} - Success response
      * @name showOffers
-     * @summary: Show offers
+     * @summary: List offers
      * @description: Display available offers for users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showOffers/).
      */
     showOffers({ requestHeaders }?: any, { responseHeaders }?: object): Promise<RewardsPlatformModel.Offer[]>;
@@ -105,7 +105,7 @@ declare class Rewards {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
      * @name updateGiveAway
-     * @summary: Update giveaway
+     * @summary: Update a giveaway
      * @description: Modify and update information about a giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateGiveAway/).
      */
     updateGiveAway({ id, body, requestHeaders }?: RewardsPlatformApplicationValidator.UpdateGiveAwayParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.Giveaway>;

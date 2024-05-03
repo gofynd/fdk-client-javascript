@@ -22,8 +22,8 @@ class Serviceability {
    *   - Success response
    *
    * @name bulkServiceability
-   * @summary: Serviceability Import or Export
-   * @description: Serviceability Import or Export - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/bulkServiceability/).
+   * @summary: Bulk update serviceability of localities
+   * @description: Bulk operations involve either new serviceability settings or updating existing ones in large quantities. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/bulkServiceability/).
    */
   async bulkServiceability(
     { extensionId, schemeId, body, requestHeaders } = { requestHeaders: {} },
@@ -109,8 +109,9 @@ class Serviceability {
    *   - Success response
    *
    * @name bulkTat
-   * @summary: Region TAT Import or Export
-   * @description: Region TAT Import or Export - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/bulkTat/).
+   * @summary: Locality TAT import or export
+   * @description: Updates locality wise TAT(Turn Around Time) for particular courier scheme using CSV file.
+   * Export locality wise CSV files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/bulkTat/).
    */
   async bulkTat(
     { extensionId, schemeId, body, requestHeaders } = { requestHeaders: {} },
@@ -194,8 +195,8 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.CourierAccount>} - Success response
    * @name createCourierPartnerAccount
-   * @summary: Creation of Courier Account
-   * @description: This API Creates a new Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerAccount/).
+   * @summary: Create courier account
+   * @description: Creates a courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerAccount/).
    */
   async createCourierPartnerAccount(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -279,8 +280,8 @@ class Serviceability {
    *   - Success response
    *
    * @name createPackageMaterial
-   * @summary: Upsert of PackageMaterial in database
-   * @description: This API returns response of upsert of PackageMaterial in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterial/).
+   * @summary: Create packaging material
+   * @description: Creates a packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterial/).
    */
   async createPackageMaterial(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -363,8 +364,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
    *   Success response
    * @name createPackageMaterialRule
-   * @summary: Upsert of Package Material Rule in database
-   * @description: This API returns response of upsert of Package Material Rule in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterialRule/).
+   * @summary: Create packaging rule
+   * @description: Creates a packaging rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterialRule/).
    */
   async createPackageMaterialRule(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -445,7 +446,7 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
    * @name createZone
    * @summary: Create zone
-   * @description: Generate and add a new zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
+   * @description: Creates a delivery zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
    */
   async createZone(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -525,7 +526,7 @@ class Serviceability {
    *   Success response
    * @name getAllStores
    * @summary: Get all stores
-   * @description: Retrieve a list of all available stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
+   * @description: Retrieves a list of locations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
    */
   async getAllStores(
     { requestHeaders } = { requestHeaders: {} },
@@ -602,8 +603,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResponse>} -
    *   Success response
    * @name getBulkServiceability
-   * @summary: Get Region Serviceability Bulk History
-   * @description: Get Region Serviceability Bulk History - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkServiceability/).
+   * @summary: Bulk update history
+   * @description: Retrieves the history of changes made to serviceability settings for a scheme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkServiceability/).
    */
   async getBulkServiceability(
     {
@@ -726,8 +727,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResponse>} -
    *   Success response
    * @name getBulkTat
-   * @summary: Get region tat bulk history
-   * @description: Get region tat bulk history - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkTat/).
+   * @summary: Locality TAT change history
+   * @description: Retrieves the history of changes made to TAT(Turn Around Time) for scheme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkTat/).
    */
   async getBulkTat(
     {
@@ -849,8 +850,8 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.CompanyConfig>} - Success response
    * @name getCompanyConfiguration
-   * @summary: Get All Courier Rules applied to company
-   * @description: This API returns all Courier Rules applied for company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCompanyConfiguration/).
+   * @summary: Get delivery configuration
+   * @description: Retrieves information about the delivery setup for a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCompanyConfiguration/).
    */
   async getCompanyConfiguration(
     { requestHeaders } = { requestHeaders: {} },
@@ -929,8 +930,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponse>} -
    *   Success response
    * @name getCourierPartnerAccount
-   * @summary: Getting Courier Account of a company from database
-   * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccount/).
+   * @summary: Get courier account
+   * @description: Retrieves a single courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccount/).
    */
   async getCourierPartnerAccount(
     { accountId, requestHeaders } = { requestHeaders: {} },
@@ -1014,8 +1015,8 @@ class Serviceability {
    *   - Success response
    *
    * @name getCourierPartnerAccounts
-   * @summary: Getting Courier Account list of a company
-   * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
+   * @summary: Get courier accounts
+   * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
     { pageNo, pageSize, stage, paymentMode, transportType, requestHeaders } = {
@@ -1112,8 +1113,8 @@ class Serviceability {
    *   - Success response
    *
    * @name getOptimalLocations
-   * @summary: Retrieve optimal locations
-   * @description: Retrieve optimal locations based on the specific criteria - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
+   * @summary: Get selling locations
+   * @description: Retrieves a list selling locations which are best suited to fullfil an order for a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1196,8 +1197,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialList>} -
    *   Success response
    * @name getPackageMaterialList
-   * @summary: Fetching of PackageMaterials from database
-   * @description: This API returns response of PackageMaterials from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialList/).
+   * @summary: Get packaging materials
+   * @description: Retrieves a list of packaging materials - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialList/).
    */
   async getPackageMaterialList(
     { pageNo, pageSize, q, size, packageType, requestHeaders } = {
@@ -1295,8 +1296,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
    *   Success response
    * @name getPackageMaterialRule
-   * @summary: Fetching of Package Material from database
-   * @description: This API returns response of Package Material from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialRule/).
+   * @summary: Get packaging material rule
+   * @description: Retrieve packaging rule details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialRule/).
    */
   async getPackageMaterialRule(
     { ruleId, requestHeaders } = { requestHeaders: {} },
@@ -1380,8 +1381,8 @@ class Serviceability {
    *   - Success response
    *
    * @name getPackageMaterialRules
-   * @summary: Fetching of Package Material Rules from database
-   * @description: This API returns response of Package Materials Rules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialRules/).
+   * @summary: Get packaging rules
+   * @description: Retrieve packaging rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterialRules/).
    */
   async getPackageMaterialRules(
     { pageNo, pageSize, isActive, requestHeaders } = { requestHeaders: {} },
@@ -1470,8 +1471,8 @@ class Serviceability {
    *   - Success response
    *
    * @name getPackageMaterials
-   * @summary: Fetching of Package Material from database
-   * @description: This API returns response of Package Material from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterials/).
+   * @summary: Get packaging material
+   * @description: Retrieve a single packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterials/).
    */
   async getPackageMaterials(
     { packageMaterialId, requestHeaders } = { requestHeaders: {} },
@@ -1552,8 +1553,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.ServiceabilityModel>} -
    *   Success response
    * @name getServiceability
-   * @summary: Get Serviceability of a region
-   * @description: Get Serviceability of a region - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getServiceability/).
+   * @summary: Get serviceability of a locality
+   * @description: Rerieves serviceability settings of a single courier scheme for a given locality - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getServiceability/).
    */
   async getServiceability(
     { extensionId, schemeId, regionId, requestHeaders } = {
@@ -1640,8 +1641,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.GetZoneByIdSchema>} -
    *   Success response
    * @name getZoneById
-   * @summary: Get details of the Zone
-   * @description: Returns the region, application, store mapping and other details in the Zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneById/).
+   * @summary: Get zone details
+   * @description: Retrieves a single delivery zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneById/).
    */
   async getZoneById(
     { zoneId, requestHeaders } = { requestHeaders: {} },
@@ -1719,8 +1720,8 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
    * @name getZones
-   * @summary: Shows zones defined at the company level
-   * @description: Return the list of zones that are defined at the company level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
+   * @summary: Get zones
+   * @description: Retrieves a list of delivery zones. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
    */
   async getZones(
     {
@@ -1840,8 +1841,8 @@ class Serviceability {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.CompanyConfig>} - Success response
    * @name updateCompanyConfiguration
-   * @summary: Apply Courier Rule to company
-   * @description: Apply Courier Rule to company with rules priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCompanyConfiguration/).
+   * @summary: Update delivery configuration
+   * @description: Updates an existing delivery setup for a company, including the ability to adjust self-shipping preferences. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCompanyConfiguration/).
    */
   async updateCompanyConfiguration(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1924,8 +1925,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponse>} -
    *   Success response
    * @name updateCourierPartnerAccount
-   * @summary: Update Courier Account in database
-   * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerAccount/).
+   * @summary: Update courier account
+   * @description: Updates an existing courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerAccount/).
    */
   async updateCourierPartnerAccount(
     { accountId, body, requestHeaders } = { requestHeaders: {} },
@@ -2010,8 +2011,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
    *   Success response
    * @name updatePackageMaterialRule
-   * @summary: Fetching of Package Material Rules into database
-   * @description: This API updates Package Material Rules into mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePackageMaterialRule/).
+   * @summary: Update packaging rule
+   * @description: Update an existing packaging rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePackageMaterialRule/).
    */
   async updatePackageMaterialRule(
     { ruleId, body, requestHeaders } = { requestHeaders: {} },
@@ -2097,8 +2098,8 @@ class Serviceability {
    *   - Success response
    *
    * @name updatePackageMaterials
-   * @summary: Update Package Material to database
-   * @description: This API updates Package Materials from into mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePackageMaterials/).
+   * @summary: Update packaging material
+   * @description: Update an existing packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePackageMaterials/).
    */
   async updatePackageMaterials(
     { packageMaterialId, body, requestHeaders } = { requestHeaders: {} },
@@ -2181,8 +2182,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.ServiceabilityModel>} -
    *   Success response
    * @name updateServiceability
-   * @summary: Serviceability Update for a region
-   * @description: Serviceability Update for a region - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateServiceability/).
+   * @summary: Update Serviceability of a locality
+   * @description: Updates serviceability settings of a single courier scheme for a given locality - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateServiceability/).
    */
   async updateServiceability(
     { extensionId, schemeId, regionId, body, requestHeaders } = {
@@ -2271,8 +2272,8 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
    *   Success response
    * @name updateZoneById
-   * @summary: Update details of a Zone
-   * @description: Updates the region, application, store mapping and other details in the Zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZoneById/).
+   * @summary: Update a zone
+   * @description: Update an existing delivery zone . - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZoneById/).
    */
   async updateZoneById(
     { zoneId, body, requestHeaders } = { requestHeaders: {} },

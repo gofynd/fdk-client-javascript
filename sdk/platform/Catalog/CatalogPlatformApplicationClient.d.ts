@@ -13,8 +13,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name addCollectionItems
-     * @summary: Add items to a collection
-     * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addCollectionItems/).
+     * @summary: Create items in a collection
+     * @description: Adds items to a collection specified by its id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addCollectionItems/).
      */
     addCollectionItems({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.AddCollectionItemsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CommonResponseSchemaCollection>;
     /**
@@ -25,8 +25,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name createAppCategoryReturnConfiguration
-     * @summary: Create Category level Application Return Configuration setttings
-     * @description: Create Category level Application Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppCategoryReturnConfiguration/).
+     * @summary: Create return configuration
+     * @description: Create Category level sales channel Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppCategoryReturnConfiguration/).
      */
     createAppCategoryReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppCategoryReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -37,8 +37,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name createAppReturnConfiguration
-     * @summary: Create Return configuration level set for an application
-     * @description: Create Return configuration level set for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppReturnConfiguration/).
+     * @summary: Create product return configuration
+     * @description: This allows you to configure all return-related settings, such as is_returnable and return window etc. for sales channel level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppReturnConfiguration/).
      */
     createAppReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -48,8 +48,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.CollectionCreateResponse>} -
      *   Success response
      * @name createCollection
-     * @summary: Add a Collection
-     * @description: Create a collection to the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCollection/).
+     * @summary: Create a collection
+     * @description: Create a collection for a sales channel linked to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCollection/).
      */
     createCollection({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateCollectionParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CollectionCreateResponse>;
     /**
@@ -61,8 +61,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
      *   Success response
      * @name createConfigurationByType
-     * @summary: Create configuration by type
-     * @description: Add configuration for categories & brands. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createConfigurationByType/).
+     * @summary: Create configuration
+     * @description: Add configuration details based on a specific type in the catalog for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createConfigurationByType/).
      */
     createConfigurationByType({ type, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateConfigurationByTypeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAppCatalogConfiguration>;
     /**
@@ -74,8 +74,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
      *   Success response
      * @name createConfigurationProductListing
-     * @summary: Create configuration for product listing
-     * @description: Add configuration for products & listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createConfigurationProductListing/).
+     * @summary: Create product listing configuration
+     * @description: Add configuration for products & listing specific to a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createConfigurationProductListing/).
      */
     createConfigurationProductListing({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateConfigurationProductListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAppCatalogConfiguration>;
     /**
@@ -88,8 +88,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name createCustomAutocompleteRule
-     * @summary: Create custom autocomplete rules
-     * @description: Generate and add custom autocomplete rules to the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomAutocompleteRule/).
+     * @summary: Create autocomplete configurations
+     * @description: Create custom autocomplete keyword configurations for a specific sales channel to map any endpoint with these keywords. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomAutocompleteRule/).
      */
     createCustomAutocompleteRule({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateCustomAutocompleteRuleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateAutocompleteWordsResponse>;
     /**
@@ -100,8 +100,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
      * @name createCustomKeyword
-     * @summary: Create custom search keywords
-     * @description: Create a Custom Search Keywords.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomKeyword/).
+     * @summary: Create search keywords
+     * @description: Create a Custom Search Keywords for a specific company and sales channel allows you to map certail conditions with the keywords to give you ultimate results. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomKeyword/).
      */
     createCustomKeyword({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateCustomKeywordParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsData>;
     /**
@@ -113,7 +113,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.AppConfigurationDetail>} - Success response
      * @name createGroupConfiguration
      * @summary: Create group configuration
-     * @description: Create configuration for group configuration types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createGroupConfiguration/).
+     * @description: Create group configuration for a specific config_type for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createGroupConfiguration/).
      */
     createGroupConfiguration({ configType, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateGroupConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationDetail>;
     /**
@@ -125,7 +125,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
      * @name createListingConfiguration
      * @summary: Create listing configuration
-     * @description: Add configuration for catalog listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createListingConfiguration/).
+     * @description: Add configuration for product catalog listing specific to a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createListingConfiguration/).
      */
     createListingConfiguration({ configType, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsSort>;
     /**
@@ -139,7 +139,7 @@ declare class Catalog {
      *
      * @name createSearchConfiguration
      * @summary: Create search configuration
-     * @description: Create search configuration for the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchConfiguration/).
+     * @description: Create search configuration for the catalog for a specific company and sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchConfiguration/).
      */
     createSearchConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateSearchConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateSearchConfigurationResponse>;
     /**
@@ -150,8 +150,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
      * @name deleteAppCategoryReturnConfiguration
-     * @summary: Delete Category level Application Return Configuration setttings
-     * @description: Delete Category level Application Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteAppCategoryReturnConfiguration/).
+     * @summary: Delete product return configuration
+     * @description: Delete Category level sales channel Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteAppCategoryReturnConfiguration/).
      */
     deleteAppCategoryReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteAppCategoryReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
     /**
@@ -162,8 +162,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
      * @name deleteAutocompleteKeyword
-     * @summary: Delete autocomplete keywords
-     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteAutocompleteKeyword/).
+     * @summary: Delete autocomplete keyword.
+     * @description: Delete custom autocomplete keyword configurations for a specific sales channel by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteAutocompleteKeyword/).
      */
     deleteAutocompleteKeyword({ id, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteAutocompleteKeywordParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DeleteResponse>;
     /**
@@ -186,8 +186,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
      * @name deleteGroupConfiguration
-     * @summary: Delete group configuration
-     * @description: Delete configuration of the product config type of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteGroupConfiguration/).
+     * @summary: Delete group configuration.
+     * @description: Delete group configurations by its slug for a specific config_type for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteGroupConfiguration/).
      */
     deleteGroupConfiguration({ configType, groupSlug, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteGroupConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
     /**
@@ -198,8 +198,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
      * @name deleteListingConfiguration
-     * @summary: Delete listing configuration
-     * @description: Remove a specific listing configuration from the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteListingConfiguration/).
+     * @summary: Delete listing configuration.
+     * @description: Remove a specific product listing configuration by its config_id for a specific config_type for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteListingConfiguration/).
      */
     deleteListingConfiguration({ configType, configId, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
     /**
@@ -212,8 +212,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name deleteSearchConfiguration
-     * @summary: Delete Search Configuration
-     * @description: Delete search configuration in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchConfiguration/).
+     * @summary: Delete search configuration
+     * @description: Delete Search Configuration for a specific sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchConfiguration/).
      */
     deleteSearchConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.DeleteSearchConfigurationResponse>;
     /**
@@ -225,7 +225,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
      * @name deleteSearchKeywords
      * @summary: Delete search keywords
-     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchKeywords/).
+     * @description: Delete a search keywords by its id for a specific company and sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchKeywords/).
      */
     deleteSearchKeywords({ id, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DeleteResponse>;
     /**
@@ -237,8 +237,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetCollectionListingResponse>} -
      *   Success response
      * @name getAllCollections
-     * @summary: Retrieve all collections
-     * @description: A Collection allows you to organize your products into hierarchical groups. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllCollections/).
+     * @summary: List collections
+     * @description: Retrieve all collections based on criteria such as collection name, schedule status, and active status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllCollections/).
      */
     getAllCollections({ q, scheduleStatus, type, tags, isActive, pageNo, pageSize, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAllCollectionsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionListingResponse>;
     /**
@@ -257,8 +257,8 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
      * @returns {Paginator<CatalogPlatformModel.GetCollectionListingResponse>}
-     * @summary: Retrieve all collections
-     * @description: A Collection allows you to organize your products into hierarchical groups.
+     * @summary: List collections
+     * @description: Retrieve all collections based on criteria such as collection name, schedule status, and active status.
      */
     getAllCollectionsPaginator({ companyId, applicationId, q, scheduleStatus, type, tags, isActive, pageSize, }?: {
         companyId: string;
@@ -278,8 +278,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetSearchWordsResponse>} - Success response
      * @name getAllSearchKeyword
-     * @summary: Get all search keywords
-     * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllSearchKeyword/).
+     * @summary: List search keywords
+     * @description: Get all custom search keywords for a specific company and sales channel allows you to map certain conditions with the keywords to give you ultimate results. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllSearchKeyword/).
      */
     getAllSearchKeyword({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsResponse>;
     /**
@@ -292,8 +292,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getAppCategoryReturnConfig
-     * @summary: Get all category level configuration level set for an application
-     * @description: Get all category level configuration level set for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppCategoryReturnConfig/).
+     * @summary: Get category return configuration
+     * @description: Get all category level configuration level set for an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppCategoryReturnConfig/).
      */
     getAppCategoryReturnConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.BaseAppCategoryReturnConfigResponse>;
     /**
@@ -302,8 +302,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.InventoryStockResponse>} - Success response
      * @name getAppInventory
-     * @summary: Get application inventory
-     * @description: Retrieve inventory data related to the application. Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
+     * @summary: List sales channel inventory
+     * @description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
      */
     getAppInventory({ itemIds, storeIds, brandIds, sellerIdentifiers, timestamp, pageSize, pageId, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppInventoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryStockResponse>;
     /**
@@ -312,8 +312,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.LocationListSerializer>} - Success response
      * @name getAppLocations
-     * @summary: Get application locations
-     * @description: Retrieve locations specific to the application. View all the locations asscoiated to a application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
+     * @summary: List sales channels
+     * @description: Retrieve all stores associated with an sales channel, with support for searching by store name and filtering by store type and status (verified/unverified) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
      */
     getAppLocations({ storeType, uid, q, stage, pageNo, pageSize, tags, storeTypes, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppLocationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationListSerializer>;
     /**
@@ -333,8 +333,8 @@ declare class Catalog {
      * @param {string[]} [arg.tags] - Get locations filtered by tags.
      * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
      * @returns {Paginator<CatalogPlatformModel.LocationListSerializer>}
-     * @summary: Get application locations
-     * @description: Retrieve locations specific to the application. View all the locations asscoiated to a application.
+     * @summary: List sales channels
+     * @description: Retrieve all stores associated with an sales channel, with support for searching by store name and filtering by store type and status (verified/unverified)
      */
     getAppLocationsPaginator({ companyId, applicationId, storeType, uid, q, stage, pageSize, tags, storeTypes, }?: {
         companyId: string;
@@ -353,8 +353,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.OwnerAppItemResponse>} - Success response
      * @name getAppProduct
-     * @summary: Retrieve application product data
-     * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProduct/).
+     * @summary: Get sales channel product.
+     * @description: Retrieve sales channel product details by its item_id and depending upon filters sent in request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProduct/).
      */
     getAppProduct({ itemId, requestHeaders }?: CatalogPlatformApplicationValidator.GetAppProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.OwnerAppItemResponse>;
     /**
@@ -364,8 +364,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.RawProductListingResponse>} -
      *   Success response
      * @name getAppProducts
-     * @summary: Get application products
-     * @description: Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProducts/).
+     * @summary: List sales channel products.
+     * @description: Retrieve products specific to the sales channel, with filtering options available for brand, category, department, tags, item IDs, product name, and pagination support - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProducts/).
      */
     getAppProducts({ brandIds, categoryIds, departmentIds, tags, itemIds, pageNo, pageSize, q, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.RawProductListingResponse>;
     /**
@@ -385,8 +385,8 @@ declare class Catalog {
      *   page. Default is 10.
      * @param {string} [arg.q] - Search with Item Code, Name, Slug or Identifier.
      * @returns {Paginator<CatalogPlatformModel.RawProductListingResponse>}
-     * @summary: Get application products
-     * @description: Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
+     * @summary: List sales channel products.
+     * @description: Retrieve products specific to the sales channel, with filtering options available for brand, category, department, tags, item IDs, product name, and pagination support
      */
     getAppProductsPaginator({ companyId, applicationId, brandIds, categoryIds, departmentIds, tags, itemIds, pageSize, q, }?: {
         companyId: string;
@@ -407,8 +407,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.AppReturnConfigResponse>} - Success response
      * @name getAppReturnConfiguration
-     * @summary: Get Return configuration level set for an application
-     * @description: Get Product Return configuration set at an application level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppReturnConfiguration/).
+     * @summary: get product-return configuration.
+     * @description: Get Product Return configuration set at an sales channel level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppReturnConfiguration/).
      */
     getAppReturnConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppReturnConfigResponse>;
     /**
@@ -421,8 +421,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getAppicationProducts
-     * @summary: Get application products
-     * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppicationProducts/).
+     * @summary: List sales channel products
+     * @description: Retrieve products associated with the sales channel. List all the products associated with a brand, collection or category in a requested sort order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppicationProducts/).
      */
     getAppicationProducts({ q, f, c, filters, isDependent, sortOn, pageId, pageSize, pageNo, pageType, itemIds, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppicationProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ApplicationProductListingResponse>;
     /**
@@ -452,8 +452,8 @@ declare class Catalog {
      *   page. Default is 12.
      * @param {number[]} [arg.itemIds] - Item Ids of product
      * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponse>}
-     * @summary: Get application products
-     * @description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
+     * @summary: List sales channel products
+     * @description: Retrieve products associated with the sales channel. List all the products associated with a brand, collection or category in a requested sort order.
      */
     getAppicationProductsPaginator({ companyId, applicationId, q, f, c, filters, isDependent, sortOn, pageSize, itemIds, }?: {
         companyId: string;
@@ -475,8 +475,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
      * @name getApplicationBrandListing
-     * @summary: Get application brand listing
-     * @description: Retrieve brand listings related to the application. A brand is the name under which a product is being sold - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrandListing/).
+     * @summary: Get sales channel brands.
+     * @description: Retrieve brand listings related to the sales channel. A brand is the name under which a product is being sold - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrandListing/).
      */
     getApplicationBrandListing({ pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationBrandListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BrandListingResponse>;
     /**
@@ -490,8 +490,8 @@ declare class Catalog {
      * @param {string} [arg.q] - Search query with brand name.Use this parameter
      *   to search brands by brand name.
      * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
-     * @summary: Get application brand listing
-     * @description: Retrieve brand listings related to the application. A brand is the name under which a product is being sold
+     * @summary: Get sales channel brands.
+     * @description: Retrieve brand listings related to the sales channel. A brand is the name under which a product is being sold
      */
     getApplicationBrandListingPaginator({ companyId, applicationId, pageSize, q, }?: {
         companyId: string;
@@ -507,8 +507,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
      * @name getApplicationBrands
-     * @summary: Get application brands
-     * @description: List all the brands. A brand is the name under which a product is being sold.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
+     * @summary: List brands
+     * @description: List all the brands, and have search capabilities on brand uid, name etc - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
      */
     getApplicationBrands({ department, pageNo, pageSize, q, brandId, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationBrandsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BrandListingResponse>;
     /**
@@ -528,8 +528,8 @@ declare class Catalog {
      * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
      *   basis of uid list.
      * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
-     * @summary: Get application brands
-     * @description: List all the brands. A brand is the name under which a product is being sold.
+     * @summary: List brands
+     * @description: List all the brands, and have search capabilities on brand uid, name etc
      */
     getApplicationBrandsPaginator({ companyId, applicationId, department, pageSize, q, brandId, }?: {
         companyId: string;
@@ -547,8 +547,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
      * @name getApplicationCategoryListing
-     * @summary: Get application category listing
-     * @description: Retrieve category listings related to the application. A brand is the name under which a product is being sold. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationCategoryListing/).
+     * @summary: List sales channel categories
+     * @description: Retrieve category listings related to the sales channel , with the ability to filter results based on department ,category names etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationCategoryListing/).
      */
     getApplicationCategoryListing({ departmentId, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationCategoryListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BrandListingResponse>;
     /**
@@ -564,8 +564,8 @@ declare class Catalog {
      * @param {string} [arg.q] - Search query with brand name.Use this parameter
      *   to search brands by brand name.
      * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
-     * @summary: Get application category listing
-     * @description: Retrieve category listings related to the application. A brand is the name under which a product is being sold.
+     * @summary: List sales channel categories
+     * @description: Retrieve category listings related to the sales channel , with the ability to filter results based on department ,category names etc.
      */
     getApplicationCategoryListingPaginator({ companyId, applicationId, departmentId, pageSize, q, }?: {
         companyId: string;
@@ -584,8 +584,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getApplicationDepartmentListing
-     * @summary: Get application department listing
-     * @description: Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationDepartmentListing/).
+     * @summary: List sales channel departments.
+     * @description: Retrieve department listings related to the sales channel. Departments are used to categorize similar products, and you can filter the results based on department names - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationDepartmentListing/).
      */
     getApplicationDepartmentListing({ pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationDepartmentListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ApplicationDepartmentListingResponse>;
     /**
@@ -599,8 +599,8 @@ declare class Catalog {
      * @param {string} [arg.q] - Search query with brand name.Use this parameter
      *   to search department by name.
      * @returns {Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponse>}
-     * @summary: Get application department listing
-     * @description: Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments.
+     * @summary: List sales channel departments.
+     * @description: Retrieve department listings related to the sales channel. Departments are used to categorize similar products, and you can filter the results based on department names
      */
     getApplicationDepartmentListingPaginator({ companyId, applicationId, pageSize, q, }?: {
         companyId: string;
@@ -617,8 +617,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetQueryFiltersKeysResponse>} -
      *   Success response
      * @name getApplicationFilterKeys
-     * @summary: Get filters keys of the filter options
-     * @description: Get query filters keys to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterKeys/).
+     * @summary: List filter keys
+     * @description: Retrieve the details of all applicable product filters, such as Color, Brand, and Category, indicating the criteria keys where filters can be applied. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterKeys/).
      */
     getApplicationFilterKeys({ c, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationFilterKeysParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetQueryFiltersKeysResponse>;
     /**
@@ -630,8 +630,9 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetQueryFiltersValuesResponse>} -
      *   Success response
      * @name getApplicationFilterValues
-     * @summary: Get values of the selected value for the filter options
-     * @description: Get query filters keys to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterValues/).
+     * @summary: List product filters
+     * @description: This API is designed to retrieve the filter values for all available options within the selected filter, such as "red" for color.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationFilterValues/).
      */
     getApplicationFilterValues({ filterKey, c, collectionId, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationFilterValuesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetQueryFiltersValuesResponse>;
     /**
@@ -644,7 +645,7 @@ declare class Catalog {
      *   Success response
      * @name getAutocompleteConfig
      * @summary: Get autocomplete configuration
-     * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteConfig/).
+     * @description: Get custom autocomplete keyword configuration for a specific sales channel which allows you to map any endpoint with these keywords to give you the ultimate suggestion results. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteConfig/).
      */
     getAutocompleteConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
     /**
@@ -656,8 +657,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
      *   Success response
      * @name getAutocompleteKeywordDetail
-     * @summary: Get autocomplete keyword details
-     * @description: Retrieve detailed information about a specific autocomplete keyword. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteKeywordDetail/).
+     * @summary: Get autocomplete keyword.
+     * @description: Retrieve detailed information about a specific autocomplete keyword for a specific sales channel by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteKeywordDetail/).
      */
     getAutocompleteKeywordDetail({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetAutocompleteKeywordDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
     /**
@@ -670,8 +671,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getCatalogConfiguration
-     * @summary: Retrieve catalog configuration
-     * @description: Retrieve configuration meta details for the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogConfiguration/).
+     * @summary: Get catalog configuration meta data
+     * @description: Retrieve configuration meta data for the catalog specific to a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogConfiguration/).
      */
     getCatalogConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCatalogConfigurationMetaData>;
     /**
@@ -682,8 +683,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.CatalogInsightResponse>} - Success response
      * @name getCatalogInsights
-     * @summary: Get catalog insights
-     * @description: Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogInsights/).
+     * @summary: Get catalog counts
+     * @description: Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogInsights/).
      */
     getCatalogInsights({ brand, requestHeaders }?: CatalogPlatformApplicationValidator.GetCatalogInsightsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CatalogInsightResponse>;
     /**
@@ -692,8 +693,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.CategoryListingResponse>} - Success response
      * @name getCategories
-     * @summary: Get categories
-     * @description: Retrieve a list of categories. Optionally pass filter the brands by the department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategories/).
+     * @summary: List categories
+     * @description: Retrieve a list of categories associated to company and sales channel. user can filter on departments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategories/).
      */
     getCategories({ department, requestHeaders }?: CatalogPlatformApplicationValidator.GetCategoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryListingResponse>;
     /**
@@ -705,7 +706,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetCollectionDetailResponse>} -
      *   Success response
      * @name getCollectionDetail
-     * @summary: Get collection details
+     * @summary: Get a collection
      * @description: Get the details of a collection by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionDetail/).
      */
     getCollectionDetail({ slug, requestHeaders }?: CatalogPlatformApplicationValidator.GetCollectionDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionDetailResponse>;
@@ -718,8 +719,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponse>} -
      *   Success response
      * @name getCollectionItems
-     * @summary: Get the items for a collection
-     * @description: Get items from a collection specified by its `id`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionItems/).
+     * @summary: List items of collection
+     * @description: Get items from a collection specified by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionItems/).
      */
     getCollectionItems({ id, sortOn, pageId, pageSize, requestHeaders }?: CatalogPlatformApplicationValidator.GetCollectionItemsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionItemsResponse>;
     /**
@@ -732,8 +733,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getConfigurationByType
-     * @summary: Retrieve configuration by type
-     * @description: Retrieve configuration details based on a specific type in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationByType/).
+     * @summary: Get configuration
+     * @description: Retrieve configuration details based on a specific type in the catalog for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationByType/).
      */
     getConfigurationByType({ type, requestHeaders }?: CatalogPlatformApplicationValidator.GetConfigurationByTypeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAppCatalogEntityConfiguration>;
     /**
@@ -745,8 +746,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetConfigMetadataResponse>} -
      *   Success response
      * @name getConfigurationMetadata
-     * @summary: Retrieve configuration metadata
-     * @description: Retrieve the configuraion metadata details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationMetadata/).
+     * @summary: Get configuration metadata.
+     * @description: Retrieve the configuraion metadata details for specific config_type for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationMetadata/).
      */
     getConfigurationMetadata({ configType, templateSlug, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetConfigurationMetadataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetConfigMetadataResponse>;
     /**
@@ -758,8 +759,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
      *   Success response
      * @name getConfigurations
-     * @summary: Retrieve configurations
-     * @description: Retrieve a configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurations/).
+     * @summary: Get product configurations
+     * @description: Retrieve a detailed configurations for product catalog specific to a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurations/).
      */
     getConfigurations({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAppCatalogConfiguration>;
     /**
@@ -768,8 +769,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.DepartmentResponse>} - Success response
      * @name getDepartments
-     * @summary: Get departments
-     * @description: Retrieve a list of departments. Departments are a way to categorise similar products. A product can lie in multiple departments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartments/).
+     * @summary: List departments
+     * @description: Retrieve a list of departments associated with a comapny and sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartments/).
      */
     getDepartments({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentResponse>;
     /**
@@ -782,7 +783,7 @@ declare class Catalog {
      *   - Success response
      *
      * @name getDiscountedInventoryBySizeIdentifier
-     * @summary: Get discounted inventory by size identifier
+     * @summary: Get discounted inventory.
      * @description: Allows to retrieve Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDiscountedInventoryBySizeIdentifier/).
      */
     getDiscountedInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, q, locationIds, requestHeaders, }?: CatalogPlatformApplicationValidator.GetDiscountedInventoryBySizeIdentifierParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>;
@@ -799,7 +800,7 @@ declare class Catalog {
      * @param {string} [arg.q] - Search with help of store code.
      * @param {number[]} [arg.locationIds] - Search by store ids.
      * @returns {Paginator<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
-     * @summary: Get discounted inventory by size identifier
+     * @summary: Get discounted inventory.
      * @description: Allows to retrieve Inventory data for particular company grouped by size and store.
      */
     getDiscountedInventoryBySizeIdentifierPaginator({ companyId, applicationId, itemId, sizeIdentifier, pageSize, q, locationIds, }?: {
@@ -819,8 +820,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
      * @name getGroupConfigurations
-     * @summary: Retrieve group configurations
-     * @description: Retrieve the details of the application configured configurations of group config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGroupConfigurations/).
+     * @summary: Get group configurations
+     * @description: Retrieve the details of product group configurations based on config types for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGroupConfigurations/).
      */
     getGroupConfigurations({ configType, pageNo, pageSize, search, templateSlug, requestHeaders }?: CatalogPlatformApplicationValidator.GetGroupConfigurationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetConfigResponse>;
     /**
@@ -831,8 +832,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
      * @name getListingConfigurations
-     * @summary: Retrieve listing configurations
-     * @description: Retrieve the details of the application configured configurations of listing config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getListingConfigurations/).
+     * @summary: Get listing configurations.
+     * @description: Retrieve product listing configurations based on specific config_type for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getListingConfigurations/).
      */
     getListingConfigurations({ configType, pageNo, pageSize, search, requestHeaders }?: CatalogPlatformApplicationValidator.GetListingConfigurationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetConfigResponse>;
     /**
@@ -843,8 +844,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ProductDetail>} - Success response
      * @name getProductDetailBySlug
-     * @summary: Get product details by slug
-     * @description: Retrieve detailed product information using a product slug. Products are the core resource of an application. Products can be associated by categories, collections, brands and more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductDetailBySlug/).
+     * @summary: Get product details.
+     * @description: Retrieve detailed product information using a product slug.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductDetailBySlug/).
      */
     getProductDetailBySlug({ slug, requestHeaders }?: CatalogPlatformApplicationValidator.GetProductDetailBySlugParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductDetail>;
     /**
@@ -853,8 +854,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetQueryFiltersResponse>} - Success response
      * @name getQueryFilters
-     * @summary: Retrieve query filters
-     * @description: Retrieve query filters to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getQueryFilters/).
+     * @summary: Get collection query filters
+     * @description: Retrieve query filters to configure a collection for a company and a sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getQueryFilters/).
      */
     getQueryFilters({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetQueryFiltersResponse>;
     /**
@@ -867,8 +868,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getSearchConfiguration
-     * @summary: Get Search Configuration
-     * @description: Get search configuration in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchConfiguration/).
+     * @summary: Get Search configuration
+     * @description: Get search configuration for a specific company and sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchConfiguration/).
      */
     getSearchConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchConfigurationResponse>;
     /**
@@ -880,8 +881,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetSearchWordsDetailResponse>} -
      *   Success response
      * @name getSearchKeywords
-     * @summary: Retrieve search keywords
-     * @description: Retrieve a list of search keywords from the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchKeywords/).
+     * @summary: Get search keywords
+     * @description: Retrieve a list of a specific list of keywords by its id for a specific company and sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchKeywords/).
      */
     getSearchKeywords({ id, requestHeaders }?: CatalogPlatformApplicationValidator.GetSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsDetailResponse>;
     /**
@@ -893,7 +894,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
      * @name updateAllowSingle
      * @summary: Update 'Allow Single' setting
-     * @description: Modify allow single flag for filters of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAllowSingle/).
+     * @description: Modify allow single flag for filters of the sales channel for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAllowSingle/).
      */
     updateAllowSingle({ body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAllowSingleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
     /**
@@ -902,8 +903,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name updateAppBrand
-     * @summary: Update application brand
-     * @description: Modify data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
+     * @summary: Update sales channel brand
+     * @description: Modify data associated to the brand for that particular sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
      */
     updateAppBrand({ brandUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppBrandParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -914,8 +915,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name updateAppCategory
-     * @summary: Update application category
-     * @description: Modify category data related to the application. Helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategory/).
+     * @summary: Update sales channel category
+     * @description: Modify category data related to the sales channel . - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategory/).
      */
     updateAppCategory({ categoryUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppCategoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -926,8 +927,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
      * @name updateAppCategoryReturnConfiguration
-     * @summary: Update Category level Application Return Configuration setttings
-     * @description: Update Category level Application Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategoryReturnConfiguration/).
+     * @summary: Update return Configuration
+     * @description: Update Category level sales channel Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategoryReturnConfiguration/).
      */
     updateAppCategoryReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppCategoryReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
     /**
@@ -938,8 +939,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name updateAppDepartment
-     * @summary: Update application department
-     * @description: Modify department data related to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppDepartment/).
+     * @summary: Update sales channel department
+     * @description: Modify department data associated to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppDepartment/).
      */
     updateAppDepartment({ departmentUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppDepartmentParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -950,8 +951,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name updateAppLocation
-     * @summary: Update application location
-     * @description: Modify location data related to the application. Helps to update data associated to a item custom meta - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppLocation/).
+     * @summary: Update sales channel location
+     * @description: Modify location data related to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppLocation/).
      */
     updateAppLocation({ storeUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppLocationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -960,8 +961,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name updateAppProduct
-     * @summary: Update application product data
-     * @description: Allows to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
+     * @summary: Update sales channel product.
+     * @description: Allows to update data associated to a item by its item_id for an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
      */
     updateAppProduct({ itemId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -972,8 +973,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name updateAppReturnConfiguration
-     * @summary: Update Return configuration level set for an application
-     * @description: Update Return configuration level set for an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppReturnConfiguration/).
+     * @summary: Update product return configuration
+     * @description: Update Return configuration level set for an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppReturnConfiguration/).
      */
     updateAppReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -985,8 +986,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
      *   Success response
      * @name updateAutocompleteKeyword
-     * @summary: Update autocomplete keywords
-     * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAutocompleteKeyword/).
+     * @summary: Update autocomplete keyword.
+     * @description: Update a specific autocomplete keyword configuration by its id for a specific sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAutocompleteKeyword/).
      */
     updateAutocompleteKeyword({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAutocompleteKeywordParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
     /**
@@ -1007,8 +1008,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
      * @name updateDefaultSort
-     * @summary: Update default sorting
-     * @description: Modify the default sort key configuration for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDefaultSort/).
+     * @summary: Update default sorting.
+     * @description: Modify the default sort key configuration for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDefaultSort/).
      */
     updateDefaultSort({ body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateDefaultSortParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
     /**
@@ -1020,7 +1021,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.AppConfigurationDetail>} - Success response
      * @name updateGroupConfiguration
      * @summary: Update group configuration
-     * @description: Modify the group configurations for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateGroupConfiguration/).
+     * @description: Modify group configurations by its slug for specific config_type for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateGroupConfiguration/).
      */
     updateGroupConfiguration({ configType, groupSlug, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateGroupConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationDetail>;
     /**
@@ -1032,7 +1033,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
      * @name updateListingConfiguration
      * @summary: Update listing configuration
-     * @description: Modify the details and settings of an existing listing configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateListingConfiguration/).
+     * @description: Modify a specific product listing configuration by its config_id for a specific config_type for a company and an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateListingConfiguration/).
      */
     updateListingConfiguration({ configType, configId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsSort>;
     /**
@@ -1045,8 +1046,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name updateSearchConfiguration
-     * @summary: Update search configuration for an application
-     * @description: This view allows you to modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchConfiguration/).
+     * @summary: Update search configuration
+     * @description: Allows you to modify searchable attributes for an sales channel. searchable attributes are the fields on which the products are searched. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchConfiguration/).
      */
     updateSearchConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateSearchConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdateSearchConfigurationResponse>;
     /**
@@ -1058,7 +1059,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
      * @name updateSearchKeywords
      * @summary: Update search keywords
-     * @description: Update Search Keyword by its id. On successful request, returns the updated collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchKeywords/).
+     * @description: Update a specific search keyword by its id for a specific company and sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchKeywords/).
      */
     updateSearchKeywords({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsData>;
 }

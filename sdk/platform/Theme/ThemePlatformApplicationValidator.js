@@ -8,18 +8,8 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 /**
- * @typedef AddToThemeLibraryParam
- * @property {ThemePlatformModel.AddThemeRequestSchema} body
- */
-
-/**
  * @typedef ApplyThemeParam
  * @property {string} themeId - The ID of the apply
- */
-
-/**
- * @typedef ArchiveThemeParam
- * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
@@ -64,14 +54,6 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 /**
- * @typedef GetPublicThemesParam
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- */
-
-/**
  * @typedef GetThemeByIdParam
  * @property {string} themeId - The ID of the theme
  */
@@ -87,31 +69,8 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 /**
- * @typedef GetThemeLibraryParam
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- */
-
-/**
  * @typedef IsUpgradableParam
  * @property {string} themeId - The ID of the theme
- */
-
-/**
- * @typedef PublishThemeParam
- * @property {string} themeId - ID allotted to the theme.
- */
-
-/**
- * @typedef UnarchiveThemeParam
- * @property {string} themeId - ID allotted to the theme.
- */
-
-/**
- * @typedef UnpublishThemeParam
- * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
@@ -152,22 +111,8 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {AddToThemeLibraryParam} */
-  static addToThemeLibrary() {
-    return Joi.object({
-      body: ThemePlatformModel.AddThemeRequestSchema().required(),
-    }).required();
-  }
-
   /** @returns {ApplyThemeParam} */
   static applyTheme() {
-    return Joi.object({
-      themeId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {ArchiveThemeParam} */
-  static archiveTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
@@ -238,14 +183,6 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetPublicThemesParam} */
-  static getPublicThemes() {
-    return Joi.object({
-      pageSize: Joi.number(),
-      pageNo: Joi.number(),
-    }).required();
-  }
-
   /** @returns {GetThemeByIdParam} */
   static getThemeById() {
     return Joi.object({
@@ -267,37 +204,8 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetThemeLibraryParam} */
-  static getThemeLibrary() {
-    return Joi.object({
-      pageSize: Joi.number(),
-      pageNo: Joi.number(),
-    }).required();
-  }
-
   /** @returns {IsUpgradableParam} */
   static isUpgradable() {
-    return Joi.object({
-      themeId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {PublishThemeParam} */
-  static publishTheme() {
-    return Joi.object({
-      themeId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {UnarchiveThemeParam} */
-  static unarchiveTheme() {
-    return Joi.object({
-      themeId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {UnpublishThemeParam} */
-  static unpublishTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();

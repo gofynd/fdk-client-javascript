@@ -46,7 +46,7 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
    * @name createHistory
-   * @summary: Logs ticket history
+   * @summary: Log ticket history
    * @description: Adds a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
    */
   async createHistory(
@@ -124,7 +124,7 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name createTicket
-   * @summary: Creates a new ticket
+   * @summary: Creates a ticket
    * @description: Generates a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
    */
   async createTicket(
@@ -202,8 +202,8 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.CustomForm>} - Success response
    * @name getCustomForm
-   * @summary: Fetches custom form
-   * @description: Retrieves a customizable form template for data collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
+   * @summary: Get custom form
+   * @description: Get a customizable form template for data collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
    */
   async getCustomForm(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -284,7 +284,7 @@ class Lead {
    *   - Success response
    *
    * @name getParticipantsInsideVideoRoom
-   * @summary: Lists video room participants
+   * @summary: List video room participants
    * @description: Gets the current participants inside a specific video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getParticipantsInsideVideoRoom/).
    */
   async getParticipantsInsideVideoRoom(
@@ -364,8 +364,8 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name getTicket
-   * @summary: Retrieves a support ticket
-   * @description: Retrieve details of a specific customer support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
+   * @summary: Get a support ticket
+   * @description: Get details of a specific customer support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
    */
   async getTicket(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -441,8 +441,8 @@ class Lead {
    * @returns {Promise<LeadApplicationModel.GetTokenForVideoRoomResponse>} -
    *   Success response
    * @name getTokenForVideoRoom
-   * @summary: Retrieves video room token
-   * @description: Retrieves a secure token for accessing a video chat room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTokenForVideoRoom/).
+   * @summary: Get video room token
+   * @description: Get a secure token for accessing a video chat room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTokenForVideoRoom/).
    */
   async getTokenForVideoRoom(
     { uniqueName, requestHeaders } = { requestHeaders: {} },

@@ -22,7 +22,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name addDataLoader
-   * @summary: Add data loader
+   * @summary: Create data loader
    * @description: Create and add a new data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addDataLoader/).
    */
   async addDataLoader(
@@ -101,7 +101,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name addFaq
-   * @summary: Add FAQ
+   * @summary: Create FAQ
    * @description: Create and add a new FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addFaq/).
    */
   async addFaq(
@@ -261,7 +261,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name addPathRedirectionRules
-   * @summary: Add path redirection rules
+   * @summary: Create path redirection rules
    * @description: Create and add rules for path redirection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
    */
   async addPathRedirectionRules(
@@ -427,7 +427,7 @@ class Content {
    *
    * @name createAppCustomFieldByResourceId
    * @summary: Create custom field entries for gives resource and resource_id
-   * @description: Use this API to create the custom field entry for given resource and resource_id in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomFieldByResourceId/).
+   * @description: You can add a custom field using this endpoint to any resource by providing the resource ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomFieldByResourceId/).
    */
   async createAppCustomFieldByResourceId(
     { resource, resourceId, body, requestHeaders } = { requestHeaders: {} },
@@ -514,7 +514,7 @@ class Content {
    *
    * @name createAppCustomFieldDefinition
    * @summary: Create custom field definition
-   * @description: Use this API to create a custom field definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomFieldDefinition/).
+   * @description: You can create custom fields definition to any resource so you can extend property of resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomFieldDefinition/).
    */
   async createAppCustomFieldDefinition(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -595,7 +595,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
    * @name createAppCustomObject
    * @summary: Create custom object entries
-   * @description: Use this API to create the custom object entry. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObject/).
+   * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObject/).
    */
   async createAppCustomObject(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -677,7 +677,7 @@ class Content {
    *   Success response
    * @name createAppCustomObjectDefinition
    * @summary: Create custom object definition
-   * @description: Use this API to create custom object defintion - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObjectDefinition/).
+   * @description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAppCustomObjectDefinition/).
    */
   async createAppCustomObjectDefinition(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -834,7 +834,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
    * @name createFaqCategory
-   * @summary: Create FAQ category
+   * @summary: Create FAQ Category
    * @description: Generate and add a new FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createFaqCategory/).
    */
   async createFaqCategory(
@@ -1233,8 +1233,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>} - Success response
    * @name createSEOMarkupSchema
-   * @summary: Create a SEO Markup schema Template of a page type for an application
-   * @description: Use this API to create a SEO Markup schema Template inside an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSEOMarkupSchema/).
+   * @summary: Create SEO Markup Schema
+   * @description: Use this API to Create SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSEOMarkupSchema/).
    */
   async createSEOMarkupSchema(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1313,7 +1313,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name createSlideshow
    * @summary: Create a slideshow
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
+   * @description: Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
    */
   async createSlideshow(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1394,7 +1394,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
    * @name deleteAnnouncement
-   * @summary: Delete announcement
+   * @summary: Delete an announcement
    * @description: Remove a specific announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAnnouncement/).
    */
   async deleteAnnouncement(
@@ -1476,7 +1476,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
    * @name deleteAppCustomFieldDefinition
    * @summary: Delete custom fields definition
-   * @description: Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomFieldDefinition/).
+   * @description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomFieldDefinition/).
    */
   async deleteAppCustomFieldDefinition(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -1557,7 +1557,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
    * @name deleteAppCustomObject
    * @summary: Delete custom object
-   * @description: Use this API to delete the custom object entry by id. This will also delete related custom fields entries related to this custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObject/).
+   * @description: Custom object entries can be deleted by providing the delete ID using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObject/).
    */
   async deleteAppCustomObject(
     { metaobjectId, requestHeaders } = { requestHeaders: {} },
@@ -1639,8 +1639,8 @@ class Content {
    *   - Success response
    *
    * @name deleteAppCustomObjectDefinition
-   * @summary: delete custom object definition by id
-   * @description: Use this API to delete a custom object definition and related data for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectDefinition/).
+   * @summary: Delete custom object definition
+   * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAppCustomObjectDefinition/).
    */
   async deleteAppCustomObjectDefinition(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -1718,7 +1718,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name deleteBlog
-   * @summary: Delete blog
+   * @summary: Delete a blog
    * @description: Remove a specific blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteBlog/).
    */
   async deleteBlog(
@@ -1796,7 +1796,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name deleteDataLoader
-   * @summary: Delete data loader
+   * @summary: Delete a data loader
    * @description: Remove a specific data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteDataLoader/).
    */
   async deleteDataLoader(
@@ -2274,7 +2274,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name deletePathRedirectionRules
-   * @summary: Delete path redirection rules
+   * @summary: Delete path redirection rule
    * @description: Remove specific path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePathRedirectionRules/).
    */
   async deletePathRedirectionRules(
@@ -2353,8 +2353,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>} - Success response
    * @name deleteSEOMarkupSchema
-   * @summary: delete a particular SEO Markup schema of an application using its id
-   * @description: Use this API to delete an existing SEO Markup schema an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSEOMarkupSchema/).
+   * @summary: Delete SEO Markup Schema
+   * @description: Use this API to Delete SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSEOMarkupSchema/).
    */
   async deleteSEOMarkupSchema(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -2512,7 +2512,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name editDataLoader
-   * @summary: Edit data loader
+   * @summary: Update a data loader
    * @description: Modify the settings of a specific data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editDataLoader/).
    */
   async editDataLoader(
@@ -2678,8 +2678,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>} - Success response
    * @name editSEOMarkupSchema
-   * @summary: Get a particular SEO Markup schema of an application using its id
-   * @description: Use this API to edit an existing SEO Markup schema an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editSEOMarkupSchema/).
+   * @summary: Get SEO Markup Schema
+   * @description: Use this API to Get SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editSEOMarkupSchema/).
    */
   async editSEOMarkupSchema(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -2764,7 +2764,7 @@ class Content {
    *
    * @name exportAppCustomObjectEntries
    * @summary: Initiate download for bulk custom object entries
-   * @description: Use this api to initiate download of bulk entries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportAppCustomObjectEntries/).
+   * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportAppCustomObjectEntries/).
    */
   async exportAppCustomObjectEntries(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -2925,8 +2925,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.AdminAnnouncementSchema>} - Success response
    * @name getAnnouncementById
-   * @summary: Get announcement by ID
-   * @description: Retrieve detailed information about a specific announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementById/).
+   * @summary: Get announcement
+   * @description: Get detailed information about a specific announcement - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementById/).
    */
   async getAnnouncementById(
     { announcementId, requestHeaders } = { requestHeaders: {} },
@@ -3007,8 +3007,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.GetAnnouncementListSchema>} -
    *   Success response
    * @name getAnnouncementsList
-   * @summary: Get announcements list
-   * @description: Retrieve a list of announcements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementsList/).
+   * @summary: List announcements
+   * @description: Lists all announcements - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementsList/).
    */
   async getAnnouncementsList(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -3094,8 +3094,8 @@ class Content {
    *   - Success response
    *
    * @name getAppCustomFieldDefinition
-   * @summary: Get custom fields definition by id
-   * @description: Use this API to retrieve the definitions of custom fields using definition_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinition/).
+   * @summary: Get custom fields definition
+   * @description: Custom field definitions can be fetch using definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinition/).
    */
   async getAppCustomFieldDefinition(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -3177,7 +3177,7 @@ class Content {
    *   Success response
    * @name getAppCustomFieldDefinitions
    * @summary: Get custom fields definitions
-   * @description: Use this API to retrieve the definitions of custom fields. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitions/).
+   * @description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitions/).
    */
   async getAppCustomFieldDefinitions(
     { pageNo, pageSize, resource, type, search, requestHeaders } = {
@@ -3273,7 +3273,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
    * @name getAppCustomFieldTypes
    * @summary: Get custom field types
-   * @description: Use this API to retrieve the custom field types  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldTypes/).
+   * @description: Each custom field and custom field definition has a type, which defines the type of information that it can store. The custom field types have built-in validation. This api will give list of supported custom fields types - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldTypes/).
    */
   async getAppCustomFieldTypes(
     { requestHeaders } = { requestHeaders: {} },
@@ -3351,7 +3351,7 @@ class Content {
    *   Success response
    * @name getAppCustomFields
    * @summary: Get list of custom fields of gives resource
-   * @description: Use this API to retrieve the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFields/).
+   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFields/).
    */
   async getAppCustomFields(
     { resource, requestHeaders } = { requestHeaders: {} },
@@ -3434,7 +3434,7 @@ class Content {
    *
    * @name getAppCustomFieldsByResourceId
    * @summary: Get list of custom fields of given resource and resource id
-   * @description: Use this API to retrieve the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldsByResourceId/).
+   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldsByResourceId/).
    */
   async getAppCustomFieldsByResourceId(
     { resource, resourceId, requestHeaders } = { requestHeaders: {} },
@@ -3517,7 +3517,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
    * @name getAppCustomObject
    * @summary: Get custom object details
-   * @description: Use this API to retrieve the custom object details and their fields details and definitions and references. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObject/).
+   * @description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObject/).
    */
   async getAppCustomObject(
     { metaobjectId, requestHeaders } = { requestHeaders: {} },
@@ -3598,8 +3598,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
    *   Success response
    * @name getAppCustomObjectDefinition
-   * @summary: get custom object definition by id
-   * @description: Use this API to update a custom object definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectDefinition/).
+   * @summary: Get custom object definition
+   * @description: Custom object definitions can be fetched using their definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectDefinition/).
    */
   async getAppCustomObjectDefinition(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -3681,7 +3681,7 @@ class Content {
    *   Success response
    * @name getAppCustomObjectDefinitions
    * @summary: Get custom object definitions
-   * @description: Use this API to retrieve the custom object definitions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectDefinitions/).
+   * @description: Custom object definition lists can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjectDefinitions/).
    */
   async getAppCustomObjectDefinitions(
     { pageNo, pageSize, search, requestHeaders } = { requestHeaders: {} },
@@ -3769,7 +3769,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectsSchema>} - Success response
    * @name getAppCustomObjects
    * @summary: Get list of custom objects
-   * @description: Use this API to retrieve the custom objects. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjects/).
+   * @description: Custom object entries can fetch using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjects/).
    */
   async getAppCustomObjects(
     { pageNo, pageSize, definitionId, requestHeaders } = { requestHeaders: {} },
@@ -3854,8 +3854,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomObjectBulkEntry>} - Success response
    * @name getAppJobs
-   * @summary: Fetch bulk import and export job list
-   * @description: Use this api to get list of jobs of bulk import and exports - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppJobs/).
+   * @summary: Get bulk import and export job list
+   * @description: Custom object bulk import and export jobs status and details can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppJobs/).
    */
   async getAppJobs(
     { page, pageSize, actionType, requestHeaders } = { requestHeaders: {} },
@@ -3939,7 +3939,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.ResourcesSchema>} - Success response
    * @name getAppResources
    * @summary: Get resources
-   * @description: Use this API to retrieve the resources, such as products, collections, customers, selling locations, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppResources/).
+   * @description: Each custom fields is assosiated with a resource such as product, promotion, coupon, selling location etc, This will gives list of supported resource list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppResources/).
    */
   async getAppResources(
     { requestHeaders } = { requestHeaders: {} },
@@ -4092,8 +4092,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogGetResponse>} - Success response
    * @name getBlogs
-   * @summary: Get blogs
-   * @description: Retrieve a list of available blogs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
+   * @summary: List blogs
+   * @description: List all blogs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
    */
   async getBlogs(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -4173,7 +4173,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getComponentById
-   * @summary: Get component by ID
+   * @summary: Get component
    * @description: Retrieve detailed information about a specific component. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
    */
   async getComponentById(
@@ -4252,8 +4252,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DataLoadersSchema>} - Success response
    * @name getDataLoaders
-   * @summary: Get data loaders
-   * @description: Retrieve a list of data loaders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaders/).
+   * @summary: List data loaders
+   * @description: List all Dataloaders - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaders/).
    */
   async getDataLoaders(
     { requestHeaders } = { requestHeaders: {} },
@@ -4330,7 +4330,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name getDataLoadersByService
-   * @summary: Get all the data loaders in an application by service name
+   * @summary: List all data loaders
    * @description: Use this to get all data loaders of an application by service name - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoadersByService/).
    */
   async getDataLoadersByService(
@@ -4489,8 +4489,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DefaultSchemaComponent>} - Success response
    * @name getDefaultSEOMarkupSchema
-   * @summary: Get Default SEO Markup schemas of an application
-   * @description: Use this API to get the Default SEO Markup schema Templates setup for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultSEOMarkupSchema/).
+   * @summary: List default SEO Markup Schemas
+   * @description: Use this API to List default SEO Markup Schemas - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultSEOMarkupSchema/).
    */
   async getDefaultSEOMarkupSchema(
     { pageType, requestHeaders } = { requestHeaders: {} },
@@ -4569,8 +4569,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name getFaqByIdOrSlug
-   * @summary: Get FAQ by ID or slug
-   * @description: Retrieve detailed information about a specific FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqByIdOrSlug/).
+   * @summary: Get FAQ or slug
+   * @description: Get detailed information about a specific FAQ - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqByIdOrSlug/).
    */
   async getFaqByIdOrSlug(
     { idOrSlug, requestHeaders } = { requestHeaders: {} },
@@ -4648,8 +4648,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GetFaqCategoriesSchema>} - Success response
    * @name getFaqCategories
-   * @summary: Get FAQ categories
-   * @description: Retrieve a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategories/).
+   * @summary: List FAQ Categories
+   * @description: List all FAQ Categories - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategories/).
    */
   async getFaqCategories(
     { requestHeaders } = { requestHeaders: {} },
@@ -4726,8 +4726,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.GetFaqCategoryBySlugSchema>} -
    *   Success response
    * @name getFaqCategoryBySlugOrId
-   * @summary: Get FAQ category by slug or ID
-   * @description: Retrieve detailed information about a specific FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategoryBySlugOrId/).
+   * @summary: Get FAQ category
+   * @description: Get detailed information about a specific FAQ category - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategoryBySlugOrId/).
    */
   async getFaqCategoryBySlugOrId(
     { idOrSlug, requestHeaders } = { requestHeaders: {} },
@@ -4807,7 +4807,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GetFaqSchema>} - Success response
    * @name getFaqsByCategoryIdOrSlug
-   * @summary: Get FAQs by category ID or slug
+   * @summary: List FAQs
    * @description: Retrieve a list of FAQs within a specific category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqsByCategoryIdOrSlug/).
    */
   async getFaqsByCategoryIdOrSlug(
@@ -4969,7 +4969,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.LandingPageGetResponse>} - Success response
    * @name getLandingPages
    * @summary: Get landing pages
-   * @description: Retrieve a list of landing pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
+   * @description: Lists a list landing pages as per device types - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
    */
   async getLandingPages(
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
@@ -5053,8 +5053,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
    * @name getLegalInformation
-   * @summary: Get legal related information for applicaiton
-   * @description: Retrieve legal information and terms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLegalInformation/).
+   * @summary: Get Legal Pages
+   * @description: Get legal information and terms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLegalInformation/).
    */
   async getLegalInformation(
     { requestHeaders } = { requestHeaders: {} },
@@ -5301,7 +5301,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name getPageBySlug
    * @summary: Get page by slug
-   * @description: Retrieve detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
+   * @description: Get detailed information about a specific page using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
    */
   async getPageBySlug(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -5380,7 +5380,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.PageMetaSchema>} - Success response
    * @name getPageMeta
    * @summary: Get page meta
-   * @description: Retrieve metadata for a specific page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageMeta/).
+   * @description: Use this API to Get metadata for a specific page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageMeta/).
    */
   async getPageMeta(
     { requestHeaders } = { requestHeaders: {} },
@@ -5455,7 +5455,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.PageSpec>} - Success response
    * @name getPageSpec
    * @summary: Get page specification
-   * @description: Retrieve specifications and details for a specific page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageSpec/).
+   * @description: Use this API to Get specifications and details for a specific page - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageSpec/).
    */
   async getPageSpec(
     { requestHeaders } = { requestHeaders: {} },
@@ -5612,8 +5612,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name getPathRedirectionRule
-   * @summary: Get path redirection rule
-   * @description: Retrieve detailed information about a specific path redirection rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
+   * @summary: Get Path Redirection Rule
+   * @description: Use this API to Get detailed information about a specific path redirection rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
    */
   async getPathRedirectionRule(
     { pathId, requestHeaders } = { requestHeaders: {} },
@@ -5693,8 +5693,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name getPathRedirectionRules
-   * @summary: Get path redirection rules
-   * @description: Retrieve a list of path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
+   * @summary: List Path Redirection Rules
+   * @description: Use this API to List Path Redirection Rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
    */
   async getPathRedirectionRules(
     { pageSize, pageNo, requestHeaders } = { requestHeaders: {} },
@@ -5778,7 +5778,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SeoComponent>} - Success response
    * @name getSEOConfiguration
-   * @summary: Get SEO configuration for an application
+   * @summary: Get sales channel SEO
    * @description: Retrieve configuration settings for SEO. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOConfiguration/).
    */
   async getSEOConfiguration(
@@ -5855,8 +5855,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>} - Success response
    * @name getSEOMarkupSchema
-   * @summary: Get a particular SEO Markup schema of an application using its id
-   * @description: Use this API to get a existing SEO Markup schema an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOMarkupSchema/).
+   * @summary: Get SEO Markup Schema
+   * @description: Use this API to Get SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOMarkupSchema/).
    */
   async getSEOMarkupSchema(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -5936,8 +5936,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SeoSchemaComponent>} - Success response
    * @name getSEOMarkupSchemas
-   * @summary: Get SEO Markup schemas of an application
-   * @description: Use this API to get all SEO Markup schema Templates setup for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOMarkupSchemas/).
+   * @summary: List default SEO Markup Schemas
+   * @description: Use this API to List default SEO Markup Schemas - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOMarkupSchemas/).
    */
   async getSEOMarkupSchemas(
     { title, active, pageNo, pageSize, requestHeaders } = {
@@ -6029,8 +6029,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name getSlideshowBySlug
-   * @summary: Get slideshow by slug
-   * @description: Use this API to retrieve the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
+   * @summary: Get Slideshow
+   * @description: Use this API to get the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
    */
   async getSlideshowBySlug(
     { slug, devicePlatform, requestHeaders } = { requestHeaders: {} },
@@ -6111,8 +6111,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SlideshowGetResponse>} - Success response
    * @name getSlideshows
-   * @summary: Get slideshows
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
+   * @summary: List Slideshows
+   * @description: Use this API to list all Slideshows - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
    */
   async getSlideshows(
     { devicePlatform, pageNo, pageSize, requestHeaders } = {
@@ -6204,8 +6204,8 @@ class Content {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
    * @returns {Paginator<ContentPlatformModel.SlideshowGetResponse>}
-   * @summary: Get slideshows
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
+   * @summary: List Slideshows
+   * @description: Use this API to list all Slideshows
    */
   getSlideshowsPaginator({
     companyId,
@@ -6323,7 +6323,7 @@ class Content {
    *
    * @name importAppCustomObjectEntries
    * @summary: Bulk custom object entries upload
-   * @description: Use this API to upload custom object entries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importAppCustomObjectEntries/).
+   * @description: Custom object bulk import of bulk entries can be performed using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importAppCustomObjectEntries/).
    */
   async importAppCustomObjectEntries(
     { definitionId, body, requestHeaders } = { requestHeaders: {} },
@@ -6486,7 +6486,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResetResponseSchema>} -
    *   Success response
    * @name resetDataLoader
-   * @summary: Reset data loader
+   * @summary: Reset a data loader
    * @description: Clear and reset data loader settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/resetDataLoader/).
    */
   async resetDataLoader(
@@ -6569,8 +6569,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
    * @name sampleAppCustomObjectBulkEntry
-   * @summary: download sample for custom object bulk entry
-   * @description: Use this api to get sample csv file  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleAppCustomObjectBulkEntry/).
+   * @summary: Download sample for custom object bulk entry
+   * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleAppCustomObjectBulkEntry/).
    */
   async sampleAppCustomObjectBulkEntry(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -6646,7 +6646,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name selectDataLoader
-   * @summary: Select data loader
+   * @summary: Select a data loader
    * @description: Choose and set a data loader for use. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/selectDataLoader/).
    */
   async selectDataLoader(
@@ -6898,7 +6898,7 @@ class Content {
    *
    * @name updateAppCustomFieldDefinition
    * @summary: Update custom field definition
-   * @description: Use this API to update a custom field definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldDefinition/).
+   * @description: Custom fields definition can be update using this api, You can update custom field definition name and description. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomFieldDefinition/).
    */
   async updateAppCustomFieldDefinition(
     { definitionId, body, requestHeaders } = { requestHeaders: {} },
@@ -6981,7 +6981,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
    * @name updateAppCustomObject
    * @summary: Update custom object details
-   * @description: Use this API to update a custom object detail for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObject/).
+   * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObject/).
    */
   async updateAppCustomObject(
     { metaobjectId, body, requestHeaders } = { requestHeaders: {} },
@@ -7065,7 +7065,7 @@ class Content {
    *   Success response
    * @name updateAppCustomObjectDefinition
    * @summary: Update custom object definition
-   * @description: Use this API to update a custom object definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObjectDefinition/).
+   * @description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAppCustomObjectDefinition/).
    */
   async updateAppCustomObjectDefinition(
     { definitionId, body, requestHeaders } = { requestHeaders: {} },
@@ -7145,7 +7145,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name updateBlog
-   * @summary: Update blog
+   * @summary: Update a blog
    * @description: Modify the content and settings of a specific blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateBlog/).
    */
   async updateBlog(
@@ -7554,7 +7554,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
    * @name updateLegalInformation
-   * @summary: Update legal related information for application
+   * @summary: Update Legal Pages
    * @description: Modify legal information and terms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLegalInformation/).
    */
   async updateLegalInformation(
@@ -7878,7 +7878,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name updatePathRedirectionRules
-   * @summary: Update path redirection rules
+   * @summary: Update path redirection rule
    * @description: Modify settings for path redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePathRedirectionRules/).
    */
   async updatePathRedirectionRules(
@@ -7961,7 +7961,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SeoSchema>} - Success response
    * @name updateSEOConfiguration
-   * @summary: Update SEO configuration for an application
+   * @summary: Update sales channel SEO information
    * @description: Modify configuration settings for SEO. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSEOConfiguration/).
    */
   async updateSEOConfiguration(
@@ -8041,7 +8041,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name updateSlideshow
    * @summary: Update a slideshow
-   * @description: Use this API to edit the details of an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
+   * @description: Use this API to Update Slideshow - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
    */
   async updateSlideshow(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -8123,7 +8123,7 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.Support>} - Success response
    * @name updateSupportInformation
-   * @summary: Update support related info for an application
+   * @summary: Update Customer Support Information
    * @description: Modify information related to customer support. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSupportInformation/).
    */
   async updateSupportInformation(

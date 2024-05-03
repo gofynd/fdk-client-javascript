@@ -13,7 +13,6 @@ export namespace PlatformModel {
     const DiscountPlatformModel: typeof import("./Discount/DiscountPlatformModel");
     const FileStoragePlatformModel: typeof import("./FileStorage/FileStoragePlatformModel");
     const FinancePlatformModel: typeof import("./Finance/FinancePlatformModel");
-    const InventoryPlatformModel: typeof import("./Inventory/InventoryPlatformModel");
     const LeadPlatformModel: typeof import("./Lead/LeadPlatformModel");
     const ServiceabilityPlatformModel: typeof import("./Serviceability/ServiceabilityPlatformModel");
     const OrderPlatformModel: typeof import("./Order/OrderPlatformModel");

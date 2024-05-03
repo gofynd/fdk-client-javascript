@@ -26,8 +26,6 @@ module.exports = {
 
     FinancePlatformModel: require("./Finance/FinancePlatformModel"),
 
-    InventoryPlatformModel: require("./Inventory/InventoryPlatformModel"),
-
     LeadPlatformModel: require("./Lead/LeadPlatformModel"),
 
     ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),

@@ -8,7 +8,7 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
      * @name createPlatformTicketHistory
-     * @summary: Create platform ticket history
+     * @summary: Create ticket history
      * @description: Create futher interactions on a company level ticket such as changing it's status, priority or replying to a ticket via a thread. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createPlatformTicketHistory/).
      */
     createPlatformTicketHistory({ id, body, requestHeaders }?: LeadPlatformValidator.CreatePlatformTicketHistoryParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketHistory>;
@@ -28,7 +28,7 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
      * @name editPlatformTicket
-     * @summary: Edit platform ticket
+     * @summary: Update a ticket
      * @description: Modify the content and settings of a specific company level ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editPlatformTicket/).
      */
     editPlatformTicket({ id, body, requestHeaders }?: LeadPlatformValidator.EditPlatformTicketParam, { responseHeaders }?: object): Promise<LeadPlatformModel.Ticket>;
@@ -39,7 +39,7 @@ declare class Lead {
      * @returns {Promise<LeadPlatformModel.TicketFeedbackList>} - Success response
      * @name getFeedbacks
      * @summary: Get feedbacks
-     * @description: Retrieve feedback information related to a ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getFeedbacks/).
+     * @description: Get feedback information related to a ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getFeedbacks/).
      */
     getFeedbacks({ id, requestHeaders }?: LeadPlatformValidator.GetFeedbacksParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketFeedbackList>;
     /**
@@ -49,7 +49,7 @@ declare class Lead {
      * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
      * @name getGeneralConfig
      * @summary: Get general configuration
-     * @description: Retrieve general configuration settings related to support system for company tickets - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
+     * @description: Get general configuration settings related to support system for company tickets - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
      */
     getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
     /**
@@ -58,8 +58,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
      * @name getPlatformTicket
-     * @summary: Get platform ticket
-     * @description: Retrieve detailed information about a specific ticket which is raised at company level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformTicket/).
+     * @summary: Get a ticket
+     * @description: Get detailed information about a specific ticket which is raised at company level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformTicket/).
      */
     getPlatformTicket({ id, requestHeaders }?: LeadPlatformValidator.GetPlatformTicketParam, { responseHeaders }?: object): Promise<LeadPlatformModel.Ticket>;
     /**
@@ -68,8 +68,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
      * @name getPlatformTicketHistory
-     * @summary: Get platform ticket history
-     * @description: Retrieve a list of history records for a company level ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformTicketHistory/).
+     * @summary: Get ticket history
+     * @description: List history records for a company level ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformTicketHistory/).
      */
     getPlatformTicketHistory({ id, requestHeaders }?: LeadPlatformValidator.GetPlatformTicketHistoryParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketHistoryList>;
     /**
@@ -78,8 +78,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
      * @name getPlatformTickets
-     * @summary: Get platform tickets
-     * @description: Retrieve a list of tickets created within the platform at company level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformTickets/).
+     * @summary: List tickets
+     * @description: List all tickets created within the platform at company level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformTickets/).
      */
     getPlatformTickets({ items, filters, q, status, priority, category, pageNo, pageSize, requestHeaders, }?: LeadPlatformValidator.GetPlatformTicketsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketList>;
     /**
@@ -90,8 +90,8 @@ declare class Lead {
      *   - Success response
      *
      * @name getPlatformVideoParticipants
-     * @summary: Get platform video participants
-     * @description: Retrieve a list of participants in a platform video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformVideoParticipants/).
+     * @summary: List video Room Participants
+     * @description: Get a list of participants in a platform video room - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformVideoParticipants/).
      */
     getPlatformVideoParticipants({ uniqueName, requestHeaders }?: LeadPlatformValidator.GetPlatformVideoParticipantsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>;
     /**
@@ -101,8 +101,8 @@ declare class Lead {
      * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
      *   Success response
      * @name getTokenForPlatformVideoRoom
-     * @summary: Get token for platform video room
-     * @description: Retrieve an access token for a platform video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTokenForPlatformVideoRoom/).
+     * @summary: Get video Room Token
+     * @description: Get an access token for a platform video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTokenForPlatformVideoRoom/).
      */
     getTokenForPlatformVideoRoom({ uniqueName, requestHeaders }?: LeadPlatformValidator.GetTokenForPlatformVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
     /**

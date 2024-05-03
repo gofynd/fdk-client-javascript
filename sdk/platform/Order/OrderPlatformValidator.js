@@ -29,15 +29,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef Click2CallParam
- * @property {string} caller - Call Number
- * @property {string} receiver - Receiver Number
- * @property {string} bagId - Bag Id for the query
- * @property {string} [callerId] - Caller Id
- * @property {string} [method] - Provider Method to Call
- */
-
-/**
  * @typedef CreateChannelConfigParam
  * @property {OrderPlatformModel.CreateChannelConfigData} body
  */
@@ -466,17 +457,6 @@ class OrderPlatformValidator {
   static checkOrderStatus() {
     return Joi.object({
       body: OrderPlatformModel.OrderStatus().required(),
-    }).required();
-  }
-
-  /** @returns {Click2CallParam} */
-  static click2Call() {
-    return Joi.object({
-      caller: Joi.string().allow("").required(),
-      receiver: Joi.string().allow("").required(),
-      bagId: Joi.string().allow("").required(),
-      callerId: Joi.string().allow(""),
-      method: Joi.string().allow(""),
     }).required();
   }
 

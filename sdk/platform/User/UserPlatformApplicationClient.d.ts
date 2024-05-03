@@ -9,8 +9,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.ArchiveUserSuccess>} - Success response
      * @name archiveUser
-     * @summary: archive user
-     * @description: archive user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/archiveUser/).
+     * @summary: Archive User
+     * @description: Delete user from sales channel, allowing re-registration with the same mobile/email for a new user account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/archiveUser/).
      */
     archiveUser({ body, requestHeaders }?: UserPlatformApplicationValidator.ArchiveUserParam, { responseHeaders }?: object): Promise<UserPlatformModel.ArchiveUserSuccess>;
     /**
@@ -19,8 +19,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.BlockUserSuccess>} - Success response
      * @name blockOrUnblockUsers
-     * @summary: Block/unblock users
-     * @description: Control user access by blocking or unblocking their accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/blockOrUnblockUsers/).
+     * @summary: Block/Unblock Users
+     * @description: Manage user access by blocking or unblocking their accounts, restricting login for blocked accounts and allowing login for unblocked accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/blockOrUnblockUsers/).
      */
     blockOrUnblockUsers({ body, requestHeaders }?: UserPlatformApplicationValidator.BlockOrUnblockUsersParam, { responseHeaders }?: object): Promise<UserPlatformModel.BlockUserSuccess>;
     /**
@@ -29,8 +29,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
      * @name createUser
-     * @summary: Create user
-     * @description: Register and add a new user to the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUser/).
+     * @summary: Create User
+     * @description: Register and add a new user to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUser/).
      */
     createUser({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserParam, { responseHeaders }?: object): Promise<UserPlatformModel.CreateUserResponseSchema>;
     /**
@@ -43,7 +43,7 @@ declare class User {
      *   Success response
      * @name createUserAttributeDefinition
      * @summary: Create a User Attribute Definition
-     * @description: Use this API to areate a new User Attribute Definition - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserAttributeDefinition/).
+     * @description: Create a new User Attribute Definition - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserAttributeDefinition/).
      */
     createUserAttributeDefinition({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeDefinitionResponse>;
     /**
@@ -52,7 +52,7 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
      * @name createUserGroup
-     * @summary: Create user group
+     * @summary: Create User Group
      * @description: Form and add a new user group. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserGroup/).
      */
     createUserGroup({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserGroupParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupResponseSchema>;
@@ -63,8 +63,8 @@ declare class User {
      * @returns {Promise<UserPlatformModel.CreateUserSessionResponseSchema>} -
      *   Success response
      * @name createUserSession
-     * @summary: Create user session
-     * @description: Establish a session for user interactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserSession/).
+     * @summary: Create User Session
+     * @description: Create session for user interactions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserSession/).
      */
     createUserSession({ body, requestHeaders }?: UserPlatformApplicationValidator.CreateUserSessionParam, { responseHeaders }?: object): Promise<UserPlatformModel.CreateUserSessionResponseSchema>;
     /**
@@ -76,8 +76,8 @@ declare class User {
      * @returns {Promise<UserPlatformModel.SessionsDeleteResponseSchema>} -
      *   Success response
      * @name deleteActiveSessions
-     * @summary: Delete active sessions
-     * @description: End multiple active user sessions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteActiveSessions/).
+     * @summary: Delete User Active Sessions
+     * @description: Terminate all active user sessions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteActiveSessions/).
      */
     deleteActiveSessions({ id, reason, requestHeaders }?: UserPlatformApplicationValidator.DeleteActiveSessionsParam, { responseHeaders }?: object): Promise<UserPlatformModel.SessionsDeleteResponseSchema>;
     /**
@@ -87,7 +87,7 @@ declare class User {
      * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
      *   Success response
      * @name deleteSession
-     * @summary: Delete session
+     * @summary: Delete User Session
      * @description: Terminate an active user session. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteSession/).
      */
     deleteSession({ id, sessionId, reason, requestHeaders }?: UserPlatformApplicationValidator.DeleteSessionParam, { responseHeaders }?: object): Promise<UserPlatformModel.SessionDeleteResponseSchema>;
@@ -97,8 +97,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.SuccessMessageResponse>} - Success response
      * @name deleteUserAttribute
-     * @summary: delete User Attribute
-     * @description: delete User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteUserAttribute/).
+     * @summary: Delete User Attribute
+     * @description: Delete User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteUserAttribute/).
      */
     deleteUserAttribute({ attributeDefId, userId, requestHeaders }?: UserPlatformApplicationValidator.DeleteUserAttributeParam, { responseHeaders }?: object): Promise<UserPlatformModel.SuccessMessageResponse>;
     /**
@@ -119,7 +119,7 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.SessionListResponseSchema>} - Success response
      * @name getActiveSessions
-     * @summary: Get active sessions
+     * @summary: Get User Active Sessions
      * @description: Retrieve a list of currently active user sessions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getActiveSessions/).
      */
     getActiveSessions({ id, requestHeaders }?: UserPlatformApplicationValidator.GetActiveSessionsParam, { responseHeaders }?: object): Promise<UserPlatformModel.SessionListResponseSchema>;
@@ -129,8 +129,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
      * @name getCustomers
-     * @summary: Get customers
-     * @description: Retrieve a list of customer profiles. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getCustomers/).
+     * @summary: Get a List of Users
+     * @description: Retrieve details of users registered in the sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getCustomers/).
      */
     getCustomers({ q, pageSize, pageNo, requestHeaders }?: UserPlatformApplicationValidator.GetCustomersParam, { responseHeaders }?: object): Promise<UserPlatformModel.CustomerListResponseSchema>;
     /**
@@ -139,8 +139,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
      * @name getPlatformConfig
-     * @summary: Get platform config
-     * @description: Retrieve configuration settings for the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getPlatformConfig/).
+     * @summary: Get Platform Config
+     * @description: Retrieve platform sales channel authentication configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getPlatformConfig/).
      */
     getPlatformConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<UserPlatformModel.PlatformSchema>;
     /**
@@ -149,8 +149,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
      * @name getUserAttribute
-     * @summary: get User Attribute
-     * @description: get User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttribute/).
+     * @summary: Get User Attribute
+     * @description: Get User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttribute/).
      */
     getUserAttribute({ attributeDefId, userId, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributeParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeResponse>;
     /**
@@ -162,7 +162,7 @@ declare class User {
      * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
      * @name getUserAttributeById
      * @summary: Get User Attribute
-     * @description: Get User Attribute details by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributeById/).
+     * @description: Retrieve User Attribute details by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributeById/).
      */
     getUserAttributeById({ attributeId, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributeByIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserAttributeResponse>;
     /**
@@ -197,8 +197,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<Object>} - Success response
      * @name getUserAttributesForUser
-     * @summary: Get User Attributes for user
-     * @description: Get all user attributes for user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributesForUser/).
+     * @summary: Get All Customer Attributes
+     * @description: Retrieve all user attributes for a specific user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributesForUser/).
      */
     getUserAttributesForUser({ userId, pageSize, pageNo, requestHeaders }?: UserPlatformApplicationValidator.GetUserAttributesForUserParam, { responseHeaders }?: object): Promise<any>;
     /**
@@ -207,7 +207,7 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
      * @name getUserGroupById
-     * @summary: Get user group by ID
+     * @summary: Get User Group
      * @description: Retrieve a user group by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroupById/).
      */
     getUserGroupById({ groupId, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupByIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupResponseSchema>;
@@ -218,7 +218,7 @@ declare class User {
      * @returns {Promise<UserPlatformModel.UserGroupListResponseSchema>} -
      *   Success response
      * @name getUserGroups
-     * @summary: Get user groups
+     * @summary: Get User Groups
      * @description: Retrieve a list of user groups. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
      */
     getUserGroups({ pageNo, pageSize, name, type, status, groupUid, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupsParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupListResponseSchema>;
@@ -228,8 +228,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.UserSearchResponseSchema>} - Success response
      * @name searchUsers
-     * @summary: Search users
-     * @description: Search and filter user profiles. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/searchUsers/).
+     * @summary: Search an Existing Users
+     * @description: Search and filter users details registered in the sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/searchUsers/).
      */
     searchUsers({ q, query, requestHeaders }?: UserPlatformApplicationValidator.SearchUsersParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserSearchResponseSchema>;
     /**
@@ -238,7 +238,7 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.UnDeleteUserSuccess>} - Success response
      * @name unDeleteUser
-     * @summary: Undelete user
+     * @summary: Restore Deleted User
      * @description: Restore a previously deleted user account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/unDeleteUser/).
      */
     unDeleteUser({ body, requestHeaders }?: UserPlatformApplicationValidator.UnDeleteUserParam, { responseHeaders }?: object): Promise<UserPlatformModel.UnDeleteUserSuccess>;
@@ -250,8 +250,8 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
      * @name updatePlatformConfig
-     * @summary: Update platform config
-     * @description: Modify and update platform configuration settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updatePlatformConfig/).
+     * @summary: Update Platform Config
+     * @description: Modify and update platform sales channel authentication configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updatePlatformConfig/).
      */
     updatePlatformConfig({ body, requestHeaders }?: UserPlatformApplicationValidator.UpdatePlatformConfigParam, { responseHeaders }?: object): Promise<UserPlatformModel.PlatformSchema>;
     /**
@@ -260,7 +260,7 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
      * @name updateUser
-     * @summary: Update user
+     * @summary: Update User Details
      * @description: Modify and update user profile information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUser/).
      */
     updateUser({ userId, body, requestHeaders }?: UserPlatformApplicationValidator.UpdateUserParam, { responseHeaders }?: object): Promise<UserPlatformModel.CreateUserResponseSchema>;
@@ -292,7 +292,7 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
      * @name updateUserGroup
-     * @summary: Update user group
+     * @summary: Update User Group
      * @description: Modify and update user group details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroup/).
      */
     updateUserGroup({ groupId, body, requestHeaders }?: UserPlatformApplicationValidator.UpdateUserGroupParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupResponseSchema>;
@@ -304,7 +304,7 @@ declare class User {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
      * @name updateUserGroupPartially
-     * @summary: Add or Remove an user from particular user group and update user group details
+     * @summary: Modify User Group
      * @description: Update user group partially on the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroupPartially/).
      */
     updateUserGroupPartially({ groupId, body, requestHeaders }?: UserPlatformApplicationValidator.UpdateUserGroupPartiallyParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupResponseSchema>;

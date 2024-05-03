@@ -42,12 +42,6 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  */
 
 /**
- * @typedef GetPosOrderByIdParam
- * @property {string} orderId - A unique number used for identifying and
- *   tracking your orders.
- */
-
-/**
  * @typedef GetShipmentBagReasonsParam
  * @property {string} shipmentId - ID of the bag. An order may contain multiple
  *   items and may get divided into one or more shipment, each having its own ID.
@@ -141,13 +135,6 @@ class OrderApplicationValidator {
       customMeta: Joi.string().allow(""),
       allowInactive: Joi.boolean(),
     });
-  }
-
-  /** @returns {GetPosOrderByIdParam} */
-  static getPosOrderById() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
-    }).required();
   }
 
   /** @returns {GetShipmentBagReasonsParam} */

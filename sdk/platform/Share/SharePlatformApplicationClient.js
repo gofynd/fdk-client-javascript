@@ -366,7 +366,7 @@ class Share {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name updateShortLinkById
-   * @summary: Update short link by ID
+   * @summary: Update short link
    * @description: Update details of a specific short link by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/updateShortLinkById/).
    */
   async updateShortLinkById(

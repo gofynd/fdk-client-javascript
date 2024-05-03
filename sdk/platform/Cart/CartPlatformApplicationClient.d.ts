@@ -9,8 +9,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.SaveAddressResponse>} - Success response
      * @name addAddress
-     * @summary: Add a new user address
-     * @description: Create and add a new user address for cart checkout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addAddress/).
+     * @summary: Create a new address
+     * @description: Customers can add a new address to their cart to save details such as name, email, contact information, and address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addAddress/).
      */
     addAddress({ body, requestHeaders }?: CartPlatformApplicationValidator.AddAddressParam, { responseHeaders }?: object): Promise<CartPlatformModel.SaveAddressResponse>;
     /**
@@ -19,8 +19,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.AddCartDetailResponse>} - Success response
      * @name addItems
-     * @summary: Add items to the cart
-     * @description: Add items to the shopping cart  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addItems/).
+     * @summary: Add items to cart
+     * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addItems/).
      */
     addItems({ cartId, body, b, requestHeaders }?: CartPlatformApplicationValidator.AddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResponse>;
     /**
@@ -29,8 +29,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
      * @name addPriceAdjustment
-     * @summary: Add price adjustments
-     * @description: Apply price adjustments to items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addPriceAdjustment/).
+     * @summary: Create price adjustments
+     * @description: Create custom price adjustments for items in the cart, facilitating the application of discounts or promotions. Price adjustments can be tailored based on specific sales channel contexts, enhancing flexibility in pricing strategies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addPriceAdjustment/).
      */
     addPriceAdjustment({ body, requestHeaders }?: CartPlatformApplicationValidator.AddPriceAdjustmentParam, { responseHeaders }?: object): Promise<CartPlatformModel.PriceAdjustmentResponse>;
     /**
@@ -39,8 +39,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
      * @name applyCoupon
-     * @summary: Apply a coupon to the cart
-     * @description: Apply a selected coupon to the items in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/applyCoupon/).
+     * @summary: Apply coupon
+     * @description: Apply a coupon code to the customer's cart to trigger discounts on eligible items - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/applyCoupon/).
      */
     applyCoupon({ body, i, b, p, id, buyNow, requestHeaders }?: CartPlatformApplicationValidator.ApplyCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
@@ -54,7 +54,7 @@ declare class Cart {
      *
      * @name checkCartServiceability
      * @summary: Check cart serviceability
-     * @description: Verify if the items in the cart are serviceable. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkCartServiceability/).
+     * @description: Verify the serviceability of items in the cart at a specific pin code and ensure accurate delivery promises. System checks each item's availability and delivery feasibility, providing real-time information on serviceability and estimated delivery times. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkCartServiceability/).
      */
     checkCartServiceability({ body, requestHeaders }?: CartPlatformApplicationValidator.CheckCartServiceabilityParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenApiCartServiceabilityResponse>;
     /**
@@ -63,8 +63,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.OpenApiCheckoutResponse>} - Success response
      * @name checkoutCart
-     * @summary: Proceed to cart checkout
-     * @description: Initiate the checkout process for the items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkoutCart/).
+     * @summary: Checkout cart
+     * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkoutCart/).
      */
     checkoutCart({ body, requestHeaders }?: CartPlatformApplicationValidator.CheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenApiCheckoutResponse>;
     /**
@@ -75,8 +75,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartMetaConfigAdd>} - Success response
      * @name createCartMetaConfig
-     * @summary: Create new cart meta configuration
-     * @description: Create new cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCartMetaConfig/).
+     * @summary: Create a new cart meta
+     * @description: Create custom meta configurations for carts associated with a specific sales channel. By specifying the company ID and application ID, seller can define unique cart settings, including preferences, rules, and constraints, tailored to their business needs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCartMetaConfig/).
      */
     createCartMetaConfig({ body, requestHeaders }?: CartPlatformApplicationValidator.CreateCartMetaConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigAdd>;
     /**
@@ -85,8 +85,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
      * @name createCoupon
-     * @summary: Create a new coupon
-     * @description: Generate and add a new coupon to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCoupon/).
+     * @summary: Create a coupon
+     * @description: Creates a new coupon based on the selected coupon type. Sellers can choose from multiple supported coupon types, including percentage value, fixed amount value, bundled discount, buy X get Y items, and more, along with customizable coupon criteria to meet specific business requirements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCoupon/).
      */
     createCoupon({ body, requestHeaders }?: CartPlatformApplicationValidator.CreateCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
     /**
@@ -95,8 +95,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.PromotionAdd>} - Success response
      * @name createPromotion
-     * @summary: Create a new promotion
-     * @description: Generate and add a new promotion to the cart system  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createPromotion/).
+     * @summary: Create a promotion
+     * @description: Creates a new promotion based on the selected promotion type. Sellers can choose from multiple supported promotion types, including percentage value, fixed amount value, bundled discount, buy X get Y items, and more, along with customizable promotion criteria to meet specific business requirements. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createPromotion/).
      */
     createPromotion({ body, requestHeaders }?: CartPlatformApplicationValidator.CreatePromotionParam, { responseHeaders }?: object): Promise<CartPlatformModel.PromotionAdd>;
     /**
@@ -106,7 +106,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.DeleteCartDetailResponse>} - Success response
      * @name deleteCart
      * @summary: Delete a cart
-     * @description: Delete a specific shopping cart from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/deleteCart/).
+     * @description: Delete all items from the user's cart and resets it to its initial state, providing a clean slate for new selections. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/deleteCart/).
      */
     deleteCart({ body, id, requestHeaders }?: CartPlatformApplicationValidator.DeleteCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.DeleteCartDetailResponse>;
     /**
@@ -117,8 +117,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.OpenapiCartDetailsResponse>} - Success response
      * @name fetchAndvalidateCartItems
-     * @summary: Fetch and validate cart items
-     * @description: Retrieve and validate items currently in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchAndvalidateCartItems/).
+     * @summary: Get and validate cart items
+     * @description: Retrieve cart details for a provided list of cart items and validate its contents. This ensures accuracy and completeness in cart information, including item quantities, prices, discounts, and applicable taxes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchAndvalidateCartItems/).
      */
     fetchAndvalidateCartItems({ body, requestHeaders }?: CartPlatformApplicationValidator.FetchAndvalidateCartItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.OpenapiCartDetailsResponse>;
     /**
@@ -127,8 +127,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartMetaConfigAdd>} - Success response
      * @name fetchCartMetaConfig
-     * @summary: Fetch cart meta configuration
-     * @description: Fetch cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchCartMetaConfig/).
+     * @summary: Get cart meta
+     * @description: Retrieve meta configuration settings tailored for customizing the cart experience within a specific sales channel. Cart meta includes configuration settings such as allowed maximum cart value, allowed minimum cart value, maximum allowed cart items, delivery charges, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchCartMetaConfig/).
      */
     fetchCartMetaConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigAdd>;
     /**
@@ -137,8 +137,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.AbandonedCartResponse>} - Success response
      * @name getAbandonedCart
-     * @summary: Retrieve abandoned carts
-     * @description: Retrieve abandoned carts for analysis and potential recovery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCart/).
+     * @summary: Get abandoned carts
+     * @description: Retrieve the list of abandoned carts that have been active for the specified period of time and have not yet been archived for the specific sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCart/).
      */
     getAbandonedCart({ pageNo, pageSize, fromDate, toDate, anonymousCart, lastId, sortOn, requestHeaders, }?: CartPlatformApplicationValidator.GetAbandonedCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.AbandonedCartResponse>;
     /**
@@ -150,7 +150,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
      * @name getAbandonedCartDetails
      * @summary: Get abandoned cart details
-     * @description: Retrieve detailed information about a specific abandoned cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCartDetails/).
+     * @description: Retrieves abandoned cart details linked to a specific customer using a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCartDetails/).
      */
     getAbandonedCartDetails({ id, i, b, c, requestHeaders }?: CartPlatformApplicationValidator.GetAbandonedCartDetailsParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
@@ -159,8 +159,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.PlatformAddress>} - Success response
      * @name getAddressById
-     * @summary: Fetch a single address by its ID
-     * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAddressById/).
+     * @summary: Get a address
+     * @description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAddressById/).
      */
     getAddressById({ id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId, requestHeaders, }?: CartPlatformApplicationValidator.GetAddressByIdParam, { responseHeaders }?: object): Promise<CartPlatformModel.PlatformAddress>;
     /**
@@ -170,8 +170,8 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.PlatformGetAddressesResponse>} -
      *   Success response
      * @name getAddresses
-     * @summary: Fetch address
-     * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id  mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAddresses/).
+     * @summary: List customer addresses
+     * @description: Retrieves a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAddresses/).
      */
     getAddresses({ cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId, requestHeaders, }?: CartPlatformApplicationValidator.GetAddressesParam, { responseHeaders }?: object): Promise<CartPlatformModel.PlatformGetAddressesResponse>;
     /**
@@ -180,8 +180,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.GetCouponResponse>} - Success response
      * @name getAppCoupons
-     * @summary: Get app-specific coupons
-     * @description: Retrieve coupons specific to the mobile app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAppCoupons/).
+     * @summary: List coupons
+     * @description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAppCoupons/).
      */
     getAppCoupons({ id, buyNow, slug, storeId, requestHeaders }?: CartPlatformApplicationValidator.GetAppCouponsParam, { responseHeaders }?: object): Promise<CartPlatformModel.GetCouponResponse>;
     /**
@@ -192,8 +192,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartDeliveryModesResponse>} - Success response
      * @name getAvailableDeliveryModes
-     * @summary: Get available delivery modes
-     * @description: Retrieve a list of available delivery modes for cart checkout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAvailableDeliveryModes/).
+     * @summary: Get delivery modes
+     * @description: Retrieve a list of delivery modes (home delivery/store pickup) along with a list of available pickup stores for a given cart at a specified PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAvailableDeliveryModes/).
      */
     getAvailableDeliveryModes({ areaCode, id, requestHeaders }?: CartPlatformApplicationValidator.GetAvailableDeliveryModesParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDeliveryModesResponse>;
     /**
@@ -202,8 +202,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
      * @name getCart
-     * @summary: Get cart details
-     * @description: Retrieve detailed information about a shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCart/).
+     * @summary: Get a cart
+     * @description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCart/).
      */
     getCart({ id, userId, i, b, assignCardId, buyNow, requestHeaders }?: CartPlatformApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
@@ -212,8 +212,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.MultiCartResponse>} - Success response
      * @name getCartList
-     * @summary: Retrieve a list of carts
-     * @description: Retrieve a list of saved shopping carts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartList/).
+     * @summary: List carts
+     * @description: Retrieve the list of active carts associated with a specific customer.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartList/).
      */
     getCartList({ fromDate, toDate, filterOn, requestHeaders }?: CartPlatformApplicationValidator.GetCartListParam, { responseHeaders }?: object): Promise<CartPlatformModel.MultiCartResponse>;
     /**
@@ -222,8 +222,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.GetShareCartLinkResponse>} - Success response
      * @name getCartShareLink
-     * @summary: Generate token for sharing the cart
-     * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartShareLink/).
+     * @summary: Share cart link
+     * @description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartShareLink/).
      */
     getCartShareLink({ body, requestHeaders }?: CartPlatformApplicationValidator.GetCartShareLinkParam, { responseHeaders }?: object): Promise<CartPlatformModel.GetShareCartLinkResponse>;
     /**
@@ -232,8 +232,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.SharedCartResponse>} - Success response
      * @name getCartSharedItems
-     * @summary: Get items shared via a cart link
-     * @description: Retrieve the items shared with you via a cart link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartSharedItems/).
+     * @summary: List shared cart items
+     * @description: Retrieve the cart items from the shared cart link based on unique token. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartSharedItems/).
      */
     getCartSharedItems({ token, requestHeaders }?: CartPlatformApplicationValidator.GetCartSharedItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.SharedCartResponse>;
     /**
@@ -242,8 +242,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CouponUpdate>} - Success response
      * @name getCouponById
-     * @summary: Get coupon details by ID
-     * @description: Retrieve detailed information about a specific coupon using its unique ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponById/).
+     * @summary: Get a coupon
+     * @description: Retrieve details of a specific coupon by providing its unique identifier to obtain information such as coupon type, rules, validity period and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponById/).
      */
     getCouponById({ id, requestHeaders }?: CartPlatformApplicationValidator.GetCouponByIdParam, { responseHeaders }?: object): Promise<CartPlatformModel.CouponUpdate>;
     /**
@@ -252,8 +252,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<Object>} - Success response
      * @name getCouponCodeExists
-     * @summary: Check if a coupon code exists
-     * @description: Verify the existence of a specific coupon code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponCodeExists/).
+     * @summary: Check coupon code exists
+     * @description: Validates the presence of a coupon code for the specified sales channel to verify whether the provided code already exists or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponCodeExists/).
      */
     getCouponCodeExists({ code, requestHeaders }?: CartPlatformApplicationValidator.GetCouponCodeExistsParam, { responseHeaders }?: object): Promise<any>;
     /**
@@ -265,7 +265,7 @@ declare class Cart {
      * @returns {Promise<Object>} - Success response
      * @name getCouponOptionValues
      * @summary: Get coupon option values
-     * @description: Retrieve available values for coupon options. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponOptionValues/).
+     * @description: Retrieves the available values for coupon options used to create and update coupons. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponOptionValues/).
      */
     getCouponOptionValues({ requestHeaders }?: any, { responseHeaders }?: object): Promise<any>;
     /**
@@ -274,8 +274,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CouponsResponse>} - Success response
      * @name getCoupons
-     * @summary: Retrieve available coupons
-     * @description: Retrieve a list of available coupons for use in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCoupons/).
+     * @summary: List coupons
+     * @description: Retrieve a list of all created coupons for specific sales channel. It also supports searching based on text search, pagination and other flags to filter coupons. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCoupons/).
      */
     getCoupons({ pageNo, pageSize, isArchived, title, isPublic, isDisplay, typeSlug, code, requestHeaders, }?: CartPlatformApplicationValidator.GetCouponsParam, { responseHeaders }?: object): Promise<CartPlatformModel.CouponsResponse>;
     /**
@@ -284,8 +284,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartItemCountResponse>} - Success response
      * @name getItemCount
-     * @summary: Get the item count in a cart
-     * @description: Retrieve the total number of items in a shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getItemCount/).
+     * @summary: Get a cart items count
+     * @description: Retrieve the total count of items currently present in the customer's cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getItemCount/).
      */
     getItemCount({ id, buyNow, requestHeaders }?: CartPlatformApplicationValidator.GetItemCountParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartItemCountResponse>;
     /**
@@ -296,8 +296,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.ActivePromosResponse>} - Success response
      * @name getPromosCouponConfig
-     * @summary: Get promotion and coupon configuration
-     * @description: Retrieve configuration settings for promotions and coupons. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromosCouponConfig/).
+     * @summary: Get promotion and coupon type
+     * @description: Retrieve the configuration settings related to promotions and coupons for a specific seller. It provides details of the supported types of coupons and promotions along with their descriptions, examples, and related attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromosCouponConfig/).
      */
     getPromosCouponConfig({ entityType, isHidden, requestHeaders }?: CartPlatformApplicationValidator.GetPromosCouponConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.ActivePromosResponse>;
     /**
@@ -306,8 +306,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.PromotionUpdate>} - Success response
      * @name getPromotionById
-     * @summary: Get promotion details by ID
-     * @description: Retrieve detailed information about a specific promotion using its unique ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionById/).
+     * @summary: Get a promotion
+     * @description: Retrieve details of a specific promotion by providing its unique identifier to obtain information such as promotion type, rules, validity period and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionById/).
      */
     getPromotionById({ id, requestHeaders }?: CartPlatformApplicationValidator.GetPromotionByIdParam, { responseHeaders }?: object): Promise<CartPlatformModel.PromotionUpdate>;
     /**
@@ -318,8 +318,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<Object>} - Success response
      * @name getPromotionCodeExists
-     * @summary: Check if a promotion code exists
-     * @description: Verify the existence of a specific promotion code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionCodeExists/).
+     * @summary: Check promotion code exists
+     * @description: Validates the presence of a promotion code for the specified sales channel to verify whether the provided code already exists or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionCodeExists/).
      */
     getPromotionCodeExists({ code, requestHeaders }?: CartPlatformApplicationValidator.GetPromotionCodeExistsParam, { responseHeaders }?: object): Promise<any>;
     /**
@@ -328,8 +328,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.PromotionsResponse>} - Success response
      * @name getPromotions
-     * @summary: Retrieve available promotions
-     * @description: Retrieve a list of available promotions to apply to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotions/).
+     * @summary: List promotions
+     * @description: Retrieve a list of all created promotions for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized promotion listing for streamlined navigation and management. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotions/).
      */
     getPromotions({ pageNo, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, requestHeaders, }?: CartPlatformApplicationValidator.GetPromotionsParam, { responseHeaders }?: object): Promise<CartPlatformModel.PromotionsResponse>;
     /**
@@ -339,7 +339,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.PlatformCartShipmentsResponse>} -
      *   Success response
      * @name getShipments
-     * @summary: Get delivery date and options before checkout
+     * @summary: Get shipments details
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getShipments/).
      */
     getShipments({ pickAtStoreUid, orderingStoreId, i, p, id, addressId, areaCode, orderType, requestHeaders, }?: CartPlatformApplicationValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<CartPlatformModel.PlatformCartShipmentsResponse>;
@@ -351,8 +351,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.StoreDetailsResponse>} - Success response
      * @name getStoreAddressByUid
-     * @summary: Get store address by UID
-     * @description: Retrieve the store address using a unique identifier (UID). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getStoreAddressByUid/).
+     * @summary: Get Store Address
+     * @description: Retrieve store details by entering the unique identifier of the pickup stores. Store details include the seller's name, contact information such as email address or phone number and business address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getStoreAddressByUid/).
      */
     getStoreAddressByUid({ storeUid, requestHeaders }?: CartPlatformApplicationValidator.GetStoreAddressByUidParam, { responseHeaders }?: object): Promise<CartPlatformModel.StoreDetailsResponse>;
     /**
@@ -361,8 +361,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.OverrideCheckoutResponse>} - Success response
      * @name overrideCart
-     * @summary: Override the cart
-     * @description: Override the current cart with a new configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/overrideCart/).
+     * @summary: Update cart checkout
+     * @description: Overrides the cart's checkout process with a new provided cart items. It provides flexibility in customizing checkout flows to meet specific business requirements, enhancing the user experience and optimizing order processing workflows. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/overrideCart/).
      */
     overrideCart({ body, requestHeaders }?: CartPlatformApplicationValidator.OverrideCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.OverrideCheckoutResponse>;
     /**
@@ -371,8 +371,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.AddCartDetailResponse>} - Success response
      * @name platformAddItems
-     * @summary: Add items via platform integration
-     * @description: Add items to the cart through platform integration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformAddItems/).
+     * @summary: Add items to cart
+     * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformAddItems/).
      */
     platformAddItems({ body, i, b, buyNow, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformAddItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.AddCartDetailResponse>;
     /**
@@ -383,8 +383,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartCheckoutResponse>} - Success response
      * @name platformCheckoutCart
-     * @summary: Platform-specific cart checkout
-     * @description: Initiate cart checkout through platform-specific integration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCart/).
+     * @summary: Checkout cart
+     * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCart/).
      */
     platformCheckoutCart({ body, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResponse>;
     /**
@@ -395,8 +395,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartCheckoutResponse>} - Success response
      * @name platformCheckoutCartV2
-     * @summary: Platform-specific cart checkout v2
-     * @description: Initiate cart checkout through an updated platform-specific integration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCartV2/).
+     * @summary: Cart checkout (latest)
+     * @description: Checkout process that supports multiple MOP(mode of payment). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCartV2/).
      */
     platformCheckoutCartV2({ body, id, requestHeaders }?: CartPlatformApplicationValidator.PlatformCheckoutCartV2Param, { responseHeaders }?: object): Promise<CartPlatformModel.CartCheckoutResponse>;
     /**
@@ -405,8 +405,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.UpdateCartDetailResponse>} - Success response
      * @name platformUpdateCart
-     * @summary: Update items in the customer 's cart using cart id
-     * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call. update_item for update items. remove_item for removing items.item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity  item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformUpdateCart/).
+     * @summary: Update cart items
+     * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformUpdateCart/).
      */
     platformUpdateCart({ body, id, i, b, buyNow, requestHeaders }?: CartPlatformApplicationValidator.PlatformUpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResponse>;
     /**
@@ -415,8 +415,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.DeleteAddressResponse>} - Success response
      * @name removeAddress
-     * @summary: Remove a user address
-     * @description: Delete an existing user address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeAddress/).
+     * @summary: Delete a address
+     * @description: Remove an existing customer address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeAddress/).
      */
     removeAddress({ id, userId, requestHeaders }?: CartPlatformApplicationValidator.RemoveAddressParam, { responseHeaders }?: object): Promise<CartPlatformModel.DeleteAddressResponse>;
     /**
@@ -425,8 +425,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
      * @name removeCoupon
-     * @summary: Remove a coupon from the cart
-     * @description: Remove a coupon from the items in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeCoupon/).
+     * @summary: Remove coupon
+     * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeCoupon/).
      */
     removeCoupon({ uid, buyNow, requestHeaders }?: CartPlatformApplicationValidator.RemoveCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
@@ -438,7 +438,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
      * @name removePriceAdjustment
      * @summary: Remove price adjustments
-     * @description: Remove price adjustments applied to items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removePriceAdjustment/).
+     * @description: Remove the applied price adjustments for specific items within the cart based on unique price adjustment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removePriceAdjustment/).
      */
     removePriceAdjustment({ id, requestHeaders }?: CartPlatformApplicationValidator.RemovePriceAdjustmentParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
     /**
@@ -447,8 +447,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
      * @name selectAddress
-     * @summary: Select an address from available addresses
-     * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectAddress/).
+     * @summary: select a delivery address
+     * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectAddress/).
      */
     selectAddress({ body, cartId, buyNow, i, b, requestHeaders }?: CartPlatformApplicationValidator.SelectAddressParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
@@ -457,8 +457,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
      * @name selectPaymentMode
-     * @summary: Select a payment mode
-     * @description: Choose a payment mode for cart checkout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentMode/).
+     * @summary: Select payment mode
+     * @description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentMode/).
      */
     selectPaymentMode({ body, id, buyNow, orderType, requestHeaders }?: CartPlatformApplicationValidator.SelectPaymentModeParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
@@ -467,8 +467,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
      * @name selectPaymentModeV2
-     * @summary: Select a payment mode v2
-     * @description: Choose a payment mode for cart checkout in the updated platform integration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentModeV2/).
+     * @summary: Select payment mode (latest)
+     * @description: Selection of payment mode that supports multiple MOP(mode of payment). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentModeV2/).
      */
     selectPaymentModeV2({ body, id, buyNow, orderType, requestHeaders }?: CartPlatformApplicationValidator.SelectPaymentModeV2Param, { responseHeaders }?: object): Promise<CartPlatformModel.CartDetailResponse>;
     /**
@@ -478,7 +478,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.UpdateAddressResponse>} - Success response
      * @name updateAddress
      * @summary: Update address
-     * @description: Modify the shipping address for an order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateAddress/).
+     * @description: Update the user address - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateAddress/).
      */
     updateAddress({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateAddressParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateAddressResponse>;
     /**
@@ -488,7 +488,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.UpdateCartDetailResponse>} - Success response
      * @name updateCart
      * @summary: Update cart items
-     * @description: Modify items and their quantities in the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCart/).
+     * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCart/).
      */
     updateCart({ cartId, body, b, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartParam, { responseHeaders }?: object): Promise<CartPlatformModel.UpdateCartDetailResponse>;
     /**
@@ -498,7 +498,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.CartMetaResponse>} - Success response
      * @name updateCartMeta
      * @summary: Update cart metadata
-     * @description: Modify the metadata associated with the shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMeta/).
+     * @description: Add or modify metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMeta/).
      */
     updateCartMeta({ body, id, buyNow, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartMetaParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaResponse>;
     /**
@@ -509,8 +509,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.CartMetaConfigUpdate>} - Success response
      * @name updateCartMetaConfig
-     * @summary: Update cart metadata configuration
-     * @description: Modify the configuration settings for cart metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMetaConfig/).
+     * @summary: Update cart meta
+     * @description: Modify the configuration settings for cart metadata associated with a specific sales channel. Cart meta includes configuration settings such as allowed maximum cart value, allowed minimum cart value, maximum allowed cart items, delivery charges, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMetaConfig/).
      */
     updateCartMetaConfig({ cartMetaId, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartMetaConfigParam, { responseHeaders }?: object): Promise<CartPlatformModel.CartMetaConfigUpdate>;
     /**
@@ -519,8 +519,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.UserCartMappingResponse>} - Success response
      * @name updateCartUser
-     * @summary: Update cart user details
-     * @description: Modify user-related details for a shopping cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartUser/).
+     * @summary: Update user of a cart
+     * @description: Modify the cart user to a new valid customer for the provided customer ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartUser/).
      */
     updateCartUser({ body, id, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartUserParam, { responseHeaders }?: object): Promise<CartPlatformModel.UserCartMappingResponse>;
     /**
@@ -531,8 +531,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.SharedCartResponse>} - Success response
      * @name updateCartWithSharedItems
-     * @summary: Update cart with shared items
-     * @description: Modify your cart by adding shared items from a cart link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartWithSharedItems/).
+     * @summary: Update shared cart items
+     * @description: Customer can either merge or replace shared cart items with existing cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartWithSharedItems/).
      */
     updateCartWithSharedItems({ token, action, cartId, requestHeaders }?: CartPlatformApplicationValidator.UpdateCartWithSharedItemsParam, { responseHeaders }?: object): Promise<CartPlatformModel.SharedCartResponse>;
     /**
@@ -542,7 +542,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
      * @name updateCoupon
      * @summary: Update a coupon
-     * @description: Modify the details and settings of an existing coupon in the cart system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCoupon/).
+     * @description: Update the details of an existing coupon by specifying its unique identifier. This includes modifying coupon attributes such as discount percentage, validity period, and associated conditions. Leveraging this functionality allows businesses to quickly adapt their promotional strategies to changing market dynamics. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCoupon/).
      */
     updateCoupon({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateCouponParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
     /**
@@ -553,8 +553,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
      * @name updateCouponPartially
-     * @summary: Partially update a coupon
-     * @description: Make partial modifications to the settings of an existing coupon in the cart system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCouponPartially/).
+     * @summary: Update a coupon partially
+     * @description: Seller can make partial adjustments of an existing coupon by specifying its unique identifier. It enables businesses to modify specific attributes of the coupon while preserving other details intact. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCouponPartially/).
      */
     updateCouponPartially({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdateCouponPartiallyParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
     /**
@@ -566,7 +566,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
      * @name updatePriceAdjustment
      * @summary: Update price adjustments
-     * @description: Modify price adjustments for items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePriceAdjustment/).
+     * @description: Modify price adjustments for specific items in the cart. By providing the seller ID, sales channel ID, and price adjustment ID, seller can apply discounts or other adjustments to the prices of cart items, facilitating dynamic pricing strategies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePriceAdjustment/).
      */
     updatePriceAdjustment({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdatePriceAdjustmentParam, { responseHeaders }?: object): Promise<CartPlatformModel.PriceAdjustmentResponse>;
     /**
@@ -576,7 +576,7 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.PromotionUpdate>} - Success response
      * @name updatePromotion
      * @summary: Update a promotion
-     * @description: Modify the details and settings of an existing promotion in the cart system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotion/).
+     * @description: Update the details of an existing promotion by specifying its unique identifier. This includes modifying promotion attributes such as discount percentage, validity period, and associated conditions. Leveraging this functionality allows businesses to quickly adapt their promotional strategies to changing market dynamics. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotion/).
      */
     updatePromotion({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdatePromotionParam, { responseHeaders }?: object): Promise<CartPlatformModel.PromotionUpdate>;
     /**
@@ -587,8 +587,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
      * @name updatePromotionPartially
-     * @summary: Partially update a promotion
-     * @description: Make partial modifications to the settings of an existing promotion in the cart system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotionPartially/).
+     * @summary: Update a promotion partially
+     * @description: Seller can make partial adjustments of an existing promotion by specifying its unique identifier. It enables businesses to modify specific attributes of the promotion while preserving other details intact. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotionPartially/).
      */
     updatePromotionPartially({ id, body, requestHeaders }?: CartPlatformApplicationValidator.UpdatePromotionPartiallyParam, { responseHeaders }?: object): Promise<CartPlatformModel.SuccessMessage>;
     /**
@@ -598,8 +598,8 @@ declare class Cart {
      * @returns {Promise<CartPlatformModel.PlatformCartShipmentsResponse>} -
      *   Success response
      * @name updateShipments
-     * @summary: Update shipment details
-     * @description: Modify the details and settings of cart shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateShipments/).
+     * @summary: Update shipments
+     * @description: Update the quantity or delivery type of the shipments. Customers can switch the order type from Home Delivery to Pick At Store and vice versa. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateShipments/).
      */
     updateShipments({ body, i, p, id, addressId, areaCode, orderType, requestHeaders }?: CartPlatformApplicationValidator.UpdateShipmentsParam, { responseHeaders }?: object): Promise<CartPlatformModel.PlatformCartShipmentsResponse>;
     /**
@@ -610,8 +610,8 @@ declare class Cart {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CartPlatformModel.PaymentCouponValidate>} - Success response
      * @name validateCouponForPayment
-     * @summary: Validate a coupon for payment
-     * @description: Verify the validity of a coupon code for the payment process. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/validateCouponForPayment/).
+     * @summary: Validate applied coupon
+     * @description: Validates the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/validateCouponForPayment/).
      */
     validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, requestHeaders, }?: CartPlatformApplicationValidator.ValidateCouponForPaymentParam, { responseHeaders }?: object): Promise<CartPlatformModel.PaymentCouponValidate>;
 }

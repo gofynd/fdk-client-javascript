@@ -70,7 +70,7 @@ declare class Share {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
      * @name getShortLinkByHash
-     * @summary: Fetch short link
+     * @summary: Get short link
      * @description: Retrieves a previously created short link using its hash identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getShortLinkByHash/).
      */
     getShortLinkByHash({ hash, requestHeaders }?: ShareApplicationValidator.GetShortLinkByHashParam, { responseHeaders }?: object): Promise<ShareApplicationModel.ShortLinkRes>;

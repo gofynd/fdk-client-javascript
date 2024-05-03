@@ -20,8 +20,6 @@ class Order {
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
       getOrderById: "/service/application/order/v1.0/orders/{order_id}",
       getOrders: "/service/application/order/v1.0/orders",
-      getPosOrderById:
-        "/service/application/order/v1.0/orders/pos-order/{order_id}",
       getShipmentBagReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
@@ -62,7 +60,7 @@ class Order {
    * @returns {Promise<OrderApplicationModel.CustomerDetailsResponse>} -
    *   Success response
    * @name getCustomerDetailsByShipmentId
-   * @summary: Retrieves shipment customer
+   * @summary: Get shipment's customer
    * @description: Retrieve customer details such as mobile number using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
    */
   async getCustomerDetailsByShipmentId(
@@ -223,8 +221,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
    * @name getOrderById
-   * @summary: Fetches order by ID
-   * @description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
+   * @summary: Get a order
+   * @description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
    */
   async getOrderById(
     { orderId, allowInactive, requestHeaders } = { requestHeaders: {} },
@@ -302,8 +300,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.OrderList>} - Success response
    * @name getOrders
-   * @summary: Lists customer orders
-   * @description: Retrieves all orders associated with a customer account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
+   * @summary: List customer orders
+   * @description: Retrieves all orders associated with a customer account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
    */
   async getOrders(
     {
@@ -413,91 +411,13 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
-   * @name getPosOrderById
-   * @summary: Retrieves POS order details
-   * @description: Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getPosOrderById/).
-   */
-  async getPosOrderById(
-    { orderId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderApplicationValidator.getPosOrderById().validate(
-      { orderId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderApplicationValidator.getPosOrderById().validate(
-      { orderId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Order > getPosOrderById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPosOrderById"],
-        params: { orderId },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderApplicationModel.OrderById().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Order > getPosOrderById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderApplicationValidator.GetShipmentBagReasonsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentBagReasons>} - Success response
    * @name getShipmentBagReasons
-   * @summary: Lists bag reasons
-   * @description: Retrieves reasons that led to the cancellation for the status of shipment bags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
+   * @summary: List bag cancellation reasons
+   * @description: Get reasons to perform full or partial cancellation of a bag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
    */
   async getShipmentBagReasons(
     { shipmentId, bagId, requestHeaders } = { requestHeaders: {} },
@@ -576,7 +496,7 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentById>} - Success response
    * @name getShipmentById
-   * @summary: Fetches shipment by ID
+   * @summary: Get a Shipment
    * @description: Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
    */
   async getShipmentById(
@@ -655,8 +575,8 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentReasons>} - Success response
    * @name getShipmentReasons
-   * @summary: Lists shipment reasons
-   * @description: Retrieve reasons explaining various shipment statuses. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
+   * @summary: List shipment cancellation reasons
+   * @description: Get reasons to perform full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
    */
   async getShipmentReasons(
     { shipmentId, requestHeaders } = { requestHeaders: {} },
@@ -734,8 +654,8 @@ class Order {
    * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponse>} -
    *   Success response
    * @name sendOtpToShipmentCustomer
-   * @summary: Sends OTP to customer
-   * @description: Sends a one-time password (OTP) to the customer for shipment verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
+   * @summary: Send OTP to customer
+   * @description: Sends a one-time password (OTP) to the customer for shipment verification - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
    */
   async sendOtpToShipmentCustomer(
     { orderId, shipmentId, requestHeaders } = { requestHeaders: {} },
@@ -814,7 +734,7 @@ class Order {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentTrack>} - Success response
    * @name trackShipment
-   * @summary: Tracks shipment status
+   * @summary: Track shipment status
    * @description: Track Shipment by shipment id, for application based on application Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/trackShipment/).
    */
   async trackShipment(
@@ -895,7 +815,7 @@ class Order {
    *
    * @name updateShipmentStatus
    * @summary: Updates shipment status
-   * @description: Modifies the current status of a specific shipment using its shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
+   * @description: Modifies the current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
    */
   async updateShipmentStatus(
     { shipmentId, body, requestHeaders } = { requestHeaders: {} },

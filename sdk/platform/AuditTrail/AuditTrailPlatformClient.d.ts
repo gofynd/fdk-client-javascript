@@ -18,8 +18,8 @@ declare class AuditTrail {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
      * @name getAuditLog
-     * @summary: Get an audit log entry
-     * @description: Retrieve a specific audit log entry - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLog/).
+     * @summary: Get an audit log
+     * @description: Retrieve a specific audit log entry. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLog/).
      */
     getAuditLog({ id, requestHeaders }?: AuditTrailPlatformValidator.GetAuditLogParam, { responseHeaders }?: object): Promise<AuditTrailPlatformModel.LogSchemaResponse>;
     /**
@@ -28,7 +28,7 @@ declare class AuditTrail {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
      * @name getAuditLogs
-     * @summary: Retrieve audit logs
+     * @summary: Get audit logs
      * @description: Retrieve audit logs for system events and actions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLogs/).
      */
     getAuditLogs({ qs, limit, sort, requestHeaders }?: AuditTrailPlatformValidator.GetAuditLogsParam, { responseHeaders }?: object): Promise<AuditTrailPlatformModel.LogSchemaResponse>;
@@ -38,8 +38,8 @@ declare class AuditTrail {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<AuditTrailPlatformModel.EntityTypesResponse>} - Success response
      * @name getEntityTypes
-     * @summary: Obtain entity types for auditing
-     * @description: List of entity types that can be audited within the platform's - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getEntityTypes/).
+     * @summary: List entity types
+     * @description: List of entity types that can be audited within the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getEntityTypes/).
      */
     getEntityTypes({ requestHeaders }?: any, { responseHeaders }?: object): Promise<AuditTrailPlatformModel.EntityTypesResponse>;
 }

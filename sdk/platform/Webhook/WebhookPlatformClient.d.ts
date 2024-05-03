@@ -9,7 +9,8 @@ declare class Webhook {
      * @returns {Promise<WebhookPlatformModel.CancelResponse>} - Success response
      * @name cancelJobByName
      * @summary: Cancel job by name
-     * @description: Cancel a specific job by its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/cancelJobByName/).
+     * @description: It will cancel export job triggerd by user in order to fetch
+     * historical delivery summery - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/cancelJobByName/).
      */
     cancelJobByName({ filename, requestHeaders }?: WebhookPlatformValidator.CancelJobByNameParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.CancelResponse>;
     /**
@@ -28,7 +29,7 @@ declare class Webhook {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<WebhookPlatformModel.EventConfigResponse>} - Success response
      * @name fetchAllEventConfigurations
-     * @summary: Fetch all event configurations
+     * @summary: List event configurations
      * @description: Retrieve all configurations for event handling. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/fetchAllEventConfigurations/).
      */
     fetchAllEventConfigurations({ requestHeaders }?: any, { responseHeaders }?: object): Promise<WebhookPlatformModel.EventConfigResponse>;
@@ -88,7 +89,7 @@ declare class Webhook {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
      * @name getSubscriberById
-     * @summary: Get subscriber by ID
+     * @summary: Get a subscriber
      * @description: Retrieve a subscriber's details by their unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscriberById/).
      */
     getSubscriberById({ subscriberId, requestHeaders }?: WebhookPlatformValidator.GetSubscriberByIdParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberResponse>;
@@ -98,7 +99,7 @@ declare class Webhook {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
      * @name getSubscribersByCompany
-     * @summary: Get subscribers by company
+     * @summary: List subscribers by company
      * @description: Retrieve subscribers associated with a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByCompany/).
      */
     getSubscribersByCompany({ pageNo, pageSize, extensionId, requestHeaders }?: WebhookPlatformValidator.GetSubscribersByCompanyParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigList>;
@@ -108,7 +109,7 @@ declare class Webhook {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
      * @name getSubscribersByExtensionId
-     * @summary: Get subscribers by extension ID
+     * @summary: List subscribers by extension ID
      * @description: Retrieve subscribers associated with a specific extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByExtensionId/).
      */
     getSubscribersByExtensionId({ extensionId, pageNo, pageSize, requestHeaders }?: WebhookPlatformValidator.GetSubscribersByExtensionIdParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigList>;
@@ -160,7 +161,7 @@ declare class Webhook {
      * @returns {Promise<WebhookPlatformModel.SubscriberConfigResponse>} -
      *   Success response
      * @name updateSubscriberConfig
-     * @summary: Update subscriber config
+     * @summary: Update a subscriber config
      * @description: Modify and update subscriber configuration settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberConfig/).
      */
     updateSubscriberConfig({ body, requestHeaders }?: WebhookPlatformValidator.UpdateSubscriberConfigParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigResponse>;

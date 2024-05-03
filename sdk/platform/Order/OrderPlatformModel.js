@@ -73,6 +73,8 @@ const Joi = require("joi");
  *   operational, financial]
  * @property {Entities[]} entities - Shipment/Entity
  * @property {boolean} [resume_tasks_after_unlock]
+ * @property {boolean} [lock_after_transition] - Lock Shipment After Transition
+ * @property {boolean} [unlock_before_transition] - Unlock Shipment After Transition
  */
 
 /**
@@ -3221,6 +3223,8 @@ class OrderPlatformModel {
       action_type: Joi.string().allow("").required(),
       entities: Joi.array().items(OrderPlatformModel.Entities()).required(),
       resume_tasks_after_unlock: Joi.boolean().allow(null),
+      lock_after_transition: Joi.boolean(),
+      unlock_before_transition: Joi.boolean(),
     });
   }
 

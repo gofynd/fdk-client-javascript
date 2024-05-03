@@ -21,7 +21,7 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name getGiveawayById
-   * @summary: Get giveaway by ID
+   * @summary: Get a giveaway
    * @description: Retrieve specific giveaway details by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getGiveawayById/).
    */
   async getGiveawayById(
@@ -252,7 +252,7 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.UserRes>} - Success response
    * @name getUserDetails
-   * @summary: Get user details
+   * @summary: Get a user
    * @description: Retrieve comprehensive details about a user in the rewards program. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserDetails/).
    */
   async getUserDetails(
@@ -329,7 +329,7 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.HistoryRes>} - Success response
    * @name getUserPointsHistory
-   * @summary: Get user points history
+   * @summary: Get reward user points history
    * @description: Retrieve the history of points earned and redeemed by a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserPointsHistory/).
    */
   async getUserPointsHistory(
@@ -416,7 +416,7 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name saveGiveAway
-   * @summary: Save giveaway
+   * @summary: Create a giveaway
    * @description: Store and manage details of a giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/saveGiveAway/).
    */
   async saveGiveAway(
@@ -576,7 +576,7 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
    * @name showGiveaways
-   * @summary: Display giveaways
+   * @summary: List giveaways
    * @description: Retrieve and display available giveaways. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
    */
   async showGiveaways(
@@ -659,7 +659,7 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Offer[]>} - Success response
    * @name showOffers
-   * @summary: Show offers
+   * @summary: List offers
    * @description: Display available offers for users. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showOffers/).
    */
   async showOffers(
@@ -729,7 +729,7 @@ class Rewards {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name updateGiveAway
-   * @summary: Update giveaway
+   * @summary: Update a giveaway
    * @description: Modify and update information about a giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateGiveAway/).
    */
   async updateGiveAway(

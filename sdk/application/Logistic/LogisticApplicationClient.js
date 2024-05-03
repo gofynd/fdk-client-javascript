@@ -53,8 +53,8 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.CountryListResponse>} - Success response
    * @name getAllCountries
-   * @summary: Lists all countries
-   * @description: Retrieve a list of all countries supported by the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
+   * @summary: Get deliverable countries
+   * @description: Retrieves a list of countries within the specified delivery zones for that application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
    */
   async getAllCountries(
     { requestHeaders } = { requestHeaders: {} },
@@ -131,8 +131,8 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.GetCountries>} - Success response
    * @name getCountries
-   * @summary: Get all countries and associated data
-   * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountries/).
+   * @summary: Get countries
+   * @description: Fetch the list of supported countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountries/).
    */
   async getCountries(
     { onboarding, pageNo, pageSize, q, requestHeaders } = {
@@ -215,8 +215,8 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.GetCountry>} - Success response
    * @name getCountry
-   * @summary: Get single country and associated data
-   * @description: Retrieve data for a single country and address format. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountry/).
+   * @summary: Get country details
+   * @description: Fetch details about a particular country and its address format customized for different business scenarios. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountry/).
    */
   async getCountry(
     { countryIsoCode, requestHeaders } = { requestHeaders: {} },
@@ -293,8 +293,8 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.GetLocalities>} - Success response
    * @name getLocalities
-   * @summary: Get Localities
-   * @description: Get Localities data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalities/).
+   * @summary: Get localities
+   * @description: Retrieve geographical data for a specific type of locality based on the provided filters. For instance, obtain a list of cities for a given country and state. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalities/).
    */
   async getLocalities(
     {
@@ -386,8 +386,8 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.GetLocality>} - Success response
    * @name getLocality
-   * @summary: Get Locality API
-   * @description: Get Locality data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocality/).
+   * @summary: Get locality detail
+   * @description: Retrieve detailed geographical data for a specific locality, such as a pincode. For example, for a pincode value of 400603, the service returns its parent locations, including city, state, and country details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocality/).
    */
   async getLocality(
     { localityType, localityValue, country, state, city, requestHeaders } = {
@@ -469,8 +469,8 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.GetStoreResponse>} - Success response
    * @name getLocations
-   * @summary: Fetches available locations
-   * @description: Retrieves a list of all locations of countries, states, cities.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocations/).
+   * @summary: Get available selling locations
+   * @description: Retrieves stores available for the application based on Delivery Zones and Order Orchestration rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocations/).
    */
   async getLocations(
     {
@@ -588,8 +588,8 @@ class Logistic {
    * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
    *   Success response
    * @name getOptimalLocations
-   * @summary: Finds optimal locations
-   * @description: Retrieve the most efficient locations for logistics purposes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
+   * @summary: Get selling locations
+   * @description: Determines and returns the best fulfillment center for customers by analyzing their location, product availability, and inventory levels. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -668,8 +668,8 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
    * @name getPincodeCity
-   * @summary: Fetches city by pincode
-   * @description: Retrieve the name of the city associated with a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
+   * @summary: Get pincode details
+   * @description: Retrieve details of a specific pincode, such as obtaining its city and state information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
    */
   async getPincodeCity(
     { pincode, requestHeaders } = { requestHeaders: {} },
@@ -748,8 +748,8 @@ class Logistic {
    *   - Success response
    *
    * @name getPincodeZones
-   * @summary: Fetches zones by pincode
-   * @description: Retreive the logistical zones corresponding to a given pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
+   * @summary: Get zones
+   * @description: Retrieve the delivery zone associated with a given pincode - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
    */
   async getPincodeZones(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -826,8 +826,8 @@ class Logistic {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
    * @name getTatProduct
-   * @summary: Retrieves product turnaround time
-   * @description: Retrieve the estimated delivery time for a specific product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
+   * @summary: Get product's turnaround time
+   * @description: Retrieve the estimated delivery timeframe for a specific product from a designated store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
    */
   async getTatProduct(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -905,8 +905,8 @@ class Logistic {
    * @returns {Promise<LogisticApplicationModel.ValidateAddressRequest>} -
    *   Success response
    * @name validateAddress
-   * @summary: Validate given address wrt template
-   * @description: Validate given address wrt template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/validateAddress/).
+   * @summary: Validate address
+   * @description: Validate addresses using specific templates customized for each country and tailored to various business scenarios. This validation ensures that the data conforms to the information currently stored in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/validateAddress/).
    */
   async validateAddress(
     { countryIsoCode, templateName, body, requestHeaders } = {

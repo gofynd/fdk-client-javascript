@@ -8,7 +8,7 @@ declare class Theme {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
      * @name addMarketplaceThemeToCompany
-     * @summary: Add marketplace theme to company
+     * @summary: Create a company theme
      * @description: Incorporate a marketplace theme into a company's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addMarketplaceThemeToCompany/).
      */
     addMarketplaceThemeToCompany({ body, requestHeaders }?: ThemePlatformValidator.AddMarketplaceThemeToCompanyParam, { responseHeaders }?: object): Promise<ThemePlatformModel.CompanyThemeSchema>;
@@ -18,7 +18,7 @@ declare class Theme {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
      * @name deleteCompanyTheme
-     * @summary: Delete company theme
+     * @summary: Delete a company theme
      * @description: Remove a theme associated with a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteCompanyTheme/).
      */
     deleteCompanyTheme({ themeId, requestHeaders }?: ThemePlatformValidator.DeleteCompanyThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.CompanyThemeSchema>;
@@ -28,8 +28,8 @@ declare class Theme {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ThemePlatformModel.CompanyPrivateTheme[]>} - Success response
      * @name getCompanyLevelPrivateThemes
-     * @summary: Get private themes for a company
-     * @description: Retrieve a list of private themes available for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelPrivateThemes/).
+     * @summary: List private company themes
+     * @description: Retrieve a list of private themes added to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelPrivateThemes/).
      */
     getCompanyLevelPrivateThemes({ searchText, requestHeaders }?: ThemePlatformValidator.GetCompanyLevelPrivateThemesParam, { responseHeaders }?: object): Promise<ThemePlatformModel.CompanyPrivateTheme[]>;
     /**
@@ -38,8 +38,8 @@ declare class Theme {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<ThemePlatformModel.CompanyThemeSchema[]>} - Success response
      * @name getCompanyLevelThemes
-     * @summary: Get company-level themes
-     * @description: Retrieve themes specific to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
+     * @summary: List company themes
+     * @description: Retrieve themes added to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
      */
     getCompanyLevelThemes({ searchText, requestHeaders }?: ThemePlatformValidator.GetCompanyLevelThemesParam, { responseHeaders }?: object): Promise<ThemePlatformModel.CompanyThemeSchema[]>;
 }

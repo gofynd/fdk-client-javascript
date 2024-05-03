@@ -65,6 +65,8 @@ export = OrderPlatformModel;
  *   operational, financial]
  * @property {Entities[]} entities - Shipment/Entity
  * @property {boolean} [resume_tasks_after_unlock]
+ * @property {boolean} [lock_after_transition] - Lock Shipment After Transition
+ * @property {boolean} [unlock_before_transition] - Unlock Shipment After Transition
  */
 /**
  * @typedef OriginalFilter
@@ -2948,6 +2950,14 @@ type UpdateShipmentLockPayload = {
      */
     entities: Entities[];
     resume_tasks_after_unlock?: boolean;
+    /**
+     * - Lock Shipment After Transition
+     */
+    lock_after_transition?: boolean;
+    /**
+     * - Unlock Shipment After Transition
+     */
+    unlock_before_transition?: boolean;
 };
 /** @returns {OriginalFilter} */
 declare function OriginalFilter(): OriginalFilter;

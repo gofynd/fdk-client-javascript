@@ -16,8 +16,8 @@ declare class Theme {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
      * @name getAllPages
-     * @summary: Fetch all pages
-     * @description: Retrieves a list of all the pages available within the applied theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
+     * @summary: List pages
+     * @description: Get all page level configs, sections and SEO data of a theme - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
      */
     getAllPages({ themeId, requestHeaders }?: ThemeApplicationValidator.GetAllPagesParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.AllAvailablePageSchema>;
     /**
@@ -26,8 +26,8 @@ declare class Theme {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
      * @name getAppliedTheme
-     * @summary: Current theme
-     * @description: Gets the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
+     * @summary: Get applied theme
+     * @description: Gets the theme configuration and template details of a theme applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
      */
     getAppliedTheme({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
     /**
@@ -36,8 +36,8 @@ declare class Theme {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
      * @name getPage
-     * @summary: Single page details
-     * @description: Retrieve detailed information for a specific page within the theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
+     * @summary: Get theme page
+     * @description: Get page level configurations, applied sections and SEO data of a page by `page_value` received from list pages API - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
      */
     getPage({ themeId, pageValue, filters, company, requestHeaders }?: ThemeApplicationValidator.GetPageParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.AvailablePageSchema>;
     /**
@@ -46,8 +46,8 @@ declare class Theme {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
      * @name getThemeForPreview
-     * @summary: Preview theme
-     * @description: Retrieves a theme for previewing before applying it to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
+     * @summary: Get theme for preview
+     * @description: Gets the theme configuration and template details of a theme by theme Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
      */
     getThemeForPreview({ themeId, requestHeaders }?: ThemeApplicationValidator.GetThemeForPreviewParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
 }

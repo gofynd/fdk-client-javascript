@@ -43,8 +43,8 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
    * @name completeUpload
-   * @summary: Finalizes upload process
-   * @description: Complete the process of uploading the file, and will return the URL of the uploaded file - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
+   * @summary: Complete file upload
+   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
    */
   async completeUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -121,7 +121,7 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
    * @name signUrls
-   * @summary: Signs file URLs
+   * @summary: Get signed URLs
    * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
    */
   async signUrls(
@@ -199,8 +199,8 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
    * @name startUpload
-   * @summary: Initiates file upload
-   * @description: Starts the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
+   * @summary: Initiate file upload
+   * @description: Get a signed url for uploading a file - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
    */
   async startUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },

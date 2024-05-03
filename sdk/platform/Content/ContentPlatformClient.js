@@ -25,7 +25,7 @@ class Content {
    *
    * @name createCustomFieldByResourceId
    * @summary: Create custom field entries for gives resource and resource_id
-   * @description: Use this API to create the custom field entry for given resource and resource_id in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomFieldByResourceId/).
+   * @description: You can add a custom field using this endpoint to any resource by providing the resource ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomFieldByResourceId/).
    */
   async createCustomFieldByResourceId(
     { resource, resourceId, body, requestHeaders } = { requestHeaders: {} },
@@ -112,7 +112,7 @@ class Content {
    *
    * @name createCustomFieldDefinition
    * @summary: Create custom field definition
-   * @description: Use this API to create a custom field definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomFieldDefinition/).
+   * @description: You can create custom fields definition to any resource so you can extend property of resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomFieldDefinition/).
    */
   async createCustomFieldDefinition(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -193,7 +193,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectSchema>} - Success response
    * @name createCustomObject
    * @summary: Create custom object entries
-   * @description: Use this API to create the custom object entry. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomObject/).
+   * @description: Custom object entries against the custom object definition can be added using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomObject/).
    */
   async createCustomObject(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -275,7 +275,7 @@ class Content {
    *   Success response
    * @name createCustomObjectDefinition
    * @summary: Create custom object definition
-   * @description: Use this API to create custom object defintion - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomObjectDefinition/).
+   * @description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createCustomObjectDefinition/).
    */
   async createCustomObjectDefinition(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -356,7 +356,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
    * @name deleteCustomFieldDefinition
    * @summary: Delete custom fields definition
-   * @description: Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldDefinition/).
+   * @description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomFieldDefinition/).
    */
   async deleteCustomFieldDefinition(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -437,7 +437,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomDataDeleteSchema>} - Success response
    * @name deleteCustomObject
    * @summary: Delete custom object
-   * @description: Use this API to delete the custom object entry by id. This will also delete related custom fields entries related to this custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObject/).
+   * @description: Custom object entries can be deleted by providing the delete ID using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObject/).
    */
   async deleteCustomObject(
     { metaobjectId, requestHeaders } = { requestHeaders: {} },
@@ -519,8 +519,8 @@ class Content {
    *   - Success response
    *
    * @name deleteCustomObjectDefinition
-   * @summary: delete custom object definition by id
-   * @description: Use this API to delete a custom object definition and related data for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObjectDefinition/).
+   * @summary: delete custom object definition
+   * @description: Custom object definitions can be deleted using this endpoint by providing the definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteCustomObjectDefinition/).
    */
   async deleteCustomObjectDefinition(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -603,7 +603,7 @@ class Content {
    *
    * @name exportCustomObjectEntries
    * @summary: Initiate download for bulk custom object entries
-   * @description: Use this api to initiate download of bulk entries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportCustomObjectEntries/).
+   * @description: Custom object bulk export of bulk entries can be perform using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/exportCustomObjectEntries/).
    */
   async exportCustomObjectEntries(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -685,8 +685,8 @@ class Content {
    *   - Success response
    *
    * @name getCustomFieldDefinition
-   * @summary: Get custom fields definition by id
-   * @description: Use this API to retrieve the definitions of custom fields using definition_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinition/).
+   * @summary: Get custom fields definition
+   * @description: Custom field definitions can be fetch using definition id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinition/).
    */
   async getCustomFieldDefinition(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -768,7 +768,7 @@ class Content {
    *   Success response
    * @name getCustomFieldDefinitions
    * @summary: Get custom fields definitions
-   * @description: Use this API to retrieve the definitions of custom fields. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinitions/).
+   * @description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldDefinitions/).
    */
   async getCustomFieldDefinitions(
     { pageNo, pageSize, resource, type, search, requestHeaders } = {
@@ -864,7 +864,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
    * @name getCustomFieldTypes
    * @summary: Get custom field types
-   * @description: Use this API to retrieve the custom field types  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldTypes/).
+   * @description: Each custom field and custom field definition has a type, which defines the type of information that it can store. The custom field types have built-in validation. This api will give list of supported custom fields types - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldTypes/).
    */
   async getCustomFieldTypes(
     { requestHeaders } = { requestHeaders: {} },
@@ -940,7 +940,7 @@ class Content {
    *   Success response
    * @name getCustomFields
    * @summary: Get list of custom fields of given resource
-   * @description: Use this API to retrieve the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFields/).
+   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFields/).
    */
   async getCustomFields(
     { resource, requestHeaders } = { requestHeaders: {} },
@@ -1021,7 +1021,7 @@ class Content {
    *
    * @name getCustomFieldsByResourceId
    * @summary: Get list of custom fields of given resource and resource id
-   * @description: Use this API to retrieve the custom fields for given resource in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldsByResourceId/).
+   * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomFieldsByResourceId/).
    */
   async getCustomFieldsByResourceId(
     { resource, resourceId, requestHeaders } = { requestHeaders: {} },
@@ -1104,7 +1104,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
    * @name getCustomObject
    * @summary: Get custom object details
-   * @description: Use this API to retrieve the custom object details and their fields details and definitions and references. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObject/).
+   * @description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObject/).
    */
   async getCustomObject(
     { metaobjectId, requestHeaders } = { requestHeaders: {} },
@@ -1183,8 +1183,8 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectDefinitionSchema>} -
    *   Success response
    * @name getCustomObjectDefinition
-   * @summary: get custom object definition by id
-   * @description: Use this API to update a custom object definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinition/).
+   * @summary: Get custom object definition
+   * @description: Custom object definitions can be fetched using their definition ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinition/).
    */
   async getCustomObjectDefinition(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -1266,7 +1266,7 @@ class Content {
    *   Success response
    * @name getCustomObjectDefinitions
    * @summary: Get custom object definitions
-   * @description: Use this API to retrieve the custom object definitions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinitions/).
+   * @description: Custom object definition lists can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjectDefinitions/).
    */
   async getCustomObjectDefinitions(
     { pageNo, pageSize, search, requestHeaders } = { requestHeaders: {} },
@@ -1354,7 +1354,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectsSchema>} - Success response
    * @name getCustomObjects
    * @summary: Get list of custom objects
-   * @description: Use this API to retrieve the custom objects. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjects/).
+   * @description: Custom object entries can fetch using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjects/).
    */
   async getCustomObjects(
     { pageNo, pageSize, definitionId, requestHeaders } = { requestHeaders: {} },
@@ -1439,8 +1439,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CustomObjectBulkEntry>} - Success response
    * @name getJobs
-   * @summary: Fetch bulk import and export job list
-   * @description: Use this api to get list of jobs of bulk import and exports - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getJobs/).
+   * @summary: Get bulk import and export job list
+   * @description: Custom object bulk import and export jobs status and details can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getJobs/).
    */
   async getJobs(
     { page, pageSize, actionType, requestHeaders } = { requestHeaders: {} },
@@ -1524,7 +1524,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.ResourcesSchema>} - Success response
    * @name getResources
    * @summary: Get resources
-   * @description: Use this API to retrieve the resources, such as products, collections, customers, selling locations, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getResources/).
+   * @description: Each custom fields is assosiated with a resource such as product, promotion, coupon, selling location etc, This will gives list of supported resource list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getResources/).
    */
   async getResources(
     { requestHeaders } = { requestHeaders: {} },
@@ -1601,7 +1601,7 @@ class Content {
    *
    * @name importCustomObjectEntries
    * @summary: Bulk custom object entries upload
-   * @description: Use this API to upload custom object entries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importCustomObjectEntries/).
+   * @description: Custom object bulk import of bulk entries can be performed using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/importCustomObjectEntries/).
    */
   async importCustomObjectEntries(
     { definitionId, body, requestHeaders } = { requestHeaders: {} },
@@ -1683,8 +1683,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
    * @name sampleCustomObjectBulkEntry
-   * @summary: download sample for custom object bulk entry
-   * @description: Use this api to get sample csv file  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleCustomObjectBulkEntry/).
+   * @summary: Download sample for custom object bulk entry
+   * @description: Sample files for custom object bulk import can be obtained from this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/sampleCustomObjectBulkEntry/).
    */
   async sampleCustomObjectBulkEntry(
     { definitionId, requestHeaders } = { requestHeaders: {} },
@@ -1764,7 +1764,7 @@ class Content {
    *
    * @name updateCustomFieldDefinition
    * @summary: Update custom field definition
-   * @description: Use this API to update a custom field definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomFieldDefinition/).
+   * @description: Custom fields definition can be update using this api, You can update custom field definition name and description. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomFieldDefinition/).
    */
   async updateCustomFieldDefinition(
     { definitionId, body, requestHeaders } = { requestHeaders: {} },
@@ -1847,7 +1847,7 @@ class Content {
    * @returns {Promise<ContentPlatformModel.CustomObjectByIdSchema>} - Success response
    * @name updateCustomObject
    * @summary: Update custom object details
-   * @description: Use this API to update a custom object detail for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObject/).
+   * @description: Custom object entries can be updated using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObject/).
    */
   async updateCustomObject(
     { metaobjectId, body, requestHeaders } = { requestHeaders: {} },
@@ -1931,7 +1931,7 @@ class Content {
    *   Success response
    * @name updateCustomObjectDefinition
    * @summary: Update custom object definition
-   * @description: Use this API to update a custom object definition for your application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObjectDefinition/).
+   * @description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateCustomObjectDefinition/).
    */
   async updateCustomObjectDefinition(
     { definitionId, body, requestHeaders } = { requestHeaders: {} },

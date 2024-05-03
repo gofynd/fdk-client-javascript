@@ -273,7 +273,7 @@ class Payment {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PayoutsResponse>} - Success response
    * @name getAllPayouts
-   * @summary: Get all payouts
+   * @summary: List payouts
    * @description: Retrieve a list of all payout transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getAllPayouts/).
    */
   async getAllPayouts(
@@ -757,7 +757,7 @@ class Payment {
    * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
    * @name verifyIfscCode
    * @summary: Verify IFSC code
-   * @description: Check the authenticity of an IFSC code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
+   * @description: Checks the validity of the provided IFSC code and returns bank details if valid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
    */
   async verifyIfscCode(
     { ifscCode, requestHeaders } = { requestHeaders: {} },

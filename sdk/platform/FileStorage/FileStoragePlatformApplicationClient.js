@@ -25,8 +25,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name appCompleteUpload
-   * @summary: Application complete upload
-   * @description: Finish uploading a file from an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
+   * @summary: Complete file upload for Application
+   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database on platform at application level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
    */
   async appCompleteUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -108,8 +108,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name appCopyFiles
-   * @summary: Application copy files
-   * @description: Copy files from an application to another location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
+   * @summary: Copy files for Application
+   * @description: Handle multiple file uploads, updating progress and providing detailed status reports. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
    */
   async appCopyFiles(
     { body, sync, requestHeaders } = { requestHeaders: {} },
@@ -190,8 +190,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name appStartUpload
-   * @summary: Application start upload
-   * @description: Start uploading a file from an application and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
+   * @summary: Initiates file upload for Application
+   * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response on platofrm at application level. Please refer group description for more details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
    */
   async appStartUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -273,8 +273,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name appbrowse
-   * @summary: Application browse files
-   * @description: Browse files within an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
+   * @summary: Browse files for Application
+   * @description: View and navigate through available files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
    */
   async appbrowse(
     { namespace, page, limit, search, requestHeaders } = { requestHeaders: {} },
@@ -361,8 +361,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name browsefiles
-   * @summary: Browse Files
-   * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browsefiles/).
+   * @summary: Browse files for Application
+   * @description: View and navigate through available files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browsefiles/).
    */
   async browsefiles(
     { namespace, body, page, limit, search, requestHeaders } = {
@@ -534,8 +534,9 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.PdfConfigSuccess>} - Success response
    * @name getDefaultHtmlTemplate
-   * @summary: Get html template for sales channel
-   * @description: Get default html template for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultHtmlTemplate/).
+   * @summary: Get html template for Application
+   * @description: Get the saved html template for provided sales channel
+   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultHtmlTemplate/).
    */
   async getDefaultHtmlTemplate(
     { pdfTypeId, format, countryCode, requestHeaders } = { requestHeaders: {} },
@@ -624,7 +625,7 @@ class FileStorage {
    *   Success response
    * @name getDefaultPdfData
    * @summary: Get default PDF data
-   * @description: Retrieve default data for PDF generation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
+   * @description: Retrieve default pdf payload data for invoice generation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
    */
   async getDefaultPdfData(
     { pdfTypeId, countryCode, requestHeaders } = { requestHeaders: {} },
@@ -710,7 +711,7 @@ class FileStorage {
    *   Success response
    * @name getDefaultPdfTemplate
    * @summary: Get default PDF template
-   * @description: Retrieve the default PDF template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
+   * @description: Retrieve to get the default Invoice template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
    */
   async getDefaultPdfTemplate(
     { pdfTypeId, format, countryCode, requestHeaders } = { requestHeaders: {} },
@@ -797,7 +798,7 @@ class FileStorage {
    *   Success response
    * @name getPdfTypes
    * @summary: Get PDF types
-   * @description: Retrieve a list of available PDF types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
+   * @description: Retrieve a list of available invoice types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
    */
   async getPdfTypes(
     { countryCode, requestHeaders } = { requestHeaders: {} },
@@ -879,8 +880,8 @@ class FileStorage {
    * @returns {Promise<FileStoragePlatformModel.PdfConfigSaveSuccess>} -
    *   Success response
    * @name saveHtmlTemplate
-   * @summary: Save HTML template
-   * @description: Store an HTML template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/saveHtmlTemplate/).
+   * @summary: Save PDF template
+   * @description: Save html template for provided sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/saveHtmlTemplate/).
    */
   async saveHtmlTemplate(
     { body, requestHeaders } = { requestHeaders: {} },

@@ -4,16 +4,8 @@ export = ThemePlatformApplicationValidator;
  * @property {ThemePlatformModel.ThemeReq} body
  */
 /**
- * @typedef AddToThemeLibraryParam
- * @property {ThemePlatformModel.AddThemeRequestSchema} body
- */
-/**
  * @typedef ApplyThemeParam
  * @property {string} themeId - The ID of the apply
- */
-/**
- * @typedef ArchiveThemeParam
- * @property {string} themeId - ID allotted to the theme.
  */
 /**
  * @typedef CreatePageParam
@@ -47,13 +39,6 @@ export = ThemePlatformApplicationValidator;
  * @property {string} pageValue - Value of the page to be retrieved
  */
 /**
- * @typedef GetPublicThemesParam
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- */
-/**
  * @typedef GetThemeByIdParam
  * @property {string} themeId - The ID of the theme
  */
@@ -66,27 +51,8 @@ export = ThemePlatformApplicationValidator;
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef GetThemeLibraryParam
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- */
-/**
  * @typedef IsUpgradableParam
  * @property {string} themeId - The ID of the theme
- */
-/**
- * @typedef PublishThemeParam
- * @property {string} themeId - ID allotted to the theme.
- */
-/**
- * @typedef UnarchiveThemeParam
- * @property {string} themeId - ID allotted to the theme.
- */
-/**
- * @typedef UnpublishThemeParam
- * @property {string} themeId - ID allotted to the theme.
  */
 /**
  * @typedef UpdateMultiplePagesParam
@@ -116,12 +82,8 @@ export = ThemePlatformApplicationValidator;
 declare class ThemePlatformApplicationValidator {
     /** @returns {AddThemeToApplicationParam} */
     static addThemeToApplication(): AddThemeToApplicationParam;
-    /** @returns {AddToThemeLibraryParam} */
-    static addToThemeLibrary(): AddToThemeLibraryParam;
     /** @returns {ApplyThemeParam} */
     static applyTheme(): ApplyThemeParam;
-    /** @returns {ArchiveThemeParam} */
-    static archiveTheme(): ArchiveThemeParam;
     /** @returns {CreatePageParam} */
     static createPage(): CreatePageParam;
     /** @returns {DeletePageParam} */
@@ -142,24 +104,14 @@ declare class ThemePlatformApplicationValidator {
     static getFonts(): any;
     /** @returns {GetPageParam} */
     static getPage(): GetPageParam;
-    /** @returns {GetPublicThemesParam} */
-    static getPublicThemes(): GetPublicThemesParam;
     /** @returns {GetThemeByIdParam} */
     static getThemeById(): GetThemeByIdParam;
     /** @returns {GetThemeForPreviewParam} */
     static getThemeForPreview(): GetThemeForPreviewParam;
     /** @returns {GetThemeLastModifiedParam} */
     static getThemeLastModified(): GetThemeLastModifiedParam;
-    /** @returns {GetThemeLibraryParam} */
-    static getThemeLibrary(): GetThemeLibraryParam;
     /** @returns {IsUpgradableParam} */
     static isUpgradable(): IsUpgradableParam;
-    /** @returns {PublishThemeParam} */
-    static publishTheme(): PublishThemeParam;
-    /** @returns {UnarchiveThemeParam} */
-    static unarchiveTheme(): UnarchiveThemeParam;
-    /** @returns {UnpublishThemeParam} */
-    static unpublishTheme(): UnpublishThemeParam;
     /** @returns {UpdateMultiplePagesParam} */
     static updateMultiplePages(): UpdateMultiplePagesParam;
     /** @returns {UpdatePageParam} */
@@ -172,23 +124,14 @@ declare class ThemePlatformApplicationValidator {
     static upgradeTheme(): UpgradeThemeParam;
 }
 declare namespace ThemePlatformApplicationValidator {
-    export { AddThemeToApplicationParam, AddToThemeLibraryParam, ApplyThemeParam, ArchiveThemeParam, CreatePageParam, DeletePageParam, DeleteThemeParam, DuplicateThemeParam, GetAllPagesParam, GetApplicationThemesParam, GetApplicationThemesCountParam, GetAppliedThemeParam, GetFontsParam, GetPageParam, GetPublicThemesParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, GetThemeLibraryParam, IsUpgradableParam, PublishThemeParam, UnarchiveThemeParam, UnpublishThemeParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameParam, UpgradeThemeParam };
+    export { AddThemeToApplicationParam, ApplyThemeParam, CreatePageParam, DeletePageParam, DeleteThemeParam, DuplicateThemeParam, GetAllPagesParam, GetApplicationThemesParam, GetApplicationThemesCountParam, GetAppliedThemeParam, GetFontsParam, GetPageParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, IsUpgradableParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameParam, UpgradeThemeParam };
 }
 type AddThemeToApplicationParam = {
     body: ThemePlatformModel.ThemeReq;
 };
-type AddToThemeLibraryParam = {
-    body: ThemePlatformModel.AddThemeRequestSchema;
-};
 type ApplyThemeParam = {
     /**
      * - The ID of the apply
-     */
-    themeId: string;
-};
-type ArchiveThemeParam = {
-    /**
-     * - ID allotted to the theme.
      */
     themeId: string;
 };
@@ -237,18 +180,6 @@ type GetPageParam = {
      */
     pageValue: string;
 };
-type GetPublicThemesParam = {
-    /**
-     * - The number of items to retrieve in each page.
-     * Default value is 10.
-     */
-    pageSize?: number;
-    /**
-     * - The page number to navigate through the given
-     * set of results. Default value is 1.
-     */
-    pageNo?: number;
-};
 type GetThemeByIdParam = {
     /**
      * - The ID of the theme
@@ -267,39 +198,9 @@ type GetThemeLastModifiedParam = {
      */
     themeId: string;
 };
-type GetThemeLibraryParam = {
-    /**
-     * - The number of items to retrieve in each page.
-     * Default value is 10.
-     */
-    pageSize?: number;
-    /**
-     * - The page number to navigate through the given
-     * set of results. Default value is 1.
-     */
-    pageNo?: number;
-};
 type IsUpgradableParam = {
     /**
      * - The ID of the theme
-     */
-    themeId: string;
-};
-type PublishThemeParam = {
-    /**
-     * - ID allotted to the theme.
-     */
-    themeId: string;
-};
-type UnarchiveThemeParam = {
-    /**
-     * - ID allotted to the theme.
-     */
-    themeId: string;
-};
-type UnpublishThemeParam = {
-    /**
-     * - ID allotted to the theme.
      */
     themeId: string;
 };

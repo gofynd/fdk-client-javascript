@@ -30,7 +30,7 @@ declare class Rewards {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<RewardsApplicationModel.Offer>} - Success response
      * @name getOfferByName
-     * @summary: Fetch specific offer
+     * @summary: Get specific offer
      * @description: Retrieves detailed information about an offer by its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOfferByName/).
      */
     getOfferByName({ name, requestHeaders }?: RewardsApplicationValidator.GetOfferByNameParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.Offer>;

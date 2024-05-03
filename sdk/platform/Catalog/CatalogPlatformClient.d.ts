@@ -8,8 +8,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
      * @name addInventory
-     * @summary: Add Inventory for particular size and store
-     * @description: Allows add Inventory for particular size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addInventory/).
+     * @summary: Create Inventory
+     * @description: Allows add Inventory for particular size and selling location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addInventory/).
      */
     addInventory({ itemId, size, body, requestHeaders }?: CatalogPlatformValidator.AddInventoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
     /**
@@ -18,7 +18,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetAllSizes>} - Success response
      * @name allSizes
-     * @summary: Get all product sizes
+     * @summary: Get product sizes
      * @description: Retrieve all available sizes for a product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/allSizes/).
      */
     allSizes({ itemId, requestHeaders }?: CatalogPlatformValidator.AllSizesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAllSizes>;
@@ -28,8 +28,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.BulkHsnResponse>} - Success response
      * @name bulkHsnCode
-     * @summary: Bulk update HSN codes
-     * @description: Perform bulk updates of HSN codes for products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/bulkHsnCode/).
+     * @summary: Create Bulk update HSN.
+     * @description: Execute bulk updates for HSN codes across multiple products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/bulkHsnCode/).
      */
     bulkHsnCode({ body, requestHeaders }?: CatalogPlatformValidator.BulkHsnCodeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkHsnResponse>;
     /**
@@ -58,7 +58,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.BulkResponse>} - Success response
      * @name createBulkProductUploadJob
-     * @summary: Create a Bulk product to upload job
+     * @summary: Create products bulk upload
      * @description: This API helps to create a bulk products upload job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createBulkProductUploadJob/).
      */
     createBulkProductUploadJob({ body, requestHeaders }?: CatalogPlatformValidator.CreateBulkProductUploadJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkResponse>;
@@ -69,7 +69,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.CategoryCreateResponse>} - Success response
      * @name createCategories
      * @summary: Create categories
-     * @description: Lets user create product categories on for the seller on the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCategories/).
+     * @description: Allows to create product categories for specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCategories/).
      */
     createCategories({ body, requestHeaders }?: CatalogPlatformValidator.CreateCategoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryCreateResponse>;
     /**
@@ -80,7 +80,7 @@ declare class Catalog {
      *   Success response
      * @name createDepartments
      * @summary: Create departments
-     * @description: Create departments with this resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createDepartments/).
+     * @description: Create departments for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createDepartments/).
      */
     createDepartments({ body, requestHeaders }?: CatalogPlatformValidator.CreateDepartmentsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentCreateResponse>;
     /**
@@ -90,7 +90,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.InventoryExportResponse>} - Success response
      * @name createInventoryExport
      * @summary: Create inventory export
-     * @description: Helps to create a Inventory export job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createInventoryExport/).
+     * @description: creates export job for inventory data associated with a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createInventoryExport/).
      */
     createInventoryExport({ body, requestHeaders }?: CatalogPlatformValidator.CreateInventoryExportParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryExportResponse>;
     /**
@@ -109,8 +109,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.UpdatedResponse>} - Success response
      * @name createMarketplaceOptin
-     * @summary: Create/Update opt-in infomation
-     * @description: Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMarketplaceOptin/).
+     * @summary: Create or Update opt-in infomation
+     * @description: Allows to create and update opt-in information for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMarketplaceOptin/).
      */
     createMarketplaceOptin({ marketplace, body, requestHeaders }?: CatalogPlatformValidator.CreateMarketplaceOptinParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdatedResponse>;
     /**
@@ -119,8 +119,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name createProduct
-     * @summary: Create a product
-     * @description: Allows to create product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
+     * @summary: Create product
+     * @description: Users can create a product using this API, associating it with the provided company ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
      */
     createProduct({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
@@ -141,8 +141,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name createProductBundle
-     * @summary: Create a product bundle
-     * @description: Create product bundle in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductBundle/).
+     * @summary: Create product bundle
+     * @description: Create product bundle in the catalog associated to a specific company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductBundle/).
      */
     createProductBundle({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductBundleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleCreateResponse>;
     /**
@@ -153,7 +153,7 @@ declare class Catalog {
      *   Success response
      * @name createProductExportJob
      * @summary: Create product export job
-     * @description: Helps to create a Inventory export job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductExportJob/).
+     * @description: Allows to create a product export job for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductExportJob/).
      */
     createProductExportJob({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductExportJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductDownloadsResponse>;
     /**
@@ -172,8 +172,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
      * @name createSizeGuide
-     * @summary: Create a size guide
-     * @description: Allows to create a size guide associated to a brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSizeGuide/).
+     * @summary: Create size guide
+     * @description: Allows to create a size guide associated to a seller - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSizeGuide/).
      */
     createSizeGuide({ body, requestHeaders }?: CatalogPlatformValidator.CreateSizeGuideParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
     /**
@@ -192,8 +192,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
      * @name deleteProduct
-     * @summary: Delete a product
-     * @description: Remove a specific product in the catalog - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
+     * @summary: Delete product
+     * @description: Users can delete a product using this by providing the itemid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
      */
     deleteProduct({ itemId, requestHeaders }?: CatalogPlatformValidator.DeleteProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
     /**
@@ -202,7 +202,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
      * @name deleteProductBulkJob
-     * @summary: Delete product bulk upload job
+     * @summary: Delete product bulk-upload job
      * @description: Allows to delete bulk product job associated with company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProductBulkJob/).
      */
     deleteProductBulkJob({ batchId, requestHeaders }?: CatalogPlatformValidator.DeleteProductBulkJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
@@ -212,8 +212,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
      * @name deleteRealtimeInventory
-     * @summary: Delete realtime inventory
-     * @description: Remove specific realtime inventory data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteRealtimeInventory/).
+     * @summary: Delete an inventory
+     * @description: You can use this API to delete inventory linked to a particular product size. When you make the API call, the inventory associated with that size will be removed as part of api process. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteRealtimeInventory/).
      */
     deleteRealtimeInventory({ itemId, sellerIdentifier, body, requestHeaders }?: CatalogPlatformValidator.DeleteRealtimeInventoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryUpdateResponse>;
     /**
@@ -235,8 +235,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<string>} - Success response
      * @name downloadInventoryTemplateView
-     * @summary: Download inventory template view
-     * @description: Allows you to download product template data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/downloadInventoryTemplateView/).
+     * @summary: Download inventory template data
+     * @description: Allows you to download inventory product template data for a specific company in formats like csv and excel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/downloadInventoryTemplateView/).
      */
     downloadInventoryTemplateView({ itemType, requestHeaders }?: CatalogPlatformValidator.DownloadInventoryTemplateViewParam, { responseHeaders }?: object): Promise<string>;
     /**
@@ -247,8 +247,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<string>} - Success response
      * @name downloadProductTemplateViews
-     * @summary: Download product template views
-     * @description: Allows you to download product template data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/downloadProductTemplateViews/).
+     * @summary: Download product template view
+     * @description: Allows you to download product template data by its slug for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/downloadProductTemplateViews/).
      */
     downloadProductTemplateViews({ slug, itemType, type, requestHeaders }?: CatalogPlatformValidator.DownloadProductTemplateViewsParam, { responseHeaders }?: object): Promise<string>;
     /**
@@ -257,7 +257,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
      * @name editProduct
-     * @summary: Edit a product
+     * @summary: Update a product
      * @description: Modify the details and settings of an existing product in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/editProduct/).
      */
     editProduct({ itemId, body, requestHeaders }?: CatalogPlatformValidator.EditProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
@@ -267,7 +267,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.InventoryConfig>} - Success response
      * @name exportInventoryConfig
-     * @summary: Export inventory configuration
+     * @summary: Get export inventory configuration
      * @description: Retrieve List of different filters like brand, store, and type for inventory export. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/exportInventoryConfig/).
      */
     exportInventoryConfig({ filterType, requestHeaders }?: CatalogPlatformValidator.ExportInventoryConfigParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryConfig>;
@@ -279,8 +279,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getAllProductHsnCodes
-     * @summary: Get all product HSN codes
-     * @description: Retrieve all HSN codes associated with products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllProductHsnCodes/).
+     * @summary: List product HSN codes
+     * @description: Retrieve all HSN codes associated with company products and provide search capabilities based on HSN code, reporting HSN, etc - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllProductHsnCodes/).
      */
     getAllProductHsnCodes({ pageNo, pageSize, q, type, requestHeaders }?: CatalogPlatformValidator.GetAllProductHsnCodesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.HsnCodesListingResponseSchemaV2>;
     /**
@@ -289,8 +289,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SingleCategoryResponse>} - Success response
      * @name getCategoryData
-     * @summary: Get category data
-     * @description: Retrieve detailed information about a specific category with the associated meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategoryData/).
+     * @summary: Get category by uid
+     * @description: Retrieve detailed information about a specific category by its uid for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategoryData/).
      */
     getCategoryData({ uid, requestHeaders }?: CatalogPlatformValidator.GetCategoryDataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SingleCategoryResponse>;
     /**
@@ -300,8 +300,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.OptinCompanyBrandDetailsView>} -
      *   Success response
      * @name getCompanyBrandDetail
-     * @summary: Get the Company Brand details of Optin
-     * @description: Get the details of the Brands associated with the given company_id passed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyBrandDetail/).
+     * @summary: list Company Brand of Optin.
+     * @description: Get the details of the Brands associated with the given company_id passed which has opt-in. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyBrandDetail/).
      */
     getCompanyBrandDetail({ isActive, q, pageNo, pageSize, marketplace, requestHeaders }?: CatalogPlatformValidator.GetCompanyBrandDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.OptinCompanyBrandDetailsView>;
     /**
@@ -310,8 +310,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.OptinCompanyDetail>} - Success response
      * @name getCompanyDetail
-     * @summary: Get the Company details
-     * @description: Get the details of the company associated with the given company_id passed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyDetail/).
+     * @summary: Get Company.
+     * @description: Get the details of the company associated with the given company_id passed which has opt-in. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyDetail/).
      */
     getCompanyDetail({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.OptinCompanyDetail>;
     /**
@@ -321,7 +321,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.OptinCompanyMetrics>} - Success response
      * @name getCompanyMetrics
      * @summary: Get company metrics
-     * @description: Allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyMetrics/).
+     * @description: Allows viewing company metrics, including brand and store status, as well as the number of verified and unverified products, company documents, and store documents. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyMetrics/).
      */
     getCompanyMetrics({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.OptinCompanyMetrics>;
     /**
@@ -330,8 +330,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.DepartmentsResponse>} - Success response
      * @name getDepartmentData
-     * @summary: Get department data
-     * @description: Retrieve detailed information about a specific department by UID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartmentData/).
+     * @summary: Get department by uid.
+     * @description: Retrieve detailed information about a specific department for a specific company by uid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartmentData/).
      */
     getDepartmentData({ uid, requestHeaders }?: CatalogPlatformValidator.GetDepartmentDataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentsResponse>;
     /**
@@ -340,8 +340,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GenderDetail>} - Success response
      * @name getGenderAttribute
-     * @summary: Get gender attribute
-     * @description: Retrieve the gender attribute for catalog listings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGenderAttribute/).
+     * @summary: Get gender attribute by slug
+     * @description: Retrieve the gender attribute for catalog listings by attribute slug passed for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGenderAttribute/).
      */
     getGenderAttribute({ attributeSlug, requestHeaders }?: CatalogPlatformValidator.GetGenderAttributeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GenderDetail>;
     /**
@@ -350,7 +350,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.HsnCode>} - Success response
      * @name getHsnCode
-     * @summary: Get HSN code
+     * @summary: List HSN code
      * @description: Retrieve the HSN code for a product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getHsnCode/).
      */
     getHsnCode({ id, requestHeaders }?: CatalogPlatformValidator.GetHsnCodeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.HsnCode>;
@@ -360,8 +360,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetInventoriesResponse>} - Success response
      * @name getInventories
-     * @summary: Retrieve inventories
-     * @description: Allows to get Inventories data for particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventories/).
+     * @summary: List Inventory.
+     * @description: Allows to get Inventories data for particular company.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventories/).
      */
     getInventories({ itemId, size, pageNo, pageSize, q, sellable, storeIds, sizeIdentifier, requestHeaders, }?: CatalogPlatformValidator.GetInventoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetInventoriesResponse>;
     /**
@@ -376,7 +376,7 @@ declare class Catalog {
      * @param {string} [arg.sizeIdentifier] - Size Identifier (Seller Identifier
      *   or Primary Identifier) of which inventory is to get.
      * @returns {Paginator<CatalogPlatformModel.GetInventoriesResponse>}
-     * @summary: Retrieve inventories
+     * @summary: List Inventory.
      * @description: Allows to get Inventories data for particular company.
      */
     getInventoriesPaginator({ itemId, size, pageSize, q, sellable, storeIds, sizeIdentifier, }?: {
@@ -396,8 +396,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.BulkInventoryGet>} - Success response
      * @name getInventoryBulkUploadHistory
-     * @summary: Retrieve inventory bulk upload history
-     * @description: Helps to get bulk Inventory upload jobs data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBulkUploadHistory/).
+     * @summary: List bulk inventory upload history.
+     * @description: Helps to get bulk Inventory upload jobs status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBulkUploadHistory/).
      */
     getInventoryBulkUploadHistory({ pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetInventoryBulkUploadHistoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkInventoryGet>;
     /**
@@ -405,8 +405,8 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
      * @returns {Paginator<CatalogPlatformModel.BulkInventoryGet>}
-     * @summary: Retrieve inventory bulk upload history
-     * @description: Helps to get bulk Inventory upload jobs data.
+     * @summary: List bulk inventory upload history.
+     * @description: Helps to get bulk Inventory upload jobs status.
      */
     getInventoryBulkUploadHistoryPaginator({ pageSize }?: {
         pageSize?: number;
@@ -418,8 +418,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.InventoryResponsePaginated>} -
      *   Success response
      * @name getInventoryBySize
-     * @summary: Get inventory by size
-     * @description: Allows to retrieve Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBySize/).
+     * @summary: List inventory by size
+     * @description: Retrieve inventory data for a specific company, item ID, and size. The API supports search capabilities based on selling location (store) code and product availability (in stock or not)." - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBySize/).
      */
     getInventoryBySize({ itemId, size, pageNo, pageSize, q, sellable, requestHeaders }?: CatalogPlatformValidator.GetInventoryBySizeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryResponsePaginated>;
     /**
@@ -431,8 +431,8 @@ declare class Catalog {
      * @param {string} [arg.q] - Search with help of store code.
      * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
      * @returns {Paginator<CatalogPlatformModel.InventoryResponsePaginated>}
-     * @summary: Get inventory by size
-     * @description: Allows to retrieve Inventory data for particular company grouped by size and store.
+     * @summary: List inventory by size
+     * @description: Retrieve inventory data for a specific company, item ID, and size. The API supports search capabilities based on selling location (store) code and product availability (in stock or not)."
      */
     getInventoryBySizePaginator({ itemId, size, pageSize, q, sellable }?: {
         itemId: number;
@@ -451,8 +451,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getInventoryBySizeIdentifier
-     * @summary: Get inventory by size identifier
-     * @description: Allows to retrieve Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBySizeIdentifier/).
+     * @summary: List inventory by size
+     * @description: Retrieve inventory data for a specific company, item ID, and seller identifier. The API supports search capabilities using store codes and location IDs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBySizeIdentifier/).
      */
     getInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, q, locationIds, requestHeaders, }?: CatalogPlatformValidator.GetInventoryBySizeIdentifierParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>;
     /**
@@ -465,8 +465,8 @@ declare class Catalog {
      * @param {string} [arg.q] - Search with help of store code.
      * @param {number[]} [arg.locationIds] - Search by store ids.
      * @returns {Paginator<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
-     * @summary: Get inventory by size identifier
-     * @description: Allows to retrieve Inventory data for particular company grouped by size and store.
+     * @summary: List inventory by size
+     * @description: Retrieve inventory data for a specific company, item ID, and seller identifier. The API supports search capabilities using store codes and location IDs.
      */
     getInventoryBySizeIdentifierPaginator({ itemId, sizeIdentifier, pageSize, q, locationIds, }?: {
         itemId: number;
@@ -481,8 +481,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.InventoryExportJob>} - Success response
      * @name getInventoryExport
-     * @summary: Retrieve inventory export data
-     * @description: Helps to retrieve Inventory export history. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryExport/).
+     * @summary: list product inventory.
+     * @description: Retrieves inventory for all products for that particular company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryExport/).
      */
     getInventoryExport({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryExportJob>;
     /**
@@ -491,8 +491,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetOptInPlatform>} - Success response
      * @name getMarketplaceOptinDetail
-     * @summary: Get opt-in infomation
-     * @description: Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMarketplaceOptinDetail/).
+     * @summary: Get opt-in
+     * @description: Allows to fetch opt-in information for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMarketplaceOptinDetail/).
      */
     getMarketplaceOptinDetail({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetOptInPlatform>;
     /**
@@ -501,8 +501,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.GetAllMarketplaces>} - Success response
      * @name getMarketplaces
-     * @summary: List all marketplaces
-     * @description: This API allows to get marketplace information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMarketplaces/).
+     * @summary: List marketplaces
+     * @description: Allows to get all marketplaces information for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMarketplaces/).
      */
     getMarketplaces({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAllMarketplaces>;
     /**
@@ -512,7 +512,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.StoreAssignResponse>} - Success response
      * @name getOptimalLocations
      * @summary: Get optimal locations
-     * @description: Retrieve the most suitable locations based on certain criteria. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getOptimalLocations/).
+     * @description: This API returns the optimal locations where inventory is available for the given articles. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getOptimalLocations/).
      */
     getOptimalLocations({ body, requestHeaders }?: CatalogPlatformValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.StoreAssignResponse>;
     /**
@@ -521,7 +521,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SingleProductResponse>} - Success response
      * @name getProduct
-     * @summary: Get product details
+     * @summary: Get a product
      * @description: Retrieve data associated to a particular product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProduct/).
      */
     getProduct({ itemId, brandUid, itemCode, requestHeaders }?: CatalogPlatformValidator.GetProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SingleProductResponse>;
@@ -531,7 +531,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.BulkAssetResponse>} - Success response
      * @name getProductAssetsInBulk
-     * @summary: Retrieve product assets in bulk
+     * @summary: Get product assets
      * @description: Helps to retrieve bulk asset jobs data associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductAssetsInBulk/).
      */
     getProductAssetsInBulk({ pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetProductAssetsInBulkParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkAssetResponse>;
@@ -540,7 +540,7 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
      * @returns {Paginator<CatalogPlatformModel.BulkAssetResponse>}
-     * @summary: Retrieve product assets in bulk
+     * @summary: Get product assets
      * @description: Helps to retrieve bulk asset jobs data associated to a particular company.
      */
     getProductAssetsInBulkPaginator({ pageSize }?: {
@@ -553,8 +553,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.ProductAttributesResponse>} -
      *   Success response
      * @name getProductAttributes
-     * @summary: Get product attributes
-     * @description: List all the attributes by their L3 categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductAttributes/).
+     * @summary: List product attributes
+     * @description: Retrieve attributes attached to products based on their L3 category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductAttributes/).
      */
     getProductAttributes({ category, filter, requestHeaders }?: CatalogPlatformValidator.GetProductAttributesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductAttributesResponse>;
     /**
@@ -563,7 +563,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ProductBulkRequestList>} - Success response
      * @name getProductBulkUploadHistory
-     * @summary: Retrieve product bulk upload history
+     * @summary: List product bulk upload history
      * @description: Helps to get bulk product upload jobs data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBulkUploadHistory/).
      */
     getProductBulkUploadHistory({ search, pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetProductBulkUploadHistoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductBulkRequestList>;
@@ -573,7 +573,7 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
      * @returns {Paginator<CatalogPlatformModel.ProductBulkRequestList>}
-     * @summary: Retrieve product bulk upload history
+     * @summary: List product bulk upload history
      * @description: Helps to get bulk product upload jobs data.
      */
     getProductBulkUploadHistoryPaginator({ search, pageSize }?: {
@@ -588,8 +588,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name getProductBundle
-     * @summary: Retrieve product bundles
-     * @description: Retrieve a list of product bundles available in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundle/).
+     * @summary: List product bundles.
+     * @description: Retrieve a list of product bundles available in the catalog associated to a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundle/).
      */
     getProductBundle({ q, slug, requestHeaders }?: CatalogPlatformValidator.GetProductBundleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleListingResponse>;
     /**
@@ -599,8 +599,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.GetProductBundleResponse>} -
      *   Success response
      * @name getProductBundleDetail
-     * @summary: Get product bundle details
-     * @description: Retrieve detailed information about a specific product bundle. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundleDetail/).
+     * @summary: Get product bundle.
+     * @description: Retrieve detailed information about a specific product bundle associated to a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundleDetail/).
      */
     getProductBundleDetail({ id, requestHeaders }?: CatalogPlatformValidator.GetProductBundleDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleResponse>;
     /**
@@ -610,8 +610,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.ProductDownloadsResponse>} -
      *   Success response
      * @name getProductExportJobs
-     * @summary: Retrieve product export jobs
-     * @description: View details including trigger data, task id , etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductExportJobs/).
+     * @summary: Get product export jobs
+     * @description: Get product export jobs specific to a company based on queries like query param, date range and status. View details including trigger data, task id , etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductExportJobs/).
      */
     getProductExportJobs({ status, fromDate, toDate, q, requestHeaders }?: CatalogPlatformValidator.GetProductExportJobsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductDownloadsResponse>;
     /**
@@ -620,7 +620,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
      * @name getProductSize
-     * @summary: Get product size details
+     * @summary: List product size
      * @description: Retrieve data associated to a particular product size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductSize/).
      */
     getProductSize({ itemId, itemCode, brandUid, uid, requestHeaders }?: CatalogPlatformValidator.GetProductSizeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductListingResponse>;
@@ -630,7 +630,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ProductTagsViewResponse>} - Success response
      * @name getProductTags
-     * @summary: Get product tags
+     * @summary: List product tags
      * @description: Retrieve tags data associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductTags/).
      */
     getProductTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductTagsViewResponse>;
@@ -640,8 +640,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ValidateProduct>} - Success response
      * @name getProductValidation
-     * @summary: Get product validation
-     * @description: Retrieve validation data for a specific product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductValidation/).
+     * @summary: Get valid products.
+     * @description: Retrieve validation data for products at company level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductValidation/).
      */
     getProductValidation({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.ValidateProduct>;
     /**
@@ -651,8 +651,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.ProductListingResponseV2>} -
      *   Success response
      * @name getProducts
-     * @summary: Retrieve products
-     * @description: Retrieve a list of products available - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProducts/).
+     * @summary: List products
+     * @description: Retrieve a list of available products - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProducts/).
      */
     getProducts({ brandIds, categoryIds, itemIds, departmentIds, itemCode, q, tags, pageNo, pageSize, requestHeaders, }?: CatalogPlatformValidator.GetProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductListingResponseV2>;
     /**
@@ -669,8 +669,8 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @returns {Paginator<CatalogPlatformModel.ProductListingResponseV2>}
-     * @summary: Retrieve products
-     * @description: Retrieve a list of products available
+     * @summary: List products
+     * @description: Retrieve a list of available products
      */
     getProductsPaginator({ brandIds, categoryIds, itemIds, departmentIds, itemCode, q, tags, pageSize, }?: {
         brandIds?: number[];
@@ -688,8 +688,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.CrossSellingResponse>} - Success response
      * @name getSellerInsights
-     * @summary: Get seller insights
-     * @description: Retrieve insights and analytics related to sellers within the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSellerInsights/).
+     * @summary: Get seller catalog counts
+     * @description: Retrieve the count of catalog related data for sellers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSellerInsights/).
      */
     getSellerInsights({ sellerAppId, requestHeaders }?: CatalogPlatformValidator.GetSellerInsightsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CrossSellingResponse>;
     /**
@@ -698,8 +698,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.HSNDataInsertV2>} - Success response
      * @name getSingleProductHSNCode
-     * @summary: Get single product HSN code
-     * @description: Retrieve the HSN code for a single product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSingleProductHSNCode/).
+     * @summary: Get product HSN code
+     * @description: Retrieve HSN details associated with company ID and reporting HSN - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSingleProductHSNCode/).
      */
     getSingleProductHSNCode({ reportingHsn, requestHeaders }?: CatalogPlatformValidator.GetSingleProductHSNCodeParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.HSNDataInsertV2>;
     /**
@@ -708,8 +708,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SizeGuideResponse>} - Success response
      * @name getSizeGuide
-     * @summary: Get size guide details
-     * @description: Retrieve data associated about a specific size guide. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuide/).
+     * @summary: Get size guide.
+     * @description: Retrieve data associated about a specific size guide. It contains meta deta like header values like for shoulder, head, etc. and measurement unit like cm and values contains sizes for the same. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuide/).
      */
     getSizeGuide({ id, requestHeaders }?: CatalogPlatformValidator.GetSizeGuideParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SizeGuideResponse>;
     /**
@@ -718,8 +718,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ListSizeGuide>} - Success response
      * @name getSizeGuides
-     * @summary: Retrieve size guides
-     * @description: Allows to view all the size guides associated to the seller. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuides/).
+     * @summary: List size guides
+     * @description: Allows to view all the size guides associated to the seller. Each size guide contains meta deta like header values like for shoulder, head, etc. and measurement unit like cm and values contains sizes for the same. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuides/).
      */
     getSizeGuides({ active, q, tag, pageNo, pageSize, brandId, requestHeaders }?: CatalogPlatformValidator.GetSizeGuidesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ListSizeGuide>;
     /**
@@ -728,8 +728,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.OptinStoreDetails>} - Success response
      * @name getStoreDetail
-     * @summary: Get store details
-     * @description: Retrieve the details of the store associated with the company ID passed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getStoreDetail/).
+     * @summary: Get selling location
+     * @description: Retrieve the details of the selling location (store) associated with a specific company passed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getStoreDetail/).
      */
     getStoreDetail({ q, pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetStoreDetailParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.OptinStoreDetails>;
     /**
@@ -738,8 +738,8 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Number of records that can be seen on
      *   the page for the company id.
      * @returns {Paginator<CatalogPlatformModel.OptinStoreDetails>}
-     * @summary: Get store details
-     * @description: Retrieve the details of the store associated with the company ID passed.
+     * @summary: Get selling location
+     * @description: Retrieve the details of the selling location (store) associated with a specific company passed.
      */
     getStoreDetailPaginator({ q, pageSize }?: {
         q?: string;
@@ -751,7 +751,7 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.ProductVariantsResponse>} - Success response
      * @name getVariantsOfProducts
-     * @summary: Get variants of products
+     * @summary: Get variants
      * @description: Retrieve variants of a specific product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getVariantsOfProducts/).
      */
     getVariantsOfProducts({ itemId, variantType, pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetVariantsOfProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductVariantsResponse>;
@@ -762,7 +762,7 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @returns {Paginator<CatalogPlatformModel.ProductVariantsResponse>}
-     * @summary: Get variants of products
+     * @summary: Get variants
      * @description: Retrieve variants of a specific product.
      */
     getVariantsOfProductsPaginator({ itemId, variantType, pageSize }?: {
@@ -777,7 +777,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.CategoryResponse>} - Success response
      * @name listCategories
      * @summary: List categories
-     * @description: Retrieve a list of meta associated available product categories in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listCategories/).
+     * @description: Retrieve a list of categories data associated to a specific company and queries passed in the request. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listCategories/).
      */
     listCategories({ level, department, q, pageNo, pageSize, uids, slug, requestHeaders }?: CatalogPlatformValidator.ListCategoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryResponse>;
     /**
@@ -791,7 +791,7 @@ declare class Catalog {
      * @param {string} [arg.slug] - Get category by slug
      * @returns {Paginator<CatalogPlatformModel.CategoryResponse>}
      * @summary: List categories
-     * @description: Retrieve a list of meta associated available product categories in the catalog.
+     * @description: Retrieve a list of categories data associated to a specific company and queries passed in the request.
      */
     listCategoriesPaginator({ level, department, q, pageSize, uids, slug }?: {
         level?: string;
@@ -807,8 +807,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.DepartmentsResponse>} - Success response
      * @name listDepartmentsData
-     * @summary: List department data
-     * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listDepartmentsData/).
+     * @summary: List company department
+     * @description: Allows you to list all departments data for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listDepartmentsData/).
      */
     listDepartmentsData({ pageNo, itemType, pageSize, name, search, isActive, slug, requestHeaders, }?: CatalogPlatformValidator.ListDepartmentsDataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentsResponse>;
     /**
@@ -824,8 +824,8 @@ declare class Catalog {
      *   whether they are active or inactive.
      * @param {string} [arg.slug] - Can filter by slug
      * @returns {Paginator<CatalogPlatformModel.DepartmentsResponse>}
-     * @summary: List department data
-     * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
+     * @summary: List company department
+     * @description: Allows you to list all departments data for a specific company.
      */
     listDepartmentsDataPaginator({ itemType, pageSize, name, search, isActive, slug, }?: {
         itemType?: string;
@@ -842,7 +842,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.HSNCodesResponse>} - Success response
      * @name listHSNCodes
      * @summary: List HSN codes
-     * @description: Retrieve a list of Harmonized System Nomenclature (HSN) codes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listHSNCodes/).
+     * @description: Retrieve a list of Harmonized System Nomenclature (HSN) codes for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listHSNCodes/).
      */
     listHSNCodes({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.HSNCodesResponse>;
     /**
@@ -853,8 +853,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name listInventoryExport
-     * @summary: List inventory exports
-     * @description: Helps you the retrieve the history of inventory jobs depending on the filtered criteria. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listInventoryExport/).
+     * @summary: List inventory export jobs
+     * @description: Retrieve the history of inventory export jobs associated with the company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listInventoryExport/).
      */
     listInventoryExport({ status, fromDate, toDate, q, requestHeaders }?: CatalogPlatformValidator.ListInventoryExportParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryExportJobListResponse>;
     /**
@@ -864,7 +864,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.TemplatesResponse>} - Success response
      * @name listProductTemplate
      * @summary: List product templates
-     * @description: Allows you to list all product templates, also can filter by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplate/).
+     * @description: Allows you to list all product templates for a specific company. also can filter by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplate/).
      */
     listProductTemplate({ department, requestHeaders }?: CatalogPlatformValidator.ListProductTemplateParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TemplatesResponse>;
     /**
@@ -878,7 +878,7 @@ declare class Catalog {
      *
      * @name listProductTemplateCategories
      * @summary: List product template categories
-     * @description: Allows you to list all product categories values for the departments specified. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplateCategories/).
+     * @description: Allows you to list all product template categories values for the departments specified for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplateCategories/).
      */
     listProductTemplateCategories({ departments, itemType, requestHeaders }?: CatalogPlatformValidator.ListProductTemplateCategoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProdcutTemplateCategoriesResponse>;
     /**
@@ -890,8 +890,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.ProductDownloadsResponse>} -
      *   Success response
      * @name listProductTemplateExportDetails
-     * @summary: List product template export details
-     * @description: Retrieve export details related to product templates. Can view details including trigger data, task id , etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplateExportDetails/).
+     * @summary: List export product templates
+     * @description: Retrieve export details related to product templates for a specific company. Can view details including trigger data, task id , etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplateExportDetails/).
      */
     listProductTemplateExportDetails({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductDownloadsResponse>;
     /**
@@ -901,8 +901,8 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.ProductConfigurationDownloads>} -
      *   Success response
      * @name listTemplateBrandTypeValues
-     * @summary: List template brand type values
-     * @description: Retrieve values related to template brand types. The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listTemplateBrandTypeValues/).
+     * @summary: List template brand.
+     * @description: Retrieve values related to template brand types for a specific company. The filter type query parameter defines what type of data to return.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listTemplateBrandTypeValues/).
      */
     listTemplateBrandTypeValues({ filter, templateTag, itemType, requestHeaders }?: CatalogPlatformValidator.ListTemplateBrandTypeValuesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductConfigurationDownloads>;
     /**
@@ -911,8 +911,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.CategoryUpdateResponse>} - Success response
      * @name updateCategory
-     * @summary: Update category data
-     * @description: Modify data for an existing category in the catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateCategory/).
+     * @summary: Update category.
+     * @description: Modify data for an existing category by its uid for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateCategory/).
      */
     updateCategory({ uid, body, requestHeaders }?: CatalogPlatformValidator.UpdateCategoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryUpdateResponse>;
     /**
@@ -921,8 +921,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.DepartmentModel>} - Success response
      * @name updateDepartment
-     * @summary: Update department data
-     * @description: Modify the department by their uid using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDepartment/).
+     * @summary: Update department.
+     * @description: Modify the department data by their uid for a specifc company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDepartment/).
      */
     updateDepartment({ uid, body, requestHeaders }?: CatalogPlatformValidator.UpdateDepartmentParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentModel>;
     /**
@@ -942,7 +942,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
      * @name updateInventories
      * @summary: Update inventories
-     * @description: Allows to add Inventory for particular size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateInventories/).
+     * @description: Allows to add Inventory for particular size and selling location. for associated companies - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateInventories/).
      */
     updateInventories({ body, requestHeaders }?: CatalogPlatformValidator.UpdateInventoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryUpdateResponse>;
     /**
@@ -954,7 +954,7 @@ declare class Catalog {
      *
      * @name updateMarketplaceOptin
      * @summary: Update marketplace optin
-     * @description: This API allows to update marketplace optin for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMarketplaceOptin/).
+     * @description: Allows to update marketplace optin for a company by marketplace_slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMarketplaceOptin/).
      */
     updateMarketplaceOptin({ marketplaceSlug, body, requestHeaders }?: CatalogPlatformValidator.UpdateMarketplaceOptinParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdateMarketplaceOptinResponse>;
     /**
@@ -965,8 +965,8 @@ declare class Catalog {
      *   - Success response
      *
      * @name updateProductBundle
-     * @summary: Update a product bundle
-     * @description: Modify the details of an existing product bundle. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateProductBundle/).
+     * @summary: Update product bundle
+     * @description: Modify the details of an existing product bundle in the catalog associated to a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateProductBundle/).
      */
     updateProductBundle({ id, body, requestHeaders }?: CatalogPlatformValidator.UpdateProductBundleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleCreateResponse>;
     /**
@@ -975,8 +975,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
      * @name updateRealtimeInventory
-     * @summary: Update realtime inventory
-     * @description: Allows to add Inventory for particular size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateRealtimeInventory/).
+     * @summary: Update an inventory
+     * @description: enables you to add inventory for a specific size and selling location (store). The inventory updates will be reflected instantly after the API call. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateRealtimeInventory/).
      */
     updateRealtimeInventory({ itemId, sellerIdentifier, body, requestHeaders }?: CatalogPlatformValidator.UpdateRealtimeInventoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryUpdateResponse>;
     /**
@@ -985,8 +985,8 @@ declare class Catalog {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
      * @name updateSizeGuide
-     * @summary: Update a size guide
-     * @description: Allows to edit a size guide. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSizeGuide/).
+     * @summary: Update size guide
+     * @description: Allows to edit a specific size guide. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSizeGuide/).
      */
     updateSizeGuide({ id, body, requestHeaders }?: CatalogPlatformValidator.UpdateSizeGuideParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
     /**
@@ -996,7 +996,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.BulkResponse>} - Success response
      * @name uploadBulkProducts
      * @summary: Upload bulk products
-     * @description: Helps to create a bulk products upload job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/uploadBulkProducts/).
+     * @description: Users can create multiple products by providing the required information needed for product creation in a CSV or Excel file format. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/uploadBulkProducts/).
      */
     uploadBulkProducts({ department, productType, body, requestHeaders }?: CatalogPlatformValidator.UploadBulkProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkResponse>;
     /**
@@ -1007,7 +1007,7 @@ declare class Catalog {
      *   Success response
      * @name validateProductTemplate
      * @summary: Validate product template
-     * @description: Allows you to list all product templates validation values for all the fields present in the database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductTemplate/).
+     * @description: Allows you to list all product templates validation values by its slug for all the fields present in the database for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductTemplate/).
      */
     validateProductTemplate({ slug, itemType, bulk, requestHeaders }?: CatalogPlatformValidator.ValidateProductTemplateParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TemplatesValidationResponse>;
     /**
@@ -1020,7 +1020,7 @@ declare class Catalog {
      *   Success response
      * @name validateProductTemplateSchema
      * @summary: Validate product template schema
-     * @description: Allows you to list all product templates validation values for all the fields present in the database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductTemplateSchema/).
+     * @description: Allows you to list all product templates validation values for all the fields present in the database for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductTemplateSchema/).
      */
     validateProductTemplateSchema({ itemType, requestHeaders }?: CatalogPlatformValidator.ValidateProductTemplateSchemaParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryValidationResponse>;
 }

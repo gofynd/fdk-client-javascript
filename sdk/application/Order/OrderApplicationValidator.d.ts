@@ -35,11 +35,6 @@ export = OrderApplicationValidator;
  *   shipments are allowed
  */
 /**
- * @typedef GetPosOrderByIdParam
- * @property {string} orderId - A unique number used for identifying and
- *   tracking your orders.
- */
-/**
  * @typedef GetShipmentBagReasonsParam
  * @property {string} shipmentId - ID of the bag. An order may contain multiple
  *   items and may get divided into one or more shipment, each having its own ID.
@@ -98,8 +93,6 @@ declare class OrderApplicationValidator {
     static getOrderById(): GetOrderByIdParam;
     /** @returns {GetOrdersParam} */
     static getOrders(): GetOrdersParam;
-    /** @returns {GetPosOrderByIdParam} */
-    static getPosOrderById(): GetPosOrderByIdParam;
     /** @returns {GetShipmentBagReasonsParam} */
     static getShipmentBagReasons(): GetShipmentBagReasonsParam;
     /** @returns {GetShipmentByIdParam} */
@@ -116,7 +109,7 @@ declare class OrderApplicationValidator {
     static verifyOtpShipmentCustomer(): VerifyOtpShipmentCustomerParam;
 }
 declare namespace OrderApplicationValidator {
-    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetPosOrderByIdParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
+    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
 }
 type GetCustomerDetailsByShipmentIdParam = {
     /**
@@ -190,13 +183,6 @@ type GetOrdersParam = {
      * shipments are allowed
      */
     allowInactive?: boolean;
-};
-type GetPosOrderByIdParam = {
-    /**
-     * - A unique number used for identifying and
-     * tracking your orders.
-     */
-    orderId: string;
 };
 type GetShipmentBagReasonsParam = {
     /**
