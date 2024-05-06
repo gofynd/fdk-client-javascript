@@ -51,5 +51,5 @@ declare class Theme {
      */
     getThemeForPreview({ themeId, requestHeaders }?: ThemeApplicationValidator.GetThemeForPreviewParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
 }
-import ThemeApplicationValidator = require("./ThemeApplicationValidator");
-import ThemeApplicationModel = require("./ThemeApplicationModel");
+import ThemeApplicationValidator = require("sdk/output/javascript/code/sdk/application/Theme/ThemeApplicationValidator");
+import ThemeApplicationModel = require("sdk/output/javascript/code/sdk/application/Theme/ThemeApplicationModel");

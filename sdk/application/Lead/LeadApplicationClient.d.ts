@@ -90,5 +90,5 @@ declare class Lead {
      */
     submitCustomForm({ slug, body, requestHeaders }?: LeadApplicationValidator.SubmitCustomFormParam, { responseHeaders }?: object): Promise<LeadApplicationModel.SubmitCustomFormResponse>;
 }
-import LeadApplicationValidator = require("./LeadApplicationValidator");
-import LeadApplicationModel = require("./LeadApplicationModel");
+import LeadApplicationValidator = require("sdk/output/javascript/code/sdk/application/Lead/LeadApplicationValidator");
+import LeadApplicationModel = require("sdk/output/javascript/code/sdk/application/Lead/LeadApplicationModel");

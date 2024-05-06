@@ -29,5 +29,5 @@ declare class Common {
      */
     searchApplication({ authorization, query, requestHeaders }?: CommonApplicationValidator.SearchApplicationParam, { responseHeaders }?: object): Promise<CommonApplicationModel.ApplicationResponse>;
 }
-import CommonApplicationValidator = require("./CommonApplicationValidator");
-import CommonApplicationModel = require("./CommonApplicationModel");
+import CommonApplicationValidator = require("sdk/output/javascript/code/sdk/application/Common/CommonApplicationValidator");
+import CommonApplicationModel = require("sdk/output/javascript/code/sdk/application/Common/CommonApplicationModel");

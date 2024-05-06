@@ -132,5 +132,5 @@ declare class Rewards {
      */
     updateUserStatus({ userId, body, requestHeaders }?: RewardsPlatformApplicationValidator.UpdateUserStatusParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.AppUser>;
 }
-import RewardsPlatformApplicationValidator = require("./RewardsPlatformApplicationValidator");
-import RewardsPlatformModel = require("./RewardsPlatformModel");
+import RewardsPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Rewards/RewardsPlatformApplicationValidator");
+import RewardsPlatformModel = require("sdk/output/javascript/code/sdk/platform/Rewards/RewardsPlatformModel");

@@ -819,5 +819,5 @@ declare class Communication {
      */
     verfiyOtp({ body, requestHeaders }?: CommunicationPlatformApplicationValidator.VerfiyOtpParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.VerifyOtpCommsSuccessRes>;
 }
-import CommunicationPlatformApplicationValidator = require("./CommunicationPlatformApplicationValidator");
-import CommunicationPlatformModel = require("./CommunicationPlatformModel");
+import CommunicationPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformApplicationValidator");
+import CommunicationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformModel");

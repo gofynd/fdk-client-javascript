@@ -16,5 +16,5 @@ declare class Communication {
      */
     getSystemNotifications({ pageNo, pageSize, requestHeaders }?: CommunicationPlatformValidator.GetSystemNotificationsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SystemNotifications>;
 }
-import CommunicationPlatformValidator = require("./CommunicationPlatformValidator");
-import CommunicationPlatformModel = require("./CommunicationPlatformModel");
+import CommunicationPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformValidator");
+import CommunicationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformModel");

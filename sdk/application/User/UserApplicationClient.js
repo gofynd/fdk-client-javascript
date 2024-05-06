@@ -1853,7 +1853,7 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
    * @name sendForgotOTPOnEmail
-   * @summary: Send Email OTP for Forgot Password.
+   * @summary: Send Email OTP for Forgot Password
    * @description: Sends a one-time password to the user's email for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
    */
   async sendForgotOTPOnEmail(
@@ -1932,7 +1932,7 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
    * @name sendForgotOTPOnMobile
-   * @summary: Send Mobile OTP for Forgot Password.
+   * @summary: Send mobile OTP for forgot-password
    * @description: Sends a one-time password to the user's mobile for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
    */
   async sendForgotOTPOnMobile(
@@ -3119,7 +3119,7 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
    * @name verifyEmailForgotOTP
-   * @summary: Verify Email OTP for Forgot Password.
+   * @summary: Verify Email OTP for Forgot Password
    * @description: Verify one-time password sent to user's email for resetting a forgotten password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
    */
   async verifyEmailForgotOTP(
@@ -3355,7 +3355,7 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
    * @name verifyMobileForgotOTP
-   * @summary: Verify Mobile OTP for Forgot Password.
+   * @summary: Verify Mobile OTP for Forgot Password
    * @description: Verify one-time password sent to user's mobile for resetting a forgotten password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
    */
   async verifyMobileForgotOTP(

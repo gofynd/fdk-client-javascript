@@ -180,7 +180,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.BulkHsnResponse>} - Success response
    * @name bulkHsnCode
-   * @summary: Create Bulk update HSN.
+   * @summary: Create Bulk update HSN
    * @description: Execute bulk updates for HSN codes across multiple products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/bulkHsnCode/).
    */
   async bulkHsnCode(
@@ -2286,7 +2286,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.OptinCompanyBrandDetailsView>} -
    *   Success response
    * @name getCompanyBrandDetail
-   * @summary: list Company Brand of Optin.
+   * @summary: list Company Brand of Optin
    * @description: Get the details of the Brands associated with the given company_id passed which has opt-in. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyBrandDetail/).
    */
   async getCompanyBrandDetail(
@@ -2380,7 +2380,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.OptinCompanyDetail>} - Success response
    * @name getCompanyDetail
-   * @summary: Get Company.
+   * @summary: Get Company
    * @description: Get the details of the company associated with the given company_id passed which has opt-in. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyDetail/).
    */
   async getCompanyDetail(
@@ -2530,7 +2530,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.DepartmentsResponse>} - Success response
    * @name getDepartmentData
-   * @summary: Get department by uid.
+   * @summary: Get department by uid
    * @description: Retrieve detailed information about a specific department for a specific company by uid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartmentData/).
    */
   async getDepartmentData(
@@ -2765,7 +2765,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.GetInventoriesResponse>} - Success response
    * @name getInventories
-   * @summary: List Inventory.
+   * @summary: List Inventory
    * @description: Allows to get Inventories data for particular company.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventories/).
    */
   async getInventories(
@@ -2882,7 +2882,7 @@ class Catalog {
    * @param {string} [arg.sizeIdentifier] - Size Identifier (Seller Identifier
    *   or Primary Identifier) of which inventory is to get.
    * @returns {Paginator<CatalogPlatformModel.GetInventoriesResponse>}
-   * @summary: List Inventory.
+   * @summary: List Inventory
    * @description: Allows to get Inventories data for particular company.
    */
   getInventoriesPaginator({
@@ -2927,7 +2927,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.BulkInventoryGet>} - Success response
    * @name getInventoryBulkUploadHistory
-   * @summary: List bulk inventory upload history.
+   * @summary: List bulk inventory upload history
    * @description: Helps to get bulk Inventory upload jobs status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBulkUploadHistory/).
    */
   async getInventoryBulkUploadHistory(
@@ -3011,7 +3011,7 @@ class Catalog {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
    * @returns {Paginator<CatalogPlatformModel.BulkInventoryGet>}
-   * @summary: List bulk inventory upload history.
+   * @summary: List bulk inventory upload history
    * @description: Helps to get bulk Inventory upload jobs status.
    */
   getInventoryBulkUploadHistoryPaginator({ pageSize } = {}) {
@@ -3322,7 +3322,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.InventoryExportJob>} - Success response
    * @name getInventoryExport
-   * @summary: list product inventory.
+   * @summary: list product inventory
    * @description: Retrieves inventory for all products for that particular company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryExport/).
    */
   async getInventoryExport(
@@ -4028,7 +4028,7 @@ class Catalog {
    *   - Success response
    *
    * @name getProductBundle
-   * @summary: List product bundles.
+   * @summary: List product bundles
    * @description: Retrieve a list of product bundles available in the catalog associated to a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundle/).
    */
   async getProductBundle(
@@ -4112,7 +4112,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.GetProductBundleResponse>} -
    *   Success response
    * @name getProductBundleDetail
-   * @summary: Get product bundle.
+   * @summary: Get product bundle
    * @description: Retrieve detailed information about a specific product bundle associated to a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundleDetail/).
    */
   async getProductBundleDetail(
@@ -4448,7 +4448,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.ValidateProduct>} - Success response
    * @name getProductValidation
-   * @summary: Get valid products.
+   * @summary: Get valid products
    * @description: Retrieve validation data for products at company level. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductValidation/).
    */
   async getProductValidation(
@@ -4846,7 +4846,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.SizeGuideResponse>} - Success response
    * @name getSizeGuide
-   * @summary: Get size guide.
+   * @summary: Get size guide
    * @description: Retrieve data associated about a specific size guide. It contains meta deta like header values like for shoulder, head, etc. and measurement unit like cm and values contains sizes for the same. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuide/).
    */
   async getSizeGuide(
@@ -5968,7 +5968,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.ProductConfigurationDownloads>} -
    *   Success response
    * @name listTemplateBrandTypeValues
-   * @summary: List template brand.
+   * @summary: List template brand
    * @description: Retrieve values related to template brand types for a specific company. The filter type query parameter defines what type of data to return.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listTemplateBrandTypeValues/).
    */
   async listTemplateBrandTypeValues(
@@ -6056,7 +6056,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.CategoryUpdateResponse>} - Success response
    * @name updateCategory
-   * @summary: Update category.
+   * @summary: Update category
    * @description: Modify data for an existing category by its uid for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateCategory/).
    */
   async updateCategory(
@@ -6137,7 +6137,7 @@ class Catalog {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CatalogPlatformModel.DepartmentModel>} - Success response
    * @name updateDepartment
-   * @summary: Update department.
+   * @summary: Update department
    * @description: Modify the department data by their uid for a specifc company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDepartment/).
    */
   async updateDepartment(

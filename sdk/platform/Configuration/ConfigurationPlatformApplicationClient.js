@@ -1295,7 +1295,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
    *   Success response
    * @name getOrderingStoreCookie
-   * @summary: Get Ordering Store signed cookie.
+   * @summary: Get ordering store signed cookie
    * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreCookie/).
    */
   async getOrderingStoreCookie(

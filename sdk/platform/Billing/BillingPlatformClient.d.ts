@@ -185,5 +185,5 @@ declare class Billing {
      */
     upsertCustomerDetail({ body, requestHeaders }?: BillingPlatformValidator.UpsertCustomerDetailParam, { responseHeaders }?: object): Promise<BillingPlatformModel.SubscriptionCustomer>;
 }
-import BillingPlatformValidator = require("./BillingPlatformValidator");
-import BillingPlatformModel = require("./BillingPlatformModel");
+import BillingPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Billing/BillingPlatformValidator");
+import BillingPlatformModel = require("sdk/output/javascript/code/sdk/platform/Billing/BillingPlatformModel");

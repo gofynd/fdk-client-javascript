@@ -260,4 +260,4 @@ type VerifyOtpShipmentCustomerParam = {
     shipmentId: string;
     body: OrderApplicationModel.VerifyOtp;
 };
-import OrderApplicationModel = require("./OrderApplicationModel");
+import OrderApplicationModel = require("sdk/output/javascript/code/sdk/application/Order/OrderApplicationModel");

@@ -58,5 +58,5 @@ declare class Share {
      */
     updateShortLinkById({ id, body, requestHeaders }?: SharePlatformApplicationValidator.UpdateShortLinkByIdParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkRes>;
 }
-import SharePlatformApplicationValidator = require("./SharePlatformApplicationValidator");
-import SharePlatformModel = require("./SharePlatformModel");
+import SharePlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformApplicationValidator");
+import SharePlatformModel = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformModel");

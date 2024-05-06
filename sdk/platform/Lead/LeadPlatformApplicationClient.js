@@ -339,8 +339,8 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name editCustomForm
-   * @summary: Edit custom form
-   * @description: Modify the content and assosciated settings of a custom form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
+   * @summary: Update custom form
+   * @description: Modify the content and associated settings of a custom form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
    */
   async editCustomForm(
     { slug, body, requestHeaders } = { requestHeaders: {} },

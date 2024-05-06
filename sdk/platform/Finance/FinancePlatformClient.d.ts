@@ -216,8 +216,8 @@ declare class Finance {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<FinancePlatformModel.InvoiceListingResponse>} - Success response
      * @name invoiceListing
-     * @summary: Gives list of invoices
-     * @description: Gives list of invoices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceListing/).
+     * @summary: List invoices
+     * @description: Provides list of invoices generated for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceListing/).
      */
     invoiceListing({ body, requestHeaders }?: FinancePlatformValidator.InvoiceListingParam, { responseHeaders }?: object): Promise<FinancePlatformModel.InvoiceListingResponse>;
     /**
@@ -258,7 +258,7 @@ declare class Finance {
      * @returns {Promise<FinancePlatformModel.IsCnRefundMethodResponse>} -
      *   Success response
      * @name isCnRefundMethod
-     * @summary: Check CN refund method
+     * @summary: Check refund method
      * @description: Verify the refund method for credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/isCnRefundMethod/).
      */
     isCnRefundMethod({ body, requestHeaders }?: FinancePlatformValidator.IsCnRefundMethodParam, { responseHeaders }?: object): Promise<FinancePlatformModel.IsCnRefundMethodResponse>;
@@ -290,10 +290,10 @@ declare class Finance {
      * @returns {Promise<FinancePlatformModel.UnlockCreditNoteResponse>} -
      *   Success response
      * @name unlockCreditNote
-     * @summary: Unlocks credit notes
+     * @summary: Unlock credit notes
      * @description: Used to unlock all request credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/unlockCreditNote/).
      */
     unlockCreditNote({ body, requestHeaders }?: FinancePlatformValidator.UnlockCreditNoteParam, { responseHeaders }?: object): Promise<FinancePlatformModel.UnlockCreditNoteResponse>;
 }
-import FinancePlatformValidator = require("./FinancePlatformValidator");
-import FinancePlatformModel = require("./FinancePlatformModel");
+import FinancePlatformValidator = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformValidator");
+import FinancePlatformModel = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformModel");

@@ -203,4 +203,4 @@ declare class Theme {
      */
     createTheme({ companyId, applicationId, body, requestHeaders }?: ThemePartnerValidator.CreateThemeParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemesSchema>;
 }
-import ThemePartnerModel = require("./ThemePartnerModel");
+import ThemePartnerModel = require("sdk/output/javascript/code/sdk/partner/Theme/ThemePartnerModel");

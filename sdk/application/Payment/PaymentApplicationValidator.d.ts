@@ -540,4 +540,4 @@ type WalletLinkInitiateParam = {
 type GetActiveRefundTransferModesParam = any;
 type GetEpaylaterBannerDetailsParam = any;
 type GetRupifiBannerDetailsParam = any;
-import PaymentApplicationModel = require("./PaymentApplicationModel");
+import PaymentApplicationModel = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationModel");

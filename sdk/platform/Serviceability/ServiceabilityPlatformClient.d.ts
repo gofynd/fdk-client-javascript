@@ -146,7 +146,7 @@ declare class Serviceability {
      *   - Success response
      *
      * @name getCourierPartnerAccounts
-     * @summary: Get courier accounts
+     * @summary: List courier accounts
      * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
      */
     getCourierPartnerAccounts({ pageNo, pageSize, stage, paymentMode, transportType, requestHeaders }?: ServiceabilityPlatformValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse>;
@@ -321,5 +321,5 @@ declare class Serviceability {
      */
     updateZoneById({ zoneId, body, requestHeaders }?: ServiceabilityPlatformValidator.UpdateZoneByIdParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>;
 }
-import ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
-import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
+import ServiceabilityPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformValidator");
+import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");

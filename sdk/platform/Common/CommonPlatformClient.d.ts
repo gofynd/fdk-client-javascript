@@ -23,5 +23,5 @@ declare class Common {
      */
     searchApplication({ authorization, query, requestHeaders }?: CommonPlatformValidator.SearchApplicationParam, { responseHeaders }?: object): Promise<CommonPlatformModel.ApplicationResponse>;
 }
-import CommonPlatformValidator = require("./CommonPlatformValidator");
-import CommonPlatformModel = require("./CommonPlatformModel");
+import CommonPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Common/CommonPlatformValidator");
+import CommonPlatformModel = require("sdk/output/javascript/code/sdk/platform/Common/CommonPlatformModel");

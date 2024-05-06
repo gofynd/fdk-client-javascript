@@ -38,7 +38,7 @@ declare class Discount {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
      * @name downloadDiscountFile
-     * @summary: Get discount file.
+     * @summary: Get discount file
      * @description: Retrieve a discount file by its type, it could be product or inventory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/downloadDiscountFile/).
      */
     downloadDiscountFile({ type, body, requestHeaders }?: DiscountPlatformValidator.DownloadDiscountFileParam, { responseHeaders }?: object): Promise<DiscountPlatformModel.FileJobResponse>;
@@ -78,7 +78,7 @@ declare class Discount {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
      * @name getValidationJob
-     * @summary: List validation job discount.
+     * @summary: List validation job discount
      * @description: Retrieve a validation job of a discount by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getValidationJob/).
      */
     getValidationJob({ id, requestHeaders }?: DiscountPlatformValidator.GetValidationJobParam, { responseHeaders }?: object): Promise<DiscountPlatformModel.FileJobResponse>;
@@ -113,5 +113,5 @@ declare class Discount {
      */
     validateDiscountFile({ body, discount, requestHeaders }?: DiscountPlatformValidator.ValidateDiscountFileParam, { responseHeaders }?: object): Promise<DiscountPlatformModel.FileJobResponse>;
 }
-import DiscountPlatformValidator = require("./DiscountPlatformValidator");
-import DiscountPlatformModel = require("./DiscountPlatformModel");
+import DiscountPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Discount/DiscountPlatformValidator");
+import DiscountPlatformModel = require("sdk/output/javascript/code/sdk/platform/Discount/DiscountPlatformModel");

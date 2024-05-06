@@ -48,5 +48,5 @@ declare class Communication {
      */
     upsertCommunicationConsent({ body, requestHeaders }?: CommunicationApplicationValidator.UpsertCommunicationConsentParam, { responseHeaders }?: object): Promise<CommunicationApplicationModel.CommunicationConsentRes>;
 }
-import CommunicationApplicationModel = require("./CommunicationApplicationModel");
-import CommunicationApplicationValidator = require("./CommunicationApplicationValidator");
+import CommunicationApplicationModel = require("sdk/output/javascript/code/sdk/application/Communication/CommunicationApplicationModel");
+import CommunicationApplicationValidator = require("sdk/output/javascript/code/sdk/application/Communication/CommunicationApplicationValidator");

@@ -162,5 +162,5 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import FileStoragePlatformApplicationValidator = require("./FileStoragePlatformApplicationValidator");
-import FileStoragePlatformModel = require("./FileStoragePlatformModel");
+import FileStoragePlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformApplicationValidator");
+import FileStoragePlatformModel = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformModel");

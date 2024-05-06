@@ -257,7 +257,7 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name downloadDiscountFile
-   * @summary: Get discount file.
+   * @summary: Get discount file
    * @description: Retrieve a discount file by its type, it could be product or inventory. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/downloadDiscountFile/).
    */
   async downloadDiscountFile(
@@ -611,7 +611,7 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name getValidationJob
-   * @summary: List validation job discount.
+   * @summary: List validation job discount
    * @description: Retrieve a validation job of a discount by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getValidationJob/).
    */
   async getValidationJob(

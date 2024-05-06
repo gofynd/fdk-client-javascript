@@ -216,4 +216,4 @@ type GetCustomerDetailParam = any;
 type GetEnterprisePlansParam = any;
 type GetInvoicesParam = any;
 type GetSubscriptionParam = any;
-import BillingPlatformModel = require("./BillingPlatformModel");
+import BillingPlatformModel = require("sdk/output/javascript/code/sdk/platform/Billing/BillingPlatformModel");

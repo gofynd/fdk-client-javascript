@@ -13,7 +13,7 @@ declare class APIClient {
      * @param {object} xHeaders
      * @param {Options} options
      */
-    static execute(conf: object, method: string, url: string, query: object, body: object, xHeaders: object, options: Options): Promise<import("axios").AxiosResponse<any, any>>;
+    static execute(conf: object, method: string, url: string, query: object, body: object, xHeaders: object, options: Options): Promise<import("sdk/node_modules/axios").AxiosResponse<any, any>>;
     get(url: any, config: any): Promise<any>;
 }
 declare namespace APIClient {

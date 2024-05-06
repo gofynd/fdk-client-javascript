@@ -72,7 +72,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
      *   Success response
      * @name addRefundBankAccountUsingOTP
-     * @summary: Add refund account using OTP verification.
+     * @summary: Add refund account using OTP verification
      * @description: The addition of a bank account specifically for refunds, employing OTP verification for security - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addRefundBankAccountUsingOTP/).
      */
     addRefundBankAccountUsingOTP({ body, requestHeaders }?: PaymentApplicationValidator.AddRefundBankAccountUsingOTPParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.RefundAccountResponse>;
@@ -141,7 +141,7 @@ declare class Payment {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PaymentApplicationModel.CheckCreditResponse>} - Success response
      * @name checkCredit
-     * @summary: Verify credit availability and status.
+     * @summary: Verify credit availability and status
      * @description: Checks the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkCredit/).
      */
     checkCredit({ aggregator, requestHeaders }?: PaymentApplicationValidator.CheckCreditParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CheckCreditResponse>;
@@ -477,7 +477,7 @@ declare class Payment {
      *   - Success response
      *
      * @name resendOrCancelPayment
-     * @summary: Resends or cancels a pending payment transaction.
+     * @summary: Resend or cancel a pending payment transaction
      * @description: Enable you to perform actions related to the resending and cancellation of payment links through SMS or E-mail. Resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendOrCancelPayment/).
      */
     resendOrCancelPayment({ body, requestHeaders }?: PaymentApplicationValidator.ResendOrCancelPaymentParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ResendOrCancelPaymentResponse>;
@@ -585,5 +585,5 @@ declare class Payment {
      */
     walletLinkInitiate({ body, requestHeaders }?: PaymentApplicationValidator.WalletLinkInitiateParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
 }
-import PaymentApplicationValidator = require("./PaymentApplicationValidator");
-import PaymentApplicationModel = require("./PaymentApplicationModel");
+import PaymentApplicationValidator = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationValidator");
+import PaymentApplicationModel = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationModel");

@@ -38,7 +38,7 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.TicketFeedbackList>} - Success response
      * @name getFeedbacks
-     * @summary: Get feedbacks
+     * @summary: List feedbacks
      * @description: Get feedback information related to a ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getFeedbacks/).
      */
     getFeedbacks({ id, requestHeaders }?: LeadPlatformValidator.GetFeedbacksParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketFeedbackList>;
@@ -116,5 +116,5 @@ declare class Lead {
      */
     submitFeedback({ id, body, requestHeaders }?: LeadPlatformValidator.SubmitFeedbackParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketFeedback>;
 }
-import LeadPlatformValidator = require("./LeadPlatformValidator");
-import LeadPlatformModel = require("./LeadPlatformModel");
+import LeadPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformValidator");
+import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");

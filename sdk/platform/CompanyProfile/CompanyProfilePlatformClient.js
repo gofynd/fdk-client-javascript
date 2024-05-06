@@ -507,7 +507,7 @@ class CompanyProfile {
    *   - Success response
    *
    * @name getBrand
-   * @summary: Get brand.
+   * @summary: Get a brand
    * @description: Retrieve detailed information about a specific brand associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrand/).
    */
   async getBrand(

@@ -1234,4 +1234,4 @@ type GetPageMetaParam = any;
 type GetPageSpecParam = any;
 type GetSEOConfigurationParam = any;
 type GetSupportInformationParam = any;
-import ContentPlatformModel = require("./ContentPlatformModel");
+import ContentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformModel");

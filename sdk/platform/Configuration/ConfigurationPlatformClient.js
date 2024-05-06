@@ -102,7 +102,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.ApplicationsResponse>} -
    *   Success response
    * @name getApplications
-   * @summary: List sales channel stores.
+   * @summary: List sales channel stores
    * @description: Retrieve a list of available sales channels. sales channels are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of sales channels created within a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplications/).
    */
   async getApplications(
@@ -871,7 +871,7 @@ class Configuration {
    * @returns {Promise<ConfigurationPlatformModel.OptedStoreIntegration>} -
    *   Success response
    * @name getLevelActiveIntegrations
-   * @summary: Get active integrations.
+   * @summary: Get active integrations
    * @description: Check if a store is already opted-in for any integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getLevelActiveIntegrations/).
    */
   async getLevelActiveIntegrations(

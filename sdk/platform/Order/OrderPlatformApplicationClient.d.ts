@@ -23,7 +23,7 @@ declare class Order {
      *   - Success response
      *
      * @name getApplicationShipments
-     * @summary: List Application's shipments
+     * @summary: List sales channel shipments
      * @description: Get shipments of a particular sales channel based on the filters provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
      */
     getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, requestHeaders, }?: OrderPlatformApplicationValidator.GetApplicationShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
@@ -64,5 +64,5 @@ declare class Order {
      */
     trackShipmentPlatform({ shipmentId, requestHeaders }?: OrderPlatformApplicationValidator.TrackShipmentPlatformParam, { responseHeaders }?: object): Promise<OrderPlatformModel.PlatformShipmentTrack>;
 }
-import OrderPlatformApplicationValidator = require("./OrderPlatformApplicationValidator");
-import OrderPlatformModel = require("./OrderPlatformModel");
+import OrderPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformApplicationValidator");
+import OrderPlatformModel = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformModel");

@@ -261,7 +261,7 @@ class Lead {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.TicketFeedbackList>} - Success response
    * @name getFeedbacks
-   * @summary: Get feedbacks
+   * @summary: List feedbacks
    * @description: Get feedback information related to a ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getFeedbacks/).
    */
   async getFeedbacks(

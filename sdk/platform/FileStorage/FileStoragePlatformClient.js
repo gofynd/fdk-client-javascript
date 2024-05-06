@@ -347,7 +347,7 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.ProxyResponse>} - Success response
    * @name proxy
-   * @summary: Access files through a proxy.
+   * @summary: Access files through a proxy
    * @description: It enables the communication between two entities by directing client requests to the correct server and sending responses back to the client. Please refer group description for more details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
    */
   async proxy(

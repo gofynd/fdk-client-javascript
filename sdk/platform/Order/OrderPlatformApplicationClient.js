@@ -117,7 +117,7 @@ class Order {
    *   - Success response
    *
    * @name getApplicationShipments
-   * @summary: List Application's shipments
+   * @summary: List sales channel shipments
    * @description: Get shipments of a particular sales channel based on the filters provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
    */
   async getApplicationShipments(

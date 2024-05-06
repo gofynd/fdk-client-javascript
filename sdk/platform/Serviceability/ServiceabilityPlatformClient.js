@@ -1015,7 +1015,7 @@ class Serviceability {
    *   - Success response
    *
    * @name getCourierPartnerAccounts
-   * @summary: Get courier accounts
+   * @summary: List courier accounts
    * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(

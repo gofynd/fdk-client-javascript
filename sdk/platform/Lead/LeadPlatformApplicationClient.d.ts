@@ -49,8 +49,8 @@ declare class Lead {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
      * @name editCustomForm
-     * @summary: Edit custom form
-     * @description: Modify the content and assosciated settings of a custom form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
+     * @summary: Update custom form
+     * @description: Modify the content and associated settings of a custom form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
      */
     editCustomForm({ slug, body, requestHeaders }?: LeadPlatformApplicationValidator.EditCustomFormParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomForm>;
     /**
@@ -151,5 +151,5 @@ declare class Lead {
      */
     openVideoRoom({ body, requestHeaders }?: LeadPlatformApplicationValidator.OpenVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CreateVideoRoomResponse>;
 }
-import LeadPlatformApplicationValidator = require("./LeadPlatformApplicationValidator");
-import LeadPlatformModel = require("./LeadPlatformModel");
+import LeadPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformApplicationValidator");
+import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");

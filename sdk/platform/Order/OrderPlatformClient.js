@@ -2296,7 +2296,7 @@ class Order {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ManifestShipmentListing>} - Success response
    * @name getManifestShipments
-   * @summary: List manifest's shipments
+   * @summary: List manifest shipments
    * @description: Get list of shipments tagged to that manifest, the user can also search the shipments on the basis of shipment Id, order Id and AWB number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestShipments/).
    */
   async getManifestShipments(

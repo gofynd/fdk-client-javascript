@@ -51,4 +51,4 @@ type GetAuditLogsParam = {
     sort?: any;
 };
 type GetEntityTypesParam = any;
-import AuditTrailPlatformModel = require("./AuditTrailPlatformModel");
+import AuditTrailPlatformModel = require("sdk/output/javascript/code/sdk/platform/AuditTrail/AuditTrailPlatformModel");

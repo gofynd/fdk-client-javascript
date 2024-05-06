@@ -48,7 +48,7 @@ declare class FileStorage {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<FileStoragePlatformModel.ProxyResponse>} - Success response
      * @name proxy
-     * @summary: Access files through a proxy.
+     * @summary: Access files through a proxy
      * @description: It enables the communication between two entities by directing client requests to the correct server and sending responses back to the client. Please refer group description for more details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
      */
     proxy({ url, requestHeaders }?: FileStoragePlatformValidator.ProxyParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.ProxyResponse>;
@@ -79,5 +79,5 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import FileStoragePlatformValidator = require("./FileStoragePlatformValidator");
-import FileStoragePlatformModel = require("./FileStoragePlatformModel");
+import FileStoragePlatformValidator = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformValidator");
+import FileStoragePlatformModel = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformModel");

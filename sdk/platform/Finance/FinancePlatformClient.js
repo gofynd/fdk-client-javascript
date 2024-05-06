@@ -1550,8 +1550,8 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.InvoiceListingResponse>} - Success response
    * @name invoiceListing
-   * @summary: Gives list of invoices
-   * @description: Gives list of invoices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceListing/).
+   * @summary: List invoices
+   * @description: Provides list of invoices generated for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceListing/).
    */
   async invoiceListing(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1864,7 +1864,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.IsCnRefundMethodResponse>} -
    *   Success response
    * @name isCnRefundMethod
-   * @summary: Check CN refund method
+   * @summary: Check refund method
    * @description: Verify the refund method for credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/isCnRefundMethod/).
    */
   async isCnRefundMethod(
@@ -2103,7 +2103,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.UnlockCreditNoteResponse>} -
    *   Success response
    * @name unlockCreditNote
-   * @summary: Unlocks credit notes
+   * @summary: Unlock credit notes
    * @description: Used to unlock all request credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/unlockCreditNote/).
    */
   async unlockCreditNote(

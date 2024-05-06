@@ -278,7 +278,7 @@ declare class Order {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<OrderPlatformModel.ManifestShipmentListing>} - Success response
      * @name getManifestShipments
-     * @summary: List manifest's shipments
+     * @summary: List manifest shipments
      * @description: Get list of shipments tagged to that manifest, the user can also search the shipments on the basis of shipment Id, order Id and AWB number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestShipments/).
      */
     getManifestShipments({ dpIds, stores, toDate, fromDate, dpName, salesChannels, searchType, searchValue, pageNo, pageSize, requestHeaders, }?: OrderPlatformValidator.GetManifestShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ManifestShipmentListing>;
@@ -575,5 +575,5 @@ declare class Order {
      */
     verifyMobileOTP({ body, requestHeaders }?: OrderPlatformValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<OrderPlatformModel.VerifyOtpResponse>;
 }
-import OrderPlatformValidator = require("./OrderPlatformValidator");
-import OrderPlatformModel = require("./OrderPlatformModel");
+import OrderPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformValidator");
+import OrderPlatformModel = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformModel");
