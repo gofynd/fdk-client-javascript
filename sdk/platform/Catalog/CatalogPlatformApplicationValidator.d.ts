@@ -1260,4 +1260,4 @@ type GetConfigurationsParam = any;
 type GetDepartmentsParam = any;
 type GetQueryFiltersParam = any;
 type GetSearchConfigurationParam = any;
-import CatalogPlatformModel = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformModel");
+import CatalogPlatformModel = require("./CatalogPlatformModel");

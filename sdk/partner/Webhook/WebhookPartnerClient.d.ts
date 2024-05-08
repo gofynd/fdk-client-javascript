@@ -96,4 +96,4 @@ declare class Webhook {
      */
     updateSubscriber({ extensionId, subscriberId, body, requestHeaders }?: WebhookPartnerValidator.UpdateSubscriberParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.UpdateSubscriberResponse>;
 }
-import WebhookPartnerModel = require("sdk/output/javascript/code/sdk/partner/Webhook/WebhookPartnerModel");
+import WebhookPartnerModel = require("./WebhookPartnerModel");

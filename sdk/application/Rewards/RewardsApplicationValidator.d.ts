@@ -70,4 +70,4 @@ type RedeemReferralCodeParam = {
 };
 type GetUserPointsParam = any;
 type GetUserReferralDetailsParam = any;
-import RewardsApplicationModel = require("sdk/output/javascript/code/sdk/application/Rewards/RewardsApplicationModel");
+import RewardsApplicationModel = require("./RewardsApplicationModel");

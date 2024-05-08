@@ -215,5 +215,5 @@ declare class Configuration {
      */
     updateLevelUidIntegration({ id, level, uid, body, requestHeaders }?: ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.IntegrationLevel>;
 }
-import ConfigurationPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformValidator");
-import ConfigurationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformModel");
+import ConfigurationPlatformValidator = require("./ConfigurationPlatformValidator");
+import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

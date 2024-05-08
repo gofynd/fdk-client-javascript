@@ -626,4 +626,4 @@ type EdcDeviceStatsParam = any;
 type GetMerchantPaymentOptionParam = any;
 type GetPGConfigAggregatorsParam = any;
 type GetPaymentCodeOptionParam = any;
-import PaymentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Payment/PaymentPlatformModel");
+import PaymentPlatformModel = require("./PaymentPlatformModel");

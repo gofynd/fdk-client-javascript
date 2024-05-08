@@ -166,5 +166,5 @@ declare class Webhook {
      */
     updateSubscriberConfig({ body, requestHeaders }?: WebhookPlatformValidator.UpdateSubscriberConfigParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigResponse>;
 }
-import WebhookPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Webhook/WebhookPlatformValidator");
-import WebhookPlatformModel = require("sdk/output/javascript/code/sdk/platform/Webhook/WebhookPlatformModel");
+import WebhookPlatformValidator = require("./WebhookPlatformValidator");
+import WebhookPlatformModel = require("./WebhookPlatformModel");

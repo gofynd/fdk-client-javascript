@@ -162,4 +162,4 @@ type UpdateSubscriberConfigParam = {
 type FetchAllEventConfigurationsParam = any;
 type GetManualRetryStatusParam = any;
 type ManualRetryCancelParam = any;
-import WebhookPlatformModel = require("sdk/output/javascript/code/sdk/platform/Webhook/WebhookPlatformModel");
+import WebhookPlatformModel = require("./WebhookPlatformModel");

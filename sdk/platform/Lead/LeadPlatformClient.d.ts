@@ -116,5 +116,5 @@ declare class Lead {
      */
     submitFeedback({ id, body, requestHeaders }?: LeadPlatformValidator.SubmitFeedbackParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketFeedback>;
 }
-import LeadPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformValidator");
-import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");
+import LeadPlatformValidator = require("./LeadPlatformValidator");
+import LeadPlatformModel = require("./LeadPlatformModel");

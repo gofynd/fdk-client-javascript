@@ -19,5 +19,5 @@ declare class Billing {
      */
     getStandardPlans({ platform, requestHeaders }?: BillingPublicValidator.GetStandardPlansParam, { responseHeaders }?: object): Promise<BillingPublicModel.DetailList>;
 }
-import BillingPublicValidator = require("sdk/output/javascript/code/sdk/public/Billing/BillingPublicValidator");
-import BillingPublicModel = require("sdk/output/javascript/code/sdk/public/Billing/BillingPublicModel");
+import BillingPublicValidator = require("./BillingPublicValidator");
+import BillingPublicModel = require("./BillingPublicModel");

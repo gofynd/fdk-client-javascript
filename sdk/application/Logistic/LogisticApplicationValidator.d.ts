@@ -257,4 +257,4 @@ type ValidateAddressParam = {
     body: LogisticApplicationModel.ValidateAddressRequest;
 };
 type GetAllCountriesParam = any;
-import LogisticApplicationModel = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationModel");
+import LogisticApplicationModel = require("./LogisticApplicationModel");

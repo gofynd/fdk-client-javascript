@@ -43,5 +43,5 @@ declare class AuditTrail {
      */
     getEntityTypes({ requestHeaders }?: any, { responseHeaders }?: object): Promise<AuditTrailPlatformModel.EntityTypesResponse>;
 }
-import AuditTrailPlatformValidator = require("sdk/output/javascript/code/sdk/platform/AuditTrail/AuditTrailPlatformValidator");
-import AuditTrailPlatformModel = require("sdk/output/javascript/code/sdk/platform/AuditTrail/AuditTrailPlatformModel");
+import AuditTrailPlatformValidator = require("./AuditTrailPlatformValidator");
+import AuditTrailPlatformModel = require("./AuditTrailPlatformModel");

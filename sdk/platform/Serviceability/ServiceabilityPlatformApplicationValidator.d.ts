@@ -206,4 +206,4 @@ type UpdateStoreRulesConfigParam = {
 type GetApplicationConfigParam = any;
 type GetApplicationConfigurationParam = any;
 type GetApplicationServiceabilitySelfShipmentParam = any;
-import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

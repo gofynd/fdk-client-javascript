@@ -558,6 +558,6 @@ declare class Catalog {
      */
     unfollowById({ collectionType, collectionId, requestHeaders }?: CatalogApplicationValidator.UnfollowByIdParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.FollowPostResponse>;
 }
-import CatalogApplicationValidator = require("sdk/output/javascript/code/sdk/application/Catalog/CatalogApplicationValidator");
-import CatalogApplicationModel = require("sdk/output/javascript/code/sdk/application/Catalog/CatalogApplicationModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CatalogApplicationValidator = require("./CatalogApplicationValidator");
+import CatalogApplicationModel = require("./CatalogApplicationModel");
+import Paginator = require("../../common/Paginator");

@@ -907,4 +907,4 @@ type ValidateCouponForPaymentParam = {
 };
 type FetchCartMetaConfigParam = any;
 type GetCouponOptionValuesParam = any;
-import CartPlatformModel = require("sdk/output/javascript/code/sdk/platform/Cart/CartPlatformModel");
+import CartPlatformModel = require("./CartPlatformModel");

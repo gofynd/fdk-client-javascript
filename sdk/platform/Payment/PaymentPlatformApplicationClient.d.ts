@@ -628,5 +628,5 @@ declare class Payment {
      */
     verifyCustomerForPayment({ body, requestHeaders }?: PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.ValidateCustomerResponse>;
 }
-import PaymentPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Payment/PaymentPlatformApplicationValidator");
-import PaymentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Payment/PaymentPlatformModel");
+import PaymentPlatformApplicationValidator = require("./PaymentPlatformApplicationValidator");
+import PaymentPlatformModel = require("./PaymentPlatformModel");

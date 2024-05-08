@@ -273,5 +273,5 @@ declare class Serviceability {
      */
     updateStoreRulesConfig({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateStoreRulesConfigParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleConfigData>;
 }
-import ServiceabilityPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformApplicationValidator");
-import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");
+import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

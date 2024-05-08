@@ -183,4 +183,4 @@ type ValidateDiscountFileParam = {
     discount?: string;
     body: DiscountPlatformModel.FileJobRequest;
 };
-import DiscountPlatformModel = require("sdk/output/javascript/code/sdk/platform/Discount/DiscountPlatformModel");
+import DiscountPlatformModel = require("./DiscountPlatformModel");

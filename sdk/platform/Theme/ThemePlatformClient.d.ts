@@ -43,5 +43,5 @@ declare class Theme {
      */
     getCompanyLevelThemes({ searchText, requestHeaders }?: ThemePlatformValidator.GetCompanyLevelThemesParam, { responseHeaders }?: object): Promise<ThemePlatformModel.CompanyThemeSchema[]>;
 }
-import ThemePlatformValidator = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformValidator");
-import ThemePlatformModel = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformModel");
+import ThemePlatformValidator = require("./ThemePlatformValidator");
+import ThemePlatformModel = require("./ThemePlatformModel");

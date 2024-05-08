@@ -667,4 +667,4 @@ type ValidateCouponForPaymentParam = {
      */
     cartType?: string;
 };
-import CartApplicationModel = require("sdk/output/javascript/code/sdk/application/Cart/CartApplicationModel");
+import CartApplicationModel = require("./CartApplicationModel");

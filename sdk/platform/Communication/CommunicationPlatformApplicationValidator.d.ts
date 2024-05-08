@@ -828,4 +828,4 @@ type GetSystemAudiencesParam = any;
 type GetSystemEmailTemplatesParam = any;
 type GetSystemSmsTemplatesParam = any;
 type UpdateOtpConfigurationParam = any;
-import CommunicationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Communication/CommunicationPlatformModel");
+import CommunicationPlatformModel = require("./CommunicationPlatformModel");

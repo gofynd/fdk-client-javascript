@@ -1381,4 +1381,4 @@ type GetProductTagsParam = any;
 type GetProductValidationParam = any;
 type ListHSNCodesParam = any;
 type ListProductTemplateExportDetailsParam = any;
-import CatalogPlatformModel = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformModel");
+import CatalogPlatformModel = require("./CatalogPlatformModel");

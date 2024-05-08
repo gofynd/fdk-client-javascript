@@ -318,5 +318,5 @@ declare class Cart {
      */
     validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, cartType, requestHeaders, }?: CartApplicationValidator.ValidateCouponForPaymentParam, { responseHeaders }?: object): Promise<CartApplicationModel.PaymentCouponValidate>;
 }
-import CartApplicationValidator = require("sdk/output/javascript/code/sdk/application/Cart/CartApplicationValidator");
-import CartApplicationModel = require("sdk/output/javascript/code/sdk/application/Cart/CartApplicationModel");
+import CartApplicationValidator = require("./CartApplicationValidator");
+import CartApplicationModel = require("./CartApplicationModel");

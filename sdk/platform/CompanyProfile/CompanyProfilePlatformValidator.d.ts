@@ -198,4 +198,4 @@ type UpdateLocationParam = {
 type CbsOnboardGetParam = any;
 type GetCompanyMetricsParam = any;
 type GetLocationTagsParam = any;
-import CompanyProfilePlatformModel = require("sdk/output/javascript/code/sdk/platform/CompanyProfile/CompanyProfilePlatformModel");
+import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");

@@ -321,5 +321,5 @@ declare class Serviceability {
      */
     updateZoneById({ zoneId, body, requestHeaders }?: ServiceabilityPlatformValidator.UpdateZoneByIdParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>;
 }
-import ServiceabilityPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformValidator");
-import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");
+import ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

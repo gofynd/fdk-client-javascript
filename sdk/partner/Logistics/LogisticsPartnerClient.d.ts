@@ -152,4 +152,4 @@ declare class Logistics {
      */
     getCountries({ onboarding, pageNo, pageSize, q, requestHeaders }?: LogisticsPartnerValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticsPartnerModel.GetCountries>;
 }
-import LogisticsPartnerModel = require("sdk/output/javascript/code/sdk/partner/Logistics/LogisticsPartnerModel");
+import LogisticsPartnerModel = require("./LogisticsPartnerModel");

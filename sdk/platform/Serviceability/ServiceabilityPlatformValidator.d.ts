@@ -529,4 +529,4 @@ type UpdateZoneByIdParam = {
 };
 type GetAllStoresParam = any;
 type GetCompanyConfigurationParam = any;
-import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

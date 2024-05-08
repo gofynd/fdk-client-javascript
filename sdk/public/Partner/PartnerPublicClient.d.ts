@@ -18,5 +18,5 @@ declare class Partner {
      */
     getPanelExtensionDetails({ slug, requestHeaders }?: PartnerPublicValidator.GetPanelExtensionDetailsParam, { responseHeaders }?: object): Promise<PartnerPublicModel.ExtensionUsingSlug>;
 }
-import PartnerPublicValidator = require("sdk/output/javascript/code/sdk/public/Partner/PartnerPublicValidator");
-import PartnerPublicModel = require("sdk/output/javascript/code/sdk/public/Partner/PartnerPublicModel");
+import PartnerPublicValidator = require("./PartnerPublicValidator");
+import PartnerPublicModel = require("./PartnerPublicModel");

@@ -585,5 +585,5 @@ declare class Payment {
      */
     walletLinkInitiate({ body, requestHeaders }?: PaymentApplicationValidator.WalletLinkInitiateParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
 }
-import PaymentApplicationValidator = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationValidator");
-import PaymentApplicationModel = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationModel");
+import PaymentApplicationValidator = require("./PaymentApplicationValidator");
+import PaymentApplicationModel = require("./PaymentApplicationModel");

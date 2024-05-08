@@ -309,5 +309,5 @@ declare class User {
      */
     updateUserGroupPartially({ groupId, body, requestHeaders }?: UserPlatformApplicationValidator.UpdateUserGroupPartiallyParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupResponseSchema>;
 }
-import UserPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/User/UserPlatformApplicationValidator");
-import UserPlatformModel = require("sdk/output/javascript/code/sdk/platform/User/UserPlatformModel");
+import UserPlatformApplicationValidator = require("./UserPlatformApplicationValidator");
+import UserPlatformModel = require("./UserPlatformModel");

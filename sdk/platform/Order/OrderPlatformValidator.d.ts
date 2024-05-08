@@ -1106,4 +1106,4 @@ type GetBulkActionTemplateParam = any;
 type GetChannelConfigParam = any;
 type GetRoleBasedActionsParam = any;
 type GetStateTransitionMapParam = any;
-import OrderPlatformModel = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformModel");
+import OrderPlatformModel = require("./OrderPlatformModel");

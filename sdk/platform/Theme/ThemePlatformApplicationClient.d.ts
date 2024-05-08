@@ -224,5 +224,5 @@ declare class Theme {
      */
     upgradeTheme({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.UpgradeThemeParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemesSchema>;
 }
-import ThemePlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformApplicationValidator");
-import ThemePlatformModel = require("sdk/output/javascript/code/sdk/platform/Theme/ThemePlatformModel");
+import ThemePlatformApplicationValidator = require("./ThemePlatformApplicationValidator");
+import ThemePlatformModel = require("./ThemePlatformModel");

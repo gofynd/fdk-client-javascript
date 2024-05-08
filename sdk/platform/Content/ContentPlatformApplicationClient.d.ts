@@ -1186,6 +1186,6 @@ declare class Content {
      */
     updateSupportInformation({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSupportInformationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.Support>;
 }
-import ContentPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformApplicationValidator");
-import ContentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import ContentPlatformApplicationValidator = require("./ContentPlatformApplicationValidator");
+import ContentPlatformModel = require("./ContentPlatformModel");
+import Paginator = require("../../common/Paginator");

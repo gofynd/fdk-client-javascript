@@ -1024,6 +1024,6 @@ declare class Catalog {
      */
     validateProductTemplateSchema({ itemType, requestHeaders }?: CatalogPlatformValidator.ValidateProductTemplateSchemaParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryValidationResponse>;
 }
-import CatalogPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformValidator");
-import CatalogPlatformModel = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CatalogPlatformValidator = require("./CatalogPlatformValidator");
+import CatalogPlatformModel = require("./CatalogPlatformModel");
+import Paginator = require("../../common/Paginator");

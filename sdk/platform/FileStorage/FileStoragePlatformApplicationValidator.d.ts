@@ -201,4 +201,4 @@ type UpdateHtmlTemplateParam = {
     id: string;
     body: FileStoragePlatformModel.PdfConfig;
 };
-import FileStoragePlatformModel = require("sdk/output/javascript/code/sdk/platform/FileStorage/FileStoragePlatformModel");
+import FileStoragePlatformModel = require("./FileStoragePlatformModel");

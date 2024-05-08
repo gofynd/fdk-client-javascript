@@ -132,5 +132,5 @@ declare class Logistic {
      */
     validateAddress({ countryIsoCode, templateName, body, requestHeaders }?: LogisticApplicationValidator.ValidateAddressParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.ValidateAddressRequest>;
 }
-import LogisticApplicationModel = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationModel");
-import LogisticApplicationValidator = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationValidator");
+import LogisticApplicationModel = require("./LogisticApplicationModel");
+import LogisticApplicationValidator = require("./LogisticApplicationValidator");

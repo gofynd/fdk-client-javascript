@@ -486,5 +486,5 @@ declare class User {
      */
     verifyMobileOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyOtpSuccess>;
 }
-import UserApplicationValidator = require("sdk/output/javascript/code/sdk/application/User/UserApplicationValidator");
-import UserApplicationModel = require("sdk/output/javascript/code/sdk/application/User/UserApplicationModel");
+import UserApplicationValidator = require("./UserApplicationValidator");
+import UserApplicationModel = require("./UserApplicationModel");

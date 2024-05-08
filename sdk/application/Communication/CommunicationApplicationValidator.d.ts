@@ -26,4 +26,4 @@ type UpsertCommunicationConsentParam = {
     body: CommunicationApplicationModel.CommunicationConsentReq;
 };
 type GetCommunicationConsentParam = any;
-import CommunicationApplicationModel = require("sdk/output/javascript/code/sdk/application/Communication/CommunicationApplicationModel");
+import CommunicationApplicationModel = require("./CommunicationApplicationModel");

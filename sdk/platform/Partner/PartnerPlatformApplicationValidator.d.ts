@@ -35,4 +35,4 @@ type RemoveProxyPathParam = {
      */
     attachedPath: string;
 };
-import PartnerPlatformModel = require("sdk/output/javascript/code/sdk/platform/Partner/PartnerPlatformModel");
+import PartnerPlatformModel = require("./PartnerPlatformModel");

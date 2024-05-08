@@ -615,5 +615,5 @@ declare class Cart {
      */
     validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, requestHeaders, }?: CartPlatformApplicationValidator.ValidateCouponForPaymentParam, { responseHeaders }?: object): Promise<CartPlatformModel.PaymentCouponValidate>;
 }
-import CartPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Cart/CartPlatformApplicationValidator");
-import CartPlatformModel = require("sdk/output/javascript/code/sdk/platform/Cart/CartPlatformModel");
+import CartPlatformApplicationValidator = require("./CartPlatformApplicationValidator");
+import CartPlatformModel = require("./CartPlatformModel");

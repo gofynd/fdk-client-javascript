@@ -1063,6 +1063,6 @@ declare class Catalog {
      */
     updateSearchKeywords({ id, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateSearchKeywordsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchWordsData>;
 }
-import CatalogPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformApplicationValidator");
-import CatalogPlatformModel = require("sdk/output/javascript/code/sdk/platform/Catalog/CatalogPlatformModel");
-import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");
+import CatalogPlatformApplicationValidator = require("./CatalogPlatformApplicationValidator");
+import CatalogPlatformModel = require("./CatalogPlatformModel");
+import Paginator = require("../../common/Paginator");

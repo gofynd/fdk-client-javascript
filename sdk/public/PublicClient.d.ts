@@ -11,7 +11,7 @@ declare class PublicClient {
      * @param {import("./PublicConfig")} config - The configuration for the public client.
      */
     constructor(config: import("./PublicConfig"));
-    config: import("sdk/output/javascript/code/sdk/public/PublicConfig");
+    config: import("./PublicConfig");
     billing: Billing;
     configuration: Configuration;
     content: Content;
@@ -26,9 +26,9 @@ declare class PublicClient {
      */
     setExtraHeaders(header: object): void;
 }
-import Billing = require("sdk/output/javascript/code/sdk/public/Billing/BillingPublicClient");
-import Configuration = require("sdk/output/javascript/code/sdk/public/Configuration/ConfigurationPublicClient");
-import Content = require("sdk/output/javascript/code/sdk/public/Content/ContentPublicClient");
-import Inventory = require("sdk/output/javascript/code/sdk/public/Inventory/InventoryPublicClient");
-import Partner = require("sdk/output/javascript/code/sdk/public/Partner/PartnerPublicClient");
-import Webhook = require("sdk/output/javascript/code/sdk/public/Webhook/WebhookPublicClient");
+import Billing = require("./Billing/BillingPublicClient");
+import Configuration = require("./Configuration/ConfigurationPublicClient");
+import Content = require("./Content/ContentPublicClient");
+import Inventory = require("./Inventory/InventoryPublicClient");
+import Partner = require("./Partner/PartnerPublicClient");
+import Webhook = require("./Webhook/WebhookPublicClient");

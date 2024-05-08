@@ -64,5 +64,5 @@ declare class Order {
      */
     trackShipmentPlatform({ shipmentId, requestHeaders }?: OrderPlatformApplicationValidator.TrackShipmentPlatformParam, { responseHeaders }?: object): Promise<OrderPlatformModel.PlatformShipmentTrack>;
 }
-import OrderPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformApplicationValidator");
-import OrderPlatformModel = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformModel");
+import OrderPlatformApplicationValidator = require("./OrderPlatformApplicationValidator");
+import OrderPlatformModel = require("./OrderPlatformModel");

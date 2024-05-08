@@ -114,5 +114,5 @@ declare class Payment {
      */
     verifyIfscCode({ ifscCode, requestHeaders }?: PaymentPlatformValidator.VerifyIfscCodeParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.IfscCodeResponse>;
 }
-import PaymentPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Payment/PaymentPlatformValidator");
-import PaymentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Payment/PaymentPlatformModel");
+import PaymentPlatformValidator = require("./PaymentPlatformValidator");
+import PaymentPlatformModel = require("./PaymentPlatformModel");

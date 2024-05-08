@@ -575,5 +575,5 @@ declare class Order {
      */
     verifyMobileOTP({ body, requestHeaders }?: OrderPlatformValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<OrderPlatformModel.VerifyOtpResponse>;
 }
-import OrderPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformValidator");
-import OrderPlatformModel = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformModel");
+import OrderPlatformValidator = require("./OrderPlatformValidator");
+import OrderPlatformModel = require("./OrderPlatformModel");
