@@ -2,7 +2,7 @@ export = CompanyProfilePlatformValidator;
 /** @typedef CbsOnboardGetParam */
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.CreateBrandRequestSerializer} body
  */
 /**
  * @typedef CreateCompanyBrandMappingParam
@@ -19,7 +19,7 @@ export = CompanyProfilePlatformValidator;
 /**
  * @typedef EditBrandParam
  * @property {string} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.UpdateBrandRequestSerializer} body
  */
 /**
  * @typedef GetBrandParam
@@ -99,7 +99,7 @@ declare namespace CompanyProfilePlatformValidator {
     export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationTagsParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
 }
 type CreateBrandParam = {
-    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
+    body: CompanyProfilePlatformModel.CreateBrandRequestSerializer;
 };
 type CreateCompanyBrandMappingParam = {
     body: CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer;
@@ -115,7 +115,7 @@ type EditBrandParam = {
      * - Id of the brand to be viewed.
      */
     brandId: string;
-    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
+    body: CompanyProfilePlatformModel.UpdateBrandRequestSerializer;
 };
 type GetBrandParam = {
     /**

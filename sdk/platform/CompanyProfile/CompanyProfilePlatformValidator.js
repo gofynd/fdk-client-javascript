@@ -6,7 +6,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.CreateBrandRequestSerializer} body
  */
 
 /**
@@ -27,7 +27,7 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 /**
  * @typedef EditBrandParam
  * @property {string} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.UpdateBrandRequestSerializer} body
  */
 
 /**
@@ -91,7 +91,7 @@ class CompanyProfilePlatformValidator {
   /** @returns {CreateBrandParam} */
   static createBrand() {
     return Joi.object({
-      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
+      body: CompanyProfilePlatformModel.CreateBrandRequestSerializer().required(),
     }).required();
   }
 
@@ -120,7 +120,7 @@ class CompanyProfilePlatformValidator {
   static editBrand() {
     return Joi.object({
       brandId: Joi.string().allow("").required(),
-      body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
+      body: CompanyProfilePlatformModel.UpdateBrandRequestSerializer().required(),
     }).required();
   }
 

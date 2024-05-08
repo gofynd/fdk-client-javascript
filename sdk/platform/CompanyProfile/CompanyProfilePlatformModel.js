@@ -206,7 +206,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateUpdateBrandRequestSerializer
+ * @typedef CreateBrandRequestSerializer
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -217,7 +217,21 @@ const Joi = require("joi");
  * @property {number} [uid]
  * @property {BrandBannerSerializer} banner
  * @property {string} name
- * @property {string} [slug]
+ * @property {string} [slug_key]
+ */
+
+/**
+ * @typedef UpdateBrandRequestSerializer
+ * @property {Object} [_custom_json]
+ * @property {Object} [_locale_language]
+ * @property {string[]} [synonyms]
+ * @property {number} [company_id]
+ * @property {string} [description]
+ * @property {string} logo
+ * @property {string} [brand_tier]
+ * @property {number} [uid]
+ * @property {BrandBannerSerializer} banner
+ * @property {string} name
  */
 
 /**
@@ -727,8 +741,8 @@ class CompanyProfilePlatformModel {
     });
   }
 
-  /** @returns {CreateUpdateBrandRequestSerializer} */
-  static CreateUpdateBrandRequestSerializer() {
+  /** @returns {CreateBrandRequestSerializer} */
+  static CreateBrandRequestSerializer() {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
@@ -740,7 +754,23 @@ class CompanyProfilePlatformModel {
       uid: Joi.number(),
       banner: CompanyProfilePlatformModel.BrandBannerSerializer().required(),
       name: Joi.string().allow("").required(),
-      slug: Joi.string().allow(""),
+      slug_key: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdateBrandRequestSerializer} */
+  static UpdateBrandRequestSerializer() {
+    return Joi.object({
+      _custom_json: Joi.any(),
+      _locale_language: Joi.any(),
+      synonyms: Joi.array().items(Joi.string().allow("")),
+      company_id: Joi.number(),
+      description: Joi.string().allow(""),
+      logo: Joi.string().allow("").required(),
+      brand_tier: Joi.string().allow(""),
+      uid: Joi.number(),
+      banner: CompanyProfilePlatformModel.BrandBannerSerializer().required(),
+      name: Joi.string().allow("").required(),
     });
   }
 
