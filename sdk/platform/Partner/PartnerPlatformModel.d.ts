@@ -8,31 +8,31 @@ export = PartnerPlatformModel;
 /**
  * @typedef AddProxyResponse
  * @property {string} [_id]
- * @property {string} [application_id]
  * @property {string} [attached_path]
- * @property {string} [company_id]
- * @property {string} [created_at]
- * @property {string} [extension_id]
- * @property {string} [modified_at]
  * @property {string} [proxy_url]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [extension_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ */
+/**
+ * @typedef RemoveProxyResponse
+ * @property {string} [message]
+ * @property {Object} [data]
  */
 /**
  * @typedef APIError
  * @property {string} [code]
+ * @property {string} [message]
  * @property {string} [info] - Error code description link
- * @property {string} [message]
- * @property {Object} [meta]
  * @property {string} [request_id]
- */
-/**
- * @typedef RemoveProxyResponse
- * @property {Object} [data]
- * @property {string} [message]
+ * @property {Object} [meta]
  */
 declare class PartnerPlatformModel {
 }
 declare namespace PartnerPlatformModel {
-    export { AddProxyReq, AddProxyResponse, APIError, RemoveProxyResponse };
+    export { AddProxyReq, AddProxyResponse, RemoveProxyResponse, APIError };
 }
 /** @returns {AddProxyReq} */
 declare function AddProxyReq(): AddProxyReq;
@@ -51,29 +51,29 @@ type AddProxyReq = {
 declare function AddProxyResponse(): AddProxyResponse;
 type AddProxyResponse = {
     _id?: string;
-    application_id?: string;
     attached_path?: string;
-    company_id?: string;
-    created_at?: string;
-    extension_id?: string;
-    modified_at?: string;
     proxy_url?: string;
+    company_id?: string;
+    application_id?: string;
+    extension_id?: string;
+    created_at?: string;
+    modified_at?: string;
+};
+/** @returns {RemoveProxyResponse} */
+declare function RemoveProxyResponse(): RemoveProxyResponse;
+type RemoveProxyResponse = {
+    message?: string;
+    data?: any;
 };
 /** @returns {APIError} */
 declare function APIError(): APIError;
 type APIError = {
     code?: string;
+    message?: string;
     /**
      * - Error code description link
      */
     info?: string;
-    message?: string;
-    meta?: any;
     request_id?: string;
-};
-/** @returns {RemoveProxyResponse} */
-declare function RemoveProxyResponse(): RemoveProxyResponse;
-type RemoveProxyResponse = {
-    data?: any;
-    message?: string;
+    meta?: any;
 };

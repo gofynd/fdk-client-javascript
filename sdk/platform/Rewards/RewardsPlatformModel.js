@@ -1,45 +1,17 @@
 const Joi = require("joi");
 
 /**
- * @typedef AppUser
- * @property {string} [_id]
- * @property {boolean} [active]
- * @property {string} [application_id]
- * @property {string} [block_reason]
- * @property {string} [updated_at]
- * @property {string} [updated_by]
- * @property {string} [user_id]
- */
-
-/**
- * @typedef Asset
- * @property {string} [aspect_ratio]
- * @property {string} [id]
- * @property {string} [secure_url]
- */
-
-/**
- * @typedef ConfigurationRequest
- * @property {string} [terms_conditions_link]
- * @property {string[]} [valid_android_packages]
- */
-
-/**
- * @typedef ConfigurationRes
- * @property {string} [application_id]
- * @property {boolean} [success]
- * @property {string} [terms_conditions_link] - A URL that redirects to the
- *   referral information suport page link
- * @property {string[]} [valid_android_packages] - Contains array of string
- *   items, Valid android package names.
- */
-
-/**
  * @typedef E
  * @property {number} [code]
  * @property {string} [exception]
  * @property {string} [info]
  * @property {string} [message]
+ */
+
+/**
+ * @typedef GiveawayResponse
+ * @property {Giveaway[]} [items]
+ * @property {Page} [page]
  */
 
 /**
@@ -59,16 +31,40 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GiveawayResponse
- * @property {Giveaway[]} [items]
- * @property {Page} [page]
+ * @typedef Schedule
+ * @property {number} [duration]
+ * @property {string} [end]
+ * @property {string} [start]
+ * @property {string} [cron]
  */
 
 /**
- * @typedef HistoryRes
- * @property {PointsHistory[]} [items] - History is the list of points transaction.
- * @property {Page} [page]
- * @property {number} [points]
+ * @typedef RewardsAudience
+ * @property {string} [header_user_id]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef Asset
+ * @property {string} [aspect_ratio]
+ * @property {string} [id]
+ * @property {string} [secure_url]
+ */
+
+/**
+ * @typedef RewardsRule
+ * @property {number} [amount]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -90,19 +86,62 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
+ * @typedef ShareMessages
+ * @property {number} [email]
+ * @property {string} [facebook]
+ * @property {string} [fallback]
+ * @property {string} [message]
+ * @property {string} [messenger]
+ * @property {string} [sms]
+ * @property {string} [text]
+ * @property {string} [twitter]
+ * @property {string} [whatsapp]
+ */
+
+/**
+ * @typedef UserRes
+ * @property {Points} [points]
+ * @property {RewardUser} [user]
  */
 
 /**
  * @typedef Points
  * @property {number} [available]
+ */
+
+/**
+ * @typedef RewardUser
+ * @property {string} [_id]
+ * @property {boolean} [active]
+ * @property {string} [created_at]
+ * @property {Referral} [referral]
+ * @property {number} [uid]
+ * @property {string} [updated_at]
+ * @property {string} [user_block_reason]
+ * @property {string} [user_id]
+ */
+
+/**
+ * @typedef Referral
+ * @property {string} [code]
+ */
+
+/**
+ * @typedef AppUser
+ * @property {string} [_id]
+ * @property {boolean} [active]
+ * @property {string} [application_id]
+ * @property {string} [block_reason]
+ * @property {string} [updated_at]
+ * @property {string} [updated_by]
+ * @property {string} [user_id]
+ */
+
+/**
+ * @typedef HistoryRes
+ * @property {PointsHistory[]} [items] - History is the list of points transaction.
+ * @property {Page} [page]
+ * @property {number} [points]
  */
 
 /**
@@ -124,39 +163,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Referral
- * @property {string} [code]
- */
-
-/**
- * @typedef RewardsAudience
- * @property {string} [header_user_id]
- * @property {string} [id]
- */
-
-/**
- * @typedef RewardsRule
- * @property {number} [amount]
- */
-
-/**
- * @typedef RewardUser
- * @property {string} [_id]
- * @property {boolean} [active]
- * @property {string} [created_at]
- * @property {Referral} [referral]
- * @property {number} [uid]
- * @property {string} [updated_at]
- * @property {string} [user_block_reason]
- * @property {string} [user_id]
- */
-
-/**
- * @typedef Schedule
- * @property {string} [cron]
- * @property {number} [duration]
- * @property {string} [end]
- * @property {string} [start]
+ * @typedef ConfigurationRes
+ * @property {string[]} [valid_android_packages] - Contains array of string
+ *   items, Valid android package names.
+ * @property {string} [terms_conditions_link] - A URL that redirects to the
+ *   referral information suport page link
+ * @property {string} [application_id]
+ * @property {boolean} [success]
  */
 
 /**
@@ -165,65 +178,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ShareMessages
- * @property {number} [email]
- * @property {string} [facebook]
- * @property {string} [fallback]
- * @property {string} [message]
- * @property {string} [messenger]
- * @property {string} [sms]
- * @property {string} [text]
- * @property {string} [twitter]
- * @property {string} [whatsapp]
- */
-
-/**
- * @typedef UserRes
- * @property {Points} [points]
- * @property {RewardUser} [user]
+ * @typedef ConfigurationRequest
+ * @property {string[]} [valid_android_packages]
+ * @property {string} [terms_conditions_link]
  */
 
 class RewardsPlatformModel {
-  /** @returns {AppUser} */
-  static AppUser() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      active: Joi.boolean(),
-      application_id: Joi.string().allow(""),
-      block_reason: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      updated_by: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Asset} */
-  static Asset() {
-    return Joi.object({
-      aspect_ratio: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-      secure_url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ConfigurationRequest} */
-  static ConfigurationRequest() {
-    return Joi.object({
-      terms_conditions_link: Joi.string().allow(""),
-      valid_android_packages: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {ConfigurationRes} */
-  static ConfigurationRes() {
-    return Joi.object({
-      application_id: Joi.string().allow(""),
-      success: Joi.boolean(),
-      terms_conditions_link: Joi.string().allow(""),
-      valid_android_packages: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
   /** @returns {E} */
   static E() {
     return Joi.object({
@@ -231,6 +191,14 @@ class RewardsPlatformModel {
       exception: Joi.string().allow(""),
       info: Joi.string().allow(""),
       message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GiveawayResponse} */
+  static GiveawayResponse() {
+    return Joi.object({
+      items: Joi.array().items(RewardsPlatformModel.Giveaway()),
+      page: RewardsPlatformModel.Page(),
     });
   }
 
@@ -252,20 +220,50 @@ class RewardsPlatformModel {
     });
   }
 
-  /** @returns {GiveawayResponse} */
-  static GiveawayResponse() {
+  /** @returns {Schedule} */
+  static Schedule() {
     return Joi.object({
-      items: Joi.array().items(RewardsPlatformModel.Giveaway()),
-      page: RewardsPlatformModel.Page(),
+      duration: Joi.number(),
+      end: Joi.string().allow(""),
+      start: Joi.string().allow(""),
+      cron: Joi.string().allow(""),
     });
   }
 
-  /** @returns {HistoryRes} */
-  static HistoryRes() {
+  /** @returns {RewardsAudience} */
+  static RewardsAudience() {
     return Joi.object({
-      items: Joi.array().items(RewardsPlatformModel.PointsHistory()),
-      page: RewardsPlatformModel.Page(),
-      points: Joi.number(),
+      header_user_id: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Asset} */
+  static Asset() {
+    return Joi.object({
+      aspect_ratio: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      secure_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RewardsRule} */
+  static RewardsRule() {
+    return Joi.object({
+      amount: Joi.number(),
+    });
+  }
+
+  /** @returns {Page} */
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
     });
   }
 
@@ -289,16 +287,26 @@ class RewardsPlatformModel {
     });
   }
 
-  /** @returns {Page} */
-  static Page() {
+  /** @returns {ShareMessages} */
+  static ShareMessages() {
     return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
+      email: Joi.number(),
+      facebook: Joi.string().allow(""),
+      fallback: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      messenger: Joi.string().allow(""),
+      sms: Joi.string().allow(""),
+      text: Joi.string().allow(""),
+      twitter: Joi.string().allow(""),
+      whatsapp: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UserRes} */
+  static UserRes() {
+    return Joi.object({
+      points: RewardsPlatformModel.Points(),
+      user: RewardsPlatformModel.RewardUser(),
     });
   }
 
@@ -306,6 +314,49 @@ class RewardsPlatformModel {
   static Points() {
     return Joi.object({
       available: Joi.number(),
+    });
+  }
+
+  /** @returns {RewardUser} */
+  static RewardUser() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      active: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      referral: RewardsPlatformModel.Referral(),
+      uid: Joi.number(),
+      updated_at: Joi.string().allow(""),
+      user_block_reason: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Referral} */
+  static Referral() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AppUser} */
+  static AppUser() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      active: Joi.boolean(),
+      application_id: Joi.string().allow(""),
+      block_reason: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {HistoryRes} */
+  static HistoryRes() {
+    return Joi.object({
+      items: Joi.array().items(RewardsPlatformModel.PointsHistory()),
+      page: RewardsPlatformModel.Page(),
+      points: Joi.number(),
     });
   }
 
@@ -329,49 +380,13 @@ class RewardsPlatformModel {
     });
   }
 
-  /** @returns {Referral} */
-  static Referral() {
+  /** @returns {ConfigurationRes} */
+  static ConfigurationRes() {
     return Joi.object({
-      code: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {RewardsAudience} */
-  static RewardsAudience() {
-    return Joi.object({
-      header_user_id: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {RewardsRule} */
-  static RewardsRule() {
-    return Joi.object({
-      amount: Joi.number(),
-    });
-  }
-
-  /** @returns {RewardUser} */
-  static RewardUser() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      active: Joi.boolean(),
-      created_at: Joi.string().allow(""),
-      referral: RewardsPlatformModel.Referral(),
-      uid: Joi.number(),
-      updated_at: Joi.string().allow(""),
-      user_block_reason: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Schedule} */
-  static Schedule() {
-    return Joi.object({
-      cron: Joi.string().allow(""),
-      duration: Joi.number(),
-      end: Joi.string().allow(""),
-      start: Joi.string().allow(""),
+      valid_android_packages: Joi.array().items(Joi.string().allow("")),
+      terms_conditions_link: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 
@@ -382,26 +397,11 @@ class RewardsPlatformModel {
     });
   }
 
-  /** @returns {ShareMessages} */
-  static ShareMessages() {
+  /** @returns {ConfigurationRequest} */
+  static ConfigurationRequest() {
     return Joi.object({
-      email: Joi.number(),
-      facebook: Joi.string().allow(""),
-      fallback: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      messenger: Joi.string().allow(""),
-      sms: Joi.string().allow(""),
-      text: Joi.string().allow(""),
-      twitter: Joi.string().allow(""),
-      whatsapp: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UserRes} */
-  static UserRes() {
-    return Joi.object({
-      points: RewardsPlatformModel.Points(),
-      user: RewardsPlatformModel.RewardUser(),
+      valid_android_packages: Joi.array().items(Joi.string().allow("")),
+      terms_conditions_link: Joi.string().allow(""),
     });
   }
 }

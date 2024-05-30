@@ -1,35 +1,75 @@
 export = ContentPlatformModel;
 /**
- * @typedef Action
- * @property {ActionPage} [page]
- * @property {ActionPage} [popup]
+ * @typedef GenerateSEOContent
+ * @property {string} [text]
+ * @property {string} [existing_text]
+ * @property {string[]} [keywords]
  * @property {string} [type]
  */
 /**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {PageType} type
- * @property {string} [url]
- */
-/**
- * @typedef AdminAnnouncementSchema
- * @property {string} [_id]
- * @property {ScheduleSchema} [_schedule]
- * @property {string} [announcement]
- * @property {string} [app]
- * @property {AnnouncementAuthorSchema} [author]
- * @property {string} [created_at]
- * @property {EditorMeta} [editor_meta]
- * @property {string} [modified_at]
- * @property {AnnouncementPageSchema[]} [pages]
- * @property {string[]} [platforms]
+ * @typedef GeneratedSEOContent
  * @property {string} [title]
+ * @property {string} [description]
  */
 /**
- * @typedef AnnouncementAuthorSchema
- * @property {string} [created_by]
- * @property {string} [modified_by]
+ * @typedef ApplicationLegal
+ * @property {string} [application]
+ * @property {string} [tnc]
+ * @property {string} [policy]
+ * @property {string} [shipping]
+ * @property {string} [returns]
+ * @property {ApplicationLegalFAQ[]} [faq]
+ * @property {string} [_id]
+ * @property {string} [updated_at]
+ * @property {string} [created_at]
+ */
+/**
+ * @typedef ApplicationLegalFAQ
+ * @property {string} [question]
+ * @property {string} [answer]
+ */
+/**
+ * @typedef PathMappingSchema
+ * @property {string} [application]
+ * @property {string} [_id]
+ * @property {string} [redirect_from]
+ * @property {string} [redirect_to]
+ * @property {string} [updated_at]
+ * @property {string} [created_at]
+ * @property {PathSourceSchema} [__source]
+ */
+/**
+ * @typedef PathSourceSchema
+ * @property {string} [type]
+ * @property {string} [id]
+ */
+/**
+ * @typedef SeoComponent
+ * @property {SeoSchema} [seo]
+ */
+/**
+ * @typedef SeoSchema
+ * @property {string} [app]
+ * @property {string} [_id]
+ * @property {string} [robots_txt]
+ * @property {boolean} [sitemap_enabled]
+ * @property {boolean} [cannonical_enabled]
+ * @property {CustomMetaTag[]} [custom_meta_tags]
+ * @property {Detail} [details]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef CustomMetaTag
+ * @property {string} [name]
+ * @property {string} [content]
+ * @property {string} [_id]
+ */
+/**
+ * @typedef Detail
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {string} [image_url]
  */
 /**
  * @typedef AnnouncementPageSchema
@@ -37,21 +77,53 @@ export = ContentPlatformModel;
  * @property {string} [type]
  */
 /**
- * @typedef ApplicationLegal
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string} [created_at]
- * @property {ApplicationLegalFAQ[]} [faq]
- * @property {string} [policy]
- * @property {string} [returns]
- * @property {string} [shipping]
- * @property {string} [tnc]
- * @property {string} [updated_at]
+ * @typedef EditorMeta
+ * @property {string} [foreground_color]
+ * @property {string} [background_color]
+ * @property {string} [content_type]
+ * @property {string} [content]
  */
 /**
- * @typedef ApplicationLegalFAQ
- * @property {string} [answer]
- * @property {string} [question]
+ * @typedef AnnouncementAuthorSchema
+ * @property {string} [created_by]
+ * @property {string} [modified_by]
+ */
+/**
+ * @typedef AdminAnnouncementSchema
+ * @property {string} [_id]
+ * @property {string[]} [platforms]
+ * @property {string} [title]
+ * @property {string} [announcement]
+ * @property {AnnouncementPageSchema[]} [pages]
+ * @property {EditorMeta} [editor_meta]
+ * @property {AnnouncementAuthorSchema} [author]
+ * @property {string} [created_at]
+ * @property {string} [app]
+ * @property {string} [modified_at]
+ * @property {ScheduleSchema} [_schedule]
+ */
+/**
+ * @typedef ScheduleSchema
+ * @property {string} [cron]
+ * @property {string} [start]
+ * @property {string} [end]
+ * @property {number} [duration]
+ * @property {NextSchedule[]} [next_schedule]
+ */
+/**
+ * @typedef NextSchedule
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+/**
+ * @typedef BlogGetResponse
+ * @property {BlogSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef ResourceContent
+ * @property {string} [type]
+ * @property {string} [value]
  */
 /**
  * @typedef Asset
@@ -66,42 +138,224 @@ export = ContentPlatformModel;
  * @property {string} [name]
  */
 /**
- * @typedef BlogGetResponse
- * @property {BlogSchema[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef BlogRequest
- * @property {Object} [_custom_json]
- * @property {CronSchedule} [_schedule]
- * @property {string} [application]
- * @property {Author} [author]
- * @property {ResourceContent[]} [content]
- * @property {Asset} [feature_image]
- * @property {boolean} [published]
- * @property {string} [reading_time]
- * @property {SEO} [seo]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- */
-/**
  * @typedef BlogSchema
- * @property {Object} [_custom_json]
  * @property {string} [_id]
- * @property {CronSchedule} [_schedule]
+ * @property {Object} [_custom_json]
  * @property {string} [application]
  * @property {boolean} [archived]
  * @property {Author} [author]
  * @property {ResourceContent[]} [content]
- * @property {DateMeta} [date_meta]
  * @property {Asset} [feature_image]
  * @property {boolean} [published]
  * @property {string} [reading_time]
+ * @property {string} [slug]
+ * @property {string[]} [tags]
  * @property {SEO} [seo]
+ * @property {CronSchedule} [_schedule]
+ * @property {string} [title]
+ * @property {DateMeta} [date_meta]
+ */
+/**
+ * @typedef SEO
+ * @property {string} [description]
+ * @property {SEOImage} [image]
+ * @property {string} [title]
+ */
+/**
+ * @typedef SEOImage
+ * @property {string} [url]
+ */
+/**
+ * @typedef DateMeta
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ */
+/**
+ * @typedef BlogRequest
+ * @property {string} [application]
+ * @property {Object} [_custom_json]
+ * @property {Author} [author]
+ * @property {ResourceContent[]} [content]
+ * @property {Asset} [feature_image]
+ * @property {boolean} [published]
+ * @property {string} [reading_time]
  * @property {string} [slug]
  * @property {string[]} [tags]
  * @property {string} [title]
+ * @property {SEO} [seo]
+ * @property {CronSchedule} [_schedule]
+ */
+/**
+ * @typedef GetAnnouncementListSchema
+ * @property {AdminAnnouncementSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef CreateAnnouncementSchema
+ * @property {string} [message]
+ * @property {AdminAnnouncementSchema} [data]
+ */
+/**
+ * @typedef DataLoaderResponseSchema
+ * @property {string} [application]
+ * @property {string} [company]
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [service]
+ * @property {string} [operation_id]
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [content]
+ * @property {DataLoaderSourceSchema} [__source]
+ */
+/**
+ * @typedef DataLoaderResetResponseSchema
+ * @property {boolean} [reset]
+ */
+/**
+ * @typedef LocaleLanguage
+ * @property {Language} [hi]
+ * @property {Language} [ar]
+ * @property {Language} [en_us]
+ */
+/**
+ * @typedef Language
+ * @property {string} [display]
+ */
+/**
+ * @typedef Action
+ * @property {ActionPage} [page]
+ * @property {ActionPage} [popup]
+ * @property {string} [type]
+ */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef NavigationReference
+ * @property {string[]} [acl]
+ * @property {string[]} [tags]
+ * @property {LocaleLanguage} [_locale_language]
+ * @property {string} [image]
+ * @property {string} [type]
+ * @property {Action} [action]
+ * @property {boolean} [active]
+ * @property {string} [display]
+ * @property {number} [sort_order]
+ * @property {NavigationReference[]} [sub_navigation]
+ */
+/**
+ * @typedef ConfigurationSchema
+ * @property {number} [sleep_time]
+ * @property {boolean} [start_on_launch]
+ * @property {number} [duration]
+ * @property {string} [slide_direction]
+ */
+/**
+ * @typedef SlideshowMedia
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [bg_color]
+ * @property {number} [duration]
+ * @property {boolean} [auto_decide_duration]
+ * @property {Action} [action]
+ */
+/**
+ * @typedef UpdateHandpickedSchema
+ * @property {HandpickedTagSchema} [tag]
+ */
+/**
+ * @typedef HandpickedTagSchema
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {string} [name]
+ * @property {string} [url]
+ * @property {string} [type]
+ * @property {string} [sub_type]
+ * @property {string} [content]
+ */
+/**
+ * @typedef RemoveHandpickedSchema
+ * @property {string[]} [tags]
+ */
+/**
+ * @typedef CreateTagSchema
+ * @property {string} [name]
+ * @property {string} [sub_type]
+ * @property {string} [_id]
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {Object[]} [pages]
+ * @property {string} [content]
+ */
+/**
+ * @typedef CreateTagRequestSchema
+ * @property {CreateTagSchema[]} [tags]
+ */
+/**
+ * @typedef DataLoaderSchema
+ * @property {string} [name]
+ * @property {string} [service]
+ * @property {string} [operation_id]
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [content]
+ * @property {DataLoaderSourceSchema} [__source]
+ * @property {string} [_id]
+ */
+/**
+ * @typedef DataLoaderSourceSchema
+ * @property {string} [type]
+ * @property {string} [id]
+ */
+/**
+ * @typedef DataLoadersSchema
+ * @property {DataLoaderSchema[]} [items]
+ */
+/**
+ * @typedef TagDeleteSuccessResponse
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef ContentAPIError
+ * @property {string} [message]
+ * @property {number} [status]
+ * @property {string} [code]
+ * @property {string} [exception]
+ * @property {string} [info]
+ * @property {string} [request_id]
+ * @property {string} [stack_trace]
+ * @property {Object} [meta]
+ */
+/**
+ * @typedef CommonError
+ * @property {string} [message]
+ */
+/**
+ * @typedef CategorySchema
+ * @property {number} [index]
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {string[]} [children]
+ * @property {string} [_id]
+ * @property {string} [slug]
+ * @property {string} [application]
+ * @property {string} [icon_url]
+ * @property {Object} [_custom_json]
+ */
+/**
+ * @typedef ChildrenSchema
+ * @property {string} [question]
+ * @property {string} [answer]
+ * @property {string} [slug]
+ * @property {string} [application]
+ * @property {string} [_id]
  */
 /**
  * @typedef CategoryRequestSchema
@@ -109,68 +363,31 @@ export = ContentPlatformModel;
  * @property {string} [title]
  */
 /**
- * @typedef CategorySchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string[]} [children]
- * @property {string} [description]
- * @property {string} [icon_url]
+ * @typedef FAQCategorySchema
  * @property {number} [index]
- * @property {string} [slug]
  * @property {string} [title]
- */
-/**
- * @typedef ChildrenSchema
+ * @property {string} [description]
+ * @property {ChildrenSchema[]} [children]
  * @property {string} [_id]
- * @property {string} [answer]
- * @property {string} [application]
- * @property {string} [question]
  * @property {string} [slug]
+ * @property {string} [application]
+ * @property {string} [icon_url]
+ * @property {Object} [_custom_json]
  */
 /**
- * @typedef CommonError
- * @property {string} [message]
+ * @typedef FaqSchema
+ * @property {string} [slug]
+ * @property {string} [application]
+ * @property {string} [_id]
+ * @property {string} [question]
+ * @property {string} [answer]
+ * @property {string[]} [tags]
  */
 /**
- * @typedef ConfigurationSchema
- * @property {number} [duration]
- * @property {number} [sleep_time]
- * @property {string} [slide_direction]
- * @property {boolean} [start_on_launch]
- */
-/**
- * @typedef ContactSchema
- * @property {EmailSchema} [email]
- * @property {PhoneSchema} [phone]
- */
-/**
- * @typedef ContentAPIError
- * @property {string} [code]
- * @property {string} [exception]
- * @property {string} [info]
- * @property {string} [message]
- * @property {Object} [meta]
- * @property {string} [request_id]
- * @property {string} [stack_trace]
- * @property {number} [status]
- */
-/**
- * @typedef CreateAnnouncementSchema
- * @property {AdminAnnouncementSchema} [data]
- * @property {string} [message]
- */
-/**
- * @typedef CreatedBySchema
- * @property {string} [id]
- */
-/**
- * @typedef CreateFaqCategoryRequestSchema
- * @property {CategoryRequestSchema} [category]
- */
-/**
- * @typedef CreateFaqCategorySchema
- * @property {CategorySchema} [category]
+ * @typedef FAQ
+ * @property {string} [slug]
+ * @property {string} [question]
+ * @property {string} [answer]
  */
 /**
  * @typedef CreateFaqResponseSchema
@@ -181,92 +398,222 @@ export = ContentPlatformModel;
  * @property {FAQ} [faq]
  */
 /**
- * @typedef CreateTagRequestSchema
- * @property {CreateTagSchema[]} [tags]
+ * @typedef GetFaqSchema
+ * @property {FaqSchema[]} [faqs]
  */
 /**
- * @typedef CreateTagSchema
- * @property {string} [_id]
- * @property {Object} [attributes]
- * @property {string} [content]
- * @property {string} [name]
- * @property {Object[]} [pages]
- * @property {string} [position]
- * @property {string} [sub_type]
- * @property {string} [type]
- * @property {string} [url]
+ * @typedef UpdateFaqCategoryRequestSchema
+ * @property {CategorySchema} [category]
  */
 /**
- * @typedef CronSchedule
- * @property {string} [cron]
- * @property {number} [duration]
- * @property {string} [end]
- * @property {string} [start]
+ * @typedef CreateFaqCategoryRequestSchema
+ * @property {CategoryRequestSchema} [category]
  */
 /**
- * @typedef CustomMetaTag
- * @property {string} [_id]
- * @property {string} [content]
- * @property {string} [name]
+ * @typedef CreateFaqCategorySchema
+ * @property {CategorySchema} [category]
  */
 /**
- * @typedef DataLoaderResetResponseSchema
- * @property {boolean} [reset]
+ * @typedef GetFaqCategoriesSchema
+ * @property {CategorySchema[]} [categories]
  */
 /**
- * @typedef DataLoaderResponseSchema
- * @property {DataLoaderSourceSchema} [__source]
+ * @typedef GetFaqCategoryBySlugSchema
+ * @property {FAQCategorySchema} [category]
+ */
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+/**
+ * @typedef LandingPageGetResponse
+ * @property {LandingPageSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef LandingPageSchema
+ * @property {string} [slug]
+ * @property {Action} [action]
+ * @property {string[]} [platform]
+ * @property {CreatedBySchema} [created_by]
+ * @property {DateMeta} [date_meta]
  * @property {string} [_id]
  * @property {string} [application]
- * @property {string} [company]
- * @property {string} [content]
- * @property {string} [name]
- * @property {string} [operation_id]
- * @property {string} [service]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef DataLoaderSchema
- * @property {DataLoaderSourceSchema} [__source]
- * @property {string} [_id]
- * @property {string} [content]
- * @property {string} [name]
- * @property {string} [operation_id]
- * @property {string} [service]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef DataLoaderSourceSchema
- * @property {string} [id]
- * @property {string} [type]
- */
-/**
- * @typedef DataLoadersSchema
- * @property {DataLoaderSchema[]} [items]
- */
-/**
- * @typedef DateMeta
- * @property {string} [created_on]
- * @property {string} [modified_on]
+ * @property {boolean} [archived]
+ * @property {Object} [_custom_json]
  */
 /**
  * @typedef DefaultNavigationResponse
  * @property {NavigationSchema[]} [items]
  */
 /**
- * @typedef Detail
+ * @typedef NavigationGetResponse
+ * @property {NavigationSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef Orientation
+ * @property {string[]} [portrait]
+ * @property {string[]} [landscape]
+ */
+/**
+ * @typedef NavigationSchema
+ * @property {string} [_id]
+ * @property {string} [application]
+ * @property {boolean} [archived]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string[]} [platform]
+ * @property {CreatedBySchema} [created_by]
+ * @property {DateMeta} [date_meta]
+ * @property {Orientation} [orientation]
+ * @property {number} [version]
+ * @property {NavigationReference[]} [navigation]
+ */
+/**
+ * @typedef NavigationRequest
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string[]} [platform]
+ * @property {Orientation} [orientation]
+ * @property {NavigationReference[]} [navigation]
+ */
+/**
+ * @typedef PageGetResponse
+ * @property {PageSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef PageSpec
+ * @property {PageSpecItem[]} [specifications]
+ */
+/**
+ * @typedef PageSpecParam
+ * @property {string} [key]
+ * @property {boolean} [required]
+ */
+/**
+ * @typedef PageSpecItem
+ * @property {string} [page_type]
+ * @property {string} [display_name]
+ * @property {PageSpecParam[]} [params]
+ * @property {PageSpecParam[]} [query]
+ */
+/**
+ * @typedef PageSchema
+ * @property {string} [_id]
+ * @property {string} [application]
+ * @property {string[]} [component_ids] - Components can be used to store
+ *   multiple components
+ * @property {Object[]} [content]
+ * @property {string} [content_path]
+ * @property {CreatedBySchema} [created_by]
+ * @property {DateMeta} [date_meta]
  * @property {string} [description]
- * @property {string} [image_url]
+ * @property {Asset} [feature_image]
+ * @property {Object[]} [page_meta]
+ * @property {ScheduleSchema} [_schedule]
+ * @property {Object} [_custom_json]
+ * @property {string} [orientation]
+ * @property {string} [platform]
+ * @property {boolean} [published]
+ * @property {string} [slug]
+ * @property {string[]} [tags]
+ * @property {string} [title]
+ * @property {string} [type]
+ * @property {SEO} [seo]
+ * @property {Object} [visibility]
+ * @property {boolean} [archived]
+ */
+/**
+ * @typedef CreatedBySchema
+ * @property {string} [id]
+ */
+/**
+ * @typedef PageRequest
+ * @property {CronSchedule} [_schedule]
+ * @property {string} [application]
+ * @property {Author} [author]
+ * @property {Object} [_custom_json]
+ * @property {string} [orientation]
+ * @property {Object[]} [content]
+ * @property {Asset} [feature_image]
+ * @property {boolean} [published]
+ * @property {string} [reading_time]
+ * @property {string} [slug]
+ * @property {string[]} [tags]
+ * @property {SEO} [seo]
  * @property {string} [title]
  */
 /**
- * @typedef EditorMeta
- * @property {string} [background_color]
- * @property {string} [content]
- * @property {string} [content_type]
- * @property {string} [foreground_color]
+ * @typedef CronSchedule
+ * @property {string} [cron]
+ * @property {string} [start]
+ * @property {string} [end]
+ * @property {number} [duration]
+ */
+/**
+ * @typedef PagePublishRequest
+ * @property {boolean} [publish]
+ */
+/**
+ * @typedef PageMetaSchema
+ * @property {NavigationSchema[]} [system_pages]
+ * @property {PageSchema[]} [custom_pages]
+ * @property {string} [application_id]
+ */
+/**
+ * @typedef SlideshowGetResponse
+ * @property {SlideshowSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef SlideshowSchema
+ * @property {string} [_id]
+ * @property {string} [slug]
+ * @property {DateMeta} [date_meta]
+ * @property {string} [application]
+ * @property {string} [platform]
+ * @property {ConfigurationSchema} [configuration]
+ * @property {SlideshowMedia[]} [media]
+ * @property {boolean} [active]
+ * @property {boolean} [archived]
+ * @property {Object} [_custom_json]
+ */
+/**
+ * @typedef SlideshowRequest
+ * @property {string} [slug]
+ * @property {string} [platform]
+ * @property {ConfigurationSchema} [configuration]
+ * @property {SlideshowMedia} [media]
+ * @property {boolean} [active]
+ */
+/**
+ * @typedef Support
+ * @property {boolean} [created]
+ * @property {string} [_id]
+ * @property {string} [config_type]
+ * @property {string} [application]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {ContactSchema} [contact]
+ */
+/**
+ * @typedef PhoneProperties
+ * @property {string} [key]
+ * @property {string} [code]
+ * @property {string} [number]
+ */
+/**
+ * @typedef PhoneSchema
+ * @property {boolean} [active]
+ * @property {PhoneProperties[]} [phone]
  */
 /**
  * @typedef EmailProperties
@@ -279,380 +626,33 @@ export = ContentPlatformModel;
  * @property {EmailProperties[]} [email]
  */
 /**
- * @typedef FAQ
- * @property {string} [answer]
- * @property {string} [question]
- * @property {string} [slug]
- */
-/**
- * @typedef FAQCategorySchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {string} [application]
- * @property {ChildrenSchema[]} [children]
- * @property {string} [description]
- * @property {string} [icon_url]
- * @property {number} [index]
- * @property {string} [slug]
- * @property {string} [title]
- */
-/**
- * @typedef FaqSchema
- * @property {string} [_id]
- * @property {string} [answer]
- * @property {string} [application]
- * @property {string} [question]
- * @property {string} [slug]
- * @property {string[]} [tags]
- */
-/**
- * @typedef GeneratedSEOContent
- * @property {string} [description]
- * @property {string} [title]
- */
-/**
- * @typedef GenerateSEOContent
- * @property {string} [existing_text]
- * @property {string[]} [keywords]
- * @property {string} [text]
- * @property {string} [type]
- */
-/**
- * @typedef GetAnnouncementListSchema
- * @property {AdminAnnouncementSchema[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef GetFaqCategoriesSchema
- * @property {CategorySchema[]} [categories]
- */
-/**
- * @typedef GetFaqCategoryBySlugSchema
- * @property {FAQCategorySchema} [category]
- */
-/**
- * @typedef GetFaqSchema
- * @property {FaqSchema[]} [faqs]
- */
-/**
- * @typedef HandpickedTagSchema
- * @property {Object} [attributes]
- * @property {string} [content]
- * @property {string} [name]
- * @property {string} [position]
- * @property {string} [sub_type]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef LandingPageGetResponse
- * @property {LandingPageSchema[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef LandingPageSchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {Action} [action]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string[]} [platform]
- * @property {string} [slug]
- */
-/**
- * @typedef Language
- * @property {string} [display]
- */
-/**
- * @typedef LocaleLanguage
- * @property {Language} [ar]
- * @property {Language} [en_us]
- * @property {Language} [hi]
- */
-/**
- * @typedef NavigationGetResponse
- * @property {NavigationSchema[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef NavigationReference
- * @property {LocaleLanguage} [_locale_language]
- * @property {string[]} [acl]
- * @property {Action} [action]
- * @property {boolean} [active]
- * @property {string} [display]
- * @property {string} [image]
- * @property {number} [sort_order]
- * @property {NavigationReference[]} [sub_navigation]
- * @property {string[]} [tags]
- * @property {string} [type]
- */
-/**
- * @typedef NavigationRequest
- * @property {string} [name]
- * @property {NavigationReference[]} [navigation]
- * @property {Orientation} [orientation]
- * @property {string[]} [platform]
- * @property {string} [slug]
- */
-/**
- * @typedef NavigationSchema
- * @property {string} [_id]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string} [name]
- * @property {NavigationReference[]} [navigation]
- * @property {Orientation} [orientation]
- * @property {string[]} [platform]
- * @property {string} [slug]
- * @property {number} [version]
- */
-/**
- * @typedef NextSchedule
- * @property {string} [end]
- * @property {string} [start]
- */
-/**
- * @typedef Orientation
- * @property {string[]} [landscape]
- * @property {string[]} [portrait]
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-/**
- * @typedef PageGetResponse
- * @property {PageSchema[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef PageMetaSchema
- * @property {string} [application_id]
- * @property {PageSchema[]} [custom_pages]
- * @property {NavigationSchema[]} [system_pages]
- */
-/**
- * @typedef PagePublishRequest
- * @property {boolean} [publish]
- */
-/**
- * @typedef PageRequest
- * @property {Object} [_custom_json]
- * @property {CronSchedule} [_schedule]
- * @property {string} [application]
- * @property {Author} [author]
- * @property {Object[]} [content]
- * @property {Asset} [feature_image]
- * @property {string} [orientation]
- * @property {boolean} [published]
- * @property {string} [reading_time]
- * @property {SEO} [seo]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- */
-/**
- * @typedef PageSchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {ScheduleSchema} [_schedule]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {string[]} [component_ids] - Components can be used to store
- *   multiple components
- * @property {Object[]} [content]
- * @property {string} [content_path]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string} [description]
- * @property {Asset} [feature_image]
- * @property {string} [orientation]
- * @property {Object[]} [page_meta]
- * @property {string} [platform]
- * @property {boolean} [published]
- * @property {SEO} [seo]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- * @property {string} [type]
- * @property {Object} [visibility]
- */
-/**
- * @typedef PageSpec
- * @property {PageSpecItem[]} [specifications]
- */
-/**
- * @typedef PageSpecItem
- * @property {string} [display_name]
- * @property {string} [page_type]
- * @property {PageSpecParam[]} [params]
- * @property {PageSpecParam[]} [query]
- */
-/**
- * @typedef PageSpecParam
- * @property {string} [key]
- * @property {boolean} [required]
- */
-/**
- * @typedef PathMappingSchema
- * @property {PathSourceSchema} [__source]
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string} [created_at]
- * @property {string} [redirect_from]
- * @property {string} [redirect_to]
- * @property {string} [updated_at]
- */
-/**
- * @typedef PathSourceSchema
- * @property {string} [id]
- * @property {string} [type]
- */
-/**
- * @typedef PhoneProperties
- * @property {string} [code]
- * @property {string} [key]
- * @property {string} [number]
- */
-/**
- * @typedef PhoneSchema
- * @property {boolean} [active]
- * @property {PhoneProperties[]} [phone]
- */
-/**
- * @typedef RemoveHandpickedSchema
- * @property {string[]} [tags]
- */
-/**
- * @typedef ResourceContent
- * @property {string} [type]
- * @property {string} [value]
- */
-/**
- * @typedef ScheduleSchema
- * @property {string} [cron]
- * @property {number} [duration]
- * @property {string} [end]
- * @property {NextSchedule[]} [next_schedule]
- * @property {string} [start]
- */
-/**
- * @typedef SEO
- * @property {string} [description]
- * @property {SEOImage} [image]
- * @property {string} [title]
- */
-/**
- * @typedef SeoComponent
- * @property {SeoSchema} [seo]
- */
-/**
- * @typedef SEOImage
- * @property {string} [url]
- */
-/**
- * @typedef SeoSchema
- * @property {string} [_id]
- * @property {string} [app]
- * @property {boolean} [cannonical_enabled]
- * @property {string} [created_at]
- * @property {CustomMetaTag[]} [custom_meta_tags]
- * @property {Detail} [details]
- * @property {string} [robots_txt]
- * @property {boolean} [sitemap_enabled]
- * @property {string} [updated_at]
- */
-/**
- * @typedef SlideshowGetResponse
- * @property {SlideshowSchema[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef SlideshowMedia
- * @property {Action} [action]
- * @property {boolean} [auto_decide_duration]
- * @property {string} [bg_color]
- * @property {number} [duration]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef SlideshowRequest
- * @property {boolean} [active]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia} [media]
- * @property {string} [platform]
- * @property {string} [slug]
- */
-/**
- * @typedef SlideshowSchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {boolean} [active]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {ConfigurationSchema} [configuration]
- * @property {DateMeta} [date_meta]
- * @property {SlideshowMedia[]} [media]
- * @property {string} [platform]
- * @property {string} [slug]
- */
-/**
- * @typedef Support
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string} [config_type]
- * @property {ContactSchema} [contact]
- * @property {boolean} [created]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- */
-/**
- * @typedef TagDeleteSuccessResponse
- * @property {boolean} [success]
- */
-/**
- * @typedef TagSchema
- * @property {TagSourceSchema} [__source]
- * @property {string} [_id]
- * @property {Object} [attributes]
- * @property {string} [content]
- * @property {string} [name]
- * @property {Object[]} [pages]
- * @property {string} [position]
- * @property {string} [sub_type]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef TagSourceSchema
- * @property {string} [id]
- * @property {string} [type]
+ * @typedef ContactSchema
+ * @property {PhoneSchema} [phone]
+ * @property {EmailSchema} [email]
  */
 /**
  * @typedef TagsSchema
- * @property {string} [_id]
  * @property {string} [application]
+ * @property {string} [_id]
  * @property {TagSchema[]} [tags]
  */
 /**
- * @typedef UpdateFaqCategoryRequestSchema
- * @property {CategorySchema} [category]
+ * @typedef TagSchema
+ * @property {string} [name]
+ * @property {string} [url]
+ * @property {string} [type]
+ * @property {string} [sub_type]
+ * @property {string} [_id]
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {string} [content]
+ * @property {Object[]} [pages]
+ * @property {TagSourceSchema} [__source]
  */
 /**
- * @typedef UpdateHandpickedSchema
- * @property {HandpickedTagSchema} [tag]
+ * @typedef TagSourceSchema
+ * @property {string} [type]
+ * @property {string} [id]
  */
 /** @typedef {"title" | "description"} GenerationEntityType */
 /**
@@ -706,43 +706,89 @@ export = ContentPlatformModel;
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { Action, ActionPage, AdminAnnouncementSchema, AnnouncementAuthorSchema, AnnouncementPageSchema, ApplicationLegal, ApplicationLegalFAQ, Asset, Author, BlogGetResponse, BlogRequest, BlogSchema, CategoryRequestSchema, CategorySchema, ChildrenSchema, CommonError, ConfigurationSchema, ContactSchema, ContentAPIError, CreateAnnouncementSchema, CreatedBySchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, CreateFaqResponseSchema, CreateFaqSchema, CreateTagRequestSchema, CreateTagSchema, CronSchedule, CustomMetaTag, DataLoaderResetResponseSchema, DataLoaderResponseSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, DateMeta, DefaultNavigationResponse, Detail, EditorMeta, EmailProperties, EmailSchema, FAQ, FAQCategorySchema, FaqSchema, GeneratedSEOContent, GenerateSEOContent, GetAnnouncementListSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, GetFaqSchema, HandpickedTagSchema, LandingPageGetResponse, LandingPageSchema, Language, LocaleLanguage, NavigationGetResponse, NavigationReference, NavigationRequest, NavigationSchema, NextSchedule, Orientation, Page, PageGetResponse, PageMetaSchema, PagePublishRequest, PageRequest, PageSchema, PageSpec, PageSpecItem, PageSpecParam, PathMappingSchema, PathSourceSchema, PhoneProperties, PhoneSchema, RemoveHandpickedSchema, ResourceContent, ScheduleSchema, SEO, SeoComponent, SEOImage, SeoSchema, SlideshowGetResponse, SlideshowMedia, SlideshowRequest, SlideshowSchema, Support, TagDeleteSuccessResponse, TagSchema, TagSourceSchema, TagsSchema, UpdateFaqCategoryRequestSchema, UpdateHandpickedSchema, GenerationEntityType, PageType };
+    export { GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, ActionPage, NavigationReference, ConfigurationSchema, SlideshowMedia, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, GenerationEntityType, PageType };
 }
-/** @returns {Action} */
-declare function Action(): Action;
-type Action = {
-    page?: ActionPage;
-    popup?: ActionPage;
+/** @returns {GenerateSEOContent} */
+declare function GenerateSEOContent(): GenerateSEOContent;
+type GenerateSEOContent = {
+    text?: string;
+    existing_text?: string;
+    keywords?: string[];
     type?: string;
 };
-/** @returns {ActionPage} */
-declare function ActionPage(): ActionPage;
-type ActionPage = {
-    params?: any;
-    query?: any;
-    type: PageType;
-    url?: string;
-};
-/** @returns {AdminAnnouncementSchema} */
-declare function AdminAnnouncementSchema(): AdminAnnouncementSchema;
-type AdminAnnouncementSchema = {
-    _id?: string;
-    _schedule?: ScheduleSchema;
-    announcement?: string;
-    app?: string;
-    author?: AnnouncementAuthorSchema;
-    created_at?: string;
-    editor_meta?: EditorMeta;
-    modified_at?: string;
-    pages?: AnnouncementPageSchema[];
-    platforms?: string[];
+/** @returns {GeneratedSEOContent} */
+declare function GeneratedSEOContent(): GeneratedSEOContent;
+type GeneratedSEOContent = {
     title?: string;
+    description?: string;
 };
-/** @returns {AnnouncementAuthorSchema} */
-declare function AnnouncementAuthorSchema(): AnnouncementAuthorSchema;
-type AnnouncementAuthorSchema = {
-    created_by?: string;
-    modified_by?: string;
+/** @returns {ApplicationLegal} */
+declare function ApplicationLegal(): ApplicationLegal;
+type ApplicationLegal = {
+    application?: string;
+    tnc?: string;
+    policy?: string;
+    shipping?: string;
+    returns?: string;
+    faq?: ApplicationLegalFAQ[];
+    _id?: string;
+    updated_at?: string;
+    created_at?: string;
+};
+/** @returns {ApplicationLegalFAQ} */
+declare function ApplicationLegalFAQ(): ApplicationLegalFAQ;
+type ApplicationLegalFAQ = {
+    question?: string;
+    answer?: string;
+};
+/** @returns {PathMappingSchema} */
+declare function PathMappingSchema(): PathMappingSchema;
+type PathMappingSchema = {
+    application?: string;
+    _id?: string;
+    redirect_from?: string;
+    redirect_to?: string;
+    updated_at?: string;
+    created_at?: string;
+    __source?: PathSourceSchema;
+};
+/** @returns {PathSourceSchema} */
+declare function PathSourceSchema(): PathSourceSchema;
+type PathSourceSchema = {
+    type?: string;
+    id?: string;
+};
+/** @returns {SeoComponent} */
+declare function SeoComponent(): SeoComponent;
+type SeoComponent = {
+    seo?: SeoSchema;
+};
+/** @returns {SeoSchema} */
+declare function SeoSchema(): SeoSchema;
+type SeoSchema = {
+    app?: string;
+    _id?: string;
+    robots_txt?: string;
+    sitemap_enabled?: boolean;
+    cannonical_enabled?: boolean;
+    custom_meta_tags?: CustomMetaTag[];
+    details?: Detail;
+    created_at?: string;
+    updated_at?: string;
+};
+/** @returns {CustomMetaTag} */
+declare function CustomMetaTag(): CustomMetaTag;
+type CustomMetaTag = {
+    name?: string;
+    content?: string;
+    _id?: string;
+};
+/** @returns {Detail} */
+declare function Detail(): Detail;
+type Detail = {
+    title?: string;
+    description?: string;
+    image_url?: string;
 };
 /** @returns {AnnouncementPageSchema} */
 declare function AnnouncementPageSchema(): AnnouncementPageSchema;
@@ -750,24 +796,61 @@ type AnnouncementPageSchema = {
     page_slug?: string;
     type?: string;
 };
-/** @returns {ApplicationLegal} */
-declare function ApplicationLegal(): ApplicationLegal;
-type ApplicationLegal = {
-    _id?: string;
-    application?: string;
-    created_at?: string;
-    faq?: ApplicationLegalFAQ[];
-    policy?: string;
-    returns?: string;
-    shipping?: string;
-    tnc?: string;
-    updated_at?: string;
+/** @returns {EditorMeta} */
+declare function EditorMeta(): EditorMeta;
+type EditorMeta = {
+    foreground_color?: string;
+    background_color?: string;
+    content_type?: string;
+    content?: string;
 };
-/** @returns {ApplicationLegalFAQ} */
-declare function ApplicationLegalFAQ(): ApplicationLegalFAQ;
-type ApplicationLegalFAQ = {
-    answer?: string;
-    question?: string;
+/** @returns {AnnouncementAuthorSchema} */
+declare function AnnouncementAuthorSchema(): AnnouncementAuthorSchema;
+type AnnouncementAuthorSchema = {
+    created_by?: string;
+    modified_by?: string;
+};
+/** @returns {AdminAnnouncementSchema} */
+declare function AdminAnnouncementSchema(): AdminAnnouncementSchema;
+type AdminAnnouncementSchema = {
+    _id?: string;
+    platforms?: string[];
+    title?: string;
+    announcement?: string;
+    pages?: AnnouncementPageSchema[];
+    editor_meta?: EditorMeta;
+    author?: AnnouncementAuthorSchema;
+    created_at?: string;
+    app?: string;
+    modified_at?: string;
+    _schedule?: ScheduleSchema;
+};
+/** @returns {ScheduleSchema} */
+declare function ScheduleSchema(): ScheduleSchema;
+type ScheduleSchema = {
+    cron?: string;
+    start?: string;
+    end?: string;
+    duration?: number;
+    next_schedule?: NextSchedule[];
+};
+/** @returns {NextSchedule} */
+declare function NextSchedule(): NextSchedule;
+type NextSchedule = {
+    start?: string;
+    end?: string;
+};
+/** @returns {BlogGetResponse} */
+declare function BlogGetResponse(): BlogGetResponse;
+type BlogGetResponse = {
+    items?: BlogSchema[];
+    page?: Page;
+};
+/** @returns {ResourceContent} */
+declare function ResourceContent(): ResourceContent;
+type ResourceContent = {
+    type?: string;
+    value?: string;
 };
 /** @returns {Asset} */
 declare function Asset(): Asset;
@@ -783,46 +866,254 @@ type Author = {
     id?: string;
     name?: string;
 };
-/** @returns {BlogGetResponse} */
-declare function BlogGetResponse(): BlogGetResponse;
-type BlogGetResponse = {
-    items?: BlogSchema[];
-    page?: Page;
-};
-/** @returns {BlogRequest} */
-declare function BlogRequest(): BlogRequest;
-type BlogRequest = {
-    _custom_json?: any;
-    _schedule?: CronSchedule;
-    application?: string;
-    author?: Author;
-    content?: ResourceContent[];
-    feature_image?: Asset;
-    published?: boolean;
-    reading_time?: string;
-    seo?: SEO;
-    slug?: string;
-    tags?: string[];
-    title?: string;
-};
 /** @returns {BlogSchema} */
 declare function BlogSchema(): BlogSchema;
 type BlogSchema = {
-    _custom_json?: any;
     _id?: string;
-    _schedule?: CronSchedule;
+    _custom_json?: any;
     application?: string;
     archived?: boolean;
     author?: Author;
     content?: ResourceContent[];
-    date_meta?: DateMeta;
     feature_image?: Asset;
     published?: boolean;
     reading_time?: string;
+    slug?: string;
+    tags?: string[];
     seo?: SEO;
+    _schedule?: CronSchedule;
+    title?: string;
+    date_meta?: DateMeta;
+};
+/** @returns {SEO} */
+declare function SEO(): SEO;
+type SEO = {
+    description?: string;
+    image?: SEOImage;
+    title?: string;
+};
+/** @returns {SEOImage} */
+declare function SEOImage(): SEOImage;
+type SEOImage = {
+    url?: string;
+};
+/** @returns {DateMeta} */
+declare function DateMeta(): DateMeta;
+type DateMeta = {
+    created_on?: string;
+    modified_on?: string;
+};
+/** @returns {BlogRequest} */
+declare function BlogRequest(): BlogRequest;
+type BlogRequest = {
+    application?: string;
+    _custom_json?: any;
+    author?: Author;
+    content?: ResourceContent[];
+    feature_image?: Asset;
+    published?: boolean;
+    reading_time?: string;
     slug?: string;
     tags?: string[];
     title?: string;
+    seo?: SEO;
+    _schedule?: CronSchedule;
+};
+/** @returns {GetAnnouncementListSchema} */
+declare function GetAnnouncementListSchema(): GetAnnouncementListSchema;
+type GetAnnouncementListSchema = {
+    items?: AdminAnnouncementSchema[];
+    page?: Page;
+};
+/** @returns {CreateAnnouncementSchema} */
+declare function CreateAnnouncementSchema(): CreateAnnouncementSchema;
+type CreateAnnouncementSchema = {
+    message?: string;
+    data?: AdminAnnouncementSchema;
+};
+/** @returns {DataLoaderResponseSchema} */
+declare function DataLoaderResponseSchema(): DataLoaderResponseSchema;
+type DataLoaderResponseSchema = {
+    application?: string;
+    company?: string;
+    _id?: string;
+    name?: string;
+    service?: string;
+    operation_id?: string;
+    type?: string;
+    url?: string;
+    content?: string;
+    __source?: DataLoaderSourceSchema;
+};
+/** @returns {DataLoaderResetResponseSchema} */
+declare function DataLoaderResetResponseSchema(): DataLoaderResetResponseSchema;
+type DataLoaderResetResponseSchema = {
+    reset?: boolean;
+};
+/** @returns {LocaleLanguage} */
+declare function LocaleLanguage(): LocaleLanguage;
+type LocaleLanguage = {
+    hi?: Language;
+    ar?: Language;
+    en_us?: Language;
+};
+/** @returns {Language} */
+declare function Language(): Language;
+type Language = {
+    display?: string;
+};
+/** @returns {Action} */
+declare function Action(): Action;
+type Action = {
+    page?: ActionPage;
+    popup?: ActionPage;
+    type?: string;
+};
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/** @returns {NavigationReference} */
+declare function NavigationReference(): NavigationReference;
+type NavigationReference = {
+    acl?: string[];
+    tags?: string[];
+    _locale_language?: LocaleLanguage;
+    image?: string;
+    type?: string;
+    action?: Action;
+    active?: boolean;
+    display?: string;
+    sort_order?: number;
+    sub_navigation?: NavigationReference[];
+};
+/** @returns {ConfigurationSchema} */
+declare function ConfigurationSchema(): ConfigurationSchema;
+type ConfigurationSchema = {
+    sleep_time?: number;
+    start_on_launch?: boolean;
+    duration?: number;
+    slide_direction?: string;
+};
+/** @returns {SlideshowMedia} */
+declare function SlideshowMedia(): SlideshowMedia;
+type SlideshowMedia = {
+    type?: string;
+    url?: string;
+    bg_color?: string;
+    duration?: number;
+    auto_decide_duration?: boolean;
+    action?: Action;
+};
+/** @returns {UpdateHandpickedSchema} */
+declare function UpdateHandpickedSchema(): UpdateHandpickedSchema;
+type UpdateHandpickedSchema = {
+    tag?: HandpickedTagSchema;
+};
+/** @returns {HandpickedTagSchema} */
+declare function HandpickedTagSchema(): HandpickedTagSchema;
+type HandpickedTagSchema = {
+    position?: string;
+    attributes?: any;
+    name?: string;
+    url?: string;
+    type?: string;
+    sub_type?: string;
+    content?: string;
+};
+/** @returns {RemoveHandpickedSchema} */
+declare function RemoveHandpickedSchema(): RemoveHandpickedSchema;
+type RemoveHandpickedSchema = {
+    tags?: string[];
+};
+/** @returns {CreateTagSchema} */
+declare function CreateTagSchema(): CreateTagSchema;
+type CreateTagSchema = {
+    name?: string;
+    sub_type?: string;
+    _id?: string;
+    type?: string;
+    url?: string;
+    position?: string;
+    attributes?: any;
+    pages?: any[];
+    content?: string;
+};
+/** @returns {CreateTagRequestSchema} */
+declare function CreateTagRequestSchema(): CreateTagRequestSchema;
+type CreateTagRequestSchema = {
+    tags?: CreateTagSchema[];
+};
+/** @returns {DataLoaderSchema} */
+declare function DataLoaderSchema(): DataLoaderSchema;
+type DataLoaderSchema = {
+    name?: string;
+    service?: string;
+    operation_id?: string;
+    type?: string;
+    url?: string;
+    content?: string;
+    __source?: DataLoaderSourceSchema;
+    _id?: string;
+};
+/** @returns {DataLoaderSourceSchema} */
+declare function DataLoaderSourceSchema(): DataLoaderSourceSchema;
+type DataLoaderSourceSchema = {
+    type?: string;
+    id?: string;
+};
+/** @returns {DataLoadersSchema} */
+declare function DataLoadersSchema(): DataLoadersSchema;
+type DataLoadersSchema = {
+    items?: DataLoaderSchema[];
+};
+/** @returns {TagDeleteSuccessResponse} */
+declare function TagDeleteSuccessResponse(): TagDeleteSuccessResponse;
+type TagDeleteSuccessResponse = {
+    success?: boolean;
+};
+/** @returns {ContentAPIError} */
+declare function ContentAPIError(): ContentAPIError;
+type ContentAPIError = {
+    message?: string;
+    status?: number;
+    code?: string;
+    exception?: string;
+    info?: string;
+    request_id?: string;
+    stack_trace?: string;
+    meta?: any;
+};
+/** @returns {CommonError} */
+declare function CommonError(): CommonError;
+type CommonError = {
+    message?: string;
+};
+/** @returns {CategorySchema} */
+declare function CategorySchema(): CategorySchema;
+type CategorySchema = {
+    index?: number;
+    title?: string;
+    description?: string;
+    children?: string[];
+    _id?: string;
+    slug?: string;
+    application?: string;
+    icon_url?: string;
+    _custom_json?: any;
+};
+/** @returns {ChildrenSchema} */
+declare function ChildrenSchema(): ChildrenSchema;
+type ChildrenSchema = {
+    question?: string;
+    answer?: string;
+    slug?: string;
+    application?: string;
+    _id?: string;
 };
 /** @returns {CategoryRequestSchema} */
 declare function CategoryRequestSchema(): CategoryRequestSchema;
@@ -830,79 +1121,35 @@ type CategoryRequestSchema = {
     slug?: string;
     title?: string;
 };
-/** @returns {CategorySchema} */
-declare function CategorySchema(): CategorySchema;
-type CategorySchema = {
-    _custom_json?: any;
-    _id?: string;
-    application?: string;
-    children?: string[];
-    description?: string;
-    icon_url?: string;
+/** @returns {FAQCategorySchema} */
+declare function FAQCategorySchema(): FAQCategorySchema;
+type FAQCategorySchema = {
     index?: number;
-    slug?: string;
     title?: string;
-};
-/** @returns {ChildrenSchema} */
-declare function ChildrenSchema(): ChildrenSchema;
-type ChildrenSchema = {
+    description?: string;
+    children?: ChildrenSchema[];
     _id?: string;
-    answer?: string;
-    application?: string;
-    question?: string;
     slug?: string;
+    application?: string;
+    icon_url?: string;
+    _custom_json?: any;
 };
-/** @returns {CommonError} */
-declare function CommonError(): CommonError;
-type CommonError = {
-    message?: string;
+/** @returns {FaqSchema} */
+declare function FaqSchema(): FaqSchema;
+type FaqSchema = {
+    slug?: string;
+    application?: string;
+    _id?: string;
+    question?: string;
+    answer?: string;
+    tags?: string[];
 };
-/** @returns {ConfigurationSchema} */
-declare function ConfigurationSchema(): ConfigurationSchema;
-type ConfigurationSchema = {
-    duration?: number;
-    sleep_time?: number;
-    slide_direction?: string;
-    start_on_launch?: boolean;
-};
-/** @returns {ContactSchema} */
-declare function ContactSchema(): ContactSchema;
-type ContactSchema = {
-    email?: EmailSchema;
-    phone?: PhoneSchema;
-};
-/** @returns {ContentAPIError} */
-declare function ContentAPIError(): ContentAPIError;
-type ContentAPIError = {
-    code?: string;
-    exception?: string;
-    info?: string;
-    message?: string;
-    meta?: any;
-    request_id?: string;
-    stack_trace?: string;
-    status?: number;
-};
-/** @returns {CreateAnnouncementSchema} */
-declare function CreateAnnouncementSchema(): CreateAnnouncementSchema;
-type CreateAnnouncementSchema = {
-    data?: AdminAnnouncementSchema;
-    message?: string;
-};
-/** @returns {CreatedBySchema} */
-declare function CreatedBySchema(): CreatedBySchema;
-type CreatedBySchema = {
-    id?: string;
-};
-/** @returns {CreateFaqCategoryRequestSchema} */
-declare function CreateFaqCategoryRequestSchema(): CreateFaqCategoryRequestSchema;
-type CreateFaqCategoryRequestSchema = {
-    category?: CategoryRequestSchema;
-};
-/** @returns {CreateFaqCategorySchema} */
-declare function CreateFaqCategorySchema(): CreateFaqCategorySchema;
-type CreateFaqCategorySchema = {
-    category?: CategorySchema;
+/** @returns {FAQ} */
+declare function FAQ(): FAQ;
+type FAQ = {
+    slug?: string;
+    question?: string;
+    answer?: string;
 };
 /** @returns {CreateFaqResponseSchema} */
 declare function CreateFaqResponseSchema(): CreateFaqResponseSchema;
@@ -914,106 +1161,256 @@ declare function CreateFaqSchema(): CreateFaqSchema;
 type CreateFaqSchema = {
     faq?: FAQ;
 };
-/** @returns {CreateTagRequestSchema} */
-declare function CreateTagRequestSchema(): CreateTagRequestSchema;
-type CreateTagRequestSchema = {
-    tags?: CreateTagSchema[];
+/** @returns {GetFaqSchema} */
+declare function GetFaqSchema(): GetFaqSchema;
+type GetFaqSchema = {
+    faqs?: FaqSchema[];
 };
-/** @returns {CreateTagSchema} */
-declare function CreateTagSchema(): CreateTagSchema;
-type CreateTagSchema = {
-    _id?: string;
-    attributes?: any;
-    content?: string;
-    name?: string;
-    pages?: any[];
-    position?: string;
-    sub_type?: string;
-    type?: string;
-    url?: string;
+/** @returns {UpdateFaqCategoryRequestSchema} */
+declare function UpdateFaqCategoryRequestSchema(): UpdateFaqCategoryRequestSchema;
+type UpdateFaqCategoryRequestSchema = {
+    category?: CategorySchema;
 };
-/** @returns {CronSchedule} */
-declare function CronSchedule(): CronSchedule;
-type CronSchedule = {
-    cron?: string;
-    duration?: number;
-    end?: string;
-    start?: string;
+/** @returns {CreateFaqCategoryRequestSchema} */
+declare function CreateFaqCategoryRequestSchema(): CreateFaqCategoryRequestSchema;
+type CreateFaqCategoryRequestSchema = {
+    category?: CategoryRequestSchema;
 };
-/** @returns {CustomMetaTag} */
-declare function CustomMetaTag(): CustomMetaTag;
-type CustomMetaTag = {
-    _id?: string;
-    content?: string;
-    name?: string;
+/** @returns {CreateFaqCategorySchema} */
+declare function CreateFaqCategorySchema(): CreateFaqCategorySchema;
+type CreateFaqCategorySchema = {
+    category?: CategorySchema;
 };
-/** @returns {DataLoaderResetResponseSchema} */
-declare function DataLoaderResetResponseSchema(): DataLoaderResetResponseSchema;
-type DataLoaderResetResponseSchema = {
-    reset?: boolean;
+/** @returns {GetFaqCategoriesSchema} */
+declare function GetFaqCategoriesSchema(): GetFaqCategoriesSchema;
+type GetFaqCategoriesSchema = {
+    categories?: CategorySchema[];
 };
-/** @returns {DataLoaderResponseSchema} */
-declare function DataLoaderResponseSchema(): DataLoaderResponseSchema;
-type DataLoaderResponseSchema = {
-    __source?: DataLoaderSourceSchema;
+/** @returns {GetFaqCategoryBySlugSchema} */
+declare function GetFaqCategoryBySlugSchema(): GetFaqCategoryBySlugSchema;
+type GetFaqCategoryBySlugSchema = {
+    category?: FAQCategorySchema;
+};
+/** @returns {Page} */
+declare function Page(): Page;
+type Page = {
+    item_total?: number;
+    next_id?: string;
+    has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
+    type: string;
+    size?: number;
+};
+/** @returns {LandingPageGetResponse} */
+declare function LandingPageGetResponse(): LandingPageGetResponse;
+type LandingPageGetResponse = {
+    items?: LandingPageSchema[];
+    page?: Page;
+};
+/** @returns {LandingPageSchema} */
+declare function LandingPageSchema(): LandingPageSchema;
+type LandingPageSchema = {
+    slug?: string;
+    action?: Action;
+    platform?: string[];
+    created_by?: CreatedBySchema;
+    date_meta?: DateMeta;
     _id?: string;
     application?: string;
-    company?: string;
-    content?: string;
-    name?: string;
-    operation_id?: string;
-    service?: string;
-    type?: string;
-    url?: string;
-};
-/** @returns {DataLoaderSchema} */
-declare function DataLoaderSchema(): DataLoaderSchema;
-type DataLoaderSchema = {
-    __source?: DataLoaderSourceSchema;
-    _id?: string;
-    content?: string;
-    name?: string;
-    operation_id?: string;
-    service?: string;
-    type?: string;
-    url?: string;
-};
-/** @returns {DataLoaderSourceSchema} */
-declare function DataLoaderSourceSchema(): DataLoaderSourceSchema;
-type DataLoaderSourceSchema = {
-    id?: string;
-    type?: string;
-};
-/** @returns {DataLoadersSchema} */
-declare function DataLoadersSchema(): DataLoadersSchema;
-type DataLoadersSchema = {
-    items?: DataLoaderSchema[];
-};
-/** @returns {DateMeta} */
-declare function DateMeta(): DateMeta;
-type DateMeta = {
-    created_on?: string;
-    modified_on?: string;
+    archived?: boolean;
+    _custom_json?: any;
 };
 /** @returns {DefaultNavigationResponse} */
 declare function DefaultNavigationResponse(): DefaultNavigationResponse;
 type DefaultNavigationResponse = {
     items?: NavigationSchema[];
 };
-/** @returns {Detail} */
-declare function Detail(): Detail;
-type Detail = {
+/** @returns {NavigationGetResponse} */
+declare function NavigationGetResponse(): NavigationGetResponse;
+type NavigationGetResponse = {
+    items?: NavigationSchema[];
+    page?: Page;
+};
+/** @returns {Orientation} */
+declare function Orientation(): Orientation;
+type Orientation = {
+    portrait?: string[];
+    landscape?: string[];
+};
+/** @returns {NavigationSchema} */
+declare function NavigationSchema(): NavigationSchema;
+type NavigationSchema = {
+    _id?: string;
+    application?: string;
+    archived?: boolean;
+    name?: string;
+    slug?: string;
+    platform?: string[];
+    created_by?: CreatedBySchema;
+    date_meta?: DateMeta;
+    orientation?: Orientation;
+    version?: number;
+    navigation?: NavigationReference[];
+};
+/** @returns {NavigationRequest} */
+declare function NavigationRequest(): NavigationRequest;
+type NavigationRequest = {
+    name?: string;
+    slug?: string;
+    platform?: string[];
+    orientation?: Orientation;
+    navigation?: NavigationReference[];
+};
+/** @returns {PageGetResponse} */
+declare function PageGetResponse(): PageGetResponse;
+type PageGetResponse = {
+    items?: PageSchema[];
+    page?: Page;
+};
+/** @returns {PageSpec} */
+declare function PageSpec(): PageSpec;
+type PageSpec = {
+    specifications?: PageSpecItem[];
+};
+/** @returns {PageSpecParam} */
+declare function PageSpecParam(): PageSpecParam;
+type PageSpecParam = {
+    key?: string;
+    required?: boolean;
+};
+/** @returns {PageSpecItem} */
+declare function PageSpecItem(): PageSpecItem;
+type PageSpecItem = {
+    page_type?: string;
+    display_name?: string;
+    params?: PageSpecParam[];
+    query?: PageSpecParam[];
+};
+/** @returns {PageSchema} */
+declare function PageSchema(): PageSchema;
+type PageSchema = {
+    _id?: string;
+    application?: string;
+    /**
+     * - Components can be used to store
+     * multiple components
+     */
+    component_ids?: string[];
+    content?: any[];
+    content_path?: string;
+    created_by?: CreatedBySchema;
+    date_meta?: DateMeta;
     description?: string;
-    image_url?: string;
+    feature_image?: Asset;
+    page_meta?: any[];
+    _schedule?: ScheduleSchema;
+    _custom_json?: any;
+    orientation?: string;
+    platform?: string;
+    published?: boolean;
+    slug?: string;
+    tags?: string[];
+    title?: string;
+    type?: string;
+    seo?: SEO;
+    visibility?: any;
+    archived?: boolean;
+};
+/** @returns {CreatedBySchema} */
+declare function CreatedBySchema(): CreatedBySchema;
+type CreatedBySchema = {
+    id?: string;
+};
+/** @returns {PageRequest} */
+declare function PageRequest(): PageRequest;
+type PageRequest = {
+    _schedule?: CronSchedule;
+    application?: string;
+    author?: Author;
+    _custom_json?: any;
+    orientation?: string;
+    content?: any[];
+    feature_image?: Asset;
+    published?: boolean;
+    reading_time?: string;
+    slug?: string;
+    tags?: string[];
+    seo?: SEO;
     title?: string;
 };
-/** @returns {EditorMeta} */
-declare function EditorMeta(): EditorMeta;
-type EditorMeta = {
-    background_color?: string;
-    content?: string;
-    content_type?: string;
-    foreground_color?: string;
+/** @returns {CronSchedule} */
+declare function CronSchedule(): CronSchedule;
+type CronSchedule = {
+    cron?: string;
+    start?: string;
+    end?: string;
+    duration?: number;
+};
+/** @returns {PagePublishRequest} */
+declare function PagePublishRequest(): PagePublishRequest;
+type PagePublishRequest = {
+    publish?: boolean;
+};
+/** @returns {PageMetaSchema} */
+declare function PageMetaSchema(): PageMetaSchema;
+type PageMetaSchema = {
+    system_pages?: NavigationSchema[];
+    custom_pages?: PageSchema[];
+    application_id?: string;
+};
+/** @returns {SlideshowGetResponse} */
+declare function SlideshowGetResponse(): SlideshowGetResponse;
+type SlideshowGetResponse = {
+    items?: SlideshowSchema[];
+    page?: Page;
+};
+/** @returns {SlideshowSchema} */
+declare function SlideshowSchema(): SlideshowSchema;
+type SlideshowSchema = {
+    _id?: string;
+    slug?: string;
+    date_meta?: DateMeta;
+    application?: string;
+    platform?: string;
+    configuration?: ConfigurationSchema;
+    media?: SlideshowMedia[];
+    active?: boolean;
+    archived?: boolean;
+    _custom_json?: any;
+};
+/** @returns {SlideshowRequest} */
+declare function SlideshowRequest(): SlideshowRequest;
+type SlideshowRequest = {
+    slug?: string;
+    platform?: string;
+    configuration?: ConfigurationSchema;
+    media?: SlideshowMedia;
+    active?: boolean;
+};
+/** @returns {Support} */
+declare function Support(): Support;
+type Support = {
+    created?: boolean;
+    _id?: string;
+    config_type?: string;
+    application?: string;
+    created_at?: string;
+    updated_at?: string;
+    contact?: ContactSchema;
+};
+/** @returns {PhoneProperties} */
+declare function PhoneProperties(): PhoneProperties;
+type PhoneProperties = {
+    key?: string;
+    code?: string;
+    number?: string;
+};
+/** @returns {PhoneSchema} */
+declare function PhoneSchema(): PhoneSchema;
+type PhoneSchema = {
+    active?: boolean;
+    phone?: PhoneProperties[];
 };
 /** @returns {EmailProperties} */
 declare function EmailProperties(): EmailProperties;
@@ -1027,435 +1424,38 @@ type EmailSchema = {
     active?: boolean;
     email?: EmailProperties[];
 };
-/** @returns {FAQ} */
-declare function FAQ(): FAQ;
-type FAQ = {
-    answer?: string;
-    question?: string;
-    slug?: string;
-};
-/** @returns {FAQCategorySchema} */
-declare function FAQCategorySchema(): FAQCategorySchema;
-type FAQCategorySchema = {
-    _custom_json?: any;
-    _id?: string;
-    application?: string;
-    children?: ChildrenSchema[];
-    description?: string;
-    icon_url?: string;
-    index?: number;
-    slug?: string;
-    title?: string;
-};
-/** @returns {FaqSchema} */
-declare function FaqSchema(): FaqSchema;
-type FaqSchema = {
-    _id?: string;
-    answer?: string;
-    application?: string;
-    question?: string;
-    slug?: string;
-    tags?: string[];
-};
-/** @returns {GeneratedSEOContent} */
-declare function GeneratedSEOContent(): GeneratedSEOContent;
-type GeneratedSEOContent = {
-    description?: string;
-    title?: string;
-};
-/** @returns {GenerateSEOContent} */
-declare function GenerateSEOContent(): GenerateSEOContent;
-type GenerateSEOContent = {
-    existing_text?: string;
-    keywords?: string[];
-    text?: string;
-    type?: string;
-};
-/** @returns {GetAnnouncementListSchema} */
-declare function GetAnnouncementListSchema(): GetAnnouncementListSchema;
-type GetAnnouncementListSchema = {
-    items?: AdminAnnouncementSchema[];
-    page?: Page;
-};
-/** @returns {GetFaqCategoriesSchema} */
-declare function GetFaqCategoriesSchema(): GetFaqCategoriesSchema;
-type GetFaqCategoriesSchema = {
-    categories?: CategorySchema[];
-};
-/** @returns {GetFaqCategoryBySlugSchema} */
-declare function GetFaqCategoryBySlugSchema(): GetFaqCategoryBySlugSchema;
-type GetFaqCategoryBySlugSchema = {
-    category?: FAQCategorySchema;
-};
-/** @returns {GetFaqSchema} */
-declare function GetFaqSchema(): GetFaqSchema;
-type GetFaqSchema = {
-    faqs?: FaqSchema[];
-};
-/** @returns {HandpickedTagSchema} */
-declare function HandpickedTagSchema(): HandpickedTagSchema;
-type HandpickedTagSchema = {
-    attributes?: any;
-    content?: string;
-    name?: string;
-    position?: string;
-    sub_type?: string;
-    type?: string;
-    url?: string;
-};
-/** @returns {LandingPageGetResponse} */
-declare function LandingPageGetResponse(): LandingPageGetResponse;
-type LandingPageGetResponse = {
-    items?: LandingPageSchema[];
-    page?: Page;
-};
-/** @returns {LandingPageSchema} */
-declare function LandingPageSchema(): LandingPageSchema;
-type LandingPageSchema = {
-    _custom_json?: any;
-    _id?: string;
-    action?: Action;
-    application?: string;
-    archived?: boolean;
-    created_by?: CreatedBySchema;
-    date_meta?: DateMeta;
-    platform?: string[];
-    slug?: string;
-};
-/** @returns {Language} */
-declare function Language(): Language;
-type Language = {
-    display?: string;
-};
-/** @returns {LocaleLanguage} */
-declare function LocaleLanguage(): LocaleLanguage;
-type LocaleLanguage = {
-    ar?: Language;
-    en_us?: Language;
-    hi?: Language;
-};
-/** @returns {NavigationGetResponse} */
-declare function NavigationGetResponse(): NavigationGetResponse;
-type NavigationGetResponse = {
-    items?: NavigationSchema[];
-    page?: Page;
-};
-/** @returns {NavigationReference} */
-declare function NavigationReference(): NavigationReference;
-type NavigationReference = {
-    _locale_language?: LocaleLanguage;
-    acl?: string[];
-    action?: Action;
-    active?: boolean;
-    display?: string;
-    image?: string;
-    sort_order?: number;
-    sub_navigation?: NavigationReference[];
-    tags?: string[];
-    type?: string;
-};
-/** @returns {NavigationRequest} */
-declare function NavigationRequest(): NavigationRequest;
-type NavigationRequest = {
-    name?: string;
-    navigation?: NavigationReference[];
-    orientation?: Orientation;
-    platform?: string[];
-    slug?: string;
-};
-/** @returns {NavigationSchema} */
-declare function NavigationSchema(): NavigationSchema;
-type NavigationSchema = {
-    _id?: string;
-    application?: string;
-    archived?: boolean;
-    created_by?: CreatedBySchema;
-    date_meta?: DateMeta;
-    name?: string;
-    navigation?: NavigationReference[];
-    orientation?: Orientation;
-    platform?: string[];
-    slug?: string;
-    version?: number;
-};
-/** @returns {NextSchedule} */
-declare function NextSchedule(): NextSchedule;
-type NextSchedule = {
-    end?: string;
-    start?: string;
-};
-/** @returns {Orientation} */
-declare function Orientation(): Orientation;
-type Orientation = {
-    landscape?: string[];
-    portrait?: string[];
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    item_total?: number;
-    next_id?: string;
-    size?: number;
-    type: string;
-};
-/** @returns {PageGetResponse} */
-declare function PageGetResponse(): PageGetResponse;
-type PageGetResponse = {
-    items?: PageSchema[];
-    page?: Page;
-};
-/** @returns {PageMetaSchema} */
-declare function PageMetaSchema(): PageMetaSchema;
-type PageMetaSchema = {
-    application_id?: string;
-    custom_pages?: PageSchema[];
-    system_pages?: NavigationSchema[];
-};
-/** @returns {PagePublishRequest} */
-declare function PagePublishRequest(): PagePublishRequest;
-type PagePublishRequest = {
-    publish?: boolean;
-};
-/** @returns {PageRequest} */
-declare function PageRequest(): PageRequest;
-type PageRequest = {
-    _custom_json?: any;
-    _schedule?: CronSchedule;
-    application?: string;
-    author?: Author;
-    content?: any[];
-    feature_image?: Asset;
-    orientation?: string;
-    published?: boolean;
-    reading_time?: string;
-    seo?: SEO;
-    slug?: string;
-    tags?: string[];
-    title?: string;
-};
-/** @returns {PageSchema} */
-declare function PageSchema(): PageSchema;
-type PageSchema = {
-    _custom_json?: any;
-    _id?: string;
-    _schedule?: ScheduleSchema;
-    application?: string;
-    archived?: boolean;
-    /**
-     * - Components can be used to store
-     * multiple components
-     */
-    component_ids?: string[];
-    content?: any[];
-    content_path?: string;
-    created_by?: CreatedBySchema;
-    date_meta?: DateMeta;
-    description?: string;
-    feature_image?: Asset;
-    orientation?: string;
-    page_meta?: any[];
-    platform?: string;
-    published?: boolean;
-    seo?: SEO;
-    slug?: string;
-    tags?: string[];
-    title?: string;
-    type?: string;
-    visibility?: any;
-};
-/** @returns {PageSpec} */
-declare function PageSpec(): PageSpec;
-type PageSpec = {
-    specifications?: PageSpecItem[];
-};
-/** @returns {PageSpecItem} */
-declare function PageSpecItem(): PageSpecItem;
-type PageSpecItem = {
-    display_name?: string;
-    page_type?: string;
-    params?: PageSpecParam[];
-    query?: PageSpecParam[];
-};
-/** @returns {PageSpecParam} */
-declare function PageSpecParam(): PageSpecParam;
-type PageSpecParam = {
-    key?: string;
-    required?: boolean;
-};
-/** @returns {PathMappingSchema} */
-declare function PathMappingSchema(): PathMappingSchema;
-type PathMappingSchema = {
-    __source?: PathSourceSchema;
-    _id?: string;
-    application?: string;
-    created_at?: string;
-    redirect_from?: string;
-    redirect_to?: string;
-    updated_at?: string;
-};
-/** @returns {PathSourceSchema} */
-declare function PathSourceSchema(): PathSourceSchema;
-type PathSourceSchema = {
-    id?: string;
-    type?: string;
-};
-/** @returns {PhoneProperties} */
-declare function PhoneProperties(): PhoneProperties;
-type PhoneProperties = {
-    code?: string;
-    key?: string;
-    number?: string;
-};
-/** @returns {PhoneSchema} */
-declare function PhoneSchema(): PhoneSchema;
-type PhoneSchema = {
-    active?: boolean;
-    phone?: PhoneProperties[];
-};
-/** @returns {RemoveHandpickedSchema} */
-declare function RemoveHandpickedSchema(): RemoveHandpickedSchema;
-type RemoveHandpickedSchema = {
-    tags?: string[];
-};
-/** @returns {ResourceContent} */
-declare function ResourceContent(): ResourceContent;
-type ResourceContent = {
-    type?: string;
-    value?: string;
-};
-/** @returns {ScheduleSchema} */
-declare function ScheduleSchema(): ScheduleSchema;
-type ScheduleSchema = {
-    cron?: string;
-    duration?: number;
-    end?: string;
-    next_schedule?: NextSchedule[];
-    start?: string;
-};
-/** @returns {SEO} */
-declare function SEO(): SEO;
-type SEO = {
-    description?: string;
-    image?: SEOImage;
-    title?: string;
-};
-/** @returns {SeoComponent} */
-declare function SeoComponent(): SeoComponent;
-type SeoComponent = {
-    seo?: SeoSchema;
-};
-/** @returns {SEOImage} */
-declare function SEOImage(): SEOImage;
-type SEOImage = {
-    url?: string;
-};
-/** @returns {SeoSchema} */
-declare function SeoSchema(): SeoSchema;
-type SeoSchema = {
-    _id?: string;
-    app?: string;
-    cannonical_enabled?: boolean;
-    created_at?: string;
-    custom_meta_tags?: CustomMetaTag[];
-    details?: Detail;
-    robots_txt?: string;
-    sitemap_enabled?: boolean;
-    updated_at?: string;
-};
-/** @returns {SlideshowGetResponse} */
-declare function SlideshowGetResponse(): SlideshowGetResponse;
-type SlideshowGetResponse = {
-    items?: SlideshowSchema[];
-    page?: Page;
-};
-/** @returns {SlideshowMedia} */
-declare function SlideshowMedia(): SlideshowMedia;
-type SlideshowMedia = {
-    action?: Action;
-    auto_decide_duration?: boolean;
-    bg_color?: string;
-    duration?: number;
-    type?: string;
-    url?: string;
-};
-/** @returns {SlideshowRequest} */
-declare function SlideshowRequest(): SlideshowRequest;
-type SlideshowRequest = {
-    active?: boolean;
-    configuration?: ConfigurationSchema;
-    media?: SlideshowMedia;
-    platform?: string;
-    slug?: string;
-};
-/** @returns {SlideshowSchema} */
-declare function SlideshowSchema(): SlideshowSchema;
-type SlideshowSchema = {
-    _custom_json?: any;
-    _id?: string;
-    active?: boolean;
-    application?: string;
-    archived?: boolean;
-    configuration?: ConfigurationSchema;
-    date_meta?: DateMeta;
-    media?: SlideshowMedia[];
-    platform?: string;
-    slug?: string;
-};
-/** @returns {Support} */
-declare function Support(): Support;
-type Support = {
-    _id?: string;
-    application?: string;
-    config_type?: string;
-    contact?: ContactSchema;
-    created?: boolean;
-    created_at?: string;
-    updated_at?: string;
-};
-/** @returns {TagDeleteSuccessResponse} */
-declare function TagDeleteSuccessResponse(): TagDeleteSuccessResponse;
-type TagDeleteSuccessResponse = {
-    success?: boolean;
-};
-/** @returns {TagSchema} */
-declare function TagSchema(): TagSchema;
-type TagSchema = {
-    __source?: TagSourceSchema;
-    _id?: string;
-    attributes?: any;
-    content?: string;
-    name?: string;
-    pages?: any[];
-    position?: string;
-    sub_type?: string;
-    type?: string;
-    url?: string;
-};
-/** @returns {TagSourceSchema} */
-declare function TagSourceSchema(): TagSourceSchema;
-type TagSourceSchema = {
-    id?: string;
-    type?: string;
+/** @returns {ContactSchema} */
+declare function ContactSchema(): ContactSchema;
+type ContactSchema = {
+    phone?: PhoneSchema;
+    email?: EmailSchema;
 };
 /** @returns {TagsSchema} */
 declare function TagsSchema(): TagsSchema;
 type TagsSchema = {
-    _id?: string;
     application?: string;
+    _id?: string;
     tags?: TagSchema[];
 };
-/** @returns {UpdateFaqCategoryRequestSchema} */
-declare function UpdateFaqCategoryRequestSchema(): UpdateFaqCategoryRequestSchema;
-type UpdateFaqCategoryRequestSchema = {
-    category?: CategorySchema;
+/** @returns {TagSchema} */
+declare function TagSchema(): TagSchema;
+type TagSchema = {
+    name?: string;
+    url?: string;
+    type?: string;
+    sub_type?: string;
+    _id?: string;
+    position?: string;
+    attributes?: any;
+    content?: string;
+    pages?: any[];
+    __source?: TagSourceSchema;
 };
-/** @returns {UpdateHandpickedSchema} */
-declare function UpdateHandpickedSchema(): UpdateHandpickedSchema;
-type UpdateHandpickedSchema = {
-    tag?: HandpickedTagSchema;
+/** @returns {TagSourceSchema} */
+declare function TagSourceSchema(): TagSourceSchema;
+type TagSourceSchema = {
+    type?: string;
+    id?: string;
 };
 /**
  * Enum: GenerationEntityType Used By: Content

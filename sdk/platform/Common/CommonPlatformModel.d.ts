@@ -1,54 +1,47 @@
 export = CommonPlatformModel;
 /**
- * @typedef Application
- * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
+ * @typedef ApplicationResponse
+ * @property {Application} [application]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the sales channel
- * @property {string} [app_type] - It shows whether application is live or in
- *   development mode
- * @property {ApplicationAuth} [auth]
- * @property {SecureUrl} [banner]
- * @property {number} [cache_ttl] - An integer value that specifies the number
- *   of seconds until the key expires
- * @property {string} [channel_type] - It indicates different channel types like
- *   store, website-and-mobile-apps. Default value is store.
- * @property {number} [company_id] - Numeric ID allotted to a business account
- *   where the sales channel exists
- * @property {ApplicationCors} [cors]
- * @property {string} [created_at] - ISO 8601 timestamp of sales channel creation
- * @property {string} [description] - It contains detailed information about the
+ *   of the current sales channel supported currency
+ * @property {boolean} [is_active] - Shows currency is enabled or not in current
  *   sales channel
- * @property {Domain} [domain]
- * @property {Domain[]} [domains]
- * @property {SecureUrl} [favicon]
- * @property {boolean} [is_active] - Indicates whether a sales channel is active
- *   or not active
- * @property {boolean} [is_internal] - Indicates whether a sales channel is
- *   internal or not
- * @property {SecureUrl} [logo]
- * @property {ApplicationMeta[]} [meta]
- * @property {SecureUrl} [mobile_logo]
- * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
- *   of owner who owns the application
- * @property {ApplicationRedirections[]} [redirections]
- * @property {string} [token] - Randomly generated fixed-length string for sales
- *   channel. It is required and auto-generated.
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
- * @property {ApplicationWebsite} [website]
+ * @property {string} [name] - Name of the currency, e.g. Indian Rupee
+ * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
+ * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
+ *   currency creation
+ * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
+ *   currency updation
+ * @property {number} [decimal_digits] - Acceptable decimal limits for a given
+ *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
+ *   value of a currency.
+ * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
  */
 /**
- * @typedef ApplicationAuth
- * @property {boolean} [enabled] - Shows sales channel auth is enabled or not enabled.
+ * @typedef Domain
+ * @property {boolean} [verified] - Indicates domain is verified or not. TXT and
+ *   A records should propagate correctly.
+ * @property {boolean} [is_primary] - Indicates domain is primary or not.
+ *   Primary domain is the default/main domain.
+ * @property {boolean} [is_shortlink] - Shortlink is present or not for the domain
+ * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
+ *   of the domain
+ * @property {string} [name]
+ * @property {boolean} [is_predefined] - Domain is hosting domain or not
+ */
+/**
+ * @typedef ApplicationWebsite
+ * @property {boolean} [enabled] - Shows whether sales channel website URL is
+ *   enabled or not
+ * @property {string} [basepath] - Base path for the current sales channel website
  */
 /**
  * @typedef ApplicationCors
  * @property {string[]} [domains]
  */
 /**
- * @typedef ApplicationMeta
- * @property {string} [name] - Indicates the name of application meta
- * @property {string} [value] - Value related to application meta name
+ * @typedef ApplicationAuth
+ * @property {boolean} [enabled] - Shows sales channel auth is enabled or not enabled.
  */
 /**
  * @typedef ApplicationRedirections
@@ -60,173 +53,188 @@ export = CommonPlatformModel;
  *   for a short time period.
  */
 /**
- * @typedef ApplicationResponse
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the current sales channel supported currency
- * @property {Application} [application]
- * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
- * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
- *   currency creation
- * @property {number} [decimal_digits] - Acceptable decimal limits for a given
- *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
- *   value of a currency.
- * @property {boolean} [is_active] - Shows currency is enabled or not in current
+ * @typedef ApplicationMeta
+ * @property {string} [name] - Indicates the name of application meta
+ * @property {string} [value] - Value related to application meta name
+ */
+/**
+ * @typedef SecureUrl
+ * @property {string} [secure_url] - Hosted URL of the image
+ */
+/**
+ * @typedef Application
+ * @property {ApplicationWebsite} [website]
+ * @property {ApplicationCors} [cors]
+ * @property {ApplicationAuth} [auth]
+ * @property {string} [description] - It contains detailed information about the
  *   sales channel
- * @property {string} [name] - Name of the currency, e.g. Indian Rupee
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
- *   currency updation
- */
-/**
- * @typedef ApplicationWebsite
- * @property {string} [basepath] - Base path for the current sales channel website
- * @property {boolean} [enabled] - Shows whether sales channel website URL is
- *   enabled or not
- */
-/**
- * @typedef BadRequest
- * @property {string} [message] - Failure message (in a string format)
- */
-/**
- * @typedef Domain
+ * @property {string} [channel_type] - It indicates different channel types like
+ *   store, website-and-mobile-apps. Default value is store.
+ * @property {number} [cache_ttl] - An integer value that specifies the number
+ *   of seconds until the key expires
+ * @property {boolean} [is_internal] - Indicates whether a sales channel is
+ *   internal or not
+ * @property {boolean} [is_active] - Indicates whether a sales channel is active
+ *   or not active
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the domain
- * @property {boolean} [is_predefined] - Domain is hosting domain or not
- * @property {boolean} [is_primary] - Indicates domain is primary or not.
- *   Primary domain is the default/main domain.
- * @property {boolean} [is_shortlink] - Shortlink is present or not for the domain
- * @property {string} [name]
- * @property {boolean} [verified] - Indicates domain is verified or not. TXT and
- *   A records should propagate correctly.
- */
-/**
- * @typedef LocationCountry
- * @property {number} [__v]
- * @property {string} [_id]
- * @property {string} [capital]
- * @property {string} [country_code]
- * @property {string} [currency]
- * @property {LocationDefaultCurrency} [default_currency]
- * @property {LocationDefaultLanguage} [default_language]
- * @property {string} [iso2]
- * @property {string} [iso3]
- * @property {string} [latitude]
- * @property {string} [longitude]
- * @property {string} [name]
- * @property {string} [parent]
- * @property {string} [phone_code]
- * @property {string} [state_code]
- * @property {string} [type]
- * @property {number} [uid]
- */
-/**
- * @typedef LocationDefaultCurrency
- * @property {string} [code]
- * @property {string} [name]
- * @property {string} [symbol]
- */
-/**
- * @typedef LocationDefaultLanguage
- * @property {string} [code]
- * @property {string} [name]
- */
-/**
- * @typedef Locations
- * @property {LocationCountry[]} [items] - Object Containing Country Locations Details
+ *   of the sales channel
+ * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
+ * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
+ *   of owner who owns the application
+ * @property {number} [company_id] - Numeric ID allotted to a business account
+ *   where the sales channel exists
+ * @property {string} [token] - Randomly generated fixed-length string for sales
+ *   channel. It is required and auto-generated.
+ * @property {ApplicationRedirections[]} [redirections]
+ * @property {ApplicationMeta[]} [meta]
+ * @property {string} [created_at] - ISO 8601 timestamp of sales channel creation
+ * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
+ * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
+ * @property {SecureUrl} [banner]
+ * @property {SecureUrl} [logo]
+ * @property {SecureUrl} [favicon]
+ * @property {Domain[]} [domains]
+ * @property {string} [app_type] - It shows whether application is live or in
+ *   development mode
+ * @property {SecureUrl} [mobile_logo]
+ * @property {Domain} [domain]
  */
 /**
  * @typedef NotFound
  * @property {string} [message] - Response message for not found
  */
 /**
- * @typedef SecureUrl
- * @property {string} [secure_url] - Hosted URL of the image
+ * @typedef BadRequest
+ * @property {string} [message] - Failure message (in a string format)
+ */
+/**
+ * @typedef LocationDefaultLanguage
+ * @property {string} [name]
+ * @property {string} [code]
+ */
+/**
+ * @typedef LocationDefaultCurrency
+ * @property {string} [name]
+ * @property {string} [symbol]
+ * @property {string} [code]
+ */
+/**
+ * @typedef LocationCountry
+ * @property {string} [capital]
+ * @property {string} [currency]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string} [name]
+ * @property {string} [parent]
+ * @property {string} [phone_code]
+ * @property {string} [type]
+ * @property {number} [uid]
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {LocationDefaultCurrency} [default_currency]
+ * @property {LocationDefaultLanguage} [default_language]
+ * @property {string} [state_code]
+ * @property {string} [country_code]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ */
+/**
+ * @typedef Locations
+ * @property {LocationCountry[]} [items] - Object Containing Country Locations Details
  */
 declare class CommonPlatformModel {
 }
 declare namespace CommonPlatformModel {
-    export { Application, ApplicationAuth, ApplicationCors, ApplicationMeta, ApplicationRedirections, ApplicationResponse, ApplicationWebsite, BadRequest, Domain, LocationCountry, LocationDefaultCurrency, LocationDefaultLanguage, Locations, NotFound, SecureUrl };
+    export { ApplicationResponse, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequest, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
 }
-/** @returns {Application} */
-declare function Application(): Application;
-type Application = {
-    /**
-     * - Version key for tracking revisions. Default value is zero.
-     */
-    __v?: number;
+/** @returns {ApplicationResponse} */
+declare function ApplicationResponse(): ApplicationResponse;
+type ApplicationResponse = {
+    application?: Application;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
-     * of the sales channel
+     * of the current sales channel supported currency
      */
     _id?: string;
     /**
-     * - It shows whether application is live or in
-     * development mode
-     */
-    app_type?: string;
-    auth?: ApplicationAuth;
-    banner?: SecureUrl;
-    /**
-     * - An integer value that specifies the number
-     * of seconds until the key expires
-     */
-    cache_ttl?: number;
-    /**
-     * - It indicates different channel types like
-     * store, website-and-mobile-apps. Default value is store.
-     */
-    channel_type?: string;
-    /**
-     * - Numeric ID allotted to a business account
-     * where the sales channel exists
-     */
-    company_id?: number;
-    cors?: ApplicationCors;
-    /**
-     * - ISO 8601 timestamp of sales channel creation
-     */
-    created_at?: string;
-    /**
-     * - It contains detailed information about the
+     * - Shows currency is enabled or not in current
      * sales channel
-     */
-    description?: string;
-    domain?: Domain;
-    domains?: Domain[];
-    favicon?: SecureUrl;
-    /**
-     * - Indicates whether a sales channel is active
-     * or not active
      */
     is_active?: boolean;
     /**
-     * - Indicates whether a sales channel is
-     * internal or not
-     */
-    is_internal?: boolean;
-    logo?: SecureUrl;
-    meta?: ApplicationMeta[];
-    mobile_logo?: SecureUrl;
-    /**
-     * - Name of the sales channel, e.g. Zenz Fashion
+     * - Name of the currency, e.g. Indian Rupee
      */
     name?: string;
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of owner who owns the application
+     * - 3-character currency code, e.g. INR, USD, EUR.
      */
-    owner?: string;
-    redirections?: ApplicationRedirections[];
+    code?: string;
     /**
-     * - Randomly generated fixed-length string for sales
-     * channel. It is required and auto-generated.
+     * - ISO 8601 timestamp of sales channel support
+     * currency creation
      */
-    token?: string;
+    created_at?: string;
     /**
-     * - ISO 8601 timestamp of sales channel updation
+     * - ISO 8601 timestamp of sales channel support
+     * currency updation
      */
     updated_at?: string;
-    website?: ApplicationWebsite;
+    /**
+     * - Acceptable decimal limits for a given
+     * currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
+     * value of a currency.
+     */
+    decimal_digits?: number;
+    /**
+     * - Unique symbol for identifying the currency, e.g. ₹
+     */
+    symbol?: string;
+};
+/** @returns {Domain} */
+declare function Domain(): Domain;
+type Domain = {
+    /**
+     * - Indicates domain is verified or not. TXT and
+     * A records should propagate correctly.
+     */
+    verified?: boolean;
+    /**
+     * - Indicates domain is primary or not.
+     * Primary domain is the default/main domain.
+     */
+    is_primary?: boolean;
+    /**
+     * - Shortlink is present or not for the domain
+     */
+    is_shortlink?: boolean;
+    /**
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the domain
+     */
+    _id?: string;
+    name?: string;
+    /**
+     * - Domain is hosting domain or not
+     */
+    is_predefined?: boolean;
+};
+/** @returns {ApplicationWebsite} */
+declare function ApplicationWebsite(): ApplicationWebsite;
+type ApplicationWebsite = {
+    /**
+     * - Shows whether sales channel website URL is
+     * enabled or not
+     */
+    enabled?: boolean;
+    /**
+     * - Base path for the current sales channel website
+     */
+    basepath?: string;
+};
+/** @returns {ApplicationCors} */
+declare function ApplicationCors(): ApplicationCors;
+type ApplicationCors = {
+    domains?: string[];
 };
 /** @returns {ApplicationAuth} */
 declare function ApplicationAuth(): ApplicationAuth;
@@ -235,23 +243,6 @@ type ApplicationAuth = {
      * - Shows sales channel auth is enabled or not enabled.
      */
     enabled?: boolean;
-};
-/** @returns {ApplicationCors} */
-declare function ApplicationCors(): ApplicationCors;
-type ApplicationCors = {
-    domains?: string[];
-};
-/** @returns {ApplicationMeta} */
-declare function ApplicationMeta(): ApplicationMeta;
-type ApplicationMeta = {
-    /**
-     * - Indicates the name of application meta
-     */
-    name?: string;
-    /**
-     * - Value related to application meta name
-     */
-    value?: string;
 };
 /** @returns {ApplicationRedirections} */
 declare function ApplicationRedirections(): ApplicationRedirections;
@@ -272,139 +263,106 @@ type ApplicationRedirections = {
      */
     type?: string;
 };
-/** @returns {ApplicationResponse} */
-declare function ApplicationResponse(): ApplicationResponse;
-type ApplicationResponse = {
+/** @returns {ApplicationMeta} */
+declare function ApplicationMeta(): ApplicationMeta;
+type ApplicationMeta = {
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the current sales channel supported currency
+     * - Indicates the name of application meta
      */
-    _id?: string;
-    application?: Application;
+    name?: string;
     /**
-     * - 3-character currency code, e.g. INR, USD, EUR.
+     * - Value related to application meta name
      */
-    code?: string;
+    value?: string;
+};
+/** @returns {SecureUrl} */
+declare function SecureUrl(): SecureUrl;
+type SecureUrl = {
     /**
-     * - ISO 8601 timestamp of sales channel support
-     * currency creation
+     * - Hosted URL of the image
      */
-    created_at?: string;
+    secure_url?: string;
+};
+/** @returns {Application} */
+declare function Application(): Application;
+type Application = {
+    website?: ApplicationWebsite;
+    cors?: ApplicationCors;
+    auth?: ApplicationAuth;
     /**
-     * - Acceptable decimal limits for a given
-     * currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
-     * value of a currency.
-     */
-    decimal_digits?: number;
-    /**
-     * - Shows currency is enabled or not in current
+     * - It contains detailed information about the
      * sales channel
+     */
+    description?: string;
+    /**
+     * - It indicates different channel types like
+     * store, website-and-mobile-apps. Default value is store.
+     */
+    channel_type?: string;
+    /**
+     * - An integer value that specifies the number
+     * of seconds until the key expires
+     */
+    cache_ttl?: number;
+    /**
+     * - Indicates whether a sales channel is
+     * internal or not
+     */
+    is_internal?: boolean;
+    /**
+     * - Indicates whether a sales channel is active
+     * or not active
      */
     is_active?: boolean;
     /**
-     * - Name of the currency, e.g. Indian Rupee
+     * - The unique identifier (24-digit Mongo Object ID)
+     * of the sales channel
+     */
+    _id?: string;
+    /**
+     * - Name of the sales channel, e.g. Zenz Fashion
      */
     name?: string;
-    /**
-     * - Unique symbol for identifying the currency, e.g. ₹
-     */
-    symbol?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel support
-     * currency updation
-     */
-    updated_at?: string;
-};
-/** @returns {ApplicationWebsite} */
-declare function ApplicationWebsite(): ApplicationWebsite;
-type ApplicationWebsite = {
-    /**
-     * - Base path for the current sales channel website
-     */
-    basepath?: string;
-    /**
-     * - Shows whether sales channel website URL is
-     * enabled or not
-     */
-    enabled?: boolean;
-};
-/** @returns {BadRequest} */
-declare function BadRequest(): BadRequest;
-type BadRequest = {
-    /**
-     * - Failure message (in a string format)
-     */
-    message?: string;
-};
-/** @returns {Domain} */
-declare function Domain(): Domain;
-type Domain = {
     /**
      * - The unique identifier (24-digit Mongo Object ID)
-     * of the domain
+     * of owner who owns the application
      */
-    _id?: string;
+    owner?: string;
     /**
-     * - Domain is hosting domain or not
+     * - Numeric ID allotted to a business account
+     * where the sales channel exists
      */
-    is_predefined?: boolean;
+    company_id?: number;
     /**
-     * - Indicates domain is primary or not.
-     * Primary domain is the default/main domain.
+     * - Randomly generated fixed-length string for sales
+     * channel. It is required and auto-generated.
      */
-    is_primary?: boolean;
+    token?: string;
+    redirections?: ApplicationRedirections[];
+    meta?: ApplicationMeta[];
     /**
-     * - Shortlink is present or not for the domain
+     * - ISO 8601 timestamp of sales channel creation
      */
-    is_shortlink?: boolean;
-    name?: string;
+    created_at?: string;
     /**
-     * - Indicates domain is verified or not. TXT and
-     * A records should propagate correctly.
+     * - ISO 8601 timestamp of sales channel updation
      */
-    verified?: boolean;
-};
-/** @returns {LocationCountry} */
-declare function LocationCountry(): LocationCountry;
-type LocationCountry = {
+    updated_at?: string;
+    /**
+     * - Version key for tracking revisions. Default value is zero.
+     */
     __v?: number;
-    _id?: string;
-    capital?: string;
-    country_code?: string;
-    currency?: string;
-    default_currency?: LocationDefaultCurrency;
-    default_language?: LocationDefaultLanguage;
-    iso2?: string;
-    iso3?: string;
-    latitude?: string;
-    longitude?: string;
-    name?: string;
-    parent?: string;
-    phone_code?: string;
-    state_code?: string;
-    type?: string;
-    uid?: number;
-};
-/** @returns {LocationDefaultCurrency} */
-declare function LocationDefaultCurrency(): LocationDefaultCurrency;
-type LocationDefaultCurrency = {
-    code?: string;
-    name?: string;
-    symbol?: string;
-};
-/** @returns {LocationDefaultLanguage} */
-declare function LocationDefaultLanguage(): LocationDefaultLanguage;
-type LocationDefaultLanguage = {
-    code?: string;
-    name?: string;
-};
-/** @returns {Locations} */
-declare function Locations(): Locations;
-type Locations = {
+    banner?: SecureUrl;
+    logo?: SecureUrl;
+    favicon?: SecureUrl;
+    domains?: Domain[];
     /**
-     * - Object Containing Country Locations Details
+     * - It shows whether application is live or in
+     * development mode
      */
-    items?: LocationCountry[];
+    app_type?: string;
+    mobile_logo?: SecureUrl;
+    domain?: Domain;
 };
 /** @returns {NotFound} */
 declare function NotFound(): NotFound;
@@ -414,11 +372,53 @@ type NotFound = {
      */
     message?: string;
 };
-/** @returns {SecureUrl} */
-declare function SecureUrl(): SecureUrl;
-type SecureUrl = {
+/** @returns {BadRequest} */
+declare function BadRequest(): BadRequest;
+type BadRequest = {
     /**
-     * - Hosted URL of the image
+     * - Failure message (in a string format)
      */
-    secure_url?: string;
+    message?: string;
+};
+/** @returns {LocationDefaultLanguage} */
+declare function LocationDefaultLanguage(): LocationDefaultLanguage;
+type LocationDefaultLanguage = {
+    name?: string;
+    code?: string;
+};
+/** @returns {LocationDefaultCurrency} */
+declare function LocationDefaultCurrency(): LocationDefaultCurrency;
+type LocationDefaultCurrency = {
+    name?: string;
+    symbol?: string;
+    code?: string;
+};
+/** @returns {LocationCountry} */
+declare function LocationCountry(): LocationCountry;
+type LocationCountry = {
+    capital?: string;
+    currency?: string;
+    iso2?: string;
+    iso3?: string;
+    name?: string;
+    parent?: string;
+    phone_code?: string;
+    type?: string;
+    uid?: number;
+    __v?: number;
+    _id?: string;
+    default_currency?: LocationDefaultCurrency;
+    default_language?: LocationDefaultLanguage;
+    state_code?: string;
+    country_code?: string;
+    latitude?: string;
+    longitude?: string;
+};
+/** @returns {Locations} */
+declare function Locations(): Locations;
+type Locations = {
+    /**
+     * - Object Containing Country Locations Details
+     */
+    items?: LocationCountry[];
 };

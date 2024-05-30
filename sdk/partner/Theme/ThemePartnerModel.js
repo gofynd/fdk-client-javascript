@@ -1,73 +1,17 @@
 const Joi = require("joi");
 
 /**
- * @typedef AdvanceSetting
- * @property {DividerStrokeHighlightSetting} [divider_stroke_highlight]
- * @property {OverlayPopupSetting} [overlay_popup]
- * @property {UserAlertsSetting} [user_alerts]
- */
-
-/**
- * @typedef AllAvailablePageSchema
- * @property {AvailablePageSchema[]} [pages]
- */
-
-/**
- * @typedef Assets
- * @property {CommonJS} [common_js]
- * @property {CSS} [css]
- * @property {UMDJs} [umd_js]
- */
-
-/**
- * @typedef AuthConfig
- * @property {boolean} [show_footer_auth] - Whether to show footer authentication or not
- * @property {boolean} [show_header_auth] - Whether to show header authentication or not
- */
-
-/**
- * @typedef AvailablePagePredicate
- * @property {AvailablePageRoutePredicate} [route]
- * @property {AvailablePageScreenPredicate} [screen]
- * @property {AvailablePageUserPredicate} [user]
- */
-
-/**
- * @typedef AvailablePageRoutePredicate
- * @property {string} [exact_url]
- * @property {Object} [query]
- * @property {string} [selected]
- */
-
-/**
  * @typedef AvailablePageSchema
- * @property {string} [_id]
+ * @property {string} [value]
+ * @property {string} [text]
  * @property {string} [path]
- * @property {Object[]} [props]
+ * @property {string} [type]
  * @property {AvailablePageSchemaSections[]} [sections]
  * @property {AvailablePageSectionMetaAttributes[]} [sections_meta]
- * @property {AvailablePageSeo} [seo]
- * @property {string} [text]
  * @property {string} [theme]
- * @property {string} [type]
- * @property {string} [value]
- */
-
-/**
- * @typedef AvailablePageSchemaSections
- * @property {Object[]} [blocks]
- * @property {string} [label]
- * @property {string} [name]
- * @property {AvailablePagePredicate} [predicate]
- * @property {Object} [preset]
- * @property {Object} [props]
- */
-
-/**
- * @typedef AvailablePageScreenPredicate
- * @property {boolean} [desktop]
- * @property {boolean} [mobile]
- * @property {boolean} [tablet]
+ * @property {AvailablePageSeo} [seo]
+ * @property {Object[]} [props]
+ * @property {string} [_id]
  */
 
 /**
@@ -77,15 +21,189 @@ const Joi = require("joi");
 
 /**
  * @typedef AvailablePageSeo
- * @property {string} [_id]
- * @property {string} [description]
  * @property {string} [title]
+ * @property {string} [description]
+ * @property {string} [_id]
+ */
+
+/**
+ * @typedef AvailablePageSchemaSections
+ * @property {string} [name]
+ * @property {string} [label]
+ * @property {Object} [props]
+ * @property {Object[]} [blocks]
+ * @property {Object} [preset]
+ * @property {AvailablePagePredicate} [predicate]
+ */
+
+/**
+ * @typedef AvailablePageScreenPredicate
+ * @property {boolean} [mobile]
+ * @property {boolean} [desktop]
+ * @property {boolean} [tablet]
  */
 
 /**
  * @typedef AvailablePageUserPredicate
- * @property {boolean} [anonymous]
  * @property {boolean} [authenticated]
+ * @property {boolean} [anonymous]
+ */
+
+/**
+ * @typedef AvailablePageRoutePredicate
+ * @property {string} [selected]
+ * @property {string} [exact_url]
+ * @property {Object} [query]
+ */
+
+/**
+ * @typedef AvailablePagePredicate
+ * @property {AvailablePageScreenPredicate} [screen]
+ * @property {AvailablePageUserPredicate} [user]
+ * @property {AvailablePageRoutePredicate} [route]
+ */
+
+/**
+ * @typedef MarketplaceThemeSchema
+ * @property {MarketplaceTheme[]} [themes]
+ * @property {PaginationSchema} [page]
+ */
+
+/**
+ * @typedef MarketplaceTheme
+ * @property {string} [_id] - Theme ID
+ * @property {PaymentInfo} [payment]
+ * @property {ContactInfo} [contact]
+ * @property {string[]} [industry] - Industries the theme is suitable for
+ * @property {boolean} [is_update] - Indicates if the theme is an update
+ * @property {boolean} [is_default] - Indicates if the theme is a default theme
+ * @property {string} [name] - Theme name
+ * @property {string} [tagline] - Theme tagline
+ * @property {string} [description] - Theme description
+ * @property {CatalogSize} [catalog_size]
+ * @property {MarketplaceThemeImages} [images]
+ * @property {CarouselItem[]} [carousel]
+ * @property {string} [src] - Theme source URL
+ * @property {ExploreInfo} [explore]
+ * @property {Feature[]} [features]
+ * @property {Highlight[]} [highlights]
+ * @property {Variation[]} [variations]
+ * @property {Documentation} [documentation]
+ * @property {string} [status] - Theme status
+ * @property {number} [step] - Theme step
+ * @property {Comments} [comments]
+ * @property {Release} [release]
+ * @property {string} [slug] - Theme slug
+ * @property {string} [organization_id] - Organization ID
+ * @property {string} [user_id] - User ID
+ * @property {string} [created_at] - Theme creation timestamp
+ * @property {string} [updated_at] - Theme update timestamp
+ * @property {string} [template_theme_id] - Template theme ID
+ */
+
+/**
+ * @typedef PaymentInfo
+ * @property {boolean} [is_paid] - Indicates if the theme is paid
+ * @property {number} [amount] - Amount of payment
+ */
+
+/**
+ * @typedef ContactInfo
+ * @property {string[]} [developer_contact] - Developer contact information
+ * @property {string} [seller_contact] - Seller contact information
+ */
+
+/**
+ * @typedef CatalogSize
+ * @property {number} [min] - Minimum catalog size
+ * @property {number} [max] - Maximum catalog size
+ */
+
+/**
+ * @typedef MarketplaceThemeImages
+ * @property {string} [desktop] - Desktop theme image URL
+ * @property {string} [mobile] - Mobile theme image URL
+ */
+
+/**
+ * @typedef CarouselItem
+ * @property {string} [desktop] - Desktop carousel image URL
+ * @property {string} [mobile] - Mobile carousel image URL
+ */
+
+/**
+ * @typedef ExploreInfo
+ * @property {string} [title] - Explore feature title
+ * @property {string} [description] - Explore feature description
+ */
+
+/**
+ * @typedef Feature
+ * @property {string} [category] - Feature category
+ * @property {FeatureItem[]} [list]
+ */
+
+/**
+ * @typedef FeatureItem
+ * @property {string} [label] - Feature label
+ * @property {string} [description] - Feature description
+ */
+
+/**
+ * @typedef Highlight
+ * @property {string} [title] - Highlight title
+ * @property {string} [description] - Highlight description
+ * @property {string} [image] - Highlight image URL
+ */
+
+/**
+ * @typedef Variation
+ * @property {string} [name] - Variation name
+ * @property {string} [color] - Variation color
+ * @property {string} [demo_url] - Variation demo URL
+ * @property {MarketplaceThemeImages} [images]
+ */
+
+/**
+ * @typedef Documentation
+ * @property {string} [notes] - Documentation notes
+ * @property {string} [url] - Documentation URL
+ */
+
+/**
+ * @typedef Comments
+ * @property {string} [developer_remark] - Developer remark
+ * @property {string} [reviewer_feedback] - Reviewer feedback
+ */
+
+/**
+ * @typedef ThemeRejectionReasons
+ * @property {string} _id - The ID of the theme rejection reasons object
+ * @property {string} [message] - A general message about the rejection reasons
+ * @property {string} theme_id - The ID of the rejected theme
+ * @property {string} organization_id - The ID of the organization
+ * @property {string} admin_id - The ID of the admin who rejected the theme
+ * @property {string} user_id - The ID of the user who submitted the theme
+ * @property {string} status - The status of the theme (e.g., rejected)
+ * @property {Object} rejection_reasons
+ * @property {string} [created_at] - The date and time when the theme rejection
+ *   reasons object was created
+ * @property {string} [updated_at] - The date and time when the theme rejection
+ *   reasons object was last updated
+ */
+
+/**
+ * @typedef AllAvailablePageSchema
+ * @property {AvailablePageSchema[]} [pages]
+ */
+
+/**
+ * @typedef PaginationSchema
+ * @property {number} [size]
+ * @property {number} [item_total]
+ * @property {boolean} [has_next]
+ * @property {string} [type]
+ * @property {number} [current]
  */
 
 /**
@@ -99,81 +217,61 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Block
- * @property {string} [name] - The name of the block.
- * @property {BlockProps} [props]
- * @property {string} [type] - The type of the block.
+ * @typedef ThemesSchema
+ * @property {Font} [font]
+ * @property {Config} [config]
+ * @property {boolean} [applied] - Whether the theme has been applied or not
+ * @property {boolean} [is_private] - Whether the theme is private or not
+ * @property {string[]} [tags] - An array of tags associated with the theme
+ * @property {string} [_id] - The unique identifier of the theme
+ * @property {string} [application_id] - The ID of the application
+ * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
+ * @property {Meta} [meta]
+ * @property {string} [name] - The name of the theme
+ * @property {string} [template_theme_id] - The ID of the template theme
+ * @property {string} [version] - The version of the theme
+ * @property {Object} [styles] - The styles associated with the theme
+ * @property {string} [created_at] - The creation timestamp of the theme
+ * @property {string} [updated_at] - The last update timestamp of the theme
+ * @property {Assets} [assets]
+ * @property {SectionItem[]} [available_sections] - Available sections information
  */
 
 /**
- * @typedef BlockProps
- * @property {ImagePickerProp} [image]
- * @property {UrlProp} [slide_link]
+ * @typedef Font
+ * @property {FontVariants} variants
+ * @property {string} family - The font family
  */
 
 /**
- * @typedef ButtonSetting
- * @property {string} [button_link] - The button link color
- * @property {string} [button_primary] - The primary button color
- * @property {string} [button_secondary] - The secondary button color
+ * @typedef FontVariants
+ * @property {FontVariant} [light]
+ * @property {FontVariant} [regular]
+ * @property {FontVariant} [medium]
+ * @property {FontVariant} [semi_bold]
+ * @property {FontVariant} [bold]
  */
 
 /**
- * @typedef CarouselItem
- * @property {string} [desktop] - Desktop carousel image URL
- * @property {string} [mobile] - Mobile carousel image URL
- */
-
-/**
- * @typedef CatalogSize
- * @property {number} [max] - Maximum catalog size
- * @property {number} [min] - Minimum catalog size
- */
-
-/**
- * @typedef CheckboxProp
- * @property {string} [type] - The type of the property.
- * @property {boolean} [value] - The value of the checkbox property.
- */
-
-/**
- * @typedef Colors
- * @property {string} [accent_color] - The accent color
- * @property {string} [bg_color] - The background color
- * @property {string} [button_secondary_color] - The secondary button color
- * @property {string} [link_color] - The link color
- * @property {string} [primary_color] - The primary color
- * @property {string} [secondary_color] - The secondary color
- */
-
-/**
- * @typedef Comments
- * @property {string} [developer_remark] - Developer remark
- * @property {string} [reviewer_feedback] - Reviewer feedback
- */
-
-/**
- * @typedef CommonJS
- * @property {string} [link]
+ * @typedef FontVariant
+ * @property {string} name - The name of the font variant
+ * @property {string} file - The URL of the font file
  */
 
 /**
  * @typedef Config
  * @property {string} current - The current configuration
- * @property {GlobalSchema} [global_schema]
  * @property {ThemeConfiguration[]} list - A list of configurations
+ * @property {GlobalSchema} [global_schema]
  * @property {Preset} [preset]
  */
 
 /**
- * @typedef ContactInfo
- * @property {string[]} [developer_contact] - Developer contact information
- * @property {string} [seller_contact] - Seller contact information
- */
-
-/**
- * @typedef CSS
- * @property {string[]} [links]
+ * @typedef ThemeConfiguration
+ * @property {string} [name] - The name of the configuration
+ * @property {GlobalConfig} [global_config]
+ * @property {CustomConfig} [custom]
+ * @property {string[]} [page] - An array of pages
  */
 
 /**
@@ -183,276 +281,102 @@ const Joi = require("joi");
 
 /**
  * @typedef CustomProps
- * @property {string} [button_add_to_cart_color] - The add to cart button color
- * @property {string} [button_add_to_cart_label_color] - The add to cart button
- *   label color
- * @property {string} [button_primary_color] - The primary button color
- * @property {string} [button_primary_label_color] - The primary button label color
- * @property {string} [button_secondary_color] - The secondary button color
- * @property {string} [button_secondary_label_color] - The secondary button label color
- * @property {string} [button_tertiary_color] - The tertiary button color
- * @property {string} [button_tertiary_hover_color] - The tertiary button hover color
- * @property {string} [button_tertiary_hover_text_color] - The tertiary button
- *   hover text color
- * @property {string} [button_tertiary_label_color] - The tertiary button label color
- * @property {boolean} [disable_cart] - Whether to disable the cart or not
- * @property {string} [footer_bg_color] - The footer background color
- * @property {string} [footer_border_color] - The footer border color
- * @property {string} [footer_nav_hover_color] - The footer navigation hover color
- * @property {string} [footer_text_color] - The footer text color
  * @property {string} [header_bg_color] - The header background color
+ * @property {string} [header_text_color] - The header text color
  * @property {string} [header_border_color] - The header border color
+ * @property {string} [header_icon_color] - The header icon color
  * @property {string} [header_cart_notification_bg_color] - The header cart
  *   notification background color
  * @property {string} [header_cart_notification_text_color] - The header cart
  *   notification text color
- * @property {string} [header_icon_color] - The header icon color
  * @property {string} [header_nav_hover_color] - The header navigation hover color
- * @property {string} [header_text_color] - The header text color
- * @property {boolean} [is_menu_below_logo] - Whether the menu is below the logo or not
- * @property {string} [menu_position] - The position of the menu
- * @property {string} [text_body_color] - The text body color
- * @property {string} [text_discount_color] - The text discount color
+ * @property {string} [button_primary_color] - The primary button color
+ * @property {string} [button_primary_label_color] - The primary button label color
+ * @property {string} [button_add_to_cart_color] - The add to cart button color
+ * @property {string} [button_add_to_cart_label_color] - The add to cart button
+ *   label color
+ * @property {string} [button_secondary_color] - The secondary button color
+ * @property {string} [button_secondary_label_color] - The secondary button label color
+ * @property {string} [button_tertiary_color] - The tertiary button color
+ * @property {string} [button_tertiary_label_color] - The tertiary button label color
+ * @property {string} [button_tertiary_hover_color] - The tertiary button hover color
+ * @property {string} [button_tertiary_hover_text_color] - The tertiary button
+ *   hover text color
  * @property {string} [text_heading_link_color] - The text heading link color
+ * @property {string} [text_body_color] - The text body color
  * @property {string} [text_price_color] - The text price color
  * @property {string} [text_sale_price_color] - The text sale price color
  * @property {string} [text_strikethrough_price_color] - The text strikethrough
  *   price color
- */
-
-/**
- * @typedef DividerStrokeHighlightSetting
- * @property {string} [divider_strokes] - The divider strokes color
- * @property {string} [highlight] - The highlight color
- */
-
-/**
- * @typedef Documentation
- * @property {string} [notes] - Documentation notes
- * @property {string} [url] - Documentation URL
- */
-
-/**
- * @typedef ExploreInfo
- * @property {string} [description] - Explore feature description
- * @property {string} [title] - Explore feature title
- */
-
-/**
- * @typedef Feature
- * @property {string} [category] - Feature category
- * @property {FeatureItem[]} [list]
- */
-
-/**
- * @typedef FeatureItem
- * @property {string} [description] - Feature description
- * @property {string} [label] - Feature label
- */
-
-/**
- * @typedef Font
- * @property {string} family - The font family
- * @property {FontVariants} variants
- */
-
-/**
- * @typedef FontVariant
- * @property {string} file - The URL of the font file
- * @property {string} name - The name of the font variant
- */
-
-/**
- * @typedef FontVariants
- * @property {FontVariant} [bold]
- * @property {FontVariant} [light]
- * @property {FontVariant} [medium]
- * @property {FontVariant} [regular]
- * @property {FontVariant} [semi_bold]
- */
-
-/**
- * @typedef FooterSetting
- * @property {string} [footer_background] - The footer background color
- * @property {string} [footer_body_text] - The footer body text color
- * @property {string} [footer_bottom_background] - The footer bottom background color
- * @property {string} [footer_heading_text] - The footer heading text color
- * @property {string} [footer_icon] - The footer icon color
- */
-
-/**
- * @typedef GeneralSetting
- * @property {ButtonSetting} [button]
- * @property {FooterSetting} [footer]
- * @property {HeaderSetting} [header]
- * @property {SaleDiscountSetting} [sale_discount]
- * @property {TextSetting} [text]
- * @property {ThemeSetting} [theme]
+ * @property {string} [text_discount_color] - The text discount color
+ * @property {string} [footer_bg_color] - The footer background color
+ * @property {string} [footer_text_color] - The footer text color
+ * @property {string} [footer_border_color] - The footer border color
+ * @property {string} [footer_nav_hover_color] - The footer navigation hover color
+ * @property {boolean} [disable_cart] - Whether to disable the cart or not
+ * @property {boolean} [is_menu_below_logo] - Whether the menu is below the logo or not
+ * @property {string} [menu_position] - The position of the menu
  */
 
 /**
  * @typedef GlobalConfig
+ * @property {StaticConfig} [statics]
  * @property {AuthConfig} [auth]
  * @property {PaletteConfig} [palette]
- * @property {StaticConfig} [statics]
- */
-
-/**
- * @typedef GlobalSchema
- * @property {Prop[]} [props]
- */
-
-/**
- * @typedef HeaderSetting
- * @property {string} [header_background] - The header background color
- * @property {string} [header_icon] - The header icon color
- * @property {string} [header_nav] - The header navigation color
- */
-
-/**
- * @typedef Highlight
- * @property {string} [description] - Highlight description
- * @property {string} [image] - Highlight image URL
- * @property {string} [title] - Highlight title
- */
-
-/**
- * @typedef ImagePickerProp
- * @property {string} [type] - The type of the property.
- * @property {string} [value] - The value of the image picker property.
- */
-
-/**
- * @typedef Images
- * @property {string} [desktop] - The URL of the desktop image
- * @property {string} [mobile] - The URL of the mobile image
- */
-
-/**
- * @typedef MarketplaceTheme
- * @property {string} [_id] - Theme ID
- * @property {CarouselItem[]} [carousel]
- * @property {CatalogSize} [catalog_size]
- * @property {Comments} [comments]
- * @property {ContactInfo} [contact]
- * @property {string} [created_at] - Theme creation timestamp
- * @property {string} [description] - Theme description
- * @property {Documentation} [documentation]
- * @property {ExploreInfo} [explore]
- * @property {Feature[]} [features]
- * @property {Highlight[]} [highlights]
- * @property {MarketplaceThemeImages} [images]
- * @property {string[]} [industry] - Industries the theme is suitable for
- * @property {boolean} [is_default] - Indicates if the theme is a default theme
- * @property {boolean} [is_update] - Indicates if the theme is an update
- * @property {string} [name] - Theme name
- * @property {string} [organization_id] - Organization ID
- * @property {PaymentInfo} [payment]
- * @property {Release} [release]
- * @property {string} [slug] - Theme slug
- * @property {string} [src] - Theme source URL
- * @property {string} [status] - Theme status
- * @property {number} [step] - Theme step
- * @property {string} [tagline] - Theme tagline
- * @property {string} [template_theme_id] - Template theme ID
- * @property {string} [updated_at] - Theme update timestamp
- * @property {string} [user_id] - User ID
- * @property {Variation[]} [variations]
- */
-
-/**
- * @typedef MarketplaceThemeImages
- * @property {string} [desktop] - Desktop theme image URL
- * @property {string} [mobile] - Mobile theme image URL
- */
-
-/**
- * @typedef MarketplaceThemeSchema
- * @property {PaginationSchema} [page]
- * @property {MarketplaceTheme[]} [themes]
- */
-
-/**
- * @typedef Meta
- * @property {string} [description] - The description of the theme
- * @property {Images} [images]
- * @property {string[]} [industry] - An array of industries associated with the theme
- * @property {string} [name] - The name of the theme
- * @property {ThemePayment} [payment]
- * @property {Release} [release]
- * @property {string} [slug] - The slug of the theme
- */
-
-/**
- * @typedef OverlayPopupSetting
- * @property {string} [dialog_backgroung] - The dialog background color
- * @property {string} [overlay] - The overlay color
- */
-
-/**
- * @typedef Page
- * @property {Section[]} [sections]
- * @property {string} [value] - The value of the page.
- */
-
-/**
- * @typedef PaginationSchema
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
  */
 
 /**
  * @typedef PaletteConfig
- * @property {AdvanceSetting} [advance_setting]
  * @property {GeneralSetting} [general_setting]
+ * @property {AdvanceSetting} [advance_setting]
  */
 
 /**
- * @typedef PaymentInfo
- * @property {number} [amount] - Amount of payment
- * @property {boolean} [is_paid] - Indicates if the theme is paid
+ * @typedef GeneralSetting
+ * @property {ThemeSetting} [theme]
+ * @property {TextSetting} [text]
+ * @property {ButtonSetting} [button]
+ * @property {SaleDiscountSetting} [sale_discount]
+ * @property {HeaderSetting} [header]
+ * @property {FooterSetting} [footer]
  */
 
 /**
- * @typedef Predicate
- * @property {Route} [route]
- * @property {Screen} [screen]
- * @property {ThemeUserSchema} [user]
+ * @typedef AdvanceSetting
+ * @property {OverlayPopupSetting} [overlay_popup]
+ * @property {DividerStrokeHighlightSetting} [divider_stroke_highlight]
+ * @property {UserAlertsSetting} [user_alerts]
  */
 
 /**
- * @typedef Preset
- * @property {Page[]} [pages]
+ * @typedef UserAlertsSetting
+ * @property {string} [success_background] - The success background color
+ * @property {string} [success_text] - The success text color
+ * @property {string} [error_background] - The error background color
+ * @property {string} [error_text] - The error text color
+ * @property {string} [info_background] - The info background color
+ * @property {string} [info_text] - The info text color
  */
 
 /**
- * @typedef Prop
- * @property {string} [category] - The category of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [info] - Additional information about the property
- * @property {string} [label] - The label of the property
- * @property {string} [type] - The type of the property
+ * @typedef ThemeSetting
+ * @property {string} [page_background] - The page background color
+ * @property {string} [theme_accent] - The theme accent color
  */
 
 /**
- * @typedef RangeProp
- * @property {string} [type] - The type of the property.
- * @property {number} [value] - The value of the range property.
+ * @typedef TextSetting
+ * @property {string} [text_heading] - The text heading color
+ * @property {string} [text_body] - The text body color
+ * @property {string} [text_label] - The text label color
+ * @property {string} [text_secondary] - The secondary text color
  */
 
 /**
- * @typedef Release
- * @property {string} [notes] - The release notes of the theme
- * @property {string} [version] - The version of the theme
- */
-
-/**
- * @typedef Route
- * @property {string} [exact_url] - The exact URL of the route.
- * @property {string} [selected] - The selected route.
+ * @typedef ButtonSetting
+ * @property {string} [button_primary] - The primary button color
+ * @property {string} [button_secondary] - The secondary button color
+ * @property {string} [button_link] - The button link color
  */
 
 /**
@@ -464,40 +388,31 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Screen
- * @property {boolean} [desktop] - True if the screen is a desktop device.
- * @property {boolean} [mobile] - True if the screen is a mobile device.
- * @property {boolean} [tablet] - True if the screen is a tablet device.
+ * @typedef HeaderSetting
+ * @property {string} [header_background] - The header background color
+ * @property {string} [header_nav] - The header navigation color
+ * @property {string} [header_icon] - The header icon color
  */
 
 /**
- * @typedef Section
- * @property {Block[]} [blocks]
- * @property {string} [name] - The name of the section.
- * @property {Predicate} [predicate]
- * @property {SectionPreset} [preset]
- * @property {SectionProps} [props]
+ * @typedef FooterSetting
+ * @property {string} [footer_background] - The footer background color
+ * @property {string} [footer_bottom_background] - The footer bottom background color
+ * @property {string} [footer_heading_text] - The footer heading text color
+ * @property {string} [footer_body_text] - The footer body text color
+ * @property {string} [footer_icon] - The footer icon color
  */
 
 /**
- * @typedef SectionItem
- * @property {Object[]} [blocks] - Blocks
- * @property {string} [label] - Label for the section
- * @property {string} [name] - Name of the section
- * @property {Object[]} [props]
+ * @typedef OverlayPopupSetting
+ * @property {string} [dialog_backgroung] - The dialog background color
+ * @property {string} [overlay] - The overlay color
  */
 
 /**
- * @typedef SectionPreset
- * @property {Block[]} [blocks]
- */
-
-/**
- * @typedef SectionProps
- * @property {CheckboxProp} [autoplay]
- * @property {TextProp} [item_margin]
- * @property {RangeProp} [slide_interval]
- * @property {TextProp} [title]
+ * @typedef DividerStrokeHighlightSetting
+ * @property {string} [divider_strokes] - The divider strokes color
+ * @property {string} [highlight] - The highlight color
  */
 
 /**
@@ -507,85 +422,60 @@ const Joi = require("joi");
 
 /**
  * @typedef StaticProps
- * @property {AuthConfig} [auth]
  * @property {Colors} [colors]
+ * @property {AuthConfig} [auth]
  */
 
 /**
- * @typedef TextProp
- * @property {string} [type] - The type of the property.
- * @property {string} [value] - The value of the text property.
+ * @typedef AuthConfig
+ * @property {boolean} [show_header_auth] - Whether to show header authentication or not
+ * @property {boolean} [show_footer_auth] - Whether to show footer authentication or not
  */
 
 /**
- * @typedef TextSetting
- * @property {string} [text_body] - The text body color
- * @property {string} [text_heading] - The text heading color
- * @property {string} [text_label] - The text label color
- * @property {string} [text_secondary] - The secondary text color
+ * @typedef Colors
+ * @property {string} [primary_color] - The primary color
+ * @property {string} [secondary_color] - The secondary color
+ * @property {string} [accent_color] - The accent color
+ * @property {string} [link_color] - The link color
+ * @property {string} [button_secondary_color] - The secondary button color
+ * @property {string} [bg_color] - The background color
  */
 
 /**
- * @typedef ThemeConfiguration
- * @property {CustomConfig} [custom]
- * @property {GlobalConfig} [global_config]
- * @property {string} [name] - The name of the configuration
- * @property {string[]} [page] - An array of pages
+ * @typedef Meta
+ * @property {ThemePayment} [payment]
+ * @property {string} [description] - The description of the theme
+ * @property {string[]} [industry] - An array of industries associated with the theme
+ * @property {Release} [release]
+ * @property {Images} [images]
+ * @property {string} [slug] - The slug of the theme
+ * @property {string} [name] - The name of the theme
  */
 
 /**
  * @typedef ThemePayment
- * @property {number} [amount] - The amount of the theme
  * @property {boolean} [is_paid] - Whether the theme is paid or not
+ * @property {number} [amount] - The amount of the theme
  */
 
 /**
- * @typedef ThemeRejectionReasons
- * @property {string} _id - The ID of the theme rejection reasons object
- * @property {string} admin_id - The ID of the admin who rejected the theme
- * @property {string} [created_at] - The date and time when the theme rejection
- *   reasons object was created
- * @property {string} [message] - A general message about the rejection reasons
- * @property {string} organization_id - The ID of the organization
- * @property {Object} rejection_reasons
- * @property {string} status - The status of the theme (e.g., rejected)
- * @property {string} theme_id - The ID of the rejected theme
- * @property {string} [updated_at] - The date and time when the theme rejection
- *   reasons object was last updated
- * @property {string} user_id - The ID of the user who submitted the theme
- */
-
-/**
- * @typedef ThemeSetting
- * @property {string} [page_background] - The page background color
- * @property {string} [theme_accent] - The theme accent color
- */
-
-/**
- * @typedef ThemesSchema
- * @property {string} [_id] - The unique identifier of the theme
- * @property {string} [application_id] - The ID of the application
- * @property {boolean} [applied] - Whether the theme has been applied or not
- * @property {Assets} [assets]
- * @property {SectionItem[]} [available_sections] - Available sections information
- * @property {Config} [config]
- * @property {string} [created_at] - The creation timestamp of the theme
- * @property {Font} [font]
- * @property {boolean} [is_private] - Whether the theme is private or not
- * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
- * @property {Meta} [meta]
- * @property {string} [name] - The name of the theme
- * @property {Object} [styles] - The styles associated with the theme
- * @property {string[]} [tags] - An array of tags associated with the theme
- * @property {string} [template_theme_id] - The ID of the template theme
- * @property {string} [updated_at] - The last update timestamp of the theme
+ * @typedef Release
+ * @property {string} [notes] - The release notes of the theme
  * @property {string} [version] - The version of the theme
  */
 
 /**
- * @typedef ThemeUserSchema
- * @property {boolean} [anonymous] - True if the user is anonymous.
- * @property {boolean} [authenticated] - True if the user is authenticated.
+ * @typedef Images
+ * @property {string} [desktop] - The URL of the desktop image
+ * @property {string} [mobile] - The URL of the mobile image
+ */
+
+/**
+ * @typedef Assets
+ * @property {UMDJs} [umd_js]
+ * @property {CommonJS} [common_js]
+ * @property {CSS} [css]
  */
 
 /**
@@ -594,9 +484,70 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UpdateThemeRequestBody
- * @property {Config} [config]
- * @property {Font} [font]
+ * @typedef CommonJS
+ * @property {string} [link]
+ */
+
+/**
+ * @typedef CSS
+ * @property {string[]} [links]
+ */
+
+/**
+ * @typedef SectionItem
+ * @property {Object[]} [props]
+ * @property {Object[]} [blocks] - Blocks
+ * @property {string} [name] - Name of the section
+ * @property {string} [label] - Label for the section
+ */
+
+/**
+ * @typedef GlobalSchema
+ * @property {Prop[]} [props]
+ */
+
+/**
+ * @typedef Prop
+ * @property {string} [type] - The type of the property
+ * @property {string} [category] - The category of the property
+ * @property {string} [id] - The ID of the property
+ * @property {string} [label] - The label of the property
+ * @property {string} [info] - Additional information about the property
+ */
+
+/**
+ * @typedef Preset
+ * @property {Page[]} [pages]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
+ * @typedef SectionProps
+ * @property {TextProp} [title]
+ * @property {TextProp} [item_margin]
+ * @property {CheckboxProp} [autoplay]
+ * @property {RangeProp} [slide_interval]
+ */
+
+/**
+ * @typedef SectionPreset
+ * @property {Block[]} [blocks]
+ */
+
+/**
+ * @typedef ImagePickerProp
+ * @property {string} [type] - The type of the property.
+ * @property {string} [value] - The value of the image picker property.
  */
 
 /**
@@ -606,113 +557,95 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAlertsSetting
- * @property {string} [error_background] - The error background color
- * @property {string} [error_text] - The error text color
- * @property {string} [info_background] - The info background color
- * @property {string} [info_text] - The info text color
- * @property {string} [success_background] - The success background color
- * @property {string} [success_text] - The success text color
+ * @typedef BlockProps
+ * @property {ImagePickerProp} [image]
+ * @property {UrlProp} [slide_link]
  */
 
 /**
- * @typedef Variation
- * @property {string} [color] - Variation color
- * @property {string} [demo_url] - Variation demo URL
- * @property {MarketplaceThemeImages} [images]
- * @property {string} [name] - Variation name
+ * @typedef TextProp
+ * @property {string} [value] - The value of the text property.
+ * @property {string} [type] - The type of the property.
+ */
+
+/**
+ * @typedef CheckboxProp
+ * @property {boolean} [value] - The value of the checkbox property.
+ * @property {string} [type] - The type of the property.
+ */
+
+/**
+ * @typedef RangeProp
+ * @property {number} [value] - The value of the range property.
+ * @property {string} [type] - The type of the property.
+ */
+
+/**
+ * @typedef Section
+ * @property {Block[]} [blocks]
+ * @property {Predicate} [predicate]
+ * @property {string} [name] - The name of the section.
+ * @property {SectionProps} [props]
+ * @property {SectionPreset} [preset]
+ */
+
+/**
+ * @typedef Block
+ * @property {string} [type] - The type of the block.
+ * @property {string} [name] - The name of the block.
+ * @property {BlockProps} [props]
+ */
+
+/**
+ * @typedef Predicate
+ * @property {Screen} [screen]
+ * @property {ThemeUserSchema} [user]
+ * @property {Route} [route]
+ */
+
+/**
+ * @typedef Screen
+ * @property {boolean} [mobile] - True if the screen is a mobile device.
+ * @property {boolean} [desktop] - True if the screen is a desktop device.
+ * @property {boolean} [tablet] - True if the screen is a tablet device.
+ */
+
+/**
+ * @typedef ThemeUserSchema
+ * @property {boolean} [authenticated] - True if the user is authenticated.
+ * @property {boolean} [anonymous] - True if the user is anonymous.
+ */
+
+/**
+ * @typedef Route
+ * @property {string} [selected] - The selected route.
+ * @property {string} [exact_url] - The exact URL of the route.
+ */
+
+/**
+ * @typedef UpdateThemeRequestBody
+ * @property {Config} [config]
+ * @property {Font} [font]
  */
 
 class ThemePartnerModel {
-  /** @returns {AdvanceSetting} */
-  static AdvanceSetting() {
-    return Joi.object({
-      divider_stroke_highlight: ThemePartnerModel.DividerStrokeHighlightSetting(),
-      overlay_popup: ThemePartnerModel.OverlayPopupSetting(),
-      user_alerts: ThemePartnerModel.UserAlertsSetting(),
-    });
-  }
-
-  /** @returns {AllAvailablePageSchema} */
-  static AllAvailablePageSchema() {
-    return Joi.object({
-      pages: Joi.array().items(ThemePartnerModel.AvailablePageSchema()),
-    });
-  }
-
-  /** @returns {Assets} */
-  static Assets() {
-    return Joi.object({
-      common_js: ThemePartnerModel.CommonJS(),
-      css: ThemePartnerModel.CSS(),
-      umd_js: ThemePartnerModel.UMDJs(),
-    });
-  }
-
-  /** @returns {AuthConfig} */
-  static AuthConfig() {
-    return Joi.object({
-      show_footer_auth: Joi.boolean(),
-      show_header_auth: Joi.boolean(),
-    });
-  }
-
-  /** @returns {AvailablePagePredicate} */
-  static AvailablePagePredicate() {
-    return Joi.object({
-      route: ThemePartnerModel.AvailablePageRoutePredicate(),
-      screen: ThemePartnerModel.AvailablePageScreenPredicate(),
-      user: ThemePartnerModel.AvailablePageUserPredicate(),
-    });
-  }
-
-  /** @returns {AvailablePageRoutePredicate} */
-  static AvailablePageRoutePredicate() {
-    return Joi.object({
-      exact_url: Joi.string().allow(""),
-      query: Joi.any(),
-      selected: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {AvailablePageSchema} */
   static AvailablePageSchema() {
     return Joi.object({
-      _id: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+      text: Joi.string().allow(""),
       path: Joi.string().allow(""),
-      props: Joi.array().items(Joi.any()),
+      type: Joi.string().allow(""),
       sections: Joi.array().items(
         ThemePartnerModel.AvailablePageSchemaSections()
       ),
       sections_meta: Joi.array().items(
         ThemePartnerModel.AvailablePageSectionMetaAttributes()
       ),
-      seo: ThemePartnerModel.AvailablePageSeo(),
-      text: Joi.string().allow(""),
       theme: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AvailablePageSchemaSections} */
-  static AvailablePageSchemaSections() {
-    return Joi.object({
-      blocks: Joi.array().items(Joi.any()),
-      label: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      predicate: ThemePartnerModel.AvailablePagePredicate(),
-      preset: Joi.any(),
-      props: Joi.any(),
-    });
-  }
-
-  /** @returns {AvailablePageScreenPredicate} */
-  static AvailablePageScreenPredicate() {
-    return Joi.object({
-      desktop: Joi.boolean(),
-      mobile: Joi.boolean(),
-      tablet: Joi.boolean(),
+      seo: ThemePartnerModel.AvailablePageSeo(),
+      props: Joi.array().items(Joi.any()),
+      _id: Joi.string().allow(""),
     });
   }
 
@@ -726,17 +659,231 @@ class ThemePartnerModel {
   /** @returns {AvailablePageSeo} */
   static AvailablePageSeo() {
     return Joi.object({
-      _id: Joi.string().allow(""),
-      description: Joi.string().allow(""),
       title: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AvailablePageSchemaSections} */
+  static AvailablePageSchemaSections() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      label: Joi.string().allow(""),
+      props: Joi.any(),
+      blocks: Joi.array().items(Joi.any()),
+      preset: Joi.any(),
+      predicate: ThemePartnerModel.AvailablePagePredicate(),
+    });
+  }
+
+  /** @returns {AvailablePageScreenPredicate} */
+  static AvailablePageScreenPredicate() {
+    return Joi.object({
+      mobile: Joi.boolean(),
+      desktop: Joi.boolean(),
+      tablet: Joi.boolean(),
     });
   }
 
   /** @returns {AvailablePageUserPredicate} */
   static AvailablePageUserPredicate() {
     return Joi.object({
-      anonymous: Joi.boolean(),
       authenticated: Joi.boolean(),
+      anonymous: Joi.boolean(),
+    });
+  }
+
+  /** @returns {AvailablePageRoutePredicate} */
+  static AvailablePageRoutePredicate() {
+    return Joi.object({
+      selected: Joi.string().allow(""),
+      exact_url: Joi.string().allow(""),
+      query: Joi.any(),
+    });
+  }
+
+  /** @returns {AvailablePagePredicate} */
+  static AvailablePagePredicate() {
+    return Joi.object({
+      screen: ThemePartnerModel.AvailablePageScreenPredicate(),
+      user: ThemePartnerModel.AvailablePageUserPredicate(),
+      route: ThemePartnerModel.AvailablePageRoutePredicate(),
+    });
+  }
+
+  /** @returns {MarketplaceThemeSchema} */
+  static MarketplaceThemeSchema() {
+    return Joi.object({
+      themes: Joi.array().items(ThemePartnerModel.MarketplaceTheme()),
+      page: ThemePartnerModel.PaginationSchema(),
+    });
+  }
+
+  /** @returns {MarketplaceTheme} */
+  static MarketplaceTheme() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      payment: ThemePartnerModel.PaymentInfo(),
+      contact: ThemePartnerModel.ContactInfo(),
+      industry: Joi.array().items(Joi.string().allow("")),
+      is_update: Joi.boolean(),
+      is_default: Joi.boolean(),
+      name: Joi.string().allow(""),
+      tagline: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      catalog_size: ThemePartnerModel.CatalogSize(),
+      images: ThemePartnerModel.MarketplaceThemeImages(),
+      carousel: Joi.array().items(ThemePartnerModel.CarouselItem()),
+      src: Joi.string().allow(""),
+      explore: ThemePartnerModel.ExploreInfo(),
+      features: Joi.array().items(ThemePartnerModel.Feature()),
+      highlights: Joi.array().items(ThemePartnerModel.Highlight()),
+      variations: Joi.array().items(ThemePartnerModel.Variation()),
+      documentation: ThemePartnerModel.Documentation(),
+      status: Joi.string().allow(""),
+      step: Joi.number(),
+      comments: ThemePartnerModel.Comments(),
+      release: ThemePartnerModel.Release(),
+      slug: Joi.string().allow(""),
+      organization_id: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      template_theme_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PaymentInfo} */
+  static PaymentInfo() {
+    return Joi.object({
+      is_paid: Joi.boolean(),
+      amount: Joi.number(),
+    });
+  }
+
+  /** @returns {ContactInfo} */
+  static ContactInfo() {
+    return Joi.object({
+      developer_contact: Joi.array().items(Joi.string().allow("")),
+      seller_contact: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CatalogSize} */
+  static CatalogSize() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {MarketplaceThemeImages} */
+  static MarketplaceThemeImages() {
+    return Joi.object({
+      desktop: Joi.string().allow(""),
+      mobile: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CarouselItem} */
+  static CarouselItem() {
+    return Joi.object({
+      desktop: Joi.string().allow(""),
+      mobile: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ExploreInfo} */
+  static ExploreInfo() {
+    return Joi.object({
+      title: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Feature} */
+  static Feature() {
+    return Joi.object({
+      category: Joi.string().allow(""),
+      list: Joi.array().items(ThemePartnerModel.FeatureItem()),
+    });
+  }
+
+  /** @returns {FeatureItem} */
+  static FeatureItem() {
+    return Joi.object({
+      label: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Highlight} */
+  static Highlight() {
+    return Joi.object({
+      title: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      image: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Variation} */
+  static Variation() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      color: Joi.string().allow(""),
+      demo_url: Joi.string().allow(""),
+      images: ThemePartnerModel.MarketplaceThemeImages(),
+    });
+  }
+
+  /** @returns {Documentation} */
+  static Documentation() {
+    return Joi.object({
+      notes: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Comments} */
+  static Comments() {
+    return Joi.object({
+      developer_remark: Joi.string().allow(""),
+      reviewer_feedback: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ThemeRejectionReasons} */
+  static ThemeRejectionReasons() {
+    return Joi.object({
+      _id: Joi.string().allow("").required(),
+      message: Joi.string().allow(""),
+      theme_id: Joi.string().allow("").required(),
+      organization_id: Joi.string().allow("").required(),
+      admin_id: Joi.string().allow("").required(),
+      user_id: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      rejection_reasons: Joi.object().pattern(/\S/, Joi.any()).required(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AllAvailablePageSchema} */
+  static AllAvailablePageSchema() {
+    return Joi.object({
+      pages: Joi.array().items(ThemePartnerModel.AvailablePageSchema()),
+    });
+  }
+
+  /** @returns {PaginationSchema} */
+  static PaginationSchema() {
+    return Joi.object({
+      size: Joi.number(),
+      item_total: Joi.number(),
+      has_next: Joi.boolean(),
+      type: Joi.string().allow(""),
+      current: Joi.number(),
     });
   }
 
@@ -754,80 +901,53 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {Block} */
-  static Block() {
+  /** @returns {ThemesSchema} */
+  static ThemesSchema() {
     return Joi.object({
+      font: ThemePartnerModel.Font(),
+      config: ThemePartnerModel.Config(),
+      applied: Joi.boolean(),
+      is_private: Joi.boolean(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      marketplace_theme_id: Joi.string().allow(""),
+      meta: ThemePartnerModel.Meta(),
       name: Joi.string().allow(""),
-      props: ThemePartnerModel.BlockProps(),
-      type: Joi.string().allow(""),
+      template_theme_id: Joi.string().allow(""),
+      version: Joi.string().allow(""),
+      styles: Joi.any(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      assets: ThemePartnerModel.Assets(),
+      available_sections: Joi.array().items(ThemePartnerModel.SectionItem()),
     });
   }
 
-  /** @returns {BlockProps} */
-  static BlockProps() {
+  /** @returns {Font} */
+  static Font() {
     return Joi.object({
-      image: ThemePartnerModel.ImagePickerProp(),
-      slide_link: ThemePartnerModel.UrlProp(),
+      variants: ThemePartnerModel.FontVariants().required(),
+      family: Joi.string().allow("").required(),
     });
   }
 
-  /** @returns {ButtonSetting} */
-  static ButtonSetting() {
+  /** @returns {FontVariants} */
+  static FontVariants() {
     return Joi.object({
-      button_link: Joi.string().allow(""),
-      button_primary: Joi.string().allow(""),
-      button_secondary: Joi.string().allow(""),
+      light: ThemePartnerModel.FontVariant(),
+      regular: ThemePartnerModel.FontVariant(),
+      medium: ThemePartnerModel.FontVariant(),
+      semi_bold: ThemePartnerModel.FontVariant(),
+      bold: ThemePartnerModel.FontVariant(),
     });
   }
 
-  /** @returns {CarouselItem} */
-  static CarouselItem() {
+  /** @returns {FontVariant} */
+  static FontVariant() {
     return Joi.object({
-      desktop: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CatalogSize} */
-  static CatalogSize() {
-    return Joi.object({
-      max: Joi.number(),
-      min: Joi.number(),
-    });
-  }
-
-  /** @returns {CheckboxProp} */
-  static CheckboxProp() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      value: Joi.boolean(),
-    });
-  }
-
-  /** @returns {Colors} */
-  static Colors() {
-    return Joi.object({
-      accent_color: Joi.string().allow(""),
-      bg_color: Joi.string().allow(""),
-      button_secondary_color: Joi.string().allow(""),
-      link_color: Joi.string().allow(""),
-      primary_color: Joi.string().allow(""),
-      secondary_color: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Comments} */
-  static Comments() {
-    return Joi.object({
-      developer_remark: Joi.string().allow(""),
-      reviewer_feedback: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CommonJS} */
-  static CommonJS() {
-    return Joi.object({
-      link: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
+      file: Joi.string().allow("").required(),
     });
   }
 
@@ -835,26 +955,21 @@ class ThemePartnerModel {
   static Config() {
     return Joi.object({
       current: Joi.string().allow("").required(),
-      global_schema: ThemePartnerModel.GlobalSchema(),
       list: Joi.array()
         .items(ThemePartnerModel.ThemeConfiguration())
         .required(),
+      global_schema: ThemePartnerModel.GlobalSchema(),
       preset: ThemePartnerModel.Preset(),
     });
   }
 
-  /** @returns {ContactInfo} */
-  static ContactInfo() {
+  /** @returns {ThemeConfiguration} */
+  static ThemeConfiguration() {
     return Joi.object({
-      developer_contact: Joi.array().items(Joi.string().allow("")),
-      seller_contact: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CSS} */
-  static CSS() {
-    return Joi.object({
-      links: Joi.array().items(Joi.string().allow("")),
+      name: Joi.string().allow(""),
+      global_config: ThemePartnerModel.GlobalConfig(),
+      custom: ThemePartnerModel.CustomConfig(),
+      page: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -868,333 +983,113 @@ class ThemePartnerModel {
   /** @returns {CustomProps} */
   static CustomProps() {
     return Joi.object({
-      button_add_to_cart_color: Joi.string().allow(""),
-      button_add_to_cart_label_color: Joi.string().allow(""),
+      header_bg_color: Joi.string().allow(""),
+      header_text_color: Joi.string().allow(""),
+      header_border_color: Joi.string().allow(""),
+      header_icon_color: Joi.string().allow(""),
+      header_cart_notification_bg_color: Joi.string().allow(""),
+      header_cart_notification_text_color: Joi.string().allow(""),
+      header_nav_hover_color: Joi.string().allow(""),
       button_primary_color: Joi.string().allow(""),
       button_primary_label_color: Joi.string().allow(""),
+      button_add_to_cart_color: Joi.string().allow(""),
+      button_add_to_cart_label_color: Joi.string().allow(""),
       button_secondary_color: Joi.string().allow(""),
       button_secondary_label_color: Joi.string().allow(""),
       button_tertiary_color: Joi.string().allow(""),
+      button_tertiary_label_color: Joi.string().allow(""),
       button_tertiary_hover_color: Joi.string().allow(""),
       button_tertiary_hover_text_color: Joi.string().allow(""),
-      button_tertiary_label_color: Joi.string().allow(""),
-      disable_cart: Joi.boolean(),
-      footer_bg_color: Joi.string().allow(""),
-      footer_border_color: Joi.string().allow(""),
-      footer_nav_hover_color: Joi.string().allow(""),
-      footer_text_color: Joi.string().allow(""),
-      header_bg_color: Joi.string().allow(""),
-      header_border_color: Joi.string().allow(""),
-      header_cart_notification_bg_color: Joi.string().allow(""),
-      header_cart_notification_text_color: Joi.string().allow(""),
-      header_icon_color: Joi.string().allow(""),
-      header_nav_hover_color: Joi.string().allow(""),
-      header_text_color: Joi.string().allow(""),
-      is_menu_below_logo: Joi.boolean(),
-      menu_position: Joi.string().allow(""),
-      text_body_color: Joi.string().allow(""),
-      text_discount_color: Joi.string().allow(""),
       text_heading_link_color: Joi.string().allow(""),
+      text_body_color: Joi.string().allow(""),
       text_price_color: Joi.string().allow(""),
       text_sale_price_color: Joi.string().allow(""),
       text_strikethrough_price_color: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DividerStrokeHighlightSetting} */
-  static DividerStrokeHighlightSetting() {
-    return Joi.object({
-      divider_strokes: Joi.string().allow(""),
-      highlight: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Documentation} */
-  static Documentation() {
-    return Joi.object({
-      notes: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ExploreInfo} */
-  static ExploreInfo() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Feature} */
-  static Feature() {
-    return Joi.object({
-      category: Joi.string().allow(""),
-      list: Joi.array().items(ThemePartnerModel.FeatureItem()),
-    });
-  }
-
-  /** @returns {FeatureItem} */
-  static FeatureItem() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      label: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Font} */
-  static Font() {
-    return Joi.object({
-      family: Joi.string().allow("").required(),
-      variants: ThemePartnerModel.FontVariants().required(),
-    });
-  }
-
-  /** @returns {FontVariant} */
-  static FontVariant() {
-    return Joi.object({
-      file: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {FontVariants} */
-  static FontVariants() {
-    return Joi.object({
-      bold: ThemePartnerModel.FontVariant(),
-      light: ThemePartnerModel.FontVariant(),
-      medium: ThemePartnerModel.FontVariant(),
-      regular: ThemePartnerModel.FontVariant(),
-      semi_bold: ThemePartnerModel.FontVariant(),
-    });
-  }
-
-  /** @returns {FooterSetting} */
-  static FooterSetting() {
-    return Joi.object({
-      footer_background: Joi.string().allow(""),
-      footer_body_text: Joi.string().allow(""),
-      footer_bottom_background: Joi.string().allow(""),
-      footer_heading_text: Joi.string().allow(""),
-      footer_icon: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GeneralSetting} */
-  static GeneralSetting() {
-    return Joi.object({
-      button: ThemePartnerModel.ButtonSetting(),
-      footer: ThemePartnerModel.FooterSetting(),
-      header: ThemePartnerModel.HeaderSetting(),
-      sale_discount: ThemePartnerModel.SaleDiscountSetting(),
-      text: ThemePartnerModel.TextSetting(),
-      theme: ThemePartnerModel.ThemeSetting(),
+      text_discount_color: Joi.string().allow(""),
+      footer_bg_color: Joi.string().allow(""),
+      footer_text_color: Joi.string().allow(""),
+      footer_border_color: Joi.string().allow(""),
+      footer_nav_hover_color: Joi.string().allow(""),
+      disable_cart: Joi.boolean(),
+      is_menu_below_logo: Joi.boolean(),
+      menu_position: Joi.string().allow(""),
     });
   }
 
   /** @returns {GlobalConfig} */
   static GlobalConfig() {
     return Joi.object({
+      statics: ThemePartnerModel.StaticConfig(),
       auth: ThemePartnerModel.AuthConfig(),
       palette: ThemePartnerModel.PaletteConfig(),
-      statics: ThemePartnerModel.StaticConfig(),
-    });
-  }
-
-  /** @returns {GlobalSchema} */
-  static GlobalSchema() {
-    return Joi.object({
-      props: Joi.array().items(ThemePartnerModel.Prop()),
-    });
-  }
-
-  /** @returns {HeaderSetting} */
-  static HeaderSetting() {
-    return Joi.object({
-      header_background: Joi.string().allow(""),
-      header_icon: Joi.string().allow(""),
-      header_nav: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Highlight} */
-  static Highlight() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      image: Joi.string().allow(""),
-      title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ImagePickerProp} */
-  static ImagePickerProp() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Images} */
-  static Images() {
-    return Joi.object({
-      desktop: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {MarketplaceTheme} */
-  static MarketplaceTheme() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      carousel: Joi.array().items(ThemePartnerModel.CarouselItem()),
-      catalog_size: ThemePartnerModel.CatalogSize(),
-      comments: ThemePartnerModel.Comments(),
-      contact: ThemePartnerModel.ContactInfo(),
-      created_at: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      documentation: ThemePartnerModel.Documentation(),
-      explore: ThemePartnerModel.ExploreInfo(),
-      features: Joi.array().items(ThemePartnerModel.Feature()),
-      highlights: Joi.array().items(ThemePartnerModel.Highlight()),
-      images: ThemePartnerModel.MarketplaceThemeImages(),
-      industry: Joi.array().items(Joi.string().allow("")),
-      is_default: Joi.boolean(),
-      is_update: Joi.boolean(),
-      name: Joi.string().allow(""),
-      organization_id: Joi.string().allow(""),
-      payment: ThemePartnerModel.PaymentInfo(),
-      release: ThemePartnerModel.Release(),
-      slug: Joi.string().allow(""),
-      src: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      step: Joi.number(),
-      tagline: Joi.string().allow(""),
-      template_theme_id: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-      variations: Joi.array().items(ThemePartnerModel.Variation()),
-    });
-  }
-
-  /** @returns {MarketplaceThemeImages} */
-  static MarketplaceThemeImages() {
-    return Joi.object({
-      desktop: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {MarketplaceThemeSchema} */
-  static MarketplaceThemeSchema() {
-    return Joi.object({
-      page: ThemePartnerModel.PaginationSchema(),
-      themes: Joi.array().items(ThemePartnerModel.MarketplaceTheme()),
-    });
-  }
-
-  /** @returns {Meta} */
-  static Meta() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      images: ThemePartnerModel.Images(),
-      industry: Joi.array().items(Joi.string().allow("")),
-      name: Joi.string().allow(""),
-      payment: ThemePartnerModel.ThemePayment(),
-      release: ThemePartnerModel.Release(),
-      slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {OverlayPopupSetting} */
-  static OverlayPopupSetting() {
-    return Joi.object({
-      dialog_backgroung: Joi.string().allow(""),
-      overlay: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      sections: Joi.array().items(ThemePartnerModel.Section()),
-      value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PaginationSchema} */
-  static PaginationSchema() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      item_total: Joi.number(),
-      size: Joi.number(),
-      type: Joi.string().allow(""),
     });
   }
 
   /** @returns {PaletteConfig} */
   static PaletteConfig() {
     return Joi.object({
-      advance_setting: ThemePartnerModel.AdvanceSetting(),
       general_setting: ThemePartnerModel.GeneralSetting(),
+      advance_setting: ThemePartnerModel.AdvanceSetting(),
     });
   }
 
-  /** @returns {PaymentInfo} */
-  static PaymentInfo() {
+  /** @returns {GeneralSetting} */
+  static GeneralSetting() {
     return Joi.object({
-      amount: Joi.number(),
-      is_paid: Joi.boolean(),
+      theme: ThemePartnerModel.ThemeSetting(),
+      text: ThemePartnerModel.TextSetting(),
+      button: ThemePartnerModel.ButtonSetting(),
+      sale_discount: ThemePartnerModel.SaleDiscountSetting(),
+      header: ThemePartnerModel.HeaderSetting(),
+      footer: ThemePartnerModel.FooterSetting(),
     });
   }
 
-  /** @returns {Predicate} */
-  static Predicate() {
+  /** @returns {AdvanceSetting} */
+  static AdvanceSetting() {
     return Joi.object({
-      route: ThemePartnerModel.Route(),
-      screen: ThemePartnerModel.Screen(),
-      user: ThemePartnerModel.ThemeUserSchema(),
+      overlay_popup: ThemePartnerModel.OverlayPopupSetting(),
+      divider_stroke_highlight: ThemePartnerModel.DividerStrokeHighlightSetting(),
+      user_alerts: ThemePartnerModel.UserAlertsSetting(),
     });
   }
 
-  /** @returns {Preset} */
-  static Preset() {
+  /** @returns {UserAlertsSetting} */
+  static UserAlertsSetting() {
     return Joi.object({
-      pages: Joi.array().items(ThemePartnerModel.Page()),
+      success_background: Joi.string().allow(""),
+      success_text: Joi.string().allow(""),
+      error_background: Joi.string().allow(""),
+      error_text: Joi.string().allow(""),
+      info_background: Joi.string().allow(""),
+      info_text: Joi.string().allow(""),
     });
   }
 
-  /** @returns {Prop} */
-  static Prop() {
+  /** @returns {ThemeSetting} */
+  static ThemeSetting() {
     return Joi.object({
-      category: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-      info: Joi.string().allow(""),
-      label: Joi.string().allow(""),
-      type: Joi.string().allow(""),
+      page_background: Joi.string().allow(""),
+      theme_accent: Joi.string().allow(""),
     });
   }
 
-  /** @returns {RangeProp} */
-  static RangeProp() {
+  /** @returns {TextSetting} */
+  static TextSetting() {
     return Joi.object({
-      type: Joi.string().allow(""),
-      value: Joi.number(),
+      text_heading: Joi.string().allow(""),
+      text_body: Joi.string().allow(""),
+      text_label: Joi.string().allow(""),
+      text_secondary: Joi.string().allow(""),
     });
   }
 
-  /** @returns {Release} */
-  static Release() {
+  /** @returns {ButtonSetting} */
+  static ButtonSetting() {
     return Joi.object({
-      notes: Joi.string().allow(""),
-      version: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Route} */
-  static Route() {
-    return Joi.object({
-      exact_url: Joi.string().allow(""),
-      selected: Joi.string().allow(""),
+      button_primary: Joi.string().allow(""),
+      button_secondary: Joi.string().allow(""),
+      button_link: Joi.string().allow(""),
     });
   }
 
@@ -1208,50 +1103,39 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {Screen} */
-  static Screen() {
+  /** @returns {HeaderSetting} */
+  static HeaderSetting() {
     return Joi.object({
-      desktop: Joi.boolean(),
-      mobile: Joi.boolean(),
-      tablet: Joi.boolean(),
+      header_background: Joi.string().allow(""),
+      header_nav: Joi.string().allow(""),
+      header_icon: Joi.string().allow(""),
     });
   }
 
-  /** @returns {Section} */
-  static Section() {
+  /** @returns {FooterSetting} */
+  static FooterSetting() {
     return Joi.object({
-      blocks: Joi.array().items(ThemePartnerModel.Block()),
-      name: Joi.string().allow(""),
-      predicate: ThemePartnerModel.Predicate(),
-      preset: ThemePartnerModel.SectionPreset(),
-      props: ThemePartnerModel.SectionProps(),
+      footer_background: Joi.string().allow(""),
+      footer_bottom_background: Joi.string().allow(""),
+      footer_heading_text: Joi.string().allow(""),
+      footer_body_text: Joi.string().allow(""),
+      footer_icon: Joi.string().allow(""),
     });
   }
 
-  /** @returns {SectionItem} */
-  static SectionItem() {
+  /** @returns {OverlayPopupSetting} */
+  static OverlayPopupSetting() {
     return Joi.object({
-      blocks: Joi.array().items(Joi.any()),
-      label: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      props: Joi.array().items(Joi.any()),
+      dialog_backgroung: Joi.string().allow(""),
+      overlay: Joi.string().allow(""),
     });
   }
 
-  /** @returns {SectionPreset} */
-  static SectionPreset() {
+  /** @returns {DividerStrokeHighlightSetting} */
+  static DividerStrokeHighlightSetting() {
     return Joi.object({
-      blocks: Joi.array().items(ThemePartnerModel.Block()),
-    });
-  }
-
-  /** @returns {SectionProps} */
-  static SectionProps() {
-    return Joi.object({
-      autoplay: ThemePartnerModel.CheckboxProp(),
-      item_margin: ThemePartnerModel.TextProp(),
-      slide_interval: ThemePartnerModel.RangeProp(),
-      title: ThemePartnerModel.TextProp(),
+      divider_strokes: Joi.string().allow(""),
+      highlight: Joi.string().allow(""),
     });
   }
 
@@ -1265,99 +1149,74 @@ class ThemePartnerModel {
   /** @returns {StaticProps} */
   static StaticProps() {
     return Joi.object({
-      auth: ThemePartnerModel.AuthConfig(),
       colors: ThemePartnerModel.Colors(),
+      auth: ThemePartnerModel.AuthConfig(),
     });
   }
 
-  /** @returns {TextProp} */
-  static TextProp() {
+  /** @returns {AuthConfig} */
+  static AuthConfig() {
     return Joi.object({
-      type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
+      show_header_auth: Joi.boolean(),
+      show_footer_auth: Joi.boolean(),
     });
   }
 
-  /** @returns {TextSetting} */
-  static TextSetting() {
+  /** @returns {Colors} */
+  static Colors() {
     return Joi.object({
-      text_body: Joi.string().allow(""),
-      text_heading: Joi.string().allow(""),
-      text_label: Joi.string().allow(""),
-      text_secondary: Joi.string().allow(""),
+      primary_color: Joi.string().allow(""),
+      secondary_color: Joi.string().allow(""),
+      accent_color: Joi.string().allow(""),
+      link_color: Joi.string().allow(""),
+      button_secondary_color: Joi.string().allow(""),
+      bg_color: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ThemeConfiguration} */
-  static ThemeConfiguration() {
+  /** @returns {Meta} */
+  static Meta() {
     return Joi.object({
-      custom: ThemePartnerModel.CustomConfig(),
-      global_config: ThemePartnerModel.GlobalConfig(),
+      payment: ThemePartnerModel.ThemePayment(),
+      description: Joi.string().allow(""),
+      industry: Joi.array().items(Joi.string().allow("")),
+      release: ThemePartnerModel.Release(),
+      images: ThemePartnerModel.Images(),
+      slug: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      page: Joi.array().items(Joi.string().allow("")),
     });
   }
 
   /** @returns {ThemePayment} */
   static ThemePayment() {
     return Joi.object({
-      amount: Joi.number(),
       is_paid: Joi.boolean(),
+      amount: Joi.number(),
     });
   }
 
-  /** @returns {ThemeRejectionReasons} */
-  static ThemeRejectionReasons() {
+  /** @returns {Release} */
+  static Release() {
     return Joi.object({
-      _id: Joi.string().allow("").required(),
-      admin_id: Joi.string().allow("").required(),
-      created_at: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      organization_id: Joi.string().allow("").required(),
-      rejection_reasons: Joi.object().pattern(/\S/, Joi.any()).required(),
-      status: Joi.string().allow("").required(),
-      theme_id: Joi.string().allow("").required(),
-      updated_at: Joi.string().allow(""),
-      user_id: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {ThemeSetting} */
-  static ThemeSetting() {
-    return Joi.object({
-      page_background: Joi.string().allow(""),
-      theme_accent: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ThemesSchema} */
-  static ThemesSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      application_id: Joi.string().allow(""),
-      applied: Joi.boolean(),
-      assets: ThemePartnerModel.Assets(),
-      available_sections: Joi.array().items(ThemePartnerModel.SectionItem()),
-      config: ThemePartnerModel.Config(),
-      created_at: Joi.string().allow(""),
-      font: ThemePartnerModel.Font(),
-      is_private: Joi.boolean(),
-      marketplace_theme_id: Joi.string().allow(""),
-      meta: ThemePartnerModel.Meta(),
-      name: Joi.string().allow(""),
-      styles: Joi.any(),
-      tags: Joi.array().items(Joi.string().allow("")),
-      template_theme_id: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
+      notes: Joi.string().allow(""),
       version: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ThemeUserSchema} */
-  static ThemeUserSchema() {
+  /** @returns {Images} */
+  static Images() {
     return Joi.object({
-      anonymous: Joi.boolean(),
-      authenticated: Joi.boolean(),
+      desktop: Joi.string().allow(""),
+      mobile: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Assets} */
+  static Assets() {
+    return Joi.object({
+      umd_js: ThemePartnerModel.UMDJs(),
+      common_js: ThemePartnerModel.CommonJS(),
+      css: ThemePartnerModel.CSS(),
     });
   }
 
@@ -1368,11 +1227,90 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {UpdateThemeRequestBody} */
-  static UpdateThemeRequestBody() {
+  /** @returns {CommonJS} */
+  static CommonJS() {
     return Joi.object({
-      config: ThemePartnerModel.Config(),
-      font: ThemePartnerModel.Font(),
+      link: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CSS} */
+  static CSS() {
+    return Joi.object({
+      links: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {SectionItem} */
+  static SectionItem() {
+    return Joi.object({
+      props: Joi.array().items(Joi.any()),
+      blocks: Joi.array().items(Joi.any()),
+      name: Joi.string().allow(""),
+      label: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GlobalSchema} */
+  static GlobalSchema() {
+    return Joi.object({
+      props: Joi.array().items(ThemePartnerModel.Prop()),
+    });
+  }
+
+  /** @returns {Prop} */
+  static Prop() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      category: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      label: Joi.string().allow(""),
+      info: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Preset} */
+  static Preset() {
+    return Joi.object({
+      pages: Joi.array().items(ThemePartnerModel.Page()),
+    });
+  }
+
+  /** @returns {Page} */
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
+    });
+  }
+
+  /** @returns {SectionProps} */
+  static SectionProps() {
+    return Joi.object({
+      title: ThemePartnerModel.TextProp(),
+      item_margin: ThemePartnerModel.TextProp(),
+      autoplay: ThemePartnerModel.CheckboxProp(),
+      slide_interval: ThemePartnerModel.RangeProp(),
+    });
+  }
+
+  /** @returns {SectionPreset} */
+  static SectionPreset() {
+    return Joi.object({
+      blocks: Joi.array().items(ThemePartnerModel.Block()),
+    });
+  }
+
+  /** @returns {ImagePickerProp} */
+  static ImagePickerProp() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -1384,25 +1322,97 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {UserAlertsSetting} */
-  static UserAlertsSetting() {
+  /** @returns {BlockProps} */
+  static BlockProps() {
     return Joi.object({
-      error_background: Joi.string().allow(""),
-      error_text: Joi.string().allow(""),
-      info_background: Joi.string().allow(""),
-      info_text: Joi.string().allow(""),
-      success_background: Joi.string().allow(""),
-      success_text: Joi.string().allow(""),
+      image: ThemePartnerModel.ImagePickerProp(),
+      slide_link: ThemePartnerModel.UrlProp(),
     });
   }
 
-  /** @returns {Variation} */
-  static Variation() {
+  /** @returns {TextProp} */
+  static TextProp() {
     return Joi.object({
-      color: Joi.string().allow(""),
-      demo_url: Joi.string().allow(""),
-      images: ThemePartnerModel.MarketplaceThemeImages(),
+      value: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CheckboxProp} */
+  static CheckboxProp() {
+    return Joi.object({
+      value: Joi.boolean(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RangeProp} */
+  static RangeProp() {
+    return Joi.object({
+      value: Joi.number(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Section} */
+  static Section() {
+    return Joi.object({
+      blocks: Joi.array().items(ThemePartnerModel.Block()),
+      predicate: ThemePartnerModel.Predicate(),
       name: Joi.string().allow(""),
+      props: ThemePartnerModel.SectionProps(),
+      preset: ThemePartnerModel.SectionPreset(),
+    });
+  }
+
+  /** @returns {Block} */
+  static Block() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      props: ThemePartnerModel.BlockProps(),
+    });
+  }
+
+  /** @returns {Predicate} */
+  static Predicate() {
+    return Joi.object({
+      screen: ThemePartnerModel.Screen(),
+      user: ThemePartnerModel.ThemeUserSchema(),
+      route: ThemePartnerModel.Route(),
+    });
+  }
+
+  /** @returns {Screen} */
+  static Screen() {
+    return Joi.object({
+      mobile: Joi.boolean(),
+      desktop: Joi.boolean(),
+      tablet: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ThemeUserSchema} */
+  static ThemeUserSchema() {
+    return Joi.object({
+      authenticated: Joi.boolean(),
+      anonymous: Joi.boolean(),
+    });
+  }
+
+  /** @returns {Route} */
+  static Route() {
+    return Joi.object({
+      selected: Joi.string().allow(""),
+      exact_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdateThemeRequestBody} */
+  static UpdateThemeRequestBody() {
+    return Joi.object({
+      config: ThemePartnerModel.Config(),
+      font: ThemePartnerModel.Font(),
     });
   }
 }

@@ -13225,9 +13225,7 @@ Price Adjustments List. See example below for details
  | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
  | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
- | code | string? |  yes  | Promotion code |
  | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
- | meta | string? |  yes  | Meta object for extra data |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
  | offer_text | string? |  yes  | Offer text of current promotion |
  | ownership | [Ownership2](#Ownership2)? |  yes  | Ownership of promotion |

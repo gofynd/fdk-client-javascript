@@ -1,39 +1,85 @@
 const Joi = require("joi");
 
 /**
- * @typedef Action
- * @property {ActionPage} [page]
- * @property {ActionPage} [popup]
+ * @typedef GenerateSEOContent
+ * @property {string} [text]
+ * @property {string} [existing_text]
+ * @property {string[]} [keywords]
  * @property {string} [type]
  */
 
 /**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {PageType} type
- * @property {string} [url]
- */
-
-/**
- * @typedef AdminAnnouncementSchema
- * @property {string} [_id]
- * @property {ScheduleSchema} [_schedule]
- * @property {string} [announcement]
- * @property {string} [app]
- * @property {AnnouncementAuthorSchema} [author]
- * @property {string} [created_at]
- * @property {EditorMeta} [editor_meta]
- * @property {string} [modified_at]
- * @property {AnnouncementPageSchema[]} [pages]
- * @property {string[]} [platforms]
+ * @typedef GeneratedSEOContent
  * @property {string} [title]
+ * @property {string} [description]
  */
 
 /**
- * @typedef AnnouncementAuthorSchema
- * @property {string} [created_by]
- * @property {string} [modified_by]
+ * @typedef ApplicationLegal
+ * @property {string} [application]
+ * @property {string} [tnc]
+ * @property {string} [policy]
+ * @property {string} [shipping]
+ * @property {string} [returns]
+ * @property {ApplicationLegalFAQ[]} [faq]
+ * @property {string} [_id]
+ * @property {string} [updated_at]
+ * @property {string} [created_at]
+ */
+
+/**
+ * @typedef ApplicationLegalFAQ
+ * @property {string} [question]
+ * @property {string} [answer]
+ */
+
+/**
+ * @typedef PathMappingSchema
+ * @property {string} [application]
+ * @property {string} [_id]
+ * @property {string} [redirect_from]
+ * @property {string} [redirect_to]
+ * @property {string} [updated_at]
+ * @property {string} [created_at]
+ * @property {PathSourceSchema} [__source]
+ */
+
+/**
+ * @typedef PathSourceSchema
+ * @property {string} [type]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef SeoComponent
+ * @property {SeoSchema} [seo]
+ */
+
+/**
+ * @typedef SeoSchema
+ * @property {string} [app]
+ * @property {string} [_id]
+ * @property {string} [robots_txt]
+ * @property {boolean} [sitemap_enabled]
+ * @property {boolean} [cannonical_enabled]
+ * @property {CustomMetaTag[]} [custom_meta_tags]
+ * @property {Detail} [details]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+
+/**
+ * @typedef CustomMetaTag
+ * @property {string} [name]
+ * @property {string} [content]
+ * @property {string} [_id]
+ */
+
+/**
+ * @typedef Detail
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {string} [image_url]
  */
 
 /**
@@ -43,22 +89,59 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ApplicationLegal
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string} [created_at]
- * @property {ApplicationLegalFAQ[]} [faq]
- * @property {string} [policy]
- * @property {string} [returns]
- * @property {string} [shipping]
- * @property {string} [tnc]
- * @property {string} [updated_at]
+ * @typedef EditorMeta
+ * @property {string} [foreground_color]
+ * @property {string} [background_color]
+ * @property {string} [content_type]
+ * @property {string} [content]
  */
 
 /**
- * @typedef ApplicationLegalFAQ
- * @property {string} [answer]
- * @property {string} [question]
+ * @typedef AnnouncementAuthorSchema
+ * @property {string} [created_by]
+ * @property {string} [modified_by]
+ */
+
+/**
+ * @typedef AdminAnnouncementSchema
+ * @property {string} [_id]
+ * @property {string[]} [platforms]
+ * @property {string} [title]
+ * @property {string} [announcement]
+ * @property {AnnouncementPageSchema[]} [pages]
+ * @property {EditorMeta} [editor_meta]
+ * @property {AnnouncementAuthorSchema} [author]
+ * @property {string} [created_at]
+ * @property {string} [app]
+ * @property {string} [modified_at]
+ * @property {ScheduleSchema} [_schedule]
+ */
+
+/**
+ * @typedef ScheduleSchema
+ * @property {string} [cron]
+ * @property {string} [start]
+ * @property {string} [end]
+ * @property {number} [duration]
+ * @property {NextSchedule[]} [next_schedule]
+ */
+
+/**
+ * @typedef NextSchedule
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+
+/**
+ * @typedef BlogGetResponse
+ * @property {BlogSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef ResourceContent
+ * @property {string} [type]
+ * @property {string} [value]
  */
 
 /**
@@ -76,44 +159,252 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BlogGetResponse
- * @property {BlogSchema[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef BlogRequest
- * @property {Object} [_custom_json]
- * @property {CronSchedule} [_schedule]
- * @property {string} [application]
- * @property {Author} [author]
- * @property {ResourceContent[]} [content]
- * @property {Asset} [feature_image]
- * @property {boolean} [published]
- * @property {string} [reading_time]
- * @property {SEO} [seo]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- */
-
-/**
  * @typedef BlogSchema
- * @property {Object} [_custom_json]
  * @property {string} [_id]
- * @property {CronSchedule} [_schedule]
+ * @property {Object} [_custom_json]
  * @property {string} [application]
  * @property {boolean} [archived]
  * @property {Author} [author]
  * @property {ResourceContent[]} [content]
- * @property {DateMeta} [date_meta]
  * @property {Asset} [feature_image]
  * @property {boolean} [published]
  * @property {string} [reading_time]
+ * @property {string} [slug]
+ * @property {string[]} [tags]
  * @property {SEO} [seo]
+ * @property {CronSchedule} [_schedule]
+ * @property {string} [title]
+ * @property {DateMeta} [date_meta]
+ */
+
+/**
+ * @typedef SEO
+ * @property {string} [description]
+ * @property {SEOImage} [image]
+ * @property {string} [title]
+ */
+
+/**
+ * @typedef SEOImage
+ * @property {string} [url]
+ */
+
+/**
+ * @typedef DateMeta
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ */
+
+/**
+ * @typedef BlogRequest
+ * @property {string} [application]
+ * @property {Object} [_custom_json]
+ * @property {Author} [author]
+ * @property {ResourceContent[]} [content]
+ * @property {Asset} [feature_image]
+ * @property {boolean} [published]
+ * @property {string} [reading_time]
  * @property {string} [slug]
  * @property {string[]} [tags]
  * @property {string} [title]
+ * @property {SEO} [seo]
+ * @property {CronSchedule} [_schedule]
+ */
+
+/**
+ * @typedef GetAnnouncementListSchema
+ * @property {AdminAnnouncementSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CreateAnnouncementSchema
+ * @property {string} [message]
+ * @property {AdminAnnouncementSchema} [data]
+ */
+
+/**
+ * @typedef DataLoaderResponseSchema
+ * @property {string} [application]
+ * @property {string} [company]
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [service]
+ * @property {string} [operation_id]
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [content]
+ * @property {DataLoaderSourceSchema} [__source]
+ */
+
+/**
+ * @typedef DataLoaderResetResponseSchema
+ * @property {boolean} [reset]
+ */
+
+/**
+ * @typedef LocaleLanguage
+ * @property {Language} [hi]
+ * @property {Language} [ar]
+ * @property {Language} [en_us]
+ */
+
+/**
+ * @typedef Language
+ * @property {string} [display]
+ */
+
+/**
+ * @typedef Action
+ * @property {ActionPage} [page]
+ * @property {ActionPage} [popup]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+
+/**
+ * @typedef NavigationReference
+ * @property {string[]} [acl]
+ * @property {string[]} [tags]
+ * @property {LocaleLanguage} [_locale_language]
+ * @property {string} [image]
+ * @property {string} [type]
+ * @property {Action} [action]
+ * @property {boolean} [active]
+ * @property {string} [display]
+ * @property {number} [sort_order]
+ * @property {NavigationReference[]} [sub_navigation]
+ */
+
+/**
+ * @typedef ConfigurationSchema
+ * @property {number} [sleep_time]
+ * @property {boolean} [start_on_launch]
+ * @property {number} [duration]
+ * @property {string} [slide_direction]
+ */
+
+/**
+ * @typedef SlideshowMedia
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [bg_color]
+ * @property {number} [duration]
+ * @property {boolean} [auto_decide_duration]
+ * @property {Action} [action]
+ */
+
+/**
+ * @typedef UpdateHandpickedSchema
+ * @property {HandpickedTagSchema} [tag]
+ */
+
+/**
+ * @typedef HandpickedTagSchema
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {string} [name]
+ * @property {string} [url]
+ * @property {string} [type]
+ * @property {string} [sub_type]
+ * @property {string} [content]
+ */
+
+/**
+ * @typedef RemoveHandpickedSchema
+ * @property {string[]} [tags]
+ */
+
+/**
+ * @typedef CreateTagSchema
+ * @property {string} [name]
+ * @property {string} [sub_type]
+ * @property {string} [_id]
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {Object[]} [pages]
+ * @property {string} [content]
+ */
+
+/**
+ * @typedef CreateTagRequestSchema
+ * @property {CreateTagSchema[]} [tags]
+ */
+
+/**
+ * @typedef DataLoaderSchema
+ * @property {string} [name]
+ * @property {string} [service]
+ * @property {string} [operation_id]
+ * @property {string} [type]
+ * @property {string} [url]
+ * @property {string} [content]
+ * @property {DataLoaderSourceSchema} [__source]
+ * @property {string} [_id]
+ */
+
+/**
+ * @typedef DataLoaderSourceSchema
+ * @property {string} [type]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef DataLoadersSchema
+ * @property {DataLoaderSchema[]} [items]
+ */
+
+/**
+ * @typedef TagDeleteSuccessResponse
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef ContentAPIError
+ * @property {string} [message]
+ * @property {number} [status]
+ * @property {string} [code]
+ * @property {string} [exception]
+ * @property {string} [info]
+ * @property {string} [request_id]
+ * @property {string} [stack_trace]
+ * @property {Object} [meta]
+ */
+
+/**
+ * @typedef CommonError
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef CategorySchema
+ * @property {number} [index]
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {string[]} [children]
+ * @property {string} [_id]
+ * @property {string} [slug]
+ * @property {string} [application]
+ * @property {string} [icon_url]
+ * @property {Object} [_custom_json]
+ */
+
+/**
+ * @typedef ChildrenSchema
+ * @property {string} [question]
+ * @property {string} [answer]
+ * @property {string} [slug]
+ * @property {string} [application]
+ * @property {string} [_id]
  */
 
 /**
@@ -123,77 +414,33 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CategorySchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string[]} [children]
- * @property {string} [description]
- * @property {string} [icon_url]
+ * @typedef FAQCategorySchema
  * @property {number} [index]
- * @property {string} [slug]
  * @property {string} [title]
- */
-
-/**
- * @typedef ChildrenSchema
+ * @property {string} [description]
+ * @property {ChildrenSchema[]} [children]
  * @property {string} [_id]
- * @property {string} [answer]
- * @property {string} [application]
- * @property {string} [question]
  * @property {string} [slug]
+ * @property {string} [application]
+ * @property {string} [icon_url]
+ * @property {Object} [_custom_json]
  */
 
 /**
- * @typedef CommonError
- * @property {string} [message]
+ * @typedef FaqSchema
+ * @property {string} [slug]
+ * @property {string} [application]
+ * @property {string} [_id]
+ * @property {string} [question]
+ * @property {string} [answer]
+ * @property {string[]} [tags]
  */
 
 /**
- * @typedef ConfigurationSchema
- * @property {number} [duration]
- * @property {number} [sleep_time]
- * @property {string} [slide_direction]
- * @property {boolean} [start_on_launch]
- */
-
-/**
- * @typedef ContactSchema
- * @property {EmailSchema} [email]
- * @property {PhoneSchema} [phone]
- */
-
-/**
- * @typedef ContentAPIError
- * @property {string} [code]
- * @property {string} [exception]
- * @property {string} [info]
- * @property {string} [message]
- * @property {Object} [meta]
- * @property {string} [request_id]
- * @property {string} [stack_trace]
- * @property {number} [status]
- */
-
-/**
- * @typedef CreateAnnouncementSchema
- * @property {AdminAnnouncementSchema} [data]
- * @property {string} [message]
- */
-
-/**
- * @typedef CreatedBySchema
- * @property {string} [id]
- */
-
-/**
- * @typedef CreateFaqCategoryRequestSchema
- * @property {CategoryRequestSchema} [category]
- */
-
-/**
- * @typedef CreateFaqCategorySchema
- * @property {CategorySchema} [category]
+ * @typedef FAQ
+ * @property {string} [slug]
+ * @property {string} [question]
+ * @property {string} [answer]
  */
 
 /**
@@ -207,84 +454,63 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateTagRequestSchema
- * @property {CreateTagSchema[]} [tags]
+ * @typedef GetFaqSchema
+ * @property {FaqSchema[]} [faqs]
  */
 
 /**
- * @typedef CreateTagSchema
- * @property {string} [_id]
- * @property {Object} [attributes]
- * @property {string} [content]
- * @property {string} [name]
- * @property {Object[]} [pages]
- * @property {string} [position]
- * @property {string} [sub_type]
- * @property {string} [type]
- * @property {string} [url]
+ * @typedef UpdateFaqCategoryRequestSchema
+ * @property {CategorySchema} [category]
  */
 
 /**
- * @typedef CronSchedule
- * @property {string} [cron]
- * @property {number} [duration]
- * @property {string} [end]
- * @property {string} [start]
+ * @typedef CreateFaqCategoryRequestSchema
+ * @property {CategoryRequestSchema} [category]
  */
 
 /**
- * @typedef CustomMetaTag
- * @property {string} [_id]
- * @property {string} [content]
- * @property {string} [name]
+ * @typedef CreateFaqCategorySchema
+ * @property {CategorySchema} [category]
  */
 
 /**
- * @typedef DataLoaderResetResponseSchema
- * @property {boolean} [reset]
+ * @typedef GetFaqCategoriesSchema
+ * @property {CategorySchema[]} [categories]
  */
 
 /**
- * @typedef DataLoaderResponseSchema
- * @property {DataLoaderSourceSchema} [__source]
+ * @typedef GetFaqCategoryBySlugSchema
+ * @property {FAQCategorySchema} [category]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
+ * @typedef LandingPageGetResponse
+ * @property {LandingPageSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef LandingPageSchema
+ * @property {string} [slug]
+ * @property {Action} [action]
+ * @property {string[]} [platform]
+ * @property {CreatedBySchema} [created_by]
+ * @property {DateMeta} [date_meta]
  * @property {string} [_id]
  * @property {string} [application]
- * @property {string} [company]
- * @property {string} [content]
- * @property {string} [name]
- * @property {string} [operation_id]
- * @property {string} [service]
- * @property {string} [type]
- * @property {string} [url]
- */
-
-/**
- * @typedef DataLoaderSchema
- * @property {DataLoaderSourceSchema} [__source]
- * @property {string} [_id]
- * @property {string} [content]
- * @property {string} [name]
- * @property {string} [operation_id]
- * @property {string} [service]
- * @property {string} [type]
- * @property {string} [url]
- */
-
-/**
- * @typedef DataLoaderSourceSchema
- * @property {string} [id]
- * @property {string} [type]
- */
-
-/**
- * @typedef DataLoadersSchema
- * @property {DataLoaderSchema[]} [items]
- */
-
-/**
- * @typedef DateMeta
- * @property {string} [created_on]
- * @property {string} [modified_on]
+ * @property {boolean} [archived]
+ * @property {Object} [_custom_json]
  */
 
 /**
@@ -293,18 +519,186 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Detail
+ * @typedef NavigationGetResponse
+ * @property {NavigationSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef Orientation
+ * @property {string[]} [portrait]
+ * @property {string[]} [landscape]
+ */
+
+/**
+ * @typedef NavigationSchema
+ * @property {string} [_id]
+ * @property {string} [application]
+ * @property {boolean} [archived]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string[]} [platform]
+ * @property {CreatedBySchema} [created_by]
+ * @property {DateMeta} [date_meta]
+ * @property {Orientation} [orientation]
+ * @property {number} [version]
+ * @property {NavigationReference[]} [navigation]
+ */
+
+/**
+ * @typedef NavigationRequest
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string[]} [platform]
+ * @property {Orientation} [orientation]
+ * @property {NavigationReference[]} [navigation]
+ */
+
+/**
+ * @typedef PageGetResponse
+ * @property {PageSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef PageSpec
+ * @property {PageSpecItem[]} [specifications]
+ */
+
+/**
+ * @typedef PageSpecParam
+ * @property {string} [key]
+ * @property {boolean} [required]
+ */
+
+/**
+ * @typedef PageSpecItem
+ * @property {string} [page_type]
+ * @property {string} [display_name]
+ * @property {PageSpecParam[]} [params]
+ * @property {PageSpecParam[]} [query]
+ */
+
+/**
+ * @typedef PageSchema
+ * @property {string} [_id]
+ * @property {string} [application]
+ * @property {string[]} [component_ids] - Components can be used to store
+ *   multiple components
+ * @property {Object[]} [content]
+ * @property {string} [content_path]
+ * @property {CreatedBySchema} [created_by]
+ * @property {DateMeta} [date_meta]
  * @property {string} [description]
- * @property {string} [image_url]
+ * @property {Asset} [feature_image]
+ * @property {Object[]} [page_meta]
+ * @property {ScheduleSchema} [_schedule]
+ * @property {Object} [_custom_json]
+ * @property {string} [orientation]
+ * @property {string} [platform]
+ * @property {boolean} [published]
+ * @property {string} [slug]
+ * @property {string[]} [tags]
+ * @property {string} [title]
+ * @property {string} [type]
+ * @property {SEO} [seo]
+ * @property {Object} [visibility]
+ * @property {boolean} [archived]
+ */
+
+/**
+ * @typedef CreatedBySchema
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef PageRequest
+ * @property {CronSchedule} [_schedule]
+ * @property {string} [application]
+ * @property {Author} [author]
+ * @property {Object} [_custom_json]
+ * @property {string} [orientation]
+ * @property {Object[]} [content]
+ * @property {Asset} [feature_image]
+ * @property {boolean} [published]
+ * @property {string} [reading_time]
+ * @property {string} [slug]
+ * @property {string[]} [tags]
+ * @property {SEO} [seo]
  * @property {string} [title]
  */
 
 /**
- * @typedef EditorMeta
- * @property {string} [background_color]
- * @property {string} [content]
- * @property {string} [content_type]
- * @property {string} [foreground_color]
+ * @typedef CronSchedule
+ * @property {string} [cron]
+ * @property {string} [start]
+ * @property {string} [end]
+ * @property {number} [duration]
+ */
+
+/**
+ * @typedef PagePublishRequest
+ * @property {boolean} [publish]
+ */
+
+/**
+ * @typedef PageMetaSchema
+ * @property {NavigationSchema[]} [system_pages]
+ * @property {PageSchema[]} [custom_pages]
+ * @property {string} [application_id]
+ */
+
+/**
+ * @typedef SlideshowGetResponse
+ * @property {SlideshowSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef SlideshowSchema
+ * @property {string} [_id]
+ * @property {string} [slug]
+ * @property {DateMeta} [date_meta]
+ * @property {string} [application]
+ * @property {string} [platform]
+ * @property {ConfigurationSchema} [configuration]
+ * @property {SlideshowMedia[]} [media]
+ * @property {boolean} [active]
+ * @property {boolean} [archived]
+ * @property {Object} [_custom_json]
+ */
+
+/**
+ * @typedef SlideshowRequest
+ * @property {string} [slug]
+ * @property {string} [platform]
+ * @property {ConfigurationSchema} [configuration]
+ * @property {SlideshowMedia} [media]
+ * @property {boolean} [active]
+ */
+
+/**
+ * @typedef Support
+ * @property {boolean} [created]
+ * @property {string} [_id]
+ * @property {string} [config_type]
+ * @property {string} [application]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {ContactSchema} [contact]
+ */
+
+/**
+ * @typedef PhoneProperties
+ * @property {string} [key]
+ * @property {string} [code]
+ * @property {string} [number]
+ */
+
+/**
+ * @typedef PhoneSchema
+ * @property {boolean} [active]
+ * @property {PhoneProperties[]} [phone]
  */
 
 /**
@@ -320,430 +714,36 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FAQ
- * @property {string} [answer]
- * @property {string} [question]
- * @property {string} [slug]
- */
-
-/**
- * @typedef FAQCategorySchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {string} [application]
- * @property {ChildrenSchema[]} [children]
- * @property {string} [description]
- * @property {string} [icon_url]
- * @property {number} [index]
- * @property {string} [slug]
- * @property {string} [title]
- */
-
-/**
- * @typedef FaqSchema
- * @property {string} [_id]
- * @property {string} [answer]
- * @property {string} [application]
- * @property {string} [question]
- * @property {string} [slug]
- * @property {string[]} [tags]
- */
-
-/**
- * @typedef GeneratedSEOContent
- * @property {string} [description]
- * @property {string} [title]
- */
-
-/**
- * @typedef GenerateSEOContent
- * @property {string} [existing_text]
- * @property {string[]} [keywords]
- * @property {string} [text]
- * @property {string} [type]
- */
-
-/**
- * @typedef GetAnnouncementListSchema
- * @property {AdminAnnouncementSchema[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef GetFaqCategoriesSchema
- * @property {CategorySchema[]} [categories]
- */
-
-/**
- * @typedef GetFaqCategoryBySlugSchema
- * @property {FAQCategorySchema} [category]
- */
-
-/**
- * @typedef GetFaqSchema
- * @property {FaqSchema[]} [faqs]
- */
-
-/**
- * @typedef HandpickedTagSchema
- * @property {Object} [attributes]
- * @property {string} [content]
- * @property {string} [name]
- * @property {string} [position]
- * @property {string} [sub_type]
- * @property {string} [type]
- * @property {string} [url]
- */
-
-/**
- * @typedef LandingPageGetResponse
- * @property {LandingPageSchema[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef LandingPageSchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {Action} [action]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string[]} [platform]
- * @property {string} [slug]
- */
-
-/**
- * @typedef Language
- * @property {string} [display]
- */
-
-/**
- * @typedef LocaleLanguage
- * @property {Language} [ar]
- * @property {Language} [en_us]
- * @property {Language} [hi]
- */
-
-/**
- * @typedef NavigationGetResponse
- * @property {NavigationSchema[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef NavigationReference
- * @property {LocaleLanguage} [_locale_language]
- * @property {string[]} [acl]
- * @property {Action} [action]
- * @property {boolean} [active]
- * @property {string} [display]
- * @property {string} [image]
- * @property {number} [sort_order]
- * @property {NavigationReference[]} [sub_navigation]
- * @property {string[]} [tags]
- * @property {string} [type]
- */
-
-/**
- * @typedef NavigationRequest
- * @property {string} [name]
- * @property {NavigationReference[]} [navigation]
- * @property {Orientation} [orientation]
- * @property {string[]} [platform]
- * @property {string} [slug]
- */
-
-/**
- * @typedef NavigationSchema
- * @property {string} [_id]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string} [name]
- * @property {NavigationReference[]} [navigation]
- * @property {Orientation} [orientation]
- * @property {string[]} [platform]
- * @property {string} [slug]
- * @property {number} [version]
- */
-
-/**
- * @typedef NextSchedule
- * @property {string} [end]
- * @property {string} [start]
- */
-
-/**
- * @typedef Orientation
- * @property {string[]} [landscape]
- * @property {string[]} [portrait]
- */
-
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-
-/**
- * @typedef PageGetResponse
- * @property {PageSchema[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef PageMetaSchema
- * @property {string} [application_id]
- * @property {PageSchema[]} [custom_pages]
- * @property {NavigationSchema[]} [system_pages]
- */
-
-/**
- * @typedef PagePublishRequest
- * @property {boolean} [publish]
- */
-
-/**
- * @typedef PageRequest
- * @property {Object} [_custom_json]
- * @property {CronSchedule} [_schedule]
- * @property {string} [application]
- * @property {Author} [author]
- * @property {Object[]} [content]
- * @property {Asset} [feature_image]
- * @property {string} [orientation]
- * @property {boolean} [published]
- * @property {string} [reading_time]
- * @property {SEO} [seo]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- */
-
-/**
- * @typedef PageSchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {ScheduleSchema} [_schedule]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {string[]} [component_ids] - Components can be used to store
- *   multiple components
- * @property {Object[]} [content]
- * @property {string} [content_path]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string} [description]
- * @property {Asset} [feature_image]
- * @property {string} [orientation]
- * @property {Object[]} [page_meta]
- * @property {string} [platform]
- * @property {boolean} [published]
- * @property {SEO} [seo]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- * @property {string} [type]
- * @property {Object} [visibility]
- */
-
-/**
- * @typedef PageSpec
- * @property {PageSpecItem[]} [specifications]
- */
-
-/**
- * @typedef PageSpecItem
- * @property {string} [display_name]
- * @property {string} [page_type]
- * @property {PageSpecParam[]} [params]
- * @property {PageSpecParam[]} [query]
- */
-
-/**
- * @typedef PageSpecParam
- * @property {string} [key]
- * @property {boolean} [required]
- */
-
-/**
- * @typedef PathMappingSchema
- * @property {PathSourceSchema} [__source]
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string} [created_at]
- * @property {string} [redirect_from]
- * @property {string} [redirect_to]
- * @property {string} [updated_at]
- */
-
-/**
- * @typedef PathSourceSchema
- * @property {string} [id]
- * @property {string} [type]
- */
-
-/**
- * @typedef PhoneProperties
- * @property {string} [code]
- * @property {string} [key]
- * @property {string} [number]
- */
-
-/**
- * @typedef PhoneSchema
- * @property {boolean} [active]
- * @property {PhoneProperties[]} [phone]
- */
-
-/**
- * @typedef RemoveHandpickedSchema
- * @property {string[]} [tags]
- */
-
-/**
- * @typedef ResourceContent
- * @property {string} [type]
- * @property {string} [value]
- */
-
-/**
- * @typedef ScheduleSchema
- * @property {string} [cron]
- * @property {number} [duration]
- * @property {string} [end]
- * @property {NextSchedule[]} [next_schedule]
- * @property {string} [start]
- */
-
-/**
- * @typedef SEO
- * @property {string} [description]
- * @property {SEOImage} [image]
- * @property {string} [title]
- */
-
-/**
- * @typedef SeoComponent
- * @property {SeoSchema} [seo]
- */
-
-/**
- * @typedef SEOImage
- * @property {string} [url]
- */
-
-/**
- * @typedef SeoSchema
- * @property {string} [_id]
- * @property {string} [app]
- * @property {boolean} [cannonical_enabled]
- * @property {string} [created_at]
- * @property {CustomMetaTag[]} [custom_meta_tags]
- * @property {Detail} [details]
- * @property {string} [robots_txt]
- * @property {boolean} [sitemap_enabled]
- * @property {string} [updated_at]
- */
-
-/**
- * @typedef SlideshowGetResponse
- * @property {SlideshowSchema[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef SlideshowMedia
- * @property {Action} [action]
- * @property {boolean} [auto_decide_duration]
- * @property {string} [bg_color]
- * @property {number} [duration]
- * @property {string} [type]
- * @property {string} [url]
- */
-
-/**
- * @typedef SlideshowRequest
- * @property {boolean} [active]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia} [media]
- * @property {string} [platform]
- * @property {string} [slug]
- */
-
-/**
- * @typedef SlideshowSchema
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {boolean} [active]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {ConfigurationSchema} [configuration]
- * @property {DateMeta} [date_meta]
- * @property {SlideshowMedia[]} [media]
- * @property {string} [platform]
- * @property {string} [slug]
- */
-
-/**
- * @typedef Support
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string} [config_type]
- * @property {ContactSchema} [contact]
- * @property {boolean} [created]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- */
-
-/**
- * @typedef TagDeleteSuccessResponse
- * @property {boolean} [success]
- */
-
-/**
- * @typedef TagSchema
- * @property {TagSourceSchema} [__source]
- * @property {string} [_id]
- * @property {Object} [attributes]
- * @property {string} [content]
- * @property {string} [name]
- * @property {Object[]} [pages]
- * @property {string} [position]
- * @property {string} [sub_type]
- * @property {string} [type]
- * @property {string} [url]
- */
-
-/**
- * @typedef TagSourceSchema
- * @property {string} [id]
- * @property {string} [type]
+ * @typedef ContactSchema
+ * @property {PhoneSchema} [phone]
+ * @property {EmailSchema} [email]
  */
 
 /**
  * @typedef TagsSchema
- * @property {string} [_id]
  * @property {string} [application]
+ * @property {string} [_id]
  * @property {TagSchema[]} [tags]
  */
 
 /**
- * @typedef UpdateFaqCategoryRequestSchema
- * @property {CategorySchema} [category]
+ * @typedef TagSchema
+ * @property {string} [name]
+ * @property {string} [url]
+ * @property {string} [type]
+ * @property {string} [sub_type]
+ * @property {string} [_id]
+ * @property {string} [position]
+ * @property {Object} [attributes]
+ * @property {string} [content]
+ * @property {Object[]} [pages]
+ * @property {TagSourceSchema} [__source]
  */
 
 /**
- * @typedef UpdateHandpickedSchema
- * @property {HandpickedTagSchema} [tag]
+ * @typedef TagSourceSchema
+ * @property {string} [type]
+ * @property {string} [id]
  */
 
 /** @typedef {"title" | "description"} GenerationEntityType */
@@ -798,53 +798,105 @@ const Joi = require("joi");
  */
 
 class ContentPlatformModel {
-  /** @returns {Action} */
-  static Action() {
+  /** @returns {GenerateSEOContent} */
+  static GenerateSEOContent() {
     return Joi.object({
-      page: ContentPlatformModel.ActionPage(),
-      popup: ContentPlatformModel.ActionPage(),
+      text: Joi.string().allow(""),
+      existing_text: Joi.string().allow(""),
+      keywords: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ActionPage} */
-  static ActionPage() {
+  /** @returns {GeneratedSEOContent} */
+  static GeneratedSEOContent() {
     return Joi.object({
-      params: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      query: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      type: ContentPlatformModel.PageType().required(),
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AdminAnnouncementSchema} */
-  static AdminAnnouncementSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      _schedule: ContentPlatformModel.ScheduleSchema(),
-      announcement: Joi.string().allow(""),
-      app: Joi.string().allow(""),
-      author: ContentPlatformModel.AnnouncementAuthorSchema(),
-      created_at: Joi.string().allow(""),
-      editor_meta: ContentPlatformModel.EditorMeta(),
-      modified_at: Joi.string().allow(""),
-      pages: Joi.array().items(ContentPlatformModel.AnnouncementPageSchema()),
-      platforms: Joi.array().items(Joi.string().allow("")),
       title: Joi.string().allow(""),
+      description: Joi.string().allow(""),
     });
   }
 
-  /** @returns {AnnouncementAuthorSchema} */
-  static AnnouncementAuthorSchema() {
+  /** @returns {ApplicationLegal} */
+  static ApplicationLegal() {
     return Joi.object({
-      created_by: Joi.string().allow(""),
-      modified_by: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      tnc: Joi.string().allow(""),
+      policy: Joi.string().allow(""),
+      shipping: Joi.string().allow(""),
+      returns: Joi.string().allow(""),
+      faq: Joi.array().items(ContentPlatformModel.ApplicationLegalFAQ()),
+      _id: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ApplicationLegalFAQ} */
+  static ApplicationLegalFAQ() {
+    return Joi.object({
+      question: Joi.string().allow(""),
+      answer: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PathMappingSchema} */
+  static PathMappingSchema() {
+    return Joi.object({
+      application: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      redirect_from: Joi.string().allow(""),
+      redirect_to: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      __source: ContentPlatformModel.PathSourceSchema(),
+    });
+  }
+
+  /** @returns {PathSourceSchema} */
+  static PathSourceSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SeoComponent} */
+  static SeoComponent() {
+    return Joi.object({
+      seo: ContentPlatformModel.SeoSchema(),
+    });
+  }
+
+  /** @returns {SeoSchema} */
+  static SeoSchema() {
+    return Joi.object({
+      app: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      robots_txt: Joi.string().allow(""),
+      sitemap_enabled: Joi.boolean(),
+      cannonical_enabled: Joi.boolean(),
+      custom_meta_tags: Joi.array().items(ContentPlatformModel.CustomMetaTag()),
+      details: ContentPlatformModel.Detail(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomMetaTag} */
+  static CustomMetaTag() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      content: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Detail} */
+  static Detail() {
+    return Joi.object({
+      title: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      image_url: Joi.string().allow(""),
     });
   }
 
@@ -856,26 +908,73 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {ApplicationLegal} */
-  static ApplicationLegal() {
+  /** @returns {EditorMeta} */
+  static EditorMeta() {
     return Joi.object({
-      _id: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      faq: Joi.array().items(ContentPlatformModel.ApplicationLegalFAQ()),
-      policy: Joi.string().allow(""),
-      returns: Joi.string().allow(""),
-      shipping: Joi.string().allow(""),
-      tnc: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
+      foreground_color: Joi.string().allow(""),
+      background_color: Joi.string().allow(""),
+      content_type: Joi.string().allow(""),
+      content: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ApplicationLegalFAQ} */
-  static ApplicationLegalFAQ() {
+  /** @returns {AnnouncementAuthorSchema} */
+  static AnnouncementAuthorSchema() {
     return Joi.object({
-      answer: Joi.string().allow(""),
-      question: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      modified_by: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AdminAnnouncementSchema} */
+  static AdminAnnouncementSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      platforms: Joi.array().items(Joi.string().allow("")),
+      title: Joi.string().allow(""),
+      announcement: Joi.string().allow(""),
+      pages: Joi.array().items(ContentPlatformModel.AnnouncementPageSchema()),
+      editor_meta: ContentPlatformModel.EditorMeta(),
+      author: ContentPlatformModel.AnnouncementAuthorSchema(),
+      created_at: Joi.string().allow(""),
+      app: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      _schedule: ContentPlatformModel.ScheduleSchema(),
+    });
+  }
+
+  /** @returns {ScheduleSchema} */
+  static ScheduleSchema() {
+    return Joi.object({
+      cron: Joi.string().allow(""),
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
+      duration: Joi.number(),
+      next_schedule: Joi.array().items(ContentPlatformModel.NextSchedule()),
+    });
+  }
+
+  /** @returns {NextSchedule} */
+  static NextSchedule() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BlogGetResponse} */
+  static BlogGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.BlogSchema()),
+      page: ContentPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {ResourceContent} */
+  static ResourceContent() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -897,50 +996,316 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {BlogGetResponse} */
-  static BlogGetResponse() {
+  /** @returns {BlogSchema} */
+  static BlogSchema() {
     return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.BlogSchema()),
-      page: ContentPlatformModel.Page(),
+      _id: Joi.string().allow(""),
+      _custom_json: Joi.any(),
+      application: Joi.string().allow(""),
+      archived: Joi.boolean(),
+      author: ContentPlatformModel.Author(),
+      content: Joi.array().items(ContentPlatformModel.ResourceContent()),
+      feature_image: ContentPlatformModel.Asset(),
+      published: Joi.boolean(),
+      reading_time: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      seo: ContentPlatformModel.SEO(),
+      _schedule: ContentPlatformModel.CronSchedule(),
+      title: Joi.string().allow(""),
+      date_meta: ContentPlatformModel.DateMeta(),
+    });
+  }
+
+  /** @returns {SEO} */
+  static SEO() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      image: ContentPlatformModel.SEOImage(),
+      title: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SEOImage} */
+  static SEOImage() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DateMeta} */
+  static DateMeta() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
     });
   }
 
   /** @returns {BlogRequest} */
   static BlogRequest() {
     return Joi.object({
-      _custom_json: Joi.any(),
-      _schedule: ContentPlatformModel.CronSchedule(),
       application: Joi.string().allow(""),
+      _custom_json: Joi.any(),
       author: ContentPlatformModel.Author(),
       content: Joi.array().items(ContentPlatformModel.ResourceContent()),
       feature_image: ContentPlatformModel.Asset(),
       published: Joi.boolean(),
       reading_time: Joi.string().allow(""),
-      seo: ContentPlatformModel.SEO(),
       slug: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
       title: Joi.string().allow(""),
+      seo: ContentPlatformModel.SEO(),
+      _schedule: ContentPlatformModel.CronSchedule(),
     });
   }
 
-  /** @returns {BlogSchema} */
-  static BlogSchema() {
+  /** @returns {GetAnnouncementListSchema} */
+  static GetAnnouncementListSchema() {
     return Joi.object({
-      _custom_json: Joi.any(),
-      _id: Joi.string().allow(""),
-      _schedule: ContentPlatformModel.CronSchedule(),
+      items: Joi.array().items(ContentPlatformModel.AdminAnnouncementSchema()),
+      page: ContentPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CreateAnnouncementSchema} */
+  static CreateAnnouncementSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      data: ContentPlatformModel.AdminAnnouncementSchema(),
+    });
+  }
+
+  /** @returns {DataLoaderResponseSchema} */
+  static DataLoaderResponseSchema() {
+    return Joi.object({
       application: Joi.string().allow(""),
-      archived: Joi.boolean(),
-      author: ContentPlatformModel.Author(),
-      content: Joi.array().items(ContentPlatformModel.ResourceContent()),
-      date_meta: ContentPlatformModel.DateMeta(),
-      feature_image: ContentPlatformModel.Asset(),
-      published: Joi.boolean(),
-      reading_time: Joi.string().allow(""),
-      seo: ContentPlatformModel.SEO(),
-      slug: Joi.string().allow(""),
+      company: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      service: Joi.string().allow(""),
+      operation_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      content: Joi.string().allow(""),
+      __source: ContentPlatformModel.DataLoaderSourceSchema(),
+    });
+  }
+
+  /** @returns {DataLoaderResetResponseSchema} */
+  static DataLoaderResetResponseSchema() {
+    return Joi.object({
+      reset: Joi.boolean(),
+    });
+  }
+
+  /** @returns {LocaleLanguage} */
+  static LocaleLanguage() {
+    return Joi.object({
+      hi: ContentPlatformModel.Language(),
+      ar: ContentPlatformModel.Language(),
+      en_us: ContentPlatformModel.Language(),
+    });
+  }
+
+  /** @returns {Language} */
+  static Language() {
+    return Joi.object({
+      display: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Action} */
+  static Action() {
+    return Joi.object({
+      page: ContentPlatformModel.ActionPage(),
+      popup: ContentPlatformModel.ActionPage(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ActionPage} */
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      query: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      url: Joi.string().allow(""),
+      type: ContentPlatformModel.PageType().required(),
+    });
+  }
+
+  /** @returns {NavigationReference} */
+  static NavigationReference() {
+    return Joi.object({
+      acl: Joi.array().items(Joi.string().allow("")),
       tags: Joi.array().items(Joi.string().allow("")),
+      _locale_language: ContentPlatformModel.LocaleLanguage(),
+      image: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      action: ContentPlatformModel.Action(),
+      active: Joi.boolean(),
+      display: Joi.string().allow(""),
+      sort_order: Joi.number(),
+      sub_navigation: Joi.array().items(Joi.link("#NavigationReference")),
+    }).id("NavigationReference");
+  }
+
+  /** @returns {ConfigurationSchema} */
+  static ConfigurationSchema() {
+    return Joi.object({
+      sleep_time: Joi.number(),
+      start_on_launch: Joi.boolean(),
+      duration: Joi.number(),
+      slide_direction: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SlideshowMedia} */
+  static SlideshowMedia() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      bg_color: Joi.string().allow(""),
+      duration: Joi.number(),
+      auto_decide_duration: Joi.boolean(),
+      action: ContentPlatformModel.Action(),
+    });
+  }
+
+  /** @returns {UpdateHandpickedSchema} */
+  static UpdateHandpickedSchema() {
+    return Joi.object({
+      tag: ContentPlatformModel.HandpickedTagSchema(),
+    });
+  }
+
+  /** @returns {HandpickedTagSchema} */
+  static HandpickedTagSchema() {
+    return Joi.object({
+      position: Joi.string().allow(""),
+      attributes: Joi.any(),
+      name: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      content: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RemoveHandpickedSchema} */
+  static RemoveHandpickedSchema() {
+    return Joi.object({
+      tags: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {CreateTagSchema} */
+  static CreateTagSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      position: Joi.string().allow(""),
+      attributes: Joi.any(),
+      pages: Joi.array().items(Joi.any()),
+      content: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateTagRequestSchema} */
+  static CreateTagRequestSchema() {
+    return Joi.object({
+      tags: Joi.array().items(ContentPlatformModel.CreateTagSchema()),
+    });
+  }
+
+  /** @returns {DataLoaderSchema} */
+  static DataLoaderSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      service: Joi.string().allow(""),
+      operation_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      content: Joi.string().allow(""),
+      __source: ContentPlatformModel.DataLoaderSourceSchema(),
+      _id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DataLoaderSourceSchema} */
+  static DataLoaderSourceSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DataLoadersSchema} */
+  static DataLoadersSchema() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.DataLoaderSchema()),
+    });
+  }
+
+  /** @returns {TagDeleteSuccessResponse} */
+  static TagDeleteSuccessResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ContentAPIError} */
+  static ContentAPIError() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      status: Joi.number(),
+      code: Joi.string().allow(""),
+      exception: Joi.string().allow(""),
+      info: Joi.string().allow(""),
+      request_id: Joi.string().allow(""),
+      stack_trace: Joi.string().allow(""),
+      meta: Joi.any(),
+    });
+  }
+
+  /** @returns {CommonError} */
+  static CommonError() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CategorySchema} */
+  static CategorySchema() {
+    return Joi.object({
+      index: Joi.number(),
       title: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      children: Joi.array().items(Joi.string().allow("")),
+      _id: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      icon_url: Joi.string().allow(""),
+      _custom_json: Joi.any(),
+    });
+  }
+
+  /** @returns {ChildrenSchema} */
+  static ChildrenSchema() {
+    return Joi.object({
+      question: Joi.string().allow(""),
+      answer: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
     });
   }
 
@@ -952,97 +1317,39 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {CategorySchema} */
-  static CategorySchema() {
+  /** @returns {FAQCategorySchema} */
+  static FAQCategorySchema() {
     return Joi.object({
-      _custom_json: Joi.any(),
-      _id: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      children: Joi.array().items(Joi.string().allow("")),
-      description: Joi.string().allow(""),
-      icon_url: Joi.string().allow(""),
       index: Joi.number(),
-      slug: Joi.string().allow(""),
       title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ChildrenSchema} */
-  static ChildrenSchema() {
-    return Joi.object({
+      description: Joi.string().allow(""),
+      children: Joi.array().items(ContentPlatformModel.ChildrenSchema()),
       _id: Joi.string().allow(""),
-      answer: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      question: Joi.string().allow(""),
       slug: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      icon_url: Joi.string().allow(""),
+      _custom_json: Joi.any(),
     });
   }
 
-  /** @returns {CommonError} */
-  static CommonError() {
+  /** @returns {FaqSchema} */
+  static FaqSchema() {
     return Joi.object({
-      message: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      question: Joi.string().allow(""),
+      answer: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
-  /** @returns {ConfigurationSchema} */
-  static ConfigurationSchema() {
+  /** @returns {FAQ} */
+  static FAQ() {
     return Joi.object({
-      duration: Joi.number(),
-      sleep_time: Joi.number(),
-      slide_direction: Joi.string().allow(""),
-      start_on_launch: Joi.boolean(),
-    });
-  }
-
-  /** @returns {ContactSchema} */
-  static ContactSchema() {
-    return Joi.object({
-      email: ContentPlatformModel.EmailSchema(),
-      phone: ContentPlatformModel.PhoneSchema(),
-    });
-  }
-
-  /** @returns {ContentAPIError} */
-  static ContentAPIError() {
-    return Joi.object({
-      code: Joi.string().allow(""),
-      exception: Joi.string().allow(""),
-      info: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      meta: Joi.any(),
-      request_id: Joi.string().allow(""),
-      stack_trace: Joi.string().allow(""),
-      status: Joi.number(),
-    });
-  }
-
-  /** @returns {CreateAnnouncementSchema} */
-  static CreateAnnouncementSchema() {
-    return Joi.object({
-      data: ContentPlatformModel.AdminAnnouncementSchema(),
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreatedBySchema} */
-  static CreatedBySchema() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreateFaqCategoryRequestSchema} */
-  static CreateFaqCategoryRequestSchema() {
-    return Joi.object({
-      category: ContentPlatformModel.CategoryRequestSchema(),
-    });
-  }
-
-  /** @returns {CreateFaqCategorySchema} */
-  static CreateFaqCategorySchema() {
-    return Joi.object({
-      category: ContentPlatformModel.CategorySchema(),
+      slug: Joi.string().allow(""),
+      question: Joi.string().allow(""),
+      answer: Joi.string().allow(""),
     });
   }
 
@@ -1060,104 +1367,81 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {CreateTagRequestSchema} */
-  static CreateTagRequestSchema() {
+  /** @returns {GetFaqSchema} */
+  static GetFaqSchema() {
     return Joi.object({
-      tags: Joi.array().items(ContentPlatformModel.CreateTagSchema()),
+      faqs: Joi.array().items(ContentPlatformModel.FaqSchema()),
     });
   }
 
-  /** @returns {CreateTagSchema} */
-  static CreateTagSchema() {
+  /** @returns {UpdateFaqCategoryRequestSchema} */
+  static UpdateFaqCategoryRequestSchema() {
     return Joi.object({
-      _id: Joi.string().allow(""),
-      attributes: Joi.any(),
-      content: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      pages: Joi.array().items(Joi.any()),
-      position: Joi.string().allow(""),
-      sub_type: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
+      category: ContentPlatformModel.CategorySchema(),
     });
   }
 
-  /** @returns {CronSchedule} */
-  static CronSchedule() {
+  /** @returns {CreateFaqCategoryRequestSchema} */
+  static CreateFaqCategoryRequestSchema() {
     return Joi.object({
-      cron: Joi.string().allow(""),
-      duration: Joi.number(),
-      end: Joi.string().allow(""),
-      start: Joi.string().allow(""),
+      category: ContentPlatformModel.CategoryRequestSchema(),
     });
   }
 
-  /** @returns {CustomMetaTag} */
-  static CustomMetaTag() {
+  /** @returns {CreateFaqCategorySchema} */
+  static CreateFaqCategorySchema() {
     return Joi.object({
-      _id: Joi.string().allow(""),
-      content: Joi.string().allow(""),
-      name: Joi.string().allow(""),
+      category: ContentPlatformModel.CategorySchema(),
     });
   }
 
-  /** @returns {DataLoaderResetResponseSchema} */
-  static DataLoaderResetResponseSchema() {
+  /** @returns {GetFaqCategoriesSchema} */
+  static GetFaqCategoriesSchema() {
     return Joi.object({
-      reset: Joi.boolean(),
+      categories: Joi.array().items(ContentPlatformModel.CategorySchema()),
     });
   }
 
-  /** @returns {DataLoaderResponseSchema} */
-  static DataLoaderResponseSchema() {
+  /** @returns {GetFaqCategoryBySlugSchema} */
+  static GetFaqCategoryBySlugSchema() {
     return Joi.object({
-      __source: ContentPlatformModel.DataLoaderSourceSchema(),
+      category: ContentPlatformModel.FAQCategorySchema(),
+    });
+  }
+
+  /** @returns {Page} */
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
+    });
+  }
+
+  /** @returns {LandingPageGetResponse} */
+  static LandingPageGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.LandingPageSchema()),
+      page: ContentPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {LandingPageSchema} */
+  static LandingPageSchema() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      action: ContentPlatformModel.Action(),
+      platform: Joi.array().items(Joi.string().allow("")),
+      created_by: ContentPlatformModel.CreatedBySchema(),
+      date_meta: ContentPlatformModel.DateMeta(),
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
-      company: Joi.string().allow(""),
-      content: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      operation_id: Joi.string().allow(""),
-      service: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DataLoaderSchema} */
-  static DataLoaderSchema() {
-    return Joi.object({
-      __source: ContentPlatformModel.DataLoaderSourceSchema(),
-      _id: Joi.string().allow(""),
-      content: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      operation_id: Joi.string().allow(""),
-      service: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DataLoaderSourceSchema} */
-  static DataLoaderSourceSchema() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DataLoadersSchema} */
-  static DataLoadersSchema() {
-    return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.DataLoaderSchema()),
-    });
-  }
-
-  /** @returns {DateMeta} */
-  static DateMeta() {
-    return Joi.object({
-      created_on: Joi.string().allow(""),
-      modified_on: Joi.string().allow(""),
+      archived: Joi.boolean(),
+      _custom_json: Joi.any(),
     });
   }
 
@@ -1168,22 +1452,225 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {Detail} */
-  static Detail() {
+  /** @returns {NavigationGetResponse} */
+  static NavigationGetResponse() {
     return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.NavigationSchema()),
+      page: ContentPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {Orientation} */
+  static Orientation() {
+    return Joi.object({
+      portrait: Joi.array().items(Joi.string().allow("")),
+      landscape: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {NavigationSchema} */
+  static NavigationSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      archived: Joi.boolean(),
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      platform: Joi.array().items(Joi.string().allow("")),
+      created_by: ContentPlatformModel.CreatedBySchema(),
+      date_meta: ContentPlatformModel.DateMeta(),
+      orientation: ContentPlatformModel.Orientation(),
+      version: Joi.number(),
+      navigation: Joi.array().items(ContentPlatformModel.NavigationReference()),
+    });
+  }
+
+  /** @returns {NavigationRequest} */
+  static NavigationRequest() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      platform: Joi.array().items(Joi.string().allow("")),
+      orientation: ContentPlatformModel.Orientation(),
+      navigation: Joi.array().items(ContentPlatformModel.NavigationReference()),
+    });
+  }
+
+  /** @returns {PageGetResponse} */
+  static PageGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.PageSchema()),
+      page: ContentPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {PageSpec} */
+  static PageSpec() {
+    return Joi.object({
+      specifications: Joi.array().items(ContentPlatformModel.PageSpecItem()),
+    });
+  }
+
+  /** @returns {PageSpecParam} */
+  static PageSpecParam() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      required: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PageSpecItem} */
+  static PageSpecItem() {
+    return Joi.object({
+      page_type: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      params: Joi.array().items(ContentPlatformModel.PageSpecParam()),
+      query: Joi.array().items(ContentPlatformModel.PageSpecParam()),
+    });
+  }
+
+  /** @returns {PageSchema} */
+  static PageSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      component_ids: Joi.array().items(Joi.string().allow("")),
+      content: Joi.array().items(Joi.any()),
+      content_path: Joi.string().allow(""),
+      created_by: ContentPlatformModel.CreatedBySchema(),
+      date_meta: ContentPlatformModel.DateMeta(),
       description: Joi.string().allow(""),
-      image_url: Joi.string().allow(""),
+      feature_image: ContentPlatformModel.Asset(),
+      page_meta: Joi.array().items(Joi.any()),
+      _schedule: ContentPlatformModel.ScheduleSchema(),
+      _custom_json: Joi.any(),
+      orientation: Joi.string().allow(""),
+      platform: Joi.string().allow(""),
+      published: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      title: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      seo: ContentPlatformModel.SEO(),
+      visibility: Joi.any(),
+      archived: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CreatedBySchema} */
+  static CreatedBySchema() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PageRequest} */
+  static PageRequest() {
+    return Joi.object({
+      _schedule: ContentPlatformModel.CronSchedule(),
+      application: Joi.string().allow(""),
+      author: ContentPlatformModel.Author(),
+      _custom_json: Joi.any(),
+      orientation: Joi.string().allow(""),
+      content: Joi.array().items(Joi.any()),
+      feature_image: ContentPlatformModel.Asset(),
+      published: Joi.boolean(),
+      reading_time: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      seo: ContentPlatformModel.SEO(),
       title: Joi.string().allow(""),
     });
   }
 
-  /** @returns {EditorMeta} */
-  static EditorMeta() {
+  /** @returns {CronSchedule} */
+  static CronSchedule() {
     return Joi.object({
-      background_color: Joi.string().allow(""),
-      content: Joi.string().allow(""),
-      content_type: Joi.string().allow(""),
-      foreground_color: Joi.string().allow(""),
+      cron: Joi.string().allow(""),
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
+      duration: Joi.number(),
+    });
+  }
+
+  /** @returns {PagePublishRequest} */
+  static PagePublishRequest() {
+    return Joi.object({
+      publish: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PageMetaSchema} */
+  static PageMetaSchema() {
+    return Joi.object({
+      system_pages: Joi.array().items(ContentPlatformModel.NavigationSchema()),
+      custom_pages: Joi.array().items(ContentPlatformModel.PageSchema()),
+      application_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SlideshowGetResponse} */
+  static SlideshowGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(ContentPlatformModel.SlideshowSchema()),
+      page: ContentPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {SlideshowSchema} */
+  static SlideshowSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      date_meta: ContentPlatformModel.DateMeta(),
+      application: Joi.string().allow(""),
+      platform: Joi.string().allow(""),
+      configuration: ContentPlatformModel.ConfigurationSchema(),
+      media: Joi.array().items(ContentPlatformModel.SlideshowMedia()),
+      active: Joi.boolean(),
+      archived: Joi.boolean(),
+      _custom_json: Joi.any(),
+    });
+  }
+
+  /** @returns {SlideshowRequest} */
+  static SlideshowRequest() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      platform: Joi.string().allow(""),
+      configuration: ContentPlatformModel.ConfigurationSchema(),
+      media: ContentPlatformModel.SlideshowMedia(),
+      active: Joi.boolean(),
+    });
+  }
+
+  /** @returns {Support} */
+  static Support() {
+    return Joi.object({
+      created: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      config_type: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      contact: ContentPlatformModel.ContactSchema(),
+    });
+  }
+
+  /** @returns {PhoneProperties} */
+  static PhoneProperties() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      number: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PhoneSchema} */
+  static PhoneSchema() {
+    return Joi.object({
+      active: Joi.boolean(),
+      phone: Joi.array().items(ContentPlatformModel.PhoneProperties()),
     });
   }
 
@@ -1203,531 +1690,44 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {FAQ} */
-  static FAQ() {
+  /** @returns {ContactSchema} */
+  static ContactSchema() {
     return Joi.object({
-      answer: Joi.string().allow(""),
-      question: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {FAQCategorySchema} */
-  static FAQCategorySchema() {
-    return Joi.object({
-      _custom_json: Joi.any(),
-      _id: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      children: Joi.array().items(ContentPlatformModel.ChildrenSchema()),
-      description: Joi.string().allow(""),
-      icon_url: Joi.string().allow(""),
-      index: Joi.number(),
-      slug: Joi.string().allow(""),
-      title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {FaqSchema} */
-  static FaqSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      answer: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      question: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {GeneratedSEOContent} */
-  static GeneratedSEOContent() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GenerateSEOContent} */
-  static GenerateSEOContent() {
-    return Joi.object({
-      existing_text: Joi.string().allow(""),
-      keywords: Joi.array().items(Joi.string().allow("")),
-      text: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GetAnnouncementListSchema} */
-  static GetAnnouncementListSchema() {
-    return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.AdminAnnouncementSchema()),
-      page: ContentPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {GetFaqCategoriesSchema} */
-  static GetFaqCategoriesSchema() {
-    return Joi.object({
-      categories: Joi.array().items(ContentPlatformModel.CategorySchema()),
-    });
-  }
-
-  /** @returns {GetFaqCategoryBySlugSchema} */
-  static GetFaqCategoryBySlugSchema() {
-    return Joi.object({
-      category: ContentPlatformModel.FAQCategorySchema(),
-    });
-  }
-
-  /** @returns {GetFaqSchema} */
-  static GetFaqSchema() {
-    return Joi.object({
-      faqs: Joi.array().items(ContentPlatformModel.FaqSchema()),
-    });
-  }
-
-  /** @returns {HandpickedTagSchema} */
-  static HandpickedTagSchema() {
-    return Joi.object({
-      attributes: Joi.any(),
-      content: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      position: Joi.string().allow(""),
-      sub_type: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {LandingPageGetResponse} */
-  static LandingPageGetResponse() {
-    return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.LandingPageSchema()),
-      page: ContentPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {LandingPageSchema} */
-  static LandingPageSchema() {
-    return Joi.object({
-      _custom_json: Joi.any(),
-      _id: Joi.string().allow(""),
-      action: ContentPlatformModel.Action(),
-      application: Joi.string().allow(""),
-      archived: Joi.boolean(),
-      created_by: ContentPlatformModel.CreatedBySchema(),
-      date_meta: ContentPlatformModel.DateMeta(),
-      platform: Joi.array().items(Joi.string().allow("")),
-      slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Language} */
-  static Language() {
-    return Joi.object({
-      display: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {LocaleLanguage} */
-  static LocaleLanguage() {
-    return Joi.object({
-      ar: ContentPlatformModel.Language(),
-      en_us: ContentPlatformModel.Language(),
-      hi: ContentPlatformModel.Language(),
-    });
-  }
-
-  /** @returns {NavigationGetResponse} */
-  static NavigationGetResponse() {
-    return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.NavigationSchema()),
-      page: ContentPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {NavigationReference} */
-  static NavigationReference() {
-    return Joi.object({
-      _locale_language: ContentPlatformModel.LocaleLanguage(),
-      acl: Joi.array().items(Joi.string().allow("")),
-      action: ContentPlatformModel.Action(),
-      active: Joi.boolean(),
-      display: Joi.string().allow(""),
-      image: Joi.string().allow(""),
-      sort_order: Joi.number(),
-      sub_navigation: Joi.array().items(Joi.link("#NavigationReference")),
-      tags: Joi.array().items(Joi.string().allow("")),
-      type: Joi.string().allow(""),
-    }).id("NavigationReference");
-  }
-
-  /** @returns {NavigationRequest} */
-  static NavigationRequest() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      navigation: Joi.array().items(ContentPlatformModel.NavigationReference()),
-      orientation: ContentPlatformModel.Orientation(),
-      platform: Joi.array().items(Joi.string().allow("")),
-      slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {NavigationSchema} */
-  static NavigationSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      archived: Joi.boolean(),
-      created_by: ContentPlatformModel.CreatedBySchema(),
-      date_meta: ContentPlatformModel.DateMeta(),
-      name: Joi.string().allow(""),
-      navigation: Joi.array().items(ContentPlatformModel.NavigationReference()),
-      orientation: ContentPlatformModel.Orientation(),
-      platform: Joi.array().items(Joi.string().allow("")),
-      slug: Joi.string().allow(""),
-      version: Joi.number(),
-    });
-  }
-
-  /** @returns {NextSchedule} */
-  static NextSchedule() {
-    return Joi.object({
-      end: Joi.string().allow(""),
-      start: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Orientation} */
-  static Orientation() {
-    return Joi.object({
-      landscape: Joi.array().items(Joi.string().allow("")),
-      portrait: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {PageGetResponse} */
-  static PageGetResponse() {
-    return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.PageSchema()),
-      page: ContentPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {PageMetaSchema} */
-  static PageMetaSchema() {
-    return Joi.object({
-      application_id: Joi.string().allow(""),
-      custom_pages: Joi.array().items(ContentPlatformModel.PageSchema()),
-      system_pages: Joi.array().items(ContentPlatformModel.NavigationSchema()),
-    });
-  }
-
-  /** @returns {PagePublishRequest} */
-  static PagePublishRequest() {
-    return Joi.object({
-      publish: Joi.boolean(),
-    });
-  }
-
-  /** @returns {PageRequest} */
-  static PageRequest() {
-    return Joi.object({
-      _custom_json: Joi.any(),
-      _schedule: ContentPlatformModel.CronSchedule(),
-      application: Joi.string().allow(""),
-      author: ContentPlatformModel.Author(),
-      content: Joi.array().items(Joi.any()),
-      feature_image: ContentPlatformModel.Asset(),
-      orientation: Joi.string().allow(""),
-      published: Joi.boolean(),
-      reading_time: Joi.string().allow(""),
-      seo: ContentPlatformModel.SEO(),
-      slug: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
-      title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PageSchema} */
-  static PageSchema() {
-    return Joi.object({
-      _custom_json: Joi.any(),
-      _id: Joi.string().allow(""),
-      _schedule: ContentPlatformModel.ScheduleSchema(),
-      application: Joi.string().allow(""),
-      archived: Joi.boolean(),
-      component_ids: Joi.array().items(Joi.string().allow("")),
-      content: Joi.array().items(Joi.any()),
-      content_path: Joi.string().allow(""),
-      created_by: ContentPlatformModel.CreatedBySchema(),
-      date_meta: ContentPlatformModel.DateMeta(),
-      description: Joi.string().allow(""),
-      feature_image: ContentPlatformModel.Asset(),
-      orientation: Joi.string().allow(""),
-      page_meta: Joi.array().items(Joi.any()),
-      platform: Joi.string().allow(""),
-      published: Joi.boolean(),
-      seo: ContentPlatformModel.SEO(),
-      slug: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
-      title: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      visibility: Joi.any(),
-    });
-  }
-
-  /** @returns {PageSpec} */
-  static PageSpec() {
-    return Joi.object({
-      specifications: Joi.array().items(ContentPlatformModel.PageSpecItem()),
-    });
-  }
-
-  /** @returns {PageSpecItem} */
-  static PageSpecItem() {
-    return Joi.object({
-      display_name: Joi.string().allow(""),
-      page_type: Joi.string().allow(""),
-      params: Joi.array().items(ContentPlatformModel.PageSpecParam()),
-      query: Joi.array().items(ContentPlatformModel.PageSpecParam()),
-    });
-  }
-
-  /** @returns {PageSpecParam} */
-  static PageSpecParam() {
-    return Joi.object({
-      key: Joi.string().allow(""),
-      required: Joi.boolean(),
-    });
-  }
-
-  /** @returns {PathMappingSchema} */
-  static PathMappingSchema() {
-    return Joi.object({
-      __source: ContentPlatformModel.PathSourceSchema(),
-      _id: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      redirect_from: Joi.string().allow(""),
-      redirect_to: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PathSourceSchema} */
-  static PathSourceSchema() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PhoneProperties} */
-  static PhoneProperties() {
-    return Joi.object({
-      code: Joi.string().allow(""),
-      key: Joi.string().allow(""),
-      number: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PhoneSchema} */
-  static PhoneSchema() {
-    return Joi.object({
-      active: Joi.boolean(),
-      phone: Joi.array().items(ContentPlatformModel.PhoneProperties()),
-    });
-  }
-
-  /** @returns {RemoveHandpickedSchema} */
-  static RemoveHandpickedSchema() {
-    return Joi.object({
-      tags: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {ResourceContent} */
-  static ResourceContent() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ScheduleSchema} */
-  static ScheduleSchema() {
-    return Joi.object({
-      cron: Joi.string().allow(""),
-      duration: Joi.number(),
-      end: Joi.string().allow(""),
-      next_schedule: Joi.array().items(ContentPlatformModel.NextSchedule()),
-      start: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SEO} */
-  static SEO() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      image: ContentPlatformModel.SEOImage(),
-      title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SeoComponent} */
-  static SeoComponent() {
-    return Joi.object({
-      seo: ContentPlatformModel.SeoSchema(),
-    });
-  }
-
-  /** @returns {SEOImage} */
-  static SEOImage() {
-    return Joi.object({
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SeoSchema} */
-  static SeoSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      app: Joi.string().allow(""),
-      cannonical_enabled: Joi.boolean(),
-      created_at: Joi.string().allow(""),
-      custom_meta_tags: Joi.array().items(ContentPlatformModel.CustomMetaTag()),
-      details: ContentPlatformModel.Detail(),
-      robots_txt: Joi.string().allow(""),
-      sitemap_enabled: Joi.boolean(),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SlideshowGetResponse} */
-  static SlideshowGetResponse() {
-    return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.SlideshowSchema()),
-      page: ContentPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {SlideshowMedia} */
-  static SlideshowMedia() {
-    return Joi.object({
-      action: ContentPlatformModel.Action(),
-      auto_decide_duration: Joi.boolean(),
-      bg_color: Joi.string().allow(""),
-      duration: Joi.number(),
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SlideshowRequest} */
-  static SlideshowRequest() {
-    return Joi.object({
-      active: Joi.boolean(),
-      configuration: ContentPlatformModel.ConfigurationSchema(),
-      media: ContentPlatformModel.SlideshowMedia(),
-      platform: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SlideshowSchema} */
-  static SlideshowSchema() {
-    return Joi.object({
-      _custom_json: Joi.any(),
-      _id: Joi.string().allow(""),
-      active: Joi.boolean(),
-      application: Joi.string().allow(""),
-      archived: Joi.boolean(),
-      configuration: ContentPlatformModel.ConfigurationSchema(),
-      date_meta: ContentPlatformModel.DateMeta(),
-      media: Joi.array().items(ContentPlatformModel.SlideshowMedia()),
-      platform: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Support} */
-  static Support() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      config_type: Joi.string().allow(""),
-      contact: ContentPlatformModel.ContactSchema(),
-      created: Joi.boolean(),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {TagDeleteSuccessResponse} */
-  static TagDeleteSuccessResponse() {
-    return Joi.object({
-      success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {TagSchema} */
-  static TagSchema() {
-    return Joi.object({
-      __source: ContentPlatformModel.TagSourceSchema(),
-      _id: Joi.string().allow(""),
-      attributes: Joi.any(),
-      content: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      pages: Joi.array().items(Joi.any()),
-      position: Joi.string().allow(""),
-      sub_type: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {TagSourceSchema} */
-  static TagSourceSchema() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
+      phone: ContentPlatformModel.PhoneSchema(),
+      email: ContentPlatformModel.EmailSchema(),
     });
   }
 
   /** @returns {TagsSchema} */
   static TagsSchema() {
     return Joi.object({
-      _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
       tags: Joi.array().items(ContentPlatformModel.TagSchema()),
     });
   }
 
-  /** @returns {UpdateFaqCategoryRequestSchema} */
-  static UpdateFaqCategoryRequestSchema() {
+  /** @returns {TagSchema} */
+  static TagSchema() {
     return Joi.object({
-      category: ContentPlatformModel.CategorySchema(),
+      name: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      position: Joi.string().allow(""),
+      attributes: Joi.any(),
+      content: Joi.string().allow(""),
+      pages: Joi.array().items(Joi.any()),
+      __source: ContentPlatformModel.TagSourceSchema(),
     });
   }
 
-  /** @returns {UpdateHandpickedSchema} */
-  static UpdateHandpickedSchema() {
+  /** @returns {TagSourceSchema} */
+  static TagSourceSchema() {
     return Joi.object({
-      tag: ContentPlatformModel.HandpickedTagSchema(),
+      type: Joi.string().allow(""),
+      id: Joi.string().allow(""),
     });
   }
 
