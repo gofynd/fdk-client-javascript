@@ -9,7 +9,6 @@ const Lead = require("./Lead/LeadApplicationClient");
 const Logistic = require("./Logistic/LogisticApplicationClient");
 const Order = require("./Order/OrderApplicationClient");
 const Payment = require("./Payment/PaymentApplicationClient");
-const PosCart = require("./PosCart/PosCartApplicationClient");
 const Rewards = require("./Rewards/RewardsApplicationClient");
 const Share = require("./Share/ShareApplicationClient");
 const Theme = require("./Theme/ThemeApplicationClient");
@@ -38,7 +37,6 @@ class ApplicationClient {
     this.logistic = new Logistic(config);
     this.order = new Order(config);
     this.payment = new Payment(config);
-    this.posCart = new PosCart(config);
     this.rewards = new Rewards(config);
     this.share = new Share(config);
     this.theme = new Theme(config);

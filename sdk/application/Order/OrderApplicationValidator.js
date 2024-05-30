@@ -19,7 +19,7 @@ const OrderApplicationModel = require("./OrderApplicationModel");
 /**
  * @typedef GetOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
- *   tracking your orders.
+ *   tracking an order.
  * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  */
 

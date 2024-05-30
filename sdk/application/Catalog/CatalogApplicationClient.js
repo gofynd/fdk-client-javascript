@@ -759,7 +759,7 @@ class Catalog {
    *   - Success response
    *
    * @name getCollections
-   * @summary: List Collection
+   * @summary: List collections
    * @description: Retrieve a list of curated product collections with filtering options based on tags and collection names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollections/).
    */
   async getCollections(
@@ -841,7 +841,7 @@ class Catalog {
    * @param {string[]} [arg.tag] - List of tags to filter collections
    * @param {string} [arg.q] - Name of the collection to filter collection
    * @returns {Paginator<CatalogApplicationModel.GetCollectionListingResponse>}
-   * @summary: List Collection
+   * @summary: List collections
    * @description: Retrieve a list of curated product collections with filtering options based on tags and collection names.
    */
   getCollectionsPaginator({ pageSize, tag, q } = {}) {
@@ -1114,7 +1114,7 @@ class Catalog {
    * @returns {Promise<CatalogApplicationModel.GetFollowListingResponse>} -
    *   Success response
    * @name getFollowedListing
-   * @summary: List followed products/brands
+   * @summary: List followed products, brands
    * @description: Retrieve a list of products or brands the user is following. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowedListing/).
    */
   async getFollowedListing(
@@ -1196,7 +1196,7 @@ class Catalog {
    *   products, brands, or collections.
    * @param {number} [arg.pageSize] - Page ID to retrieve next set of results.
    * @returns {Paginator<CatalogApplicationModel.GetFollowListingResponse>}
-   * @summary: List followed products/brands
+   * @summary: List followed products, brands
    * @description: Retrieve a list of products or brands the user is following.
    */
   getFollowedListingPaginator({ collectionType, pageSize } = {}) {
@@ -2380,7 +2380,7 @@ class Catalog {
    * @returns {Promise<CatalogApplicationModel.ProductVariantsResponse>} -
    *   Success response
    * @name getProductVariantsBySlug
-   * @summary: List product variant
+   * @summary: List product variants
    * @description: Retrieves all available variants of a specific product identified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductVariantsBySlug/).
    */
   async getProductVariantsBySlug(

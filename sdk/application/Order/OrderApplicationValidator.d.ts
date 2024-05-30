@@ -14,7 +14,7 @@ export = OrderApplicationValidator;
 /**
  * @typedef GetOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
- *   tracking your orders.
+ *   tracking an order.
  * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  */
 /**
@@ -133,7 +133,7 @@ type GetInvoiceByShipmentIdParam = {
 type GetOrderByIdParam = {
     /**
      * - A unique number used for identifying and
-     * tracking your orders.
+     * tracking an order.
      */
     orderId: string;
     /**

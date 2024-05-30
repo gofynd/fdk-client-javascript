@@ -1448,9 +1448,9 @@ class PaymentPlatformModel {
       retry_count: Joi.number().allow(null),
       card_name: Joi.string().allow("").allow(null),
       timeout: Joi.number().allow(null),
-      intent_app_error_dict_list: Joi.array().items(
-        PaymentPlatformModel.IntentAppErrorList()
-      ),
+      intent_app_error_dict_list: Joi.array()
+        .items(PaymentPlatformModel.IntentAppErrorList())
+        .allow(null, ""),
       card_brand_image: Joi.string().allow("").allow(null),
       expired: Joi.boolean().allow(null),
       logo_url: PaymentPlatformModel.PaymentModeLogo(),
@@ -1459,12 +1459,16 @@ class PaymentPlatformModel {
       cod_charges: Joi.number().allow(null),
       product_cod_data: PaymentPlatformModel.ProductCODData(),
       cod_limit: Joi.number().allow(null),
-      intent_app: Joi.array().items(PaymentPlatformModel.IntentApp()),
+      intent_app: Joi.array()
+        .items(PaymentPlatformModel.IntentApp())
+        .allow(null, ""),
       nickname: Joi.string().allow("").allow(null),
       compliant_with_tokenisation_guidelines: Joi.boolean().allow(null),
       exp_year: Joi.number().allow(null),
       name: Joi.string().allow("").allow(null),
-      intent_app_error_list: Joi.array().items(Joi.string().allow("")),
+      intent_app_error_list: Joi.array()
+        .items(Joi.string().allow(""))
+        .allow(null, ""),
     });
   }
 
@@ -1553,9 +1557,9 @@ class PaymentPlatformModel {
       prepayment_value: Joi.number().allow(null),
       cancellation_type: Joi.string().allow("").allow(null),
       refund_time_limit: Joi.number().allow(null),
-      all_prepayment_type: Joi.array().items(
-        Joi.string().allow("").allow(null)
-      ),
+      all_prepayment_type: Joi.array()
+        .items(Joi.string().allow("").allow(null))
+        .allow(null, ""),
       allow_custom_advance_amount: Joi.boolean().allow(null),
     });
   }
@@ -1576,7 +1580,9 @@ class PaymentPlatformModel {
       display_priority: Joi.number().allow(null),
       payment_mode_id: Joi.number().allow(null),
       display_name: Joi.string().allow("").allow(null),
-      list: Joi.array().items(PaymentPlatformModel.PaymentModeList()),
+      list: Joi.array()
+        .items(PaymentPlatformModel.PaymentModeList())
+        .allow(null, ""),
       split: PaymentPlatformModel.SplitObject(),
       advance: PaymentPlatformModel.AdvanceObject(),
     });
@@ -1588,9 +1594,9 @@ class PaymentPlatformModel {
       payment_options: PaymentPlatformModel.PaymentOptionAndFlow().required(),
       success: Joi.boolean().required(),
       payment_breakup: Joi.any(),
-      advance_payment: Joi.array().items(
-        PaymentPlatformModel.AdvancePaymentObject()
-      ),
+      advance_payment: Joi.array()
+        .items(PaymentPlatformModel.AdvancePaymentObject())
+        .allow(null, ""),
     });
   }
 
@@ -1844,9 +1850,9 @@ class PaymentPlatformModel {
   /** @returns {OrderBeneficiaryResponse} */
   static OrderBeneficiaryResponse() {
     return Joi.object({
-      beneficiaries: Joi.array().items(
-        PaymentPlatformModel.OrderBeneficiaryDetails()
-      ),
+      beneficiaries: Joi.array()
+        .items(PaymentPlatformModel.OrderBeneficiaryDetails())
+        .allow(null, ""),
       show_beneficiary_details: Joi.boolean(),
     });
   }
@@ -2445,7 +2451,7 @@ class PaymentPlatformModel {
   static PlatformPaymentModeResponse() {
     return Joi.object({
       message: Joi.string().allow("").allow(null),
-      items: Joi.array().items(Joi.any()),
+      items: Joi.array().items(Joi.any()).allow(null, ""),
       success: Joi.boolean().required(),
     });
   }

@@ -3054,6 +3054,7 @@ const Joi = require("joi");
 /**
  * @typedef Quantity
  * @property {number} [count]
+ * @property {string} [updated_at]
  */
 
 /**
@@ -6000,7 +6001,7 @@ class CatalogPlatformModel {
       quantity: Joi.number(),
       seller_identifier: Joi.string().allow("").required(),
       store_code: Joi.string().allow("").required(),
-      tags: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       total_quantity: Joi.number(),
       trace_id: Joi.string().allow("").allow(null),
     });
@@ -6025,7 +6026,7 @@ class CatalogPlatformModel {
       price_marked: Joi.number(),
       seller_identifier: Joi.string().allow("").required(),
       store_id: Joi.number().required(),
-      tags: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       total_quantity: Joi.number().allow(null),
       trace_id: Joi.string().allow(""),
     });
@@ -6123,12 +6124,12 @@ class CatalogPlatformModel {
       size: Joi.string().allow("").required(),
       stage: Joi.string().allow(""),
       store: CatalogPlatformModel.StoreMeta().required(),
-      tags: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       tax_identifier: Joi.any(),
       total_quantity: Joi.number().required(),
       trace_id: Joi.string().allow(""),
       track_inventory: Joi.boolean(),
-      trader: Joi.array().items(CatalogPlatformModel.Trader1()),
+      trader: Joi.array().items(CatalogPlatformModel.Trader1()).allow(null, ""),
       uid: Joi.string().allow("").required(),
       weight: CatalogPlatformModel.WeightResponse().required(),
     });
@@ -6808,14 +6809,16 @@ class CatalogPlatformModel {
       custom_order: CatalogPlatformModel.CustomOrder(),
       departments: Joi.array().items(Joi.number()).required(),
       description: Joi.string().allow(""),
-      highlights: Joi.array().items(Joi.string().allow("").allow(null)),
+      highlights: Joi.array()
+        .items(Joi.string().allow("").allow(null))
+        .allow(null, ""),
       is_active: Joi.boolean(),
       is_dependent: Joi.boolean(),
       is_image_less_product: Joi.boolean(),
       is_set: Joi.boolean(),
       item_code: Joi.string().allow("").required(),
       item_type: Joi.string().allow("").required(),
-      media: Joi.array().items(CatalogPlatformModel.Media()),
+      media: Joi.array().items(CatalogPlatformModel.Media()).allow(null, ""),
       multi_size: Joi.boolean(),
       name: Joi.string().allow("").required(),
       net_quantity: CatalogPlatformModel.NetQuantity(),
@@ -7164,11 +7167,11 @@ class CatalogPlatformModel {
   /** @returns {ProductTemplate} */
   static ProductTemplate() {
     return Joi.object({
-      attributes: Joi.array().items(Joi.string().allow("")),
-      categories: Joi.array().items(Joi.string().allow("")),
+      attributes: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      categories: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       created_by: Joi.any(),
       created_on: Joi.string().allow(""),
-      departments: Joi.array().items(Joi.string().allow("")),
+      departments: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
       is_archived: Joi.boolean(),
@@ -7298,6 +7301,7 @@ class CatalogPlatformModel {
   static Quantity() {
     return Joi.object({
       count: Joi.number(),
+      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -7625,9 +7629,9 @@ class CatalogPlatformModel {
   /** @returns {TemplateDetails} */
   static TemplateDetails() {
     return Joi.object({
-      attributes: Joi.array().items(Joi.string().allow("")),
-      categories: Joi.array().items(Joi.string().allow("")),
-      departments: Joi.array().items(Joi.string().allow("")),
+      attributes: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      categories: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      departments: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       description: Joi.string().allow(""),
       id: Joi.string().allow(""),
       is_active: Joi.boolean(),

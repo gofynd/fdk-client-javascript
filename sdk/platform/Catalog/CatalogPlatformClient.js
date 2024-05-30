@@ -2774,9 +2774,18 @@ class Catalog {
       size,
       pageNo,
       pageSize,
+      pageId,
+      pageType,
       q,
       sellable,
       storeIds,
+      brandIds,
+      sellerIdentifiers,
+      qtyGt,
+      qtyLt,
+      qtyType,
+      fromDate,
+      toDate,
       sizeIdentifier,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -2788,9 +2797,18 @@ class Catalog {
         size,
         pageNo,
         pageSize,
+        pageId,
+        pageType,
         q,
         sellable,
         storeIds,
+        brandIds,
+        sellerIdentifiers,
+        qtyGt,
+        qtyLt,
+        qtyType,
+        fromDate,
+        toDate,
         sizeIdentifier,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2808,9 +2826,18 @@ class Catalog {
         size,
         pageNo,
         pageSize,
+        pageId,
+        pageType,
         q,
         sellable,
         storeIds,
+        brandIds,
+        sellerIdentifiers,
+        qtyGt,
+        qtyLt,
+        qtyType,
+        fromDate,
+        toDate,
         sizeIdentifier,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2827,9 +2854,18 @@ class Catalog {
     query_params["size"] = size;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["page_id"] = pageId;
+    query_params["page_type"] = pageType;
     query_params["q"] = q;
     query_params["sellable"] = sellable;
     query_params["store_ids"] = storeIds;
+    query_params["brand_ids"] = brandIds;
+    query_params["seller_identifiers"] = sellerIdentifiers;
+    query_params["qty_gt"] = qtyGt;
+    query_params["qty_lt"] = qtyLt;
+    query_params["qty_type"] = qtyType;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
     query_params["size_identifier"] = sizeIdentifier;
 
     const xHeaders = {};
@@ -2879,6 +2915,22 @@ class Catalog {
    * @param {string} [arg.q] - Search with help of store code.
    * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
    * @param {number[]} [arg.storeIds] - The Store Id of products to fetch inventory.
+   * @param {number[]} [arg.brandIds] - The Brand Id of products to fetch inventory.
+   * @param {string[]} [arg.sellerIdentifiers] - The Seller Identifier or
+   *   Primary Identifier of the inventory.
+   * @param {number} [arg.qtyGt] - This field allows you to filter for
+   *   inventories that have quantity greater than to the specified value
+   *   based on qty_type filter.
+   * @param {number} [arg.qtyLt] - This field allows you to filter for
+   *   inventories that have a quantity less than to the specified value based
+   *   on qty_type filter.
+   * @param {string} [arg.qtyType] - This field provides flexibility in
+   *   selecting filter for inventory quantity counts and date queries. For
+   *   example, you might use this field to specify "total" or "sellable" quantity.
+   * @param {string} [arg.fromDate] - Inventory updated on filter to get
+   *   inventories greater then or equal to provided date based on qty_type value.
+   * @param {string} [arg.toDate] - Inventory updated on filter to get
+   *   inventories less then or equal to provided date based on qty_type value.
    * @param {string} [arg.sizeIdentifier] - Size Identifier (Seller Identifier
    *   or Primary Identifier) of which inventory is to get.
    * @returns {Paginator<CatalogPlatformModel.GetInventoriesResponse>}
@@ -2892,21 +2944,37 @@ class Catalog {
     q,
     sellable,
     storeIds,
+    brandIds,
+    sellerIdentifiers,
+    qtyGt,
+    qtyLt,
+    qtyType,
+    fromDate,
+    toDate,
     sizeIdentifier,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
-      const pageType = "number";
+      const pageType = "cursor";
       const data = await this.getInventories({
         itemId: itemId,
         size: size,
         pageNo: pageNo,
         pageSize: pageSize,
+        pageId: pageId,
+        pageType: pageType,
         q: q,
         sellable: sellable,
         storeIds: storeIds,
+        brandIds: brandIds,
+        sellerIdentifiers: sellerIdentifiers,
+        qtyGt: qtyGt,
+        qtyLt: qtyLt,
+        qtyType: qtyType,
+        fromDate: fromDate,
+        toDate: toDate,
         sizeIdentifier: sizeIdentifier,
       });
       paginator.setPaginator({

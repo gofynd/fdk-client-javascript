@@ -47,7 +47,7 @@ declare class Order {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
      * @name getOrderById
-     * @summary: Get a order
+     * @summary: Get an order
      * @description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
      */
     getOrderById({ orderId, allowInactive, requestHeaders }?: OrderApplicationValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderById>;

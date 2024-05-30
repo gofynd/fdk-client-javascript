@@ -2752,6 +2752,7 @@ export = CatalogPlatformModel;
 /**
  * @typedef Quantity
  * @property {number} [count]
+ * @property {string} [updated_at]
  */
 /**
  * @typedef QuantityBase
@@ -7320,6 +7321,7 @@ type QuantitiesArticle = {
 declare function Quantity(): Quantity;
 type Quantity = {
     count?: number;
+    updated_at?: string;
 };
 /** @returns {QuantityBase} */
 declare function QuantityBase(): QuantityBase;

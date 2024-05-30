@@ -199,9 +199,25 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ * @property {string} [pageId] - Alphanumeric Page ID to retrieve next set of results.
+ * @property {string} [pageType] - Available pagination types are cursor or number.
  * @property {string} [q] - Search with help of store code.
  * @property {boolean} [sellable] - Filter on whether product is in stock or not.
  * @property {number[]} [storeIds] - The Store Id of products to fetch inventory.
+ * @property {number[]} [brandIds] - The Brand Id of products to fetch inventory.
+ * @property {string[]} [sellerIdentifiers] - The Seller Identifier or Primary
+ *   Identifier of the inventory.
+ * @property {number} [qtyGt] - This field allows you to filter for inventories
+ *   that have quantity greater than to the specified value based on qty_type filter.
+ * @property {number} [qtyLt] - This field allows you to filter for inventories
+ *   that have a quantity less than to the specified value based on qty_type filter.
+ * @property {string} [qtyType] - This field provides flexibility in selecting
+ *   filter for inventory quantity counts and date queries. For example, you
+ *   might use this field to specify "total" or "sellable" quantity.
+ * @property {string} [fromDate] - Inventory updated on filter to get
+ *   inventories greater then or equal to provided date based on qty_type value.
+ * @property {string} [toDate] - Inventory updated on filter to get inventories
+ *   less then or equal to provided date based on qty_type value.
  * @property {string} [sizeIdentifier] - Size Identifier (Seller Identifier or
  *   Primary Identifier) of which inventory is to get.
  */
@@ -778,9 +794,18 @@ class CatalogPlatformValidator {
       size: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      pageId: Joi.string().allow(""),
+      pageType: Joi.string().allow(""),
       q: Joi.string().allow(""),
       sellable: Joi.boolean(),
       storeIds: Joi.array().items(Joi.number()),
+      brandIds: Joi.array().items(Joi.number()),
+      sellerIdentifiers: Joi.array().items(Joi.string().allow("")),
+      qtyGt: Joi.number(),
+      qtyLt: Joi.number(),
+      qtyType: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
       sizeIdentifier: Joi.string().allow(""),
     }).required();
   }

@@ -1464,13 +1464,17 @@ class PaymentApplicationModel {
       cod_limit: Joi.number().allow(null),
       intent_flow: Joi.boolean().allow(null),
       fynd_vpa: Joi.string().allow("").allow(null),
-      intent_app_error_dict_list: Joi.array().items(
-        PaymentApplicationModel.IntentAppErrorList()
-      ),
+      intent_app_error_dict_list: Joi.array()
+        .items(PaymentApplicationModel.IntentAppErrorList())
+        .allow(null, ""),
       aggregator_name: Joi.string().allow("").required(),
       card_fingerprint: Joi.string().allow("").allow(null),
-      intent_app_error_list: Joi.array().items(Joi.string().allow("")),
-      intent_app: Joi.array().items(PaymentApplicationModel.IntentApp()),
+      intent_app_error_list: Joi.array()
+        .items(Joi.string().allow(""))
+        .allow(null, ""),
+      intent_app: Joi.array()
+        .items(PaymentApplicationModel.IntentApp())
+        .allow(null, ""),
       expired: Joi.boolean().allow(null),
       retry_count: Joi.number().allow(null),
       exp_year: Joi.number().allow(null),
@@ -1571,9 +1575,9 @@ class PaymentApplicationModel {
       prepayment_value: Joi.number().allow(null),
       cancellation_type: Joi.string().allow("").allow(null),
       refund_time_limit: Joi.number().allow(null),
-      all_prepayment_type: Joi.array().items(
-        Joi.string().allow("").allow(null)
-      ),
+      all_prepayment_type: Joi.array()
+        .items(Joi.string().allow("").allow(null))
+        .allow(null, ""),
       allow_custom_advance_amount: Joi.boolean().allow(null),
     });
   }
@@ -1594,7 +1598,9 @@ class PaymentApplicationModel {
       display_priority: Joi.number().allow(null),
       payment_mode_id: Joi.number().allow(null),
       display_name: Joi.string().allow("").allow(null),
-      list: Joi.array().items(PaymentApplicationModel.PaymentModeList()),
+      list: Joi.array()
+        .items(PaymentApplicationModel.PaymentModeList())
+        .allow(null, ""),
       split: PaymentApplicationModel.SplitObject(),
       advance: PaymentApplicationModel.AdvanceObject(),
     });
@@ -1606,9 +1612,9 @@ class PaymentApplicationModel {
       payment_options: PaymentApplicationModel.PaymentOptionAndFlow().required(),
       success: Joi.boolean().required(),
       payment_breakup: Joi.any(),
-      advance_payment: Joi.array().items(
-        PaymentApplicationModel.AdvancePaymentObject()
-      ),
+      advance_payment: Joi.array()
+        .items(PaymentApplicationModel.AdvancePaymentObject())
+        .allow(null, ""),
     });
   }
 
@@ -1847,9 +1853,9 @@ class PaymentApplicationModel {
   static OrderBeneficiaryResponse() {
     return Joi.object({
       show_beneficiary_details: Joi.boolean(),
-      beneficiaries: Joi.array().items(
-        PaymentApplicationModel.OrderBeneficiaryDetails()
-      ),
+      beneficiaries: Joi.array()
+        .items(PaymentApplicationModel.OrderBeneficiaryDetails())
+        .allow(null, ""),
     });
   }
 
@@ -2355,7 +2361,7 @@ class PaymentApplicationModel {
   static OutstandingOrderDetailsResponse() {
     return Joi.object({
       status_code: Joi.number().required(),
-      data: Joi.array().items(Joi.any()),
+      data: Joi.array().items(Joi.any()).allow(null, ""),
       success: Joi.boolean().required(),
       message: Joi.string().allow("").allow(null),
     });
@@ -2365,7 +2371,7 @@ class PaymentApplicationModel {
   static PaidOrderDetailsResponse() {
     return Joi.object({
       status_code: Joi.number().required(),
-      data: Joi.array().items(Joi.any()),
+      data: Joi.array().items(Joi.any()).allow(null, ""),
       success: Joi.boolean().required(),
       message: Joi.string().allow("").allow(null),
     });

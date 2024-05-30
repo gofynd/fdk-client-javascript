@@ -363,7 +363,7 @@ declare class Catalog {
      * @summary: List Inventory
      * @description: Allows to get Inventories data for particular company.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventories/).
      */
-    getInventories({ itemId, size, pageNo, pageSize, q, sellable, storeIds, sizeIdentifier, requestHeaders, }?: CatalogPlatformValidator.GetInventoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetInventoriesResponse>;
+    getInventories({ itemId, size, pageNo, pageSize, pageId, pageType, q, sellable, storeIds, brandIds, sellerIdentifiers, qtyGt, qtyLt, qtyType, fromDate, toDate, sizeIdentifier, requestHeaders, }?: CatalogPlatformValidator.GetInventoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetInventoriesResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.itemId] - Item code of the product of which size is to be get.
@@ -373,19 +373,42 @@ declare class Catalog {
      * @param {string} [arg.q] - Search with help of store code.
      * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
      * @param {number[]} [arg.storeIds] - The Store Id of products to fetch inventory.
+     * @param {number[]} [arg.brandIds] - The Brand Id of products to fetch inventory.
+     * @param {string[]} [arg.sellerIdentifiers] - The Seller Identifier or
+     *   Primary Identifier of the inventory.
+     * @param {number} [arg.qtyGt] - This field allows you to filter for
+     *   inventories that have quantity greater than to the specified value
+     *   based on qty_type filter.
+     * @param {number} [arg.qtyLt] - This field allows you to filter for
+     *   inventories that have a quantity less than to the specified value based
+     *   on qty_type filter.
+     * @param {string} [arg.qtyType] - This field provides flexibility in
+     *   selecting filter for inventory quantity counts and date queries. For
+     *   example, you might use this field to specify "total" or "sellable" quantity.
+     * @param {string} [arg.fromDate] - Inventory updated on filter to get
+     *   inventories greater then or equal to provided date based on qty_type value.
+     * @param {string} [arg.toDate] - Inventory updated on filter to get
+     *   inventories less then or equal to provided date based on qty_type value.
      * @param {string} [arg.sizeIdentifier] - Size Identifier (Seller Identifier
      *   or Primary Identifier) of which inventory is to get.
      * @returns {Paginator<CatalogPlatformModel.GetInventoriesResponse>}
      * @summary: List Inventory
      * @description: Allows to get Inventories data for particular company.
      */
-    getInventoriesPaginator({ itemId, size, pageSize, q, sellable, storeIds, sizeIdentifier, }?: {
+    getInventoriesPaginator({ itemId, size, pageSize, q, sellable, storeIds, brandIds, sellerIdentifiers, qtyGt, qtyLt, qtyType, fromDate, toDate, sizeIdentifier, }?: {
         itemId?: string;
         size?: string;
         pageSize?: number;
         q?: string;
         sellable?: boolean;
         storeIds?: number[];
+        brandIds?: number[];
+        sellerIdentifiers?: string[];
+        qtyGt?: number;
+        qtyLt?: number;
+        qtyType?: string;
+        fromDate?: string;
+        toDate?: string;
         sizeIdentifier?: string;
     }): Paginator<CatalogPlatformModel.GetInventoriesResponse>;
     /**

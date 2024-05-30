@@ -462,7 +462,7 @@ class WebhookPlatformModel {
       event_type: Joi.string().allow(""),
       event_category: Joi.string().allow(""),
       subscriber_event_mapping: WebhookPlatformModel.SubscriberEventMapping(),
-      event_schema: Joi.object().pattern(/\S/, Joi.any()),
+      event_schema: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       version: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
       description: Joi.string().allow("").allow(null),
