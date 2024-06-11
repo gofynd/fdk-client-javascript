@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.5) - fp-v1.9.3
+# CHANGE LOG (1.4.7) - fp-v1.9.3
 
 ## Application Client
 
