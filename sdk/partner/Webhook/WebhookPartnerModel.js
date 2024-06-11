@@ -1,13 +1,13 @@
 const Joi = require("joi");
 
 /**
- * @typedef UpdateSubscriberResponse
- * @property {string} [message]
+ * @typedef UpdateSubscriberRequest
+ * @property {string} [status]
  */
 
 /**
- * @typedef UpdateSubscriberRequest
- * @property {string} [status]
+ * @typedef UpdateSubscriberResponse
+ * @property {string} [message]
  */
 
 /**
@@ -29,6 +29,7 @@ const Joi = require("joi");
  * @property {number} [id]
  * @property {number} [event_id]
  * @property {number} [subscriber_id]
+ * @property {string} [topic]
  * @property {string} [created_on]
  */
 
@@ -44,6 +45,7 @@ const Joi = require("joi");
  * @property {string} [description]
  * @property {string} [created_on]
  * @property {string} [updated_on]
+ * @property {string} [group]
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
  */
 
@@ -72,11 +74,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DownloadReponse
- * @property {string} [file_name]
- */
-
-/**
  * @typedef HistoryFilters
  * @property {string[]} [events]
  * @property {string} [search_text]
@@ -85,6 +82,8 @@ const Joi = require("joi");
  * @property {string} [start_date] - The start date and time of the history report.
  * @property {number[]} [subscribers] - An array of subscriber IDs associated
  *   with the history report.
+ * @property {string[]} [webhook_type] - An array of webhook type to identify
+ *   thetype of subscriber i.e (KAFKA or REST).
  */
 
 /**
@@ -246,6 +245,7 @@ const Joi = require("joi");
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {string} [status]
@@ -259,17 +259,17 @@ const Joi = require("joi");
  */
 
 class WebhookPartnerModel {
-  /** @returns {UpdateSubscriberResponse} */
-  static UpdateSubscriberResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {UpdateSubscriberRequest} */
   static UpdateSubscriberRequest() {
     return Joi.object({
       status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdateSubscriberResponse} */
+  static UpdateSubscriberResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
 
@@ -297,6 +297,7 @@ class WebhookPartnerModel {
       id: Joi.number(),
       event_id: Joi.number(),
       subscriber_id: Joi.number(),
+      topic: Joi.string().allow("").allow(null),
       created_on: Joi.string().allow(""),
     });
   }
@@ -314,6 +315,7 @@ class WebhookPartnerModel {
       description: Joi.string().allow("").allow(null),
       created_on: Joi.string().allow(""),
       updated_on: Joi.string().allow(""),
+      group: Joi.string().allow("").allow(null),
       subscriber_event_mapping: WebhookPartnerModel.SubscriberEventMapping(),
     });
   }
@@ -348,13 +350,6 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {DownloadReponse} */
-  static DownloadReponse() {
-    return Joi.object({
-      file_name: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {HistoryFilters} */
   static HistoryFilters() {
     return Joi.object({
@@ -364,6 +359,7 @@ class WebhookPartnerModel {
       end_date: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
       subscribers: Joi.array().items(Joi.number()),
+      webhook_type: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -565,6 +561,7 @@ class WebhookPartnerModel {
       modified_by: Joi.string().allow(""),
       name: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
       association: WebhookPartnerModel.Association(),
       custom_headers: Joi.any(),
       status: Joi.string().allow(""),

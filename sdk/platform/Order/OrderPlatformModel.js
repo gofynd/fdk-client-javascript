@@ -506,7 +506,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DispatchManifest
- * @property {string} manifest_id
+ * @property {string} manifest_id - Id of the manifest.
  */
 
 /**
@@ -1307,15 +1307,18 @@ const Joi = require("joi");
 /**
  * @typedef Filters
  * @property {DateRange} [date_range]
- * @property {string} [logo]
- * @property {string} [from_date]
- * @property {number} [stores]
- * @property {string} [to_date]
- * @property {string} [dp_name]
- * @property {number} [dp_ids]
- * @property {string} [lane]
- * @property {string} [selected_shipments]
- * @property {string} [store_name]
+ * @property {string} [logo] - CDN link of the logo displayed on the manifest page.
+ * @property {string} [from_date] - UTC start date in ISO format.
+ * @property {number} [stores] - Filter with the specific store.
+ * @property {string} [to_date] - UTC end date in ISO format.
+ * @property {string} [dp_name] - Filter with the specific courier partner name.
+ * @property {string} [dp_ids] - Combination of courier partner ids separated by
+ *   byte operator.
+ * @property {string} [lane] - Criteria for lane on which shipments must be fetched.
+ * @property {string} [selected_shipments] - Selected shipments mapped to the manifest.
+ * @property {string} [store_name] - Filter with the specific store name.
+ * @property {string} [deselected_shipments] - Deselected shipments unmapped
+ *   from the manifest.
  */
 
 /**
@@ -1405,10 +1408,10 @@ const Joi = require("joi");
 
 /**
  * @typedef ProcessManifestResponse
- * @property {number} [company_id]
+ * @property {number} [company_id] - Id of the company.
  * @property {Filters} [filters]
- * @property {string} [user_id]
- * @property {string} [manifest_id]
+ * @property {string} [user_id] - Id of the user.
+ * @property {string} [manifest_id] - Id of the manifest.
  * @property {string} [action]
  * @property {string} [uid]
  * @property {string} [created_by]
@@ -1622,6 +1625,40 @@ const Joi = require("joi");
 /**
  * @typedef GenerateInvoiceIDErrorResponse
  * @property {GenerateInvoiceIDErrorResponseData[]} [items]
+ */
+
+/**
+ * @typedef ManifestResponse
+ * @property {ManifestItems} [items]
+ */
+
+/**
+ * @typedef ProcessManifestRequest
+ * @property {string} [action] - Expected Actions: [save, process,
+ *   pdf_generated,invalidate,pdf_failed,complete]
+ * @property {string} [manifest_id] - Id of The Manifest.
+ * @property {Filters} [filters]
+ * @property {string} [unique_id] - Unique Id.
+ */
+
+/**
+ * @typedef ManifestItems
+ * @property {Filters} [filters]
+ * @property {string} [manifest_id] - Id of the manifest.
+ * @property {string} [unique_id] - Unique Id.
+ * @property {number} [company_id] - Id of the company.
+ * @property {string} [dp_id] - Shipment with the specific courier partner Id.
+ * @property {string} [courier_partner_slug]
+ * @property {string} [action] - Expected Actions: [Save, Process, Pdf
+ *   Generated, Invalidate, Pdf Failed, Complete]
+ * @property {string} [created_by] - Created date of the manifest.
+ * @property {string} [user_id] - Id of user.
+ */
+
+/**
+ * @typedef ManifestErrorResponse
+ * @property {boolean} [success] - Success State.
+ * @property {string} [error] - Error String.
  */
 
 /**
@@ -4747,10 +4784,11 @@ class OrderPlatformModel {
       stores: Joi.number(),
       to_date: Joi.string().allow(""),
       dp_name: Joi.string().allow(""),
-      dp_ids: Joi.number(),
+      dp_ids: Joi.string().allow(""),
       lane: Joi.string().allow(""),
       selected_shipments: Joi.string().allow(""),
       store_name: Joi.string().allow(""),
+      deselected_shipments: Joi.string().allow(""),
     });
   }
 
@@ -5153,6 +5191,46 @@ class OrderPlatformModel {
       items: Joi.array().items(
         OrderPlatformModel.GenerateInvoiceIDErrorResponseData()
       ),
+    });
+  }
+
+  /** @returns {ManifestResponse} */
+  static ManifestResponse() {
+    return Joi.object({
+      items: OrderPlatformModel.ManifestItems(),
+    });
+  }
+
+  /** @returns {ProcessManifestRequest} */
+  static ProcessManifestRequest() {
+    return Joi.object({
+      action: Joi.string().allow(""),
+      manifest_id: Joi.string().allow(""),
+      filters: OrderPlatformModel.Filters(),
+      unique_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ManifestItems} */
+  static ManifestItems() {
+    return Joi.object({
+      filters: OrderPlatformModel.Filters(),
+      manifest_id: Joi.string().allow(""),
+      unique_id: Joi.string().allow(""),
+      company_id: Joi.number(),
+      dp_id: Joi.string().allow("").allow(null),
+      courier_partner_slug: Joi.string().allow(""),
+      action: Joi.string().allow(""),
+      created_by: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ManifestErrorResponse} */
+  static ManifestErrorResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+      error: Joi.string().allow(""),
     });
   }
 

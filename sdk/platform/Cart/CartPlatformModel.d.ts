@@ -1204,6 +1204,7 @@ export = CartPlatformModel;
  * @property {string} currency_code
  * @property {string} aggregator
  * @property {string} order_type
+ * @property {string} [callback_url]
  * @property {OverrideCartItem[]} cart_items
  * @property {number} [ordering_store]
  * @property {Object} [shipping_address]
@@ -3420,6 +3421,7 @@ type OverrideCheckoutReq = {
     currency_code: string;
     aggregator: string;
     order_type: string;
+    callback_url?: string;
     cart_items: OverrideCartItem[];
     ordering_store?: number;
     shipping_address?: any;

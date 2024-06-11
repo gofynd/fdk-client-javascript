@@ -184,6 +184,11 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
+ * @typedef GetPriceAdjustmentsParam
+ * @property {string} cartId - Cart Id
+ */
+
+/**
  * @typedef GetPromosCouponConfigParam
  * @property {string} [entityType] - Entity_type as promotion or coupon
  * @property {boolean} [isHidden] - Promo-coupon config shown or not
@@ -647,6 +652,13 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+    }).required();
+  }
+
+  /** @returns {GetPriceAdjustmentsParam} */
+  static getPriceAdjustments() {
+    return Joi.object({
+      cartId: Joi.string().allow("").required(),
     }).required();
   }
 

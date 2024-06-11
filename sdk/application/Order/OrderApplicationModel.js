@@ -39,6 +39,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ShipmentPaymentInfo
+ * @property {string} [mop] - Stands for "Mode of Payment". This is a short code
+ *   (like "COD" for Cash On Delivery) that represents the payment method used.
+ * @property {string} [payment_mode] - Information about the payment mode,
+ *   indicates whether COD or PREPAID
+ * @property {string} [status] - Indicates the current status of the payment,
+ *   Paid or Unpaid
+ * @property {string} [mode] - Information about the payment source. For eg, NB_ICICI
+ * @property {string} [logo] - A URL to an image representing the payment method
+ * @property {string} [display_name] - The name of the payment method as it
+ *   should be displayed to the user
+ * @property {number} [amount] - Amount paid using this payment method
+ */
+
+/**
  * @typedef ShipmentUserInfo
  * @property {string} [first_name]
  * @property {string} [gender]
@@ -257,7 +272,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DeliveryAddress
+ * @typedef Address
  * @property {string} [pincode]
  * @property {string} [phone]
  * @property {number} [latitude]
@@ -286,7 +301,9 @@ const Joi = require("joi");
 /**
  * @typedef Shipments
  * @property {ShipmentPayment} [payment]
- * @property {ShipmentPayment[]} [payment_info]
+ * @property {ShipmentPaymentInfo[]} [payment_info] - "Array of objects
+ *   containing payment methods used for placing an order. Each object will
+ *   provide information about corresponding payment method with relevant details."
  * @property {string} [order_type]
  * @property {boolean} [show_download_invoice]
  * @property {boolean} [can_cancel]
@@ -317,7 +334,8 @@ const Joi = require("joi");
  * @property {boolean} [beneficiary_details]
  * @property {FulfillingCompany} [fulfilling_company]
  * @property {boolean} [can_return]
- * @property {DeliveryAddress} [delivery_address]
+ * @property {Address} [delivery_address]
+ * @property {Address} [billing_address]
  * @property {string} [track_url]
  * @property {string} [order_id]
  * @property {string} [need_help_url]
@@ -345,6 +363,7 @@ const Joi = require("joi");
 /**
  * @typedef OrderSchema
  * @property {number} [total_shipments_in_order]
+ * @property {string} [gstin_code]
  * @property {UserInfo} [user_info]
  * @property {BreakupValues[]} [breakup_values]
  * @property {string} [order_created_time]
@@ -647,6 +666,19 @@ class OrderApplicationModel {
     });
   }
 
+  /** @returns {ShipmentPaymentInfo} */
+  static ShipmentPaymentInfo() {
+    return Joi.object({
+      mop: Joi.string().allow(""),
+      payment_mode: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      mode: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      amount: Joi.number(),
+    });
+  }
+
   /** @returns {ShipmentUserInfo} */
   static ShipmentUserInfo() {
     return Joi.object({
@@ -911,8 +943,8 @@ class OrderApplicationModel {
     });
   }
 
-  /** @returns {DeliveryAddress} */
-  static DeliveryAddress() {
+  /** @returns {Address} */
+  static Address() {
     return Joi.object({
       pincode: Joi.string().allow(""),
       phone: Joi.string().allow(""),
@@ -944,7 +976,9 @@ class OrderApplicationModel {
   static Shipments() {
     return Joi.object({
       payment: OrderApplicationModel.ShipmentPayment(),
-      payment_info: Joi.array().items(OrderApplicationModel.ShipmentPayment()),
+      payment_info: Joi.array().items(
+        OrderApplicationModel.ShipmentPaymentInfo()
+      ),
       order_type: Joi.string().allow("").allow(null),
       show_download_invoice: Joi.boolean(),
       can_cancel: Joi.boolean(),
@@ -977,7 +1011,8 @@ class OrderApplicationModel {
       beneficiary_details: Joi.boolean(),
       fulfilling_company: OrderApplicationModel.FulfillingCompany(),
       can_return: Joi.boolean(),
-      delivery_address: OrderApplicationModel.DeliveryAddress(),
+      delivery_address: OrderApplicationModel.Address(),
+      billing_address: OrderApplicationModel.Address(),
       track_url: Joi.string().allow(""),
       order_id: Joi.string().allow(""),
       need_help_url: Joi.string().allow(""),
@@ -1011,6 +1046,7 @@ class OrderApplicationModel {
   static OrderSchema() {
     return Joi.object({
       total_shipments_in_order: Joi.number(),
+      gstin_code: Joi.string().allow(""),
       user_info: OrderApplicationModel.UserInfo(),
       breakup_values: Joi.array().items(OrderApplicationModel.BreakupValues()),
       order_created_time: Joi.string().allow(""),

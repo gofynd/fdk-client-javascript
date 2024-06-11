@@ -40,7 +40,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef DispatchManifestsParam
- * @property {string} manifestId
  * @property {OrderPlatformModel.DispatchManifest} body
  */
 
@@ -85,6 +84,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} orderId
  * @property {string} [shipmentId]
  * @property {string} [documentType]
+ */
+
+/**
+ * @typedef GenerateProcessManifestParam
+ * @property {OrderPlatformModel.ProcessManifestRequest} body
  */
 
 /**
@@ -180,16 +184,18 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef GetManifestShipmentsParam
- * @property {number} dpIds
- * @property {string} stores
- * @property {string} toDate
- * @property {string} fromDate
- * @property {string} [dpName]
- * @property {string} [salesChannels]
- * @property {string} [searchType]
- * @property {string} [searchValue]
- * @property {string} [pageNo]
- * @property {string} [pageSize]
+ * @property {string} dpIds - Filter shipments with the specific Courier partner
+ *   Ids which is a combination of courier partner extension and scheme Ids.
+ * @property {number} stores - Filter with the specific store.
+ * @property {string} toDate - End date for the shipment search range.
+ * @property {string} fromDate - Start date for the shipment search range.
+ * @property {string} [dpName] - Filter with the specific courier partner name.
+ * @property {string} [salesChannels] - Comma-separated list of sales channels.
+ * @property {string} [searchType] - Type of search (e.g., by shipment ID, order
+ *   ID, AWB number).
+ * @property {string} [searchValue] - Value to search for based on the search type.
+ * @property {number} [pageNo] - Page number for pagination.
+ * @property {number} [pageSize] - Number of records per page for pagination.
  */
 
 /**
@@ -477,7 +483,6 @@ class OrderPlatformValidator {
   /** @returns {DispatchManifestsParam} */
   static dispatchManifests() {
     return Joi.object({
-      manifestId: Joi.string().allow("").required(),
       body: OrderPlatformModel.DispatchManifest().required(),
     }).required();
   }
@@ -538,6 +543,13 @@ class OrderPlatformValidator {
       orderId: Joi.string().allow("").required(),
       shipmentId: Joi.string().allow(""),
       documentType: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GenerateProcessManifestParam} */
+  static generateProcessManifest() {
+    return Joi.object({
+      body: OrderPlatformModel.ProcessManifestRequest().required(),
     }).required();
   }
 
@@ -658,16 +670,16 @@ class OrderPlatformValidator {
   /** @returns {GetManifestShipmentsParam} */
   static getManifestShipments() {
     return Joi.object({
-      dpIds: Joi.number().required(),
-      stores: Joi.string().allow("").required(),
+      dpIds: Joi.string().allow("").required(),
+      stores: Joi.number().required(),
       toDate: Joi.string().allow("").required(),
       fromDate: Joi.string().allow("").required(),
       dpName: Joi.string().allow(""),
       salesChannels: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
-      pageNo: Joi.string().allow(""),
-      pageSize: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 

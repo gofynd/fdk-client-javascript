@@ -188,19 +188,19 @@ const Joi = require("joi");
 
 /**
  * @typedef PaymentStatusUpdateRequest
- * @property {string} status - Status of payment.
- * @property {string} merchant_transaction_id - Unique fynd transaction id
+ * @property {string} [status] - Status of payment.
+ * @property {string} [merchant_transaction_id] - Unique fynd transaction id
  * @property {string} method - Payment method
  * @property {string} [device_id] - EDC machine Unique Identifier
  * @property {string} aggregator - Payment gateway name
- * @property {string} customer_id - Payment gateway customer id.
- * @property {string} contact - Customer valid mobile number
+ * @property {string} [customer_id] - Payment gateway customer id.
+ * @property {string} [contact] - Customer valid mobile number
  * @property {string} merchant_order_id - Unique fynd order id
  * @property {string} [vpa] - Customer vpa address
- * @property {string} order_id - Payment gateway order id
- * @property {string} currency - Currency code.
- * @property {number} amount - Payable amount.
- * @property {string} email - Customer valid email
+ * @property {string} [order_id] - Payment gateway order id
+ * @property {string} [currency] - Currency code.
+ * @property {number} [amount] - Payable amount.
+ * @property {string} [email] - Customer valid email
  */
 
 /**
@@ -289,7 +289,7 @@ const Joi = require("joi");
 /**
  * @typedef AggregatorRoute
  * @property {Object} [data] - Data
- * @property {string} [payment_flow_data] - Payment_flow_data
+ * @property {Object} [payment_flow_data] - Payment_flow_data
  * @property {string} [payment_flow] - Payment_flow
  * @property {string} [api_link] - Api_link
  */
@@ -1399,19 +1399,19 @@ class PaymentApplicationModel {
   /** @returns {PaymentStatusUpdateRequest} */
   static PaymentStatusUpdateRequest() {
     return Joi.object({
-      status: Joi.string().allow("").required(),
-      merchant_transaction_id: Joi.string().allow("").required(),
+      status: Joi.string().allow(""),
+      merchant_transaction_id: Joi.string().allow(""),
       method: Joi.string().allow("").required(),
       device_id: Joi.string().allow("").allow(null),
       aggregator: Joi.string().allow("").required(),
-      customer_id: Joi.string().allow("").required(),
-      contact: Joi.string().allow("").required(),
+      customer_id: Joi.string().allow(""),
+      contact: Joi.string().allow(""),
       merchant_order_id: Joi.string().allow("").required(),
       vpa: Joi.string().allow(""),
-      order_id: Joi.string().allow("").required(),
-      currency: Joi.string().allow("").required(),
-      amount: Joi.number().allow(null).required(),
-      email: Joi.string().allow("").required(),
+      order_id: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      amount: Joi.number().allow(null),
+      email: Joi.string().allow(""),
     });
   }
 
@@ -1517,7 +1517,7 @@ class PaymentApplicationModel {
   static AggregatorRoute() {
     return Joi.object({
       data: Joi.any().allow(null),
-      payment_flow_data: Joi.string().allow("").allow(null),
+      payment_flow_data: Joi.any().allow(null),
       payment_flow: Joi.string().allow("").allow(null),
       api_link: Joi.string().allow("").allow(null),
     });

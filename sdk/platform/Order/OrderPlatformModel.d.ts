@@ -445,7 +445,7 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef DispatchManifest
- * @property {string} manifest_id
+ * @property {string} manifest_id - Id of the manifest.
  */
 /**
  * @typedef SuccessResponse
@@ -1163,15 +1163,18 @@ export = OrderPlatformModel;
 /**
  * @typedef Filters
  * @property {DateRange} [date_range]
- * @property {string} [logo]
- * @property {string} [from_date]
- * @property {number} [stores]
- * @property {string} [to_date]
- * @property {string} [dp_name]
- * @property {number} [dp_ids]
- * @property {string} [lane]
- * @property {string} [selected_shipments]
- * @property {string} [store_name]
+ * @property {string} [logo] - CDN link of the logo displayed on the manifest page.
+ * @property {string} [from_date] - UTC start date in ISO format.
+ * @property {number} [stores] - Filter with the specific store.
+ * @property {string} [to_date] - UTC end date in ISO format.
+ * @property {string} [dp_name] - Filter with the specific courier partner name.
+ * @property {string} [dp_ids] - Combination of courier partner ids separated by
+ *   byte operator.
+ * @property {string} [lane] - Criteria for lane on which shipments must be fetched.
+ * @property {string} [selected_shipments] - Selected shipments mapped to the manifest.
+ * @property {string} [store_name] - Filter with the specific store name.
+ * @property {string} [deselected_shipments] - Deselected shipments unmapped
+ *   from the manifest.
  */
 /**
  * @typedef ManifestFile
@@ -1250,10 +1253,10 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef ProcessManifestResponse
- * @property {number} [company_id]
+ * @property {number} [company_id] - Id of the company.
  * @property {Filters} [filters]
- * @property {string} [user_id]
- * @property {string} [manifest_id]
+ * @property {string} [user_id] - Id of the user.
+ * @property {string} [manifest_id] - Id of the manifest.
  * @property {string} [action]
  * @property {string} [uid]
  * @property {string} [created_by]
@@ -1439,6 +1442,36 @@ export = OrderPlatformModel;
 /**
  * @typedef GenerateInvoiceIDErrorResponse
  * @property {GenerateInvoiceIDErrorResponseData[]} [items]
+ */
+/**
+ * @typedef ManifestResponse
+ * @property {ManifestItems} [items]
+ */
+/**
+ * @typedef ProcessManifestRequest
+ * @property {string} [action] - Expected Actions: [save, process,
+ *   pdf_generated,invalidate,pdf_failed,complete]
+ * @property {string} [manifest_id] - Id of The Manifest.
+ * @property {Filters} [filters]
+ * @property {string} [unique_id] - Unique Id.
+ */
+/**
+ * @typedef ManifestItems
+ * @property {Filters} [filters]
+ * @property {string} [manifest_id] - Id of the manifest.
+ * @property {string} [unique_id] - Unique Id.
+ * @property {number} [company_id] - Id of the company.
+ * @property {string} [dp_id] - Shipment with the specific courier partner Id.
+ * @property {string} [courier_partner_slug]
+ * @property {string} [action] - Expected Actions: [Save, Process, Pdf
+ *   Generated, Invalidate, Pdf Failed, Complete]
+ * @property {string} [created_by] - Created date of the manifest.
+ * @property {string} [user_id] - Id of user.
+ */
+/**
+ * @typedef ManifestErrorResponse
+ * @property {boolean} [success] - Success State.
+ * @property {string} [error] - Error String.
  */
 /**
  * @typedef Page
@@ -2835,7 +2868,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, BaseResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, LineItem, ProcessingDates, Shipment, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequest, GenerateInvoiceIDResponse, GenerateInvoiceIDErrorResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, PlatformDeliveryAddress, ShipmentListingChannel, Prices, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, Reason, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, TemplateDownloadResponse, Error };
+    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, BaseResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, LineItem, ProcessingDates, Shipment, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequest, GenerateInvoiceIDResponse, GenerateInvoiceIDErrorResponse, ManifestResponse, ProcessManifestRequest, ManifestItems, ManifestErrorResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, PlatformDeliveryAddress, ShipmentListingChannel, Prices, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, Reason, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, TemplateDownloadResponse, Error };
 }
 /** @returns {InvalidateShipmentCachePayload} */
 declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
@@ -3485,6 +3518,9 @@ type CreateOrderResponse = {
 /** @returns {DispatchManifest} */
 declare function DispatchManifest(): DispatchManifest;
 type DispatchManifest = {
+    /**
+     * - Id of the manifest.
+     */
     manifest_id: string;
 };
 /** @returns {SuccessResponse} */
@@ -4388,15 +4424,48 @@ type DateRange = {
 declare function Filters(): Filters;
 type Filters = {
     date_range?: DateRange;
+    /**
+     * - CDN link of the logo displayed on the manifest page.
+     */
     logo?: string;
+    /**
+     * - UTC start date in ISO format.
+     */
     from_date?: string;
+    /**
+     * - Filter with the specific store.
+     */
     stores?: number;
+    /**
+     * - UTC end date in ISO format.
+     */
     to_date?: string;
+    /**
+     * - Filter with the specific courier partner name.
+     */
     dp_name?: string;
-    dp_ids?: number;
+    /**
+     * - Combination of courier partner ids separated by
+     * byte operator.
+     */
+    dp_ids?: string;
+    /**
+     * - Criteria for lane on which shipments must be fetched.
+     */
     lane?: string;
+    /**
+     * - Selected shipments mapped to the manifest.
+     */
     selected_shipments?: string;
+    /**
+     * - Filter with the specific store name.
+     */
     store_name?: string;
+    /**
+     * - Deselected shipments unmapped
+     * from the manifest.
+     */
+    deselected_shipments?: string;
 };
 /** @returns {ManifestFile} */
 declare function ManifestFile(): ManifestFile;
@@ -4486,9 +4555,18 @@ type ProcessManifest = {
 /** @returns {ProcessManifestResponse} */
 declare function ProcessManifestResponse(): ProcessManifestResponse;
 type ProcessManifestResponse = {
+    /**
+     * - Id of the company.
+     */
     company_id?: number;
     filters?: Filters;
+    /**
+     * - Id of the user.
+     */
     user_id?: string;
+    /**
+     * - Id of the manifest.
+     */
     manifest_id?: string;
     action?: string;
     uid?: string;
@@ -4760,6 +4838,76 @@ type GenerateInvoiceIDResponse = {
 declare function GenerateInvoiceIDErrorResponse(): GenerateInvoiceIDErrorResponse;
 type GenerateInvoiceIDErrorResponse = {
     items?: GenerateInvoiceIDErrorResponseData[];
+};
+/** @returns {ManifestResponse} */
+declare function ManifestResponse(): ManifestResponse;
+type ManifestResponse = {
+    items?: ManifestItems;
+};
+/** @returns {ProcessManifestRequest} */
+declare function ProcessManifestRequest(): ProcessManifestRequest;
+type ProcessManifestRequest = {
+    /**
+     * - Expected Actions: [save, process,
+     * pdf_generated,invalidate,pdf_failed,complete]
+     */
+    action?: string;
+    /**
+     * - Id of The Manifest.
+     */
+    manifest_id?: string;
+    filters?: Filters;
+    /**
+     * - Unique Id.
+     */
+    unique_id?: string;
+};
+/** @returns {ManifestItems} */
+declare function ManifestItems(): ManifestItems;
+type ManifestItems = {
+    filters?: Filters;
+    /**
+     * - Id of the manifest.
+     */
+    manifest_id?: string;
+    /**
+     * - Unique Id.
+     */
+    unique_id?: string;
+    /**
+     * - Id of the company.
+     */
+    company_id?: number;
+    /**
+     * - Shipment with the specific courier partner Id.
+     */
+    dp_id?: string;
+    courier_partner_slug?: string;
+    /**
+     * - Expected Actions: [Save, Process, Pdf
+     * Generated, Invalidate, Pdf Failed, Complete]
+     */
+    action?: string;
+    /**
+     * - Created date of the manifest.
+     */
+    created_by?: string;
+    /**
+     * - Id of user.
+     */
+    user_id?: string;
+};
+/** @returns {ManifestErrorResponse} */
+declare function ManifestErrorResponse(): ManifestErrorResponse;
+type ManifestErrorResponse = {
+    /**
+     * - Success State.
+     */
+    success?: boolean;
+    /**
+     * - Error String.
+     */
+    error?: string;
 };
 /** @returns {Page} */
 declare function Page(): Page;

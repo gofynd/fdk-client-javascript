@@ -1,11 +1,11 @@
 export = WebhookPartnerModel;
 /**
- * @typedef UpdateSubscriberResponse
- * @property {string} [message]
- */
-/**
  * @typedef UpdateSubscriberRequest
  * @property {string} [status]
+ */
+/**
+ * @typedef UpdateSubscriberResponse
+ * @property {string} [message]
  */
 /**
  * @typedef Association
@@ -24,6 +24,7 @@ export = WebhookPartnerModel;
  * @property {number} [id]
  * @property {number} [event_id]
  * @property {number} [subscriber_id]
+ * @property {string} [topic]
  * @property {string} [created_on]
  */
 /**
@@ -38,6 +39,7 @@ export = WebhookPartnerModel;
  * @property {string} [description]
  * @property {string} [created_on]
  * @property {string} [updated_on]
+ * @property {string} [group]
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
  */
 /**
@@ -62,10 +64,6 @@ export = WebhookPartnerModel;
  * @property {number} [count]
  */
 /**
- * @typedef DownloadReponse
- * @property {string} [file_name]
- */
-/**
  * @typedef HistoryFilters
  * @property {string[]} [events]
  * @property {string} [search_text]
@@ -74,6 +72,8 @@ export = WebhookPartnerModel;
  * @property {string} [start_date] - The start date and time of the history report.
  * @property {number[]} [subscribers] - An array of subscriber IDs associated
  *   with the history report.
+ * @property {string[]} [webhook_type] - An array of webhook type to identify
+ *   thetype of subscriber i.e (KAFKA or REST).
  */
 /**
  * @typedef Url
@@ -215,6 +215,7 @@ export = WebhookPartnerModel;
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {string} [status]
@@ -229,17 +230,17 @@ export = WebhookPartnerModel;
 declare class WebhookPartnerModel {
 }
 declare namespace WebhookPartnerModel {
-    export { UpdateSubscriberResponse, UpdateSubscriberRequest, Association, AuthMeta, SubscriberEventMapping, EventConfigResponse, SubscriberConfigResponse, InvalidEventsRequest, InvalidEventsResponse, DownloadReponse, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, HistoryPayload, CancelDownloadResponse, FilterReportResponse, DeliveryTsResponse, DeliveryTsSchema, DeliveryDetailsRequest, EventDeliveryDetailSchema, DeliveryDetailsResponse, EventProcessReportObject, Page, DeliveryEventLevelSchema, DeliverySummaryResponse, DeliverySummarySchema, ItemSchema };
+    export { UpdateSubscriberRequest, UpdateSubscriberResponse, Association, AuthMeta, SubscriberEventMapping, EventConfigResponse, SubscriberConfigResponse, InvalidEventsRequest, InvalidEventsResponse, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, HistoryPayload, CancelDownloadResponse, FilterReportResponse, DeliveryTsResponse, DeliveryTsSchema, DeliveryDetailsRequest, EventDeliveryDetailSchema, DeliveryDetailsResponse, EventProcessReportObject, Page, DeliveryEventLevelSchema, DeliverySummaryResponse, DeliverySummarySchema, ItemSchema };
 }
-/** @returns {UpdateSubscriberResponse} */
-declare function UpdateSubscriberResponse(): UpdateSubscriberResponse;
-type UpdateSubscriberResponse = {
-    message?: string;
-};
 /** @returns {UpdateSubscriberRequest} */
 declare function UpdateSubscriberRequest(): UpdateSubscriberRequest;
 type UpdateSubscriberRequest = {
     status?: string;
+};
+/** @returns {UpdateSubscriberResponse} */
+declare function UpdateSubscriberResponse(): UpdateSubscriberResponse;
+type UpdateSubscriberResponse = {
+    message?: string;
 };
 /** @returns {Association} */
 declare function Association(): Association;
@@ -261,6 +262,7 @@ type SubscriberEventMapping = {
     id?: number;
     event_id?: number;
     subscriber_id?: number;
+    topic?: string;
     created_on?: string;
 };
 /** @returns {EventConfigResponse} */
@@ -276,6 +278,7 @@ type EventConfigResponse = {
     description?: string;
     created_on?: string;
     updated_on?: string;
+    group?: string;
     subscriber_event_mapping?: SubscriberEventMapping;
 };
 /** @returns {SubscriberConfigResponse} */
@@ -302,11 +305,6 @@ type InvalidEventsResponse = {
     category?: string;
     count?: number;
 };
-/** @returns {DownloadReponse} */
-declare function DownloadReponse(): DownloadReponse;
-type DownloadReponse = {
-    file_name?: string;
-};
 /** @returns {HistoryFilters} */
 declare function HistoryFilters(): HistoryFilters;
 type HistoryFilters = {
@@ -329,6 +327,11 @@ type HistoryFilters = {
      * with the history report.
      */
     subscribers?: number[];
+    /**
+     * - An array of webhook type to identify
+     * thetype of subscriber i.e (KAFKA or REST).
+     */
+    webhook_type?: string[];
 };
 /** @returns {Url} */
 declare function Url(): Url;
@@ -553,6 +556,7 @@ type ItemSchema = {
     modified_by?: string;
     name?: string;
     webhook_url?: string;
+    provider?: string;
     association?: Association;
     custom_headers?: any;
     status?: string;

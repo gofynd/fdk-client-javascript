@@ -125,6 +125,15 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SubscriberEventMapping
+ * @property {number} [id]
+ * @property {number} [event_id]
+ * @property {number} [subscriber_id]
+ * @property {string} [topic]
+ * @property {string} [created_on]
+ */
+
+/**
  * @typedef EventConfig
  * @property {number} [id]
  * @property {string} [event_name]
@@ -132,6 +141,7 @@ const Joi = require("joi");
  * @property {string} [event_category]
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
  * @property {Object} [event_schema]
+ * @property {string} [group]
  * @property {string} [version]
  * @property {string} [display_name]
  * @property {string} [description]
@@ -172,6 +182,8 @@ const Joi = require("joi");
  * @property {string} [start_date] - The start date and time of the history report.
  * @property {number[]} [subscribers] - An array of subscriber IDs associated
  *   with the history report.
+ * @property {string[]} [webhook_type] - An array of webhook type to identify
+ *   thetype of subscriber i.e (KAFKA or REST).
  */
 
 /**
@@ -237,18 +249,11 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SubscriberEventMapping
- * @property {number} [id]
- * @property {number} [event_id]
- * @property {number} [subscriber_id]
- * @property {string} [created_on]
- */
-
-/**
  * @typedef SubscriberResponse
  * @property {number} [id]
  * @property {string} [modified_by]
  * @property {string} [name]
+ * @property {string} [provider]
  * @property {string} [webhook_url]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
@@ -259,6 +264,26 @@ const Joi = require("joi");
  * @property {string} [type]
  * @property {AuthMeta} [auth_meta]
  * @property {EventConfig[]} [event_configs]
+ */
+
+/**
+ * @typedef Events
+ * @property {string} [slug]
+ * @property {string} [topic]
+ */
+
+/**
+ * @typedef SubscriberConfigRequestV2
+ * @property {number} [id]
+ * @property {string} [name]
+ * @property {string} [webhook_url]
+ * @property {string} [provider]
+ * @property {Association} [association]
+ * @property {Object} [custom_headers]
+ * @property {SubscriberStatus} [status]
+ * @property {string} [email_id]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Events[]} [events]
  */
 
 /**
@@ -280,6 +305,7 @@ const Joi = require("joi");
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {SubscriberStatus} [status]
@@ -297,7 +323,7 @@ const Joi = require("joi");
  * @property {Page} [page]
  */
 
-/** @typedef {"active" | "inactive" | "blocked"} SubscriberStatus */
+/** @typedef {"active" | "inactive"} SubscriberStatus */
 
 class WebhookPlatformModel {
   /** @returns {Error} */
@@ -454,6 +480,17 @@ class WebhookPlatformModel {
     });
   }
 
+  /** @returns {SubscriberEventMapping} */
+  static SubscriberEventMapping() {
+    return Joi.object({
+      id: Joi.number(),
+      event_id: Joi.number(),
+      subscriber_id: Joi.number(),
+      topic: Joi.string().allow("").allow(null),
+      created_on: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {EventConfig} */
   static EventConfig() {
     return Joi.object({
@@ -463,6 +500,7 @@ class WebhookPlatformModel {
       event_category: Joi.string().allow(""),
       subscriber_event_mapping: WebhookPlatformModel.SubscriberEventMapping(),
       event_schema: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
+      group: Joi.string().allow("").allow(null),
       version: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
       description: Joi.string().allow("").allow(null),
@@ -511,6 +549,7 @@ class WebhookPlatformModel {
       end_date: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
       subscribers: Joi.array().items(Joi.number()),
+      webhook_type: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -592,22 +631,13 @@ class WebhookPlatformModel {
     });
   }
 
-  /** @returns {SubscriberEventMapping} */
-  static SubscriberEventMapping() {
-    return Joi.object({
-      id: Joi.number(),
-      event_id: Joi.number(),
-      subscriber_id: Joi.number(),
-      created_on: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {SubscriberResponse} */
   static SubscriberResponse() {
     return Joi.object({
       id: Joi.number(),
       modified_by: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
       association: WebhookPlatformModel.Association(),
       custom_headers: Joi.any(),
@@ -618,6 +648,30 @@ class WebhookPlatformModel {
       type: Joi.string().allow("").allow(null),
       auth_meta: WebhookPlatformModel.AuthMeta(),
       event_configs: Joi.array().items(WebhookPlatformModel.EventConfig()),
+    });
+  }
+
+  /** @returns {Events} */
+  static Events() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      topic: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriberConfigRequestV2} */
+  static SubscriberConfigRequestV2() {
+    return Joi.object({
+      id: Joi.number(),
+      name: Joi.string().allow(""),
+      webhook_url: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
+      association: WebhookPlatformModel.Association(),
+      custom_headers: Joi.any(),
+      status: WebhookPlatformModel.SubscriberStatus(),
+      email_id: Joi.string().allow(""),
+      auth_meta: WebhookPlatformModel.AuthMeta(),
+      events: Joi.array().items(WebhookPlatformModel.Events()),
     });
   }
 
@@ -643,6 +697,7 @@ class WebhookPlatformModel {
       modified_by: Joi.string().allow(""),
       name: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
       association: WebhookPlatformModel.Association(),
       custom_headers: Joi.any(),
       status: WebhookPlatformModel.SubscriberStatus(),
@@ -672,9 +727,7 @@ class WebhookPlatformModel {
     return Joi.string().valid(
       "active",
 
-      "inactive",
-
-      "blocked"
+      "inactive"
     );
   }
 }

@@ -148,7 +148,7 @@ const Joi = require("joi");
 /**
  * @typedef AggregatorRoute
  * @property {Object} [data] - Data
- * @property {string} [payment_flow_data] - Payment_flow_data
+ * @property {Object} [payment_flow_data] - Payment_flow_data
  * @property {string} [payment_flow] - Payment_flow
  * @property {string} [api_link] - Api_link
  */
@@ -1500,7 +1500,7 @@ class PaymentPlatformModel {
   static AggregatorRoute() {
     return Joi.object({
       data: Joi.any().allow(null),
-      payment_flow_data: Joi.string().allow("").allow(null),
+      payment_flow_data: Joi.any().allow(null),
       payment_flow: Joi.string().allow("").allow(null),
       api_link: Joi.string().allow("").allow(null),
     });

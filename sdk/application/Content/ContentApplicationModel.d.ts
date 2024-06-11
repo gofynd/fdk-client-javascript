@@ -119,6 +119,7 @@ export = ContentApplicationModel;
  * @property {string} [reading_time]
  * @property {string} [slug]
  * @property {string[]} [tags]
+ * @property {string} [publish_date]
  * @property {SEO} [seo]
  * @property {CronSchedule} [_schedule]
  * @property {string} [title]
@@ -727,6 +728,7 @@ type BlogSchema = {
     reading_time?: string;
     slug?: string;
     tags?: string[];
+    publish_date?: string;
     seo?: SEO;
     _schedule?: CronSchedule;
     title?: string;

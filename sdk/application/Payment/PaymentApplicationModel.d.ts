@@ -169,19 +169,19 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef PaymentStatusUpdateRequest
- * @property {string} status - Status of payment.
- * @property {string} merchant_transaction_id - Unique fynd transaction id
+ * @property {string} [status] - Status of payment.
+ * @property {string} [merchant_transaction_id] - Unique fynd transaction id
  * @property {string} method - Payment method
  * @property {string} [device_id] - EDC machine Unique Identifier
  * @property {string} aggregator - Payment gateway name
- * @property {string} customer_id - Payment gateway customer id.
- * @property {string} contact - Customer valid mobile number
+ * @property {string} [customer_id] - Payment gateway customer id.
+ * @property {string} [contact] - Customer valid mobile number
  * @property {string} merchant_order_id - Unique fynd order id
  * @property {string} [vpa] - Customer vpa address
- * @property {string} order_id - Payment gateway order id
- * @property {string} currency - Currency code.
- * @property {number} amount - Payable amount.
- * @property {string} email - Customer valid email
+ * @property {string} [order_id] - Payment gateway order id
+ * @property {string} [currency] - Currency code.
+ * @property {number} [amount] - Payable amount.
+ * @property {string} [email] - Customer valid email
  */
 /**
  * @typedef PaymentStatusUpdateResponse
@@ -263,7 +263,7 @@ export = PaymentApplicationModel;
 /**
  * @typedef AggregatorRoute
  * @property {Object} [data] - Data
- * @property {string} [payment_flow_data] - Payment_flow_data
+ * @property {Object} [payment_flow_data] - Payment_flow_data
  * @property {string} [payment_flow] - Payment_flow
  * @property {string} [api_link] - Api_link
  */
@@ -1544,11 +1544,11 @@ type PaymentStatusUpdateRequest = {
     /**
      * - Status of payment.
      */
-    status: string;
+    status?: string;
     /**
      * - Unique fynd transaction id
      */
-    merchant_transaction_id: string;
+    merchant_transaction_id?: string;
     /**
      * - Payment method
      */
@@ -1564,11 +1564,11 @@ type PaymentStatusUpdateRequest = {
     /**
      * - Payment gateway customer id.
      */
-    customer_id: string;
+    customer_id?: string;
     /**
      * - Customer valid mobile number
      */
-    contact: string;
+    contact?: string;
     /**
      * - Unique fynd order id
      */
@@ -1580,19 +1580,19 @@ type PaymentStatusUpdateRequest = {
     /**
      * - Payment gateway order id
      */
-    order_id: string;
+    order_id?: string;
     /**
      * - Currency code.
      */
-    currency: string;
+    currency?: string;
     /**
      * - Payable amount.
      */
-    amount: number;
+    amount?: number;
     /**
      * - Customer valid email
      */
-    email: string;
+    email?: string;
 };
 /** @returns {PaymentStatusUpdateResponse} */
 declare function PaymentStatusUpdateResponse(): PaymentStatusUpdateResponse;
@@ -1849,7 +1849,7 @@ type AggregatorRoute = {
     /**
      * - Payment_flow_data
      */
-    payment_flow_data?: string;
+    payment_flow_data?: any;
     /**
      * - Payment_flow
      */

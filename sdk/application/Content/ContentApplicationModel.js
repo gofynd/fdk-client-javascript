@@ -136,6 +136,7 @@ const Joi = require("joi");
  * @property {string} [reading_time]
  * @property {string} [slug]
  * @property {string[]} [tags]
+ * @property {string} [publish_date]
  * @property {SEO} [seo]
  * @property {CronSchedule} [_schedule]
  * @property {string} [title]
@@ -833,6 +834,7 @@ class ContentApplicationModel {
       reading_time: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
+      publish_date: Joi.string().allow(""),
       seo: ContentApplicationModel.SEO(),
       _schedule: ContentApplicationModel.CronSchedule(),
       title: Joi.string().allow(""),

@@ -46,7 +46,7 @@ class Webhook {
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
    * @name fetchAllWebhookEvents
-   * @summary: Fetch all webhook events
+   * @summary: Fetch all webhook events.
    * @description: Retrieve a list of all webhook events in the public server setup. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/fetchAllWebhookEvents/).
    */
   async fetchAllWebhookEvents(
@@ -202,7 +202,7 @@ class Webhook {
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
    * @name queryWebhookEventDetails
-   * @summary: Query webhook event details
+   * @summary: Query webhook event details.
    * @description: Query and obtain detailed information about webhook events in the public server configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/queryWebhookEventDetails/).
    */
   async queryWebhookEventDetails(

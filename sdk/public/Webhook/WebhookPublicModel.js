@@ -12,6 +12,7 @@ const Joi = require("joi");
  * @property {string} [description]
  * @property {string} [created_on]
  * @property {string} [updated_on]
+ * @property {string} [group]
  */
 
 /**
@@ -117,6 +118,7 @@ class WebhookPublicModel {
       description: Joi.string().allow("").allow(null),
       created_on: Joi.string().allow(""),
       updated_on: Joi.string().allow(""),
+      group: Joi.string().allow("").allow(null),
     });
   }
 

@@ -31,7 +31,6 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef DispatchManifestsParam
- * @property {string} manifestId
  * @property {OrderPlatformModel.DispatchManifest} body
  */
 /**
@@ -68,6 +67,10 @@ export = OrderPlatformValidator;
  * @property {string} orderId
  * @property {string} [shipmentId]
  * @property {string} [documentType]
+ */
+/**
+ * @typedef GenerateProcessManifestParam
+ * @property {OrderPlatformModel.ProcessManifestRequest} body
  */
 /**
  * @typedef GetAllowedStateTransitionParam
@@ -151,16 +154,18 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef GetManifestShipmentsParam
- * @property {number} dpIds
- * @property {string} stores
- * @property {string} toDate
- * @property {string} fromDate
- * @property {string} [dpName]
- * @property {string} [salesChannels]
- * @property {string} [searchType]
- * @property {string} [searchValue]
- * @property {string} [pageNo]
- * @property {string} [pageSize]
+ * @property {string} dpIds - Filter shipments with the specific Courier partner
+ *   Ids which is a combination of courier partner extension and scheme Ids.
+ * @property {number} stores - Filter with the specific store.
+ * @property {string} toDate - End date for the shipment search range.
+ * @property {string} fromDate - Start date for the shipment search range.
+ * @property {string} [dpName] - Filter with the specific courier partner name.
+ * @property {string} [salesChannels] - Comma-separated list of sales channels.
+ * @property {string} [searchType] - Type of search (e.g., by shipment ID, order
+ *   ID, AWB number).
+ * @property {string} [searchValue] - Value to search for based on the search type.
+ * @property {number} [pageNo] - Page number for pagination.
+ * @property {number} [pageSize] - Number of records per page for pagination.
  */
 /**
  * @typedef GetManifestfiltersParam
@@ -398,6 +403,8 @@ declare class OrderPlatformValidator {
     static generateInvoiceID(): GenerateInvoiceIDParam;
     /** @returns {GeneratePOSReceiptByOrderIdParam} */
     static generatePOSReceiptByOrderId(): GeneratePOSReceiptByOrderIdParam;
+    /** @returns {GenerateProcessManifestParam} */
+    static generateProcessManifest(): GenerateProcessManifestParam;
     /** @returns {GetAllowedStateTransitionParam} */
     static getAllowedStateTransition(): GetAllowedStateTransitionParam;
     /** @returns {GetAllowedTemplatesForBulkParam} */
@@ -480,7 +487,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestsParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestsParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
 type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
@@ -528,7 +535,6 @@ type CreateOrderParam = {
     body: OrderPlatformModel.CreateOrderAPI;
 };
 type DispatchManifestsParam = {
-    manifestId: string;
     body: OrderPlatformModel.DispatchManifest;
 };
 type DownloadBulkActionTemplateParam = {
@@ -566,6 +572,9 @@ type GeneratePOSReceiptByOrderIdParam = {
     orderId: string;
     shipmentId?: string;
     documentType?: string;
+};
+type GenerateProcessManifestParam = {
+    body: OrderPlatformModel.ProcessManifestRequest;
 };
 type GetAllowedStateTransitionParam = {
     /**
@@ -745,16 +754,48 @@ type GetManifestDetailsParam = {
     manifestId: string;
 };
 type GetManifestShipmentsParam = {
-    dpIds: number;
-    stores: string;
+    /**
+     * - Filter shipments with the specific Courier partner
+     * Ids which is a combination of courier partner extension and scheme Ids.
+     */
+    dpIds: string;
+    /**
+     * - Filter with the specific store.
+     */
+    stores: number;
+    /**
+     * - End date for the shipment search range.
+     */
     toDate: string;
+    /**
+     * - Start date for the shipment search range.
+     */
     fromDate: string;
+    /**
+     * - Filter with the specific courier partner name.
+     */
     dpName?: string;
+    /**
+     * - Comma-separated list of sales channels.
+     */
     salesChannels?: string;
+    /**
+     * - Type of search (e.g., by shipment ID, order
+     * ID, AWB number).
+     */
     searchType?: string;
+    /**
+     * - Value to search for based on the search type.
+     */
     searchValue?: string;
-    pageNo?: string;
-    pageSize?: string;
+    /**
+     * - Page number for pagination.
+     */
+    pageNo?: number;
+    /**
+     * - Number of records per page for pagination.
+     */
+    pageSize?: number;
 };
 type GetManifestfiltersParam = {
     /**

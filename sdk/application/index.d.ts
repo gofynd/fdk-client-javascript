@@ -16,4 +16,5 @@ export namespace ApplicationModel {
     const ShareApplicationModel: typeof import("./Share/ShareApplicationModel");
     const ThemeApplicationModel: typeof import("./Theme/ThemeApplicationModel");
     const UserApplicationModel: typeof import("./User/UserApplicationModel");
+    const WebhookApplicationModel: typeof import("./Webhook/WebhookApplicationModel");
 }

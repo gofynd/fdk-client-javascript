@@ -1,6 +1,7 @@
 export const PlatformConfig: typeof import("./PlatformConfig");
 export const PlatformClient: typeof import("./PlatformClient");
 export namespace PlatformModel {
+    const AnalyticsPlatformModel: typeof import("./Analytics/AnalyticsPlatformModel");
     const AuditTrailPlatformModel: typeof import("./AuditTrail/AuditTrailPlatformModel");
     const BillingPlatformModel: typeof import("./Billing/BillingPlatformModel");
     const CartPlatformModel: typeof import("./Cart/CartPlatformModel");

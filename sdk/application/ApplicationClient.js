@@ -13,6 +13,7 @@ const Rewards = require("./Rewards/RewardsApplicationClient");
 const Share = require("./Share/ShareApplicationClient");
 const Theme = require("./Theme/ThemeApplicationClient");
 const User = require("./User/UserApplicationClient");
+const Webhook = require("./Webhook/WebhookApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
 const { convertStringToBase64 } = require("../common/utils");
@@ -41,6 +42,7 @@ class ApplicationClient {
     this.share = new Share(config);
     this.theme = new Theme(config);
     this.user = new User(config);
+    this.webhook = new Webhook(config);
     if (
       typeof window != "undefined" &&
       config.options &&

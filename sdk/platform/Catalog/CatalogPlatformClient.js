@@ -817,20 +817,22 @@ class Catalog {
    * @param {CatalogPlatformValidator.CreateMarketplaceOptinParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.UpdatedResponse>} - Success response
+   * @returns {Promise<CatalogPlatformModel.CreateMarketplaceOptinResponse>}
+   *   - Success response
+   *
    * @name createMarketplaceOptin
    * @summary: Create or Update opt-in infomation
-   * @description: Allows to create and update opt-in information for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMarketplaceOptin/).
+   * @description: Allows to create opt-in information for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMarketplaceOptin/).
    */
   async createMarketplaceOptin(
-    { marketplace, body, requestHeaders } = { requestHeaders: {} },
+    { marketplaceSlug, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CatalogPlatformValidator.createMarketplaceOptin().validate(
       {
-        marketplace,
+        marketplaceSlug,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -844,7 +846,7 @@ class Catalog {
       error: warrning,
     } = CatalogPlatformValidator.createMarketplaceOptin().validate(
       {
-        marketplace,
+        marketplaceSlug,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -863,7 +865,7 @@ class Catalog {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/${marketplace}/optin/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/channel/${marketplaceSlug}/opt-in`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -877,10 +879,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.UpdatedResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CatalogPlatformModel.CreateMarketplaceOptinResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2999,7 +3001,7 @@ class Catalog {
    * @description: Helps to get bulk Inventory upload jobs status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBulkUploadHistory/).
    */
   async getInventoryBulkUploadHistory(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, search, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3008,6 +3010,7 @@ class Catalog {
       {
         pageNo,
         pageSize,
+        search,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3022,6 +3025,7 @@ class Catalog {
       {
         pageNo,
         pageSize,
+        search,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3035,6 +3039,7 @@ class Catalog {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["search"] = search;
 
     const xHeaders = {};
 
@@ -3078,11 +3083,12 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
+   * @param {string} [arg.search] - Search string to filter the results by batch id
    * @returns {Paginator<CatalogPlatformModel.BulkInventoryGet>}
    * @summary: List bulk inventory upload history
    * @description: Helps to get bulk Inventory upload jobs status.
    */
-  getInventoryBulkUploadHistoryPaginator({ pageSize } = {}) {
+  getInventoryBulkUploadHistoryPaginator({ pageSize, search } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -3091,6 +3097,7 @@ class Catalog {
       const data = await this.getInventoryBulkUploadHistory({
         pageNo: pageNo,
         pageSize: pageSize,
+        search: search,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

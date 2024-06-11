@@ -55,8 +55,16 @@ export = WebhookPlatformValidator;
  * @property {WebhookPlatformModel.SubscriberConfig} body
  */
 /**
+ * @typedef RegisterSubscriberToEventV2Param
+ * @property {WebhookPlatformModel.SubscriberConfigRequestV2} body
+ */
+/**
  * @typedef UpdateSubscriberConfigParam
  * @property {WebhookPlatformModel.SubscriberConfig} body
+ */
+/**
+ * @typedef UpdateSubscriberV2Param
+ * @property {WebhookPlatformModel.SubscriberConfigRequestV2} body
  */
 declare class WebhookPlatformValidator {
     /** @returns {CancelJobByNameParam} */
@@ -89,11 +97,15 @@ declare class WebhookPlatformValidator {
     static pingWebhook(): PingWebhookParam;
     /** @returns {RegisterSubscriberToEventParam} */
     static registerSubscriberToEvent(): RegisterSubscriberToEventParam;
+    /** @returns {RegisterSubscriberToEventV2Param} */
+    static registerSubscriberToEventV2(): RegisterSubscriberToEventV2Param;
     /** @returns {UpdateSubscriberConfigParam} */
     static updateSubscriberConfig(): UpdateSubscriberConfigParam;
+    /** @returns {UpdateSubscriberV2Param} */
+    static updateSubscriberV2(): UpdateSubscriberV2Param;
 }
 declare namespace WebhookPlatformValidator {
-    export { CancelJobByNameParam, DownloadDeliveryReportParam, FetchAllEventConfigurationsParam, GetDeliveryReportsParam, GetEventCountsParam, GetHistoricalReportsParam, GetManualRetryStatusParam, GetReportFiltersParam, GetSubscriberByIdParam, GetSubscribersByCompanyParam, GetSubscribersByExtensionIdParam, ManualRetryCancelParam, ManualRetryOfFailedEventParam, PingWebhookParam, RegisterSubscriberToEventParam, UpdateSubscriberConfigParam };
+    export { CancelJobByNameParam, DownloadDeliveryReportParam, FetchAllEventConfigurationsParam, GetDeliveryReportsParam, GetEventCountsParam, GetHistoricalReportsParam, GetManualRetryStatusParam, GetReportFiltersParam, GetSubscriberByIdParam, GetSubscribersByCompanyParam, GetSubscribersByExtensionIdParam, ManualRetryCancelParam, ManualRetryOfFailedEventParam, PingWebhookParam, RegisterSubscriberToEventParam, RegisterSubscriberToEventV2Param, UpdateSubscriberConfigParam, UpdateSubscriberV2Param };
 }
 type CancelJobByNameParam = {
     filename: string;
@@ -156,8 +168,14 @@ type PingWebhookParam = {
 type RegisterSubscriberToEventParam = {
     body: WebhookPlatformModel.SubscriberConfig;
 };
+type RegisterSubscriberToEventV2Param = {
+    body: WebhookPlatformModel.SubscriberConfigRequestV2;
+};
 type UpdateSubscriberConfigParam = {
     body: WebhookPlatformModel.SubscriberConfig;
+};
+type UpdateSubscriberV2Param = {
+    body: WebhookPlatformModel.SubscriberConfigRequestV2;
 };
 type FetchAllEventConfigurationsParam = any;
 type GetManualRetryStatusParam = any;

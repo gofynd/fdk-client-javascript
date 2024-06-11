@@ -44,8 +44,8 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef CreateMarketplaceOptinParam
- * @property {string} marketplace - The marketplace for which the detail needs
- *   to be retrieved.
+ * @property {string} marketplaceSlug - The marketplace for which the detail
+ *   needs to be retrieved.
  * @property {CatalogPlatformModel.OptInPostRequest} body
  */
 /**
@@ -190,6 +190,7 @@ export = CatalogPlatformValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ * @property {string} [search] - Search string to filter the results by batch id
  */
 /**
  * @typedef GetInventoryBySizeParam
@@ -436,7 +437,7 @@ export = CatalogPlatformValidator;
  * @property {string} department - Department of the product to be uploaded.
  * @property {string} productType - Product type of the product to be uploaded
  *   i.e. set, standard , digital.
- * @property {CatalogPlatformModel.BulkJob} body
+ * @property {CatalogPlatformModel.BulkProductJob} body
  */
 /**
  * @typedef ValidateProductTemplateParam
@@ -661,10 +662,10 @@ type CreateInventoryExportJobParam = {
 };
 type CreateMarketplaceOptinParam = {
     /**
-     * - The marketplace for which the detail needs
-     * to be retrieved.
+     * - The marketplace for which the detail
+     * needs to be retrieved.
      */
-    marketplace: string;
+    marketplaceSlug: string;
     body: CatalogPlatformModel.OptInPostRequest;
 };
 type CreateProductParam = {
@@ -922,6 +923,10 @@ type GetInventoryBulkUploadHistoryParam = {
      * Default is 12.
      */
     pageSize?: number;
+    /**
+     * - Search string to filter the results by batch id
+     */
+    search?: string;
 };
 type GetInventoryBySizeParam = {
     /**
@@ -1404,7 +1409,7 @@ type UploadBulkProductsParam = {
      * i.e. set, standard , digital.
      */
     productType: string;
-    body: CatalogPlatformModel.BulkJob;
+    body: CatalogPlatformModel.BulkProductJob;
 };
 type ValidateProductTemplateParam = {
     /**

@@ -57,8 +57,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateMarketplaceOptinParam
- * @property {string} marketplace - The marketplace for which the detail needs
- *   to be retrieved.
+ * @property {string} marketplaceSlug - The marketplace for which the detail
+ *   needs to be retrieved.
  * @property {CatalogPlatformModel.OptInPostRequest} body
  */
 
@@ -228,6 +228,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ * @property {string} [search] - Search string to filter the results by batch id
  */
 
 /**
@@ -514,7 +515,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} department - Department of the product to be uploaded.
  * @property {string} productType - Product type of the product to be uploaded
  *   i.e. set, standard , digital.
- * @property {CatalogPlatformModel.BulkJob} body
+ * @property {CatalogPlatformModel.BulkProductJob} body
  */
 
 /**
@@ -611,7 +612,7 @@ class CatalogPlatformValidator {
   /** @returns {CreateMarketplaceOptinParam} */
   static createMarketplaceOptin() {
     return Joi.object({
-      marketplace: Joi.string().allow("").required(),
+      marketplaceSlug: Joi.string().allow("").required(),
       body: CatalogPlatformModel.OptInPostRequest().required(),
     }).required();
   }
@@ -815,6 +816,7 @@ class CatalogPlatformValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      search: Joi.string().allow(""),
     }).required();
   }
 
@@ -1149,7 +1151,7 @@ class CatalogPlatformValidator {
     return Joi.object({
       department: Joi.string().allow("").required(),
       productType: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.BulkJob().required(),
+      body: CatalogPlatformModel.BulkProductJob().required(),
     }).required();
   }
 

@@ -524,12 +524,11 @@ class Order {
    * @description: Updates the status of the manifest to processed and change the status of the shipments in the manifest to dispatch status - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifests/).
    */
   async dispatchManifests(
-    { manifestId, body, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.dispatchManifests().validate(
       {
-        manifestId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -543,7 +542,6 @@ class Order {
       error: warrning,
     } = OrderPlatformValidator.dispatchManifests().validate(
       {
-        manifestId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -562,7 +560,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/${manifestId}/dispatch`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/dispatch`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -1240,6 +1238,85 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > generatePOSReceiptByOrderId \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.GenerateProcessManifestParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.ManifestResponse>} - Success response
+   * @name generateProcessManifest
+   * @summary: Process Order Manifest
+   * @description: Endpoint to save and process order manifests. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generateProcessManifest/).
+   */
+  async generateProcessManifest(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.generateProcessManifest().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.generateProcessManifest().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > generateProcessManifest \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/process-manifest`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.ManifestResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > generateProcessManifest \n ${res_error}`,
         });
       }
     }
@@ -2376,7 +2453,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifests/shipments`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/shipments-listing`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },

@@ -220,6 +220,7 @@ export = CatalogApplicationModel;
  * @typedef ProductSizes
  * @property {ProductSize[]} [sizes]
  * @property {ProductSizesPrice} [price]
+ * @property {ProductSizesPrice} [price_per_piece]
  * @property {SizeChart} [size_chart]
  * @property {boolean} [sellable]
  * @property {boolean} [multi_size]
@@ -266,6 +267,7 @@ export = CatalogApplicationModel;
  * @property {string} [name]
  * @property {string} [value]
  * @property {string} [slug]
+ * @property {Object} [_custom_json]
  * @property {ProductListingAction} [action]
  */
 /**
@@ -274,6 +276,7 @@ export = CatalogApplicationModel;
  * @property {string} [header]
  * @property {ProductVariantItemResponse[]} [items]
  * @property {string} [key]
+ * @property {string} [logo]
  */
 /**
  * @typedef ProductVariantsResponse
@@ -1303,6 +1306,7 @@ declare function ProductSizes(): ProductSizes;
 type ProductSizes = {
     sizes?: ProductSize[];
     price?: ProductSizesPrice;
+    price_per_piece?: ProductSizesPrice;
     size_chart?: SizeChart;
     sellable?: boolean;
     multi_size?: boolean;
@@ -1355,6 +1359,7 @@ type ProductVariantItemResponse = {
     name?: string;
     value?: string;
     slug?: string;
+    _custom_json?: any;
     action?: ProductListingAction;
 };
 /** @returns {ProductVariantResponse} */
@@ -1364,6 +1369,7 @@ type ProductVariantResponse = {
     header?: string;
     items?: ProductVariantItemResponse[];
     key?: string;
+    logo?: string;
 };
 /** @returns {ProductVariantsResponse} */
 declare function ProductVariantsResponse(): ProductVariantsResponse;

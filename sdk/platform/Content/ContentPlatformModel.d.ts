@@ -189,6 +189,7 @@ export = ContentPlatformModel;
  * @property {boolean} [published]
  * @property {string} [reading_time]
  * @property {string} [slug]
+ * @property {string} [publish_date]
  * @property {string[]} [tags]
  * @property {SEO} [seo]
  * @property {CronSchedule} [_schedule]
@@ -1446,6 +1447,7 @@ type BlogSchema = {
     published?: boolean;
     reading_time?: string;
     slug?: string;
+    publish_date?: string;
     tags?: string[];
     seo?: SEO;
     _schedule?: CronSchedule;

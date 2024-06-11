@@ -132,7 +132,7 @@ export = PaymentPlatformModel;
 /**
  * @typedef AggregatorRoute
  * @property {Object} [data] - Data
- * @property {string} [payment_flow_data] - Payment_flow_data
+ * @property {Object} [payment_flow_data] - Payment_flow_data
  * @property {string} [payment_flow] - Payment_flow
  * @property {string} [api_link] - Api_link
  */
@@ -1561,7 +1561,7 @@ type AggregatorRoute = {
     /**
      * - Payment_flow_data
      */
-    payment_flow_data?: string;
+    payment_flow_data?: any;
     /**
      * - Payment_flow
      */

@@ -58,7 +58,7 @@ declare class Webhook {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<WebhookPartnerModel.HistoryResponse>} - Success response
      * @name getHistoricalReports
-     * @summary: Get report download history
+     * @summary: Get report download history.
      * @description: Retrieve history reports for a specific company based on the provided filters.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/getHistoricalReports/).
      */
@@ -90,7 +90,7 @@ declare class Webhook {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<WebhookPartnerModel.UpdateSubscriberResponse>} - Success response
      * @name updateSubscriber
-     * @summary: Update subscriber status by id
+     * @summary: Update subscriber status by id.
      * @description: Update subscriber status by id.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/updateSubscriber/).
      */

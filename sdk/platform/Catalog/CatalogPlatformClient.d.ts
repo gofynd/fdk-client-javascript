@@ -107,12 +107,14 @@ declare class Catalog {
      * @param {CatalogPlatformValidator.CreateMarketplaceOptinParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.UpdatedResponse>} - Success response
+     * @returns {Promise<CatalogPlatformModel.CreateMarketplaceOptinResponse>}
+     *   - Success response
+     *
      * @name createMarketplaceOptin
      * @summary: Create or Update opt-in infomation
-     * @description: Allows to create and update opt-in information for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMarketplaceOptin/).
+     * @description: Allows to create opt-in information for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMarketplaceOptin/).
      */
-    createMarketplaceOptin({ marketplace, body, requestHeaders }?: CatalogPlatformValidator.CreateMarketplaceOptinParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdatedResponse>;
+    createMarketplaceOptin({ marketplaceSlug, body, requestHeaders }?: CatalogPlatformValidator.CreateMarketplaceOptinParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateMarketplaceOptinResponse>;
     /**
      * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -422,17 +424,19 @@ declare class Catalog {
      * @summary: List bulk inventory upload history
      * @description: Helps to get bulk Inventory upload jobs status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBulkUploadHistory/).
      */
-    getInventoryBulkUploadHistory({ pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetInventoryBulkUploadHistoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkInventoryGet>;
+    getInventoryBulkUploadHistory({ pageNo, pageSize, search, requestHeaders }?: CatalogPlatformValidator.GetInventoryBulkUploadHistoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkInventoryGet>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
+     * @param {string} [arg.search] - Search string to filter the results by batch id
      * @returns {Paginator<CatalogPlatformModel.BulkInventoryGet>}
      * @summary: List bulk inventory upload history
      * @description: Helps to get bulk Inventory upload jobs status.
      */
-    getInventoryBulkUploadHistoryPaginator({ pageSize }?: {
+    getInventoryBulkUploadHistoryPaginator({ pageSize, search }?: {
         pageSize?: number;
+        search?: string;
     }): Paginator<CatalogPlatformModel.BulkInventoryGet>;
     /**
      * @param {CatalogPlatformValidator.GetInventoryBySizeParam} arg - Arg object

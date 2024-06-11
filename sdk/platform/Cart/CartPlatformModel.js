@@ -1333,6 +1333,7 @@ const Joi = require("joi");
  * @property {string} currency_code
  * @property {string} aggregator
  * @property {string} order_type
+ * @property {string} [callback_url]
  * @property {OverrideCartItem[]} cart_items
  * @property {number} [ordering_store]
  * @property {Object} [shipping_address]
@@ -3501,6 +3502,7 @@ class CartPlatformModel {
       currency_code: Joi.string().allow("").required(),
       aggregator: Joi.string().allow("").required(),
       order_type: Joi.string().allow("").required(),
+      callback_url: Joi.string().allow(""),
       cart_items: Joi.array()
         .items(CartPlatformModel.OverrideCartItem())
         .required(),
