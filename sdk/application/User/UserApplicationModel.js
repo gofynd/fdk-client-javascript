@@ -1,6 +1,16 @@
 const Joi = require("joi");
 
 /**
+ * @typedef UpdateUserAttributesRequest
+ * @property {Object} [attributes]
+ */
+
+/**
+ * @typedef UserAttributes
+ * @property {Object} [attributes]
+ */
+
+/**
  * @typedef DeleteApplicationUserRequestSchema
  * @property {string} [user_id]
  * @property {string} [reason]
@@ -31,6 +41,7 @@ const Joi = require("joi");
 
 /**
  * @typedef EditProfileRequestSchema
+ * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {EditProfileMobileSchema} [mobile]
@@ -56,7 +67,6 @@ const Joi = require("joi");
  * @property {string} [action]
  * @property {string} [token]
  * @property {string} [register_token]
- * @property {string} [captcha_code]
  */
 
 /**
@@ -95,13 +105,13 @@ const Joi = require("joi");
 
 /**
  * @typedef SendMobileOtpRequestSchema
+ * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
  * @property {string} [mobile]
  * @property {string} [country_code]
  * @property {string} [action]
  * @property {string} [token]
  * @property {string} [android_hash]
  * @property {string} [force]
- * @property {string} [captcha_code]
  */
 
 /**
@@ -149,27 +159,24 @@ const Joi = require("joi");
 /**
  * @typedef SendResetPasswordEmailRequestSchema
  * @property {string} [email]
- * @property {string} [captcha_code]
  */
 
 /**
  * @typedef SendResetPasswordMobileRequestSchema
  * @property {string} [country_code]
  * @property {string} [mobile]
- * @property {string} [captcha_code]
  */
 
 /**
  * @typedef PasswordLoginRequestSchema
- * @property {string} [captcha_code]
  * @property {string} [password]
  * @property {string} [username]
  */
 
 /**
  * @typedef SendOtpRequestSchema
+ * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
  * @property {string} [country_code]
- * @property {string} [captcha_code]
  * @property {string} [mobile]
  * @property {string} [android_hash]
  */
@@ -198,6 +205,11 @@ const Joi = require("joi");
  * @property {string} [register_token]
  * @property {boolean} [user_exists]
  * @property {UserSchema} [user]
+ */
+
+/**
+ * @typedef UserExistsResponse
+ * @property {boolean} [user_exists]
  */
 
 /**
@@ -290,7 +302,7 @@ const Joi = require("joi");
 
 /**
  * @typedef HasPasswordSuccess
- * @property {boolean} [result]
+ * @property {number} [result]
  */
 
 /**
@@ -318,6 +330,7 @@ const Joi = require("joi");
 /**
  * @typedef EmailOtpSuccess
  * @property {boolean} [success]
+ * @property {string} [resend_email_token]
  */
 
 /**
@@ -348,22 +361,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AuthenticationInternalServerErrorSchema
- * @property {string} [message]
- */
-
-/**
- * @typedef AuthenticationApiErrorSchema
- * @property {string} [message]
- */
-
-/**
  * @typedef APIError
  * @property {string} [code]
  * @property {string} [message]
  * @property {string} [info] - Error code description link
  * @property {string} [request_id]
+ * @property {string} [error]
  * @property {Object} [meta]
+ * @property {boolean} [authenticated]
  */
 
 /**
@@ -426,8 +431,9 @@ const Joi = require("joi");
  * @property {string} [desktop_image]
  * @property {number} [delete_account_day]
  * @property {DeleteAccountReasons[]} [delete_account_reasons]
- * @property {Object} [delete_account_consent]
- * @property {Object} [session_config]
+ * @property {DeleteAccountConsent} [delete_account_consent]
+ * @property {SessionExpiry} [session_config]
+ * @property {number} [__v]
  */
 
 /**
@@ -501,7 +507,7 @@ const Joi = require("joi");
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 
@@ -557,26 +563,42 @@ const Joi = require("joi");
  * @property {string} [_id]
  * @property {string} [created_at]
  * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {string} [rr_id]
  */
 
 /**
  * @typedef PhoneNumber
- * @property {boolean} [active]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [phone]
- * @property {number} [country_code]
+ * @property {string} [phone] - Phone number
+ * @property {number} [country_code] - Country code
+ * @property {boolean} [active] - Is the phone number active
+ * @property {boolean} [primary] - Is it a primary phone number
+ * @property {boolean} [verified] - Is the phone number verified
  */
 
 /**
  * @typedef Email
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [email]
- * @property {boolean} [active]
+ * @property {string} [email] - Email address
+ * @property {boolean} [active] - Is the email active
+ * @property {boolean} [primary] - Is it a primary email
+ * @property {boolean} [verified] - Is the email verified
  */
 
 class UserApplicationModel {
+  /** @returns {UpdateUserAttributesRequest} */
+  static UpdateUserAttributesRequest() {
+    return Joi.object({
+      attributes: Joi.any(),
+    });
+  }
+
+  /** @returns {UserAttributes} */
+  static UserAttributes() {
+    return Joi.object({
+      attributes: Joi.any(),
+    });
+  }
+
   /** @returns {DeleteApplicationUserRequestSchema} */
   static DeleteApplicationUserRequestSchema() {
     return Joi.object({
@@ -617,6 +639,7 @@ class UserApplicationModel {
   /** @returns {EditProfileRequestSchema} */
   static EditProfileRequestSchema() {
     return Joi.object({
+      encrypt_otp: Joi.boolean(),
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       mobile: UserApplicationModel.EditProfileMobileSchema(),
@@ -646,7 +669,6 @@ class UserApplicationModel {
       action: Joi.string().allow(""),
       token: Joi.string().allow(""),
       register_token: Joi.string().allow(""),
-      captcha_code: Joi.string().allow(""),
     });
   }
 
@@ -697,13 +719,13 @@ class UserApplicationModel {
   /** @returns {SendMobileOtpRequestSchema} */
   static SendMobileOtpRequestSchema() {
     return Joi.object({
+      encrypt_otp: Joi.boolean(),
       mobile: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       action: Joi.string().allow(""),
       token: Joi.string().allow(""),
       android_hash: Joi.string().allow(""),
       force: Joi.string().allow(""),
-      captcha_code: Joi.string().allow(""),
     });
   }
 
@@ -765,7 +787,6 @@ class UserApplicationModel {
   static SendResetPasswordEmailRequestSchema() {
     return Joi.object({
       email: Joi.string().allow(""),
-      captcha_code: Joi.string().allow(""),
     });
   }
 
@@ -774,14 +795,12 @@ class UserApplicationModel {
     return Joi.object({
       country_code: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
-      captcha_code: Joi.string().allow(""),
     });
   }
 
   /** @returns {PasswordLoginRequestSchema} */
   static PasswordLoginRequestSchema() {
     return Joi.object({
-      captcha_code: Joi.string().allow(""),
       password: Joi.string().allow(""),
       username: Joi.string().allow(""),
     });
@@ -790,8 +809,8 @@ class UserApplicationModel {
   /** @returns {SendOtpRequestSchema} */
   static SendOtpRequestSchema() {
     return Joi.object({
+      encrypt_otp: Joi.boolean(),
       country_code: Joi.string().allow(""),
-      captcha_code: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
       android_hash: Joi.string().allow(""),
     });
@@ -828,6 +847,13 @@ class UserApplicationModel {
       register_token: Joi.string().allow(""),
       user_exists: Joi.boolean(),
       user: UserApplicationModel.UserSchema(),
+    });
+  }
+
+  /** @returns {UserExistsResponse} */
+  static UserExistsResponse() {
+    return Joi.object({
+      user_exists: Joi.boolean(),
     });
   }
 
@@ -940,7 +966,7 @@ class UserApplicationModel {
   /** @returns {HasPasswordSuccess} */
   static HasPasswordSuccess() {
     return Joi.object({
-      result: Joi.boolean(),
+      result: Joi.number(),
     });
   }
 
@@ -976,6 +1002,7 @@ class UserApplicationModel {
   static EmailOtpSuccess() {
     return Joi.object({
       success: Joi.boolean(),
+      resend_email_token: Joi.string().allow(""),
     });
   }
 
@@ -1016,20 +1043,6 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {AuthenticationInternalServerErrorSchema} */
-  static AuthenticationInternalServerErrorSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AuthenticationApiErrorSchema} */
-  static AuthenticationApiErrorSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {APIError} */
   static APIError() {
     return Joi.object({
@@ -1037,7 +1050,9 @@ class UserApplicationModel {
       message: Joi.string().allow(""),
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
+      error: Joi.string().allow(""),
       meta: Joi.any(),
+      authenticated: Joi.boolean(),
     });
   }
 
@@ -1114,8 +1129,9 @@ class UserApplicationModel {
       delete_account_reasons: Joi.array().items(
         UserApplicationModel.DeleteAccountReasons()
       ),
-      delete_account_consent: Joi.any(),
-      session_config: Joi.any(),
+      delete_account_consent: UserApplicationModel.DeleteAccountConsent(),
+      session_config: UserApplicationModel.SessionExpiry(),
+      __v: Joi.number(),
     });
   }
 
@@ -1213,7 +1229,7 @@ class UserApplicationModel {
   static SocialTokens() {
     return Joi.object({
       facebook: UserApplicationModel.Facebook(),
-      account_kit: UserApplicationModel.Accountkit(),
+      accountkit: UserApplicationModel.Accountkit(),
       google: UserApplicationModel.Google(),
     });
   }
@@ -1283,27 +1299,29 @@ class UserApplicationModel {
       _id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
+      external_id: Joi.string().allow(""),
+      rr_id: Joi.string().allow(""),
     });
   }
 
   /** @returns {PhoneNumber} */
   static PhoneNumber() {
     return Joi.object({
+      phone: Joi.string().allow(""),
+      country_code: Joi.number(),
       active: Joi.boolean(),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
-      phone: Joi.string().allow(""),
-      country_code: Joi.number(),
     });
   }
 
   /** @returns {Email} */
   static Email() {
     return Joi.object({
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
       email: Joi.string().allow(""),
       active: Joi.boolean(),
+      primary: Joi.boolean(),
+      verified: Joi.boolean(),
     });
   }
 }

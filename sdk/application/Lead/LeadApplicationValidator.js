@@ -19,18 +19,8 @@ const LeadApplicationModel = require("./LeadApplicationModel");
  */
 
 /**
- * @typedef GetParticipantsInsideVideoRoomParam
- * @property {string} uniqueName - Unique name of Video Room
- */
-
-/**
  * @typedef GetTicketParam
  * @property {string} id - ID of ticket to be retrieved
- */
-
-/**
- * @typedef GetTokenForVideoRoomParam
- * @property {string} uniqueName - Unique name of Video Room
  */
 
 /**
@@ -62,24 +52,10 @@ class LeadApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetParticipantsInsideVideoRoomParam} */
-  static getParticipantsInsideVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetTicketParam} */
   static getTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetTokenForVideoRoomParam} */
-  static getTokenForVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 

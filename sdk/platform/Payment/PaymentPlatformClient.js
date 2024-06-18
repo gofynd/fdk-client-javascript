@@ -20,8 +20,8 @@ class Payment {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
    * @name activateAndDectivatePayout
-   * @summary: Partial Update Payout
-   * @description: Partial Update Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/activateAndDectivatePayout/).
+   * @summary: Activate/Deactivate payout
+   * @description: Enable or disable payout functionality. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/activateAndDectivatePayout/).
    */
   async activateAndDectivatePayout(
     { uniqueTransferNo, body, requestHeaders } = { requestHeaders: {} },
@@ -103,8 +103,8 @@ class Payment {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.DeletePayoutResponse>} - Success response
    * @name deletePayout
-   * @summary: Delete Payout
-   * @description: Delete Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deletePayout/).
+   * @summary: Delete payout
+   * @description: Remove a payout transaction from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deletePayout/).
    */
   async deletePayout(
     { uniqueTransferNo, requestHeaders } = { requestHeaders: {} },
@@ -186,8 +186,8 @@ class Payment {
    *   - Success response
    *
    * @name deleteSubscriptionPaymentMethod
-   * @summary: Delete Subscription Payment Method
-   * @description: Uses this api to Delete Subscription Payment Method - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deleteSubscriptionPaymentMethod/).
+   * @summary: Delete subscription payment method
+   * @description: Remove a payment method from subscription options. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deleteSubscriptionPaymentMethod/).
    */
   async deleteSubscriptionPaymentMethod(
     { uniqueExternalId, paymentMethodId, requestHeaders } = {
@@ -273,8 +273,8 @@ class Payment {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PayoutsResponse>} - Success response
    * @name getAllPayouts
-   * @summary: Get All Payouts
-   * @description: Get All Payouts - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getAllPayouts/).
+   * @summary: List payouts
+   * @description: Retrieve a list of all payout transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getAllPayouts/).
    */
   async getAllPayouts(
     { uniqueExternalId, requestHeaders } = { requestHeaders: {} },
@@ -354,8 +354,8 @@ class Payment {
    * @returns {Promise<PaymentPlatformModel.SubscriptionConfigResponse>} -
    *   Success response
    * @name getSubscriptionConfig
-   * @summary: List Subscription Config
-   * @description: Get all  Subscription Config details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionConfig/).
+   * @summary: Get subscription config
+   * @description: Retrieve configuration settings for subscriptions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionConfig/).
    */
   async getSubscriptionConfig(
     { requestHeaders } = { requestHeaders: {} },
@@ -433,8 +433,8 @@ class Payment {
    *   - Success response
    *
    * @name getSubscriptionPaymentMethod
-   * @summary: List Subscription Payment Method
-   * @description: Get all  Subscription  Payment Method - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionPaymentMethod/).
+   * @summary: Get subscription payment method
+   * @description: Retrieve payment methods for subscriptions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionPaymentMethod/).
    */
   async getSubscriptionPaymentMethod(
     { uniqueExternalId, requestHeaders } = { requestHeaders: {} },
@@ -515,8 +515,8 @@ class Payment {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PayoutResponse>} - Success response
    * @name savePayout
-   * @summary: Save Payout
-   * @description: Save Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/savePayout/).
+   * @summary: Save payout
+   * @description: Store and process a payout transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/savePayout/).
    */
   async savePayout(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -594,8 +594,8 @@ class Payment {
    *   - Success response
    *
    * @name saveSubscriptionSetupIntent
-   * @summary: Save Subscription Setup Intent
-   * @description: Uses this api to Save Subscription Setup Intent - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/saveSubscriptionSetupIntent/).
+   * @summary: Save subscription setup intent
+   * @description: Store and process setup intent for subscriptions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/saveSubscriptionSetupIntent/).
    */
   async saveSubscriptionSetupIntent(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -675,8 +675,8 @@ class Payment {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
    * @name updatePayout
-   * @summary: Update Payout
-   * @description: Update Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePayout/).
+   * @summary: Update payout
+   * @description: Modify the details of a payout transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePayout/).
    */
   async updatePayout(
     { uniqueTransferNo, body, requestHeaders } = { requestHeaders: {} },
@@ -756,8 +756,8 @@ class Payment {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
    * @name verifyIfscCode
-   * @summary: Ifsc Code Verification
-   * @description: Get True/False for correct IFSC Code for adding bank details for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
+   * @summary: Verify IFSC code
+   * @description: Checks the validity of the provided IFSC code and returns bank details if valid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
    */
   async verifyIfscCode(
     { ifscCode, requestHeaders } = { requestHeaders: {} },

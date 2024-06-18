@@ -21,15 +21,46 @@ export = ThemeApplicationModel;
  * @property {Object} [attributes]
  */
 /**
+ * @typedef SEOMetaItem
+ * @property {string} [title]
+ * @property {SEOMetaItems[]} [items]
+ */
+/**
+ * @typedef SEOMetaItems
+ * @property {string} [key]
+ * @property {string} [value]
+ */
+/**
+ * @typedef SEOSitemap
+ * @property {number} [priority]
+ * @property {string} [frequency]
+ */
+/**
+ * @typedef SEObreadcrumb
+ * @property {string} [url]
+ * @property {Action} [action]
+ */
+/**
+ * @typedef Action
+ * @property {string} [type]
+ * @property {ActionPage} [page]
+ * @property {ActionPage} [popup]
+ */
+/**
  * @typedef AvailablePageSeo
  * @property {string} [title]
  * @property {string} [description]
+ * @property {string} [canonical_url]
+ * @property {SEOMetaItem[]} [meta_tags]
+ * @property {SEOSitemap} [sitemap]
+ * @property {SEObreadcrumb[]} [breadcrumb]
  * @property {string} [_id]
  */
 /**
  * @typedef AvailablePageSchemaSections
  * @property {string} [name]
  * @property {string} [label]
+ * @property {string} [source]
  * @property {Object} [props]
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
@@ -40,6 +71,9 @@ export = ThemeApplicationModel;
  * @property {AvailablePageScreenPredicate} [screen]
  * @property {AvailablePageUserPredicate} [user]
  * @property {AvailablePageRoutePredicate} [route]
+ * @property {AvailablePageSchedulePredicate} [schedule]
+ * @property {AvailablePagePlatformPredicate} [platform]
+ * @property {string[]} [zones] - An array of zone ids associated with the section
  */
 /**
  * @typedef AvailablePageScreenPredicate
@@ -59,6 +93,12 @@ export = ThemeApplicationModel;
  * @property {Object} [query]
  */
 /**
+ * @typedef AvailablePageSchedulePredicate
+ * @property {string} [cron]
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+/**
  * @typedef ThemesSchema
  * @property {Font} [font]
  * @property {Config} [config]
@@ -68,7 +108,7 @@ export = ThemeApplicationModel;
  * @property {string} [_id] - The unique identifier of the theme
  * @property {string} [application_id] - The ID of the application
  * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
- * @property {Meta} [meta]
+ * @property {ThemeMeta} [meta]
  * @property {string} [name] - The name of the theme
  * @property {string} [template_theme_id] - The ID of the template theme
  * @property {string} [version] - The version of the theme
@@ -77,6 +117,8 @@ export = ThemeApplicationModel;
  * @property {string} [updated_at] - The last update timestamp of the theme
  * @property {Assets} [assets]
  * @property {SectionItem[]} [available_sections] - Available sections information
+ * @property {string} [theme_type]
+ * @property {number} [company_id] - The company id in which sales channel exists
  */
 /**
  * @typedef Font
@@ -259,7 +301,7 @@ export = ThemeApplicationModel;
  * @property {AdvanceSetting} [advance_setting]
  */
 /**
- * @typedef Meta
+ * @typedef ThemeMeta
  * @property {ThemePayment} [payment]
  * @property {string} [description] - The description of the theme
  * @property {string[]} [industry] - An array of industries associated with the theme
@@ -326,13 +368,8 @@ export = ThemeApplicationModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {Section[]} [sections]
+ * @property {string} [value] - The value of the page.
  */
 /**
  * @typedef SectionProps
@@ -412,6 +449,12 @@ export = ThemeApplicationModel;
  * @property {string} [exact_url] - The exact URL of the route.
  */
 /**
+ * @typedef AvailablePagePlatformPredicate
+ * @property {boolean} [ios] - Section visibility on ios platform
+ * @property {boolean} [android] - Section visibility on android platform
+ * @property {boolean} [web] - Section visibility on web platform
+ */
+/**
  * @typedef BlitzkriegInternalServerErrorSchema
  * @property {string} [message]
  */
@@ -419,10 +462,65 @@ export = ThemeApplicationModel;
  * @typedef BlitzkriegApiErrorSchema
  * @property {string} [message]
  */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class ThemeApplicationModel {
 }
 declare namespace ThemeApplicationModel {
-    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, Colors, AuthConfig, PaletteConfig, Meta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema };
+    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema, ActionPage, PageType };
 }
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -448,11 +546,46 @@ declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaA
 type AvailablePageSectionMetaAttributes = {
     attributes?: any;
 };
+/** @returns {SEOMetaItem} */
+declare function SEOMetaItem(): SEOMetaItem;
+type SEOMetaItem = {
+    title?: string;
+    items?: SEOMetaItems[];
+};
+/** @returns {SEOMetaItems} */
+declare function SEOMetaItems(): SEOMetaItems;
+type SEOMetaItems = {
+    key?: string;
+    value?: string;
+};
+/** @returns {SEOSitemap} */
+declare function SEOSitemap(): SEOSitemap;
+type SEOSitemap = {
+    priority?: number;
+    frequency?: string;
+};
+/** @returns {SEObreadcrumb} */
+declare function SEObreadcrumb(): SEObreadcrumb;
+type SEObreadcrumb = {
+    url?: string;
+    action?: Action;
+};
+/** @returns {Action} */
+declare function Action(): Action;
+type Action = {
+    type?: string;
+    page?: ActionPage;
+    popup?: ActionPage;
+};
 /** @returns {AvailablePageSeo} */
 declare function AvailablePageSeo(): AvailablePageSeo;
 type AvailablePageSeo = {
     title?: string;
     description?: string;
+    canonical_url?: string;
+    meta_tags?: SEOMetaItem[];
+    sitemap?: SEOSitemap;
+    breadcrumb?: SEObreadcrumb[];
     _id?: string;
 };
 /** @returns {AvailablePageSchemaSections} */
@@ -460,6 +593,7 @@ declare function AvailablePageSchemaSections(): AvailablePageSchemaSections;
 type AvailablePageSchemaSections = {
     name?: string;
     label?: string;
+    source?: string;
     props?: any;
     blocks?: any[];
     preset?: any;
@@ -471,6 +605,12 @@ type AvailablePagePredicate = {
     screen?: AvailablePageScreenPredicate;
     user?: AvailablePageUserPredicate;
     route?: AvailablePageRoutePredicate;
+    schedule?: AvailablePageSchedulePredicate;
+    platform?: AvailablePagePlatformPredicate;
+    /**
+     * - An array of zone ids associated with the section
+     */
+    zones?: string[];
 };
 /** @returns {AvailablePageScreenPredicate} */
 declare function AvailablePageScreenPredicate(): AvailablePageScreenPredicate;
@@ -491,6 +631,13 @@ type AvailablePageRoutePredicate = {
     selected?: string;
     exact_url?: string;
     query?: any;
+};
+/** @returns {AvailablePageSchedulePredicate} */
+declare function AvailablePageSchedulePredicate(): AvailablePageSchedulePredicate;
+type AvailablePageSchedulePredicate = {
+    cron?: string;
+    start?: string;
+    end?: string;
 };
 /** @returns {ThemesSchema} */
 declare function ThemesSchema(): ThemesSchema;
@@ -521,7 +668,7 @@ type ThemesSchema = {
      * - The ID of the theme in the marketplace
      */
     marketplace_theme_id?: string;
-    meta?: Meta;
+    meta?: ThemeMeta;
     /**
      * - The name of the theme
      */
@@ -551,6 +698,11 @@ type ThemesSchema = {
      * - Available sections information
      */
     available_sections?: SectionItem[];
+    theme_type?: string;
+    /**
+     * - The company id in which sales channel exists
+     */
+    company_id?: number;
 };
 /** @returns {Font} */
 declare function Font(): Font;
@@ -984,9 +1136,9 @@ type PaletteConfig = {
     general_setting?: GeneralSetting;
     advance_setting?: AdvanceSetting;
 };
-/** @returns {Meta} */
-declare function Meta(): Meta;
-type Meta = {
+/** @returns {ThemeMeta} */
+declare function ThemeMeta(): ThemeMeta;
+type ThemeMeta = {
     payment?: ThemePayment;
     /**
      * - The description of the theme
@@ -1119,13 +1271,11 @@ type Preset = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
-    size?: number;
+    sections?: Section[];
+    /**
+     * - The value of the page.
+     */
+    value?: string;
 };
 /** @returns {SectionProps} */
 declare function SectionProps(): SectionProps;
@@ -1278,6 +1428,22 @@ type Route = {
      */
     exact_url?: string;
 };
+/** @returns {AvailablePagePlatformPredicate} */
+declare function AvailablePagePlatformPredicate(): AvailablePagePlatformPredicate;
+type AvailablePagePlatformPredicate = {
+    /**
+     * - Section visibility on ios platform
+     */
+    ios?: boolean;
+    /**
+     * - Section visibility on android platform
+     */
+    android?: boolean;
+    /**
+     * - Section visibility on web platform
+     */
+    web?: boolean;
+};
 /** @returns {BlitzkriegInternalServerErrorSchema} */
 declare function BlitzkriegInternalServerErrorSchema(): BlitzkriegInternalServerErrorSchema;
 type BlitzkriegInternalServerErrorSchema = {
@@ -1288,3 +1454,18 @@ declare function BlitzkriegApiErrorSchema(): BlitzkriegApiErrorSchema;
 type BlitzkriegApiErrorSchema = {
     message?: string;
 };
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/**
+ * Enum: PageType Used By: Theme
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

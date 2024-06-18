@@ -4,7 +4,7 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
 
 /**
  * @typedef CancelJobByNameParam
- * @property {string} filename - Filename of the specific report export to cancel.
+ * @property {string} filename
  */
 
 /**
@@ -20,16 +20,9 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
  */
 
 /**
- * @typedef GetEventCountsParam
- * @property {WebhookPlatformModel.EventProcessRequest} body
- */
-
-/**
  * @typedef GetHistoricalReportsParam
  * @property {WebhookPlatformModel.HistoryPayload} body
  */
-
-/** @typedef GetManualRetryStatusParam */
 
 /**
  * @typedef GetReportFiltersParam
@@ -52,14 +45,7 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
  * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {string} extensionId - Extension id
- */
-
-/** @typedef ManualRetryCancelParam */
-
-/**
- * @typedef ManualRetryOfFailedEventParam
- * @property {WebhookPlatformModel.EventProcessRequest} body
+ * @property {string} extensionId - Extension_id
  */
 
 /**
@@ -69,12 +55,22 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
 
 /**
  * @typedef RegisterSubscriberToEventParam
- * @property {WebhookPlatformModel.SubscriberConfig} body
+ * @property {WebhookPlatformModel.SubscriberConfigPost} body
+ */
+
+/**
+ * @typedef RegisterSubscriberToEventV2Param
+ * @property {WebhookPlatformModel.SubscriberConfigPostRequestV2} body
  */
 
 /**
  * @typedef UpdateSubscriberConfigParam
- * @property {WebhookPlatformModel.SubscriberConfig} body
+ * @property {WebhookPlatformModel.SubscriberConfigUpdate} body
+ */
+
+/**
+ * @typedef UpdateSubscriberV2Param
+ * @property {WebhookPlatformModel.SubscriberConfigUpdateRequestV2} body
  */
 
 class WebhookPlatformValidator {
@@ -104,23 +100,11 @@ class WebhookPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetEventCountsParam} */
-  static getEventCounts() {
-    return Joi.object({
-      body: WebhookPlatformModel.EventProcessRequest().required(),
-    }).required();
-  }
-
   /** @returns {GetHistoricalReportsParam} */
   static getHistoricalReports() {
     return Joi.object({
       body: WebhookPlatformModel.HistoryPayload().required(),
     }).required();
-  }
-
-  /** @returns {GetManualRetryStatusParam} */
-  static getManualRetryStatus() {
-    return Joi.object({}).required();
   }
 
   /** @returns {GetReportFiltersParam} */
@@ -155,18 +139,6 @@ class WebhookPlatformValidator {
     }).required();
   }
 
-  /** @returns {ManualRetryCancelParam} */
-  static manualRetryCancel() {
-    return Joi.object({}).required();
-  }
-
-  /** @returns {ManualRetryOfFailedEventParam} */
-  static manualRetryOfFailedEvent() {
-    return Joi.object({
-      body: WebhookPlatformModel.EventProcessRequest().required(),
-    }).required();
-  }
-
   /** @returns {PingWebhookParam} */
   static pingWebhook() {
     return Joi.object({
@@ -177,14 +149,28 @@ class WebhookPlatformValidator {
   /** @returns {RegisterSubscriberToEventParam} */
   static registerSubscriberToEvent() {
     return Joi.object({
-      body: WebhookPlatformModel.SubscriberConfig().required(),
+      body: WebhookPlatformModel.SubscriberConfigPost().required(),
+    }).required();
+  }
+
+  /** @returns {RegisterSubscriberToEventV2Param} */
+  static registerSubscriberToEventV2() {
+    return Joi.object({
+      body: WebhookPlatformModel.SubscriberConfigPostRequestV2().required(),
     }).required();
   }
 
   /** @returns {UpdateSubscriberConfigParam} */
   static updateSubscriberConfig() {
     return Joi.object({
-      body: WebhookPlatformModel.SubscriberConfig().required(),
+      body: WebhookPlatformModel.SubscriberConfigUpdate().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateSubscriberV2Param} */
+  static updateSubscriberV2() {
+    return Joi.object({
+      body: WebhookPlatformModel.SubscriberConfigUpdateRequestV2().required(),
     }).required();
   }
 }

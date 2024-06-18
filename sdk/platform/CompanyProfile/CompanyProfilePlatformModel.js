@@ -37,9 +37,18 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CountryCurrencyInfo
+ * @property {string} code
+ * @property {string} symbol
+ * @property {string} name
+ */
+
+/**
  * @typedef BusinessCountryInfo
- * @property {string} [country_code]
- * @property {string} [country]
+ * @property {string} country_code
+ * @property {string} country
+ * @property {CountryCurrencyInfo} currency
+ * @property {string} timezone
  */
 
 /**
@@ -61,6 +70,8 @@ const Joi = require("joi");
  * @property {string} [country]
  * @property {string} [address2]
  * @property {string} [state]
+ * @property {string} [state_code]
+ * @property {string} [sector]
  * @property {string} [address1]
  * @property {string} [city]
  * @property {number} latitude
@@ -195,7 +206,22 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateUpdateBrandRequestSerializer
+ * @typedef CreateBrandRequestSerializer
+ * @property {Object} [_custom_json]
+ * @property {Object} [_locale_language]
+ * @property {string[]} [synonyms]
+ * @property {number} [company_id]
+ * @property {string} [description]
+ * @property {string} logo
+ * @property {string} [brand_tier]
+ * @property {number} [uid]
+ * @property {BrandBannerSerializer} banner
+ * @property {string} name
+ * @property {string} [slug_key]
+ */
+
+/**
+ * @typedef UpdateBrandRequestSerializer
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -386,6 +412,7 @@ const Joi = require("joi");
  * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
+ * @property {boolean} [auto_assign_courier_partner]
  */
 
 /**
@@ -397,13 +424,15 @@ const Joi = require("joi");
 /**
  * @typedef AddressSerializer
  * @property {string} [landmark]
- * @property {string} [country_code]
+ * @property {string} country_code
  * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
  * @property {string} [address2]
  * @property {string} [state]
+ * @property {string} [sector]
+ * @property {string} [state_code]
  * @property {string} [address1]
  * @property {string} [city]
  * @property {number} latitude
@@ -425,7 +454,7 @@ const Joi = require("joi");
  * @property {number} [uid]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {string} [stage]
- * @property {Document[]} [documents]
+ * @property {Document[]} documents
  * @property {boolean} [credit_note]
  * @property {HolidaySchemaSerializer[]} [holiday]
  * @property {ProductReturnConfigSerializer} [product_return_config]
@@ -438,6 +467,7 @@ const Joi = require("joi");
  *   acceptance timing of the store
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
+ * @property {boolean} [auto_assign_courier_partner]
  */
 
 /**
@@ -506,11 +536,22 @@ class CompanyProfilePlatformModel {
     });
   }
 
+  /** @returns {CountryCurrencyInfo} */
+  static CountryCurrencyInfo() {
+    return Joi.object({
+      code: Joi.string().allow("").required(),
+      symbol: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {BusinessCountryInfo} */
   static BusinessCountryInfo() {
     return Joi.object({
-      country_code: Joi.string().allow(""),
-      country: Joi.string().allow(""),
+      country_code: Joi.string().allow("").required(),
+      country: Joi.string().allow("").required(),
+      currency: CompanyProfilePlatformModel.CountryCurrencyInfo().required(),
+      timezone: Joi.string().allow("").required(),
     });
   }
 
@@ -536,6 +577,8 @@ class CompanyProfilePlatformModel {
       country: Joi.string().allow(""),
       address2: Joi.string().allow(""),
       state: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
       address1: Joi.string().allow(""),
       city: Joi.string().allow(""),
       latitude: Joi.number().required(),
@@ -698,8 +741,25 @@ class CompanyProfilePlatformModel {
     });
   }
 
-  /** @returns {CreateUpdateBrandRequestSerializer} */
-  static CreateUpdateBrandRequestSerializer() {
+  /** @returns {CreateBrandRequestSerializer} */
+  static CreateBrandRequestSerializer() {
+    return Joi.object({
+      _custom_json: Joi.any(),
+      _locale_language: Joi.any(),
+      synonyms: Joi.array().items(Joi.string().allow("")),
+      company_id: Joi.number(),
+      description: Joi.string().allow(""),
+      logo: Joi.string().allow("").required(),
+      brand_tier: Joi.string().allow(""),
+      uid: Joi.number(),
+      banner: CompanyProfilePlatformModel.BrandBannerSerializer().required(),
+      name: Joi.string().allow("").required(),
+      slug_key: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdateBrandRequestSerializer} */
+  static UpdateBrandRequestSerializer() {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
@@ -941,6 +1001,7 @@ class CompanyProfilePlatformModel {
       ),
       avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
       bulk_shipment: Joi.boolean(),
+      auto_assign_courier_partner: Joi.boolean(),
     });
   }
 
@@ -958,13 +1019,15 @@ class CompanyProfilePlatformModel {
   static AddressSerializer() {
     return Joi.object({
       landmark: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
+      country_code: Joi.string().allow("").required(),
       pincode: Joi.number(),
       address_type: Joi.string().allow(""),
       longitude: Joi.number().required(),
       country: Joi.string().allow(""),
       address2: Joi.string().allow(""),
       state: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
       address1: Joi.string().allow(""),
       city: Joi.string().allow(""),
       latitude: Joi.number().required(),
@@ -992,7 +1055,9 @@ class CompanyProfilePlatformModel {
         CompanyProfilePlatformModel.LocationDayWiseSerializer()
       ),
       stage: Joi.string().allow(""),
-      documents: Joi.array().items(CompanyProfilePlatformModel.Document()),
+      documents: Joi.array()
+        .items(CompanyProfilePlatformModel.Document())
+        .required(),
       credit_note: Joi.boolean(),
       holiday: Joi.array().items(
         CompanyProfilePlatformModel.HolidaySchemaSerializer()
@@ -1007,6 +1072,7 @@ class CompanyProfilePlatformModel {
       ),
       avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
       bulk_shipment: Joi.boolean(),
+      auto_assign_courier_partner: Joi.boolean(),
     });
   }
 

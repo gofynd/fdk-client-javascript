@@ -19,6 +19,18 @@ export = CommunicationPlatformApplicationValidator;
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
 /**
+ * @typedef CreateEventSubscriptionsParam
+ * @property {CommunicationPlatformModel.SubscriptionsObject} body
+ */
+/**
+ * @typedef CreateEventSubscriptionsByBulkParam
+ * @property {CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest} body
+ */
+/**
+ * @typedef CreateJobsParam
+ * @property {CommunicationPlatformModel.CreateJobsReq} body
+ */
+/**
  * @typedef CreateSmsProviderParam
  * @property {CommunicationPlatformModel.SmsProviderReq} body
  */
@@ -29,6 +41,7 @@ export = CommunicationPlatformApplicationValidator;
 /**
  * @typedef DeleteAudienceByIdParam
  * @property {string} id - Audience id
+ * @property {CommunicationPlatformModel.AudienceReq} body
  */
 /**
  * @typedef DeleteEmailProviderByIdParam
@@ -39,12 +52,21 @@ export = CommunicationPlatformApplicationValidator;
  * @property {string} id - Email template id
  */
 /**
+ * @typedef DeleteEventSubscriptionsByIdParam
+ * @property {string} id - Event subscription id
+ */
+/**
  * @typedef DeleteSmsProviderByIdParam
  * @property {string} id - Sms provider id
  */
 /**
  * @typedef DeleteSmsTemplateByIdParam
  * @property {string} id - Sms template id
+ */
+/**
+ * @typedef EditEventSubscriptionsParam
+ * @property {string} id - Event subscription id
+ * @property {CommunicationPlatformModel.SubscriptionsObject} body
  */
 /** @typedef GetAppProvidersParam */
 /**
@@ -56,6 +78,7 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 /**
  * @typedef GetBigQueryHeadersByIdParam
@@ -71,6 +94,7 @@ export = CommunicationPlatformApplicationValidator;
  */
 /**
  * @typedef GetCampaignsParam
+ * @property {Object} [query] - To search based on plain text
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
@@ -97,6 +121,7 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 /**
  * @typedef GetEmailTemplateByIdParam
@@ -107,12 +132,18 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 /**
  * @typedef GetEventSubscriptionsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {string} [populate] - Populate fields
+ * @property {string} [populate] - Populate Fields
+ */
+/**
+ * @typedef GetEventSubscriptionsByIdParam
+ * @property {string} id - Event subscription id
+ * @property {string} [populate] - Populate Fields
  */
 /** @typedef GetGlobalProvidersParam */
 /** @typedef GetGlobalVariablesParam */
@@ -121,18 +152,21 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 /**
  * @typedef GetJobsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 /**
  * @typedef GetNSampleRecordsFromCsvParam
  * @property {CommunicationPlatformModel.GetNRecordsCsvReq} body
  */
 /** @typedef GetNSampleRecordsFromCsvByGetParam */
+/** @typedef GetOtpConfigurationParam */
 /**
  * @typedef GetSmsProviderByIdParam
  * @property {string} id - Sms provider id
@@ -142,6 +176,7 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 /**
  * @typedef GetSmsTemplateByIdParam
@@ -152,6 +187,7 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 /**
  * @typedef GetStatsOfCampaignByIdParam
@@ -161,11 +197,13 @@ export = CommunicationPlatformApplicationValidator;
  * @typedef GetSubscribedEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
+ * @property {Object} [query] - To search based on plain text
  */
 /**
  * @typedef GetSubscribedSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
+ * @property {Object} [query] - To search based on plain text
  */
 /** @typedef GetSystemAudiencesParam */
 /** @typedef GetSystemEmailTemplatesParam */
@@ -214,6 +252,7 @@ export = CommunicationPlatformApplicationValidator;
  * @property {string} id - Email template id
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
+/** @typedef UpdateOtpConfigurationParam */
 /**
  * @typedef UpdateSmsProviderByIdParam
  * @property {string} id - Sms provider id
@@ -243,6 +282,12 @@ declare class CommunicationPlatformApplicationValidator {
     static createEmailProvider(): CreateEmailProviderParam;
     /** @returns {CreateEmailTemplateParam} */
     static createEmailTemplate(): CreateEmailTemplateParam;
+    /** @returns {CreateEventSubscriptionsParam} */
+    static createEventSubscriptions(): CreateEventSubscriptionsParam;
+    /** @returns {CreateEventSubscriptionsByBulkParam} */
+    static createEventSubscriptionsByBulk(): CreateEventSubscriptionsByBulkParam;
+    /** @returns {CreateJobsParam} */
+    static createJobs(): CreateJobsParam;
     /** @returns {CreateSmsProviderParam} */
     static createSmsProvider(): CreateSmsProviderParam;
     /** @returns {CreateSmsTemplateParam} */
@@ -253,10 +298,14 @@ declare class CommunicationPlatformApplicationValidator {
     static deleteEmailProviderById(): DeleteEmailProviderByIdParam;
     /** @returns {DeleteEmailTemplateByIdParam} */
     static deleteEmailTemplateById(): DeleteEmailTemplateByIdParam;
+    /** @returns {DeleteEventSubscriptionsByIdParam} */
+    static deleteEventSubscriptionsById(): DeleteEventSubscriptionsByIdParam;
     /** @returns {DeleteSmsProviderByIdParam} */
     static deleteSmsProviderById(): DeleteSmsProviderByIdParam;
     /** @returns {DeleteSmsTemplateByIdParam} */
     static deleteSmsTemplateById(): DeleteSmsTemplateByIdParam;
+    /** @returns {EditEventSubscriptionsParam} */
+    static editEventSubscriptions(): EditEventSubscriptionsParam;
     /** @returns {GetAppProvidersParam} */
     static getAppProviders(): any;
     /** @returns {GetAudienceByIdParam} */
@@ -289,6 +338,8 @@ declare class CommunicationPlatformApplicationValidator {
     static getEmailTemplates(): GetEmailTemplatesParam;
     /** @returns {GetEventSubscriptionsParam} */
     static getEventSubscriptions(): GetEventSubscriptionsParam;
+    /** @returns {GetEventSubscriptionsByIdParam} */
+    static getEventSubscriptionsById(): GetEventSubscriptionsByIdParam;
     /** @returns {GetGlobalProvidersParam} */
     static getGlobalProviders(): any;
     /** @returns {GetGlobalVariablesParam} */
@@ -301,6 +352,8 @@ declare class CommunicationPlatformApplicationValidator {
     static getNSampleRecordsFromCsv(): GetNSampleRecordsFromCsvParam;
     /** @returns {GetNSampleRecordsFromCsvByGetParam} */
     static getNSampleRecordsFromCsvByGet(): any;
+    /** @returns {GetOtpConfigurationParam} */
+    static getOtpConfiguration(): any;
     /** @returns {GetSmsProviderByIdParam} */
     static getSmsProviderById(): GetSmsProviderByIdParam;
     /** @returns {GetSmsProvidersParam} */
@@ -341,6 +394,8 @@ declare class CommunicationPlatformApplicationValidator {
     static updateEmailProviderById(): UpdateEmailProviderByIdParam;
     /** @returns {UpdateEmailTemplateByIdParam} */
     static updateEmailTemplateById(): UpdateEmailTemplateByIdParam;
+    /** @returns {UpdateOtpConfigurationParam} */
+    static updateOtpConfiguration(): any;
     /** @returns {UpdateSmsProviderByIdParam} */
     static updateSmsProviderById(): UpdateSmsProviderByIdParam;
     /** @returns {UpdateSmsTemplateByIdParam} */
@@ -349,7 +404,7 @@ declare class CommunicationPlatformApplicationValidator {
     static verfiyOtp(): VerfiyOtpParam;
 }
 declare namespace CommunicationPlatformApplicationValidator {
-    export { CreateAudienceParam, CreateBigQueryHeadersParam, CreateBigQueryNCountParam, CreateBigQueryRowCountParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateSmsProviderParam, CreateSmsTemplateParam, DeleteAudienceByIdParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetBigQueryHeadersByIdParam, GetBigQueryRowCountByIdParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultSmsProvidersParam, GetDummyDatasourcesParam, GetDummyDatasourcesMetaParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetGlobalProvidersParam, GetGlobalVariablesParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetNSampleRecordsFromCsvByGetParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemAudiencesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, PostGlobalVariablesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, VerfiyOtpParam };
+    export { CreateAudienceParam, CreateBigQueryHeadersParam, CreateBigQueryNCountParam, CreateBigQueryRowCountParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateEventSubscriptionsParam, CreateEventSubscriptionsByBulkParam, CreateJobsParam, CreateSmsProviderParam, CreateSmsTemplateParam, DeleteAudienceByIdParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteEventSubscriptionsByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, EditEventSubscriptionsParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetBigQueryHeadersByIdParam, GetBigQueryRowCountByIdParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultSmsProvidersParam, GetDummyDatasourcesParam, GetDummyDatasourcesMetaParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetEventSubscriptionsByIdParam, GetGlobalProvidersParam, GetGlobalVariablesParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetNSampleRecordsFromCsvByGetParam, GetOtpConfigurationParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemAudiencesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, PostGlobalVariablesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateOtpConfigurationParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, VerfiyOtpParam };
 }
 type CreateAudienceParam = {
     body: CommunicationPlatformModel.AudienceReq;
@@ -363,6 +418,15 @@ type CreateEmailProviderParam = {
 type CreateEmailTemplateParam = {
     body: CommunicationPlatformModel.EmailTemplateReq;
 };
+type CreateEventSubscriptionsParam = {
+    body: CommunicationPlatformModel.SubscriptionsObject;
+};
+type CreateEventSubscriptionsByBulkParam = {
+    body: CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest;
+};
+type CreateJobsParam = {
+    body: CommunicationPlatformModel.CreateJobsReq;
+};
 type CreateSmsProviderParam = {
     body: CommunicationPlatformModel.SmsProviderReq;
 };
@@ -374,6 +438,7 @@ type DeleteAudienceByIdParam = {
      * - Audience id
      */
     id: string;
+    body: CommunicationPlatformModel.AudienceReq;
 };
 type DeleteEmailProviderByIdParam = {
     /**
@@ -384,6 +449,12 @@ type DeleteEmailProviderByIdParam = {
 type DeleteEmailTemplateByIdParam = {
     /**
      * - Email template id
+     */
+    id: string;
+};
+type DeleteEventSubscriptionsByIdParam = {
+    /**
+     * - Event subscription id
      */
     id: string;
 };
@@ -398,6 +469,13 @@ type DeleteSmsTemplateByIdParam = {
      * - Sms template id
      */
     id: string;
+};
+type EditEventSubscriptionsParam = {
+    /**
+     * - Event subscription id
+     */
+    id: string;
+    body: CommunicationPlatformModel.SubscriptionsObject;
 };
 type GetAudienceByIdParam = {
     /**
@@ -418,6 +496,10 @@ type GetAudiencesParam = {
      * - To sort based on created_at
      */
     sort?: any;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type GetBigQueryHeadersByIdParam = {
     /**
@@ -438,6 +520,10 @@ type GetCampaignByIdParam = {
     id: string;
 };
 type GetCampaignsParam = {
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
     /**
      * - Current page no
      */
@@ -491,6 +577,10 @@ type GetEmailProvidersParam = {
      * - To sort based on created_at
      */
     sort?: any;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type GetEmailTemplateByIdParam = {
     /**
@@ -511,6 +601,10 @@ type GetEmailTemplatesParam = {
      * - To sort based on created_at
      */
     sort?: any;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type GetEventSubscriptionsParam = {
     /**
@@ -522,7 +616,17 @@ type GetEventSubscriptionsParam = {
      */
     pageSize?: number;
     /**
-     * - Populate fields
+     * - Populate Fields
+     */
+    populate?: string;
+};
+type GetEventSubscriptionsByIdParam = {
+    /**
+     * - Event subscription id
+     */
+    id: string;
+    /**
+     * - Populate Fields
      */
     populate?: string;
 };
@@ -539,6 +643,10 @@ type GetJobLogsParam = {
      * - To sort based on created_at
      */
     sort?: any;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type GetJobsParam = {
     /**
@@ -553,6 +661,10 @@ type GetJobsParam = {
      * - To sort based on created_at
      */
     sort?: any;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type GetNSampleRecordsFromCsvParam = {
     body: CommunicationPlatformModel.GetNRecordsCsvReq;
@@ -576,6 +688,10 @@ type GetSmsProvidersParam = {
      * - To sort based on created_at
      */
     sort?: any;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type GetSmsTemplateByIdParam = {
     /**
@@ -596,6 +712,10 @@ type GetSmsTemplatesParam = {
      * - To sort based on created_at
      */
     sort?: any;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type GetStatsOfCampaignByIdParam = {
     /**
@@ -612,6 +732,10 @@ type GetSubscribedEmailTemplatesParam = {
      * - Current request items count
      */
     pageSize?: number;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type GetSubscribedSmsTemplatesParam = {
     /**
@@ -622,6 +746,10 @@ type GetSubscribedSmsTemplatesParam = {
      * - Current request items count
      */
     pageSize?: number;
+    /**
+     * - To search based on plain text
+     */
+    query?: any;
 };
 type PostGlobalVariablesParam = {
     body: CommunicationPlatformModel.GlobalVariablesReq;
@@ -695,7 +823,9 @@ type GetDummyDatasourcesParam = any;
 type GetGlobalProvidersParam = any;
 type GetGlobalVariablesParam = any;
 type GetNSampleRecordsFromCsvByGetParam = any;
+type GetOtpConfigurationParam = any;
 type GetSystemAudiencesParam = any;
 type GetSystemEmailTemplatesParam = any;
 type GetSystemSmsTemplatesParam = any;
+type UpdateOtpConfigurationParam = any;
 import CommunicationPlatformModel = require("./CommunicationPlatformModel");

@@ -11,6 +11,63 @@ export = ThemePartnerModel;
  * @property {AvailablePageSeo} [seo]
  * @property {Object[]} [props]
  * @property {string} [_id]
+ * @property {string} [created_at] - The creation timestamp of the page
+ * @property {string} [updated_at] - The last update timestamp of the page
+ */
+/**
+ * @typedef DraftExtensionSectionRequest
+ * @property {string} [extension_id]
+ * @property {string} [bundle_name]
+ * @property {string} [organization_id]
+ * @property {ExtensionSection[]} [sections]
+ * @property {AssetsExtension} [assets]
+ * @property {string} [type]
+ * @property {string} [status]
+ */
+/**
+ * @typedef DraftExtensionSectionResponse
+ * @property {SectionsResponse} [sections]
+ */
+/**
+ * @typedef SectionsResponse
+ * @property {boolean} [acknowledged]
+ * @property {number} [matched_count]
+ * @property {number} [modified_count]
+ * @property {string} [upserted_id]
+ * @property {number} [upserted_count]
+ */
+/**
+ * @typedef ExtensionSection
+ * @property {string} [label]
+ * @property {string} [name]
+ * @property {PropExtension[]} [props]
+ * @property {Object[]} [blocks]
+ */
+/**
+ * @typedef PropExtension
+ * @property {string} [id]
+ * @property {string} [label]
+ * @property {string} [type]
+ * @property {string} [info]
+ */
+/**
+ * @typedef AssetsExtension
+ * @property {string} [js]
+ * @property {string} [css]
+ */
+/**
+ * @typedef PublishExtensionSectionRequest
+ * @property {string} [extension_id]
+ * @property {string} [bundle_name]
+ * @property {string} [organization_id]
+ * @property {ExtensionSection[]} [sections]
+ * @property {AssetsExtension} [assets]
+ * @property {string} [type]
+ * @property {string} [status]
+ */
+/**
+ * @typedef PublishExtensionSectionResponse
+ * @property {SectionsResponse} [sections]
  */
 /**
  * @typedef AvailablePageSectionMetaAttributes
@@ -20,7 +77,36 @@ export = ThemePartnerModel;
  * @typedef AvailablePageSeo
  * @property {string} [title]
  * @property {string} [description]
+ * @property {SEOMetaItem[]} [meta_tags]
+ * @property {SEOSitemap} [sitemap]
+ * @property {SEObreadcrumb[]} [breadcrumb]
  * @property {string} [_id]
+ */
+/**
+ * @typedef SEOMetaItem
+ * @property {string} [title]
+ * @property {SEOMetaItems[]} [items]
+ */
+/**
+ * @typedef SEOMetaItems
+ * @property {string} [key]
+ * @property {string} [value]
+ */
+/**
+ * @typedef SEOSitemap
+ * @property {number} [priority]
+ * @property {string} [frequency]
+ */
+/**
+ * @typedef SEObreadcrumb
+ * @property {string} [url]
+ * @property {Action} [action]
+ */
+/**
+ * @typedef Action
+ * @property {string} [type]
+ * @property {ActionPage} [page]
+ * @property {ActionPage} [popup]
  */
 /**
  * @typedef AvailablePageSchemaSections
@@ -30,6 +116,7 @@ export = ThemePartnerModel;
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
  * @property {AvailablePagePredicate} [predicate]
+ * @property {string} [source]
  */
 /**
  * @typedef AvailablePageScreenPredicate
@@ -49,10 +136,25 @@ export = ThemePartnerModel;
  * @property {Object} [query]
  */
 /**
+ * @typedef AvailablePagePlatformPredicate
+ * @property {boolean} [ios] - Section visibility on ios platform
+ * @property {boolean} [android] - Section visibility on android platform
+ * @property {boolean} [web] - Section visibility on web platform
+ */
+/**
+ * @typedef AvailablePageSchedulePredicate
+ * @property {string} [cron]
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+/**
  * @typedef AvailablePagePredicate
  * @property {AvailablePageScreenPredicate} [screen]
  * @property {AvailablePageUserPredicate} [user]
  * @property {AvailablePageRoutePredicate} [route]
+ * @property {AvailablePageSchedulePredicate} [schedule]
+ * @property {AvailablePagePlatformPredicate} [platform]
+ * @property {string[]} [zones] - An array of zone ids associated with the section
  */
 /**
  * @typedef MarketplaceThemeSchema
@@ -198,7 +300,7 @@ export = ThemePartnerModel;
  * @property {string} [_id] - The unique identifier of the theme
  * @property {string} [application_id] - The ID of the application
  * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
- * @property {Meta} [meta]
+ * @property {ThemeMeta} [meta]
  * @property {string} [name] - The name of the theme
  * @property {string} [template_theme_id] - The ID of the template theme
  * @property {string} [version] - The version of the theme
@@ -207,6 +309,9 @@ export = ThemePartnerModel;
  * @property {string} [updated_at] - The last update timestamp of the theme
  * @property {Assets} [assets]
  * @property {SectionItem[]} [available_sections] - Available sections information
+ * @property {string} [theme_type]
+ * @property {number} [company_id] - The company id in which sales channel exists
+ * @property {string} [src]
  */
 /**
  * @typedef Font
@@ -236,9 +341,41 @@ export = ThemePartnerModel;
 /**
  * @typedef ThemeConfiguration
  * @property {string} [name] - The name of the configuration
- * @property {GlobalConfig} [global_config]
- * @property {CustomConfig} [custom]
- * @property {string[]} [page] - An array of pages
+ * @property {Object} [global_config]
+ * @property {ThemeConfigListPage[]} [page] - An array of pages
+ */
+/**
+ * @typedef OverlayPopup
+ * @property {string} [dialog_backgroung]
+ * @property {string} [overlay]
+ */
+/**
+ * @typedef DividerStrokeHighlight
+ * @property {string} [divider_strokes]
+ * @property {string} [highlight]
+ */
+/**
+ * @typedef UserAlerts
+ * @property {string} [success_background]
+ * @property {string} [success_text]
+ * @property {string} [error_background]
+ * @property {string} [error_text]
+ * @property {string} [info_background]
+ * @property {string} [info_text]
+ */
+/**
+ * @typedef OrderTracking
+ * @property {boolean} [show_header]
+ * @property {boolean} [show_footer]
+ */
+/**
+ * @typedef ThemeConfigListPage
+ * @property {string} [page] - Name of the page
+ * @property {ThemeConfigListPageSettingsProps} [settings]
+ */
+/**
+ * @typedef ThemeConfigListPageSettingsProps
+ * @property {Object} [props]
  */
 /**
  * @typedef CustomConfig
@@ -283,114 +420,7 @@ export = ThemePartnerModel;
  * @property {string} [menu_position] - The position of the menu
  */
 /**
- * @typedef GlobalConfig
- * @property {StaticConfig} [statics]
- * @property {AuthConfig} [auth]
- * @property {PaletteConfig} [palette]
- */
-/**
- * @typedef PaletteConfig
- * @property {GeneralSetting} [general_setting]
- * @property {AdvanceSetting} [advance_setting]
- */
-/**
- * @typedef GeneralSetting
- * @property {ThemeSetting} [theme]
- * @property {TextSetting} [text]
- * @property {ButtonSetting} [button]
- * @property {SaleDiscountSetting} [sale_discount]
- * @property {HeaderSetting} [header]
- * @property {FooterSetting} [footer]
- */
-/**
- * @typedef AdvanceSetting
- * @property {OverlayPopupSetting} [overlay_popup]
- * @property {DividerStrokeHighlightSetting} [divider_stroke_highlight]
- * @property {UserAlertsSetting} [user_alerts]
- */
-/**
- * @typedef UserAlertsSetting
- * @property {string} [success_background] - The success background color
- * @property {string} [success_text] - The success text color
- * @property {string} [error_background] - The error background color
- * @property {string} [error_text] - The error text color
- * @property {string} [info_background] - The info background color
- * @property {string} [info_text] - The info text color
- */
-/**
- * @typedef ThemeSetting
- * @property {string} [page_background] - The page background color
- * @property {string} [theme_accent] - The theme accent color
- */
-/**
- * @typedef TextSetting
- * @property {string} [text_heading] - The text heading color
- * @property {string} [text_body] - The text body color
- * @property {string} [text_label] - The text label color
- * @property {string} [text_secondary] - The secondary text color
- */
-/**
- * @typedef ButtonSetting
- * @property {string} [button_primary] - The primary button color
- * @property {string} [button_secondary] - The secondary button color
- * @property {string} [button_link] - The button link color
- */
-/**
- * @typedef SaleDiscountSetting
- * @property {string} [sale_badge_background] - The sale badge background color
- * @property {string} [sale_badge_text] - The sale badge text color
- * @property {string} [sale_discount_text] - The sale discount text color
- * @property {string} [sale_timer] - The sale timer color
- */
-/**
- * @typedef HeaderSetting
- * @property {string} [header_background] - The header background color
- * @property {string} [header_nav] - The header navigation color
- * @property {string} [header_icon] - The header icon color
- */
-/**
- * @typedef FooterSetting
- * @property {string} [footer_background] - The footer background color
- * @property {string} [footer_bottom_background] - The footer bottom background color
- * @property {string} [footer_heading_text] - The footer heading text color
- * @property {string} [footer_body_text] - The footer body text color
- * @property {string} [footer_icon] - The footer icon color
- */
-/**
- * @typedef OverlayPopupSetting
- * @property {string} [dialog_backgroung] - The dialog background color
- * @property {string} [overlay] - The overlay color
- */
-/**
- * @typedef DividerStrokeHighlightSetting
- * @property {string} [divider_strokes] - The divider strokes color
- * @property {string} [highlight] - The highlight color
- */
-/**
- * @typedef StaticConfig
- * @property {StaticProps} [props]
- */
-/**
- * @typedef StaticProps
- * @property {Colors} [colors]
- * @property {AuthConfig} [auth]
- */
-/**
- * @typedef AuthConfig
- * @property {boolean} [show_header_auth] - Whether to show header authentication or not
- * @property {boolean} [show_footer_auth] - Whether to show footer authentication or not
- */
-/**
- * @typedef Colors
- * @property {string} [primary_color] - The primary color
- * @property {string} [secondary_color] - The secondary color
- * @property {string} [accent_color] - The accent color
- * @property {string} [link_color] - The link color
- * @property {string} [button_secondary_color] - The secondary button color
- * @property {string} [bg_color] - The background color
- */
-/**
- * @typedef Meta
+ * @typedef ThemeMeta
  * @property {ThemePayment} [payment]
  * @property {string} [description] - The description of the theme
  * @property {string[]} [industry] - An array of industries associated with the theme
@@ -422,6 +452,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef UMDJs
+ * @property {string} [link]
  * @property {string[]} [links]
  */
 /**
@@ -430,6 +461,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef CSS
+ * @property {string} [link]
  * @property {string[]} [links]
  */
 /**
@@ -447,6 +479,7 @@ export = ThemePartnerModel;
  * @typedef Prop
  * @property {string} [type] - The type of the property
  * @property {string} [category] - The category of the property
+ * @property {string} [value] - The value of the property
  * @property {string} [id] - The ID of the property
  * @property {string} [label] - The label of the property
  * @property {string} [info] - Additional information about the property
@@ -457,13 +490,8 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {Section[]} [sections]
+ * @property {string} [value] - The value of the page.
  */
 /**
  * @typedef SectionProps
@@ -547,10 +575,77 @@ export = ThemePartnerModel;
  * @property {Config} [config]
  * @property {Font} [font]
  */
+/**
+ * @typedef CreateNewTheme
+ * @property {string} name - The name of the theme
+ * @property {SectionItem[]} available_sections - Available sections information
+ * @property {string} version - The version of the theme
+ * @property {string} theme_type - Type of the Theme
+ * @property {ThemeConfiguration[]} [list] - A list of configurations
+ * @property {GlobalSchema} [global_schema]
+ * @property {Preset} [preset]
+ * @property {string} [current] - The current configuration
+ * @property {Page[]} [pages]
+ */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { AvailablePageSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, PaletteConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, AuthConfig, Colors, Meta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody };
+    export { AvailablePageSchema, DraftExtensionSectionRequest, DraftExtensionSectionResponse, SectionsResponse, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSectionRequest, PublishExtensionSectionResponse, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
 }
 /** @returns {AvailablePageSchema} */
 declare function AvailablePageSchema(): AvailablePageSchema;
@@ -565,6 +660,77 @@ type AvailablePageSchema = {
     seo?: AvailablePageSeo;
     props?: any[];
     _id?: string;
+    /**
+     * - The creation timestamp of the page
+     */
+    created_at?: string;
+    /**
+     * - The last update timestamp of the page
+     */
+    updated_at?: string;
+};
+/** @returns {DraftExtensionSectionRequest} */
+declare function DraftExtensionSectionRequest(): DraftExtensionSectionRequest;
+type DraftExtensionSectionRequest = {
+    extension_id?: string;
+    bundle_name?: string;
+    organization_id?: string;
+    sections?: ExtensionSection[];
+    assets?: AssetsExtension;
+    type?: string;
+    status?: string;
+};
+/** @returns {DraftExtensionSectionResponse} */
+declare function DraftExtensionSectionResponse(): DraftExtensionSectionResponse;
+type DraftExtensionSectionResponse = {
+    sections?: SectionsResponse;
+};
+/** @returns {SectionsResponse} */
+declare function SectionsResponse(): SectionsResponse;
+type SectionsResponse = {
+    acknowledged?: boolean;
+    matched_count?: number;
+    modified_count?: number;
+    upserted_id?: string;
+    upserted_count?: number;
+};
+/** @returns {ExtensionSection} */
+declare function ExtensionSection(): ExtensionSection;
+type ExtensionSection = {
+    label?: string;
+    name?: string;
+    props?: PropExtension[];
+    blocks?: any[];
+};
+/** @returns {PropExtension} */
+declare function PropExtension(): PropExtension;
+type PropExtension = {
+    id?: string;
+    label?: string;
+    type?: string;
+    info?: string;
+};
+/** @returns {AssetsExtension} */
+declare function AssetsExtension(): AssetsExtension;
+type AssetsExtension = {
+    js?: string;
+    css?: string;
+};
+/** @returns {PublishExtensionSectionRequest} */
+declare function PublishExtensionSectionRequest(): PublishExtensionSectionRequest;
+type PublishExtensionSectionRequest = {
+    extension_id?: string;
+    bundle_name?: string;
+    organization_id?: string;
+    sections?: ExtensionSection[];
+    assets?: AssetsExtension;
+    type?: string;
+    status?: string;
+};
+/** @returns {PublishExtensionSectionResponse} */
+declare function PublishExtensionSectionResponse(): PublishExtensionSectionResponse;
+type PublishExtensionSectionResponse = {
+    sections?: SectionsResponse;
 };
 /** @returns {AvailablePageSectionMetaAttributes} */
 declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaAttributes;
@@ -576,7 +742,41 @@ declare function AvailablePageSeo(): AvailablePageSeo;
 type AvailablePageSeo = {
     title?: string;
     description?: string;
+    meta_tags?: SEOMetaItem[];
+    sitemap?: SEOSitemap;
+    breadcrumb?: SEObreadcrumb[];
     _id?: string;
+};
+/** @returns {SEOMetaItem} */
+declare function SEOMetaItem(): SEOMetaItem;
+type SEOMetaItem = {
+    title?: string;
+    items?: SEOMetaItems[];
+};
+/** @returns {SEOMetaItems} */
+declare function SEOMetaItems(): SEOMetaItems;
+type SEOMetaItems = {
+    key?: string;
+    value?: string;
+};
+/** @returns {SEOSitemap} */
+declare function SEOSitemap(): SEOSitemap;
+type SEOSitemap = {
+    priority?: number;
+    frequency?: string;
+};
+/** @returns {SEObreadcrumb} */
+declare function SEObreadcrumb(): SEObreadcrumb;
+type SEObreadcrumb = {
+    url?: string;
+    action?: Action;
+};
+/** @returns {Action} */
+declare function Action(): Action;
+type Action = {
+    type?: string;
+    page?: ActionPage;
+    popup?: ActionPage;
 };
 /** @returns {AvailablePageSchemaSections} */
 declare function AvailablePageSchemaSections(): AvailablePageSchemaSections;
@@ -587,6 +787,7 @@ type AvailablePageSchemaSections = {
     blocks?: any[];
     preset?: any;
     predicate?: AvailablePagePredicate;
+    source?: string;
 };
 /** @returns {AvailablePageScreenPredicate} */
 declare function AvailablePageScreenPredicate(): AvailablePageScreenPredicate;
@@ -608,12 +809,41 @@ type AvailablePageRoutePredicate = {
     exact_url?: string;
     query?: any;
 };
+/** @returns {AvailablePagePlatformPredicate} */
+declare function AvailablePagePlatformPredicate(): AvailablePagePlatformPredicate;
+type AvailablePagePlatformPredicate = {
+    /**
+     * - Section visibility on ios platform
+     */
+    ios?: boolean;
+    /**
+     * - Section visibility on android platform
+     */
+    android?: boolean;
+    /**
+     * - Section visibility on web platform
+     */
+    web?: boolean;
+};
+/** @returns {AvailablePageSchedulePredicate} */
+declare function AvailablePageSchedulePredicate(): AvailablePageSchedulePredicate;
+type AvailablePageSchedulePredicate = {
+    cron?: string;
+    start?: string;
+    end?: string;
+};
 /** @returns {AvailablePagePredicate} */
 declare function AvailablePagePredicate(): AvailablePagePredicate;
 type AvailablePagePredicate = {
     screen?: AvailablePageScreenPredicate;
     user?: AvailablePageUserPredicate;
     route?: AvailablePageRoutePredicate;
+    schedule?: AvailablePageSchedulePredicate;
+    platform?: AvailablePagePlatformPredicate;
+    /**
+     * - An array of zone ids associated with the section
+     */
+    zones?: string[];
 };
 /** @returns {MarketplaceThemeSchema} */
 declare function MarketplaceThemeSchema(): MarketplaceThemeSchema;
@@ -947,7 +1177,7 @@ type ThemesSchema = {
      * - The ID of the theme in the marketplace
      */
     marketplace_theme_id?: string;
-    meta?: Meta;
+    meta?: ThemeMeta;
     /**
      * - The name of the theme
      */
@@ -977,6 +1207,12 @@ type ThemesSchema = {
      * - Available sections information
      */
     available_sections?: SectionItem[];
+    theme_type?: string;
+    /**
+     * - The company id in which sales channel exists
+     */
+    company_id?: number;
+    src?: string;
 };
 /** @returns {Font} */
 declare function Font(): Font;
@@ -1029,12 +1265,53 @@ type ThemeConfiguration = {
      * - The name of the configuration
      */
     name?: string;
-    global_config?: GlobalConfig;
-    custom?: CustomConfig;
+    global_config?: any;
     /**
      * - An array of pages
      */
-    page?: string[];
+    page?: ThemeConfigListPage[];
+};
+/** @returns {OverlayPopup} */
+declare function OverlayPopup(): OverlayPopup;
+type OverlayPopup = {
+    dialog_backgroung?: string;
+    overlay?: string;
+};
+/** @returns {DividerStrokeHighlight} */
+declare function DividerStrokeHighlight(): DividerStrokeHighlight;
+type DividerStrokeHighlight = {
+    divider_strokes?: string;
+    highlight?: string;
+};
+/** @returns {UserAlerts} */
+declare function UserAlerts(): UserAlerts;
+type UserAlerts = {
+    success_background?: string;
+    success_text?: string;
+    error_background?: string;
+    error_text?: string;
+    info_background?: string;
+    info_text?: string;
+};
+/** @returns {OrderTracking} */
+declare function OrderTracking(): OrderTracking;
+type OrderTracking = {
+    show_header?: boolean;
+    show_footer?: boolean;
+};
+/** @returns {ThemeConfigListPage} */
+declare function ThemeConfigListPage(): ThemeConfigListPage;
+type ThemeConfigListPage = {
+    /**
+     * - Name of the page
+     */
+    page?: string;
+    settings?: ThemeConfigListPageSettingsProps;
+};
+/** @returns {ThemeConfigListPageSettingsProps} */
+declare function ThemeConfigListPageSettingsProps(): ThemeConfigListPageSettingsProps;
+type ThemeConfigListPageSettingsProps = {
+    props?: any;
 };
 /** @returns {CustomConfig} */
 declare function CustomConfig(): CustomConfig;
@@ -1170,250 +1447,9 @@ type CustomProps = {
      */
     menu_position?: string;
 };
-/** @returns {GlobalConfig} */
-declare function GlobalConfig(): GlobalConfig;
-type GlobalConfig = {
-    statics?: StaticConfig;
-    auth?: AuthConfig;
-    palette?: PaletteConfig;
-};
-/** @returns {PaletteConfig} */
-declare function PaletteConfig(): PaletteConfig;
-type PaletteConfig = {
-    general_setting?: GeneralSetting;
-    advance_setting?: AdvanceSetting;
-};
-/** @returns {GeneralSetting} */
-declare function GeneralSetting(): GeneralSetting;
-type GeneralSetting = {
-    theme?: ThemeSetting;
-    text?: TextSetting;
-    button?: ButtonSetting;
-    sale_discount?: SaleDiscountSetting;
-    header?: HeaderSetting;
-    footer?: FooterSetting;
-};
-/** @returns {AdvanceSetting} */
-declare function AdvanceSetting(): AdvanceSetting;
-type AdvanceSetting = {
-    overlay_popup?: OverlayPopupSetting;
-    divider_stroke_highlight?: DividerStrokeHighlightSetting;
-    user_alerts?: UserAlertsSetting;
-};
-/** @returns {UserAlertsSetting} */
-declare function UserAlertsSetting(): UserAlertsSetting;
-type UserAlertsSetting = {
-    /**
-     * - The success background color
-     */
-    success_background?: string;
-    /**
-     * - The success text color
-     */
-    success_text?: string;
-    /**
-     * - The error background color
-     */
-    error_background?: string;
-    /**
-     * - The error text color
-     */
-    error_text?: string;
-    /**
-     * - The info background color
-     */
-    info_background?: string;
-    /**
-     * - The info text color
-     */
-    info_text?: string;
-};
-/** @returns {ThemeSetting} */
-declare function ThemeSetting(): ThemeSetting;
-type ThemeSetting = {
-    /**
-     * - The page background color
-     */
-    page_background?: string;
-    /**
-     * - The theme accent color
-     */
-    theme_accent?: string;
-};
-/** @returns {TextSetting} */
-declare function TextSetting(): TextSetting;
-type TextSetting = {
-    /**
-     * - The text heading color
-     */
-    text_heading?: string;
-    /**
-     * - The text body color
-     */
-    text_body?: string;
-    /**
-     * - The text label color
-     */
-    text_label?: string;
-    /**
-     * - The secondary text color
-     */
-    text_secondary?: string;
-};
-/** @returns {ButtonSetting} */
-declare function ButtonSetting(): ButtonSetting;
-type ButtonSetting = {
-    /**
-     * - The primary button color
-     */
-    button_primary?: string;
-    /**
-     * - The secondary button color
-     */
-    button_secondary?: string;
-    /**
-     * - The button link color
-     */
-    button_link?: string;
-};
-/** @returns {SaleDiscountSetting} */
-declare function SaleDiscountSetting(): SaleDiscountSetting;
-type SaleDiscountSetting = {
-    /**
-     * - The sale badge background color
-     */
-    sale_badge_background?: string;
-    /**
-     * - The sale badge text color
-     */
-    sale_badge_text?: string;
-    /**
-     * - The sale discount text color
-     */
-    sale_discount_text?: string;
-    /**
-     * - The sale timer color
-     */
-    sale_timer?: string;
-};
-/** @returns {HeaderSetting} */
-declare function HeaderSetting(): HeaderSetting;
-type HeaderSetting = {
-    /**
-     * - The header background color
-     */
-    header_background?: string;
-    /**
-     * - The header navigation color
-     */
-    header_nav?: string;
-    /**
-     * - The header icon color
-     */
-    header_icon?: string;
-};
-/** @returns {FooterSetting} */
-declare function FooterSetting(): FooterSetting;
-type FooterSetting = {
-    /**
-     * - The footer background color
-     */
-    footer_background?: string;
-    /**
-     * - The footer bottom background color
-     */
-    footer_bottom_background?: string;
-    /**
-     * - The footer heading text color
-     */
-    footer_heading_text?: string;
-    /**
-     * - The footer body text color
-     */
-    footer_body_text?: string;
-    /**
-     * - The footer icon color
-     */
-    footer_icon?: string;
-};
-/** @returns {OverlayPopupSetting} */
-declare function OverlayPopupSetting(): OverlayPopupSetting;
-type OverlayPopupSetting = {
-    /**
-     * - The dialog background color
-     */
-    dialog_backgroung?: string;
-    /**
-     * - The overlay color
-     */
-    overlay?: string;
-};
-/** @returns {DividerStrokeHighlightSetting} */
-declare function DividerStrokeHighlightSetting(): DividerStrokeHighlightSetting;
-type DividerStrokeHighlightSetting = {
-    /**
-     * - The divider strokes color
-     */
-    divider_strokes?: string;
-    /**
-     * - The highlight color
-     */
-    highlight?: string;
-};
-/** @returns {StaticConfig} */
-declare function StaticConfig(): StaticConfig;
-type StaticConfig = {
-    props?: StaticProps;
-};
-/** @returns {StaticProps} */
-declare function StaticProps(): StaticProps;
-type StaticProps = {
-    colors?: Colors;
-    auth?: AuthConfig;
-};
-/** @returns {AuthConfig} */
-declare function AuthConfig(): AuthConfig;
-type AuthConfig = {
-    /**
-     * - Whether to show header authentication or not
-     */
-    show_header_auth?: boolean;
-    /**
-     * - Whether to show footer authentication or not
-     */
-    show_footer_auth?: boolean;
-};
-/** @returns {Colors} */
-declare function Colors(): Colors;
-type Colors = {
-    /**
-     * - The primary color
-     */
-    primary_color?: string;
-    /**
-     * - The secondary color
-     */
-    secondary_color?: string;
-    /**
-     * - The accent color
-     */
-    accent_color?: string;
-    /**
-     * - The link color
-     */
-    link_color?: string;
-    /**
-     * - The secondary button color
-     */
-    button_secondary_color?: string;
-    /**
-     * - The background color
-     */
-    bg_color?: string;
-};
-/** @returns {Meta} */
-declare function Meta(): Meta;
-type Meta = {
+/** @returns {ThemeMeta} */
+declare function ThemeMeta(): ThemeMeta;
+type ThemeMeta = {
     payment?: ThemePayment;
     /**
      * - The description of the theme
@@ -1480,6 +1516,7 @@ type Assets = {
 /** @returns {UMDJs} */
 declare function UMDJs(): UMDJs;
 type UMDJs = {
+    link?: string;
     links?: string[];
 };
 /** @returns {CommonJS} */
@@ -1490,6 +1527,7 @@ type CommonJS = {
 /** @returns {CSS} */
 declare function CSS(): CSS;
 type CSS = {
+    link?: string;
     links?: string[];
 };
 /** @returns {SectionItem} */
@@ -1526,6 +1564,10 @@ type Prop = {
      */
     category?: string;
     /**
+     * - The value of the property
+     */
+    value?: string;
+    /**
      * - The ID of the property
      */
     id?: string;
@@ -1546,13 +1588,11 @@ type Preset = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
-    size?: number;
+    sections?: Section[];
+    /**
+     * - The value of the page.
+     */
+    value?: string;
 };
 /** @returns {SectionProps} */
 declare function SectionProps(): SectionProps;
@@ -1711,3 +1751,49 @@ type UpdateThemeRequestBody = {
     config?: Config;
     font?: Font;
 };
+/** @returns {CreateNewTheme} */
+declare function CreateNewTheme(): CreateNewTheme;
+type CreateNewTheme = {
+    /**
+     * - The name of the theme
+     */
+    name: string;
+    /**
+     * - Available sections information
+     */
+    available_sections: SectionItem[];
+    /**
+     * - The version of the theme
+     */
+    version: string;
+    /**
+     * - Type of the Theme
+     */
+    theme_type: string;
+    /**
+     * - A list of configurations
+     */
+    list?: ThemeConfiguration[];
+    global_schema?: GlobalSchema;
+    preset?: Preset;
+    /**
+     * - The current configuration
+     */
+    current?: string;
+    pages?: Page[];
+};
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/**
+ * Enum: PageType Used By: Theme
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

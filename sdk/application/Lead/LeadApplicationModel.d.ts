@@ -10,59 +10,6 @@ export = LeadApplicationModel;
  * @property {TicketAsset[]} [attachments] - List of all attachments related to the form
  */
 /**
- * @typedef GetTokenForVideoRoomResponse
- * @property {string} access_token - Access token to be used for video room
- */
-/**
- * @typedef GetParticipantsInsideVideoRoomResponse
- * @property {Participant[]} participants - List of participants of the video room
- */
-/**
- * @typedef Participant
- * @property {UserSchema} [user]
- * @property {string} [identity] - Unique identifier of participant
- * @property {string} [status] - Status of participant
- */
-/**
- * @typedef UserSchema
- * @property {string} [application_id]
- * @property {string} [user_id]
- * @property {string} [first_name]
- * @property {Object} [meta]
- * @property {string} [last_name]
- * @property {PhoneNumber[]} [phone_numbers]
- * @property {Email[]} [emails]
- * @property {string} [gender]
- * @property {string} [dob]
- * @property {boolean} [active]
- * @property {string} [profile_pic_url]
- * @property {string} [username]
- * @property {string} [account_type]
- * @property {string} [_id]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- */
-/**
- * @typedef PhoneNumber
- * @property {boolean} [active] - Denotes if the phone number is active
- * @property {boolean} [primary] - Denotes it's the primary phone number for the account
- * @property {boolean} [verified] - Denotes it's a verified phone number
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- */
-/**
- * @typedef Email
- * @property {boolean} [primary] - Denotes it's the primary email for the account
- * @property {boolean} [verified] - Denotes it's a verified email
- * @property {string} [email] - Email Address
- * @property {boolean} [active] - Denotes if the email is active
- */
-/**
- * @typedef Debug
- * @property {string} [source] - Source of user
- * @property {string} [platform] - Platform of user
- */
-/**
  * @typedef SubmitCustomFormResponse
  * @property {string} message - Success message for form submission
  * @property {Ticket} [ticket]
@@ -208,7 +155,7 @@ export = LeadApplicationModel;
 declare class LeadApplicationModel {
 }
 declare namespace LeadApplicationModel {
-    export { TicketHistoryPayload, CustomFormSubmissionPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { TicketHistoryPayload, CustomFormSubmissionPayload, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {TicketHistoryPayload} */
 declare function TicketHistoryPayload(): TicketHistoryPayload;
@@ -230,111 +177,6 @@ type CustomFormSubmissionPayload = {
      * - List of all attachments related to the form
      */
     attachments?: TicketAsset[];
-};
-/** @returns {GetTokenForVideoRoomResponse} */
-declare function GetTokenForVideoRoomResponse(): GetTokenForVideoRoomResponse;
-type GetTokenForVideoRoomResponse = {
-    /**
-     * - Access token to be used for video room
-     */
-    access_token: string;
-};
-/** @returns {GetParticipantsInsideVideoRoomResponse} */
-declare function GetParticipantsInsideVideoRoomResponse(): GetParticipantsInsideVideoRoomResponse;
-type GetParticipantsInsideVideoRoomResponse = {
-    /**
-     * - List of participants of the video room
-     */
-    participants: Participant[];
-};
-/** @returns {Participant} */
-declare function Participant(): Participant;
-type Participant = {
-    user?: UserSchema;
-    /**
-     * - Unique identifier of participant
-     */
-    identity?: string;
-    /**
-     * - Status of participant
-     */
-    status?: string;
-};
-/** @returns {UserSchema} */
-declare function UserSchema(): UserSchema;
-type UserSchema = {
-    application_id?: string;
-    user_id?: string;
-    first_name?: string;
-    meta?: any;
-    last_name?: string;
-    phone_numbers?: PhoneNumber[];
-    emails?: Email[];
-    gender?: string;
-    dob?: string;
-    active?: boolean;
-    profile_pic_url?: string;
-    username?: string;
-    account_type?: string;
-    _id?: string;
-    created_at?: string;
-    updated_at?: string;
-};
-/** @returns {PhoneNumber} */
-declare function PhoneNumber(): PhoneNumber;
-type PhoneNumber = {
-    /**
-     * - Denotes if the phone number is active
-     */
-    active?: boolean;
-    /**
-     * - Denotes it's the primary phone number for the account
-     */
-    primary?: boolean;
-    /**
-     * - Denotes it's a verified phone number
-     */
-    verified?: boolean;
-    /**
-     * - Phone number
-     */
-    phone?: string;
-    /**
-     * - Country code
-     */
-    country_code?: number;
-};
-/** @returns {Email} */
-declare function Email(): Email;
-type Email = {
-    /**
-     * - Denotes it's the primary email for the account
-     */
-    primary?: boolean;
-    /**
-     * - Denotes it's a verified email
-     */
-    verified?: boolean;
-    /**
-     * - Email Address
-     */
-    email?: string;
-    /**
-     * - Denotes if the email is active
-     */
-    active?: boolean;
-};
-/** @returns {Debug} */
-declare function Debug(): Debug;
-type Debug = {
-    /**
-     * - Source of user
-     */
-    source?: string;
-    /**
-     * - Platform of user
-     */
-    platform?: string;
 };
 /** @returns {SubmitCustomFormResponse} */
 declare function SubmitCustomFormResponse(): SubmitCustomFormResponse;

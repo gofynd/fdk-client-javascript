@@ -34,6 +34,20 @@ export = OrderApplicationModel;
  * @property {string} [display_name]
  */
 /**
+ * @typedef ShipmentPaymentInfo
+ * @property {string} [mop] - Stands for "Mode of Payment". This is a short code
+ *   (like "COD" for Cash On Delivery) that represents the payment method used.
+ * @property {string} [payment_mode] - Information about the payment mode,
+ *   indicates whether COD or PREPAID
+ * @property {string} [status] - Indicates the current status of the payment,
+ *   Paid or Unpaid
+ * @property {string} [mode] - Information about the payment source. For eg, NB_ICICI
+ * @property {string} [logo] - A URL to an image representing the payment method
+ * @property {string} [display_name] - The name of the payment method as it
+ *   should be displayed to the user
+ * @property {number} [amount] - Amount paid using this payment method
+ */
+/**
  * @typedef ShipmentUserInfo
  * @property {string} [first_name]
  * @property {string} [gender]
@@ -76,6 +90,7 @@ export = OrderApplicationModel;
  * @property {boolean} [is_passed]
  * @property {string} [status]
  * @property {string} [time]
+ * @property {string} [created_ts]
  * @property {NestedTrackingDetails[]} [tracking_details]
  */
 /**
@@ -118,6 +133,7 @@ export = OrderApplicationModel;
  * @property {number} [refund_amount]
  * @property {string} [currency_code]
  * @property {number} [fynd_credits]
+ * @property {number} [amount_to_be_collected]
  */
 /**
  * @typedef ItemBrand
@@ -190,6 +206,7 @@ export = OrderApplicationModel;
  * @property {number} [gst_fee]
  * @property {number} [refund_amount]
  * @property {number} [fynd_credits]
+ * @property {number} [amount_to_be_collected]
  */
 /**
  * @typedef CurrentStatus
@@ -217,6 +234,7 @@ export = OrderApplicationModel;
  * @property {string} [currency_code]
  * @property {string} [seller_identifier]
  * @property {CurrentStatus} [current_status]
+ * @property {Article} [article]
  */
 /**
  * @typedef FulfillingCompany
@@ -224,7 +242,11 @@ export = OrderApplicationModel;
  * @property {string} [name]
  */
 /**
- * @typedef DeliveryAddress
+ * @typedef Article
+ * @property {string[]} [tags]
+ */
+/**
+ * @typedef Address
  * @property {string} [pincode]
  * @property {string} [phone]
  * @property {number} [latitude]
@@ -239,6 +261,7 @@ export = OrderApplicationModel;
  * @property {string} [state]
  * @property {string} [created_at]
  * @property {string} [address1]
+ * @property {string} [display_address]
  * @property {string} [name]
  * @property {string} [contact_person]
  * @property {string} [address_category]
@@ -251,6 +274,9 @@ export = OrderApplicationModel;
 /**
  * @typedef Shipments
  * @property {ShipmentPayment} [payment]
+ * @property {ShipmentPaymentInfo[]} [payment_info] - "Array of objects
+ *   containing payment methods used for placing an order. Each object will
+ *   provide information about corresponding payment method with relevant details."
  * @property {string} [order_type]
  * @property {boolean} [show_download_invoice]
  * @property {boolean} [can_cancel]
@@ -273,6 +299,7 @@ export = OrderApplicationModel;
  * @property {Prices} [prices]
  * @property {string} [returnable_date]
  * @property {string} [shipment_created_at]
+ * @property {string} [shipment_created_ts]
  * @property {Object} [size_info]
  * @property {Bags[]} [bags]
  * @property {string} [dp_name]
@@ -280,12 +307,14 @@ export = OrderApplicationModel;
  * @property {boolean} [beneficiary_details]
  * @property {FulfillingCompany} [fulfilling_company]
  * @property {boolean} [can_return]
- * @property {DeliveryAddress} [delivery_address]
+ * @property {Address} [delivery_address]
+ * @property {Address} [billing_address]
  * @property {string} [track_url]
  * @property {string} [order_id]
  * @property {string} [need_help_url]
  * @property {Object} [return_meta]
  * @property {string} [delivery_date]
+ * @property {OrderRequest} [order]
  */
 /**
  * @typedef BagsForReorderArticleAssignment
@@ -304,12 +333,15 @@ export = OrderApplicationModel;
 /**
  * @typedef OrderSchema
  * @property {number} [total_shipments_in_order]
+ * @property {string} [gstin_code]
  * @property {UserInfo} [user_info]
  * @property {BreakupValues[]} [breakup_values]
  * @property {string} [order_created_time]
+ * @property {string} [order_created_ts]
  * @property {string} [order_id]
  * @property {Shipments[]} [shipments]
  * @property {BagsForReorder[]} [bags_for_reorder]
+ * @property {Object} [meta]
  */
 /**
  * @typedef OrderStatuses
@@ -493,6 +525,10 @@ export = OrderApplicationModel;
  * @property {string} [status]
  */
 /**
+ * @typedef OrderRequest
+ * @property {Object} [meta]
+ */
+/**
  * @typedef UpdateShipmentStatusRequest
  * @property {StatuesRequest[]} [statuses]
  * @property {boolean} [task]
@@ -519,7 +555,7 @@ export = OrderApplicationModel;
 declare class OrderApplicationModel {
 }
 declare namespace OrderApplicationModel {
-    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentUserInfo, FulfillingStore, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, DeliveryAddress, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponse, SendOtpToCustomerResponse, VerifyOtp, VerifyOtpResponse, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, StatusesBodyResponse, ShipmentApplicationStatusResponse, ErrorResponse };
+    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentPaymentInfo, ShipmentUserInfo, FulfillingStore, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, Article, Address, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponse, SendOtpToCustomerResponse, VerifyOtp, VerifyOtpResponse, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, OrderRequest, UpdateShipmentStatusRequest, StatusesBodyResponse, ShipmentApplicationStatusResponse, ErrorResponse };
 }
 /** @returns {OrderPage} */
 declare function OrderPage(): OrderPage;
@@ -558,6 +594,42 @@ type ShipmentPayment = {
     mode?: string;
     logo?: string;
     display_name?: string;
+};
+/** @returns {ShipmentPaymentInfo} */
+declare function ShipmentPaymentInfo(): ShipmentPaymentInfo;
+type ShipmentPaymentInfo = {
+    /**
+     * - Stands for "Mode of Payment". This is a short code
+     * (like "COD" for Cash On Delivery) that represents the payment method used.
+     */
+    mop?: string;
+    /**
+     * - Information about the payment mode,
+     * indicates whether COD or PREPAID
+     */
+    payment_mode?: string;
+    /**
+     * - Indicates the current status of the payment,
+     * Paid or Unpaid
+     */
+    status?: string;
+    /**
+     * - Information about the payment source. For eg, NB_ICICI
+     */
+    mode?: string;
+    /**
+     * - A URL to an image representing the payment method
+     */
+    logo?: string;
+    /**
+     * - The name of the payment method as it
+     * should be displayed to the user
+     */
+    display_name?: string;
+    /**
+     * - Amount paid using this payment method
+     */
+    amount?: number;
 };
 /** @returns {ShipmentUserInfo} */
 declare function ShipmentUserInfo(): ShipmentUserInfo;
@@ -608,6 +680,7 @@ type TrackingDetails = {
     is_passed?: boolean;
     status?: string;
     time?: string;
+    created_ts?: string;
     tracking_details?: NestedTrackingDetails[];
 };
 /** @returns {TimeStampData} */
@@ -654,6 +727,7 @@ type Prices = {
     refund_amount?: number;
     currency_code?: string;
     fynd_credits?: number;
+    amount_to_be_collected?: number;
 };
 /** @returns {ItemBrand} */
 declare function ItemBrand(): ItemBrand;
@@ -732,6 +806,7 @@ type FinancialBreakup = {
     gst_fee?: number;
     refund_amount?: number;
     fynd_credits?: number;
+    amount_to_be_collected?: number;
 };
 /** @returns {CurrentStatus} */
 declare function CurrentStatus(): CurrentStatus;
@@ -761,6 +836,7 @@ type Bags = {
     currency_code?: string;
     seller_identifier?: string;
     current_status?: CurrentStatus;
+    article?: Article;
 };
 /** @returns {FulfillingCompany} */
 declare function FulfillingCompany(): FulfillingCompany;
@@ -768,9 +844,14 @@ type FulfillingCompany = {
     id?: number;
     name?: string;
 };
-/** @returns {DeliveryAddress} */
-declare function DeliveryAddress(): DeliveryAddress;
-type DeliveryAddress = {
+/** @returns {Article} */
+declare function Article(): Article;
+type Article = {
+    tags?: string[];
+};
+/** @returns {Address} */
+declare function Address(): Address;
+type Address = {
     pincode?: string;
     phone?: string;
     latitude?: number;
@@ -785,6 +866,7 @@ type DeliveryAddress = {
     state?: string;
     created_at?: string;
     address1?: string;
+    display_address?: string;
     name?: string;
     contact_person?: string;
     address_category?: string;
@@ -798,6 +880,12 @@ type DeliveryAddress = {
 declare function Shipments(): Shipments;
 type Shipments = {
     payment?: ShipmentPayment;
+    /**
+     * - "Array of objects
+     * containing payment methods used for placing an order. Each object will
+     * provide information about corresponding payment method with relevant details."
+     */
+    payment_info?: ShipmentPaymentInfo[];
     order_type?: string;
     show_download_invoice?: boolean;
     can_cancel?: boolean;
@@ -820,6 +908,7 @@ type Shipments = {
     prices?: Prices;
     returnable_date?: string;
     shipment_created_at?: string;
+    shipment_created_ts?: string;
     size_info?: any;
     bags?: Bags[];
     dp_name?: string;
@@ -827,12 +916,14 @@ type Shipments = {
     beneficiary_details?: boolean;
     fulfilling_company?: FulfillingCompany;
     can_return?: boolean;
-    delivery_address?: DeliveryAddress;
+    delivery_address?: Address;
+    billing_address?: Address;
     track_url?: string;
     order_id?: string;
     need_help_url?: string;
     return_meta?: any;
     delivery_date?: string;
+    order?: OrderRequest;
 };
 /** @returns {BagsForReorderArticleAssignment} */
 declare function BagsForReorderArticleAssignment(): BagsForReorderArticleAssignment;
@@ -854,12 +945,15 @@ type BagsForReorder = {
 declare function OrderSchema(): OrderSchema;
 type OrderSchema = {
     total_shipments_in_order?: number;
+    gstin_code?: string;
     user_info?: UserInfo;
     breakup_values?: BreakupValues[];
     order_created_time?: string;
+    order_created_ts?: string;
     order_id?: string;
     shipments?: Shipments[];
     bags_for_reorder?: BagsForReorder[];
+    meta?: any;
 };
 /** @returns {OrderStatuses} */
 declare function OrderStatuses(): OrderStatuses;
@@ -1073,6 +1167,11 @@ type StatuesRequest = {
     shipments?: ShipmentsRequest[];
     exclude_bags_next_state?: string;
     status?: string;
+};
+/** @returns {OrderRequest} */
+declare function OrderRequest(): OrderRequest;
+type OrderRequest = {
+    meta?: any;
 };
 /** @returns {UpdateShipmentStatusRequest} */
 declare function UpdateShipmentStatusRequest(): UpdateShipmentStatusRequest;

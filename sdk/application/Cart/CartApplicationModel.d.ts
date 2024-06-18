@@ -17,17 +17,8 @@ export = CartApplicationModel;
  * @property {string} [payable_by] - Promo amount bearable party
  */
 /**
- * @typedef FreeGiftItem
- * @property {string} [item_slug] - Item slug
- * @property {string} [item_name] - Item name
- * @property {Object} [item_price_details] - Item price details
- * @property {string} [item_brand_name] - Item brand name
- * @property {number} [item_id] - Item id
- * @property {string[]} [item_images_url] - Item images URL
- */
-/**
  * @typedef AppliedFreeArticles
- * @property {FreeGiftItem} [free_gift_item_details] - Free gift items details
+ * @property {FreeGiftItems} [free_gift_item_details] - Free gift items details
  * @property {string} [parent_item_identifier] - Parent item identifier for free article
  * @property {number} [quantity] - Free article quantity
  * @property {string} [article_id] - Free article id
@@ -49,6 +40,8 @@ export = CartApplicationModel;
  * @property {AppliedFreeArticles[]} [applied_free_articles] - Applied free
  *   article for free gift item promotions
  * @property {string} [promotion_type] - Promotion type of current promotion
+ * @property {Object} [meta] - Meta object for extra data
+ * @property {string} [code] - Promotion code
  */
 /**
  * @typedef PaymentSelectionLock
@@ -62,6 +55,11 @@ export = CartApplicationModel;
  * @property {string} [min]
  */
 /**
+ * @typedef PromiseISOFormat
+ * @property {string} [max] - Max promise in ISO format.
+ * @property {string} [min] - Min Promise in ISO format.
+ */
+/**
  * @typedef PromiseTimestamp
  * @property {number} [max]
  * @property {number} [min]
@@ -70,6 +68,7 @@ export = CartApplicationModel;
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
  * @property {PromiseTimestamp} [timestamp]
+ * @property {PromiseISOFormat} [iso]
  */
 /**
  * @typedef BasePrice
@@ -114,6 +113,7 @@ export = CartApplicationModel;
  * @property {Object} [gift_card]
  * @property {boolean} [is_gift_visible]
  * @property {string} [type]
+ * @property {string[]} [tags] - A list of article tags
  */
 /**
  * @typedef CartProductIdentifer
@@ -122,6 +122,22 @@ export = CartApplicationModel;
 /**
  * @typedef PromoMeta
  * @property {string} [message]
+ */
+/**
+ * @typedef ChargesAmount
+ * @property {number} [value] - This is the value of amount added
+ * @property {string} [currency] - This is destination currency of value
+ */
+/**
+ * @typedef Charges
+ * @property {Object} [meta] - This object contains the meta data realted to
+ *   charges price adjustment
+ * @property {ChargesAmount} [amount]
+ * @property {string} [name] - This is the name of the charge applied
+ * @property {boolean} [allow_refund] - This boolean value defines that refund
+ *   is allowed or not for the charge
+ * @property {string} [code] - This is the code of the charge applied
+ * @property {string} [type] - This is the type of the charge applied
  */
 /**
  * @typedef ProductPrice
@@ -222,6 +238,7 @@ export = CartApplicationModel;
  * @property {PromoMeta} [promo_meta]
  * @property {ProductPriceInfo} [price]
  * @property {number} [quantity]
+ * @property {Charges[]} [charges]
  * @property {string} [discount]
  * @property {ProductAvailability} [availability]
  * @property {ShipmentPromise} [delivery_promise]
@@ -246,6 +263,7 @@ export = CartApplicationModel;
  * @property {string[]} [message]
  * @property {string} [currency_code]
  * @property {number} [value]
+ * @property {number} [preset]
  */
 /**
  * @typedef RawBreakup
@@ -258,6 +276,7 @@ export = CartApplicationModel;
  * @property {number} [gst_charges]
  * @property {number} [mrp_total]
  * @property {number} [mop_total]
+ * @property {number} [total_charge]
  * @property {number} [coupon]
  * @property {number} [total]
  * @property {number} [gift_card]
@@ -360,6 +379,7 @@ export = CartApplicationModel;
  * @property {string} [coupon_text]
  * @property {boolean} [buy_now]
  * @property {Object} [pan_config]
+ * @property {Object} [custom_cart_meta]
  */
 /**
  * @typedef AddProductCart
@@ -377,6 +397,7 @@ export = CartApplicationModel;
  * @property {boolean} [pos]
  * @property {number} [item_id]
  * @property {Object} [meta]
+ * @property {string} [seller_identifier] - Add items using seller identifier for store os
  */
 /**
  * @typedef AddCartRequest
@@ -437,6 +458,7 @@ export = CartApplicationModel;
  */
 /**
  * @typedef Coupon
+ * @property {number} [coupon_amount] - The amount based on cart value
  * @property {number} [coupon_value]
  * @property {string} [title]
  * @property {number} [minimum_cart_value]
@@ -449,6 +471,11 @@ export = CartApplicationModel;
  * @property {boolean} [is_applicable]
  * @property {string} [description]
  * @property {boolean} [is_applied]
+ * @property {string} [start_date]
+ * @property {string} [end_date]
+ * @property {string} [coupon_applicable_message]
+ * @property {string} [offer_text]
+ * @property {boolean} [is_bank_offer]
  */
 /**
  * @typedef GetCouponResponse
@@ -516,6 +543,8 @@ export = CartApplicationModel;
  * @property {string} [id]
  * @property {Object} [_custom_json]
  * @property {string} [city]
+ * @property {string} [sector]
+ * @property {string} [state_code] - State code for international address
  * @property {string} [created_by_user_id]
  * @property {string} [landmark]
  * @property {string} [user_id]
@@ -619,6 +648,7 @@ export = CartApplicationModel;
  * @property {string} [comment]
  * @property {boolean} [buy_now]
  * @property {string} [uid]
+ * @property {Object} [custom_cart_meta]
  */
 /**
  * @typedef CartCheckoutCustomMeta
@@ -661,6 +691,10 @@ export = CartApplicationModel;
  * @property {string} [billing_address_id]
  * @property {Object} [meta]
  * @property {Object} [payment_extra_identifiers]
+ * @property {string} [iin]
+ * @property {string} [network]
+ * @property {string} [type]
+ * @property {string} [card_id]
  */
 /**
  * @typedef CheckCart
@@ -693,6 +727,7 @@ export = CartApplicationModel;
  * @property {string} [coupon_text]
  * @property {boolean} [buy_now]
  * @property {number} [cod_charges]
+ * @property {Object} [custom_cart_meta]
  */
 /**
  * @typedef CartCheckoutResponse
@@ -723,6 +758,7 @@ export = CartApplicationModel;
  * @property {string} [checkout_mode]
  * @property {string} [comment]
  * @property {string} [gstin]
+ * @property {Object} [custom_cart_meta]
  */
 /**
  * @typedef CartMetaResponse
@@ -773,6 +809,7 @@ export = CartApplicationModel;
  * @property {CartCurrency} [currency]
  * @property {string} [coupon_text]
  * @property {boolean} [buy_now]
+ * @property {Object} [custom_cart_meta]
  */
 /**
  * @typedef SharedCartResponse
@@ -780,10 +817,21 @@ export = CartApplicationModel;
  * @property {SharedCart} [cart]
  */
 /**
+ * @typedef PriceMinMax
+ * @property {number} [min]
+ * @property {number} [max]
+ */
+/**
+ * @typedef ItemPriceDetails
+ * @property {PriceMinMax} [marked]
+ * @property {PriceMinMax} [effective]
+ * @property {string} [currency]
+ */
+/**
  * @typedef FreeGiftItems
  * @property {string} [item_slug] - Item slug
  * @property {string} [item_name] - Item name
- * @property {Object} [item_price_details] - Item price details
+ * @property {ItemPriceDetails} [item_price_details]
  * @property {string} [item_brand_name] - Item brand name
  * @property {number} [item_id] - Item id
  * @property {string[]} [item_images_url] - Item images URL
@@ -793,9 +841,9 @@ export = CartApplicationModel;
  * @property {string} [id] - Promotion id
  * @property {Object} [buy_rules] - Buy rules of promotions
  * @property {string} [offer_text] - Offer title
- * @property {string} [promotion_group] - Group of promotion belongs to
- * @property {string} [promotion_name] - Name of promotion
  * @property {string} [promotion_type] - Promotion type
+ * @property {string} [promotion_name] - Name of the promotion
+ * @property {string} [promotion_group] - Group of promotion belongs to
  * @property {string} [valid_till] - Datetime ISOString for promotion end date
  * @property {Object[]} [discount_rules] - Discount rules of promotions
  * @property {FreeGiftItems[]} [free_gift_items] - Details of free gift items
@@ -804,6 +852,24 @@ export = CartApplicationModel;
 /**
  * @typedef PromotionOffersResponse
  * @property {PromotionOffer[]} [available_promotions]
+ */
+/**
+ * @typedef PromotionPaymentOffer
+ * @property {string} [application_id] - Application id
+ * @property {Object[]} [buy_rules] - Buy rules of promotions
+ * @property {string} [calculate_on] - Price on which promotion calculated
+ * @property {string} [description] - Offer details including T&C
+ * @property {Object[]} [discount_rules] - Discount rules of promotions
+ * @property {string} [id] - Promotion id
+ * @property {string} [offer_text] - Offer title
+ * @property {string} [promotion_group] - Group of promotion belongs to
+ * @property {string} [promotion_type] - Promotion type
+ * @property {string} [promotion_name] - Name of the promotion
+ */
+/**
+ * @typedef PromotionPaymentOffersResponse
+ * @property {boolean} [success]
+ * @property {PromotionPaymentOffer[]} [promotions]
  */
 /**
  * @typedef OperationErrorResponse
@@ -891,11 +957,15 @@ export = CartApplicationModel;
  * @property {Object} [payment_params]
  * @property {string} [billing_address_id]
  * @property {Object} [meta]
+ * @property {string} [iin]
+ * @property {string} [network]
+ * @property {string} [type]
+ * @property {string} [card_id]
  */
 declare class CartApplicationModel {
 }
 declare namespace CartApplicationModel {
-    export { BuyRules, DiscountRulesApp, Ownership, FreeGiftItem, AppliedFreeArticles, AppliedPromotion, PaymentSelectionLock, PromiseFormatted, PromiseTimestamp, ShipmentPromise, BasePrice, ArticlePriceInfo, BaseInfo, StoreInfo, ProductArticle, CartProductIdentifer, PromoMeta, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, ProductAvailabilitySize, ProductAvailability, ActionQuery, ProductAction, Tags, ProductImage, CategoryInfo, CartProduct, CouponDetails, CartProductInfo, DisplayBreakup, RawBreakup, CouponBreakup, LoyaltyPoints, CartBreakup, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, DeleteCartDetailResponse, CartItemCountResponse, PageCoupon, Coupon, GetCouponResponse, ApplyCouponRequest, OfferPrice, OfferItem, OfferSeller, BulkPriceOffer, BulkPriceResponse, RewardPointRequest, GeoLocation, Address, GetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, SelectCartAddressRequest, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, ShipmentResponse, CartShipmentsResponse, CartCheckoutCustomMeta, CustomerDetails, StaffCheckout, CartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, GiftDetail, ArticleGiftDetail, CartMetaRequest, CartMetaResponse, CartMetaMissingResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, FreeGiftItems, PromotionOffer, PromotionOffersResponse, OperationErrorResponse, LadderPrice, LadderOfferItem, LadderPriceOffer, CurrencyInfo, LadderPriceOffers, PaymentMeta, PaymentMethod, CartCheckoutDetailV2Request };
+    export { BuyRules, DiscountRulesApp, Ownership, AppliedFreeArticles, AppliedPromotion, PaymentSelectionLock, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, BasePrice, ArticlePriceInfo, BaseInfo, StoreInfo, ProductArticle, CartProductIdentifer, PromoMeta, ChargesAmount, Charges, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, ProductAvailabilitySize, ProductAvailability, ActionQuery, ProductAction, Tags, ProductImage, CategoryInfo, CartProduct, CouponDetails, CartProductInfo, DisplayBreakup, RawBreakup, CouponBreakup, LoyaltyPoints, CartBreakup, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, DeleteCartDetailResponse, CartItemCountResponse, PageCoupon, Coupon, GetCouponResponse, ApplyCouponRequest, OfferPrice, OfferItem, OfferSeller, BulkPriceOffer, BulkPriceResponse, RewardPointRequest, GeoLocation, Address, GetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, SelectCartAddressRequest, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, ShipmentResponse, CartShipmentsResponse, CartCheckoutCustomMeta, CustomerDetails, StaffCheckout, CartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, GiftDetail, ArticleGiftDetail, CartMetaRequest, CartMetaResponse, CartMetaMissingResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, PriceMinMax, ItemPriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersResponse, PromotionPaymentOffer, PromotionPaymentOffersResponse, OperationErrorResponse, LadderPrice, LadderOfferItem, LadderPriceOffer, CurrencyInfo, LadderPriceOffers, PaymentMeta, PaymentMethod, CartCheckoutDetailV2Request };
 }
 /** @returns {BuyRules} */
 declare function BuyRules(): BuyRules;
@@ -941,41 +1011,13 @@ type Ownership = {
      */
     payable_by?: string;
 };
-/** @returns {FreeGiftItem} */
-declare function FreeGiftItem(): FreeGiftItem;
-type FreeGiftItem = {
-    /**
-     * - Item slug
-     */
-    item_slug?: string;
-    /**
-     * - Item name
-     */
-    item_name?: string;
-    /**
-     * - Item price details
-     */
-    item_price_details?: any;
-    /**
-     * - Item brand name
-     */
-    item_brand_name?: string;
-    /**
-     * - Item id
-     */
-    item_id?: number;
-    /**
-     * - Item images URL
-     */
-    item_images_url?: string[];
-};
 /** @returns {AppliedFreeArticles} */
 declare function AppliedFreeArticles(): AppliedFreeArticles;
 type AppliedFreeArticles = {
     /**
      * - Free gift items details
      */
-    free_gift_item_details?: FreeGiftItem;
+    free_gift_item_details?: FreeGiftItems;
     /**
      * - Parent item identifier for free article
      */
@@ -1043,6 +1085,14 @@ type AppliedPromotion = {
      * - Promotion type of current promotion
      */
     promotion_type?: string;
+    /**
+     * - Meta object for extra data
+     */
+    meta?: any;
+    /**
+     * - Promotion code
+     */
+    code?: string;
 };
 /** @returns {PaymentSelectionLock} */
 declare function PaymentSelectionLock(): PaymentSelectionLock;
@@ -1057,6 +1107,18 @@ type PromiseFormatted = {
     max?: string;
     min?: string;
 };
+/** @returns {PromiseISOFormat} */
+declare function PromiseISOFormat(): PromiseISOFormat;
+type PromiseISOFormat = {
+    /**
+     * - Max promise in ISO format.
+     */
+    max?: string;
+    /**
+     * - Min Promise in ISO format.
+     */
+    min?: string;
+};
 /** @returns {PromiseTimestamp} */
 declare function PromiseTimestamp(): PromiseTimestamp;
 type PromiseTimestamp = {
@@ -1068,6 +1130,7 @@ declare function ShipmentPromise(): ShipmentPromise;
 type ShipmentPromise = {
     formatted?: PromiseFormatted;
     timestamp?: PromiseTimestamp;
+    iso?: PromiseISOFormat;
 };
 /** @returns {BasePrice} */
 declare function BasePrice(): BasePrice;
@@ -1117,6 +1180,10 @@ type ProductArticle = {
     gift_card?: any;
     is_gift_visible?: boolean;
     type?: string;
+    /**
+     * - A list of article tags
+     */
+    tags?: string[];
 };
 /** @returns {CartProductIdentifer} */
 declare function CartProductIdentifer(): CartProductIdentifer;
@@ -1130,6 +1197,45 @@ type CartProductIdentifer = {
 declare function PromoMeta(): PromoMeta;
 type PromoMeta = {
     message?: string;
+};
+/** @returns {ChargesAmount} */
+declare function ChargesAmount(): ChargesAmount;
+type ChargesAmount = {
+    /**
+     * - This is the value of amount added
+     */
+    value?: number;
+    /**
+     * - This is destination currency of value
+     */
+    currency?: string;
+};
+/** @returns {Charges} */
+declare function Charges(): Charges;
+type Charges = {
+    /**
+     * - This object contains the meta data realted to
+     * charges price adjustment
+     */
+    meta?: any;
+    amount?: ChargesAmount;
+    /**
+     * - This is the name of the charge applied
+     */
+    name?: string;
+    /**
+     * - This boolean value defines that refund
+     * is allowed or not for the charge
+     */
+    allow_refund?: boolean;
+    /**
+     * - This is the code of the charge applied
+     */
+    code?: string;
+    /**
+     * - This is the type of the charge applied
+     */
+    type?: string;
 };
 /** @returns {ProductPrice} */
 declare function ProductPrice(): ProductPrice;
@@ -1253,6 +1359,7 @@ type CartProductInfo = {
     promo_meta?: PromoMeta;
     price?: ProductPriceInfo;
     quantity?: number;
+    charges?: Charges[];
     discount?: string;
     availability?: ProductAvailability;
     delivery_promise?: ShipmentPromise;
@@ -1278,6 +1385,7 @@ type DisplayBreakup = {
     message?: string[];
     currency_code?: string;
     value?: number;
+    preset?: number;
 };
 /** @returns {RawBreakup} */
 declare function RawBreakup(): RawBreakup;
@@ -1291,6 +1399,7 @@ type RawBreakup = {
     gst_charges?: number;
     mrp_total?: number;
     mop_total?: number;
+    total_charge?: number;
     coupon?: number;
     total?: number;
     gift_card?: number;
@@ -1405,6 +1514,7 @@ type CartDetailResponse = {
     coupon_text?: string;
     buy_now?: boolean;
     pan_config?: any;
+    custom_cart_meta?: any;
 };
 /** @returns {AddProductCart} */
 declare function AddProductCart(): AddProductCart;
@@ -1423,6 +1533,10 @@ type AddProductCart = {
     pos?: boolean;
     item_id?: number;
     meta?: any;
+    /**
+     * - Add items using seller identifier for store os
+     */
+    seller_identifier?: string;
 };
 /** @returns {AddCartRequest} */
 declare function AddCartRequest(): AddCartRequest;
@@ -1507,6 +1621,10 @@ type PageCoupon = {
 /** @returns {Coupon} */
 declare function Coupon(): Coupon;
 type Coupon = {
+    /**
+     * - The amount based on cart value
+     */
+    coupon_amount?: number;
     coupon_value?: number;
     title?: string;
     minimum_cart_value?: number;
@@ -1519,6 +1637,11 @@ type Coupon = {
     is_applicable?: boolean;
     description?: string;
     is_applied?: boolean;
+    start_date?: string;
+    end_date?: string;
+    coupon_applicable_message?: string;
+    offer_text?: string;
+    is_bank_offer?: boolean;
 };
 /** @returns {GetCouponResponse} */
 declare function GetCouponResponse(): GetCouponResponse;
@@ -1638,6 +1761,11 @@ type Address = {
     id?: string;
     _custom_json?: any;
     city?: string;
+    sector?: string;
+    /**
+     * - State code for international address
+     */
+    state_code?: string;
     created_by_user_id?: string;
     landmark?: string;
     user_id?: string;
@@ -1751,6 +1879,7 @@ type CartShipmentsResponse = {
     comment?: string;
     buy_now?: boolean;
     uid?: string;
+    custom_cart_meta?: any;
 };
 /** @returns {CartCheckoutCustomMeta} */
 declare function CartCheckoutCustomMeta(): CartCheckoutCustomMeta;
@@ -1800,6 +1929,10 @@ type CartCheckoutDetailRequest = {
     billing_address_id?: string;
     meta?: any;
     payment_extra_identifiers?: any;
+    iin?: string;
+    network?: string;
+    type?: string;
+    card_id?: string;
 };
 /** @returns {CheckCart} */
 declare function CheckCart(): CheckCart;
@@ -1833,6 +1966,7 @@ type CheckCart = {
     coupon_text?: string;
     buy_now?: boolean;
     cod_charges?: number;
+    custom_cart_meta?: any;
 };
 /** @returns {CartCheckoutResponse} */
 declare function CartCheckoutResponse(): CartCheckoutResponse;
@@ -1870,6 +2004,7 @@ type CartMetaRequest = {
     checkout_mode?: string;
     comment?: string;
     gstin?: string;
+    custom_cart_meta?: any;
 };
 /** @returns {CartMetaResponse} */
 declare function CartMetaResponse(): CartMetaResponse;
@@ -1950,12 +2085,26 @@ type SharedCart = {
     currency?: CartCurrency;
     coupon_text?: string;
     buy_now?: boolean;
+    custom_cart_meta?: any;
 };
 /** @returns {SharedCartResponse} */
 declare function SharedCartResponse(): SharedCartResponse;
 type SharedCartResponse = {
     error?: string;
     cart?: SharedCart;
+};
+/** @returns {PriceMinMax} */
+declare function PriceMinMax(): PriceMinMax;
+type PriceMinMax = {
+    min?: number;
+    max?: number;
+};
+/** @returns {ItemPriceDetails} */
+declare function ItemPriceDetails(): ItemPriceDetails;
+type ItemPriceDetails = {
+    marked?: PriceMinMax;
+    effective?: PriceMinMax;
+    currency?: string;
 };
 /** @returns {FreeGiftItems} */
 declare function FreeGiftItems(): FreeGiftItems;
@@ -1968,10 +2117,7 @@ type FreeGiftItems = {
      * - Item name
      */
     item_name?: string;
-    /**
-     * - Item price details
-     */
-    item_price_details?: any;
+    item_price_details?: ItemPriceDetails;
     /**
      * - Item brand name
      */
@@ -2001,17 +2147,17 @@ type PromotionOffer = {
      */
     offer_text?: string;
     /**
-     * - Group of promotion belongs to
-     */
-    promotion_group?: string;
-    /**
-     * - Name of promotion
-     */
-    promotion_name?: string;
-    /**
      * - Promotion type
      */
     promotion_type?: string;
+    /**
+     * - Name of the promotion
+     */
+    promotion_name?: string;
+    /**
+     * - Group of promotion belongs to
+     */
+    promotion_group?: string;
     /**
      * - Datetime ISOString for promotion end date
      */
@@ -2033,6 +2179,56 @@ type PromotionOffer = {
 declare function PromotionOffersResponse(): PromotionOffersResponse;
 type PromotionOffersResponse = {
     available_promotions?: PromotionOffer[];
+};
+/** @returns {PromotionPaymentOffer} */
+declare function PromotionPaymentOffer(): PromotionPaymentOffer;
+type PromotionPaymentOffer = {
+    /**
+     * - Application id
+     */
+    application_id?: string;
+    /**
+     * - Buy rules of promotions
+     */
+    buy_rules?: any[];
+    /**
+     * - Price on which promotion calculated
+     */
+    calculate_on?: string;
+    /**
+     * - Offer details including T&C
+     */
+    description?: string;
+    /**
+     * - Discount rules of promotions
+     */
+    discount_rules?: any[];
+    /**
+     * - Promotion id
+     */
+    id?: string;
+    /**
+     * - Offer title
+     */
+    offer_text?: string;
+    /**
+     * - Group of promotion belongs to
+     */
+    promotion_group?: string;
+    /**
+     * - Promotion type
+     */
+    promotion_type?: string;
+    /**
+     * - Name of the promotion
+     */
+    promotion_name?: string;
+};
+/** @returns {PromotionPaymentOffersResponse} */
+declare function PromotionPaymentOffersResponse(): PromotionPaymentOffersResponse;
+type PromotionPaymentOffersResponse = {
+    success?: boolean;
+    promotions?: PromotionPaymentOffer[];
 };
 /** @returns {OperationErrorResponse} */
 declare function OperationErrorResponse(): OperationErrorResponse;
@@ -2186,4 +2382,8 @@ type CartCheckoutDetailV2Request = {
     payment_params?: any;
     billing_address_id?: string;
     meta?: any;
+    iin?: string;
+    network?: string;
+    type?: string;
+    card_id?: string;
 };

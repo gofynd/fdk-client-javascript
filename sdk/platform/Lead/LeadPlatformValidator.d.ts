@@ -41,14 +41,6 @@ export = LeadPlatformValidator;
  *   Default is 12.
  */
 /**
- * @typedef GetPlatformVideoParticipantsParam
- * @property {string} uniqueName - Unique name of Video Room
- */
-/**
- * @typedef GetTokenForPlatformVideoRoomParam
- * @property {string} uniqueName - Unique name of video room
- */
-/**
  * @typedef SubmitFeedbackParam
  * @property {string} id - Ticket ID for which feedback is to be submitted
  * @property {LeadPlatformModel.TicketFeedbackPayload} body
@@ -70,15 +62,11 @@ declare class LeadPlatformValidator {
     static getPlatformTicketHistory(): GetPlatformTicketHistoryParam;
     /** @returns {GetPlatformTicketsParam} */
     static getPlatformTickets(): GetPlatformTicketsParam;
-    /** @returns {GetPlatformVideoParticipantsParam} */
-    static getPlatformVideoParticipants(): GetPlatformVideoParticipantsParam;
-    /** @returns {GetTokenForPlatformVideoRoomParam} */
-    static getTokenForPlatformVideoRoom(): GetTokenForPlatformVideoRoomParam;
     /** @returns {SubmitFeedbackParam} */
     static submitFeedback(): SubmitFeedbackParam;
 }
 declare namespace LeadPlatformValidator {
-    export { CreatePlatformTicketHistoryParam, CreateTicketParam, EditPlatformTicketParam, GetFeedbacksParam, GetGeneralConfigParam, GetPlatformTicketParam, GetPlatformTicketHistoryParam, GetPlatformTicketsParam, GetPlatformVideoParticipantsParam, GetTokenForPlatformVideoRoomParam, SubmitFeedbackParam };
+    export { CreatePlatformTicketHistoryParam, CreateTicketParam, EditPlatformTicketParam, GetFeedbacksParam, GetGeneralConfigParam, GetPlatformTicketParam, GetPlatformTicketHistoryParam, GetPlatformTicketsParam, SubmitFeedbackParam };
 }
 type CreatePlatformTicketHistoryParam = {
     /**
@@ -151,18 +139,6 @@ type GetPlatformTicketsParam = {
      * Default is 12.
      */
     pageSize?: number;
-};
-type GetPlatformVideoParticipantsParam = {
-    /**
-     * - Unique name of Video Room
-     */
-    uniqueName: string;
-};
-type GetTokenForPlatformVideoRoomParam = {
-    /**
-     * - Unique name of video room
-     */
-    uniqueName: string;
 };
 type SubmitFeedbackParam = {
     /**

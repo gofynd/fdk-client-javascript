@@ -1,5 +1,36 @@
 export = ThemePlatformModel;
 /**
+ * @typedef GetExtensionSectionRes
+ * @property {string} [extension_id]
+ * @property {string} [bundle_name]
+ * @property {string} [organization_id]
+ * @property {ExtensionSection[]} [sections]
+ * @property {AssetsExtension} [assets]
+ * @property {string} [status]
+ * @property {string} [type]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef ExtensionSection
+ * @property {string} [label]
+ * @property {string} [name]
+ * @property {PropExtension[]} [props]
+ * @property {Object[]} [blocks]
+ */
+/**
+ * @typedef PropExtension
+ * @property {string} [id]
+ * @property {string} [label]
+ * @property {string} [type]
+ * @property {string} [info]
+ */
+/**
+ * @typedef AssetsExtension
+ * @property {string} [js]
+ * @property {string} [css]
+ */
+/**
  * @typedef ThemeReq
  * @property {string} [marketplace_theme_id] - The ID of the marketplace theme
  *   to apply to the company.
@@ -10,17 +41,21 @@ export = ThemePlatformModel;
  * @property {string} [name] - The name of the theme.
  * @property {MarketplaceThemeId} [marketplace_theme_id]
  * @property {number} [company_id] - The ID of the company that the theme belongs to.
- * @property {ThemeMeta} [meta]
+ * @property {CompanyThemeMeta} [meta]
  * @property {string} [created_at] - The timestamp when the theme was created.
  * @property {string} [updated_at] - The timestamp when the theme was last updated.
+ * @property {AppliedThemes[]} [applied_themes]
  */
 /**
  * @typedef MarketplaceThemeId
  * @property {string} [_id] - The unique identifier for the marketplace theme.
  * @property {boolean} [is_default] - Whether the theme is the default theme.
+ * @property {Release} [release]
+ * @property {string} [created_at] - Creation date of the theme
+ * @property {string} [updated_at] - Update date of the theme
  */
 /**
- * @typedef ThemeMeta
+ * @typedef CompanyThemeMeta
  * @property {ThemePayment} [payment]
  * @property {string[]} [industry] - A list of industry categories the theme is
  *   suitable for.
@@ -50,15 +85,46 @@ export = ThemePlatformModel;
  * @property {AvailablePageSeo} [seo]
  * @property {Object[]} [props]
  * @property {string} [_id]
+ * @property {string} [created_at] - The creation timestamp of the page
+ * @property {string} [updated_at] - The last update timestamp of the page
  */
 /**
  * @typedef AvailablePageSectionMetaAttributes
  * @property {Object} [attributes]
  */
 /**
+ * @typedef SEOMetaItem
+ * @property {string} [title]
+ * @property {SEOMetaItems[]} [items]
+ */
+/**
+ * @typedef SEOMetaItems
+ * @property {string} [key]
+ * @property {string} [value]
+ */
+/**
+ * @typedef SEOSitemap
+ * @property {number} [priority]
+ * @property {string} [frequency]
+ */
+/**
+ * @typedef SEObreadcrumb
+ * @property {string} [url]
+ * @property {Action} [action]
+ */
+/**
+ * @typedef Action
+ * @property {string} [type]
+ * @property {ActionPage} [page]
+ * @property {ActionPage} [popup]
+ */
+/**
  * @typedef AvailablePageSeo
  * @property {string} [title]
  * @property {string} [description]
+ * @property {SEOMetaItem[]} [meta_tags]
+ * @property {SEOSitemap} [sitemap]
+ * @property {SEObreadcrumb[]} [breadcrumb]
  * @property {string} [_id]
  */
 /**
@@ -69,6 +135,16 @@ export = ThemePlatformModel;
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
  * @property {AvailablePagePredicate} [predicate]
+ * @property {string} [source]
+ */
+/**
+ * @typedef AvailablePagePredicate
+ * @property {AvailablePageScreenPredicate} [screen]
+ * @property {AvailablePageUserPredicate} [user]
+ * @property {AvailablePageRoutePredicate} [route]
+ * @property {AvailablePageSchedulePredicate} [schedule]
+ * @property {AvailablePagePlatformPredicate} [platform]
+ * @property {string[]} [zones] - An array of zone ids associated with the section
  */
 /**
  * @typedef AvailablePageScreenPredicate
@@ -88,10 +164,16 @@ export = ThemePlatformModel;
  * @property {Object} [query]
  */
 /**
- * @typedef AvailablePagePredicate
- * @property {AvailablePageScreenPredicate} [screen]
- * @property {AvailablePageUserPredicate} [user]
- * @property {AvailablePageRoutePredicate} [route]
+ * @typedef AvailablePagePlatformPredicate
+ * @property {boolean} [ios] - Section visibility on ios platform
+ * @property {boolean} [android] - Section visibility on android platform
+ * @property {boolean} [web] - Section visibility on web platform
+ */
+/**
+ * @typedef AvailablePageSchedulePredicate
+ * @property {string} [cron]
+ * @property {string} [start]
+ * @property {string} [end]
  */
 /**
  * @typedef AllAvailablePageSchema
@@ -141,7 +223,7 @@ export = ThemePlatformModel;
  * @property {string} [_id] - The unique identifier of the theme
  * @property {string} [application_id] - The ID of the application
  * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
- * @property {Meta} [meta]
+ * @property {ThemeMeta} [meta]
  * @property {string} [name] - The name of the theme
  * @property {string} [template_theme_id] - The ID of the template theme
  * @property {string} [version] - The version of the theme
@@ -150,6 +232,9 @@ export = ThemePlatformModel;
  * @property {string} [updated_at] - The last update timestamp of the theme
  * @property {Assets} [assets]
  * @property {SectionItem[]} [available_sections] - Available sections information
+ * @property {string} [theme_type]
+ * @property {number} [company_id] - The company id in which sales channel exists
+ * @property {string} [src]
  */
 /**
  * @typedef ThemeUpgradableResponse
@@ -195,15 +280,47 @@ export = ThemePlatformModel;
  * @typedef ThemeConfiguration
  * @property {string} [name] - The name of the configuration
  * @property {Object} [global_config]
- * @property {CustomConfig} [custom]
- * @property {string[]} [page] - An array of pages
+ * @property {ThemeConfigListPage[]} [page] - An array of pages
+ */
+/**
+ * @typedef OverlayPopup
+ * @property {string} [dialog_backgroung]
+ * @property {string} [overlay]
+ */
+/**
+ * @typedef DividerStrokeHighlight
+ * @property {string} [divider_strokes]
+ * @property {string} [highlight]
+ */
+/**
+ * @typedef UserAlerts
+ * @property {string} [success_background]
+ * @property {string} [success_text]
+ * @property {string} [error_background]
+ * @property {string} [error_text]
+ * @property {string} [info_background]
+ * @property {string} [info_text]
+ */
+/**
+ * @typedef OrderTracking
+ * @property {boolean} [show_header]
+ * @property {boolean} [show_footer]
+ */
+/**
+ * @typedef ThemeConfigListPage
+ * @property {string} [page] - Name of the page
+ * @property {ThemeConfigListPageSettingsProps} [settings]
+ */
+/**
+ * @typedef ThemeConfigListPageSettingsProps
+ * @property {Object} [props]
  */
 /**
  * @typedef CustomConfig
  * @property {CustomProps} [props]
  */
 /**
- * @typedef Meta
+ * @typedef ThemeMeta
  * @property {ThemePayment} [payment]
  * @property {string} [description] - The description of the theme
  * @property {string[]} [industry] - An array of industries associated with the theme
@@ -268,6 +385,7 @@ export = ThemePlatformModel;
  * @typedef Prop
  * @property {string} [type] - The type of the property
  * @property {string} [category] - The category of the property
+ * @property {string} [value] - The value of the property
  * @property {string} [id] - The ID of the property
  * @property {string} [label] - The label of the property
  * @property {string} [info] - Additional information about the property
@@ -280,7 +398,8 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef UMDJs
- * @property {string[]} [links]
+ * @property {string} [link]
+ * @property {string[]} [links] - An array of pages
  */
 /**
  * @typedef CommonJS
@@ -288,6 +407,7 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef CSS
+ * @property {string} [link]
  * @property {string[]} [links]
  */
 /**
@@ -303,13 +423,8 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {Section[]} [sections]
+ * @property {string} [value] - The value of the page.
  */
 /**
  * @typedef Section
@@ -397,11 +512,119 @@ export = ThemePlatformModel;
  * @typedef DummyResponse
  * @property {string} [message]
  */
+/**
+ * @typedef AppliedThemes
+ * @property {string} [_id] - ID of the application theme
+ * @property {string} [application_id] - ID of the application
+ */
+/**
+ * @typedef CompanyPrivateTheme
+ * @property {string} [theme_type] - Type of the theme
+ * @property {string} [_id] - Unique identifier for the theme
+ * @property {string} [name] - Name of the theme
+ * @property {string} [version] - Version of the theme
+ * @property {string} [application_id] - Identifier for the application
+ * @property {string} [created_at] - Date and time when the theme was created
+ * @property {string} [updated_at] - Date and time when the theme was last updated
+ * @property {boolean} [applied] - Whether the theme is applied or not
+ * @property {boolean} [is_private] - Whether the theme is private or not
+ * @property {CompanyThemeMeta} [meta]
+ */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class ThemePlatformModel {
 }
 declare namespace ThemePlatformModel {
-    export { ThemeReq, CompanyThemeSchema, MarketplaceThemeId, ThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradableResponse, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, Meta, Release, Images, CustomProps, GlobalSchema, Prop, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyResponse };
+    export { GetExtensionSectionRes, ExtensionSection, PropExtension, AssetsExtension, ThemeReq, CompanyThemeSchema, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradableResponse, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Prop, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyResponse, AppliedThemes, CompanyPrivateTheme, ActionPage, PageType };
 }
+/** @returns {GetExtensionSectionRes} */
+declare function GetExtensionSectionRes(): GetExtensionSectionRes;
+type GetExtensionSectionRes = {
+    extension_id?: string;
+    bundle_name?: string;
+    organization_id?: string;
+    sections?: ExtensionSection[];
+    assets?: AssetsExtension;
+    status?: string;
+    type?: string;
+    created_at?: string;
+    updated_at?: string;
+};
+/** @returns {ExtensionSection} */
+declare function ExtensionSection(): ExtensionSection;
+type ExtensionSection = {
+    label?: string;
+    name?: string;
+    props?: PropExtension[];
+    blocks?: any[];
+};
+/** @returns {PropExtension} */
+declare function PropExtension(): PropExtension;
+type PropExtension = {
+    id?: string;
+    label?: string;
+    type?: string;
+    info?: string;
+};
+/** @returns {AssetsExtension} */
+declare function AssetsExtension(): AssetsExtension;
+type AssetsExtension = {
+    js?: string;
+    css?: string;
+};
 /** @returns {ThemeReq} */
 declare function ThemeReq(): ThemeReq;
 type ThemeReq = {
@@ -427,7 +650,7 @@ type CompanyThemeSchema = {
      * - The ID of the company that the theme belongs to.
      */
     company_id?: number;
-    meta?: ThemeMeta;
+    meta?: CompanyThemeMeta;
     /**
      * - The timestamp when the theme was created.
      */
@@ -436,6 +659,7 @@ type CompanyThemeSchema = {
      * - The timestamp when the theme was last updated.
      */
     updated_at?: string;
+    applied_themes?: AppliedThemes[];
 };
 /** @returns {MarketplaceThemeId} */
 declare function MarketplaceThemeId(): MarketplaceThemeId;
@@ -448,10 +672,19 @@ type MarketplaceThemeId = {
      * - Whether the theme is the default theme.
      */
     is_default?: boolean;
+    release?: Release;
+    /**
+     * - Creation date of the theme
+     */
+    created_at?: string;
+    /**
+     * - Update date of the theme
+     */
+    updated_at?: string;
 };
-/** @returns {ThemeMeta} */
-declare function ThemeMeta(): ThemeMeta;
-type ThemeMeta = {
+/** @returns {CompanyThemeMeta} */
+declare function CompanyThemeMeta(): CompanyThemeMeta;
+type CompanyThemeMeta = {
     payment?: ThemePayment;
     /**
      * - A list of industry categories the theme is
@@ -505,17 +738,59 @@ type AvailablePageSchema = {
     seo?: AvailablePageSeo;
     props?: any[];
     _id?: string;
+    /**
+     * - The creation timestamp of the page
+     */
+    created_at?: string;
+    /**
+     * - The last update timestamp of the page
+     */
+    updated_at?: string;
 };
 /** @returns {AvailablePageSectionMetaAttributes} */
 declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaAttributes;
 type AvailablePageSectionMetaAttributes = {
     attributes?: any;
 };
+/** @returns {SEOMetaItem} */
+declare function SEOMetaItem(): SEOMetaItem;
+type SEOMetaItem = {
+    title?: string;
+    items?: SEOMetaItems[];
+};
+/** @returns {SEOMetaItems} */
+declare function SEOMetaItems(): SEOMetaItems;
+type SEOMetaItems = {
+    key?: string;
+    value?: string;
+};
+/** @returns {SEOSitemap} */
+declare function SEOSitemap(): SEOSitemap;
+type SEOSitemap = {
+    priority?: number;
+    frequency?: string;
+};
+/** @returns {SEObreadcrumb} */
+declare function SEObreadcrumb(): SEObreadcrumb;
+type SEObreadcrumb = {
+    url?: string;
+    action?: Action;
+};
+/** @returns {Action} */
+declare function Action(): Action;
+type Action = {
+    type?: string;
+    page?: ActionPage;
+    popup?: ActionPage;
+};
 /** @returns {AvailablePageSeo} */
 declare function AvailablePageSeo(): AvailablePageSeo;
 type AvailablePageSeo = {
     title?: string;
     description?: string;
+    meta_tags?: SEOMetaItem[];
+    sitemap?: SEOSitemap;
+    breadcrumb?: SEObreadcrumb[];
     _id?: string;
 };
 /** @returns {AvailablePageSchemaSections} */
@@ -527,6 +802,20 @@ type AvailablePageSchemaSections = {
     blocks?: any[];
     preset?: any;
     predicate?: AvailablePagePredicate;
+    source?: string;
+};
+/** @returns {AvailablePagePredicate} */
+declare function AvailablePagePredicate(): AvailablePagePredicate;
+type AvailablePagePredicate = {
+    screen?: AvailablePageScreenPredicate;
+    user?: AvailablePageUserPredicate;
+    route?: AvailablePageRoutePredicate;
+    schedule?: AvailablePageSchedulePredicate;
+    platform?: AvailablePagePlatformPredicate;
+    /**
+     * - An array of zone ids associated with the section
+     */
+    zones?: string[];
 };
 /** @returns {AvailablePageScreenPredicate} */
 declare function AvailablePageScreenPredicate(): AvailablePageScreenPredicate;
@@ -548,12 +837,28 @@ type AvailablePageRoutePredicate = {
     exact_url?: string;
     query?: any;
 };
-/** @returns {AvailablePagePredicate} */
-declare function AvailablePagePredicate(): AvailablePagePredicate;
-type AvailablePagePredicate = {
-    screen?: AvailablePageScreenPredicate;
-    user?: AvailablePageUserPredicate;
-    route?: AvailablePageRoutePredicate;
+/** @returns {AvailablePagePlatformPredicate} */
+declare function AvailablePagePlatformPredicate(): AvailablePagePlatformPredicate;
+type AvailablePagePlatformPredicate = {
+    /**
+     * - Section visibility on ios platform
+     */
+    ios?: boolean;
+    /**
+     * - Section visibility on android platform
+     */
+    android?: boolean;
+    /**
+     * - Section visibility on web platform
+     */
+    web?: boolean;
+};
+/** @returns {AvailablePageSchedulePredicate} */
+declare function AvailablePageSchedulePredicate(): AvailablePageSchedulePredicate;
+type AvailablePageSchedulePredicate = {
+    cron?: string;
+    start?: string;
+    end?: string;
 };
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -629,7 +934,7 @@ type ThemesSchema = {
      * - The ID of the theme in the marketplace
      */
     marketplace_theme_id?: string;
-    meta?: Meta;
+    meta?: ThemeMeta;
     /**
      * - The name of the theme
      */
@@ -659,6 +964,12 @@ type ThemesSchema = {
      * - Available sections information
      */
     available_sections?: SectionItem[];
+    theme_type?: string;
+    /**
+     * - The company id in which sales channel exists
+     */
+    company_id?: number;
+    src?: string;
 };
 /** @returns {ThemeUpgradableResponse} */
 declare function ThemeUpgradableResponse(): ThemeUpgradableResponse;
@@ -739,20 +1050,61 @@ type ThemeConfiguration = {
      */
     name?: string;
     global_config?: any;
-    custom?: CustomConfig;
     /**
      * - An array of pages
      */
-    page?: string[];
+    page?: ThemeConfigListPage[];
+};
+/** @returns {OverlayPopup} */
+declare function OverlayPopup(): OverlayPopup;
+type OverlayPopup = {
+    dialog_backgroung?: string;
+    overlay?: string;
+};
+/** @returns {DividerStrokeHighlight} */
+declare function DividerStrokeHighlight(): DividerStrokeHighlight;
+type DividerStrokeHighlight = {
+    divider_strokes?: string;
+    highlight?: string;
+};
+/** @returns {UserAlerts} */
+declare function UserAlerts(): UserAlerts;
+type UserAlerts = {
+    success_background?: string;
+    success_text?: string;
+    error_background?: string;
+    error_text?: string;
+    info_background?: string;
+    info_text?: string;
+};
+/** @returns {OrderTracking} */
+declare function OrderTracking(): OrderTracking;
+type OrderTracking = {
+    show_header?: boolean;
+    show_footer?: boolean;
+};
+/** @returns {ThemeConfigListPage} */
+declare function ThemeConfigListPage(): ThemeConfigListPage;
+type ThemeConfigListPage = {
+    /**
+     * - Name of the page
+     */
+    page?: string;
+    settings?: ThemeConfigListPageSettingsProps;
+};
+/** @returns {ThemeConfigListPageSettingsProps} */
+declare function ThemeConfigListPageSettingsProps(): ThemeConfigListPageSettingsProps;
+type ThemeConfigListPageSettingsProps = {
+    props?: any;
 };
 /** @returns {CustomConfig} */
 declare function CustomConfig(): CustomConfig;
 type CustomConfig = {
     props?: CustomProps;
 };
-/** @returns {Meta} */
-declare function Meta(): Meta;
-type Meta = {
+/** @returns {ThemeMeta} */
+declare function ThemeMeta(): ThemeMeta;
+type ThemeMeta = {
     payment?: ThemePayment;
     /**
      * - The description of the theme
@@ -943,6 +1295,10 @@ type Prop = {
      */
     category?: string;
     /**
+     * - The value of the property
+     */
+    value?: string;
+    /**
      * - The ID of the property
      */
     id?: string;
@@ -965,6 +1321,10 @@ type Assets = {
 /** @returns {UMDJs} */
 declare function UMDJs(): UMDJs;
 type UMDJs = {
+    link?: string;
+    /**
+     * - An array of pages
+     */
     links?: string[];
 };
 /** @returns {CommonJS} */
@@ -975,6 +1335,7 @@ type CommonJS = {
 /** @returns {CSS} */
 declare function CSS(): CSS;
 type CSS = {
+    link?: string;
     links?: string[];
 };
 /** @returns {SectionItem} */
@@ -1002,13 +1363,11 @@ type Preset = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
-    size?: number;
+    sections?: Section[];
+    /**
+     * - The value of the page.
+     */
+    value?: string;
 };
 /** @returns {Section} */
 declare function Section(): Section;
@@ -1178,3 +1537,71 @@ declare function DummyResponse(): DummyResponse;
 type DummyResponse = {
     message?: string;
 };
+/** @returns {AppliedThemes} */
+declare function AppliedThemes(): AppliedThemes;
+type AppliedThemes = {
+    /**
+     * - ID of the application theme
+     */
+    _id?: string;
+    /**
+     * - ID of the application
+     */
+    application_id?: string;
+};
+/** @returns {CompanyPrivateTheme} */
+declare function CompanyPrivateTheme(): CompanyPrivateTheme;
+type CompanyPrivateTheme = {
+    /**
+     * - Type of the theme
+     */
+    theme_type?: string;
+    /**
+     * - Unique identifier for the theme
+     */
+    _id?: string;
+    /**
+     * - Name of the theme
+     */
+    name?: string;
+    /**
+     * - Version of the theme
+     */
+    version?: string;
+    /**
+     * - Identifier for the application
+     */
+    application_id?: string;
+    /**
+     * - Date and time when the theme was created
+     */
+    created_at?: string;
+    /**
+     * - Date and time when the theme was last updated
+     */
+    updated_at?: string;
+    /**
+     * - Whether the theme is applied or not
+     */
+    applied?: boolean;
+    /**
+     * - Whether the theme is private or not
+     */
+    is_private?: boolean;
+    meta?: CompanyThemeMeta;
+};
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
+};
+/**
+ * Enum: PageType Used By: Theme
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

@@ -9,13 +9,13 @@ export = InventoryPublicModel;
  */
 /**
  * @typedef Page
- * @property {string} type
- * @property {number} [size]
- * @property {number} [current]
- * @property {boolean} [has_next]
  * @property {number} [item_total]
  * @property {string} [next_id]
  * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef ResponseEnvelopeEmailJobMetrics
@@ -200,13 +200,13 @@ type EmailJobMetrics = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    type: string;
-    size?: number;
-    current?: number;
-    has_next?: boolean;
     item_total?: number;
     next_id?: string;
     has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
+    type: string;
+    size?: number;
 };
 /** @returns {ResponseEnvelopeEmailJobMetrics} */
 declare function ResponseEnvelopeEmailJobMetrics(): ResponseEnvelopeEmailJobMetrics;

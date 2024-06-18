@@ -209,6 +209,7 @@ const Joi = require("joi");
  * @typedef OperationErrorResponse
  * @property {boolean} [success]
  * @property {string} [message]
+ * @property {string} [error]
  */
 
 /**
@@ -351,8 +352,8 @@ const Joi = require("joi");
 
 /**
  * @typedef Restrictions1
- * @property {PromotionPaymentModes[]} [payments]
- * @property {Object} [user_registered]
+ * @property {Object} [payments]
+ * @property {UserRegistered} [user_registered]
  * @property {string[]} [platforms]
  * @property {PostOrder1} [post_order]
  * @property {number[]} [user_groups]
@@ -427,6 +428,7 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Custom data stored in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string} [_id] - Promotion id
+ * @property {string[]} [tags]
  */
 
 /**
@@ -460,6 +462,7 @@ const Joi = require("joi");
  * @property {Object} buy_rules
  * @property {Object} [_custom_json]
  * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags]
  */
 
 /**
@@ -487,6 +490,7 @@ const Joi = require("joi");
  * @property {Object} buy_rules
  * @property {Object} [_custom_json]
  * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags]
  */
 
 /**
@@ -525,6 +529,7 @@ const Joi = require("joi");
 /**
  * @typedef CartMetaConfigUpdate
  * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
  * @property {boolean} [bulk_coupons]
  * @property {number} [max_cart_items]
  * @property {string} [gift_display_text]
@@ -537,6 +542,7 @@ const Joi = require("joi");
 /**
  * @typedef CartMetaConfigAdd
  * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
  * @property {boolean} [bulk_coupons]
  * @property {number} [max_cart_items]
  * @property {string} [gift_display_text]
@@ -558,6 +564,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PriceAdjustmentRestrictions
+ * @property {Object} [post_order] - This field holds the post-order
+ *   restrictions, indicated by nested fields ['cancellation_allowed','return_allowed']
+ */
+
+/**
  * @typedef Collection
  * @property {string} refund_by
  * @property {string} collected_by
@@ -569,6 +581,9 @@ const Joi = require("joi");
  * @property {number} value
  * @property {string} message - The message associated with the price adjustment
  * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {PriceAdjustmentRestrictions} [restrictions] - Restrictions applied
+ *   to this particular item or product, including whether or not cancellation
+ *   and return are allowed.
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
  * @property {Collection} collection
@@ -587,6 +602,9 @@ const Joi = require("joi");
  * @property {number} value
  * @property {string} message - The message associated with the price adjustment
  * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {PriceAdjustmentRestrictions} [restrictions] - This field accepts
+ *   the restrictions applied to this particular item or service, including
+ *   whether or not cancellation and return are allowed, etc
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
  * @property {string} [id]
@@ -611,6 +629,9 @@ const Joi = require("joi");
  * @property {number} value
  * @property {string} message - The message associated with the price adjustment
  * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {PriceAdjustmentRestrictions} [restrictions] - This field accepts
+ *   the restrictions applied to this particular item or service, including
+ *   whether or not cancellation and return are allowed, etc
  * @property {string} [created_by] - The entity that created the field
  * @property {boolean} article_level_distribution - Flag indicating whether the
  *   distribution should is done at the article level
@@ -792,6 +813,7 @@ const Joi = require("joi");
  * @property {Object} [meta]
  * @property {string} [size]
  * @property {StoreInfo} [store]
+ * @property {string[]} [tags] - A list of article tags
  */
 
 /**
@@ -809,21 +831,11 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FreeGiftItem
- * @property {string} [item_name] - Item name
- * @property {Object} [item_price_details] - Item price details
- * @property {string} [item_brand_name] - Item brand name
- * @property {string[]} [item_images_url] - Item images URL
- * @property {number} [item_id] - Item id
- * @property {string} [item_slug] - Item slug
- */
-
-/**
  * @typedef AppliedFreeArticles
  * @property {string} [parent_item_identifier] - Parent item identifier for free article
  * @property {number} [quantity] - Free article quantity
  * @property {string} [article_id] - Free article id
- * @property {FreeGiftItem} [free_gift_item_details] - Free gift items details
+ * @property {FreeGiftItems} [free_gift_item_details] - Free gift items details
  */
 
 /**
@@ -837,6 +849,7 @@ const Joi = require("joi");
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {Ownership2} [ownership] - Ownership of promotion
+ * @property {CartCurrency} [currency]
  * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
  * @property {AppliedFreeArticles[]} [applied_free_articles] - Applied free
  *   article for free gift item promotions
@@ -849,12 +862,20 @@ const Joi = require("joi");
  *   product MRP or ESP
  * @property {string} [promotion_group] - Promotion group for the promotion
  * @property {string} [promo_id] - Promotion id
+ * @property {Object} [meta] - Meta object for extra data
+ * @property {string} [code] - Promotion code
  */
 
 /**
  * @typedef PromiseFormatted
  * @property {string} [max]
  * @property {string} [min]
+ */
+
+/**
+ * @typedef PromiseISOFormat
+ * @property {string} [max] - Max promise in ISO format.
+ * @property {string} [min] - Min Promise in ISO format.
  */
 
 /**
@@ -867,6 +888,7 @@ const Joi = require("joi");
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
  * @property {PromiseTimestamp} [timestamp]
+ * @property {PromiseISOFormat} [iso]
  */
 
 /**
@@ -1202,6 +1224,7 @@ const Joi = require("joi");
  * @property {string} [gstin]
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {string} [pan_no]
+ * @property {Object} [custom_cart_meta]
  */
 
 /**
@@ -1220,6 +1243,7 @@ const Joi = require("joi");
  * @property {Object} [_custom_json]
  * @property {Object} [meta]
  * @property {boolean} [pos]
+ * @property {string} [seller_identifier] - Add items using seller identifier for store os
  */
 
 /**
@@ -1273,6 +1297,7 @@ const Joi = require("joi");
  * @property {string} [promo_desc]
  * @property {string} [rwrd_tndr]
  * @property {Object[]} [item_list]
+ * @property {string} [parent_promo_id]
  */
 
 /**
@@ -1299,6 +1324,7 @@ const Joi = require("joi");
  * @property {string} currency_code
  * @property {string} aggregator
  * @property {string} order_type
+ * @property {string} [callback_url]
  * @property {OverrideCartItem[]} cart_items
  * @property {number} [ordering_store]
  * @property {Object} [shipping_address]
@@ -1356,6 +1382,7 @@ const Joi = require("joi");
  * @property {boolean} [buy_now]
  * @property {number} [cart_id]
  * @property {string} [gstin]
+ * @property {Object} [custom_cart_meta]
  */
 
 /**
@@ -1371,6 +1398,7 @@ const Joi = require("joi");
  * @property {number} [cart_value]
  * @property {string} [created_on]
  * @property {string} [user_id]
+ * @property {string} [currency_code]
  * @property {number} [item_counts]
  */
 
@@ -1418,6 +1446,7 @@ const Joi = require("joi");
  * @property {string} [last_modified]
  * @property {boolean} [buy_now]
  * @property {string} [gstin]
+ * @property {Object} [custom_cart_meta]
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {string} [pan_no]
  */
@@ -1467,6 +1496,9 @@ const Joi = require("joi");
  * @property {boolean} [is_applicable]
  * @property {string} [message]
  * @property {string} [description]
+ * @property {string} [start_date]
+ * @property {string} [end_date]
+ * @property {string} [coupon_applicable_message]
  */
 
 /**
@@ -1517,10 +1549,15 @@ const Joi = require("joi");
  * @property {Object} [google_map_point]
  * @property {string} [cart_id]
  * @property {string} [city]
+ * @property {string} [sector]
+ * @property {string} [state_code] - State code for international address
  * @property {string} [area]
  * @property {string} [user_id]
  * @property {string} [address_type]
  * @property {string} [address]
+ * @property {string} [country_phone_code]
+ * @property {string} [country_iso_code]
+ * @property {Object} [_custom_json]
  */
 
 /**
@@ -1604,6 +1641,7 @@ const Joi = require("joi");
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {boolean} [error]
  * @property {string} [pan_no]
+ * @property {Object} [custom_cart_meta]
  */
 
 /**
@@ -1698,6 +1736,10 @@ const Joi = require("joi");
  * @property {Files[]} [files] - List of file url
  * @property {number} [ordering_store]
  * @property {Object} [payment_extra_identifiers]
+ * @property {string} [iin]
+ * @property {string} [network]
+ * @property {string} [type]
+ * @property {string} [card_id]
  */
 
 /**
@@ -1731,6 +1773,7 @@ const Joi = require("joi");
  * @property {string} [gstin]
  * @property {boolean} [cod_available]
  * @property {number} [delivery_charges]
+ * @property {Object} [custom_cart_meta]
  */
 
 /**
@@ -1851,6 +1894,10 @@ const Joi = require("joi");
  * @property {string} order_type
  * @property {Files[]} [files] - List of file url
  * @property {number} [ordering_store]
+ * @property {string} [iin]
+ * @property {string} [network]
+ * @property {string} [type]
+ * @property {string} [card_id]
  */
 
 /**
@@ -1862,6 +1909,68 @@ const Joi = require("joi");
  * @property {string} [payment_identifier]
  * @property {string} [id]
  * @property {PaymentMethod[]} [payment_methods]
+ */
+
+/**
+ * @typedef PriceMinMax
+ * @property {number} [min]
+ * @property {number} [max]
+ */
+
+/**
+ * @typedef ItemPriceDetails
+ * @property {PriceMinMax} [marked]
+ * @property {PriceMinMax} [effective]
+ * @property {string} [currency]
+ */
+
+/**
+ * @typedef FreeGiftItems
+ * @property {string} [item_slug] - Item slug
+ * @property {string} [item_name] - Item name
+ * @property {ItemPriceDetails} [item_price_details]
+ * @property {string} [item_brand_name] - Item brand name
+ * @property {number} [item_id] - Item id
+ * @property {string[]} [item_images_url] - Item images URL
+ */
+
+/**
+ * @typedef PromotionOffer
+ * @property {string} [id] - Promotion id
+ * @property {Object} [buy_rules] - Buy rules of promotions
+ * @property {string} [offer_text] - Offer title
+ * @property {string} [promotion_type] - Promotion type
+ * @property {string} [promotion_name] - Name of the promotion
+ * @property {string} [promotion_group] - Group of promotion belongs to
+ * @property {string} [valid_till] - Datetime ISOString for promotion end date
+ * @property {Object[]} [discount_rules] - Discount rules of promotions
+ * @property {FreeGiftItems[]} [free_gift_items] - Details of free gift items
+ * @property {string} [description] - Offer details including T&C
+ */
+
+/**
+ * @typedef PromotionOffersResponse
+ * @property {PromotionOffer[]} [available_promotions]
+ */
+
+/**
+ * @typedef PromotionPaymentOffer
+ * @property {string} [application_id] - Application id
+ * @property {Object[]} [buy_rules] - Buy rules of promotions
+ * @property {string} [calculate_on] - Price on which promotion calculated
+ * @property {string} [description] - Offer details including T&C
+ * @property {Object[]} [discount_rules] - Discount rules of promotions
+ * @property {string} [id] - Promotion id
+ * @property {string} [offer_text] - Offer title
+ * @property {string} [promotion_group] - Group of promotion belongs to
+ * @property {string} [promotion_type] - Promotion type
+ * @property {string} [promotion_name] - Name of the promotion
+ */
+
+/**
+ * @typedef PromotionPaymentOffersResponse
+ * @property {boolean} [success]
+ * @property {PromotionPaymentOffer[]} [promotions]
  */
 
 class CartPlatformModel {
@@ -2125,6 +2234,7 @@ class CartPlatformModel {
     return Joi.object({
       success: Joi.boolean(),
       message: Joi.string().allow(""),
+      error: Joi.string().allow(""),
     });
   }
 
@@ -2297,8 +2407,8 @@ class CartPlatformModel {
   /** @returns {Restrictions1} */
   static Restrictions1() {
     return Joi.object({
-      payments: Joi.array().items(CartPlatformModel.PromotionPaymentModes()),
-      user_registered: Joi.any().allow(null),
+      payments: Joi.any(),
+      user_registered: CartPlatformModel.UserRegistered(),
       platforms: Joi.array().items(Joi.string().allow("")),
       post_order: CartPlatformModel.PostOrder1(),
       user_groups: Joi.array().items(Joi.number()),
@@ -2384,6 +2494,7 @@ class CartPlatformModel {
       _custom_json: Joi.any(),
       date_meta: CartPlatformModel.PromotionDateMeta(),
       _id: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2424,6 +2535,7 @@ class CartPlatformModel {
         .required(),
       _custom_json: Joi.any(),
       date_meta: CartPlatformModel.PromotionDateMeta(),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2456,6 +2568,7 @@ class CartPlatformModel {
         .required(),
       _custom_json: Joi.any(),
       date_meta: CartPlatformModel.PromotionDateMeta(),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2503,6 +2616,7 @@ class CartPlatformModel {
   static CartMetaConfigUpdate() {
     return Joi.object({
       min_cart_value: Joi.number(),
+      max_cart_value: Joi.number(),
       bulk_coupons: Joi.boolean(),
       max_cart_items: Joi.number(),
       gift_display_text: Joi.string().allow(""),
@@ -2517,6 +2631,7 @@ class CartPlatformModel {
   static CartMetaConfigAdd() {
     return Joi.object({
       min_cart_value: Joi.number(),
+      max_cart_value: Joi.number(),
       bulk_coupons: Joi.boolean(),
       max_cart_items: Joi.number(),
       gift_display_text: Joi.string().allow(""),
@@ -2539,6 +2654,13 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {PriceAdjustmentRestrictions} */
+  static PriceAdjustmentRestrictions() {
+    return Joi.object({
+      post_order: Joi.any(),
+    });
+  }
+
   /** @returns {Collection} */
   static Collection() {
     return Joi.object({
@@ -2554,6 +2676,7 @@ class CartPlatformModel {
       value: Joi.number().required(),
       message: Joi.string().allow("").required(),
       apply_expiry: Joi.string().allow(""),
+      restrictions: CartPlatformModel.PriceAdjustmentRestrictions(),
       article_level_distribution: Joi.boolean().required(),
       collection: CartPlatformModel.Collection().required(),
       type: Joi.string().allow("").required(),
@@ -2571,6 +2694,7 @@ class CartPlatformModel {
       value: Joi.number().required(),
       message: Joi.string().allow("").required(),
       apply_expiry: Joi.string().allow(""),
+      restrictions: CartPlatformModel.PriceAdjustmentRestrictions(),
       article_level_distribution: Joi.boolean().required(),
       id: Joi.string().allow(""),
       collection: CartPlatformModel.Collection().required(),
@@ -2596,6 +2720,7 @@ class CartPlatformModel {
       value: Joi.number().required(),
       message: Joi.string().allow("").required(),
       apply_expiry: Joi.string().allow(""),
+      restrictions: CartPlatformModel.PriceAdjustmentRestrictions(),
       created_by: Joi.string().allow(""),
       article_level_distribution: Joi.boolean().required(),
       collection: CartPlatformModel.Collection().required(),
@@ -2809,6 +2934,7 @@ class CartPlatformModel {
       meta: Joi.any(),
       size: Joi.string().allow(""),
       store: CartPlatformModel.StoreInfo(),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2830,25 +2956,13 @@ class CartPlatformModel {
     });
   }
 
-  /** @returns {FreeGiftItem} */
-  static FreeGiftItem() {
-    return Joi.object({
-      item_name: Joi.string().allow(""),
-      item_price_details: Joi.any(),
-      item_brand_name: Joi.string().allow(""),
-      item_images_url: Joi.array().items(Joi.string().allow("")),
-      item_id: Joi.number(),
-      item_slug: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {AppliedFreeArticles} */
   static AppliedFreeArticles() {
     return Joi.object({
       parent_item_identifier: Joi.string().allow(""),
       quantity: Joi.number(),
       article_id: Joi.string().allow(""),
-      free_gift_item_details: CartPlatformModel.FreeGiftItem(),
+      free_gift_item_details: CartPlatformModel.FreeGiftItems(),
     });
   }
 
@@ -2865,6 +2979,7 @@ class CartPlatformModel {
     return Joi.object({
       article_quantity: Joi.number(),
       ownership: CartPlatformModel.Ownership2(),
+      currency: CartPlatformModel.CartCurrency(),
       discount_rules: Joi.array().items(CartPlatformModel.DiscountRulesApp()),
       applied_free_articles: Joi.array().items(
         CartPlatformModel.AppliedFreeArticles()
@@ -2877,11 +2992,21 @@ class CartPlatformModel {
       mrp_promotion: Joi.boolean(),
       promotion_group: Joi.string().allow(""),
       promo_id: Joi.string().allow(""),
+      meta: Joi.any(),
+      code: Joi.string().allow("").allow(null),
     });
   }
 
   /** @returns {PromiseFormatted} */
   static PromiseFormatted() {
+    return Joi.object({
+      max: Joi.string().allow(""),
+      min: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PromiseISOFormat} */
+  static PromiseISOFormat() {
     return Joi.object({
       max: Joi.string().allow(""),
       min: Joi.string().allow(""),
@@ -2901,6 +3026,7 @@ class CartPlatformModel {
     return Joi.object({
       formatted: CartPlatformModel.PromiseFormatted(),
       timestamp: CartPlatformModel.PromiseTimestamp(),
+      iso: CartPlatformModel.PromiseISOFormat(),
     });
   }
 
@@ -3305,6 +3431,7 @@ class CartPlatformModel {
         CartPlatformModel.AppliedPromotion()
       ),
       pan_no: Joi.string().allow(""),
+      custom_cart_meta: Joi.any(),
     });
   }
 
@@ -3327,6 +3454,7 @@ class CartPlatformModel {
       _custom_json: Joi.any(),
       meta: Joi.any(),
       pos: Joi.boolean(),
+      seller_identifier: Joi.string().allow(""),
     });
   }
 
@@ -3389,6 +3517,7 @@ class CartPlatformModel {
       promo_desc: Joi.string().allow(""),
       rwrd_tndr: Joi.string().allow(""),
       item_list: Joi.array().items(Joi.any().allow(null)),
+      parent_promo_id: Joi.string().allow(""),
     });
   }
 
@@ -3419,6 +3548,7 @@ class CartPlatformModel {
       currency_code: Joi.string().allow("").required(),
       aggregator: Joi.string().allow("").required(),
       order_type: Joi.string().allow("").required(),
+      callback_url: Joi.string().allow(""),
       cart_items: Joi.array()
         .items(CartPlatformModel.OverrideCartItem())
         .required(),
@@ -3487,6 +3617,7 @@ class CartPlatformModel {
       buy_now: Joi.boolean(),
       cart_id: Joi.number(),
       gstin: Joi.string().allow(""),
+      custom_cart_meta: Joi.any(),
     });
   }
 
@@ -3506,6 +3637,7 @@ class CartPlatformModel {
       cart_value: Joi.number(),
       created_on: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
+      currency_code: Joi.string().allow(""),
       item_counts: Joi.number(),
     });
   }
@@ -3561,6 +3693,7 @@ class CartPlatformModel {
       last_modified: Joi.string().allow(""),
       buy_now: Joi.boolean(),
       gstin: Joi.string().allow(""),
+      custom_cart_meta: Joi.any(),
       applied_promo_details: Joi.array().items(
         CartPlatformModel.AppliedPromotion()
       ),
@@ -3623,6 +3756,9 @@ class CartPlatformModel {
       is_applicable: Joi.boolean(),
       message: Joi.string().allow(""),
       description: Joi.string().allow("").allow(null),
+      start_date: Joi.string().allow("").allow(null),
+      end_date: Joi.string().allow("").allow(null),
+      coupon_applicable_message: Joi.string().allow(""),
     });
   }
 
@@ -3683,10 +3819,15 @@ class CartPlatformModel {
       google_map_point: Joi.any(),
       cart_id: Joi.string().allow(""),
       city: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
       area: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       address_type: Joi.string().allow(""),
       address: Joi.string().allow(""),
+      country_phone_code: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+      _custom_json: Joi.any(),
     });
   }
 
@@ -3790,6 +3931,7 @@ class CartPlatformModel {
       ),
       error: Joi.boolean(),
       pan_no: Joi.string().allow(""),
+      custom_cart_meta: Joi.any(),
     });
   }
 
@@ -3907,6 +4049,10 @@ class CartPlatformModel {
       files: Joi.array().items(CartPlatformModel.Files()),
       ordering_store: Joi.number().allow(null),
       payment_extra_identifiers: Joi.any(),
+      iin: Joi.string().allow(""),
+      network: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      card_id: Joi.string().allow(""),
     });
   }
 
@@ -3942,6 +4088,7 @@ class CartPlatformModel {
       gstin: Joi.string().allow(""),
       cod_available: Joi.boolean(),
       delivery_charges: Joi.number(),
+      custom_cart_meta: Joi.any(),
     });
   }
 
@@ -4084,6 +4231,10 @@ class CartPlatformModel {
       order_type: Joi.string().allow("").required(),
       files: Joi.array().items(CartPlatformModel.Files()),
       ordering_store: Joi.number().allow(null),
+      iin: Joi.string().allow(""),
+      network: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      card_id: Joi.string().allow(""),
     });
   }
 
@@ -4097,6 +4248,84 @@ class CartPlatformModel {
       payment_identifier: Joi.string().allow("").allow(null),
       id: Joi.string().allow(""),
       payment_methods: Joi.array().items(CartPlatformModel.PaymentMethod()),
+    });
+  }
+
+  /** @returns {PriceMinMax} */
+  static PriceMinMax() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {ItemPriceDetails} */
+  static ItemPriceDetails() {
+    return Joi.object({
+      marked: CartPlatformModel.PriceMinMax(),
+      effective: CartPlatformModel.PriceMinMax(),
+      currency: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FreeGiftItems} */
+  static FreeGiftItems() {
+    return Joi.object({
+      item_slug: Joi.string().allow(""),
+      item_name: Joi.string().allow(""),
+      item_price_details: CartPlatformModel.ItemPriceDetails(),
+      item_brand_name: Joi.string().allow(""),
+      item_id: Joi.number(),
+      item_images_url: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {PromotionOffer} */
+  static PromotionOffer() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      buy_rules: Joi.any(),
+      offer_text: Joi.string().allow(""),
+      promotion_type: Joi.string().allow(""),
+      promotion_name: Joi.string().allow(""),
+      promotion_group: Joi.string().allow(""),
+      valid_till: Joi.string().allow(""),
+      discount_rules: Joi.array().items(Joi.any()),
+      free_gift_items: Joi.array().items(CartPlatformModel.FreeGiftItems()),
+      description: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PromotionOffersResponse} */
+  static PromotionOffersResponse() {
+    return Joi.object({
+      available_promotions: Joi.array().items(
+        CartPlatformModel.PromotionOffer()
+      ),
+    });
+  }
+
+  /** @returns {PromotionPaymentOffer} */
+  static PromotionPaymentOffer() {
+    return Joi.object({
+      application_id: Joi.string().allow(""),
+      buy_rules: Joi.array().items(Joi.any()),
+      calculate_on: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      discount_rules: Joi.array().items(Joi.any()),
+      id: Joi.string().allow(""),
+      offer_text: Joi.string().allow(""),
+      promotion_group: Joi.string().allow(""),
+      promotion_type: Joi.string().allow(""),
+      promotion_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PromotionPaymentOffersResponse} */
+  static PromotionPaymentOffersResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+      promotions: Joi.array().items(CartPlatformModel.PromotionPaymentOffer()),
     });
   }
 }

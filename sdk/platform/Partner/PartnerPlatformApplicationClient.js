@@ -21,8 +21,8 @@ class Partner {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
    * @name addProxyPath
-   * @summary: Create proxy URL for the external URL
-   * @description: Use this API to generate proxy URL for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
+   * @summary: Create extension proxy
+   * @description: Extension proxy can be used to call extension API from storefront and make extension API integration seamless. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
    */
   async addProxyPath(
     { extensionId, body, requestHeaders } = { requestHeaders: {} },
@@ -102,8 +102,8 @@ class Partner {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
    * @name removeProxyPath
-   * @summary: Remove proxy URL for the external URL
-   * @description: Use this API to remove the proxy URL which is already generated for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
+   * @summary: Remove extension proxy
+   * @description: Remove the proxy which are created earlier for the extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
    */
   async removeProxyPath(
     { extensionId, attachedPath, requestHeaders } = { requestHeaders: {} },

@@ -12,9 +12,9 @@ export namespace ApplicationModel {
     const LogisticApplicationModel: typeof import("./Logistic/LogisticApplicationModel");
     const OrderApplicationModel: typeof import("./Order/OrderApplicationModel");
     const PaymentApplicationModel: typeof import("./Payment/PaymentApplicationModel");
-    const PosCartApplicationModel: typeof import("./PosCart/PosCartApplicationModel");
     const RewardsApplicationModel: typeof import("./Rewards/RewardsApplicationModel");
     const ShareApplicationModel: typeof import("./Share/ShareApplicationModel");
     const ThemeApplicationModel: typeof import("./Theme/ThemeApplicationModel");
     const UserApplicationModel: typeof import("./User/UserApplicationModel");
+    const WebhookApplicationModel: typeof import("./Webhook/WebhookApplicationModel");
 }

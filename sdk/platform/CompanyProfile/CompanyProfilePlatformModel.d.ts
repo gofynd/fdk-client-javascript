@@ -30,9 +30,17 @@ export = CompanyProfilePlatformModel;
  * @property {SellerPhoneNumber[]} [phone]
  */
 /**
+ * @typedef CountryCurrencyInfo
+ * @property {string} code
+ * @property {string} symbol
+ * @property {string} name
+ */
+/**
  * @typedef BusinessCountryInfo
- * @property {string} [country_code]
- * @property {string} [country]
+ * @property {string} country_code
+ * @property {string} country
+ * @property {CountryCurrencyInfo} currency
+ * @property {string} timezone
  */
 /**
  * @typedef Document
@@ -52,6 +60,8 @@ export = CompanyProfilePlatformModel;
  * @property {string} [country]
  * @property {string} [address2]
  * @property {string} [state]
+ * @property {string} [state_code]
+ * @property {string} [sector]
  * @property {string} [address1]
  * @property {string} [city]
  * @property {number} latitude
@@ -175,7 +185,21 @@ export = CompanyProfilePlatformModel;
  * @property {string} [description]
  */
 /**
- * @typedef CreateUpdateBrandRequestSerializer
+ * @typedef CreateBrandRequestSerializer
+ * @property {Object} [_custom_json]
+ * @property {Object} [_locale_language]
+ * @property {string[]} [synonyms]
+ * @property {number} [company_id]
+ * @property {string} [description]
+ * @property {string} logo
+ * @property {string} [brand_tier]
+ * @property {number} [uid]
+ * @property {BrandBannerSerializer} banner
+ * @property {string} name
+ * @property {string} [slug_key]
+ */
+/**
+ * @typedef UpdateBrandRequestSerializer
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -349,6 +373,7 @@ export = CompanyProfilePlatformModel;
  * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
+ * @property {boolean} [auto_assign_courier_partner]
  */
 /**
  * @typedef LocationListSerializer
@@ -358,13 +383,15 @@ export = CompanyProfilePlatformModel;
 /**
  * @typedef AddressSerializer
  * @property {string} [landmark]
- * @property {string} [country_code]
+ * @property {string} country_code
  * @property {number} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
  * @property {string} [address2]
  * @property {string} [state]
+ * @property {string} [sector]
+ * @property {string} [state_code]
  * @property {string} [address1]
  * @property {string} [city]
  * @property {number} latitude
@@ -385,7 +412,7 @@ export = CompanyProfilePlatformModel;
  * @property {number} [uid]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {string} [stage]
- * @property {Document[]} [documents]
+ * @property {Document[]} documents
  * @property {boolean} [credit_note]
  * @property {HolidaySchemaSerializer[]} [holiday]
  * @property {ProductReturnConfigSerializer} [product_return_config]
@@ -398,6 +425,7 @@ export = CompanyProfilePlatformModel;
  *   acceptance timing of the store
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
+ * @property {boolean} [auto_assign_courier_partner]
  */
 /**
  * @typedef BulkLocationSerializer
@@ -416,7 +444,7 @@ export = CompanyProfilePlatformModel;
 declare class CompanyProfilePlatformModel {
 }
 declare namespace CompanyProfilePlatformModel {
-    export { CompanyTaxesSerializer, UserSerializer, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, BusinessCountryInfo, Document, GetAddressSerializer, GetCompanyProfileSerializerResponse, ErrorResponse, CompanyTaxesSerializer1, CreateUpdateAddressSerializer, UpdateCompany, ProfileSuccessResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, GetBrandResponseSerializer, CreateUpdateBrandRequestSerializer, CompanySocialAccounts, CompanyDetails, CompanySerializer, CompanyBrandSerializer, Page, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, GetCompanySerializer, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, HolidayDateSerializer, HolidaySchemaSerializer, ProductReturnConfigSerializer, GetLocationSerializer, LocationListSerializer, AddressSerializer, LocationSerializer, BulkLocationSerializer, AverageOrderProcessingTime, StoreTagsResponseSchema };
+    export { CompanyTaxesSerializer, UserSerializer, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSerializer, GetCompanyProfileSerializerResponse, ErrorResponse, CompanyTaxesSerializer1, CreateUpdateAddressSerializer, UpdateCompany, ProfileSuccessResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, GetBrandResponseSerializer, CreateBrandRequestSerializer, UpdateBrandRequestSerializer, CompanySocialAccounts, CompanyDetails, CompanySerializer, CompanyBrandSerializer, Page, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, GetCompanySerializer, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, HolidayDateSerializer, HolidaySchemaSerializer, ProductReturnConfigSerializer, GetLocationSerializer, LocationListSerializer, AddressSerializer, LocationSerializer, BulkLocationSerializer, AverageOrderProcessingTime, StoreTagsResponseSchema };
 }
 /** @returns {CompanyTaxesSerializer} */
 declare function CompanyTaxesSerializer(): CompanyTaxesSerializer;
@@ -454,11 +482,20 @@ type ContactDetails = {
     emails?: string[];
     phone?: SellerPhoneNumber[];
 };
+/** @returns {CountryCurrencyInfo} */
+declare function CountryCurrencyInfo(): CountryCurrencyInfo;
+type CountryCurrencyInfo = {
+    code: string;
+    symbol: string;
+    name: string;
+};
 /** @returns {BusinessCountryInfo} */
 declare function BusinessCountryInfo(): BusinessCountryInfo;
 type BusinessCountryInfo = {
-    country_code?: string;
-    country?: string;
+    country_code: string;
+    country: string;
+    currency: CountryCurrencyInfo;
+    timezone: string;
 };
 /** @returns {Document} */
 declare function Document(): Document;
@@ -480,6 +517,8 @@ type GetAddressSerializer = {
     country?: string;
     address2?: string;
     state?: string;
+    state_code?: string;
+    sector?: string;
     address1?: string;
     city?: string;
     latitude: number;
@@ -612,9 +651,24 @@ type GetBrandResponseSerializer = {
     logo?: string;
     description?: string;
 };
-/** @returns {CreateUpdateBrandRequestSerializer} */
-declare function CreateUpdateBrandRequestSerializer(): CreateUpdateBrandRequestSerializer;
-type CreateUpdateBrandRequestSerializer = {
+/** @returns {CreateBrandRequestSerializer} */
+declare function CreateBrandRequestSerializer(): CreateBrandRequestSerializer;
+type CreateBrandRequestSerializer = {
+    _custom_json?: any;
+    _locale_language?: any;
+    synonyms?: string[];
+    company_id?: number;
+    description?: string;
+    logo: string;
+    brand_tier?: string;
+    uid?: number;
+    banner: BrandBannerSerializer;
+    name: string;
+    slug_key?: string;
+};
+/** @returns {UpdateBrandRequestSerializer} */
+declare function UpdateBrandRequestSerializer(): UpdateBrandRequestSerializer;
+type UpdateBrandRequestSerializer = {
     _custom_json?: any;
     _locale_language?: any;
     synonyms?: string[];
@@ -805,6 +859,7 @@ type GetLocationSerializer = {
     order_acceptance_timing?: LocationDayWiseSerializer[];
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
+    auto_assign_courier_partner?: boolean;
 };
 /** @returns {LocationListSerializer} */
 declare function LocationListSerializer(): LocationListSerializer;
@@ -816,13 +871,15 @@ type LocationListSerializer = {
 declare function AddressSerializer(): AddressSerializer;
 type AddressSerializer = {
     landmark?: string;
-    country_code?: string;
+    country_code: string;
     pincode?: number;
     address_type?: string;
     longitude: number;
     country?: string;
     address2?: string;
     state?: string;
+    sector?: string;
+    state_code?: string;
     address1?: string;
     city?: string;
     latitude: number;
@@ -844,7 +901,7 @@ type LocationSerializer = {
     uid?: number;
     timing?: LocationDayWiseSerializer[];
     stage?: string;
-    documents?: Document[];
+    documents: Document[];
     credit_note?: boolean;
     holiday?: HolidaySchemaSerializer[];
     product_return_config?: ProductReturnConfigSerializer;
@@ -863,6 +920,7 @@ type LocationSerializer = {
     order_acceptance_timing?: LocationDayWiseSerializer[];
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
+    auto_assign_courier_partner?: boolean;
 };
 /** @returns {BulkLocationSerializer} */
 declare function BulkLocationSerializer(): BulkLocationSerializer;

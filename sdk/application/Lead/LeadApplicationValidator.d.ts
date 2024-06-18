@@ -13,16 +13,8 @@ export = LeadApplicationValidator;
  * @property {string} slug - Slug of form whose response is getting submitted
  */
 /**
- * @typedef GetParticipantsInsideVideoRoomParam
- * @property {string} uniqueName - Unique name of Video Room
- */
-/**
  * @typedef GetTicketParam
  * @property {string} id - ID of ticket to be retrieved
- */
-/**
- * @typedef GetTokenForVideoRoomParam
- * @property {string} uniqueName - Unique name of Video Room
  */
 /**
  * @typedef SubmitCustomFormParam
@@ -36,17 +28,13 @@ declare class LeadApplicationValidator {
     static createTicket(): CreateTicketParam;
     /** @returns {GetCustomFormParam} */
     static getCustomForm(): GetCustomFormParam;
-    /** @returns {GetParticipantsInsideVideoRoomParam} */
-    static getParticipantsInsideVideoRoom(): GetParticipantsInsideVideoRoomParam;
     /** @returns {GetTicketParam} */
     static getTicket(): GetTicketParam;
-    /** @returns {GetTokenForVideoRoomParam} */
-    static getTokenForVideoRoom(): GetTokenForVideoRoomParam;
     /** @returns {SubmitCustomFormParam} */
     static submitCustomForm(): SubmitCustomFormParam;
 }
 declare namespace LeadApplicationValidator {
-    export { CreateHistoryParam, CreateTicketParam, GetCustomFormParam, GetParticipantsInsideVideoRoomParam, GetTicketParam, GetTokenForVideoRoomParam, SubmitCustomFormParam };
+    export { CreateHistoryParam, CreateTicketParam, GetCustomFormParam, GetTicketParam, SubmitCustomFormParam };
 }
 type CreateHistoryParam = {
     /**
@@ -64,23 +52,11 @@ type GetCustomFormParam = {
      */
     slug: string;
 };
-type GetParticipantsInsideVideoRoomParam = {
-    /**
-     * - Unique name of Video Room
-     */
-    uniqueName: string;
-};
 type GetTicketParam = {
     /**
      * - ID of ticket to be retrieved
      */
     id: string;
-};
-type GetTokenForVideoRoomParam = {
-    /**
-     * - Unique name of Video Room
-     */
-    uniqueName: string;
 };
 type SubmitCustomFormParam = {
     /**

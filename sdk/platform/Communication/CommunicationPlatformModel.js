@@ -1,6 +1,43 @@
 const Joi = require("joi");
 
 /**
+ * @typedef EventSubscriptionsBulkUpdateRequest
+ * @property {SubscriptionsObject[]} [subscriptions]
+ */
+
+/**
+ * @typedef EventSubscriptionsBulkUpdateResponse
+ * @property {EventSubscriptionTemplate} [template]
+ * @property {string} [_id]
+ * @property {string} [application]
+ * @property {string} [event]
+ * @property {string} [slug]
+ * @property {string} [category]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {number} [__v]
+ */
+
+/**
+ * @typedef SubscriptionsObject
+ * @property {string} [_id] - Subscription ID
+ * @property {TemplateObject} [template]
+ */
+
+/**
+ * @typedef TemplateObject
+ * @property {CommunicationTemplate} [sms]
+ * @property {CommunicationTemplate} [email]
+ * @property {CommunicationTemplate} [pushnotification]
+ */
+
+/**
+ * @typedef CommunicationTemplate
+ * @property {boolean} [subscribed] - Whether the user is subscribed or not
+ * @property {string} [template] - Template ID
+ */
+
+/**
  * @typedef AppProvider
  * @property {AppProviderRes} [email]
  * @property {AppProviderRes} [sms]
@@ -530,6 +567,23 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CreateJobsRes
+ * @property {string} [application]
+ * @property {string} [campaign]
+ * @property {boolean} [completed]
+ * @property {boolean} [is_active]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {number} [__v]
+ */
+
+/**
+ * @typedef CreateJobsReq
+ * @property {string} [campaign]
+ */
+
+/**
  * @typedef JobLog
  * @property {Object} [imported]
  * @property {Object} [processed]
@@ -680,6 +734,7 @@ const Joi = require("joi");
  * @property {string} [mobile]
  * @property {string} [country_code]
  * @property {string} [message]
+ * @property {string} [email]
  */
 
 /**
@@ -691,6 +746,7 @@ const Joi = require("joi");
 /**
  * @typedef SmsProviderReq
  * @property {string} [name]
+ * @property {string} [token]
  * @property {string} [description]
  * @property {string} [sender]
  * @property {string} [username]
@@ -713,6 +769,10 @@ const Joi = require("joi");
 
 /**
  * @typedef SmsProvider
+ * @property {string} [token]
+ * @property {string} [sender_id]
+ * @property {string} [api_key]
+ * @property {number} [expiry_date]
  * @property {number} [rpt]
  * @property {string} [type]
  * @property {string} [provider]
@@ -888,7 +948,77 @@ const Joi = require("joi");
  * @property {boolean} [enabled]
  */
 
+/**
+ * @typedef OtpConfigurationExpiryDuration
+ * @property {number} time
+ * @property {string} denomination
+ */
+
+/**
+ * @typedef OtpConfigurationExpiry
+ * @property {OtpConfigurationExpiryDuration} duration
+ * @property {string} type
+ */
+
+/**
+ * @typedef OtpConfiguration
+ * @property {number} otp_length
+ * @property {string} type
+ * @property {OtpConfigurationExpiry} expiry
+ * @property {string} [application_id]
+ * @property {string} [company_id]
+ */
+
 class CommunicationPlatformModel {
+  /** @returns {EventSubscriptionsBulkUpdateRequest} */
+  static EventSubscriptionsBulkUpdateRequest() {
+    return Joi.object({
+      subscriptions: Joi.array().items(
+        CommunicationPlatformModel.SubscriptionsObject()
+      ),
+    });
+  }
+
+  /** @returns {EventSubscriptionsBulkUpdateResponse} */
+  static EventSubscriptionsBulkUpdateResponse() {
+    return Joi.object({
+      template: CommunicationPlatformModel.EventSubscriptionTemplate(),
+      _id: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      event: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      category: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      __v: Joi.number(),
+    });
+  }
+
+  /** @returns {SubscriptionsObject} */
+  static SubscriptionsObject() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      template: CommunicationPlatformModel.TemplateObject(),
+    });
+  }
+
+  /** @returns {TemplateObject} */
+  static TemplateObject() {
+    return Joi.object({
+      sms: CommunicationPlatformModel.CommunicationTemplate(),
+      email: CommunicationPlatformModel.CommunicationTemplate(),
+      pushnotification: CommunicationPlatformModel.CommunicationTemplate(),
+    });
+  }
+
+  /** @returns {CommunicationTemplate} */
+  static CommunicationTemplate() {
+    return Joi.object({
+      subscribed: Joi.boolean(),
+      template: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {AppProvider} */
   static AppProvider() {
     return Joi.object({
@@ -1568,6 +1698,27 @@ class CommunicationPlatformModel {
     });
   }
 
+  /** @returns {CreateJobsRes} */
+  static CreateJobsRes() {
+    return Joi.object({
+      application: Joi.string().allow(""),
+      campaign: Joi.string().allow(""),
+      completed: Joi.boolean(),
+      is_active: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      __v: Joi.number(),
+    });
+  }
+
+  /** @returns {CreateJobsReq} */
+  static CreateJobsReq() {
+    return Joi.object({
+      campaign: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {JobLog} */
   static JobLog() {
     return Joi.object({
@@ -1758,6 +1909,7 @@ class CommunicationPlatformModel {
       mobile: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      email: Joi.string().allow(""),
     });
   }
 
@@ -1773,6 +1925,7 @@ class CommunicationPlatformModel {
   static SmsProviderReq() {
     return Joi.object({
       name: Joi.string().allow(""),
+      token: Joi.string().allow(""),
       description: Joi.string().allow(""),
       sender: Joi.string().allow(""),
       username: Joi.string().allow(""),
@@ -1797,6 +1950,10 @@ class CommunicationPlatformModel {
   /** @returns {SmsProvider} */
   static SmsProvider() {
     return Joi.object({
+      token: Joi.string().allow(""),
+      sender_id: Joi.string().allow(""),
+      api_key: Joi.string().allow(""),
+      expiry_date: Joi.number(),
       rpt: Joi.number(),
       type: Joi.string().allow(""),
       provider: Joi.string().allow(""),
@@ -2004,6 +2161,33 @@ class CommunicationPlatformModel {
   static EnabledObj() {
     return Joi.object({
       enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {OtpConfigurationExpiryDuration} */
+  static OtpConfigurationExpiryDuration() {
+    return Joi.object({
+      time: Joi.number().required(),
+      denomination: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OtpConfigurationExpiry} */
+  static OtpConfigurationExpiry() {
+    return Joi.object({
+      duration: CommunicationPlatformModel.OtpConfigurationExpiryDuration().required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {OtpConfiguration} */
+  static OtpConfiguration() {
+    return Joi.object({
+      otp_length: Joi.number().required(),
+      type: Joi.string().allow("").required(),
+      expiry: CommunicationPlatformModel.OtpConfigurationExpiry().required(),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.string().allow(""),
     });
   }
 }

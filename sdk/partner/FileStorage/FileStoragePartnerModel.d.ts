@@ -24,16 +24,12 @@ export = FileStoragePartnerModel;
  * @property {string[]} [tags]
  */
 /**
- * @typedef Params
- * @property {string} [subpath] - The subpath for the file.
- */
-/**
  * @typedef StartRequest
  * @property {string} file_name
  * @property {string} content_type
  * @property {number} size
  * @property {string[]} [tags]
- * @property {Params} [params]
+ * @property {Object} [params]
  */
 /**
  * @typedef CreatedBy
@@ -63,7 +59,7 @@ export = FileStoragePartnerModel;
 declare class FileStoragePartnerModel {
 }
 declare namespace FileStoragePartnerModel {
-    export { CDN, Upload, StartResponse, Params, StartRequest, CreatedBy, CompleteResponse, FailedResponse };
+    export { CDN, Upload, StartResponse, StartRequest, CreatedBy, CompleteResponse, FailedResponse };
 }
 /** @returns {CDN} */
 declare function CDN(): CDN;
@@ -92,14 +88,6 @@ type StartResponse = {
     cdn: CDN;
     tags?: string[];
 };
-/** @returns {Params} */
-declare function Params(): Params;
-type Params = {
-    /**
-     * - The subpath for the file.
-     */
-    subpath?: string;
-};
 /** @returns {StartRequest} */
 declare function StartRequest(): StartRequest;
 type StartRequest = {
@@ -107,7 +95,7 @@ type StartRequest = {
     content_type: string;
     size: number;
     tags?: string[];
-    params?: Params;
+    params?: any;
 };
 /** @returns {CreatedBy} */
 declare function CreatedBy(): CreatedBy;

@@ -8,17 +8,24 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef CheckOrderStatusParam
- * @property {OrderPlatformModel.OrderStatus} body
+ * @typedef BulkListingParam
+ * @property {number} pageSize - Page size
+ * @property {number} pageNo - Page number
+ * @property {string} startDate - UTC start date in ISO format
+ * @property {string} endDate - UTC end date in ISO format
+ * @property {string} [status] - Status for which to fetch the jobs.
+ * @property {string} [bulkActionType] - Job type.
+ * @property {string} [searchKey] - Search_key.
  */
 
 /**
- * @typedef Click2CallParam
- * @property {string} caller - Call Number
- * @property {string} receiver - Receiver Number
- * @property {string} bagId - Bag Id for the query
- * @property {string} [callerId] - Caller Id
- * @property {string} [method] - Provider Method to Call
+ * @typedef BulkStateTransistionParam
+ * @property {OrderPlatformModel.BulkStateTransistionRequest} body
+ */
+
+/**
+ * @typedef CheckOrderStatusParam
+ * @property {OrderPlatformModel.OrderStatus} body
  */
 
 /**
@@ -32,7 +39,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef DispatchManifestParam
+ * @typedef DispatchManifestsParam
  * @property {OrderPlatformModel.DispatchManifest} body
  */
 
@@ -49,6 +56,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef EInvoiceRetryParam
  * @property {OrderPlatformModel.EInvoiceRetry} body
+ */
+
+/**
+ * @typedef FailedOrderLogDetailsParam
+ * @property {string} logId - Log Error ID
  */
 
 /**
@@ -75,10 +87,17 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GenerateProcessManifestParam
+ * @property {OrderPlatformModel.ProcessManifestRequest} body
+ */
+
+/**
  * @typedef GetAllowedStateTransitionParam
  * @property {string} orderingChannel - Ordering channel
  * @property {string} status - Current status of a shipment
  */
+
+/** @typedef GetAllowedTemplatesForBulkParam */
 
 /**
  * @typedef GetAnnouncementsParam
@@ -112,8 +131,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @typedef GetBulkShipmentExcelFileParam
  * @property {string} [salesChannels] - Comma separated values of sales channel ids
  * @property {string} [dpIds] - Comma separated values of delivery partner ids
- * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
- * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [startDate] - UTC start date in ISO format
+ * @property {string} [endDate] - UTC end date in ISO format
  * @property {string} [stores] - Comma separated values of store ids
  * @property {string} [tags] - Comma separated values of tags
  * @property {string} [bagStatus] - Comma separated values of bag statuses
@@ -127,11 +146,21 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /** @typedef GetChannelConfigParam */
 
 /**
+ * @typedef GetFileByStatusParam
+ * @property {string} batchId
+ * @property {string} status
+ * @property {string} fileType
+ * @property {string} [reportType]
+ */
+
+/**
  * @typedef GetLaneConfigParam
  * @property {string} [superLane] - Name of lane for which data is to be fetched
  * @property {string} [groupEntity] - Name of group entity
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
  * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [startDate] - UTC Start Date in ISO format
+ * @property {string} [endDate] - UTC End Date in ISO format
  * @property {string} [dpIds] - Comma separated values of delivery partner ids
  * @property {string} [stores] - Comma separated values of store ids
  * @property {string} [salesChannels]
@@ -149,9 +178,50 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GetManifestDetailsParam
+ * @property {string} manifestId
+ */
+
+/**
+ * @typedef GetManifestShipmentsParam
+ * @property {string} dpIds - Filter shipments with the specific Courier partner
+ *   Ids which is a combination of courier partner extension and scheme Ids.
+ * @property {number} stores - Filter with the specific store.
+ * @property {string} toDate - End date for the shipment search range.
+ * @property {string} fromDate - Start date for the shipment search range.
+ * @property {string} [dpName] - Filter with the specific courier partner name.
+ * @property {string} [salesChannels] - Comma-separated list of sales channels.
+ * @property {string} [searchType] - Type of search (e.g., by shipment ID, order
+ *   ID, AWB number).
+ * @property {string} [searchValue] - Value to search for based on the search type.
+ * @property {number} [pageNo] - Page number for pagination.
+ * @property {number} [pageSize] - Number of records per page for pagination.
+ */
+
+/**
+ * @typedef GetManifestfiltersParam
+ * @property {string} view - Name of View
+ */
+
+/**
+ * @typedef GetManifestsParam
+ * @property {string} [status] - Possible Status [ active, closed ]
+ * @property {string} [startDate] - UTC Start Date in ISO format
+ * @property {string} [endDate] - UTC End Date in ISO format
+ * @property {string} [searchType] - Search type options [ fynd_order_id,
+ *   shipment_id, manifest_id, dp_name, awb_no ]
+ * @property {number} [storeId] - Fetch manifests for a Store.
+ * @property {string} [searchValue] - Search value for selected search type
+ * @property {string} [dpIds] - DP Ids separated by ',' (comma)
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ */
+
+/**
  * @typedef GetOrderByIdParam
  * @property {string} orderId
  * @property {boolean} [myOrders]
+ * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  */
 
 /**
@@ -170,6 +240,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   specified by the search_type
  * @property {string} [fromDate]
  * @property {string} [toDate]
+ * @property {string} [startDate]
+ * @property {string} [endDate]
  * @property {string} [dpIds] - Delivery Partner IDs to which shipments are assigned.
  * @property {string} [stores]
  * @property {string} [salesChannels]
@@ -182,6 +254,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   company order
  * @property {string} [customerId]
  * @property {string} [orderType]
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -190,6 +264,10 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @typedef GetShipmentByIdParam
  * @property {string} [channelShipmentId] - App Shipment Id
  * @property {string} [shipmentId] - Shipment Id
+ * @property {boolean} [fetchActiveShipment] - Flag to fetch active or
+ *   deactivated shipments
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 
 /**
@@ -219,6 +297,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [searchValue] - Search type value
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
  * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [startDate] - UTC Start Date in ISO format
+ * @property {string} [endDate] - UTC End Date in ISO format
  * @property {string} [dpIds] - Comma separated values of delivery partner ids
  * @property {string} [stores] - Comma separated values of store ids
  * @property {string} [salesChannels] - Comma separated values of sales channel ids
@@ -246,6 +326,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /** @typedef GetStateTransitionMapParam */
 
 /**
+ * @typedef GetTemplateParam
+ * @property {string} templateName
+ */
+
+/**
  * @typedef GetfiltersParam
  * @property {string} view - Name of view
  * @property {string} [groupEntity] - Name of group entity
@@ -254,6 +339,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef InvalidateShipmentCacheParam
  * @property {OrderPlatformModel.InvalidateShipmentCachePayload} body
+ */
+
+/**
+ * @typedef JobDetailsParam
+ * @property {string} batchId
  */
 
 /**
@@ -267,8 +357,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef ProcessManifestParam
- * @property {OrderPlatformModel.CreateOrderPayload} body
+ * @typedef ProcessManifestsParam
+ * @property {OrderPlatformModel.ProcessManifest} body
  */
 
 /**
@@ -331,7 +421,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef UploadConsentParam
+ * @typedef UploadConsentsParam
+ * @property {string} manifestId
  * @property {OrderPlatformModel.UploadConsent} body
  */
 
@@ -348,21 +439,30 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {BulkListingParam} */
+  static bulkListing() {
+    return Joi.object({
+      pageSize: Joi.number().required(),
+      pageNo: Joi.number().required(),
+      startDate: Joi.string().allow("").required(),
+      endDate: Joi.string().allow("").required(),
+      status: Joi.string().allow(""),
+      bulkActionType: Joi.string().allow(""),
+      searchKey: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {BulkStateTransistionParam} */
+  static bulkStateTransistion() {
+    return Joi.object({
+      body: OrderPlatformModel.BulkStateTransistionRequest().required(),
+    }).required();
+  }
+
   /** @returns {CheckOrderStatusParam} */
   static checkOrderStatus() {
     return Joi.object({
       body: OrderPlatformModel.OrderStatus().required(),
-    }).required();
-  }
-
-  /** @returns {Click2CallParam} */
-  static click2Call() {
-    return Joi.object({
-      caller: Joi.string().allow("").required(),
-      receiver: Joi.string().allow("").required(),
-      bagId: Joi.string().allow("").required(),
-      callerId: Joi.string().allow(""),
-      method: Joi.string().allow(""),
     }).required();
   }
 
@@ -380,8 +480,8 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {DispatchManifestParam} */
-  static dispatchManifest() {
+  /** @returns {DispatchManifestsParam} */
+  static dispatchManifests() {
     return Joi.object({
       body: OrderPlatformModel.DispatchManifest().required(),
     }).required();
@@ -405,6 +505,13 @@ class OrderPlatformValidator {
   static eInvoiceRetry() {
     return Joi.object({
       body: OrderPlatformModel.EInvoiceRetry().required(),
+    }).required();
+  }
+
+  /** @returns {FailedOrderLogDetailsParam} */
+  static failedOrderLogDetails() {
+    return Joi.object({
+      logId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -439,12 +546,24 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {GenerateProcessManifestParam} */
+  static generateProcessManifest() {
+    return Joi.object({
+      body: OrderPlatformModel.ProcessManifestRequest().required(),
+    }).required();
+  }
+
   /** @returns {GetAllowedStateTransitionParam} */
   static getAllowedStateTransition() {
     return Joi.object({
       orderingChannel: Joi.string().allow("").required(),
       status: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {GetAllowedTemplatesForBulkParam} */
+  static getAllowedTemplatesForBulk() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetAnnouncementsParam} */
@@ -488,8 +607,8 @@ class OrderPlatformValidator {
     return Joi.object({
       salesChannels: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       tags: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
@@ -506,6 +625,16 @@ class OrderPlatformValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetFileByStatusParam} */
+  static getFileByStatus() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      fileType: Joi.string().allow("").required(),
+      reportType: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetLaneConfigParam} */
   static getLaneConfig() {
     return Joi.object({
@@ -513,6 +642,8 @@ class OrderPlatformValidator {
       groupEntity: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       salesChannels: Joi.string().allow(""),
@@ -529,11 +660,57 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {GetManifestDetailsParam} */
+  static getManifestDetails() {
+    return Joi.object({
+      manifestId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetManifestShipmentsParam} */
+  static getManifestShipments() {
+    return Joi.object({
+      dpIds: Joi.string().allow("").required(),
+      stores: Joi.number().required(),
+      toDate: Joi.string().allow("").required(),
+      fromDate: Joi.string().allow("").required(),
+      dpName: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
+  /** @returns {GetManifestfiltersParam} */
+  static getManifestfilters() {
+    return Joi.object({
+      view: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetManifestsParam} */
+  static getManifests() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      storeId: Joi.number(),
+      searchValue: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   /** @returns {GetOrderByIdParam} */
   static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
       myOrders: Joi.boolean(),
+      allowInactive: Joi.boolean(),
     }).required();
   }
 
@@ -549,6 +726,8 @@ class OrderPlatformValidator {
       searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       salesChannels: Joi.string().allow(""),
@@ -560,6 +739,7 @@ class OrderPlatformValidator {
       showCrossCompanyData: Joi.boolean(),
       customerId: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
+      allowInactive: Joi.boolean(),
     }).required();
   }
 
@@ -573,6 +753,8 @@ class OrderPlatformValidator {
     return Joi.object({
       channelShipmentId: Joi.string().allow(""),
       shipmentId: Joi.string().allow(""),
+      fetchActiveShipment: Joi.boolean(),
+      allowInactive: Joi.boolean(),
     }).required();
   }
 
@@ -604,6 +786,8 @@ class OrderPlatformValidator {
       searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       salesChannels: Joi.string().allow(""),
@@ -633,6 +817,13 @@ class OrderPlatformValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetTemplateParam} */
+  static getTemplate() {
+    return Joi.object({
+      templateName: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetfiltersParam} */
   static getfilters() {
     return Joi.object({
@@ -645,6 +836,13 @@ class OrderPlatformValidator {
   static invalidateShipmentCache() {
     return Joi.object({
       body: OrderPlatformModel.InvalidateShipmentCachePayload().required(),
+    }).required();
+  }
+
+  /** @returns {JobDetailsParam} */
+  static jobDetails() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -662,10 +860,10 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {ProcessManifestParam} */
-  static processManifest() {
+  /** @returns {ProcessManifestsParam} */
+  static processManifests() {
     return Joi.object({
-      body: OrderPlatformModel.CreateOrderPayload().required(),
+      body: OrderPlatformModel.ProcessManifest().required(),
     }).required();
   }
 
@@ -746,9 +944,10 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {UploadConsentParam} */
-  static uploadConsent() {
+  /** @returns {UploadConsentsParam} */
+  static uploadConsents() {
     return Joi.object({
+      manifestId: Joi.string().allow("").required(),
       body: OrderPlatformModel.UploadConsent().required(),
     }).required();
   }

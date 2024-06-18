@@ -52,16 +52,6 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef GetPlatformVideoParticipantsParam
- * @property {string} uniqueName - Unique name of Video Room
- */
-
-/**
- * @typedef GetTokenForPlatformVideoRoomParam
- * @property {string} uniqueName - Unique name of video room
- */
-
-/**
  * @typedef SubmitFeedbackParam
  * @property {string} id - Ticket ID for which feedback is to be submitted
  * @property {LeadPlatformModel.TicketFeedbackPayload} body
@@ -128,20 +118,6 @@ class LeadPlatformValidator {
       category: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-    }).required();
-  }
-
-  /** @returns {GetPlatformVideoParticipantsParam} */
-  static getPlatformVideoParticipants() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetTokenForPlatformVideoRoomParam} */
-  static getTokenForPlatformVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 

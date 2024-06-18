@@ -17,6 +17,9 @@ declare class ThemeValidator {
     static deleteOrganizationTheme(): any;
     static getLatestVersionOfThemeBySlug(): any;
     static createNewThemeInOrganization(): any;
+    static createExtensionSectionDraft(): any;
+    static publishExtensionSections(): any;
     static getThemeRejectionReasons(): any;
     static getThemeVersions(): any;
+    static createTheme(): any;
 }

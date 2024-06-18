@@ -12,7 +12,7 @@ const Joi = require("joi");
  * @property {number} company_id
  * @property {boolean} is_active
  * @property {string[]} app_ids
- * @property {string[]} extension_ids
+ * @property {string[]} [extension_ids]
  * @property {string} job_type
  * @property {string} discount_type
  * @property {string} discount_level
@@ -49,12 +49,37 @@ const Joi = require("joi");
  * @property {string} [file_path]
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
+ * @property {string[]} [zone_ids]
  * @property {DiscountMeta} [discount_meta]
  * @property {ValidityObject} validity
  * @property {string} created_on
  * @property {string} modified_on
  * @property {UserDetails} created_by
  * @property {UserDetails} modified_by
+ * @property {Object} [meta]
+ */
+
+/**
+ * @typedef FileJobBody
+ * @property {string} [name]
+ * @property {number} [company_id]
+ * @property {boolean} [is_active]
+ * @property {string[]} [app_ids]
+ * @property {string} [job_type]
+ * @property {string} [discount_type]
+ * @property {string} [discount_level]
+ * @property {number} [value]
+ * @property {string} [file_path]
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ * @property {string[]} [extension_ids]
+ * @property {string[]} [zone_ids]
+ * @property {DiscountMeta} [discount_meta]
+ * @property {ValidityObject} [validity]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {UserDetails} [created_by]
+ * @property {UserDetails} [modified_by]
  * @property {Object} [meta]
  */
 
@@ -67,7 +92,7 @@ const Joi = require("joi");
 /**
  * @typedef DiscountItems
  * @property {string} [item_code]
- * @property {number} [brand_uid]
+ * @property {string} [brand_name]
  * @property {string} [seller_identifier]
  * @property {string} discount_type
  * @property {number} value
@@ -86,17 +111,24 @@ const Joi = require("joi");
  * @property {number} total
  * @property {number} failed
  * @property {number} company_id
- * @property {Object} [body]
+ * @property {FileJobBody} [body]
  * @property {string} type
- * @property {string} file_type
+ * @property {string} [file_type]
  * @property {string} _id - A unique identifier to distinguish and identify a job.
- * @property {string} file_path
+ * @property {string} [file_path]
+ * @property {number} [progress]
+ * @property {string[]} [extension_ids]
+ * @property {string[]} [zone_ids]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {UserDetails} [created_by]
  */
 
 /**
  * @typedef FileJobRequest
  * @property {string} name
  * @property {boolean} is_active
+ * @property {number} company_id
  * @property {string[]} [app_ids]
  * @property {string} [job_type]
  * @property {string} [discount_type]
@@ -141,6 +173,18 @@ const Joi = require("joi");
  * @property {string} message
  */
 
+/**
+ * @typedef BadRequestData
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef BadRequestObjectGet
+ * @property {string} [message]
+ * @property {string} [error]
+ * @property {BadRequestData} [data]
+ */
+
 class DiscountPlatformModel {
   /** @returns {ValidityObject} */
   static ValidityObject() {
@@ -157,7 +201,7 @@ class DiscountPlatformModel {
       company_id: Joi.number().required(),
       is_active: Joi.boolean().required(),
       app_ids: Joi.array().items(Joi.string().allow("")).required(),
-      extension_ids: Joi.array().items(Joi.string().allow("")).required(),
+      extension_ids: Joi.array().items(Joi.string().allow("")),
       job_type: Joi.string().allow("").required(),
       discount_type: Joi.string().allow("").required(),
       discount_level: Joi.string().allow("").required(),
@@ -195,12 +239,39 @@ class DiscountPlatformModel {
       file_path: Joi.string().allow(""),
       brand_ids: Joi.array().items(Joi.number()),
       store_ids: Joi.array().items(Joi.number()),
+      zone_ids: Joi.array().items(Joi.string().allow("")),
       discount_meta: DiscountPlatformModel.DiscountMeta(),
       validity: DiscountPlatformModel.ValidityObject().required(),
       created_on: Joi.string().allow("").required(),
       modified_on: Joi.string().allow("").required(),
       created_by: DiscountPlatformModel.UserDetails().required(),
       modified_by: DiscountPlatformModel.UserDetails().required(),
+      meta: Joi.any(),
+    });
+  }
+
+  /** @returns {FileJobBody} */
+  static FileJobBody() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      company_id: Joi.number(),
+      is_active: Joi.boolean(),
+      app_ids: Joi.array().items(Joi.string().allow("")),
+      job_type: Joi.string().allow(""),
+      discount_type: Joi.string().allow(""),
+      discount_level: Joi.string().allow(""),
+      value: Joi.number(),
+      file_path: Joi.string().allow(""),
+      brand_ids: Joi.array().items(Joi.number()),
+      store_ids: Joi.array().items(Joi.number()),
+      extension_ids: Joi.array().items(Joi.string().allow("")),
+      zone_ids: Joi.array().items(Joi.string().allow("")),
+      discount_meta: DiscountPlatformModel.DiscountMeta(),
+      validity: DiscountPlatformModel.ValidityObject(),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_by: DiscountPlatformModel.UserDetails(),
+      modified_by: DiscountPlatformModel.UserDetails(),
       meta: Joi.any(),
     });
   }
@@ -217,7 +288,7 @@ class DiscountPlatformModel {
   static DiscountItems() {
     return Joi.object({
       item_code: Joi.string().allow(""),
-      brand_uid: Joi.number(),
+      brand_name: Joi.string().allow(""),
       seller_identifier: Joi.string().allow(""),
       discount_type: Joi.string().allow("").required(),
       value: Joi.number().required(),
@@ -242,11 +313,17 @@ class DiscountPlatformModel {
       total: Joi.number().required(),
       failed: Joi.number().required(),
       company_id: Joi.number().required(),
-      body: Joi.any(),
+      body: DiscountPlatformModel.FileJobBody(),
       type: Joi.string().allow("").required(),
-      file_type: Joi.string().allow("").required(),
+      file_type: Joi.string().allow(""),
       _id: Joi.string().allow("").required(),
-      file_path: Joi.string().allow("").required(),
+      file_path: Joi.string().allow(""),
+      progress: Joi.number(),
+      extension_ids: Joi.array().items(Joi.string().allow("")),
+      zone_ids: Joi.array().items(Joi.string().allow("")),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_by: DiscountPlatformModel.UserDetails(),
     });
   }
 
@@ -255,6 +332,7 @@ class DiscountPlatformModel {
     return Joi.object({
       name: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
+      company_id: Joi.number().required(),
       app_ids: Joi.array().items(Joi.string().allow("")),
       job_type: Joi.string().allow(""),
       discount_type: Joi.string().allow(""),
@@ -307,6 +385,22 @@ class DiscountPlatformModel {
   static BadRequestObject() {
     return Joi.object({
       message: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {BadRequestData} */
+  static BadRequestData() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BadRequestObjectGet} */
+  static BadRequestObjectGet() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      error: Joi.string().allow(""),
+      data: DiscountPlatformModel.BadRequestData(),
     });
   }
 }

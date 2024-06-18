@@ -184,7 +184,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DiscountMeta
- * @property {boolean} timer - Determines whether the discount countdown is
+ * @property {boolean} [timer] - Determines whether the discount countdown is
  *   visible or not.
  * @property {number} [start_timer_in_minutes] - The time in minutes before the
  *   discount ends when the countdown timer should start.
@@ -249,6 +249,7 @@ const Joi = require("joi");
  * @typedef ProductSizes
  * @property {ProductSize[]} [sizes]
  * @property {ProductSizesPrice} [price]
+ * @property {ProductSizesPrice} [price_per_piece]
  * @property {SizeChart} [size_chart]
  * @property {boolean} [sellable]
  * @property {boolean} [multi_size]
@@ -301,6 +302,7 @@ const Joi = require("joi");
  * @property {string} [name]
  * @property {string} [value]
  * @property {string} [slug]
+ * @property {Object} [_custom_json]
  * @property {ProductListingAction} [action]
  */
 
@@ -308,8 +310,10 @@ const Joi = require("joi");
  * @typedef ProductVariantResponse
  * @property {string} [display_type]
  * @property {string} [header]
+ * @property {string} [group_id]
  * @property {ProductVariantItemResponse[]} [items]
  * @property {string} [key]
+ * @property {string} [logo]
  */
 
 /**
@@ -655,7 +659,7 @@ const Joi = require("joi");
  * @property {boolean} [allow_facets]
  * @property {Media} [logo]
  * @property {number} [priority]
- * @property {string[]} [tag]
+ * @property {string[]} [tags]
  * @property {string} [app_id]
  */
 
@@ -1323,7 +1327,7 @@ class CatalogApplicationModel {
   /** @returns {DiscountMeta} */
   static DiscountMeta() {
     return Joi.object({
-      timer: Joi.boolean().required(),
+      timer: Joi.boolean(),
       start_timer_in_minutes: Joi.number(),
       start: Joi.string().allow(""),
       end: Joi.string().allow(""),
@@ -1400,6 +1404,7 @@ class CatalogApplicationModel {
     return Joi.object({
       sizes: Joi.array().items(CatalogApplicationModel.ProductSize()),
       price: CatalogApplicationModel.ProductSizesPrice(),
+      price_per_piece: CatalogApplicationModel.ProductSizesPrice(),
       size_chart: CatalogApplicationModel.SizeChart(),
       sellable: Joi.boolean(),
       multi_size: Joi.boolean(),
@@ -1470,6 +1475,7 @@ class CatalogApplicationModel {
       name: Joi.string().allow(""),
       value: Joi.string().allow(""),
       slug: Joi.string().allow(""),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       action: CatalogApplicationModel.ProductListingAction(),
     });
   }
@@ -1479,10 +1485,12 @@ class CatalogApplicationModel {
     return Joi.object({
       display_type: Joi.string().allow(""),
       header: Joi.string().allow(""),
+      group_id: Joi.string().allow(""),
       items: Joi.array().items(
         CatalogApplicationModel.ProductVariantItemResponse()
       ),
       key: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
     });
   }
 
@@ -1918,7 +1926,7 @@ class CatalogApplicationModel {
       allow_facets: Joi.boolean(),
       logo: CatalogApplicationModel.Media(),
       priority: Joi.number(),
-      tag: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")),
       app_id: Joi.string().allow(""),
     });
   }

@@ -12,7 +12,17 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  * @property {string} themeId - The ID of the theme.
  */
 
-/** @typedef GetCompanyLevelThemesParam */
+/**
+ * @typedef GetCompanyLevelPrivateThemesParam
+ * @property {string} [searchText] - Search Text to match the Theme Names and
+ *   return the response.
+ */
+
+/**
+ * @typedef GetCompanyLevelThemesParam
+ * @property {string} [searchText] - Search Text to match the Theme Names and
+ *   return the response.
+ */
 
 class ThemePlatformValidator {
   /** @returns {AddMarketplaceThemeToCompanyParam} */
@@ -29,9 +39,18 @@ class ThemePlatformValidator {
     }).required();
   }
 
+  /** @returns {GetCompanyLevelPrivateThemesParam} */
+  static getCompanyLevelPrivateThemes() {
+    return Joi.object({
+      searchText: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetCompanyLevelThemesParam} */
   static getCompanyLevelThemes() {
-    return Joi.object({}).required();
+    return Joi.object({
+      searchText: Joi.string().allow(""),
+    }).required();
   }
 }
 

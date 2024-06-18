@@ -16,6 +16,98 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformApplicationValidator.FailedOrderLogsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.FailedOrderLogs>} - Success response
+   * @name failedOrderLogs
+   * @summary: List failed order logs
+   * @description: Get failed order logs listing for filters based on order Id, user contact number, user email Id and sales channel Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/failedOrderLogs/).
+   */
+  async failedOrderLogs(
+    { pageNo, pageSize, searchType, searchValue, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.failedOrderLogs().validate(
+      {
+        pageNo,
+        pageSize,
+        searchType,
+        searchValue,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformApplicationValidator.failedOrderLogs().validate(
+      {
+        pageNo,
+        pageSize,
+        searchType,
+        searchValue,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > failedOrderLogs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["application_id"] = applicationId;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/failed`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.FailedOrderLogs().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > failedOrderLogs \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformApplicationValidator.GetApplicationShipmentsParam} arg
    *   - Arg object
    *
@@ -25,8 +117,8 @@ class Order {
    *   - Success response
    *
    * @name getApplicationShipments
-   * @summary:
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
+   * @summary: List sales channel shipments
+   * @description: Get shipments of a particular sales channel based on the filters provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
    */
   async getApplicationShipments(
     {
@@ -166,8 +258,8 @@ class Order {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponse>} - Success response
    * @name getPlatformShipmentReasons
-   * @summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-   * @description: Using action, get reasons behind full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getPlatformShipmentReasons/).
+   * @summary: List shipment cancellation reasons
+   * @description: Get reasons to perform full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getPlatformShipmentReasons/).
    */
   async getPlatformShipmentReasons(
     { action, requestHeaders } = { requestHeaders: {} },
@@ -247,8 +339,8 @@ class Order {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentBagReasons>} - Success response
    * @name getShipmentBagReasons
-   * @summary: Get reasons behind full or partial cancellation of a shipment
-   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
+   * @summary: List bag cancellation reasons
+   * @description: Get reasons to perform full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
    */
   async getShipmentBagReasons(
     { shipmentId, lineNumber, requestHeaders } = { requestHeaders: {} },
@@ -331,7 +423,7 @@ class Order {
    * @returns {Promise<OrderPlatformModel.PlatformShipmentTrack>} - Success response
    * @name trackShipmentPlatform
    * @summary: Track shipment
-   * @description: Track Shipment by shipment id, for application based on application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipmentPlatform/).
+   * @description: Track shipment by shipment Id for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipmentPlatform/).
    */
   async trackShipmentPlatform(
     { shipmentId, requestHeaders } = { requestHeaders: {} },

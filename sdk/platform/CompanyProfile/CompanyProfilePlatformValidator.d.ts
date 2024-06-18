@@ -2,7 +2,7 @@ export = CompanyProfilePlatformValidator;
 /** @typedef CbsOnboardGetParam */
 /**
  * @typedef CreateBrandParam
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.CreateBrandRequestSerializer} body
  */
 /**
  * @typedef CreateCompanyBrandMappingParam
@@ -19,7 +19,7 @@ export = CompanyProfilePlatformValidator;
 /**
  * @typedef EditBrandParam
  * @property {string} brandId - Id of the brand to be viewed.
- * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
+ * @property {CompanyProfilePlatformModel.UpdateBrandRequestSerializer} body
  */
 /**
  * @typedef GetBrandParam
@@ -51,6 +51,10 @@ export = CompanyProfilePlatformValidator;
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
  * @property {number[]} [locationIds] - Helps to filter stores on the basis of uids.
+ * @property {string[]} [types] - Helps to get the location list on the basis of
+ *   multiple location type.
+ * @property {string[]} [tags] - Helps to get the location list on the basis of
+ *   multiple location tag.
  */
 /**
  * @typedef UpdateCompanyParam
@@ -95,7 +99,7 @@ declare namespace CompanyProfilePlatformValidator {
     export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationTagsParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
 }
 type CreateBrandParam = {
-    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
+    body: CompanyProfilePlatformModel.CreateBrandRequestSerializer;
 };
 type CreateCompanyBrandMappingParam = {
     body: CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer;
@@ -111,7 +115,7 @@ type EditBrandParam = {
      * - Id of the brand to be viewed.
      */
     brandId: string;
-    body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
+    body: CompanyProfilePlatformModel.UpdateBrandRequestSerializer;
 };
 type GetBrandParam = {
     /**
@@ -170,6 +174,16 @@ type GetLocationsParam = {
      * - Helps to filter stores on the basis of uids.
      */
     locationIds?: number[];
+    /**
+     * - Helps to get the location list on the basis of
+     * multiple location type.
+     */
+    types?: string[];
+    /**
+     * - Helps to get the location list on the basis of
+     * multiple location tag.
+     */
+    tags?: string[];
 };
 type UpdateCompanyParam = {
     body: CompanyProfilePlatformModel.UpdateCompany;

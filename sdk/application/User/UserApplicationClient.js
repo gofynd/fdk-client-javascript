@@ -25,6 +25,8 @@ class User {
         "/service/application/user/authentication/v1.0/sessions",
       getLoggedInUser: "/service/application/user/authentication/v1.0/session",
       getPlatformConfig: "/service/application/user/platform/v1.0/config",
+      getUserAttributes:
+        "/service/application/user/profile/v1.0/user-attributes",
       hasPassword: "/service/application/user/authentication/v1.0/has-password",
       loginWithAppleIOS:
         "/service/application/user/authentication/v1.0/login/apple-ios",
@@ -69,6 +71,9 @@ class User {
         "/service/application/user/profile/v1.0/mobile/primary",
       updatePassword: "/service/application/user/authentication/v1.0/password",
       updateProfile: "/service/application/user/profile/v1.0/detail",
+      updateUserAttributes:
+        "/service/application/user/profile/v1.0/user-attributes",
+      userExists: "/service/application/user/authentication/v1.0/user-exists",
       verifyEmail: "/service/application/user/authentication/v1.0/verify/email",
       verifyEmailForgotOTP:
         "/service/application/user/authentication/v1.0/otp/forgot/email/verify",
@@ -103,8 +108,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyEmailOTPSuccess>} - Success response
    * @name addEmail
-   * @summary: Add email to profile
-   * @description: Use this API to add a new email address to a profile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
+   * @summary: Add Email to Profile
+   * @description: Adds a new email address to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
    */
   async addEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -180,8 +185,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyMobileOTPSuccess>} - Success response
    * @name addMobileNumber
-   * @summary: Add mobile number to profile
-   * @description: Use this API to add a new mobile number to a profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
+   * @summary: Add Mobile Number to Profile
+   * @description: Adds a new mobile number to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
    */
   async addMobileNumber(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -259,8 +264,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name deleteEmail
-   * @summary: Delete email from profile
-   * @description: Use this API to delete an email address from a profile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteEmail/).
+   * @summary: Delete Email From Profile
+   * @description: Delete Email From Profile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteEmail/).
    */
   async deleteEmail(
     { active, primary, verified, email, platform, requestHeaders } = {
@@ -342,8 +347,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name deleteMobileNumber
-   * @summary: Delete mobile number from profile
-   * @description: Use this API to delete a mobile number from a profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteMobileNumber/).
+   * @summary: Delete Mobile Number From Profile
+   * @description: Delete Mobile Number From Profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteMobileNumber/).
    */
   async deleteMobileNumber(
     {
@@ -434,8 +439,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.DeleteUserSuccess>} - Success response
    * @name deleteUser
-   * @summary: verify otp and delete user
-   * @description: verify otp and delete user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteUser/).
+   * @summary: Verify OTP and Delete User
+   * @description: Verify OTP sent to mobile/email and Delete the user's account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteUser/).
    */
   async deleteUser(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -510,8 +515,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name forgotPassword
-   * @summary: Forgot Password
-   * @description: Use this API to reset a password using the code sent on email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/forgotPassword/).
+   * @summary: Reset Password via Code and login
+   * @description: Reset a password using the code sent on email or SMS the Login. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/forgotPassword/).
    */
   async forgotPassword(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -588,8 +593,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.SessionListSuccess>} - Success response
    * @name getListOfActiveSessions
-   * @summary: Get list of sessions
-   * @description: Use this API to retrieve all active sessions of a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getListOfActiveSessions/).
+   * @summary: Get List OF Active Sessions
+   * @description: Retrieve all active sessions of a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getListOfActiveSessions/).
    */
   async getListOfActiveSessions(
     { requestHeaders } = { requestHeaders: {} },
@@ -668,8 +673,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.UserObjectSchema>} - Success response
    * @name getLoggedInUser
-   * @summary: Get logged in user
-   * @description: Use this API  to get the details of a logged in user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getLoggedInUser/).
+   * @summary: Get Logged in User
+   * @description: Retrieve information about the currently logged-in user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getLoggedInUser/).
    */
   async getLoggedInUser(
     { requestHeaders } = { requestHeaders: {} },
@@ -746,8 +751,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.PlatformSchema>} - Success response
    * @name getPlatformConfig
-   * @summary: Get platform configurations
-   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getPlatformConfig/).
+   * @summary: Get Platform Configuration
+   * @description: Retrieve platform sales channel authentication configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getPlatformConfig/).
    */
   async getPlatformConfig(
     { name, requestHeaders } = { requestHeaders: {} },
@@ -820,13 +825,92 @@ class User {
   }
 
   /**
+   * @param {UserApplicationValidator.GetUserAttributesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
+   * @name getUserAttributes
+   * @summary: Get User Attributes
+   * @description: Get the list of user attributes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
+   */
+  async getUserAttributes(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.getUserAttributes().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.getUserAttributes().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > getUserAttributes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["slug"] = slug;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getUserAttributes"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.UserAttributes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > getUserAttributes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {UserApplicationValidator.HasPasswordParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.HasPasswordSuccess>} - Success response
    * @name hasPassword
-   * @summary: Check password
-   * @description: Use this API to check if user has created a password for login. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/hasPassword/).
+   * @summary: Check Password Existence
+   * @description: Check if user has set an account password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/hasPassword/).
    */
   async hasPassword(
     { requestHeaders } = { requestHeaders: {} },
@@ -901,8 +985,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithAppleIOS
-   * @summary: Login or Register using Apple on iOS
-   * @description: Use this API to login or register in iOS app using Apple Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
+   * @summary: iOS Login with Apple
+   * @description: Enables iOS users to log in to the system using their Apple ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
    */
   async loginWithAppleIOS(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -980,8 +1064,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name loginWithEmailAndPassword
-   * @summary: Login or Register with password
-   * @description: Use this API to login or register using an email address and password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithEmailAndPassword/).
+   * @summary: Email and Password Login
+   * @description: Allows login using an email and password combination. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithEmailAndPassword/).
    */
   async loginWithEmailAndPassword(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1060,8 +1144,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithFacebook
-   * @summary: Login or Register using Facebook
-   * @description: Use this API to login or register using Facebook credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
+   * @summary: Login with Facebook
+   * @description: Enables users to log in to the system using their Facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
    */
   async loginWithFacebook(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1139,8 +1223,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogle
-   * @summary: Login or Register using Google
-   * @description: Use this API to login or register using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
+   * @summary: Login with Google
+   * @description: Enables website users to log in to the system using their Google accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
    */
   async loginWithGoogle(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1218,8 +1302,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogleAndroid
-   * @summary: Login or Register using Google on Android
-   * @description: Use this API to login or register in Android app using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
+   * @summary: Android Login with Google
+   * @description: Enables Android users to log in to the system using their Facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
    */
   async loginWithGoogleAndroid(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1299,8 +1383,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogleIOS
-   * @summary: Login or Register using Google on iOS
-   * @description: Use this API to login or register in iOS app using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
+   * @summary: iOS Login with Google
+   * @description: Enables iOS users to log in to the system using their Facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
    */
   async loginWithGoogleIOS(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1378,8 +1462,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.SendOtpResponse>} - Success response
    * @name loginWithOTP
-   * @summary: Login or Register with OTP
-   * @description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
+   * @summary: Login with Mobile OTP
+   * @description: Allows users to log in using a one-time password sent to their mobile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
    */
   async loginWithOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1457,8 +1541,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name loginWithToken
-   * @summary: Login or Register with token
-   * @description: Use this API to login or register using a token for authentication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithToken/).
+   * @summary: Login with Token
+   * @description: Login User using a token for authentication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithToken/).
    */
   async loginWithToken(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1535,8 +1619,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LogoutSuccess>} - Success response
    * @name logout
-   * @summary: Logs out currently logged in user
-   * @description: Use this API to check to logout a user from the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/logout/).
+   * @summary: Logout Current User
+   * @description: Logout currently logged-in user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/logout/).
    */
   async logout(
     { requestHeaders } = { requestHeaders: {} },
@@ -1611,8 +1695,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.RegisterFormSuccess>} - Success response
    * @name registerWithForm
-   * @summary: Registration using a form
-   * @description: Use this API to perform user registration by sending form data in the request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
+   * @summary: Register User with Form
+   * @description: Enables new users to register using a form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
    */
   async registerWithForm(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1691,8 +1775,8 @@ class User {
    * @returns {Promise<UserApplicationModel.ResetForgotPasswordSuccess>} -
    *   Success response
    * @name resetForgotPassword
-   * @summary: Reset forgot Password
-   * @description: Use this API to reset a password using the code sent on email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/resetForgotPassword/).
+   * @summary: Reset Password via Code
+   * @description: Reset a password using the code sent on email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/resetForgotPassword/).
    */
   async resetForgotPassword(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1769,8 +1853,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
    * @name sendForgotOTPOnEmail
-   * @summary: Send Forgot OTP on email
-   * @description: Use this API to send an Forgot OTP to an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
+   * @summary: Send Email OTP for Forgot Password
+   * @description: Sends a one-time password to the user's email for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
    */
   async sendForgotOTPOnEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1848,8 +1932,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
    * @name sendForgotOTPOnMobile
-   * @summary: Send Forgot OTP on mobile
-   * @description: Use this API to send an Forgot OTP to a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
+   * @summary: Send mobile OTP for forgot-password
+   * @description: Sends a one-time password to the user's mobile for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
    */
   async sendForgotOTPOnMobile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1927,8 +2011,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
    * @name sendOTPOnEmail
-   * @summary: Send OTP on email
-   * @description: Use this API to send an OTP to an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
+   * @summary: Send OTP on Email
+   * @description: Sends a one-time password to the user's email for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
    */
   async sendOTPOnEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2006,8 +2090,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
    * @name sendOTPOnMobile
-   * @summary: Send OTP on mobile
-   * @description: Use this API to send an OTP to a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
+   * @summary: Send OTP on Mobile
+   * @description: Sends a one-time password to the user's mobile for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
    */
   async sendOTPOnMobile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2085,8 +2169,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetPasswordEmail
-   * @summary: Reset Password
-   * @description: Use this API to reset a password using the link sent on email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
+   * @summary: Reset Password via Email
+   * @description: Sends a password reset link to the user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
    */
   async sendResetPasswordEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2164,10 +2248,10 @@ class User {
    * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
+   * @returns {Promise<any>} - Success response
    * @name sendResetPasswordMobile
-   * @summary: Reset Password
-   * @description: Use this API to reset a password using the link sent on mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
+   * @summary: Reset Password via Mobile
+   * @description: Sends a password reset link to the user's Mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
    */
   async sendResetPasswordMobile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2220,12 +2304,9 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -2247,8 +2328,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetToken
-   * @summary: Reset Password using token
-   * @description: Use this API to send code to reset password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetToken/).
+   * @summary: Validate Password Reset Code
+   * @description: Validate Password Reset link Code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetToken/).
    */
   async sendResetToken(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2327,8 +2408,8 @@ class User {
    * @returns {Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>} -
    *   Success response
    * @name sendVerificationLinkToEmail
-   * @summary: Send verification link to email
-   * @description: Use this API to send verification link to an email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
+   * @summary: Send Verification Link to Email
+   * @description: Sends a verification link to a newly added email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
    */
   async sendVerificationLinkToEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2411,8 +2492,8 @@ class User {
    * @returns {Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>} -
    *   Success response
    * @name sendVerificationLinkToMobile
-   * @summary: Send verification link to mobile
-   * @description: Use this API to send a verification link to a mobile number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
+   * @summary: Send Verification Link to Mobile
+   * @description: Sends a verification link to a newly added mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
    */
   async sendVerificationLinkToMobile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2492,8 +2573,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name setEmailAsPrimary
-   * @summary: Set email as primary
-   * @description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setEmailAsPrimary/).
+   * @summary: Set Email as Primary
+   * @description: Sets an email address as the primary contact for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setEmailAsPrimary/).
    */
   async setEmailAsPrimary(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2570,8 +2651,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name setMobileNumberAsPrimary
-   * @summary: Set mobile as primary
-   * @description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setMobileNumberAsPrimary/).
+   * @summary: Set Mobile as Primary
+   * @description: Sets a mobile number as the primary contact for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setMobileNumberAsPrimary/).
    */
   async setMobileNumberAsPrimary(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2650,8 +2731,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name updatePassword
-   * @summary: Update user password
-   * @description: Use this API to update the password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updatePassword/).
+   * @summary: Update Password
+   * @description: Allow user to change their password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updatePassword/).
    */
   async updatePassword(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2728,8 +2809,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.ProfileEditSuccess>} - Success response
    * @name updateProfile
-   * @summary: Edit Profile Details
-   * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
+   * @summary: Edit User Profile Details
+   * @description: Allows users to modify and update their profile details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
    */
   async updateProfile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2802,13 +2883,168 @@ class User {
   }
 
   /**
+   * @param {UserApplicationValidator.UpdateUserAttributesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
+   * @name updateUserAttributes
+   * @summary: Update User Attributes
+   * @description: Update user attributes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
+   */
+  async updateUserAttributes(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.updateUserAttributes().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.updateUserAttributes().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > updateUserAttributes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "patch",
+      constructUrl({
+        url: this._urls["updateUserAttributes"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.UserAttributes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > updateUserAttributes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserApplicationValidator.UserExistsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.UserExistsResponse>} - Success response
+   * @name userExists
+   * @summary: Chcek User Existence
+   * @description: Check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).
+   */
+  async userExists(
+    { q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.userExists().validate(
+      { q },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserApplicationValidator.userExists().validate(
+      { q },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > userExists \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["q"] = q;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["userExists"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.UserExistsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > userExists \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {UserApplicationValidator.VerifyEmailParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name verifyEmail
-   * @summary: Verify email
-   * @description: Use this API to send a verification code to verify an email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmail/).
+   * @summary: Verify Email with Code
+   * @description: Verifies user email with a code sent within a link sent to their email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmail/).
    */
   async verifyEmail(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2883,8 +3119,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
    * @name verifyEmailForgotOTP
-   * @summary: Verify Forgot OTP on email
-   * @description: Use this API to verify the Forgot OTP received on an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
+   * @summary: Verify Email OTP for Forgot Password
+   * @description: Verify one-time password sent to user's email for resetting a forgotten password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
    */
   async verifyEmailForgotOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2962,8 +3198,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
    * @name verifyEmailOTP
-   * @summary: Verify OTP on email
-   * @description: Use this API to verify the OTP received on an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailOTP/).
+   * @summary: Verify Email OTP
+   * @description: Verify one-time password sent to user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailOTP/).
    */
   async verifyEmailOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -3041,8 +3277,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name verifyMobile
-   * @summary: Verify mobile
-   * @description: Use this API to send a verification code to verify a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobile/).
+   * @summary: Verify Mobile with Code
+   * @description: Verifies user mobile with a code sent within a link sent to their mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobile/).
    */
   async verifyMobile(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -3119,8 +3355,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
    * @name verifyMobileForgotOTP
-   * @summary: Verify Forgot OTP on mobile
-   * @description: Use this API to verify the Forgot OTP received on a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
+   * @summary: Verify Mobile OTP for Forgot Password
+   * @description: Verify one-time password sent to user's mobile for resetting a forgotten password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
    */
   async verifyMobileForgotOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -3198,8 +3434,8 @@ class User {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
    * @name verifyMobileOTP
-   * @summary: Verify OTP on mobile
-   * @description: Use this API to verify the OTP received on a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
+   * @summary: Verify Mobile OTP
+   * @description: Verify one-time password sent to user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
    */
   async verifyMobileOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },

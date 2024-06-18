@@ -28,17 +28,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Params
- * @property {string} [subpath] - The subpath for the file.
- */
-
-/**
  * @typedef StartRequest
  * @property {string} file_name
  * @property {string} content_type
  * @property {number} size
  * @property {string[]} [tags]
- * @property {Params} [params]
+ * @property {Object} [params]
  */
 
 /**
@@ -103,13 +98,6 @@ class FileStoragePartnerModel {
     });
   }
 
-  /** @returns {Params} */
-  static Params() {
-    return Joi.object({
-      subpath: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {StartRequest} */
   static StartRequest() {
     return Joi.object({
@@ -117,7 +105,7 @@ class FileStoragePartnerModel {
       content_type: Joi.string().allow("").required(),
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
-      params: FileStoragePartnerModel.Params(),
+      params: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

@@ -64,7 +64,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ActiveCardPaymentGatewayResponse
- * @property {CardPaymentGateway} cards - Card's payment gateway with customer id.
+ * @property {CardPaymentGateway} cards
  * @property {boolean} success - Response is successful or not.
  * @property {string} message - Human readable message.
  */
@@ -188,19 +188,19 @@ const Joi = require("joi");
 
 /**
  * @typedef PaymentStatusUpdateRequest
- * @property {string} status - Status of payment.
- * @property {string} merchant_transaction_id - Unique fynd transaction id
+ * @property {string} [status] - Status of payment.
+ * @property {string} [merchant_transaction_id] - Unique fynd transaction id
  * @property {string} method - Payment method
  * @property {string} [device_id] - EDC machine Unique Identifier
  * @property {string} aggregator - Payment gateway name
- * @property {string} customer_id - Payment gateway customer id.
- * @property {string} contact - Customer valid mobile number
+ * @property {string} [customer_id] - Payment gateway customer id.
+ * @property {string} [contact] - Customer valid mobile number
  * @property {string} merchant_order_id - Unique fynd order id
  * @property {string} [vpa] - Customer vpa address
- * @property {string} order_id - Payment gateway order id
- * @property {string} currency - Currency code.
- * @property {number} amount - Payable amount.
- * @property {string} email - Customer valid email
+ * @property {string} [order_id] - Payment gateway order id
+ * @property {string} [currency] - Currency code.
+ * @property {number} [amount] - Payable amount.
+ * @property {string} [email] - Customer valid email
  */
 
 /**
@@ -228,7 +228,7 @@ const Joi = require("joi");
  * @typedef IntentApp
  * @property {string} [code] - Code
  * @property {string} [package_name] - Package_name
- * @property {Object} [logos] - Logos
+ * @property {PaymentModeLogo} [logos]
  * @property {string} [display_name] - Display_name
  */
 
@@ -259,7 +259,7 @@ const Joi = require("joi");
  * @property {number} [display_priority] - Dispaly Priority
  * @property {string} [card_brand] - Card_brand
  * @property {number} [cod_limit_per_order] - Cod limit per order
- * @property {Object} [logo_url] - Logo
+ * @property {PaymentModeLogo} [logo_url]
  * @property {string} [nickname] - Nickname
  * @property {string} [card_name] - Card_name
  * @property {string} [card_type] - Card_type
@@ -269,6 +269,7 @@ const Joi = require("joi");
  * @property {number} [timeout] - Timeout
  * @property {string} [card_token] - Card_token
  * @property {string} [name] - Name
+ * @property {Object} [meta] - Payment methods meta
  */
 
 /**
@@ -288,39 +289,110 @@ const Joi = require("joi");
 /**
  * @typedef AggregatorRoute
  * @property {Object} [data] - Data
- * @property {string} [payment_flow_data] - Payment_flow_data
+ * @property {Object} [payment_flow_data] - Payment_flow_data
  * @property {string} [payment_flow] - Payment_flow
  * @property {string} [api_link] - Api_link
  */
 
 /**
+ * @typedef PaymentDefaultSelection
+ * @property {string} [mode] - Default Selection Payment Mode
+ * @property {string} [identifier] - Identifier for Payment Mode
+ * @property {boolean} [skip] - Decide if the default payment mode will skip the
+ *   payment options page altogether or just be preferred on the Frontend
+ */
+
+/**
  * @typedef PaymentFlow
- * @property {Object} [bqr_razorpay] - BQR_Razorpay
- * @property {Object} [fynd] - Fynd
- * @property {Object} [epaylater] - Epaylater
- * @property {Object} [razorpay] - Razorpay
- * @property {Object} [juspay] - Juspay
- * @property {Object} [ajiodhan] - Ajiodhan
- * @property {Object} [simpl] - Simpl
- * @property {Object} [rupifi] - Rupifi
- * @property {Object} [mswipe] - Mswipe
- * @property {Object} [stripe] - Stripe
- * @property {Object} [ccavenue] - Ccavenue
- * @property {Object} [payubiz] - Payubiz
- * @property {Object} [jiopay] - Jiopay
- * @property {Object} [upi_razorpay] - UPI_Razorpay
+ * @property {AggregatorRoute} [bqr_razorpay]
+ * @property {AggregatorRoute} [fynd]
+ * @property {AggregatorRoute} [epaylater]
+ * @property {AggregatorRoute} [razorpay]
+ * @property {AggregatorRoute} [juspay]
+ * @property {AggregatorRoute} [ajiodhan]
+ * @property {AggregatorRoute} [simpl]
+ * @property {AggregatorRoute} [rupifi]
+ * @property {AggregatorRoute} [mswipe]
+ * @property {AggregatorRoute} [stripe]
+ * @property {AggregatorRoute} [ccavenue]
+ * @property {AggregatorRoute} [payubiz]
+ * @property {AggregatorRoute} [jiopay]
+ * @property {AggregatorRoute} [upi_razorpay]
  */
 
 /**
  * @typedef PaymentOptionAndFlow
  * @property {RootPaymentMode[]} payment_option - Payment options
- * @property {PaymentFlow} payment_flows - Payment_flows
+ * @property {PaymentFlow} payment_flows
+ * @property {PaymentDefaultSelection} [payment_default_selection]
+ */
+
+/**
+ * @typedef AdvanceObject
+ * @property {boolean} [is_active] - Is Advance Payment active
+ * @property {number} [amount] - Amount for Payment Breakdown
+ * @property {string} [time_unit] - Time unit for refunds
+ * @property {string} [description] - The description for Advance Payment (user
+ *   configured)
+ * @property {string} [display_name] - The display name for Advance payment
+ * @property {string} [prepayment_type] - Type of prepayment value
+ * @property {number} [prepayment_value] - Value for prepayment in advance payment
+ * @property {string} [cancellation_type] - Type of cancellation
+ * @property {number} [refund_time_limit] - Time limit for processing refund
+ * @property {string[]} [all_prepayment_type] - All available types of prepayment
+ * @property {boolean} [allow_custom_advance_amount] - Is custom advance amount allowed?
+ */
+
+/**
+ * @typedef SplitObject
+ * @property {number} [total_number_of_splits] - Maximum amount of splits allowed
+ * @property {number} [splits_remaining] - Number of splits remaining
+ * @property {number} [amount_remaining] - Amount pending to be paid
+ */
+
+/**
+ * @typedef AdvancePaymentObject
+ * @property {string} [name] - Name of Advance Payment Mode
+ * @property {number} [display_priority] - Display Priority for Payment Option
+ * @property {number} [payment_mode_id] - Payment Mode ID for Advance Payment Option
+ * @property {string} [display_name] - Display name for Advance Payment Mode
+ * @property {PaymentModeList[]} [list] - Payment mode
+ * @property {SplitObject} [split]
+ * @property {AdvanceObject} [advance]
  */
 
 /**
  * @typedef PaymentModeRouteResponse
- * @property {PaymentOptionAndFlow} payment_options - Payment_options
+ * @property {PaymentOptionAndFlow} payment_options
  * @property {boolean} success - Response is successful or not
+ * @property {Object} [payment_breakup] - Payment Breakup for advance payment
+ * @property {AdvancePaymentObject[]} [advance_payment] - Advance Payment Array
+ */
+
+/**
+ * @typedef WalletLinkRequestSchema
+ * @property {string} aggregator - Aggregator Name
+ * @property {string} mobile - Mobile Number for Wallet
+ * @property {string} wallet_code - Wallet Code
+ */
+
+/**
+ * @typedef WalletVerifyRequestSchema
+ * @property {string} aggregator - Aggregator Name
+ * @property {string} link_token - Token for wallet linking
+ * @property {number} otp - OTP received for wallet linking
+ */
+
+/**
+ * @typedef WalletDelinkRequestSchema
+ * @property {string} aggregator - Aggregator Name
+ * @property {string} wallet_code - Wallet Code
+ */
+
+/**
+ * @typedef WalletResponseSchema
+ * @property {Object} data - Response received from aggregator
+ * @property {boolean} success - Success/Failure of the API call
  */
 
 /**
@@ -331,7 +403,7 @@ const Joi = require("joi");
 
 /**
  * @typedef RupifiBannerResponse
- * @property {RupifiBannerData} data - Rupifi KYC banner details.
+ * @property {RupifiBannerData} data
  * @property {boolean} success - Successful or not.
  */
 
@@ -344,7 +416,7 @@ const Joi = require("joi");
 
 /**
  * @typedef EpaylaterBannerResponse
- * @property {EpaylaterBannerData} data - Epaylater KYC banner details.
+ * @property {EpaylaterBannerData} data
  * @property {boolean} success - Successful or not.
  */
 
@@ -357,13 +429,15 @@ const Joi = require("joi");
 
 /**
  * @typedef LinkStatus
- * @property {boolean} status - Link action status
+ * @property {string} status - Link action status
  * @property {string} message - Message
+ * @property {boolean} [is_payment_done] - This key specifies payment done
+ *   status of payment link.
  */
 
 /**
  * @typedef ResendOrCancelPaymentResponse
- * @property {LinkStatus} data - Data about link action status.
+ * @property {LinkStatus} data
  * @property {boolean} success - Response is successful or not.
  */
 
@@ -381,6 +455,7 @@ const Joi = require("joi");
 /**
  * @typedef ValidateVPARequest
  * @property {string} upi_vpa - UPI ID
+ * @property {string} [aggregator] - Aggregator slug
  */
 
 /**
@@ -393,7 +468,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ValidateVPAResponse
- * @property {ValidateUPI} data - Data about UPI ID validate.
+ * @property {ValidateUPI} data
  * @property {boolean} success - Response is successful or not.
  */
 
@@ -419,7 +494,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CardDetailsResponse
- * @property {CardDetails} data - Saved Card Details
+ * @property {CardDetails} data
  * @property {boolean} success - Response is successful or not.
  */
 
@@ -544,7 +619,7 @@ const Joi = require("joi");
  * @property {boolean} delights - True if beneficiary to be added by delights or
  *   False if by User
  * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
- * @property {BeneficiaryModeDetails} details - Beneficiary bank details
+ * @property {BeneficiaryModeDetails} details
  * @property {string} [otp]
  * @property {string} order_id - Merchant Order Id
  * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added
@@ -628,7 +703,7 @@ const Joi = require("joi");
 /**
  * @typedef ErrorResponse
  * @property {number} status_code - HTTP status code
- * @property {Object} [error]
+ * @property {ErrorDescription} [error]
  * @property {string} message - Message
  * @property {boolean} success - Successful or failure
  */
@@ -637,7 +712,6 @@ const Joi = require("joi");
  * @typedef CreatePaymentLinkMeta
  * @property {string} cart_id
  * @property {string} checkout_mode
- * @property {string} pincode
  * @property {string} [assign_card_id]
  * @property {string} amount
  */
@@ -649,7 +723,7 @@ const Joi = require("joi");
  * @property {string} mobile_number - Mobile number to which the payment link is
  *   to be sent
  * @property {number} amount - Total value of order
- * @property {CreatePaymentLinkMeta} meta - Meta
+ * @property {CreatePaymentLinkMeta} meta
  * @property {string} email - Email to which the payment link is to be sent
  */
 
@@ -708,7 +782,7 @@ const Joi = require("joi");
  * @typedef CreateOrderUserPaymentMethods
  * @property {string} name - Payment mode name
  * @property {string} mode - Payment mode
- * @property {PaymentMethodsMeta} meta - Meta
+ * @property {PaymentMethodsMeta} meta
  */
 
 /**
@@ -716,7 +790,7 @@ const Joi = require("joi");
  * @property {string} failure_callback_url - Failure page url
  * @property {string} currency - Currency
  * @property {string} payment_link_id - Unique id of payment link
- * @property {CreateOrderUserPaymentMethods} payment_methods - Payment method details
+ * @property {CreateOrderUserPaymentMethods} payment_methods
  * @property {string} success_callback_url - Success page url
  * @property {Object} [meta] - Meta
  */
@@ -755,18 +829,26 @@ const Joi = require("joi");
 
 /**
  * @typedef CreditSummary
+ * @property {BalanceDetails} [total_due_amount]
  * @property {string} [status] - Customer Credit status
+ * @property {BalanceDetails} [limit]
  * @property {string} [credit_line_id] - ID at Credit aggregator's end
- * @property {BalanceDetails} [amount_available] - Credit summary of user.
- * @property {BalanceDetails} [balance] - Credit summary of user.
+ * @property {BalanceDetails} [amount_available]
+ * @property {BalanceDetails} [due_amount]
+ * @property {string} [due_date] - Due date for repayment
+ * @property {BalanceDetails} [balance]
  * @property {string} [status_message] - Message to customer
+ * @property {string} [repayment_url] - Url for repayment
+ * @property {string} [soa_url] - Statement of accounts. Show payment history.
+ * @property {boolean} [is_eligible_for_txn] - Eligiblity flag to complete transaction
  * @property {string} [merchant_customer_ref_id] - Unique aggregator customer id
  * @property {string} [buyer_status] - Status from Credit aggregator's end
+ * @property {string} [activation_url] - Url for activation
  */
 
 /**
  * @typedef CustomerCreditSummaryResponse
- * @property {CreditSummary} [data] - Credit summary of user.
+ * @property {CreditSummary} [data]
  * @property {boolean} success - Payment confirmation updated or not.
  */
 
@@ -778,7 +860,7 @@ const Joi = require("joi");
 
 /**
  * @typedef RedirectToAggregatorResponse
- * @property {RedirectURL} data - Redirect URL.
+ * @property {RedirectURL} data
  * @property {boolean} success - Status updated or not.
  */
 
@@ -791,7 +873,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CheckCreditResponse
- * @property {CreditDetail} data - Credit summary of user.
+ * @property {CreditDetail} data
  * @property {boolean} success - Operation is successful or not.
  */
 
@@ -820,7 +902,7 @@ const Joi = require("joi");
  * @property {string} [pan] - Pan Number
  * @property {string} [driving_license] - Driver License
  * @property {boolean} email_verified - Is Email Verified or not
- * @property {KYCAddress} address_as_per_id - Address details
+ * @property {KYCAddress} address_as_per_id
  * @property {boolean} mobile_verified - Is Mobile Verified or not
  * @property {string} phone - Email
  * @property {string} [email] - Email
@@ -845,7 +927,7 @@ const Joi = require("joi");
  * @property {string} [fda] - Driver License
  * @property {string} [business_type] - Business Type
  * @property {string} [name] - Business Name
- * @property {KYCAddress} [address] - Address details
+ * @property {KYCAddress} [address]
  */
 
 /**
@@ -861,25 +943,29 @@ const Joi = require("joi");
 
 /**
  * @typedef CustomerOnboardingRequest
- * @property {UserPersonalInfoInDetails} personal_info - Credit summary of user.
+ * @property {UserPersonalInfoInDetails} [personal_info]
  * @property {string} [mcc] - Mcc
  * @property {string} aggregator - Aggregator Name
- * @property {MarketplaceInfo} [marketplace_info] - Market Place info.
+ * @property {MarketplaceInfo} [marketplace_info]
  * @property {string} source - CallbackURL
- * @property {BusinessDetails} [business_info] - Business summary.
- * @property {DeviceDetails} [device] - Device Details.
+ * @property {BusinessDetails} [business_info]
+ * @property {DeviceDetails} [device]
  */
 
 /**
  * @typedef OnboardSummary
- * @property {boolean} status - Operation Status
- * @property {string} redirect_url - URL to which the user may redirect.
- * @property {Object} session - User Session
+ * @property {string} [redirect_url] - URL to which the user may redirect.
+ * @property {Object} [session] - User Session
+ * @property {boolean} status - Transaction status
+ * @property {string} [status_remark] - Decription of status
+ * @property {boolean} [is_eligible_for_txn] - Whether is eligible for transaction
+ * @property {string} [merchant_customer_ref_id] - Rupifi customer ID
+ * @property {string} [activation_url] - Url for activation
  */
 
 /**
  * @typedef CustomerOnboardingResponse
- * @property {OnboardSummary} data - Redirect URL.
+ * @property {OnboardSummary} data
  * @property {boolean} success - Status updated or not.
  */
 
@@ -897,6 +983,197 @@ const Joi = require("joi");
  * @property {Object[]} [data] - Dict containing the paid order details
  * @property {boolean} success - Response is successful or not.
  * @property {string} [message] - Message
+ */
+
+/**
+ * @typedef DeleteRefundAccountResponse
+ * @property {boolean} success - Success/Failure of the deleted beneficiary
+ * @property {string} message - Message
+ */
+
+/**
+ * @typedef RefundOptionsDetails
+ * @property {string} display_name - Refund option display name
+ * @property {number} id - Refund ID. It will be unique identifier
+ * @property {boolean} [is_active] - Refund option is active or not
+ * @property {string} name - Refund option name
+ */
+
+/**
+ * @typedef RefundOptions
+ * @property {RefundOptionsDetails} items - List of all refund options.
+ */
+
+/**
+ * @typedef OfflineRefundOptions
+ * @property {RefundOptionsDetails} items - List of all refund options.
+ * @property {string[]} payment_modes - List of all offline payment options. MOP
+ *   Code value
+ */
+
+/**
+ * @typedef RefundOptionResponse
+ * @property {OfflineRefundOptions} offline_refund_options - Available offline
+ *   refund options data
+ * @property {boolean} success - Success/Failure Of response
+ * @property {RefundOptions} refund_options - Available refund options data
+ */
+
+/**
+ * @typedef SelectedRefundOptionResponse
+ * @property {Object} transfer_mode - Selected transfer mode for given shipment
+ * @property {string} shipment_id - Shipment ID
+ * @property {string} message - Message
+ * @property {boolean} success - Successful or not.
+ */
+
+/**
+ * @typedef WalletBeneficiaryDetails
+ * @property {string} beneficiary_id - Benenficiary Id
+ * @property {string} modified_on - MOdification Date of Beneficiary
+ * @property {string} display_name - Display Name Of Account
+ * @property {number} id -
+ * @property {string} subtitle - SHort Title Of Account
+ * @property {string} transfer_mode - Transfer Mode Of Account
+ * @property {string} [mobile] - MObile no of User
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
+ * @property {string} created_on - Creation Date of Beneficiary
+ * @property {string} address - Address of User
+ * @property {string} title - Title Of Account
+ * @property {string} wallet_address - Bank Name Of Account
+ * @property {string} [comment] - Remarks
+ * @property {string} [wallet] - Branch Name Of Account
+ * @property {string} email - EMail of User
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
+ */
+
+/**
+ * @typedef UpiBeneficiaryDetails
+ * @property {string} beneficiary_id - Benenficiary Id
+ * @property {string} modified_on - MOdification Date of Beneficiary
+ * @property {string} display_name - Display Name Of Account
+ * @property {number} id -
+ * @property {string} subtitle - SHort Title Of Account
+ * @property {string} transfer_mode - Transfer Mode Of Account
+ * @property {string} [vpa] - Branch Name Of Account
+ * @property {string} [mobile] - Mobile no of User
+ * @property {string} vpa_address - Bank Name Of Account
+ * @property {string} created_on - Creation Date of Beneficiary
+ * @property {string} address - Address of User
+ * @property {string} title - Title Of Account
+ * @property {string} [comment] - Remarks
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
+ * @property {string} email - EMail of User
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
+ */
+
+/**
+ * @typedef BeneficiaryRefundOptions
+ * @property {OrderBeneficiaryDetails} [bank] - List of all add bank beneficiary details.
+ * @property {WalletBeneficiaryDetails} [wallet] - List of all add Wallet
+ *   beneficiary details.
+ * @property {UpiBeneficiaryDetails} [upi] - List of all add UPI beneficiary details.
+ */
+
+/**
+ * @typedef OrderBeneficiaryResponseSchemaV2
+ * @property {boolean} show_beneficiary_details - Show Beneficiary details on UI or not.
+ * @property {BeneficiaryRefundOptions} data - Beneficiary Data for Bank
+ *   account, UPI and Wallets.
+ * @property {Object} limit - Max Limit for adding bank account, UPI and wallet
+ */
+
+/**
+ * @typedef ValidateValidateAddressRequest
+ * @property {string} [ifsc_code] - IFSC Code
+ * @property {string} [upi_vpa] - VPA Address
+ * @property {string} [aggregator] - Aggregator Name
+ */
+
+/**
+ * @typedef VPADetails
+ * @property {boolean} is_valid - Is VPA valid or not
+ * @property {string} upi_vpa - VPA address
+ * @property {string} status - VPA validation message
+ * @property {string} customer_name - VPA Customer Name
+ */
+
+/**
+ * @typedef ValidateValidateAddressResponse
+ * @property {VPADetails} [upi] - UPI validation details.
+ * @property {boolean} success - Successful or not.
+ * @property {Object} [ifsc] - IFSC details response data
+ */
+
+/**
+ * @typedef PaymentMethodsMetaOrder
+ * @property {string} merchant_code - Merchant code
+ * @property {string} payment_gateway - Payment gateway name
+ * @property {string} payment_identifier - Payment identifier
+ */
+
+/**
+ * @typedef PaymentOrderMethods
+ * @property {number} amount - Amount to be collected
+ * @property {string} [payment] - Payment type i.e. Required / Blocked
+ * @property {string} mode - Payment mode
+ * @property {PaymentMethodsMetaOrder} meta
+ * @property {string} name - Payment mode name
+ */
+
+/**
+ * @typedef PaymentOrderRequest
+ * @property {PaymentOrderMethods[]} [payment_methods]
+ * @property {string} order_id - Order id
+ * @property {string} [shipment_id] - Shipment_id
+ */
+
+/**
+ * @typedef PaymentOrderData
+ * @property {number} [amount] - Amount
+ * @property {string} [aggregator] - Aggregator name
+ * @property {string} [callback_url] - Callback url for aggregator
+ * @property {string} [order_id] - Aggregator order id
+ * @property {string} [customer_id] - Aggregator customer id
+ * @property {string} [merchant_order_id] - Merchant order id
+ * @property {string} [currency] - Currency
+ * @property {string} [email] - Email
+ * @property {string} [contact] - Mobile number
+ * @property {string} [method] - Method
+ */
+
+/**
+ * @typedef PaymentOrderResponse
+ * @property {string} [payment_confirm_url] - Payment confirm url for aggregator
+ * @property {string} [callback_url] - Callback url for aggregator
+ * @property {string} [order_id] - Merchant order id
+ * @property {boolean} [success] - Successful or failure
+ * @property {number} status_code - HTTP status code
+ * @property {PaymentOrderData} [data]
+ * @property {string} message - Message
+ */
+
+/**
+ * @typedef ShipmentRefundRequest
+ * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
+ * @property {string} order_id - Merchant Order Id
+ * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added
+ * @property {string} [beneficiary_id] - Beneficiary Hash Id of the beneficiary added
+ */
+
+/**
+ * @typedef ShipmentRefundDetail
+ * @property {string} shipment_id - Shipment ID
+ * @property {string} order_id - Order ID
+ * @property {string} transfer_mode - TransferMode
+ * @property {string} beneficiary_id - Beneficiary ID
+ */
+
+/**
+ * @typedef ShipmentRefundResponse
+ * @property {ShipmentRefundDetail} data - Selected Shipment refund option details.
+ * @property {boolean} success - Successful or not.
+ * @property {string} message - Message
  */
 
 class PaymentApplicationModel {
@@ -1124,19 +1401,19 @@ class PaymentApplicationModel {
   /** @returns {PaymentStatusUpdateRequest} */
   static PaymentStatusUpdateRequest() {
     return Joi.object({
-      status: Joi.string().allow("").required(),
-      merchant_transaction_id: Joi.string().allow("").required(),
+      status: Joi.string().allow(""),
+      merchant_transaction_id: Joi.string().allow(""),
       method: Joi.string().allow("").required(),
       device_id: Joi.string().allow("").allow(null),
       aggregator: Joi.string().allow("").required(),
-      customer_id: Joi.string().allow("").required(),
-      contact: Joi.string().allow("").required(),
+      customer_id: Joi.string().allow(""),
+      contact: Joi.string().allow(""),
       merchant_order_id: Joi.string().allow("").required(),
       vpa: Joi.string().allow(""),
-      order_id: Joi.string().allow("").required(),
-      currency: Joi.string().allow("").required(),
-      amount: Joi.number().allow(null).required(),
-      email: Joi.string().allow("").required(),
+      order_id: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      amount: Joi.number().allow(null),
+      email: Joi.string().allow(""),
     });
   }
 
@@ -1172,7 +1449,7 @@ class PaymentApplicationModel {
     return Joi.object({
       code: Joi.string().allow("").allow(null),
       package_name: Joi.string().allow("").allow(null),
-      logos: Joi.any().allow(null),
+      logos: PaymentApplicationModel.PaymentModeLogo(),
       display_name: Joi.string().allow("").allow(null),
     });
   }
@@ -1189,13 +1466,17 @@ class PaymentApplicationModel {
       cod_limit: Joi.number().allow(null),
       intent_flow: Joi.boolean().allow(null),
       fynd_vpa: Joi.string().allow("").allow(null),
-      intent_app_error_dict_list: Joi.array().items(
-        PaymentApplicationModel.IntentAppErrorList()
-      ),
+      intent_app_error_dict_list: Joi.array()
+        .items(PaymentApplicationModel.IntentAppErrorList())
+        .allow(null, ""),
       aggregator_name: Joi.string().allow("").required(),
       card_fingerprint: Joi.string().allow("").allow(null),
-      intent_app_error_list: Joi.array().items(Joi.string().allow("")),
-      intent_app: Joi.array().items(PaymentApplicationModel.IntentApp()),
+      intent_app_error_list: Joi.array()
+        .items(Joi.string().allow(""))
+        .allow(null, ""),
+      intent_app: Joi.array()
+        .items(PaymentApplicationModel.IntentApp())
+        .allow(null, ""),
       expired: Joi.boolean().allow(null),
       retry_count: Joi.number().allow(null),
       exp_year: Joi.number().allow(null),
@@ -1205,7 +1486,7 @@ class PaymentApplicationModel {
       display_priority: Joi.number().allow(null),
       card_brand: Joi.string().allow("").allow(null),
       cod_limit_per_order: Joi.number().allow(null),
-      logo_url: Joi.any().allow(null),
+      logo_url: PaymentApplicationModel.PaymentModeLogo(),
       nickname: Joi.string().allow("").allow(null),
       card_name: Joi.string().allow("").allow(null),
       card_type: Joi.string().allow("").allow(null),
@@ -1215,6 +1496,7 @@ class PaymentApplicationModel {
       timeout: Joi.number().allow(null),
       card_token: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
+      meta: Joi.any().allow(null),
     });
   }
 
@@ -1237,29 +1519,38 @@ class PaymentApplicationModel {
   static AggregatorRoute() {
     return Joi.object({
       data: Joi.any().allow(null),
-      payment_flow_data: Joi.string().allow("").allow(null),
+      payment_flow_data: Joi.any().allow(null),
       payment_flow: Joi.string().allow("").allow(null),
       api_link: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {PaymentDefaultSelection} */
+  static PaymentDefaultSelection() {
+    return Joi.object({
+      mode: Joi.string().allow("").allow(null),
+      identifier: Joi.string().allow("").allow(null),
+      skip: Joi.boolean().allow(null),
     });
   }
 
   /** @returns {PaymentFlow} */
   static PaymentFlow() {
     return Joi.object({
-      bqr_razorpay: Joi.any().allow(null),
-      fynd: Joi.any().allow(null),
-      epaylater: Joi.any().allow(null),
-      razorpay: Joi.any().allow(null),
-      juspay: Joi.any().allow(null),
-      ajiodhan: Joi.any().allow(null),
-      simpl: Joi.any().allow(null),
-      rupifi: Joi.any().allow(null),
-      mswipe: Joi.any().allow(null),
-      stripe: Joi.any().allow(null),
-      ccavenue: Joi.any().allow(null),
-      payubiz: Joi.any().allow(null),
-      jiopay: Joi.any().allow(null),
-      upi_razorpay: Joi.any().allow(null),
+      bqr_razorpay: PaymentApplicationModel.AggregatorRoute(),
+      fynd: PaymentApplicationModel.AggregatorRoute(),
+      epaylater: PaymentApplicationModel.AggregatorRoute(),
+      razorpay: PaymentApplicationModel.AggregatorRoute(),
+      juspay: PaymentApplicationModel.AggregatorRoute(),
+      ajiodhan: PaymentApplicationModel.AggregatorRoute(),
+      simpl: PaymentApplicationModel.AggregatorRoute(),
+      rupifi: PaymentApplicationModel.AggregatorRoute(),
+      mswipe: PaymentApplicationModel.AggregatorRoute(),
+      stripe: PaymentApplicationModel.AggregatorRoute(),
+      ccavenue: PaymentApplicationModel.AggregatorRoute(),
+      payubiz: PaymentApplicationModel.AggregatorRoute(),
+      jiopay: PaymentApplicationModel.AggregatorRoute(),
+      upi_razorpay: PaymentApplicationModel.AggregatorRoute(),
     });
   }
 
@@ -1270,6 +1561,50 @@ class PaymentApplicationModel {
         .items(PaymentApplicationModel.RootPaymentMode())
         .required(),
       payment_flows: PaymentApplicationModel.PaymentFlow().required(),
+      payment_default_selection: PaymentApplicationModel.PaymentDefaultSelection(),
+    });
+  }
+
+  /** @returns {AdvanceObject} */
+  static AdvanceObject() {
+    return Joi.object({
+      is_active: Joi.boolean().allow(null),
+      amount: Joi.number(),
+      time_unit: Joi.string().allow("").allow(null),
+      description: Joi.string().allow("").allow(null),
+      display_name: Joi.string().allow("").allow(null),
+      prepayment_type: Joi.string().allow("").allow(null),
+      prepayment_value: Joi.number().allow(null),
+      cancellation_type: Joi.string().allow("").allow(null),
+      refund_time_limit: Joi.number().allow(null),
+      all_prepayment_type: Joi.array()
+        .items(Joi.string().allow("").allow(null))
+        .allow(null, ""),
+      allow_custom_advance_amount: Joi.boolean().allow(null),
+    });
+  }
+
+  /** @returns {SplitObject} */
+  static SplitObject() {
+    return Joi.object({
+      total_number_of_splits: Joi.number().allow(null),
+      splits_remaining: Joi.number().allow(null),
+      amount_remaining: Joi.number().allow(null),
+    });
+  }
+
+  /** @returns {AdvancePaymentObject} */
+  static AdvancePaymentObject() {
+    return Joi.object({
+      name: Joi.string().allow("").allow(null),
+      display_priority: Joi.number().allow(null),
+      payment_mode_id: Joi.number().allow(null),
+      display_name: Joi.string().allow("").allow(null),
+      list: Joi.array()
+        .items(PaymentApplicationModel.PaymentModeList())
+        .allow(null, ""),
+      split: PaymentApplicationModel.SplitObject(),
+      advance: PaymentApplicationModel.AdvanceObject(),
     });
   }
 
@@ -1277,6 +1612,44 @@ class PaymentApplicationModel {
   static PaymentModeRouteResponse() {
     return Joi.object({
       payment_options: PaymentApplicationModel.PaymentOptionAndFlow().required(),
+      success: Joi.boolean().required(),
+      payment_breakup: Joi.any(),
+      advance_payment: Joi.array()
+        .items(PaymentApplicationModel.AdvancePaymentObject())
+        .allow(null, ""),
+    });
+  }
+
+  /** @returns {WalletLinkRequestSchema} */
+  static WalletLinkRequestSchema() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      mobile: Joi.string().allow("").required(),
+      wallet_code: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {WalletVerifyRequestSchema} */
+  static WalletVerifyRequestSchema() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      link_token: Joi.string().allow("").required(),
+      otp: Joi.number().required(),
+    });
+  }
+
+  /** @returns {WalletDelinkRequestSchema} */
+  static WalletDelinkRequestSchema() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      wallet_code: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {WalletResponseSchema} */
+  static WalletResponseSchema() {
+    return Joi.object({
+      data: Joi.any().required(),
       success: Joi.boolean().required(),
     });
   }
@@ -1326,8 +1699,9 @@ class PaymentApplicationModel {
   /** @returns {LinkStatus} */
   static LinkStatus() {
     return Joi.object({
-      status: Joi.boolean().required(),
+      status: Joi.string().allow("").required(),
       message: Joi.string().allow("").required(),
+      is_payment_done: Joi.boolean(),
     });
   }
 
@@ -1358,6 +1732,7 @@ class PaymentApplicationModel {
   static ValidateVPARequest() {
     return Joi.object({
       upi_vpa: Joi.string().allow("").required(),
+      aggregator: Joi.string().allow(""),
     });
   }
 
@@ -1481,9 +1856,9 @@ class PaymentApplicationModel {
   static OrderBeneficiaryResponse() {
     return Joi.object({
       show_beneficiary_details: Joi.boolean(),
-      beneficiaries: Joi.array().items(
-        PaymentApplicationModel.OrderBeneficiaryDetails()
-      ),
+      beneficiaries: Joi.array()
+        .items(PaymentApplicationModel.OrderBeneficiaryDetails())
+        .allow(null, ""),
     });
   }
 
@@ -1665,7 +2040,7 @@ class PaymentApplicationModel {
   static ErrorResponse() {
     return Joi.object({
       status_code: Joi.number().required(),
-      error: Joi.any().allow(null),
+      error: PaymentApplicationModel.ErrorDescription(),
       message: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
     });
@@ -1676,7 +2051,6 @@ class PaymentApplicationModel {
     return Joi.object({
       cart_id: Joi.string().allow("").required(),
       checkout_mode: Joi.string().allow("").required(),
-      pincode: Joi.string().allow("").required(),
       assign_card_id: Joi.string().allow("").allow(null),
       amount: Joi.string().allow("").required(),
     });
@@ -1819,13 +2193,21 @@ class PaymentApplicationModel {
   /** @returns {CreditSummary} */
   static CreditSummary() {
     return Joi.object({
+      total_due_amount: PaymentApplicationModel.BalanceDetails(),
       status: Joi.string().allow("").allow(null),
+      limit: PaymentApplicationModel.BalanceDetails(),
       credit_line_id: Joi.string().allow("").allow(null),
       amount_available: PaymentApplicationModel.BalanceDetails(),
+      due_amount: PaymentApplicationModel.BalanceDetails(),
+      due_date: Joi.string().allow("").allow(null),
       balance: PaymentApplicationModel.BalanceDetails(),
       status_message: Joi.string().allow("").allow(null),
+      repayment_url: Joi.string().allow("").allow(null),
+      soa_url: Joi.string().allow("").allow(null),
+      is_eligible_for_txn: Joi.boolean().allow(null),
       merchant_customer_ref_id: Joi.string().allow("").allow(null),
       buyer_status: Joi.string().allow("").allow(null),
+      activation_url: Joi.string().allow("").allow(null),
     });
   }
 
@@ -1947,7 +2329,7 @@ class PaymentApplicationModel {
   /** @returns {CustomerOnboardingRequest} */
   static CustomerOnboardingRequest() {
     return Joi.object({
-      personal_info: PaymentApplicationModel.UserPersonalInfoInDetails().required(),
+      personal_info: PaymentApplicationModel.UserPersonalInfoInDetails(),
       mcc: Joi.string().allow("").allow(null),
       aggregator: Joi.string().allow("").required(),
       marketplace_info: PaymentApplicationModel.MarketplaceInfo(),
@@ -1960,9 +2342,13 @@ class PaymentApplicationModel {
   /** @returns {OnboardSummary} */
   static OnboardSummary() {
     return Joi.object({
+      redirect_url: Joi.string().allow(""),
+      session: Joi.any(),
       status: Joi.boolean().required(),
-      redirect_url: Joi.string().allow("").required(),
-      session: Joi.any().required(),
+      status_remark: Joi.string().allow(""),
+      is_eligible_for_txn: Joi.boolean(),
+      merchant_customer_ref_id: Joi.string().allow(""),
+      activation_url: Joi.string().allow(""),
     });
   }
 
@@ -1978,7 +2364,7 @@ class PaymentApplicationModel {
   static OutstandingOrderDetailsResponse() {
     return Joi.object({
       status_code: Joi.number().required(),
-      data: Joi.array().items(Joi.any()),
+      data: Joi.array().items(Joi.any()).allow(null, ""),
       success: Joi.boolean().required(),
       message: Joi.string().allow("").allow(null),
     });
@@ -1988,9 +2374,240 @@ class PaymentApplicationModel {
   static PaidOrderDetailsResponse() {
     return Joi.object({
       status_code: Joi.number().required(),
-      data: Joi.array().items(Joi.any()),
+      data: Joi.array().items(Joi.any()).allow(null, ""),
       success: Joi.boolean().required(),
       message: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {DeleteRefundAccountResponse} */
+  static DeleteRefundAccountResponse() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      message: Joi.string().allow("").allow(null).required(),
+    });
+  }
+
+  /** @returns {RefundOptionsDetails} */
+  static RefundOptionsDetails() {
+    return Joi.object({
+      display_name: Joi.string().allow("").required(),
+      id: Joi.number().required(),
+      is_active: Joi.boolean().allow(null),
+      name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {RefundOptions} */
+  static RefundOptions() {
+    return Joi.object({
+      items: PaymentApplicationModel.RefundOptionsDetails().required(),
+    });
+  }
+
+  /** @returns {OfflineRefundOptions} */
+  static OfflineRefundOptions() {
+    return Joi.object({
+      items: PaymentApplicationModel.RefundOptionsDetails().required(),
+      payment_modes: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {RefundOptionResponse} */
+  static RefundOptionResponse() {
+    return Joi.object({
+      offline_refund_options: PaymentApplicationModel.OfflineRefundOptions().required(),
+      success: Joi.boolean().required(),
+      refund_options: PaymentApplicationModel.RefundOptions().required(),
+    });
+  }
+
+  /** @returns {SelectedRefundOptionResponse} */
+  static SelectedRefundOptionResponse() {
+    return Joi.object({
+      transfer_mode: Joi.any().required(),
+      shipment_id: Joi.string().allow("").allow(null).required(),
+      message: Joi.string().allow("").allow(null).required(),
+      success: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {WalletBeneficiaryDetails} */
+  static WalletBeneficiaryDetails() {
+    return Joi.object({
+      beneficiary_id: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      display_name: Joi.string().allow("").required(),
+      id: Joi.number().required(),
+      subtitle: Joi.string().allow("").required(),
+      transfer_mode: Joi.string().allow("").required(),
+      mobile: Joi.string().allow(""),
+      is_active: Joi.boolean().required(),
+      created_on: Joi.string().allow("").required(),
+      address: Joi.string().allow("").required(),
+      title: Joi.string().allow("").required(),
+      wallet_address: Joi.string().allow("").required(),
+      comment: Joi.string().allow(""),
+      wallet: Joi.string().allow(""),
+      email: Joi.string().allow("").required(),
+      delights_user_name: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {UpiBeneficiaryDetails} */
+  static UpiBeneficiaryDetails() {
+    return Joi.object({
+      beneficiary_id: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      display_name: Joi.string().allow("").required(),
+      id: Joi.number().required(),
+      subtitle: Joi.string().allow("").required(),
+      transfer_mode: Joi.string().allow("").required(),
+      vpa: Joi.string().allow(""),
+      mobile: Joi.string().allow(""),
+      vpa_address: Joi.string().allow("").required(),
+      created_on: Joi.string().allow("").required(),
+      address: Joi.string().allow("").required(),
+      title: Joi.string().allow("").required(),
+      comment: Joi.string().allow(""),
+      is_active: Joi.boolean().required(),
+      email: Joi.string().allow("").required(),
+      delights_user_name: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {BeneficiaryRefundOptions} */
+  static BeneficiaryRefundOptions() {
+    return Joi.object({
+      bank: PaymentApplicationModel.OrderBeneficiaryDetails(),
+      wallet: PaymentApplicationModel.WalletBeneficiaryDetails(),
+      upi: PaymentApplicationModel.UpiBeneficiaryDetails(),
+    });
+  }
+
+  /** @returns {OrderBeneficiaryResponseSchemaV2} */
+  static OrderBeneficiaryResponseSchemaV2() {
+    return Joi.object({
+      show_beneficiary_details: Joi.boolean().required(),
+      data: PaymentApplicationModel.BeneficiaryRefundOptions().required(),
+      limit: Joi.any().required(),
+    });
+  }
+
+  /** @returns {ValidateValidateAddressRequest} */
+  static ValidateValidateAddressRequest() {
+    return Joi.object({
+      ifsc_code: Joi.string().allow("").allow(null),
+      upi_vpa: Joi.string().allow("").allow(null),
+      aggregator: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {VPADetails} */
+  static VPADetails() {
+    return Joi.object({
+      is_valid: Joi.boolean().required(),
+      upi_vpa: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      customer_name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ValidateValidateAddressResponse} */
+  static ValidateValidateAddressResponse() {
+    return Joi.object({
+      upi: PaymentApplicationModel.VPADetails(),
+      success: Joi.boolean().required(),
+      ifsc: Joi.any(),
+    });
+  }
+
+  /** @returns {PaymentMethodsMetaOrder} */
+  static PaymentMethodsMetaOrder() {
+    return Joi.object({
+      merchant_code: Joi.string().allow("").required(),
+      payment_gateway: Joi.string().allow("").required(),
+      payment_identifier: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {PaymentOrderMethods} */
+  static PaymentOrderMethods() {
+    return Joi.object({
+      amount: Joi.number().required(),
+      payment: Joi.string().allow(""),
+      mode: Joi.string().allow("").required(),
+      meta: PaymentApplicationModel.PaymentMethodsMetaOrder().required(),
+      name: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {PaymentOrderRequest} */
+  static PaymentOrderRequest() {
+    return Joi.object({
+      payment_methods: Joi.array().items(
+        PaymentApplicationModel.PaymentOrderMethods()
+      ),
+      order_id: Joi.string().allow("").required(),
+      shipment_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PaymentOrderData} */
+  static PaymentOrderData() {
+    return Joi.object({
+      amount: Joi.number().allow(null),
+      aggregator: Joi.string().allow("").allow(null),
+      callback_url: Joi.string().allow("").allow(null),
+      order_id: Joi.string().allow("").allow(null),
+      customer_id: Joi.string().allow("").allow(null),
+      merchant_order_id: Joi.string().allow("").allow(null),
+      currency: Joi.string().allow("").allow(null),
+      email: Joi.string().allow("").allow(null),
+      contact: Joi.string().allow("").allow(null),
+      method: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {PaymentOrderResponse} */
+  static PaymentOrderResponse() {
+    return Joi.object({
+      payment_confirm_url: Joi.string().allow("").allow(null),
+      callback_url: Joi.string().allow("").allow(null),
+      order_id: Joi.string().allow("").allow(null),
+      success: Joi.boolean(),
+      status_code: Joi.number().required(),
+      data: PaymentApplicationModel.PaymentOrderData(),
+      message: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ShipmentRefundRequest} */
+  static ShipmentRefundRequest() {
+    return Joi.object({
+      shipment_id: Joi.string().allow("").required(),
+      order_id: Joi.string().allow("").required(),
+      transfer_mode: Joi.string().allow("").required(),
+      beneficiary_id: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {ShipmentRefundDetail} */
+  static ShipmentRefundDetail() {
+    return Joi.object({
+      shipment_id: Joi.string().allow("").required(),
+      order_id: Joi.string().allow("").required(),
+      transfer_mode: Joi.string().allow("").required(),
+      beneficiary_id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ShipmentRefundResponse} */
+  static ShipmentRefundResponse() {
+    return Joi.object({
+      data: PaymentApplicationModel.ShipmentRefundDetail().required(),
+      success: Joi.boolean().required(),
+      message: Joi.string().allow("").allow(null).required(),
     });
   }
 }

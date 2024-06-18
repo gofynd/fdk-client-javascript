@@ -19,11 +19,11 @@ declare class ApplicationClient {
     logistic: Logistic;
     order: Order;
     payment: Payment;
-    posCart: PosCart;
     rewards: Rewards;
     share: Share;
     theme: Theme;
     user: User;
+    webhook: Webhook;
     /**
      * Sets the cookie for the application.
      *
@@ -67,8 +67,8 @@ import Lead = require("./Lead/LeadApplicationClient");
 import Logistic = require("./Logistic/LogisticApplicationClient");
 import Order = require("./Order/OrderApplicationClient");
 import Payment = require("./Payment/PaymentApplicationClient");
-import PosCart = require("./PosCart/PosCartApplicationClient");
 import Rewards = require("./Rewards/RewardsApplicationClient");
 import Share = require("./Share/ShareApplicationClient");
 import Theme = require("./Theme/ThemeApplicationClient");
 import User = require("./User/UserApplicationClient");
+import Webhook = require("./Webhook/WebhookApplicationClient");

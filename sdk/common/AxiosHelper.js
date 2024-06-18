@@ -1,13 +1,11 @@
-const combineURLs = require("axios/lib/helpers/combineURLs");
-const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
-const axios = require("axios");
+const { isAbsoluteURL, combineURLs } = require("./utils");
+const axios = require("axios").default;
 const querystring = require("query-string");
 const { sign } = require("@gofynd/fp-signature");
 const { FDKServerResponseError } = require("./FDKError");
 const { log, Logger, getLoggerLevel } = require("./Logger");
 const createCurl = require("./curlHelper");
 const { version } = require("./../../package.json");
-axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
   const { transformRequest } = config;
@@ -82,6 +80,7 @@ function requestInterceptorFn() {
   };
 }
 const fdkAxios = axios.create({
+  withCredentials: true,
   paramsSerializer: (params) => {
     return querystring.stringify(params);
   },
@@ -132,33 +131,55 @@ fdkAxios.interceptors.response.use(
   function (error) {
     if (error.response) {
       // Request made and server responded
+      const responseData = error.response.data;
       Logger({
         level: "ERROR",
-        message: error.response.data || error.message,
-        stack: error.response.data.stack || error.stack,
+        message:
+          responseData && responseData.message
+            ? responseData.message
+            : error.message,
+        stack:
+          responseData && responseData.stack ? responseData.stack : error.stack,
         request: {
-          method: error.config.method,
-          url: error.config.url,
-          headers: error.config.headers,
+          method:
+            error.config && error.config.url ? error.config.url : undefined,
+          url:
+            error.config && error.config.method
+              ? error.config.method
+              : undefined,
+          headers:
+            error.config && error.config.headers
+              ? error.config.headers
+              : undefined,
         },
       });
       throw new FDKServerResponseError(
-        error.response.data.message || error.message,
-        error.response.data.stack || error.stack,
+        responseData && responseData.message
+          ? responseData.message
+          : error.message,
+        "",
+        // Not Sending Stack for response error
         error.response.statusText,
         error.response.status,
-        error.response.data
+        responseData
       );
     } else if (error.request) {
       // The request was made but no error.response was received
       Logger({
         level: "ERROR",
-        message: error.data || error.message,
-        stack: error.data.stack || error.stack,
+        message: error.message,
+        stack: error.stack,
         request: {
-          method: error.config.method,
-          url: error.config.url,
-          headers: error.config.headers,
+          method:
+            error.config && error.config.url ? error.config.url : undefined,
+          url:
+            error.config && error.config.method
+              ? error.config.method
+              : undefined,
+          headers:
+            error.config && error.config.headers
+              ? error.config.headers
+              : undefined,
         },
       });
       throw new FDKServerResponseError(

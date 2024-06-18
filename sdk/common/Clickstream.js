@@ -22,7 +22,10 @@ if (typeof window != "undefined") {
     Logger({ level: "DEBUG", message: eventData });
     Clickstream.identify(eventData["user_id"], {
       event_type: "identity",
-      ...eventData,
+      email: sg(() => eventData["email"]),
+      phone: sg(() => eventData["phone_number"]),
+      login_value: sg(() => eventData["login_value"]),
+      method: sg(() => eventData["method"]),
     }).catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -32,7 +35,9 @@ if (typeof window != "undefined") {
     Logger({ level: "DEBUG", message: eventData });
     Clickstream.identify(eventData["used_id"], {
       event_type: "identity",
-      ...eventData,
+      email: sg(() => eventData["email"]),
+      phone: sg(() => eventData["phone_number"]),
+      method: sg(() => eventData["method"]),
     }).catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -40,12 +45,11 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("user.logout", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("user_logout", {
-      event_type: "identity",
-      ...eventData,
-    }).catch((err) => {
-      Logger({ level: "ERROR", message: err });
-    });
+    Clickstream.sendEvent("user_logout", { event_type: "identity" }).catch(
+      (err) => {
+        Logger({ level: "ERROR", message: err });
+      }
+    );
     Clickstream.reset().catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -56,7 +60,7 @@ if (typeof window != "undefined") {
     Clickstream.sendEvent("product_wishlist_add", {
       wishlist_name: "TODO",
       wishlist_id: "TODO",
-      event_type: "click",
+      event_type: "engagement",
       product_id: sg(() => eventData.item["uid"]),
       brand: sg(() => eventData.item.brand["name"]),
       l3_category: sg(() => eventData.item.categories[0]["name"]),
@@ -80,7 +84,7 @@ if (typeof window != "undefined") {
     Clickstream.sendEvent("product_wishlist_remove", {
       wishlist_name: "TODO",
       wishlist_id: "TODO",
-      event_type: "click",
+      event_type: "engagement",
       product_id: sg(() => eventData.item["uid"]),
       brand: sg(() => eventData.item.brand["name"]),
       l3_category: sg(() => eventData.item.categories[0]["name"]),
@@ -103,8 +107,9 @@ if (typeof window != "undefined") {
     Logger({ level: "DEBUG", message: eventData });
     Clickstream.sendEvent("add_to_cart", {
       cart_id: eventData.cart_id,
-      event_type: "click",
+      event_type: "engagement",
       product_id: sg(() => eventData.products[0]["uid"]),
+      article_id: sg(() => eventData.products[0]["article"]["uid"]),
       brand: sg(() => eventData.products[0]["brand"]["name"]),
       l3_category: sg(() => eventData.products[0]["category"]["name"]),
       l1_category: "TODO",
@@ -127,7 +132,7 @@ if (typeof window != "undefined") {
     Logger({ level: "DEBUG", message: eventData });
     Clickstream.sendEvent("remove_from_cart", {
       cart_id: eventData.cart_id,
-      event_type: "click",
+      event_type: "engagement",
       product_id: sg(() => eventData.products[0]["uid"]),
       brand: sg(() => eventData.products[0]["brand"]["name"]),
       l3_category: sg(() => eventData.products[0]["category"]["name"]),
@@ -150,7 +155,7 @@ if (typeof window != "undefined") {
   window.FPI.event.on("order.processed", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
     Clickstream.sendEvent("order_complete", {
-      event_type: "click",
+      event_type: "conversion",
       ...eventData,
     })
       .then((resp) => {
@@ -164,7 +169,7 @@ if (typeof window != "undefined") {
   window.FPI.event.on("refund.success", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
     Clickstream.sendEvent("order_refunded", {
-      event_type: "click",
+      event_type: "conversion",
       ...eventData,
     })
       .then((resp) => {
@@ -178,7 +183,7 @@ if (typeof window != "undefined") {
   window.FPI.event.on("order.checkout", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
     Clickstream.sendEvent("order_checkout", {
-      event_type: "click",
+      event_type: "conversion",
       cart_id: eventData.cart_id,
       cart_total: sg(() => eventData.breakup_values_raw["mrp_total"]),
       items: sg(() => eventData.products.lenght),
@@ -195,6 +200,7 @@ if (typeof window != "undefined") {
           price: sg(() => p.price["marked"]),
           value: sg(() => p.price["effective"]),
           currency: sg(() => p.price["currency_code"]),
+          article_id: sg(() => p.article["uid"]),
         };
       }),
     })
@@ -211,7 +217,7 @@ if (typeof window != "undefined") {
     Clickstream.sendEvent("product_view", {
       event_type: "click",
       product_id: sg(() => eventData.product["uid"]),
-      currency: sg(() => eventData.product.price["currency"]),
+      currency: sg(() => eventData.product.price["currency_code"]),
       brand: sg(() => eventData.product.brand["name"]),
       l3_category: sg(() => eventData.product.l3_category),
       mrp: sg(() => eventData.product.price.max),

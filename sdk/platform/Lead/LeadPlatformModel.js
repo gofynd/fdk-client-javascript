@@ -1,6 +1,43 @@
 const Joi = require("joi");
 
 /**
+ * @typedef GeneralConfigResponse
+ * @property {string} [_id]
+ * @property {SupportCommunicationSchema[]} [support_communication]
+ * @property {boolean} [show_communication_info]
+ * @property {boolean} [show_support_dris]
+ * @property {string} [type]
+ * @property {GeneralConfigIntegrationSchema} [integration]
+ * @property {boolean} [allow_ticket_creation]
+ * @property {boolean} [show_listing]
+ * @property {string[]} [available_integration]
+ * @property {boolean} [enable_dris]
+ * @property {SupportSchema} [support_email]
+ * @property {SupportSchema} [support_phone]
+ * @property {SupportSchema} [support_faq]
+ */
+
+/**
+ * @typedef SupportCommunicationSchema
+ * @property {string} [type]
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef SupportSchema
+ * @property {string} [value]
+ * @property {string} [description]
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef GeneralConfigIntegrationSchema
+ * @property {string} [type]
+ */
+
+/**
  * @typedef TicketList
  * @property {Ticket[]} [items] - List of tickets
  * @property {Filter} [filters]
@@ -78,28 +115,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateVideoRoomResponse
- * @property {string} unique_name - Video Room's unique name
- */
-
-/**
- * @typedef CloseVideoRoomResponse
- * @property {boolean} success - Denotes if operation was successfully
- */
-
-/**
- * @typedef CreateVideoRoomPayload
- * @property {string} unique_name - Ticket id
- * @property {NotifyUser[]} [notify] - List of people to be notified
- */
-
-/**
- * @typedef NotifyUser
- * @property {string} country_code - Country code
- * @property {string} phone_number - Phone number
- */
-
-/**
  * @typedef Filter
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
@@ -111,67 +126,6 @@ const Joi = require("joi");
  * @typedef TicketHistoryPayload
  * @property {Object} value - Details of history event
  * @property {HistoryTypeEnum} type
- */
-
-/**
- * @typedef GetTokenForVideoRoomResponse
- * @property {string} access_token - Access token to be used for video room
- */
-
-/**
- * @typedef GetParticipantsInsideVideoRoomResponse
- * @property {Participant[]} participants - List of participants of the video room
- */
-
-/**
- * @typedef Participant
- * @property {UserSchema} [user]
- * @property {string} [identity] - Unique identifier of participant
- * @property {string} [status] - Status of participant
- */
-
-/**
- * @typedef UserSchema
- * @property {string} [application_id]
- * @property {string} [user_id]
- * @property {string} [first_name]
- * @property {Object} [meta]
- * @property {string} [last_name]
- * @property {PhoneNumber[]} [phone_numbers]
- * @property {Email[]} [emails]
- * @property {string} [gender]
- * @property {string} [dob]
- * @property {boolean} [active]
- * @property {string} [profile_pic_url]
- * @property {string} [username]
- * @property {string} [account_type]
- * @property {string} [_id]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- * @property {string} [external_id]
- */
-
-/**
- * @typedef PhoneNumber
- * @property {boolean} [active] - Denotes if the phone number is active
- * @property {boolean} [primary] - Denotes it's the primary phone number for the account
- * @property {boolean} [verified] - Denotes it's a verified phone number
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- */
-
-/**
- * @typedef Email
- * @property {boolean} [primary] - Denotes it's the primary email for the account
- * @property {boolean} [verified] - Denotes it's a verified email
- * @property {string} [email] - Email Address
- * @property {boolean} [active] - Denotes if the email is active
- */
-
-/**
- * @typedef Debug
- * @property {string} [source] - Source of user
- * @property {string} [platform] - Platform of user
  */
 
 /**
@@ -214,6 +168,11 @@ const Joi = require("joi");
  * @property {PriorityEnum} key
  * @property {string} display - Display text for priority
  * @property {string} color - Color for priority
+ */
+
+/**
+ * @typedef SLA
+ * @property {string} resolution_time
  */
 
 /**
@@ -329,6 +288,7 @@ const Joi = require("joi");
  * @property {TicketSourceEnum} source
  * @property {Status} status
  * @property {Priority} priority
+ * @property {SLA} [sla]
  * @property {Object} [created_by] - User details of ticket creator
  * @property {Object} [assigned_to] - Details of support staff to whom ticket is assigned
  * @property {string[]} [tags] - Tags relevant to ticket
@@ -341,9 +301,14 @@ const Joi = require("joi");
  * @property {string} [created_at] - Time when the ticket was created
  */
 
+/**
+ * @typedef ErrorMessage
+ * @property {string} [message]
+ */
+
 /** @typedef {"low" | "medium" | "high" | "urgent"} PriorityEnum */
 
-/** @typedef {"rating" | "log" | "comment"} HistoryTypeEnum */
+/** @typedef {"rating" | "log" | "comment" | "thread"} HistoryTypeEnum */
 
 /**
  * @typedef {| "image"
@@ -360,6 +325,53 @@ const Joi = require("joi");
 /** @typedef {"platform_panel" | "sales_channel"} TicketSourceEnum */
 
 class LeadPlatformModel {
+  /** @returns {GeneralConfigResponse} */
+  static GeneralConfigResponse() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      support_communication: Joi.array().items(
+        LeadPlatformModel.SupportCommunicationSchema()
+      ),
+      show_communication_info: Joi.boolean(),
+      show_support_dris: Joi.boolean(),
+      type: Joi.string().allow(""),
+      integration: LeadPlatformModel.GeneralConfigIntegrationSchema(),
+      allow_ticket_creation: Joi.boolean(),
+      show_listing: Joi.boolean(),
+      available_integration: Joi.array().items(Joi.string().allow("")),
+      enable_dris: Joi.boolean(),
+      support_email: LeadPlatformModel.SupportSchema(),
+      support_phone: LeadPlatformModel.SupportSchema(),
+      support_faq: LeadPlatformModel.SupportSchema(),
+    });
+  }
+
+  /** @returns {SupportCommunicationSchema} */
+  static SupportCommunicationSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SupportSchema} */
+  static SupportSchema() {
+    return Joi.object({
+      value: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GeneralConfigIntegrationSchema} */
+  static GeneralConfigIntegrationSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {TicketList} */
   static TicketList() {
     return Joi.object({
@@ -449,36 +461,6 @@ class LeadPlatformModel {
     });
   }
 
-  /** @returns {CreateVideoRoomResponse} */
-  static CreateVideoRoomResponse() {
-    return Joi.object({
-      unique_name: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CloseVideoRoomResponse} */
-  static CloseVideoRoomResponse() {
-    return Joi.object({
-      success: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {CreateVideoRoomPayload} */
-  static CreateVideoRoomPayload() {
-    return Joi.object({
-      unique_name: Joi.string().allow("").required(),
-      notify: Joi.array().items(LeadPlatformModel.NotifyUser()),
-    });
-  }
-
-  /** @returns {NotifyUser} */
-  static NotifyUser() {
-    return Joi.object({
-      country_code: Joi.string().allow("").required(),
-      phone_number: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {Filter} */
   static Filter() {
     return Joi.object({
@@ -494,83 +476,6 @@ class LeadPlatformModel {
     return Joi.object({
       value: Joi.any().required(),
       type: LeadPlatformModel.HistoryTypeEnum().required(),
-    });
-  }
-
-  /** @returns {GetTokenForVideoRoomResponse} */
-  static GetTokenForVideoRoomResponse() {
-    return Joi.object({
-      access_token: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {GetParticipantsInsideVideoRoomResponse} */
-  static GetParticipantsInsideVideoRoomResponse() {
-    return Joi.object({
-      participants: Joi.array()
-        .items(LeadPlatformModel.Participant())
-        .required(),
-    });
-  }
-
-  /** @returns {Participant} */
-  static Participant() {
-    return Joi.object({
-      user: LeadPlatformModel.UserSchema(),
-      identity: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UserSchema} */
-  static UserSchema() {
-    return Joi.object({
-      application_id: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-      first_name: Joi.string().allow(""),
-      meta: Joi.any(),
-      last_name: Joi.string().allow(""),
-      phone_numbers: Joi.array().items(LeadPlatformModel.PhoneNumber()),
-      emails: Joi.array().items(LeadPlatformModel.Email()),
-      gender: Joi.string().allow(""),
-      dob: Joi.string().allow(""),
-      active: Joi.boolean(),
-      profile_pic_url: Joi.string().allow(""),
-      username: Joi.string().allow(""),
-      account_type: Joi.string().allow(""),
-      _id: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      external_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PhoneNumber} */
-  static PhoneNumber() {
-    return Joi.object({
-      active: Joi.boolean(),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-      phone: Joi.string().allow(""),
-      country_code: Joi.number(),
-    });
-  }
-
-  /** @returns {Email} */
-  static Email() {
-    return Joi.object({
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-      email: Joi.string().allow(""),
-      active: Joi.boolean(),
-    });
-  }
-
-  /** @returns {Debug} */
-  static Debug() {
-    return Joi.object({
-      source: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
     });
   }
 
@@ -625,6 +530,13 @@ class LeadPlatformModel {
       key: LeadPlatformModel.PriorityEnum().required(),
       display: Joi.string().allow("").required(),
       color: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {SLA} */
+  static SLA() {
+    return Joi.object({
+      resolution_time: Joi.string().allow("").required(),
     });
   }
 
@@ -761,6 +673,7 @@ class LeadPlatformModel {
       source: LeadPlatformModel.TicketSourceEnum().required(),
       status: LeadPlatformModel.Status().required(),
       priority: LeadPlatformModel.Priority().required(),
+      sla: LeadPlatformModel.SLA(),
       created_by: Joi.any(),
       assigned_to: Joi.any(),
       tags: Joi.array().items(Joi.string().allow("")),
@@ -770,6 +683,13 @@ class LeadPlatformModel {
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ErrorMessage} */
+  static ErrorMessage() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
 
@@ -801,7 +721,9 @@ class LeadPlatformModel {
 
       "log",
 
-      "comment"
+      "comment",
+
+      "thread"
     );
   }
 

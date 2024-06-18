@@ -1,5 +1,37 @@
 export = CommunicationPlatformModel;
 /**
+ * @typedef EventSubscriptionsBulkUpdateRequest
+ * @property {SubscriptionsObject[]} [subscriptions]
+ */
+/**
+ * @typedef EventSubscriptionsBulkUpdateResponse
+ * @property {EventSubscriptionTemplate} [template]
+ * @property {string} [_id]
+ * @property {string} [application]
+ * @property {string} [event]
+ * @property {string} [slug]
+ * @property {string} [category]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {number} [__v]
+ */
+/**
+ * @typedef SubscriptionsObject
+ * @property {string} [_id] - Subscription ID
+ * @property {TemplateObject} [template]
+ */
+/**
+ * @typedef TemplateObject
+ * @property {CommunicationTemplate} [sms]
+ * @property {CommunicationTemplate} [email]
+ * @property {CommunicationTemplate} [pushnotification]
+ */
+/**
+ * @typedef CommunicationTemplate
+ * @property {boolean} [subscribed] - Whether the user is subscribed or not
+ * @property {string} [template] - Template ID
+ */
+/**
  * @typedef AppProvider
  * @property {AppProviderRes} [email]
  * @property {AppProviderRes} [sms]
@@ -464,6 +496,21 @@ export = CommunicationPlatformModel;
  * @property {Page} [page]
  */
 /**
+ * @typedef CreateJobsRes
+ * @property {string} [application]
+ * @property {string} [campaign]
+ * @property {boolean} [completed]
+ * @property {boolean} [is_active]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {number} [__v]
+ */
+/**
+ * @typedef CreateJobsReq
+ * @property {string} [campaign]
+ */
+/**
  * @typedef JobLog
  * @property {Object} [imported]
  * @property {Object} [processed]
@@ -595,6 +642,7 @@ export = CommunicationPlatformModel;
  * @property {string} [mobile]
  * @property {string} [country_code]
  * @property {string} [message]
+ * @property {string} [email]
  */
 /**
  * @typedef VerifyOtpCommsErrorRes
@@ -604,6 +652,7 @@ export = CommunicationPlatformModel;
 /**
  * @typedef SmsProviderReq
  * @property {string} [name]
+ * @property {string} [token]
  * @property {string} [description]
  * @property {string} [sender]
  * @property {string} [username]
@@ -625,6 +674,10 @@ export = CommunicationPlatformModel;
  */
 /**
  * @typedef SmsProvider
+ * @property {string} [token]
+ * @property {string} [sender_id]
+ * @property {string} [api_key]
+ * @property {number} [expiry_date]
  * @property {number} [rpt]
  * @property {string} [type]
  * @property {string} [provider]
@@ -782,11 +835,75 @@ export = CommunicationPlatformModel;
  * @typedef EnabledObj
  * @property {boolean} [enabled]
  */
+/**
+ * @typedef OtpConfigurationExpiryDuration
+ * @property {number} time
+ * @property {string} denomination
+ */
+/**
+ * @typedef OtpConfigurationExpiry
+ * @property {OtpConfigurationExpiryDuration} duration
+ * @property {string} type
+ */
+/**
+ * @typedef OtpConfiguration
+ * @property {number} otp_length
+ * @property {string} type
+ * @property {OtpConfigurationExpiry} expiry
+ * @property {string} [application_id]
+ * @property {string} [company_id]
+ */
 declare class CommunicationPlatformModel {
 }
 declare namespace CommunicationPlatformModel {
-    export { AppProvider, AppProviderRes, AppProviderResVoice, AppProviderResObj, GlobalProviders, GlobalProvidersResObj, AppProviderReq, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BadRequestSchema, NotFound, AudienceReq, Audience, Audiences, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadStructure, MetaStructure, EngineRequest, EngineResponse, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, GlobalVariablesGetResponse, GlobalVariablesPostResponse, GlobalVariablesReq, Job, Jobs, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsTemplate, SendOtpSmsCommsProvider, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VerifyOtpCommsErrorRes, SmsProviderReq, SmsProvider, SmsProviders, DefaultSmsProviders, SmsTemplateMessage, SmsTemplates, SmsTemplate, SystemSmsTemplates, metaObj, SmsTemplateReq, Notification, SystemNotificationUser, SystemNotification, SystemNotifications, Page, GenericError, GenericDelete, Message, EnabledObj };
+    export { EventSubscriptionsBulkUpdateRequest, EventSubscriptionsBulkUpdateResponse, SubscriptionsObject, TemplateObject, CommunicationTemplate, AppProvider, AppProviderRes, AppProviderResVoice, AppProviderResObj, GlobalProviders, GlobalProvidersResObj, AppProviderReq, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BadRequestSchema, NotFound, AudienceReq, Audience, Audiences, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadStructure, MetaStructure, EngineRequest, EngineResponse, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, GlobalVariablesGetResponse, GlobalVariablesPostResponse, GlobalVariablesReq, Job, Jobs, CreateJobsRes, CreateJobsReq, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsTemplate, SendOtpSmsCommsProvider, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VerifyOtpCommsErrorRes, SmsProviderReq, SmsProvider, SmsProviders, DefaultSmsProviders, SmsTemplateMessage, SmsTemplates, SmsTemplate, SystemSmsTemplates, metaObj, SmsTemplateReq, Notification, SystemNotificationUser, SystemNotification, SystemNotifications, Page, GenericError, GenericDelete, Message, EnabledObj, OtpConfigurationExpiryDuration, OtpConfigurationExpiry, OtpConfiguration };
 }
+/** @returns {EventSubscriptionsBulkUpdateRequest} */
+declare function EventSubscriptionsBulkUpdateRequest(): EventSubscriptionsBulkUpdateRequest;
+type EventSubscriptionsBulkUpdateRequest = {
+    subscriptions?: SubscriptionsObject[];
+};
+/** @returns {EventSubscriptionsBulkUpdateResponse} */
+declare function EventSubscriptionsBulkUpdateResponse(): EventSubscriptionsBulkUpdateResponse;
+type EventSubscriptionsBulkUpdateResponse = {
+    template?: EventSubscriptionTemplate;
+    _id?: string;
+    application?: string;
+    event?: string;
+    slug?: string;
+    category?: string;
+    created_at?: string;
+    updated_at?: string;
+    __v?: number;
+};
+/** @returns {SubscriptionsObject} */
+declare function SubscriptionsObject(): SubscriptionsObject;
+type SubscriptionsObject = {
+    /**
+     * - Subscription ID
+     */
+    _id?: string;
+    template?: TemplateObject;
+};
+/** @returns {TemplateObject} */
+declare function TemplateObject(): TemplateObject;
+type TemplateObject = {
+    sms?: CommunicationTemplate;
+    email?: CommunicationTemplate;
+    pushnotification?: CommunicationTemplate;
+};
+/** @returns {CommunicationTemplate} */
+declare function CommunicationTemplate(): CommunicationTemplate;
+type CommunicationTemplate = {
+    /**
+     * - Whether the user is subscribed or not
+     */
+    subscribed?: boolean;
+    /**
+     * - Template ID
+     */
+    template?: string;
+};
 /** @returns {AppProvider} */
 declare function AppProvider(): AppProvider;
 type AppProvider = {
@@ -1325,6 +1442,23 @@ type Jobs = {
     items?: Job[];
     page?: Page;
 };
+/** @returns {CreateJobsRes} */
+declare function CreateJobsRes(): CreateJobsRes;
+type CreateJobsRes = {
+    application?: string;
+    campaign?: string;
+    completed?: boolean;
+    is_active?: boolean;
+    _id?: string;
+    created_at?: string;
+    updated_at?: string;
+    __v?: number;
+};
+/** @returns {CreateJobsReq} */
+declare function CreateJobsReq(): CreateJobsReq;
+type CreateJobsReq = {
+    campaign?: string;
+};
 /** @returns {JobLog} */
 declare function JobLog(): JobLog;
 type JobLog = {
@@ -1477,6 +1611,7 @@ type VerifyOtpCommsSuccessRes = {
     mobile?: string;
     country_code?: string;
     message?: string;
+    email?: string;
 };
 /** @returns {VerifyOtpCommsErrorRes} */
 declare function VerifyOtpCommsErrorRes(): VerifyOtpCommsErrorRes;
@@ -1488,6 +1623,7 @@ type VerifyOtpCommsErrorRes = {
 declare function SmsProviderReq(): SmsProviderReq;
 type SmsProviderReq = {
     name?: string;
+    token?: string;
     description?: string;
     sender?: string;
     username?: string;
@@ -1546,6 +1682,10 @@ type SmsProviderReq = {
 /** @returns {SmsProvider} */
 declare function SmsProvider(): SmsProvider;
 type SmsProvider = {
+    token?: string;
+    sender_id?: string;
+    api_key?: string;
+    expiry_date?: number;
     rpt?: number;
     type?: string;
     provider?: string;
@@ -1719,4 +1859,25 @@ type Message = {
 declare function EnabledObj(): EnabledObj;
 type EnabledObj = {
     enabled?: boolean;
+};
+/** @returns {OtpConfigurationExpiryDuration} */
+declare function OtpConfigurationExpiryDuration(): OtpConfigurationExpiryDuration;
+type OtpConfigurationExpiryDuration = {
+    time: number;
+    denomination: string;
+};
+/** @returns {OtpConfigurationExpiry} */
+declare function OtpConfigurationExpiry(): OtpConfigurationExpiry;
+type OtpConfigurationExpiry = {
+    duration: OtpConfigurationExpiryDuration;
+    type: string;
+};
+/** @returns {OtpConfiguration} */
+declare function OtpConfiguration(): OtpConfiguration;
+type OtpConfiguration = {
+    otp_length: number;
+    type: string;
+    expiry: OtpConfigurationExpiry;
+    application_id?: string;
+    company_id?: string;
 };

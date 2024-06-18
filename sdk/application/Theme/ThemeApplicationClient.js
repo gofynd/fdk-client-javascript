@@ -41,8 +41,8 @@ class Theme {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
    * @name getAllPages
-   * @summary: Get all pages of a theme
-   * @description: Use this API to retrieve all the available pages of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
+   * @summary: List pages
+   * @description: Get all page level configs, sections and SEO data of a theme - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
    */
   async getAllPages(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -119,8 +119,8 @@ class Theme {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getAppliedTheme
-   * @summary: Get the theme currently applied to an application
-   * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
+   * @summary: Get applied theme
+   * @description: Gets the theme configuration and template details of a theme applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
    */
   async getAppliedTheme(
     { requestHeaders } = { requestHeaders: {} },
@@ -197,15 +197,17 @@ class Theme {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
    * @name getPage
-   * @summary: Get page of a theme
-   * @description: Use this API to retrieve a page of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
+   * @summary: Get theme page
+   * @description: Get page level configurations, applied sections and SEO data of a page by `page_value` received from list pages API - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
    */
   async getPage(
-    { themeId, pageValue, requestHeaders } = { requestHeaders: {} },
+    { themeId, pageValue, filters, company, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemeApplicationValidator.getPage().validate(
-      { themeId, pageValue },
+      { themeId, pageValue, filters, company },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -214,7 +216,7 @@ class Theme {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = ThemeApplicationValidator.getPage().validate(
-      { themeId, pageValue },
+      { themeId, pageValue, filters, company },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -225,6 +227,8 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["filters"] = filters;
+    query_params["company"] = company;
 
     const xHeaders = {};
 
@@ -273,8 +277,8 @@ class Theme {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getThemeForPreview
-   * @summary: Get a theme for a preview
-   * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
+   * @summary: Get theme for preview
+   * @description: Gets the theme configuration and template details of a theme by theme Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
    */
   async getThemeForPreview(
     { themeId, requestHeaders } = { requestHeaders: {} },

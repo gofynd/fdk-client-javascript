@@ -2,11 +2,11 @@ export = ConfigurationApplicationModel;
 /**
  * @typedef ApplicationAboutResponse
  * @property {ApplicationInfo} [application_info]
- * @property {CompanyInfo} [company_info]
- * @property {OwnerInfo} [owner_info]
  */
 /**
  * @typedef ApplicationInfo
+ * @property {CompanyInfo} [company_info]
+ * @property {OwnerInfo} [owner_info]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of application information
  * @property {Domain} [domain]
@@ -15,7 +15,7 @@ export = ConfigurationApplicationModel;
  * @property {string} [description] - It contains details information about the
  *   sales channel
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
- * @property {ApplicationMeta} [meta]
+ * @property {ApplicationMeta[]} [meta]
  * @property {string} [token] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
  * @property {string} [secret] - Random generated fix length string for sales
@@ -26,6 +26,12 @@ export = ConfigurationApplicationModel;
  * @property {SecureUrl} [logo]
  * @property {boolean} [is_active] - Indicates whether sales channel is active
  *   or not active
+ * @property {string} [mode]
+ * @property {TokenSchema[]} [tokens]
+ * @property {Domain[]} [domains]
+ * @property {SecureUrl} [favicon]
+ * @property {SecureUrl} [mobile_logo]
+ * @property {string} [slug]
  */
 /**
  * @typedef CompanyInfo
@@ -99,7 +105,7 @@ export = ConfigurationApplicationModel;
  * @property {string} [application] - Alphanumeric ID allotted to the current
  *   application created within the current business account
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
- * @property {string} [updated_at] - ISO 8601 timestamp of token updation
+ * @property {string} [modified_at] - ISO 8601 timestamp of token updation
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  */
 /**
@@ -286,7 +292,7 @@ export = ConfigurationApplicationModel;
  * @property {string} [app] - Application ID of the sales channel
  * @property {string} [created_at] - ISO 8601 timestamp showing the date when
  *   the features were configured
- * @property {string} [updated_at] - ISO 8601 timestamp of last known
+ * @property {string} [modified_at] - ISO 8601 timestamp of last known
  *   modifications to the sales channel feature configuration
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero
  */
@@ -305,6 +311,12 @@ export = ConfigurationApplicationModel;
  * @property {FeedbackFeature} [feedback]
  * @property {CompareProductsFeature} [compare_products]
  * @property {RewardPointsConfig} [reward_points]
+ * @property {ListingPageFeature} [listing_page]
+ * @property {InternationalShipping} [international_shipping]
+ */
+/**
+ * @typedef InternationalShipping
+ * @property {boolean} [enabled] - International shipping is enabled or not.
  */
 /**
  * @typedef CommunicationOptinDialogFeature
@@ -325,6 +337,10 @@ export = ConfigurationApplicationModel;
  *   'range'. Default value is range.
  * @property {string} [sort] - Sorting of listing price with min or max value.
  *   Default value is min.
+ */
+/**
+ * @typedef ListingPageFeature
+ * @property {string} [sort_on]
  */
 /**
  * @typedef CurrencyFeature
@@ -392,12 +408,14 @@ export = ConfigurationApplicationModel;
  * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
  *   currency creation
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
- *   currency updation
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel
+ *   support currency updation
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
  *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
  *   value of a currency.
  * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
+ * @property {string} [country_name]
+ * @property {string} [country_code]
  */
 /**
  * @typedef Domain
@@ -469,7 +487,7 @@ export = ConfigurationApplicationModel;
  * @property {ApplicationRedirections[]} [redirections]
  * @property {ApplicationMeta[]} [meta]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel creation
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  * @property {SecureUrl} [banner]
  * @property {SecureUrl} [logo]
@@ -478,10 +496,24 @@ export = ConfigurationApplicationModel;
  * @property {string} [app_type] - It shows application is live or in development mode.
  * @property {SecureUrl} [mobile_logo]
  * @property {Domain} [domain]
+ * @property {string} [slug]
+ * @property {string} [mode]
+ * @property {string} [status]
+ * @property {TokenSchema[]} [tokens]
+ */
+/**
+ * @typedef TokenSchema
+ * @property {string} [token]
+ * @property {Object} [created_by]
+ * @property {string} [created_at] - ISO 8601 timestamp of when token created
  */
 /**
  * @typedef NotFound
  * @property {string} [message] - Response message for not found
+ */
+/**
+ * @typedef InvalidPayloadRequest
+ * @property {string} [message] - Error message when request body payload is improper
  */
 /**
  * @typedef UnhandledError
@@ -536,25 +568,25 @@ export = ConfigurationApplicationModel;
  * @property {InformationAddress} [address]
  * @property {InformationSupport} [support]
  * @property {SocialLinks} [social_links]
- * @property {Links} [links]
+ * @property {Links[]} [links]
  * @property {string} [copyright_text] - Copyright statement usually seen at the
  *   site's footer
  * @property {string} [_id] - Unique identifier (24-digit Mongo Object ID) of
  *   the application information
- * @property {BusinessHighlights} [business_highlights]
+ * @property {BusinessHighlights[]} [business_highlights]
  * @property {string} [application] - Alphanumeric ID allotted to a sales
  *   channel application created within a business account
  * @property {string} [created_at] - ISO 8601 timestamp of creation of the
  *   application information
- * @property {string} [updated_at] - ISO 8601 timestamp of updation of the
+ * @property {string} [modified_at] - ISO 8601 timestamp of updation of the
  *   application information
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  */
 /**
  * @typedef InformationAddress
- * @property {string} [loc] - Co-ordinates of the location
+ * @property {InformationLoc} [loc]
  * @property {string[]} [address_line] - Contact address of the sales channel
- * @property {InformationPhone} [phone]
+ * @property {InformationPhone[]} [phone]
  * @property {string} [city] - Name of the city, e.g. Mumbai
  * @property {string} [country] - Name of the country, e.g. India
  * @property {number} [pincode] - 6-digit PIN Code of the city, e.g. 400001
@@ -565,9 +597,25 @@ export = ConfigurationApplicationModel;
  * @property {string} [number] - 10-digit mobile number
  */
 /**
+ * @typedef InformationSupportPhone
+ * @property {string} [code] - Country code for contact number, e.g. +91 (for India)
+ * @property {string} [number] - 10-digit mobile number
+ * @property {string} [key]
+ */
+/**
+ * @typedef InformationSupportEmail
+ * @property {string} [value] - Value of email.
+ * @property {string} [key]
+ */
+/**
+ * @typedef InformationLoc
+ * @property {string} [type] - Country code for contact number, e.g. +91 (for India)
+ * @property {number[]} [coordinates] - 10-digit mobile number
+ */
+/**
  * @typedef InformationSupport
- * @property {string[]} [phone]
- * @property {string[]} [email]
+ * @property {InformationSupportPhone[]} [phone]
+ * @property {InformationSupportEmail[]} [email]
  * @property {string} [timing] - Working hours of support team, e.g. 9 AM to 9 PM
  */
 /**
@@ -663,6 +711,8 @@ export = ConfigurationApplicationModel;
  * @property {Domain[]} [domains]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel details
+ * @property {string} [slug]
+ * @property {number} [company_id]
  */
 /**
  * @typedef CurrenciesResponse
@@ -681,6 +731,9 @@ export = ConfigurationApplicationModel;
  *   (sales channel website) created within a business account
  * @property {DefaultCurrency} [default_currency]
  * @property {Currency[]} [supported_currency]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
  */
 /**
  * @typedef StoreLatLong
@@ -730,18 +783,18 @@ export = ConfigurationApplicationModel;
 declare class ConfigurationApplicationModel {
 }
 declare namespace ConfigurationApplicationModel {
-    export { ApplicationAboutResponse, ApplicationInfo, CompanyInfo, OwnerInfo, SupportedLanguage, LanguageResponse, AppStaffResponse, AppStaffListResponse, OrderingStoreSelectRequest, OrderingStoreSelect, AppStaff, AppTokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, UnhandledError, SuccessMessageResponse, CompanyAboutAddress, UserEmail, UserPhoneNumber, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, DefaultCurrency, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores };
+    export { ApplicationAboutResponse, ApplicationInfo, CompanyInfo, OwnerInfo, SupportedLanguage, LanguageResponse, AppStaffResponse, AppStaffListResponse, OrderingStoreSelectRequest, OrderingStoreSelect, AppStaff, AppTokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, NotFound, InvalidPayloadRequest, UnhandledError, SuccessMessageResponse, CompanyAboutAddress, UserEmail, UserPhoneNumber, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationSupportPhone, InformationSupportEmail, InformationLoc, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, DefaultCurrency, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores };
 }
 /** @returns {ApplicationAboutResponse} */
 declare function ApplicationAboutResponse(): ApplicationAboutResponse;
 type ApplicationAboutResponse = {
     application_info?: ApplicationInfo;
-    company_info?: CompanyInfo;
-    owner_info?: OwnerInfo;
 };
 /** @returns {ApplicationInfo} */
 declare function ApplicationInfo(): ApplicationInfo;
 type ApplicationInfo = {
+    company_info?: CompanyInfo;
+    owner_info?: OwnerInfo;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * of application information
@@ -759,7 +812,7 @@ type ApplicationInfo = {
      * - Name of the sales channel, e.g. Zenz Fashion
      */
     name?: string;
-    meta?: ApplicationMeta;
+    meta?: ApplicationMeta[];
     /**
      * - Random generated fix length string for sales
      * channel. It is required and auto-generated.
@@ -782,6 +835,12 @@ type ApplicationInfo = {
      * or not active
      */
     is_active?: boolean;
+    mode?: string;
+    tokens?: TokenSchema[];
+    domains?: Domain[];
+    favicon?: SecureUrl;
+    mobile_logo?: SecureUrl;
+    slug?: string;
 };
 /** @returns {CompanyInfo} */
 declare function CompanyInfo(): CompanyInfo;
@@ -940,7 +999,7 @@ type AppTokenResponse = {
     /**
      * - ISO 8601 timestamp of token updation
      */
-    updated_at?: string;
+    modified_at?: string;
     /**
      * - Version key for tracking revisions. Default value is zero.
      */
@@ -1287,7 +1346,7 @@ type AppFeature = {
      * - ISO 8601 timestamp of last known
      * modifications to the sales channel feature configuration
      */
-    updated_at?: string;
+    modified_at?: string;
     /**
      * - Version key for tracking revisions. Default value is zero
      */
@@ -1313,6 +1372,16 @@ type CommonFeature = {
     feedback?: FeedbackFeature;
     compare_products?: CompareProductsFeature;
     reward_points?: RewardPointsConfig;
+    listing_page?: ListingPageFeature;
+    international_shipping?: InternationalShipping;
+};
+/** @returns {InternationalShipping} */
+declare function InternationalShipping(): InternationalShipping;
+type InternationalShipping = {
+    /**
+     * - International shipping is enabled or not.
+     */
+    enabled?: boolean;
 };
 /** @returns {CommunicationOptinDialogFeature} */
 declare function CommunicationOptinDialogFeature(): CommunicationOptinDialogFeature;
@@ -1351,6 +1420,11 @@ type ListingPriceFeature = {
      * Default value is min.
      */
     sort?: string;
+};
+/** @returns {ListingPageFeature} */
+declare function ListingPageFeature(): ListingPageFeature;
+type ListingPageFeature = {
+    sort_on?: string;
 };
 /** @returns {CurrencyFeature} */
 declare function CurrencyFeature(): CurrencyFeature;
@@ -1492,10 +1566,10 @@ type Currency = {
      */
     created_at?: string;
     /**
-     * - ISO 8601 timestamp of sales channel support
-     * currency updation
+     * - ISO 8601 timestamp of sales channel
+     * support currency updation
      */
-    updated_at?: string;
+    modified_at?: string;
     /**
      * - Acceptable decimal limits for a given
      * currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
@@ -1506,6 +1580,8 @@ type Currency = {
      * - Unique symbol for identifying the currency, e.g. ₹
      */
     symbol?: string;
+    country_name?: string;
+    country_code?: string;
 };
 /** @returns {Domain} */
 declare function Domain(): Domain;
@@ -1663,7 +1739,7 @@ type Application = {
     /**
      * - ISO 8601 timestamp of sales channel updation
      */
-    updated_at?: string;
+    modified_at?: string;
     /**
      * - Version key for tracking revisions. Default value is zero.
      */
@@ -1678,12 +1754,34 @@ type Application = {
     app_type?: string;
     mobile_logo?: SecureUrl;
     domain?: Domain;
+    slug?: string;
+    mode?: string;
+    status?: string;
+    tokens?: TokenSchema[];
+};
+/** @returns {TokenSchema} */
+declare function TokenSchema(): TokenSchema;
+type TokenSchema = {
+    token?: string;
+    created_by?: any;
+    /**
+     * - ISO 8601 timestamp of when token created
+     */
+    created_at?: string;
 };
 /** @returns {NotFound} */
 declare function NotFound(): NotFound;
 type NotFound = {
     /**
      * - Response message for not found
+     */
+    message?: string;
+};
+/** @returns {InvalidPayloadRequest} */
+declare function InvalidPayloadRequest(): InvalidPayloadRequest;
+type InvalidPayloadRequest = {
+    /**
+     * - Error message when request body payload is improper
      */
     message?: string;
 };
@@ -1798,7 +1896,7 @@ type ApplicationInformation = {
     address?: InformationAddress;
     support?: InformationSupport;
     social_links?: SocialLinks;
-    links?: Links;
+    links?: Links[];
     /**
      * - Copyright statement usually seen at the
      * site's footer
@@ -1809,7 +1907,7 @@ type ApplicationInformation = {
      * the application information
      */
     _id?: string;
-    business_highlights?: BusinessHighlights;
+    business_highlights?: BusinessHighlights[];
     /**
      * - Alphanumeric ID allotted to a sales
      * channel application created within a business account
@@ -1824,7 +1922,7 @@ type ApplicationInformation = {
      * - ISO 8601 timestamp of updation of the
      * application information
      */
-    updated_at?: string;
+    modified_at?: string;
     /**
      * - Version key for tracking revisions. Default value is zero.
      */
@@ -1833,15 +1931,12 @@ type ApplicationInformation = {
 /** @returns {InformationAddress} */
 declare function InformationAddress(): InformationAddress;
 type InformationAddress = {
-    /**
-     * - Co-ordinates of the location
-     */
-    loc?: string;
+    loc?: InformationLoc;
     /**
      * - Contact address of the sales channel
      */
     address_line?: string[];
-    phone?: InformationPhone;
+    phone?: InformationPhone[];
     /**
      * - Name of the city, e.g. Mumbai
      */
@@ -1867,11 +1962,45 @@ type InformationPhone = {
      */
     number?: string;
 };
+/** @returns {InformationSupportPhone} */
+declare function InformationSupportPhone(): InformationSupportPhone;
+type InformationSupportPhone = {
+    /**
+     * - Country code for contact number, e.g. +91 (for India)
+     */
+    code?: string;
+    /**
+     * - 10-digit mobile number
+     */
+    number?: string;
+    key?: string;
+};
+/** @returns {InformationSupportEmail} */
+declare function InformationSupportEmail(): InformationSupportEmail;
+type InformationSupportEmail = {
+    /**
+     * - Value of email.
+     */
+    value?: string;
+    key?: string;
+};
+/** @returns {InformationLoc} */
+declare function InformationLoc(): InformationLoc;
+type InformationLoc = {
+    /**
+     * - Country code for contact number, e.g. +91 (for India)
+     */
+    type?: string;
+    /**
+     * - 10-digit mobile number
+     */
+    coordinates?: number[];
+};
 /** @returns {InformationSupport} */
 declare function InformationSupport(): InformationSupport;
 type InformationSupport = {
-    phone?: string[];
-    email?: string[];
+    phone?: InformationSupportPhone[];
+    email?: InformationSupportEmail[];
     /**
      * - Working hours of support team, e.g. 9 AM to 9 PM
      */
@@ -2091,6 +2220,8 @@ type ApplicationDetail = {
      * for the sales channel details
      */
     _id?: string;
+    slug?: string;
+    company_id?: number;
 };
 /** @returns {CurrenciesResponse} */
 declare function CurrenciesResponse(): CurrenciesResponse;
@@ -2121,6 +2252,9 @@ type AppCurrencyResponse = {
     application?: string;
     default_currency?: DefaultCurrency;
     supported_currency?: Currency[];
+    _id?: string;
+    created_at?: string;
+    modified_at?: string;
 };
 /** @returns {StoreLatLong} */
 declare function StoreLatLong(): StoreLatLong;

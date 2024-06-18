@@ -30,6 +30,7 @@ const Joi = require("joi");
  * @property {string} [_id]
  * @property {string} [robots_txt]
  * @property {boolean} [sitemap_enabled]
+ * @property {string} [additonal_sitemap]
  * @property {boolean} [cannonical_enabled]
  * @property {CustomMetaTag[]} [custom_meta_tags]
  * @property {Detail} [details]
@@ -49,6 +50,24 @@ const Joi = require("joi");
  * @property {string} [title]
  * @property {string} [description]
  * @property {string} [image_url]
+ */
+
+/**
+ * @typedef SeoSchemaComponent
+ * @property {SEOSchemaMarkupTemplate[]} [items]
+ */
+
+/**
+ * @typedef SEOSchemaMarkupTemplate
+ * @property {string} [id]
+ * @property {string} [title]
+ * @property {string} [page_type]
+ * @property {string} [description]
+ * @property {string} [schema]
+ * @property {boolean} [active]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [application]
  */
 
 /**
@@ -117,6 +136,7 @@ const Joi = require("joi");
  * @property {string} [reading_time]
  * @property {string} [slug]
  * @property {string[]} [tags]
+ * @property {string} [publish_date]
  * @property {SEO} [seo]
  * @property {CronSchedule} [_schedule]
  * @property {string} [title]
@@ -128,11 +148,39 @@ const Joi = require("joi");
  * @property {string} [description]
  * @property {SEOImage} [image]
  * @property {string} [title]
+ * @property {SEOMetaItem[]} [meta_tags]
+ * @property {SEOSitemap} [sitemap]
+ * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {string} [canonical_url]
  */
 
 /**
  * @typedef SEOImage
  * @property {string} [url]
+ */
+
+/**
+ * @typedef SEOMetaItem
+ * @property {string} [title]
+ * @property {SEOMetaItems[]} [items]
+ */
+
+/**
+ * @typedef SEOMetaItems
+ * @property {string} [key]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef SEOSitemap
+ * @property {number} [priority]
+ * @property {string} [frequency]
+ */
+
+/**
+ * @typedef SEObreadcrumb
+ * @property {string} [url]
+ * @property {Action} [action]
  */
 
 /**
@@ -155,17 +203,9 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
- * @property {string} [type]
- */
-
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {PageType} type
  */
 
 /**
@@ -501,6 +541,77 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CustomObjectFieldValue
+ * @property {Object} [value]
+ */
+
+/**
+ * @typedef CustomObjectListItemDefinationSchema
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef CustomObjectFieldSchema
+ * @property {string} [_id]
+ * @property {string} [key]
+ * @property {CustomObjectFieldValue[]} [value]
+ * @property {string} [type]
+ * @property {string} [definition_id]
+ */
+
+/**
+ * @typedef CustomObjectByIdSchema
+ * @property {string} [_id]
+ * @property {string} [status]
+ * @property {string} [display_name]
+ * @property {CustomObjectListItemDefinationSchema} [definition]
+ * @property {Object[]} [references]
+ * @property {CustomObjectFieldSchema[]} [fields]
+ */
+
+/**
+ * @typedef CustomFieldValue
+ * @property {Object} [value]
+ */
+
+/**
+ * @typedef CustomFieldSchema
+ * @property {string} [_id]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [resource]
+ * @property {string} [creator]
+ * @property {CustomFieldValue[]} [value]
+ * @property {string} [resource_id]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [definition_id]
+ * @property {boolean} [has_invalid_values]
+ * @property {Object[]} [invalid_value_errors]
+ * @property {string} [created_by]
+ * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+
+/**
+ * @typedef CustomFieldsResponseByResourceIdSchema
+ * @property {CustomFieldSchema[]} [items]
+ */
+
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+
+/**
  * @typedef {| "about-us"
  *   | "addresses"
  *   | "blog"
@@ -587,6 +698,7 @@ class ContentApplicationModel {
       _id: Joi.string().allow(""),
       robots_txt: Joi.string().allow(""),
       sitemap_enabled: Joi.boolean(),
+      additonal_sitemap: Joi.string().allow(""),
       cannonical_enabled: Joi.boolean(),
       custom_meta_tags: Joi.array().items(
         ContentApplicationModel.CustomMetaTag()
@@ -612,6 +724,30 @@ class ContentApplicationModel {
       title: Joi.string().allow(""),
       description: Joi.string().allow(""),
       image_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SeoSchemaComponent} */
+  static SeoSchemaComponent() {
+    return Joi.object({
+      items: Joi.array().items(
+        ContentApplicationModel.SEOSchemaMarkupTemplate()
+      ),
+    });
+  }
+
+  /** @returns {SEOSchemaMarkupTemplate} */
+  static SEOSchemaMarkupTemplate() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+      page_type: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      schema: Joi.string().allow(""),
+      active: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      application: Joi.string().allow(""),
     });
   }
 
@@ -698,6 +834,7 @@ class ContentApplicationModel {
       reading_time: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
+      publish_date: Joi.string().allow(""),
       seo: ContentApplicationModel.SEO(),
       _schedule: ContentApplicationModel.CronSchedule(),
       title: Joi.string().allow(""),
@@ -711,6 +848,10 @@ class ContentApplicationModel {
       description: Joi.string().allow(""),
       image: ContentApplicationModel.SEOImage(),
       title: Joi.string().allow(""),
+      meta_tags: Joi.array().items(ContentApplicationModel.SEOMetaItem()),
+      sitemap: ContentApplicationModel.SEOSitemap(),
+      breadcrumb: Joi.array().items(ContentApplicationModel.SEObreadcrumb()),
+      canonical_url: Joi.string().allow(""),
     });
   }
 
@@ -718,6 +859,38 @@ class ContentApplicationModel {
   static SEOImage() {
     return Joi.object({
       url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SEOMetaItem} */
+  static SEOMetaItem() {
+    return Joi.object({
+      title: Joi.string().allow(""),
+      items: Joi.array().items(ContentApplicationModel.SEOMetaItems()),
+    });
+  }
+
+  /** @returns {SEOMetaItems} */
+  static SEOMetaItems() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SEOSitemap} */
+  static SEOSitemap() {
+    return Joi.object({
+      priority: Joi.number(),
+      frequency: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SEObreadcrumb} */
+  static SEObreadcrumb() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+      action: ContentApplicationModel.Action(),
     });
   }
 
@@ -748,25 +921,9 @@ class ContentApplicationModel {
   /** @returns {Action} */
   static Action() {
     return Joi.object({
+      type: Joi.string().allow(""),
       page: ContentApplicationModel.ActionPage(),
       popup: ContentApplicationModel.ActionPage(),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ActionPage} */
-  static ActionPage() {
-    return Joi.object({
-      params: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      query: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(Joi.string().allow(""))
-      ),
-      url: Joi.string().allow(""),
-      type: ContentApplicationModel.PageType().required(),
     });
   }
 
@@ -1175,6 +1332,103 @@ class ContentApplicationModel {
     return Joi.object({
       type: Joi.string().allow(""),
       id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomObjectFieldValue} */
+  static CustomObjectFieldValue() {
+    return Joi.object({
+      value: Joi.any(),
+    });
+  }
+
+  /** @returns {CustomObjectListItemDefinationSchema} */
+  static CustomObjectListItemDefinationSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomObjectFieldSchema} */
+  static CustomObjectFieldSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      value: Joi.array().items(
+        ContentApplicationModel.CustomObjectFieldValue()
+      ),
+      type: Joi.string().allow(""),
+      definition_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomObjectByIdSchema} */
+  static CustomObjectByIdSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      definition: ContentApplicationModel.CustomObjectListItemDefinationSchema(),
+      references: Joi.array().items(Joi.any()),
+      fields: Joi.array().items(
+        ContentApplicationModel.CustomObjectFieldSchema()
+      ),
+    });
+  }
+
+  /** @returns {CustomFieldValue} */
+  static CustomFieldValue() {
+    return Joi.object({
+      value: Joi.any(),
+    });
+  }
+
+  /** @returns {CustomFieldSchema} */
+  static CustomFieldSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      namespace: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      resource: Joi.string().allow(""),
+      creator: Joi.string().allow(""),
+      value: Joi.array().items(ContentApplicationModel.CustomFieldValue()),
+      resource_id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      multi_value: Joi.boolean(),
+      company_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      definition_id: Joi.string().allow(""),
+      has_invalid_values: Joi.boolean(),
+      invalid_value_errors: Joi.array().items(Joi.any()),
+      created_by: Joi.string().allow(""),
+      is_deleted: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CustomFieldsResponseByResourceIdSchema} */
+  static CustomFieldsResponseByResourceIdSchema() {
+    return Joi.object({
+      items: Joi.array().items(ContentApplicationModel.CustomFieldSchema()),
+    });
+  }
+
+  /** @returns {ActionPage} */
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      query: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      url: Joi.string().allow(""),
+      type: ContentApplicationModel.PageType().required(),
     });
   }
 

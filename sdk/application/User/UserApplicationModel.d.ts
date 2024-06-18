@@ -1,5 +1,13 @@
 export = UserApplicationModel;
 /**
+ * @typedef UpdateUserAttributesRequest
+ * @property {Object} [attributes]
+ */
+/**
+ * @typedef UserAttributes
+ * @property {Object} [attributes]
+ */
+/**
  * @typedef DeleteApplicationUserRequestSchema
  * @property {string} [user_id]
  * @property {string} [reason]
@@ -26,6 +34,7 @@ export = UserApplicationModel;
  */
 /**
  * @typedef EditProfileRequestSchema
+ * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {EditProfileMobileSchema} [mobile]
@@ -49,7 +58,6 @@ export = UserApplicationModel;
  * @property {string} [action]
  * @property {string} [token]
  * @property {string} [register_token]
- * @property {string} [captcha_code]
  */
 /**
  * @typedef SendEmailForgotOtpRequestSchema
@@ -82,13 +90,13 @@ export = UserApplicationModel;
  */
 /**
  * @typedef SendMobileOtpRequestSchema
+ * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
  * @property {string} [mobile]
  * @property {string} [country_code]
  * @property {string} [action]
  * @property {string} [token]
  * @property {string} [android_hash]
  * @property {string} [force]
- * @property {string} [captcha_code]
  */
 /**
  * @typedef SendMobileForgotOtpRequestSchema
@@ -129,24 +137,21 @@ export = UserApplicationModel;
 /**
  * @typedef SendResetPasswordEmailRequestSchema
  * @property {string} [email]
- * @property {string} [captcha_code]
  */
 /**
  * @typedef SendResetPasswordMobileRequestSchema
  * @property {string} [country_code]
  * @property {string} [mobile]
- * @property {string} [captcha_code]
  */
 /**
  * @typedef PasswordLoginRequestSchema
- * @property {string} [captcha_code]
  * @property {string} [password]
  * @property {string} [username]
  */
 /**
  * @typedef SendOtpRequestSchema
+ * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
  * @property {string} [country_code]
- * @property {string} [captcha_code]
  * @property {string} [mobile]
  * @property {string} [android_hash]
  */
@@ -171,6 +176,10 @@ export = UserApplicationModel;
  * @property {string} [register_token]
  * @property {boolean} [user_exists]
  * @property {UserSchema} [user]
+ */
+/**
+ * @typedef UserExistsResponse
+ * @property {boolean} [user_exists]
  */
 /**
  * @typedef SendOtpResponse
@@ -253,7 +262,7 @@ export = UserApplicationModel;
  */
 /**
  * @typedef HasPasswordSuccess
- * @property {boolean} [result]
+ * @property {number} [result]
  */
 /**
  * @typedef LogoutSuccess
@@ -277,6 +286,7 @@ export = UserApplicationModel;
 /**
  * @typedef EmailOtpSuccess
  * @property {boolean} [success]
+ * @property {string} [resend_email_token]
  */
 /**
  * @typedef SessionListSuccess
@@ -301,20 +311,14 @@ export = UserApplicationModel;
  * @property {boolean} [verify_email_link]
  */
 /**
- * @typedef AuthenticationInternalServerErrorSchema
- * @property {string} [message]
- */
-/**
- * @typedef AuthenticationApiErrorSchema
- * @property {string} [message]
- */
-/**
  * @typedef APIError
  * @property {string} [code]
  * @property {string} [message]
  * @property {string} [info] - Error code description link
  * @property {string} [request_id]
+ * @property {string} [error]
  * @property {Object} [meta]
+ * @property {boolean} [authenticated]
  */
 /**
  * @typedef FormRegisterRequestSchemaPhone
@@ -371,8 +375,9 @@ export = UserApplicationModel;
  * @property {string} [desktop_image]
  * @property {number} [delete_account_day]
  * @property {DeleteAccountReasons[]} [delete_account_reasons]
- * @property {Object} [delete_account_consent]
- * @property {Object} [session_config]
+ * @property {DeleteAccountConsent} [delete_account_consent]
+ * @property {SessionExpiry} [session_config]
+ * @property {number} [__v]
  */
 /**
  * @typedef LookAndFeel
@@ -434,7 +439,7 @@ export = UserApplicationModel;
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 /**
@@ -483,27 +488,39 @@ export = UserApplicationModel;
  * @property {string} [_id]
  * @property {string} [created_at]
  * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {string} [rr_id]
  */
 /**
  * @typedef PhoneNumber
- * @property {boolean} [active]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [phone]
- * @property {number} [country_code]
+ * @property {string} [phone] - Phone number
+ * @property {number} [country_code] - Country code
+ * @property {boolean} [active] - Is the phone number active
+ * @property {boolean} [primary] - Is it a primary phone number
+ * @property {boolean} [verified] - Is the phone number verified
  */
 /**
  * @typedef Email
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [email]
- * @property {boolean} [active]
+ * @property {string} [email] - Email address
+ * @property {boolean} [active] - Is the email active
+ * @property {boolean} [primary] - Is it a primary email
+ * @property {boolean} [verified] - Is the email verified
  */
 declare class UserApplicationModel {
 }
 declare namespace UserApplicationModel {
-    export { DeleteApplicationUserRequestSchema, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, EditProfileMobileSchema, SendEmailOtpRequestSchema, SendEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailForgotOtpRequestSchema, VerifyOtpRequestSchema, VerifyMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileForgotOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, OAuthRequestAppleSchema, UserObjectSchema, AuthSuccess, SendOtpResponse, ProfileEditSuccess, LoginSuccess, ResetForgotPasswordSuccess, VerifyOtpSuccess, VerifyForgotOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, DeleteUserSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, AuthenticationInternalServerErrorSchema, AuthenticationApiErrorSchema, APIError, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UserSchema, PhoneNumber, Email };
+    export { UpdateUserAttributesRequest, UserAttributes, DeleteApplicationUserRequestSchema, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, EditProfileMobileSchema, SendEmailOtpRequestSchema, SendEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailForgotOtpRequestSchema, VerifyOtpRequestSchema, VerifyMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileForgotOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, OAuthRequestAppleSchema, UserObjectSchema, AuthSuccess, UserExistsResponse, SendOtpResponse, ProfileEditSuccess, LoginSuccess, ResetForgotPasswordSuccess, VerifyOtpSuccess, VerifyForgotOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, DeleteUserSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, APIError, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UserSchema, PhoneNumber, Email };
 }
+/** @returns {UpdateUserAttributesRequest} */
+declare function UpdateUserAttributesRequest(): UpdateUserAttributesRequest;
+type UpdateUserAttributesRequest = {
+    attributes?: any;
+};
+/** @returns {UserAttributes} */
+declare function UserAttributes(): UserAttributes;
+type UserAttributes = {
+    attributes?: any;
+};
 /** @returns {DeleteApplicationUserRequestSchema} */
 declare function DeleteApplicationUserRequestSchema(): DeleteApplicationUserRequestSchema;
 type DeleteApplicationUserRequestSchema = {
@@ -536,6 +553,10 @@ type EditMobileRequestSchema = {
 /** @returns {EditProfileRequestSchema} */
 declare function EditProfileRequestSchema(): EditProfileRequestSchema;
 type EditProfileRequestSchema = {
+    /**
+     * - Set to true if you want to encrypt the OTP.
+     */
+    encrypt_otp?: boolean;
     first_name?: string;
     last_name?: string;
     mobile?: EditProfileMobileSchema;
@@ -561,7 +582,6 @@ type SendEmailOtpRequestSchema = {
     action?: string;
     token?: string;
     register_token?: string;
-    captcha_code?: string;
 };
 /** @returns {SendEmailForgotOtpRequestSchema} */
 declare function SendEmailForgotOtpRequestSchema(): SendEmailForgotOtpRequestSchema;
@@ -600,13 +620,16 @@ type VerifyMobileForgotOtpRequestSchema = {
 /** @returns {SendMobileOtpRequestSchema} */
 declare function SendMobileOtpRequestSchema(): SendMobileOtpRequestSchema;
 type SendMobileOtpRequestSchema = {
+    /**
+     * - Set to true if you want to encrypt the OTP.
+     */
+    encrypt_otp?: boolean;
     mobile?: string;
     country_code?: string;
     action?: string;
     token?: string;
     android_hash?: string;
     force?: string;
-    captcha_code?: string;
 };
 /** @returns {SendMobileForgotOtpRequestSchema} */
 declare function SendMobileForgotOtpRequestSchema(): SendMobileForgotOtpRequestSchema;
@@ -654,27 +677,27 @@ type CodeRequestBodySchema = {
 declare function SendResetPasswordEmailRequestSchema(): SendResetPasswordEmailRequestSchema;
 type SendResetPasswordEmailRequestSchema = {
     email?: string;
-    captcha_code?: string;
 };
 /** @returns {SendResetPasswordMobileRequestSchema} */
 declare function SendResetPasswordMobileRequestSchema(): SendResetPasswordMobileRequestSchema;
 type SendResetPasswordMobileRequestSchema = {
     country_code?: string;
     mobile?: string;
-    captcha_code?: string;
 };
 /** @returns {PasswordLoginRequestSchema} */
 declare function PasswordLoginRequestSchema(): PasswordLoginRequestSchema;
 type PasswordLoginRequestSchema = {
-    captcha_code?: string;
     password?: string;
     username?: string;
 };
 /** @returns {SendOtpRequestSchema} */
 declare function SendOtpRequestSchema(): SendOtpRequestSchema;
 type SendOtpRequestSchema = {
+    /**
+     * - Set to true if you want to encrypt the OTP.
+     */
+    encrypt_otp?: boolean;
     country_code?: string;
-    captcha_code?: string;
     mobile?: string;
     android_hash?: string;
 };
@@ -703,6 +726,11 @@ type AuthSuccess = {
     register_token?: string;
     user_exists?: boolean;
     user?: UserSchema;
+};
+/** @returns {UserExistsResponse} */
+declare function UserExistsResponse(): UserExistsResponse;
+type UserExistsResponse = {
+    user_exists?: boolean;
 };
 /** @returns {SendOtpResponse} */
 declare function SendOtpResponse(): SendOtpResponse;
@@ -795,7 +823,7 @@ type VerifyEmailSuccess = {
 /** @returns {HasPasswordSuccess} */
 declare function HasPasswordSuccess(): HasPasswordSuccess;
 type HasPasswordSuccess = {
-    result?: boolean;
+    result?: number;
 };
 /** @returns {LogoutSuccess} */
 declare function LogoutSuccess(): LogoutSuccess;
@@ -823,6 +851,7 @@ type OtpSuccess = {
 declare function EmailOtpSuccess(): EmailOtpSuccess;
 type EmailOtpSuccess = {
     success?: boolean;
+    resend_email_token?: string;
 };
 /** @returns {SessionListSuccess} */
 declare function SessionListSuccess(): SessionListSuccess;
@@ -851,16 +880,6 @@ declare function SendEmailVerifyLinkSuccess(): SendEmailVerifyLinkSuccess;
 type SendEmailVerifyLinkSuccess = {
     verify_email_link?: boolean;
 };
-/** @returns {AuthenticationInternalServerErrorSchema} */
-declare function AuthenticationInternalServerErrorSchema(): AuthenticationInternalServerErrorSchema;
-type AuthenticationInternalServerErrorSchema = {
-    message?: string;
-};
-/** @returns {AuthenticationApiErrorSchema} */
-declare function AuthenticationApiErrorSchema(): AuthenticationApiErrorSchema;
-type AuthenticationApiErrorSchema = {
-    message?: string;
-};
 /** @returns {APIError} */
 declare function APIError(): APIError;
 type APIError = {
@@ -871,7 +890,9 @@ type APIError = {
      */
     info?: string;
     request_id?: string;
+    error?: string;
     meta?: any;
+    authenticated?: boolean;
 };
 /** @returns {FormRegisterRequestSchemaPhone} */
 declare function FormRegisterRequestSchemaPhone(): FormRegisterRequestSchemaPhone;
@@ -934,8 +955,9 @@ type PlatformSchema = {
     desktop_image?: string;
     delete_account_day?: number;
     delete_account_reasons?: DeleteAccountReasons[];
-    delete_account_consent?: any;
-    session_config?: any;
+    delete_account_consent?: DeleteAccountConsent;
+    session_config?: SessionExpiry;
+    __v?: number;
 };
 /** @returns {LookAndFeel} */
 declare function LookAndFeel(): LookAndFeel;
@@ -1009,7 +1031,7 @@ type FlashCard = {
 declare function SocialTokens(): SocialTokens;
 type SocialTokens = {
     facebook?: Facebook;
-    account_kit?: Accountkit;
+    accountkit?: Accountkit;
     google?: Google;
 };
 /** @returns {DeleteAccountReasons} */
@@ -1065,21 +1087,50 @@ type UserSchema = {
     _id?: string;
     created_at?: string;
     updated_at?: string;
+    external_id?: string;
+    rr_id?: string;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
 type PhoneNumber = {
-    active?: boolean;
-    primary?: boolean;
-    verified?: boolean;
+    /**
+     * - Phone number
+     */
     phone?: string;
+    /**
+     * - Country code
+     */
     country_code?: number;
+    /**
+     * - Is the phone number active
+     */
+    active?: boolean;
+    /**
+     * - Is it a primary phone number
+     */
+    primary?: boolean;
+    /**
+     * - Is the phone number verified
+     */
+    verified?: boolean;
 };
 /** @returns {Email} */
 declare function Email(): Email;
 type Email = {
-    primary?: boolean;
-    verified?: boolean;
+    /**
+     * - Email address
+     */
     email?: string;
+    /**
+     * - Is the email active
+     */
     active?: boolean;
+    /**
+     * - Is it a primary email
+     */
+    primary?: boolean;
+    /**
+     * - Is the email verified
+     */
+    verified?: boolean;
 };

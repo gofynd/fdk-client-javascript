@@ -1,6 +1,50 @@
 const Joi = require("joi");
 
 /**
+ * @typedef GetStoreResponse
+ * @property {StoreItemResponse[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef StoreItemResponse
+ * @property {number} [id]
+ * @property {string} [store_type]
+ * @property {string} [fulfillment_type]
+ * @property {number} [processing_time]
+ * @property {string[]} [tags]
+ * @property {number} [company_id]
+ * @property {number} [latitude]
+ * @property {number} [longitude]
+ */
+
+/**
+ * @typedef ValidateAddressRequest
+ * @property {string} [address] - A string representing the complete address,
+ *   combining address line 1, address line 2, area, landmark, sector, city,
+ *   state, and pincode. This provides a comprehensive view of the address details.
+ * @property {string} [address1] - A string representing the first line of the
+ *   address, typically containing street or building information.
+ * @property {string} [address2] - A string representing the second line of the
+ *   address, which can be used for additional address details if needed.
+ * @property {string} [area] - A string specifying the locality or area
+ *   associated with the address.
+ * @property {string} [landmark] - A string representing a prominent nearby
+ *   landmark that aids in locating the address.
+ * @property {string} [pincode] - A string indicating the postal code or PIN
+ *   code of the address area.
+ * @property {string} [sector] - A string specifying the sector or district of
+ *   the address if applicable.
+ * @property {string} [city] - A string denoting the city or municipality of the address.
+ * @property {string} [state] - A string indicating the state or province of the address.
+ * @property {string} [name] - A string representing the recipient's name or the
+ *   organization name associated with the address.
+ * @property {string} [phone] - An integer representing the recipient's contact
+ *   phone number.
+ * @property {string} [email] - A string containing the recipient's email address.
+ */
+
+/**
  * @typedef PincodeParentsResponse
  * @property {string} [sub_type]
  * @property {string} [display_name]
@@ -210,7 +254,226 @@ const Joi = require("joi");
  * @property {Object[]} [assigned_stores]
  */
 
+/**
+ * @typedef CountryHierarchy
+ * @property {string} [name]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef CurrencyObject
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [symbol]
+ */
+
+/**
+ * @typedef CountryObject
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string[]} [timezones]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [phone_code]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {CurrencyObject} [currency]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef GetCountries
+ * @property {CountryObject[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef GetOneOrAllPath
+ * @property {string} [locality_type]
+ * @property {string} [locality_value]
+ */
+
+/**
+ * @typedef GetOneOrAllQuery
+ * @property {string} [country]
+ * @property {string} [state]
+ * @property {string} [city]
+ * @property {string} [sector]
+ */
+
+/**
+ * @typedef GetOneOrAllParams
+ * @property {GetOneOrAllPath} [path]
+ * @property {GetOneOrAllQuery} [query]
+ */
+
+/**
+ * @typedef GetOneOrAll
+ * @property {string} [operation_id]
+ * @property {GetOneOrAllParams} [params]
+ */
+
+/**
+ * @typedef LengthValidation
+ * @property {number} [min]
+ * @property {number} [max]
+ */
+
+/**
+ * @typedef FieldValidationRegex
+ * @property {string} [value]
+ * @property {LengthValidation} [length]
+ */
+
+/**
+ * @typedef FieldValidation
+ * @property {string} [type]
+ * @property {FieldValidationRegex} [regex]
+ */
+
+/**
+ * @typedef GetCountryFieldsAddressValues
+ * @property {GetOneOrAll} [get_one]
+ * @property {GetOneOrAll} [get_all]
+ */
+
+/**
+ * @typedef GetCountryFieldsAddress
+ * @property {string} display_name
+ * @property {string} slug
+ * @property {boolean} required
+ * @property {boolean} [edit]
+ * @property {string} input
+ * @property {FieldValidation} [validation]
+ * @property {GetCountryFieldsAddressValues} [values]
+ * @property {string} [error_text]
+ */
+
+/**
+ * @typedef GetCountryFieldsAddressTemplate
+ * @property {string} checkout_form
+ * @property {string} store_os_form
+ * @property {string} default_display
+ */
+
+/**
+ * @typedef GetCountryFields
+ * @property {GetCountryFieldsAddress[]} address
+ * @property {string[]} serviceability_fields
+ * @property {GetCountryFieldsAddressTemplate} address_template
+ */
+
+/**
+ * @typedef GetCountry
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string[]} [timezones]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [phone_code]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {CurrencyObject} [currency]
+ * @property {string} [type]
+ * @property {GetCountryFields} [fields]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
+ * @typedef Localities
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef LocalityParent
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef GetLocalities
+ * @property {Localities[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef GetLocality
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ * @property {LocalityParent[]} [localities]
+ */
+
+/**
+ * @typedef ErrorResponse
+ * @property {string} [error]
+ * @property {string} [message]
+ */
+
 class LogisticApplicationModel {
+  /** @returns {GetStoreResponse} */
+  static GetStoreResponse() {
+    return Joi.object({
+      items: Joi.array().items(LogisticApplicationModel.StoreItemResponse()),
+      page: LogisticApplicationModel.Page(),
+    });
+  }
+
+  /** @returns {StoreItemResponse} */
+  static StoreItemResponse() {
+    return Joi.object({
+      id: Joi.number(),
+      store_type: Joi.string().allow(""),
+      fulfillment_type: Joi.string().allow(""),
+      processing_time: Joi.number(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      company_id: Joi.number(),
+      latitude: Joi.number(),
+      longitude: Joi.number(),
+    });
+  }
+
+  /** @returns {ValidateAddressRequest} */
+  static ValidateAddressRequest() {
+    return Joi.object({
+      address: Joi.string().allow(""),
+      address1: Joi.string().allow(""),
+      address2: Joi.string().allow(""),
+      area: Joi.string().allow(""),
+      landmark: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      phone: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {PincodeParentsResponse} */
   static PincodeParentsResponse() {
     return Joi.object({
@@ -482,6 +745,233 @@ class LogisticApplicationModel {
       success: Joi.boolean().required(),
       error: Joi.any().required(),
       assigned_stores: Joi.array().items(Joi.any()),
+    });
+  }
+
+  /** @returns {CountryHierarchy} */
+  static CountryHierarchy() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CurrencyObject} */
+  static CurrencyObject() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      symbol: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CountryObject} */
+  static CountryObject() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      hierarchy: Joi.array().items(LogisticApplicationModel.CountryHierarchy()),
+      phone_code: Joi.string().allow(""),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
+      currency: LogisticApplicationModel.CurrencyObject(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetCountries} */
+  static GetCountries() {
+    return Joi.object({
+      items: Joi.array().items(LogisticApplicationModel.CountryObject()),
+      page: LogisticApplicationModel.Page(),
+    });
+  }
+
+  /** @returns {GetOneOrAllPath} */
+  static GetOneOrAllPath() {
+    return Joi.object({
+      locality_type: Joi.string().allow(""),
+      locality_value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetOneOrAllQuery} */
+  static GetOneOrAllQuery() {
+    return Joi.object({
+      country: Joi.string().allow("").allow(null),
+      state: Joi.string().allow("").allow(null),
+      city: Joi.string().allow("").allow(null),
+      sector: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {GetOneOrAllParams} */
+  static GetOneOrAllParams() {
+    return Joi.object({
+      path: LogisticApplicationModel.GetOneOrAllPath(),
+      query: LogisticApplicationModel.GetOneOrAllQuery(),
+    });
+  }
+
+  /** @returns {GetOneOrAll} */
+  static GetOneOrAll() {
+    return Joi.object({
+      operation_id: Joi.string().allow(""),
+      params: LogisticApplicationModel.GetOneOrAllParams(),
+    });
+  }
+
+  /** @returns {LengthValidation} */
+  static LengthValidation() {
+    return Joi.object({
+      min: Joi.number().allow(null),
+      max: Joi.number().allow(null),
+    });
+  }
+
+  /** @returns {FieldValidationRegex} */
+  static FieldValidationRegex() {
+    return Joi.object({
+      value: Joi.string().allow(""),
+      length: LogisticApplicationModel.LengthValidation(),
+    });
+  }
+
+  /** @returns {FieldValidation} */
+  static FieldValidation() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      regex: LogisticApplicationModel.FieldValidationRegex(),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddressValues} */
+  static GetCountryFieldsAddressValues() {
+    return Joi.object({
+      get_one: LogisticApplicationModel.GetOneOrAll(),
+      get_all: LogisticApplicationModel.GetOneOrAll(),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddress} */
+  static GetCountryFieldsAddress() {
+    return Joi.object({
+      display_name: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      required: Joi.boolean().required(),
+      edit: Joi.boolean(),
+      input: Joi.string().allow("").required(),
+      validation: LogisticApplicationModel.FieldValidation(),
+      values: LogisticApplicationModel.GetCountryFieldsAddressValues(),
+      error_text: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddressTemplate} */
+  static GetCountryFieldsAddressTemplate() {
+    return Joi.object({
+      checkout_form: Joi.string().allow("").required(),
+      store_os_form: Joi.string().allow("").required(),
+      default_display: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {GetCountryFields} */
+  static GetCountryFields() {
+    return Joi.object({
+      address: Joi.array()
+        .items(LogisticApplicationModel.GetCountryFieldsAddress())
+        .required(),
+      serviceability_fields: Joi.array()
+        .items(Joi.string().allow(""))
+        .required(),
+      address_template: LogisticApplicationModel.GetCountryFieldsAddressTemplate().required(),
+    });
+  }
+
+  /** @returns {GetCountry} */
+  static GetCountry() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")).allow(null, ""),
+      hierarchy: Joi.array().items(LogisticApplicationModel.CountryHierarchy()),
+      phone_code: Joi.string().allow(""),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
+      currency: LogisticApplicationModel.CurrencyObject(),
+      type: Joi.string().allow(""),
+      fields: LogisticApplicationModel.GetCountryFields(),
+    });
+  }
+
+  /** @returns {Page} */
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+      current: Joi.number(),
+      type: Joi.string().allow("").required(),
+      size: Joi.number(),
+    });
+  }
+
+  /** @returns {Localities} */
+  static Localities() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      parent_ids: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {LocalityParent} */
+  static LocalityParent() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      parent_ids: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetLocalities} */
+  static GetLocalities() {
+    return Joi.object({
+      items: Joi.array().items(LogisticApplicationModel.Localities()),
+      page: LogisticApplicationModel.Page(),
+    });
+  }
+
+  /** @returns {GetLocality} */
+  static GetLocality() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      parent_ids: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
+      localities: Joi.array().items(LogisticApplicationModel.LocalityParent()),
+    });
+  }
+
+  /** @returns {ErrorResponse} */
+  static ErrorResponse() {
+    return Joi.object({
+      error: Joi.string().allow(""),
+      message: Joi.string().allow(""),
     });
   }
 }

@@ -5,7 +5,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef AddCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
- * @property {CatalogPlatformModel.CollectionItemUpdate} body
+ * @property {CatalogPlatformModel.CollectionItemUpdateSchema} body
  */
 
 /**
@@ -144,6 +144,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 20.
+ * @property {string[]} [tags] - Get locations filtered by tags.
+ * @property {string[]} [storeTypes] - Get locations filtered by store types.
  */
 
 /**
@@ -244,6 +246,31 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   search department by name.
  */
 
+/**
+ * @typedef GetApplicationFilterKeysParam
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ */
+
+/**
+ * @typedef GetApplicationFilterValuesParam
+ * @property {string} filterKey - A `filter_key` is a filter key for a for which
+ *   all the available filter values will returned. channel.
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {string} [collectionId] - A `collection_id` is a unique identifier
+ *   for a particular collection. channel.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 10.
+ * @property {string} [q] - Get Values filtered by q string
+ */
+
 /** @typedef GetAutocompleteConfigParam */
 
 /**
@@ -296,6 +323,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   a specific type of configuration.
  * @property {string} [templateSlug] - Get configuration list filtered by
  *   `template_slug` string. This is for the details and comparision groups.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ * @property {string} [q] - Get configuration list filtered by `q` string.
  */
 
 /** @typedef GetConfigurationsParam */
@@ -455,7 +486,7 @@ class CatalogPlatformApplicationValidator {
   static addCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CollectionItemUpdate().required(),
+      body: CatalogPlatformModel.CollectionItemUpdateSchema().required(),
     }).required();
   }
 
@@ -626,6 +657,8 @@ class CatalogPlatformApplicationValidator {
       stage: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      storeTypes: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 
@@ -711,6 +744,25 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetApplicationFilterKeysParam} */
+  static getApplicationFilterKeys() {
+    return Joi.object({
+      c: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetApplicationFilterValuesParam} */
+  static getApplicationFilterValues() {
+    return Joi.object({
+      filterKey: Joi.string().allow("").required(),
+      c: Joi.string().allow(""),
+      collectionId: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetAutocompleteConfigParam} */
   static getAutocompleteConfig() {
     return Joi.object({}).required();
@@ -771,6 +823,9 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       configType: Joi.string().allow("").required(),
       templateSlug: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
     }).required();
   }
 

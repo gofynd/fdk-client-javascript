@@ -15,26 +15,8 @@ declare class FileStorage {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
      * @name completeUpload
-     * @summary: Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
-     * @description: Use this API to perform the third step of uploading (i.e. **Complete**) an arbitrarily sized buffer or blob.
-     *
-     * The three major steps are:
-     * Start
-     * Upload
-     * Complete
-     *
-     * ### Start
-     * Initiates the assets upload using `startUpload`.
-     * It returns a storage link in response.
-     *
-     * ### Upload
-     * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-     * Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
-     *
-     * ### Complete
-     * After successfully upload, call the `completeUpload` API to finish the upload process.
-     * This operation will return the URL of the uploaded file.
-     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
+     * @summary: Complete file upload
+     * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
      */
     completeUpload({ namespace, body, requestHeaders }?: FileStorageApplicationValidator.CompleteUploadParam, { responseHeaders }?: object): Promise<FileStorageApplicationModel.CompleteResponse>;
     /**
@@ -43,8 +25,8 @@ declare class FileStorage {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
      * @name signUrls
-     * @summary: Explain here
-     * @description: Describe here - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
+     * @summary: Get signed URLs
+     * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
      */
     signUrls({ body, requestHeaders }?: FileStorageApplicationValidator.SignUrlsParam, { responseHeaders }?: object): Promise<FileStorageApplicationModel.SignUrlResponse>;
     /**
@@ -53,26 +35,8 @@ declare class FileStorage {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
      * @name startUpload
-     * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
-     * @description: Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
-     *
-     * The three major steps are:
-     * Start
-     * Upload
-     * Complete
-     *
-     * ### Start
-     * Initiates the assets upload using `startUpload`.
-     * It returns a storage link in response.
-     *
-     * ### Upload
-     * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-     * Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
-     *
-     * ### Complete
-     * After successfully upload, call the `completeUpload` API to finish the upload process.
-     * This operation will return the URL of the uploaded file.
-     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
+     * @summary: Initiate file upload
+     * @description: Get a signed url for uploading a file - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
      */
     startUpload({ namespace, body, requestHeaders }?: FileStorageApplicationValidator.StartUploadParam, { responseHeaders }?: object): Promise<FileStorageApplicationModel.StartResponse>;
     /**

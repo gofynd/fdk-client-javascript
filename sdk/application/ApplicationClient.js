@@ -9,11 +9,11 @@ const Lead = require("./Lead/LeadApplicationClient");
 const Logistic = require("./Logistic/LogisticApplicationClient");
 const Order = require("./Order/OrderApplicationClient");
 const Payment = require("./Payment/PaymentApplicationClient");
-const PosCart = require("./PosCart/PosCartApplicationClient");
 const Rewards = require("./Rewards/RewardsApplicationClient");
 const Share = require("./Share/ShareApplicationClient");
 const Theme = require("./Theme/ThemeApplicationClient");
 const User = require("./User/UserApplicationClient");
+const Webhook = require("./Webhook/WebhookApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
 const { convertStringToBase64 } = require("../common/utils");
@@ -38,11 +38,11 @@ class ApplicationClient {
     this.logistic = new Logistic(config);
     this.order = new Order(config);
     this.payment = new Payment(config);
-    this.posCart = new PosCart(config);
     this.rewards = new Rewards(config);
     this.share = new Share(config);
     this.theme = new Theme(config);
     this.user = new User(config);
+    this.webhook = new Webhook(config);
     if (
       typeof window != "undefined" &&
       config.options &&

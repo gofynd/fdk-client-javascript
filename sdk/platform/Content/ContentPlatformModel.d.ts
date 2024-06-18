@@ -53,6 +53,7 @@ export = ContentPlatformModel;
  * @property {string} [_id]
  * @property {string} [robots_txt]
  * @property {boolean} [sitemap_enabled]
+ * @property {string} [additional_sitemap]
  * @property {boolean} [cannonical_enabled]
  * @property {CustomMetaTag[]} [custom_meta_tags]
  * @property {Detail} [details]
@@ -70,6 +71,35 @@ export = ContentPlatformModel;
  * @property {string} [title]
  * @property {string} [description]
  * @property {string} [image_url]
+ */
+/**
+ * @typedef SeoSchemaComponent
+ * @property {SEOSchemaMarkupTemplate[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef SEOSchemaMarkupTemplate
+ * @property {string} [id]
+ * @property {string} [title]
+ * @property {string} [page_type]
+ * @property {string} [schema]
+ * @property {string} [description]
+ * @property {boolean} [active]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [application]
+ * @property {Object} [target_json]
+ */
+/**
+ * @typedef SEOSchemaMarkupTemplateRequestBody
+ * @property {string} [title]
+ * @property {string} [page_type]
+ * @property {string} [schema]
+ * @property {string} [description]
+ * @property {Object} [target_json]
+ * @property {boolean} [active]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
  */
 /**
  * @typedef AnnouncementPageSchema
@@ -101,6 +131,16 @@ export = ContentPlatformModel;
  * @property {string} [app]
  * @property {string} [modified_at]
  * @property {ScheduleSchema} [_schedule]
+ */
+/**
+ * @typedef DefaultSchemaComponent
+ * @property {DefaultSEOSchemaMarkupTemplate[]} [items]
+ */
+/**
+ * @typedef DefaultSEOSchemaMarkupTemplate
+ * @property {string} [page_type]
+ * @property {string} [schema]
+ * @property {Object} [target_json]
  */
 /**
  * @typedef ScheduleSchema
@@ -149,6 +189,7 @@ export = ContentPlatformModel;
  * @property {boolean} [published]
  * @property {string} [reading_time]
  * @property {string} [slug]
+ * @property {string} [publish_date]
  * @property {string[]} [tags]
  * @property {SEO} [seo]
  * @property {CronSchedule} [_schedule]
@@ -160,10 +201,34 @@ export = ContentPlatformModel;
  * @property {string} [description]
  * @property {SEOImage} [image]
  * @property {string} [title]
+ * @property {SEOMetaItem[]} [meta_tags]
+ * @property {SEOSitemap} [sitemap]
+ * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {string} [canonical_url]
  */
 /**
  * @typedef SEOImage
  * @property {string} [url]
+ */
+/**
+ * @typedef SEOMetaItem
+ * @property {string} [title]
+ * @property {SEOMetaItems[]} [items]
+ */
+/**
+ * @typedef SEOMetaItems
+ * @property {string} [key]
+ * @property {string} [value]
+ */
+/**
+ * @typedef SEOSitemap
+ * @property {number} [priority]
+ * @property {string} [frequency]
+ */
+/**
+ * @typedef SEObreadcrumb
+ * @property {string} [url]
+ * @property {Action} [action]
  */
 /**
  * @typedef DateMeta
@@ -224,16 +289,9 @@ export = ContentPlatformModel;
  */
 /**
  * @typedef Action
+ * @property {string} [type]
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
- * @property {string} [type]
- */
-/**
- * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
- * @property {PageType} type
  */
 /**
  * @typedef NavigationReference
@@ -246,7 +304,15 @@ export = ContentPlatformModel;
  * @property {boolean} [active]
  * @property {string} [display]
  * @property {number} [sort_order]
+ * @property {CronBasedScheduleSchema} [schedule]
  * @property {NavigationReference[]} [sub_navigation]
+ */
+/**
+ * @typedef CronBasedScheduleSchema
+ * @property {boolean} [enabled]
+ * @property {string} [cron]
+ * @property {string} [start]
+ * @property {string} [end]
  */
 /**
  * @typedef ConfigurationSchema
@@ -654,6 +720,463 @@ export = ContentPlatformModel;
  * @property {string} [type]
  * @property {string} [id]
  */
+/**
+ * @typedef ResourcesSchema
+ * @property {ResourceSchema[]} [resources]
+ */
+/**
+ * @typedef ResourceSchema
+ * @property {string} [name] - Resource name
+ * @property {string} [key] - Resource key
+ * @property {number} [definitions_count] - Number of definitions
+ */
+/**
+ * @typedef FieldValidations
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {Object} [value]
+ */
+/**
+ * @typedef FieldDefinitionSchema
+ * @property {string} [_id]
+ * @property {string} [creator]
+ * @property {string} [resource]
+ * @property {string} [name]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {FieldValidations[]} [validations]
+ * @property {string} [company_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {boolean} [required]
+ * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [type_name]
+ * @property {number} [invalid_fields_count]
+ */
+/**
+ * @typedef CustomFieldDefinitionsSchema
+ * @property {FieldDefinitionSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef CustomFieldDefinitionRequestSchema
+ * @property {string} [resource]
+ * @property {string} [type]
+ * @property {string} [key]
+ * @property {string} [namespace]
+ * @property {boolean} [multi_value]
+ * @property {string} [name]
+ * @property {string} [description]
+ * @property {FieldValidations[]} [validations]
+ */
+/**
+ * @typedef CustomObjectCustomFieldDefinitions
+ * @property {string} [id]
+ * @property {string} [type]
+ * @property {string} [description]
+ * @property {string} [name]
+ * @property {boolean} [multi_value]
+ * @property {boolean} [required]
+ * @property {string} [key]
+ * @property {FieldValidations[]} [validations]
+ * @property {string} [action]
+ */
+/**
+ * @typedef CustomObjectDefinitionUpdateRequestSchema
+ * @property {string} [type]
+ * @property {string} [description]
+ * @property {string} [name]
+ * @property {string} [display_name_key]
+ * @property {CustomObjectCustomFieldDefinitions[]} [field_definitions]
+ */
+/**
+ * @typedef CustomFieldDefinitionDetailResSchema
+ * @property {string} [creator]
+ * @property {string} [resource]
+ * @property {string} [name]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {boolean} [required]
+ * @property {boolean} [is_deleted]
+ * @property {string} [_id]
+ * @property {Object[]} [validations]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef CustomDataDeleteSchema
+ * @property {boolean} [success]
+ * @property {string} [message]
+ */
+/**
+ * @typedef CustomFieldValue
+ * @property {Object} [value]
+ */
+/**
+ * @typedef CustomFieldSchema
+ * @property {string} [_id]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [resource]
+ * @property {string} [creator]
+ * @property {CustomFieldValue[]} [value]
+ * @property {string} [resource_id]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {string} [company_id]
+ * @property {string} [definition_id]
+ * @property {boolean} [has_invalid_values]
+ * @property {Object[]} [invalid_value_errors]
+ * @property {string} [created_by]
+ * @property {boolean} [is_deleted]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef CustomFieldsResponseSchema
+ * @property {CustomFieldSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef CustomFieldsResponseByResourceIdSchema
+ * @property {CustomFieldSchema[]} [items]
+ */
+/**
+ * @typedef CustomField
+ * @property {Object[]} [value]
+ * @property {string} [definition_id]
+ */
+/**
+ * @typedef CustomFieldRequestSchema
+ * @property {CustomField[]} [fields]
+ */
+/**
+ * @typedef CustomObjectSchema
+ * @property {string} [_id]
+ * @property {string} [creator]
+ * @property {string} [company_id]
+ * @property {string} [application_id]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {string} [status]
+ * @property {string} [type]
+ * @property {string} [display_name]
+ * @property {string} [definition_id]
+ * @property {CustomFieldSchema[]} [fields]
+ */
+/**
+ * @typedef CustomObjectDefinitionRequestSchema
+ * @property {string} [type]
+ * @property {string} [description]
+ * @property {string} [name]
+ * @property {string} [display_name_key]
+ * @property {CustomObjectCustomFieldDefinitions[]} [field_definitions]
+ */
+/**
+ * @typedef CustomObjectCustomFieldDefinitionResSchema
+ * @property {string} [creator]
+ * @property {string} [resource]
+ * @property {string} [name]
+ * @property {string} [namespace]
+ * @property {string} [key]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {FieldValidations[]} [validations]
+ * @property {string} [company_id]
+ * @property {string} [created_by]
+ * @property {string} [metaobject_definition_id]
+ * @property {boolean} [required]
+ * @property {boolean} [is_deleted]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef CustomObjectDefinitionSchema
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {string} [display_name_key]
+ * @property {string} [description]
+ * @property {string} [creator]
+ * @property {string} [created_by]
+ * @property {string} [updated_by]
+ * @property {CustomObjectCustomFieldDefinitionResSchema[]} [field_definitions]
+ */
+/**
+ * @typedef CustomObjectDefinitionDeleteResponseSchema
+ * @property {boolean} [success]
+ * @property {string} [message]
+ */
+/**
+ * @typedef CustomObjectEntryBulkUploadResponse
+ * @property {string} [url]
+ * @property {number} [total_records]
+ */
+/**
+ * @typedef CustomObjectListItemDefinationSchema
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [type]
+ */
+/**
+ * @typedef CustomObjectListItemSchema
+ * @property {string} [_id]
+ * @property {string} [definition_id]
+ * @property {string} [status]
+ * @property {string} [updated_at]
+ * @property {string} [display_name]
+ * @property {CustomObjectListItemDefinationSchema} [definition]
+ * @property {number} [references]
+ */
+/**
+ * @typedef CustomObjectsSchema
+ * @property {CustomObjectListItemSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef CustomObjectFieldSchema
+ * @property {string} [_id]
+ * @property {string} [key]
+ * @property {Object[]} [value]
+ * @property {string} [type]
+ * @property {string} [definition_id]
+ */
+/**
+ * @typedef CustomObjectByIdSchema
+ * @property {string} [_id]
+ * @property {string} [status]
+ * @property {string} [display_name]
+ * @property {CustomObjectListItemDefinationSchema} [definition]
+ * @property {Object[]} [references]
+ * @property {CustomObjectFieldSchema[]} [fields]
+ */
+/**
+ * @typedef CustomObjectBulkEntryInitiateDownload
+ * @property {string} [message]
+ * @property {string} [task_id]
+ */
+/**
+ * @typedef CustomObjectMetaSchema
+ * @property {number} [mo_total_count]
+ * @property {number} [mo_success_count]
+ * @property {number} [mo_error_count]
+ * @property {string} [mo_defintion_type]
+ */
+/**
+ * @typedef CustomObjectJobSchema
+ * @property {string} [_id]
+ * @property {string[]} [jobs]
+ * @property {string[]} [finished_jobs]
+ * @property {string[]} [error_jobs]
+ * @property {string[]} [errors_occured]
+ * @property {string} [company_id]
+ * @property {string} [creator]
+ * @property {string} [url]
+ * @property {string} [status]
+ * @property {string} [action_type]
+ * @property {string} [entity]
+ * @property {string} [error_url]
+ * @property {number} [finished_count]
+ * @property {number} [error_count]
+ * @property {number} [success_count]
+ * @property {number} [total_jobs]
+ * @property {CustomObjectMetaSchema} [meta]
+ * @property {string} [created_by]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef CustomObjectBulkEntry
+ * @property {CustomObjectJobSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef CustomFieldTypeSchema
+ * @property {StringSingleLine} [string_single_line]
+ * @property {StringMultiLine} [string_multi_line]
+ * @property {Dropdown} [dropdown]
+ * @property {Integer} [integer]
+ * @property {FloatType} [float_type]
+ * @property {BooleanType} [boolean_type]
+ * @property {Date} [date]
+ * @property {Datetime} [datetime]
+ * @property {Json} [json]
+ * @property {File} [file]
+ * @property {Url} [url]
+ * @property {Metaobject} [metaobject]
+ * @property {Product} [product]
+ */
+/**
+ * @typedef SupportedValidationsMetaExampleSchema
+ * @property {string} [name]
+ * @property {string} [value]
+ */
+/**
+ * @typedef SupportedValidationsMetaSchema
+ * @property {SupportedValidationsMetaExampleSchema[]} [examples]
+ */
+/**
+ * @typedef SupportedValidationsSchema
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {string} [display]
+ * @property {boolean} [required]
+ * @property {SupportedValidationsMetaSchema} [meta]
+ */
+/**
+ * @typedef StringSingleLine
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [category]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef StringMultiLine
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [category]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef Dropdown
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [category]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef Integer
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [type]
+ * @property {string} [category]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef FloatType
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [type]
+ * @property {string} [category]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef BooleanType
+ * @property {string} [name]
+ * @property {string} [category]
+ * @property {boolean} [list_enabled]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef Date
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [category]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef Datetime
+ * @property {string} [name]
+ * @property {string} [category]
+ * @property {boolean} [list_enabled]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef Json
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [category]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef File
+ * @property {string} [name]
+ * @property {string} [category]
+ * @property {boolean} [list_enabled]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef Url
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef Metaobject
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [category]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef Product
+ * @property {string} [name]
+ * @property {boolean} [list_enabled]
+ * @property {string} [category]
+ * @property {string} [type]
+ * @property {SupportedValidationsSchema[]} [supported_validations]
+ */
+/**
+ * @typedef CustomObjectEntry
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {string} [updated_at]
+ * @property {number} [entries_count]
+ * @property {number} [fields_count]
+ */
+/**
+ * @typedef CustomObjectDefinitionsSchema
+ * @property {CustomObjectEntry[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef CustomObjectEntryFieldSchema
+ * @property {string} [definition_id]
+ * @property {Object[]} [value]
+ */
+/**
+ * @typedef CustomObjectRequestSchema
+ * @property {string} [status]
+ * @property {string} [definition_id]
+ * @property {CustomObjectEntryFieldSchema[]} [fields]
+ */
+/**
+ * @typedef CustomObjectBulkSchema
+ * @property {string} [url]
+ * @property {number} [total_records]
+ */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
 /** @typedef {"title" | "description"} GenerationEntityType */
 /**
  * @typedef {| "about-us"
@@ -706,7 +1229,7 @@ export = ContentPlatformModel;
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, ActionPage, NavigationReference, ConfigurationSchema, SlideshowMedia, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, GenerationEntityType, PageType };
+    export { GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, ConfigurationSchema, SlideshowMedia, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectCustomFieldDefinitionResSchema, CustomObjectDefinitionSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadResponse, CustomObjectListItemDefinationSchema, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldSchema, CustomObjectByIdSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, CustomObjectJobSchema, CustomObjectBulkEntry, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectRequestSchema, CustomObjectBulkSchema, ActionPage, GenerationEntityType, PageType };
 }
 /** @returns {GenerateSEOContent} */
 declare function GenerateSEOContent(): GenerateSEOContent;
@@ -770,6 +1293,7 @@ type SeoSchema = {
     _id?: string;
     robots_txt?: string;
     sitemap_enabled?: boolean;
+    additional_sitemap?: string;
     cannonical_enabled?: boolean;
     custom_meta_tags?: CustomMetaTag[];
     details?: Detail;
@@ -789,6 +1313,38 @@ type Detail = {
     title?: string;
     description?: string;
     image_url?: string;
+};
+/** @returns {SeoSchemaComponent} */
+declare function SeoSchemaComponent(): SeoSchemaComponent;
+type SeoSchemaComponent = {
+    items?: SEOSchemaMarkupTemplate[];
+    page?: Page;
+};
+/** @returns {SEOSchemaMarkupTemplate} */
+declare function SEOSchemaMarkupTemplate(): SEOSchemaMarkupTemplate;
+type SEOSchemaMarkupTemplate = {
+    id?: string;
+    title?: string;
+    page_type?: string;
+    schema?: string;
+    description?: string;
+    active?: boolean;
+    created_at?: string;
+    updated_at?: string;
+    application?: string;
+    target_json?: any;
+};
+/** @returns {SEOSchemaMarkupTemplateRequestBody} */
+declare function SEOSchemaMarkupTemplateRequestBody(): SEOSchemaMarkupTemplateRequestBody;
+type SEOSchemaMarkupTemplateRequestBody = {
+    title?: string;
+    page_type?: string;
+    schema?: string;
+    description?: string;
+    target_json?: any;
+    active?: boolean;
+    created_at?: string;
+    updated_at?: string;
 };
 /** @returns {AnnouncementPageSchema} */
 declare function AnnouncementPageSchema(): AnnouncementPageSchema;
@@ -824,6 +1380,18 @@ type AdminAnnouncementSchema = {
     app?: string;
     modified_at?: string;
     _schedule?: ScheduleSchema;
+};
+/** @returns {DefaultSchemaComponent} */
+declare function DefaultSchemaComponent(): DefaultSchemaComponent;
+type DefaultSchemaComponent = {
+    items?: DefaultSEOSchemaMarkupTemplate[];
+};
+/** @returns {DefaultSEOSchemaMarkupTemplate} */
+declare function DefaultSEOSchemaMarkupTemplate(): DefaultSEOSchemaMarkupTemplate;
+type DefaultSEOSchemaMarkupTemplate = {
+    page_type?: string;
+    schema?: string;
+    target_json?: any;
 };
 /** @returns {ScheduleSchema} */
 declare function ScheduleSchema(): ScheduleSchema;
@@ -879,6 +1447,7 @@ type BlogSchema = {
     published?: boolean;
     reading_time?: string;
     slug?: string;
+    publish_date?: string;
     tags?: string[];
     seo?: SEO;
     _schedule?: CronSchedule;
@@ -891,11 +1460,39 @@ type SEO = {
     description?: string;
     image?: SEOImage;
     title?: string;
+    meta_tags?: SEOMetaItem[];
+    sitemap?: SEOSitemap;
+    breadcrumb?: SEObreadcrumb[];
+    canonical_url?: string;
 };
 /** @returns {SEOImage} */
 declare function SEOImage(): SEOImage;
 type SEOImage = {
     url?: string;
+};
+/** @returns {SEOMetaItem} */
+declare function SEOMetaItem(): SEOMetaItem;
+type SEOMetaItem = {
+    title?: string;
+    items?: SEOMetaItems[];
+};
+/** @returns {SEOMetaItems} */
+declare function SEOMetaItems(): SEOMetaItems;
+type SEOMetaItems = {
+    key?: string;
+    value?: string;
+};
+/** @returns {SEOSitemap} */
+declare function SEOSitemap(): SEOSitemap;
+type SEOSitemap = {
+    priority?: number;
+    frequency?: string;
+};
+/** @returns {SEObreadcrumb} */
+declare function SEObreadcrumb(): SEObreadcrumb;
+type SEObreadcrumb = {
+    url?: string;
+    action?: Action;
 };
 /** @returns {DateMeta} */
 declare function DateMeta(): DateMeta;
@@ -965,17 +1562,9 @@ type Language = {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    type?: string;
     page?: ActionPage;
     popup?: ActionPage;
-    type?: string;
-};
-/** @returns {ActionPage} */
-declare function ActionPage(): ActionPage;
-type ActionPage = {
-    params?: any;
-    query?: any;
-    url?: string;
-    type: PageType;
 };
 /** @returns {NavigationReference} */
 declare function NavigationReference(): NavigationReference;
@@ -989,7 +1578,16 @@ type NavigationReference = {
     active?: boolean;
     display?: string;
     sort_order?: number;
+    schedule?: CronBasedScheduleSchema;
     sub_navigation?: NavigationReference[];
+};
+/** @returns {CronBasedScheduleSchema} */
+declare function CronBasedScheduleSchema(): CronBasedScheduleSchema;
+type CronBasedScheduleSchema = {
+    enabled?: boolean;
+    cron?: string;
+    start?: string;
+    end?: string;
 };
 /** @returns {ConfigurationSchema} */
 declare function ConfigurationSchema(): ConfigurationSchema;
@@ -1456,6 +2054,526 @@ declare function TagSourceSchema(): TagSourceSchema;
 type TagSourceSchema = {
     type?: string;
     id?: string;
+};
+/** @returns {ResourcesSchema} */
+declare function ResourcesSchema(): ResourcesSchema;
+type ResourcesSchema = {
+    resources?: ResourceSchema[];
+};
+/** @returns {ResourceSchema} */
+declare function ResourceSchema(): ResourceSchema;
+type ResourceSchema = {
+    /**
+     * - Resource name
+     */
+    name?: string;
+    /**
+     * - Resource key
+     */
+    key?: string;
+    /**
+     * - Number of definitions
+     */
+    definitions_count?: number;
+};
+/** @returns {FieldValidations} */
+declare function FieldValidations(): FieldValidations;
+type FieldValidations = {
+    name?: string;
+    type?: string;
+    value?: any;
+};
+/** @returns {FieldDefinitionSchema} */
+declare function FieldDefinitionSchema(): FieldDefinitionSchema;
+type FieldDefinitionSchema = {
+    _id?: string;
+    creator?: string;
+    resource?: string;
+    name?: string;
+    namespace?: string;
+    key?: string;
+    description?: string;
+    type?: string;
+    multi_value?: boolean;
+    validations?: FieldValidations[];
+    company_id?: string;
+    created_by?: string;
+    updated_by?: string;
+    required?: boolean;
+    is_deleted?: boolean;
+    created_at?: string;
+    updated_at?: string;
+    type_name?: string;
+    invalid_fields_count?: number;
+};
+/** @returns {CustomFieldDefinitionsSchema} */
+declare function CustomFieldDefinitionsSchema(): CustomFieldDefinitionsSchema;
+type CustomFieldDefinitionsSchema = {
+    items?: FieldDefinitionSchema[];
+    page?: Page;
+};
+/** @returns {CustomFieldDefinitionRequestSchema} */
+declare function CustomFieldDefinitionRequestSchema(): CustomFieldDefinitionRequestSchema;
+type CustomFieldDefinitionRequestSchema = {
+    resource?: string;
+    type?: string;
+    key?: string;
+    namespace?: string;
+    multi_value?: boolean;
+    name?: string;
+    description?: string;
+    validations?: FieldValidations[];
+};
+/** @returns {CustomObjectCustomFieldDefinitions} */
+declare function CustomObjectCustomFieldDefinitions(): CustomObjectCustomFieldDefinitions;
+type CustomObjectCustomFieldDefinitions = {
+    id?: string;
+    type?: string;
+    description?: string;
+    name?: string;
+    multi_value?: boolean;
+    required?: boolean;
+    key?: string;
+    validations?: FieldValidations[];
+    action?: string;
+};
+/** @returns {CustomObjectDefinitionUpdateRequestSchema} */
+declare function CustomObjectDefinitionUpdateRequestSchema(): CustomObjectDefinitionUpdateRequestSchema;
+type CustomObjectDefinitionUpdateRequestSchema = {
+    type?: string;
+    description?: string;
+    name?: string;
+    display_name_key?: string;
+    field_definitions?: CustomObjectCustomFieldDefinitions[];
+};
+/** @returns {CustomFieldDefinitionDetailResSchema} */
+declare function CustomFieldDefinitionDetailResSchema(): CustomFieldDefinitionDetailResSchema;
+type CustomFieldDefinitionDetailResSchema = {
+    creator?: string;
+    resource?: string;
+    name?: string;
+    namespace?: string;
+    key?: string;
+    description?: string;
+    type?: string;
+    multi_value?: boolean;
+    company_id?: string;
+    application_id?: string;
+    created_by?: string;
+    updated_by?: string;
+    required?: boolean;
+    is_deleted?: boolean;
+    _id?: string;
+    validations?: any[];
+    created_at?: string;
+    updated_at?: string;
+};
+/** @returns {CustomDataDeleteSchema} */
+declare function CustomDataDeleteSchema(): CustomDataDeleteSchema;
+type CustomDataDeleteSchema = {
+    success?: boolean;
+    message?: string;
+};
+/** @returns {CustomFieldValue} */
+declare function CustomFieldValue(): CustomFieldValue;
+type CustomFieldValue = {
+    value?: any;
+};
+/** @returns {CustomFieldSchema} */
+declare function CustomFieldSchema(): CustomFieldSchema;
+type CustomFieldSchema = {
+    _id?: string;
+    namespace?: string;
+    key?: string;
+    resource?: string;
+    creator?: string;
+    value?: CustomFieldValue[];
+    resource_id?: string;
+    type?: string;
+    multi_value?: boolean;
+    company_id?: string;
+    definition_id?: string;
+    has_invalid_values?: boolean;
+    invalid_value_errors?: any[];
+    created_by?: string;
+    is_deleted?: boolean;
+    created_at?: string;
+    updated_at?: string;
+};
+/** @returns {CustomFieldsResponseSchema} */
+declare function CustomFieldsResponseSchema(): CustomFieldsResponseSchema;
+type CustomFieldsResponseSchema = {
+    items?: CustomFieldSchema[];
+    page?: Page;
+};
+/** @returns {CustomFieldsResponseByResourceIdSchema} */
+declare function CustomFieldsResponseByResourceIdSchema(): CustomFieldsResponseByResourceIdSchema;
+type CustomFieldsResponseByResourceIdSchema = {
+    items?: CustomFieldSchema[];
+};
+/** @returns {CustomField} */
+declare function CustomField(): CustomField;
+type CustomField = {
+    value?: any[];
+    definition_id?: string;
+};
+/** @returns {CustomFieldRequestSchema} */
+declare function CustomFieldRequestSchema(): CustomFieldRequestSchema;
+type CustomFieldRequestSchema = {
+    fields?: CustomField[];
+};
+/** @returns {CustomObjectSchema} */
+declare function CustomObjectSchema(): CustomObjectSchema;
+type CustomObjectSchema = {
+    _id?: string;
+    creator?: string;
+    company_id?: string;
+    application_id?: string;
+    created_by?: string;
+    updated_by?: string;
+    status?: string;
+    type?: string;
+    display_name?: string;
+    definition_id?: string;
+    fields?: CustomFieldSchema[];
+};
+/** @returns {CustomObjectDefinitionRequestSchema} */
+declare function CustomObjectDefinitionRequestSchema(): CustomObjectDefinitionRequestSchema;
+type CustomObjectDefinitionRequestSchema = {
+    type?: string;
+    description?: string;
+    name?: string;
+    display_name_key?: string;
+    field_definitions?: CustomObjectCustomFieldDefinitions[];
+};
+/** @returns {CustomObjectCustomFieldDefinitionResSchema} */
+declare function CustomObjectCustomFieldDefinitionResSchema(): CustomObjectCustomFieldDefinitionResSchema;
+type CustomObjectCustomFieldDefinitionResSchema = {
+    creator?: string;
+    resource?: string;
+    name?: string;
+    namespace?: string;
+    key?: string;
+    description?: string;
+    type?: string;
+    multi_value?: boolean;
+    validations?: FieldValidations[];
+    company_id?: string;
+    created_by?: string;
+    metaobject_definition_id?: string;
+    required?: boolean;
+    is_deleted?: boolean;
+    _id?: string;
+    created_at?: string;
+    updated_at?: string;
+};
+/** @returns {CustomObjectDefinitionSchema} */
+declare function CustomObjectDefinitionSchema(): CustomObjectDefinitionSchema;
+type CustomObjectDefinitionSchema = {
+    _id?: string;
+    name?: string;
+    type?: string;
+    display_name_key?: string;
+    description?: string;
+    creator?: string;
+    created_by?: string;
+    updated_by?: string;
+    field_definitions?: CustomObjectCustomFieldDefinitionResSchema[];
+};
+/** @returns {CustomObjectDefinitionDeleteResponseSchema} */
+declare function CustomObjectDefinitionDeleteResponseSchema(): CustomObjectDefinitionDeleteResponseSchema;
+type CustomObjectDefinitionDeleteResponseSchema = {
+    success?: boolean;
+    message?: string;
+};
+/** @returns {CustomObjectEntryBulkUploadResponse} */
+declare function CustomObjectEntryBulkUploadResponse(): CustomObjectEntryBulkUploadResponse;
+type CustomObjectEntryBulkUploadResponse = {
+    url?: string;
+    total_records?: number;
+};
+/** @returns {CustomObjectListItemDefinationSchema} */
+declare function CustomObjectListItemDefinationSchema(): CustomObjectListItemDefinationSchema;
+type CustomObjectListItemDefinationSchema = {
+    _id?: string;
+    name?: string;
+    type?: string;
+};
+/** @returns {CustomObjectListItemSchema} */
+declare function CustomObjectListItemSchema(): CustomObjectListItemSchema;
+type CustomObjectListItemSchema = {
+    _id?: string;
+    definition_id?: string;
+    status?: string;
+    updated_at?: string;
+    display_name?: string;
+    definition?: CustomObjectListItemDefinationSchema;
+    references?: number;
+};
+/** @returns {CustomObjectsSchema} */
+declare function CustomObjectsSchema(): CustomObjectsSchema;
+type CustomObjectsSchema = {
+    items?: CustomObjectListItemSchema[];
+    page?: Page;
+};
+/** @returns {CustomObjectFieldSchema} */
+declare function CustomObjectFieldSchema(): CustomObjectFieldSchema;
+type CustomObjectFieldSchema = {
+    _id?: string;
+    key?: string;
+    value?: any[];
+    type?: string;
+    definition_id?: string;
+};
+/** @returns {CustomObjectByIdSchema} */
+declare function CustomObjectByIdSchema(): CustomObjectByIdSchema;
+type CustomObjectByIdSchema = {
+    _id?: string;
+    status?: string;
+    display_name?: string;
+    definition?: CustomObjectListItemDefinationSchema;
+    references?: any[];
+    fields?: CustomObjectFieldSchema[];
+};
+/** @returns {CustomObjectBulkEntryInitiateDownload} */
+declare function CustomObjectBulkEntryInitiateDownload(): CustomObjectBulkEntryInitiateDownload;
+type CustomObjectBulkEntryInitiateDownload = {
+    message?: string;
+    task_id?: string;
+};
+/** @returns {CustomObjectMetaSchema} */
+declare function CustomObjectMetaSchema(): CustomObjectMetaSchema;
+type CustomObjectMetaSchema = {
+    mo_total_count?: number;
+    mo_success_count?: number;
+    mo_error_count?: number;
+    mo_defintion_type?: string;
+};
+/** @returns {CustomObjectJobSchema} */
+declare function CustomObjectJobSchema(): CustomObjectJobSchema;
+type CustomObjectJobSchema = {
+    _id?: string;
+    jobs?: string[];
+    finished_jobs?: string[];
+    error_jobs?: string[];
+    errors_occured?: string[];
+    company_id?: string;
+    creator?: string;
+    url?: string;
+    status?: string;
+    action_type?: string;
+    entity?: string;
+    error_url?: string;
+    finished_count?: number;
+    error_count?: number;
+    success_count?: number;
+    total_jobs?: number;
+    meta?: CustomObjectMetaSchema;
+    created_by?: string;
+    created_at?: string;
+    updated_at?: string;
+};
+/** @returns {CustomObjectBulkEntry} */
+declare function CustomObjectBulkEntry(): CustomObjectBulkEntry;
+type CustomObjectBulkEntry = {
+    items?: CustomObjectJobSchema[];
+    page?: Page;
+};
+/** @returns {CustomFieldTypeSchema} */
+declare function CustomFieldTypeSchema(): CustomFieldTypeSchema;
+type CustomFieldTypeSchema = {
+    string_single_line?: StringSingleLine;
+    string_multi_line?: StringMultiLine;
+    dropdown?: Dropdown;
+    integer?: Integer;
+    float_type?: FloatType;
+    boolean_type?: BooleanType;
+    date?: Date;
+    datetime?: Datetime;
+    json?: Json;
+    file?: File;
+    url?: Url;
+    metaobject?: Metaobject;
+    product?: Product;
+};
+/** @returns {SupportedValidationsMetaExampleSchema} */
+declare function SupportedValidationsMetaExampleSchema(): SupportedValidationsMetaExampleSchema;
+type SupportedValidationsMetaExampleSchema = {
+    name?: string;
+    value?: string;
+};
+/** @returns {SupportedValidationsMetaSchema} */
+declare function SupportedValidationsMetaSchema(): SupportedValidationsMetaSchema;
+type SupportedValidationsMetaSchema = {
+    examples?: SupportedValidationsMetaExampleSchema[];
+};
+/** @returns {SupportedValidationsSchema} */
+declare function SupportedValidationsSchema(): SupportedValidationsSchema;
+type SupportedValidationsSchema = {
+    name?: string;
+    type?: string;
+    display?: string;
+    required?: boolean;
+    meta?: SupportedValidationsMetaSchema;
+};
+/** @returns {StringSingleLine} */
+declare function StringSingleLine(): StringSingleLine;
+type StringSingleLine = {
+    name?: string;
+    list_enabled?: boolean;
+    category?: string;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {StringMultiLine} */
+declare function StringMultiLine(): StringMultiLine;
+type StringMultiLine = {
+    name?: string;
+    list_enabled?: boolean;
+    category?: string;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {Dropdown} */
+declare function Dropdown(): Dropdown;
+type Dropdown = {
+    name?: string;
+    list_enabled?: boolean;
+    category?: string;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {Integer} */
+declare function Integer(): Integer;
+type Integer = {
+    name?: string;
+    list_enabled?: boolean;
+    type?: string;
+    category?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {FloatType} */
+declare function FloatType(): FloatType;
+type FloatType = {
+    name?: string;
+    list_enabled?: boolean;
+    type?: string;
+    category?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {BooleanType} */
+declare function BooleanType(): BooleanType;
+type BooleanType = {
+    name?: string;
+    category?: string;
+    list_enabled?: boolean;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {Date} */
+declare function Date(): Date;
+type Date = {
+    name?: string;
+    list_enabled?: boolean;
+    category?: string;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {Datetime} */
+declare function Datetime(): Datetime;
+type Datetime = {
+    name?: string;
+    category?: string;
+    list_enabled?: boolean;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {Json} */
+declare function Json(): Json;
+type Json = {
+    name?: string;
+    list_enabled?: boolean;
+    category?: string;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {File} */
+declare function File(): File;
+type File = {
+    name?: string;
+    category?: string;
+    list_enabled?: boolean;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {Url} */
+declare function Url(): Url;
+type Url = {
+    name?: string;
+    list_enabled?: boolean;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {Metaobject} */
+declare function Metaobject(): Metaobject;
+type Metaobject = {
+    name?: string;
+    list_enabled?: boolean;
+    category?: string;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {Product} */
+declare function Product(): Product;
+type Product = {
+    name?: string;
+    list_enabled?: boolean;
+    category?: string;
+    type?: string;
+    supported_validations?: SupportedValidationsSchema[];
+};
+/** @returns {CustomObjectEntry} */
+declare function CustomObjectEntry(): CustomObjectEntry;
+type CustomObjectEntry = {
+    _id?: string;
+    name?: string;
+    type?: string;
+    updated_at?: string;
+    entries_count?: number;
+    fields_count?: number;
+};
+/** @returns {CustomObjectDefinitionsSchema} */
+declare function CustomObjectDefinitionsSchema(): CustomObjectDefinitionsSchema;
+type CustomObjectDefinitionsSchema = {
+    items?: CustomObjectEntry[];
+    page?: Page;
+};
+/** @returns {CustomObjectEntryFieldSchema} */
+declare function CustomObjectEntryFieldSchema(): CustomObjectEntryFieldSchema;
+type CustomObjectEntryFieldSchema = {
+    definition_id?: string;
+    value?: any[];
+};
+/** @returns {CustomObjectRequestSchema} */
+declare function CustomObjectRequestSchema(): CustomObjectRequestSchema;
+type CustomObjectRequestSchema = {
+    status?: string;
+    definition_id?: string;
+    fields?: CustomObjectEntryFieldSchema[];
+};
+/** @returns {CustomObjectBulkSchema} */
+declare function CustomObjectBulkSchema(): CustomObjectBulkSchema;
+type CustomObjectBulkSchema = {
+    url?: string;
+    total_records?: number;
+};
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type: PageType;
 };
 /**
  * Enum: GenerationEntityType Used By: Content

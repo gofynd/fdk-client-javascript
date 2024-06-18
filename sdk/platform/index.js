@@ -2,6 +2,8 @@ module.exports = {
   PlatformConfig: require("./PlatformConfig"),
   PlatformClient: require("./PlatformClient"),
   PlatformModel: {
+    AnalyticsPlatformModel: require("./Analytics/AnalyticsPlatformModel"),
+
     AuditTrailPlatformModel: require("./AuditTrail/AuditTrailPlatformModel"),
 
     BillingPlatformModel: require("./Billing/BillingPlatformModel"),
@@ -26,9 +28,9 @@ module.exports = {
 
     FinancePlatformModel: require("./Finance/FinancePlatformModel"),
 
-    InventoryPlatformModel: require("./Inventory/InventoryPlatformModel"),
-
     LeadPlatformModel: require("./Lead/LeadPlatformModel"),
+
+    ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
 
     OrderPlatformModel: require("./Order/OrderPlatformModel"),
 
@@ -37,8 +39,6 @@ module.exports = {
     PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
 
     RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
-
-    ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
 
     SharePlatformModel: require("./Share/SharePlatformModel"),
 

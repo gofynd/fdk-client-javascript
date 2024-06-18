@@ -113,6 +113,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef GetAppCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [slug]
+ * @property {string} [storeId]
  */
 
 /**
@@ -123,12 +125,18 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef GetCartParam
- * @property {string} [id]
- * @property {string} [userId]
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {number} [assignCardId]
- * @property {boolean} [buyNow]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {string} [userId] - Option to fetch cart for the provided user_id.
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {number} [assignCardId] - Token of user's debit or credit card
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
  */
 
 /**
@@ -175,7 +183,7 @@ const CartPlatformModel = require("./CartPlatformModel");
 /**
  * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
- * @property {boolean} [buyNow]
+ * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
  */
 
 /**
@@ -197,6 +205,23 @@ const CartPlatformModel = require("./CartPlatformModel");
 /**
  * @typedef GetPromotionCodeExistsParam
  * @property {string} [code]
+ */
+
+/**
+ * @typedef GetPromotionOffersParam
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier
+ *   of a product. You can get slug value from the endpoint
+ *   /service/application/catalog/v1.0/products/
+ * @property {number} [pageSize] - Number of offers to be fetched to show
+ * @property {string} [promotionGroup] - Type of promotion groups
+ * @property {number} [storeId] - Store id
+ * @property {string} [cartType] - The type of cart
+ */
+
+/**
+ * @typedef GetPromotionPaymentOffersParam
+ * @property {string} [id] - Cart id
+ * @property {number} [uid] - Cart uid
  */
 
 /**
@@ -239,31 +264,43 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef PlatformAddItemsParam
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {boolean} [buyNow]
- * @property {string} [id]
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
+ * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformAddCartRequest} body
  */
 
 /**
  * @typedef PlatformCheckoutCartParam
- * @property {string} [id]
+ * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailRequest} body
  */
 
 /**
  * @typedef PlatformCheckoutCartV2Param
- * @property {string} [id]
+ * @property {string} [id] - The unique identifier of the cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Request} body
  */
 
 /**
  * @typedef PlatformUpdateCartParam
- * @property {string} [id]
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {boolean} [buyNow]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
  * @property {CartPlatformModel.PlatformUpdateCartRequest} body
  */
 
@@ -335,7 +372,8 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /**
  * @typedef UpdateCartMetaConfigParam
- * @property {string} cartMetaId
+ * @property {string} cartMetaId - CartMeta mongo _id for fetching single cart
+ *   meta data for editing
  * @property {CartPlatformModel.CartMetaConfigUpdate} body
  */
 
@@ -554,6 +592,8 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      storeId: Joi.string().allow(""),
     }).required();
   }
 
@@ -570,6 +610,7 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       userId: Joi.string().allow(""),
+      orderType: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
       assignCardId: Joi.number(),
@@ -670,6 +711,25 @@ class CartPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetPromotionOffersParam} */
+  static getPromotionOffers() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      pageSize: Joi.number(),
+      promotionGroup: Joi.string().allow(""),
+      storeId: Joi.number(),
+      cartType: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetPromotionPaymentOffersParam} */
+  static getPromotionPaymentOffers() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      uid: Joi.number(),
+    }).required();
+  }
+
   /** @returns {GetPromotionsParam} */
   static getPromotions() {
     return Joi.object({
@@ -718,6 +778,7 @@ class CartPlatformApplicationValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
+      orderType: Joi.string().allow(""),
       id: Joi.string().allow(""),
       body: CartPlatformModel.PlatformAddCartRequest().required(),
     }).required();
@@ -744,6 +805,7 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       i: Joi.boolean(),
+      orderType: Joi.string().allow(""),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
       body: CartPlatformModel.PlatformUpdateCartRequest().required(),

@@ -32,6 +32,8 @@ class Cart {
       getItemCount: "/service/application/cart/v1.0/basic",
       getLadderOffers: "/service/application/cart/v1.0/available-ladder-prices",
       getPromotionOffers: "/service/application/cart/v1.0/available-promotions",
+      getPromotionPaymentOffers:
+        "/service/application/cart/v1.0/available-payment-offers",
       getShipments: "/service/application/cart/v1.0/shipment",
       removeAddress: "/service/application/cart/v1.0/address/{id}",
       removeCoupon: "/service/application/cart/v1.0/coupon",
@@ -67,8 +69,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.SaveAddressResponse>} - Success response
    * @name addAddress
-   * @summary: Add address to an account
-   * @description: Use this API to add an address to an account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addAddress/).
+   * @summary: Create a new address
+   * @description: Customers can add a new address to their cart to save details such as name, email, contact information, and address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addAddress/).
    */
   async addAddress(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -143,17 +145,17 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.AddCartDetailResponse>} - Success response
    * @name addItems
-   * @summary: Add items to cart
-   * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addItems/).
+   * @summary: Add items to a cart
+   * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addItems/).
    */
   async addItems(
-    { body, i, b, areaCode, buyNow, id, requestHeaders } = {
+    { body, i, b, areaCode, buyNow, id, orderType, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow, id },
+      { body, i, b, areaCode, buyNow, id, orderType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -162,7 +164,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow, id },
+      { body, i, b, areaCode, buyNow, id, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -178,6 +180,7 @@ class Cart {
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
     query_params["id"] = id;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -226,15 +229,17 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name applyCoupon
-   * @summary: Apply Coupon
-   * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyCoupon/).
+   * @summary: Apply coupon
+   * @description: Apply a coupon code to the customer's cart to trigger discounts on eligible items - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyCoupon/).
    */
   async applyCoupon(
-    { body, i, b, p, id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { body, i, b, p, id, buyNow, cartType, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.applyCoupon().validate(
-      { body, i, b, p, id, buyNow },
+      { body, i, b, p, id, buyNow, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -243,7 +248,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.applyCoupon().validate(
-      { body, i, b, p, id, buyNow },
+      { body, i, b, p, id, buyNow, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -259,6 +264,7 @@ class Cart {
     query_params["p"] = p;
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -307,8 +313,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name applyRewardPoints
-   * @summary: Apply reward points at cart
-   * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyRewardPoints/).
+   * @summary: Use reward points
+   * @description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyRewardPoints/).
    */
   async applyRewardPoints(
     { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -389,15 +395,15 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartCheckoutResponse>} - Success response
    * @name checkoutCart
-   * @summary: Checkout all items in the cart
-   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
+   * @summary: Checkout cart
+   * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
    */
   async checkoutCart(
-    { body, buyNow, requestHeaders } = { requestHeaders: {} },
+    { body, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.checkoutCart().validate(
-      { body, buyNow },
+      { body, buyNow, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -408,7 +414,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.checkoutCart().validate(
-      { body, buyNow },
+      { body, buyNow, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -420,6 +426,7 @@ class Cart {
 
     const query_params = {};
     query_params["buy_now"] = buyNow;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -468,15 +475,15 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartCheckoutResponse>} - Success response
    * @name checkoutCartV2
-   * @summary: Checkout all items in the cart
-   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
+   * @summary: Start cart checkout (latest)
+   * @description: Enhanced version of checkout process that supports multiple mode of payment(MOP). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
    */
   async checkoutCartV2(
-    { body, buyNow, requestHeaders } = { requestHeaders: {} },
+    { body, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.checkoutCartV2().validate(
-      { body, buyNow },
+      { body, buyNow, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -487,7 +494,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.checkoutCartV2().validate(
-      { body, buyNow },
+      { body, buyNow, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -499,6 +506,7 @@ class Cart {
 
     const query_params = {};
     query_params["buy_now"] = buyNow;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -548,8 +556,8 @@ class Cart {
    * @returns {Promise<CartApplicationModel.DeleteCartDetailResponse>} -
    *   Success response
    * @name deleteCart
-   * @summary: Delete cart once user made successful checkout
-   * @description: Use this API to delete the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/deleteCart/).
+   * @summary: Delete a cart
+   * @description: Delete all items from the user's cart and resets it to its initial state, providing a clean slate for new selections. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/deleteCart/).
    */
   async deleteCart(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -625,8 +633,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.Address>} - Success response
    * @name getAddressById
-   * @summary: Fetch a single address by its ID
-   * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddressById/).
+   * @summary: Get a address
+   * @description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddressById/).
    */
   async getAddressById(
     {
@@ -718,8 +726,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.GetAddressesResponse>} - Success response
    * @name getAddresses
-   * @summary: Fetch address
-   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddresses/).
+   * @summary: List customer addresses
+   * @description: Retrieve a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddresses/).
    */
   async getAddresses(
     {
@@ -810,8 +818,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.BulkPriceResponse>} - Success response
    * @name getBulkDiscountOffers
-   * @summary: Get discount offers based on quantity
-   * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
+   * @summary: List bulk discounts
+   * @description: Retrieve a list of offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
    */
   async getBulkDiscountOffers(
     { itemId, articleId, uid, slug, requestHeaders } = { requestHeaders: {} },
@@ -892,17 +900,25 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name getCart
-   * @summary: Fetch all items added to the cart
-   * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
+   * @summary: Get a cart
+   * @description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
    */
   async getCart(
-    { id, i, b, c, assignCardId, areaCode, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      id,
+      i,
+      b,
+      c,
+      assignCardId,
+      areaCode,
+      buyNow,
+      orderType,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getCart().validate(
-      { id, i, b, c, assignCardId, areaCode, buyNow },
+      { id, i, b, c, assignCardId, areaCode, buyNow, orderType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -911,7 +927,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.getCart().validate(
-      { id, i, b, c, assignCardId, areaCode, buyNow },
+      { id, i, b, c, assignCardId, areaCode, buyNow, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -929,6 +945,7 @@ class Cart {
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -977,8 +994,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<any>} - Success response
    * @name getCartLastModified
-   * @summary: Fetch last-modified timestamp
-   * @description: Use this API to fetch Last-Modified timestamp in header metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartLastModified/).
+   * @summary: Get last modified timestamp of a cart
+   * @description: Retrieve the last modified timestamp of the cart using unique cart ID. It indicates the most recent update made to the cart's content or properties. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartLastModified/).
    */
   async getCartLastModified(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1054,8 +1071,8 @@ class Cart {
    * @returns {Promise<CartApplicationModel.GetShareCartLinkResponse>} -
    *   Success response
    * @name getCartShareLink
-   * @summary: Generate token for sharing the cart
-   * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartShareLink/).
+   * @summary: Create share cart link
+   * @description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartShareLink/).
    */
   async getCartShareLink(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1132,8 +1149,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
    * @name getCartSharedItems
-   * @summary: Get details of a shared cart
-   * @description: Use this API to get the shared cart details as per the token generated using the share-cart API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartSharedItems/).
+   * @summary: List shared cart items
+   * @description: Retrieve the cart items from the shared cart link based on unique token. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartSharedItems/).
    */
   async getCartSharedItems(
     { token, requestHeaders } = { requestHeaders: {} },
@@ -1210,15 +1227,15 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.GetCouponResponse>} - Success response
    * @name getCoupons
-   * @summary: Fetch Coupon
-   * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCoupons/).
+   * @summary: List available coupons
+   * @description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCoupons/).
    */
   async getCoupons(
-    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, slug, storeId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getCoupons().validate(
-      { id, buyNow },
+      { id, buyNow, slug, storeId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1227,7 +1244,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.getCoupons().validate(
-      { id, buyNow },
+      { id, buyNow, slug, storeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1240,6 +1257,8 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["slug"] = slug;
+    query_params["store_id"] = storeId;
 
     const xHeaders = {};
 
@@ -1288,8 +1307,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartItemCountResponse>} - Success response
    * @name getItemCount
-   * @summary: Count items in the cart
-   * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCount/).
+   * @summary: Get a cart items count
+   * @description: Retrieve the total count of items currently present in the customer's cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCount/).
    */
   async getItemCount(
     { id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -1368,8 +1387,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.LadderPriceOffers>} - Success response
    * @name getLadderOffers
-   * @summary: Fetch ladder price promotion
-   * @description: Use this API to get applicable ladder price promotion for current product - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getLadderOffers/).
+   * @summary: List ladder offers
+   * @description: Retrieve ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getLadderOffers/).
    */
   async getLadderOffers(
     { slug, storeId, promotionId, pageSize, requestHeaders } = {
@@ -1452,17 +1471,17 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.PromotionOffersResponse>} - Success response
    * @name getPromotionOffers
-   * @summary: Fetch available promotions
-   * @description: Use this API to get top 5 offers available for current product - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionOffers/).
+   * @summary: List available promotion offers
+   * @description: Retrieve a list of all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionOffers/).
    */
   async getPromotionOffers(
-    { slug, pageSize, promotionGroup, storeId, requestHeaders } = {
+    { slug, pageSize, promotionGroup, storeId, cartType, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup, storeId },
+      { slug, pageSize, promotionGroup, storeId, cartType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1473,7 +1492,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup, storeId },
+      { slug, pageSize, promotionGroup, storeId, cartType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1488,6 +1507,7 @@ class Cart {
     query_params["page_size"] = pageSize;
     query_params["promotion_group"] = promotionGroup;
     query_params["store_id"] = storeId;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 
@@ -1531,13 +1551,97 @@ class Cart {
   }
 
   /**
+   * @param {CartApplicationValidator.GetPromotionPaymentOffersParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartApplicationModel.PromotionPaymentOffersResponse>}
+   *   - Success response
+   *
+   * @name getPromotionPaymentOffers
+   * @summary: Fetch available promotions payment offers
+   * @description: Use this API to get top 5 payment offers available for current product - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionPaymentOffers/).
+   */
+  async getPromotionPaymentOffers(
+    { id, uid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CartApplicationValidator.getPromotionPaymentOffers().validate(
+      { id, uid },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartApplicationValidator.getPromotionPaymentOffers().validate(
+      { id, uid },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Cart > getPromotionPaymentOffers \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["uid"] = uid;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPromotionPaymentOffers"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartApplicationModel.PromotionPaymentOffersResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Cart > getPromotionPaymentOffers \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CartApplicationValidator.GetShipmentsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartShipmentsResponse>} - Success response
    * @name getShipments
-   * @summary: Get delivery date and options before checkout
-   * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getShipments/).
+   * @summary: List shipments
+   * @description: Retrieve shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getShipments/).
    */
   async getShipments(
     { p, id, buyNow, addressId, areaCode, orderType, requestHeaders } = {
@@ -1622,8 +1726,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.DeleteAddressResponse>} - Success response
    * @name removeAddress
-   * @summary: Remove address associated with an account
-   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeAddress/).
+   * @summary: Delete a address
+   * @description: Removes an existing customer address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeAddress/).
    */
   async removeAddress(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1700,8 +1804,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name removeCoupon
-   * @summary: Remove Coupon Applied
-   * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeCoupon/).
+   * @summary: Remove coupon
+   * @description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeCoupon/).
    */
   async removeCoupon(
     { id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -1780,8 +1884,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name selectAddress
-   * @summary: Select an address from available addresses
-   * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
+   * @summary: Select a delivery address
+   * @description: Selects an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
    */
   async selectAddress(
     { body, cartId, buyNow, i, b, requestHeaders } = { requestHeaders: {} },
@@ -1862,8 +1966,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name selectPaymentMode
-   * @summary: Update cart payment
-   * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
+   * @summary: Select payment mode
+   * @description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
     { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -1942,8 +2046,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.UpdateAddressResponse>} - Success response
    * @name updateAddress
-   * @summary: Update address added to an account
-   * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are: is_default_address landmark area pincode email address_type name address_id address - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateAddress/).
+   * @summary: Update a address
+   * @description: Customer can modify the details of a previously saved addresses.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateAddress/).
    */
   async updateAddress(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -2021,17 +2125,25 @@ class Cart {
    * @returns {Promise<CartApplicationModel.UpdateCartDetailResponse>} -
    *   Success response
    * @name updateCart
-   * @summary: Update items in the cart
-   * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation:  Operation for current api call. update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
+   * @summary: Update cart items
+   * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
    */
   async updateCart(
-    { body, id, i, b, areaCode, buyNow, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      body,
+      id,
+      i,
+      b,
+      areaCode,
+      buyNow,
+      cartType,
+      orderType,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.updateCart().validate(
-      { body, id, i, b, areaCode, buyNow },
+      { body, id, i, b, areaCode, buyNow, cartType, orderType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2040,7 +2152,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.updateCart().validate(
-      { body, id, i, b, areaCode, buyNow },
+      { body, id, i, b, areaCode, buyNow, cartType, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2056,6 +2168,8 @@ class Cart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
+    query_params["cart_type"] = cartType;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -2104,8 +2218,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartMetaResponse>} - Success response
    * @name updateCartMeta
-   * @summary: Update the cart meta
-   * @description: Use this API to update cart meta like checkout_mode and gstin. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartMeta/).
+   * @summary: Update cart metadata
+   * @description: Add or modify metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartMeta/).
    */
   async updateCartMeta(
     { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -2184,8 +2298,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
-   * @summary: Merge or replace existing cart
-   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
+   * @summary: Update with shared items
+   * @description: Customer can either merge or replace shared cart items with existing cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
     { token, action, requestHeaders } = { requestHeaders: {} },
@@ -2264,8 +2378,8 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.PaymentCouponValidate>} - Success response
    * @name validateCouponForPayment
-   * @summary: Verify the coupon eligibility against the payment mode
-   * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/validateCouponForPayment/).
+   * @summary: Validate applied coupon
+   * @description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/validateCouponForPayment/).
    */
   async validateCouponForPayment(
     {
@@ -2280,6 +2394,7 @@ class Cart {
       network,
       type,
       cardId,
+      cartType,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2299,6 +2414,7 @@ class Cart {
         network,
         type,
         cardId,
+        cartType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2322,6 +2438,7 @@ class Cart {
         network,
         type,
         cardId,
+        cartType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2344,6 +2461,7 @@ class Cart {
     query_params["network"] = network;
     query_params["type"] = type;
     query_params["card_id"] = cardId;
+    query_params["cart_type"] = cartType;
 
     const xHeaders = {};
 

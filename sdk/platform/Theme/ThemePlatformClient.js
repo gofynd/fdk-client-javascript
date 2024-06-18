@@ -20,8 +20,8 @@ class Theme {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
    * @name addMarketplaceThemeToCompany
-   * @summary: Add a theme to a company
-   * @description: Add a marketplace theme to a company by providing the theme ID and company ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addMarketplaceThemeToCompany/).
+   * @summary: Create a company theme
+   * @description: Incorporate a marketplace theme into a company's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addMarketplaceThemeToCompany/).
    */
   async addMarketplaceThemeToCompany(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -101,8 +101,8 @@ class Theme {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
    * @name deleteCompanyTheme
-   * @summary: Delete a theme
-   * @description: Delete a specific theme for a company by providing the company ID and theme ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteCompanyTheme/).
+   * @summary: Delete a company theme
+   * @description: Remove a theme associated with a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteCompanyTheme/).
    */
   async deleteCompanyTheme(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -175,20 +175,101 @@ class Theme {
   }
 
   /**
+   * @param {ThemePlatformValidator.GetCompanyLevelPrivateThemesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ThemePlatformModel.CompanyPrivateTheme[]>} - Success response
+   * @name getCompanyLevelPrivateThemes
+   * @summary: List private company themes
+   * @description: Retrieve a list of private themes added to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelPrivateThemes/).
+   */
+  async getCompanyLevelPrivateThemes(
+    { searchText, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePlatformValidator.getCompanyLevelPrivateThemes().validate(
+      {
+        searchText,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformValidator.getCompanyLevelPrivateThemes().validate(
+      {
+        searchText,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > getCompanyLevelPrivateThemes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["search_text"] = searchText;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/private_themes`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(ThemePlatformModel.CompanyPrivateTheme())
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getCompanyLevelPrivateThemes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ThemePlatformValidator.GetCompanyLevelThemesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema[]>} - Success response
    * @name getCompanyLevelThemes
-   * @summary: Get themes for a company
-   * @description: Retrieve a list of themes available for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
+   * @summary: List company themes
+   * @description: Retrieve themes added to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
    */
   async getCompanyLevelThemes(
-    { requestHeaders } = { requestHeaders: {} },
+    { searchText, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemePlatformValidator.getCompanyLevelThemes().validate(
-      {},
+      {
+        searchText,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -199,7 +280,9 @@ class Theme {
     const {
       error: warrning,
     } = ThemePlatformValidator.getCompanyLevelThemes().validate(
-      {},
+      {
+        searchText,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -210,6 +293,7 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["search_text"] = searchText;
 
     const xHeaders = {};
 

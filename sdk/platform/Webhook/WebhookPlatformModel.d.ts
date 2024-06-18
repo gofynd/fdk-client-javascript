@@ -1,17 +1,5 @@
 export = WebhookPlatformModel;
 /**
- * @typedef CancelResponse
- * @property {number} [code] - The HTTP status code of the response (e.g., 200).
- */
-/**
- * @typedef EventProcessRequest
- * @property {string} [search_text]
- * @property {string} [end_date]
- * @property {string} [start_date]
- * @property {number[]} [subscriber_ids]
- * @property {Event[]} [event]
- */
-/**
  * @typedef Event
  * @property {string} [event_name]
  * @property {string} [event_type]
@@ -19,43 +7,22 @@ export = WebhookPlatformModel;
  * @property {string} [version]
  */
 /**
- * @typedef ManualRetryFailedResponse
- * @property {boolean} [success]
- * @property {string} [message]
- * @property {string} [request_id]
- * @property {Object} [meta]
- * @property {string} [stack_trace]
+ * @typedef EventProcessRequest
+ * @property {string} search_text
+ * @property {string} end_date
+ * @property {string} start_date
+ * @property {number[]} subscriber_ids
+ * @property {string} status
+ * @property {Event[]} event
  */
 /**
- * @typedef FailedEventsCountSuccessResponse
- * @property {EventCountItem[]} [items]
+ * @typedef DownloadReportResponse
+ * @property {string} [file_name]
  */
 /**
- * @typedef EventCountItem
- * @property {string} [status] - The status of the event (e.g., "FAILED").
- * @property {number} [count] - The count of events with the specified status
- */
-/**
- * @typedef RetryStatusResponse
- * @property {number} [total_event] - The total number of events that require retry.
- * @property {number} [success_count] - The count of successfully retried events.
- * @property {number} [failure_count] - The count of failed retry attempts.
- * @property {string} [status] - The overall status of the retry process (e.g.,
- *   "completed").
- */
-/**
- * @typedef EventSuccessResponse
- * @property {boolean} [success]
- * @property {string} [message]
- */
-/**
- * @typedef EventProcessedSuccessResponse
- * @property {boolean} [success]
- * @property {string} [message]
- */
-/**
- * @typedef Error
- * @property {string} [error] - Error message describing the reason for the failure.
+ * @typedef EventProcessReports
+ * @property {EventProcessReportObject[]} [rows]
+ * @property {Page} [page]
  */
 /**
  * @typedef EventProcessReportObject
@@ -69,15 +36,22 @@ export = WebhookPlatformModel;
  * @property {string} [name] - The name of the event.
  * @property {string} [webhook_url] - The webhook URL associated with the event.
  * @property {number} [response_time] - The response time of the event.
+ * @property {string} [message_id]
+ * @property {string} [event_trace_id]
  */
 /**
- * @typedef EventProcessReports
- * @property {EventProcessReportObject[]} [rows]
- * @property {Page} [page]
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 /**
  * @typedef PingWebhook
- * @property {string} [webhook_url] - The URL of the subscriber's webhook to ping.
+ * @property {string} webhook_url - The URL of the subscriber's webhook to ping.
  * @property {Object} [auth_meta] - Authentication metadata (if required by the
  *   subscriber).
  * @property {Object} [custom_headers] - Custom headers to include in the ping request.
@@ -89,23 +63,12 @@ export = WebhookPlatformModel;
  * @property {number} [code] - The HTTP status code of the ping response (e.g., 200).
  */
 /**
- * @typedef ReportFiltersPayload
- * @property {number[]} [subscriber_ids] - An array of subscriber IDs for
- *   filtering filters (optional).
- */
-/**
- * @typedef FilterValues
- * @property {string} [text] - The display text for the filter value.
- * @property {Object} [value] - The value associated with the filter value.
- */
-/**
- * @typedef FilterResponseObject
- * @property {string} [filter_name] - The name of the filter.
- * @property {FilterValues[]} [values]
- */
-/**
- * @typedef EventConfigResponse
- * @property {EventConfig[]} [event_configs]
+ * @typedef SubscriberEventMapping
+ * @property {number} [id]
+ * @property {number} [event_id]
+ * @property {number} [subscriber_id]
+ * @property {string} [topic]
+ * @property {string} [created_on]
  */
 /**
  * @typedef EventConfig
@@ -113,28 +76,46 @@ export = WebhookPlatformModel;
  * @property {string} [event_name]
  * @property {string} [event_type]
  * @property {string} [event_category]
+ * @property {SubscriberEventMapping} [subscriber_event_mapping]
+ * @property {Object} [event_schema]
+ * @property {string} [group]
  * @property {string} [version]
  * @property {string} [display_name]
  * @property {string} [description]
  * @property {string} [created_on]
+ * @property {string} [updated_on]
+ */
+/**
+ * @typedef EventConfigResponse
+ * @property {EventConfig[]} [event_configs]
+ */
+/**
+ * @typedef ReportFiltersPayload
+ * @property {number[]} subscriber_ids - An array of subscriber IDs for
+ *   filtering filters (optional).
  */
 /**
  * @typedef ReportFilterResponse
- * @property {FilterResponseObject[]} [items]
+ * @property {string} [filter_name] - The name of the filter.
+ * @property {Object[]} [values]
  */
 /**
  * @typedef HistoryPayload
- * @property {string} [type] - The type of history report (e.g., "platform").
+ * @property {string} type - The type of history report (e.g., "platform").
  * @property {number} [page_no] - The page number of the history report.
  * @property {number} [page_size] - The number of records per page.
  */
 /**
  * @typedef HistoryFilters
+ * @property {string[]} [events]
+ * @property {string} [search_text]
  * @property {string} [status] - The status of the history report (e.g., "FAILED").
  * @property {string} [end_date] - The end date and time of the history report.
  * @property {string} [start_date] - The start date and time of the history report.
  * @property {number[]} [subscribers] - An array of subscriber IDs associated
  *   with the history report.
+ * @property {string[]} [webhook_type] - An array of webhook type to identify
+ *   thetype of subscriber i.e (KAFKA or REST).
  */
 /**
  * @typedef Url
@@ -150,9 +131,14 @@ export = WebhookPlatformModel;
  * @property {CdnObject} [cdn]
  */
 /**
- * @typedef HistoryResponseObject
+ * @typedef HistoryAssociation
+ * @property {number} [company_id]
+ * @property {number[]} [subscriber_ids]
+ */
+/**
+ * @typedef HistoryItems
  * @property {number} [id] - The ID of the history report.
- * @property {AssociationDetails} [association]
+ * @property {HistoryAssociation} [association]
  * @property {HistoryFilters} [filters]
  * @property {string} [filename] - The filename of the history report.
  * @property {string} [status] - The status of the history report (e.g., "COMPLETED").
@@ -165,35 +151,25 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef HistoryResponse
- * @property {HistoryResponseObject[]} [items]
+ * @property {HistoryItems[]} [items]
+ * @property {Page} [page]
  */
 /**
- * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @typedef CancelResponse
+ * @property {string} [message] - The HTTP status code of the response (e.g., 200).
  */
 /**
- * @typedef AssociationDetails
+ * @typedef Association
+ * @property {string[]} [application_id]
+ * @property {string} [extension_id]
+ * @property {string} [criteria]
+ */
+/**
+ * @typedef AssociationResp
  * @property {number} [company_id]
- */
-/**
- * @typedef SubscriberResponse
- * @property {number} [id]
- * @property {string} [name]
- * @property {string} [webhook_url]
- * @property {Association} [association]
- * @property {Object} [custom_headers]
- * @property {string} [email_id]
- * @property {SubscriberStatus} [status]
- * @property {AuthMeta} [auth_meta]
- * @property {string} [created_on]
- * @property {string} [updated_on]
- * @property {EventConfig[]} [event_configs]
+ * @property {string[]} [application_id]
+ * @property {string} [extension_id]
+ * @property {string} [criteria]
  */
 /**
  * @typedef AuthMeta
@@ -201,21 +177,89 @@ export = WebhookPlatformModel;
  * @property {string} [secret]
  */
 /**
- * @typedef Association
- * @property {number} [company_id]
- * @property {string[]} [application_id]
- * @property {string} [extension_id]
- * @property {string} [criteria]
- */
-/**
- * @typedef SubscriberConfig
+ * @typedef SubscriberResponse
  * @property {number} [id]
+ * @property {string} [modified_by]
  * @property {string} [name]
+ * @property {string} [provider]
  * @property {string} [webhook_url]
- * @property {Association} [association]
+ * @property {AssociationResp} [association]
  * @property {Object} [custom_headers]
  * @property {SubscriberStatus} [status]
  * @property {string} [email_id]
+ * @property {string} [updated_on]
+ * @property {string} [created_on]
+ * @property {string} [type]
+ * @property {AuthMeta} [auth_meta]
+ * @property {EventConfig[]} [event_configs]
+ */
+/**
+ * @typedef Events
+ * @property {string} [slug]
+ * @property {string} [topic]
+ */
+/**
+ * @typedef SubscriberConfigPostRequestV2
+ * @property {string} [name]
+ * @property {string} [webhook_url]
+ * @property {string} provider
+ * @property {Association} association
+ * @property {Object} [custom_headers]
+ * @property {SubscriberStatus} status
+ * @property {string} email_id
+ * @property {AuthMeta} [auth_meta]
+ * @property {Events[]} [events]
+ */
+/**
+ * @typedef SubscriberConfigUpdateRequestV2
+ * @property {number} id
+ * @property {string} [name]
+ * @property {string} [webhook_url]
+ * @property {string} provider
+ * @property {Association} association
+ * @property {Object} [custom_headers]
+ * @property {SubscriberStatus} status
+ * @property {string} email_id
+ * @property {AuthMeta} [auth_meta]
+ * @property {Events[]} [events]
+ */
+/**
+ * @typedef SubscriberConfigPost
+ * @property {string} [name]
+ * @property {string} webhook_url
+ * @property {Association} association
+ * @property {Object} [custom_headers]
+ * @property {SubscriberStatus} status
+ * @property {string} email_id
+ * @property {AuthMeta} [auth_meta]
+ * @property {number[]} event_id
+ */
+/**
+ * @typedef SubscriberConfigUpdate
+ * @property {number} id
+ * @property {string} [name]
+ * @property {string} webhook_url
+ * @property {Association} association
+ * @property {Object} [custom_headers]
+ * @property {SubscriberStatus} status
+ * @property {string} email_id
+ * @property {AuthMeta} [auth_meta]
+ * @property {number[]} event_id
+ */
+/**
+ * @typedef SubscriberConfigResponse
+ * @property {number} [id]
+ * @property {string} [modified_by]
+ * @property {string} [name]
+ * @property {string} [webhook_url]
+ * @property {string} [provider]
+ * @property {AssociationResp} [association]
+ * @property {Object} [custom_headers]
+ * @property {SubscriberStatus} [status]
+ * @property {string} [email_id]
+ * @property {string} [updated_on]
+ * @property {string} [created_on]
+ * @property {string} [type]
  * @property {AuthMeta} [auth_meta]
  * @property {number[]} [event_id]
  */
@@ -224,29 +268,12 @@ export = WebhookPlatformModel;
  * @property {SubscriberResponse[]} [items]
  * @property {Page} [page]
  */
-/** @typedef {"active" | "inactive" | "blocked"} SubscriberStatus */
+/** @typedef {"active" | "inactive"} SubscriberStatus */
 declare class WebhookPlatformModel {
 }
 declare namespace WebhookPlatformModel {
-    export { CancelResponse, EventProcessRequest, Event, ManualRetryFailedResponse, FailedEventsCountSuccessResponse, EventCountItem, RetryStatusResponse, EventSuccessResponse, EventProcessedSuccessResponse, Error, EventProcessReportObject, EventProcessReports, PingWebhook, PingWebhookResponse, ReportFiltersPayload, FilterValues, FilterResponseObject, EventConfigResponse, EventConfig, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryResponseObject, HistoryResponse, Page, AssociationDetails, SubscriberResponse, AuthMeta, Association, SubscriberConfig, SubscriberConfigList, SubscriberStatus };
+    export { Event, EventProcessRequest, DownloadReportResponse, EventProcessReports, EventProcessReportObject, Page, PingWebhook, PingWebhookResponse, SubscriberEventMapping, EventConfig, EventConfigResponse, ReportFiltersPayload, ReportFilterResponse, HistoryPayload, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, CancelResponse, Association, AssociationResp, AuthMeta, SubscriberResponse, Events, SubscriberConfigPostRequestV2, SubscriberConfigUpdateRequestV2, SubscriberConfigPost, SubscriberConfigUpdate, SubscriberConfigResponse, SubscriberConfigList, SubscriberStatus };
 }
-/** @returns {CancelResponse} */
-declare function CancelResponse(): CancelResponse;
-type CancelResponse = {
-    /**
-     * - The HTTP status code of the response (e.g., 200).
-     */
-    code?: number;
-};
-/** @returns {EventProcessRequest} */
-declare function EventProcessRequest(): EventProcessRequest;
-type EventProcessRequest = {
-    search_text?: string;
-    end_date?: string;
-    start_date?: string;
-    subscriber_ids?: number[];
-    event?: Event[];
-};
 /** @returns {Event} */
 declare function Event(): Event;
 type Event = {
@@ -255,72 +282,26 @@ type Event = {
     event_category?: string;
     version?: string;
 };
-/** @returns {ManualRetryFailedResponse} */
-declare function ManualRetryFailedResponse(): ManualRetryFailedResponse;
-type ManualRetryFailedResponse = {
-    success?: boolean;
-    message?: string;
-    request_id?: string;
-    meta?: any;
-    stack_trace?: string;
+/** @returns {EventProcessRequest} */
+declare function EventProcessRequest(): EventProcessRequest;
+type EventProcessRequest = {
+    search_text: string;
+    end_date: string;
+    start_date: string;
+    subscriber_ids: number[];
+    status: string;
+    event: Event[];
 };
-/** @returns {FailedEventsCountSuccessResponse} */
-declare function FailedEventsCountSuccessResponse(): FailedEventsCountSuccessResponse;
-type FailedEventsCountSuccessResponse = {
-    items?: EventCountItem[];
+/** @returns {DownloadReportResponse} */
+declare function DownloadReportResponse(): DownloadReportResponse;
+type DownloadReportResponse = {
+    file_name?: string;
 };
-/** @returns {EventCountItem} */
-declare function EventCountItem(): EventCountItem;
-type EventCountItem = {
-    /**
-     * - The status of the event (e.g., "FAILED").
-     */
-    status?: string;
-    /**
-     * - The count of events with the specified status
-     */
-    count?: number;
-};
-/** @returns {RetryStatusResponse} */
-declare function RetryStatusResponse(): RetryStatusResponse;
-type RetryStatusResponse = {
-    /**
-     * - The total number of events that require retry.
-     */
-    total_event?: number;
-    /**
-     * - The count of successfully retried events.
-     */
-    success_count?: number;
-    /**
-     * - The count of failed retry attempts.
-     */
-    failure_count?: number;
-    /**
-     * - The overall status of the retry process (e.g.,
-     * "completed").
-     */
-    status?: string;
-};
-/** @returns {EventSuccessResponse} */
-declare function EventSuccessResponse(): EventSuccessResponse;
-type EventSuccessResponse = {
-    success?: boolean;
-    message?: string;
-};
-/** @returns {EventProcessedSuccessResponse} */
-declare function EventProcessedSuccessResponse(): EventProcessedSuccessResponse;
-type EventProcessedSuccessResponse = {
-    success?: boolean;
-    message?: string;
-};
-/** @returns {Error} */
-declare function Error(): Error;
-type Error = {
-    /**
-     * - Error message describing the reason for the failure.
-     */
-    error?: string;
+/** @returns {EventProcessReports} */
+declare function EventProcessReports(): EventProcessReports;
+type EventProcessReports = {
+    rows?: EventProcessReportObject[];
+    page?: Page;
 };
 /** @returns {EventProcessReportObject} */
 declare function EventProcessReportObject(): EventProcessReportObject;
@@ -365,12 +346,19 @@ type EventProcessReportObject = {
      * - The response time of the event.
      */
     response_time?: number;
+    message_id?: string;
+    event_trace_id?: string;
 };
-/** @returns {EventProcessReports} */
-declare function EventProcessReports(): EventProcessReports;
-type EventProcessReports = {
-    rows?: EventProcessReportObject[];
-    page?: Page;
+/** @returns {Page} */
+declare function Page(): Page;
+type Page = {
+    item_total?: number;
+    next_id?: string;
+    has_previous?: boolean;
+    has_next?: boolean;
+    current?: number;
+    type: string;
+    size?: number;
 };
 /** @returns {PingWebhook} */
 declare function PingWebhook(): PingWebhook;
@@ -378,7 +366,7 @@ type PingWebhook = {
     /**
      * - The URL of the subscriber's webhook to ping.
      */
-    webhook_url?: string;
+    webhook_url: string;
     /**
      * - Authentication metadata (if required by the
      * subscriber).
@@ -405,40 +393,14 @@ type PingWebhookResponse = {
      */
     code?: number;
 };
-/** @returns {ReportFiltersPayload} */
-declare function ReportFiltersPayload(): ReportFiltersPayload;
-type ReportFiltersPayload = {
-    /**
-     * - An array of subscriber IDs for
-     * filtering filters (optional).
-     */
-    subscriber_ids?: number[];
-};
-/** @returns {FilterValues} */
-declare function FilterValues(): FilterValues;
-type FilterValues = {
-    /**
-     * - The display text for the filter value.
-     */
-    text?: string;
-    /**
-     * - The value associated with the filter value.
-     */
-    value?: any;
-};
-/** @returns {FilterResponseObject} */
-declare function FilterResponseObject(): FilterResponseObject;
-type FilterResponseObject = {
-    /**
-     * - The name of the filter.
-     */
-    filter_name?: string;
-    values?: FilterValues[];
-};
-/** @returns {EventConfigResponse} */
-declare function EventConfigResponse(): EventConfigResponse;
-type EventConfigResponse = {
-    event_configs?: EventConfig[];
+/** @returns {SubscriberEventMapping} */
+declare function SubscriberEventMapping(): SubscriberEventMapping;
+type SubscriberEventMapping = {
+    id?: number;
+    event_id?: number;
+    subscriber_id?: number;
+    topic?: string;
+    created_on?: string;
 };
 /** @returns {EventConfig} */
 declare function EventConfig(): EventConfig;
@@ -447,15 +409,37 @@ type EventConfig = {
     event_name?: string;
     event_type?: string;
     event_category?: string;
+    subscriber_event_mapping?: SubscriberEventMapping;
+    event_schema?: any;
+    group?: string;
     version?: string;
     display_name?: string;
     description?: string;
     created_on?: string;
+    updated_on?: string;
+};
+/** @returns {EventConfigResponse} */
+declare function EventConfigResponse(): EventConfigResponse;
+type EventConfigResponse = {
+    event_configs?: EventConfig[];
+};
+/** @returns {ReportFiltersPayload} */
+declare function ReportFiltersPayload(): ReportFiltersPayload;
+type ReportFiltersPayload = {
+    /**
+     * - An array of subscriber IDs for
+     * filtering filters (optional).
+     */
+    subscriber_ids: number[];
 };
 /** @returns {ReportFilterResponse} */
 declare function ReportFilterResponse(): ReportFilterResponse;
 type ReportFilterResponse = {
-    items?: FilterResponseObject[];
+    /**
+     * - The name of the filter.
+     */
+    filter_name?: string;
+    values?: any[];
 };
 /** @returns {HistoryPayload} */
 declare function HistoryPayload(): HistoryPayload;
@@ -463,7 +447,7 @@ type HistoryPayload = {
     /**
      * - The type of history report (e.g., "platform").
      */
-    type?: string;
+    type: string;
     /**
      * - The page number of the history report.
      */
@@ -476,6 +460,8 @@ type HistoryPayload = {
 /** @returns {HistoryFilters} */
 declare function HistoryFilters(): HistoryFilters;
 type HistoryFilters = {
+    events?: string[];
+    search_text?: string;
     /**
      * - The status of the history report (e.g., "FAILED").
      */
@@ -493,6 +479,11 @@ type HistoryFilters = {
      * with the history report.
      */
     subscribers?: number[];
+    /**
+     * - An array of webhook type to identify
+     * thetype of subscriber i.e (KAFKA or REST).
+     */
+    webhook_type?: string[];
 };
 /** @returns {Url} */
 declare function Url(): Url;
@@ -516,14 +507,20 @@ declare function UploadServiceObject(): UploadServiceObject;
 type UploadServiceObject = {
     cdn?: CdnObject;
 };
-/** @returns {HistoryResponseObject} */
-declare function HistoryResponseObject(): HistoryResponseObject;
-type HistoryResponseObject = {
+/** @returns {HistoryAssociation} */
+declare function HistoryAssociation(): HistoryAssociation;
+type HistoryAssociation = {
+    company_id?: number;
+    subscriber_ids?: number[];
+};
+/** @returns {HistoryItems} */
+declare function HistoryItems(): HistoryItems;
+type HistoryItems = {
     /**
      * - The ID of the history report.
      */
     id?: number;
-    association?: AssociationDetails;
+    association?: HistoryAssociation;
     filters?: HistoryFilters;
     /**
      * - The filename of the history report.
@@ -552,38 +549,31 @@ type HistoryResponseObject = {
 /** @returns {HistoryResponse} */
 declare function HistoryResponse(): HistoryResponse;
 type HistoryResponse = {
-    items?: HistoryResponseObject[];
+    items?: HistoryItems[];
+    page?: Page;
 };
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    item_total?: number;
-    next_id?: string;
-    has_previous?: boolean;
-    has_next?: boolean;
-    current?: number;
-    type: string;
-    size?: number;
+/** @returns {CancelResponse} */
+declare function CancelResponse(): CancelResponse;
+type CancelResponse = {
+    /**
+     * - The HTTP status code of the response (e.g., 200).
+     */
+    message?: string;
 };
-/** @returns {AssociationDetails} */
-declare function AssociationDetails(): AssociationDetails;
-type AssociationDetails = {
+/** @returns {Association} */
+declare function Association(): Association;
+type Association = {
+    application_id?: string[];
+    extension_id?: string;
+    criteria?: string;
+};
+/** @returns {AssociationResp} */
+declare function AssociationResp(): AssociationResp;
+type AssociationResp = {
     company_id?: number;
-};
-/** @returns {SubscriberResponse} */
-declare function SubscriberResponse(): SubscriberResponse;
-type SubscriberResponse = {
-    id?: number;
-    name?: string;
-    webhook_url?: string;
-    association?: Association;
-    custom_headers?: any;
-    email_id?: string;
-    status?: SubscriberStatus;
-    auth_meta?: AuthMeta;
-    created_on?: string;
-    updated_on?: string;
-    event_configs?: EventConfig[];
+    application_id?: string[];
+    extension_id?: string;
+    criteria?: string;
 };
 /** @returns {AuthMeta} */
 declare function AuthMeta(): AuthMeta;
@@ -591,24 +581,97 @@ type AuthMeta = {
     type?: string;
     secret?: string;
 };
-/** @returns {Association} */
-declare function Association(): Association;
-type Association = {
-    company_id?: number;
-    application_id?: string[];
-    extension_id?: string;
-    criteria?: string;
-};
-/** @returns {SubscriberConfig} */
-declare function SubscriberConfig(): SubscriberConfig;
-type SubscriberConfig = {
+/** @returns {SubscriberResponse} */
+declare function SubscriberResponse(): SubscriberResponse;
+type SubscriberResponse = {
     id?: number;
+    modified_by?: string;
     name?: string;
+    provider?: string;
     webhook_url?: string;
-    association?: Association;
+    association?: AssociationResp;
     custom_headers?: any;
     status?: SubscriberStatus;
     email_id?: string;
+    updated_on?: string;
+    created_on?: string;
+    type?: string;
+    auth_meta?: AuthMeta;
+    event_configs?: EventConfig[];
+};
+/** @returns {Events} */
+declare function Events(): Events;
+type Events = {
+    slug?: string;
+    topic?: string;
+};
+/** @returns {SubscriberConfigPostRequestV2} */
+declare function SubscriberConfigPostRequestV2(): SubscriberConfigPostRequestV2;
+type SubscriberConfigPostRequestV2 = {
+    name?: string;
+    webhook_url?: string;
+    provider: string;
+    association: Association;
+    custom_headers?: any;
+    status: SubscriberStatus;
+    email_id: string;
+    auth_meta?: AuthMeta;
+    events?: Events[];
+};
+/** @returns {SubscriberConfigUpdateRequestV2} */
+declare function SubscriberConfigUpdateRequestV2(): SubscriberConfigUpdateRequestV2;
+type SubscriberConfigUpdateRequestV2 = {
+    id: number;
+    name?: string;
+    webhook_url?: string;
+    provider: string;
+    association: Association;
+    custom_headers?: any;
+    status: SubscriberStatus;
+    email_id: string;
+    auth_meta?: AuthMeta;
+    events?: Events[];
+};
+/** @returns {SubscriberConfigPost} */
+declare function SubscriberConfigPost(): SubscriberConfigPost;
+type SubscriberConfigPost = {
+    name?: string;
+    webhook_url: string;
+    association: Association;
+    custom_headers?: any;
+    status: SubscriberStatus;
+    email_id: string;
+    auth_meta?: AuthMeta;
+    event_id: number[];
+};
+/** @returns {SubscriberConfigUpdate} */
+declare function SubscriberConfigUpdate(): SubscriberConfigUpdate;
+type SubscriberConfigUpdate = {
+    id: number;
+    name?: string;
+    webhook_url: string;
+    association: Association;
+    custom_headers?: any;
+    status: SubscriberStatus;
+    email_id: string;
+    auth_meta?: AuthMeta;
+    event_id: number[];
+};
+/** @returns {SubscriberConfigResponse} */
+declare function SubscriberConfigResponse(): SubscriberConfigResponse;
+type SubscriberConfigResponse = {
+    id?: number;
+    modified_by?: string;
+    name?: string;
+    webhook_url?: string;
+    provider?: string;
+    association?: AssociationResp;
+    custom_headers?: any;
+    status?: SubscriberStatus;
+    email_id?: string;
+    updated_on?: string;
+    created_on?: string;
+    type?: string;
     auth_meta?: AuthMeta;
     event_id?: number[];
 };
@@ -624,4 +687,4 @@ type SubscriberConfigList = {
  * @returns {SubscriberStatus}
  */
 declare function SubscriberStatus(): SubscriberStatus;
-type SubscriberStatus = "active" | "inactive" | "blocked";
+type SubscriberStatus = "active" | "inactive";

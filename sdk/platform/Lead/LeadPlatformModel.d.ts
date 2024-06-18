@@ -1,5 +1,38 @@
 export = LeadPlatformModel;
 /**
+ * @typedef GeneralConfigResponse
+ * @property {string} [_id]
+ * @property {SupportCommunicationSchema[]} [support_communication]
+ * @property {boolean} [show_communication_info]
+ * @property {boolean} [show_support_dris]
+ * @property {string} [type]
+ * @property {GeneralConfigIntegrationSchema} [integration]
+ * @property {boolean} [allow_ticket_creation]
+ * @property {boolean} [show_listing]
+ * @property {string[]} [available_integration]
+ * @property {boolean} [enable_dris]
+ * @property {SupportSchema} [support_email]
+ * @property {SupportSchema} [support_phone]
+ * @property {SupportSchema} [support_faq]
+ */
+/**
+ * @typedef SupportCommunicationSchema
+ * @property {string} [type]
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef SupportSchema
+ * @property {string} [value]
+ * @property {string} [description]
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef GeneralConfigIntegrationSchema
+ * @property {string} [type]
+ */
+/**
  * @typedef TicketList
  * @property {Ticket[]} [items] - List of tickets
  * @property {Filter} [filters]
@@ -69,24 +102,6 @@ export = LeadPlatformModel;
  * @property {string} agent_id - Agent's unique ID
  */
 /**
- * @typedef CreateVideoRoomResponse
- * @property {string} unique_name - Video Room's unique name
- */
-/**
- * @typedef CloseVideoRoomResponse
- * @property {boolean} success - Denotes if operation was successfully
- */
-/**
- * @typedef CreateVideoRoomPayload
- * @property {string} unique_name - Ticket id
- * @property {NotifyUser[]} [notify] - List of people to be notified
- */
-/**
- * @typedef NotifyUser
- * @property {string} country_code - Country code
- * @property {string} phone_number - Phone number
- */
-/**
  * @typedef Filter
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
@@ -97,60 +112,6 @@ export = LeadPlatformModel;
  * @typedef TicketHistoryPayload
  * @property {Object} value - Details of history event
  * @property {HistoryTypeEnum} type
- */
-/**
- * @typedef GetTokenForVideoRoomResponse
- * @property {string} access_token - Access token to be used for video room
- */
-/**
- * @typedef GetParticipantsInsideVideoRoomResponse
- * @property {Participant[]} participants - List of participants of the video room
- */
-/**
- * @typedef Participant
- * @property {UserSchema} [user]
- * @property {string} [identity] - Unique identifier of participant
- * @property {string} [status] - Status of participant
- */
-/**
- * @typedef UserSchema
- * @property {string} [application_id]
- * @property {string} [user_id]
- * @property {string} [first_name]
- * @property {Object} [meta]
- * @property {string} [last_name]
- * @property {PhoneNumber[]} [phone_numbers]
- * @property {Email[]} [emails]
- * @property {string} [gender]
- * @property {string} [dob]
- * @property {boolean} [active]
- * @property {string} [profile_pic_url]
- * @property {string} [username]
- * @property {string} [account_type]
- * @property {string} [_id]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- * @property {string} [external_id]
- */
-/**
- * @typedef PhoneNumber
- * @property {boolean} [active] - Denotes if the phone number is active
- * @property {boolean} [primary] - Denotes it's the primary phone number for the account
- * @property {boolean} [verified] - Denotes it's a verified phone number
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- */
-/**
- * @typedef Email
- * @property {boolean} [primary] - Denotes it's the primary email for the account
- * @property {boolean} [verified] - Denotes it's a verified email
- * @property {string} [email] - Email Address
- * @property {boolean} [active] - Denotes if the email is active
- */
-/**
- * @typedef Debug
- * @property {string} [source] - Source of user
- * @property {string} [platform] - Platform of user
  */
 /**
  * @typedef TicketContext
@@ -187,6 +148,10 @@ export = LeadPlatformModel;
  * @property {PriorityEnum} key
  * @property {string} display - Display text for priority
  * @property {string} color - Color for priority
+ */
+/**
+ * @typedef SLA
+ * @property {string} resolution_time
  */
 /**
  * @typedef Status
@@ -290,6 +255,7 @@ export = LeadPlatformModel;
  * @property {TicketSourceEnum} source
  * @property {Status} status
  * @property {Priority} priority
+ * @property {SLA} [sla]
  * @property {Object} [created_by] - User details of ticket creator
  * @property {Object} [assigned_to] - Details of support staff to whom ticket is assigned
  * @property {string[]} [tags] - Tags relevant to ticket
@@ -301,8 +267,12 @@ export = LeadPlatformModel;
  * @property {string} [updated_at] - Time when the ticket was last updated
  * @property {string} [created_at] - Time when the ticket was created
  */
+/**
+ * @typedef ErrorMessage
+ * @property {string} [message]
+ */
 /** @typedef {"low" | "medium" | "high" | "urgent"} PriorityEnum */
-/** @typedef {"rating" | "log" | "comment"} HistoryTypeEnum */
+/** @typedef {"rating" | "log" | "comment" | "thread"} HistoryTypeEnum */
 /**
  * @typedef {| "image"
  *   | "video"
@@ -318,8 +288,45 @@ export = LeadPlatformModel;
 declare class LeadPlatformModel {
 }
 declare namespace LeadPlatformModel {
-    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, NotifyUser, Filter, TicketHistoryPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { GeneralConfigResponse, SupportCommunicationSchema, SupportSchema, GeneralConfigIntegrationSchema, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, ErrorMessage, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
+/** @returns {GeneralConfigResponse} */
+declare function GeneralConfigResponse(): GeneralConfigResponse;
+type GeneralConfigResponse = {
+    _id?: string;
+    support_communication?: SupportCommunicationSchema[];
+    show_communication_info?: boolean;
+    show_support_dris?: boolean;
+    type?: string;
+    integration?: GeneralConfigIntegrationSchema;
+    allow_ticket_creation?: boolean;
+    show_listing?: boolean;
+    available_integration?: string[];
+    enable_dris?: boolean;
+    support_email?: SupportSchema;
+    support_phone?: SupportSchema;
+    support_faq?: SupportSchema;
+};
+/** @returns {SupportCommunicationSchema} */
+declare function SupportCommunicationSchema(): SupportCommunicationSchema;
+type SupportCommunicationSchema = {
+    type?: string;
+    title?: string;
+    description?: string;
+    enabled?: boolean;
+};
+/** @returns {SupportSchema} */
+declare function SupportSchema(): SupportSchema;
+type SupportSchema = {
+    value?: string;
+    description?: string;
+    enabled?: boolean;
+};
+/** @returns {GeneralConfigIntegrationSchema} */
+declare function GeneralConfigIntegrationSchema(): GeneralConfigIntegrationSchema;
+type GeneralConfigIntegrationSchema = {
+    type?: string;
+};
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
 type TicketList = {
@@ -466,46 +473,6 @@ type AgentChangePayload = {
      */
     agent_id: string;
 };
-/** @returns {CreateVideoRoomResponse} */
-declare function CreateVideoRoomResponse(): CreateVideoRoomResponse;
-type CreateVideoRoomResponse = {
-    /**
-     * - Video Room's unique name
-     */
-    unique_name: string;
-};
-/** @returns {CloseVideoRoomResponse} */
-declare function CloseVideoRoomResponse(): CloseVideoRoomResponse;
-type CloseVideoRoomResponse = {
-    /**
-     * - Denotes if operation was successfully
-     */
-    success: boolean;
-};
-/** @returns {CreateVideoRoomPayload} */
-declare function CreateVideoRoomPayload(): CreateVideoRoomPayload;
-type CreateVideoRoomPayload = {
-    /**
-     * - Ticket id
-     */
-    unique_name: string;
-    /**
-     * - List of people to be notified
-     */
-    notify?: NotifyUser[];
-};
-/** @returns {NotifyUser} */
-declare function NotifyUser(): NotifyUser;
-type NotifyUser = {
-    /**
-     * - Country code
-     */
-    country_code: string;
-    /**
-     * - Phone number
-     */
-    phone_number: string;
-};
 /** @returns {Filter} */
 declare function Filter(): Filter;
 type Filter = {
@@ -534,112 +501,6 @@ type TicketHistoryPayload = {
      */
     value: any;
     type: HistoryTypeEnum;
-};
-/** @returns {GetTokenForVideoRoomResponse} */
-declare function GetTokenForVideoRoomResponse(): GetTokenForVideoRoomResponse;
-type GetTokenForVideoRoomResponse = {
-    /**
-     * - Access token to be used for video room
-     */
-    access_token: string;
-};
-/** @returns {GetParticipantsInsideVideoRoomResponse} */
-declare function GetParticipantsInsideVideoRoomResponse(): GetParticipantsInsideVideoRoomResponse;
-type GetParticipantsInsideVideoRoomResponse = {
-    /**
-     * - List of participants of the video room
-     */
-    participants: Participant[];
-};
-/** @returns {Participant} */
-declare function Participant(): Participant;
-type Participant = {
-    user?: UserSchema;
-    /**
-     * - Unique identifier of participant
-     */
-    identity?: string;
-    /**
-     * - Status of participant
-     */
-    status?: string;
-};
-/** @returns {UserSchema} */
-declare function UserSchema(): UserSchema;
-type UserSchema = {
-    application_id?: string;
-    user_id?: string;
-    first_name?: string;
-    meta?: any;
-    last_name?: string;
-    phone_numbers?: PhoneNumber[];
-    emails?: Email[];
-    gender?: string;
-    dob?: string;
-    active?: boolean;
-    profile_pic_url?: string;
-    username?: string;
-    account_type?: string;
-    _id?: string;
-    created_at?: string;
-    updated_at?: string;
-    external_id?: string;
-};
-/** @returns {PhoneNumber} */
-declare function PhoneNumber(): PhoneNumber;
-type PhoneNumber = {
-    /**
-     * - Denotes if the phone number is active
-     */
-    active?: boolean;
-    /**
-     * - Denotes it's the primary phone number for the account
-     */
-    primary?: boolean;
-    /**
-     * - Denotes it's a verified phone number
-     */
-    verified?: boolean;
-    /**
-     * - Phone number
-     */
-    phone?: string;
-    /**
-     * - Country code
-     */
-    country_code?: number;
-};
-/** @returns {Email} */
-declare function Email(): Email;
-type Email = {
-    /**
-     * - Denotes it's the primary email for the account
-     */
-    primary?: boolean;
-    /**
-     * - Denotes it's a verified email
-     */
-    verified?: boolean;
-    /**
-     * - Email Address
-     */
-    email?: string;
-    /**
-     * - Denotes if the email is active
-     */
-    active?: boolean;
-};
-/** @returns {Debug} */
-declare function Debug(): Debug;
-type Debug = {
-    /**
-     * - Source of user
-     */
-    source?: string;
-    /**
-     * - Platform of user
-     */
-    platform?: string;
 };
 /** @returns {TicketContext} */
 declare function TicketContext(): TicketContext;
@@ -724,6 +585,11 @@ type Priority = {
      * - Color for priority
      */
     color: string;
+};
+/** @returns {SLA} */
+declare function SLA(): SLA;
+type SLA = {
+    resolution_time: string;
 };
 /** @returns {Status} */
 declare function Status(): Status;
@@ -980,6 +846,7 @@ type Ticket = {
     source: TicketSourceEnum;
     status: Status;
     priority: Priority;
+    sla?: SLA;
     /**
      * - User details of ticket creator
      */
@@ -1018,6 +885,11 @@ type Ticket = {
      */
     created_at?: string;
 };
+/** @returns {ErrorMessage} */
+declare function ErrorMessage(): ErrorMessage;
+type ErrorMessage = {
+    message?: string;
+};
 /**
  * Enum: PriorityEnum Used By: Lead
  *
@@ -1031,7 +903,7 @@ type PriorityEnum = "low" | "medium" | "high" | "urgent";
  * @returns {HistoryTypeEnum}
  */
 declare function HistoryTypeEnum(): HistoryTypeEnum;
-type HistoryTypeEnum = "rating" | "log" | "comment";
+type HistoryTypeEnum = "rating" | "log" | "comment" | "thread";
 /**
  * Enum: TicketAssetTypeEnum Used By: Lead
  *

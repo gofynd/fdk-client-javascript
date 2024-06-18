@@ -39,8 +39,8 @@ class Partner {
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<PartnerPublicModel.ExtensionUsingSlug>} - Success response
    * @name getPanelExtensionDetails
-   * @summary: Get extension details
-   * @description: Use this API to get extension details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/partner/getPanelExtensionDetails/).
+   * @summary: Get panel extension details
+   * @description: Retrieve detailed information about panel extensions in the public server setup. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/partner/getPanelExtensionDetails/).
    */
   async getPanelExtensionDetails(
     { slug, requestHeaders } = { requestHeaders: {} },

@@ -39,6 +39,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ShipmentPaymentInfo
+ * @property {string} [mop] - Stands for "Mode of Payment". This is a short code
+ *   (like "COD" for Cash On Delivery) that represents the payment method used.
+ * @property {string} [payment_mode] - Information about the payment mode,
+ *   indicates whether COD or PREPAID
+ * @property {string} [status] - Indicates the current status of the payment,
+ *   Paid or Unpaid
+ * @property {string} [mode] - Information about the payment source. For eg, NB_ICICI
+ * @property {string} [logo] - A URL to an image representing the payment method
+ * @property {string} [display_name] - The name of the payment method as it
+ *   should be displayed to the user
+ * @property {number} [amount] - Amount paid using this payment method
+ */
+
+/**
  * @typedef ShipmentUserInfo
  * @property {string} [first_name]
  * @property {string} [gender]
@@ -86,6 +101,7 @@ const Joi = require("joi");
  * @property {boolean} [is_passed]
  * @property {string} [status]
  * @property {string} [time]
+ * @property {string} [created_ts]
  * @property {NestedTrackingDetails[]} [tracking_details]
  */
 
@@ -132,6 +148,7 @@ const Joi = require("joi");
  * @property {number} [refund_amount]
  * @property {string} [currency_code]
  * @property {number} [fynd_credits]
+ * @property {number} [amount_to_be_collected]
  */
 
 /**
@@ -210,6 +227,7 @@ const Joi = require("joi");
  * @property {number} [gst_fee]
  * @property {number} [refund_amount]
  * @property {number} [fynd_credits]
+ * @property {number} [amount_to_be_collected]
  */
 
 /**
@@ -239,6 +257,7 @@ const Joi = require("joi");
  * @property {string} [currency_code]
  * @property {string} [seller_identifier]
  * @property {CurrentStatus} [current_status]
+ * @property {Article} [article]
  */
 
 /**
@@ -248,7 +267,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DeliveryAddress
+ * @typedef Article
+ * @property {string[]} [tags]
+ */
+
+/**
+ * @typedef Address
  * @property {string} [pincode]
  * @property {string} [phone]
  * @property {number} [latitude]
@@ -263,6 +287,7 @@ const Joi = require("joi");
  * @property {string} [state]
  * @property {string} [created_at]
  * @property {string} [address1]
+ * @property {string} [display_address]
  * @property {string} [name]
  * @property {string} [contact_person]
  * @property {string} [address_category]
@@ -276,6 +301,9 @@ const Joi = require("joi");
 /**
  * @typedef Shipments
  * @property {ShipmentPayment} [payment]
+ * @property {ShipmentPaymentInfo[]} [payment_info] - "Array of objects
+ *   containing payment methods used for placing an order. Each object will
+ *   provide information about corresponding payment method with relevant details."
  * @property {string} [order_type]
  * @property {boolean} [show_download_invoice]
  * @property {boolean} [can_cancel]
@@ -298,6 +326,7 @@ const Joi = require("joi");
  * @property {Prices} [prices]
  * @property {string} [returnable_date]
  * @property {string} [shipment_created_at]
+ * @property {string} [shipment_created_ts]
  * @property {Object} [size_info]
  * @property {Bags[]} [bags]
  * @property {string} [dp_name]
@@ -305,12 +334,14 @@ const Joi = require("joi");
  * @property {boolean} [beneficiary_details]
  * @property {FulfillingCompany} [fulfilling_company]
  * @property {boolean} [can_return]
- * @property {DeliveryAddress} [delivery_address]
+ * @property {Address} [delivery_address]
+ * @property {Address} [billing_address]
  * @property {string} [track_url]
  * @property {string} [order_id]
  * @property {string} [need_help_url]
  * @property {Object} [return_meta]
  * @property {string} [delivery_date]
+ * @property {OrderRequest} [order]
  */
 
 /**
@@ -332,12 +363,15 @@ const Joi = require("joi");
 /**
  * @typedef OrderSchema
  * @property {number} [total_shipments_in_order]
+ * @property {string} [gstin_code]
  * @property {UserInfo} [user_info]
  * @property {BreakupValues[]} [breakup_values]
  * @property {string} [order_created_time]
+ * @property {string} [order_created_ts]
  * @property {string} [order_id]
  * @property {Shipments[]} [shipments]
  * @property {BagsForReorder[]} [bags_for_reorder]
+ * @property {Object} [meta]
  */
 
 /**
@@ -554,6 +588,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef OrderRequest
+ * @property {Object} [meta]
+ */
+
+/**
  * @typedef UpdateShipmentStatusRequest
  * @property {StatuesRequest[]} [statuses]
  * @property {boolean} [task]
@@ -628,6 +667,19 @@ class OrderApplicationModel {
     });
   }
 
+  /** @returns {ShipmentPaymentInfo} */
+  static ShipmentPaymentInfo() {
+    return Joi.object({
+      mop: Joi.string().allow(""),
+      payment_mode: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      mode: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      amount: Joi.number(),
+    });
+  }
+
   /** @returns {ShipmentUserInfo} */
   static ShipmentUserInfo() {
     return Joi.object({
@@ -687,6 +739,7 @@ class OrderApplicationModel {
       is_passed: Joi.boolean(),
       status: Joi.string().allow(""),
       time: Joi.string().allow(""),
+      created_ts: Joi.string().allow(""),
       tracking_details: Joi.array().items(
         OrderApplicationModel.NestedTrackingDetails()
       ),
@@ -743,6 +796,7 @@ class OrderApplicationModel {
       refund_amount: Joi.number(),
       currency_code: Joi.string().allow(""),
       fynd_credits: Joi.number(),
+      amount_to_be_collected: Joi.number(),
     });
   }
 
@@ -835,6 +889,7 @@ class OrderApplicationModel {
       gst_fee: Joi.number(),
       refund_amount: Joi.number(),
       fynd_credits: Joi.number(),
+      amount_to_be_collected: Joi.number(),
     });
   }
 
@@ -870,6 +925,7 @@ class OrderApplicationModel {
       currency_code: Joi.string().allow(""),
       seller_identifier: Joi.string().allow(""),
       current_status: OrderApplicationModel.CurrentStatus(),
+      article: OrderApplicationModel.Article(),
     });
   }
 
@@ -881,8 +937,15 @@ class OrderApplicationModel {
     });
   }
 
-  /** @returns {DeliveryAddress} */
-  static DeliveryAddress() {
+  /** @returns {Article} */
+  static Article() {
+    return Joi.object({
+      tags: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {Address} */
+  static Address() {
     return Joi.object({
       pincode: Joi.string().allow(""),
       phone: Joi.string().allow(""),
@@ -898,6 +961,7 @@ class OrderApplicationModel {
       state: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       address1: Joi.string().allow(""),
+      display_address: Joi.string().allow(""),
       name: Joi.string().allow(""),
       contact_person: Joi.string().allow(""),
       address_category: Joi.string().allow(""),
@@ -913,6 +977,9 @@ class OrderApplicationModel {
   static Shipments() {
     return Joi.object({
       payment: OrderApplicationModel.ShipmentPayment(),
+      payment_info: Joi.array().items(
+        OrderApplicationModel.ShipmentPaymentInfo()
+      ),
       order_type: Joi.string().allow("").allow(null),
       show_download_invoice: Joi.boolean(),
       can_cancel: Joi.boolean(),
@@ -937,6 +1004,7 @@ class OrderApplicationModel {
       prices: OrderApplicationModel.Prices(),
       returnable_date: Joi.string().allow("").allow(null),
       shipment_created_at: Joi.string().allow(""),
+      shipment_created_ts: Joi.string().allow(""),
       size_info: Joi.any(),
       bags: Joi.array().items(OrderApplicationModel.Bags()),
       dp_name: Joi.string().allow(""),
@@ -944,12 +1012,14 @@ class OrderApplicationModel {
       beneficiary_details: Joi.boolean(),
       fulfilling_company: OrderApplicationModel.FulfillingCompany(),
       can_return: Joi.boolean(),
-      delivery_address: OrderApplicationModel.DeliveryAddress(),
+      delivery_address: OrderApplicationModel.Address(),
+      billing_address: OrderApplicationModel.Address(),
       track_url: Joi.string().allow(""),
       order_id: Joi.string().allow(""),
       need_help_url: Joi.string().allow(""),
       return_meta: Joi.any(),
       delivery_date: Joi.string().allow("").allow(null),
+      order: OrderApplicationModel.OrderRequest(),
     });
   }
 
@@ -977,14 +1047,17 @@ class OrderApplicationModel {
   static OrderSchema() {
     return Joi.object({
       total_shipments_in_order: Joi.number(),
+      gstin_code: Joi.string().allow(""),
       user_info: OrderApplicationModel.UserInfo(),
       breakup_values: Joi.array().items(OrderApplicationModel.BreakupValues()),
       order_created_time: Joi.string().allow(""),
+      order_created_ts: Joi.string().allow(""),
       order_id: Joi.string().allow(""),
       shipments: Joi.array().items(OrderApplicationModel.Shipments()),
       bags_for_reorder: Joi.array().items(
         OrderApplicationModel.BagsForReorder()
       ),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1266,6 +1339,13 @@ class OrderApplicationModel {
       shipments: Joi.array().items(OrderApplicationModel.ShipmentsRequest()),
       exclude_bags_next_state: Joi.string().allow(""),
       status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {OrderRequest} */
+  static OrderRequest() {
+    return Joi.object({
+      meta: Joi.any(),
     });
   }
 

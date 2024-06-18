@@ -57,8 +57,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateMarketplaceOptinParam
- * @property {string} marketplace - The marketplace for which the detail needs
- *   to be retrieved.
+ * @property {string} marketplaceSlug - The marketplace for which the detail
+ *   needs to be retrieved.
  * @property {CatalogPlatformModel.OptInPostRequest} body
  */
 
@@ -96,14 +96,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef DeleteBulkInventoryJobParam
  * @property {string} batchId - Batch Id of the bulk delete job.
- */
-
-/**
- * @typedef DeleteInventoryParam
- * @property {string} size - Size that is to be deleted.
- * @property {number} itemId - Id of the product associated with Inventory to be deleted.
- * @property {number} locationId - Location ID of store of which inventory is to
- *   be deleted.
  */
 
 /**
@@ -207,9 +199,25 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ * @property {string} [pageId] - Alphanumeric Page ID to retrieve next set of results.
+ * @property {string} [pageType] - Available pagination types are cursor or number.
  * @property {string} [q] - Search with help of store code.
  * @property {boolean} [sellable] - Filter on whether product is in stock or not.
  * @property {number[]} [storeIds] - The Store Id of products to fetch inventory.
+ * @property {number[]} [brandIds] - The Brand Id of products to fetch inventory.
+ * @property {string[]} [sellerIdentifiers] - The Seller Identifier or Primary
+ *   Identifier of the inventory.
+ * @property {number} [qtyGt] - This field allows you to filter for inventories
+ *   that have quantity greater than to the specified value based on qty_type filter.
+ * @property {number} [qtyLt] - This field allows you to filter for inventories
+ *   that have a quantity less than to the specified value based on qty_type filter.
+ * @property {string} [qtyType] - This field provides flexibility in selecting
+ *   filter for inventory quantity counts and date queries. For example, you
+ *   might use this field to specify "total" or "sellable" quantity.
+ * @property {string} [fromDate] - Inventory updated on filter to get
+ *   inventories greater then or equal to provided date based on qty_type value.
+ * @property {string} [toDate] - Inventory updated on filter to get inventories
+ *   less then or equal to provided date based on qty_type value.
  * @property {string} [sizeIdentifier] - Size Identifier (Seller Identifier or
  *   Primary Identifier) of which inventory is to get.
  */
@@ -220,6 +228,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ * @property {string} [search] - Search string to filter the results by batch id
  */
 
 /**
@@ -250,6 +259,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /** @typedef GetInventoryExportParam */
 
 /** @typedef GetMarketplaceOptinDetailParam */
+
+/** @typedef GetMarketplacesParam */
 
 /**
  * @typedef GetOptimalLocationsParam
@@ -309,6 +320,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   the from_date specified to the to_date.
  * @property {string} [q] - It is a query parameter to search the export job
  *   with the task ID.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
  */
 
 /**
@@ -363,6 +378,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
+ * @property {number} [brandId] - Brand id that is to be searched.
  */
 
 /**
@@ -386,12 +402,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef ListCategoriesParam
  * @property {string} [level] - Get category for multiple levels
- * @property {string} [departments] - Get category for multiple departments filtered
+ * @property {number} [department] - Get category for multiple departments filtered
  * @property {string} [q] - Get multiple categories filtered by search string
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
+ * @property {number[]} [uids] - Get multiple categories filtered by category uids.
+ * @property {string} [slug] - Get category by slug
  */
 
 /**
@@ -407,6 +425,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   department in search parameter.
  * @property {boolean} [isActive] - Can query for departments based on whether
  *   they are active or inactive.
+ * @property {string} [slug] - Can filter by slug
  */
 
 /** @typedef ListHSNCodesParam */
@@ -418,6 +437,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   to from_date.
  * @property {string} [toDate] - Inventory export history filtered according to from_date.
  * @property {string} [q] - Inventory export history filtered according to task ID.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
  */
 
 /**
@@ -469,6 +492,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef UpdateMarketplaceOptinParam
+ * @property {string} marketplaceSlug - Slug of the marketplace .
+ * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequest} body
+ */
+
+/**
  * @typedef UpdateProductBundleParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
@@ -494,7 +523,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} department - Department of the product to be uploaded.
  * @property {string} productType - Product type of the product to be uploaded
  *   i.e. set, standard , digital.
- * @property {CatalogPlatformModel.BulkJob} body
+ * @property {CatalogPlatformModel.BulkProductJob} body
  */
 
 /**
@@ -591,7 +620,7 @@ class CatalogPlatformValidator {
   /** @returns {CreateMarketplaceOptinParam} */
   static createMarketplaceOptin() {
     return Joi.object({
-      marketplace: Joi.string().allow("").required(),
+      marketplaceSlug: Joi.string().allow("").required(),
       body: CatalogPlatformModel.OptInPostRequest().required(),
     }).required();
   }
@@ -643,15 +672,6 @@ class CatalogPlatformValidator {
   static deleteBulkInventoryJob() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteInventoryParam} */
-  static deleteInventory() {
-    return Joi.object({
-      size: Joi.string().allow("").required(),
-      itemId: Joi.number().required(),
-      locationId: Joi.number().required(),
     }).required();
   }
 
@@ -783,9 +803,18 @@ class CatalogPlatformValidator {
       size: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      pageId: Joi.string().allow(""),
+      pageType: Joi.string().allow(""),
       q: Joi.string().allow(""),
       sellable: Joi.boolean(),
       storeIds: Joi.array().items(Joi.number()),
+      brandIds: Joi.array().items(Joi.number()),
+      sellerIdentifiers: Joi.array().items(Joi.string().allow("")),
+      qtyGt: Joi.number(),
+      qtyLt: Joi.number(),
+      qtyType: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
       sizeIdentifier: Joi.string().allow(""),
     }).required();
   }
@@ -795,6 +824,7 @@ class CatalogPlatformValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      search: Joi.string().allow(""),
     }).required();
   }
 
@@ -829,6 +859,11 @@ class CatalogPlatformValidator {
 
   /** @returns {GetMarketplaceOptinDetailParam} */
   static getMarketplaceOptinDetail() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetMarketplacesParam} */
+  static getMarketplaces() {
     return Joi.object({}).required();
   }
 
@@ -895,6 +930,8 @@ class CatalogPlatformValidator {
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       q: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -962,6 +999,7 @@ class CatalogPlatformValidator {
       tag: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      brandId: Joi.number(),
     }).required();
   }
 
@@ -988,10 +1026,12 @@ class CatalogPlatformValidator {
   static listCategories() {
     return Joi.object({
       level: Joi.string().allow(""),
-      departments: Joi.string().allow(""),
+      department: Joi.number(),
       q: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      uids: Joi.array().items(Joi.number()),
+      slug: Joi.string().allow(""),
     }).required();
   }
 
@@ -1004,6 +1044,7 @@ class CatalogPlatformValidator {
       name: Joi.string().allow(""),
       search: Joi.string().allow(""),
       isActive: Joi.boolean(),
+      slug: Joi.string().allow(""),
     }).required();
   }
 
@@ -1019,6 +1060,8 @@ class CatalogPlatformValidator {
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       q: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -1082,6 +1125,14 @@ class CatalogPlatformValidator {
     }).required();
   }
 
+  /** @returns {UpdateMarketplaceOptinParam} */
+  static updateMarketplaceOptin() {
+    return Joi.object({
+      marketplaceSlug: Joi.string().allow("").required(),
+      body: CatalogPlatformModel.UpdateMarketplaceOptinRequest().required(),
+    }).required();
+  }
+
   /** @returns {UpdateProductBundleParam} */
   static updateProductBundle() {
     return Joi.object({
@@ -1112,7 +1163,7 @@ class CatalogPlatformValidator {
     return Joi.object({
       department: Joi.string().allow("").required(),
       productType: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.BulkJob().required(),
+      body: CatalogPlatformModel.BulkProductJob().required(),
     }).required();
   }
 

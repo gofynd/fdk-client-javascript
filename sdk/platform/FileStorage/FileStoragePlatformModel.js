@@ -1,6 +1,12 @@
 const Joi = require("joi");
 
 /**
+ * @typedef ProxyResponse
+ * @property {Object} [data]
+ * @property {Object} [support]
+ */
+
+/**
  * @typedef FailedResponse
  * @property {string} message
  */
@@ -43,7 +49,7 @@ const Joi = require("joi");
  * @property {string} content_type
  * @property {number} size
  * @property {string[]} [tags]
- * @property {Params} [params]
+ * @property {Object} [params]
  */
 
 /**
@@ -108,7 +114,7 @@ const Joi = require("joi");
  * @property {string[]} format
  * @property {number} __v
  * @property {boolean} visibility
- * @property {string} [country_code]
+ * @property {string} country_code
  */
 
 /**
@@ -118,31 +124,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Inr
- * @property {string} [name]
- * @property {number} [value]
- * @property {string} [symbol]
- * @property {string} [sub_unit]
- */
-
-/**
- * @typedef Usd
- * @property {string} [name]
- * @property {number} [value]
- * @property {string} [symbol]
- * @property {string} [sub_unit]
- */
-
-/**
- * @typedef Rates
- * @property {Inr} [inr]
- * @property {Usd} [usd]
- */
-
-/**
  * @typedef ConversionRate
  * @property {string} [base]
- * @property {Rates} [rates]
+ * @property {Object} [rates]
  * @property {number} [timestamp]
  */
 
@@ -151,6 +135,8 @@ const Joi = require("joi");
  * @property {string} [name]
  * @property {string} [awb_number_barcode]
  * @property {string} [awb_number]
+ * @property {string} [origin]
+ * @property {string} [destination]
  * @property {string} [eway_bill_number]
  */
 
@@ -165,6 +151,10 @@ const Joi = require("joi");
  * @property {number} [amount]
  * @property {string} [date]
  * @property {string} [transaction_id]
+ * @property {string} [time]
+ * @property {string} [mode]
+ * @property {string} [name]
+ * @property {Object} [meta]
  */
 
 /**
@@ -176,6 +166,10 @@ const Joi = require("joi");
  * @property {string} [shipment_id]
  * @property {string} [signed_qrcode]
  * @property {string} [upi_qrcode]
+ * @property {string} [device_id]
+ * @property {string} [marketplace_invoice_id]
+ * @property {string} [marketplace_shipment_id]
+ * @property {string} [channel_order_id]
  */
 
 /**
@@ -194,6 +188,13 @@ const Joi = require("joi");
  * @property {string} [cin]
  * @property {string} [website_url]
  * @property {string} [email]
+ * @property {string} [display_address]
+ * @property {string} [sector]
+ * @property {Object} [phone]
+ * @property {string} [trn]
+ * @property {string} [vat]
+ * @property {string} [business_country_timezone]
+ * @property {Object} [business_country_currency]
  */
 
 /**
@@ -207,6 +208,9 @@ const Joi = require("joi");
  * @property {string} [zip_code]
  * @property {string} [state_code]
  * @property {string} [gstin]
+ * @property {string} [display_address]
+ * @property {string} [sector]
+ * @property {string} [store_id]
  */
 
 /**
@@ -221,6 +225,9 @@ const Joi = require("joi");
  * @property {string} [zip_code]
  * @property {string} [state_code]
  * @property {string} [gstin]
+ * @property {string} [display_address]
+ * @property {string} [sector]
+ * @property {string} [email]
  */
 
 /**
@@ -235,6 +242,8 @@ const Joi = require("joi");
  * @property {string} [zip_code]
  * @property {string} [state_code]
  * @property {string} [gstin]
+ * @property {string} [display_address]
+ * @property {string} [sector]
  */
 
 /**
@@ -247,6 +256,8 @@ const Joi = require("joi");
  * @property {string} [zip_code]
  * @property {string} [state_code]
  * @property {string} [gstin]
+ * @property {string} [display_address]
+ * @property {string} [sector]
  */
 
 /**
@@ -295,6 +306,8 @@ const Joi = require("joi");
  * @property {number} [taxable_amount]
  * @property {number} [total_taxable_amount]
  * @property {Tax} [tax]
+ * @property {Object} [meta]
+ * @property {string} [country_of_origin]
  */
 
 /**
@@ -307,6 +320,15 @@ const Joi = require("joi");
  * @property {number} [cod_charges]
  * @property {number} [fynd_discounts]
  * @property {string} [total_in_words]
+ * @property {number} [gift_price]
+ * @property {number} [total_quantity]
+ * @property {number} [sub_total]
+ * @property {number} [discount]
+ * @property {number} [promotion]
+ * @property {number} [coupon]
+ * @property {number} [reward]
+ * @property {number} [round_off]
+ * @property {number} [total_value_of_goods]
  */
 
 /**
@@ -332,6 +354,8 @@ const Joi = require("joi");
  * @property {string} [country_code]
  * @property {number} [zip_code]
  * @property {string} [state_code]
+ * @property {string} [display_address]
+ * @property {string} [sector]
  */
 
 /**
@@ -381,12 +405,19 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef AwbNumberBarcodeGenerator
+ * @property {string} [method]
+ * @property {Kwargs} [kwargs]
+ */
+
+/**
  * @typedef MetaProperty
  * @property {ShipmentIdBarcodeGenerator} [shipment_id_barcode_generator]
  * @property {SignedQrcodeGenerator} [signed_qrcode_generator]
  * @property {UpiQrcodeGenerator} [upi_qrcode_generator]
  * @property {DigitalsignatureGenerator} [digitalsignature_generator]
  * @property {AwbNumberLabelBarcodeGenerator} [awb_number_label_barcode_generator]
+ * @property {AwbNumberBarcodeGenerator} [awb_number_barcode_generator]
  */
 
 /**
@@ -396,8 +427,18 @@ const Joi = require("joi");
 
 /**
  * @typedef DummyTemplateDataPayload
- * @property {boolean} [is_international]
+ * @property {boolean} [is_export]
+ * @property {boolean} [is_export_shipment]
  * @property {string} [app_domain_name]
+ * @property {string} [txn_id]
+ * @property {string} [utr]
+ * @property {string} [po_number]
+ * @property {string} [credit_note_id]
+ * @property {string} [current_date]
+ * @property {number} [total_value_of_goods]
+ * @property {Object} [b2b_buyer_details]
+ * @property {Object} [is_qwik]
+ * @property {string} [order_type]
  * @property {ConversionRate} [conversion_rate]
  * @property {string} [currency_code]
  * @property {string} [shipment_id]
@@ -438,6 +479,7 @@ const Joi = require("joi");
  * @property {string} [_id]
  * @property {number} [pdf_type_id]
  * @property {DummyTemplateDataPayload} payload
+ * @property {string} [country_code]
  * @property {number} [__v]
  */
 
@@ -579,7 +621,20 @@ const Joi = require("joi");
  * @property {string} [trace]
  */
 
+/**
+ * @typedef ExtensionSlug
+ * @property {string} [extension_slug]
+ */
+
 class FileStoragePlatformModel {
+  /** @returns {ProxyResponse} */
+  static ProxyResponse() {
+    return Joi.object({
+      data: Joi.object().pattern(/\S/, Joi.any()),
+      support: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
   /** @returns {FailedResponse} */
   static FailedResponse() {
     return Joi.object({
@@ -634,7 +689,7 @@ class FileStoragePlatformModel {
       content_type: Joi.string().allow("").required(),
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
-      params: FileStoragePlatformModel.Params(),
+      params: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -715,7 +770,7 @@ class FileStoragePlatformModel {
       format: Joi.array().items(Joi.string().allow("")).required(),
       __v: Joi.number().required(),
       visibility: Joi.boolean().required(),
-      country_code: Joi.string().allow(""),
+      country_code: Joi.string().allow("").required(),
     });
   }
 
@@ -729,39 +784,11 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {Inr} */
-  static Inr() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      value: Joi.number(),
-      symbol: Joi.string().allow(""),
-      sub_unit: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Usd} */
-  static Usd() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-      value: Joi.number(),
-      symbol: Joi.string().allow(""),
-      sub_unit: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Rates} */
-  static Rates() {
-    return Joi.object({
-      inr: FileStoragePlatformModel.Inr(),
-      usd: FileStoragePlatformModel.Usd(),
-    });
-  }
-
   /** @returns {ConversionRate} */
   static ConversionRate() {
     return Joi.object({
       base: Joi.string().allow(""),
-      rates: FileStoragePlatformModel.Rates(),
+      rates: Joi.object().pattern(/\S/, Joi.any()),
       timestamp: Joi.number(),
     });
   }
@@ -772,6 +799,8 @@ class FileStoragePlatformModel {
       name: Joi.string().allow(""),
       awb_number_barcode: Joi.string().allow(""),
       awb_number: Joi.string().allow(""),
+      origin: Joi.string().allow(""),
+      destination: Joi.string().allow(""),
       eway_bill_number: Joi.string().allow("").allow(null),
     });
   }
@@ -790,6 +819,10 @@ class FileStoragePlatformModel {
       amount: Joi.number(),
       date: Joi.string().allow(""),
       transaction_id: Joi.string().allow(""),
+      time: Joi.string().allow(""),
+      mode: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -803,6 +836,10 @@ class FileStoragePlatformModel {
       shipment_id: Joi.string().allow(""),
       signed_qrcode: Joi.string().allow(""),
       upi_qrcode: Joi.string().allow(""),
+      device_id: Joi.string().allow(""),
+      marketplace_invoice_id: Joi.string().allow(""),
+      marketplace_shipment_id: Joi.string().allow(""),
+      channel_order_id: Joi.string().allow(""),
     });
   }
 
@@ -817,12 +854,19 @@ class FileStoragePlatformModel {
       zip_code: Joi.number(),
       state_code: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
-      gstin: Joi.string().allow(""),
+      gstin: Joi.string().allow("").allow(null),
       pan: Joi.string().allow("").allow(null),
-      phone_no: Joi.string().allow(""),
+      phone_no: Joi.string().allow("").allow(null),
       cin: Joi.string().allow(""),
       website_url: Joi.string().allow(""),
       email: Joi.string().allow(""),
+      display_address: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      phone: Joi.object().pattern(/\S/, Joi.any()),
+      trn: Joi.string().allow(""),
+      vat: Joi.string().allow(""),
+      business_country_timezone: Joi.string().allow(""),
+      business_country_currency: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -837,7 +881,10 @@ class FileStoragePlatformModel {
       country_code: Joi.string().allow(""),
       zip_code: Joi.string().allow(""),
       state_code: Joi.string().allow(""),
-      gstin: Joi.string().allow(""),
+      gstin: Joi.string().allow("").allow(null),
+      display_address: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      store_id: Joi.string().allow(""),
     });
   }
 
@@ -854,6 +901,9 @@ class FileStoragePlatformModel {
       zip_code: Joi.string().allow(""),
       state_code: Joi.string().allow(""),
       gstin: Joi.string().allow("").allow(null),
+      display_address: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      email: Joi.string().allow(""),
     });
   }
 
@@ -870,6 +920,8 @@ class FileStoragePlatformModel {
       zip_code: Joi.string().allow(""),
       state_code: Joi.string().allow(""),
       gstin: Joi.string().allow("").allow(null),
+      display_address: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
     });
   }
 
@@ -883,7 +935,9 @@ class FileStoragePlatformModel {
       country_code: Joi.string().allow("").allow(null),
       zip_code: Joi.string().allow(""),
       state_code: Joi.string().allow(""),
-      gstin: Joi.string().allow(""),
+      gstin: Joi.string().allow("").allow(null),
+      display_address: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
     });
   }
 
@@ -944,6 +998,8 @@ class FileStoragePlatformModel {
       taxable_amount: Joi.number(),
       total_taxable_amount: Joi.number(),
       tax: FileStoragePlatformModel.Tax(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
+      country_of_origin: Joi.string().allow(""),
     });
   }
 
@@ -958,6 +1014,15 @@ class FileStoragePlatformModel {
       cod_charges: Joi.number(),
       fynd_discounts: Joi.number(),
       total_in_words: Joi.string().allow(""),
+      gift_price: Joi.number(),
+      total_quantity: Joi.number(),
+      sub_total: Joi.number(),
+      discount: Joi.number(),
+      promotion: Joi.number(),
+      coupon: Joi.number(),
+      reward: Joi.number(),
+      round_off: Joi.number(),
+      total_value_of_goods: Joi.number(),
     });
   }
 
@@ -989,6 +1054,8 @@ class FileStoragePlatformModel {
       country_code: Joi.string().allow(""),
       zip_code: Joi.number(),
       state_code: Joi.string().allow(""),
+      display_address: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
     });
   }
 
@@ -1054,6 +1121,14 @@ class FileStoragePlatformModel {
     });
   }
 
+  /** @returns {AwbNumberBarcodeGenerator} */
+  static AwbNumberBarcodeGenerator() {
+    return Joi.object({
+      method: Joi.string().allow(""),
+      kwargs: FileStoragePlatformModel.Kwargs(),
+    });
+  }
+
   /** @returns {MetaProperty} */
   static MetaProperty() {
     return Joi.object({
@@ -1062,6 +1137,7 @@ class FileStoragePlatformModel {
       upi_qrcode_generator: FileStoragePlatformModel.UpiQrcodeGenerator(),
       digitalsignature_generator: FileStoragePlatformModel.DigitalsignatureGenerator(),
       awb_number_label_barcode_generator: FileStoragePlatformModel.AwbNumberLabelBarcodeGenerator(),
+      awb_number_barcode_generator: FileStoragePlatformModel.AwbNumberBarcodeGenerator(),
     });
   }
 
@@ -1075,8 +1151,18 @@ class FileStoragePlatformModel {
   /** @returns {DummyTemplateDataPayload} */
   static DummyTemplateDataPayload() {
     return Joi.object({
-      is_international: Joi.boolean(),
+      is_export: Joi.boolean(),
+      is_export_shipment: Joi.boolean(),
       app_domain_name: Joi.string().allow(""),
+      txn_id: Joi.string().allow(""),
+      utr: Joi.string().allow(""),
+      po_number: Joi.string().allow(""),
+      credit_note_id: Joi.string().allow("").allow(null),
+      current_date: Joi.string().allow(""),
+      total_value_of_goods: Joi.number(),
+      b2b_buyer_details: Joi.object().pattern(/\S/, Joi.any()),
+      is_qwik: Joi.object().pattern(/\S/, Joi.any()),
+      order_type: Joi.string().allow(""),
       conversion_rate: FileStoragePlatformModel.ConversionRate(),
       currency_code: Joi.string().allow(""),
       shipment_id: Joi.string().allow(""),
@@ -1119,6 +1205,7 @@ class FileStoragePlatformModel {
       _id: Joi.string().allow(""),
       pdf_type_id: Joi.number(),
       payload: FileStoragePlatformModel.DummyTemplateDataPayload().required(),
+      country_code: Joi.string().allow(""),
       __v: Joi.number(),
     });
   }
@@ -1296,6 +1383,13 @@ class FileStoragePlatformModel {
       service: FileStoragePlatformModel.PaymentReceiptService(),
       event_trace_info: Joi.any(),
       trace: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ExtensionSlug} */
+  static ExtensionSlug() {
+    return Joi.object({
+      extension_slug: Joi.string().allow(""),
     });
   }
 }

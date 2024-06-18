@@ -214,7 +214,7 @@ console.log("Active Theme: ", response.information.name);
 The above code will log the curl command in the console
 
 ```bash
-curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 1.4.2-beta.10' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
+curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 1.4.6-beta.1' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
 Active Theme: Emerge
 ```
 
@@ -227,13 +227,4 @@ fdk-client-javascript includes Typescript definitions.
 ```typescript
 import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 ```
-
----
-
-### Documentation
-
-- [Application Front](documentation/application/README.md)
-- [Partner Front](documentation/partner/README.md)
-- [Platform Front](documentation/platform/README.md)
-- [Public Front](documentation/public/README.md)
 

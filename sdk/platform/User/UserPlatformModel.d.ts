@@ -1,5 +1,84 @@
 export = UserPlatformModel;
 /**
+ * @typedef SuccessMessageResponse
+ * @property {string} [success]
+ */
+/**
+ * @typedef UserAttributeDefinition
+ * @property {string} [_id] - The unique identifier for the attribute definition.
+ * @property {string} [name] - The attribute name.
+ * @property {string} [slug] - The attribute key.
+ * @property {string} [description] - The description of the attribute.
+ * @property {string} [application_id] - The application ID.
+ * @property {string} [type] - The attribute type.
+ * @property {boolean} [multi_value] - Whether the attribute supports multiple values.
+ * @property {boolean} [customer_editable] - Whether the attribute is customer-editable.
+ * @property {boolean} [encrypted] - Whether the attribute is encrypted.
+ * @property {boolean} [pinned] - Whether the attribute is pinned.
+ * @property {number} [pin_order] - The order in which the attribute is pinned.
+ * @property {Object[]} [validations]
+ * @property {boolean} [is_locked] - Whether the attribute is locked.
+ * @property {string} [created_at] - The creation date of the attribute.
+ * @property {string} [modified_at] - The modification date of the attribute.
+ * @property {number} [__v] - The version number of the attribute.
+ */
+/**
+ * @typedef UserAttributeDefinitionResponse
+ * @property {string} [_id] - The unique identifier for the attribute definition.
+ * @property {string} [name] - The attribute name.
+ * @property {string} [slug] - The attribute key.
+ * @property {string} [description] - The description of the attribute.
+ * @property {string} [application_id] - The application ID.
+ * @property {string} [type] - The attribute type.
+ * @property {boolean} [multi_value] - Whether the attribute supports multiple values.
+ * @property {boolean} [customer_editable] - Whether the attribute is customer-editable.
+ * @property {boolean} [encrypted] - Whether the attribute is encrypted.
+ * @property {boolean} [pinned] - Whether the attribute is pinned.
+ * @property {number} [pin_order] - The order in which the attribute is pinned.
+ * @property {UserAttributeDefinitionValidation[]} [validations]
+ * @property {boolean} [is_locked] - Whether the attribute is locked.
+ * @property {string} [created_by] - The user who created the attribute.
+ * @property {string} [updated_by] - The user who last updated the attribute.
+ * @property {string} [created_at] - The creation date of the attribute definition.
+ * @property {string} [modified_at] - The last modification date of the
+ *   attribute definition.
+ */
+/**
+ * @typedef UserAttributeDefinitionValidation
+ * @property {string} [type] - The type of validation.
+ * @property {Object} [value] - The validation value.
+ */
+/**
+ * @typedef UserAttributeResponse
+ * @property {string} [_id] - The unique identifier for the attribute definition.
+ * @property {string} [name] - The name of user attribute definition.
+ * @property {string} [user_id] - The unique identifier for the user.
+ * @property {string} [application_id] - The application ID.
+ * @property {string} [type] - The attribute type.
+ * @property {boolean} [customer_overriden] - Whether the attribute is customer-editable.
+ * @property {Object} [attribute]
+ * @property {string} [updated_by]
+ */
+/**
+ * @typedef CreateUserAttributeRequest
+ * @property {boolean} [customer_overriden]
+ * @property {Object} [attribute]
+ */
+/**
+ * @typedef CreateUserAttributeDefinition
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {boolean} [multi_value]
+ * @property {boolean} [customer_editable]
+ * @property {boolean} [encrypted]
+ * @property {boolean} [pinned]
+ * @property {number} [pin_order]
+ * @property {string} [default_value]
+ * @property {Object[]} [validations]
+ */
+/**
  * @typedef BlockUserRequestSchema
  * @property {boolean} [status]
  * @property {string[]} [user_id]
@@ -29,11 +108,11 @@ export = UserPlatformModel;
  */
 /**
  * @typedef UserSearchResponseSchema
- * @property {UserSchema[]} [users]
+ * @property {UserSearchSchema[]} [users]
  */
 /**
  * @typedef CustomerListResponseSchema
- * @property {UserSchema[]} [items]
+ * @property {UserSearchSchema[]} [items]
  * @property {PaginationSchema} [page]
  */
 /**
@@ -59,8 +138,14 @@ export = UserPlatformModel;
  * @property {string[]} [session_ids]
  */
 /**
- * @typedef AuthenticationApiErrorSchema
+ * @typedef APIError
+ * @property {string} [code]
  * @property {string} [message]
+ * @property {string} [info] - Error code description link
+ * @property {string} [request_id]
+ * @property {string} [error]
+ * @property {Object} [meta]
+ * @property {boolean} [authenticated]
  */
 /**
  * @typedef SessionListResponseInfo
@@ -69,14 +154,31 @@ export = UserPlatformModel;
  * @property {string} [ip]
  * @property {string} [domain]
  * @property {string} [expire_in]
+ * @property {string} [location]
+ */
+/**
+ * @typedef Conditions
+ * @property {string} [user_attribute_definition_id]
+ * @property {string} [type]
+ * @property {string} [value]
+ * @property {string} [key]
+ */
+/**
+ * @typedef UserResponseErrorSchema
+ * @property {number} [count]
+ * @property {string} [file_url]
  */
 /**
  * @typedef UserGroupResponseSchema
+ * @property {Conditions[]} [conditions]
+ * @property {UserResponseErrorSchema} [error]
  * @property {string} [name]
  * @property {string} [description]
  * @property {string} [file_url]
  * @property {string} [_id]
  * @property {string} [status]
+ * @property {boolean} [is_active]
+ * @property {string} [type]
  * @property {number} [uid]
  * @property {string} [application_id]
  * @property {string} [created_at]
@@ -89,10 +191,18 @@ export = UserPlatformModel;
  * @property {PaginationSchema} [page]
  */
 /**
- * @typedef CreateUserGroupSchema
+ * @typedef ConditionsSchema
+ * @property {string} [user_attribute_definition_id]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+/**
+ * @typedef CreateUserGroup
+ * @property {ConditionsSchema[]} [conditions]
+ * @property {string} [type]
  * @property {string} name
  * @property {string} description
- * @property {string} file_url
+ * @property {string} [file_url]
  */
 /**
  * @typedef CreateUserRequestSchema
@@ -104,6 +214,7 @@ export = UserPlatformModel;
  * @property {string} username
  * @property {Object} [meta]
  * @property {string} [external_id]
+ * @property {string} [rr_id]
  */
 /**
  * @typedef CreateUserResponseSchema
@@ -148,8 +259,9 @@ export = UserPlatformModel;
  * @property {string} [desktop_image]
  * @property {number} [delete_account_day]
  * @property {DeleteAccountReasons[]} [delete_account_reasons]
- * @property {Object} [delete_account_consent]
- * @property {Object} [session_config]
+ * @property {DeleteAccountConsent} [delete_account_consent]
+ * @property {SessionExpiry} [session_config]
+ * @property {number} [__v]
  */
 /**
  * @typedef LookAndFeel
@@ -227,14 +339,17 @@ export = UserPlatformModel;
 /**
  * @typedef Facebook
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 /**
  * @typedef Accountkit
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 /**
  * @typedef Google
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 /**
  * @typedef SessionExpiry
@@ -244,6 +359,8 @@ export = UserPlatformModel;
  */
 /**
  * @typedef UpdateUserGroupSchema
+ * @property {ConditionsSchema[]} [conditions]
+ * @property {string} [type]
  * @property {string} [name]
  * @property {string} [description]
  * @property {string} [file_url]
@@ -275,6 +392,7 @@ export = UserPlatformModel;
  * @property {string} [last_name]
  * @property {string} [gender]
  * @property {string} [external_id]
+ * @property {string} [rr_id]
  * @property {Object} [meta]
  * @property {UserPhoneNumbers[]} [phone_numbers]
  * @property {UserEmails[]} [emails]
@@ -313,27 +431,254 @@ export = UserPlatformModel;
  * @property {string} [created_at]
  * @property {string} [updated_at]
  * @property {string} [external_id]
+ * @property {string} [rr_id]
+ */
+/**
+ * @typedef UserSearchSchema
+ * @property {string} [application_id]
+ * @property {string} [user_id]
+ * @property {string} [first_name]
+ * @property {Object} [meta]
+ * @property {string} [last_name]
+ * @property {PhoneNumber[]} [phone_numbers]
+ * @property {Email[]} [emails]
+ * @property {string} [gender]
+ * @property {string} [dob]
+ * @property {boolean} [active]
+ * @property {string} [profile_pic_url]
+ * @property {string} [username]
+ * @property {string} [account_type]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {string} [rr_id]
+ * @property {boolean} [archive]
+ * @property {string} [status]
  */
 /**
  * @typedef PhoneNumber
- * @property {boolean} [active]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [phone]
- * @property {number} [country_code]
+ * @property {string} [phone] - Phone number
+ * @property {number} [country_code] - Country code
+ * @property {boolean} [active] - Is the phone number active
+ * @property {boolean} [primary] - Is it a primary phone number
+ * @property {boolean} [verified] - Is the phone number verified
  */
 /**
  * @typedef Email
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- * @property {string} [email]
- * @property {boolean} [active]
+ * @property {string} [email] - Email address
+ * @property {boolean} [active] - Is the email active
+ * @property {boolean} [primary] - Is it a primary email
+ * @property {boolean} [verified] - Is the email verified
  */
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, AuthenticationApiErrorSchema, SessionListResponseInfo, UserGroupResponseSchema, UserGroupListResponseSchema, CreateUserGroupSchema, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, PhoneNumber, Email };
+    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
 }
+/** @returns {SuccessMessageResponse} */
+declare function SuccessMessageResponse(): SuccessMessageResponse;
+type SuccessMessageResponse = {
+    success?: string;
+};
+/** @returns {UserAttributeDefinition} */
+declare function UserAttributeDefinition(): UserAttributeDefinition;
+type UserAttributeDefinition = {
+    /**
+     * - The unique identifier for the attribute definition.
+     */
+    _id?: string;
+    /**
+     * - The attribute name.
+     */
+    name?: string;
+    /**
+     * - The attribute key.
+     */
+    slug?: string;
+    /**
+     * - The description of the attribute.
+     */
+    description?: string;
+    /**
+     * - The application ID.
+     */
+    application_id?: string;
+    /**
+     * - The attribute type.
+     */
+    type?: string;
+    /**
+     * - Whether the attribute supports multiple values.
+     */
+    multi_value?: boolean;
+    /**
+     * - Whether the attribute is customer-editable.
+     */
+    customer_editable?: boolean;
+    /**
+     * - Whether the attribute is encrypted.
+     */
+    encrypted?: boolean;
+    /**
+     * - Whether the attribute is pinned.
+     */
+    pinned?: boolean;
+    /**
+     * - The order in which the attribute is pinned.
+     */
+    pin_order?: number;
+    validations?: any[];
+    /**
+     * - Whether the attribute is locked.
+     */
+    is_locked?: boolean;
+    /**
+     * - The creation date of the attribute.
+     */
+    created_at?: string;
+    /**
+     * - The modification date of the attribute.
+     */
+    modified_at?: string;
+    /**
+     * - The version number of the attribute.
+     */
+    __v?: number;
+};
+/** @returns {UserAttributeDefinitionResponse} */
+declare function UserAttributeDefinitionResponse(): UserAttributeDefinitionResponse;
+type UserAttributeDefinitionResponse = {
+    /**
+     * - The unique identifier for the attribute definition.
+     */
+    _id?: string;
+    /**
+     * - The attribute name.
+     */
+    name?: string;
+    /**
+     * - The attribute key.
+     */
+    slug?: string;
+    /**
+     * - The description of the attribute.
+     */
+    description?: string;
+    /**
+     * - The application ID.
+     */
+    application_id?: string;
+    /**
+     * - The attribute type.
+     */
+    type?: string;
+    /**
+     * - Whether the attribute supports multiple values.
+     */
+    multi_value?: boolean;
+    /**
+     * - Whether the attribute is customer-editable.
+     */
+    customer_editable?: boolean;
+    /**
+     * - Whether the attribute is encrypted.
+     */
+    encrypted?: boolean;
+    /**
+     * - Whether the attribute is pinned.
+     */
+    pinned?: boolean;
+    /**
+     * - The order in which the attribute is pinned.
+     */
+    pin_order?: number;
+    validations?: UserAttributeDefinitionValidation[];
+    /**
+     * - Whether the attribute is locked.
+     */
+    is_locked?: boolean;
+    /**
+     * - The user who created the attribute.
+     */
+    created_by?: string;
+    /**
+     * - The user who last updated the attribute.
+     */
+    updated_by?: string;
+    /**
+     * - The creation date of the attribute definition.
+     */
+    created_at?: string;
+    /**
+     * - The last modification date of the
+     * attribute definition.
+     */
+    modified_at?: string;
+};
+/** @returns {UserAttributeDefinitionValidation} */
+declare function UserAttributeDefinitionValidation(): UserAttributeDefinitionValidation;
+type UserAttributeDefinitionValidation = {
+    /**
+     * - The type of validation.
+     */
+    type?: string;
+    /**
+     * - The validation value.
+     */
+    value?: any;
+};
+/** @returns {UserAttributeResponse} */
+declare function UserAttributeResponse(): UserAttributeResponse;
+type UserAttributeResponse = {
+    /**
+     * - The unique identifier for the attribute definition.
+     */
+    _id?: string;
+    /**
+     * - The name of user attribute definition.
+     */
+    name?: string;
+    /**
+     * - The unique identifier for the user.
+     */
+    user_id?: string;
+    /**
+     * - The application ID.
+     */
+    application_id?: string;
+    /**
+     * - The attribute type.
+     */
+    type?: string;
+    /**
+     * - Whether the attribute is customer-editable.
+     */
+    customer_overriden?: boolean;
+    attribute?: any;
+    updated_by?: string;
+};
+/** @returns {CreateUserAttributeRequest} */
+declare function CreateUserAttributeRequest(): CreateUserAttributeRequest;
+type CreateUserAttributeRequest = {
+    customer_overriden?: boolean;
+    attribute?: any;
+};
+/** @returns {CreateUserAttributeDefinition} */
+declare function CreateUserAttributeDefinition(): CreateUserAttributeDefinition;
+type CreateUserAttributeDefinition = {
+    name?: string;
+    slug?: string;
+    description?: string;
+    type?: string;
+    multi_value?: boolean;
+    customer_editable?: boolean;
+    encrypted?: boolean;
+    pinned?: boolean;
+    pin_order?: number;
+    default_value?: string;
+    validations?: any[];
+};
 /** @returns {BlockUserRequestSchema} */
 declare function BlockUserRequestSchema(): BlockUserRequestSchema;
 type BlockUserRequestSchema = {
@@ -371,12 +716,12 @@ type UnDeleteUserSuccess = {
 /** @returns {UserSearchResponseSchema} */
 declare function UserSearchResponseSchema(): UserSearchResponseSchema;
 type UserSearchResponseSchema = {
-    users?: UserSchema[];
+    users?: UserSearchSchema[];
 };
 /** @returns {CustomerListResponseSchema} */
 declare function CustomerListResponseSchema(): CustomerListResponseSchema;
 type CustomerListResponseSchema = {
-    items?: UserSchema[];
+    items?: UserSearchSchema[];
     page?: PaginationSchema;
 };
 /** @returns {PaginationSchema} */
@@ -405,10 +750,19 @@ type SessionsDeleteResponseSchema = {
     user_id?: string;
     session_ids?: string[];
 };
-/** @returns {AuthenticationApiErrorSchema} */
-declare function AuthenticationApiErrorSchema(): AuthenticationApiErrorSchema;
-type AuthenticationApiErrorSchema = {
+/** @returns {APIError} */
+declare function APIError(): APIError;
+type APIError = {
+    code?: string;
     message?: string;
+    /**
+     * - Error code description link
+     */
+    info?: string;
+    request_id?: string;
+    error?: string;
+    meta?: any;
+    authenticated?: boolean;
 };
 /** @returns {SessionListResponseInfo} */
 declare function SessionListResponseInfo(): SessionListResponseInfo;
@@ -418,15 +772,34 @@ type SessionListResponseInfo = {
     ip?: string;
     domain?: string;
     expire_in?: string;
+    location?: string;
+};
+/** @returns {Conditions} */
+declare function Conditions(): Conditions;
+type Conditions = {
+    user_attribute_definition_id?: string;
+    type?: string;
+    value?: string;
+    key?: string;
+};
+/** @returns {UserResponseErrorSchema} */
+declare function UserResponseErrorSchema(): UserResponseErrorSchema;
+type UserResponseErrorSchema = {
+    count?: number;
+    file_url?: string;
 };
 /** @returns {UserGroupResponseSchema} */
 declare function UserGroupResponseSchema(): UserGroupResponseSchema;
 type UserGroupResponseSchema = {
+    conditions?: Conditions[];
+    error?: UserResponseErrorSchema;
     name?: string;
     description?: string;
     file_url?: string;
     _id?: string;
     status?: string;
+    is_active?: boolean;
+    type?: string;
     uid?: number;
     application_id?: string;
     created_at?: string;
@@ -439,12 +812,21 @@ type UserGroupListResponseSchema = {
     items?: UserGroupResponseSchema[];
     page?: PaginationSchema;
 };
-/** @returns {CreateUserGroupSchema} */
-declare function CreateUserGroupSchema(): CreateUserGroupSchema;
-type CreateUserGroupSchema = {
+/** @returns {ConditionsSchema} */
+declare function ConditionsSchema(): ConditionsSchema;
+type ConditionsSchema = {
+    user_attribute_definition_id?: string;
+    type?: string;
+    value?: string;
+};
+/** @returns {CreateUserGroup} */
+declare function CreateUserGroup(): CreateUserGroup;
+type CreateUserGroup = {
+    conditions?: ConditionsSchema[];
+    type?: string;
     name: string;
     description: string;
-    file_url: string;
+    file_url?: string;
 };
 /** @returns {CreateUserRequestSchema} */
 declare function CreateUserRequestSchema(): CreateUserRequestSchema;
@@ -457,6 +839,7 @@ type CreateUserRequestSchema = {
     username: string;
     meta?: any;
     external_id?: string;
+    rr_id?: string;
 };
 /** @returns {CreateUserResponseSchema} */
 declare function CreateUserResponseSchema(): CreateUserResponseSchema;
@@ -505,8 +888,9 @@ type PlatformSchema = {
     desktop_image?: string;
     delete_account_day?: number;
     delete_account_reasons?: DeleteAccountReasons[];
-    delete_account_consent?: any;
-    session_config?: any;
+    delete_account_consent?: DeleteAccountConsent;
+    session_config?: SessionExpiry;
+    __v?: number;
 };
 /** @returns {LookAndFeel} */
 declare function LookAndFeel(): LookAndFeel;
@@ -599,16 +983,19 @@ type DeleteAccountConsent = {
 declare function Facebook(): Facebook;
 type Facebook = {
     app_id?: string;
+    app_secret?: string;
 };
 /** @returns {Accountkit} */
 declare function Accountkit(): Accountkit;
 type Accountkit = {
     app_id?: string;
+    app_secret?: string;
 };
 /** @returns {Google} */
 declare function Google(): Google;
 type Google = {
     app_id?: string;
+    app_secret?: string;
 };
 /** @returns {SessionExpiry} */
 declare function SessionExpiry(): SessionExpiry;
@@ -620,6 +1007,8 @@ type SessionExpiry = {
 /** @returns {UpdateUserGroupSchema} */
 declare function UpdateUserGroupSchema(): UpdateUserGroupSchema;
 type UpdateUserGroupSchema = {
+    conditions?: ConditionsSchema[];
+    type?: string;
     name?: string;
     description?: string;
     file_url?: string;
@@ -672,6 +1061,7 @@ type UpdateUserRequestSchema = {
     last_name?: string;
     gender?: string;
     external_id?: string;
+    rr_id?: string;
     meta?: any;
     phone_numbers?: UserPhoneNumbers[];
     emails?: UserEmails[];
@@ -713,21 +1103,73 @@ type UserSchema = {
     created_at?: string;
     updated_at?: string;
     external_id?: string;
+    rr_id?: string;
+};
+/** @returns {UserSearchSchema} */
+declare function UserSearchSchema(): UserSearchSchema;
+type UserSearchSchema = {
+    application_id?: string;
+    user_id?: string;
+    first_name?: string;
+    meta?: any;
+    last_name?: string;
+    phone_numbers?: PhoneNumber[];
+    emails?: Email[];
+    gender?: string;
+    dob?: string;
+    active?: boolean;
+    profile_pic_url?: string;
+    username?: string;
+    account_type?: string;
+    _id?: string;
+    created_at?: string;
+    updated_at?: string;
+    external_id?: string;
+    rr_id?: string;
+    archive?: boolean;
+    status?: string;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
 type PhoneNumber = {
-    active?: boolean;
-    primary?: boolean;
-    verified?: boolean;
+    /**
+     * - Phone number
+     */
     phone?: string;
+    /**
+     * - Country code
+     */
     country_code?: number;
+    /**
+     * - Is the phone number active
+     */
+    active?: boolean;
+    /**
+     * - Is it a primary phone number
+     */
+    primary?: boolean;
+    /**
+     * - Is the phone number verified
+     */
+    verified?: boolean;
 };
 /** @returns {Email} */
 declare function Email(): Email;
 type Email = {
-    primary?: boolean;
-    verified?: boolean;
+    /**
+     * - Email address
+     */
     email?: string;
+    /**
+     * - Is the email active
+     */
     active?: boolean;
+    /**
+     * - Is it a primary email
+     */
+    primary?: boolean;
+    /**
+     * - Is the email verified
+     */
+    verified?: boolean;
 };

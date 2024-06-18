@@ -14,7 +14,8 @@ export = OrderApplicationValidator;
 /**
  * @typedef GetOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
- *   tracking your orders.
+ *   tracking an order.
+ * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  */
 /**
  * @typedef GetOrdersParam
@@ -26,13 +27,12 @@ export = OrderApplicationValidator;
  *   Default value is 10.
  * @property {string} [fromDate] - The date from which the orders should be retrieved.
  * @property {string} [toDate] - The date till which the orders should be retrieved.
+ * @property {string} [startDate] - UTC Start Date in ISO format
+ * @property {string} [endDate] - UTC Start Date in ISO format
  * @property {string} [customMeta] - A filter and retrieve data using special
  *   fields included for special use-cases
- */
-/**
- * @typedef GetPosOrderByIdParam
- * @property {string} orderId - A unique number used for identifying and
- *   tracking your orders.
+ * @property {boolean} [allowInactive] - Flag indicating whether inactive
+ *   shipments are allowed
  */
 /**
  * @typedef GetShipmentBagReasonsParam
@@ -46,6 +46,7 @@ export = OrderApplicationValidator;
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
+ * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  */
 /**
  * @typedef GetShipmentReasonsParam
@@ -92,8 +93,6 @@ declare class OrderApplicationValidator {
     static getOrderById(): GetOrderByIdParam;
     /** @returns {GetOrdersParam} */
     static getOrders(): GetOrdersParam;
-    /** @returns {GetPosOrderByIdParam} */
-    static getPosOrderById(): GetPosOrderByIdParam;
     /** @returns {GetShipmentBagReasonsParam} */
     static getShipmentBagReasons(): GetShipmentBagReasonsParam;
     /** @returns {GetShipmentByIdParam} */
@@ -110,7 +109,7 @@ declare class OrderApplicationValidator {
     static verifyOtpShipmentCustomer(): VerifyOtpShipmentCustomerParam;
 }
 declare namespace OrderApplicationValidator {
-    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetPosOrderByIdParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
+    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
 }
 type GetCustomerDetailsByShipmentIdParam = {
     /**
@@ -134,9 +133,13 @@ type GetInvoiceByShipmentIdParam = {
 type GetOrderByIdParam = {
     /**
      * - A unique number used for identifying and
-     * tracking your orders.
+     * tracking an order.
      */
     orderId: string;
+    /**
+     * - Flag to allow inactive shipments
+     */
+    allowInactive?: boolean;
 };
 type GetOrdersParam = {
     /**
@@ -163,17 +166,23 @@ type GetOrdersParam = {
      */
     toDate?: string;
     /**
+     * - UTC Start Date in ISO format
+     */
+    startDate?: string;
+    /**
+     * - UTC Start Date in ISO format
+     */
+    endDate?: string;
+    /**
      * - A filter and retrieve data using special
      * fields included for special use-cases
      */
     customMeta?: string;
-};
-type GetPosOrderByIdParam = {
     /**
-     * - A unique number used for identifying and
-     * tracking your orders.
+     * - Flag indicating whether inactive
+     * shipments are allowed
      */
-    orderId: string;
+    allowInactive?: boolean;
 };
 type GetShipmentBagReasonsParam = {
     /**
@@ -194,6 +203,10 @@ type GetShipmentByIdParam = {
      * its own ID.
      */
     shipmentId: string;
+    /**
+     * - Flag to allow inactive shipments
+     */
+    allowInactive?: boolean;
 };
 type GetShipmentReasonsParam = {
     /**
