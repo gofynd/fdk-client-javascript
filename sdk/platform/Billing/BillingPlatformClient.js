@@ -518,8 +518,10 @@ class Billing {
       type,
       pageSize,
       pageNo,
-      sort,
-      query,
+      startDate,
+      endDate,
+      searchType,
+      searchValue,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -531,8 +533,10 @@ class Billing {
         type,
         pageSize,
         pageNo,
-        sort,
-        query,
+        startDate,
+        endDate,
+        searchType,
+        searchValue,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -550,8 +554,10 @@ class Billing {
         type,
         pageSize,
         pageNo,
-        sort,
-        query,
+        startDate,
+        endDate,
+        searchType,
+        searchValue,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -568,8 +574,10 @@ class Billing {
     query_params["type"] = type;
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
-    query_params["sort"] = sort;
-    query_params["query"] = query;
+    query_params["start_date"] = startDate;
+    query_params["end_date"] = endDate;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
 
     const xHeaders = {};
 

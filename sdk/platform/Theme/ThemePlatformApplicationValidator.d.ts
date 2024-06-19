@@ -32,7 +32,11 @@ export = ThemePlatformApplicationValidator;
 /** @typedef GetApplicationThemesParam */
 /** @typedef GetApplicationThemesCountParam */
 /** @typedef GetAppliedThemeParam */
-/** @typedef GetExtensionSectionsParam */
+/**
+ * @typedef GetExtensionSectionsParam
+ * @property {string} [type] - The type of the theme
+ * @property {string} [companyMode] - The mode of the company
+ */
 /** @typedef GetFontsParam */
 /**
  * @typedef GetPageParam
@@ -102,7 +106,7 @@ declare class ThemePlatformApplicationValidator {
     /** @returns {GetAppliedThemeParam} */
     static getAppliedTheme(): any;
     /** @returns {GetExtensionSectionsParam} */
-    static getExtensionSections(): any;
+    static getExtensionSections(): GetExtensionSectionsParam;
     /** @returns {GetFontsParam} */
     static getFonts(): any;
     /** @returns {GetPageParam} */
@@ -172,6 +176,16 @@ type GetAllPagesParam = {
      * - ID of the theme to be retrieved
      */
     themeId: string;
+};
+type GetExtensionSectionsParam = {
+    /**
+     * - The type of the theme
+     */
+    type?: string;
+    /**
+     * - The mode of the company
+     */
+    companyMode?: string;
 };
 type GetPageParam = {
     /**
@@ -248,6 +262,5 @@ type UpgradeThemeParam = {
 type GetApplicationThemesParam = any;
 type GetApplicationThemesCountParam = any;
 type GetAppliedThemeParam = any;
-type GetExtensionSectionsParam = any;
 type GetFontsParam = any;
 import ThemePlatformModel = require("./ThemePlatformModel");

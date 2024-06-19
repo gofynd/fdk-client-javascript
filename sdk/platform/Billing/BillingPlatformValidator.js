@@ -42,8 +42,10 @@ const BillingPlatformModel = require("./BillingPlatformModel");
  * @property {string} type - Type of the company
  * @property {number} [pageSize] - Number of items per page
  * @property {number} [pageNo] - Page number
- * @property {Object} [sort] - Sorting criteria
- * @property {Object} [query] - Additional query parameters
+ * @property {string} [startDate] - Start date
+ * @property {string} [endDate] - End date
+ * @property {string} [searchType] - Search Type
+ * @property {string} [searchValue] - Search Value
  */
 
 /**
@@ -280,8 +282,10 @@ class BillingPlatformValidator {
       type: Joi.string().allow("").required(),
       pageSize: Joi.number(),
       pageNo: Joi.number(),
-      sort: Joi.any(),
-      query: Joi.any(),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
     }).required();
   }
 

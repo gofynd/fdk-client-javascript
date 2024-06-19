@@ -292,12 +292,12 @@ declare class Cart {
      * @param {CartPlatformApplicationValidator.GetPriceAdjustmentsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
+     * @returns {Promise<CartPlatformModel.GetPriceAdjustmentResponse>} - Success response
      * @name getPriceAdjustments
      * @summary: Get a list of all price adjustments associated with a cart
      * @description: This API helps to get price adjustments data associated to a particular cart - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPriceAdjustments/).
      */
-    getPriceAdjustments({ cartId, requestHeaders }?: CartPlatformApplicationValidator.GetPriceAdjustmentsParam, { responseHeaders }?: object): Promise<CartPlatformModel.PriceAdjustmentResponse>;
+    getPriceAdjustments({ cartId, requestHeaders }?: CartPlatformApplicationValidator.GetPriceAdjustmentsParam, { responseHeaders }?: object): Promise<CartPlatformModel.GetPriceAdjustmentResponse>;
     /**
      * @param {CartPlatformApplicationValidator.GetPromosCouponConfigParam} arg
      *   - Arg object

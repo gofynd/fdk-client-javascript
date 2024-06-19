@@ -33,8 +33,10 @@ export = BillingPlatformValidator;
  * @property {string} type - Type of the company
  * @property {number} [pageSize] - Number of items per page
  * @property {number} [pageNo] - Page number
- * @property {Object} [sort] - Sorting criteria
- * @property {Object} [query] - Additional query parameters
+ * @property {string} [startDate] - Start date
+ * @property {string} [endDate] - End date
+ * @property {string} [searchType] - Search Type
+ * @property {string} [searchValue] - Search Value
  */
 /**
  * @typedef CurrentAppLimitParam
@@ -330,13 +332,21 @@ type CreditTransactionParam = {
      */
     pageNo?: number;
     /**
-     * - Sorting criteria
+     * - Start date
      */
-    sort?: any;
+    startDate?: string;
     /**
-     * - Additional query parameters
+     * - End date
      */
-    query?: any;
+    endDate?: string;
+    /**
+     * - Search Type
+     */
+    searchType?: string;
+    /**
+     * - Search Value
+     */
+    searchValue?: string;
 };
 type CurrentAppLimitParam = {
     productSuite?: string;

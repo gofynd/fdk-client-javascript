@@ -800,13 +800,16 @@ class Theme {
    * @description: Retrieve the list of extension sections for a given application in the specified company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getExtensionSections/).
    */
   async getExtensionSections(
-    { requestHeaders } = { requestHeaders: {} },
+    { type, companyMode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ThemePlatformApplicationValidator.getExtensionSections().validate(
-      {},
+      {
+        type,
+        companyMode,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -817,7 +820,10 @@ class Theme {
     const {
       error: warrning,
     } = ThemePlatformApplicationValidator.getExtensionSections().validate(
-      {},
+      {
+        type,
+        companyMode,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -828,6 +834,8 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["type"] = type;
+    query_params["company_mode"] = companyMode;
 
     const response = await PlatformAPIClient.execute(
       this.config,

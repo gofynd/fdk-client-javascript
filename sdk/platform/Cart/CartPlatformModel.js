@@ -625,6 +625,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GetPriceAdjustmentResponse
+ * @property {PriceAdjustment[]} [data]
+ */
+
+/**
  * @typedef PriceAdjustmentAdd
  * @property {number} value
  * @property {string} message - The message associated with the price adjustment
@@ -2711,6 +2716,13 @@ class CartPlatformModel {
   static PriceAdjustmentResponse() {
     return Joi.object({
       data: CartPlatformModel.PriceAdjustment(),
+    });
+  }
+
+  /** @returns {GetPriceAdjustmentResponse} */
+  static GetPriceAdjustmentResponse() {
+    return Joi.object({
+      data: Joi.array().items(CartPlatformModel.PriceAdjustment()),
     });
   }
 

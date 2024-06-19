@@ -73,7 +73,7 @@ declare class Billing {
      * @summary: Credit Transaction
      * @description: Credit Transaction - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/creditTransaction/).
      */
-    creditTransaction({ uniqueId, productSuite, type, pageSize, pageNo, sort, query, requestHeaders, }?: BillingPlatformValidator.CreditTransactionParam, { responseHeaders }?: object): Promise<BillingPlatformModel.CreditTransactionResponse>;
+    creditTransaction({ uniqueId, productSuite, type, pageSize, pageNo, startDate, endDate, searchType, searchValue, requestHeaders, }?: BillingPlatformValidator.CreditTransactionParam, { responseHeaders }?: object): Promise<BillingPlatformModel.CreditTransactionResponse>;
     /**
      * @param {BillingPlatformValidator.CurrentAppLimitParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
