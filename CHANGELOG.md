@@ -2308,6 +2308,12 @@
 	- [Added] property <code>resume_tasks_after_unlock</code> of schema <code>UpdateShipmentStatusRequest</code> in request body
 
 
+#### createOrder
+
+- ##### What's New
+	- [Added] property <code>shipment_request_data</code> of schema <code>CreateOrderAPI</code> in request body
+
+
 ### Payment
 
 

@@ -647,20 +647,23 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Charge
- * @property {string} name
- * @property {Object} amount
+ * @property {string} name - The name of the charge.
+ * @property {Object} amount - The monetary value of the charge, including value
+ *   and currency details.
  * @property {Tax} [tax]
- * @property {string} [code]
- * @property {string} type
+ * @property {string} [code] - An optional code associated with the charge for
+ *   internal tracking.
+ * @property {string} type - The category or type of the charge.
  */
 /**
  * @typedef LineItem
  * @property {Charge[]} [charges]
- * @property {Object} [meta]
- * @property {string} [custom_message]
- * @property {number} [quantity]
- * @property {string} seller_identifier
- * @property {string} [external_line_id]
+ * @property {Object} [meta] - Meta data of the articles or line items.
+ * @property {string} [custom_message] - Meta data of the articles or line items.
+ * @property {number} [quantity] - Quantity of the articles or line items.
+ * @property {string} seller_identifier - Seller identifier of the articles or line items.
+ * @property {string} [external_line_id] - External unique identifier of the
+ *   articles or line items.
  */
 /**
  * @typedef ProcessingDates
@@ -674,12 +677,16 @@ export = OrderPlatformModel;
 /**
  * @typedef Shipment
  * @property {LineItem[]} line_items
- * @property {string} [external_shipment_id]
+ * @property {string} [external_shipment_id] - External shipment identifier or
+ *   marketplace's unique shipment identifier.
  * @property {ProcessingDates} [processing_dates]
- * @property {Object} [meta]
- * @property {number} [priority]
- * @property {number} location_id
- * @property {string} [order_type]
+ * @property {Object} [meta] - Meta data of the shipment.
+ * @property {number} [priority] - Integer value indicating high and low priority.
+ * @property {number} location_id - Location Identifier or Store/Fulfillment
+ *   Identifier of the shipment.
+ * @property {string} [order_type] - The order type of shipment HomeDelivery -
+ *   If the customer wants the order home-delivered PickAtStore - If the
+ *   customer wants the handover of an order at the store itself.
  * @property {string} [parent_type]
  * @property {string} [store_invoice_id]
  * @property {string} [lock_status]
@@ -707,6 +714,16 @@ export = OrderPlatformModel;
  * @property {ShipmentStatusData} [status]
  * @property {Prices} [price]
  * @property {ShipmentGstDetails} [gst]
+ */
+/**
+ * @typedef ShipmentRequestData
+ * @property {LineItem[]} line_items
+ * @property {ProcessingDates} [processing_dates]
+ * @property {Object} [meta] - Meta data of the shipment.
+ * @property {number} [priority] - Integer value indicating high and low priority.
+ * @property {string} [order_type] - The order type of shipment HomeDelivery -
+ *   If the customer wants the order home-delivered PickAtStore - If the
+ *   customer wants the handover of an order at the store itself.
  */
 /**
  * @typedef ShippingInfo
@@ -802,6 +819,7 @@ export = OrderPlatformModel;
 /**
  * @typedef CreateOrderAPI
  * @property {Shipment[]} shipments
+ * @property {ShipmentRequestData} [shipment_request_data]
  * @property {ShippingInfo} shipping_info
  * @property {BillingInfo} billing_info
  * @property {Object} [currency_info]
@@ -2869,7 +2887,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, BaseResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, LineItem, ProcessingDates, Shipment, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequest, GenerateInvoiceIDResponse, GenerateInvoiceIDErrorResponse, ManifestResponse, ProcessManifestRequest, ManifestItems, ManifestErrorResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, PlatformDeliveryAddress, ShipmentListingChannel, Prices, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, Reason, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, TemplateDownloadResponse, Error };
+    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, BaseResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, LineItem, ProcessingDates, Shipment, ShipmentRequestData, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequest, GenerateInvoiceIDResponse, GenerateInvoiceIDErrorResponse, ManifestResponse, ProcessManifestRequest, ManifestItems, ManifestErrorResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, PlatformDeliveryAddress, ShipmentListingChannel, Prices, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, Reason, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Attributes, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, TemplateDownloadResponse, Error };
 }
 /** @returns {InvalidateShipmentCachePayload} */
 declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
@@ -3825,20 +3843,50 @@ type Tax = {
 /** @returns {Charge} */
 declare function Charge(): Charge;
 type Charge = {
+    /**
+     * - The name of the charge.
+     */
     name: string;
+    /**
+     * - The monetary value of the charge, including value
+     * and currency details.
+     */
     amount: any;
     tax?: Tax;
+    /**
+     * - An optional code associated with the charge for
+     * internal tracking.
+     */
     code?: string;
+    /**
+     * - The category or type of the charge.
+     */
     type: string;
 };
 /** @returns {LineItem} */
 declare function LineItem(): LineItem;
 type LineItem = {
     charges?: Charge[];
+    /**
+     * - Meta data of the articles or line items.
+     */
     meta?: any;
+    /**
+     * - Meta data of the articles or line items.
+     */
     custom_message?: string;
+    /**
+     * - Quantity of the articles or line items.
+     */
     quantity?: number;
+    /**
+     * - Seller identifier of the articles or line items.
+     */
     seller_identifier: string;
+    /**
+     * - External unique identifier of the
+     * articles or line items.
+     */
     external_line_id?: string;
 };
 /** @returns {ProcessingDates} */
@@ -3855,11 +3903,30 @@ type ProcessingDates = {
 declare function Shipment(): Shipment;
 type Shipment = {
     line_items: LineItem[];
+    /**
+     * - External shipment identifier or
+     * marketplace's unique shipment identifier.
+     */
     external_shipment_id?: string;
     processing_dates?: ProcessingDates;
+    /**
+     * - Meta data of the shipment.
+     */
     meta?: any;
+    /**
+     * - Integer value indicating high and low priority.
+     */
     priority?: number;
+    /**
+     * - Location Identifier or Store/Fulfillment
+     * Identifier of the shipment.
+     */
     location_id: number;
+    /**
+     * - The order type of shipment HomeDelivery -
+     * If the customer wants the order home-delivered PickAtStore - If the
+     * customer wants the handover of an order at the store itself.
+     */
     order_type?: string;
     parent_type?: string;
     store_invoice_id?: string;
@@ -3888,6 +3955,26 @@ type Shipment = {
     status?: ShipmentStatusData;
     price?: Prices;
     gst?: ShipmentGstDetails;
+};
+/** @returns {ShipmentRequestData} */
+declare function ShipmentRequestData(): ShipmentRequestData;
+type ShipmentRequestData = {
+    line_items: LineItem[];
+    processing_dates?: ProcessingDates;
+    /**
+     * - Meta data of the shipment.
+     */
+    meta?: any;
+    /**
+     * - Integer value indicating high and low priority.
+     */
+    priority?: number;
+    /**
+     * - The order type of shipment HomeDelivery -
+     * If the customer wants the order home-delivered PickAtStore - If the
+     * customer wants the handover of an order at the store itself.
+     */
+    order_type?: string;
 };
 /** @returns {ShippingInfo} */
 declare function ShippingInfo(): ShippingInfo;
@@ -3996,6 +4083,7 @@ type PaymentInfo = {
 declare function CreateOrderAPI(): CreateOrderAPI;
 type CreateOrderAPI = {
     shipments: Shipment[];
+    shipment_request_data?: ShipmentRequestData;
     shipping_info: ShippingInfo;
     billing_info: BillingInfo;
     currency_info?: any;
