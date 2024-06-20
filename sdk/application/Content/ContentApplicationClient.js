@@ -224,11 +224,11 @@ class Content {
    * @description: List all the blogs against an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
    */
   async getBlogs(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, tags, search, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentApplicationValidator.getBlogs().validate(
-      { pageNo, pageSize },
+      { pageNo, pageSize, tags, search },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -237,7 +237,7 @@ class Content {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = ContentApplicationValidator.getBlogs().validate(
-      { pageNo, pageSize },
+      { pageNo, pageSize, tags, search },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -250,6 +250,8 @@ class Content {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["tags"] = tags;
+    query_params["search"] = search;
 
     const xHeaders = {};
 

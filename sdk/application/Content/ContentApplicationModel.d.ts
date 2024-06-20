@@ -88,6 +88,7 @@ export = ContentApplicationModel;
  * @typedef BlogGetResponse
  * @property {BlogSchema[]} [items]
  * @property {Page} [page]
+ * @property {string[]} [filters]
  */
 /**
  * @typedef ResourceContent
@@ -121,9 +122,9 @@ export = ContentApplicationModel;
  * @property {string[]} [tags]
  * @property {string} [publish_date]
  * @property {SEO} [seo]
- * @property {CronSchedule} [_schedule]
  * @property {string} [title]
  * @property {DateMeta} [date_meta]
+ * @property {string} [summary]
  */
 /**
  * @typedef SEO
@@ -391,13 +392,6 @@ export = ContentApplicationModel;
  * @property {string} [id]
  */
 /**
- * @typedef CronSchedule
- * @property {string} [cron]
- * @property {string} [start]
- * @property {string} [end]
- * @property {number} [duration]
- */
-/**
  * @typedef SlideshowGetResponse
  * @property {SlideshowSchema[]} [items]
  * @property {Page} [page]
@@ -589,7 +583,7 @@ export = ContentApplicationModel;
 declare class ContentApplicationModel {
 }
 declare namespace ContentApplicationModel {
-    export { ApplicationLegal, ApplicationLegalFAQ, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, AnnouncementSchema, ScheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, LocaleLanguage, Language, Action, NavigationReference, ConfigurationSchema, SlideshowMedia, AnnouncementsResponseSchema, FaqResponseSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, FAQCategorySchema, FaqSchema, GetFaqSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageSchema, NavigationGetResponse, Orientation, NavigationSchema, PageGetResponse, PageSchema, CreatedBySchema, CronSchedule, SlideshowGetResponse, SlideshowSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, CustomObjectFieldValue, CustomObjectListItemDefinationSchema, CustomObjectFieldSchema, CustomObjectByIdSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseByResourceIdSchema, ActionPage, PageType };
+    export { ApplicationLegal, ApplicationLegalFAQ, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, AnnouncementSchema, ScheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, LocaleLanguage, Language, Action, NavigationReference, ConfigurationSchema, SlideshowMedia, AnnouncementsResponseSchema, FaqResponseSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, FAQCategorySchema, FaqSchema, GetFaqSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageSchema, NavigationGetResponse, Orientation, NavigationSchema, PageGetResponse, PageSchema, CreatedBySchema, SlideshowGetResponse, SlideshowSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, CustomObjectFieldValue, CustomObjectListItemDefinationSchema, CustomObjectFieldSchema, CustomObjectByIdSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseByResourceIdSchema, ActionPage, PageType };
 }
 /** @returns {ApplicationLegal} */
 declare function ApplicationLegal(): ApplicationLegal;
@@ -693,6 +687,7 @@ declare function BlogGetResponse(): BlogGetResponse;
 type BlogGetResponse = {
     items?: BlogSchema[];
     page?: Page;
+    filters?: string[];
 };
 /** @returns {ResourceContent} */
 declare function ResourceContent(): ResourceContent;
@@ -730,9 +725,9 @@ type BlogSchema = {
     tags?: string[];
     publish_date?: string;
     seo?: SEO;
-    _schedule?: CronSchedule;
     title?: string;
     date_meta?: DateMeta;
+    summary?: string;
 };
 /** @returns {SEO} */
 declare function SEO(): SEO;
@@ -1042,14 +1037,6 @@ type PageSchema = {
 declare function CreatedBySchema(): CreatedBySchema;
 type CreatedBySchema = {
     id?: string;
-};
-/** @returns {CronSchedule} */
-declare function CronSchedule(): CronSchedule;
-type CronSchedule = {
-    cron?: string;
-    start?: string;
-    end?: string;
-    duration?: number;
 };
 /** @returns {SlideshowGetResponse} */
 declare function SlideshowGetResponse(): SlideshowGetResponse;

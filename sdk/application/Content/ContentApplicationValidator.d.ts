@@ -12,6 +12,8 @@ export = ContentApplicationValidator;
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
+ * @property {string} [tags] - Blogs retrieve based on the list of tags passed.
+ * @property {string} [search] - Blogs retrieve based on the title.
  */
 /**
  * @typedef GetCustomFieldsParam
@@ -156,6 +158,14 @@ type GetBlogsParam = {
      * - The number of items to retrieve in each page.
      */
     pageSize?: number;
+    /**
+     * - Blogs retrieve based on the list of tags passed.
+     */
+    tags?: string;
+    /**
+     * - Blogs retrieve based on the title.
+     */
+    search?: string;
 };
 type GetCustomFieldsParam = {
     resource: string;

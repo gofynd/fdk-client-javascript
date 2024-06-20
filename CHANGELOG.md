@@ -161,16 +161,29 @@
 
 #### getBlog
 
+- ##### What's New
+	- [Added] property <code>summary</code> of schema <code>BlogSchema</code> in response with status code 200
+
 - ##### What's Deprecated
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule</code> of schema <code>BlogSchema</code> in response with status code 200
 
 
 #### getBlogs
 
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>tags</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>search</code> (type: <code>string</code>)
+
+	- [Added] property <code>items[].summary</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Added] property <code>filters</code> of schema <code>BlogGetResponse</code> in response with status code 200
+
 - ##### What's Deprecated
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[]._schedule</code> of schema <code>BlogSchema</code> in response with status code 200
 
 
 #### getLandingPage
@@ -1320,41 +1333,76 @@
 
 #### createBlog
 
+- ##### What's New
+	- [Added] property <code>summary</code> of schema <code>BlogRequest</code> in request body
+	- [Added] property <code>summary</code> of schema <code>BlogSchema</code> in response with status code 200
+
 - ##### What's Deprecated
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Deleted] property <code>_schedule</code> of schema <code>BlogRequest</code> in request body
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule</code> of schema <code>BlogSchema</code> in response with status code 200
 
 
 #### getBlogs
 
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>tags</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>q</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>slug</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>title</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>status</code> (type: <code>string</code>)
+
+	- [Added] property <code>items[].summary</code> of schema <code>BlogSchema</code> in response with status code 200
+	- [Added] property <code>filters</code> of schema <code>BlogGetResponse</code> in response with status code 200
+
 - ##### What's Deprecated
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>items[].seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>items[].seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items[]._schedule</code> of schema <code>BlogSchema</code> in response with status code 200
 
 
 #### updateBlog
 
+- ##### What's New
+	- [Added] property <code>summary</code> of schema <code>BlogRequest</code> in request body
+	- [Added] property <code>summary</code> of schema <code>BlogSchema</code> in response with status code 200
+
 - ##### What's Deprecated
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in request body
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in request body
+	- [Breaking] [Deleted] property <code>_schedule</code> of schema <code>BlogRequest</code> in request body
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule</code> of schema <code>BlogSchema</code> in response with status code 200
 
 
 #### deleteBlog
 
+- ##### What's New
+	- [Added] property <code>summary</code> of schema <code>BlogSchema</code> in response with status code 200
+
 - ##### What's Deprecated
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule</code> of schema <code>BlogSchema</code> in response with status code 200
 
 
 #### getComponentById
 
+- ##### What's New
+	- [Added] property <code>summary</code> of schema <code>BlogSchema</code> in response with status code 200
+
 - ##### What's Deprecated
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule</code> of schema <code>BlogSchema</code> in response with status code 200
 
 
 #### getLandingPages
@@ -1508,9 +1556,13 @@
 
 #### getBlogBySlug
 
+- ##### What's New
+	- [Added] property <code>summary</code> of schema <code>BlogSchema</code> in response with status code 200
+
 - ##### What's Deprecated
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.page.type</code> of schema <code>PageType</code> in response with status code 200
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>seo.breadcrumb[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>_schedule</code> of schema <code>BlogSchema</code> in response with status code 200
 
 
 #### createPage

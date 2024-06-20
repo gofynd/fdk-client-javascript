@@ -181,6 +181,7 @@ const Joi = require("joi");
  * @typedef BlogGetResponse
  * @property {BlogSchema[]} [items]
  * @property {Page} [page]
+ * @property {string[]} [filters]
  */
 
 /**
@@ -218,9 +219,9 @@ const Joi = require("joi");
  * @property {string} [publish_date]
  * @property {string[]} [tags]
  * @property {SEO} [seo]
- * @property {CronSchedule} [_schedule]
  * @property {string} [title]
  * @property {DateMeta} [date_meta]
+ * @property {string} [summary]
  */
 
 /**
@@ -282,7 +283,7 @@ const Joi = require("joi");
  * @property {string[]} [tags]
  * @property {string} [title]
  * @property {SEO} [seo]
- * @property {CronSchedule} [_schedule]
+ * @property {string} [summary]
  */
 
 /**
@@ -1610,6 +1611,7 @@ class ContentPlatformModel {
     return Joi.object({
       items: Joi.array().items(ContentPlatformModel.BlogSchema()),
       page: ContentPlatformModel.Page(),
+      filters: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -1655,9 +1657,9 @@ class ContentPlatformModel {
       publish_date: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
       seo: ContentPlatformModel.SEO(),
-      _schedule: ContentPlatformModel.CronSchedule(),
       title: Joi.string().allow(""),
       date_meta: ContentPlatformModel.DateMeta(),
+      summary: Joi.string().allow(""),
     });
   }
 
@@ -1735,7 +1737,7 @@ class ContentPlatformModel {
       tags: Joi.array().items(Joi.string().allow("")),
       title: Joi.string().allow(""),
       seo: ContentPlatformModel.SEO(),
-      _schedule: ContentPlatformModel.CronSchedule(),
+      summary: Joi.string().allow(""),
     });
   }
 

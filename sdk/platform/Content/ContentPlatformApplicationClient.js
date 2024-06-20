@@ -4096,13 +4096,20 @@ class Content {
    * @description: List all blogs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
    */
   async getBlogs(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, tags, q, slug, title, status, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentPlatformApplicationValidator.getBlogs().validate(
       {
         pageNo,
         pageSize,
+        tags,
+        q,
+        slug,
+        title,
+        status,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4117,6 +4124,11 @@ class Content {
       {
         pageNo,
         pageSize,
+        tags,
+        q,
+        slug,
+        title,
+        status,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4130,6 +4142,11 @@ class Content {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["tags"] = tags;
+    query_params["q"] = q;
+    query_params["slug"] = slug;
+    query_params["title"] = title;
+    query_params["status"] = status;
 
     const response = await PlatformAPIClient.execute(
       this.config,

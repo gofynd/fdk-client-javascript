@@ -59,7 +59,7 @@ declare class Content {
      * @summary: List blogs
      * @description: List all the blogs against an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
      */
-    getBlogs({ pageNo, pageSize, requestHeaders }?: ContentApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.BlogGetResponse>;
+    getBlogs({ pageNo, pageSize, tags, search, requestHeaders }?: ContentApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.BlogGetResponse>;
     /**
      * @param {ContentApplicationValidator.GetCustomFieldsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

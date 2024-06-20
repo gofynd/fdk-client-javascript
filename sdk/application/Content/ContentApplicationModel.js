@@ -101,6 +101,7 @@ const Joi = require("joi");
  * @typedef BlogGetResponse
  * @property {BlogSchema[]} [items]
  * @property {Page} [page]
+ * @property {string[]} [filters]
  */
 
 /**
@@ -138,9 +139,9 @@ const Joi = require("joi");
  * @property {string[]} [tags]
  * @property {string} [publish_date]
  * @property {SEO} [seo]
- * @property {CronSchedule} [_schedule]
  * @property {string} [title]
  * @property {DateMeta} [date_meta]
+ * @property {string} [summary]
  */
 
 /**
@@ -441,14 +442,6 @@ const Joi = require("joi");
 /**
  * @typedef CreatedBySchema
  * @property {string} [id]
- */
-
-/**
- * @typedef CronSchedule
- * @property {string} [cron]
- * @property {string} [start]
- * @property {string} [end]
- * @property {number} [duration]
  */
 
 /**
@@ -791,6 +784,7 @@ class ContentApplicationModel {
     return Joi.object({
       items: Joi.array().items(ContentApplicationModel.BlogSchema()),
       page: ContentApplicationModel.Page(),
+      filters: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -836,9 +830,9 @@ class ContentApplicationModel {
       tags: Joi.array().items(Joi.string().allow("")),
       publish_date: Joi.string().allow(""),
       seo: ContentApplicationModel.SEO(),
-      _schedule: ContentApplicationModel.CronSchedule(),
       title: Joi.string().allow(""),
       date_meta: ContentApplicationModel.DateMeta(),
+      summary: Joi.string().allow(""),
     });
   }
 
@@ -1211,16 +1205,6 @@ class ContentApplicationModel {
   static CreatedBySchema() {
     return Joi.object({
       id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CronSchedule} */
-  static CronSchedule() {
-    return Joi.object({
-      cron: Joi.string().allow(""),
-      start: Joi.string().allow(""),
-      end: Joi.string().allow(""),
-      duration: Joi.number(),
     });
   }
 

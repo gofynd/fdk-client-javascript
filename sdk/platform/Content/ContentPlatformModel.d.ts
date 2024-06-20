@@ -159,6 +159,7 @@ export = ContentPlatformModel;
  * @typedef BlogGetResponse
  * @property {BlogSchema[]} [items]
  * @property {Page} [page]
+ * @property {string[]} [filters]
  */
 /**
  * @typedef ResourceContent
@@ -192,9 +193,9 @@ export = ContentPlatformModel;
  * @property {string} [publish_date]
  * @property {string[]} [tags]
  * @property {SEO} [seo]
- * @property {CronSchedule} [_schedule]
  * @property {string} [title]
  * @property {DateMeta} [date_meta]
+ * @property {string} [summary]
  */
 /**
  * @typedef SEO
@@ -248,7 +249,7 @@ export = ContentPlatformModel;
  * @property {string[]} [tags]
  * @property {string} [title]
  * @property {SEO} [seo]
- * @property {CronSchedule} [_schedule]
+ * @property {string} [summary]
  */
 /**
  * @typedef GetAnnouncementListSchema
@@ -1413,6 +1414,7 @@ declare function BlogGetResponse(): BlogGetResponse;
 type BlogGetResponse = {
     items?: BlogSchema[];
     page?: Page;
+    filters?: string[];
 };
 /** @returns {ResourceContent} */
 declare function ResourceContent(): ResourceContent;
@@ -1450,9 +1452,9 @@ type BlogSchema = {
     publish_date?: string;
     tags?: string[];
     seo?: SEO;
-    _schedule?: CronSchedule;
     title?: string;
     date_meta?: DateMeta;
+    summary?: string;
 };
 /** @returns {SEO} */
 declare function SEO(): SEO;
@@ -1514,7 +1516,7 @@ type BlogRequest = {
     tags?: string[];
     title?: string;
     seo?: SEO;
-    _schedule?: CronSchedule;
+    summary?: string;
 };
 /** @returns {GetAnnouncementListSchema} */
 declare function GetAnnouncementListSchema(): GetAnnouncementListSchema;

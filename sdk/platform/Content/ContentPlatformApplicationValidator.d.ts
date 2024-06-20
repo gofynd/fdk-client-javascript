@@ -226,6 +226,11 @@ export = ContentPlatformApplicationValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
+ * @property {string} [tags] - Blogs retrieve based on the list of tags passed.
+ * @property {string} [q] - Blogs retrieve based on the title or slug passed.
+ * @property {string} [slug] - Blogs retrieve based on the slug passed.
+ * @property {string} [title] - Blogs retrieve based on the title passed.
+ * @property {string} [status] - Blogs retrieve based on the status passed.
  */
 /**
  * @typedef GetComponentByIdParam
@@ -907,6 +912,26 @@ type GetBlogsParam = {
      * Default value is 10.
      */
     pageSize?: number;
+    /**
+     * - Blogs retrieve based on the list of tags passed.
+     */
+    tags?: string;
+    /**
+     * - Blogs retrieve based on the title or slug passed.
+     */
+    q?: string;
+    /**
+     * - Blogs retrieve based on the slug passed.
+     */
+    slug?: string;
+    /**
+     * - Blogs retrieve based on the title passed.
+     */
+    title?: string;
+    /**
+     * - Blogs retrieve based on the status passed.
+     */
+    status?: string;
 };
 type GetComponentByIdParam = {
     /**

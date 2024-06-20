@@ -279,6 +279,11 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
+ * @property {string} [tags] - Blogs retrieve based on the list of tags passed.
+ * @property {string} [q] - Blogs retrieve based on the title or slug passed.
+ * @property {string} [slug] - Blogs retrieve based on the slug passed.
+ * @property {string} [title] - Blogs retrieve based on the title passed.
+ * @property {string} [status] - Blogs retrieve based on the status passed.
  */
 
 /**
@@ -932,6 +937,11 @@ class ContentPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      tags: Joi.string().allow(""),
+      q: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+      status: Joi.string().allow(""),
     }).required();
   }
 
