@@ -8,12 +8,12 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef EventProcessRequest
- * @property {string} search_text
+ * @property {string} [search_text]
  * @property {string} end_date
  * @property {string} start_date
- * @property {number[]} subscriber_ids
- * @property {string} status
- * @property {Event[]} event
+ * @property {number[]} [subscriber_ids]
+ * @property {string} [status]
+ * @property {Event[]} [event]
  */
 /**
  * @typedef DownloadReportResponse
@@ -200,7 +200,7 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef SubscriberConfigPostRequestV2
- * @property {string} [name]
+ * @property {string} name
  * @property {string} [webhook_url]
  * @property {string} provider
  * @property {Association} association
@@ -208,7 +208,7 @@ export = WebhookPlatformModel;
  * @property {SubscriberStatus} status
  * @property {string} email_id
  * @property {AuthMeta} [auth_meta]
- * @property {Events[]} [events]
+ * @property {Events[]} events
  */
 /**
  * @typedef SubscriberConfigUpdateRequestV2
@@ -216,16 +216,16 @@ export = WebhookPlatformModel;
  * @property {string} [name]
  * @property {string} [webhook_url]
  * @property {string} provider
- * @property {Association} association
+ * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {SubscriberStatus} status
- * @property {string} email_id
+ * @property {string} [email_id]
  * @property {AuthMeta} [auth_meta]
  * @property {Events[]} [events]
  */
 /**
  * @typedef SubscriberConfigPost
- * @property {string} [name]
+ * @property {string} name
  * @property {string} webhook_url
  * @property {Association} association
  * @property {Object} [custom_headers]
@@ -238,11 +238,11 @@ export = WebhookPlatformModel;
  * @typedef SubscriberConfigUpdate
  * @property {number} id
  * @property {string} [name]
- * @property {string} webhook_url
- * @property {Association} association
+ * @property {string} [webhook_url]
+ * @property {Association} [association]
  * @property {Object} [custom_headers]
- * @property {SubscriberStatus} status
- * @property {string} email_id
+ * @property {SubscriberStatus} [status]
+ * @property {string} [email_id]
  * @property {AuthMeta} [auth_meta]
  * @property {number[]} event_id
  */
@@ -285,12 +285,12 @@ type Event = {
 /** @returns {EventProcessRequest} */
 declare function EventProcessRequest(): EventProcessRequest;
 type EventProcessRequest = {
-    search_text: string;
+    search_text?: string;
     end_date: string;
     start_date: string;
-    subscriber_ids: number[];
-    status: string;
-    event: Event[];
+    subscriber_ids?: number[];
+    status?: string;
+    event?: Event[];
 };
 /** @returns {DownloadReportResponse} */
 declare function DownloadReportResponse(): DownloadReportResponse;
@@ -608,7 +608,7 @@ type Events = {
 /** @returns {SubscriberConfigPostRequestV2} */
 declare function SubscriberConfigPostRequestV2(): SubscriberConfigPostRequestV2;
 type SubscriberConfigPostRequestV2 = {
-    name?: string;
+    name: string;
     webhook_url?: string;
     provider: string;
     association: Association;
@@ -616,7 +616,7 @@ type SubscriberConfigPostRequestV2 = {
     status: SubscriberStatus;
     email_id: string;
     auth_meta?: AuthMeta;
-    events?: Events[];
+    events: Events[];
 };
 /** @returns {SubscriberConfigUpdateRequestV2} */
 declare function SubscriberConfigUpdateRequestV2(): SubscriberConfigUpdateRequestV2;
@@ -625,17 +625,17 @@ type SubscriberConfigUpdateRequestV2 = {
     name?: string;
     webhook_url?: string;
     provider: string;
-    association: Association;
+    association?: Association;
     custom_headers?: any;
     status: SubscriberStatus;
-    email_id: string;
+    email_id?: string;
     auth_meta?: AuthMeta;
     events?: Events[];
 };
 /** @returns {SubscriberConfigPost} */
 declare function SubscriberConfigPost(): SubscriberConfigPost;
 type SubscriberConfigPost = {
-    name?: string;
+    name: string;
     webhook_url: string;
     association: Association;
     custom_headers?: any;
@@ -649,11 +649,11 @@ declare function SubscriberConfigUpdate(): SubscriberConfigUpdate;
 type SubscriberConfigUpdate = {
     id: number;
     name?: string;
-    webhook_url: string;
-    association: Association;
+    webhook_url?: string;
+    association?: Association;
     custom_headers?: any;
-    status: SubscriberStatus;
-    email_id: string;
+    status?: SubscriberStatus;
+    email_id?: string;
     auth_meta?: AuthMeta;
     event_id: number[];
 };

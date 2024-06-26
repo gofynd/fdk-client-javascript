@@ -248,8 +248,8 @@ declare class Finance {
      * @returns {Promise<FinancePlatformModel.InvoicePaymentOptionsResponse>} -
      *   Success response
      * @name invoicePaymentOptions
-     * @summary: Display all payment options for an invoice.
-     * @description: Display all payment options for an invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentOptions/).
+     * @summary: Display all payment options for invoice.
+     * @description: Display all payment options for invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentOptions/).
      */
     invoicePaymentOptions({ body, requestHeaders }?: FinancePlatformValidator.InvoicePaymentOptionsParam, { responseHeaders }?: object): Promise<FinancePlatformModel.InvoicePaymentOptionsResponse>;
     /**

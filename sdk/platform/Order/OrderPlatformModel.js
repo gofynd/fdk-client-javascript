@@ -2142,6 +2142,9 @@ const Joi = require("joi");
  * @property {string} [shipment_created_ts]
  * @property {Currency} [currency]
  * @property {CurrencyInfo} [currency_info]
+ * @property {boolean} [is_lapa_enabled] - Flag to show NDR actions based on
+ *   LAPA (Logistic As Per Actual) plan subscription. If LAPA plan taken, true,
+ *   else false.
  */
 
 /**
@@ -2622,6 +2625,9 @@ const Joi = require("joi");
  * @property {string} [credit_note_id]
  * @property {boolean} [is_self_ship]
  * @property {string} [mode_of_payment]
+ * @property {boolean} [is_lapa_enabled] - Flag to show NDR actions based on
+ *   LAPA (Logistic As Per Actual) plan subscription. If LAPA plan taken, true,
+ *   else false.
  */
 
 /**
@@ -5799,6 +5805,7 @@ class OrderPlatformModel {
       shipment_created_ts: Joi.string().allow(""),
       currency: OrderPlatformModel.Currency(),
       currency_info: OrderPlatformModel.CurrencyInfo(),
+      is_lapa_enabled: Joi.boolean(),
     });
   }
 
@@ -6359,6 +6366,7 @@ class OrderPlatformModel {
       credit_note_id: Joi.string().allow("").allow(null),
       is_self_ship: Joi.boolean().allow(null),
       mode_of_payment: Joi.string().allow("").allow(null),
+      is_lapa_enabled: Joi.boolean(),
     });
   }
 

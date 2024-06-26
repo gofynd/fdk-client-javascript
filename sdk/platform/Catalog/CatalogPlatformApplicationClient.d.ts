@@ -305,7 +305,7 @@ declare class Catalog {
      * @summary: List sales channel inventory
      * @description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
      */
-    getAppInventory({ itemIds, storeIds, brandIds, sellerIdentifiers, timestamp, pageSize, pageId, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppInventoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryStockResponse>;
+    getAppInventory({ itemIds, storeIds, brandIds, sellerIdentifiers, timestamp, pageSize, pageId, qtyGt, qtyLt, qtyType, fromDate, toDate, requestHeaders, }?: CatalogPlatformApplicationValidator.GetAppInventoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryStockResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetAppLocationsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

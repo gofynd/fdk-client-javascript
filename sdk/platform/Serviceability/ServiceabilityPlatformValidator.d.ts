@@ -13,7 +13,7 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef CreateCourierPartnerAccountParam
- * @property {ServiceabilityPlatformModel.CourierAccount} body
+ * @property {ServiceabilityPlatformModel.CourierAccountRequestBody} body
  */
 /**
  * @typedef CreatePackageMaterialParam
@@ -114,7 +114,7 @@ export = ServiceabilityPlatformValidator;
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
  * @property {string} [channelId] - Zones filtered by an application
  * @property {string} [q] - Search with name as a free text
- * @property {string} [country] - ISO2 code of the country
+ * @property {string} [countryIsoCode] - ISO2 code of the country
  * @property {string} [state] - State name
  * @property {string} [city] - City name
  * @property {string} [pincode] - Pincode value to search zones
@@ -233,7 +233,7 @@ type BulkTatParam = {
     body: ServiceabilityPlatformModel.BulkRegionJobSerializer;
 };
 type CreateCourierPartnerAccountParam = {
-    body: ServiceabilityPlatformModel.CourierAccount;
+    body: ServiceabilityPlatformModel.CourierAccountRequestBody;
 };
 type CreatePackageMaterialParam = {
     body: ServiceabilityPlatformModel.PackageMaterial;
@@ -461,7 +461,7 @@ type GetZonesParam = {
     /**
      * - ISO2 code of the country
      */
-    country?: string;
+    countryIsoCode?: string;
     /**
      * - State name
      */

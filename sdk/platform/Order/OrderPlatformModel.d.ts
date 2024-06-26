@@ -1920,6 +1920,9 @@ export = OrderPlatformModel;
  * @property {string} [shipment_created_ts]
  * @property {Currency} [currency]
  * @property {CurrencyInfo} [currency_info]
+ * @property {boolean} [is_lapa_enabled] - Flag to show NDR actions based on
+ *   LAPA (Logistic As Per Actual) plan subscription. If LAPA plan taken, true,
+ *   else false.
  */
 /**
  * @typedef ShipmentInternalPlatformViewResponse
@@ -2364,6 +2367,9 @@ export = OrderPlatformModel;
  * @property {string} [credit_note_id]
  * @property {boolean} [is_self_ship]
  * @property {string} [mode_of_payment]
+ * @property {boolean} [is_lapa_enabled] - Flag to show NDR actions based on
+ *   LAPA (Logistic As Per Actual) plan subscription. If LAPA plan taken, true,
+ *   else false.
  */
 /**
  * @typedef ShipmentInfoResponse
@@ -5464,6 +5470,12 @@ type ShipmentItem = {
     shipment_created_ts?: string;
     currency?: Currency;
     currency_info?: CurrencyInfo;
+    /**
+     * - Flag to show NDR actions based on
+     * LAPA (Logistic As Per Actual) plan subscription. If LAPA plan taken, true,
+     * else false.
+     */
+    is_lapa_enabled?: boolean;
 };
 /** @returns {ShipmentInternalPlatformViewResponse} */
 declare function ShipmentInternalPlatformViewResponse(): ShipmentInternalPlatformViewResponse;
@@ -5944,6 +5956,12 @@ type PlatformShipment = {
     credit_note_id?: string;
     is_self_ship?: boolean;
     mode_of_payment?: string;
+    /**
+     * - Flag to show NDR actions based on
+     * LAPA (Logistic As Per Actual) plan subscription. If LAPA plan taken, true,
+     * else false.
+     */
+    is_lapa_enabled?: boolean;
 };
 /** @returns {ShipmentInfoResponse} */
 declare function ShipmentInfoResponse(): ShipmentInfoResponse;

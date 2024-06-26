@@ -305,6 +305,7 @@ const Joi = require("joi");
  *   containing payment methods used for placing an order. Each object will
  *   provide information about corresponding payment method with relevant details."
  * @property {string} [order_type]
+ * @property {string} [gstin_code]
  * @property {boolean} [show_download_invoice]
  * @property {boolean} [can_cancel]
  * @property {ShipmentUserInfo} [user_info]
@@ -981,6 +982,7 @@ class OrderApplicationModel {
         OrderApplicationModel.ShipmentPaymentInfo()
       ),
       order_type: Joi.string().allow("").allow(null),
+      gstin_code: Joi.string().allow(""),
       show_download_invoice: Joi.boolean(),
       can_cancel: Joi.boolean(),
       user_info: OrderApplicationModel.ShipmentUserInfo(),

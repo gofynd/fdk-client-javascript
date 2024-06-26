@@ -769,6 +769,7 @@ const Joi = require("joi");
  * @property {string} [key]
  * @property {string} [code]
  * @property {string} [number]
+ * @property {string} [phone_type]
  */
 
 /**
@@ -2340,6 +2341,7 @@ class ContentPlatformModel {
       key: Joi.string().allow(""),
       code: Joi.string().allow(""),
       number: Joi.string().allow(""),
+      phone_type: Joi.string().allow(""),
     });
   }
 

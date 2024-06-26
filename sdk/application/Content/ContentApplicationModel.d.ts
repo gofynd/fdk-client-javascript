@@ -424,6 +424,7 @@ export = ContentApplicationModel;
  * @property {string} [key]
  * @property {string} [code]
  * @property {string} [number]
+ * @property {string} [phone_type]
  */
 /**
  * @typedef PhoneSchema
@@ -1075,6 +1076,7 @@ type PhoneProperties = {
     key?: string;
     code?: string;
     number?: string;
+    phone_type?: string;
 };
 /** @returns {PhoneSchema} */
 declare function PhoneSchema(): PhoneSchema;

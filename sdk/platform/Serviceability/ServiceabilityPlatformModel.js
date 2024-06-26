@@ -596,6 +596,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CourierAccountRequestBody
+ * @property {string} extension_id
+ * @property {string} [account_id]
+ * @property {string} scheme_id
+ * @property {boolean} is_self_ship
+ * @property {string} stage
+ * @property {boolean} is_own_account
+ */
+
+/**
  * @typedef ErrorResponse
  * @property {string} value
  * @property {string} message
@@ -1901,6 +1911,18 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       extension_id: Joi.string().allow("").required(),
       account_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow("").required(),
+      is_self_ship: Joi.boolean().required(),
+      stage: Joi.string().allow("").required(),
+      is_own_account: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {CourierAccountRequestBody} */
+  static CourierAccountRequestBody() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      account_id: Joi.string().allow(""),
       scheme_id: Joi.string().allow("").required(),
       is_self_ship: Joi.boolean().required(),
       stage: Joi.string().allow("").required(),

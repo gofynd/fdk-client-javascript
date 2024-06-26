@@ -522,6 +522,15 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} is_own_account
  */
 /**
+ * @typedef CourierAccountRequestBody
+ * @property {string} extension_id
+ * @property {string} [account_id]
+ * @property {string} scheme_id
+ * @property {boolean} is_self_ship
+ * @property {string} stage
+ * @property {boolean} is_own_account
+ */
+/**
  * @typedef ErrorResponse
  * @property {string} value
  * @property {string} message
@@ -994,7 +1003,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, ArticleAssignment, ServiceabilityLocation, LocationDetailsServiceability, OptimalLocationsArticles, OptimlLocationsRequestSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse };
+    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, CourierAccountRequestBody, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, ArticleAssignment, ServiceabilityLocation, LocationDetailsServiceability, OptimalLocationsArticles, OptimlLocationsRequestSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse };
 }
 /** @returns {UpdateZoneConfigRequest} */
 declare function UpdateZoneConfigRequest(): UpdateZoneConfigRequest;
@@ -1586,6 +1595,16 @@ declare function CourierAccount(): CourierAccount;
 type CourierAccount = {
     extension_id: string;
     account_id: string;
+    scheme_id: string;
+    is_self_ship: boolean;
+    stage: string;
+    is_own_account: boolean;
+};
+/** @returns {CourierAccountRequestBody} */
+declare function CourierAccountRequestBody(): CourierAccountRequestBody;
+type CourierAccountRequestBody = {
+    extension_id: string;
+    account_id?: string;
     scheme_id: string;
     is_self_ship: boolean;
     stage: string;

@@ -242,6 +242,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef InvoiceBillingItem
+ * @property {string} [invoice_number]
+ * @property {number} [amount]
+ */
+
+/**
  * @typedef PaymentProcessPayload
  * @property {string} [platform]
  * @property {number} [amount]
@@ -252,7 +258,7 @@ const Joi = require("joi");
  * @property {string} [currency]
  * @property {string} [seller_id]
  * @property {string} [mode_of_payment]
- * @property {string} [invoice_number]
+ * @property {InvoiceBillingItem[]} [invoice_billing_items]
  */
 
 /**
@@ -761,7 +767,7 @@ const Joi = require("joi");
 
 /**
  * @typedef InvoicePaymentOptionsPayloadData
- * @property {string} [invoice_number]
+ * @property {string[]} [invoice_numbers]
  */
 
 /**
@@ -787,18 +793,21 @@ const Joi = require("joi");
 
 /**
  * @typedef InvoicePaymentOptionsResponseData
- * @property {Currency} [currency]
+ * @property {string} [invoice_number]
  * @property {string} [invoice_type]
  * @property {InvoicePaymentOptionsResponsePayableAmounts[]} [display_amounts]
  * @property {Object} [total_amount]
  * @property {Object} [deducted_amounts]
  * @property {InvoicePaymentOptionsResponsePayableAmounts[]} [payable_amounts]
+ * @property {Currency} [currency]
  */
 
 /**
  * @typedef InvoicePaymentOptionsResponse
  * @property {string} [reason]
- * @property {InvoicePaymentOptionsResponseData} [data]
+ * @property {InvoicePaymentOptionsResponseData[]} [data]
+ * @property {number} [total_payable_amount]
+ * @property {number} [invoice_count]
  * @property {boolean} [success]
  */
 
@@ -1184,6 +1193,14 @@ class FinancePlatformModel {
     });
   }
 
+  /** @returns {InvoiceBillingItem} */
+  static InvoiceBillingItem() {
+    return Joi.object({
+      invoice_number: Joi.string().allow(""),
+      amount: Joi.number(),
+    });
+  }
+
   /** @returns {PaymentProcessPayload} */
   static PaymentProcessPayload() {
     return Joi.object({
@@ -1196,7 +1213,9 @@ class FinancePlatformModel {
       currency: Joi.string().allow(""),
       seller_id: Joi.string().allow(""),
       mode_of_payment: Joi.string().allow(""),
-      invoice_number: Joi.string().allow(""),
+      invoice_billing_items: Joi.array().items(
+        FinancePlatformModel.InvoiceBillingItem()
+      ),
     });
   }
 
@@ -1855,7 +1874,7 @@ class FinancePlatformModel {
   /** @returns {InvoicePaymentOptionsPayloadData} */
   static InvoicePaymentOptionsPayloadData() {
     return Joi.object({
-      invoice_number: Joi.string().allow(""),
+      invoice_numbers: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -1889,7 +1908,7 @@ class FinancePlatformModel {
   /** @returns {InvoicePaymentOptionsResponseData} */
   static InvoicePaymentOptionsResponseData() {
     return Joi.object({
-      currency: FinancePlatformModel.Currency(),
+      invoice_number: Joi.string().allow(""),
       invoice_type: Joi.string().allow(""),
       display_amounts: Joi.array().items(
         FinancePlatformModel.InvoicePaymentOptionsResponsePayableAmounts()
@@ -1899,6 +1918,7 @@ class FinancePlatformModel {
       payable_amounts: Joi.array().items(
         FinancePlatformModel.InvoicePaymentOptionsResponsePayableAmounts()
       ),
+      currency: FinancePlatformModel.Currency(),
     });
   }
 
@@ -1906,7 +1926,11 @@ class FinancePlatformModel {
   static InvoicePaymentOptionsResponse() {
     return Joi.object({
       reason: Joi.string().allow(""),
-      data: FinancePlatformModel.InvoicePaymentOptionsResponseData(),
+      data: Joi.array().items(
+        FinancePlatformModel.InvoicePaymentOptionsResponseData()
+      ),
+      total_payable_amount: Joi.number(),
+      invoice_count: Joi.number(),
       success: Joi.boolean(),
     });
   }

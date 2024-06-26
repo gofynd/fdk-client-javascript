@@ -88,6 +88,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CourierAccountRequestBody
+ * @property {string} extension_id
+ * @property {string} [account_id]
+ * @property {string} scheme_id
+ * @property {boolean} is_self_ship
+ * @property {string} stage
+ * @property {boolean} is_own_account
+ */
+
+/**
  * @typedef CourierPartnerAccountFailureResponse
  * @property {boolean} success
  * @property {ErrorResponse[]} error
@@ -113,6 +123,20 @@ const Joi = require("joi");
  * @typedef CourierPartnerSchemeModel
  * @property {string} extension_id
  * @property {string} scheme_id
+ * @property {string} name
+ * @property {ArithmeticOperations} weight
+ * @property {string} transport_type
+ * @property {string} region
+ * @property {string} delivery_type
+ * @property {string[]} payment_mode
+ * @property {string} stage
+ * @property {CourierPartnerSchemeFeatures} feature
+ */
+
+/**
+ * @typedef CourierPartnerSchemeRequestModel
+ * @property {string} extension_id
+ * @property {string} [scheme_id]
  * @property {string} name
  * @property {ArithmeticOperations} weight
  * @property {string} transport_type
@@ -307,6 +331,18 @@ class LogisticsPartnerModel {
     });
   }
 
+  /** @returns {CourierAccountRequestBody} */
+  static CourierAccountRequestBody() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      account_id: Joi.string().allow(""),
+      scheme_id: Joi.string().allow("").required(),
+      is_self_ship: Joi.boolean().required(),
+      stage: Joi.string().allow("").required(),
+      is_own_account: Joi.boolean().required(),
+    });
+  }
+
   /** @returns {CourierPartnerAccountFailureResponse} */
   static CourierPartnerAccountFailureResponse() {
     return Joi.object({
@@ -344,6 +380,22 @@ class LogisticsPartnerModel {
     return Joi.object({
       extension_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      weight: LogisticsPartnerModel.ArithmeticOperations().required(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures().required(),
+    });
+  }
+
+  /** @returns {CourierPartnerSchemeRequestModel} */
+  static CourierPartnerSchemeRequestModel() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       weight: LogisticsPartnerModel.ArithmeticOperations().required(),
       transport_type: Joi.string().allow("").required(),

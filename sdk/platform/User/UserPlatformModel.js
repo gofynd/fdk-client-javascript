@@ -253,7 +253,6 @@ const Joi = require("joi");
 /**
  * @typedef CreateUserSessionRequestSchema
  * @property {string} [domain]
- * @property {number} [max_age]
  * @property {string} [user_id]
  */
 
@@ -846,7 +845,6 @@ class UserPlatformModel {
   static CreateUserSessionRequestSchema() {
     return Joi.object({
       domain: Joi.string().allow(""),
-      max_age: Joi.number(),
       user_id: Joi.string().allow(""),
     });
   }

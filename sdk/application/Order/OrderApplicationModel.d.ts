@@ -278,6 +278,7 @@ export = OrderApplicationModel;
  *   containing payment methods used for placing an order. Each object will
  *   provide information about corresponding payment method with relevant details."
  * @property {string} [order_type]
+ * @property {string} [gstin_code]
  * @property {boolean} [show_download_invoice]
  * @property {boolean} [can_cancel]
  * @property {ShipmentUserInfo} [user_info]
@@ -887,6 +888,7 @@ type Shipments = {
      */
     payment_info?: ShipmentPaymentInfo[];
     order_type?: string;
+    gstin_code?: string;
     show_download_invoice?: boolean;
     can_cancel?: boolean;
     user_info?: ShipmentUserInfo;

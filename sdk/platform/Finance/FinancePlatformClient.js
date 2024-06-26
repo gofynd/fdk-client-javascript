@@ -1787,8 +1787,8 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.InvoicePaymentOptionsResponse>} -
    *   Success response
    * @name invoicePaymentOptions
-   * @summary: Display all payment options for an invoice.
-   * @description: Display all payment options for an invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentOptions/).
+   * @summary: Display all payment options for invoice.
+   * @description: Display all payment options for invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentOptions/).
    */
   async invoicePaymentOptions(
     { body, requestHeaders } = { requestHeaders: {} },

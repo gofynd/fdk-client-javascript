@@ -130,6 +130,17 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [timestamp] - Timestamp in UTC format (2020-07-23T10:27:50Z)
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  * @property {string} [pageId] - Page ID to retrieve next set of results.
+ * @property {number} [qtyGt] - This field allows you to filter for inventories
+ *   that have quantity greater than to the specified value based on qty_type filter.
+ * @property {number} [qtyLt] - This field allows you to filter for inventories
+ *   that have a quantity less than to the specified value based on qty_type filter.
+ * @property {string} [qtyType] - This field provides flexibility in selecting
+ *   filter for inventory quantity counts and date queries. For example, you
+ *   might use this field to specify "total" or "sellable" quantity.
+ * @property {string} [fromDate] - Inventory updated on filter to get
+ *   inventories greater then or equal to provided date based on qty_type value.
+ * @property {string} [toDate] - Inventory updated on filter to get inventories
+ *   less then or equal to provided date based on qty_type value.
  */
 
 /**
@@ -645,6 +656,11 @@ class CatalogPlatformApplicationValidator {
       timestamp: Joi.string().allow(""),
       pageSize: Joi.number(),
       pageId: Joi.string().allow(""),
+      qtyGt: Joi.number(),
+      qtyLt: Joi.number(),
+      qtyType: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
     }).required();
   }
 

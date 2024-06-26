@@ -223,7 +223,6 @@ export = UserPlatformModel;
 /**
  * @typedef CreateUserSessionRequestSchema
  * @property {string} [domain]
- * @property {number} [max_age]
  * @property {string} [user_id]
  */
 /**
@@ -850,7 +849,6 @@ type CreateUserResponseSchema = {
 declare function CreateUserSessionRequestSchema(): CreateUserSessionRequestSchema;
 type CreateUserSessionRequestSchema = {
     domain?: string;
-    max_age?: number;
     user_id?: string;
 };
 /** @returns {CreateUserSessionResponseSchema} */
