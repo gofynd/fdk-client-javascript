@@ -789,6 +789,88 @@ class Theme {
   }
 
   /**
+   * @param {ThemePlatformApplicationValidator.GetExtensionSectionsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ThemePlatformModel.GetExtensionSectionRes[]>} - Success response
+   * @name getExtensionSections
+   * @summary: Get extension sections
+   * @description: Retrieve the list of extension sections for a given application in the specified company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getExtensionSections/).
+   */
+  async getExtensionSections(
+    { type, companyMode, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getExtensionSections().validate(
+      {
+        type,
+        companyMode,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getExtensionSections().validate(
+      {
+        type,
+        companyMode,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > getExtensionSections \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["type"] = type;
+    query_params["company_mode"] = companyMode;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/extension-section`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(ThemePlatformModel.GetExtensionSectionRes())
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getExtensionSections \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ThemePlatformApplicationValidator.GetFontsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

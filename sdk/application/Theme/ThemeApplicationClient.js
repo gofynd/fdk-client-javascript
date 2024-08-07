@@ -42,7 +42,7 @@ class Theme {
    * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
    * @name getAllPages
    * @summary: List pages
-   * @description: Get all page level configs, sections and SEO data of a theme - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
+   * @description: Get all page level configs, sections and seo data of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
    */
   async getAllPages(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -198,16 +198,21 @@ class Theme {
    * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
    * @name getPage
    * @summary: Get theme page
-   * @description: Get page level configurations, applied sections and SEO data of a page by `page_value` received from list pages API - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
+   * @description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
    */
   async getPage(
-    { themeId, pageValue, filters, company, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      themeId,
+      pageValue,
+      filters,
+      sectionPreviewHash,
+      company,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemeApplicationValidator.getPage().validate(
-      { themeId, pageValue, filters, company },
+      { themeId, pageValue, filters, sectionPreviewHash, company },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -216,7 +221,7 @@ class Theme {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = ThemeApplicationValidator.getPage().validate(
-      { themeId, pageValue, filters, company },
+      { themeId, pageValue, filters, sectionPreviewHash, company },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -228,6 +233,7 @@ class Theme {
 
     const query_params = {};
     query_params["filters"] = filters;
+    query_params["section_preview_hash"] = sectionPreviewHash;
     query_params["company"] = company;
 
     const xHeaders = {};
@@ -278,7 +284,7 @@ class Theme {
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getThemeForPreview
    * @summary: Get theme for preview
-   * @description: Gets the theme configuration and template details of a theme by theme Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
+   * @description: Gets the theme configuration and template details of a theme by theme id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
    */
   async getThemeForPreview(
     { themeId, requestHeaders } = { requestHeaders: {} },

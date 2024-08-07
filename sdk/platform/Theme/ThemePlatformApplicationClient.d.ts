@@ -110,6 +110,18 @@ declare class Theme {
      */
     getAppliedTheme({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemesSchema>;
     /**
+     * @param {ThemePlatformApplicationValidator.GetExtensionSectionsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ThemePlatformModel.GetExtensionSectionRes[]>} - Success response
+     * @name getExtensionSections
+     * @summary: Get extension sections
+     * @description: Retrieve the list of extension sections for a given application in the specified company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getExtensionSections/).
+     */
+    getExtensionSections({ type, companyMode, requestHeaders }?: ThemePlatformApplicationValidator.GetExtensionSectionsParam, { responseHeaders }?: object): Promise<ThemePlatformModel.GetExtensionSectionRes[]>;
+    /**
      * @param {ThemePlatformApplicationValidator.GetFontsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

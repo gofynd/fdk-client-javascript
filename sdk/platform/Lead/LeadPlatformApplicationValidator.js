@@ -3,11 +3,6 @@ const Joi = require("joi");
 const LeadPlatformModel = require("./LeadPlatformModel");
 
 /**
- * @typedef CloseVideoRoomParam
- * @property {string} uniqueName - Unique name of Video Room
- */
-
-/**
  * @typedef CreateCustomFormParam
  * @property {LeadPlatformModel.CreateCustomFormPayload} body
  */
@@ -63,29 +58,7 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  * @property {string} [category] - Filter tickets on category
  */
 
-/**
- * @typedef GetNewTokenForVideoRoomParam
- * @property {string} uniqueName - Unique name of video room
- */
-
-/**
- * @typedef GetNewVideoParticipantsParam
- * @property {string} uniqueName - Unique name of Video Room
- */
-
-/**
- * @typedef OpenVideoRoomParam
- * @property {LeadPlatformModel.CreateVideoRoomPayload} body
- */
-
 class LeadPlatformApplicationValidator {
-  /** @returns {CloseVideoRoomParam} */
-  static closeVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {CreateCustomFormParam} */
   static createCustomForm() {
     return Joi.object({
@@ -159,27 +132,6 @@ class LeadPlatformApplicationValidator {
       status: Joi.string().allow(""),
       priority: LeadPlatformModel.PriorityEnum(),
       category: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetNewTokenForVideoRoomParam} */
-  static getNewTokenForVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetNewVideoParticipantsParam} */
-  static getNewVideoParticipants() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {OpenVideoRoomParam} */
-  static openVideoRoom() {
-    return Joi.object({
-      body: LeadPlatformModel.CreateVideoRoomPayload().required(),
     }).required();
   }
 }

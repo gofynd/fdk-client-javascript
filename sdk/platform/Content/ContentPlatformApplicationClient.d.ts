@@ -599,17 +599,7 @@ declare class Content {
      * @summary: List blogs
      * @description: List all blogs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
      */
-    getBlogs({ pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogGetResponse>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-     * @name getComponentById
-     * @summary: Get component
-     * @description: Retrieve detailed information about a specific component. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
-     */
-    getComponentById({ slug, requestHeaders }?: ContentPlatformApplicationValidator.GetComponentByIdParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogSchema>;
+    getBlogs({ pageNo, pageSize, tags, q, slug, title, status, requestHeaders }?: ContentPlatformApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.BlogGetResponse>;
     /**
      * @param {ContentPlatformApplicationValidator.GetDataLoadersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

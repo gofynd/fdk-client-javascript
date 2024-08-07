@@ -27,7 +27,7 @@ declare class Order {
      *   Success response
      * @name getCustomerDetailsByShipmentId
      * @summary: Get shipment's customer
-     * @description: Retrieve customer details such as mobile number using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
+     * @description: Get customer details such as mobile number using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
      */
     getCustomerDetailsByShipmentId({ orderId, shipmentId, requestHeaders }?: OrderApplicationValidator.GetCustomerDetailsByShipmentIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.CustomerDetailsResponse>;
     /**
@@ -38,7 +38,7 @@ declare class Order {
      *   Success response
      * @name getInvoiceByShipmentId
      * @summary: Retrieves invoice for shipment
-     * @description: Retrieve the invoice corresponding to a specific shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getInvoiceByShipmentId/).
+     * @description: Get invoice corresponding to a specific shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getInvoiceByShipmentId/).
      */
     getInvoiceByShipmentId({ shipmentId, requestHeaders }?: OrderApplicationValidator.GetInvoiceByShipmentIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ResponseGetInvoiceShipment>;
     /**
@@ -48,7 +48,7 @@ declare class Order {
      * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
      * @name getOrderById
      * @summary: Get an order
-     * @description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
+     * @description: Get order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
      */
     getOrderById({ orderId, allowInactive, requestHeaders }?: OrderApplicationValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderById>;
     /**
@@ -58,7 +58,7 @@ declare class Order {
      * @returns {Promise<OrderApplicationModel.OrderList>} - Success response
      * @name getOrders
      * @summary: List customer orders
-     * @description: Retrieves all orders associated with a customer account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
+     * @description: Get all orders associated with a customer account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
      */
     getOrders({ status, pageNo, pageSize, fromDate, toDate, startDate, endDate, customMeta, allowInactive, requestHeaders, }?: OrderApplicationValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderList>;
     /**
@@ -68,7 +68,7 @@ declare class Order {
      * @returns {Promise<OrderApplicationModel.ShipmentBagReasons>} - Success response
      * @name getShipmentBagReasons
      * @summary: List bag cancellation reasons
-     * @description: Get reasons to perform full or partial cancellation of a bag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
+     * @description: Get reasons to perform full or partial cancellation of a bag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
      */
     getShipmentBagReasons({ shipmentId, bagId, requestHeaders }?: OrderApplicationValidator.GetShipmentBagReasonsParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentBagReasons>;
     /**
@@ -78,7 +78,7 @@ declare class Order {
      * @returns {Promise<OrderApplicationModel.ShipmentById>} - Success response
      * @name getShipmentById
      * @summary: Get a Shipment
-     * @description: Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
+     * @description: Get shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
      */
     getShipmentById({ shipmentId, allowInactive, requestHeaders }?: OrderApplicationValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentById>;
     /**
@@ -88,7 +88,7 @@ declare class Order {
      * @returns {Promise<OrderApplicationModel.ShipmentReasons>} - Success response
      * @name getShipmentReasons
      * @summary: List shipment cancellation reasons
-     * @description: Get reasons to perform full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
+     * @description: Get reasons to perform full or partial cancellation of a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
      */
     getShipmentReasons({ shipmentId, requestHeaders }?: OrderApplicationValidator.GetShipmentReasonsParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentReasons>;
     /**
@@ -99,7 +99,7 @@ declare class Order {
      *   Success response
      * @name sendOtpToShipmentCustomer
      * @summary: Send OTP to customer
-     * @description: Sends a one-time password (OTP) to the customer for shipment verification - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
+     * @description: Send OTP to the customer for shipment verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
      */
     sendOtpToShipmentCustomer({ orderId, shipmentId, requestHeaders }?: OrderApplicationValidator.SendOtpToShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.SendOtpToCustomerResponse>;
     /**
@@ -121,7 +121,7 @@ declare class Order {
      *
      * @name updateShipmentStatus
      * @summary: Updates shipment status
-     * @description: Modifies the current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
+     * @description: Update current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
      */
     updateShipmentStatus({ shipmentId, body, requestHeaders }?: OrderApplicationValidator.UpdateShipmentStatusParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>;
     /**
@@ -131,7 +131,7 @@ declare class Order {
      * @returns {Promise<OrderApplicationModel.VerifyOtpResponse>} - Success response
      * @name verifyOtpShipmentCustomer
      * @summary: Verifies OTP
-     * @description: Confirms the OTP sent to the shipment customer for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
+     * @description: Verify OTP sent by customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
      */
     verifyOtpShipmentCustomer({ orderId, shipmentId, body, requestHeaders }?: OrderApplicationValidator.VerifyOtpShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.VerifyOtpResponse>;
 }

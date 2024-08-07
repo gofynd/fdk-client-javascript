@@ -88,29 +88,6 @@ declare class Lead {
      */
     getTicketHistory({ id, requestHeaders }?: LeadPartnerValidator.GetTicketHistoryParam, { responseHeaders }?: object): Promise<LeadPartnerModel.TicketHistoryList>;
     /**
-     * @param {LeadPartnerValidator.GetTokenForVideoRoomParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LeadPartnerModel.GetTokenForVideoRoomResponse>} -
-     *   Success response
-     * @name getTokenForVideoRoom
-     * @summary: Get Token to join a specific Video Room using it's unqiue name
-     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getTokenForVideoRoom/).
-     */
-    getTokenForVideoRoom({ uniqueName, requestHeaders }?: LeadPartnerValidator.GetTokenForVideoRoomParam, { responseHeaders }?: object): Promise<LeadPartnerModel.GetTokenForVideoRoomResponse>;
-    /**
-     * @param {LeadPartnerValidator.GetVideoParticipantsParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<LeadPartnerModel.GetParticipantsInsideVideoRoomResponse>}
-     *   - Success response
-     *
-     * @name getVideoParticipants
-     * @summary: Get participants of a specific Video Room using it's unique name
-     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/lead/getVideoParticipants/).
-     */
-    getVideoParticipants({ uniqueName, requestHeaders }?: LeadPartnerValidator.GetVideoParticipantsParam, { responseHeaders }?: object): Promise<LeadPartnerModel.GetParticipantsInsideVideoRoomResponse>;
-    /**
      * @param {LeadPartnerValidator.GetGeneralConfigParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options

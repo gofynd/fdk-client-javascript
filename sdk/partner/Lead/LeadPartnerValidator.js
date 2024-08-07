@@ -47,18 +47,6 @@ class LeadValidator {
     }).required();
   }
 
-  static getTokenForVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getVideoParticipants() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getGeneralConfig() {
     return Joi.object({}).required();
   }

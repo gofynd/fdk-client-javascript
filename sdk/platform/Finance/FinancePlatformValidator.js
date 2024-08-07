@@ -9,27 +9,27 @@ const FinancePlatformModel = require("./FinancePlatformModel");
 
 /**
  * @typedef CreateSellerCreditNoteConfigParam
- * @property {FinancePlatformModel.CreateSellerCreditNoteConfigRequest} body
+ * @property {FinancePlatformModel.CreateSellerCreditNoteConfigReq} body
  */
 
 /**
  * @typedef CreditNoteDetailsParam
- * @property {FinancePlatformModel.CreditNoteDetailsRequest} body
+ * @property {FinancePlatformModel.CreditNoteDetailsReq} body
  */
 
 /**
  * @typedef CreditlineDataplatformParam
- * @property {FinancePlatformModel.CreditlineDataPlatformRequest} body
+ * @property {FinancePlatformModel.CreditlineDataPlatformReq} body
  */
 
 /**
  * @typedef DeleteConfigParam
- * @property {FinancePlatformModel.DeleteConfigRequest} body
+ * @property {FinancePlatformModel.DeleteConfigReq} body
  */
 
 /**
  * @typedef DownloadCreditDebitNoteParam
- * @property {FinancePlatformModel.DownloadCreditDebitNoteRequest} body
+ * @property {FinancePlatformModel.DownloadCreditDebitNoteReq} body
  */
 
 /**
@@ -39,17 +39,17 @@ const FinancePlatformModel = require("./FinancePlatformModel");
 
 /**
  * @typedef DownloadReportCustomerCnParam
- * @property {FinancePlatformModel.DownloadReportCustomerCnRequest} body
+ * @property {FinancePlatformModel.DownloadReportCustomerCnReq} body
  */
 
 /**
  * @typedef GenerateReportParam
- * @property {FinancePlatformModel.GenerateReportRequest} body
+ * @property {FinancePlatformModel.GenerateReportReq} body
  */
 
 /**
  * @typedef GenerateReportCustomerCnParam
- * @property {FinancePlatformModel.GenerateReportCustomerCnRequest} body
+ * @property {FinancePlatformModel.GenerateReportCustomerCnReq} body
  */
 
 /**
@@ -59,32 +59,32 @@ const FinancePlatformModel = require("./FinancePlatformModel");
 
 /**
  * @typedef GetCnConfigParam
- * @property {FinancePlatformModel.GetCnConfigRequest} body
+ * @property {FinancePlatformModel.GetCnConfigReq} body
  */
 
 /**
  * @typedef GetCustomerCreditBalanceParam
- * @property {FinancePlatformModel.GetCustomerCreditBalanceRequest} body
+ * @property {FinancePlatformModel.GetCustomerCreditBalanceReq} body
  */
 
 /**
  * @typedef GetDataParam
- * @property {FinancePlatformModel.GetEngineRequest} body
+ * @property {FinancePlatformModel.GetEngineReq} body
  */
 
 /**
  * @typedef GetPdfUrlViewParam
- * @property {FinancePlatformModel.GetPdfUrlViewRequest} body
+ * @property {FinancePlatformModel.GetPdfUrlViewReq} body
  */
 
 /**
  * @typedef GetReasonParam
- * @property {FinancePlatformModel.GetReasonRequest} body
+ * @property {FinancePlatformModel.GetReasonReq} body
  */
 
 /**
  * @typedef GetReportListParam
- * @property {FinancePlatformModel.GetReportListRequest} body
+ * @property {FinancePlatformModel.GetReportListReq} body
  */
 
 /**
@@ -101,12 +101,12 @@ const FinancePlatformModel = require("./FinancePlatformModel");
 
 /**
  * @typedef InvoiceListingParam
- * @property {FinancePlatformModel.InvoiceListingRequest} body
+ * @property {FinancePlatformModel.InvoiceListingReq} body
  */
 
 /**
  * @typedef InvoicePDFParam
- * @property {FinancePlatformModel.InvoicePdfRequest} body
+ * @property {FinancePlatformModel.InvoicePdfReq} body
  */
 
 /**
@@ -116,28 +116,35 @@ const FinancePlatformModel = require("./FinancePlatformModel");
  */
 
 /**
+ * @typedef InvoicePaymentOptionsParam
+ * @property {FinancePlatformModel.InvoicePaymentOptionsReq} body
+ */
+
+/**
  * @typedef InvoiceTypeParam
- * @property {FinancePlatformModel.InvoiceTypeRequest} body
+ * @property {FinancePlatformModel.InvoiceTypeReq} body
  */
 
 /**
  * @typedef IsCnRefundMethodParam
- * @property {FinancePlatformModel.IsCnRefundMethodRequest} body
+ * @property {FinancePlatformModel.IsCnRefundMethodReq} body
  */
 
 /**
  * @typedef IsCreditlinePlatformParam
- * @property {FinancePlatformModel.IsCreditlinePlatformRequest} body
+ * @property {FinancePlatformModel.IsCreditlinePlatformReq} body
  */
+
+/** @typedef OrderFreezeParam */
 
 /**
  * @typedef PaymentProcessParam
- * @property {FinancePlatformModel.PaymentProcessRequest} body
+ * @property {FinancePlatformModel.PaymentProcessReq} body
  */
 
 /**
  * @typedef UnlockCreditNoteParam
- * @property {FinancePlatformModel.UnlockCreditNoteRequest} body
+ * @property {FinancePlatformModel.UnlockCreditNoteReq} body
  */
 
 class FinancePlatformValidator {
@@ -151,35 +158,35 @@ class FinancePlatformValidator {
   /** @returns {CreateSellerCreditNoteConfigParam} */
   static createSellerCreditNoteConfig() {
     return Joi.object({
-      body: FinancePlatformModel.CreateSellerCreditNoteConfigRequest().required(),
+      body: FinancePlatformModel.CreateSellerCreditNoteConfigReq().required(),
     }).required();
   }
 
   /** @returns {CreditNoteDetailsParam} */
   static creditNoteDetails() {
     return Joi.object({
-      body: FinancePlatformModel.CreditNoteDetailsRequest().required(),
+      body: FinancePlatformModel.CreditNoteDetailsReq().required(),
     }).required();
   }
 
   /** @returns {CreditlineDataplatformParam} */
   static creditlineDataplatform() {
     return Joi.object({
-      body: FinancePlatformModel.CreditlineDataPlatformRequest().required(),
+      body: FinancePlatformModel.CreditlineDataPlatformReq().required(),
     }).required();
   }
 
   /** @returns {DeleteConfigParam} */
   static deleteConfig() {
     return Joi.object({
-      body: FinancePlatformModel.DeleteConfigRequest().required(),
+      body: FinancePlatformModel.DeleteConfigReq().required(),
     }).required();
   }
 
   /** @returns {DownloadCreditDebitNoteParam} */
   static downloadCreditDebitNote() {
     return Joi.object({
-      body: FinancePlatformModel.DownloadCreditDebitNoteRequest().required(),
+      body: FinancePlatformModel.DownloadCreditDebitNoteReq().required(),
     }).required();
   }
 
@@ -193,21 +200,21 @@ class FinancePlatformValidator {
   /** @returns {DownloadReportCustomerCnParam} */
   static downloadReportCustomerCn() {
     return Joi.object({
-      body: FinancePlatformModel.DownloadReportCustomerCnRequest().required(),
+      body: FinancePlatformModel.DownloadReportCustomerCnReq().required(),
     }).required();
   }
 
   /** @returns {GenerateReportParam} */
   static generateReport() {
     return Joi.object({
-      body: FinancePlatformModel.GenerateReportRequest().required(),
+      body: FinancePlatformModel.GenerateReportReq().required(),
     }).required();
   }
 
   /** @returns {GenerateReportCustomerCnParam} */
   static generateReportCustomerCn() {
     return Joi.object({
-      body: FinancePlatformModel.GenerateReportCustomerCnRequest().required(),
+      body: FinancePlatformModel.GenerateReportCustomerCnReq().required(),
     }).required();
   }
 
@@ -221,42 +228,42 @@ class FinancePlatformValidator {
   /** @returns {GetCnConfigParam} */
   static getCnConfig() {
     return Joi.object({
-      body: FinancePlatformModel.GetCnConfigRequest().required(),
+      body: FinancePlatformModel.GetCnConfigReq().required(),
     }).required();
   }
 
   /** @returns {GetCustomerCreditBalanceParam} */
   static getCustomerCreditBalance() {
     return Joi.object({
-      body: FinancePlatformModel.GetCustomerCreditBalanceRequest().required(),
+      body: FinancePlatformModel.GetCustomerCreditBalanceReq().required(),
     }).required();
   }
 
   /** @returns {GetDataParam} */
   static getData() {
     return Joi.object({
-      body: FinancePlatformModel.GetEngineRequest().required(),
+      body: FinancePlatformModel.GetEngineReq().required(),
     }).required();
   }
 
   /** @returns {GetPdfUrlViewParam} */
   static getPdfUrlView() {
     return Joi.object({
-      body: FinancePlatformModel.GetPdfUrlViewRequest().required(),
+      body: FinancePlatformModel.GetPdfUrlViewReq().required(),
     }).required();
   }
 
   /** @returns {GetReasonParam} */
   static getReason() {
     return Joi.object({
-      body: FinancePlatformModel.GetReasonRequest().required(),
+      body: FinancePlatformModel.GetReasonReq().required(),
     }).required();
   }
 
   /** @returns {GetReportListParam} */
   static getReportList() {
     return Joi.object({
-      body: FinancePlatformModel.GetReportListRequest().required(),
+      body: FinancePlatformModel.GetReportListReq().required(),
     }).required();
   }
 
@@ -278,14 +285,14 @@ class FinancePlatformValidator {
   /** @returns {InvoiceListingParam} */
   static invoiceListing() {
     return Joi.object({
-      body: FinancePlatformModel.InvoiceListingRequest().required(),
+      body: FinancePlatformModel.InvoiceListingReq().required(),
     }).required();
   }
 
   /** @returns {InvoicePDFParam} */
   static invoicePDF() {
     return Joi.object({
-      body: FinancePlatformModel.InvoicePdfRequest().required(),
+      body: FinancePlatformModel.InvoicePdfReq().required(),
     }).required();
   }
 
@@ -296,38 +303,50 @@ class FinancePlatformValidator {
     }).required();
   }
 
+  /** @returns {InvoicePaymentOptionsParam} */
+  static invoicePaymentOptions() {
+    return Joi.object({
+      body: FinancePlatformModel.InvoicePaymentOptionsReq().required(),
+    }).required();
+  }
+
   /** @returns {InvoiceTypeParam} */
   static invoiceType() {
     return Joi.object({
-      body: FinancePlatformModel.InvoiceTypeRequest().required(),
+      body: FinancePlatformModel.InvoiceTypeReq().required(),
     }).required();
   }
 
   /** @returns {IsCnRefundMethodParam} */
   static isCnRefundMethod() {
     return Joi.object({
-      body: FinancePlatformModel.IsCnRefundMethodRequest().required(),
+      body: FinancePlatformModel.IsCnRefundMethodReq().required(),
     }).required();
   }
 
   /** @returns {IsCreditlinePlatformParam} */
   static isCreditlinePlatform() {
     return Joi.object({
-      body: FinancePlatformModel.IsCreditlinePlatformRequest().required(),
+      body: FinancePlatformModel.IsCreditlinePlatformReq().required(),
     }).required();
+  }
+
+  /** @returns {OrderFreezeParam} */
+  static orderFreeze() {
+    return Joi.object({}).required();
   }
 
   /** @returns {PaymentProcessParam} */
   static paymentProcess() {
     return Joi.object({
-      body: FinancePlatformModel.PaymentProcessRequest().required(),
+      body: FinancePlatformModel.PaymentProcessReq().required(),
     }).required();
   }
 
   /** @returns {UnlockCreditNoteParam} */
   static unlockCreditNote() {
     return Joi.object({
-      body: FinancePlatformModel.UnlockCreditNoteRequest().required(),
+      body: FinancePlatformModel.UnlockCreditNoteReq().required(),
     }).required();
   }
 }

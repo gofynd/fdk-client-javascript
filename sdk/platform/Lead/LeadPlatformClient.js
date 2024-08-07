@@ -336,7 +336,7 @@ class Lead {
    * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
+   * @returns {Promise<LeadPlatformModel.GeneralConfigResponse>} - Success response
    * @name getGeneralConfig
    * @summary: Get general configuration
    * @description: Get general configuration settings related to support system for company tickets - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
@@ -388,7 +388,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadPlatformModel.CloseVideoRoomResponse().validate(responseData, {
+    } = LeadPlatformModel.GeneralConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -669,171 +669,6 @@ class Lead {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Lead > getPlatformTickets \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {LeadPlatformValidator.GetPlatformVideoParticipantsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
-   *   - Success response
-   *
-   * @name getPlatformVideoParticipants
-   * @summary: List video Room Participants
-   * @description: Get a list of participants in a platform video room - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformVideoParticipants/).
-   */
-  async getPlatformVideoParticipants(
-    { uniqueName, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = LeadPlatformValidator.getPlatformVideoParticipants().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadPlatformValidator.getPlatformVideoParticipants().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > getPlatformVideoParticipants \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/video/room/${uniqueName}/participants`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LeadPlatformModel.GetParticipantsInsideVideoRoomResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > getPlatformVideoParticipants \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {LeadPlatformValidator.GetTokenForPlatformVideoRoomParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
-   *   Success response
-   * @name getTokenForPlatformVideoRoom
-   * @summary: Get video Room Token
-   * @description: Get an access token for a platform video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTokenForPlatformVideoRoom/).
-   */
-  async getTokenForPlatformVideoRoom(
-    { uniqueName, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = LeadPlatformValidator.getTokenForPlatformVideoRoom().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadPlatformValidator.getTokenForPlatformVideoRoom().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > getTokenForPlatformVideoRoom \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/video/room/${uniqueName}/token`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LeadPlatformModel.GetTokenForVideoRoomResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > getTokenForPlatformVideoRoom \n ${res_error}`,
         });
       }
     }

@@ -67,7 +67,7 @@ class LogisticsValidator {
   static createCourierPartnerAccount() {
     return Joi.object({
       companyId: Joi.number().required(),
-      body: LogisticsModel.CourierAccount().required(),
+      body: LogisticsModel.CourierAccountRequestBody().required(),
     }).required();
   }
 
@@ -99,7 +99,7 @@ class LogisticsValidator {
 
   static createCourierPartnerScheme() {
     return Joi.object({
-      body: LogisticsModel.CourierPartnerSchemeModel().required(),
+      body: LogisticsModel.CourierPartnerSchemeRequestModel().required(),
     }).required();
   }
 

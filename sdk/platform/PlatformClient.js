@@ -34,6 +34,7 @@ const Webhook = require("./Webhook/WebhookPlatformClient");
 
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
+const { execute } = require("./PlatformAPIClient");
 
 /**
  * Represents the client for the platform.
@@ -114,6 +115,19 @@ class PlatformClient {
     } else {
       throw new FDKClientValidationError("Context value should be an object");
     }
+  }
+
+  async request({
+    method,
+    url,
+    query,
+    body,
+    headers,
+    responseHeaders = false,
+  }) {
+    return await execute(this.config, method, url, query, body, headers, {
+      responseHeaders,
+    });
   }
 }
 

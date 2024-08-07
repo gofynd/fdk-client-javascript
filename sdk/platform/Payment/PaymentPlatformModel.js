@@ -479,6 +479,7 @@ const Joi = require("joi");
 
 /**
  * @typedef SetCODForUserRequest
+ * @property {string} [business_unit] - Business unit
  * @property {string} mobileno - Mobile No. of User
  * @property {boolean} is_active - Either true or false
  * @property {string} merchant_user_id - Merchant User id
@@ -572,13 +573,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
@@ -664,6 +665,8 @@ const Joi = require("joi");
  * @typedef LinkStatus
  * @property {string} status - Link action status
  * @property {string} message - Message
+ * @property {boolean} [is_payment_done] - This key specifies payment done
+ *   status of payment link.
  */
 
 /**
@@ -785,7 +788,7 @@ const Joi = require("joi");
 /**
  * @typedef ValidateCustomerResponse
  * @property {string} message - Error or success message.
- * @property {Object} data - Payment gateway response data
+ * @property {Object} [data] - Payment gateway response data
  * @property {boolean} success - Response is successful or not
  */
 
@@ -1919,6 +1922,7 @@ class PaymentPlatformModel {
   /** @returns {SetCODForUserRequest} */
   static SetCODForUserRequest() {
     return Joi.object({
+      business_unit: Joi.string().allow(""),
       mobileno: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
       merchant_user_id: Joi.string().allow("").required(),
@@ -2139,6 +2143,7 @@ class PaymentPlatformModel {
     return Joi.object({
       status: Joi.string().allow("").required(),
       message: Joi.string().allow("").required(),
+      is_payment_done: Joi.boolean(),
     });
   }
 
@@ -2292,7 +2297,7 @@ class PaymentPlatformModel {
   static ValidateCustomerResponse() {
     return Joi.object({
       message: Joi.string().allow("").required(),
-      data: Joi.any().required(),
+      data: Joi.any(),
       success: Joi.boolean().required(),
     });
   }

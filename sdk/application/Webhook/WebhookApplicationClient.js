@@ -40,7 +40,7 @@ class Webhook {
    * @returns {Promise<WebhookApplicationModel.ClickEventResponse>} - Success response
    * @name saveClickEvent
    * @summary: Endpoint to capture click events from sales channels and persist them in database.
-   * @description: Endpoint to capture click events from sales channels. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/webhook/saveClickEvent/).
+   * @description: Send click events from sales channels. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/webhook/saveClickEvent/).
    */
   async saveClickEvent(
     { body, requestHeaders } = { requestHeaders: {} },

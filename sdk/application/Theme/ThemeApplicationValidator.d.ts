@@ -1,19 +1,20 @@
 export = ThemeApplicationValidator;
 /**
  * @typedef GetAllPagesParam
- * @property {string} themeId - ID of the theme to be retrieved
+ * @property {string} themeId - Id of the theme to be retrieved.
  */
 /** @typedef GetAppliedThemeParam */
 /**
  * @typedef GetPageParam
- * @property {string} themeId - ID of the theme to be retrieved
- * @property {string} pageValue - Value of the page to be retrieved
- * @property {string} [filters] - Filters on sections to be applied or not
- * @property {number} [company] - Company id of the application
+ * @property {string} themeId - Id of the theme to be retrieved.
+ * @property {string} pageValue - Value of the page to be retrieved.
+ * @property {string} [filters] - Filters on sections to be applied or not.
+ * @property {string} [sectionPreviewHash] - Unique hash id on sections preview.
+ * @property {number} [company] - Company id of the application.
  */
 /**
  * @typedef GetThemeForPreviewParam
- * @property {string} themeId - ID of the theme to be retrieved
+ * @property {string} themeId - Id of the theme to be retrieved.
  */
 declare class ThemeApplicationValidator {
     /** @returns {GetAllPagesParam} */
@@ -30,31 +31,35 @@ declare namespace ThemeApplicationValidator {
 }
 type GetAllPagesParam = {
     /**
-     * - ID of the theme to be retrieved
+     * - Id of the theme to be retrieved.
      */
     themeId: string;
 };
 type GetPageParam = {
     /**
-     * - ID of the theme to be retrieved
+     * - Id of the theme to be retrieved.
      */
     themeId: string;
     /**
-     * - Value of the page to be retrieved
+     * - Value of the page to be retrieved.
      */
     pageValue: string;
     /**
-     * - Filters on sections to be applied or not
+     * - Filters on sections to be applied or not.
      */
     filters?: string;
     /**
-     * - Company id of the application
+     * - Unique hash id on sections preview.
+     */
+    sectionPreviewHash?: string;
+    /**
+     * - Company id of the application.
      */
     company?: number;
 };
 type GetThemeForPreviewParam = {
     /**
-     * - ID of the theme to be retrieved
+     * - Id of the theme to be retrieved.
      */
     themeId: string;
 };

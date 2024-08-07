@@ -109,7 +109,7 @@ class User {
    * @returns {Promise<UserApplicationModel.VerifyEmailOTPSuccess>} - Success response
    * @name addEmail
    * @summary: Add Email to Profile
-   * @description: Adds a new email address to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
+   * @description: Add a new email address to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
    */
   async addEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -186,7 +186,7 @@ class User {
    * @returns {Promise<UserApplicationModel.VerifyMobileOTPSuccess>} - Success response
    * @name addMobileNumber
    * @summary: Add Mobile Number to Profile
-   * @description: Adds a new mobile number to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
+   * @description: Add a new mobile number to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
    */
   async addMobileNumber(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -265,7 +265,7 @@ class User {
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name deleteEmail
    * @summary: Delete Email From Profile
-   * @description: Delete Email From Profile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteEmail/).
+   * @description: Delete email from profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteEmail/).
    */
   async deleteEmail(
     { active, primary, verified, email, platform, requestHeaders } = {
@@ -348,7 +348,7 @@ class User {
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name deleteMobileNumber
    * @summary: Delete Mobile Number From Profile
-   * @description: Delete Mobile Number From Profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteMobileNumber/).
+   * @description: Delete mobile number from profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteMobileNumber/).
    */
   async deleteMobileNumber(
     {
@@ -440,7 +440,7 @@ class User {
    * @returns {Promise<UserApplicationModel.DeleteUserSuccess>} - Success response
    * @name deleteUser
    * @summary: Verify OTP and Delete User
-   * @description: Verify OTP sent to mobile/email and Delete the user's account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteUser/).
+   * @description: Verify OTP sent to mobile/email and delete the user's account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteUser/).
    */
   async deleteUser(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -516,7 +516,7 @@ class User {
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name forgotPassword
    * @summary: Reset Password via Code and login
-   * @description: Reset a password using the code sent on email or SMS the Login. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/forgotPassword/).
+   * @description: Reset a password using the code sent on email or sms the login. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/forgotPassword/).
    */
   async forgotPassword(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -831,7 +831,7 @@ class User {
    * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
    * @name getUserAttributes
    * @summary: Get User Attributes
-   * @description: Get the list of user attributes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
+   * @description: Get the list of user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
    */
   async getUserAttributes(
     { slug, requestHeaders } = { requestHeaders: {} },
@@ -910,7 +910,7 @@ class User {
    * @returns {Promise<UserApplicationModel.HasPasswordSuccess>} - Success response
    * @name hasPassword
    * @summary: Check Password Existence
-   * @description: Check if user has set an account password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/hasPassword/).
+   * @description: Check if user has set an account password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/hasPassword/).
    */
   async hasPassword(
     { requestHeaders } = { requestHeaders: {} },
@@ -986,7 +986,7 @@ class User {
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithAppleIOS
    * @summary: iOS Login with Apple
-   * @description: Enables iOS users to log in to the system using their Apple ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
+   * @description: Enable ios users to log in to the system using their apple id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
    */
   async loginWithAppleIOS(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1065,7 +1065,7 @@ class User {
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name loginWithEmailAndPassword
    * @summary: Email and Password Login
-   * @description: Allows login using an email and password combination. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithEmailAndPassword/).
+   * @description: Allow login using an email and password combination. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithEmailAndPassword/).
    */
   async loginWithEmailAndPassword(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1145,7 +1145,7 @@ class User {
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithFacebook
    * @summary: Login with Facebook
-   * @description: Enables users to log in to the system using their Facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
+   * @description: Enable users to log in to the system using their facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
    */
   async loginWithFacebook(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1224,7 +1224,7 @@ class User {
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogle
    * @summary: Login with Google
-   * @description: Enables website users to log in to the system using their Google accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
+   * @description: Enable website users to log in to the system using their google accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
    */
   async loginWithGoogle(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1303,7 +1303,7 @@ class User {
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogleAndroid
    * @summary: Android Login with Google
-   * @description: Enables Android users to log in to the system using their Facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
+   * @description: Enable android users to log in to the system using their facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
    */
   async loginWithGoogleAndroid(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1384,7 +1384,7 @@ class User {
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogleIOS
    * @summary: iOS Login with Google
-   * @description: Enables iOS users to log in to the system using their Facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
+   * @description: Enable ios users to log in to the system using their facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
    */
   async loginWithGoogleIOS(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1463,7 +1463,7 @@ class User {
    * @returns {Promise<UserApplicationModel.SendOtpResponse>} - Success response
    * @name loginWithOTP
    * @summary: Login with Mobile OTP
-   * @description: Allows users to log in using a one-time password sent to their mobile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
+   * @description: Allow users to log in using a one-time password sent to their mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
    */
   async loginWithOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1542,7 +1542,7 @@ class User {
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name loginWithToken
    * @summary: Login with Token
-   * @description: Login User using a token for authentication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithToken/).
+   * @description: Login user using a token for authentication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithToken/).
    */
   async loginWithToken(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1620,7 +1620,7 @@ class User {
    * @returns {Promise<UserApplicationModel.LogoutSuccess>} - Success response
    * @name logout
    * @summary: Logout Current User
-   * @description: Logout currently logged-in user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/logout/).
+   * @description: Logout currently logged-in user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/logout/).
    */
   async logout(
     { requestHeaders } = { requestHeaders: {} },
@@ -1696,7 +1696,7 @@ class User {
    * @returns {Promise<UserApplicationModel.RegisterFormSuccess>} - Success response
    * @name registerWithForm
    * @summary: Register User with Form
-   * @description: Enables new users to register using a form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
+   * @description: Enable new users to register using a form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
    */
   async registerWithForm(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1776,7 +1776,7 @@ class User {
    *   Success response
    * @name resetForgotPassword
    * @summary: Reset Password via Code
-   * @description: Reset a password using the code sent on email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/resetForgotPassword/).
+   * @description: Reset a password using the code sent on email or sms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/resetForgotPassword/).
    */
   async resetForgotPassword(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1854,7 +1854,7 @@ class User {
    * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
    * @name sendForgotOTPOnEmail
    * @summary: Send Email OTP for Forgot Password
-   * @description: Sends a one-time password to the user's email for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
+   * @description: Send a one-time password to the user's email for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
    */
   async sendForgotOTPOnEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -1933,7 +1933,7 @@ class User {
    * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
    * @name sendForgotOTPOnMobile
    * @summary: Send mobile OTP for forgot-password
-   * @description: Sends a one-time password to the user's mobile for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
+   * @description: Send a one-time password to the user's mobile for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
    */
   async sendForgotOTPOnMobile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2012,7 +2012,7 @@ class User {
    * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
    * @name sendOTPOnEmail
    * @summary: Send OTP on Email
-   * @description: Sends a one-time password to the user's email for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
+   * @description: Send a one-time password to the user's email for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
    */
   async sendOTPOnEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2091,7 +2091,7 @@ class User {
    * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
    * @name sendOTPOnMobile
    * @summary: Send OTP on Mobile
-   * @description: Sends a one-time password to the user's mobile for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
+   * @description: Send a one-time password to the user's mobile for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
    */
   async sendOTPOnMobile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2170,7 +2170,7 @@ class User {
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetPasswordEmail
    * @summary: Reset Password via Email
-   * @description: Sends a password reset link to the user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
+   * @description: Send a password reset link to the user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
    */
   async sendResetPasswordEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2251,7 +2251,7 @@ class User {
    * @returns {Promise<any>} - Success response
    * @name sendResetPasswordMobile
    * @summary: Reset Password via Mobile
-   * @description: Sends a password reset link to the user's Mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
+   * @description: Send a password reset link to the user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
    */
   async sendResetPasswordMobile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2329,7 +2329,7 @@ class User {
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetToken
    * @summary: Validate Password Reset Code
-   * @description: Validate Password Reset link Code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetToken/).
+   * @description: Validate password reset link code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetToken/).
    */
   async sendResetToken(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2409,7 +2409,7 @@ class User {
    *   Success response
    * @name sendVerificationLinkToEmail
    * @summary: Send Verification Link to Email
-   * @description: Sends a verification link to a newly added email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
+   * @description: Send a verification link to a newly added email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
    */
   async sendVerificationLinkToEmail(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2493,7 +2493,7 @@ class User {
    *   Success response
    * @name sendVerificationLinkToMobile
    * @summary: Send Verification Link to Mobile
-   * @description: Sends a verification link to a newly added mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
+   * @description: Send a verification link to a newly added mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
    */
   async sendVerificationLinkToMobile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2574,7 +2574,7 @@ class User {
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name setEmailAsPrimary
    * @summary: Set Email as Primary
-   * @description: Sets an email address as the primary contact for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setEmailAsPrimary/).
+   * @description: Set an email address as the primary contact for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setEmailAsPrimary/).
    */
   async setEmailAsPrimary(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2652,7 +2652,7 @@ class User {
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name setMobileNumberAsPrimary
    * @summary: Set Mobile as Primary
-   * @description: Sets a mobile number as the primary contact for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setMobileNumberAsPrimary/).
+   * @description: Set a mobile number as the primary contact for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setMobileNumberAsPrimary/).
    */
   async setMobileNumberAsPrimary(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -2810,7 +2810,7 @@ class User {
    * @returns {Promise<UserApplicationModel.ProfileEditSuccess>} - Success response
    * @name updateProfile
    * @summary: Edit User Profile Details
-   * @description: Allows users to modify and update their profile details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
+   * @description: Allow users to modify and update their profile details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
    */
   async updateProfile(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -2889,7 +2889,7 @@ class User {
    * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
    * @name updateUserAttributes
    * @summary: Update User Attributes
-   * @description: Update user attributes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
+   * @description: Update user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
    */
   async updateUserAttributes(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -3044,7 +3044,7 @@ class User {
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name verifyEmail
    * @summary: Verify Email with Code
-   * @description: Verifies user email with a code sent within a link sent to their email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmail/).
+   * @description: Verify user email with a code sent within a link sent to their email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmail/).
    */
   async verifyEmail(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -3120,7 +3120,7 @@ class User {
    * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
    * @name verifyEmailForgotOTP
    * @summary: Verify Email OTP for Forgot Password
-   * @description: Verify one-time password sent to user's email for resetting a forgotten password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
+   * @description: Verify one-time password sent to user's email for resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
    */
   async verifyEmailForgotOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },
@@ -3278,7 +3278,7 @@ class User {
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name verifyMobile
    * @summary: Verify Mobile with Code
-   * @description: Verifies user mobile with a code sent within a link sent to their mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobile/).
+   * @description: Verify user mobile with a code sent within a link sent to their mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobile/).
    */
   async verifyMobile(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -3356,7 +3356,7 @@ class User {
    * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
    * @name verifyMobileForgotOTP
    * @summary: Verify Mobile OTP for Forgot Password
-   * @description: Verify one-time password sent to user's mobile for resetting a forgotten password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
+   * @description: Verify one-time password sent to user's mobile for resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
    */
   async verifyMobileForgotOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },

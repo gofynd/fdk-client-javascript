@@ -4,7 +4,7 @@ const LeadApplicationModel = require("./LeadApplicationModel");
 
 /**
  * @typedef CreateHistoryParam
- * @property {string} id - Ticket ID for which history is created
+ * @property {string} id - Ticket ID for which history is created.
  * @property {LeadApplicationModel.TicketHistoryPayload} body
  */
 
@@ -15,27 +15,17 @@ const LeadApplicationModel = require("./LeadApplicationModel");
 
 /**
  * @typedef GetCustomFormParam
- * @property {string} slug - Slug of form whose response is getting submitted
- */
-
-/**
- * @typedef GetParticipantsInsideVideoRoomParam
- * @property {string} uniqueName - Unique name of Video Room
+ * @property {string} slug - Slug of form whose response is getting submitted.
  */
 
 /**
  * @typedef GetTicketParam
- * @property {string} id - ID of ticket to be retrieved
- */
-
-/**
- * @typedef GetTokenForVideoRoomParam
- * @property {string} uniqueName - Unique name of Video Room
+ * @property {string} id - ID of ticket to be retrieved.
  */
 
 /**
  * @typedef SubmitCustomFormParam
- * @property {string} slug - Slug of form whose response is getting submitted
+ * @property {string} slug - Slug of form whose response is getting submitted.
  * @property {LeadApplicationModel.CustomFormSubmissionPayload} body
  */
 
@@ -62,24 +52,10 @@ class LeadApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetParticipantsInsideVideoRoomParam} */
-  static getParticipantsInsideVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
-    }).required();
-  }
-
   /** @returns {GetTicketParam} */
   static getTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetTokenForVideoRoomParam} */
-  static getTokenForVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 

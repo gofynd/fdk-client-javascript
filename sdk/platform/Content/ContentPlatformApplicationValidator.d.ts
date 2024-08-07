@@ -226,11 +226,11 @@ export = ContentPlatformApplicationValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- */
-/**
- * @typedef GetComponentByIdParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   a blog page. You can get slug value of a blog from `getBlogs` API.
+ * @property {string} [tags] - Blogs retrieve based on the list of tags passed.
+ * @property {string} [q] - Blogs retrieve based on the title or slug passed.
+ * @property {string} [slug] - Blogs retrieve based on the slug passed.
+ * @property {string} [title] - Blogs retrieve based on the title passed.
+ * @property {string} [status] - Blogs retrieve based on the status passed.
  */
 /** @typedef GetDataLoadersParam */
 /**
@@ -560,8 +560,6 @@ declare class ContentPlatformApplicationValidator {
     static getBlogBySlug(): GetBlogBySlugParam;
     /** @returns {GetBlogsParam} */
     static getBlogs(): GetBlogsParam;
-    /** @returns {GetComponentByIdParam} */
-    static getComponentById(): GetComponentByIdParam;
     /** @returns {GetDataLoadersParam} */
     static getDataLoaders(): any;
     /** @returns {GetDataLoadersByServiceParam} */
@@ -660,7 +658,7 @@ declare class ContentPlatformApplicationValidator {
     static updateSupportInformation(): UpdateSupportInformationParam;
 }
 declare namespace ContentPlatformApplicationValidator {
-    export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateAppCustomFieldByResourceIdParam, CreateAppCustomFieldDefinitionParam, CreateAppCustomObjectParam, CreateAppCustomObjectDefinitionParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSEOMarkupSchemaParam, CreateSlideshowParam, DeleteAnnouncementParam, DeleteAppCustomFieldDefinitionParam, DeleteAppCustomObjectParam, DeleteAppCustomObjectDefinitionParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSEOMarkupSchemaParam, DeleteSlideshowParam, EditDataLoaderParam, EditInjectableTagParam, EditSEOMarkupSchemaParam, ExportAppCustomObjectEntriesParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetAppCustomFieldDefinitionParam, GetAppCustomFieldDefinitionsParam, GetAppCustomFieldTypesParam, GetAppCustomFieldsParam, GetAppCustomFieldsByResourceIdParam, GetAppCustomObjectParam, GetAppCustomObjectDefinitionParam, GetAppCustomObjectDefinitionsParam, GetAppCustomObjectsParam, GetAppJobsParam, GetAppResourcesParam, GetBlogBySlugParam, GetBlogsParam, GetComponentByIdParam, GetDataLoadersParam, GetDataLoadersByServiceParam, GetDefaultNavigationsParam, GetDefaultSEOMarkupSchemaParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSEOMarkupSchemaParam, GetSEOMarkupSchemasParam, GetSlideshowBySlugParam, GetSlideshowsParam, GetSupportInformationParam, ImportAppCustomObjectEntriesParam, RemoveInjectableTagParam, ResetDataLoaderParam, SampleAppCustomObjectBulkEntryParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateAppCustomFieldDefinitionParam, UpdateAppCustomObjectParam, UpdateAppCustomObjectDefinitionParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSlideshowParam, UpdateSupportInformationParam };
+    export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateAppCustomFieldByResourceIdParam, CreateAppCustomFieldDefinitionParam, CreateAppCustomObjectParam, CreateAppCustomObjectDefinitionParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSEOMarkupSchemaParam, CreateSlideshowParam, DeleteAnnouncementParam, DeleteAppCustomFieldDefinitionParam, DeleteAppCustomObjectParam, DeleteAppCustomObjectDefinitionParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSEOMarkupSchemaParam, DeleteSlideshowParam, EditDataLoaderParam, EditInjectableTagParam, EditSEOMarkupSchemaParam, ExportAppCustomObjectEntriesParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetAppCustomFieldDefinitionParam, GetAppCustomFieldDefinitionsParam, GetAppCustomFieldTypesParam, GetAppCustomFieldsParam, GetAppCustomFieldsByResourceIdParam, GetAppCustomObjectParam, GetAppCustomObjectDefinitionParam, GetAppCustomObjectDefinitionsParam, GetAppCustomObjectsParam, GetAppJobsParam, GetAppResourcesParam, GetBlogBySlugParam, GetBlogsParam, GetDataLoadersParam, GetDataLoadersByServiceParam, GetDefaultNavigationsParam, GetDefaultSEOMarkupSchemaParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSEOMarkupSchemaParam, GetSEOMarkupSchemasParam, GetSlideshowBySlugParam, GetSlideshowsParam, GetSupportInformationParam, ImportAppCustomObjectEntriesParam, RemoveInjectableTagParam, ResetDataLoaderParam, SampleAppCustomObjectBulkEntryParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateAppCustomFieldDefinitionParam, UpdateAppCustomObjectParam, UpdateAppCustomObjectDefinitionParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSlideshowParam, UpdateSupportInformationParam };
 }
 type AddDataLoaderParam = {
     body: ContentPlatformModel.DataLoaderSchema;
@@ -907,13 +905,26 @@ type GetBlogsParam = {
      * Default value is 10.
      */
     pageSize?: number;
-};
-type GetComponentByIdParam = {
     /**
-     * - A short, human-readable, URL-friendly identifier of
-     * a blog page. You can get slug value of a blog from `getBlogs` API.
+     * - Blogs retrieve based on the list of tags passed.
      */
-    slug: string;
+    tags?: string;
+    /**
+     * - Blogs retrieve based on the title or slug passed.
+     */
+    q?: string;
+    /**
+     * - Blogs retrieve based on the slug passed.
+     */
+    slug?: string;
+    /**
+     * - Blogs retrieve based on the title passed.
+     */
+    title?: string;
+    /**
+     * - Blogs retrieve based on the status passed.
+     */
+    status?: string;
 };
 type GetDataLoadersByServiceParam = {
     /**

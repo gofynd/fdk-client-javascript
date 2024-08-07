@@ -19,7 +19,7 @@
     "loglevel": "^1.8.1",
     "query-string": "^7.1.3",
     "@gofynd/fp-signature": "^1.0.1",
-    "@gofynd/flick": "^1.0.7"
+    "@gofynd/flick": "^1.0.8"
   },
   "devDependencies": {
     "axios-cookiejar-support": "^4.0.6",

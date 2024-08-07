@@ -1159,7 +1159,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/countries`,
+      `/service/partner/logistics/v2.0/organization/${this.config.organizationId}/countries`,
       query_params,
       undefined,
       requestHeaders,

@@ -1371,6 +1371,326 @@ class Theme {
   }
 
   /**
+   * @param {ThemePartnerValidator.CreateExtensionSectionDraftParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.DraftExtensionSectionResponse>} -
+   *   Success response
+   * @name createExtensionSectionDraft
+   * @summary: Draft extension section
+   * @description: Create a new draft for an extension section within the specified organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createExtensionSectionDraft/).
+   */
+  async createExtensionSectionDraft(
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePartnerValidator.createExtensionSectionDraft().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePartnerValidator.createExtensionSectionDraft().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > createExtensionSectionDraft \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/extension-section/${extensionId}/draft`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.DraftExtensionSectionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > createExtensionSectionDraft \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePartnerValidator.PublishExtensionSectionsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.PublishExtensionSectionResponse>} -
+   *   Success response
+   * @name publishExtensionSections
+   * @summary: Publish an extension section
+   * @description: Publish a draft extension section within the specified organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/publishExtensionSections/).
+   */
+  async publishExtensionSections(
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemePartnerValidator.publishExtensionSections().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePartnerValidator.publishExtensionSections().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > publishExtensionSections \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/extension-section/${extensionId}/publish`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.PublishExtensionSectionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > publishExtensionSections \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePartnerValidator.ApplyExtensionPreviewParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.ExtensionPreviewResponse>} - Success response
+   * @name applyExtensionPreview
+   * @summary: Start a Preview of Extension Section
+   * @description: Use this API to start a local session for previewing the extension section binding. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/applyExtensionPreview/).
+   */
+  async applyExtensionPreview(
+    { extensionSectionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemePartnerValidator.applyExtensionPreview().validate(
+      {
+        extensionSectionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePartnerValidator.applyExtensionPreview().validate(
+      {
+        extensionSectionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > applyExtensionPreview \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/extension-section/${extensionSectionId}/preview`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.ExtensionPreviewResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > applyExtensionPreview \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePartnerValidator.RemoveExtensionPreviewParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.ExtensionPreviewResponse>} - Success response
+   * @name removeExtensionPreview
+   * @summary: Close a Preview of Extension Section
+   * @description: Use this API to close a local session for previewing the extension section binding - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/removeExtensionPreview/).
+   */
+  async removeExtensionPreview(
+    { extensionSectionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemePartnerValidator.removeExtensionPreview().validate(
+      {
+        extensionSectionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePartnerValidator.removeExtensionPreview().validate(
+      {
+        extensionSectionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > removeExtensionPreview \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/extension-section/${extensionSectionId}/preview`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.ExtensionPreviewResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > removeExtensionPreview \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ThemePartnerValidator.GetThemeRejectionReasonsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options

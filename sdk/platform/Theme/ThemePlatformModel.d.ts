@@ -1,5 +1,36 @@
 export = ThemePlatformModel;
 /**
+ * @typedef GetExtensionSectionRes
+ * @property {string} [extension_id]
+ * @property {string} [bundle_name]
+ * @property {string} [organization_id]
+ * @property {ExtensionSection[]} [sections]
+ * @property {AssetsExtension} [assets]
+ * @property {string} [status]
+ * @property {string} [type]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef ExtensionSection
+ * @property {string} [label]
+ * @property {string} [name]
+ * @property {PropExtension[]} [props]
+ * @property {Object[]} [blocks]
+ */
+/**
+ * @typedef PropExtension
+ * @property {string} [id]
+ * @property {string} [label]
+ * @property {string} [type]
+ * @property {string} [info]
+ */
+/**
+ * @typedef AssetsExtension
+ * @property {string} [js]
+ * @property {string} [css]
+ */
+/**
  * @typedef ThemeReq
  * @property {string} [marketplace_theme_id] - The ID of the marketplace theme
  *   to apply to the company.
@@ -83,7 +114,7 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
@@ -501,9 +532,9 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 /**
@@ -518,6 +549,7 @@ export = ThemePlatformModel;
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -557,8 +589,43 @@ export = ThemePlatformModel;
 declare class ThemePlatformModel {
 }
 declare namespace ThemePlatformModel {
-    export { ThemeReq, CompanyThemeSchema, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradableResponse, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Prop, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyResponse, AppliedThemes, CompanyPrivateTheme, ActionPage, PageType };
+    export { GetExtensionSectionRes, ExtensionSection, PropExtension, AssetsExtension, ThemeReq, CompanyThemeSchema, MarketplaceThemeId, CompanyThemeMeta, ThemePayment, ThemeImages, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AllAvailablePageSchema, AddThemeRequestSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, ThemeUpgradableResponse, UpdateThemeNameRequestBody, UpdateThemeRequestBody, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, ThemeMeta, Release, Images, CustomProps, GlobalSchema, Prop, Assets, UMDJs, CommonJS, CSS, SectionItem, Preset, Page, Section, Block, Predicate, Screen, ThemeUserSchema, Route, SectionProps, SectionPreset, BlockProps, TextProp, CheckboxProp, RangeProp, ImagePickerProp, UrlProp, ThemeVersions, DummyResponse, AppliedThemes, CompanyPrivateTheme, ActionPage, PageType };
 }
+/** @returns {GetExtensionSectionRes} */
+declare function GetExtensionSectionRes(): GetExtensionSectionRes;
+type GetExtensionSectionRes = {
+    extension_id?: string;
+    bundle_name?: string;
+    organization_id?: string;
+    sections?: ExtensionSection[];
+    assets?: AssetsExtension;
+    status?: string;
+    type?: string;
+    created_at?: string;
+    updated_at?: string;
+};
+/** @returns {ExtensionSection} */
+declare function ExtensionSection(): ExtensionSection;
+type ExtensionSection = {
+    label?: string;
+    name?: string;
+    props?: PropExtension[];
+    blocks?: any[];
+};
+/** @returns {PropExtension} */
+declare function PropExtension(): PropExtension;
+type PropExtension = {
+    id?: string;
+    label?: string;
+    type?: string;
+    info?: string;
+};
+/** @returns {AssetsExtension} */
+declare function AssetsExtension(): AssetsExtension;
+type AssetsExtension = {
+    js?: string;
+    css?: string;
+};
 /** @returns {ThemeReq} */
 declare function ThemeReq(): ThemeReq;
 type ThemeReq = {
@@ -713,6 +780,9 @@ type SEObreadcrumb = {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    /**
+     * - Type of action to be taken e.g, page.
+     */
     type?: string;
     page?: ActionPage;
     popup?: ActionPage;
@@ -1527,8 +1597,17 @@ type CompanyPrivateTheme = {
 /** @returns {ActionPage} */
 declare function ActionPage(): ActionPage;
 type ActionPage = {
+    /**
+     * - Parameters that should be considered in path.
+     */
     params?: any;
+    /**
+     * - Query parameter if any to be added to the action.
+     */
     query?: any;
+    /**
+     * - The URL for the action.
+     */
     url?: string;
     type: PageType;
 };
@@ -1538,4 +1617,4 @@ type ActionPage = {
  * @returns {PageType}
  */
 declare function PageType(): PageType;
-type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "custom" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

@@ -1574,7 +1574,7 @@ class Cart {
    * @description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCart/).
    */
   async getCart(
-    { id, userId, i, b, assignCardId, buyNow, requestHeaders } = {
+    { id, userId, orderType, i, b, assignCardId, buyNow, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -1583,6 +1583,7 @@ class Cart {
       {
         id,
         userId,
+        orderType,
         i,
         b,
         assignCardId,
@@ -1601,6 +1602,7 @@ class Cart {
       {
         id,
         userId,
+        orderType,
         i,
         b,
         assignCardId,
@@ -1618,6 +1620,7 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["user_id"] = userId;
+    query_params["order_type"] = orderType;
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["assign_card_id"] = assignCardId;
@@ -2325,7 +2328,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.GetPriceAdjustmentsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
+   * @returns {Promise<CartPlatformModel.GetPriceAdjustmentResponse>} - Success response
    * @name getPriceAdjustments
    * @summary: Get a list of all price adjustments associated with a cart
    * @description: This API helps to get price adjustments data associated to a particular cart - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPriceAdjustments/).
@@ -2382,7 +2385,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartPlatformModel.PriceAdjustmentResponse().validate(responseData, {
+    } = CartPlatformModel.GetPriceAdjustmentResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2638,6 +2641,186 @@ class Cart {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Cart > getPromotionCodeExists \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartPlatformApplicationValidator.GetPromotionOffersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.PromotionOffersResponse>} - Success response
+   * @name getPromotionOffers
+   * @summary: List available promotion offers
+   * @description: Retrieve a list of all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionOffers/).
+   */
+  async getPromotionOffers(
+    { slug, pageSize, promotionGroup, storeId, cartType, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CartPlatformApplicationValidator.getPromotionOffers().validate(
+      {
+        slug,
+        pageSize,
+        promotionGroup,
+        storeId,
+        cartType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.getPromotionOffers().validate(
+      {
+        slug,
+        pageSize,
+        promotionGroup,
+        storeId,
+        cartType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > getPromotionOffers \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["slug"] = slug;
+    query_params["page_size"] = pageSize;
+    query_params["promotion_group"] = promotionGroup;
+    query_params["store_id"] = storeId;
+    query_params["cart_type"] = cartType;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/available-promotions`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.PromotionOffersResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getPromotionOffers \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CartPlatformApplicationValidator.GetPromotionPaymentOffersParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CartPlatformModel.PromotionPaymentOffersResponse>} -
+   *   Success response
+   * @name getPromotionPaymentOffers
+   * @summary: Fetch available promotions payment offers
+   * @description: Use this API to get top 5 payment offers available for current product - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionPaymentOffers/).
+   */
+  async getPromotionPaymentOffers(
+    { id, uid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CartPlatformApplicationValidator.getPromotionPaymentOffers().validate(
+      {
+        id,
+        uid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartPlatformApplicationValidator.getPromotionPaymentOffers().validate(
+      {
+        id,
+        uid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Cart > getPromotionPaymentOffers \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["uid"] = uid;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/available-payment-offers`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CartPlatformModel.PromotionPaymentOffersResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getPromotionPaymentOffers \n ${res_error}`,
         });
       }
     }
@@ -3033,7 +3216,9 @@ class Cart {
    * @description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformAddItems/).
    */
   async platformAddItems(
-    { body, i, b, buyNow, id, requestHeaders } = { requestHeaders: {} },
+    { body, i, b, buyNow, orderType, id, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3044,6 +3229,7 @@ class Cart {
         i,
         b,
         buyNow,
+        orderType,
         id,
       },
       { abortEarly: false, allowUnknown: true }
@@ -3061,6 +3247,7 @@ class Cart {
         i,
         b,
         buyNow,
+        orderType,
         id,
       },
       { abortEarly: false, allowUnknown: false }
@@ -3076,6 +3263,7 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["buy_now"] = buyNow;
+    query_params["order_type"] = orderType;
     query_params["id"] = id;
 
     const response = await PlatformAPIClient.execute(
@@ -3292,7 +3480,9 @@ class Cart {
    * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformUpdateCart/).
    */
   async platformUpdateCart(
-    { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
+    { body, id, i, orderType, b, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3302,6 +3492,7 @@ class Cart {
         body,
         id,
         i,
+        orderType,
         b,
         buyNow,
       },
@@ -3319,6 +3510,7 @@ class Cart {
         body,
         id,
         i,
+        orderType,
         b,
         buyNow,
       },
@@ -3334,6 +3526,7 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["i"] = i;
+    query_params["order_type"] = orderType;
     query_params["b"] = b;
     query_params["buy_now"] = buyNow;
 

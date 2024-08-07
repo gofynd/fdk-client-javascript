@@ -17,11 +17,7 @@ class Lead {
       createHistory: "/service/application/lead/v1.0/ticket/{id}/history",
       createTicket: "/service/application/lead/v1.0/ticket/",
       getCustomForm: "/service/application/lead/v1.0/form/{slug}",
-      getParticipantsInsideVideoRoom:
-        "/service/application/lead/v1.0/video/room/{unique_name}/participants",
       getTicket: "/service/application/lead/v1.0/ticket/{id}",
-      getTokenForVideoRoom:
-        "/service/application/lead/v1.0/video/room/{unique_name}/token",
       submitCustomForm: "/service/application/lead/v1.0/form/{slug}/submit",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -47,7 +43,7 @@ class Lead {
    * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
    * @name createHistory
    * @summary: Log ticket history
-   * @description: Adds a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
+   * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
    */
   async createHistory(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -125,7 +121,7 @@ class Lead {
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name createTicket
    * @summary: Creates a ticket
-   * @description: Generates a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
+   * @description: Create a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
    */
   async createTicket(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -275,90 +271,6 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.GetParticipantsInsideVideoRoomParam} arg
-   *   - Arg object.
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LeadApplicationModel.GetParticipantsInsideVideoRoomResponse>}
-   *   - Success response
-   *
-   * @name getParticipantsInsideVideoRoom
-   * @summary: List video room participants
-   * @description: Gets the current participants inside a specific video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getParticipantsInsideVideoRoom/).
-   */
-  async getParticipantsInsideVideoRoom(
-    { uniqueName, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = LeadApplicationValidator.getParticipantsInsideVideoRoom().validate(
-      { uniqueName },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadApplicationValidator.getParticipantsInsideVideoRoom().validate(
-      { uniqueName },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Lead > getParticipantsInsideVideoRoom \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getParticipantsInsideVideoRoom"],
-        params: { uniqueName },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LeadApplicationModel.GetParticipantsInsideVideoRoomResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Lead > getParticipantsInsideVideoRoom \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {LeadApplicationValidator.GetTicketParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -435,85 +347,6 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.GetTokenForVideoRoomParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LeadApplicationModel.GetTokenForVideoRoomResponse>} -
-   *   Success response
-   * @name getTokenForVideoRoom
-   * @summary: Get video room token
-   * @description: Get a secure token for accessing a video chat room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTokenForVideoRoom/).
-   */
-  async getTokenForVideoRoom(
-    { uniqueName, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = LeadApplicationValidator.getTokenForVideoRoom().validate(
-      { uniqueName },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadApplicationValidator.getTokenForVideoRoom().validate(
-      { uniqueName },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Lead > getTokenForVideoRoom \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getTokenForVideoRoom"],
-        params: { uniqueName },
-      }),
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LeadApplicationModel.GetTokenForVideoRoomResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Lead > getTokenForVideoRoom \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {LeadApplicationValidator.SubmitCustomFormParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -521,7 +354,7 @@ class Lead {
    *   Success response
    * @name submitCustomForm
    * @summary: Submits form data
-   * @description: Sends user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
+   * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
    */
   async submitCustomForm(
     { slug, body, requestHeaders } = { requestHeaders: {} },

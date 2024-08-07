@@ -1730,7 +1730,7 @@ class Serviceability {
       isActive,
       channelId,
       q,
-      country,
+      countryIsoCode,
       state,
       city,
       pincode,
@@ -1746,7 +1746,7 @@ class Serviceability {
         isActive,
         channelId,
         q,
-        country,
+        countryIsoCode,
         state,
         city,
         pincode,
@@ -1768,7 +1768,7 @@ class Serviceability {
         isActive,
         channelId,
         q,
-        country,
+        countryIsoCode,
         state,
         city,
         pincode,
@@ -1789,7 +1789,7 @@ class Serviceability {
     query_params["is_active"] = isActive;
     query_params["channel_id"] = channelId;
     query_params["q"] = q;
-    query_params["country"] = country;
+    query_params["country_iso_code"] = countryIsoCode;
     query_params["state"] = state;
     query_params["city"] = city;
     query_params["pincode"] = pincode;

@@ -92,14 +92,18 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef ListViewItems
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} stores_count
- * @property {boolean} is_active
- * @property {number} regions_count
- * @property {number} company_id
- * @property {ListViewChannels[]} channels
+ * @property {string} zone_id - The unique identifier for the zone.
+ * @property {string} name - The name of the zone.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} stores_count - The number of stores within the zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {number} regions_count - The number of regions within the zone.
+ * @property {number} company_id - The unique identifier for the company to
+ *   which the zone belongs.
+ * @property {number[]} [store_ids] - A list of store identifiers associated
+ *   with the zone.
+ * @property {ListViewChannels[]} channels - The name of the zone.
  */
 /**
  * @typedef ListViewResponse
@@ -522,6 +526,15 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} is_own_account
  */
 /**
+ * @typedef CourierAccountRequestBody
+ * @property {string} extension_id
+ * @property {string} [account_id]
+ * @property {string} scheme_id
+ * @property {boolean} is_self_ship
+ * @property {string} stage
+ * @property {boolean} is_own_account
+ */
+/**
  * @typedef ErrorResponse
  * @property {string} value
  * @property {string} message
@@ -534,20 +547,40 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
+ */
+/**
+ * @typedef CourierPartnerRuleCPListResponse
+ * @property {string} [account_id]
+ * @property {string} [extension_id]
+ * @property {boolean} [is_self_ship]
+ * @property {Object} [scheme_rules]
+ */
+/**
+ * @typedef CourierPartnerRuleResponse
+ * @property {boolean} [is_active]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {CourierPartnerRuleConditions} [conditions]
+ * @property {string[]} [sort]
+ * @property {Object} [created_by]
+ * @property {string} [id]
+ * @property {Object} [modified_by]
+ * @property {string} [modified_on]
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {CourierPartnerRuleCPListResponse[]} [cp_list]
  */
 /**
  * @typedef CourierPartnerList
  * @property {string} extension_id
  * @property {string} account_id
- * @property {string} name
- * @property {boolean} is_self_ship
  */
 /**
  * @typedef LocationRuleValues
@@ -605,7 +638,7 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef CourierPartnerRulesListResponse
- * @property {CourierPartnerRule[]} items
+ * @property {CourierPartnerRuleResponse[]} items
  * @property {Page} page
  */
 /**
@@ -994,7 +1027,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, ArticleAssignment, ServiceabilityLocation, LocationDetailsServiceability, OptimalLocationsArticles, OptimlLocationsRequestSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse };
+    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, CourierAccountRequestBody, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerRuleCPListResponse, CourierPartnerRuleResponse, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, ArticleAssignment, ServiceabilityLocation, LocationDetailsServiceability, OptimalLocationsArticles, OptimlLocationsRequestSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse };
 }
 /** @returns {UpdateZoneConfigRequest} */
 declare function UpdateZoneConfigRequest(): UpdateZoneConfigRequest;
@@ -1105,13 +1138,44 @@ type ListViewChannels = {
 /** @returns {ListViewItems} */
 declare function ListViewItems(): ListViewItems;
 type ListViewItems = {
+    /**
+     * - The unique identifier for the zone.
+     */
     zone_id: string;
+    /**
+     * - The name of the zone.
+     */
     name: string;
+    /**
+     * - A human-readable and unique identifier for the
+     * zone, derived from the name.
+     */
     slug: string;
+    /**
+     * - The number of stores within the zone.
+     */
     stores_count: number;
+    /**
+     * - A flag indicating whether the zone is active.
+     */
     is_active: boolean;
+    /**
+     * - The number of regions within the zone.
+     */
     regions_count: number;
+    /**
+     * - The unique identifier for the company to
+     * which the zone belongs.
+     */
     company_id: number;
+    /**
+     * - A list of store identifiers associated
+     * with the zone.
+     */
+    store_ids?: number[];
+    /**
+     * - The name of the zone.
+     */
     channels: ListViewChannels[];
 };
 /** @returns {ListViewResponse} */
@@ -1591,6 +1655,16 @@ type CourierAccount = {
     stage: string;
     is_own_account: boolean;
 };
+/** @returns {CourierAccountRequestBody} */
+declare function CourierAccountRequestBody(): CourierAccountRequestBody;
+type CourierAccountRequestBody = {
+    extension_id: string;
+    account_id?: string;
+    scheme_id: string;
+    is_self_ship: boolean;
+    stage: string;
+    is_own_account: boolean;
+};
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
@@ -1607,21 +1681,64 @@ type CourierPartnerAccountFailureResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
+    /**
+     * - The total number of items on the page.
+     */
     item_total?: number;
+    /**
+     * - The identifier for the next page.
+     */
     next_id?: string;
+    /**
+     * - Indicates whether there is a previous page.
+     */
     has_previous?: boolean;
+    /**
+     * - Indicates whether there is a next page.
+     */
     has_next?: boolean;
+    /**
+     * - The current page number.
+     */
     current?: number;
+    /**
+     * - The type of the page, such as 'PageType'.
+     */
     type: string;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
+};
+/** @returns {CourierPartnerRuleCPListResponse} */
+declare function CourierPartnerRuleCPListResponse(): CourierPartnerRuleCPListResponse;
+type CourierPartnerRuleCPListResponse = {
+    account_id?: string;
+    extension_id?: string;
+    is_self_ship?: boolean;
+    scheme_rules?: any;
+};
+/** @returns {CourierPartnerRuleResponse} */
+declare function CourierPartnerRuleResponse(): CourierPartnerRuleResponse;
+type CourierPartnerRuleResponse = {
+    is_active?: boolean;
+    application_id?: string;
+    company_id?: number;
+    conditions?: CourierPartnerRuleConditions;
+    sort?: string[];
+    created_by?: any;
+    id?: string;
+    modified_by?: any;
+    modified_on?: string;
+    name?: string;
+    type?: string;
+    cp_list?: CourierPartnerRuleCPListResponse[];
 };
 /** @returns {CourierPartnerList} */
 declare function CourierPartnerList(): CourierPartnerList;
 type CourierPartnerList = {
     extension_id: string;
     account_id: string;
-    name: string;
-    is_self_ship: boolean;
 };
 /** @returns {LocationRuleValues} */
 declare function LocationRuleValues(): LocationRuleValues;
@@ -1687,7 +1804,7 @@ type FailureResponse = {
 /** @returns {CourierPartnerRulesListResponse} */
 declare function CourierPartnerRulesListResponse(): CourierPartnerRulesListResponse;
 type CourierPartnerRulesListResponse = {
-    items: CourierPartnerRule[];
+    items: CourierPartnerRuleResponse[];
     page: Page;
 };
 /** @returns {CompanyConfig} */

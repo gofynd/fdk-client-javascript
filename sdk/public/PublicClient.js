@@ -4,8 +4,6 @@ const Configuration = require("./Configuration/ConfigurationPublicClient");
 
 const Content = require("./Content/ContentPublicClient");
 
-const Inventory = require("./Inventory/InventoryPublicClient");
-
 const Partner = require("./Partner/PartnerPublicClient");
 
 const Webhook = require("./Webhook/WebhookPublicClient");
@@ -31,8 +29,6 @@ class PublicClient {
     this.configuration = new Configuration(config);
 
     this.content = new Content(config);
-
-    this.inventory = new Inventory(config);
 
     this.partner = new Partner(config);
 

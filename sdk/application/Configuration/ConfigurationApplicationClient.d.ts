@@ -30,7 +30,7 @@ declare class Configuration {
      *   Success response
      * @name getAppCurrencies
      * @summary: Get currency configuration
-     * @description: Retrieve currency configuration of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
+     * @description: Get currency configuration of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
      */
     getAppCurrencies({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.AppCurrencyResponse>;
     /**
@@ -41,7 +41,7 @@ declare class Configuration {
      *   Success response
      * @name getAppStaffList
      * @summary: List staff members
-     * @description: Retrieve a list of all staff members of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
+     * @description: List all staff members of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
      */
     getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, requestHeaders, }?: ConfigurationApplicationValidator.GetAppStaffListParam, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.AppStaffListResponse>;
     /**
@@ -52,7 +52,7 @@ declare class Configuration {
      *   Success response
      * @name getAppStaffs
      * @summary: Get staff member
-     * @description: Retrieve a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
+     * @description: Get a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
      */
     getAppStaffs({ orderIncent, orderingStore, user, requestHeaders }?: ConfigurationApplicationValidator.GetAppStaffsParam, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.AppStaffResponse>;
     /**
@@ -62,7 +62,7 @@ declare class Configuration {
      * @returns {Promise<ConfigurationApplicationModel.Application>} - Success response
      * @name getApplication
      * @summary: Get sales channel
-     * @description: Retrieve details of the current sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getApplication/).
+     * @description: Get details of the current sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getApplication/).
      */
     getApplication({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.Application>;
     /**
@@ -73,7 +73,7 @@ declare class Configuration {
      *   Success response
      * @name getBasicDetails
      * @summary: Get Sales channel
-     * @description: Retrieve basic details of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getBasicDetails/).
+     * @description: Get basic details of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getBasicDetails/).
      */
     getBasicDetails({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.ApplicationDetail>;
     /**
@@ -85,7 +85,7 @@ declare class Configuration {
      *
      * @name getContactInfo
      * @summary: Get sales channel contact
-     * @description: Retrieve contact details of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getContactInfo/).
+     * @description: Get contact details of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getContactInfo/).
      */
     getContactInfo({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.ApplicationInformation>;
     /**
@@ -96,7 +96,7 @@ declare class Configuration {
      *   Success response
      * @name getCurrencies
      * @summary: List currencies
-     * @description: Retrieve a list of available currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
+     * @description: List available currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
      */
     getCurrencies({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.CurrenciesResponse>;
     /**
@@ -106,7 +106,7 @@ declare class Configuration {
      * @returns {Promise<ConfigurationApplicationModel.Currency>} - Success response
      * @name getCurrencyById
      * @summary: Get a currency
-     * @description: Retrieve details of the currency. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
+     * @description: Get details of the currency. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
      */
     getCurrencyById({ id, requestHeaders }?: ConfigurationApplicationValidator.GetCurrencyByIdParam, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.Currency>;
     /**
@@ -117,7 +117,7 @@ declare class Configuration {
      *   Success response
      * @name getFeatures
      * @summary: Get sales channel features
-     * @description: Retrieve configuration of the features of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
+     * @description: Get configuration of the features of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
      */
     getFeatures({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.AppFeatureResponse>;
     /**
@@ -130,7 +130,7 @@ declare class Configuration {
      *   Success response
      * @name getIntegrationTokens
      * @summary: Get API tokens
-     * @description: Retrieve tools integration token of the sales channel. For ex- Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
+     * @description: Get tools integration token of the sales channel. For example, Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, and Facebook. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
      */
     getIntegrationTokens({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.AppTokenResponse>;
     /**
@@ -141,7 +141,7 @@ declare class Configuration {
      *   Success response
      * @name getLanguages
      * @summary: List languages
-     * @description: Retrieve a list of available languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
+     * @description: List available languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
      */
     getLanguages({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.LanguageResponse>;
     /**
@@ -165,7 +165,7 @@ declare class Configuration {
      * @returns {Promise<ConfigurationApplicationModel.OrderingStores>} - Success response
      * @name getOrderingStores
      * @summary: List order-enabled selling locations
-     * @description: Retrieve details of all the deployment store locations where the sales channel will be used for order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
+     * @description: Get details of all the deployment store locations where the sales channel will be used for order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
      */
     getOrderingStores({ pageNo, pageSize, q, requestHeaders }?: ConfigurationApplicationValidator.GetOrderingStoresParam, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.OrderingStores>;
     /**
@@ -177,7 +177,7 @@ declare class Configuration {
      *
      * @name getOwnerInfo
      * @summary: Get sales channel owner
-     * @description: Retrieve details of the sales channel owner. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
+     * @description: Get details of the sales channel owner. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
      */
     getOwnerInfo({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.ApplicationAboutResponse>;
     /**
@@ -188,7 +188,7 @@ declare class Configuration {
      * @returns {Promise<ConfigurationApplicationModel.OrderingStore>} - Success response
      * @name getStoreDetailById
      * @summary: Get a selling location
-     * @description: Retrieve detail of a selling location (store) by it's Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
+     * @description: Get details of a selling location (store) by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
      */
     getStoreDetailById({ storeId, requestHeaders }?: ConfigurationApplicationValidator.GetStoreDetailByIdParam, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.OrderingStore>;
     /**
@@ -202,7 +202,7 @@ declare class Configuration {
      *
      * @name removeOrderingStoreCookie
      * @summary: Delete store cookie
-     * @description: Remove store cookie - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/removeOrderingStoreCookie/).
+     * @description: Delete store cookie. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/removeOrderingStoreCookie/).
      */
     removeOrderingStoreCookie({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.SuccessMessageResponse>;
 }

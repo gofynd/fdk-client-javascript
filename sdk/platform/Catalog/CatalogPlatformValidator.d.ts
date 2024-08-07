@@ -269,6 +269,10 @@ export = CatalogPlatformValidator;
  *   the from_date specified to the to_date.
  * @property {string} [q] - It is a query parameter to search the export job
  *   with the task ID.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
  */
 /**
  * @typedef GetProductSizeParam
@@ -286,12 +290,23 @@ export = CatalogPlatformValidator;
  * @property {number[]} [itemIds] - Get multiple products filtered by Item Ids
  * @property {number[]} [departmentIds] - Get multiple products filtered by Department Ids
  * @property {string[]} [itemCode] - Get multiple products filtered by Item Code
+ * @property {string} [name] - Get multiple products filtered by Name (Pattern Match)
+ * @property {string} [slug] - Get multiple products filtered by Slug
+ * @property {string[]} [allIdentifiers] - Get multiple products filtered by All
+ *   Identifiers
  * @property {string} [q] - Get multiple products filtered by q string
  * @property {string[]} [tags] - Get multiple products filtered by tags
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
+ * @property {string} [pageType] - For pagination type value can be cursor or
+ *   number. Default is number.
+ * @property {string} [sortOn] - Field which is to be used for sorting, default
+ *   is latest. Value can be latest (modified_on) or created (record id)
+ * @property {string} [pageId] - If page_type is cursor, each response will
+ *   contain **next_id** param (datetime or id depending upon sort_on), which
+ *   should be sent back as page_id to make cursor pagination work.
  */
 /**
  * @typedef GetSellerInsightsParam
@@ -368,6 +383,10 @@ export = CatalogPlatformValidator;
  *   to from_date.
  * @property {string} [toDate] - Inventory export history filtered according to from_date.
  * @property {string} [q] - Inventory export history filtered according to task ID.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
  */
 /**
  * @typedef ListProductTemplateParam
@@ -1079,6 +1098,16 @@ type GetProductExportJobsParam = {
      * with the task ID.
      */
     q?: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
 };
 type GetProductSizeParam = {
     /**
@@ -1120,6 +1149,19 @@ type GetProductsParam = {
      */
     itemCode?: string[];
     /**
+     * - Get multiple products filtered by Name (Pattern Match)
+     */
+    name?: string;
+    /**
+     * - Get multiple products filtered by Slug
+     */
+    slug?: string;
+    /**
+     * - Get multiple products filtered by All
+     * Identifiers
+     */
+    allIdentifiers?: string[];
+    /**
      * - Get multiple products filtered by q string
      */
     q?: string;
@@ -1137,6 +1179,22 @@ type GetProductsParam = {
      * Default is 10.
      */
     pageSize?: number;
+    /**
+     * - For pagination type value can be cursor or
+     * number. Default is number.
+     */
+    pageType?: string;
+    /**
+     * - Field which is to be used for sorting, default
+     * is latest. Value can be latest (modified_on) or created (record id)
+     */
+    sortOn?: string;
+    /**
+     * - If page_type is cursor, each response will
+     * contain **next_id** param (datetime or id depending upon sort_on), which
+     * should be sent back as page_id to make cursor pagination work.
+     */
+    pageId?: string;
 };
 type GetSellerInsightsParam = {
     /**
@@ -1305,6 +1363,16 @@ type ListInventoryExportParam = {
      * - Inventory export history filtered according to task ID.
      */
     q?: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
 };
 type ListProductTemplateParam = {
     /**

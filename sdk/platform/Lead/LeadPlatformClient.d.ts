@@ -46,12 +46,12 @@ declare class Lead {
      * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
+     * @returns {Promise<LeadPlatformModel.GeneralConfigResponse>} - Success response
      * @name getGeneralConfig
      * @summary: Get general configuration
      * @description: Get general configuration settings related to support system for company tickets - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
      */
-    getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
+    getGeneralConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.GeneralConfigResponse>;
     /**
      * @param {LeadPlatformValidator.GetPlatformTicketParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -82,29 +82,6 @@ declare class Lead {
      * @description: List all tickets created within the platform at company level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformTickets/).
      */
     getPlatformTickets({ items, filters, q, status, priority, category, pageNo, pageSize, requestHeaders, }?: LeadPlatformValidator.GetPlatformTicketsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketList>;
-    /**
-     * @param {LeadPlatformValidator.GetPlatformVideoParticipantsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
-     *   - Success response
-     *
-     * @name getPlatformVideoParticipants
-     * @summary: List video Room Participants
-     * @description: Get a list of participants in a platform video room - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getPlatformVideoParticipants/).
-     */
-    getPlatformVideoParticipants({ uniqueName, requestHeaders }?: LeadPlatformValidator.GetPlatformVideoParticipantsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>;
-    /**
-     * @param {LeadPlatformValidator.GetTokenForPlatformVideoRoomParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
-     *   Success response
-     * @name getTokenForPlatformVideoRoom
-     * @summary: Get video Room Token
-     * @description: Get an access token for a platform video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTokenForPlatformVideoRoom/).
-     */
-    getTokenForPlatformVideoRoom({ uniqueName, requestHeaders }?: LeadPlatformValidator.GetTokenForPlatformVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
     /**
      * @param {LeadPlatformValidator.SubmitFeedbackParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

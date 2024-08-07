@@ -1,6 +1,39 @@
 {
   "tests": [
     {
+      "name": "Custom theme page",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "custom",
+          "query": {
+            "url": ["/c/my/custom/page"]
+          },
+          "params": {}
+        }
+      },
+      "result": {
+        "path": "/c/my/custom/page"
+      }
+    },
+    {
+      "name": "Custom theme page with query",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "custom",
+          "query": {
+            "url": ["/c/my/custom/page"],
+            "user": ["Joe"]
+          },
+          "params": {}
+        }
+      },
+      "result": {
+        "path": "/c/my/custom/page/?user=Joe"
+      }
+    },
+    {
       "name": "brand listing query param  ",
       "action": {
         "type": "page",

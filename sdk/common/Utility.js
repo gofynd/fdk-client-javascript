@@ -31,6 +31,20 @@ function convertUrlToAction(url) {
       return utils.trimChar(pageType) === bestMatchingLink.value;
     });
     const closestMatchingNavKey = typeLink[closestMatchingNavLink] || "home";
+    // if it is custom theme link url should be in query object, also we will grab our main link from this url field in convertActionToUrl
+    if (closestMatchingNavLink === Constant.NAVIGATORS.custom.link) {
+      return {
+        type: "page",
+        page: {
+          type: closestMatchingNavKey,
+          query: {
+            url: [url.split("?")[0]],
+            ...query,
+          },
+          params: bestMatchingLink.params,
+        },
+      };
+    }
     return {
       type: "page",
       page: {
@@ -57,6 +71,11 @@ function convertActionToUrl(action) {
       case utils.NAV_TYPE.PAGE: {
         const item = Object.assign({}, Constant.NAVIGATORS[action.page.type]);
         if (item) {
+          // If it is custom action object then we need to get out link from query.url, in custom page action object url in query is original link, so get link from there and remove the url field
+          if (action.page.type === Constant.AVAILABLE_PAGE_TYPE.CUSTOM) {
+            item.link = action.page.query.url[0];
+            delete action.page.query.url;
+          }
           //get param
           item.link = utils.generateUrlWithParams(item, action.page.params);
           //get query

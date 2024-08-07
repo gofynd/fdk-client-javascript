@@ -18,7 +18,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef CreateCourierPartnerAccountParam
- * @property {ServiceabilityPlatformModel.CourierAccount} body
+ * @property {ServiceabilityPlatformModel.CourierAccountRequestBody} body
  */
 
 /**
@@ -136,7 +136,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {boolean} [isActive] - Status of Zone (either active or inactive)
  * @property {string} [channelId] - Zones filtered by an application
  * @property {string} [q] - Search with name as a free text
- * @property {string} [country] - ISO2 code of the country
+ * @property {string} [countryIsoCode] - ISO2 code of the country
  * @property {string} [state] - State name
  * @property {string} [city] - City name
  * @property {string} [pincode] - Pincode value to search zones
@@ -204,7 +204,7 @@ class ServiceabilityPlatformValidator {
   /** @returns {CreateCourierPartnerAccountParam} */
   static createCourierPartnerAccount() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.CourierAccount().required(),
+      body: ServiceabilityPlatformModel.CourierAccountRequestBody().required(),
     }).required();
   }
 
@@ -356,7 +356,7 @@ class ServiceabilityPlatformValidator {
       isActive: Joi.boolean(),
       channelId: Joi.string().allow(""),
       q: Joi.string().allow(""),
-      country: Joi.string().allow(""),
+      countryIsoCode: Joi.string().allow(""),
       state: Joi.string().allow(""),
       city: Joi.string().allow(""),
       pincode: Joi.string().allow(""),

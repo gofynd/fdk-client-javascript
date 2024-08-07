@@ -12,6 +12,7 @@ const AVAILABLE_PAGE_TYPE = {
   COLLECTIONS: "collections",
   CONTACT_US: "contact-us",
   EXTERNAL: "external",
+  CUSTOM: "custom",
   FAQ: "faq",
   FRESHCHAT: "freshchat",
   HOME: "home",
@@ -137,6 +138,16 @@ const NAVIGATORS = {
   external: {
     name: "External Link",
     link: "/external/",
+    query: [
+      {
+        key: "url",
+        required: true,
+      },
+    ],
+  },
+  custom: {
+    name: "Custom theme link",
+    link: "/c/",
     query: [
       {
         key: "url",

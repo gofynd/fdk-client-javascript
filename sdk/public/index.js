@@ -8,8 +8,6 @@ module.exports = {
 
     ContentPublicModel: require("./Content/ContentPublicModel"),
 
-    InventoryPublicModel: require("./Inventory/InventoryPublicModel"),
-
     PartnerPublicModel: require("./Partner/PartnerPublicModel"),
 
     WebhookPublicModel: require("./Webhook/WebhookPublicModel"),

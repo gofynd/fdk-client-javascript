@@ -32,6 +32,11 @@ export = ThemePlatformApplicationValidator;
 /** @typedef GetApplicationThemesParam */
 /** @typedef GetApplicationThemesCountParam */
 /** @typedef GetAppliedThemeParam */
+/**
+ * @typedef GetExtensionSectionsParam
+ * @property {string} [type] - The type of the theme
+ * @property {string} [companyMode] - The mode of the company
+ */
 /** @typedef GetFontsParam */
 /**
  * @typedef GetPageParam
@@ -100,6 +105,8 @@ declare class ThemePlatformApplicationValidator {
     static getApplicationThemesCount(): any;
     /** @returns {GetAppliedThemeParam} */
     static getAppliedTheme(): any;
+    /** @returns {GetExtensionSectionsParam} */
+    static getExtensionSections(): GetExtensionSectionsParam;
     /** @returns {GetFontsParam} */
     static getFonts(): any;
     /** @returns {GetPageParam} */
@@ -124,7 +131,7 @@ declare class ThemePlatformApplicationValidator {
     static upgradeTheme(): UpgradeThemeParam;
 }
 declare namespace ThemePlatformApplicationValidator {
-    export { AddThemeToApplicationParam, ApplyThemeParam, CreatePageParam, DeletePageParam, DeleteThemeParam, DuplicateThemeParam, GetAllPagesParam, GetApplicationThemesParam, GetApplicationThemesCountParam, GetAppliedThemeParam, GetFontsParam, GetPageParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, IsUpgradableParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameParam, UpgradeThemeParam };
+    export { AddThemeToApplicationParam, ApplyThemeParam, CreatePageParam, DeletePageParam, DeleteThemeParam, DuplicateThemeParam, GetAllPagesParam, GetApplicationThemesParam, GetApplicationThemesCountParam, GetAppliedThemeParam, GetExtensionSectionsParam, GetFontsParam, GetPageParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, IsUpgradableParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameParam, UpgradeThemeParam };
 }
 type AddThemeToApplicationParam = {
     body: ThemePlatformModel.ThemeReq;
@@ -169,6 +176,16 @@ type GetAllPagesParam = {
      * - ID of the theme to be retrieved
      */
     themeId: string;
+};
+type GetExtensionSectionsParam = {
+    /**
+     * - The type of the theme
+     */
+    type?: string;
+    /**
+     * - The mode of the company
+     */
+    companyMode?: string;
 };
 type GetPageParam = {
     /**

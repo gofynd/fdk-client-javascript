@@ -4096,13 +4096,20 @@ class Content {
    * @description: List all blogs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
    */
   async getBlogs(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, tags, q, slug, title, status, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentPlatformApplicationValidator.getBlogs().validate(
       {
         pageNo,
         pageSize,
+        tags,
+        q,
+        slug,
+        title,
+        status,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4117,6 +4124,11 @@ class Content {
       {
         pageNo,
         pageSize,
+        tags,
+        q,
+        slug,
+        title,
+        status,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4130,6 +4142,11 @@ class Content {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["tags"] = tags;
+    query_params["q"] = q;
+    query_params["slug"] = slug;
+    query_params["title"] = title;
+    query_params["status"] = status;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4160,85 +4177,6 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Content > getBlogs \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-   * @name getComponentById
-   * @summary: Get component
-   * @description: Retrieve detailed information about a specific component. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
-   */
-  async getComponentById(
-    { slug, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getComponentById().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getComponentById().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getComponentById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.BlogSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Content > getComponentById \n ${res_error}`,
         });
       }
     }

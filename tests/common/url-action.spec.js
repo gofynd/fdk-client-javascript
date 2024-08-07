@@ -10,6 +10,21 @@ describe("Convert from URL to actionObject", () => {
     });
   });
 
+  it("Check in query for custom theme URL", () => {
+    const customURL = "/c/my/custom/page/";
+    let path = convertUrlToAction(customURL);
+    expect(path).toEqual({
+      type: "page",
+      page: {
+        type: "custom",
+        query: {
+          url: [customURL],
+        },
+        params: {},
+      },
+    });
+  });
+
   it("empty string as url", () => {
     let path = convertUrlToAction("");
     expect(path).toEqual({

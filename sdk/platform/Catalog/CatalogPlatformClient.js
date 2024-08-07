@@ -4273,7 +4273,9 @@ class Catalog {
    * @description: Get product export jobs specific to a company based on queries like query param, date range and status. View details including trigger data, task id , etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductExportJobs/).
    */
   async getProductExportJobs(
-    { status, fromDate, toDate, q, requestHeaders } = { requestHeaders: {} },
+    { status, fromDate, toDate, q, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogPlatformValidator.getProductExportJobs().validate(
@@ -4282,6 +4284,8 @@ class Catalog {
         fromDate,
         toDate,
         q,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4298,6 +4302,8 @@ class Catalog {
         fromDate,
         toDate,
         q,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4313,6 +4319,8 @@ class Catalog {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
     query_params["q"] = q;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const xHeaders = {};
 
@@ -4609,10 +4617,16 @@ class Catalog {
       itemIds,
       departmentIds,
       itemCode,
+      name,
+      slug,
+      allIdentifiers,
       q,
       tags,
       pageNo,
       pageSize,
+      pageType,
+      sortOn,
+      pageId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -4624,10 +4638,16 @@ class Catalog {
         itemIds,
         departmentIds,
         itemCode,
+        name,
+        slug,
+        allIdentifiers,
         q,
         tags,
         pageNo,
         pageSize,
+        pageType,
+        sortOn,
+        pageId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4643,10 +4663,16 @@ class Catalog {
         itemIds,
         departmentIds,
         itemCode,
+        name,
+        slug,
+        allIdentifiers,
         q,
         tags,
         pageNo,
         pageSize,
+        pageType,
+        sortOn,
+        pageId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4663,10 +4689,16 @@ class Catalog {
     query_params["item_ids"] = itemIds;
     query_params["department_ids"] = departmentIds;
     query_params["item_code"] = itemCode;
+    query_params["name"] = name;
+    query_params["slug"] = slug;
+    query_params["all_identifiers"] = allIdentifiers;
     query_params["q"] = q;
     query_params["tags"] = tags;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["page_type"] = pageType;
+    query_params["sort_on"] = sortOn;
+    query_params["page_id"] = pageId;
 
     const xHeaders = {};
 
@@ -4715,10 +4747,16 @@ class Catalog {
    * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
    *   Department Ids
    * @param {string[]} [arg.itemCode] - Get multiple products filtered by Item Code
+   * @param {string} [arg.name] - Get multiple products filtered by Name (Pattern Match)
+   * @param {string} [arg.slug] - Get multiple products filtered by Slug
+   * @param {string[]} [arg.allIdentifiers] - Get multiple products filtered
+   *   by All Identifiers
    * @param {string} [arg.q] - Get multiple products filtered by q string
    * @param {string[]} [arg.tags] - Get multiple products filtered by tags
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
+   * @param {string} [arg.sortOn] - Field which is to be used for sorting,
+   *   default is latest. Value can be latest (modified_on) or created (record id)
    * @returns {Paginator<CatalogPlatformModel.ProductListingResponseV2>}
    * @summary: List products
    * @description: Retrieve a list of available products
@@ -4729,25 +4767,35 @@ class Catalog {
     itemIds,
     departmentIds,
     itemCode,
+    name,
+    slug,
+    allIdentifiers,
     q,
     tags,
     pageSize,
+    sortOn,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
-      const pageType = "number";
+      const pageType = "cursor";
       const data = await this.getProducts({
         brandIds: brandIds,
         categoryIds: categoryIds,
         itemIds: itemIds,
         departmentIds: departmentIds,
         itemCode: itemCode,
+        name: name,
+        slug: slug,
+        allIdentifiers: allIdentifiers,
         q: q,
         tags: tags,
         pageNo: pageNo,
         pageSize: pageSize,
+        pageType: pageType,
+        sortOn: sortOn,
+        pageId: pageId,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -5708,7 +5756,9 @@ class Catalog {
    * @description: Retrieve the history of inventory export jobs associated with the company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listInventoryExport/).
    */
   async listInventoryExport(
-    { status, fromDate, toDate, q, requestHeaders } = { requestHeaders: {} },
+    { status, fromDate, toDate, q, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogPlatformValidator.listInventoryExport().validate(
@@ -5717,6 +5767,8 @@ class Catalog {
         fromDate,
         toDate,
         q,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -5733,6 +5785,8 @@ class Catalog {
         fromDate,
         toDate,
         q,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -5748,6 +5802,8 @@ class Catalog {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
     query_params["q"] = q;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const xHeaders = {};
 

@@ -1,6 +1,41 @@
 const Joi = require("joi");
 
 /**
+ * @typedef GetExtensionSectionRes
+ * @property {string} [extension_id]
+ * @property {string} [bundle_name]
+ * @property {string} [organization_id]
+ * @property {ExtensionSection[]} [sections]
+ * @property {AssetsExtension} [assets]
+ * @property {string} [status]
+ * @property {string} [type]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+
+/**
+ * @typedef ExtensionSection
+ * @property {string} [label]
+ * @property {string} [name]
+ * @property {PropExtension[]} [props]
+ * @property {Object[]} [blocks]
+ */
+
+/**
+ * @typedef PropExtension
+ * @property {string} [id]
+ * @property {string} [label]
+ * @property {string} [type]
+ * @property {string} [info]
+ */
+
+/**
+ * @typedef AssetsExtension
+ * @property {string} [js]
+ * @property {string} [css]
+ */
+
+/**
  * @typedef ThemeReq
  * @property {string} [marketplace_theme_id] - The ID of the marketplace theme
  *   to apply to the company.
@@ -96,7 +131,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
@@ -577,9 +612,9 @@ const Joi = require("joi");
 
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 
@@ -595,6 +630,7 @@ const Joi = require("joi");
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -633,6 +669,49 @@ const Joi = require("joi");
  */
 
 class ThemePlatformModel {
+  /** @returns {GetExtensionSectionRes} */
+  static GetExtensionSectionRes() {
+    return Joi.object({
+      extension_id: Joi.string().allow(""),
+      bundle_name: Joi.string().allow(""),
+      organization_id: Joi.string().allow(""),
+      sections: Joi.array().items(ThemePlatformModel.ExtensionSection()),
+      assets: ThemePlatformModel.AssetsExtension(),
+      status: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ExtensionSection} */
+  static ExtensionSection() {
+    return Joi.object({
+      label: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      props: Joi.array().items(ThemePlatformModel.PropExtension()),
+      blocks: Joi.array().items(Joi.any()),
+    });
+  }
+
+  /** @returns {PropExtension} */
+  static PropExtension() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      label: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      info: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AssetsExtension} */
+  static AssetsExtension() {
+    return Joi.object({
+      js: Joi.string().allow(""),
+      css: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {ThemeReq} */
   static ThemeReq() {
     return Joi.object({
@@ -1401,6 +1480,8 @@ class ThemePlatformModel {
       "collection",
 
       "collections",
+
+      "custom",
 
       "contact-us",
 

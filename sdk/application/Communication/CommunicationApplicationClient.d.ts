@@ -19,7 +19,7 @@ declare class Communication {
      *   Success response
      * @name getCommunicationConsent
      * @summary: Retrieve consent status
-     * @description: Retrieve the consent provided by the user for receiving communication - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/getCommunicationConsent/).
+     * @description: Get the consent provided by the user for receiving communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/getCommunicationConsent/).
      */
     getCommunicationConsent({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CommunicationApplicationModel.CommunicationConsent>;
     /**
@@ -44,7 +44,7 @@ declare class Communication {
      *
      * @name upsertCommunicationConsent
      * @summary: Update or adds consent settings
-     * @description: Update or inserts the consent provided by the user for receiving communication messages - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertCommunicationConsent/).
+     * @description: Update or insert the consent provided by the user for receiving communication messages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertCommunicationConsent/).
      */
     upsertCommunicationConsent({ body, requestHeaders }?: CommunicationApplicationValidator.UpsertCommunicationConsentParam, { responseHeaders }?: object): Promise<CommunicationApplicationModel.CommunicationConsentRes>;
 }

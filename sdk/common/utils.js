@@ -112,7 +112,14 @@ const findBestMatchingLink = (allLinks = [], pathname = "/") => {
   pathname = trimChar(pathname); // -> product/test-product-tag/reviews
   for (let i = 0; i < allLinks.length; i++) {
     let link = trimChar(allLinks[i]); // -> product/:slug/add-reviews
-    if (new RegExp(`^${trimChar(link)}`).test(pathname)) {
+
+    const firstLinkMatch = trimChar(link).split("/")[0];
+    const firstPathMatch = trimChar(pathname).split("/")[0];
+    // atleast first string from path should match, if you don't add this condition then it will give link 'c' for 'collection' path name
+    if (
+      new RegExp(`^${trimChar(link)}`).test(pathname) &&
+      firstLinkMatch.length === firstPathMatch.length
+    ) {
       bestMatch.value = link;
       break;
     }

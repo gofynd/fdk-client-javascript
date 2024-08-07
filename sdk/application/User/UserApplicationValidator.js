@@ -4,41 +4,41 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef AddEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 
 /**
  * @typedef AddMobileNumberParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.EditMobileRequestSchema} body
  */
 
 /**
  * @typedef DeleteEmailParam
- * @property {string} [platform] - ID of the application
- * @property {boolean} active - This is a boolean value to check if email ID is
- *   active 1. True - Email ID is active 2.False - Email ID is inactive
- * @property {boolean} primary - This is a boolean value to check if email ID is
- *   primary (main email ID) 1. True - Email ID is primary 2.False - Email ID is
- *   not primary
- * @property {boolean} verified - This is a boolean value to check if email ID
- *   is verified 1. True - Email ID is verified 2.False - Email ID is not verified yet
- * @property {string} email - The email ID to delete
+ * @property {string} [platform] - ID of the application.
+ * @property {boolean} active - Boolean value to check if email id is active 1.
+ *   True - email id is active 2.False - email id is inactive.
+ * @property {boolean} primary - Boolean value to check if email id is primary
+ *   (main email id) 1. True - email id is primary 2.False - email id is not primary.
+ * @property {boolean} verified - Boolean value to check if email id is verified
+ *   1. True - email id is verified 2.False - email id is not verified yet.
+ * @property {string} email - The email id to delete.
  */
 
 /**
  * @typedef DeleteMobileNumberParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {boolean} active - This is a boolean value to check if mobile
- *   number is active 1.True - Number is active 2. False - Number is inactive
+ *   number is active 1.True - number is active 2. False - number is inactive.
  * @property {boolean} primary - This is a boolean value to check if mobile
- *   number is primary number (main number) 1. True - Number is primary 2. False
- *   - Number is not primary
+ *   number is primary number (main number) 1. True - number is primary 2. False
+ *   - number is not primary.
  * @property {boolean} verified - This is a boolean value to check if mobile
- *   number is verified 1. True - Number is verified 2.False - Number is not verified yet
- * @property {string} countryCode - Country code of the phone number, e.g. 91
- * @property {string} phone - Phone number
+ *   number is verified 1. True - number is verified 2.False - number is not
+ *   verified yet.
+ * @property {string} countryCode - Country code of the phone number, e.g. 91.
+ * @property {string} phone - Phone number.
  */
 
 /**
@@ -57,7 +57,7 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef GetPlatformConfigParam
- * @property {string} [name] - Name of the application, e.g. Fynd
+ * @property {string} [name] - Name of the application, e.g. Fynd.
  */
 
 /**
@@ -69,7 +69,7 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef LoginWithAppleIOSParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestAppleSchema} body
  */
 
@@ -80,31 +80,31 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef LoginWithFacebookParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
  * @typedef LoginWithGoogleParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
  * @typedef LoginWithGoogleAndroidParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
  * @typedef LoginWithGoogleIOSParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
  * @typedef LoginWithOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendOtpRequestSchema} body
  */
 
@@ -117,7 +117,7 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef RegisterWithFormParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.FormRegisterRequestSchema} body
  */
 
@@ -128,37 +128,37 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef SendForgotOTPOnEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendEmailForgotOtpRequestSchema} body
  */
 
 /**
  * @typedef SendForgotOTPOnMobileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendMobileForgotOtpRequestSchema} body
  */
 
 /**
  * @typedef SendOTPOnEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendEmailOtpRequestSchema} body
  */
 
 /**
  * @typedef SendOTPOnMobileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendMobileOtpRequestSchema} body
  */
 
 /**
  * @typedef SendResetPasswordEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendResetPasswordEmailRequestSchema} body
  */
 
 /**
  * @typedef SendResetPasswordMobileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendResetPasswordMobileRequestSchema} body
  */
 
@@ -169,13 +169,13 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef SendVerificationLinkToEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 
 /**
  * @typedef SendVerificationLinkToMobileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
  */
 
@@ -196,7 +196,7 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef UpdateProfileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.EditProfileRequestSchema} body
  */
 
@@ -207,7 +207,7 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef UserExistsParam
- * @property {string} q - Email id or phone number of user
+ * @property {string} q - Email id or phone number of user.
  */
 
 /**
@@ -217,13 +217,13 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef VerifyEmailForgotOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.VerifyEmailForgotOtpRequestSchema} body
  */
 
 /**
  * @typedef VerifyEmailOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.VerifyEmailOtpRequestSchema} body
  */
 
@@ -234,13 +234,13 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef VerifyMobileForgotOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.VerifyMobileForgotOtpRequestSchema} body
  */
 
 /**
  * @typedef VerifyMobileOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.VerifyOtpRequestSchema} body
  */
 

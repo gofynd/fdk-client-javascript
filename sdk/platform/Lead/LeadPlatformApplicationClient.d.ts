@@ -4,16 +4,6 @@ declare class Lead {
     config: any;
     applicationId: any;
     /**
-     * @param {LeadPlatformApplicationValidator.CloseVideoRoomParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
-     * @name closeVideoRoom
-     * @summary: Close video room
-     * @description: Terminate and close an active video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/closeVideoRoom/).
-     */
-    closeVideoRoom({ uniqueName, requestHeaders }?: LeadPlatformApplicationValidator.CloseVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
-    /**
      * @param {LeadPlatformApplicationValidator.CreateCustomFormParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -113,43 +103,6 @@ declare class Lead {
      * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTickets/).
      */
     getNewTickets({ items, filters, q, status, priority, category, requestHeaders }?: LeadPlatformApplicationValidator.GetNewTicketsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketList>;
-    /**
-     * @param {LeadPlatformApplicationValidator.GetNewTokenForVideoRoomParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
-     *   Success response
-     * @name getNewTokenForVideoRoom
-     * @summary: Get video Room Token
-     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTokenForVideoRoom/).
-     */
-    getNewTokenForVideoRoom({ uniqueName, requestHeaders }?: LeadPlatformApplicationValidator.GetNewTokenForVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
-    /**
-     * @param {LeadPlatformApplicationValidator.GetNewVideoParticipantsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
-     *   - Success response
-     *
-     * @name getNewVideoParticipants
-     * @summary: List video Room Participants
-     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewVideoParticipants/).
-     */
-    getNewVideoParticipants({ uniqueName, requestHeaders }?: LeadPlatformApplicationValidator.GetNewVideoParticipantsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>;
-    /**
-     * @param {LeadPlatformApplicationValidator.OpenVideoRoomParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.CreateVideoRoomResponse>} - Success response
-     * @name openVideoRoom
-     * @summary: Open video room
-     * @description: Initiate and open a video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/openVideoRoom/).
-     */
-    openVideoRoom({ body, requestHeaders }?: LeadPlatformApplicationValidator.OpenVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CreateVideoRoomResponse>;
 }
 import LeadPlatformApplicationValidator = require("./LeadPlatformApplicationValidator");
 import LeadPlatformModel = require("./LeadPlatformModel");

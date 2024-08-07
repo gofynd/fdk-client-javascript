@@ -17,6 +17,80 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DraftExtensionSectionRequest
+ * @property {string} [extension_id]
+ * @property {string} [bundle_name]
+ * @property {string} [organization_id]
+ * @property {ExtensionSection[]} [sections]
+ * @property {AssetsExtension} [assets]
+ * @property {string} [type]
+ * @property {string} [status]
+ */
+
+/**
+ * @typedef DraftExtensionSectionResponse
+ * @property {SectionsResponse} [sections]
+ */
+
+/**
+ * @typedef SectionsResponse
+ * @property {boolean} [acknowledged]
+ * @property {number} [matched_count]
+ * @property {number} [modified_count]
+ * @property {string} [upserted_id]
+ * @property {number} [upserted_count]
+ */
+
+/**
+ * @typedef ExtensionSection
+ * @property {string} [label]
+ * @property {string} [name]
+ * @property {PropExtension[]} [props]
+ * @property {Object[]} [blocks]
+ */
+
+/**
+ * @typedef PropExtension
+ * @property {string} [id]
+ * @property {string} [label]
+ * @property {string} [type]
+ * @property {string} [info]
+ */
+
+/**
+ * @typedef AssetsExtension
+ * @property {string} [js]
+ * @property {string} [css]
+ */
+
+/**
+ * @typedef PublishExtensionSectionRequest
+ * @property {string} [extension_id]
+ * @property {string} [bundle_name]
+ * @property {string} [organization_id]
+ * @property {ExtensionSection[]} [sections]
+ * @property {AssetsExtension} [assets]
+ * @property {string} [type]
+ * @property {string} [status]
+ */
+
+/**
+ * @typedef ExtensionPreviewRequest
+ * @property {string} [application_id] - Application ID
+ * @property {string} [section_preview_hash] - Hash for the section preview
+ */
+
+/**
+ * @typedef ExtensionPreviewResponse
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef PublishExtensionSectionResponse
+ * @property {SectionsResponse} [sections]
+ */
+
+/**
  * @typedef AvailablePageSectionMetaAttributes
  * @property {Object} [attributes]
  */
@@ -57,7 +131,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
@@ -612,9 +686,9 @@ const Joi = require("joi");
 
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 
@@ -630,6 +704,7 @@ const Joi = require("joi");
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -687,6 +762,100 @@ class ThemePartnerModel {
       _id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DraftExtensionSectionRequest} */
+  static DraftExtensionSectionRequest() {
+    return Joi.object({
+      extension_id: Joi.string().allow(""),
+      bundle_name: Joi.string().allow(""),
+      organization_id: Joi.string().allow(""),
+      sections: Joi.array().items(ThemePartnerModel.ExtensionSection()),
+      assets: ThemePartnerModel.AssetsExtension(),
+      type: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DraftExtensionSectionResponse} */
+  static DraftExtensionSectionResponse() {
+    return Joi.object({
+      sections: ThemePartnerModel.SectionsResponse(),
+    });
+  }
+
+  /** @returns {SectionsResponse} */
+  static SectionsResponse() {
+    return Joi.object({
+      acknowledged: Joi.boolean(),
+      matched_count: Joi.number(),
+      modified_count: Joi.number(),
+      upserted_id: Joi.string().allow(""),
+      upserted_count: Joi.number(),
+    });
+  }
+
+  /** @returns {ExtensionSection} */
+  static ExtensionSection() {
+    return Joi.object({
+      label: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      props: Joi.array().items(ThemePartnerModel.PropExtension()),
+      blocks: Joi.array().items(Joi.any()),
+    });
+  }
+
+  /** @returns {PropExtension} */
+  static PropExtension() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      label: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      info: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AssetsExtension} */
+  static AssetsExtension() {
+    return Joi.object({
+      js: Joi.string().allow(""),
+      css: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PublishExtensionSectionRequest} */
+  static PublishExtensionSectionRequest() {
+    return Joi.object({
+      extension_id: Joi.string().allow(""),
+      bundle_name: Joi.string().allow(""),
+      organization_id: Joi.string().allow(""),
+      sections: Joi.array().items(ThemePartnerModel.ExtensionSection()),
+      assets: ThemePartnerModel.AssetsExtension(),
+      type: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ExtensionPreviewRequest} */
+  static ExtensionPreviewRequest() {
+    return Joi.object({
+      application_id: Joi.string().allow(""),
+      section_preview_hash: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ExtensionPreviewResponse} */
+  static ExtensionPreviewResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PublishExtensionSectionResponse} */
+  static PublishExtensionSectionResponse() {
+    return Joi.object({
+      sections: ThemePartnerModel.SectionsResponse(),
     });
   }
 
@@ -1477,6 +1646,8 @@ class ThemePartnerModel {
       "collection",
 
       "collections",
+
+      "custom",
 
       "contact-us",
 

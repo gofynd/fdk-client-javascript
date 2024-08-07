@@ -45,6 +45,12 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /** @typedef GetAppliedThemeParam */
 
+/**
+ * @typedef GetExtensionSectionsParam
+ * @property {string} [type] - The type of the theme
+ * @property {string} [companyMode] - The mode of the company
+ */
+
 /** @typedef GetFontsParam */
 
 /**
@@ -168,6 +174,14 @@ class ThemePlatformApplicationValidator {
   /** @returns {GetAppliedThemeParam} */
   static getAppliedTheme() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {GetExtensionSectionsParam} */
+  static getExtensionSections() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      companyMode: Joi.string().allow(""),
+    }).required();
   }
 
   /** @returns {GetFontsParam} */

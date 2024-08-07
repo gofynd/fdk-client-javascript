@@ -139,6 +139,34 @@ class ThemeValidator {
     }).required();
   }
 
+  static createExtensionSectionDraft() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: ThemeModel.DraftExtensionSectionRequest().required(),
+    }).required();
+  }
+
+  static publishExtensionSections() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: ThemeModel.PublishExtensionSectionRequest().required(),
+    }).required();
+  }
+
+  static applyExtensionPreview() {
+    return Joi.object({
+      extensionSectionId: Joi.string().allow("").required(),
+      body: ThemeModel.ExtensionPreviewRequest().required(),
+    }).required();
+  }
+
+  static removeExtensionPreview() {
+    return Joi.object({
+      extensionSectionId: Joi.string().allow("").required(),
+      body: ThemeModel.ExtensionPreviewRequest().required(),
+    }).required();
+  }
+
   static getThemeRejectionReasons() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),

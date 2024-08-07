@@ -60,7 +60,7 @@ declare class Payment {
      *   Success response
      * @name addBeneficiaryDetails
      * @summary: Add beneficiary for refund
-     * @description: Adds beneficiary details specifically for refund transactions, including account holder name, account number and bank details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addBeneficiaryDetails/).
+     * @description: Add beneficiary details specifically for refund transactions, including account holder name, account number and bank details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addBeneficiaryDetails/).
      */
     addBeneficiaryDetails({ body, requestHeaders }?: PaymentApplicationValidator.AddBeneficiaryDetailsParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.RefundAccountResponse>;
     /**
@@ -73,7 +73,7 @@ declare class Payment {
      *   Success response
      * @name addRefundBankAccountUsingOTP
      * @summary: Add refund account using OTP verification
-     * @description: The addition of a bank account specifically for refunds, employing OTP verification for security - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addRefundBankAccountUsingOTP/).
+     * @description: Add bank account specifically for refunds, employing OTP verification for security. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addRefundBankAccountUsingOTP/).
      */
     addRefundBankAccountUsingOTP({ body, requestHeaders }?: PaymentApplicationValidator.AddRefundBankAccountUsingOTPParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.RefundAccountResponse>;
     /**
@@ -83,7 +83,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.AttachCardsResponse>} - Success response
      * @name attachCardToCustomer
      * @summary: Link payment card to customer
-     * @description: Linking of a payment card to a user's account for seamless transactions. Upon successful linking, the card becomes associated with the user's profile, enabling secure and convenient payments - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/attachCardToCustomer/).
+     * @description: Link payment card to a user account for seamless transactions. Upon successful linking, the card becomes associated with the user's profile, enabling secure and convenient payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/attachCardToCustomer/).
      */
     attachCardToCustomer({ body, requestHeaders }?: PaymentApplicationValidator.AttachCardToCustomerParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.AttachCardsResponse>;
     /**
@@ -94,7 +94,7 @@ declare class Payment {
      *   Success response
      * @name cancelPaymentLink
      * @summary: Cancel payment link
-     * @description: Cancels a previously generated payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cancelPaymentLink/).
+     * @description: Cancel previously generated payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cancelPaymentLink/).
      */
     cancelPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.CancelPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CancelPaymentLinkResponse>;
     /**
@@ -104,7 +104,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.CardDetailsResponse>} - Success response
      * @name cardDetails
      * @summary: Get card details
-     * @description: Fetches the details of a specified payment card, including information such as the card type, brand, country, and expiration date. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cardDetails/).
+     * @description: Get details of a specified payment card, including information such as the card type, brand, country, and expiration date. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cardDetails/).
      */
     cardDetails({ cardInfo, aggregator, requestHeaders }?: PaymentApplicationValidator.CardDetailsParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CardDetailsResponse>;
     /**
@@ -132,7 +132,7 @@ declare class Payment {
      *
      * @name checkAndUpdatePaymentStatusPaymentLink
      * @summary: Update payment link status
-     * @description: Verifies and updates the status of a payment made through a link.Upon successful verification and update, the response includes details about the aggregator name, payment status, and whether retrying the process is required. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatusPaymentLink/).
+     * @description: Verify and update status of a payment made through a link.Upon successful verification and update, the response includes details about the aggregator name, payment status, and whether retrying the process is required. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatusPaymentLink/).
      */
     checkAndUpdatePaymentStatusPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.CheckAndUpdatePaymentStatusPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>;
     /**
@@ -142,7 +142,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.CheckCreditResponse>} - Success response
      * @name checkCredit
      * @summary: Verify credit availability and status
-     * @description: Checks the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkCredit/).
+     * @description: Check the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkCredit/).
      */
     checkCredit({ aggregator, requestHeaders }?: PaymentApplicationValidator.CheckCreditParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CheckCreditResponse>;
     /**
@@ -155,7 +155,7 @@ declare class Payment {
      *   Success response
      * @name createOrderHandlerPaymentLink
      * @summary: Create order for payment via link
-     * @description: Initiates the creation of an order handler for processing payments through a link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createOrderHandlerPaymentLink/).
+     * @description: Initiate the creation of an order handler for processing payments through a link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createOrderHandlerPaymentLink/).
      */
     createOrderHandlerPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.CreateOrderHandlerPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CreateOrderUserResponse>;
     /**
@@ -166,7 +166,7 @@ declare class Payment {
      *   Success response
      * @name createPaymentLink
      * @summary: Create payment link
-     * @description: Generates a new payment link for transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentLink/).
+     * @description: Create new payment link for transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentLink/).
      */
     createPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.CreatePaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CreatePaymentLinkResponse>;
     /**
@@ -176,7 +176,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.PaymentOrderResponse>} - Success response
      * @name createPaymentOrder
      * @summary: Create Order
-     * @description: Create an order and payment on the aggregator side - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentOrder/).
+     * @description: Create an order and payment on the aggregator side. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentOrder/).
      */
     createPaymentOrder({ body, requestHeaders }?: PaymentApplicationValidator.CreatePaymentOrderParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentOrderResponse>;
     /**
@@ -188,7 +188,7 @@ declare class Payment {
      *
      * @name customerCreditSummary
      * @summary: Credit summary
-     * @description: Fetches a summary of the customer's credit information, including details such as merchant customer reference ID, status, balance, limit, due amount, used amount, due date, days overdue, total due amount, and a repayment URL. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerCreditSummary/).
+     * @description: Get summary of the customer's credit information, including details such as merchant customer reference ID, status, balance, limit, due amount, used amount, due date, days overdue, total due amount, and a repayment URL. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerCreditSummary/).
      */
     customerCreditSummary({ aggregator, requestHeaders }?: PaymentApplicationValidator.CustomerCreditSummaryParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CustomerCreditSummaryResponse>;
     /**
@@ -199,7 +199,7 @@ declare class Payment {
      *   Success response
      * @name customerOnboard
      * @summary: Onboard customer for payment
-     * @description: Initiates the onboarding process for payment services, providing personal, business, and device information, along with marketplace details, to enable customer registration and credit availability. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerOnboard/).
+     * @description: Initiate the onboarding process for payment services, providing personal, business, and device information, along with marketplace details, to enable customer registration and credit availability. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerOnboard/).
      */
     customerOnboard({ body, requestHeaders }?: PaymentApplicationValidator.CustomerOnboardParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CustomerOnboardingResponse>;
     /**
@@ -209,7 +209,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.DeleteCardsResponse>} - Success response
      * @name deleteUserCard
      * @summary: Delete customer card
-     * @description: Deletion of a payment card from the user's account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteUserCard/).
+     * @description: Delete payment card from the user's account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteUserCard/).
      */
     deleteUserCard({ body, requestHeaders }?: PaymentApplicationValidator.DeleteUserCardParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.DeleteCardsResponse>;
     /**
@@ -219,7 +219,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
      * @name delinkWallet
      * @summary: Delink the wallet
-     * @description: User removes already linked wallet. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/delinkWallet/).
+     * @description: Delink the wallet. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/delinkWallet/).
      */
     delinkWallet({ body, requestHeaders }?: PaymentApplicationValidator.DelinkWalletParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
     /**
@@ -233,7 +233,7 @@ declare class Payment {
      *
      * @name enableOrDisableRefundTransferMode
      * @summary: Toggle refund mode
-     * @description: Enables or disables a particular refund transfer mode based on the request body parameters, indicating whether the mode should be enabled or disabled - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/enableOrDisableRefundTransferMode/).
+     * @description: Enable/Disable a particular refund transfer mode based on the request body parameters, indicating whether the mode should be enabled or disabled. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/enableOrDisableRefundTransferMode/).
      */
     enableOrDisableRefundTransferMode({ body, requestHeaders }?: PaymentApplicationValidator.EnableOrDisableRefundTransferModeParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.UpdateRefundTransferModeResponse>;
     /**
@@ -245,7 +245,7 @@ declare class Payment {
      *
      * @name getActiveCardAggregator
      * @summary: Retrieve active card aggregator
-     * @description: Fetches details about the active card aggregator used by the user, including the aggregator's name.You can refresh the data by setting the "refresh" parameter to true if needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveCardAggregator/).
+     * @description: Get details about the active card aggregator used by the user, including the aggregator name.You can refresh the data by setting the 'refresh' parameter to true if needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveCardAggregator/).
      */
     getActiveCardAggregator({ refresh, requestHeaders }?: PaymentApplicationValidator.GetActiveCardAggregatorParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ActiveCardPaymentGatewayResponse>;
     /**
@@ -257,7 +257,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.TransferModeResponse>} - Success response
      * @name getActiveRefundTransferModes
      * @summary: Get refund transfer modes
-     * @description: Lists the available refund modes, such as UPI, providing details like display name, logo, and ID for each mode - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveRefundTransferModes/).
+     * @description: Lists available refund modes, such as UPI, providing details like display name, logo, and ID for each mode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveRefundTransferModes/).
      */
     getActiveRefundTransferModes({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentApplicationModel.TransferModeResponse>;
     /**
@@ -267,7 +267,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.ListCardsResponse>} - Success response
      * @name getActiveUserCards
      * @summary: Get customer cards
-     * @description: Retrieves a list of all active cards saved by the user.Includes details such as the card's aggregator name, card ID, token, reference, number, expiration date, type, issuer, brand, nickname, and whether it has expired. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveUserCards/).
+     * @description: List all active cards saved by the user.Includes details such as the card's aggregator name, card ID, token, reference, number, expiration date, type, issuer, brand, nickname, and whether it has expired. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveUserCards/).
      */
     getActiveUserCards({ forceRefresh, requestHeaders }?: PaymentApplicationValidator.GetActiveUserCardsParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ListCardsResponse>;
     /**
@@ -279,7 +279,7 @@ declare class Payment {
      *
      * @name getAggregatorsConfig
      * @summary: Get payment aggregators
-     * @description: Retrieve the aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
+     * @description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
      */
     getAggregatorsConfig({ xApiToken, refresh, requestHeaders }?: PaymentApplicationValidator.GetAggregatorsConfigParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.AggregatorsConfigDetailResponse>;
     /**
@@ -292,7 +292,7 @@ declare class Payment {
      *   Success response
      * @name getEpaylaterBannerDetails
      * @summary: Epaylater banner info
-     * @description: Retrieves details required to display the Epaylater payment banner. It provides information about the banner's display status, along with relevant messages and the user's registration status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getEpaylaterBannerDetails/).
+     * @description: Get Epaylater payment banner details. It provides information about the banner's display status, along with relevant messages and the user's registration status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getEpaylaterBannerDetails/).
      */
     getEpaylaterBannerDetails({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentApplicationModel.EpaylaterBannerResponse>;
     /**
@@ -305,7 +305,7 @@ declare class Payment {
      *   Success response
      * @name getOrderBeneficiariesDetail
      * @summary: Retrieve beneficiary details
-     * @description: Retrieve beneficiary details like bank name , ifsc code , branch name associated with a specific order for refund processing  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getOrderBeneficiariesDetail/).
+     * @description: Get beneficiary details like bank name , ifsc code , branch name associated with a specific order for refund processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getOrderBeneficiariesDetail/).
      */
     getOrderBeneficiariesDetail({ orderId, requestHeaders }?: PaymentApplicationValidator.GetOrderBeneficiariesDetailParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.OrderBeneficiaryResponse>;
     /**
@@ -316,7 +316,7 @@ declare class Payment {
      *   Success response
      * @name getPaymentLink
      * @summary: Get payment link
-     * @description: Retrieves a generated payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentLink/).
+     * @description: Get a generated payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentLink/).
      */
     getPaymentLink({ paymentLinkId, requestHeaders }?: PaymentApplicationValidator.GetPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.GetPaymentLinkResponse>;
     /**
@@ -327,7 +327,7 @@ declare class Payment {
      *   Success response
      * @name getPaymentModeRoutes
      * @summary: Get payment modes
-     * @description: Available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutes/).
+     * @description: Get available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutes/).
      */
     getPaymentModeRoutes({ amount, cartId, checkoutMode, refresh, orderId, cardReference, userDetails, displaySplit, advancePayment, shipmentId, requestHeaders, }?: PaymentApplicationValidator.GetPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
@@ -340,7 +340,7 @@ declare class Payment {
      *   Success response
      * @name getPaymentModeRoutesPaymentLink
      * @summary: Payment modes for payment link
-     * @description: Lists payment modes available for a given payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutesPaymentLink/).
+     * @description: List payment modes available for a given payment link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutesPaymentLink/).
      */
     getPaymentModeRoutesPaymentLink({ paymentLinkId, requestHeaders }?: PaymentApplicationValidator.GetPaymentModeRoutesPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
@@ -351,7 +351,7 @@ declare class Payment {
      *   Success response
      * @name getPosPaymentModeRoutes
      * @summary: POS payment modes
-     * @description: Available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPosPaymentModeRoutes/).
+     * @description: Get available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPosPaymentModeRoutes/).
      */
     getPosPaymentModeRoutes({ amount, pincode, orderType, cartId, checkoutMode, refresh, cardReference, userDetails, requestHeaders, }?: PaymentApplicationValidator.GetPosPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
@@ -361,7 +361,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.RupifiBannerResponse>} - Success response
      * @name getRupifiBannerDetails
      * @summary: Rupifi banner info
-     * @description: Retrieves details necessary for displaying the Rupifi payment banner. It provides information such as the KYC URL and the current status of the Rupifi payment banner. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRupifiBannerDetails/).
+     * @description: Get Rupifi payment banner details. It provides information such as the KYC URL and the current status of the Rupifi payment banner. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRupifiBannerDetails/).
      */
     getRupifiBannerDetails({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentApplicationModel.RupifiBannerResponse>;
     /**
@@ -374,7 +374,7 @@ declare class Payment {
      *   Success response
      * @name getUserBeneficiariesDetail
      * @summary: Retrieve beneficiary details
-     * @description: Retrieves information about beneficiaries associated with the user for processing refunds, based on the provided order ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetail/).
+     * @description: Get beneficiaries associated with the user for processing refunds, based on the provided order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetail/).
      */
     getUserBeneficiariesDetail({ orderId, requestHeaders }?: PaymentApplicationValidator.GetUserBeneficiariesDetailParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.OrderBeneficiaryResponse>;
     /**
@@ -386,7 +386,7 @@ declare class Payment {
      *
      * @name initialisePayment
      * @summary: Start payment process
-     * @description: Initiates the payment procedure for an order.Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePayment/).
+     * @description: Initiate the payment procedure for an order. Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePayment/).
      */
     initialisePayment({ body, requestHeaders }?: PaymentApplicationValidator.InitialisePaymentParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentInitializationResponse>;
     /**
@@ -400,7 +400,7 @@ declare class Payment {
      *
      * @name initialisePaymentPaymentLink
      * @summary: Initialize payment link
-     * @description: Begins the payment process for an order by initializing it through a payment link.Upon successful initialization, the response includes details about the payment status, aggregator details, order IDs, polling URL for status updates, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePaymentPaymentLink/).
+     * @description: Begin payment process for an order by initializing it through a payment link.Upon successful initialization, the response includes details about the payment status, aggregator details, order IDs, polling URL for status updates, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePaymentPaymentLink/).
      */
     initialisePaymentPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.InitialisePaymentPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentInitializationResponse>;
     /**
@@ -410,7 +410,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
      * @name linkWallet
      * @summary: OTP verification
-     * @description: Verifies the linking of wallet using OTP for further processing of payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/linkWallet/).
+     * @description: Verify the linking of wallet using OTP for further processing of payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/linkWallet/).
      */
     linkWallet({ body, requestHeaders }?: PaymentApplicationValidator.LinkWalletParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
     /**
@@ -422,7 +422,7 @@ declare class Payment {
      *
      * @name outstandingOrderDetails
      * @summary: Outstanding orders
-     * @description: Retrieve details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
+     * @description: Get details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
      */
     outstandingOrderDetails({ aggregator, requestHeaders }?: PaymentApplicationValidator.OutstandingOrderDetailsParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.OutstandingOrderDetailsResponse>;
     /**
@@ -433,7 +433,7 @@ declare class Payment {
      *   Success response
      * @name paidOrderDetails
      * @summary: Retrieve details of paid orders
-     * @description: Retrieves details of orders that have been paid for, including shipment ID, order ID, due date, payment date, amount, and transaction ID, based on the aggregator's merchant user ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/paidOrderDetails/).
+     * @description: Get details of orders that have been paid for, including shipment ID, order ID, due date, payment date, amount, and transaction ID, based on the aggregator merchant user ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/paidOrderDetails/).
      */
     paidOrderDetails({ aggregator, requestHeaders }?: PaymentApplicationValidator.PaidOrderDetailsParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaidOrderDetailsResponse>;
     /**
@@ -444,7 +444,7 @@ declare class Payment {
      *   Success response
      * @name pollingPaymentLink
      * @summary: Poll status of payment link
-     * @description: Periodically checks the status of a payment link to monitor for any updates or changes.retrieve real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/pollingPaymentLink/).
+     * @description: Get real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/pollingPaymentLink/).
      */
     pollingPaymentLink({ paymentLinkId, requestHeaders }?: PaymentApplicationValidator.PollingPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PollingPaymentLinkResponse>;
     /**
@@ -456,7 +456,7 @@ declare class Payment {
      *
      * @name redirectToAggregator
      * @summary: Redirects users to the payment aggregator's interface
-     * @description: Redirects users to the payment aggregator's interface and provides necessary parameters such as the callback URL and aggregator name. Returns the status of the payment along with the redirect URL and signup URL. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/redirectToAggregator/).
+     * @description: Get details about the active card aggregator used by the user, including the aggregator's name. You can refresh the data by setting the 'refresh' parameter to true if needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/redirectToAggregator/).
      */
     redirectToAggregator({ source, aggregator, requestHeaders }?: PaymentApplicationValidator.RedirectToAggregatorParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.RedirectToAggregatorResponse>;
     /**
@@ -466,7 +466,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.renderHTMLResponse>} - Success response
      * @name renderHTML
      * @summary: Render HTML
-     * @description: Render HTML for a payment aggregator page - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/renderHTML/).
+     * @description: Render HTML for a payment aggregator page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/renderHTML/).
      */
     renderHTML({ body, requestHeaders }?: PaymentApplicationValidator.RenderHTMLParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.renderHTMLResponse>;
     /**
@@ -478,7 +478,7 @@ declare class Payment {
      *
      * @name resendOrCancelPayment
      * @summary: Resend or cancel a pending payment transaction
-     * @description: Enable you to perform actions related to the resending and cancellation of payment links through SMS or E-mail. Resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendOrCancelPayment/).
+     * @description: Resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendOrCancelPayment/).
      */
     resendOrCancelPayment({ body, requestHeaders }?: PaymentApplicationValidator.ResendOrCancelPaymentParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ResendOrCancelPaymentResponse>;
     /**
@@ -489,7 +489,7 @@ declare class Payment {
      *   Success response
      * @name resendPaymentLink
      * @summary: Resend payment link
-     * @description: Resends an existing payment link to the user to complete the payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendPaymentLink/).
+     * @description: Resend an existing payment link to the user to complete the payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendPaymentLink/).
      */
     resendPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.ResendPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ResendPaymentLinkResponse>;
     /**
@@ -502,7 +502,7 @@ declare class Payment {
      *
      * @name updateDefaultBeneficiary
      * @summary: Set default beneficiary for refund
-     * @description: Updates the default beneficiary for the order refund of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/updateDefaultBeneficiary/).
+     * @description: Update default beneficiary for the order refund of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/updateDefaultBeneficiary/).
      */
     updateDefaultBeneficiary({ body, requestHeaders }?: PaymentApplicationValidator.UpdateDefaultBeneficiaryParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.SetDefaultBeneficiaryResponse>;
     /**
@@ -512,7 +512,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.ValidateVPAResponse>} - Success response
      * @name validateVPA
      * @summary: Validate VPA
-     * @description: Checks whether a Virtual Payment Address (VPA) is valid for processing payments and returns the validation result.is_valid boolean value indicating whether the VPA is valid for payments - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateVPA/).
+     * @description: Validate if a Virtual Payment Address (VPA) is valid for processing payments and returns the validation result.is_valid boolean value indicating whether the VPA is valid for payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateVPA/).
      */
     validateVPA({ body, requestHeaders }?: PaymentApplicationValidator.ValidateVPAParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ValidateVPAResponse>;
     /**
@@ -535,7 +535,7 @@ declare class Payment {
      *   Success response
      * @name verifyCustomerForPayment
      * @summary: Verify payment customer
-     * @description: Verify whether the user is eligible for pay-later payment from the payment aggregator's side using the customer's phone number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyCustomerForPayment/).
+     * @description: Verify if the user is eligible for pay-later payment from the payment aggregator side using the customer's phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyCustomerForPayment/).
      */
     verifyCustomerForPayment({ body, requestHeaders }?: PaymentApplicationValidator.VerifyCustomerForPaymentParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ValidateCustomerResponse>;
     /**
@@ -545,7 +545,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.IfscCodeResponse>} - Success response
      * @name verifyIfscCode
      * @summary: Verify IFSC
-     * @description: Checks the validity of the provided IFSC code and returns bank details if valid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyIfscCode/).
+     * @description: Validate IFSC code and returns bank details if valid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyIfscCode/).
      */
     verifyIfscCode({ ifscCode, requestHeaders }?: PaymentApplicationValidator.VerifyIfscCodeParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.IfscCodeResponse>;
     /**
@@ -559,7 +559,7 @@ declare class Payment {
      *
      * @name verifyOtpAndAddBeneficiaryForBank
      * @summary: Verify OTP for bank and add beneficiary
-     * @description: This endpoint confirms the OTP provided by the user and adds a bank beneficiary for refund processing - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForBank/).
+     * @description: Verify the OTP provided by the user and adds a bank beneficiary for refund processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForBank/).
      */
     verifyOtpAndAddBeneficiaryForBank({ body, requestHeaders }?: PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForBankParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse>;
     /**
@@ -571,7 +571,7 @@ declare class Payment {
      * @returns {Promise<PaymentApplicationModel.WalletOtpResponse>} - Success response
      * @name verifyOtpAndAddBeneficiaryForWallet
      * @summary: Verify OTP for wallet
-     * @description: Confirm OTP provided by the user and adds a wallet beneficiary - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForWallet/).
+     * @description: Verify OTP provided by the user and adds a wallet beneficiary. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForWallet/).
      */
     verifyOtpAndAddBeneficiaryForWallet({ body, requestHeaders }?: PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForWalletParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletOtpResponse>;
     /**

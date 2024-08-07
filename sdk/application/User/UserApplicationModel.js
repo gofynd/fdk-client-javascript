@@ -2,195 +2,198 @@ const Joi = require("joi");
 
 /**
  * @typedef UpdateUserAttributesRequest
- * @property {Object} [attributes]
+ * @property {Object} [attributes] - Describes the request structure to update
+ *   the user attribute.
  */
 
 /**
  * @typedef UserAttributes
- * @property {Object} [attributes]
+ * @property {Object} [attributes] - Describes the structure of user attribute.
  */
 
 /**
  * @typedef DeleteApplicationUserRequestSchema
- * @property {string} [user_id]
- * @property {string} [reason]
- * @property {string} [reason_id]
- * @property {string} [request_id]
- * @property {string} [otp]
+ * @property {string} [user_id] - User id for the application user.
+ * @property {string} [reason] - Reason to delete the application user.
+ * @property {string} [reason_id] - Reason id of request to delete the application user .
+ * @property {string} [request_id] - ID of request to delete the application user .
+ * @property {string} [otp] - OTP to verify the delete application user request.
  */
 
 /**
  * @typedef EditEmailRequestSchema
- * @property {string} [email]
+ * @property {string} [email] - Email of the user.
  */
 
 /**
  * @typedef SendVerificationLinkMobileRequestSchema
- * @property {boolean} [verified]
- * @property {boolean} [active]
- * @property {string} [country_code]
- * @property {string} [phone]
- * @property {boolean} [primary]
+ * @property {boolean} [verified] - Boolean to specify if the phone number is
+ *   verified or not.
+ * @property {boolean} [active] - Boolean to specify if the phone number is active or not.
+ * @property {string} [country_code] - Country code for the phone number.
+ * @property {string} [phone] - Phone number.
+ * @property {boolean} [primary] - Boolean to specify if the phone number is
+ *   primary or not.
  */
 
 /**
  * @typedef EditMobileRequestSchema
- * @property {string} [country_code]
- * @property {string} [phone]
+ * @property {string} [country_code] - Country code for the phone number.
+ * @property {string} [phone] - Phone number of user.
  */
 
 /**
  * @typedef EditProfileRequestSchema
  * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
- * @property {string} [first_name]
- * @property {string} [last_name]
+ * @property {string} [first_name] - First name of the application user.
+ * @property {string} [last_name] - Last name of the application user.
  * @property {EditProfileMobileSchema} [mobile]
- * @property {string} [country_code]
- * @property {string} [email]
- * @property {string} [gender]
- * @property {string} [dob]
- * @property {string} [profile_pic_url]
- * @property {string} [android_hash]
- * @property {string} [sender]
- * @property {string} [register_token]
+ * @property {string} [country_code] - Country code for the phone number.
+ * @property {string} [email] - Email id of user.
+ * @property {string} [gender] - Gender of user.
+ * @property {string} [dob] - Date of birth of user.
+ * @property {string} [profile_pic_url] - Profile picture of user.
+ * @property {string} [android_hash] - Unique hash value.
+ * @property {string} [sender] - Identity of the sender.
+ * @property {string} [register_token] - Unique temporary registration of the user.
  */
 
 /**
  * @typedef EditProfileMobileSchema
- * @property {string} [phone]
- * @property {string} [country_code]
+ * @property {string} [phone] - Phone number of user.
+ * @property {string} [country_code] - Country code for the phone number.
  */
 
 /**
  * @typedef SendEmailOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
- * @property {string} [token]
- * @property {string} [register_token]
+ * @property {string} [email] - Email of a user to send email OTP.
+ * @property {string} [action] - Action to specify if to send or resent the OTP.
+ * @property {string} [token] - Token to validate the request.
+ * @property {string} [register_token] - Unique temporary registration of the user.
  */
 
 /**
  * @typedef SendEmailForgotOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
- * @property {string} [token]
+ * @property {string} [email] - Email of a user to send email OTP.
+ * @property {string} [action] - Action to specify if to send or resent the OTP.
+ * @property {string} [token] - Token to validate the request.
  */
 
 /**
  * @typedef VerifyEmailOtpRequestSchema
- * @property {string} [email]
- * @property {string} [action]
- * @property {string} [register_token]
- * @property {string} [otp]
+ * @property {string} [email] - Email of a user to verify OTP.
+ * @property {string} [action] - Action to verify the send or resent OTP.
+ * @property {string} [register_token] - Unique temporary registration of the user.
+ * @property {string} [otp] - OTP for verification.
  */
 
 /**
  * @typedef VerifyEmailForgotOtpRequestSchema
- * @property {string} [email]
- * @property {string} [otp]
+ * @property {string} [email] - Email id of user.
+ * @property {string} [otp] - OTP for verification.
  */
 
 /**
  * @typedef VerifyOtpRequestSchema
- * @property {string} [request_id]
- * @property {string} [register_token]
- * @property {string} [otp]
+ * @property {string} [request_id] - Unique request id for the OTP sent to mobile number.
+ * @property {string} [register_token] - Unique temporary registration of the user.
+ * @property {string} [otp] - OTP for verification.
  */
 
 /**
  * @typedef VerifyMobileForgotOtpRequestSchema
- * @property {string} [request_id]
- * @property {string} [otp]
+ * @property {string} [request_id] - Unique request id for the OTP.
+ * @property {string} [otp] - OTP for verification.
  */
 
 /**
  * @typedef SendMobileOtpRequestSchema
  * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
- * @property {string} [mobile]
- * @property {string} [country_code]
- * @property {string} [action]
- * @property {string} [token]
- * @property {string} [android_hash]
- * @property {string} [force]
+ * @property {string} [mobile] - Mobile number of user.
+ * @property {string} [country_code] - Country code for the phone number.
+ * @property {string} [action] - Action to specify if to send or resent the OTP.
+ * @property {string} [token] - Token to validate the request.
+ * @property {string} [android_hash] - Unique hash value.
+ * @property {string} [force] - Force verify the OTP.
  */
 
 /**
  * @typedef SendMobileForgotOtpRequestSchema
- * @property {string} [mobile]
- * @property {string} [country_code]
- * @property {string} [action]
- * @property {string} [token]
- * @property {string} [android_hash]
+ * @property {string} [mobile] - Phone number of user.
+ * @property {string} [country_code] - Country code for the phone number.
+ * @property {string} [action] - Action to specify if to send or resent the OTP.
+ * @property {string} [token] - Token to validate the request.
+ * @property {string} [android_hash] - Unique hash value.
  */
 
 /**
  * @typedef UpdatePasswordRequestSchema
- * @property {string} [old_password]
- * @property {string} [new_password]
+ * @property {string} [old_password] - Old password.
+ * @property {string} [new_password] - New password.
  */
 
 /**
  * @typedef FormRegisterRequestSchema
- * @property {string} [first_name]
- * @property {string} [last_name]
- * @property {string} [gender]
- * @property {string} [email]
- * @property {string} [password]
+ * @property {string} [first_name] - First name of the application user.
+ * @property {string} [last_name] - Last name of the application user.
+ * @property {string} [gender] - Gender of user.
+ * @property {string} [email] - Email of user.
+ * @property {string} [password] - Password of user.
  * @property {FormRegisterRequestSchemaPhone} [phone]
- * @property {string} [register_token]
+ * @property {string} [register_token] - Unique registration token of user.
  */
 
 /**
  * @typedef TokenRequestBodySchema
- * @property {string} [token]
+ * @property {string} [token] - Unique token.
  */
 
 /**
  * @typedef ForgotPasswordRequestSchema
- * @property {string} [code]
- * @property {string} [password]
+ * @property {string} [code] - Unique code to verify request.
+ * @property {string} [password] - Password of user.
  */
 
 /**
  * @typedef CodeRequestBodySchema
- * @property {string} [code]
+ * @property {string} [code] - Unique code to verify request.
  */
 
 /**
  * @typedef SendResetPasswordEmailRequestSchema
- * @property {string} [email]
+ * @property {string} [email] - Email id of user.
  */
 
 /**
  * @typedef SendResetPasswordMobileRequestSchema
- * @property {string} [country_code]
- * @property {string} [mobile]
+ * @property {string} [country_code] - Country code for the phone number.
+ * @property {string} [mobile] - Phone number of user.
  */
 
 /**
  * @typedef PasswordLoginRequestSchema
- * @property {string} [password]
- * @property {string} [username]
+ * @property {string} [password] - Password of user.
+ * @property {string} [username] - Username of user.
  */
 
 /**
  * @typedef SendOtpRequestSchema
- * @property {boolean} [encrypt_otp] - Set to true if you want to encrypt the OTP.
- * @property {string} [country_code]
- * @property {string} [mobile]
- * @property {string} [android_hash]
+ * @property {boolean} [encrypt_otp] - Eet to true if you want to encrypt the OTP.
+ * @property {string} [country_code] - Country code for the phone number.
+ * @property {string} [mobile] - Phone number.
+ * @property {string} [android_hash] - Unique hash value.
  */
 
 /**
  * @typedef OAuthRequestSchema
- * @property {boolean} [is_signed_in]
+ * @property {boolean} [is_signed_in] - Boolean to specify if the user is signed in .
  * @property {OAuthRequestSchemaOauth2} [oauth2]
  * @property {OAuthRequestSchemaProfile} [profile]
  */
 
 /**
  * @typedef OAuthRequestAppleSchema
- * @property {string} [user_identifier]
+ * @property {string} [user_identifier] - Unique user identifier.
  * @property {OAuthRequestAppleSchemaOauth} [oauth]
  * @property {OAuthRequestAppleSchemaProfile} [profile]
  */
@@ -202,263 +205,302 @@ const Joi = require("joi");
 
 /**
  * @typedef AuthSuccess
- * @property {string} [register_token]
- * @property {boolean} [user_exists]
+ * @property {string} [register_token] - Unique registration token for user.
+ * @property {boolean} [user_exists] - Boolean which specifies if user is registered.
  * @property {UserSchema} [user]
  */
 
 /**
  * @typedef UserExistsResponse
- * @property {boolean} [user_exists]
+ * @property {boolean} [user_exists] - Boolean which specifies if user is
+ *   registered or not.
  */
 
 /**
  * @typedef SendOtpResponse
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- * @property {string} [request_id]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [country_code]
- * @property {string} [email]
- * @property {string} [resend_email_token]
- * @property {string} [register_token]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- * @property {boolean} [user_exists]
+ * @property {number} [resend_timer] - Time after which opt can be resent.
+ * @property {string} [resend_token] - Unique token to identify the OTP send
+ *   request and resend the token.
+ * @property {boolean} [success] - Specify if the OTP is successfully sent.
+ * @property {string} [request_id] - Unique request id for the OTP.
+ * @property {string} [message] - Message to specify the OTP send status. Eg.
+ *   OTP sent, failed to send OTP etc.
+ * @property {string} [mobile] - Phone number of user.
+ * @property {string} [country_code] - Country code for the phone number.
+ * @property {string} [email] - Email id of user.
+ * @property {string} [resend_email_token] - Unique token to identify the OTP
+ *   send request and resend the token on email.
+ * @property {string} [register_token] - Unique registration token for user.
+ * @property {boolean} [verify_email_otp] - If email OTP verification is
+ *   mandatory for registration.
+ * @property {boolean} [verify_mobile_otp] - If mobile OTP verification is
+ *   mandatory for registration.
+ * @property {boolean} [user_exists] - If user is registered or not.
  */
 
 /**
  * @typedef ProfileEditSuccess
  * @property {UserSchema} [user]
- * @property {string} [register_token]
- * @property {string} [resend_email_token]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_link]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- * @property {string} [email]
- * @property {string} [request_id]
- * @property {string} [country_code]
- * @property {string} [mobile]
- * @property {boolean} [success]
- * @property {string} [message]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
+ * @property {string} [register_token] - Unique registration token for user.
+ * @property {string} [resend_email_token] - Unique token to identify the
+ *   request for OTP verification in case of unverified email.
+ * @property {boolean} [user_exists] - If user is registered or not.
+ * @property {boolean} [verify_email_link] - Whether to send a link to verify
+ *   the registered email id of the user.
+ * @property {boolean} [verify_email_otp] - Whether to send a OTP to verify the
+ *   registered email id of the user.
+ * @property {boolean} [verify_mobile_otp] - Whether to send a OTP to verify the
+ *   registered phone of the user.
+ * @property {string} [email] - Email id of user.
+ * @property {string} [request_id] - A random uuid string used to track the request.
+ * @property {string} [country_code] - The country specific prefix for the phone number.
+ * @property {string} [mobile] - The user's mobile number without the country code.
+ * @property {boolean} [success] - Whether the operation was successful.
+ * @property {string} [message] - Information about the operation's result.
+ * @property {number} [resend_timer] - Time in seconds before an request can be resent.
+ * @property {string} [resend_token] - A token used to authorize the resending of request.
  */
 
 /**
  * @typedef LoginSuccess
  * @property {UserSchema} [user]
- * @property {string} [request_id]
- * @property {string} [register_token]
+ * @property {string} [request_id] - A random uuid string used to track the send
+ *   OTP response.
+ * @property {string} [register_token] - A token used for registration purposes.
  */
 
 /**
  * @typedef ResetForgotPasswordSuccess
- * @property {boolean} [success]
+ * @property {boolean} [success] - Whether the password reset operation was successful.
  */
 
 /**
  * @typedef VerifyOtpSuccess
  * @property {UserSchema} [user]
- * @property {boolean} [user_exists]
- * @property {string} [register_token]
+ * @property {boolean} [user_exists] - Whether the user already exists.
+ * @property {string} [register_token] - A token used for registration purposes.
  */
 
 /**
  * @typedef VerifyForgotOtpSuccess
- * @property {boolean} [success]
- * @property {string} [forgot_token]
+ * @property {boolean} [success] - Whether the OTP verification was successful.
+ * @property {string} [forgot_token] - A token used for resetting the forgotten password.
  */
 
 /**
  * @typedef ResetPasswordSuccess
- * @property {string} [status]
+ * @property {string} [status] - Status of the password reset operation.
  */
 
 /**
  * @typedef RegisterFormSuccess
- * @property {string} [email]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {string} [resend_email_token]
- * @property {string} [register_token]
- * @property {boolean} [success]
- * @property {string} [request_id]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [country_code]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- * @property {boolean} [user_exists]
+ * @property {string} [email] - The email address provided during registration.
+ * @property {number} [resend_timer] - The time in seconds before an OTP can be resent.
+ * @property {string} [resend_token] - A token used to authorize the resending of an OTP.
+ * @property {string} [resend_email_token] - A token used to authorize the
+ *   resending of an OTP via email.
+ * @property {string} [register_token] - A token used for completing the
+ *   registration process.
+ * @property {boolean} [success] - A boolean value indicating whether the
+ *   registration operation was successful.
+ * @property {string} [request_id] - A random uuid string used to track the
+ *   registration response.
+ * @property {string} [message] - A string containing additional information
+ *   about the operation's result.
+ * @property {string} [mobile] - The user's phone mobile without the country code.
+ * @property {string} [country_code] - The country specific prefix for the phone number.
+ * @property {boolean} [verify_email_otp] - Whether email OTP verification is required.
+ * @property {boolean} [verify_mobile_otp] - Whether mobile OTP verification is required.
+ * @property {boolean} [user_exists] - Whether the user already exists.
  */
 
 /**
  * @typedef VerifyEmailSuccess
- * @property {string} [message]
+ * @property {string} [message] - Result of the email verification process.
  */
 
 /**
  * @typedef HasPasswordSuccess
- * @property {number} [result]
+ * @property {number} [result] - An integer value indicating whether the user
+ *   has set a password (1 for true, 0 for false).
  */
 
 /**
  * @typedef LogoutSuccess
- * @property {boolean} [logout]
+ * @property {boolean} [logout] - Whether the logout operation was successful.
  */
 
 /**
  * @typedef DeleteUserSuccess
- * @property {boolean} [success]
+ * @property {boolean} [success] - Whether the user deletion operation was successful.
  */
 
 /**
  * @typedef OtpSuccess
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {string} [register_token]
- * @property {boolean} [success]
- * @property {string} [request_id]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [country_code]
+ * @property {number} [resend_timer] - The time in seconds before an OTP can be resent.
+ * @property {string} [resend_token] - A token used to authorize the resending of an OTP.
+ * @property {string} [register_token] - A token used for completing the
+ *   registration process.
+ * @property {boolean} [success] - Whether the OTP send operation was successful.
+ * @property {string} [request_id] - A random uuid string used to track the OTP
+ *   send response.
+ * @property {string} [message] - Additional information about the operation's result.
+ * @property {string} [mobile] - The user's mobile number without the country code.
+ * @property {string} [country_code] - The country specific prefix for the phone number.
  */
 
 /**
  * @typedef EmailOtpSuccess
- * @property {boolean} [success]
- * @property {string} [resend_email_token]
+ * @property {boolean} [success] - Whether the OTP send operation was successful.
+ * @property {string} [resend_email_token] - A token used to authorize the
+ *   resending of an OTP via email.
  */
 
 /**
  * @typedef SessionListSuccess
- * @property {string[]} [sessions]
+ * @property {string[]} [sessions] - An array of active session identifiers.
  */
 
 /**
  * @typedef VerifyMobileOTPSuccess
  * @property {UserSchema} [user]
- * @property {boolean} [verify_mobile_link]
+ * @property {boolean} [verify_mobile_link] - Whether the mobile number
+ *   verification link was successful.
  */
 
 /**
  * @typedef VerifyEmailOTPSuccess
  * @property {UserSchema} [user]
- * @property {boolean} [verify_email_link]
+ * @property {boolean} [verify_email_link] - Whether the email verification link
+ *   was successful.
  */
 
 /**
  * @typedef SendMobileVerifyLinkSuccess
- * @property {boolean} [verify_mobile_link]
+ * @property {boolean} [verify_mobile_link] - Whether the mobile verification
+ *   link was successfully sent.
  */
 
 /**
  * @typedef SendEmailVerifyLinkSuccess
- * @property {boolean} [verify_email_link]
+ * @property {boolean} [verify_email_link] - Whether the email verification link
+ *   was successfully sent.
  */
 
 /**
  * @typedef APIError
- * @property {string} [code]
- * @property {string} [message]
- * @property {string} [info] - Error code description link
- * @property {string} [request_id]
- * @property {string} [error]
- * @property {Object} [meta]
- * @property {boolean} [authenticated]
+ * @property {string} [code] - The error code representing the type of error.
+ * @property {string} [message] - A descriptive message providing more details
+ *   about the error.
+ * @property {string} [info] - A link to the error code description.
+ * @property {string} [request_id] - A random uuid string used to track the api request.
+ * @property {string} [error] - The error message or stack trace.
+ * @property {Object} [meta] - Additional metadata associated with the error.
+ * @property {boolean} [authenticated] - Whether the user is authenticated.
  */
 
 /**
  * @typedef FormRegisterRequestSchemaPhone
- * @property {string} [country_code]
- * @property {string} [mobile]
+ * @property {string} [country_code] - Country code for mobile number.
+ * @property {string} [mobile] - The user's mobile number without the country code.
  */
 
 /**
  * @typedef OAuthRequestSchemaOauth2
- * @property {string} [access_token]
- * @property {number} [expiry]
- * @property {string} [refresh_token]
+ * @property {string} [access_token] - The access token issued by the oauth2 provider.
+ * @property {number} [expiry] - The expiry time of the access token in
+ *   milliseconds since epoch.
+ * @property {string} [refresh_token] - The refresh token issued by the oauth2 provider.
  */
 
 /**
  * @typedef OAuthRequestSchemaProfile
- * @property {string} [last_name]
- * @property {string} [image]
- * @property {string} [id]
- * @property {string} [email]
- * @property {string} [full_name]
- * @property {string} [first_name]
+ * @property {string} [last_name] - The last name of the user.
+ * @property {string} [image] - The url of the user's profile picture.
+ * @property {string} [id] - The unique identifier of the user.
+ * @property {string} [email] - The email address of the user.
+ * @property {string} [full_name] - The full name of the user.
+ * @property {string} [first_name] - The first name of the user.
  */
 
 /**
  * @typedef OAuthRequestAppleSchemaOauth
- * @property {string} [identity_token]
+ * @property {string} [identity_token] - The identity token issued by apple.
  */
 
 /**
  * @typedef OAuthRequestAppleSchemaProfile
- * @property {string} [last_name]
- * @property {string} [full_name]
- * @property {string} [first_name]
+ * @property {string} [last_name] - The last name of the user.
+ * @property {string} [full_name] - The full name of the user.
+ * @property {string} [first_name] - The first name of the user.
  */
 
 /**
  * @typedef PlatformSchema
- * @property {string} [display]
+ * @property {string} [display] - The display name of the platform.
  * @property {LookAndFeel} [look_and_feel]
- * @property {string} [updated_at]
- * @property {boolean} [active]
- * @property {boolean} [forgot_password]
+ * @property {string} [updated_at] - The date and time when the configuration
+ *   was last updated.
+ * @property {boolean} [active] - Is the application config active or not .
+ * @property {boolean} [forgot_password] - Forgot password option to be given or
+ *   not to application user.
  * @property {Login} [login]
- * @property {boolean} [skip_captcha]
- * @property {string} [name]
+ * @property {boolean} [skip_captcha] - Skip the captcha or not .
+ * @property {string} [name] - Name of the application.
  * @property {MetaSchema} [meta]
- * @property {string} [_id]
+ * @property {string} [_id] - Unique document id of the platform config.
  * @property {Social} [social]
  * @property {RequiredFields} [required_fields]
  * @property {RegisterRequiredFields} [register_required_fields]
- * @property {boolean} [skip_login]
+ * @property {boolean} [skip_login] - Whether to skip the login or not .
  * @property {FlashCard} [flash_card]
- * @property {string} [subtext]
+ * @property {string} [subtext] - Text to be shown at the top of the flash card
+ *   like login to fynd, login to tira.
  * @property {SocialTokens} [social_tokens]
- * @property {string} [created_at]
- * @property {boolean} [register]
- * @property {string} [mobile_image]
- * @property {string} [desktop_image]
- * @property {number} [delete_account_day]
- * @property {DeleteAccountReasons[]} [delete_account_reasons]
+ * @property {string} [created_at] - When was the application platform config
+ *   document was created.
+ * @property {boolean} [register] - Whether to show the registration page on
+ *   landing page or not.
+ * @property {string} [mobile_image] - Image to be shown on registration page
+ *   for mobile devices.
+ * @property {string} [desktop_image] - Image to be shown on registration page
+ *   for desktop devices.
+ * @property {number} [delete_account_day] - Number of days after which the user
+ *   account will be deleted.
+ * @property {DeleteAccountReasons[]} [delete_account_reasons] - List of reasons
+ *   you can set to ask user when account is being deleted from application.
  * @property {DeleteAccountConsent} [delete_account_consent]
  * @property {SessionExpiry} [session_config]
- * @property {number} [__v]
+ * @property {number} [__v] - Version of the document.
  */
 
 /**
  * @typedef LookAndFeel
- * @property {string} [card_position]
- * @property {string} [background_color]
+ * @property {string} [card_position] - Position of the card eg right, left,
+ *   top-right etc.
+ * @property {string} [background_color] - Background colour of the card.
  */
 
 /**
  * @typedef Login
- * @property {boolean} [password]
- * @property {boolean} [otp]
+ * @property {boolean} [password] - Application is providing login with password or not.
+ * @property {boolean} [otp] - Application is providing login with OTP or not.
  */
 
 /**
  * @typedef MetaSchema
- * @property {boolean} [fynd_default]
+ * @property {boolean} [fynd_default] - One of the custom field that you are
+ *   storing in meta.
  */
 
 /**
  * @typedef Social
- * @property {boolean} [account_kit]
- * @property {boolean} [facebook]
- * @property {boolean} [google]
- * @property {boolean} [apple]
+ * @property {boolean} [account_kit] - Is accountkit social login active for
+ *   application or not.
+ * @property {boolean} [facebook] - Is facebook social login active for
+ *   application or not .
+ * @property {boolean} [google] - Is google social login active for application or not .
+ * @property {boolean} [apple] - Is apple social login active for application or not.
  */
 
 /**
@@ -469,14 +511,18 @@ const Joi = require("joi");
 
 /**
  * @typedef PlatformEmail
- * @property {boolean} [is_required]
- * @property {string} [level]
+ * @property {boolean} [is_required] - Is email mandatory for user to register
+ *   on a application or not.
+ * @property {string} [level] - Level of email mandatory hard is mandatory and
+ *   soft is optional.
  */
 
 /**
  * @typedef PlatformMobile
- * @property {boolean} [is_required]
- * @property {string} [level]
+ * @property {boolean} [is_required] - Is mobile mandatory for user to register
+ *   on a application or not.
+ * @property {string} [level] - Level of mobile mandatory hard is mandatory and
+ *   soft is optional.
  */
 
 /**
@@ -487,21 +533,26 @@ const Joi = require("joi");
 
 /**
  * @typedef RegisterRequiredFieldsEmail
- * @property {boolean} [is_required]
- * @property {string} [level]
+ * @property {boolean} [is_required] - Is email mandatory for user to register
+ *   on a application or not.
+ * @property {string} [level] - Level of email mandatory hard is mandatory and
+ *   soft is optional.
  */
 
 /**
  * @typedef RegisterRequiredFieldsMobile
- * @property {boolean} [is_required]
- * @property {string} [level]
+ * @property {boolean} [is_required] - Is mobile mandatory for user to register
+ *   on a application or not.
+ * @property {string} [level] - Level of mobile mandatory hard is mandatory and
+ *   soft is optional.
  */
 
 /**
  * @typedef FlashCard
- * @property {string} [text]
- * @property {string} [text_color]
- * @property {string} [background_color]
+ * @property {string} [text] - Text to be shown in the flash card.
+ * @property {string} [text_color] - Text colour for the text in the flash card.
+ * @property {string} [background_color] - Background colour of the text to be
+ *   shown on the flash card.
  */
 
 /**
@@ -513,75 +564,78 @@ const Joi = require("joi");
 
 /**
  * @typedef DeleteAccountReasons
- * @property {string} [reason_text]
- * @property {string} [reason_id]
- * @property {boolean} [show_text_area]
+ * @property {string} [reason_text] - Text of the reason to be shown to user.
+ * @property {string} [reason_id] - Unique id of the reason .
+ * @property {boolean} [show_text_area] - A boolean whether to show text area or not.
  */
 
 /**
  * @typedef DeleteAccountConsent
- * @property {string} [consent_text]
+ * @property {string} [consent_text] - Consent text to be shown to user.
  */
 
 /**
  * @typedef Facebook
- * @property {string} [app_id]
+ * @property {string} [app_id] - App id of the credentials facebook.
  */
 
 /**
  * @typedef Accountkit
- * @property {string} [app_id]
+ * @property {string} [app_id] - App id of the credentials account kit.
  */
 
 /**
  * @typedef Google
- * @property {string} [app_id]
+ * @property {string} [app_id] - App id of the credentials google.
  */
 
 /**
  * @typedef SessionExpiry
- * @property {number} [duration]
- * @property {string} [type]
- * @property {boolean} [is_rolling]
+ * @property {number} [duration] - Number of days or hours based on type till
+ *   which the session can be rolled back.
+ * @property {string} [type] - Days or hours the type of time for session rollback.
+ * @property {boolean} [is_rolling] - Whether session needs to be rollback or not.
  */
 
 /**
  * @typedef UserSchema
- * @property {string} [application_id]
- * @property {string} [user_id]
- * @property {string} [first_name]
- * @property {Object} [meta]
- * @property {string} [last_name]
- * @property {PhoneNumber[]} [phone_numbers]
- * @property {Email[]} [emails]
- * @property {string} [gender]
- * @property {string} [dob]
- * @property {boolean} [active]
- * @property {string} [profile_pic_url]
- * @property {string} [username]
- * @property {string} [account_type]
- * @property {string} [_id]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- * @property {string} [external_id]
- * @property {string} [rr_id]
+ * @property {string} [application_id] - Application id of the user.
+ * @property {string} [user_id] - Unique id of the user.
+ * @property {string} [first_name] - First name of the user.
+ * @property {Object} [meta] - Metadata of the user, used to store details about the user
+ * @property {string} [last_name] - Last name of the user
+ * @property {PhoneNumber[]} [phone_numbers] - List of phone numbers of the user.
+ * @property {Email[]} [emails] - List of email addresses of the user.
+ * @property {string} [gender] - Gender of the user.
+ * @property {string} [dob] - Date of birth of the user.
+ * @property {boolean} [active] - Is the user active.
+ * @property {string} [profile_pic_url] - URL of the profile picture of the user.
+ * @property {string} [username] - Unique username of the user.
+ * @property {string} [account_type] - Type of user (user, programmatic (created
+ *   by system))
+ * @property {string} [_id] - Unique id of the user.
+ * @property {string} [created_at] - Date and time of user creation.
+ * @property {string} [updated_at] - Date and time of user update.
+ * @property {string} [external_id] - Unique id referencing any user external
+ *   documents (jio).
+ * @property {string} [rr_id] - Unique id referencing any user external documents.
  */
 
 /**
  * @typedef PhoneNumber
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- * @property {boolean} [active] - Is the phone number active
- * @property {boolean} [primary] - Is it a primary phone number
- * @property {boolean} [verified] - Is the phone number verified
+ * @property {string} [phone] - Phone number of the user.
+ * @property {number} [country_code] - Country code for mobile number.
+ * @property {boolean} [active] - Is the phone number active.
+ * @property {boolean} [primary] - Is it a primary phone number.
+ * @property {boolean} [verified] - Is the phone number verified.
  */
 
 /**
  * @typedef Email
- * @property {string} [email] - Email address
- * @property {boolean} [active] - Is the email active
- * @property {boolean} [primary] - Is it a primary email
- * @property {boolean} [verified] - Is the email verified
+ * @property {string} [email] - Email address.
+ * @property {boolean} [active] - Is the email active.
+ * @property {boolean} [primary] - Is it a primary email.
+ * @property {boolean} [verified] - Is the email verified.
  */
 
 class UserApplicationModel {

@@ -2,19 +2,19 @@ const Joi = require("joi");
 
 /**
  * @typedef ClickEventBatch
- * @property {string} [event_name]
+ * @property {string} [event_name] - Name of click event.
  */
 
 /**
  * @typedef ClickEventRequest
- * @property {ClickEventBatch[]} [batch]
+ * @property {ClickEventBatch[]} [batch] - List of click events captured.
  */
 
 /**
  * @typedef ClickEventResponse
- * @property {number} [success_count]
- * @property {number} [failed_count]
- * @property {ClickEventBatch[]} [failed_events]
+ * @property {number} [success_count] - Count of valid events.
+ * @property {number} [failed_count] - Count of events failed in schema validation.
+ * @property {ClickEventBatch[]} [failed_events] - List of failed events with error.
  */
 
 class WebhookApplicationModel {

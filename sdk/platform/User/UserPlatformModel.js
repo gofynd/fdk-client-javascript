@@ -253,7 +253,6 @@ const Joi = require("joi");
 /**
  * @typedef CreateUserSessionRequestSchema
  * @property {string} [domain]
- * @property {number} [max_age]
  * @property {string} [user_id]
  */
 
@@ -517,19 +516,19 @@ const Joi = require("joi");
 
 /**
  * @typedef PhoneNumber
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- * @property {boolean} [active] - Is the phone number active
- * @property {boolean} [primary] - Is it a primary phone number
- * @property {boolean} [verified] - Is the phone number verified
+ * @property {string} [phone] - Phone number of the user.
+ * @property {number} [country_code] - Country code for mobile number.
+ * @property {boolean} [active] - Is the phone number active.
+ * @property {boolean} [primary] - Is it a primary phone number.
+ * @property {boolean} [verified] - Is the phone number verified.
  */
 
 /**
  * @typedef Email
- * @property {string} [email] - Email address
- * @property {boolean} [active] - Is the email active
- * @property {boolean} [primary] - Is it a primary email
- * @property {boolean} [verified] - Is the email verified
+ * @property {string} [email] - Email address.
+ * @property {boolean} [active] - Is the email active.
+ * @property {boolean} [primary] - Is it a primary email.
+ * @property {boolean} [verified] - Is the email verified.
  */
 
 class UserPlatformModel {
@@ -846,7 +845,6 @@ class UserPlatformModel {
   static CreateUserSessionRequestSchema() {
     return Joi.object({
       domain: Joi.string().allow(""),
-      max_age: Joi.number(),
       user_id: Joi.string().allow(""),
     });
   }

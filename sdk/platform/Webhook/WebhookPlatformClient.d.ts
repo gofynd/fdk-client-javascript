@@ -44,16 +44,6 @@ declare class Webhook {
      */
     getDeliveryReports({ body, requestHeaders }?: WebhookPlatformValidator.GetDeliveryReportsParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.EventProcessReports>;
     /**
-     * @param {WebhookPlatformValidator.GetEventCountsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<WebhookPlatformModel.RetryCountResponse>} - Success response
-     * @name getEventCounts
-     * @summary: Get event counts
-     * @description: Retrieve the counts of events based on their status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getEventCounts/).
-     */
-    getEventCounts({ body, requestHeaders }?: WebhookPlatformValidator.GetEventCountsParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.RetryCountResponse>;
-    /**
      * @param {WebhookPlatformValidator.GetHistoricalReportsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -63,16 +53,6 @@ declare class Webhook {
      * @description: Retrieve historical reports of webhook events. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getHistoricalReports/).
      */
     getHistoricalReports({ body, requestHeaders }?: WebhookPlatformValidator.GetHistoricalReportsParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.HistoryResponse>;
-    /**
-     * @param {WebhookPlatformValidator.GetManualRetryStatusParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<WebhookPlatformModel.RetryStatusResponse>} - Success response
-     * @name getManualRetryStatus
-     * @summary: Get manual retry status
-     * @description: Check the status of a manual retry operation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getManualRetryStatus/).
-     */
-    getManualRetryStatus({ requestHeaders }?: any, { responseHeaders }?: object): Promise<WebhookPlatformModel.RetryStatusResponse>;
     /**
      * @param {WebhookPlatformValidator.GetReportFiltersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -113,26 +93,6 @@ declare class Webhook {
      * @description: Retrieve subscribers associated with a specific extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByExtensionId/).
      */
     getSubscribersByExtensionId({ extensionId, pageNo, pageSize, requestHeaders }?: WebhookPlatformValidator.GetSubscribersByExtensionIdParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.SubscriberConfigList>;
-    /**
-     * @param {WebhookPlatformValidator.ManualRetryCancelParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<string>} - Success response
-     * @name manualRetryCancel
-     * @summary: Manual retry cancellation
-     * @description: Cancel a manual retry operation for a failed event. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryCancel/).
-     */
-    manualRetryCancel({ requestHeaders }?: any, { responseHeaders }?: object): Promise<string>;
-    /**
-     * @param {WebhookPlatformValidator.ManualRetryOfFailedEventParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<WebhookPlatformModel.RetrySuccessResponse>} - Success response
-     * @name manualRetryOfFailedEvent
-     * @summary: Manual retry of failed event
-     * @description: Trigger a manual retry for an event that failed to deliver. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryOfFailedEvent/).
-     */
-    manualRetryOfFailedEvent({ body, requestHeaders }?: WebhookPlatformValidator.ManualRetryOfFailedEventParam, { responseHeaders }?: object): Promise<WebhookPlatformModel.RetrySuccessResponse>;
     /**
      * @param {WebhookPlatformValidator.PingWebhookParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

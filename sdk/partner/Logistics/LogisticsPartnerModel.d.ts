@@ -33,13 +33,13 @@ export = LogisticsPartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 /**
  * @typedef BulkRegionJobSerializer
@@ -77,6 +77,15 @@ export = LogisticsPartnerModel;
  * @property {boolean} is_own_account
  */
 /**
+ * @typedef CourierAccountRequestBody
+ * @property {string} extension_id
+ * @property {string} [account_id]
+ * @property {string} scheme_id
+ * @property {boolean} is_self_ship
+ * @property {string} stage
+ * @property {boolean} is_own_account
+ */
+/**
  * @typedef CourierPartnerAccountFailureResponse
  * @property {boolean} success
  * @property {ErrorResponse[]} error
@@ -99,6 +108,19 @@ export = LogisticsPartnerModel;
  * @typedef CourierPartnerSchemeModel
  * @property {string} extension_id
  * @property {string} scheme_id
+ * @property {string} name
+ * @property {ArithmeticOperations} weight
+ * @property {string} transport_type
+ * @property {string} region
+ * @property {string} delivery_type
+ * @property {string[]} payment_mode
+ * @property {string} stage
+ * @property {CourierPartnerSchemeFeatures} feature
+ */
+/**
+ * @typedef CourierPartnerSchemeRequestModel
+ * @property {string} extension_id
+ * @property {string} [scheme_id]
  * @property {string} name
  * @property {ArithmeticOperations} weight
  * @property {string} transport_type
@@ -175,7 +197,7 @@ export = LogisticsPartnerModel;
 declare class LogisticsPartnerModel {
 }
 declare namespace LogisticsPartnerModel {
-    export { BulkRegionServiceabilityTatRequest, BulkRegionServiceabilityTatResponseItemData, ErrorResponse, FailureResponse, BulkRegionServiceabilityTatResponse, Page, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, CourierAccount, CourierPartnerAccountFailureResponse, CompanyCourierPartnerAccountListResponse, CourierAccountResponse, CourierPartnerSchemeModel, CourierPartnerSchemeFeatures, ArithmeticOperations, CourierPartnerSchemeUpdateRequest, GetCountries, GetCountriesItems, HierarchyItems };
+    export { BulkRegionServiceabilityTatRequest, BulkRegionServiceabilityTatResponseItemData, ErrorResponse, FailureResponse, BulkRegionServiceabilityTatResponse, Page, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, CourierAccount, CourierAccountRequestBody, CourierPartnerAccountFailureResponse, CompanyCourierPartnerAccountListResponse, CourierAccountResponse, CourierPartnerSchemeModel, CourierPartnerSchemeRequestModel, CourierPartnerSchemeFeatures, ArithmeticOperations, CourierPartnerSchemeUpdateRequest, GetCountries, GetCountriesItems, HierarchyItems };
 }
 /** @returns {BulkRegionServiceabilityTatRequest} */
 declare function BulkRegionServiceabilityTatRequest(): BulkRegionServiceabilityTatRequest;
@@ -217,12 +239,33 @@ type BulkRegionServiceabilityTatResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
+    /**
+     * - The total number of items on the page.
+     */
     item_total?: number;
+    /**
+     * - The identifier for the next page.
+     */
     next_id?: string;
+    /**
+     * - Indicates whether there is a previous page.
+     */
     has_previous?: boolean;
+    /**
+     * - Indicates whether there is a next page.
+     */
     has_next?: boolean;
+    /**
+     * - The current page number.
+     */
     current?: number;
+    /**
+     * - The type of the page, such as 'PageType'.
+     */
     type: string;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
 };
 /** @returns {BulkRegionJobSerializer} */
@@ -264,6 +307,16 @@ type CourierAccount = {
     stage: string;
     is_own_account: boolean;
 };
+/** @returns {CourierAccountRequestBody} */
+declare function CourierAccountRequestBody(): CourierAccountRequestBody;
+type CourierAccountRequestBody = {
+    extension_id: string;
+    account_id?: string;
+    scheme_id: string;
+    is_self_ship: boolean;
+    stage: string;
+    is_own_account: boolean;
+};
 /** @returns {CourierPartnerAccountFailureResponse} */
 declare function CourierPartnerAccountFailureResponse(): CourierPartnerAccountFailureResponse;
 type CourierPartnerAccountFailureResponse = {
@@ -291,6 +344,20 @@ declare function CourierPartnerSchemeModel(): CourierPartnerSchemeModel;
 type CourierPartnerSchemeModel = {
     extension_id: string;
     scheme_id: string;
+    name: string;
+    weight: ArithmeticOperations;
+    transport_type: string;
+    region: string;
+    delivery_type: string;
+    payment_mode: string[];
+    stage: string;
+    feature: CourierPartnerSchemeFeatures;
+};
+/** @returns {CourierPartnerSchemeRequestModel} */
+declare function CourierPartnerSchemeRequestModel(): CourierPartnerSchemeRequestModel;
+type CourierPartnerSchemeRequestModel = {
+    extension_id: string;
+    scheme_id?: string;
     name: string;
     weight: ArithmeticOperations;
     transport_type: string;

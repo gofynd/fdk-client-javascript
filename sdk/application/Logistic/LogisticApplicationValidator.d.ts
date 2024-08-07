@@ -2,57 +2,53 @@ export = LogisticApplicationValidator;
 /** @typedef GetAllCountriesParam */
 /**
  * @typedef GetCountriesParam
- * @property {boolean} [onboarding] - Only fetch countries which allowed for
- *   onboard on Platform.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
- * @property {string} [q] - Search.
+ * @property {boolean} [onboarding] - List countries which allowed for onboard
+ *   on Platform.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 12.
+ * @property {string} [q] - The number of items to retrieve in each page.
+ *   Default value is 12.
  */
 /**
  * @typedef GetCountryParam
- * @property {string} countryIsoCode - The `country_iso_code` is ISO-2 (alpha-2)
- *   code for the country.
+ * @property {string} countryIsoCode - The ISO 3166-1 alpha-2 code representing
+ *   the country (e.g., "IN" for India, "US" for the United States).
  */
 /**
  * @typedef GetLocalitiesParam
- * @property {string} localityType - A `locality_type` contains unique
- *   geographical division.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country iso2 code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
- * @property {string} [q] - Search.
+ * @property {string} localityType - Unique geographical division.
+ * @property {string} [country] - Country name.
+ * @property {string} [state] - State or the province.
+ * @property {string} [city] - City.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 12.
+ * @property {string} [q] - This parameter is used to filter or search the records.
  */
 /**
  * @typedef GetLocalityParam
- * @property {string} localityType - A `locality_type` contains value
- *   geographical division.
- * @property {string} localityValue - A `locality_value` contains a specific
- *   name of the locality.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country iso2 code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
+ * @property {string} localityType - Geographical division.
+ * @property {string} localityValue - Name of the locality.
+ * @property {string} [country] - Country name.
+ * @property {string} [state] - State or the province.
+ * @property {string} [city] - City.
  */
 /**
  * @typedef GetLocationsParam
- * @property {string} xApplicationId - A `x-application-id` is a unique
- *   identifier for a particular sale channel.
- * @property {string} xApplicationData - A `x-application-data` is a unique
- *   identifier for a particular sale channel.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country `iso2` code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
- * @property {number} [pincode] - A `pincode` contains a specific value of the city.
- * @property {string} [sector] - A `sector` contains a specific value of the city.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
+ * @property {string} xApplicationId - Unique identifier for a particular sales channel.
+ * @property {string} xApplicationData - Sales channel details.
+ * @property {string} [country] - The country `iso2` code.
+ * @property {string} [state] - State or the province.
+ * @property {string} [city] - City.
+ * @property {number} [pincode] - Pincode of the area.
+ * @property {string} [sector] - Specific sector of the city.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 12.
  */
 /**
  * @typedef GetOptimalLocationsParam
@@ -60,7 +56,7 @@ export = LogisticApplicationValidator;
  */
 /**
  * @typedef GetPincodeCityParam
- * @property {string} pincode - A `pincode` contains a specific address of a location.
+ * @property {string} pincode - Postal code or PIN code of the address area.
  */
 /**
  * @typedef GetPincodeZonesParam
@@ -72,7 +68,8 @@ export = LogisticApplicationValidator;
  */
 /**
  * @typedef ValidateAddressParam
- * @property {string} countryIsoCode - The ISO code of the country.
+ * @property {string} countryIsoCode - The ISO 3166-1 alpha-2 code representing
+ *   the country (e.g., "IN" for India, "US" for the United States).
  * @property {string} templateName - The type of address form.
  * @property {LogisticApplicationModel.ValidateAddressRequest} body
  */
@@ -105,128 +102,124 @@ declare namespace LogisticApplicationValidator {
 }
 type GetCountriesParam = {
     /**
-     * - Only fetch countries which allowed for
-     * onboard on Platform.
+     * - List countries which allowed for onboard
+     * on Platform.
      */
     onboarding?: boolean;
     /**
-     * - Page number.
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
      */
     pageNo?: number;
     /**
-     * - Page size.
+     * - The number of items to retrieve in each page.
+     * Default value is 12.
      */
     pageSize?: number;
     /**
-     * - Search.
+     * - The number of items to retrieve in each page.
+     * Default value is 12.
      */
     q?: string;
 };
 type GetCountryParam = {
     /**
-     * - The `country_iso_code` is ISO-2 (alpha-2)
-     * code for the country.
+     * - The ISO 3166-1 alpha-2 code representing
+     * the country (e.g., "IN" for India, "US" for the United States).
      */
     countryIsoCode: string;
 };
 type GetLocalitiesParam = {
     /**
-     * - A `locality_type` contains unique
-     * geographical division.
+     * - Unique geographical division.
      */
     localityType: string;
     /**
-     * - A `country` contains a specific value of the
-     * country iso2 code.
+     * - Country name.
      */
     country?: string;
     /**
-     * - A `state` contains a specific value of the
-     * state, province.
+     * - State or the province.
      */
     state?: string;
     /**
-     * - A `city` contains a specific value of the city.
+     * - City.
      */
     city?: string;
     /**
-     * - Page number.
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
      */
     pageNo?: number;
     /**
-     * - Page size.
+     * - The number of items to retrieve in each page.
+     * Default value is 12.
      */
     pageSize?: number;
     /**
-     * - Search.
+     * - This parameter is used to filter or search the records.
      */
     q?: string;
 };
 type GetLocalityParam = {
     /**
-     * - A `locality_type` contains value
-     * geographical division.
+     * - Geographical division.
      */
     localityType: string;
     /**
-     * - A `locality_value` contains a specific
-     * name of the locality.
+     * - Name of the locality.
      */
     localityValue: string;
     /**
-     * - A `country` contains a specific value of the
-     * country iso2 code.
+     * - Country name.
      */
     country?: string;
     /**
-     * - A `state` contains a specific value of the
-     * state, province.
+     * - State or the province.
      */
     state?: string;
     /**
-     * - A `city` contains a specific value of the city.
+     * - City.
      */
     city?: string;
 };
 type GetLocationsParam = {
     /**
-     * - A `x-application-id` is a unique
-     * identifier for a particular sale channel.
+     * - Unique identifier for a particular sales channel.
      */
     xApplicationId: string;
     /**
-     * - A `x-application-data` is a unique
-     * identifier for a particular sale channel.
+     * - Sales channel details.
      */
     xApplicationData: string;
     /**
-     * - A `country` contains a specific value of the
-     * country `iso2` code.
+     * - The country `iso2` code.
      */
     country?: string;
     /**
-     * - A `state` contains a specific value of the
-     * state, province.
+     * - State or the province.
      */
     state?: string;
     /**
-     * - A `city` contains a specific value of the city.
+     * - City.
      */
     city?: string;
     /**
-     * - A `pincode` contains a specific value of the city.
+     * - Pincode of the area.
      */
     pincode?: number;
     /**
-     * - A `sector` contains a specific value of the city.
+     * - Specific sector of the city.
      */
     sector?: string;
     /**
-     * - Page number.
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
      */
     pageNo?: number;
     /**
-     * - Page size.
+     * - The number of items to retrieve in each page.
+     * Default value is 12.
      */
     pageSize?: number;
 };
@@ -235,7 +228,7 @@ type GetOptimalLocationsParam = {
 };
 type GetPincodeCityParam = {
     /**
-     * - A `pincode` contains a specific address of a location.
+     * - Postal code or PIN code of the address area.
      */
     pincode: string;
 };
@@ -247,7 +240,8 @@ type GetTatProductParam = {
 };
 type ValidateAddressParam = {
     /**
-     * - The ISO code of the country.
+     * - The ISO 3166-1 alpha-2 code representing
+     * the country (e.g., "IN" for India, "US" for the United States).
      */
     countryIsoCode: string;
     /**

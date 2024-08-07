@@ -69,21 +69,21 @@ const Joi = require("joi");
 
 /**
  * @typedef TransformEventRequest
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {string} [event_version]
- * @property {EventSchema} [event]
+ * @property {string} event_name
+ * @property {string} event_type
+ * @property {string} event_category
+ * @property {string} event_version
+ * @property {EventSchema} event
  */
 
 /**
  * @typedef ValidateSchemaRequest
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {string} [event_version]
- * @property {EventSchema} [event]
- * @property {Object} [event_schema]
+ * @property {string} event_name
+ * @property {string} event_type
+ * @property {string} event_category
+ * @property {string} event_version
+ * @property {EventSchema} event
+ * @property {Object} event_schema
  */
 
 /**
@@ -193,23 +193,23 @@ class WebhookPublicModel {
   /** @returns {TransformEventRequest} */
   static TransformEventRequest() {
     return Joi.object({
-      event_name: Joi.string().allow(""),
-      event_type: Joi.string().allow(""),
-      event_category: Joi.string().allow(""),
-      event_version: Joi.string().allow(""),
-      event: WebhookPublicModel.EventSchema(),
+      event_name: Joi.string().allow("").required(),
+      event_type: Joi.string().allow("").required(),
+      event_category: Joi.string().allow("").required(),
+      event_version: Joi.string().allow("").required(),
+      event: WebhookPublicModel.EventSchema().required(),
     });
   }
 
   /** @returns {ValidateSchemaRequest} */
   static ValidateSchemaRequest() {
     return Joi.object({
-      event_name: Joi.string().allow(""),
-      event_type: Joi.string().allow(""),
-      event_category: Joi.string().allow(""),
-      event_version: Joi.string().allow(""),
-      event: WebhookPublicModel.EventSchema(),
-      event_schema: Joi.object().pattern(/\S/, Joi.any()),
+      event_name: Joi.string().allow("").required(),
+      event_type: Joi.string().allow("").required(),
+      event_category: Joi.string().allow("").required(),
+      event_version: Joi.string().allow("").required(),
+      event: WebhookPublicModel.EventSchema().required(),
+      event_schema: Joi.object().pattern(/\S/, Joi.any()).required(),
     });
   }
 

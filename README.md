@@ -127,6 +127,29 @@ getData();
 
 ---
 
+### Sample Usage - Fetch function.
+ 
+The fetch function allows you to make custom API requests with ease. It is available on both `platform` and `application` client.
+
+```javascript
+
+let auditLog = await client.request({
+    url: `/service/platform/audit-trail/v1.0/company/1/logs`,
+    method: 'GET',
+});
+
+```
+
+The `fetch` function accepts an object with the following possible keys:
+
+- **method** (string): The HTTP method to use (e.g., 'GET', 'POST', 'PUT', 'DELETE').
+- **url** (string): The URL endpoint for the request.
+- **query** (object): Query parameters to include in the request URL. 
+- **body** (object): The request payload to send. 
+- **headers** (object): Additional headers to include in the request. 
+
+---
+
 ### Cookie
 
 Following code snippet will read and write cookies on behalf of you <br />
@@ -227,4 +250,6 @@ fdk-client-javascript includes Typescript definitions.
 ```typescript
 import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 ```
+
+
 

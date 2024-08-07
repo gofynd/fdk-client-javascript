@@ -1,7 +1,7 @@
 export = CatalogPlatformModel;
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
@@ -1729,6 +1729,7 @@ export = CatalogPlatformModel;
  * @typedef InventoryExportJobListResponse
  * @property {InventoryJobDetailResponse} items - This is the list/history of
  *   all the jobs.
+ * @property {Page} [page]
  */
 /**
  * @typedef InventoryExportQuantityFilter
@@ -2170,13 +2171,13 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 /**
  * @typedef PageResponse
@@ -2479,6 +2480,7 @@ export = CatalogPlatformModel;
 /**
  * @typedef ProductDownloadsResponse
  * @property {ProductTemplateExportResponse[]} [items] - The items of the job.
+ * @property {Page} [page]
  */
 /**
  * @typedef ProductFilters
@@ -3283,9 +3285,9 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 /**
@@ -3300,6 +3302,7 @@ export = CatalogPlatformModel;
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -3344,6 +3347,9 @@ declare namespace CatalogPlatformModel {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    /**
+     * - Type of action to be taken e.g, page.
+     */
     type?: string;
     page?: ActionPage;
     popup?: ActionPage;
@@ -5835,6 +5841,7 @@ type InventoryExportJobListResponse = {
      * all the jobs.
      */
     items: InventoryJobDetailResponse;
+    page?: Page;
 };
 /** @returns {InventoryExportQuantityFilter} */
 declare function InventoryExportQuantityFilter(): InventoryExportQuantityFilter;
@@ -6641,12 +6648,33 @@ type PTErrorResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
+    /**
+     * - The total number of items on the page.
+     */
     item_total?: number;
+    /**
+     * - The identifier for the next page.
+     */
     next_id?: string;
+    /**
+     * - Indicates whether there is a previous page.
+     */
     has_previous?: boolean;
+    /**
+     * - Indicates whether there is a next page.
+     */
     has_next?: boolean;
+    /**
+     * - The current page number.
+     */
     current?: number;
+    /**
+     * - The type of the page, such as 'PageType'.
+     */
     type: string;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
 };
 /** @returns {PageResponse} */
@@ -7009,6 +7037,7 @@ type ProductDownloadsResponse = {
      * - The items of the job.
      */
     items?: ProductTemplateExportResponse[];
+    page?: Page;
 };
 /** @returns {ProductFilters} */
 declare function ProductFilters(): ProductFilters;
@@ -8061,8 +8090,17 @@ type UpdateMarketplaceOptinResponse = {
 /** @returns {ActionPage} */
 declare function ActionPage(): ActionPage;
 type ActionPage = {
+    /**
+     * - Parameters that should be considered in path.
+     */
     params?: any;
+    /**
+     * - Query parameter if any to be added to the action.
+     */
     query?: any;
+    /**
+     * - The URL for the action.
+     */
     url?: string;
     type: PageType;
 };
@@ -8072,4 +8110,4 @@ type ActionPage = {
  * @returns {PageType}
  */
 declare function PageType(): PageType;
-type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "custom" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

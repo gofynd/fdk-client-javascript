@@ -2,20 +2,24 @@ const Joi = require("joi");
 
 /**
  * @typedef QRCodeResp
- * @property {string} [link]
- * @property {string} [svg]
+ * @property {string} [link] - Original url that was used to encoded url into a QR code.
+ * @property {string} [svg] - String representation of the QR Code in SVG format.
  */
 
 /**
  * @typedef RedirectDevice
- * @property {string} [link]
- * @property {string} [type]
+ * @property {string} [link] - Fallback URL to redirect users to the app store
+ *   or a web page if the app is not installed when they click the link.
+ * @property {string} [type] - Type of fallback used to redirect users to the
+ *   app store or a web page if the app is not installed when they click the link.
  */
 
 /**
  * @typedef WebRedirect
- * @property {string} [link]
- * @property {string} [type]
+ * @property {string} [link] - Fallback URL to redirect users to the app store
+ *   or a web page if the app is not installed when they click the link.
+ * @property {string} [type] - Type of fallback used to redirect users to the
+ *   app store or a web page if the app is not installed when they click the link.
  */
 
 /**
@@ -23,77 +27,89 @@ const Joi = require("joi");
  * @property {RedirectDevice} [ios]
  * @property {RedirectDevice} [android]
  * @property {WebRedirect} [web]
- * @property {boolean} [force_web]
+ * @property {boolean} [force_web] - Flag for overriding redirection traffic to
+ *   the web if the app is not installed when the link is clicked.
  */
 
 /**
  * @typedef CampaignShortLink
- * @property {string} [source]
- * @property {string} [medium]
+ * @property {string} [source] - Source of communication of campaign.
+ * @property {string} [medium] - Channel of communication of campaign.
  */
 
 /**
  * @typedef Attribution
- * @property {string} [campaign_cookie_expiry]
+ * @property {string} [campaign_cookie_expiry] - Expiration of campaign.
  */
 
 /**
  * @typedef SocialMediaTags
- * @property {string} [title]
- * @property {string} [description]
- * @property {string} [image]
+ * @property {string} [title] - Title to be displayed when link is shared on
+ *   social media platforms.
+ * @property {string} [description] - Description to be displayed when link is
+ *   shared on social media platforms.
+ * @property {string} [image] - Preview to be displayed when link is shared on
+ *   social media platforms.
  */
 
 /**
  * @typedef ShortLinkReq
  * @property {string} title - Give a name to the link.
  * @property {string} url - The web address to shorten.
- * @property {string} [hash]
- * @property {boolean} [active]
- * @property {string} [expire_at]
- * @property {boolean} [enable_tracking]
+ * @property {string} [hash] - A string value used for converting long URL to
+ *   short URL and vice-versa.
+ * @property {boolean} [active] - Status of the shortlink.
+ * @property {string} [expire_at] - Expiry of the shortlink.
+ * @property {boolean} [enable_tracking] - Flag to enable tracking of a short link.
  * @property {boolean} [personalized] - To create personalized short links.
  * @property {CampaignShortLink} [campaign]
  * @property {Redirects} [redirects]
  * @property {Attribution} [attribution]
  * @property {SocialMediaTags} [social_media_tags]
- * @property {number} [count]
+ * @property {number} [count] - Click count of shortlink.
  */
 
 /**
  * @typedef UrlInfo
- * @property {string} [original]
- * @property {string} [hash]
- * @property {string} [short_url]
+ * @property {string} [original] - Original web address which will be converted
+ *   to shortlink.
+ * @property {string} [hash] - A string value used for converting long URL to
+ *   short URL and vice-versa.
+ * @property {string} [short_url] - Condensed version of a longer URL,
+ *   redirecting to the original page upon being clicked.
  */
 
 /**
  * @typedef ShortLinkRes
- * @property {string} [title]
+ * @property {string} [title] - Name reference of the shortlink.
  * @property {UrlInfo} [url]
- * @property {string} [created_by]
- * @property {boolean} [app_redirect]
- * @property {string} [fallback]
- * @property {boolean} [active]
- * @property {string} [_id]
- * @property {boolean} [enable_tracking]
- * @property {string} [expire_at]
- * @property {string} [application]
- * @property {string} [user_id]
- * @property {string} [created_at]
- * @property {Object} [meta]
- * @property {string} [updated_at]
- * @property {boolean} [personalized] - To create personalized short links
+ * @property {string} [created_by] - Reference of the creator of the shortlink.
+ * @property {boolean} [app_redirect] - Application redirection flag of shortlink.
+ * @property {string} [fallback] - Fallback attributes of shortlink.
+ * @property {boolean} [active] - Status of the shortlink.
+ * @property {string} [_id] - Key used to uniquely identify document that
+ *   contains shortlink details.
+ * @property {boolean} [enable_tracking] - Flag to enable tracking of a short link.
+ * @property {string} [expire_at] - Expiry of the shortlink.
+ * @property {string} [application] - The ID of the sales channel associated
+ *   with the shortlink.
+ * @property {string} [user_id] - Identifier which can uniquely identify the user.
+ * @property {string} [created_at] - The timestamp indicating when a record was
+ *   initially created.
+ * @property {Object} [meta] - Additional attributes of shortlink.
+ * @property {string} [updated_at] - The timestamp indicating when a record was
+ *   last modified or updated.
+ * @property {boolean} [personalized] - To create personalized short links.
  * @property {CampaignShortLink} [campaign]
  * @property {Redirects} [redirects]
  * @property {Attribution} [attribution]
  * @property {SocialMediaTags} [social_media_tags]
- * @property {number} [count]
+ * @property {number} [count] - Click count of shortlink.
  */
 
 /**
  * @typedef ErrorRes
- * @property {string} [message]
+ * @property {string} [message] - Error message providing details about the error.
  */
 
 class ShareApplicationModel {

@@ -7,50 +7,18 @@ export = LeadPartnerModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 /**
  * @typedef TicketHistoryList
  * @property {TicketHistory[]} [items] - List of ticket history
  * @property {Page} [page]
- */
-/**
- * @typedef CustomFormList
- * @property {CustomForm[]} [items] - List of forms
- * @property {Page} [page]
- */
-/**
- * @typedef CreateCustomFormPayload
- * @property {string} slug - Slug for the form
- * @property {string} title - Title for the form
- * @property {Object[]} inputs - List of all the form components
- * @property {string} [description] - Description of the form
- * @property {string} [header_image] - Header image that is to be shown for the form
- * @property {PriorityEnum} priority
- * @property {boolean} [should_notify] - Indicates if staff should be notified
- *   when a response is received
- * @property {string} [success_message] - Success message that will be shown on submission
- * @property {PollForAssignment} [poll_for_assignment]
- */
-/**
- * @typedef EditCustomFormPayload
- * @property {string} title - Title for the form
- * @property {Object[]} inputs - List of all the form components
- * @property {string} [description] - Description of the form
- * @property {PriorityEnum} priority
- * @property {string} [header_image] - Header image that is to be shown for the form
- * @property {boolean} [should_notify] - Indicates if staff should be notified
- *   when a response is received
- * @property {boolean} [login_required] - Denotes if login is required to make a
- *   form response submission
- * @property {string} [success_message] - Success message that will be shown on submission
- * @property {PollForAssignment} [poll_for_assignment]
  */
 /**
  * @typedef EditTicketPayload
@@ -67,14 +35,6 @@ export = LeadPartnerModel;
 /**
  * @typedef AgentChangePayload
  * @property {string} agent_id - Agent's unique ID
- */
-/**
- * @typedef CreateVideoRoomResponse
- * @property {string} unique_name - Video Room's unique name
- */
-/**
- * @typedef CloseVideoRoomResponse
- * @property {boolean} success - Denotes if operation was successfully
  */
 /**
  * @typedef GeneralConfigResponse
@@ -96,16 +56,6 @@ export = LeadPartnerModel;
  * @property {string} [type]
  */
 /**
- * @typedef CreateVideoRoomPayload
- * @property {string} unique_name - Ticket id
- * @property {NotifyUser[]} [notify] - List of people to be notified
- */
-/**
- * @typedef NotifyUser
- * @property {string} country_code - Country code
- * @property {string} phone_number - Phone number
- */
-/**
  * @typedef Filter
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
@@ -116,58 +66,6 @@ export = LeadPartnerModel;
  * @typedef TicketHistoryPayload
  * @property {Object} value - Details of history event
  * @property {HistoryTypeEnum} type
- */
-/**
- * @typedef GetTokenForVideoRoomResponse
- * @property {string} access_token - Access token to be used for video room
- */
-/**
- * @typedef GetParticipantsInsideVideoRoomResponse
- * @property {Participant[]} participants - List of participants of the video room
- */
-/**
- * @typedef Participant
- * @property {UserSchema} [user]
- * @property {string} [identity] - Unique identifier of participant
- * @property {string} [status] - Status of participant
- */
-/**
- * @typedef UserSchema
- * @property {string} [first_name] - First name
- * @property {string} [last_name] - Last name
- * @property {PhoneNumber[]} [phone_numbers] - List of phone numbers
- * @property {Email[]} [emails] - List of email addresses
- * @property {string} [gender] - Gender of user
- * @property {boolean} [active] - Is account active
- * @property {string} [profile_pic_url] - URL for profile pic
- * @property {string} [username] - Username of user
- * @property {string} [account_type] - Type of account
- * @property {string} [uid] - Unique identifier of user
- * @property {Debug} [debug]
- * @property {boolean} [has_old_password_hash] - Denotes if user has old password hash
- * @property {string} [_id] - Unique identifier of user
- * @property {string} [created_at] - Time of user creation
- * @property {string} [updated_at] - Last time of user details update
- */
-/**
- * @typedef PhoneNumber
- * @property {boolean} [active] - Denotes if the phone number is active
- * @property {boolean} [primary] - Denotes it's the primary phone number for the account
- * @property {boolean} [verified] - Denotes it's a verified phone number
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- */
-/**
- * @typedef Email
- * @property {boolean} [primary] - Denotes it's the primary email for the account
- * @property {boolean} [verified] - Denotes it's a verified email
- * @property {string} [email] - Email Address
- * @property {boolean} [active] - Denotes if the email is active
- */
-/**
- * @typedef Debug
- * @property {string} [source] - Source of user
- * @property {string} [platform] - Platform of user
  */
 /**
  * @typedef TicketContext
@@ -206,52 +104,14 @@ export = LeadPartnerModel;
  * @property {string} color - Color for priority
  */
 /**
+ * @typedef SLA
+ * @property {string} resolution_time
+ */
+/**
  * @typedef Status
  * @property {string} key - Key for status
  * @property {string} display - Display text for status
  * @property {string} color - Color for status
- */
-/**
- * @typedef TicketFeedbackList
- * @property {TicketFeedback[]} [items] - List of all ticket feedback for the ticket
- */
-/**
- * @typedef TicketFeedbackPayload
- * @property {Object} [form_response] - Key-value pairs of all the form fields
- *   and their response
- */
-/**
- * @typedef SubmitButton
- * @property {string} title - Title for submit button
- * @property {string} title_color - Title color submit button
- * @property {string} background_color - Color for submit button
- */
-/**
- * @typedef PollForAssignment
- * @property {number} duration - Duration for polling of staff
- * @property {string} message - Message for polling
- * @property {string} success_message - Message for successful polling
- * @property {string} failure_message - Message if polling failed
- */
-/**
- * @typedef CustomForm
- * @property {string} application_id - Application ID for form
- * @property {string} slug - Slug for the form, which is to be used for accessing the form
- * @property {string} [header_image] - Form header image that will be shown to the user
- * @property {string} title - Form title that will be shown to the user
- * @property {string} [description] - Form description that will be shown to the user
- * @property {Priority} priority
- * @property {boolean} login_required - Denotes if login is required to make a
- *   form response submission
- * @property {boolean} should_notify - Denotes if new response submission for
- *   the form should be notified to the assignees
- * @property {string} [success_message] - Message that is to be shown on
- *   succesfull form response submission
- * @property {SubmitButton} [submit_button]
- * @property {Object[]} inputs - List of all the form fields
- * @property {CreatedOn} [created_on]
- * @property {PollForAssignment} [poll_for_assignment]
- * @property {string} _id - Unique identifier for the form
  */
 /**
  * @typedef FeedbackForm
@@ -266,23 +126,6 @@ export = LeadPartnerModel;
  * @property {TicketCategory} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
- */
-/**
- * @typedef FeedbackResponseItem
- * @property {string} display - Question/Title of the form field
- * @property {string} key - Key of the form field
- * @property {string} value - User response value for the form field
- */
-/**
- * @typedef TicketFeedback
- * @property {string} _id - Unique identifier for the feedback
- * @property {string} ticket_id - Readable ticket number
- * @property {string} partner_id - Partner id for which ticket was raised
- * @property {FeedbackResponseItem[]} response
- * @property {string} [category] - Category of the ticket
- * @property {Object} [user] - User who submitted the feedback
- * @property {string} [updated_at] - Time when the feedback was last updated
- * @property {string} [created_at] - Time when the feedback was created
  */
 /**
  * @typedef TicketHistory
@@ -307,6 +150,7 @@ export = LeadPartnerModel;
  * @property {TicketSourceEnum} source
  * @property {Status} status
  * @property {Priority} priority
+ * @property {SLA} [sla]
  * @property {Object} [created_by] - User details of ticket creator
  * @property {Object} [assigned_to] - Details of support staff to whom ticket is assigned
  * @property {string[]} [tags] - Tags relevant to ticket
@@ -335,7 +179,7 @@ export = LeadPartnerModel;
 declare class LeadPartnerModel {
 }
 declare namespace LeadPartnerModel {
-    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, GeneralConfigResponse, SupportCommunicationSchema, GeneralConfigIntegrationSchema, CreateVideoRoomPayload, NotifyUser, Filter, TicketHistoryPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { TicketList, Page, TicketHistoryList, EditTicketPayload, AgentChangePayload, GeneralConfigResponse, SupportCommunicationSchema, GeneralConfigIntegrationSchema, Filter, TicketHistoryPayload, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, SLA, Status, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
@@ -350,12 +194,33 @@ type TicketList = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
+    /**
+     * - The total number of items on the page.
+     */
     item_total?: number;
+    /**
+     * - The identifier for the next page.
+     */
     next_id?: string;
+    /**
+     * - Indicates whether there is a previous page.
+     */
     has_previous?: boolean;
+    /**
+     * - Indicates whether there is a next page.
+     */
     has_next?: boolean;
+    /**
+     * - The current page number.
+     */
     current?: number;
+    /**
+     * - The type of the page, such as 'PageType'.
+     */
     type: string;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
 };
 /** @returns {TicketHistoryList} */
@@ -366,86 +231,6 @@ type TicketHistoryList = {
      */
     items?: TicketHistory[];
     page?: Page;
-};
-/** @returns {CustomFormList} */
-declare function CustomFormList(): CustomFormList;
-type CustomFormList = {
-    /**
-     * - List of forms
-     */
-    items?: CustomForm[];
-    page?: Page;
-};
-/** @returns {CreateCustomFormPayload} */
-declare function CreateCustomFormPayload(): CreateCustomFormPayload;
-type CreateCustomFormPayload = {
-    /**
-     * - Slug for the form
-     */
-    slug: string;
-    /**
-     * - Title for the form
-     */
-    title: string;
-    /**
-     * - List of all the form components
-     */
-    inputs: any[];
-    /**
-     * - Description of the form
-     */
-    description?: string;
-    /**
-     * - Header image that is to be shown for the form
-     */
-    header_image?: string;
-    priority: PriorityEnum;
-    /**
-     * - Indicates if staff should be notified
-     * when a response is received
-     */
-    should_notify?: boolean;
-    /**
-     * - Success message that will be shown on submission
-     */
-    success_message?: string;
-    poll_for_assignment?: PollForAssignment;
-};
-/** @returns {EditCustomFormPayload} */
-declare function EditCustomFormPayload(): EditCustomFormPayload;
-type EditCustomFormPayload = {
-    /**
-     * - Title for the form
-     */
-    title: string;
-    /**
-     * - List of all the form components
-     */
-    inputs: any[];
-    /**
-     * - Description of the form
-     */
-    description?: string;
-    priority: PriorityEnum;
-    /**
-     * - Header image that is to be shown for the form
-     */
-    header_image?: string;
-    /**
-     * - Indicates if staff should be notified
-     * when a response is received
-     */
-    should_notify?: boolean;
-    /**
-     * - Denotes if login is required to make a
-     * form response submission
-     */
-    login_required?: boolean;
-    /**
-     * - Success message that will be shown on submission
-     */
-    success_message?: string;
-    poll_for_assignment?: PollForAssignment;
 };
 /** @returns {EditTicketPayload} */
 declare function EditTicketPayload(): EditTicketPayload;
@@ -483,22 +268,6 @@ type AgentChangePayload = {
      */
     agent_id: string;
 };
-/** @returns {CreateVideoRoomResponse} */
-declare function CreateVideoRoomResponse(): CreateVideoRoomResponse;
-type CreateVideoRoomResponse = {
-    /**
-     * - Video Room's unique name
-     */
-    unique_name: string;
-};
-/** @returns {CloseVideoRoomResponse} */
-declare function CloseVideoRoomResponse(): CloseVideoRoomResponse;
-type CloseVideoRoomResponse = {
-    /**
-     * - Denotes if operation was successfully
-     */
-    success: boolean;
-};
 /** @returns {GeneralConfigResponse} */
 declare function GeneralConfigResponse(): GeneralConfigResponse;
 type GeneralConfigResponse = {
@@ -520,30 +289,6 @@ type SupportCommunicationSchema = {
 declare function GeneralConfigIntegrationSchema(): GeneralConfigIntegrationSchema;
 type GeneralConfigIntegrationSchema = {
     type?: string;
-};
-/** @returns {CreateVideoRoomPayload} */
-declare function CreateVideoRoomPayload(): CreateVideoRoomPayload;
-type CreateVideoRoomPayload = {
-    /**
-     * - Ticket id
-     */
-    unique_name: string;
-    /**
-     * - List of people to be notified
-     */
-    notify?: NotifyUser[];
-};
-/** @returns {NotifyUser} */
-declare function NotifyUser(): NotifyUser;
-type NotifyUser = {
-    /**
-     * - Country code
-     */
-    country_code: string;
-    /**
-     * - Phone number
-     */
-    phone_number: string;
 };
 /** @returns {Filter} */
 declare function Filter(): Filter;
@@ -573,152 +318,6 @@ type TicketHistoryPayload = {
      */
     value: any;
     type: HistoryTypeEnum;
-};
-/** @returns {GetTokenForVideoRoomResponse} */
-declare function GetTokenForVideoRoomResponse(): GetTokenForVideoRoomResponse;
-type GetTokenForVideoRoomResponse = {
-    /**
-     * - Access token to be used for video room
-     */
-    access_token: string;
-};
-/** @returns {GetParticipantsInsideVideoRoomResponse} */
-declare function GetParticipantsInsideVideoRoomResponse(): GetParticipantsInsideVideoRoomResponse;
-type GetParticipantsInsideVideoRoomResponse = {
-    /**
-     * - List of participants of the video room
-     */
-    participants: Participant[];
-};
-/** @returns {Participant} */
-declare function Participant(): Participant;
-type Participant = {
-    user?: UserSchema;
-    /**
-     * - Unique identifier of participant
-     */
-    identity?: string;
-    /**
-     * - Status of participant
-     */
-    status?: string;
-};
-/** @returns {UserSchema} */
-declare function UserSchema(): UserSchema;
-type UserSchema = {
-    /**
-     * - First name
-     */
-    first_name?: string;
-    /**
-     * - Last name
-     */
-    last_name?: string;
-    /**
-     * - List of phone numbers
-     */
-    phone_numbers?: PhoneNumber[];
-    /**
-     * - List of email addresses
-     */
-    emails?: Email[];
-    /**
-     * - Gender of user
-     */
-    gender?: string;
-    /**
-     * - Is account active
-     */
-    active?: boolean;
-    /**
-     * - URL for profile pic
-     */
-    profile_pic_url?: string;
-    /**
-     * - Username of user
-     */
-    username?: string;
-    /**
-     * - Type of account
-     */
-    account_type?: string;
-    /**
-     * - Unique identifier of user
-     */
-    uid?: string;
-    debug?: Debug;
-    /**
-     * - Denotes if user has old password hash
-     */
-    has_old_password_hash?: boolean;
-    /**
-     * - Unique identifier of user
-     */
-    _id?: string;
-    /**
-     * - Time of user creation
-     */
-    created_at?: string;
-    /**
-     * - Last time of user details update
-     */
-    updated_at?: string;
-};
-/** @returns {PhoneNumber} */
-declare function PhoneNumber(): PhoneNumber;
-type PhoneNumber = {
-    /**
-     * - Denotes if the phone number is active
-     */
-    active?: boolean;
-    /**
-     * - Denotes it's the primary phone number for the account
-     */
-    primary?: boolean;
-    /**
-     * - Denotes it's a verified phone number
-     */
-    verified?: boolean;
-    /**
-     * - Phone number
-     */
-    phone?: string;
-    /**
-     * - Country code
-     */
-    country_code?: number;
-};
-/** @returns {Email} */
-declare function Email(): Email;
-type Email = {
-    /**
-     * - Denotes it's the primary email for the account
-     */
-    primary?: boolean;
-    /**
-     * - Denotes it's a verified email
-     */
-    verified?: boolean;
-    /**
-     * - Email Address
-     */
-    email?: string;
-    /**
-     * - Denotes if the email is active
-     */
-    active?: boolean;
-};
-/** @returns {Debug} */
-declare function Debug(): Debug;
-type Debug = {
-    /**
-     * - Source of user
-     */
-    source?: string;
-    /**
-     * - Platform of user
-     */
-    platform?: string;
 };
 /** @returns {TicketContext} */
 declare function TicketContext(): TicketContext;
@@ -804,6 +403,11 @@ type Priority = {
      */
     color: string;
 };
+/** @returns {SLA} */
+declare function SLA(): SLA;
+type SLA = {
+    resolution_time: string;
+};
 /** @returns {Status} */
 declare function Status(): Status;
 type Status = {
@@ -819,110 +423,6 @@ type Status = {
      * - Color for status
      */
     color: string;
-};
-/** @returns {TicketFeedbackList} */
-declare function TicketFeedbackList(): TicketFeedbackList;
-type TicketFeedbackList = {
-    /**
-     * - List of all ticket feedback for the ticket
-     */
-    items?: TicketFeedback[];
-};
-/** @returns {TicketFeedbackPayload} */
-declare function TicketFeedbackPayload(): TicketFeedbackPayload;
-type TicketFeedbackPayload = {
-    /**
-     * - Key-value pairs of all the form fields
-     * and their response
-     */
-    form_response?: any;
-};
-/** @returns {SubmitButton} */
-declare function SubmitButton(): SubmitButton;
-type SubmitButton = {
-    /**
-     * - Title for submit button
-     */
-    title: string;
-    /**
-     * - Title color submit button
-     */
-    title_color: string;
-    /**
-     * - Color for submit button
-     */
-    background_color: string;
-};
-/** @returns {PollForAssignment} */
-declare function PollForAssignment(): PollForAssignment;
-type PollForAssignment = {
-    /**
-     * - Duration for polling of staff
-     */
-    duration: number;
-    /**
-     * - Message for polling
-     */
-    message: string;
-    /**
-     * - Message for successful polling
-     */
-    success_message: string;
-    /**
-     * - Message if polling failed
-     */
-    failure_message: string;
-};
-/** @returns {CustomForm} */
-declare function CustomForm(): CustomForm;
-type CustomForm = {
-    /**
-     * - Application ID for form
-     */
-    application_id: string;
-    /**
-     * - Slug for the form, which is to be used for accessing the form
-     */
-    slug: string;
-    /**
-     * - Form header image that will be shown to the user
-     */
-    header_image?: string;
-    /**
-     * - Form title that will be shown to the user
-     */
-    title: string;
-    /**
-     * - Form description that will be shown to the user
-     */
-    description?: string;
-    priority: Priority;
-    /**
-     * - Denotes if login is required to make a
-     * form response submission
-     */
-    login_required: boolean;
-    /**
-     * - Denotes if new response submission for
-     * the form should be notified to the assignees
-     */
-    should_notify: boolean;
-    /**
-     * - Message that is to be shown on
-     * succesfull form response submission
-     */
-    success_message?: string;
-    submit_button?: SubmitButton;
-    /**
-     * - List of all the form fields
-     */
-    inputs: any[];
-    created_on?: CreatedOn;
-    poll_for_assignment?: PollForAssignment;
-    /**
-     * - Unique identifier for the form
-     */
-    _id: string;
 };
 /** @returns {FeedbackForm} */
 declare function FeedbackForm(): FeedbackForm;
@@ -957,55 +457,6 @@ type TicketCategory = {
      */
     group_id?: number;
     feedback_form?: FeedbackForm;
-};
-/** @returns {FeedbackResponseItem} */
-declare function FeedbackResponseItem(): FeedbackResponseItem;
-type FeedbackResponseItem = {
-    /**
-     * - Question/Title of the form field
-     */
-    display: string;
-    /**
-     * - Key of the form field
-     */
-    key: string;
-    /**
-     * - User response value for the form field
-     */
-    value: string;
-};
-/** @returns {TicketFeedback} */
-declare function TicketFeedback(): TicketFeedback;
-type TicketFeedback = {
-    /**
-     * - Unique identifier for the feedback
-     */
-    _id: string;
-    /**
-     * - Readable ticket number
-     */
-    ticket_id: string;
-    /**
-     * - Partner id for which ticket was raised
-     */
-    partner_id: string;
-    response: FeedbackResponseItem[];
-    /**
-     * - Category of the ticket
-     */
-    category?: string;
-    /**
-     * - User who submitted the feedback
-     */
-    user?: any;
-    /**
-     * - Time when the feedback was last updated
-     */
-    updated_at?: string;
-    /**
-     * - Time when the feedback was created
-     */
-    created_at?: string;
 };
 /** @returns {TicketHistory} */
 declare function TicketHistory(): TicketHistory;
@@ -1059,6 +510,7 @@ type Ticket = {
     source: TicketSourceEnum;
     status: Status;
     priority: Priority;
+    sla?: SLA;
     /**
      * - User details of ticket creator
      */

@@ -425,6 +425,7 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef SetCODForUserRequest
+ * @property {string} [business_unit] - Business unit
  * @property {string} mobileno - Mobile No. of User
  * @property {boolean} is_active - Either true or false
  * @property {string} merchant_user_id - Merchant User id
@@ -506,13 +507,13 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 /**
  * @typedef EdcDeviceListResponse
@@ -591,6 +592,8 @@ export = PaymentPlatformModel;
  * @typedef LinkStatus
  * @property {string} status - Link action status
  * @property {string} message - Message
+ * @property {boolean} [is_payment_done] - This key specifies payment done
+ *   status of payment link.
  */
 /**
  * @typedef ResendOrCancelPaymentResponse
@@ -698,7 +701,7 @@ export = PaymentPlatformModel;
 /**
  * @typedef ValidateCustomerResponse
  * @property {string} message - Error or success message.
- * @property {Object} data - Payment gateway response data
+ * @property {Object} [data] - Payment gateway response data
  * @property {boolean} success - Response is successful or not
  */
 /**
@@ -2271,6 +2274,10 @@ type GetUserCODLimitResponse = {
 declare function SetCODForUserRequest(): SetCODForUserRequest;
 type SetCODForUserRequest = {
     /**
+     * - Business unit
+     */
+    business_unit?: string;
+    /**
      * - Mobile No. of User
      */
     mobileno: string;
@@ -2483,12 +2490,33 @@ type EdcDeviceUpdateResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
+    /**
+     * - The total number of items on the page.
+     */
     item_total?: number;
+    /**
+     * - The identifier for the next page.
+     */
     next_id?: string;
+    /**
+     * - Indicates whether there is a previous page.
+     */
     has_previous?: boolean;
+    /**
+     * - Indicates whether there is a next page.
+     */
     has_next?: boolean;
+    /**
+     * - The current page number.
+     */
     current?: number;
+    /**
+     * - The type of the page, such as 'PageType'.
+     */
     type: string;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
 };
 /** @returns {EdcDeviceListResponse} */
@@ -2740,6 +2768,11 @@ type LinkStatus = {
      * - Message
      */
     message: string;
+    /**
+     * - This key specifies payment done
+     * status of payment link.
+     */
+    is_payment_done?: boolean;
 };
 /** @returns {ResendOrCancelPaymentResponse} */
 declare function ResendOrCancelPaymentResponse(): ResendOrCancelPaymentResponse;
@@ -2972,7 +3005,7 @@ type ValidateCustomerResponse = {
     /**
      * - Payment gateway response data
      */
-    data: any;
+    data?: any;
     /**
      * - Response is successful or not
      */

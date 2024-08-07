@@ -35,7 +35,8 @@ const ShareApplicationModel = require("./ShareApplicationModel");
 
 /**
  * @typedef GetUrlQRCodeParam
- * @property {string} url - A link or a web address
+ * @property {string} url - A link or a web address of a given URL transformed
+ *   into a scannable QR code.
  */
 
 class ShareApplicationValidator {

@@ -2,15 +2,15 @@ export = CommonApplicationValidator;
 /**
  * @typedef GetLocationsParam
  * @property {string} [locationType] - Provide location type to query on.
- *   Possible values : country, state, city
+ *   Possible values : country, state, city.
  * @property {string} [id] - Field is optional when location_type is country. If
  *   querying for state, provide id of country. If querying for city, provide id
  *   of state.
  */
 /**
  * @typedef SearchApplicationParam
- * @property {string} [authorization]
- * @property {string} [query] - Provide application name
+ * @property {string} [authorization] - Basic auth string to access the api endpoint.
+ * @property {string} [query] - Provide application name.
  */
 declare class CommonApplicationValidator {
     /** @returns {GetLocationsParam} */
@@ -24,7 +24,7 @@ declare namespace CommonApplicationValidator {
 type GetLocationsParam = {
     /**
      * - Provide location type to query on.
-     * Possible values : country, state, city
+     * Possible values : country, state, city.
      */
     locationType?: string;
     /**
@@ -35,9 +35,12 @@ type GetLocationsParam = {
     id?: string;
 };
 type SearchApplicationParam = {
+    /**
+     * - Basic auth string to access the api endpoint.
+     */
     authorization?: string;
     /**
-     * - Provide application name
+     * - Provide application name.
      */
     query?: string;
 };

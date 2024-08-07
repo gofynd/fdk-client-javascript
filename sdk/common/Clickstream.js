@@ -16,7 +16,35 @@ const sg = function safeGet(fn, defaultValue = null) {
     return defaultValue;
   }
 };
-
+/**
+ * Safely extracts search query and click position
+ *
+ * @author Hitendra Singh
+ * @param {Object} [defaultValue] - Utm_params
+ * @returns {Object} - Query and position
+ */
+const fetchPositionAndQuery = function (utm_params) {
+  if (!utm_params || !Object.keys(utm_params).length) {
+    return {
+      query: null,
+      position: null,
+    };
+  }
+  const decodedUri = utm_params.utm_content
+    ? atob(utm_params.utm_content)
+    : null;
+  if (decodedUri && utm_params.utm_medium === "search") {
+    const parts = decodedUri.split(":::");
+    return {
+      query: parts[0] || null,
+      position: parts[1] || null,
+    };
+  }
+  return {
+    query: null,
+    position: null,
+  };
+};
 if (typeof window != "undefined") {
   window.FPI.event.on("user.login", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
@@ -57,7 +85,7 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("wishlist.add", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("product_wishlist_add", {
+    const payload = {
       wishlist_name: "TODO",
       wishlist_id: "TODO",
       event_type: "engagement",
@@ -70,6 +98,11 @@ if (typeof window != "undefined") {
       currency: sg(() => eventData.item.price.effective.currency_code),
       value: "TODO",
       source_url: "TODO",
+    };
+    const queryResult = fetchPositionAndQuery(eventData.utm_params);
+    Clickstream.sendEvent("product_wishlist_add", {
+      ...payload,
+      ...queryResult,
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -105,7 +138,7 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("cart.newProduct", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("add_to_cart", {
+    const payload = {
       cart_id: eventData.cart_id,
       event_type: "engagement",
       product_id: sg(() => eventData.products[0]["uid"]),
@@ -117,9 +150,12 @@ if (typeof window != "undefined") {
       price: sg(() => eventData.products[0]["price"]["selling"]),
       quantity: sg(() => eventData.products[0]["quantity"]["current"]),
       source_url: "TODO",
-      position: "TODO",
+      position: null,
+      query: null,
       value: "TODO",
-    })
+    };
+    const queryResult = fetchPositionAndQuery(eventData.utm_params);
+    Clickstream.sendEvent("add_to_cart", { ...payload, ...queryResult })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
       })
@@ -141,7 +177,7 @@ if (typeof window != "undefined") {
       price: sg(() => eventData.products[0]["price"]["selling"]),
       quantity: sg(() => eventData.products[0]["quantity"]["current"]),
       source_url: "TODO",
-      position: "TODO",
+      position: null,
       value: "TODO",
     })
       .then((resp) => {
@@ -212,9 +248,30 @@ if (typeof window != "undefined") {
       });
   });
 
+  window.FPI.event.on("product_list.view", (eventData) => {
+    Logger({ level: "DEBUG", message: eventData });
+    Clickstream.sendEvent("product_listing", {
+      event_type: "impression",
+      query: sg(() => eventData.slug["q"]),
+      products: eventData.items.map((p) => {
+        return {
+          product_id: p.uid,
+          name: p.name,
+          currency: sg(() => p.price["effective"]["currency_code"]),
+          mrp: sg(() => p.price["effective"]["max"]),
+          esp: sg(() => p.price["effective"]["min"]),
+          source_url: p.url,
+          brand: sg(() => p.brand["name"]),
+        };
+      }),
+
+      item_total: sg(() => eventData["page"]["item_total"]),
+    });
+  });
+
   window.FPI.event.on("product.view", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("product_view", {
+    const payload = {
       event_type: "click",
       product_id: sg(() => eventData.product["uid"]),
       currency: sg(() => eventData.product.price["currency_code"]),
@@ -225,8 +282,11 @@ if (typeof window != "undefined") {
       l1_category: sg(() => eventData.product.l1_category),
       source_url: sg(() => eventData.product.source_url),
       quantity: sg(() => eventData.product.sizes[0]["quantity"]),
-      position: "TODO",
-    })
+      position: null,
+      query: null,
+    };
+    const queryResult = fetchPositionAndQuery(eventData.utm_params);
+    Clickstream.sendEvent("product_view", { ...payload, ...queryResult })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
       })
@@ -237,16 +297,36 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("search.products", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("product_search", {
+    const payload = {
       event_type: "search",
       query: eventData.search_text,
-    })
-      .then((resp) => {
-        Logger({ level: "DEBUG", message: "Click event sent" });
+      products: [],
+      item_total: null,
+    };
+    //filter eventData.data to find the products array and item total
+    const products = eventData.data
+      .filter((item) => {
+        if ((item["type"] === "product" && item.categories) || item.product)
+          return true;
       })
-      .catch((err) => {
-        Logger({ level: "ERROR", message: err });
+      .map((product) => {
+        return product.display || product.name;
       });
+    const item_total = sg(() => eventData.page["item_total"]);
+    if (payload.query) {
+      //only if query is present
+      Clickstream.sendEvent("product_search", {
+        ...payload,
+        products,
+        item_total,
+      })
+        .then((resp) => {
+          Logger({ level: "DEBUG", message: "Click event sent" });
+        })
+        .catch((err) => {
+          Logger({ level: "ERROR", message: err });
+        });
+    }
   });
 
   window.FPI.event.on("product_list.filter", (eventData) => {

@@ -2,24 +2,25 @@ export = ConfigurationApplicationValidator;
 /** @typedef GetAppCurrenciesParam */
 /**
  * @typedef GetAppStaffListParam
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- * @property {boolean} [orderIncent] - This is a boolean value. Select `true` to
- *   retrieve the staff members eligible for getting incentives on orders.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ * @property {boolean} [orderIncent] - Select `true` to retrieve the staff
+ *   members eligible for getting incentives on orders.
  * @property {number} [orderingStore] - ID of the ordering store. Helps in
  *   retrieving staff members working at a particular ordering store.
- * @property {string} [user] - Mongo ID of the staff. Helps in retrieving the
- *   details of a particular staff member.
- * @property {string} [userName] - User name of the member
+ * @property {string} [user] - ID of the staff. Helps in retrieving the details
+ *   of a particular staff member.
+ * @property {string} [userName] - Username of the member.
  */
 /**
  * @typedef GetAppStaffsParam
- * @property {boolean} [orderIncent] - This is a boolean value. Select `true` to
- *   retrieve the staff members eligible for getting incentives on orders.
+ * @property {boolean} [orderIncent] - Select `true` to retrieve the staff
+ *   members eligible for getting incentives on orders.
  * @property {number} [orderingStore] - ID of the ordering store. Helps in
  *   retrieving staff members working at a particular ordering store.
- * @property {string} [user] - Mongo ID of the staff. Helps in retrieving the
- *   details of a particular staff member.
+ * @property {string} [user] - ID of the staff. Helps in retrieving the details
+ *   of a particular staff member.
  */
 /** @typedef GetApplicationParam */
 /** @typedef GetBasicDetailsParam */
@@ -27,7 +28,7 @@ export = ConfigurationApplicationValidator;
 /** @typedef GetCurrenciesParam */
 /**
  * @typedef GetCurrencyByIdParam
- * @property {string} id - Object ID assigned to the currency
+ * @property {string} id - ID assigned to the currency.
  */
 /** @typedef GetFeaturesParam */
 /** @typedef GetIntegrationTokensParam */
@@ -47,7 +48,7 @@ export = ConfigurationApplicationValidator;
 /** @typedef GetOwnerInfoParam */
 /**
  * @typedef GetStoreDetailByIdParam
- * @property {number} storeId - Store uid
+ * @property {number} storeId - Unique identifier for a store.
  */
 /** @typedef RemoveOrderingStoreCookieParam */
 declare class ConfigurationApplicationValidator {
@@ -88,11 +89,18 @@ declare namespace ConfigurationApplicationValidator {
     export { GetAppCurrenciesParam, GetAppStaffListParam, GetAppStaffsParam, GetApplicationParam, GetBasicDetailsParam, GetContactInfoParam, GetCurrenciesParam, GetCurrencyByIdParam, GetFeaturesParam, GetIntegrationTokensParam, GetLanguagesParam, GetOrderingStoreCookieParam, GetOrderingStoresParam, GetOwnerInfoParam, GetStoreDetailByIdParam, RemoveOrderingStoreCookieParam };
 }
 type GetAppStaffListParam = {
+    /**
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
+     */
     pageNo?: number;
+    /**
+     * - The number of items to retrieve in each page.
+     */
     pageSize?: number;
     /**
-     * - This is a boolean value. Select `true` to
-     * retrieve the staff members eligible for getting incentives on orders.
+     * - Select `true` to retrieve the staff
+     * members eligible for getting incentives on orders.
      */
     orderIncent?: boolean;
     /**
@@ -101,19 +109,19 @@ type GetAppStaffListParam = {
      */
     orderingStore?: number;
     /**
-     * - Mongo ID of the staff. Helps in retrieving the
-     * details of a particular staff member.
+     * - ID of the staff. Helps in retrieving the details
+     * of a particular staff member.
      */
     user?: string;
     /**
-     * - User name of the member
+     * - Username of the member.
      */
     userName?: string;
 };
 type GetAppStaffsParam = {
     /**
-     * - This is a boolean value. Select `true` to
-     * retrieve the staff members eligible for getting incentives on orders.
+     * - Select `true` to retrieve the staff
+     * members eligible for getting incentives on orders.
      */
     orderIncent?: boolean;
     /**
@@ -122,14 +130,14 @@ type GetAppStaffsParam = {
      */
     orderingStore?: number;
     /**
-     * - Mongo ID of the staff. Helps in retrieving the
-     * details of a particular staff member.
+     * - ID of the staff. Helps in retrieving the details
+     * of a particular staff member.
      */
     user?: string;
 };
 type GetCurrencyByIdParam = {
     /**
-     * - Object ID assigned to the currency
+     * - ID assigned to the currency.
      */
     id: string;
 };
@@ -154,7 +162,7 @@ type GetOrderingStoresParam = {
 };
 type GetStoreDetailByIdParam = {
     /**
-     * - Store uid
+     * - Unique identifier for a store.
      */
     storeId: number;
 };

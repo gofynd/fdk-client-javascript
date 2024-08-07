@@ -1,38 +1,38 @@
 export = UserApplicationValidator;
 /**
  * @typedef AddEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 /**
  * @typedef AddMobileNumberParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.EditMobileRequestSchema} body
  */
 /**
  * @typedef DeleteEmailParam
- * @property {string} [platform] - ID of the application
- * @property {boolean} active - This is a boolean value to check if email ID is
- *   active 1. True - Email ID is active 2.False - Email ID is inactive
- * @property {boolean} primary - This is a boolean value to check if email ID is
- *   primary (main email ID) 1. True - Email ID is primary 2.False - Email ID is
- *   not primary
- * @property {boolean} verified - This is a boolean value to check if email ID
- *   is verified 1. True - Email ID is verified 2.False - Email ID is not verified yet
- * @property {string} email - The email ID to delete
+ * @property {string} [platform] - ID of the application.
+ * @property {boolean} active - Boolean value to check if email id is active 1.
+ *   True - email id is active 2.False - email id is inactive.
+ * @property {boolean} primary - Boolean value to check if email id is primary
+ *   (main email id) 1. True - email id is primary 2.False - email id is not primary.
+ * @property {boolean} verified - Boolean value to check if email id is verified
+ *   1. True - email id is verified 2.False - email id is not verified yet.
+ * @property {string} email - The email id to delete.
  */
 /**
  * @typedef DeleteMobileNumberParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {boolean} active - This is a boolean value to check if mobile
- *   number is active 1.True - Number is active 2. False - Number is inactive
+ *   number is active 1.True - number is active 2. False - number is inactive.
  * @property {boolean} primary - This is a boolean value to check if mobile
- *   number is primary number (main number) 1. True - Number is primary 2. False
- *   - Number is not primary
+ *   number is primary number (main number) 1. True - number is primary 2. False
+ *   - number is not primary.
  * @property {boolean} verified - This is a boolean value to check if mobile
- *   number is verified 1. True - Number is verified 2.False - Number is not verified yet
- * @property {string} countryCode - Country code of the phone number, e.g. 91
- * @property {string} phone - Phone number
+ *   number is verified 1. True - number is verified 2.False - number is not
+ *   verified yet.
+ * @property {string} countryCode - Country code of the phone number, e.g. 91.
+ * @property {string} phone - Phone number.
  */
 /**
  * @typedef DeleteUserParam
@@ -46,7 +46,7 @@ export = UserApplicationValidator;
 /** @typedef GetLoggedInUserParam */
 /**
  * @typedef GetPlatformConfigParam
- * @property {string} [name] - Name of the application, e.g. Fynd
+ * @property {string} [name] - Name of the application, e.g. Fynd.
  */
 /**
  * @typedef GetUserAttributesParam
@@ -55,7 +55,7 @@ export = UserApplicationValidator;
 /** @typedef HasPasswordParam */
 /**
  * @typedef LoginWithAppleIOSParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestAppleSchema} body
  */
 /**
@@ -64,27 +64,27 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef LoginWithFacebookParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
  * @typedef LoginWithGoogleParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
  * @typedef LoginWithGoogleAndroidParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
  * @typedef LoginWithGoogleIOSParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
  * @typedef LoginWithOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendOtpRequestSchema} body
  */
 /**
@@ -94,7 +94,7 @@ export = UserApplicationValidator;
 /** @typedef LogoutParam */
 /**
  * @typedef RegisterWithFormParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.FormRegisterRequestSchema} body
  */
 /**
@@ -103,32 +103,32 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef SendForgotOTPOnEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendEmailForgotOtpRequestSchema} body
  */
 /**
  * @typedef SendForgotOTPOnMobileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendMobileForgotOtpRequestSchema} body
  */
 /**
  * @typedef SendOTPOnEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendEmailOtpRequestSchema} body
  */
 /**
  * @typedef SendOTPOnMobileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendMobileOtpRequestSchema} body
  */
 /**
  * @typedef SendResetPasswordEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendResetPasswordEmailRequestSchema} body
  */
 /**
  * @typedef SendResetPasswordMobileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendResetPasswordMobileRequestSchema} body
  */
 /**
@@ -137,12 +137,12 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef SendVerificationLinkToEmailParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 /**
  * @typedef SendVerificationLinkToMobileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
  */
 /**
@@ -159,7 +159,7 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef UpdateProfileParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.EditProfileRequestSchema} body
  */
 /**
@@ -168,7 +168,7 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef UserExistsParam
- * @property {string} q - Email id or phone number of user
+ * @property {string} q - Email id or phone number of user.
  */
 /**
  * @typedef VerifyEmailParam
@@ -176,12 +176,12 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef VerifyEmailForgotOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.VerifyEmailForgotOtpRequestSchema} body
  */
 /**
  * @typedef VerifyEmailOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.VerifyEmailOtpRequestSchema} body
  */
 /**
@@ -190,12 +190,12 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef VerifyMobileForgotOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.VerifyMobileForgotOtpRequestSchema} body
  */
 /**
  * @typedef VerifyMobileOTPParam
- * @property {string} [platform] - ID of the application
+ * @property {string} [platform] - ID of the application.
  * @property {UserApplicationModel.VerifyOtpRequestSchema} body
  */
 declare class UserApplicationValidator {
@@ -291,71 +291,71 @@ declare namespace UserApplicationValidator {
 }
 type AddEmailParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.EditEmailRequestSchema;
 };
 type AddMobileNumberParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.EditMobileRequestSchema;
 };
 type DeleteEmailParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     /**
-     * - This is a boolean value to check if email ID is
-     * active 1. True - Email ID is active 2.False - Email ID is inactive
+     * - Boolean value to check if email id is active 1.
+     * True - email id is active 2.False - email id is inactive.
      */
     active: boolean;
     /**
-     * - This is a boolean value to check if email ID is
-     * primary (main email ID) 1. True - Email ID is primary 2.False - Email ID is
-     * not primary
+     * - Boolean value to check if email id is primary
+     * (main email id) 1. True - email id is primary 2.False - email id is not primary.
      */
     primary: boolean;
     /**
-     * - This is a boolean value to check if email ID
-     * is verified 1. True - Email ID is verified 2.False - Email ID is not verified yet
+     * - Boolean value to check if email id is verified
+     * 1. True - email id is verified 2.False - email id is not verified yet.
      */
     verified: boolean;
     /**
-     * - The email ID to delete
+     * - The email id to delete.
      */
     email: string;
 };
 type DeleteMobileNumberParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     /**
      * - This is a boolean value to check if mobile
-     * number is active 1.True - Number is active 2. False - Number is inactive
+     * number is active 1.True - number is active 2. False - number is inactive.
      */
     active: boolean;
     /**
      * - This is a boolean value to check if mobile
-     * number is primary number (main number) 1. True - Number is primary 2. False
-     * - Number is not primary
+     * number is primary number (main number) 1. True - number is primary 2. False
+     * - number is not primary.
      */
     primary: boolean;
     /**
      * - This is a boolean value to check if mobile
-     * number is verified 1. True - Number is verified 2.False - Number is not verified yet
+     * number is verified 1. True - number is verified 2.False - number is not
+     * verified yet.
      */
     verified: boolean;
     /**
-     * - Country code of the phone number, e.g. 91
+     * - Country code of the phone number, e.g. 91.
      */
     countryCode: string;
     /**
-     * - Phone number
+     * - Phone number.
      */
     phone: string;
 };
@@ -367,7 +367,7 @@ type ForgotPasswordParam = {
 };
 type GetPlatformConfigParam = {
     /**
-     * - Name of the application, e.g. Fynd
+     * - Name of the application, e.g. Fynd.
      */
     name?: string;
 };
@@ -379,7 +379,7 @@ type GetUserAttributesParam = {
 };
 type LoginWithAppleIOSParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestAppleSchema;
@@ -389,35 +389,35 @@ type LoginWithEmailAndPasswordParam = {
 };
 type LoginWithFacebookParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
 type LoginWithGoogleParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
 type LoginWithGoogleAndroidParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
 type LoginWithGoogleIOSParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
 type LoginWithOTPParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.SendOtpRequestSchema;
@@ -427,7 +427,7 @@ type LoginWithTokenParam = {
 };
 type RegisterWithFormParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.FormRegisterRequestSchema;
@@ -437,42 +437,42 @@ type ResetForgotPasswordParam = {
 };
 type SendForgotOTPOnEmailParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.SendEmailForgotOtpRequestSchema;
 };
 type SendForgotOTPOnMobileParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.SendMobileForgotOtpRequestSchema;
 };
 type SendOTPOnEmailParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.SendEmailOtpRequestSchema;
 };
 type SendOTPOnMobileParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.SendMobileOtpRequestSchema;
 };
 type SendResetPasswordEmailParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.SendResetPasswordEmailRequestSchema;
 };
 type SendResetPasswordMobileParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.SendResetPasswordMobileRequestSchema;
@@ -482,14 +482,14 @@ type SendResetTokenParam = {
 };
 type SendVerificationLinkToEmailParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.EditEmailRequestSchema;
 };
 type SendVerificationLinkToMobileParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.SendVerificationLinkMobileRequestSchema;
@@ -505,7 +505,7 @@ type UpdatePasswordParam = {
 };
 type UpdateProfileParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.EditProfileRequestSchema;
@@ -515,7 +515,7 @@ type UpdateUserAttributesParam = {
 };
 type UserExistsParam = {
     /**
-     * - Email id or phone number of user
+     * - Email id or phone number of user.
      */
     q: string;
 };
@@ -524,14 +524,14 @@ type VerifyEmailParam = {
 };
 type VerifyEmailForgotOTPParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.VerifyEmailForgotOtpRequestSchema;
 };
 type VerifyEmailOTPParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.VerifyEmailOtpRequestSchema;
@@ -541,14 +541,14 @@ type VerifyMobileParam = {
 };
 type VerifyMobileForgotOTPParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.VerifyMobileForgotOtpRequestSchema;
 };
 type VerifyMobileOTPParam = {
     /**
-     * - ID of the application
+     * - ID of the application.
      */
     platform?: string;
     body: UserApplicationModel.VerifyOtpRequestSchema;

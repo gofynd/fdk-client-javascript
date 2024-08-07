@@ -1781,6 +1781,86 @@ class Finance {
   }
 
   /**
+   * @param {FinancePlatformValidator.InvoicePaymentOptionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FinancePlatformModel.InvoicePaymentOptionsResponse>} -
+   *   Success response
+   * @name invoicePaymentOptions
+   * @summary: Display all payment options for invoice.
+   * @description: Display all payment options for invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentOptions/).
+   */
+  async invoicePaymentOptions(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = FinancePlatformValidator.invoicePaymentOptions().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.invoicePaymentOptions().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > invoicePaymentOptions \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice-payment-options`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.InvoicePaymentOptionsResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > invoicePaymentOptions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {FinancePlatformValidator.InvoiceTypeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -2010,6 +2090,79 @@ class Finance {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Finance > isCreditlinePlatform \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.OrderFreezeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FinancePlatformModel.OrederFreezeResponse>} - Success response
+   * @name orderFreeze
+   * @summary: Get status of oms freeze.
+   * @description: Used to get status of oms freeze. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/orderFreeze/).
+   */
+  async orderFreeze(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = FinancePlatformValidator.orderFreeze().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FinancePlatformValidator.orderFreeze().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > orderFreeze \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/order/freeze`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.OrederFreezeResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > orderFreeze \n ${res_error}`,
         });
       }
     }

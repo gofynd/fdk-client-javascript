@@ -2,52 +2,57 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductDetailCustomOrder
- * @property {number} [manufacturing_time]
- * @property {string} [manufacturing_time_unit]
- * @property {boolean} [is_custom_order]
+ * @property {number} [manufacturing_time] - The unit of time taken for manufacturing.
+ * @property {string} [manufacturing_time_unit] - The unit of time required for
+ *   manufacturing is defined in hours or days.
+ * @property {boolean} [is_custom_order] - A boolean flag indicating whether MTO
+ *   (Make to Order) is enabled or not.
  */
 
 /**
  * @typedef Meta
- * @property {string} [source]
+ * @property {string} [source] - The source or origin of the media file, which
+ *   could be a URL or a reference to where the media was obtained.
  */
 
 /**
  * @typedef Media
- * @property {string} [url]
- * @property {string} [type]
+ * @property {string} [url] - Absolute url for Media.
+ * @property {string} [type] - The type of media, such as image, video.
  * @property {Meta} [meta]
- * @property {string} [alt]
+ * @property {string} [alt] - Alternative text for the media, used for
+ *   accessibility and SEO purposes.
  */
 
 /**
  * @typedef ProductListingActionPage
- * @property {string} [type]
- * @property {Object} [query]
- * @property {Object} [params]
+ * @property {string} [type] - The type of action such as product, products,
+ *   category, brand.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {Object} [params] - Parameters that should be considered in path.
  */
 
 /**
  * @typedef ProductListingAction
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ProductListingActionPage} [page]
  */
 
 /**
  * @typedef ProductBrand
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the product brand.
  * @property {Media} [logo]
- * @property {string} [description]
- * @property {string} [name]
+ * @property {string} [description] - Description of the product brand.
+ * @property {string} [name] - Name of the product brand.
  * @property {ProductListingAction} [action]
  */
 
 /**
  * @typedef ProductDepartment
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the product department.
  * @property {Media} [logo]
- * @property {string} [slug]
- * @property {string} [name]
+ * @property {string} [slug] - URL-friendly identifier for the product department.
+ * @property {string} [name] - Name of the product department.
  */
 
 /**
@@ -72,21 +77,22 @@ const Joi = require("joi");
 
 /**
  * @typedef ApplicationItemSEO
- * @property {Object} [title] - The SEO title of the item
- * @property {Object} [description] - The SEO description of the item
+ * @property {Object} [title] - The SEO title of the item.
+ * @property {Object} [description] - The SEO description of the item.
  */
 
 /**
  * @typedef ProductDetailAttribute
- * @property {string} [value]
- * @property {string} [type]
- * @property {string} [key]
+ * @property {string} [value] - The value of the product attribute.
+ * @property {string} [type] - The type or category of the product attribute.
+ * @property {string} [key] - The key or name of the product attribute.
  */
 
 /**
  * @typedef ProductDetailGroupedAttribute
- * @property {string} [title]
- * @property {ProductDetailAttribute[]} [details]
+ * @property {string} [title] - The title or name of the attribute group.
+ * @property {ProductDetailAttribute[]} [details] - A list of product attributes
+ *   within this group.
  */
 
 /**
@@ -122,69 +128,82 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductDetail
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the product.
  * @property {ProductDetailCustomOrder} [custom_order]
  * @property {ProductCategoryMap} [category_map]
  * @property {NetQuantity} [net_quantity]
- * @property {number} [rating_count]
- * @property {CustomMetaFields[]} [_custom_meta]
- * @property {string[]} [similars]
- * @property {string[]} [tags]
+ * @property {number} [rating_count] - Count of ratings the product has received.
+ * @property {CustomMetaFields[]} [_custom_meta] - Custom metadata fields
+ *   associated with the product.
+ * @property {string[]} [similars] - List of products marked similar to given product.
+ * @property {string[]} [tags] - Tags associated with the product for better
+ *   categorization.
  * @property {ApplicationItemSEO} [seo]
- * @property {string} [image_nature]
- * @property {boolean} [has_variant]
- * @property {string} [item_type]
- * @property {string} [description]
- * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
- * @property {Media[]} [medias]
- * @property {string} [color]
- * @property {string} [type]
- * @property {string} [product_online_date]
- * @property {Object} [_custom_json]
- * @property {string} [item_code]
- * @property {string} [name]
+ * @property {string} [image_nature] - Type of the images associated with the
+ *   product such as standard.
+ * @property {boolean} [has_variant] - Indicates whether the product has variants.
+ * @property {string} [item_type] - This field describes the type of item,
+ *   indicating the category or nature of the product. Possible values are
+ *   Standard, Composite, Wet, Digital.
+ * @property {string} [description] - Detailed description of the product.
+ * @property {ProductDetailGroupedAttribute[]} [grouped_attributes] - Grouped
+ *   attributes detailing various characteristics of the product.
+ * @property {Media[]} [medias] - Media files associated with the product.
+ * @property {string} [color] - Color of the product, if applicable.
+ * @property {string} [type] - Product type or classification.
+ * @property {string} [product_online_date] - Date and time when the product was
+ *   made available online.
+ * @property {Object} [_custom_json] - Custom JSON object for additional product data.
+ * @property {string} [item_code] - Item Code defined for the product.
+ * @property {string} [name] - Name of the product.
  * @property {ApplicationItemMOQ} [moq]
- * @property {string} [short_description]
- * @property {ProductBrand[]} [categories]
- * @property {Object} [attributes]
- * @property {string} [discount]
- * @property {string[]} [tryouts]
- * @property {string} slug
+ * @property {string} [short_description] - Brief description of the product.
+ * @property {ProductBrand[]} [categories] - List of product categories
+ *   associated with the product.
+ * @property {Object} [attributes] - Additional attributes or characteristics of
+ *   the product.
+ * @property {string} [discount] - Discount applied to the product, if any.
+ * @property {string[]} [tryouts] - Identifiers or names of tryout versions of
+ *   the product.
+ * @property {string} slug - URL-friendly identifier for the product.
  * @property {ProductListingAction} [action]
- * @property {number} [rating]
- * @property {boolean} [is_dependent]
- * @property {string[]} [product_group_tag]
- * @property {string[]} [highlights]
+ * @property {number} [rating] - The rating of the product.
+ * @property {boolean} [is_dependent] - Indicates whether the product can be
+ *   sold as an individual product.
+ * @property {string[]} [product_group_tag] - List of bundle/product grouping
+ *   slugs mapped to the product.
+ * @property {string[]} [highlights] - Key highlights or features of the product.
  * @property {ProductListingPrice} [price]
  * @property {ProductBrand} [brand]
  * @property {ProductDepartment} [department]
- * @property {string} [teaser_tag]
+ * @property {string} [teaser_tag] - Teaser tag or short promotional phrase for
+ *   the product.
  */
 
 /**
  * @typedef ErrorResponse
- * @property {string} [error]
+ * @property {string} [error] - A brief description of the error.
  */
 
 /**
  * @typedef Dimension
- * @property {string} unit - The unit of dimension
- * @property {number} height - The height of the product
- * @property {number} length - The length of the product
- * @property {number} width - The width of the product
- * @property {boolean} is_default - Whether the dimension is the default one or not
+ * @property {string} unit - The unit of dimension.
+ * @property {number} height - The height of the product.
+ * @property {number} length - The length of the product.
+ * @property {number} width - The width of the product.
+ * @property {boolean} is_default - Whether the dimension is the default one or not.
  */
 
 /**
  * @typedef Weight
- * @property {string} unit - The unit of weight
- * @property {number} shipping - The shipping weight of the product
- * @property {boolean} is_default - Whether the weight is the default one or not
+ * @property {string} unit - The unit of weight.
+ * @property {number} shipping - The shipping weight of the product.
+ * @property {boolean} is_default - Whether the weight is the default one or not.
  */
 
 /**
  * @typedef DiscountMeta
- * @property {boolean} timer - Determines whether the discount countdown is
+ * @property {boolean} [timer] - Determines whether the discount countdown is
  *   visible or not.
  * @property {number} [start_timer_in_minutes] - The time in minutes before the
  *   discount ends when the countdown timer should start.
@@ -194,29 +213,32 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductSize
- * @property {number} [quantity]
+ * @property {number} [quantity] - The quantity of the product size available.
  * @property {Dimension} [dimension]
  * @property {Weight} [weight]
- * @property {boolean} [is_available]
- * @property {string[]} [seller_identifiers]
- * @property {string} [value]
- * @property {string} [display]
+ * @property {boolean} [is_available] - Indicates whether the product size is
+ *   available for purchase.
+ * @property {string[]} [seller_identifiers] - List of identifiers used by
+ *   sellers for the product size.
+ * @property {string} [value] - The value or label representing the product size.
+ * @property {string} [display] - Display name of the product size.
  */
 
 /**
  * @typedef SizeChartValues
- * @property {string} [col_3]
- * @property {string} [col_6]
- * @property {string} [col_2]
- * @property {string} [col_4]
- * @property {string} [col_1]
- * @property {string} [col_5]
+ * @property {string} [col_3] - Value for column 3.
+ * @property {string} [col_6] - Value for column 6.
+ * @property {string} [col_2] - Value for column 2.
+ * @property {string} [col_4] - Value for column 4.
+ * @property {string} [col_1] - Value for column 1.
+ * @property {string} [col_5] - Value for column 5.
  */
 
 /**
  * @typedef ColumnHeader
- * @property {boolean} [convertable]
- * @property {string} [value]
+ * @property {boolean} [convertable] - Indicates if the column value can be
+ *   converted or transformed.
+ * @property {string} [value] - The value or title of the column header.
  */
 
 /**
@@ -231,59 +253,62 @@ const Joi = require("joi");
 
 /**
  * @typedef SizeChart
- * @property {string} [unit]
- * @property {string} [image]
- * @property {string} [size_tip]
- * @property {SizeChartValues[]} [sizes]
- * @property {string} [description]
- * @property {string} [title]
+ * @property {string} [unit] - Unit of measurement used in the size chart (e.g., in, cm).
+ * @property {string} [image] - URL of the image representing the size chart.
+ * @property {string} [size_tip] - Additional tip or guideline related to sizing.
+ * @property {SizeChartValues[]} [sizes] - Array of size chart values for different sizes.
+ * @property {string} [description] - Description related to the size chart.
+ * @property {string} [title] - Title or name of the size chart.
  * @property {ColumnHeaders} [headers]
  */
 
 /**
  * @typedef ProductSizeStores
- * @property {number} [count]
+ * @property {number} [count] - Number of stores where the product size is available.
  */
 
 /**
  * @typedef ProductSizes
- * @property {ProductSize[]} [sizes]
+ * @property {ProductSize[]} [sizes] - List of available sizes for the product.
  * @property {ProductSizesPrice} [price]
  * @property {ProductSizesPrice} [price_per_piece]
  * @property {SizeChart} [size_chart]
- * @property {boolean} [sellable]
- * @property {boolean} [multi_size]
- * @property {string} [discount]
+ * @property {boolean} [sellable] - Whether the product sizes are available for sale.
+ * @property {boolean} [multi_size] - Whether the product supports multiple sizes.
+ * @property {string} [discount] - Discount information applicable to the product sizes.
  * @property {ProductSizeStores} [stores]
  * @property {DiscountMeta} [discount_meta]
  */
 
 /**
  * @typedef AttributeDetail
- * @property {string} [logo]
- * @property {string} [description]
- * @property {string} [display]
- * @property {string} [key]
+ * @property {string} [logo] - URL or path to the logo associated with the attribute.
+ * @property {string} [description] - A description of the attribute.
+ * @property {string} [display] - Display name or label for the attribute.
+ * @property {string} [key] - Unique key or identifier for the attribute.
  */
 
 /**
  * @typedef AttributeMetadata
- * @property {string} [title]
- * @property {AttributeDetail[]} [details]
+ * @property {string} [title] - Title or name of the attribute metadata.
+ * @property {AttributeDetail[]} [details] - List of detailed information about
+ *   attributes.
  */
 
 /**
  * @typedef ProductsComparisonResponse
- * @property {ProductDetail[]} [items]
- * @property {AttributeMetadata[]} [attributes_metadata]
+ * @property {ProductDetail[]} [items] - List of product details for comparison.
+ * @property {AttributeMetadata[]} [attributes_metadata] - Metadata about
+ *   attributes used for comparing products.
  */
 
 /**
  * @typedef ProductCompareResponse
- * @property {string} [title]
- * @property {ProductDetail[]} [items]
- * @property {AttributeMetadata[]} [attributes_metadata]
- * @property {string} [subtitle]
+ * @property {string} [title] - Title or name of the comparison.
+ * @property {ProductDetail[]} [items] - List of product details for comparison.
+ * @property {AttributeMetadata[]} [attributes_metadata] - Metadata about
+ *   attributes used for comparing products.
+ * @property {string} [subtitle] - Subtitle or additional description for the comparison.
  */
 
 /**
@@ -293,194 +318,226 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductVariantItemResponse
- * @property {number} [uid]
- * @property {string} [color_name]
- * @property {string} [color]
- * @property {Media[]} [medias]
- * @property {boolean} [is_available]
- * @property {CustomMetaFields[]} [_custom_meta]
- * @property {string} [name]
- * @property {string} [value]
- * @property {string} [slug]
- * @property {Object} [_custom_json]
+ * @property {number} [uid] - Unique identifier for the product variant.
+ * @property {string} [color_name] - Name of the color for the variant.
+ * @property {string} [color] - Color code or representation for the variant.
+ * @property {Media[]} [medias] - Media files associated with the product variant.
+ * @property {boolean} [is_available] - Indicates whether the product variant is
+ *   available for purchase.
+ * @property {CustomMetaFields[]} [_custom_meta] - Custom metadata fields
+ *   associated with the product.
+ * @property {string} [name] - Name of the product variant.
+ * @property {string} [value] - Value or label representing the product variant.
+ * @property {string} [slug] - URL-friendly identifier for the product.
+ * @property {Object} [_custom_json] - Custom JSON object for additional data
+ *   related to the product.
  * @property {ProductListingAction} [action]
  */
 
 /**
  * @typedef ProductVariantResponse
- * @property {string} [display_type]
- * @property {string} [header]
- * @property {ProductVariantItemResponse[]} [items]
- * @property {string} [key]
- * @property {string} [logo]
+ * @property {string} [display_type] - The type of display for the product
+ *   variant (e.g., image, text, image, color).
+ * @property {string} [header] - Header or title for the product variant section.
+ * @property {string} [group_id] - Group ID used to group variants.
+ * @property {ProductVariantItemResponse[]} [items] - List of product variant items.
+ * @property {string} [key] - Attribute identifier of the variant.
+ * @property {string} [logo] - URL or path to the logo associated with the
+ *   product variant.
  */
 
 /**
  * @typedef ProductVariantsResponse
- * @property {ProductVariantResponse[]} [variants]
+ * @property {ProductVariantResponse[]} [variants] - A list of product variant
+ *   responses, each detailing a specific variant.
  */
 
 /**
  * @typedef StoreDetail
- * @property {string} [name]
- * @property {string} [city]
- * @property {number} [id]
- * @property {string} [code]
+ * @property {string} [name] - NA.
+ * @property {string} [city] - NA.
+ * @property {number} [id] - NA.
+ * @property {string} [code] - NA.
  */
 
 /**
  * @typedef ProductStockPrice
- * @property {number} [effective]
- * @property {string} [currency]
- * @property {number} [marked]
+ * @property {number} [effective] - NA.
+ * @property {string} [currency] - NA.
+ * @property {number} [marked] - NA.
  */
 
 /**
  * @typedef CompanyDetail
- * @property {string} [name]
- * @property {number} [id]
+ * @property {string} [name] - NA.
+ * @property {number} [id] - NA.
  */
 
 /**
  * @typedef Seller
- * @property {number} [uid]
- * @property {string} [name]
- * @property {number} [count]
+ * @property {number} [uid] - NA.
+ * @property {string} [name] - NA.
+ * @property {number} [count] - NA.
  */
 
 /**
  * @typedef ProductStockStatusItem
- * @property {string} [uid]
- * @property {number} [quantity]
+ * @property {string} [uid] - NA.
+ * @property {number} [quantity] - NA.
  * @property {StoreDetail} [store]
- * @property {string} [size]
+ * @property {string} [size] - NA.
  * @property {ProductStockPrice} [price]
  * @property {CompanyDetail} [company]
- * @property {number} [item_id]
+ * @property {number} [item_id] - NA.
  * @property {Seller} [seller]
- * @property {Object} [identifier]
+ * @property {Object} [identifier] - NA.
  */
 
 /**
  * @typedef ProductStockStatusResponse
- * @property {ProductStockStatusItem[]} [items]
+ * @property {ProductStockStatusItem[]} [items] - NA.
  */
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
  * @typedef ProductStockPolling
- * @property {ProductStockStatusItem[]} [items]
+ * @property {ProductStockStatusItem[]} [items] - NA.
  * @property {Page} page
  */
 
 /**
  * @typedef ProductVariantListingResponse
- * @property {string} [header]
- * @property {ProductVariantItemResponse[]} [items]
- * @property {number} [total]
- * @property {string} [key]
- * @property {string} [display_type]
+ * @property {string} [header] - Header or title for the product variant section.
+ * @property {ProductVariantItemResponse[]} [items] - List of Upto 5 product
+ *   variant items.
+ * @property {number} [total] - The total number of product variants available.
+ * @property {string} [key] - Attribute identifier of the variant.
+ * @property {string} [display_type] - The type of display for the product
+ *   variant (e.g., image, text, image, color).
  */
 
 /**
  * @typedef ProductListingDetail
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the product.
  * @property {ProductDetailCustomOrder} [custom_order]
- * @property {string[]} [sizes]
+ * @property {string[]} [sizes] - Available sizes for the product.
  * @property {ProductCategoryMap} [category_map]
  * @property {NetQuantity} [net_quantity]
- * @property {number} [rating_count]
- * @property {CustomMetaFields[]} [_custom_meta]
- * @property {string[]} [similars]
- * @property {string[]} [tags]
+ * @property {number} [rating_count] - The number of ratings the product has received.
+ * @property {CustomMetaFields[]} [_custom_meta] - Custom metadata fields
+ *   associated with the product.
+ * @property {string[]} [similars] - List of products marked similar to given product.
+ * @property {string[]} [tags] - Tags associated with the product for better
+ *   categorization.
  * @property {ApplicationItemSEO} [seo]
- * @property {string} [image_nature]
- * @property {boolean} [has_variant]
- * @property {string} [item_type]
- * @property {string} [description]
- * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
- * @property {Media[]} [medias]
- * @property {string} [color]
- * @property {string} [type]
- * @property {string} [product_online_date]
- * @property {Object} [_custom_json]
- * @property {string} [item_code]
- * @property {string} [name]
+ * @property {string} [image_nature] - Type of the images associated with the
+ *   product such as standard.
+ * @property {boolean} [has_variant] - Indicates whether the product has variants.
+ * @property {string} [item_type] - This field describes the type of item,
+ *   indicating the category or nature of the product. Possible values are
+ *   Standard, Composite, Wet, Digital.
+ * @property {string} [description] - Detailed description of the product.
+ * @property {ProductDetailGroupedAttribute[]} [grouped_attributes] - Grouped
+ *   attributes detailing various characteristics of the product.
+ * @property {Media[]} [medias] - Media files associated with the product.
+ * @property {string} [color] - Color of the product, if applicable.
+ * @property {string} [type] - Product type or classification.
+ * @property {string} [product_online_date] - Date and time when the product was
+ *   made available online.
+ * @property {Object} [_custom_json] - Custom JSON object for additional product data.
+ * @property {string} [item_code] - Item Code defined for the product.
+ * @property {string} [name] - Name of the product.
  * @property {ApplicationItemMOQ} [moq]
- * @property {string} [short_description]
- * @property {ProductBrand[]} [categories]
- * @property {boolean} [sellable]
- * @property {Object} [attributes]
- * @property {ProductVariantListingResponse[]} [variants]
- * @property {string} [discount]
- * @property {string[]} [tryouts]
- * @property {string[]} [identifiers]
- * @property {string} slug
+ * @property {string} [short_description] - Brief description of the product.
+ * @property {ProductBrand[]} [categories] - List of product categories
+ *   associated with the product.
+ * @property {boolean} [sellable] - Indicates whether the product is available for sale.
+ * @property {Object} [attributes] - Additional attributes or characteristics of
+ *   the product.
+ * @property {ProductVariantListingResponse[]} [variants] - List of product
+ *   variants available for the product.
+ * @property {string} [discount] - Discount details or percentage applied to the product.
+ * @property {string[]} [tryouts] - List of tryout options available for the product.
+ * @property {string[]} [identifiers] - List of seller identifiers for the product.
+ * @property {string} slug - URL-friendly identifier for the product.
  * @property {ProductListingAction} [action]
- * @property {number} [rating]
- * @property {boolean} [is_dependent]
- * @property {string[]} [product_group_tag]
- * @property {string[]} [highlights]
+ * @property {number} [rating] - Rating of the product.
+ * @property {boolean} [is_dependent] - Indicates whether the product can be
+ *   sold as an individual product.
+ * @property {string[]} [product_group_tag] - List of bundle/product grouping
+ *   slugs mapped to the product.
+ * @property {string[]} [highlights] - Key highlights or features of the product.
  * @property {ProductListingPrice} [price]
  * @property {ProductBrand} [brand]
- * @property {string} [teaser_tag]
+ * @property {string} [teaser_tag] - Teaser tag or short promotional phrase for
+ *   the product.
  */
 
 /**
  * @typedef ProductFiltersValue
- * @property {number} [min]
- * @property {string} [display_format]
- * @property {number} [selected_max]
- * @property {string} [value]
- * @property {string} [query_format]
- * @property {string} [currency_symbol]
- * @property {number} [selected_min]
- * @property {string} [currency_code]
- * @property {boolean} is_selected
- * @property {string} display
- * @property {number} [count]
- * @property {number} [max]
+ * @property {number} [min] - Minimum value for the range filter.
+ * @property {string} [display_format] - Format in which the filter value is displayed.
+ * @property {number} [selected_max] - The maximum value selected by the user
+ *   for range filter.
+ * @property {string} [value] - Value associated with the filter option.
+ * @property {string} [query_format] - Format used for the filter value in queries.
+ * @property {string} [currency_symbol] - Currency symbol for the price type filters.
+ * @property {number} [selected_min] - The minimum value selected by the user
+ *   for range filter.
+ * @property {string} [currency_code] - Currency code for the currency used for
+ *   price type filters.
+ * @property {boolean} is_selected - Whether this filter value is currently selected.
+ * @property {string} display - Display name or label for the filter value.
+ * @property {number} [count] - Number of products that match this filter value.
+ * @property {number} [max] - Maximum value of the filter range.
  */
 
 /**
  * @typedef ProductFiltersKey
- * @property {string} [logo]
- * @property {string} name
- * @property {string} [kind]
- * @property {string} display
+ * @property {string} [logo] - URL or path to the logo associated with the filter key.
+ * @property {string} name - Name or identifier of the filter key.
+ * @property {string} [kind] - Type or category of the filter key (e.g., range,
+ *   multivalued).
+ * @property {string} display - Display name or label for the filter key.
  */
 
 /**
  * @typedef ProductFilters
- * @property {ProductFiltersValue[]} values
+ * @property {ProductFiltersValue[]} values - List of filter values associated
+ *   with the filter key.
  * @property {ProductFiltersKey} key
  */
 
 /**
  * @typedef ProductSortOn
- * @property {string} [logo]
- * @property {boolean} [is_selected]
- * @property {string} [name]
- * @property {string} [value]
- * @property {string} [display]
+ * @property {string} [logo] - URL or path to the logo associated with the sorting option.
+ * @property {boolean} [is_selected] - Indicates whether this sorting option is
+ *   currently selected.
+ * @property {string} [name] - Name or identifier of the sorting option.
+ * @property {string} [value] - Value used to specify the sorting order (e.g.,
+ *   price_asc, discount_dsc).
+ * @property {string} [display] - Display name or label for the sorting option.
  */
 
 /**
  * @typedef ProductListingResponse
- * @property {ProductListingDetail[]} [items]
- * @property {ProductFilters[]} [filters]
+ * @property {ProductListingDetail[]} [items] - List of product details included
+ *   in the response.
+ * @property {ProductFilters[]} [filters] - List of filters available for
+ *   refining the product listings.
  * @property {Page} page
- * @property {ProductSortOn[]} [sort_on]
+ * @property {ProductSortOn[]} [sort_on] - List of sorting options available for
+ *   the product listings.
  */
 
 /**
@@ -491,31 +548,37 @@ const Joi = require("joi");
 
 /**
  * @typedef BrandItem
- * @property {number} [uid]
+ * @property {number} [uid] - The unique identifier for the brand.
  * @property {Media} [logo]
- * @property {string} [description]
+ * @property {string} [description] - Detailed description of the brand,
+ *   including its history, values, product offerings, and other relevant information.
  * @property {ImageUrls} [banners]
- * @property {string[]} [departments]
- * @property {string} [discount]
- * @property {string} [name]
- * @property {string} [slug]
+ * @property {string[]} [departments] - Lists the departments or categories
+ *   under which the brand's products are listed.
+ * @property {string} [discount] - Details about any discounts currently
+ *   available on the brand's products.
+ * @property {string} [name] - Name of the brand.
+ * @property {string} [slug] - URL-friendly version of the brand's name, used in
+ *   the web address to access the brand's page on the platform.
  * @property {ProductListingAction} [action]
  */
 
 /**
  * @typedef BrandListingResponse
- * @property {BrandItem[]} [items]
+ * @property {BrandItem[]} [items] - List of brand items included in the response.
  * @property {Page} page
  */
 
 /**
  * @typedef BrandDetailResponse
  * @property {Media} [logo]
- * @property {number} [uid]
- * @property {string} [description]
+ * @property {number} [uid] - The unique identifier for the brand.
+ * @property {string} [description] - Detailed description of the brand,
+ *   including its history, values, product offerings, and other relevant information.
  * @property {ImageUrls} [banners]
- * @property {Object} [_custom_json]
- * @property {string} [name]
+ * @property {Object} [_custom_json] - Custom JSON data related to the brand,
+ *   allowing for additional metadata.
+ * @property {string} [name] - Name of the brand.
  */
 
 /**
@@ -526,215 +589,263 @@ const Joi = require("joi");
 
 /**
  * @typedef ThirdLevelChild
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the L3 category.
  * @property {ImageUrls} [banners]
- * @property {Object[]} [childs]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {string} [slug]
+ * @property {Object[]} [childs] - List of categories under the L3 category.
+ * @property {Object} [_custom_json] - Custom JSON data related to the L3
+ *   category, allowing for additional metadata.
+ * @property {string} [name] - Name of the L3 category.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the L3 category.
  * @property {ProductListingAction} [action]
  */
 
 /**
  * @typedef SecondLevelChild
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the L2 category.
  * @property {ImageUrls} [banners]
- * @property {ThirdLevelChild[]} [childs]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {string} [slug]
+ * @property {ThirdLevelChild[]} [childs] - List of categories under the L2 category.
+ * @property {Object} [_custom_json] - Custom JSON data related to the L2
+ *   category, allowing for additional metadata.
+ * @property {string} [name] - Name of the L2 category.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the L2 category.
  * @property {ProductListingAction} [action]
  */
 
 /**
  * @typedef Child
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the L1 category.
  * @property {ImageUrls} [banners]
- * @property {SecondLevelChild[]} [childs]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {string} [slug]
+ * @property {SecondLevelChild[]} [childs] - List of categories under the L1 category.
+ * @property {Object} [_custom_json] - Custom JSON data related to the L1
+ *   category, allowing for additional metadata.
+ * @property {string} [name] - Name of the L1 category.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the L1 category.
  * @property {ProductListingAction} [action]
  */
 
 /**
  * @typedef CategoryItems
- * @property {number} uid
+ * @property {number} uid - Unique identifier for the category.
  * @property {CategoryBanner} banners
- * @property {Child[]} [childs]
- * @property {string} name
- * @property {string} slug
+ * @property {Child[]} [childs] - List of L1 categories under the main category.
+ * @property {string} name - Name of the category.
+ * @property {string} slug - Slug or URL-friendly identifier for the category.
  * @property {ProductListingAction} action
  */
 
 /**
  * @typedef DepartmentCategoryTree
- * @property {CategoryItems[]} [items]
- * @property {string} department
+ * @property {CategoryItems[]} [items] - List of categories within the department.
+ * @property {string} department - Name of the department.
  */
 
 /**
  * @typedef DepartmentIdentifier
- * @property {number} [uid]
- * @property {string} [slug]
+ * @property {number} [uid] - Unique identifier for the department.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the department.
  */
 
 /**
  * @typedef CategoryListingResponse
- * @property {DepartmentCategoryTree[]} [data]
- * @property {DepartmentIdentifier[]} [departments]
+ * @property {DepartmentCategoryTree[]} [data] - List of department category trees.
+ * @property {DepartmentIdentifier[]} [departments] - List of departments.
  */
 
 /**
  * @typedef CategoryMetaResponse
  * @property {Media} [logo]
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the category.
  * @property {ImageUrls} [banners]
- * @property {Object} [_custom_json]
- * @property {string} [name]
+ * @property {Object} [_custom_json] - Custom JSON data related to the category,
+ *   allowing for additional metadata.
+ * @property {string} [name] - Name of the category.
  */
 
 /**
  * @typedef HomeListingResponse
- * @property {ProductListingDetail[]} [items]
+ * @property {ProductListingDetail[]} [items] - List of product details
+ *   displayed on the home page.
  * @property {Page} page
- * @property {string} [message]
+ * @property {string} [message] - Message related to the home listing response.
  */
 
 /**
  * @typedef Department
- * @property {number} [uid]
+ * @property {number} [uid] - Unique identifier for the department.
  * @property {Media} [logo]
- * @property {number} [priority_order]
- * @property {string} [name]
- * @property {string} [slug]
+ * @property {number} [priority_order] - Specifies the display order of the
+ *   department, determining its position in lists and navigation menus based on
+ *   priority.
+ * @property {string} [name] - Name of the department.
+ * @property {string} [slug] - URL-friendly version of the department's name,
+ *   used in the web address to access the department's page on the platform.
  */
 
 /**
  * @typedef DepartmentResponse
- * @property {Department[]} [items]
+ * @property {Department[]} [items] - List of department detail objects.
  */
 
 /**
  * @typedef AutocompleteItem
  * @property {Media} [logo]
- * @property {string} [display]
- * @property {string} [type]
- * @property {Object} [_custom_json]
+ * @property {string} [display] - Text or value displayed for the autocomplete item.
+ * @property {string} [type] - The type of action such as product, products,
+ *   category, brand.
+ * @property {Object} [_custom_json] - Custom JSON data related to the
+ *   autocomplete item, allowing for additional metadata.
  * @property {ProductListingAction} [action]
  */
 
 /**
  * @typedef AutoCompleteResponse
- * @property {AutocompleteItem[]} [items]
+ * @property {AutocompleteItem[]} [items] - List of autocomplete items suggested
+ *   based on user input.
  */
 
 /**
  * @typedef CollectionQuery
- * @property {string} op
- * @property {Object[]} value
- * @property {string} attribute
+ * @property {string} op - The operator used for filtering the collection.
+ * @property {Object[]} value - The values used for filtering based on the attribute.
+ * @property {string} attribute - The attribute on which the filter is applied.
  */
 
 /**
  * @typedef GetCollectionDetailNest
- * @property {boolean} [is_active]
- * @property {string} [uid]
- * @property {string} [sort_on]
- * @property {Object} [meta]
+ * @property {boolean} [is_active] - Indicates whether the collection is currently active.
+ * @property {string} [uid] - The unique identifier for the collection.
+ * @property {string} [sort_on] - The attribute by which the collection items are sorted.
+ * @property {Object} [meta] - Additional metadata related to the collection.
  * @property {ImageUrls} [banners]
- * @property {Object} [cron]
- * @property {Object} [_schedule]
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
- * @property {string} [type]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {boolean} [allow_sort]
- * @property {string[]} [visible_facets_keys]
- * @property {Object} [badge]
- * @property {string} [slug]
+ * @property {Object} [cron] - Cron details for scheduling related to the collection.
+ * @property {Object} [_schedule] - The `Schedule` schema defines the timing and
+ *   details for recurring or one-time tasks. It includes information on when
+ *   the job should start and end, the frequency of the task, and any additional
+ *   metadata. This schema helps in scheduling jobs or tasks based on specified
+ *   timings and durations.
+ * @property {CollectionQuery[]} [query] - A list of queries used to filter the
+ *   collection.
+ * @property {string} [description] - A detailed description of the collection.
+ * @property {string} [type] - Type of collections e.g query, items.
+ * @property {Object} [_custom_json] - Custom JSON data associated with the collection.
+ * @property {string} [name] - The name of the collection.
+ * @property {boolean} [allow_sort] - Indicates if sorting is allowed for this collection.
+ * @property {string[]} [visible_facets_keys] - Keys of the facets visible for
+ *   filtering within the collection.
+ * @property {Object} [badge] - Badge information associated with the collection.
+ * @property {string} [slug] - The URL-friendly identifier for the collection.
  * @property {ProductListingAction} [action]
- * @property {boolean} [allow_facets]
+ * @property {boolean} [allow_facets] - Indicates if facets are allowed for
+ *   filtering within the collection.
  * @property {Media} [logo]
- * @property {number} [priority]
- * @property {string[]} [tags]
- * @property {string} [app_id]
+ * @property {number} [priority] - Priority level of the collection for sorting
+ *   or display purposes.
+ * @property {string[]} [tags] - Tags associated with the collection.
+ * @property {string} [app_id] - Application ID associated with the collection.
  */
 
 /**
  * @typedef CollectionListingFilterTag
- * @property {string} [name]
- * @property {boolean} [is_selected]
- * @property {string} [display]
+ * @property {string} [name] - The name of the tag. This is typically used as a
+ *   label for filtering purposes.
+ * @property {boolean} [is_selected] - A flag indicating whether the tag is
+ *   currently selected as a filter option.
+ * @property {string} [display] - The display name of the tag. This may be a
+ *   user-friendly version of the tag name shown in the UI.
  */
 
 /**
  * @typedef CollectionListingFilterType
- * @property {string} [name]
- * @property {boolean} [is_selected]
- * @property {string} [display]
+ * @property {string} [name] - The name of the filter type. This indicates the
+ *   type of filtering being applied, such as items, query.
+ * @property {boolean} [is_selected] - A flag indicating whether this filter
+ *   type is currently selected as a filter option.
+ * @property {string} [display] - The display name of the filter type. This is
+ *   the user-friendly name shown in the UI for the filter type.
  */
 
 /**
  * @typedef CollectionListingFilter
- * @property {CollectionListingFilterTag[]} [tags]
- * @property {CollectionListingFilterType[]} [type]
+ * @property {CollectionListingFilterTag[]} [tags] - An array of tag filters
+ *   available for the collection listings. Each tag allows for filtering based
+ *   on specific attributes.
+ * @property {CollectionListingFilterType[]} [type] - An array of filter types
+ *   available for the collection listings. Each type represents a different
+ *   category or attribute for filtering.
  */
 
 /**
  * @typedef GetCollectionListingResponse
- * @property {GetCollectionDetailNest[]} [items]
+ * @property {GetCollectionDetailNest[]} [items] - An array of collection
+ *   details. Each item in the array represents a collection with various
+ *   attributes and configurations.
  * @property {CollectionListingFilter} [filters]
  * @property {Page} page
  */
 
 /**
  * @typedef CollectionDetailResponse
- * @property {boolean} [is_active]
- * @property {string} [sort_on]
- * @property {Object} [meta]
+ * @property {boolean} [is_active] - Indicates whether the collection is active.
+ * @property {string} [sort_on] - Criteria used to sort the items within the
+ *   collection, such as price, popularity, or newest first.
+ * @property {Object} [meta] - Metadata associated with the collection.
  * @property {ImageUrls} [banners]
- * @property {Object} [cron]
- * @property {Object} [_schedule]
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
- * @property {string} [type]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {boolean} [allow_sort]
- * @property {string[]} [visible_facets_keys]
- * @property {Object} [badge]
- * @property {string} [slug]
- * @property {boolean} [allow_facets]
+ * @property {Object} [cron] - Cron schedule details related to the collection,
+ *   if applicable.
+ * @property {Object} [_schedule] - Schedule details for the collection,
+ *   including timing and duration information.
+ * @property {CollectionQuery[]} [query] - Search or filter query used to
+ *   dynamically generate the collection based on specific criteria or conditions.
+ * @property {string} [description] - Detailed description of the collection,.
+ * @property {string} [type] - Type of collection, specifying the nature or
+ *   category of the collection.
+ * @property {Object} [_custom_json] - Custom JSON object containing additional
+ *   properties specific to the collection.
+ * @property {string} [name] - The name of the collection.
+ * @property {boolean} [allow_sort] - Indicates if sorting is allowed for this collection.
+ * @property {string[]} [visible_facets_keys] - Keys of the facets visible for
+ *   filtering within the collection.
+ * @property {Object} [badge] - Badge information associated with the collection.
+ * @property {string} [slug] - The URL-friendly identifier for the collection.
+ * @property {boolean} [allow_facets] - Indicates if facets are allowed for
+ *   filtering within the collection.
  * @property {Media} [logo]
- * @property {number} [priority]
- * @property {string[]} [tag]
- * @property {string} [app_id]
+ * @property {number} [priority] - Priority level of the collection for sorting
+ *   or display purposes.
+ * @property {string[]} [tag] - Tags associated with the collection.
+ * @property {string} [app_id] - Application ID associated with the collection.
  */
 
 /**
  * @typedef GetFollowListingResponse
- * @property {ProductListingDetail[]} items
+ * @property {ProductListingDetail[]} items - An array of product details that
+ *   the user is following. Each item includes information such as the product
+ *   name, price, and other attributes.
  * @property {Page} page
  */
 
 /**
  * @typedef FollowPostResponse
- * @property {string} message
- * @property {string} id
+ * @property {string} message - A message indicating the result of the follow or
+ *   unfollow operation. This could be a confirmation message or an error message.
+ * @property {string} id - A unique identifier for the follow operation, which
+ *   can be used to reference or track the follow status.
  */
 
 /**
  * @typedef FollowerCountResponse
- * @property {number} [count]
+ * @property {number} [count] - The number of followers for the item. This count
+ *   indicates how many users are following the specified item.
  */
 
 /**
  * @typedef FollowIdsData
- * @property {number[]} [products]
- * @property {number[]} [collections]
- * @property {number[]} [brands]
+ * @property {number[]} [products] - An array of IDs representing the products
+ *   that the user is following.
+ * @property {number[]} [collections] - An array of IDs representing the
+ *   collections that the user is following.
+ * @property {number[]} [brands] - An array of IDs representing the brands that
+ *   the user is following.
  */
 
 /**
@@ -744,119 +855,137 @@ const Joi = require("joi");
 
 /**
  * @typedef LatLong
- * @property {number[]} [coordinates]
- * @property {string} [type]
+ * @property {number[]} [coordinates] - An array containing the latitude and
+ *   longitude values of the location.
+ * @property {string} [type] - The type of geographic coordinate system used.
+ *   For example, "Point" indicates a single point in a geographic coordinate system.
  */
 
 /**
  * @typedef Store
- * @property {number} [uid]
- * @property {string} [store_email]
- * @property {string} [state]
- * @property {string} [country]
- * @property {number} [pincode]
- * @property {string} [city]
- * @property {string} [address]
- * @property {string} [store_code]
+ * @property {number} [uid] - A unique identifier for the store.
+ * @property {string} [store_email] - The manager's email address for the store.
+ * @property {string} [state] - The state or province where the store is located.
+ * @property {string} [country] - The country where the store is located.
+ * @property {number} [pincode] - The postal code or zip code for the store's location.
+ * @property {string} [city] - The city where the store is located.
+ * @property {string} [address] - The street address of the store.
+ * @property {string} [store_code] - A unique code or identifier for the store,
+ *   often used for internal reference.
  * @property {LatLong} [lat_long]
- * @property {string} [name]
- * @property {string[]} [tags]
+ * @property {string} [name] - The name of the store.
+ * @property {string[]} [tags] - The list of tags mapped to the store.
  */
 
 /**
  * @typedef StoreListingResponse
- * @property {Store[]} items
+ * @property {Store[]} items - An array of store details. Each store includes
+ *   information such as name, address, and geographic coordinates.
  * @property {Page} page
  */
 
 /**
  * @typedef StoreDepartments
- * @property {number} [uid]
- * @property {Object} [logo]
- * @property {number} [priority_order]
- * @property {string} [name]
- * @property {string} [slug]
+ * @property {number} [uid] - The unique identifier assigned to the store department.
+ * @property {Object} [logo] - An object containing information about the store
+ *   department's logo, such as the URL or other related media details.
+ * @property {number} [priority_order] - The priority or ranking of the
+ *   department within the store. This field is used to determine the order in
+ *   which departments are displayed or processed.
+ * @property {string} [name] - The name of the store department, which is
+ *   typically used for display and identification purposes.
+ * @property {string} [slug] - A URL-friendly identifier for the store
+ *   department, often used in web addresses and routing to uniquely identify
+ *   the department.
  */
 
 /**
  * @typedef CompanyStore
- * @property {number} [uid]
- * @property {string} [name]
- * @property {string} [company_type]
- * @property {string} [business_type]
+ * @property {number} [uid] - The unique identifier for the company store.
+ * @property {string} [name] - The name of the company store.
+ * @property {string} [company_type] - The type of company, which can be one of
+ *   the following: - `distributor`: Distributor - `franchise`: Franchise -
+ *   `mbo`: MBO (Managed Business Operations) - `manufacturer-owner`: Owner/Manufacturer.
+ * @property {string} [business_type] - The type of business structure, which
+ *   can be one of the following: - `Private`: Private Limited Company -
+ *   `LLP/Partnership`: Limited Liability Partnership or Partnership -
+ *   `HUF/Proprietorship`: Hindu Undivided Family or Proprietorship.
  */
 
 /**
  * @typedef SellerPhoneNumber
- * @property {number} country_code
- * @property {string} number
+ * @property {number} country_code - The country code of the seller's phone number.
+ * @property {string} number - The seller's contact number.
  */
 
 /**
  * @typedef StoreManagerSerializer
- * @property {string} [name]
- * @property {string} [email]
+ * @property {string} [name] - The name of the store manager.
+ * @property {string} [email] - The email address of the store manager.
  * @property {SellerPhoneNumber} [mobile_no]
  */
 
 /**
  * @typedef StoreAddressSerializer
- * @property {number} [latitude]
- * @property {string} [state]
- * @property {string} [country]
- * @property {string} [landmark]
- * @property {string} [address1]
- * @property {number} [pincode]
- * @property {string} [city]
- * @property {number} [longitude]
- * @property {string} [address2]
+ * @property {number} [latitude] - The latitude of the store's location.
+ * @property {string} [state] - The state where the store is located.
+ * @property {string} [country] - The country where the store is located.
+ * @property {string} [landmark] - A landmark near the store.
+ * @property {string} [address1] - The address line 1 of the store.
+ * @property {number} [pincode] - The postal code for the store's location.
+ * @property {string} [city] - The city where the store is located.
+ * @property {number} [longitude] - The longitude of the store's location.
+ * @property {string} [address2] - The address line2 of the store.
  */
 
 /**
  * @typedef AppStore
- * @property {number} [uid]
- * @property {StoreDepartments[]} [departments]
+ * @property {number} [uid] - The unique identifier for the application store.
+ * @property {StoreDepartments[]} [departments] - A list of departments within the store.
  * @property {CompanyStore} [company]
  * @property {StoreManagerSerializer} [manager]
- * @property {string} [store_code]
+ * @property {string} [store_code] - A unique code for identifying the store.
  * @property {StoreAddressSerializer} [address]
- * @property {string} [name]
- * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {string} [name] - The name of the store.
+ * @property {SellerPhoneNumber[]} [contact_numbers] - A list of contact numbers
+ *   for the store.
  */
 
 /**
  * @typedef ApplicationStoreListing
- * @property {Object[]} [filters]
- * @property {AppStore[]} [items]
+ * @property {Object[]} [filters] - A list of filters applied to the store listing.
+ * @property {AppStore[]} [items] - A list of application stores.
  * @property {Page} [page]
  */
 
 /**
  * @typedef Time
- * @property {number} [hour]
- * @property {number} [minute]
+ * @property {number} [hour] - The hour part of the time.
+ * @property {number} [minute] - The minute part of the time.
  */
 
 /**
  * @typedef StoreTiming
- * @property {boolean} [open]
+ * @property {boolean} [open] - Indicates if the store is open on this day.
  * @property {Time} [closing]
- * @property {string} [weekday]
+ * @property {string} [weekday] - The day of the week.
  * @property {Time} [opening]
  */
 
 /**
  * @typedef StoreDetails
- * @property {number} [uid]
- * @property {StoreDepartments[]} [departments]
+ * @property {number} [uid] - The unique identifier for the store.
+ * @property {StoreDepartments[]} [departments] - A list of departments within the store.
  * @property {CompanyStore} [company]
  * @property {StoreManagerSerializer} [manager]
- * @property {string} [store_code]
- * @property {StoreTiming[]} [timing]
+ * @property {string} [store_code] - A unique code for identifying the store.
+ * @property {StoreTiming[]} [timing] - The opening and closing times for the
+ *   store throughout the week.
  * @property {StoreAddressSerializer} [address]
- * @property {Object} [_custom_json]
- * @property {string} [name]
- * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {Object} [_custom_json] - Custom JSON data for the store.
+ * @property {string} [name] - The name of the store.
+ * @property {SellerPhoneNumber[]} [contact_numbers] - A list of contact numbers
+ *   for the store.
  */
 
 /**
@@ -869,10 +998,10 @@ const Joi = require("joi");
 
 /**
  * @typedef Size
- * @property {number} [quantity] - The quantity of this size available
- * @property {Object} [value] - The value of the size
- * @property {Object} [display] - The display string for the size
- * @property {boolean} [is_available] - Whether or not this size is available
+ * @property {number} [quantity] - The quantity of this size available.
+ * @property {Object} [value] - The value of the size.
+ * @property {Object} [display] - The display string for the size.
+ * @property {boolean} [is_available] - Whether or not this size is available.
  */
 
 /**
@@ -886,133 +1015,137 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductDetails
- * @property {Object} [template_tag] - The template tag of the product
- * @property {number} [rating_count] - The number of ratings the product has received
- * @property {Object} [image_nature] - The nature of the product's images
- * @property {boolean} [has_variant] - Whether or not the product has a variant
- * @property {Object} [description] - The long description of the product
- * @property {boolean} [out_of_stock] - Whether or not the product is out of stock
- * @property {number} [hsn_code] - The HSN code of the product
- * @property {Object} [grouped_attributes] - A dictionary of grouped product attributes
- * @property {Object} [item_code] - The item code of the product
- * @property {Object} [name] - The name of the product
- * @property {Object} [country_of_origin] - The country of origin for the product
- * @property {Object} [short_description] - The short description of the product
- * @property {Object[]} [media] - A list of media objects for the product
- * @property {Object} [attributes] - A dictionary of product attributes
- * @property {boolean} [is_set] - Whether or not the product is a set of items
- * @property {Object[]} [images] - A list of image URLs for the product
- * @property {Object} [slug] - The slug of the product
- * @property {number} [rating] - The rating of the product
- * @property {Object} [identifier] - A dictionary of product identifiers
- * @property {Object[]} [highlights] - A list of highlights for the product
- * @property {number} [brand_uid] - The unique ID of the product's brand
+ * @property {Object} [template_tag] - The template tag of the product.
+ * @property {number} [rating_count] - The number of ratings the product has received.
+ * @property {Object} [image_nature] - The nature of the product's images.
+ * @property {boolean} [has_variant] - Whether or not the product has a variant.
+ * @property {Object} [description] - The long description of the product.
+ * @property {boolean} [out_of_stock] - Whether or not the product is out of stock.
+ * @property {number} [hsn_code] - The HSN code of the product.
+ * @property {Object} [grouped_attributes] - A dictionary of grouped product attributes.
+ * @property {Object} [item_code] - The item code of the product.
+ * @property {Object} [name] - The name of the product.
+ * @property {Object} [country_of_origin] - The country of origin for the product.
+ * @property {Object} [short_description] - The short description of the product.
+ * @property {Object[]} [media] - A list of media objects for the product.
+ * @property {Object} [attributes] - A dictionary of product attributes.
+ * @property {boolean} [is_set] - Whether or not the product is a set of items.
+ * @property {Object[]} [images] - A list of image URLs for the product.
+ * @property {Object} [slug] - The slug of the product.
+ * @property {number} [rating] - The rating of the product.
+ * @property {Object} [identifier] - A dictionary of product identifiers.
+ * @property {Object[]} [highlights] - A list of highlights for the product.
+ * @property {number} [brand_uid] - The unique ID of the product's brand.
  */
 
 /**
  * @typedef ProductInGroup
- * @property {boolean} [auto_add_to_cart] - A flag indicating whether the
- *   product should be automatically added to the cart.
+ * @property {boolean} [auto_add_to_cart] - Whether the product should be
+ *   automatically added to the cart.
  * @property {number} max_quantity - The maximum quantity of the product that
  *   can be added to the cart.
  * @property {Size[]} [sizes] - The available sizes for the product.
- * @property {ProductGroupPrice} [price] - The price details for the product group.
- * @property {boolean} [auto_select] - A flag indicating whether the product
- *   should be automatically selected.
+ * @property {ProductGroupPrice} [price] - The price details for the product.
+ * @property {boolean} [auto_select] - Whether the product should be
+ *   automatically selected.
  * @property {ProductDetails} [product_details] - The details of the product.
  * @property {number} [min_quantity] - The minimum quantity of the product that
  *   can be added to the cart.
- * @property {boolean} [allow_remove] - A flag indicating whether the product
- *   can be removed from the cart.
+ * @property {boolean} [allow_remove] - Whether the product can be removed from the cart.
  * @property {number} product_uid - The unique ID of the product in the group.
  */
 
 /**
  * @typedef ProductGroupingModel
- * @property {string} [logo] - The URL for the logo of the product grouping.
+ * @property {string} [logo] - The URL for the logo of the product group.
  * @property {boolean} [is_active] - Whether the product grouping is active.
  * @property {Object} [meta] - A dictionary containing metadata information.
  * @property {UserDetail} [verified_by] - User details of the verifier of the
- *   document, if applicable
- * @property {string} created_on - Timestamp of the creation of the document
+ *   document, if applicable.
+ * @property {string} created_on - Timestamp of the creation of the document.
  * @property {number} [company_id] - The ID of the company that owns the product grouping.
  * @property {Object[]} [page_visibility] - A list of page visibilities of the
  *   product grouping.
- * @property {string} modified_on - Timestamp of the last modification of the document
- * @property {UserDetail} [created_by] - User details of the creator of the document
+ * @property {string} modified_on - Timestamp of the last modification of the document.
+ * @property {UserDetail} [created_by] - User details of the creator of the document.
  * @property {UserDetail} [modified_by] - User details of the last modifier of
- *   the document
+ *   the document.
  * @property {ProductInGroup[]} products - A list of products in the grouping.
  * @property {boolean} [same_store_assignment] - Whether the products are
  *   assigned to the same store.
- * @property {Object} [_id]
+ * @property {Object} [_id] - Unique identifier of the product grouping.
  * @property {Object} name - The name of the product grouping.
  * @property {Object} [choice] - The choice of the product grouping.
  * @property {Object} [slug] - The unique identifier for the product grouping.
  * @property {string} [verified_on] - Timestamp of when the document was
- *   verified, if applicable
+ *   verified, if applicable.
  */
 
 /**
  * @typedef ProductBundle
- * @property {ProductGroupingModel[]} [items]
+ * @property {ProductGroupingModel[]} [items] - Represents list of
+ *   bundles/product groupings.
  */
 
 /**
  * @typedef StoreV3
- * @property {number} [uid]
- * @property {string} [name]
- * @property {number} [count]
+ * @property {number} [uid] - The unique identifier for the store.
+ * @property {string} [name] - The name of the store.
+ * @property {number} [count] - The count associated with the store.
  */
 
 /**
  * @typedef ArticleAssignmentV3
- * @property {string} [strategy]
- * @property {string} [level]
+ * @property {string} [strategy] - Method used for article assignment, such as
+ *   optimal, fast-delivery, low-price, or manual.
+ * @property {string} [level] - Scope of assignment, which can be
+ *   multi-companies, single-company, or single-store.
  */
 
 /**
  * @typedef StrategyWiseListingSchemaV3
- * @property {number} [distance]
- * @property {number} [pincode]
- * @property {number} [tat]
- * @property {number} [quantity]
+ * @property {number} [distance] - Distance between bullfight location and
+ *   customer location in kilometers. .
+ * @property {number} [pincode] - Pincode mapped based on strategy.
+ * @property {number} [tat] - Turn around Time to deliver the product with this strategy.
+ * @property {number} [quantity] - The quantity available for assigned store.
  */
 
 /**
  * @typedef DetailsSchemaV3
- * @property {string} [value]
- * @property {string} [type]
- * @property {string} [key]
+ * @property {string} [value] - The value of the attribute.
+ * @property {string} [type] - The type of detail e.g, text.
+ * @property {string} [key] - The attribute key associated with the size.
  */
 
 /**
  * @typedef SellerGroupAttributes
- * @property {string} [title]
- * @property {DetailsSchemaV3[]} [details]
+ * @property {string} [title] - The title of the attribute group.
+ * @property {DetailsSchemaV3[]} [details] - Detail of the attribute.
  */
 
 /**
  * @typedef ReturnConfigSchemaV3
- * @property {string} [unit]
- * @property {boolean} [returnable]
- * @property {number} [time]
+ * @property {string} [unit] - The unit for the return configuration.
+ * @property {boolean} [returnable] - Indicates if the item is returnable.
+ * @property {number} [time] - The time duration for the return policy.
  */
 
 /**
  * @typedef ProductSetDistributionSizeV3
- * @property {number} [pieces]
- * @property {string} [size]
+ * @property {number} [pieces] - The number of pieces available in this size.
+ * @property {string} [size] - The size of the product.
  */
 
 /**
  * @typedef ProductSetDistributionV3
- * @property {ProductSetDistributionSizeV3[]} [sizes]
+ * @property {ProductSetDistributionSizeV3[]} [sizes] - A list of size
+ *   distributions in the product set.
  */
 
 /**
  * @typedef ProductSetV3
- * @property {number} [quantity]
+ * @property {number} [quantity] - The quantity of products in the set.
  * @property {ProductSetDistributionV3} [size_distribution]
  */
 
@@ -1021,7 +1154,7 @@ const Joi = require("joi");
  * @property {number} [effective] - The effective or final price for the product
  *   at the given pincode.
  * @property {string} [currency_code] - The currency code for which the product
- *   is available
+ *   is available.
  * @property {string} [currency_symbol] - The currency symbol for the currency
  *   in which the product is available.
  * @property {number} [marked] - The marked price of the product.
@@ -1030,70 +1163,88 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductStockUnitPriceV3
- * @property {string} [unit]
- * @property {string} [currency_symbol]
- * @property {string} [currency_code]
- * @property {number} [price]
+ * @property {string} [unit] - The unit of measure for the product.
+ * @property {string} [currency_symbol] - The currency symbol for the unit price.
+ * @property {string} [currency_code] - The currency code for the unit price.
+ * @property {number} [price] - The unit price of the product.
  */
 
 /**
  * @typedef MarketPlaceSttributesSchemaV3
- * @property {string} [title]
- * @property {DetailsSchemaV3[]} [details]
+ * @property {string} [title] - The title of the attribute.
+ * @property {DetailsSchemaV3[]} [details] - Detail of the attribute.
  */
 
 /**
  * @typedef SellerV3
- * @property {number} [uid]
- * @property {string} [name]
- * @property {number} [count]
+ * @property {number} [uid] - The unique identifier for the seller.
+ * @property {string} [name] - The name of the seller.
+ * @property {number} [count] - The store count serviceable by this seller.
  */
 
 /**
  * @typedef PromiseSchema
- * @property {string} [min]
- * @property {string} [max]
+ * @property {string} [min] - The minimum promise time.
+ * @property {string} [max] - The maximum promise time.
  */
 
 /**
  * @typedef ProductSizePriceResponseV3
  * @property {StoreV3} [store]
  * @property {ArticleAssignmentV3} [article_assignment]
- * @property {boolean} [is_cod]
- * @property {StrategyWiseListingSchemaV3[]} [strategy_wise_listing]
- * @property {number} [quantity]
- * @property {string} [item_type]
- * @property {SellerGroupAttributes[]} [grouped_attributes]
+ * @property {boolean} [is_cod] - Whether Cash on Delivery (COD) is available
+ *   for this product. It is true if COD is available and false otherwise.
+ * @property {StrategyWiseListingSchemaV3[]} [strategy_wise_listing] - Details
+ *   about serviceability attributes.
+ * @property {number} [quantity] - Available quantity of the product in stock.
+ *   It shows the number of units available for purchase.
+ * @property {string} [item_type] - Type of item, indicating the category or
+ *   nature of the product. Possible values are Standard, Composite, Wet, Digital.
+ * @property {SellerGroupAttributes[]} [grouped_attributes] - Collection of
+ *   attributes grouped together, which provides detailed characteristics of the
+ *   product, such as color, size, material, etc.
  * @property {ReturnConfigSchemaV3} [return_config]
- * @property {string} [article_id]
- * @property {boolean} [is_gift]
+ * @property {string} [article_id] - This unique identifier is assigned to the
+ *   specific article. This represents item x size x location.
+ * @property {boolean} [is_gift] - Whether the product can be purchased as a
+ *   gift. It is true if the product is available for gifting and false otherwise.
  * @property {ProductSetV3} [set]
- * @property {number} [seller_count]
+ * @property {number} [seller_count] - Number of sellers offering this product.
+ *   It indicates the level of competition and availability from different sellers.
  * @property {ProductStockPriceV3} [price_per_piece]
  * @property {DiscountMeta} [discount_meta]
- * @property {string} [discount]
- * @property {number[]} [long_lat]
- * @property {string} [special_badge]
+ * @property {string} [discount] - Amount or percentage of discount applied to
+ *   the product's price, showing the savings for the customer.
+ * @property {number[]} [long_lat] - Longitude and latitude coordinates,
+ *   possibly indicating the location of the store or warehouse where the
+ *   product is stocked.
+ * @property {string} [special_badge] - Special badges or labels assigned to the
+ *   product, such as "Bestseller," "New Arrival," or "Limited Edition.".
  * @property {ProductStockPriceV3} [price]
  * @property {ProductStockUnitPriceV3} [price_per_unit]
- * @property {number} [pincode]
- * @property {MarketPlaceSttributesSchemaV3[]} [marketplace_attributes]
+ * @property {number} [pincode] - Postal code or zip code for which the
+ *   product's availability and delivery options are being checked.
+ * @property {MarketPlaceSttributesSchemaV3[]} [marketplace_attributes] -
+ *   Attributes specific to the marketplace, such as ratings, reviews, shipping
+ *   options, and other marketplace-specific details.
  * @property {SellerV3} [seller]
  * @property {PromiseSchema} [delivery_promise]
  */
 
 /**
  * @typedef ProductSizeSellerFilterSchemaV3
- * @property {string} [name]
- * @property {boolean} [is_selected]
- * @property {string} [value]
+ * @property {string} [name] - The name of the store/seller.
+ * @property {boolean} [is_selected] - Whether this filter criterion is selected.
+ * @property {string} [value] - The value associated with this store/seller.
  */
 
 /**
  * @typedef ProductSizeSellersResponseV3
- * @property {ProductSizePriceResponseV3[]} [items]
+ * @property {ProductSizePriceResponseV3[]} [items] - A list of products with
+ *   size and price details available from various sellers.
  * @property {Page} page
- * @property {ProductSizeSellerFilterSchemaV3[]} [sort_on]
+ * @property {ProductSizeSellerFilterSchemaV3[]} [sort_on] - A list of sorting
+ *   and filtering criteria applied to the sellers' data.
  */
 
 class CatalogApplicationModel {
@@ -1326,7 +1477,7 @@ class CatalogApplicationModel {
   /** @returns {DiscountMeta} */
   static DiscountMeta() {
     return Joi.object({
-      timer: Joi.boolean().required(),
+      timer: Joi.boolean(),
       start_timer_in_minutes: Joi.number(),
       start: Joi.string().allow(""),
       end: Joi.string().allow(""),
@@ -1484,6 +1635,7 @@ class CatalogApplicationModel {
     return Joi.object({
       display_type: Joi.string().allow(""),
       header: Joi.string().allow(""),
+      group_id: Joi.string().allow(""),
       items: Joi.array().items(
         CatalogApplicationModel.ProductVariantItemResponse()
       ),

@@ -2,21 +2,21 @@ const Joi = require("joi");
 
 /**
  * @typedef AggregatorConfigDetail
- * @property {boolean} [sdk] - SDK
- * @property {string} secret - Masked payment gateway api secret
- * @property {string} [api] - Payment gateway api endpoint
- * @property {string} [pin] - Masked pin
- * @property {string} config_type - Fynd or self payment gateway
- * @property {string} [merchant_key] - Unique merchant key
- * @property {string} [verify_api] - Payment gateway verify payment api endpoint
- * @property {string} key - Payment gateway api key
- * @property {string} [user_id] - Registered User id
- * @property {string} [merchant_id] - Unique merchant id
+ * @property {boolean} [sdk] - SDK details.
+ * @property {string} secret - Masked payment gateway api secret.
+ * @property {string} [api] - Payment gateway api endpoint.
+ * @property {string} [pin] - Masked pin.
+ * @property {string} config_type - Fynd or self payment gateway.
+ * @property {string} [merchant_key] - Unique merchant key.
+ * @property {string} [verify_api] - Payment gateway verify payment api endpoint.
+ * @property {string} key - Payment gateway api key.
+ * @property {string} [user_id] - Registered User id.
+ * @property {string} [merchant_id] - Unique merchant id.
  */
 
 /**
  * @typedef AggregatorsConfigDetailResponse
- * @property {boolean} success
+ * @property {boolean} success - Api response was successful or not.
  * @property {AggregatorConfigDetail} [razorpay]
  * @property {AggregatorConfigDetail} [juspay]
  * @property {AggregatorConfigDetail} [simpl]
@@ -25,27 +25,27 @@ const Joi = require("joi");
  * @property {AggregatorConfigDetail} [mswipe]
  * @property {AggregatorConfigDetail} [stripe]
  * @property {AggregatorConfigDetail} [ccavenue]
- * @property {string} env - Environment i.e Live or Test
+ * @property {string} env - Environment i.e Live or Test.
  */
 
 /**
  * @typedef ErrorCodeAndDescription
- * @property {string} code - Error descrption code.
+ * @property {string} code - Error description code.
  * @property {string} description - Error human understandable description.
  */
 
 /**
  * @typedef HttpErrorCodeAndResponse
  * @property {ErrorCodeAndDescription} [error]
- * @property {boolean} success - Response is successful or not
+ * @property {boolean} success - Response is successful or not.
  */
 
 /**
  * @typedef AttachCardRequest
- * @property {string} [nickname]
+ * @property {string} [nickname] - Nickname of the card holder.
  * @property {boolean} [refresh] - Refresh cache flag.
  * @property {string} card_id - Card token of payment gateway.
- * @property {string} [name_on_card]
+ * @property {string} [name_on_card] - Name of the card holder.
  */
 
 /**
@@ -57,7 +57,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CardPaymentGateway
- * @property {string} [api] - Payment gateway CARD api endpoint
+ * @property {string} [api] - Payment gateway CARD api endpoint.
  * @property {string} aggregator - Payment gateway name.
  * @property {string} [customer_id] - Payment gateway customer id.
  */
@@ -71,24 +71,26 @@ const Joi = require("joi");
 
 /**
  * @typedef Card
- * @property {string} [card_number] - Card_number
- * @property {string} [card_name] - Card_name
- * @property {string} [card_type] - Card_type
- * @property {string} [card_brand_image] - Card_brand_image
- * @property {string} [card_reference] - Card_reference
- * @property {string} [card_issuer] - Card_issuer
- * @property {string} [card_brand] - Card_brand
- * @property {boolean} [expired] - Expired
- * @property {boolean} [compliant_with_tokenisation_guidelines] - If card is
- *   tokenised or not
- * @property {string} [card_isin] - Card_isin
- * @property {number} [exp_year] - Exp_year
- * @property {string} [nickname] - Nickname
- * @property {string} aggregator_name - Aggregator_name
- * @property {string} [card_fingerprint] - Card_fingerprint
- * @property {string} [card_token] - Card_token
- * @property {number} [exp_month] - Exp_month
- * @property {string} [card_id] - Card_id
+ * @property {string} [card_number] - Card number mentioned on the card.
+ * @property {string} [card_name] - Name mentioned on the card.
+ * @property {string} [card_type] - Type of the card.
+ * @property {string} [card_brand_image] - Brand image on the card.
+ * @property {string} [card_reference] - Card reference.
+ * @property {string} [card_issuer] - Issuer of the card.
+ * @property {string} [card_brand] - Brand of the card.
+ * @property {boolean} [expired] - Card expiry.
+ * @property {boolean} [compliant_with_tokenisation_guidelines] - Whether card
+ *   is tokenized or not.
+ * @property {string} [card_isin] - International Securities Identification
+ *   Number for the card.
+ * @property {number} [exp_year] - Card's expiration year.
+ * @property {string} [nickname] - User-defined name for the card.
+ * @property {string} aggregator_name - Name of the payment aggregator.
+ * @property {string} [card_fingerprint] - Unique fingerprint of the card for
+ *   identification.
+ * @property {string} [card_token] - Encrypted token representing the card.
+ * @property {number} [exp_month] - Card's expiration month.
+ * @property {string} [card_id] - Unique identifier for the card within the system.
  */
 
 /**
@@ -111,8 +113,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ValidateCustomerRequest
- * @property {string} aggregator - Payment gateway name in camel case i.e Simpl, Rupifi
- * @property {number} transaction_amount_in_paise - Payable amount in paise
+ * @property {string} aggregator - Payment gateway name in camelcase i.e Simple, Rupifi.
+ * @property {number} transaction_amount_in_paise - Payable amount in paise.
  * @property {string} phone_number - User mobile number without country code.
  * @property {Object} [billing_address] - Extra meta fields.
  * @property {Object[]} [order_items] - Extra meta fields.
@@ -123,183 +125,188 @@ const Joi = require("joi");
 
 /**
  * @typedef ValidateCustomerResponse
- * @property {Object} data - Payment gateway response data
- * @property {boolean} success - Response is successful or not
+ * @property {Object} [data] - Payment gateway response data.
+ * @property {boolean} success - Response is successful or not.
  * @property {string} message - Error or success message.
  */
 
 /**
  * @typedef ChargeCustomerRequest
- * @property {boolean} [verified] - Already Verified flag from payment gateway i.e Mswipe
- * @property {string} aggregator - Payment gateway name i.e Simpl, Mswipe
+ * @property {boolean} [verified] - Already Verified flag from payment gateway i.e Mswipe.
+ * @property {string} aggregator - Payment gateway name i.e Simpl, Mswipe.
  * @property {string} order_id - Unique order id.
  * @property {string} [transaction_token] - Transaction token of payment gateway.
- * @property {number} amount - Chargable amount of order.
+ * @property {number} amount - Chargeable amount of order.
  */
 
 /**
  * @typedef ChargeCustomerResponse
  * @property {string} status - Status of charged payment.
- * @property {string} [cart_id] - Cart id of customer
+ * @property {string} [cart_id] - Cart id of customer.
  * @property {boolean} success - Response is successful or not.
- * @property {string} aggregator - Payment gateway name i.e Simpl, Mswipe
+ * @property {string} aggregator - Payment gateway name i.e Simpl, Mswipe.
  * @property {string} message - Human readable message.
  * @property {string} order_id - Unique order id.
- * @property {string} [delivery_address_id] - Delivery adddress id of customer
+ * @property {string} [delivery_address_id] - Delivery address id of customer.
  */
 
 /**
  * @typedef PaymentInitializationRequest
- * @property {string} [razorpay_payment_id] - Payment gateway payment id
- * @property {string} method - Payment method
- * @property {string} [device_id] - EDC machine Unique Identifier
- * @property {string} aggregator - Payment gateway name
+ * @property {string} [razorpay_payment_id] - Payment gateway payment id.
+ * @property {string} method - Payment method.
+ * @property {string} [device_id] - EDC machine Unique Identifier.
+ * @property {string} aggregator - Payment gateway name.
  * @property {string} customer_id - Payment gateway customer id.
- * @property {string} contact - Customer valid mobile number
- * @property {string} merchant_order_id - Unique fynd order id
- * @property {string} [vpa] - Customer vpa address
- * @property {string} order_id - Payment gateway order id
+ * @property {string} contact - Customer valid mobile number.
+ * @property {string} merchant_order_id - Unique fynd order id.
+ * @property {string} [vpa] - Customer vpa address.
+ * @property {string} order_id - Payment gateway order id.
  * @property {string} currency - Currency code.
- * @property {number} [timeout] - Payment polling timeout if not recieved response
+ * @property {number} [timeout] - Payment polling timeout if not received response.
  * @property {number} amount - Payable amount.
- * @property {string} email - Customer valid email
+ * @property {string} email - Customer valid email.
  */
 
 /**
  * @typedef PaymentInitializationResponse
  * @property {string} [status] - Status of payment.
  * @property {string} [razorpay_payment_id] - Payment id.
- * @property {string} [aggregator_order_id] - Payment order id
- * @property {string} method - Payment method
+ * @property {string} [aggregator_order_id] - Payment order id.
+ * @property {string} method - Payment method.
  * @property {boolean} success - Response is successful or not.
  * @property {string} [upi_poll_url] - UPI poll url.
  * @property {string} [virtual_id] - Payment virtual address.
- * @property {string} [device_id] - EDC machine Unique Identifier
+ * @property {string} [device_id] - EDC machine Unique Identifier.
  * @property {string} polling_url - Polling url.
- * @property {string} aggregator - Payment gateway name
- * @property {string} merchant_order_id - Order id
+ * @property {string} aggregator - Payment gateway name.
+ * @property {string} merchant_order_id - Order id.
  * @property {string} [customer_id] - Payment gateway customer id.
- * @property {string} [vpa] - Customer vpa address
+ * @property {string} [vpa] - Customer vpa address.
  * @property {string} [currency] - Currency code.
  * @property {number} [timeout] - Timeout.
  * @property {number} [amount] - Payable amount.
- * @property {string} [bqr_image] - Bharath qr image url.
+ * @property {string} [bqr_image] - Bharat qr image url.
  */
 
 /**
  * @typedef PaymentStatusUpdateRequest
  * @property {string} [status] - Status of payment.
- * @property {string} [merchant_transaction_id] - Unique fynd transaction id
- * @property {string} method - Payment method
- * @property {string} [device_id] - EDC machine Unique Identifier
- * @property {string} aggregator - Payment gateway name
+ * @property {string} [merchant_transaction_id] - Unique fynd transaction id.
+ * @property {string} method - Payment method.
+ * @property {string} [device_id] - EDC machine Unique Identifier.
+ * @property {string} aggregator - Payment gateway name.
  * @property {string} [customer_id] - Payment gateway customer id.
- * @property {string} [contact] - Customer valid mobile number
- * @property {string} merchant_order_id - Unique fynd order id
- * @property {string} [vpa] - Customer vpa address
- * @property {string} [order_id] - Payment gateway order id
+ * @property {string} [contact] - Customer valid mobile number.
+ * @property {string} merchant_order_id - Unique fynd order id.
+ * @property {string} [vpa] - Customer vpa address.
+ * @property {string} [order_id] - Payment gateway order id.
  * @property {string} [currency] - Currency code.
  * @property {number} [amount] - Payable amount.
- * @property {string} [email] - Customer valid email
+ * @property {string} [email] - Customer valid email.
  */
 
 /**
  * @typedef PaymentStatusUpdateResponse
- * @property {string} status - Payment status
- * @property {boolean} [success] - Response is successful or not
+ * @property {string} status - Payment status.
+ * @property {boolean} [success] - Response is successful or not.
  * @property {boolean} retry - Response is successful or not.
- * @property {string} [redirect_url] - Redirect url
- * @property {string} aggregator_name - Payment gateway name
+ * @property {string} [redirect_url] - Redirect url.
+ * @property {string} aggregator_name - Payment gateway name.
  */
 
 /**
  * @typedef IntentAppErrorList
- * @property {string} [code] - Code
- * @property {string} [package_name] - Package_name
+ * @property {string} [code] - Code of the intent App.
+ * @property {string} [package_name] - Package Name of the intent App.
  */
 
 /**
  * @typedef PaymentModeLogo
- * @property {string} large - Large
- * @property {string} small - Smalll
+ * @property {string} large - Large Logo.
+ * @property {string} small - Small Logo.
  */
 
 /**
  * @typedef IntentApp
- * @property {string} [code] - Code
- * @property {string} [package_name] - Package_name
+ * @property {string} [code] - Code of the intent App.
+ * @property {string} [package_name] - Package Name of the intent App.
  * @property {PaymentModeLogo} [logos]
- * @property {string} [display_name] - Display_name
+ * @property {string} [display_name] - Display Name of the intent App.
  */
 
 /**
  * @typedef PaymentModeList
- * @property {string} [card_number] - Card_number
- * @property {string} [merchant_code] - Merchant code
- * @property {string} [card_reference] - Card_reference
- * @property {string} [card_issuer] - Card_issuer
- * @property {boolean} [compliant_with_tokenisation_guidelines] - If card is
- *   tokenised or not
- * @property {string} [code] - Code
- * @property {number} [cod_limit] - Cod limit
- * @property {boolean} [intent_flow] - Intent_flow
- * @property {string} [fynd_vpa] - Fynd_vpa
- * @property {IntentAppErrorList[]} [intent_app_error_dict_list] -
- *   Intent_app_error_dict_list
- * @property {string} aggregator_name - Aggregator_name
- * @property {string} [card_fingerprint] - Card_fingerprint
- * @property {string[]} [intent_app_error_list] - Intent_app_error_list
- * @property {IntentApp[]} [intent_app] - Intent_app
- * @property {boolean} [expired] - Expired
- * @property {number} [retry_count] - Retry_count
- * @property {number} [exp_year] - Exp_year
- * @property {number} [exp_month] - Exp_month
- * @property {string} [card_id] - Card_id
- * @property {number} [remaining_limit] - Remaining limit
- * @property {number} [display_priority] - Dispaly Priority
- * @property {string} [card_brand] - Card_brand
- * @property {number} [cod_limit_per_order] - Cod limit per order
+ * @property {string} [card_number] - Card number mentioned on the card.
+ * @property {string} [merchant_code] - Unique code identifying the merchant.
+ * @property {string} [card_reference] - Reference identifier for the card.
+ * @property {string} [card_issuer] - Issuing bank or institution of the card.
+ * @property {boolean} [compliant_with_tokenisation_guidelines] - Indicates
+ *   compliance with tokenization guidelines.
+ * @property {string} [code] - General code for identifying a transaction or status.
+ * @property {number} [cod_limit] - Limit for Cash on Delivery (COD) transactions.
+ * @property {boolean} [intent_flow] - Flow or process intended for the transaction.
+ * @property {string} [fynd_vpa] - Virtual Payment Address (VPA) used by Fynd.
+ * @property {IntentAppErrorList[]} [intent_app_error_dict_list] - List of error
+ *   dictionaries related to intent app.
+ * @property {string} aggregator_name - Name of the payment aggregator.
+ * @property {string} [card_fingerprint] - Unique fingerprint of the card for
+ *   identification.
+ * @property {string[]} [intent_app_error_list] - List of errors associated with
+ *   the intent app.
+ * @property {IntentApp[]} [intent_app] - Application intended for handling the
+ *   transaction.
+ * @property {boolean} [expired] - Indicates whether the card is expired.
+ * @property {number} [retry_count] - Number of retry attempts.
+ * @property {number} [exp_year] - Card's expiration year.
+ * @property {number} [exp_month] - Card's expiration month.
+ * @property {string} [card_id] - Unique identifier for the card within the system.
+ * @property {number} [remaining_limit] - Remaining available limit on the card.
+ * @property {number} [display_priority] - Priority of display in the user interface.
+ * @property {string} [card_brand] - Brand of the card (e.g., Visa, MasterCard).
+ * @property {number} [cod_limit_per_order] - Maximum limit per order for COD
+ *   transactions.
  * @property {PaymentModeLogo} [logo_url]
- * @property {string} [nickname] - Nickname
- * @property {string} [card_name] - Card_name
- * @property {string} [card_type] - Card_type
- * @property {string} [card_brand_image] - Card_brand_image
- * @property {string} [display_name] - Display name
- * @property {string} [card_isin] - Card_isin
- * @property {number} [timeout] - Timeout
- * @property {string} [card_token] - Card_token
- * @property {string} [name] - Name
- * @property {Object} [meta] - Payment methods meta
+ * @property {string} [nickname] - User-defined name for the card.
+ * @property {string} [card_name] - Name printed on the card.
+ * @property {string} [card_type] - Type of the card (e.g., debit, credit).
+ * @property {string} [card_brand_image] - Image representing the card brand.
+ * @property {string} [display_name] - Display name for the card in the user interface.
+ * @property {string} [card_isin] - International Securities Identification
+ *   Number for the card.
+ * @property {number} [timeout] - Timeout duration for transactions.
+ * @property {string} [card_token] - Encrypted token representing the card.
+ * @property {string} [name] - User's name.
+ * @property {Object} [meta] - Payment methods meta.
  */
 
 /**
  * @typedef RootPaymentMode
  * @property {boolean} [is_pay_by_card_pl] - This flag will be true in case of
- *   Payment link payment through card
- * @property {boolean} [add_card_enabled] - Annonymous card flag
- * @property {number} display_priority - Dispaly Priority
- * @property {string} display_name - Payment mode display name
- * @property {PaymentModeList[]} [list] - Payment mode
- * @property {boolean} [save_card] - Card save or not
- * @property {string} [aggregator_name] - Dispaly Priority
- * @property {string} name - Payment mode name
- * @property {boolean} [anonymous_enable] - Annonymous card flag
+ *   Payment link payment through card.
+ * @property {boolean} [add_card_enabled] - Anonymous card flag.
+ * @property {number} display_priority - Display Priority.
+ * @property {string} display_name - Payment mode display name.
+ * @property {PaymentModeList[]} [list] - Payment mode.
+ * @property {boolean} [save_card] - Card save or not.
+ * @property {string} [aggregator_name] - Display Priority.
+ * @property {string} name - Payment mode name.
+ * @property {boolean} [anonymous_enable] - Anonymous card flag.
  */
 
 /**
  * @typedef AggregatorRoute
- * @property {Object} [data] - Data
- * @property {Object} [payment_flow_data] - Payment_flow_data
- * @property {string} [payment_flow] - Payment_flow
- * @property {string} [api_link] - Api_link
+ * @property {Object} [data] - Details about aggregator route.
+ * @property {Object} [payment_flow_data] - Payment_flow_data.
+ * @property {string} [payment_flow] - Payment_flow.
+ * @property {string} [api_link] - API link of the aggregator.
  */
 
 /**
  * @typedef PaymentDefaultSelection
- * @property {string} [mode] - Default Selection Payment Mode
- * @property {string} [identifier] - Identifier for Payment Mode
+ * @property {string} [mode] - Default Selection Payment Mode.
+ * @property {string} [identifier] - Identifier for Payment Mode.
  * @property {boolean} [skip] - Decide if the default payment mode will skip the
- *   payment options page altogether or just be preferred on the Frontend
+ *   payment options page altogether or just be preferred on the Frontend.
  */
 
 /**
@@ -322,41 +329,41 @@ const Joi = require("joi");
 
 /**
  * @typedef PaymentOptionAndFlow
- * @property {RootPaymentMode[]} payment_option - Payment options
+ * @property {RootPaymentMode[]} payment_option - Payment options.
  * @property {PaymentFlow} payment_flows
  * @property {PaymentDefaultSelection} [payment_default_selection]
  */
 
 /**
  * @typedef AdvanceObject
- * @property {boolean} [is_active] - Is Advance Payment active
- * @property {number} [amount] - Amount for Payment Breakdown
- * @property {string} [time_unit] - Time unit for refunds
+ * @property {boolean} [is_active] - Is Advance Payment active.
+ * @property {number} [amount] - Amount for Payment Breakdown.
+ * @property {string} [time_unit] - Time unit for refunds.
  * @property {string} [description] - The description for Advance Payment (user
- *   configured)
- * @property {string} [display_name] - The display name for Advance payment
- * @property {string} [prepayment_type] - Type of prepayment value
- * @property {number} [prepayment_value] - Value for prepayment in advance payment
- * @property {string} [cancellation_type] - Type of cancellation
- * @property {number} [refund_time_limit] - Time limit for processing refund
- * @property {string[]} [all_prepayment_type] - All available types of prepayment
- * @property {boolean} [allow_custom_advance_amount] - Is custom advance amount allowed?
+ *   configured).
+ * @property {string} [display_name] - The display name for Advance payment.
+ * @property {string} [prepayment_type] - Type of prepayment value.
+ * @property {number} [prepayment_value] - Value for prepayment in advance payment.
+ * @property {string} [cancellation_type] - Type of cancellation.
+ * @property {number} [refund_time_limit] - Time limit for processing refund.
+ * @property {string[]} [all_prepayment_type] - All available types of prepayment.
+ * @property {boolean} [allow_custom_advance_amount] - Is custom advance amount allowed?.
  */
 
 /**
  * @typedef SplitObject
- * @property {number} [total_number_of_splits] - Maximum amount of splits allowed
- * @property {number} [splits_remaining] - Number of splits remaining
- * @property {number} [amount_remaining] - Amount pending to be paid
+ * @property {number} [total_number_of_splits] - Maximum amount of splits allowed.
+ * @property {number} [splits_remaining] - Number of splits remaining.
+ * @property {number} [amount_remaining] - Amount pending to be paid.
  */
 
 /**
  * @typedef AdvancePaymentObject
- * @property {string} [name] - Name of Advance Payment Mode
- * @property {number} [display_priority] - Display Priority for Payment Option
- * @property {number} [payment_mode_id] - Payment Mode ID for Advance Payment Option
- * @property {string} [display_name] - Display name for Advance Payment Mode
- * @property {PaymentModeList[]} [list] - Payment mode
+ * @property {string} [name] - Name of Advance Payment Mode.
+ * @property {number} [display_priority] - Display Priority for Payment Option.
+ * @property {number} [payment_mode_id] - Payment Mode ID for Advance Payment Option.
+ * @property {string} [display_name] - Display name for Advance Payment Mode.
+ * @property {PaymentModeList[]} [list] - Payment mode.
  * @property {SplitObject} [split]
  * @property {AdvanceObject} [advance]
  */
@@ -364,40 +371,40 @@ const Joi = require("joi");
 /**
  * @typedef PaymentModeRouteResponse
  * @property {PaymentOptionAndFlow} payment_options
- * @property {boolean} success - Response is successful or not
- * @property {Object} [payment_breakup] - Payment Breakup for advance payment
- * @property {AdvancePaymentObject[]} [advance_payment] - Advance Payment Array
+ * @property {boolean} success - Response is successful or not.
+ * @property {Object} [payment_breakup] - Payment Breakup for advance payment.
+ * @property {AdvancePaymentObject[]} [advance_payment] - Advance Payment Array.
  */
 
 /**
  * @typedef WalletLinkRequestSchema
- * @property {string} aggregator - Aggregator Name
- * @property {string} mobile - Mobile Number for Wallet
- * @property {string} wallet_code - Wallet Code
+ * @property {string} aggregator - Aggregator Name.
+ * @property {string} mobile - Mobile Number for Wallet.
+ * @property {string} wallet_code - Wallet Code.
  */
 
 /**
  * @typedef WalletVerifyRequestSchema
- * @property {string} aggregator - Aggregator Name
- * @property {string} link_token - Token for wallet linking
- * @property {number} otp - OTP received for wallet linking
+ * @property {string} aggregator - Aggregator Name.
+ * @property {string} link_token - Token for wallet linking.
+ * @property {number} otp - OTP received for wallet linking.
  */
 
 /**
  * @typedef WalletDelinkRequestSchema
- * @property {string} aggregator - Aggregator Name
- * @property {string} wallet_code - Wallet Code
+ * @property {string} aggregator - Aggregator Name.
+ * @property {string} wallet_code - Wallet Code.
  */
 
 /**
  * @typedef WalletResponseSchema
- * @property {Object} data - Response received from aggregator
- * @property {boolean} success - Success/Failure of the API call
+ * @property {Object} data - Response received from aggregator.
+ * @property {boolean} success - Success/Failure of the API call.
  */
 
 /**
  * @typedef RupifiBannerData
- * @property {string} [status] - Rupifi KYC status
+ * @property {string} [status] - Rupifi KYC status.
  * @property {string} [kyc_url] - Rupifi KYC banner url.
  */
 
@@ -409,9 +416,9 @@ const Joi = require("joi");
 
 /**
  * @typedef EpaylaterBannerData
- * @property {string} [status] - Epaylater KYC status
- * @property {string} [message] - EPayLater message
- * @property {boolean} display - Need to display banner or not
+ * @property {string} [status] - Epaylater KYC status.
+ * @property {string} [message] - EPayLater message.
+ * @property {boolean} display - Need to display banner or not.
  */
 
 /**
@@ -422,15 +429,17 @@ const Joi = require("joi");
 
 /**
  * @typedef ResendOrCancelPaymentRequest
- * @property {string} order_id - Unique order id
- * @property {string} [device_id] - EDC machine Unique Identifier
- * @property {string} request_type - Either resend or cancel
+ * @property {string} order_id - Unique order id.
+ * @property {string} [device_id] - EDC machine Unique Identifier.
+ * @property {string} request_type - Either resend or cancel.
  */
 
 /**
  * @typedef LinkStatus
- * @property {boolean} status - Link action status
- * @property {string} message - Message
+ * @property {string} status - Link action status.
+ * @property {string} message - Message.
+ * @property {boolean} [is_payment_done] - This key specifies payment done
+ *   status of payment link.
  */
 
 /**
@@ -441,27 +450,27 @@ const Joi = require("joi");
 
 /**
  * @typedef renderHTMLRequest
- * @property {string} [returntype] - Return Type of API
- * @property {string} base64_html - Base64 encoded html string
+ * @property {string} [returntype] - Return Type of API.
+ * @property {string} base64_html - Base64 encoded html string.
  */
 
 /**
  * @typedef renderHTMLResponse
- * @property {string} html - HTML string
+ * @property {string} html - HTML string.
  */
 
 /**
  * @typedef ValidateVPARequest
- * @property {string} upi_vpa - UPI ID
- * @property {string} [aggregator] - Aggregator slug
+ * @property {string} upi_vpa - UPI ID.
+ * @property {string} [aggregator] - Aggregator slug.
  */
 
 /**
  * @typedef ValidateUPI
- * @property {string} status - VALID or INVALID
- * @property {string} customer_name - Customer Bank
+ * @property {string} status - VALID or INVALID.
+ * @property {string} customer_name - Customer Bank.
  * @property {boolean} is_valid - Boolean is true or false.
- * @property {string} upi_vpa - UPI ID
+ * @property {string} upi_vpa - UPI ID.
  */
 
 /**
@@ -472,22 +481,23 @@ const Joi = require("joi");
 
 /**
  * @typedef CardDetails
- * @property {boolean} status - Status
- * @property {string} country - Country Name
- * @property {string} bank_code - Bank Code
- * @property {string} id - Id
- * @property {string} [card_exp_year] - Card Expire Year
- * @property {string} card_brand - Card brand like VISA/RUPAY
- * @property {string} type - Card Type Credit/Debit
- * @property {string} card_sub_type - Card Sub type
- * @property {boolean} is_domestic_card - Is card domestic or international
- * @property {string} [name_on_card] - Name on Card
- * @property {string} [card_exp_month] - Card Expire Month
- * @property {string} extended_card_type - Extended Card Type
- * @property {string} card_object - Card bin or Card refrence
- * @property {string} [card_token] - Card Token
- * @property {string} [user] - Customer/User ID
- * @property {string} bank - Bank name
+ * @property {boolean} status - Current status of the card.
+ * @property {string} country - Country where the card was issued.
+ * @property {string} bank_code - Code identifying the bank.
+ * @property {string} id - Unique identifier for the record.
+ * @property {string} [card_exp_year] - Card's expiration year.
+ * @property {string} card_brand - Brand of the card (e.g., Visa, MasterCard).
+ * @property {string} type - General type of the card (e.g., debit, credit).
+ * @property {string} card_sub_type - Sub-type of the card (e.g., Platinum, Gold).
+ * @property {boolean} is_domestic_card - Indicates whether the card is domestic.
+ * @property {string} [name_on_card] - Name of the cardholder.
+ * @property {string} [card_exp_month] - Card's expiration month.
+ * @property {string} extended_card_type - Extended type of the card, providing
+ *   more specific classification.
+ * @property {string} card_object - Object representation of the card.
+ * @property {string} [card_token] - Encrypted token representing the card.
+ * @property {string} [user] - User associated with the card.
+ * @property {string} bank - Bank associated with the card.
  */
 
 /**
@@ -498,350 +508,352 @@ const Joi = require("joi");
 
 /**
  * @typedef TransferItemsDetails
- * @property {number} id -
- * @property {string} [display_name] - Beneficiary Display Name
- * @property {string} logo_large - Beneficiary large Logo
- * @property {string} logo_small - Beneficiary small Logo
- * @property {string} name - Beneficiary Name
+ * @property {number} id - Id of the transfer item.
+ * @property {string} [display_name] - Beneficiary Display Name.
+ * @property {string} logo_large - Beneficiary large Logo.
+ * @property {string} logo_small - Beneficiary small Logo.
+ * @property {string} name - Beneficiary Name.
  */
 
 /**
  * @typedef TransferModeDetails
- * @property {TransferItemsDetails[]} [items] - Beneficiary Mode Items
- * @property {string} display_name - Beneficiary Mode Name
+ * @property {TransferItemsDetails[]} [items] - Beneficiary Mode Items.
+ * @property {string} display_name - Beneficiary Mode Name.
  */
 
 /**
  * @typedef TransferModeResponse
- * @property {TransferModeDetails[]} data - Response Object
+ * @property {TransferModeDetails[]} data - Response Object.
  */
 
 /**
  * @typedef UpdateRefundTransferModeRequest
- * @property {boolean} enable - True for enabling the Transfer Mode
- * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added
+ * @property {boolean} enable - True for enabling the Transfer Mode.
+ * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added.
  */
 
 /**
  * @typedef UpdateRefundTransferModeResponse
- * @property {boolean} [success] - Response is successful or not
+ * @property {boolean} [success] - Response is successful or not.
  */
 
 /**
  * @typedef OrderBeneficiaryDetails
- * @property {string} modified_on - MOdification Date of Beneficiary
- * @property {string} account_no - Account Number
- * @property {string} [mobile] - MObile no of User
- * @property {string} bank_name - Bank Name Of Account
- * @property {string} ifsc_code - Ifsc Code Of Account
- * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
- * @property {string} beneficiary_id - Benenficiary Id
- * @property {string} account_holder - Account Holder Name
- * @property {string} email - EMail of User
- * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
- * @property {number} id -
- * @property {string} transfer_mode - Transfer Mode Of Account
- * @property {string} [branch_name] - Branch Name Of Account
- * @property {string} created_on - Creation Date of Beneficiary
- * @property {string} subtitle - SHort Title Of Account
- * @property {string} [comment] - Remarks
- * @property {string} address - Address of User
- * @property {string} title - Title Of Account
- * @property {string} display_name - Display Name Of Account
+ * @property {string} modified_on - MOdification Date of Beneficiary.
+ * @property {string} account_no - Account Number.
+ * @property {string} [mobile] - MObile no of User.
+ * @property {string} bank_name - Bank Name Of Account.
+ * @property {string} ifsc_code - Ifsc Code Of Account.
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not.
+ * @property {string} beneficiary_id - Beneficiary Id.
+ * @property {string} account_holder - Account Holder Name.
+ * @property {string} email - EMail of User.
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary.
+ * @property {number} id - Id of the Order Beneficiary.
+ * @property {string} transfer_mode - Transfer Mode Of Account.
+ * @property {string} [branch_name] - Branch Name Of Account.
+ * @property {string} created_on - Creation Date of Beneficiary.
+ * @property {string} subtitle - SHort Title Of Account.
+ * @property {string} [comment] - Remarks.
+ * @property {string} address - Address of User.
+ * @property {string} title - Title Of Account.
+ * @property {string} display_name - Display Name Of Account.
  */
 
 /**
  * @typedef OrderBeneficiaryResponse
  * @property {boolean} [show_beneficiary_details] - Show beneficiary details or not.
- * @property {OrderBeneficiaryDetails[]} [beneficiaries] - All Beneficiaries Of An Order
+ * @property {OrderBeneficiaryDetails[]} [beneficiaries] - All Beneficiaries Of An Order.
  */
 
 /**
  * @typedef NotFoundResourceError
- * @property {string} code - Bad Request Data
- * @property {string} description - Not Found
- * @property {boolean} success - Response is successful or not
+ * @property {string} code - Bad Request Data.
+ * @property {string} description - Not Found.
+ * @property {boolean} success - Response is successful or not.
  */
 
 /**
  * @typedef IfscCodeResponse
- * @property {string} branch_name - Branch Name Of Account
- * @property {boolean} [success] - Response is successful or not
- * @property {string} bank_name - Bank Name Of Account
+ * @property {string} branch_name - Branch Name Of Account.
+ * @property {boolean} [success] - Response is successful or not.
+ * @property {string} bank_name - Bank Name Of Account.
  */
 
 /**
  * @typedef ErrorCodeDescription
- * @property {string} code - Error descrption code.
+ * @property {string} code - Error description code.
  * @property {string} description - Error human understandable description.
- * @property {boolean} success - Response is successful or not
+ * @property {boolean} success - Response is successful or not.
  */
 
 /**
  * @typedef AddBeneficiaryViaOtpVerificationRequest
- * @property {string} request_id - Request Id sent in
- * @property {string} hash_key - Hash key of the beneficiary Id
- * @property {string} otp - Otp sent to the given Mobile No
+ * @property {string} request_id - Request id.
+ * @property {string} hash_key - Hash key of the beneficiary Id.
+ * @property {string} otp - Otp sent to the given Mobile No.
  */
 
 /**
  * @typedef AddBeneficiaryViaOtpVerificationResponse
- * @property {boolean} [success] - Response is successful or not
- * @property {string} message - Aggregator Response of beneficicary
+ * @property {boolean} [success] - Response is successful or not.
+ * @property {string} message - Aggregator Response of beneficiary.
  */
 
 /**
  * @typedef WrongOtpError
- * @property {boolean} is_verified_flag - Vefified flag.
- * @property {string} description - Wrong OTP Code
- * @property {string} success - Response is successful or not
+ * @property {boolean} is_verified_flag - Verified flag.
+ * @property {string} description - Wrong OTP Code.
+ * @property {string} success - Response is successful or not.
  */
 
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} account_no - Account NUmber of the Account Holder
- * @property {string} [address] - Address of the User
- * @property {string} mobile - Moblie Number of the User
- * @property {string} bank_name - Bank Name of the Account
- * @property {string} [comment] - Remarks added by The user
- * @property {string} ifsc_code - Ifsc Code of the Account
- * @property {string} [vpa]
- * @property {string} branch_name - Branch Name of the Account
- * @property {string} account_holder - Name of the Account Holder
- * @property {string} [wallet]
- * @property {string} email - Email of the Account Holder
+ * @property {string} account_no - Account Number of the Account Holder.
+ * @property {string} [address] - Address of the User.
+ * @property {string} mobile - Mobile Number of the User.
+ * @property {string} bank_name - Bank Name of the Account.
+ * @property {string} [comment] - Remarks added by The user.
+ * @property {string} ifsc_code - Ifsc Code of the Account.
+ * @property {string} [vpa] - VPA of the Account.
+ * @property {string} branch_name - Branch Name of the Account.
+ * @property {string} account_holder - Name of the Account Holder.
+ * @property {string} [wallet] - Wallet of the Account.
+ * @property {string} email - Email of the Account Holder.
  */
 
 /**
  * @typedef AddBeneficiaryDetailsRequest
  * @property {boolean} delights - True if beneficiary to be added by delights or
- *   False if by User
- * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
+ *   False if by User.
+ * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id.
  * @property {BeneficiaryModeDetails} details
- * @property {string} [otp]
- * @property {string} order_id - Merchant Order Id
- * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added
- * @property {string} [request_id]
+ * @property {string} [otp] - OTP received by customer.
+ * @property {string} order_id - Merchant Order Id.
+ * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added.
+ * @property {string} [request_id] - Request Id for add benificiary request.
  */
 
 /**
  * @typedef RefundAccountResponse
- * @property {boolean} [is_verified_flag]
+ * @property {boolean} [is_verified_flag] - Flag for verification of refund.
  * @property {Object} [data] - Refund account data.
  * @property {boolean} success - Success or failure flag.
- * @property {string} message - Response message
+ * @property {string} message - Response message.
  */
 
 /**
  * @typedef BankDetailsForOTP
- * @property {string} account_no
- * @property {string} bank_name
- * @property {string} ifsc_code
- * @property {string} branch_name
- * @property {string} account_holder
+ * @property {string} account_no - Account number of the holder.
+ * @property {string} bank_name - Name of the bank.
+ * @property {string} ifsc_code - IFSC code of the bank.
+ * @property {string} branch_name - Branch name of the bank.
+ * @property {string} account_holder - Name of the account holder.
  */
 
 /**
  * @typedef AddBeneficiaryDetailsOTPRequest
- * @property {string} order_id
+ * @property {string} order_id - Unique identifier for an order.
  * @property {BankDetailsForOTP} details
  */
 
 /**
  * @typedef WalletOtpRequest
- * @property {string} country_code - Country Code of the Mobile Number
- * @property {string} mobile - Wallet Moblie Number of the User
+ * @property {string} country_code - Country Code of the Mobile Number.
+ * @property {string} mobile - Wallet Mobile Number of the User.
  */
 
 /**
  * @typedef WalletOtpResponse
- * @property {string} request_id - Request id
+ * @property {string} request_id - Request Id for wallet otp request.
  * @property {string} is_verified_flag - Boolean Flag whether OTP Validation is
- *   already done or not
- * @property {boolean} [success] - Response is successful or not
+ *   already done or not.
+ * @property {boolean} [success] - Response is successful or not.
  */
 
 /**
  * @typedef SetDefaultBeneficiaryRequest
- * @property {string} order_id - Merchant Order Id
- * @property {string} beneficiary_id - Beneficiary Hash Id of the beneficiary added
+ * @property {string} order_id - Merchant Order Id.
+ * @property {string} beneficiary_id - Beneficiary Hash Id of the beneficiary added.
  */
 
 /**
  * @typedef SetDefaultBeneficiaryResponse
- * @property {boolean} is_beneficiary_set - Boolean Flag whether Beneficiary set or not
- * @property {boolean} [success] - Response is successful or not
+ * @property {boolean} is_beneficiary_set - Boolean Flag whether Beneficiary set or not.
+ * @property {boolean} [success] - Response is successful or not.
  */
 
 /**
  * @typedef GetPaymentLinkResponse
- * @property {number} status_code - HTTP status code
- * @property {string} [payment_link_current_status] - Status of payment link
- * @property {boolean} success - Successful or failure
- * @property {number} [polling_timeout] - Polling request timeout
- * @property {string} [payment_link_url] - Url of payment link
- * @property {string} [external_order_id] - Merchant order id
- * @property {string} message - Message
- * @property {string} [merchant_name] - Merchant name
- * @property {number} [amount] - Total value of order
+ * @property {number} status_code - HTTP status code.
+ * @property {string} [payment_link_current_status] - Status of payment link.
+ * @property {boolean} success - Successful or failure.
+ * @property {number} [polling_timeout] - Polling request timeout.
+ * @property {string} [payment_link_url] - Url of payment link.
+ * @property {string} [external_order_id] - Merchant order id.
+ * @property {string} message - Detailed message.
+ * @property {string} [merchant_name] - Merchant name.
+ * @property {number} [amount] - Total value of order.
  */
 
 /**
  * @typedef ErrorDescription
- * @property {string} [payment_transaction_id] - Payment transaction id
- * @property {boolean} [expired] - Payment link expired or not
- * @property {string} [merchant_order_id] - Order id
- * @property {string} [merchant_name] - Name of merchant that created payment link
- * @property {string} [msg] - Message
- * @property {boolean} [cancelled] - Payment link is cancelled or not
- * @property {number} [amount] - Amount paid
- * @property {boolean} [invalid_id] - Payment link id is valid or not
+ * @property {string} [payment_transaction_id] - Payment transaction id.
+ * @property {boolean} [expired] - Payment link expired or not.
+ * @property {string} [merchant_order_id] - Merchant Order Id.
+ * @property {string} [merchant_name] - Name of merchant that created payment link.
+ * @property {string} [msg] - Detailed message.
+ * @property {boolean} [cancelled] - Payment link is cancelled or not.
+ * @property {number} [amount] - Amount paid.
+ * @property {boolean} [invalid_id] - Payment link id is valid or not.
  */
 
 /**
  * @typedef ErrorResponse
- * @property {number} status_code - HTTP status code
+ * @property {number} status_code - HTTP status code.
  * @property {ErrorDescription} [error]
- * @property {string} message - Message
- * @property {boolean} success - Successful or failure
+ * @property {string} message - Detailed message.
+ * @property {boolean} success - Successful or failure.
  */
 
 /**
  * @typedef CreatePaymentLinkMeta
- * @property {string} cart_id
- * @property {string} checkout_mode
- * @property {string} [assign_card_id]
- * @property {string} amount
+ * @property {string} cart_id - Unique identifier for the shopping cart.
+ * @property {string} checkout_mode - Mode of checkout process (e.g., guest,
+ *   registered user).
+ * @property {string} [assign_card_id] - Identifier for the card assigned to the
+ *   transaction.
+ * @property {string} amount - Total amount for the transaction.
  */
 
 /**
  * @typedef CreatePaymentLinkRequest
- * @property {string} [description] - Merchant order id
- * @property {string} external_order_id - Merchant order id
+ * @property {string} [description] - Merchant order id.
+ * @property {string} external_order_id - Merchant order id.
  * @property {string} mobile_number - Mobile number to which the payment link is
- *   to be sent
- * @property {number} amount - Total value of order
+ *   to be sent.
+ * @property {number} amount - Total value of order.
  * @property {CreatePaymentLinkMeta} meta
- * @property {string} email - Email to which the payment link is to be sent
+ * @property {string} email - Email to which the payment link is to be sent.
  */
 
 /**
  * @typedef CreatePaymentLinkResponse
- * @property {number} status_code - HTTP status code
- * @property {boolean} success - Successful or failure
- * @property {number} [polling_timeout] - Polling request timeout
- * @property {string} [payment_link_url] - Url of payment link
- * @property {string} message - Message
- * @property {string} [payment_link_id] - Unique id of payment link
+ * @property {number} status_code - HTTP status code.
+ * @property {boolean} success - Successful or failure.
+ * @property {number} [polling_timeout] - Polling request timeout.
+ * @property {string} [payment_link_url] - Url of payment link.
+ * @property {string} message - Detailed message.
+ * @property {string} [payment_link_id] - Unique id of payment link.
  */
 
 /**
  * @typedef CancelOrResendPaymentLinkRequest
- * @property {string} payment_link_id - Unique id of payment link
+ * @property {string} payment_link_id - Unique id of payment link.
  */
 
 /**
  * @typedef ResendPaymentLinkResponse
- * @property {number} status_code - HTTP status code
- * @property {number} [polling_timeout] - Polling request timeout
- * @property {boolean} success - Successful or failure
- * @property {string} message - Message
+ * @property {number} status_code - HTTP status code.
+ * @property {number} [polling_timeout] - Polling request timeout.
+ * @property {boolean} success - Successful or failure.
+ * @property {string} message - Detailed message.
  */
 
 /**
  * @typedef CancelPaymentLinkResponse
- * @property {number} status_code - HTTP status code
- * @property {boolean} success - Successful or failure
- * @property {string} message - Message
+ * @property {number} status_code - HTTP status code.
+ * @property {boolean} success - Successful or failure.
+ * @property {string} message - Detailed message.
  */
 
 /**
  * @typedef PollingPaymentLinkResponse
- * @property {string} [status] - Status of payment link
- * @property {number} [status_code] - HTTP status code
- * @property {boolean} [success] - Successful or failure
- * @property {number} [http_status] - HTTP status code
- * @property {string} [message] - Message
- * @property {string} [order_id] - Fynd order id
- * @property {string} [redirect_url] - Url to redirect to
- * @property {string} [payment_link_id] - Payment link id
- * @property {string} [aggregator_name] - Aggregator name
- * @property {number} [amount] - Amount
+ * @property {string} [status] - Status of payment link.
+ * @property {number} [status_code] - HTTP status code.
+ * @property {boolean} [success] - Successful or failure.
+ * @property {number} [http_status] - HTTP status code.
+ * @property {string} [message] - Detailed message.
+ * @property {string} [order_id] - Fynd order id.
+ * @property {string} [redirect_url] - Url to redirect to.
+ * @property {string} [payment_link_id] - Payment link id.
+ * @property {string} [aggregator_name] - Aggregator name.
+ * @property {number} [amount] - Total amount for the transaction.
  */
 
 /**
  * @typedef PaymentMethodsMeta
- * @property {string} merchant_code - Merchant code
- * @property {string} payment_gateway - Payment gateway name
- * @property {string} payment_identifier - Payment identifier
+ * @property {string} merchant_code - Merchant code.
+ * @property {string} payment_gateway - Payment gateway name.
+ * @property {string} payment_identifier - Payment identifier.
  */
 
 /**
  * @typedef CreateOrderUserPaymentMethods
- * @property {string} name - Payment mode name
- * @property {string} mode - Payment mode
+ * @property {string} name - Payment mode name.
+ * @property {string} mode - Payment mode.
  * @property {PaymentMethodsMeta} meta
  */
 
 /**
  * @typedef CreateOrderUserRequest
- * @property {string} failure_callback_url - Failure page url
- * @property {string} currency - Currency
- * @property {string} payment_link_id - Unique id of payment link
+ * @property {string} failure_callback_url - Failure page url.
+ * @property {string} currency - Currency of the transaction.
+ * @property {string} payment_link_id - Unique id of payment link.
  * @property {CreateOrderUserPaymentMethods} payment_methods
- * @property {string} success_callback_url - Success page url
- * @property {Object} [meta] - Meta
+ * @property {string} success_callback_url - Success page url.
+ * @property {Object} [meta] - Meta details.
  */
 
 /**
  * @typedef CreateOrderUserData
- * @property {string} [method] - Method
- * @property {string} [aggregator] - Aggregator name
- * @property {string} [customer_id] - Aggregator customer id
- * @property {string} [contact] - Mobile number
- * @property {string} [merchant_order_id] - Merchant order id
- * @property {string} [order_id] - Aggregator order id
- * @property {string} [currency] - Currency
- * @property {string} [callback_url] - Callback url for aggregator
- * @property {number} [amount] - Amount
- * @property {string} [email] - Email
+ * @property {string} [method] - Method details.
+ * @property {string} [aggregator] - Aggregator name.
+ * @property {string} [customer_id] - Aggregator customer id.
+ * @property {string} [contact] - Mobile number.
+ * @property {string} [merchant_order_id] - Merchant order id.
+ * @property {string} [order_id] - Aggregator order id.
+ * @property {string} [currency] - Currency of the transaction.
+ * @property {string} [callback_url] - Callback url for aggregator.
+ * @property {number} [amount] - Total amount for the transaction.
+ * @property {string} [email] - Email.
  */
 
 /**
  * @typedef CreateOrderUserResponse
- * @property {number} status_code - HTTP status code
- * @property {boolean} success - Successful or failure
+ * @property {number} status_code - HTTP status code.
+ * @property {boolean} success - Successful or failure.
  * @property {CreateOrderUserData} [data]
- * @property {string} message - Message
- * @property {string} [order_id] - Merchant order id
- * @property {string} [callback_url] - Callback url for aggregator
- * @property {string} [payment_confirm_url] - Payment confirm url for aggregator
+ * @property {string} message - Detailed message.
+ * @property {string} [order_id] - Merchant order id.
+ * @property {string} [callback_url] - Callback url for aggregator.
+ * @property {string} [payment_confirm_url] - Payment confirm url for aggregator.
  */
 
 /**
  * @typedef BalanceDetails
- * @property {string} [formatted_value] - Formated Amount with currency symbol
- * @property {string} [currency] - Currency Code
- * @property {number} [value] - Payment amount
+ * @property {string} [formatted_value] - Formatted Amount with currency symbol.
+ * @property {string} [currency] - Currency Code.
+ * @property {number} [value] - Payment amount.
  */
 
 /**
  * @typedef CreditSummary
  * @property {BalanceDetails} [total_due_amount]
- * @property {string} [status] - Customer Credit status
+ * @property {string} [status] - Customer Credit status.
  * @property {BalanceDetails} [limit]
- * @property {string} [credit_line_id] - ID at Credit aggregator's end
+ * @property {string} [credit_line_id] - ID at Credit aggregator end.
  * @property {BalanceDetails} [amount_available]
  * @property {BalanceDetails} [due_amount]
- * @property {string} [due_date] - Due date for repayment
+ * @property {string} [due_date] - Due date for repayment.
  * @property {BalanceDetails} [balance]
- * @property {string} [status_message] - Message to customer
- * @property {string} [repayment_url] - Url for repayment
+ * @property {string} [status_message] - Message to customer.
+ * @property {string} [repayment_url] - Url for repayment.
  * @property {string} [soa_url] - Statement of accounts. Show payment history.
- * @property {boolean} [is_eligible_for_txn] - Eligiblity flag to complete transaction
- * @property {string} [merchant_customer_ref_id] - Unique aggregator customer id
- * @property {string} [buyer_status] - Status from Credit aggregator's end
- * @property {string} [activation_url] - Url for activation
+ * @property {boolean} [is_eligible_for_txn] - Eligibility flag to complete transaction.
+ * @property {string} [merchant_customer_ref_id] - Unique aggregator customer id.
+ * @property {string} [buyer_status] - Status from Credit aggregator end.
+ * @property {string} [activation_url] - Url for activation.
  */
 
 /**
@@ -852,7 +864,7 @@ const Joi = require("joi");
 
 /**
  * @typedef RedirectURL
- * @property {boolean} status - Aggregator's Operation is successful or not.
+ * @property {boolean} status - Aggregator Operation is successful or not.
  * @property {string} signup_url - URL to which the user may redirect.
  */
 
@@ -877,75 +889,79 @@ const Joi = require("joi");
 
 /**
  * @typedef KYCAddress
- * @property {string} city - City
- * @property {string} [addressline2] - Address Line 2
- * @property {string} state - State
- * @property {string} [ownership_type] - Address Owner Type
- * @property {string} pincode - Pincode
- * @property {string} [land_mark] - Land Mark
- * @property {string} addressline1 - Address Line 1
+ * @property {string} city - City of the KYC address.
+ * @property {string} [addressline2] - Second line of the address.
+ * @property {string} state - State of the KYC address.
+ * @property {string} [ownership_type] - Type of ownership for the address
+ *   (e.g., rented, owned).
+ * @property {string} pincode - Postal code of the address.
+ * @property {string} [land_mark] - Landmark near the address.
+ * @property {string} addressline1 - First line of the address.
  */
 
 /**
  * @typedef UserPersonalInfoInDetails
- * @property {string} first_name - First Name
- * @property {string} [voter_id] - Voter ID Number
- * @property {string} [gender] - Gender
- * @property {string} dob - DOB
- * @property {string} [passport] - Passport
- * @property {string} [fathers_name] - Father's Name
- * @property {string} [mothers_name] - Mother's Name
- * @property {string} [middle_name] - Middle Name
- * @property {string} [last_name] - Last Name
- * @property {string} [pan] - Pan Number
- * @property {string} [driving_license] - Driver License
- * @property {boolean} email_verified - Is Email Verified or not
+ * @property {string} first_name - First name of the individual.
+ * @property {string} [voter_id] - Voter ID number.
+ * @property {string} [gender] - Gender of the individual.
+ * @property {string} dob - Date of birth of the individual.
+ * @property {string} [passport] - Passport number.
+ * @property {string} [fathers_name] - Father's name.
+ * @property {string} [mothers_name] - Mother's name.
+ * @property {string} [middle_name] - Middle name of the individual.
+ * @property {string} [last_name] - Last name of the individual.
+ * @property {string} [pan] - Permanent Account Number (PAN).
+ * @property {string} [driving_license] - Driving license number.
+ * @property {boolean} email_verified - Indicates whether the email is verified.
  * @property {KYCAddress} address_as_per_id
- * @property {boolean} mobile_verified - Is Mobile Verified or not
- * @property {string} phone - Email
- * @property {string} [email] - Email
+ * @property {boolean} mobile_verified - Indicates whether the mobile number is verified.
+ * @property {string} phone - Phone number.
+ * @property {string} [email] - Email address.
  */
 
 /**
  * @typedef MarketplaceInfo
- * @property {string} [date_of_joining] - Date of joining
- * @property {string} name - Name of store
- * @property {string} membership_id - Merchant id
+ * @property {string} [date_of_joining] - Date of joining.
+ * @property {string} name - Name of store.
+ * @property {string} membership_id - Merchant id.
  */
 
 /**
  * @typedef BusinessDetails
- * @property {string} [business_ownership_type] - Business Ownershipp type(e.g Rented)
- * @property {string} [vintage] - Vintage
- * @property {string} [gstin] - GSTIN Number
- * @property {string} [pan] - Pan Number
- * @property {string} [entity_type] - Busineess Entity Type
- * @property {Object} [shop_and_establishment] - Shop Establishment
- * @property {string} [fssai] - FDA License Number
- * @property {string} [fda] - Driver License
- * @property {string} [business_type] - Business Type
- * @property {string} [name] - Business Name
+ * @property {string} [business_ownership_type] - Type of business ownership
+ *   (e.g., sole proprietorship, partnership).
+ * @property {string} [vintage] - Age or duration of the business.
+ * @property {string} [gstin] - Goods and Services Tax Identification Number.
+ * @property {string} [pan] - Permanent Account Number of the business.
+ * @property {string} [entity_type] - Type of legal entity (e.g., corporation, LLC).
+ * @property {Object} [shop_and_establishment] - Shop and Establishment
+ *   registration details.
+ * @property {string} [fssai] - Food Safety and Standards Authority of India
+ *   registration number.
+ * @property {string} [fda] - Food and Drug Administration registration number.
+ * @property {string} [business_type] - Type of business (e.g., retail, wholesale).
+ * @property {string} [name] - Name of the business.
  * @property {KYCAddress} [address]
  */
 
 /**
  * @typedef DeviceDetails
- * @property {string} [identification_number] - IP
- * @property {string} [identifier_type] - Static value = ip
- * @property {string} [device_model] - Device Model
- * @property {string} [device_make] - Device maker
- * @property {string} [device_type] - Device Type(E.g. Mobile)
- * @property {string} [os] - OS Name
- * @property {string} [os_version] - OS Version
+ * @property {string} [identification_number] - IP.
+ * @property {string} [identifier_type] - Static value = ip.
+ * @property {string} [device_model] - Device Model.
+ * @property {string} [device_make] - Device maker.
+ * @property {string} [device_type] - Device Type(E.g. Mobile).
+ * @property {string} [os] - OS Name.
+ * @property {string} [os_version] - OS Version.
  */
 
 /**
  * @typedef CustomerOnboardingRequest
  * @property {UserPersonalInfoInDetails} [personal_info]
- * @property {string} [mcc] - Mcc
- * @property {string} aggregator - Aggregator Name
+ * @property {string} [mcc] - Merchant Category Code, indicating the type of business.
+ * @property {string} aggregator - Payment aggregator handling the transaction.
  * @property {MarketplaceInfo} [marketplace_info]
- * @property {string} source - CallbackURL
+ * @property {string} source - Callback url.
  * @property {BusinessDetails} [business_info]
  * @property {DeviceDetails} [device]
  */
@@ -953,12 +969,12 @@ const Joi = require("joi");
 /**
  * @typedef OnboardSummary
  * @property {string} [redirect_url] - URL to which the user may redirect.
- * @property {Object} [session] - User Session
- * @property {boolean} status - Transaction status
- * @property {string} [status_remark] - Decription of status
- * @property {boolean} [is_eligible_for_txn] - Whether is eligible for transaction
- * @property {string} [merchant_customer_ref_id] - Rupifi customer ID
- * @property {string} [activation_url] - Url for activation
+ * @property {Object} [session] - User Session.
+ * @property {boolean} status - Transaction status.
+ * @property {string} [status_remark] - Description of status.
+ * @property {boolean} [is_eligible_for_txn] - Whether is eligible for transaction.
+ * @property {string} [merchant_customer_ref_id] - Rupifi customer ID.
+ * @property {string} [activation_url] - Url for activation.
  */
 
 /**
@@ -969,32 +985,32 @@ const Joi = require("joi");
 
 /**
  * @typedef OutstandingOrderDetailsResponse
- * @property {number} status_code - HTTP Status code
- * @property {Object[]} [data] - Dict containing the outstanding order details
+ * @property {number} status_code - HTTP Status code.
+ * @property {Object[]} [data] - Dict containing the outstanding order details.
  * @property {boolean} success - Response is successful or not.
- * @property {string} [message] - Message
+ * @property {string} [message] - Message.
  */
 
 /**
  * @typedef PaidOrderDetailsResponse
- * @property {number} status_code - HTTP Status code
- * @property {Object[]} [data] - Dict containing the paid order details
+ * @property {number} status_code - HTTP Status code.
+ * @property {Object[]} [data] - Dict containing the paid order details.
  * @property {boolean} success - Response is successful or not.
- * @property {string} [message] - Message
+ * @property {string} [message] - Message.
  */
 
 /**
  * @typedef DeleteRefundAccountResponse
- * @property {boolean} success - Success/Failure of the deleted beneficiary
- * @property {string} message - Message
+ * @property {boolean} success - Success/Failure of the deleted beneficiary.
+ * @property {string} message - Message.
  */
 
 /**
  * @typedef RefundOptionsDetails
- * @property {string} display_name - Refund option display name
- * @property {number} id - Refund ID. It will be unique identifier
- * @property {boolean} [is_active] - Refund option is active or not
- * @property {string} name - Refund option name
+ * @property {string} display_name - Refund option display name.
+ * @property {number} id - Refund ID. It will be unique identifier.
+ * @property {boolean} [is_active] - Refund option is active or not.
+ * @property {string} name - Refund option name.
  */
 
 /**
@@ -1006,63 +1022,63 @@ const Joi = require("joi");
  * @typedef OfflineRefundOptions
  * @property {RefundOptionsDetails} items - List of all refund options.
  * @property {string[]} payment_modes - List of all offline payment options. MOP
- *   Code value
+ *   Code value.
  */
 
 /**
  * @typedef RefundOptionResponse
  * @property {OfflineRefundOptions} offline_refund_options - Available offline
- *   refund options data
- * @property {boolean} success - Success/Failure Of response
- * @property {RefundOptions} refund_options - Available refund options data
+ *   refund options data.
+ * @property {boolean} success - Success/Failure Of response.
+ * @property {RefundOptions} refund_options - Available refund options data.
  */
 
 /**
  * @typedef SelectedRefundOptionResponse
- * @property {Object} transfer_mode - Selected transfer mode for given shipment
- * @property {string} shipment_id - Shipment ID
- * @property {string} message - Message
- * @property {boolean} success - Successful or not.
+ * @property {Object} transfer_mode - Selected transfer mode for given shipment.
+ * @property {string} shipment_id - ID of the shipment.
+ * @property {string} message - Detailed message.
+ * @property {boolean} success - Whether refund is successful or not.
  */
 
 /**
  * @typedef WalletBeneficiaryDetails
- * @property {string} beneficiary_id - Benenficiary Id
- * @property {string} modified_on - MOdification Date of Beneficiary
- * @property {string} display_name - Display Name Of Account
- * @property {number} id -
- * @property {string} subtitle - SHort Title Of Account
- * @property {string} transfer_mode - Transfer Mode Of Account
- * @property {string} [mobile] - MObile no of User
- * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
- * @property {string} created_on - Creation Date of Beneficiary
- * @property {string} address - Address of User
- * @property {string} title - Title Of Account
- * @property {string} wallet_address - Bank Name Of Account
- * @property {string} [comment] - Remarks
- * @property {string} [wallet] - Branch Name Of Account
- * @property {string} email - EMail of User
- * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
+ * @property {string} beneficiary_id - Beneficiary Id.
+ * @property {string} modified_on - MOdification Date of Beneficiary.
+ * @property {string} display_name - Display Name Of Account.
+ * @property {number} id - Id of the wallet beneficiary.
+ * @property {string} subtitle - SHort Title Of Account.
+ * @property {string} transfer_mode - Transfer Mode Of Account.
+ * @property {string} [mobile] - MObile no of User.
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not.
+ * @property {string} created_on - Creation Date of Beneficiary.
+ * @property {string} address - Address of User.
+ * @property {string} title - Title Of Account.
+ * @property {string} wallet_address - Bank Name Of Account.
+ * @property {string} [comment] - Remarks.
+ * @property {string} [wallet] - Branch Name Of Account.
+ * @property {string} email - EMail of User.
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary.
  */
 
 /**
  * @typedef UpiBeneficiaryDetails
- * @property {string} beneficiary_id - Benenficiary Id
- * @property {string} modified_on - MOdification Date of Beneficiary
- * @property {string} display_name - Display Name Of Account
- * @property {number} id -
- * @property {string} subtitle - SHort Title Of Account
- * @property {string} transfer_mode - Transfer Mode Of Account
- * @property {string} [vpa] - Branch Name Of Account
- * @property {string} [mobile] - Mobile no of User
- * @property {string} vpa_address - Bank Name Of Account
- * @property {string} created_on - Creation Date of Beneficiary
- * @property {string} address - Address of User
- * @property {string} title - Title Of Account
- * @property {string} [comment] - Remarks
- * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
- * @property {string} email - EMail of User
- * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
+ * @property {string} beneficiary_id - Beneficiary Id.
+ * @property {string} modified_on - MOdification Date of Beneficiary.
+ * @property {string} display_name - Display Name Of Account.
+ * @property {number} id - Id of the upi beneficiary.
+ * @property {string} subtitle - SHort Title Of Account.
+ * @property {string} transfer_mode - Transfer Mode Of Account.
+ * @property {string} [vpa] - Branch Name Of Account.
+ * @property {string} [mobile] - Mobile no of User.
+ * @property {string} vpa_address - Bank Name Of Account.
+ * @property {string} created_on - Creation Date of Beneficiary.
+ * @property {string} address - Address of User.
+ * @property {string} title - Title Of Account.
+ * @property {string} [comment] - Remarks.
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not.
+ * @property {string} email - EMail of User.
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary.
  */
 
 /**
@@ -1078,100 +1094,102 @@ const Joi = require("joi");
  * @property {boolean} show_beneficiary_details - Show Beneficiary details on UI or not.
  * @property {BeneficiaryRefundOptions} data - Beneficiary Data for Bank
  *   account, UPI and Wallets.
- * @property {Object} limit - Max Limit for adding bank account, UPI and wallet
+ * @property {Object} limit - Max Limit for adding bank account, UPI and wallet.
  */
 
 /**
  * @typedef ValidateValidateAddressRequest
- * @property {string} [ifsc_code] - IFSC Code
- * @property {string} [upi_vpa] - VPA Address
- * @property {string} [aggregator] - Aggregator Name
+ * @property {string} [ifsc_code] - IFSC Code.
+ * @property {string} [upi_vpa] - VPA Address.
+ * @property {string} [aggregator] - Aggregator Name.
  */
 
 /**
  * @typedef VPADetails
- * @property {boolean} is_valid - Is VPA valid or not
- * @property {string} upi_vpa - VPA address
- * @property {string} status - VPA validation message
- * @property {string} customer_name - VPA Customer Name
+ * @property {boolean} is_valid - Is VPA valid or not.
+ * @property {string} upi_vpa - VPA address.
+ * @property {string} status - VPA validation message.
+ * @property {string} customer_name - VPA Customer Name.
  */
 
 /**
  * @typedef ValidateValidateAddressResponse
  * @property {VPADetails} [upi] - UPI validation details.
- * @property {boolean} success - Successful or not.
- * @property {Object} [ifsc] - IFSC details response data
+ * @property {boolean} success - Whether address validation is successful or not.
+ * @property {Object} [ifsc] - IFSC details response data.
  */
 
 /**
  * @typedef PaymentMethodsMetaOrder
- * @property {string} merchant_code - Merchant code
- * @property {string} payment_gateway - Payment gateway name
- * @property {string} payment_identifier - Payment identifier
+ * @property {string} merchant_code - Merchant code.
+ * @property {string} payment_gateway - Payment gateway name.
+ * @property {string} payment_identifier - Payment identifier.
  */
 
 /**
  * @typedef PaymentOrderMethods
- * @property {number} amount - Amount to be collected
- * @property {string} [payment] - Payment type i.e. Required / Blocked
- * @property {string} mode - Payment mode
+ * @property {number} amount - Amount to be collected.
+ * @property {string} [payment] - Payment type i.e. Required / Blocked.
+ * @property {string} mode - Payment mode.
  * @property {PaymentMethodsMetaOrder} meta
- * @property {string} name - Payment mode name
+ * @property {string} name - Payment mode name.
  */
 
 /**
  * @typedef PaymentOrderRequest
- * @property {PaymentOrderMethods[]} [payment_methods]
- * @property {string} order_id - Order id
- * @property {string} [shipment_id] - Shipment_id
+ * @property {PaymentOrderMethods[]} [payment_methods] - All payment methods for order.
+ * @property {string} order_id - Order id.
+ * @property {string} [shipment_id] - Shipment_id.
  */
 
 /**
  * @typedef PaymentOrderData
- * @property {number} [amount] - Amount
- * @property {string} [aggregator] - Aggregator name
- * @property {string} [callback_url] - Callback url for aggregator
- * @property {string} [order_id] - Aggregator order id
- * @property {string} [customer_id] - Aggregator customer id
- * @property {string} [merchant_order_id] - Merchant order id
- * @property {string} [currency] - Currency
- * @property {string} [email] - Email
- * @property {string} [contact] - Mobile number
- * @property {string} [method] - Method
+ * @property {number} [amount] - Amount.
+ * @property {string} [aggregator] - Aggregator name.
+ * @property {string} [callback_url] - Callback url for aggregator.
+ * @property {string} [order_id] - Aggregator order id.
+ * @property {string} [customer_id] - Aggregator customer id.
+ * @property {string} [merchant_order_id] - Merchant order id.
+ * @property {string} [currency] - Currency used for the order.
+ * @property {string} [email] - Email address of the customer.
+ * @property {string} [contact] - Contact number of the customer.
+ * @property {string} [method] - Method of payment or delivery for the order.
  */
 
 /**
  * @typedef PaymentOrderResponse
- * @property {string} [payment_confirm_url] - Payment confirm url for aggregator
- * @property {string} [callback_url] - Callback url for aggregator
- * @property {string} [order_id] - Merchant order id
- * @property {boolean} [success] - Successful or failure
- * @property {number} status_code - HTTP status code
+ * @property {string} [payment_confirm_url] - Payment confirm url for aggregator.
+ * @property {string} [callback_url] - Callback url for aggregator.
+ * @property {string} [order_id] - Merchant order id.
+ * @property {boolean} [success] - Successful or failure.
+ * @property {number} status_code - HTTP status code.
  * @property {PaymentOrderData} [data]
- * @property {string} message - Message
+ * @property {string} message - Detailed message.
  */
 
 /**
  * @typedef ShipmentRefundRequest
- * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
- * @property {string} order_id - Merchant Order Id
- * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added
- * @property {string} [beneficiary_id] - Beneficiary Hash Id of the beneficiary added
+ * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id.
+ * @property {string} order_id - Merchant Order Id.
+ * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added.
+ * @property {string} [beneficiary_id] - Beneficiary Hash Id of the beneficiary added.
  */
 
 /**
  * @typedef ShipmentRefundDetail
- * @property {string} shipment_id - Shipment ID
- * @property {string} order_id - Order ID
- * @property {string} transfer_mode - TransferMode
- * @property {string} beneficiary_id - Beneficiary ID
+ * @property {string} shipment_id - ID of the shipment.
+ * @property {string} order_id - ID of an order.
+ * @property {string} transfer_mode - Mode of transfer for the shipment refund
+ *   (e.g., bank transfer, digital wallet).
+ * @property {string} beneficiary_id - Unique identifier for the beneficiary
+ *   receiving the refund.
  */
 
 /**
  * @typedef ShipmentRefundResponse
  * @property {ShipmentRefundDetail} data - Selected Shipment refund option details.
  * @property {boolean} success - Successful or not.
- * @property {string} message - Message
+ * @property {string} message - Detailed message.
  */
 
 class PaymentApplicationModel {
@@ -1324,7 +1342,7 @@ class PaymentApplicationModel {
   /** @returns {ValidateCustomerResponse} */
   static ValidateCustomerResponse() {
     return Joi.object({
-      data: Joi.any().required(),
+      data: Joi.any(),
       success: Joi.boolean().required(),
       message: Joi.string().allow("").required(),
     });
@@ -1697,8 +1715,9 @@ class PaymentApplicationModel {
   /** @returns {LinkStatus} */
   static LinkStatus() {
     return Joi.object({
-      status: Joi.boolean().required(),
+      status: Joi.string().allow("").required(),
       message: Joi.string().allow("").required(),
+      is_payment_done: Joi.boolean(),
     });
   }
 

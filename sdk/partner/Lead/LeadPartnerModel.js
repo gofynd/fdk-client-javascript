@@ -9,54 +9,19 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
  * @typedef TicketHistoryList
  * @property {TicketHistory[]} [items] - List of ticket history
  * @property {Page} [page]
- */
-
-/**
- * @typedef CustomFormList
- * @property {CustomForm[]} [items] - List of forms
- * @property {Page} [page]
- */
-
-/**
- * @typedef CreateCustomFormPayload
- * @property {string} slug - Slug for the form
- * @property {string} title - Title for the form
- * @property {Object[]} inputs - List of all the form components
- * @property {string} [description] - Description of the form
- * @property {string} [header_image] - Header image that is to be shown for the form
- * @property {PriorityEnum} priority
- * @property {boolean} [should_notify] - Indicates if staff should be notified
- *   when a response is received
- * @property {string} [success_message] - Success message that will be shown on submission
- * @property {PollForAssignment} [poll_for_assignment]
- */
-
-/**
- * @typedef EditCustomFormPayload
- * @property {string} title - Title for the form
- * @property {Object[]} inputs - List of all the form components
- * @property {string} [description] - Description of the form
- * @property {PriorityEnum} priority
- * @property {string} [header_image] - Header image that is to be shown for the form
- * @property {boolean} [should_notify] - Indicates if staff should be notified
- *   when a response is received
- * @property {boolean} [login_required] - Denotes if login is required to make a
- *   form response submission
- * @property {string} [success_message] - Success message that will be shown on submission
- * @property {PollForAssignment} [poll_for_assignment]
  */
 
 /**
@@ -75,16 +40,6 @@ const Joi = require("joi");
 /**
  * @typedef AgentChangePayload
  * @property {string} agent_id - Agent's unique ID
- */
-
-/**
- * @typedef CreateVideoRoomResponse
- * @property {string} unique_name - Video Room's unique name
- */
-
-/**
- * @typedef CloseVideoRoomResponse
- * @property {boolean} success - Denotes if operation was successfully
  */
 
 /**
@@ -110,18 +65,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateVideoRoomPayload
- * @property {string} unique_name - Ticket id
- * @property {NotifyUser[]} [notify] - List of people to be notified
- */
-
-/**
- * @typedef NotifyUser
- * @property {string} country_code - Country code
- * @property {string} phone_number - Phone number
- */
-
-/**
  * @typedef Filter
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
@@ -133,65 +76,6 @@ const Joi = require("joi");
  * @typedef TicketHistoryPayload
  * @property {Object} value - Details of history event
  * @property {HistoryTypeEnum} type
- */
-
-/**
- * @typedef GetTokenForVideoRoomResponse
- * @property {string} access_token - Access token to be used for video room
- */
-
-/**
- * @typedef GetParticipantsInsideVideoRoomResponse
- * @property {Participant[]} participants - List of participants of the video room
- */
-
-/**
- * @typedef Participant
- * @property {UserSchema} [user]
- * @property {string} [identity] - Unique identifier of participant
- * @property {string} [status] - Status of participant
- */
-
-/**
- * @typedef UserSchema
- * @property {string} [first_name] - First name
- * @property {string} [last_name] - Last name
- * @property {PhoneNumber[]} [phone_numbers] - List of phone numbers
- * @property {Email[]} [emails] - List of email addresses
- * @property {string} [gender] - Gender of user
- * @property {boolean} [active] - Is account active
- * @property {string} [profile_pic_url] - URL for profile pic
- * @property {string} [username] - Username of user
- * @property {string} [account_type] - Type of account
- * @property {string} [uid] - Unique identifier of user
- * @property {Debug} [debug]
- * @property {boolean} [has_old_password_hash] - Denotes if user has old password hash
- * @property {string} [_id] - Unique identifier of user
- * @property {string} [created_at] - Time of user creation
- * @property {string} [updated_at] - Last time of user details update
- */
-
-/**
- * @typedef PhoneNumber
- * @property {boolean} [active] - Denotes if the phone number is active
- * @property {boolean} [primary] - Denotes it's the primary phone number for the account
- * @property {boolean} [verified] - Denotes it's a verified phone number
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- */
-
-/**
- * @typedef Email
- * @property {boolean} [primary] - Denotes it's the primary email for the account
- * @property {boolean} [verified] - Denotes it's a verified email
- * @property {string} [email] - Email Address
- * @property {boolean} [active] - Denotes if the email is active
- */
-
-/**
- * @typedef Debug
- * @property {string} [source] - Source of user
- * @property {string} [platform] - Platform of user
  */
 
 /**
@@ -237,57 +121,15 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SLA
+ * @property {string} resolution_time
+ */
+
+/**
  * @typedef Status
  * @property {string} key - Key for status
  * @property {string} display - Display text for status
  * @property {string} color - Color for status
- */
-
-/**
- * @typedef TicketFeedbackList
- * @property {TicketFeedback[]} [items] - List of all ticket feedback for the ticket
- */
-
-/**
- * @typedef TicketFeedbackPayload
- * @property {Object} [form_response] - Key-value pairs of all the form fields
- *   and their response
- */
-
-/**
- * @typedef SubmitButton
- * @property {string} title - Title for submit button
- * @property {string} title_color - Title color submit button
- * @property {string} background_color - Color for submit button
- */
-
-/**
- * @typedef PollForAssignment
- * @property {number} duration - Duration for polling of staff
- * @property {string} message - Message for polling
- * @property {string} success_message - Message for successful polling
- * @property {string} failure_message - Message if polling failed
- */
-
-/**
- * @typedef CustomForm
- * @property {string} application_id - Application ID for form
- * @property {string} slug - Slug for the form, which is to be used for accessing the form
- * @property {string} [header_image] - Form header image that will be shown to the user
- * @property {string} title - Form title that will be shown to the user
- * @property {string} [description] - Form description that will be shown to the user
- * @property {Priority} priority
- * @property {boolean} login_required - Denotes if login is required to make a
- *   form response submission
- * @property {boolean} should_notify - Denotes if new response submission for
- *   the form should be notified to the assignees
- * @property {string} [success_message] - Message that is to be shown on
- *   succesfull form response submission
- * @property {SubmitButton} [submit_button]
- * @property {Object[]} inputs - List of all the form fields
- * @property {CreatedOn} [created_on]
- * @property {PollForAssignment} [poll_for_assignment]
- * @property {string} _id - Unique identifier for the form
  */
 
 /**
@@ -304,25 +146,6 @@ const Joi = require("joi");
  * @property {TicketCategory} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
- */
-
-/**
- * @typedef FeedbackResponseItem
- * @property {string} display - Question/Title of the form field
- * @property {string} key - Key of the form field
- * @property {string} value - User response value for the form field
- */
-
-/**
- * @typedef TicketFeedback
- * @property {string} _id - Unique identifier for the feedback
- * @property {string} ticket_id - Readable ticket number
- * @property {string} partner_id - Partner id for which ticket was raised
- * @property {FeedbackResponseItem[]} response
- * @property {string} [category] - Category of the ticket
- * @property {Object} [user] - User who submitted the feedback
- * @property {string} [updated_at] - Time when the feedback was last updated
- * @property {string} [created_at] - Time when the feedback was created
  */
 
 /**
@@ -349,6 +172,7 @@ const Joi = require("joi");
  * @property {TicketSourceEnum} source
  * @property {Status} status
  * @property {Priority} priority
+ * @property {SLA} [sla]
  * @property {Object} [created_by] - User details of ticket creator
  * @property {Object} [assigned_to] - Details of support staff to whom ticket is assigned
  * @property {string[]} [tags] - Tags relevant to ticket
@@ -410,44 +234,6 @@ class LeadPartnerModel {
     });
   }
 
-  /** @returns {CustomFormList} */
-  static CustomFormList() {
-    return Joi.object({
-      items: Joi.array().items(LeadPartnerModel.CustomForm()),
-      page: LeadPartnerModel.Page(),
-    });
-  }
-
-  /** @returns {CreateCustomFormPayload} */
-  static CreateCustomFormPayload() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-      title: Joi.string().allow("").required(),
-      inputs: Joi.array().items(Joi.any()).required(),
-      description: Joi.string().allow(""),
-      header_image: Joi.string().allow(""),
-      priority: LeadPartnerModel.PriorityEnum().required(),
-      should_notify: Joi.boolean(),
-      success_message: Joi.string().allow(""),
-      poll_for_assignment: LeadPartnerModel.PollForAssignment(),
-    });
-  }
-
-  /** @returns {EditCustomFormPayload} */
-  static EditCustomFormPayload() {
-    return Joi.object({
-      title: Joi.string().allow("").required(),
-      inputs: Joi.array().items(Joi.any()).required(),
-      description: Joi.string().allow(""),
-      priority: LeadPartnerModel.PriorityEnum().required(),
-      header_image: Joi.string().allow(""),
-      should_notify: Joi.boolean(),
-      login_required: Joi.boolean(),
-      success_message: Joi.string().allow(""),
-      poll_for_assignment: LeadPartnerModel.PollForAssignment(),
-    });
-  }
-
   /** @returns {EditTicketPayload} */
   static EditTicketPayload() {
     return Joi.object({
@@ -466,20 +252,6 @@ class LeadPartnerModel {
   static AgentChangePayload() {
     return Joi.object({
       agent_id: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CreateVideoRoomResponse} */
-  static CreateVideoRoomResponse() {
-    return Joi.object({
-      unique_name: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CloseVideoRoomResponse} */
-  static CloseVideoRoomResponse() {
-    return Joi.object({
-      success: Joi.boolean().required(),
     });
   }
 
@@ -513,22 +285,6 @@ class LeadPartnerModel {
     });
   }
 
-  /** @returns {CreateVideoRoomPayload} */
-  static CreateVideoRoomPayload() {
-    return Joi.object({
-      unique_name: Joi.string().allow("").required(),
-      notify: Joi.array().items(LeadPartnerModel.NotifyUser()),
-    });
-  }
-
-  /** @returns {NotifyUser} */
-  static NotifyUser() {
-    return Joi.object({
-      country_code: Joi.string().allow("").required(),
-      phone_number: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {Filter} */
   static Filter() {
     return Joi.object({
@@ -544,81 +300,6 @@ class LeadPartnerModel {
     return Joi.object({
       value: Joi.any().required(),
       type: LeadPartnerModel.HistoryTypeEnum().required(),
-    });
-  }
-
-  /** @returns {GetTokenForVideoRoomResponse} */
-  static GetTokenForVideoRoomResponse() {
-    return Joi.object({
-      access_token: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {GetParticipantsInsideVideoRoomResponse} */
-  static GetParticipantsInsideVideoRoomResponse() {
-    return Joi.object({
-      participants: Joi.array()
-        .items(LeadPartnerModel.Participant())
-        .required(),
-    });
-  }
-
-  /** @returns {Participant} */
-  static Participant() {
-    return Joi.object({
-      user: LeadPartnerModel.UserSchema(),
-      identity: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UserSchema} */
-  static UserSchema() {
-    return Joi.object({
-      first_name: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-      phone_numbers: Joi.array().items(LeadPartnerModel.PhoneNumber()),
-      emails: Joi.array().items(LeadPartnerModel.Email()),
-      gender: Joi.string().allow(""),
-      active: Joi.boolean(),
-      profile_pic_url: Joi.string().allow(""),
-      username: Joi.string().allow(""),
-      account_type: Joi.string().allow(""),
-      uid: Joi.string().allow(""),
-      debug: LeadPartnerModel.Debug(),
-      has_old_password_hash: Joi.boolean(),
-      _id: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PhoneNumber} */
-  static PhoneNumber() {
-    return Joi.object({
-      active: Joi.boolean(),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-      phone: Joi.string().allow(""),
-      country_code: Joi.number(),
-    });
-  }
-
-  /** @returns {Email} */
-  static Email() {
-    return Joi.object({
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-      email: Joi.string().allow(""),
-      active: Joi.boolean(),
-    });
-  }
-
-  /** @returns {Debug} */
-  static Debug() {
-    return Joi.object({
-      source: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
     });
   }
 
@@ -676,65 +357,19 @@ class LeadPartnerModel {
     });
   }
 
+  /** @returns {SLA} */
+  static SLA() {
+    return Joi.object({
+      resolution_time: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {Status} */
   static Status() {
     return Joi.object({
       key: Joi.string().allow("").required(),
       display: Joi.string().allow("").required(),
       color: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {TicketFeedbackList} */
-  static TicketFeedbackList() {
-    return Joi.object({
-      items: Joi.array().items(LeadPartnerModel.TicketFeedback()),
-    });
-  }
-
-  /** @returns {TicketFeedbackPayload} */
-  static TicketFeedbackPayload() {
-    return Joi.object({
-      form_response: Joi.any(),
-    });
-  }
-
-  /** @returns {SubmitButton} */
-  static SubmitButton() {
-    return Joi.object({
-      title: Joi.string().allow("").required(),
-      title_color: Joi.string().allow("").required(),
-      background_color: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {PollForAssignment} */
-  static PollForAssignment() {
-    return Joi.object({
-      duration: Joi.number().required(),
-      message: Joi.string().allow("").required(),
-      success_message: Joi.string().allow("").required(),
-      failure_message: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CustomForm} */
-  static CustomForm() {
-    return Joi.object({
-      application_id: Joi.string().allow("").required(),
-      slug: Joi.string().allow("").required(),
-      header_image: Joi.string().allow(""),
-      title: Joi.string().allow("").required(),
-      description: Joi.string().allow(""),
-      priority: LeadPartnerModel.Priority().required(),
-      login_required: Joi.boolean().required(),
-      should_notify: Joi.boolean().required(),
-      success_message: Joi.string().allow(""),
-      submit_button: LeadPartnerModel.SubmitButton(),
-      inputs: Joi.array().items(Joi.any()).required(),
-      created_on: LeadPartnerModel.CreatedOn(),
-      poll_for_assignment: LeadPartnerModel.PollForAssignment(),
-      _id: Joi.string().allow("").required(),
     });
   }
 
@@ -756,31 +391,6 @@ class LeadPartnerModel {
       group_id: Joi.number(),
       feedback_form: LeadPartnerModel.FeedbackForm(),
     }).id("TicketCategory");
-  }
-
-  /** @returns {FeedbackResponseItem} */
-  static FeedbackResponseItem() {
-    return Joi.object({
-      display: Joi.string().allow("").required(),
-      key: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {TicketFeedback} */
-  static TicketFeedback() {
-    return Joi.object({
-      _id: Joi.string().allow("").required(),
-      ticket_id: Joi.string().allow("").required(),
-      partner_id: Joi.string().allow("").required(),
-      response: Joi.array()
-        .items(LeadPartnerModel.FeedbackResponseItem())
-        .required(),
-      category: Joi.string().allow(""),
-      user: Joi.any(),
-      updated_at: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-    });
   }
 
   /** @returns {TicketHistory} */
@@ -809,6 +419,7 @@ class LeadPartnerModel {
       source: LeadPartnerModel.TicketSourceEnum().required(),
       status: LeadPartnerModel.Status().required(),
       priority: LeadPartnerModel.Priority().required(),
+      sla: LeadPartnerModel.SLA(),
       created_by: Joi.any(),
       assigned_to: Joi.any(),
       tags: Joi.array().items(Joi.string().allow("")),

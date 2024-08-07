@@ -59,20 +59,20 @@ export = WebhookPublicModel;
  */
 /**
  * @typedef TransformEventRequest
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {string} [event_version]
- * @property {EventSchema} [event]
+ * @property {string} event_name
+ * @property {string} event_type
+ * @property {string} event_category
+ * @property {string} event_version
+ * @property {EventSchema} event
  */
 /**
  * @typedef ValidateSchemaRequest
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {string} [event_version]
- * @property {EventSchema} [event]
- * @property {Object} [event_schema]
+ * @property {string} event_name
+ * @property {string} event_type
+ * @property {string} event_category
+ * @property {string} event_version
+ * @property {EventSchema} event
+ * @property {Object} event_schema
  */
 /**
  * @typedef ValidateSchemaResponse
@@ -165,21 +165,21 @@ type TransformEventAssociation = {
 /** @returns {TransformEventRequest} */
 declare function TransformEventRequest(): TransformEventRequest;
 type TransformEventRequest = {
-    event_name?: string;
-    event_type?: string;
-    event_category?: string;
-    event_version?: string;
-    event?: EventSchema;
+    event_name: string;
+    event_type: string;
+    event_category: string;
+    event_version: string;
+    event: EventSchema;
 };
 /** @returns {ValidateSchemaRequest} */
 declare function ValidateSchemaRequest(): ValidateSchemaRequest;
 type ValidateSchemaRequest = {
-    event_name?: string;
-    event_type?: string;
-    event_category?: string;
-    event_version?: string;
-    event?: EventSchema;
-    event_schema?: any;
+    event_name: string;
+    event_type: string;
+    event_category: string;
+    event_version: string;
+    event: EventSchema;
+    event_schema: any;
 };
 /** @returns {ValidateSchemaResponse} */
 declare function ValidateSchemaResponse(): ValidateSchemaResponse;

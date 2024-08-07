@@ -1,9 +1,5 @@
 export = LeadPlatformApplicationValidator;
 /**
- * @typedef CloseVideoRoomParam
- * @property {string} uniqueName - Unique name of Video Room
- */
-/**
  * @typedef CreateCustomFormParam
  * @property {LeadPlatformModel.CreateCustomFormPayload} body
  */
@@ -49,21 +45,7 @@ export = LeadPlatformApplicationValidator;
  * @property {LeadPlatformModel.PriorityEnum} [priority] - Filter tickets on priority
  * @property {string} [category] - Filter tickets on category
  */
-/**
- * @typedef GetNewTokenForVideoRoomParam
- * @property {string} uniqueName - Unique name of video room
- */
-/**
- * @typedef GetNewVideoParticipantsParam
- * @property {string} uniqueName - Unique name of Video Room
- */
-/**
- * @typedef OpenVideoRoomParam
- * @property {LeadPlatformModel.CreateVideoRoomPayload} body
- */
 declare class LeadPlatformApplicationValidator {
-    /** @returns {CloseVideoRoomParam} */
-    static closeVideoRoom(): CloseVideoRoomParam;
     /** @returns {CreateCustomFormParam} */
     static createCustomForm(): CreateCustomFormParam;
     /** @returns {CreateNewHistoryParam} */
@@ -84,22 +66,10 @@ declare class LeadPlatformApplicationValidator {
     static getNewTicketHistory(): GetNewTicketHistoryParam;
     /** @returns {GetNewTicketsParam} */
     static getNewTickets(): GetNewTicketsParam;
-    /** @returns {GetNewTokenForVideoRoomParam} */
-    static getNewTokenForVideoRoom(): GetNewTokenForVideoRoomParam;
-    /** @returns {GetNewVideoParticipantsParam} */
-    static getNewVideoParticipants(): GetNewVideoParticipantsParam;
-    /** @returns {OpenVideoRoomParam} */
-    static openVideoRoom(): OpenVideoRoomParam;
 }
 declare namespace LeadPlatformApplicationValidator {
-    export { CloseVideoRoomParam, CreateCustomFormParam, CreateNewHistoryParam, DeleteCustomFormParam, EditCustomFormParam, EditNewTicketParam, GetCustomFormParam, GetCustomFormsParam, GetNewTicketParam, GetNewTicketHistoryParam, GetNewTicketsParam, GetNewTokenForVideoRoomParam, GetNewVideoParticipantsParam, OpenVideoRoomParam };
+    export { CreateCustomFormParam, CreateNewHistoryParam, DeleteCustomFormParam, EditCustomFormParam, EditNewTicketParam, GetCustomFormParam, GetCustomFormsParam, GetNewTicketParam, GetNewTicketHistoryParam, GetNewTicketsParam };
 }
-type CloseVideoRoomParam = {
-    /**
-     * - Unique name of Video Room
-     */
-    uniqueName: string;
-};
 type CreateCustomFormParam = {
     body: LeadPlatformModel.CreateCustomFormPayload;
 };
@@ -174,21 +144,6 @@ type GetNewTicketsParam = {
      * - Filter tickets on category
      */
     category?: string;
-};
-type GetNewTokenForVideoRoomParam = {
-    /**
-     * - Unique name of video room
-     */
-    uniqueName: string;
-};
-type GetNewVideoParticipantsParam = {
-    /**
-     * - Unique name of Video Room
-     */
-    uniqueName: string;
-};
-type OpenVideoRoomParam = {
-    body: LeadPlatformModel.CreateVideoRoomPayload;
 };
 type GetCustomFormsParam = any;
 import LeadPlatformModel = require("./LeadPlatformModel");

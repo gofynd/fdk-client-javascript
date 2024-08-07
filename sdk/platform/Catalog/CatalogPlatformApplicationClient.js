@@ -1829,6 +1829,11 @@ class Catalog {
       timestamp,
       pageSize,
       pageId,
+      qtyGt,
+      qtyLt,
+      qtyType,
+      fromDate,
+      toDate,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1844,6 +1849,11 @@ class Catalog {
         timestamp,
         pageSize,
         pageId,
+        qtyGt,
+        qtyLt,
+        qtyType,
+        fromDate,
+        toDate,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1863,6 +1873,11 @@ class Catalog {
         timestamp,
         pageSize,
         pageId,
+        qtyGt,
+        qtyLt,
+        qtyType,
+        fromDate,
+        toDate,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1881,6 +1896,11 @@ class Catalog {
     query_params["timestamp"] = timestamp;
     query_params["page_size"] = pageSize;
     query_params["page_id"] = pageId;
+    query_params["qty_gt"] = qtyGt;
+    query_params["qty_lt"] = qtyLt;
+    query_params["qty_type"] = qtyType;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
 
     const response = await PlatformAPIClient.execute(
       this.config,

@@ -39,13 +39,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
@@ -88,6 +88,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CourierAccountRequestBody
+ * @property {string} extension_id
+ * @property {string} [account_id]
+ * @property {string} scheme_id
+ * @property {boolean} is_self_ship
+ * @property {string} stage
+ * @property {boolean} is_own_account
+ */
+
+/**
  * @typedef CourierPartnerAccountFailureResponse
  * @property {boolean} success
  * @property {ErrorResponse[]} error
@@ -113,6 +123,20 @@ const Joi = require("joi");
  * @typedef CourierPartnerSchemeModel
  * @property {string} extension_id
  * @property {string} scheme_id
+ * @property {string} name
+ * @property {ArithmeticOperations} weight
+ * @property {string} transport_type
+ * @property {string} region
+ * @property {string} delivery_type
+ * @property {string[]} payment_mode
+ * @property {string} stage
+ * @property {CourierPartnerSchemeFeatures} feature
+ */
+
+/**
+ * @typedef CourierPartnerSchemeRequestModel
+ * @property {string} extension_id
+ * @property {string} [scheme_id]
  * @property {string} name
  * @property {ArithmeticOperations} weight
  * @property {string} transport_type
@@ -307,6 +331,18 @@ class LogisticsPartnerModel {
     });
   }
 
+  /** @returns {CourierAccountRequestBody} */
+  static CourierAccountRequestBody() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      account_id: Joi.string().allow(""),
+      scheme_id: Joi.string().allow("").required(),
+      is_self_ship: Joi.boolean().required(),
+      stage: Joi.string().allow("").required(),
+      is_own_account: Joi.boolean().required(),
+    });
+  }
+
   /** @returns {CourierPartnerAccountFailureResponse} */
   static CourierPartnerAccountFailureResponse() {
     return Joi.object({
@@ -355,6 +391,22 @@ class LogisticsPartnerModel {
     });
   }
 
+  /** @returns {CourierPartnerSchemeRequestModel} */
+  static CourierPartnerSchemeRequestModel() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
+      weight: LogisticsPartnerModel.ArithmeticOperations().required(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures().required(),
+    });
+  }
+
   /** @returns {CourierPartnerSchemeFeatures} */
   static CourierPartnerSchemeFeatures() {
     return Joi.object({
@@ -382,10 +434,10 @@ class LogisticsPartnerModel {
   /** @returns {ArithmeticOperations} */
   static ArithmeticOperations() {
     return Joi.object({
-      lt: Joi.number(),
-      gt: Joi.number(),
-      lte: Joi.number(),
-      gte: Joi.number(),
+      lt: Joi.number().allow(null),
+      gt: Joi.number().allow(null),
+      lte: Joi.number().allow(null),
+      gte: Joi.number().allow(null),
     });
   }
 

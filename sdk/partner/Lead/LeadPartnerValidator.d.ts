@@ -6,7 +6,5 @@ declare class LeadValidator {
     static editTicket(): any;
     static createHistory(): any;
     static getTicketHistory(): any;
-    static getTokenForVideoRoom(): any;
-    static getVideoParticipants(): any;
     static getGeneralConfig(): any;
 }
