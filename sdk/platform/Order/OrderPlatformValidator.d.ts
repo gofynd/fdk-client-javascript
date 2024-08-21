@@ -1,5 +1,9 @@
 export = OrderPlatformValidator;
 /**
+ * @typedef AddStateManagerConfigParam
+ * @property {OrderPlatformModel.TransitionConfigPayload} body
+ */
+/**
  * @typedef AttachOrderUserParam
  * @property {OrderPlatformModel.AttachOrderUser} body
  */
@@ -283,6 +287,12 @@ export = OrderPlatformValidator;
  * @property {string} [customerId]
  * @property {string} [orderType]
  */
+/**
+ * @typedef GetStateManagerConfigParam
+ * @property {string} [appId] - The unique identifier of the application.
+ * @property {string} [orderingChannel] - The channel through which orders are placed.
+ * @property {string} [entity] - The entity for which the configuration is applied.
+ */
 /** @typedef GetStateTransitionMapParam */
 /**
  * @typedef GetTemplateParam
@@ -373,6 +383,8 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.VerifyMobileOTP} body
  */
 declare class OrderPlatformValidator {
+    /** @returns {AddStateManagerConfigParam} */
+    static addStateManagerConfig(): AddStateManagerConfigParam;
     /** @returns {AttachOrderUserParam} */
     static attachOrderUser(): AttachOrderUserParam;
     /** @returns {BulkListingParam} */
@@ -447,6 +459,8 @@ declare class OrderPlatformValidator {
     static getShipmentReasons(): GetShipmentReasonsParam;
     /** @returns {GetShipmentsParam} */
     static getShipments(): GetShipmentsParam;
+    /** @returns {GetStateManagerConfigParam} */
+    static getStateManagerConfig(): GetStateManagerConfigParam;
     /** @returns {GetStateTransitionMapParam} */
     static getStateTransitionMap(): any;
     /** @returns {GetTemplateParam} */
@@ -487,8 +501,11 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestsParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestsParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
+type AddStateManagerConfigParam = {
+    body: OrderPlatformModel.TransitionConfigPayload;
+};
 type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
 };
@@ -1053,6 +1070,20 @@ type GetShipmentsParam = {
     tags?: string;
     customerId?: string;
     orderType?: string;
+};
+type GetStateManagerConfigParam = {
+    /**
+     * - The unique identifier of the application.
+     */
+    appId?: string;
+    /**
+     * - The channel through which orders are placed.
+     */
+    orderingChannel?: string;
+    /**
+     * - The entity for which the configuration is applied.
+     */
+    entity?: string;
 };
 type GetTemplateParam = {
     templateName: string;

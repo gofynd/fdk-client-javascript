@@ -2,21 +2,23 @@ const Joi = require("joi");
 
 /**
  * @typedef ApplicationLegal
- * @property {string} [application]
- * @property {string} [tnc]
- * @property {string} [policy]
- * @property {string} [shipping]
- * @property {string} [returns]
- * @property {ApplicationLegalFAQ[]} [faq]
- * @property {string} [_id]
- * @property {string} [updated_at]
- * @property {string} [created_at]
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {string} [tnc] - Content for Terms and Conditions page on storefront.
+ * @property {string} [policy] - Content for Privacy Policy page on storefront.
+ * @property {string} [shipping] - Content for Shipping Policy page on storefront.
+ * @property {string} [returns] - Content for Return policy page on storefront.
+ * @property {ApplicationLegalFAQ[]} [faq] - FAQs of an application.
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [updated_at] - Timestamp which represent when was the last
+ *   time when data was updated.
+ * @property {string} [created_at] - Timestamp which represent the time when
+ *   data was created.
  */
 
 /**
  * @typedef ApplicationLegalFAQ
- * @property {string} [question]
- * @property {string} [answer]
+ * @property {string} [question] - The contents of a question of a FAQ.
+ * @property {string} [answer] - The contents of a answer of a FAQ.
  */
 
 /**
@@ -26,168 +28,189 @@ const Joi = require("joi");
 
 /**
  * @typedef SeoSchema
- * @property {string} [app]
- * @property {string} [_id]
- * @property {string} [robots_txt]
- * @property {boolean} [sitemap_enabled]
- * @property {string} [additonal_sitemap]
- * @property {boolean} [cannonical_enabled]
- * @property {CustomMetaTag[]} [custom_meta_tags]
+ * @property {string} [app] - Application ID - Identifier for a Sales channel.
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [robots_txt] - Contents of robots.txt file of a sales channel.
+ * @property {boolean} [sitemap_enabled] - Whether sitemaps is enabled or not
+ *   for a sales channel's website.
+ * @property {string} [additonal_sitemap] - Contents of additional sitemap.
+ * @property {boolean} [cannonical_enabled] - Whether canonical tags is enabled
+ *   or not for a sales channel's website.
+ * @property {CustomMetaTag[]} [custom_meta_tags] - Custom meta tags for a sales
+ *   channel website.
  * @property {Detail} [details]
- * @property {string} [created_at]
- * @property {string} [updated_at]
+ * @property {string} [created_at] - Timestamp which represent the time when
+ *   data was created.
+ * @property {string} [updated_at] - Timestamp which represent when was the last
+ *   time when data was updated.
  */
 
 /**
  * @typedef CustomMetaTag
- * @property {string} [name]
- * @property {string} [content]
- * @property {string} [_id]
+ * @property {string} [name] - Name of the custom meta tag group.
+ * @property {string} [content] - Contents of the custom meta tag group.
+ * @property {string} [_id] - Unique identifier of an entry.
  */
 
 /**
  * @typedef Detail
- * @property {string} [title]
- * @property {string} [description]
- * @property {string} [image_url]
+ * @property {string} [title] - Contents of the og:title of a sales channel website.
+ * @property {string} [description] - Contents of the og:description of a sales
+ *   channel website.
+ * @property {string} [image_url] - URL of the og:image of a sales channel website.
  */
 
 /**
  * @typedef SeoSchemaComponent
- * @property {SEOSchemaMarkupTemplate[]} [items]
+ * @property {SEOSchemaMarkupTemplate[]} [items] - List of SEO Markup Schemas
+ *   for a sales channel website.
  */
 
 /**
  * @typedef SEOSchemaMarkupTemplate
- * @property {string} [id]
- * @property {string} [title]
- * @property {string} [page_type]
- * @property {string} [description]
- * @property {string} [schema]
- * @property {boolean} [active]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- * @property {string} [application]
+ * @property {string} [id] - Unique identifier for an entry.
+ * @property {string} [title] - Title of the SEO Schema template.
+ * @property {string} [page_type] - Page Type for the SEO Schema Template where
+ *   it'll be rendered.
+ * @property {string} [description] - Description of the SEO Schema Template.
+ * @property {string} [schema] - Contents of the SEO Schema template in nunjucks format.
+ * @property {boolean} [active] - Whether SEO Schema template is active or not.
+ * @property {string} [created_at] - Timestamp which represent the time when
+ *   data was created.
+ * @property {string} [updated_at] - Timestamp which represent when was the last
+ *   time when data was updated.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
  */
 
 /**
  * @typedef ScheduleSchema
- * @property {string} [cron]
- * @property {string} [start]
- * @property {string} [end]
- * @property {number} [duration]
- * @property {NextSchedule[]} [next_schedule]
+ * @property {string} [cron] - String representing the cron expression.
+ * @property {string} [start] - Start time of schedule.
+ * @property {string} [end] - End time of schedule.
+ * @property {number} [duration] - Duration of the scheduled entity.
+ * @property {NextSchedule[]} [next_schedule] - Details regarding the next
+ *   trigger point of schedule.
  */
 
 /**
  * @typedef NextSchedule
- * @property {string} [start]
- * @property {string} [end]
+ * @property {string} [start] - Start time of next trigger point of schedule.
+ * @property {string} [end] - End time of next trigger point of schedule.
  */
 
 /**
  * @typedef AnnouncementSchema
- * @property {string} [announcement]
+ * @property {string} [announcement] - Details regarding the announcement bar contents.
  * @property {ScheduleStartSchema} [schedule]
  */
 
 /**
  * @typedef ScheduleStartSchema
- * @property {string} [start]
- * @property {string} [end]
+ * @property {string} [start] - Start time of schedule.
+ * @property {string} [end] - End time of schedule.
  */
 
 /**
  * @typedef BlogGetResponse
- * @property {BlogSchema[]} [items]
+ * @property {BlogSchema[]} [items] - List of blogs with details.
  * @property {Page} [page]
- * @property {string[]} [filters]
+ * @property {BlogFilters} [filters]
+ */
+
+/**
+ * @typedef BlogFilters
+ * @property {string[]} [tags] - All tags present under blogs.
  */
 
 /**
  * @typedef ResourceContent
- * @property {string} [type]
- * @property {string} [value]
+ * @property {string} [type] - The type of content of blogs - html.
+ * @property {string} [value] - The contents of blog.
  */
 
 /**
  * @typedef Asset
- * @property {string} [aspect_ratio]
- * @property {string} [id]
- * @property {string} [secure_url]
+ * @property {string} [aspect_ratio] - Aspect ratio of the image.
+ * @property {string} [id] - Unique identifier for an entry.
+ * @property {string} [secure_url] - URL of the image.
  */
 
 /**
  * @typedef Author
- * @property {string} [designation]
- * @property {string} [id]
- * @property {string} [name]
+ * @property {string} [designation] - Description of the author of blog.
+ * @property {string} [id] - Unique Identifier of the author of blog.
+ * @property {string} [name] - Name of the author of blog.
  */
 
 /**
  * @typedef BlogSchema
- * @property {string} [_id]
- * @property {Object} [_custom_json]
- * @property {string} [application]
- * @property {boolean} [archived]
+ * @property {string} [_id] - Unique identifier for an entry.
+ * @property {Object} [_custom_json] - Custom JSON object for specific use cases.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {boolean} [archived] - Boolean flag denoting whether blog is archived or not.
  * @property {Author} [author]
- * @property {ResourceContent[]} [content]
+ * @property {ResourceContent[]} [content] - Contents of blog.
  * @property {Asset} [feature_image]
- * @property {boolean} [published]
- * @property {string} [reading_time]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [publish_date]
+ * @property {boolean} [published] - Boolean flag denoting whether blog is
+ *   published or not.
+ * @property {string} [reading_time] - Estimated time required to read the blog.
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier.
+ * @property {string[]} [tags] - Tags under a blog.
+ * @property {string} [publish_date] - Timestamp denoting when the blog was published.
  * @property {SEO} [seo]
- * @property {string} [title]
+ * @property {string} [title] - Title of the Blog.
  * @property {DateMeta} [date_meta]
- * @property {string} [summary]
+ * @property {string} [summary] - A brief description of blog.
  */
 
 /**
  * @typedef SEO
- * @property {string} [description]
+ * @property {string} [description] - The contents of og:description.
  * @property {SEOImage} [image]
- * @property {string} [title]
- * @property {SEOMetaItem[]} [meta_tags]
+ * @property {string} [title] - The contents of og:title.
+ * @property {SEOMetaItem[]} [meta_tags] - List of meta tags.
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumb]
- * @property {string} [canonical_url]
+ * @property {SEObreadcrumb[]} [breadcrumb] - List of action objects which can
+ *   power breadcrumbs on website.
+ * @property {string} [canonical_url] - The canonical URL for canonical link element.
  */
 
 /**
  * @typedef SEOImage
- * @property {string} [url]
+ * @property {string} [url] - The url of image.
  */
 
 /**
  * @typedef SEOMetaItem
- * @property {string} [title]
- * @property {SEOMetaItems[]} [items]
+ * @property {string} [title] - Title of the custom meta tags group.
+ * @property {SEOMetaItems[]} [items] - List of key value pairs to power meta tags.
  */
 
 /**
  * @typedef SEOMetaItems
- * @property {string} [key]
- * @property {string} [value]
+ * @property {string} [key] - The key denoting the attribute name of SEO meta tag.
+ * @property {string} [value] - The key denoting the attribute value of SEO meta tag.
  */
 
 /**
  * @typedef SEOSitemap
- * @property {number} [priority]
- * @property {string} [frequency]
+ * @property {number} [priority] - Value of sitemap priority randing from 0.0 to 1.0.
+ * @property {string} [frequency] - Value of sitemap frequency change denoting
+ *   how frequently the content changes.
  */
 
 /**
  * @typedef SEObreadcrumb
- * @property {string} [url]
+ * @property {string} [url] - URL of where the breadcrumb link redirects to.
  * @property {Action} [action]
  */
 
 /**
  * @typedef DateMeta
- * @property {string} [created_on]
- * @property {string} [modified_on]
+ * @property {string} [created_on] - Timestamp which represent the time when
+ *   data was created.
+ * @property {string} [modified_on] - Timestamp which represent when was the
+ *   last time when data was updated.
  */
 
 /**
@@ -199,155 +222,166 @@ const Joi = require("joi");
 
 /**
  * @typedef Language
- * @property {string} [display]
+ * @property {string} [display] - Name of an entry in a specific language.
  */
 
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
 
 /**
  * @typedef NavigationReference
- * @property {string[]} [acl]
- * @property {string[]} [tags]
+ * @property {string[]} [acl] - Details regarding the authorization level to
+ *   access the navigation item.
+ * @property {string[]} [tags] - List of tags under a navigation link.
  * @property {LocaleLanguage} [_locale_language]
- * @property {string} [image]
- * @property {string} [type]
+ * @property {string} [image] - URL of an image associated with a navigation link.
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {Action} [action]
- * @property {boolean} [active]
- * @property {string} [display]
- * @property {number} [sort_order]
- * @property {NavigationReference[]} [sub_navigation]
+ * @property {boolean} [active] - Whether navigation is active or not.
+ * @property {string} [display] - Display name of the navigation link.
+ * @property {number} [sort_order] - Number denoting the position of navigation link.
+ * @property {NavigationReference[]} [sub_navigation] - List of sub links and
+ *   details under a navigation.
  */
 
 /**
  * @typedef ConfigurationSchema
- * @property {number} [sleep_time]
- * @property {boolean} [start_on_launch]
- * @property {number} [duration]
- * @property {string} [slide_direction]
+ * @property {number} [sleep_time] - Amount of time in seconds after which
+ *   slideshow/screensaver is run.
+ * @property {boolean} [start_on_launch] - Flag denoting whether screensaver
+ *   needs to be shown on launch of website/app.
+ * @property {number} [duration] - Duration of the slideshow/screensaver.
+ * @property {string} [slide_direction] - Direction of the slideshow.
  */
 
 /**
  * @typedef SlideshowMedia
- * @property {string} [type]
- * @property {string} [url]
- * @property {string} [bg_color]
- * @property {number} [duration]
- * @property {boolean} [auto_decide_duration]
+ * @property {string} [type] - Type of Media.
+ * @property {string} [url] - URL of Media where it's hosted.
+ * @property {string} [bg_color] - Background colour of Media.
+ * @property {number} [duration] - Amount of time in seconds for which Media has
+ *   to appear.
+ * @property {boolean} [auto_decide_duration] - Whether the duration for each
+ *   media is to be decided by system or not. If true, it'll equally divide time
+ *   in all medias.
  * @property {Action} [action]
  */
 
 /**
  * @typedef AnnouncementsResponseSchema
- * @property {Object} [announcements]
+ * @property {Object} [announcements] - List all the announcement bar details
+ *   and its contents.
  * @property {number} [refresh_rate] - Number of seconds after which api should
- *   hit again to fetch new announcements
+ *   hit again to fetch new announcements.
  * @property {string[]} [refresh_pages] - List of page slugs on which
- *   announcement should be fetched as soon as they are loaded
+ *   announcement should be fetched as soon as they are loaded.
  */
 
 /**
  * @typedef FaqResponseSchema
- * @property {FaqSchema[]} [faqs]
+ * @property {FaqSchema[]} [faqs] - List of FAQs.
  */
 
 /**
  * @typedef DataLoaderSchema
- * @property {string} [name]
- * @property {string} [service]
- * @property {string} [operation_id]
- * @property {string} [type]
- * @property {string} [url]
- * @property {string} [content]
+ * @property {string} [name] - Name of dataloader.
+ * @property {string} [service] - Service of data loader which overrides the
+ *   default method.
+ * @property {string} [operation_id] - Operation ID of the method which data
+ *   loader is overriding.
+ * @property {string} [type] - Type of data loader.
+ * @property {string} [url] - URL at which data loader redirects.
+ * @property {string} [content] - Content of a data loader.
  * @property {DataLoaderSourceSchema} [__source]
- * @property {string} [_id]
+ * @property {string} [_id] - Unique identifier of an entry.
  */
 
 /**
  * @typedef DataLoaderSourceSchema
- * @property {string} [type]
- * @property {string} [id]
+ * @property {string} [type] - Type of creator.
+ * @property {string} [id] - Identifier of an extension.
  */
 
 /**
  * @typedef DataLoadersSchema
- * @property {DataLoaderSchema[]} [items]
+ * @property {DataLoaderSchema[]} [items] - List of data loaders.
  */
 
 /**
  * @typedef ContentAPIError
- * @property {string} [message]
- * @property {number} [status]
- * @property {string} [code]
- * @property {string} [exception]
- * @property {string} [info]
- * @property {string} [request_id]
- * @property {string} [stack_trace]
- * @property {Object} [meta]
+ * @property {string} [message] - Error message.
+ * @property {number} [status] - HTTP Status code of the error.
+ * @property {string} [code] - Status code of an error.
+ * @property {string} [exception] - Exception class name.
+ * @property {string} [info] - Details regarding the error.
+ * @property {string} [request_id] - The identifier denoting request.
+ * @property {string} [stack_trace] - Report of a stack frame to debug the issue.
+ * @property {Object} [meta] - Metadata related to an error.
  */
 
 /**
  * @typedef CommonError
- * @property {string} [message]
+ * @property {string} [message] - Error message.
  */
 
 /**
  * @typedef CategorySchema
- * @property {number} [index]
- * @property {string} [title]
- * @property {string} [description]
- * @property {string[]} [children]
- * @property {string} [_id]
- * @property {string} [slug]
- * @property {string} [application]
- * @property {string} [icon_url]
- * @property {Object} [_custom_json]
+ * @property {number} [index] - Order of FAQ Category.
+ * @property {string} [title] - Title of the FAQ category.
+ * @property {string} [description] - Details of the FAQ category.
+ * @property {string[]} [children] - List of FAQs.
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {string} [icon_url] - URL of the image associated with FAQ Category.
+ * @property {Object} [_custom_json] - Custom JSON object for specific use cases.
  */
 
 /**
  * @typedef ChildrenSchema
- * @property {string} [question]
- * @property {string} [answer]
- * @property {string} [slug]
- * @property {string} [application]
- * @property {string} [_id]
+ * @property {string} [question] - The contents of a question of a FAQ.
+ * @property {string} [answer] - The contents of a answer of a FAQ.
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {string} [_id] - Unique identifier of an entry.
  */
 
 /**
  * @typedef FAQCategorySchema
- * @property {number} [index]
- * @property {string} [title]
- * @property {string} [description]
- * @property {ChildrenSchema[]} [children]
- * @property {string} [_id]
- * @property {string} [slug]
- * @property {string} [application]
- * @property {string} [icon_url]
- * @property {Object} [_custom_json]
+ * @property {number} [index] - Order of FAQ Category.
+ * @property {string} [title] - Title of a FAQ Category.
+ * @property {string} [description] - Details of the FAQ category.
+ * @property {ChildrenSchema[]} [children] - Details regarding a FAQs stored
+ *   under a FAQs category.
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {string} [icon_url] - URL of the image associated with FAQ Category.
+ * @property {Object} [_custom_json] - Custom JSON object for specific use cases.
  */
 
 /**
  * @typedef FaqSchema
- * @property {string} [slug]
- * @property {string} [application]
- * @property {string} [_id]
- * @property {string} [question]
- * @property {string} [answer]
- * @property {string[]} [tags]
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [question] - The contents of a question of a FAQ.
+ * @property {string} [answer] - The contents of a answer of a FAQ.
+ * @property {string[]} [tags] - Tags under a FAQ.
  */
 
 /**
  * @typedef GetFaqSchema
- * @property {FaqSchema[]} [faqs]
+ * @property {FaqSchema[]} [faqs] - List of FAQs.
  */
 
 /**
  * @typedef GetFaqCategoriesSchema
- * @property {CategorySchema[]} [categories]
+ * @property {CategorySchema[]} [categories] - List of FAQ Categories.
  */
 
 /**
@@ -357,148 +391,157 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
  * @typedef LandingPageSchema
- * @property {string} [slug]
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier.
  * @property {Action} [action]
- * @property {string[]} [platform]
+ * @property {string[]} [platform] - List of platforms linked to this landing page.
  * @property {CreatedBySchema} [created_by]
  * @property {DateMeta} [date_meta]
- * @property {string} [_id]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {Object} [_custom_json]
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {boolean} [archived] - Whether landing page is archived or not.
+ * @property {Object} [_custom_json] - Custom JSON object for specific use cases.
  */
 
 /**
  * @typedef NavigationGetResponse
- * @property {NavigationSchema[]} [items]
+ * @property {NavigationSchema[]} [items] - List of navigation items.
  * @property {Page} [page]
  */
 
 /**
  * @typedef Orientation
- * @property {string[]} [portrait]
- * @property {string[]} [landscape]
+ * @property {string[]} [portrait] - Data related to devices where navigation is
+ *   assigned in portrait mode.
+ * @property {string[]} [landscape] - Data related to devices where navigation
+ *   is assigned in landscape mode.
  */
 
 /**
  * @typedef NavigationSchema
- * @property {string} [_id]
- * @property {string} [application]
- * @property {boolean} [archived]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {string[]} [platform]
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {boolean} [archived] - Whether navigation is archived or not.
+ * @property {string} [name] - Name of the navigation link.
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier.
+ * @property {string[]} [platform] - Details regarding the platforms for which
+ *   this navigation is to applied on.
  * @property {CreatedBySchema} [created_by]
  * @property {DateMeta} [date_meta]
  * @property {Orientation} [orientation]
- * @property {number} [version]
- * @property {NavigationReference[]} [navigation]
+ * @property {number} [version] - A hardcoded key for internally managing
+ *   navigation versions.
+ * @property {NavigationReference[]} [navigation] - List of all navigations
+ *   links and relevant details.
  */
 
 /**
  * @typedef PageGetResponse
- * @property {PageSchema[]} [items]
+ * @property {PageSchema[]} [items] - List of details of custom pages.
  * @property {Page} [page]
  */
 
 /**
  * @typedef PageSchema
- * @property {string} [_id]
- * @property {string} [application]
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
  * @property {string[]} [component_ids] - Components can be used to store
- *   multiple components
- * @property {Object[]} [content]
- * @property {string} [content_path]
+ *   multiple components.
+ * @property {Object[]} [content] - Contents of a custom page.
+ * @property {string} [content_path] - A CDN URL at which the entire html
+ *   content can be fetched from.
  * @property {CreatedBySchema} [created_by]
  * @property {DateMeta} [date_meta]
- * @property {string} [description]
+ * @property {string} [description] - Description about the page.
  * @property {Asset} [feature_image]
- * @property {Object[]} [page_meta]
+ * @property {Object[]} [page_meta] - List of Custom JSON object for specific use cases.
  * @property {ScheduleSchema} [_schedule]
- * @property {Object} [_custom_json]
- * @property {string} [orientation]
- * @property {string} [platform]
- * @property {boolean} [published]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- * @property {string} [type]
+ * @property {Object} [_custom_json] - Custom JSON object for specific use cases.
+ * @property {string} [orientation] - Orientation for Custom Pages - Landscape
+ *   or portrait.
+ * @property {string} [platform] - Platform for Custom Pages - Denotes the device type.
+ * @property {boolean} [published] - Whether page is active or not on website.
+ * @property {string} [slug] - A short, human-readable, URL-friendly identifier.
+ * @property {string[]} [tags] - Tags under a page.
+ * @property {string} [title] - The title of the page.
+ * @property {string} [type] - Type of editor through which the page was created
+ *   so appropriate rendering engine is used.
  * @property {SEO} [seo]
- * @property {Object} [visibility]
- * @property {boolean} [archived]
+ * @property {Object} [visibility] - Visibility of Page.
+ * @property {boolean} [archived] - Flag denoting whether the page is archived or not.
  */
 
 /**
  * @typedef CreatedBySchema
- * @property {string} [id]
+ * @property {string} [id] - Details containing the creator of custom page.
  */
 
 /**
  * @typedef SlideshowGetResponse
- * @property {SlideshowSchema[]} [items]
+ * @property {SlideshowSchema[]} [items] - Details related to slideshow/screensaver.
  * @property {Page} [page]
  */
 
 /**
  * @typedef SlideshowSchema
- * @property {string} [_id]
- * @property {string} [slug]
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [slug] - Details related to slideshow/screensaver.
  * @property {DateMeta} [date_meta]
- * @property {string} [application]
- * @property {string} [platform]
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {string} [platform] - Details related to slideshow/screensaver.
  * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia[]} [media]
- * @property {boolean} [active]
- * @property {boolean} [archived]
- * @property {Object} [_custom_json]
+ * @property {SlideshowMedia[]} [media] - Details related to slideshow/screensaver.
+ * @property {boolean} [active] - Details related to slideshow/screensaver.
+ * @property {boolean} [archived] - Whether slideshow is deleted or not.
+ * @property {Object} [_custom_json] - Custom JSON object for specific use cases.
  */
 
 /**
  * @typedef Support
- * @property {boolean} [created]
- * @property {string} [_id]
- * @property {string} [config_type]
- * @property {string} [application]
- * @property {string} [created_at]
- * @property {string} [updated_at]
+ * @property {boolean} [created] - Whether support contact details are created or not.
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {string} [created_at] - Timestamp which represent the time when
+ *   data was created.
+ * @property {string} [updated_at] - Timestamp which represent when was the last
+ *   time when data was updated.
  * @property {ContactSchema} [contact]
  */
 
 /**
  * @typedef PhoneProperties
- * @property {string} [key]
- * @property {string} [code]
- * @property {string} [number]
- * @property {string} [phone_type]
+ * @property {string} [key] - Name of the Contact SPOC.
+ * @property {string} [code] - International dial Code.
+ * @property {string} [number] - Phone Number.
+ * @property {string} [phone_type] - Denotes the type of phone number.
  */
 
 /**
  * @typedef PhoneSchema
- * @property {boolean} [active]
- * @property {PhoneProperties[]} [phone]
+ * @property {boolean} [active] - Flag denoting whether contact detail is active or not.
+ * @property {PhoneProperties[]} [phone] - Details related to phone contact of SPOC.
  */
 
 /**
  * @typedef EmailProperties
- * @property {string} [key]
- * @property {string} [value]
+ * @property {string} [key] - Name of email SPOC.
+ * @property {string} [value] - Email Id of the SPOC.
  */
 
 /**
  * @typedef EmailSchema
- * @property {boolean} [active]
- * @property {EmailProperties[]} [email]
+ * @property {boolean} [active] - Whether contact detail is active or not.
+ * @property {EmailProperties[]} [email] - Details related to email contact of SPOC.
  */
 
 /**
@@ -509,99 +552,111 @@ const Joi = require("joi");
 
 /**
  * @typedef TagsSchema
- * @property {string} [application]
- * @property {string} [_id]
- * @property {TagSchema[]} [tags]
+ * @property {string} [application] - Application ID - Identifier for a Sales channel.
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {TagSchema[]} [tags] - List of Third party injectable html tags.
  */
 
 /**
  * @typedef TagSchema
- * @property {string} [name]
- * @property {string} [url]
- * @property {string} [type]
- * @property {string} [sub_type]
- * @property {string} [_id]
- * @property {string} [position]
- * @property {Object} [attributes]
- * @property {string} [content]
- * @property {Object[]} [pages]
+ * @property {string} [name] - Name of the html tag.
+ * @property {string} [url] - URL at which css or js might be hosted.
+ * @property {string} [type] - Whether Tag is JS or CSS.
+ * @property {string} [sub_type] - Whether js/css is external or inline.
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [position] - Position where Tag is so to be placed.
+ * @property {Object} [attributes] - Custom JSON object for specific use cases.
+ * @property {string} [content] - Content of tag.
+ * @property {Object[]} [pages] - List of all the page where tag is to be added.
  * @property {TagSourceSchema} [__source]
  */
 
 /**
  * @typedef TagSourceSchema
- * @property {string} [type]
- * @property {string} [id]
+ * @property {string} [type] - Type of creator of tag.
+ * @property {string} [id] - Identifier of an extension.
  */
 
 /**
  * @typedef CustomObjectFieldValue
- * @property {Object} [value]
+ * @property {Object} [value] - Value of custom field.
  */
 
 /**
  * @typedef CustomObjectListItemDefinationSchema
- * @property {string} [_id]
- * @property {string} [name]
- * @property {string} [type]
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [name] - Name of definition of custom field.
+ * @property {string} [type] - Data type of the custom field.
  */
 
 /**
  * @typedef CustomObjectFieldSchema
- * @property {string} [_id]
- * @property {string} [key]
- * @property {CustomObjectFieldValue[]} [value]
- * @property {string} [type]
- * @property {string} [definition_id]
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [key] - Key of custom field inside custom object.
+ * @property {CustomObjectFieldValue[]} [value] - Value of custom field inside
+ *   custom object.
+ * @property {string} [type] - Data type of custom field inside custom object.
+ * @property {string} [definition_id] - Definition id of custom field inside
+ *   custom object.
  */
 
 /**
  * @typedef CustomObjectByIdSchema
- * @property {string} [_id]
- * @property {string} [status]
- * @property {string} [display_name]
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [status] - String denoting whether custom object is active
+ *   or inactive.
+ * @property {string} [display_name] - Unique Display name of a custom object
+ *   which is system generated: Concatenation of string definition name and _id.
  * @property {CustomObjectListItemDefinationSchema} [definition]
- * @property {Object[]} [references]
- * @property {CustomObjectFieldSchema[]} [fields]
+ * @property {Object[]} [references] - List of custom fields ids where the
+ *   custom object is added as a field.
+ * @property {CustomObjectFieldSchema[]} [fields] - List of custom fields
+ *   against a Custom Object.
  */
 
 /**
  * @typedef CustomFieldValue
- * @property {Object} [value]
+ * @property {Object} [value] - Array containing value(s) of custom field.
  */
 
 /**
  * @typedef CustomFieldSchema
- * @property {string} [_id]
- * @property {string} [namespace]
- * @property {string} [key]
- * @property {string} [resource]
- * @property {string} [creator]
- * @property {CustomFieldValue[]} [value]
- * @property {string} [resource_id]
- * @property {string} [type]
- * @property {boolean} [multi_value]
- * @property {string} [company_id]
- * @property {string} [application_id]
- * @property {string} [definition_id]
- * @property {boolean} [has_invalid_values]
- * @property {Object[]} [invalid_value_errors]
- * @property {string} [created_by]
- * @property {boolean} [is_deleted]
- * @property {string} [created_at]
- * @property {string} [updated_at]
+ * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [namespace] - Namespace under which custom field is present.
+ * @property {string} [key] - Unique identifier for a custom field.
+ * @property {string} [resource] - Type of an entity under which custom field is defined.
+ * @property {string} [creator] - Denotes where the custom field has been
+ *   defined - within a company or within a sales channel.
+ * @property {CustomFieldValue[]} [value] - Array containing values of custom field.
+ * @property {string} [resource_id] - Unique identifier for the entity under
+ *   which custom field is defined.
+ * @property {string} [type] - The type type of custom field.
+ * @property {boolean} [multi_value] - Whether custom field can have multiple
+ *   values or not.
+ * @property {string} [company_id] - Unique Identifier for a company.
+ * @property {string} [application_id] - Application ID - Identifier for a Sales channel.
+ * @property {string} [definition_id] - Unique identifier for a custom field definition.
+ * @property {boolean} [has_invalid_values] - Whether the custom field has invalid values.
+ * @property {Object[]} [invalid_value_errors] - Array denoting if there's a
+ *   validation failure on a custom field inside a custom object.
+ * @property {string} [created_by] - Details of the owner of custom field creator.
+ * @property {boolean} [is_deleted] - Whether the custom field definition is deleted.
+ * @property {string} [created_at] - Timestamp which represent the time when
+ *   data was created.
+ * @property {string} [updated_at] - Timestamp which represent when was the last
+ *   time when data was updated.
  */
 
 /**
  * @typedef CustomFieldsResponseByResourceIdSchema
- * @property {CustomFieldSchema[]} [items]
+ * @property {CustomFieldSchema[]} [items] - List of custom fields against a resource.
  */
 
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 
@@ -617,6 +672,7 @@ const Joi = require("joi");
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -785,7 +841,14 @@ class ContentApplicationModel {
     return Joi.object({
       items: Joi.array().items(ContentApplicationModel.BlogSchema()),
       page: ContentApplicationModel.Page(),
-      filters: Joi.array().items(Joi.string().allow("")),
+      filters: ContentApplicationModel.BlogFilters(),
+    });
+  }
+
+  /** @returns {BlogFilters} */
+  static BlogFilters() {
+    return Joi.object({
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -1238,7 +1301,6 @@ class ContentApplicationModel {
     return Joi.object({
       created: Joi.boolean(),
       _id: Joi.string().allow(""),
-      config_type: Joi.string().allow(""),
       application: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
@@ -1446,6 +1508,8 @@ class ContentApplicationModel {
       "collection",
 
       "collections",
+
+      "custom",
 
       "contact-us",
 

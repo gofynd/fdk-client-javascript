@@ -16,6 +16,72 @@ const sg = function safeGet(fn, defaultValue = null) {
     return defaultValue;
   }
 };
+/**
+ * Safely extracts search query and click position
+ *
+ * @author Hitendra Singh
+ * @param {Object} [defaultValue] - Utm_params
+ * @returns {Object} - Query and position
+ */
+const fetchPositionAndQuery = function (utm_params) {
+  if (!utm_params || !Object.keys(utm_params).length) {
+    return {
+      query: null,
+      position: null,
+    };
+  }
+
+  if (utm_params.utm_medium === "search") {
+    try {
+      const decodedUri = utm_params.utm_content
+        ? atob(utm_params.utm_content)
+        : null;
+      if (decodedUri) {
+        const parts = decodedUri.split(":::");
+        return {
+          query: parts[0] || null,
+          position: parts[1] || null,
+        };
+      }
+    } catch (err) {
+      return {
+        query: null,
+        position: null,
+      };
+    }
+  }
+  return {
+    query: null,
+    position: null,
+  };
+};
+/**
+ * Safely extracts company details from window object
+ *
+ * @author Hitendra Singh
+ * @returns {Object} - Company_id, company_mode and company_created_on
+ */
+const fetchCompanyDetails = function () {
+  //getting the current date in UTC
+  const now = new Date();
+  const formattedDate = now.toISOString();
+  const application = sg(() => window.config.application, null);
+  if (application && Object.keys(application).length) {
+    return {
+      company_id: sg(() => application.company_id, 0),
+      company_mode: sg(() => application.mode, "live"),
+      company_created_on: sg(
+        () => application.company_created_on,
+        formattedDate
+      ),
+    };
+  }
+  return {
+    company_id: 0,
+    company_mode: "live",
+    company_created_on: formattedDate,
+  };
+};
 
 if (typeof window != "undefined") {
   window.FPI.event.on("user.login", (eventData) => {
@@ -26,6 +92,7 @@ if (typeof window != "undefined") {
       phone: sg(() => eventData["phone_number"]),
       login_value: sg(() => eventData["login_value"]),
       method: sg(() => eventData["method"]),
+      ...fetchCompanyDetails(),
     }).catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -38,6 +105,7 @@ if (typeof window != "undefined") {
       email: sg(() => eventData["email"]),
       phone: sg(() => eventData["phone_number"]),
       method: sg(() => eventData["method"]),
+      ...fetchCompanyDetails(),
     }).catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -45,11 +113,12 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("user.logout", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("user_logout", { event_type: "identity" }).catch(
-      (err) => {
-        Logger({ level: "ERROR", message: err });
-      }
-    );
+    Clickstream.sendEvent("user_logout", {
+      event_type: "identity",
+      ...fetchCompanyDetails(),
+    }).catch((err) => {
+      Logger({ level: "ERROR", message: err });
+    });
     Clickstream.reset().catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -57,7 +126,7 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("wishlist.add", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("product_wishlist_add", {
+    const payload = {
       wishlist_name: "TODO",
       wishlist_id: "TODO",
       event_type: "engagement",
@@ -70,6 +139,12 @@ if (typeof window != "undefined") {
       currency: sg(() => eventData.item.price.effective.currency_code),
       value: "TODO",
       source_url: "TODO",
+      ...fetchCompanyDetails(),
+    };
+    const queryResult = fetchPositionAndQuery(eventData.utm_params);
+    Clickstream.sendEvent("product_wishlist_add", {
+      ...payload,
+      ...queryResult,
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -94,6 +169,7 @@ if (typeof window != "undefined") {
       currency: sg(() => eventData.item.price.effective.currency_code),
       value: "TODO",
       source_url: "TODO",
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -105,7 +181,7 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("cart.newProduct", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("add_to_cart", {
+    const payload = {
       cart_id: eventData.cart_id,
       event_type: "engagement",
       product_id: sg(() => eventData.products[0]["uid"]),
@@ -117,9 +193,13 @@ if (typeof window != "undefined") {
       price: sg(() => eventData.products[0]["price"]["selling"]),
       quantity: sg(() => eventData.products[0]["quantity"]["current"]),
       source_url: "TODO",
-      position: "TODO",
+      position: null,
+      query: null,
       value: "TODO",
-    })
+      ...fetchCompanyDetails(),
+    };
+    const queryResult = fetchPositionAndQuery(eventData.utm_params);
+    Clickstream.sendEvent("add_to_cart", { ...payload, ...queryResult })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
       })
@@ -141,8 +221,9 @@ if (typeof window != "undefined") {
       price: sg(() => eventData.products[0]["price"]["selling"]),
       quantity: sg(() => eventData.products[0]["quantity"]["current"]),
       source_url: "TODO",
-      position: "TODO",
+      position: null,
       value: "TODO",
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -157,6 +238,7 @@ if (typeof window != "undefined") {
     Clickstream.sendEvent("order_complete", {
       event_type: "conversion",
       ...eventData,
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -171,6 +253,7 @@ if (typeof window != "undefined") {
     Clickstream.sendEvent("order_refunded", {
       event_type: "conversion",
       ...eventData,
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -203,6 +286,40 @@ if (typeof window != "undefined") {
           article_id: sg(() => p.article["uid"]),
         };
       }),
+      ...fetchCompanyDetails(),
+    })
+      .then((resp) => {
+        Logger({ level: "DEBUG", message: "Click event sent" });
+      })
+      .catch((err) => {
+        Logger({ level: "ERROR", message: err });
+      });
+  });
+  window.FPI.event.on("order.checkedout", (eventData) => {
+    Logger({ level: "DEBUG", message: eventData });
+    Clickstream.sendEvent("order_checkedout", {
+      event_type: "conversion",
+      cart_id: eventData.cart_id,
+      cart_total: sg(() => eventData.breakup_values_raw["mrp_total"]),
+      item_total: sg(() => eventData.products.length),
+      shipping: sg(() => eventData.breakup_values_raw["delivery_charge"]),
+      tax: sg(() => eventData.breakup_values_raw["gst_charges"]),
+      order_total: sg(() => eventData.breakup_values_raw["total"]),
+      currency: sg(() => eventData.products[0]["price"]["currency_code"]),
+      order_id: sg(() => eventData.order_id),
+      products: eventData.products.map((p) => {
+        return {
+          product_id: p.uid,
+          l3_category: sg(() => p.category["name"]),
+          l1_category: "TODO",
+          quantity: sg(() => p.quantity["current"]),
+          price: sg(() => p.price["marked"]),
+          value: sg(() => p.price["effective"]),
+          currency: sg(() => p.price["currency_code"]),
+          article_id: sg(() => p.article["uid"]),
+        };
+      }),
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -212,9 +329,31 @@ if (typeof window != "undefined") {
       });
   });
 
+  window.FPI.event.on("product_list.view", (eventData) => {
+    Logger({ level: "DEBUG", message: eventData });
+    Clickstream.sendEvent("product_listing", {
+      event_type: "impression",
+      query: sg(() => eventData.slug["q"]),
+      products: eventData.items.map((p) => {
+        return {
+          product_id: p.uid,
+          name: p.name,
+          currency: sg(() => p.price["effective"]["currency_code"]),
+          mrp: sg(() => p.price["effective"]["max"]),
+          esp: sg(() => p.price["effective"]["min"]),
+          source_url: p.url,
+          brand: sg(() => p.brand["name"]),
+        };
+      }),
+
+      item_total: sg(() => eventData["page"]["item_total"]),
+      ...fetchCompanyDetails(),
+    });
+  });
+
   window.FPI.event.on("product.view", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("product_view", {
+    const payload = {
       event_type: "click",
       product_id: sg(() => eventData.product["uid"]),
       currency: sg(() => eventData.product.price["currency_code"]),
@@ -225,7 +364,14 @@ if (typeof window != "undefined") {
       l1_category: sg(() => eventData.product.l1_category),
       source_url: sg(() => eventData.product.source_url),
       quantity: sg(() => eventData.product.sizes[0]["quantity"]),
-      position: "TODO",
+      position: null,
+      query: null,
+    };
+    const queryResult = fetchPositionAndQuery(eventData.utm_params);
+    Clickstream.sendEvent("product_view", {
+      ...payload,
+      ...queryResult,
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -237,16 +383,43 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("search.products", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("product_search", {
+    const payload = {
       event_type: "search",
       query: eventData.search_text,
-    })
-      .then((resp) => {
-        Logger({ level: "DEBUG", message: "Click event sent" });
+      products: [],
+      item_total: null,
+    };
+    //filter eventData.data to find the products array and item total
+    let products = [];
+    if (eventData.data && eventData.data.length > 0) {
+      products = eventData.data
+        .filter((item) => {
+          if ((item["type"] === "product" && item.categories) || item.product)
+            return true;
+        })
+        .map((product) => {
+          return product.display || product.name;
+        });
+    }
+
+    const item_total = sg(() =>
+      eventData.page["item_total"] ? eventData.page["item_total"] : 0
+    );
+    if (payload.query) {
+      //only if query is present
+      Clickstream.sendEvent("product_search", {
+        ...payload,
+        products,
+        item_total,
+        ...fetchCompanyDetails(),
       })
-      .catch((err) => {
-        Logger({ level: "ERROR", message: err });
-      });
+        .then((resp) => {
+          Logger({ level: "DEBUG", message: "Click event sent" });
+        })
+        .catch((err) => {
+          Logger({ level: "ERROR", message: err });
+        });
+    }
   });
 
   window.FPI.event.on("product_list.filter", (eventData) => {

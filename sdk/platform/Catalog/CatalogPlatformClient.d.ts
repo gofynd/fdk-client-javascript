@@ -681,7 +681,7 @@ declare class Catalog {
      * @summary: List products
      * @description: Retrieve a list of available products - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProducts/).
      */
-    getProducts({ brandIds, categoryIds, itemIds, departmentIds, itemCode, q, tags, pageNo, pageSize, requestHeaders, }?: CatalogPlatformValidator.GetProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductListingResponseV2>;
+    getProducts({ brandIds, categoryIds, itemIds, departmentIds, itemCode, name, slug, allIdentifiers, q, tags, pageNo, pageSize, pageType, sortOn, pageId, requestHeaders, }?: CatalogPlatformValidator.GetProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ProductListingResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
@@ -691,23 +691,33 @@ declare class Catalog {
      * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
      *   Department Ids
      * @param {string[]} [arg.itemCode] - Get multiple products filtered by Item Code
+     * @param {string} [arg.name] - Get multiple products filtered by Name (Pattern Match)
+     * @param {string} [arg.slug] - Get multiple products filtered by Slug
+     * @param {string[]} [arg.allIdentifiers] - Get multiple products filtered
+     *   by All Identifiers
      * @param {string} [arg.q] - Get multiple products filtered by q string
      * @param {string[]} [arg.tags] - Get multiple products filtered by tags
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
+     * @param {string} [arg.sortOn] - Field which is to be used for sorting,
+     *   default is latest. Value can be latest (modified_on) or created (record id)
      * @returns {Paginator<CatalogPlatformModel.ProductListingResponseV2>}
      * @summary: List products
      * @description: Retrieve a list of available products
      */
-    getProductsPaginator({ brandIds, categoryIds, itemIds, departmentIds, itemCode, q, tags, pageSize, }?: {
+    getProductsPaginator({ brandIds, categoryIds, itemIds, departmentIds, itemCode, name, slug, allIdentifiers, q, tags, pageSize, sortOn, }?: {
         brandIds?: number[];
         categoryIds?: number[];
         itemIds?: number[];
         departmentIds?: number[];
         itemCode?: string[];
+        name?: string;
+        slug?: string;
+        allIdentifiers?: string[];
         q?: string;
         tags?: string[];
         pageSize?: number;
+        sortOn?: string;
     }): Paginator<CatalogPlatformModel.ProductListingResponseV2>;
     /**
      * @param {CatalogPlatformValidator.GetSellerInsightsParam} arg - Arg object

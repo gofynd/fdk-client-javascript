@@ -18,7 +18,7 @@ declare class Lead {
      * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
      * @name createHistory
      * @summary: Log ticket history
-     * @description: Adds a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
+     * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
      */
     createHistory({ id, body, requestHeaders }?: LeadApplicationValidator.CreateHistoryParam, { responseHeaders }?: object): Promise<LeadApplicationModel.TicketHistory>;
     /**
@@ -28,7 +28,7 @@ declare class Lead {
      * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
      * @name createTicket
      * @summary: Creates a ticket
-     * @description: Generates a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
+     * @description: Create a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
      */
     createTicket({ body, requestHeaders }?: LeadApplicationValidator.CreateTicketParam, { responseHeaders }?: object): Promise<LeadApplicationModel.Ticket>;
     /**
@@ -59,7 +59,7 @@ declare class Lead {
      *   Success response
      * @name submitCustomForm
      * @summary: Submits form data
-     * @description: Sends user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
+     * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
      */
     submitCustomForm({ slug, body, requestHeaders }?: LeadApplicationValidator.SubmitCustomFormParam, { responseHeaders }?: object): Promise<LeadApplicationModel.SubmitCustomFormResponse>;
 }

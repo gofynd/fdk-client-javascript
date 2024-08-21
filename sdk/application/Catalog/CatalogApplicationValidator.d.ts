@@ -16,7 +16,7 @@ export = CatalogApplicationValidator;
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See the list of
  *   available departments below. Also, you can get available departments from
- *   the endpoint /service/application/catalog/v1.0/departments/
+ *   the endpoint /service/application/catalog/v1.0/departments/.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -26,7 +26,7 @@ export = CatalogApplicationValidator;
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See the list of
  *   available departments below. Also, you can get available departments from
- *   the endpoint /service/application/catalog/v1.0/departments/
+ *   the endpoint /service/application/catalog/v1.0/departments/.
  */
 /**
  * @typedef GetCategoryDetailBySlugParam
@@ -48,11 +48,11 @@ export = CatalogApplicationValidator;
  * @property {string} [f] - The search filter parameters. Filter parameters will
  *   be passed in f parameter as shown in the example below. Double Pipe (||)
  *   denotes the OR condition, whereas Triple-colon (:::) indicates a new filter
- *   paramater applied as an AND condition.
+ *   parameter applied as an AND condition.
  * @property {string} [q] - The search query for entering partial or full name
  *   of product, brand, category, or collection.
- * @property {boolean} [filters] - This is a boolean value, True for fetching
- *   all filter parameters and False for disabling the filter parameters.
+ * @property {boolean} [filters] - True for fetching all filter parameters and
+ *   False for disabling the filter parameters.
  * @property {string} [sortOn] - The order in which the list of products should
  *   be sorted, e.g. popularity, price, latest and discount, in either ascending
  *   or descending order. See the supported values below.
@@ -67,14 +67,14 @@ export = CatalogApplicationValidator;
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
- * @property {string[]} [tag] - List of tags to filter collections
- * @property {string} [q] - Name of the collection to filter collection
+ * @property {string[]} [tag] - List of tags to filter collections.
+ * @property {string} [q] - Name of the collection to filter collection.
  */
 /**
  * @typedef GetComparedFrequentlyProductBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  */
 /** @typedef GetDepartmentsParam */
 /**
@@ -111,11 +111,11 @@ export = CatalogApplicationValidator;
  * @property {string} [q] - Search a store by its name or store_code.
  * @property {string} [city] - Search stores by the city in which they are situated.
  * @property {number} [range] - Use this to retrieve stores within a particular
- *   range in meters, e.g. 10000, to indicate a 10km range
+ *   range in meters, e.g. 10000, to indicate a 10km range.
  * @property {number} [latitude] - Latitude of the location from where one wants
- *   to retreive the nearest stores, e.g. 72.8691788
+ *   to retrieve the nearest stores, e.g. 72.8691788.
  * @property {number} [longitude] - Longitude of the location from where one
- *   wants to retreive the nearest stores, e.g. 19.1174114
+ *   wants to retrieve the nearest stores, e.g. 19.1174114.
  */
 /**
  * @typedef GetLocationDetailsByIdParam
@@ -124,7 +124,7 @@ export = CatalogApplicationValidator;
 /**
  * @typedef GetProductBundlesBySlugParam
  * @property {string} [slug] - Product slug for which bundles need to be fetched.
- * @property {string} [id] - Product uid
+ * @property {string} [id] - Product uid.
  */
 /**
  * @typedef GetProductComparisonBySlugsParam
@@ -136,16 +136,16 @@ export = CatalogApplicationValidator;
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  */
 /**
  * @typedef GetProductPriceBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/sizes
+ *   /service/application/catalog/v1.0/products/sizes.
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
  * @property {number} [moq] - An Integer indication the Minimum Order Quantity
@@ -155,10 +155,10 @@ export = CatalogApplicationValidator;
  * @typedef GetProductSellersBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/sizes
+ *   /service/application/catalog/v1.0/products/sizes.
  * @property {string} [strategy] - Sort stores on the basis of strategy. eg,
  *   fast-delivery, low-price, optimal.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -169,25 +169,25 @@ export = CatalogApplicationValidator;
  * @typedef GetProductSizesBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
  */
 /**
  * @typedef GetProductStockByIdsParam
- * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed)
+ * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed).
  * @property {string} [alu] - ALU of the product (limited upto 50 ALU identifier
- *   in a single request)
+ *   in a single request).
  * @property {string} [skuCode] - Stock-keeping Unit of the product (limited
- *   upto 50 SKU Code in a single request)
+ *   upto 50 SKU Code in a single request).
  * @property {string} [ean] - European Article Number of the product (limited
- *   upto 50 EAN identifier in a single request)
+ *   upto 50 EAN identifier in a single request).
  * @property {string} [upc] - Universal Product Code of the product (limited
- *   upto 50 UPC identifier in a single request)
+ *   upto 50 UPC identifier in a single request).
  */
 /**
  * @typedef GetProductStockForTimeByIdsParam
- * @property {string} timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
+ * @property {string} timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z).
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  * @property {string} [pageId] - Page ID to retrieve next set of results.
  */
@@ -195,7 +195,7 @@ export = CatalogApplicationValidator;
  * @typedef GetProductVariantsBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  */
 /**
  * @typedef GetProductsParam
@@ -204,9 +204,9 @@ export = CatalogApplicationValidator;
  * @property {string} [f] - The search filter parameters. Filter parameters will
  *   be passed in f parameter as shown in the example below. Double Pipe (||)
  *   denotes the OR condition, whereas Triple-colon (:::) indicates a new filter
- *   paramater applied as an AND condition.
- * @property {boolean} [filters] - This is a boolean value, True for fetching
- *   all filter parameters and False for disabling the filter parameters.
+ *   parameter applied as an AND condition.
+ * @property {boolean} [filters] - True for fetching all filter parameters and
+ *   False for disabling the filter parameters.
  * @property {string} [sortOn] - The order in which the list of products should
  *   be sorted, e.g. popularity, price, latest and discount, in either ascending
  *   or descending order. See the supported values below.
@@ -227,7 +227,7 @@ export = CatalogApplicationValidator;
  * @typedef GetSimilarComparisonProductBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  */
 /**
  * @typedef GetStoresParam
@@ -237,11 +237,11 @@ export = CatalogApplicationValidator;
  * @property {string} [q] - Search a store by its name or store_code.
  * @property {string} [city] - Search stores by the city in which they are situated.
  * @property {number} [range] - Use this to retrieve stores within a particular
- *   range in meters, e.g. 10000, to indicate a 10km range
+ *   range in meters, e.g. 10000, to indicate a 10km range.
  * @property {number} [latitude] - Latitude of the location from where one wants
- *   to retreive the nearest stores, e.g. 72.8691788
+ *   to retrieve the nearest stores, e.g. 72.8691788.
  * @property {number} [longitude] - Longitude of the location from where one
- *   wants to retreive the nearest stores, e.g. 19.1174114
+ *   wants to retrieve the nearest stores, e.g. 19.1174114.
  * @property {string} [tags] - Search stores based on tags.
  */
 /**
@@ -339,7 +339,7 @@ type GetBrandsParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See the list of
      * available departments below. Also, you can get available departments from
-     * the endpoint /service/application/catalog/v1.0/departments/
+     * the endpoint /service/application/catalog/v1.0/departments/.
      */
     department?: string;
     /**
@@ -357,7 +357,7 @@ type GetCategoriesParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See the list of
      * available departments below. Also, you can get available departments from
-     * the endpoint /service/application/catalog/v1.0/departments/
+     * the endpoint /service/application/catalog/v1.0/departments/.
      */
     department?: string;
 };
@@ -388,7 +388,7 @@ type GetCollectionItemsBySlugParam = {
      * - The search filter parameters. Filter parameters will
      * be passed in f parameter as shown in the example below. Double Pipe (||)
      * denotes the OR condition, whereas Triple-colon (:::) indicates a new filter
-     * paramater applied as an AND condition.
+     * parameter applied as an AND condition.
      */
     f?: string;
     /**
@@ -397,8 +397,8 @@ type GetCollectionItemsBySlugParam = {
      */
     q?: string;
     /**
-     * - This is a boolean value, True for fetching
-     * all filter parameters and False for disabling the filter parameters.
+     * - True for fetching all filter parameters and
+     * False for disabling the filter parameters.
      */
     filters?: boolean;
     /**
@@ -436,11 +436,11 @@ type GetCollectionsParam = {
      */
     pageSize?: number;
     /**
-     * - List of tags to filter collections
+     * - List of tags to filter collections.
      */
     tag?: string[];
     /**
-     * - Name of the collection to filter collection
+     * - Name of the collection to filter collection.
      */
     q?: string;
 };
@@ -448,7 +448,7 @@ type GetComparedFrequentlyProductBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/
+     * /service/application/catalog/v1.0/products/.
      */
     slug: string;
 };
@@ -521,17 +521,17 @@ type GetInStockLocationsParam = {
     city?: string;
     /**
      * - Use this to retrieve stores within a particular
-     * range in meters, e.g. 10000, to indicate a 10km range
+     * range in meters, e.g. 10000, to indicate a 10km range.
      */
     range?: number;
     /**
      * - Latitude of the location from where one wants
-     * to retreive the nearest stores, e.g. 72.8691788
+     * to retrieve the nearest stores, e.g. 72.8691788.
      */
     latitude?: number;
     /**
      * - Longitude of the location from where one
-     * wants to retreive the nearest stores, e.g. 19.1174114
+     * wants to retrieve the nearest stores, e.g. 19.1174114.
      */
     longitude?: number;
 };
@@ -547,7 +547,7 @@ type GetProductBundlesBySlugParam = {
      */
     slug?: string;
     /**
-     * - Product uid
+     * - Product uid.
      */
     id?: string;
 };
@@ -563,7 +563,7 @@ type GetProductDetailBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/
+     * /service/application/catalog/v1.0/products/.
      */
     slug: string;
 };
@@ -571,13 +571,13 @@ type GetProductPriceBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/
+     * /service/application/catalog/v1.0/products/.
      */
     slug: string;
     /**
      * - A string indicating the size of the product, e.g.
      * S, M, XL. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/sizes
+     * /service/application/catalog/v1.0/products/sizes.
      */
     size: string;
     /**
@@ -595,13 +595,13 @@ type GetProductSellersBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/
+     * /service/application/catalog/v1.0/products/.
      */
     slug: string;
     /**
      * - A string indicating the size of the product, e.g.
      * S, M, XL. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/sizes
+     * /service/application/catalog/v1.0/products/sizes.
      */
     size: string;
     /**
@@ -623,7 +623,7 @@ type GetProductSizesBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/
+     * /service/application/catalog/v1.0/products/.
      */
     slug: string;
     /**
@@ -634,33 +634,33 @@ type GetProductSizesBySlugParam = {
 };
 type GetProductStockByIdsParam = {
     /**
-     * - The Item ID of the product (Max. 50 allowed)
+     * - The Item ID of the product (Max. 50 allowed).
      */
     itemId?: string;
     /**
      * - ALU of the product (limited upto 50 ALU identifier
-     * in a single request)
+     * in a single request).
      */
     alu?: string;
     /**
      * - Stock-keeping Unit of the product (limited
-     * upto 50 SKU Code in a single request)
+     * upto 50 SKU Code in a single request).
      */
     skuCode?: string;
     /**
      * - European Article Number of the product (limited
-     * upto 50 EAN identifier in a single request)
+     * upto 50 EAN identifier in a single request).
      */
     ean?: string;
     /**
      * - Universal Product Code of the product (limited
-     * upto 50 UPC identifier in a single request)
+     * upto 50 UPC identifier in a single request).
      */
     upc?: string;
 };
 type GetProductStockForTimeByIdsParam = {
     /**
-     * - Timestamp in UTC format (2020-07-23T10:27:50Z)
+     * - Timestamp in UTC format (2020-07-23T10:27:50Z).
      */
     timestamp: string;
     /**
@@ -676,7 +676,7 @@ type GetProductVariantsBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/
+     * /service/application/catalog/v1.0/products/.
      */
     slug: string;
 };
@@ -690,12 +690,12 @@ type GetProductsParam = {
      * - The search filter parameters. Filter parameters will
      * be passed in f parameter as shown in the example below. Double Pipe (||)
      * denotes the OR condition, whereas Triple-colon (:::) indicates a new filter
-     * paramater applied as an AND condition.
+     * parameter applied as an AND condition.
      */
     f?: string;
     /**
-     * - This is a boolean value, True for fetching
-     * all filter parameters and False for disabling the filter parameters.
+     * - True for fetching all filter parameters and
+     * False for disabling the filter parameters.
      */
     filters?: boolean;
     /**
@@ -735,7 +735,7 @@ type GetSimilarComparisonProductBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
-     * /service/application/catalog/v1.0/products/
+     * /service/application/catalog/v1.0/products/.
      */
     slug: string;
 };
@@ -759,17 +759,17 @@ type GetStoresParam = {
     city?: string;
     /**
      * - Use this to retrieve stores within a particular
-     * range in meters, e.g. 10000, to indicate a 10km range
+     * range in meters, e.g. 10000, to indicate a 10km range.
      */
     range?: number;
     /**
      * - Latitude of the location from where one wants
-     * to retreive the nearest stores, e.g. 72.8691788
+     * to retrieve the nearest stores, e.g. 72.8691788.
      */
     latitude?: number;
     /**
      * - Longitude of the location from where one
-     * wants to retreive the nearest stores, e.g. 19.1174114
+     * wants to retrieve the nearest stores, e.g. 19.1174114.
      */
     longitude?: number;
     /**

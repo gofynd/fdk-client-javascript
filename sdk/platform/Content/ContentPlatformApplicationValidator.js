@@ -286,12 +286,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @property {string} [status] - Blogs retrieve based on the status passed.
  */
 
-/**
- * @typedef GetComponentByIdParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   a blog page. You can get slug value of a blog from `getBlogs` API.
- */
-
 /** @typedef GetDataLoadersParam */
 
 /**
@@ -942,13 +936,6 @@ class ContentPlatformApplicationValidator {
       slug: Joi.string().allow(""),
       title: Joi.string().allow(""),
       status: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetComponentByIdParam} */
-  static getComponentById() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
     }).required();
   }
 

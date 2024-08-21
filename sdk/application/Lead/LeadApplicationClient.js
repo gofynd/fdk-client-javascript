@@ -43,7 +43,7 @@ class Lead {
    * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
    * @name createHistory
    * @summary: Log ticket history
-   * @description: Adds a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
+   * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
    */
   async createHistory(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -121,7 +121,7 @@ class Lead {
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name createTicket
    * @summary: Creates a ticket
-   * @description: Generates a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
+   * @description: Create a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
    */
   async createTicket(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -354,7 +354,7 @@ class Lead {
    *   Success response
    * @name submitCustomForm
    * @summary: Submits form data
-   * @description: Sends user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
+   * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
    */
   async submitCustomForm(
     { slug, body, requestHeaders } = { requestHeaders: {} },

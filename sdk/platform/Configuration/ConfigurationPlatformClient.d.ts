@@ -24,18 +24,6 @@ declare class Configuration {
      */
     getApplications({ pageNo, pageSize, q, requestHeaders }?: ConfigurationPlatformValidator.GetApplicationsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.ApplicationsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetAvailableOptInsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
-     *   - Success response
-     *
-     * @name getAvailableOptIns
-     * @summary: List available opt-ins
-     * @description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAvailableOptIns/).
-     */
-    getAvailableOptIns({ pageNo, pageSize, requestHeaders }?: ConfigurationPlatformValidator.GetAvailableOptInsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
-    /**
      * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -81,55 +69,6 @@ declare class Configuration {
      */
     getDomainAvailibility({ body, requestHeaders }?: ConfigurationPlatformValidator.GetDomainAvailibilityParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetIntegrationByIdParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.Integration>} - Success response
-     * @name getIntegrationById
-     * @summary: Get integration by Id
-     * @description: Retrieve detailed information about a specific integration. Retrieve the details of an integration (such as Ginesys, SAP, etc.) using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationById/).
-     */
-    getIntegrationById({ id, requestHeaders }?: ConfigurationPlatformValidator.GetIntegrationByIdParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.Integration>;
-    /**
-     * @param {ConfigurationPlatformValidator.GetIntegrationByLevelIdParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
-     * @name getIntegrationByLevelId
-     * @summary: Get integration Id
-     * @description: Retrieve integration details for a specific level. Retrieve the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationByLevelId/).
-     */
-    getIntegrationByLevelId({ id, level, uid, requestHeaders }?: ConfigurationPlatformValidator.GetIntegrationByLevelIdParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.IntegrationLevel>;
-    /**
-     * @param {ConfigurationPlatformValidator.GetIntegrationLevelConfigParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.IntegrationConfigResponse>}
-     *   - Success response
-     *
-     * @name getIntegrationLevelConfig
-     * @summary: Get level configuration
-     * @description: Retrieve configuration settings for integration levels. Retrieve the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationLevelConfig/).
-     */
-    getIntegrationLevelConfig({ id, level, opted, checkPermission, requestHeaders }?: ConfigurationPlatformValidator.GetIntegrationLevelConfigParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.IntegrationConfigResponse>;
-    /**
-     * @param {ConfigurationPlatformValidator.GetLevelActiveIntegrationsParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.OptedStoreIntegration>} -
-     *   Success response
-     * @name getLevelActiveIntegrations
-     * @summary: Get active integrations
-     * @description: Check if a store is already opted-in for any integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getLevelActiveIntegrations/).
-     */
-    getLevelActiveIntegrations({ id, level, uid, requestHeaders }?: ConfigurationPlatformValidator.GetLevelActiveIntegrationsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OptedStoreIntegration>;
-    /**
      * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationByIdParam} arg
      *   - Arg object
      *
@@ -157,18 +96,6 @@ declare class Configuration {
      */
     getOtherSellerApplications({ pageNo, pageSize, requestHeaders }?: ConfigurationPlatformValidator.GetOtherSellerApplicationsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OtherSellerApplications>;
     /**
-     * @param {ConfigurationPlatformValidator.GetSelectedOptInsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
-     *   - Success response
-     *
-     * @name getSelectedOptIns
-     * @summary: List selected opt-in
-     * @description: Retrieve a list of selected opt-ins. Retrieve the store-level/company-level integrations configured in a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getSelectedOptIns/).
-     */
-    getSelectedOptIns({ level, uid, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformValidator.GetSelectedOptInsParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
-    /**
      * @param {ConfigurationPlatformValidator.GetStoreByBrandsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -190,30 +117,6 @@ declare class Configuration {
      * @description: This API allows businesses to opt out of sharing their inventory with external seller sales channels. By using this API, companies or stores can prevent specific seller sales channels from fetching their inventory data. This feature is useful for businesses that want to control who  can access their product listings and other inventory information. It helps maintain privacy and control over data distribution, ensuring that sensitive information is only shared with authorized partners. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/optOutFromApplication/).
      */
     optOutFromApplication({ id, body, requestHeaders }?: ConfigurationPlatformValidator.OptOutFromApplicationParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
-    /**
-     * @param {ConfigurationPlatformValidator.UpdateLevelIntegrationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
-     * @name updateLevelIntegration
-     * @summary: Update level integration
-     * @description: Modify level integration. Update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateLevelIntegration/).
-     */
-    updateLevelIntegration({ id, level, body, requestHeaders }?: ConfigurationPlatformValidator.UpdateLevelIntegrationParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.IntegrationLevel>;
-    /**
-     * @param {ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
-     * @name updateLevelUidIntegration
-     * @summary: Update level UID integration
-     * @description: Modify UID-based integration. Update the level of integration by store UID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateLevelUidIntegration/).
-     */
-    updateLevelUidIntegration({ id, level, uid, body, requestHeaders }?: ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.IntegrationLevel>;
 }
 import ConfigurationPlatformValidator = require("./ConfigurationPlatformValidator");
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

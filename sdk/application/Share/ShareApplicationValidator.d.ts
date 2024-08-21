@@ -26,7 +26,8 @@ export = ShareApplicationValidator;
  */
 /**
  * @typedef GetUrlQRCodeParam
- * @property {string} url - A link or a web address
+ * @property {string} url - A link or a web address of a given URL transformed
+ *   into a scannable QR code.
  */
 declare class ShareApplicationValidator {
     /** @returns {CreateShortLinkParam} */
@@ -80,7 +81,8 @@ type GetShortLinkByHashParam = {
 };
 type GetUrlQRCodeParam = {
     /**
-     * - A link or a web address
+     * - A link or a web address of a given URL transformed
+     * into a scannable QR code.
      */
     url: string;
 };

@@ -21,7 +21,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See the list of
  *   available departments below. Also, you can get available departments from
- *   the endpoint /service/application/catalog/v1.0/departments/
+ *   the endpoint /service/application/catalog/v1.0/departments/.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -32,7 +32,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See the list of
  *   available departments below. Also, you can get available departments from
- *   the endpoint /service/application/catalog/v1.0/departments/
+ *   the endpoint /service/application/catalog/v1.0/departments/.
  */
 
 /**
@@ -57,11 +57,11 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {string} [f] - The search filter parameters. Filter parameters will
  *   be passed in f parameter as shown in the example below. Double Pipe (||)
  *   denotes the OR condition, whereas Triple-colon (:::) indicates a new filter
- *   paramater applied as an AND condition.
+ *   parameter applied as an AND condition.
  * @property {string} [q] - The search query for entering partial or full name
  *   of product, brand, category, or collection.
- * @property {boolean} [filters] - This is a boolean value, True for fetching
- *   all filter parameters and False for disabling the filter parameters.
+ * @property {boolean} [filters] - True for fetching all filter parameters and
+ *   False for disabling the filter parameters.
  * @property {string} [sortOn] - The order in which the list of products should
  *   be sorted, e.g. popularity, price, latest and discount, in either ascending
  *   or descending order. See the supported values below.
@@ -77,15 +77,15 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
- * @property {string[]} [tag] - List of tags to filter collections
- * @property {string} [q] - Name of the collection to filter collection
+ * @property {string[]} [tag] - List of tags to filter collections.
+ * @property {string} [q] - Name of the collection to filter collection.
  */
 
 /**
  * @typedef GetComparedFrequentlyProductBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  */
 
 /** @typedef GetDepartmentsParam */
@@ -128,11 +128,11 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {string} [q] - Search a store by its name or store_code.
  * @property {string} [city] - Search stores by the city in which they are situated.
  * @property {number} [range] - Use this to retrieve stores within a particular
- *   range in meters, e.g. 10000, to indicate a 10km range
+ *   range in meters, e.g. 10000, to indicate a 10km range.
  * @property {number} [latitude] - Latitude of the location from where one wants
- *   to retreive the nearest stores, e.g. 72.8691788
+ *   to retrieve the nearest stores, e.g. 72.8691788.
  * @property {number} [longitude] - Longitude of the location from where one
- *   wants to retreive the nearest stores, e.g. 19.1174114
+ *   wants to retrieve the nearest stores, e.g. 19.1174114.
  */
 
 /**
@@ -143,7 +143,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
 /**
  * @typedef GetProductBundlesBySlugParam
  * @property {string} [slug] - Product slug for which bundles need to be fetched.
- * @property {string} [id] - Product uid
+ * @property {string} [id] - Product uid.
  */
 
 /**
@@ -157,17 +157,17 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  */
 
 /**
  * @typedef GetProductPriceBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/sizes
+ *   /service/application/catalog/v1.0/products/sizes.
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
  * @property {number} [moq] - An Integer indication the Minimum Order Quantity
@@ -178,10 +178,10 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @typedef GetProductSellersBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/sizes
+ *   /service/application/catalog/v1.0/products/sizes.
  * @property {string} [strategy] - Sort stores on the basis of strategy. eg,
  *   fast-delivery, low-price, optimal.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -193,27 +193,27 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @typedef GetProductSizesBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
  */
 
 /**
  * @typedef GetProductStockByIdsParam
- * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed)
+ * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed).
  * @property {string} [alu] - ALU of the product (limited upto 50 ALU identifier
- *   in a single request)
+ *   in a single request).
  * @property {string} [skuCode] - Stock-keeping Unit of the product (limited
- *   upto 50 SKU Code in a single request)
+ *   upto 50 SKU Code in a single request).
  * @property {string} [ean] - European Article Number of the product (limited
- *   upto 50 EAN identifier in a single request)
+ *   upto 50 EAN identifier in a single request).
  * @property {string} [upc] - Universal Product Code of the product (limited
- *   upto 50 UPC identifier in a single request)
+ *   upto 50 UPC identifier in a single request).
  */
 
 /**
  * @typedef GetProductStockForTimeByIdsParam
- * @property {string} timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
+ * @property {string} timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z).
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  * @property {string} [pageId] - Page ID to retrieve next set of results.
  */
@@ -222,7 +222,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @typedef GetProductVariantsBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  */
 
 /**
@@ -232,9 +232,9 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {string} [f] - The search filter parameters. Filter parameters will
  *   be passed in f parameter as shown in the example below. Double Pipe (||)
  *   denotes the OR condition, whereas Triple-colon (:::) indicates a new filter
- *   paramater applied as an AND condition.
- * @property {boolean} [filters] - This is a boolean value, True for fetching
- *   all filter parameters and False for disabling the filter parameters.
+ *   parameter applied as an AND condition.
+ * @property {boolean} [filters] - True for fetching all filter parameters and
+ *   False for disabling the filter parameters.
  * @property {string} [sortOn] - The order in which the list of products should
  *   be sorted, e.g. popularity, price, latest and discount, in either ascending
  *   or descending order. See the supported values below.
@@ -257,7 +257,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @typedef GetSimilarComparisonProductBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
+ *   /service/application/catalog/v1.0/products/.
  */
 
 /**
@@ -268,11 +268,11 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {string} [q] - Search a store by its name or store_code.
  * @property {string} [city] - Search stores by the city in which they are situated.
  * @property {number} [range] - Use this to retrieve stores within a particular
- *   range in meters, e.g. 10000, to indicate a 10km range
+ *   range in meters, e.g. 10000, to indicate a 10km range.
  * @property {number} [latitude] - Latitude of the location from where one wants
- *   to retreive the nearest stores, e.g. 72.8691788
+ *   to retrieve the nearest stores, e.g. 72.8691788.
  * @property {number} [longitude] - Longitude of the location from where one
- *   wants to retreive the nearest stores, e.g. 19.1174114
+ *   wants to retrieve the nearest stores, e.g. 19.1174114.
  * @property {string} [tags] - Search stores based on tags.
  */
 

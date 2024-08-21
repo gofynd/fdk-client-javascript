@@ -2,84 +2,86 @@ const Joi = require("joi");
 
 /**
  * @typedef CDN
- * @property {string} url
- * @property {string} absolute_url
- * @property {string} relative_url
+ * @property {string} url - The CDN URL for accessing the file.
+ * @property {string} absolute_url - The absolute URL of the file.
+ * @property {string} relative_url - The relative URL of the file.
  */
 
 /**
  * @typedef Upload
- * @property {number} expiry
- * @property {string} url
+ * @property {number} expiry - The expiration time for the signed URL.
+ * @property {string} url - The signed URL for uploading the file.
  */
 
 /**
  * @typedef StartResponse
- * @property {string} file_name
- * @property {string} file_path
- * @property {string} content_type
- * @property {string} [method]
- * @property {string} namespace
- * @property {string} operation
- * @property {number} size
+ * @property {string} file_name - The name of the file that was uploaded.
+ * @property {string} file_path - The path to the file in the storage location.
+ * @property {string} content_type - The content type of the file.
+ * @property {string} [method] - The HTTP method to be used for uploading the file.
+ * @property {string} namespace - The namespace associated with the file.
+ * @property {string} operation - The operation to be performed on the storage service.
+ * @property {number} size - The size of the file in bytes.
  * @property {Upload} upload
  * @property {CDN} cdn
- * @property {string[]} [tags]
+ * @property {string[]} [tags] - Tags associated with the file.
  */
 
 /**
  * @typedef Params
- * @property {string} [subpath] - The subpath for the file.
+ * @property {string} [subpath] - Specifies a particular directory or location
+ *   within the storage structure where the file should be placed or is located.
  */
 
 /**
  * @typedef StartRequest
- * @property {string} file_name
- * @property {string} content_type
- * @property {number} size
- * @property {string[]} [tags]
+ * @property {string} file_name - The name of the file to be uploaded.
+ * @property {string} content_type - The name of the file to be uploaded.
+ * @property {number} size - The size of the file in bytes.
+ * @property {string[]} [tags] - Tags associated with the file.
  * @property {Params} [params]
  */
 
 /**
  * @typedef CreatedBy
- * @property {string} [username]
+ * @property {string} [username] - The username of the user who created the file.
  */
 
 /**
  * @typedef CompleteResponse
- * @property {string} _id
- * @property {string} file_name
- * @property {string} file_path
- * @property {string} content_type
- * @property {string} namespace
- * @property {string} operation
- * @property {number} size
+ * @property {string} _id - The unique identifier of the uploaded file.
+ * @property {string} file_name - The name of the file that was uploaded.
+ * @property {string} file_path - The path to the file in the storage location.
+ * @property {string} content_type - The content type of the file.
+ * @property {string} namespace - The namespace associated with the file.
+ * @property {string} operation - The operation performed on the storage service.
+ * @property {number} size - The size of the file in bytes.
  * @property {Upload} upload
  * @property {CDN} cdn
- * @property {boolean} success
- * @property {string[]} [tags]
- * @property {string} created_on
- * @property {string} modified_on
+ * @property {boolean} success - The success status of the upload operation.
+ * @property {string[]} [tags] - Tags associated with the file.
+ * @property {string} created_on - The timestamp when the file was created.
+ * @property {string} modified_on - The timestamp when the file was last modified.
  * @property {CreatedBy} [created_by]
  */
 
 /**
  * @typedef Urls
- * @property {string} url
- * @property {string} signed_url
- * @property {number} expiry
+ * @property {string} url - This is the original asset URL provided in the
+ *   request. This is the URL for which a signed URL has been generated.
+ * @property {string} signed_url - Generated signed URL.
+ * @property {number} expiry - The expiration time for the signed URL.
  */
 
 /**
  * @typedef SignUrlResponse
- * @property {Urls[]} urls
+ * @property {Urls[]} urls - Signed URL object.
  */
 
 /**
  * @typedef SignUrlRequest
- * @property {number} expiry
- * @property {string[]} urls
+ * @property {number} expiry - The expiration time for the signed URL.
+ * @property {string[]} urls - List of asset URLs to be signed. .
  */
 
 class FileStorageApplicationModel {

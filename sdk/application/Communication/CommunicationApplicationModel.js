@@ -2,36 +2,48 @@ const Joi = require("joi");
 
 /**
  * @typedef CommunicationConsentReq
- * @property {string} [response]
- * @property {string} [action]
- * @property {string} [channel]
+ * @property {string} [response] - Whether the user has responded to the inquiry
+ *   regarding their preference for opting in or out of receiving communications.
+ * @property {string} [action] - The user's choice to opt in or opt out of
+ *   receiving communications.
+ * @property {string} [channel] - The channel of communication the user has
+ *   agreed to receive messages through.
  */
 
 /**
  * @typedef CommunicationConsentRes
- * @property {string} [app_id]
- * @property {string} [user_id]
+ * @property {string} [app_id] - The ID of the sales channel where the user has
+ *   given their consent.
+ * @property {string} [user_id] - Identifier which can uniquely identify the user.
  * @property {CommunicationConsentChannels} [channels]
  */
 
 /**
  * @typedef CommunicationConsentChannelsEmail
- * @property {string} [response]
- * @property {string} [display_name]
+ * @property {string} [response] - The user's choice to opt in or opt out of
+ *   receiving communications.
+ * @property {string} [display_name] - Name of the channel of communication the
+ *   user has agreed to receive messages through.
  */
 
 /**
  * @typedef CommunicationConsentChannelsSms
- * @property {string} [response]
- * @property {string} [display_name]
+ * @property {string} [response] - The user's choice to opt in or opt out of
+ *   receiving communications.
+ * @property {string} [display_name] - Name of the channel of communication the
+ *   user has agreed to receive messages through.
  */
 
 /**
  * @typedef CommunicationConsentChannelsWhatsapp
- * @property {string} [response]
- * @property {string} [display_name]
- * @property {string} [country_code]
- * @property {string} [phone_number]
+ * @property {string} [response] - The user's choice to opt in or opt out of
+ *   receiving communications.
+ * @property {string} [display_name] - Name of the channel of communication the
+ *   user has agreed to receive messages through.
+ * @property {string} [country_code] - Alphanumeric identification code for the
+ *   users country.
+ * @property {string} [phone_number] - Phone number of the user that the user
+ *   has accepted to receive communication through WhatsApp.
  */
 
 /**
@@ -43,39 +55,48 @@ const Joi = require("joi");
 
 /**
  * @typedef CommunicationConsent
- * @property {string} [app_id]
- * @property {string} [user_id]
+ * @property {string} [app_id] - The ID of the sales channel where the user has
+ *   given their consent.
+ * @property {string} [user_id] - Identifier which can uniquely identify the user.
  * @property {CommunicationConsentChannels} [channels]
  */
 
 /**
  * @typedef BadRequestSchema
- * @property {string} [status] - Response status.
- * @property {string} [message] - Failure message.
+ * @property {string} [status] - Error code indicating the type of issue.
+ * @property {string} [message] - Error message providing details about the error.
  */
 
 /**
  * @typedef PushtokenReq
- * @property {string} [action]
- * @property {string} [bundle_identifier]
- * @property {string} [push_token]
- * @property {string} [unique_device_id]
- * @property {string} [type]
+ * @property {string} [action] - The type of operation to perform with the push
+ *   token, such as create, update, or reset.
+ * @property {string} [bundle_identifier] - Unique identifier used to identify a bundle.
+ * @property {string} [push_token] - A string of codes containing comprehensive
+ *   data that identifies a identity of requester.
+ * @property {string} [unique_device_id] - Unique identifier used to identify a device.
+ * @property {string} [type] - Source address of the requestee.
  */
 
 /**
  * @typedef PushtokenRes
- * @property {string} [_id]
- * @property {string} [bundle_identifier]
- * @property {string} [push_token]
- * @property {string} [unique_device_id]
- * @property {string} [type]
- * @property {string} [platform]
- * @property {string} [application_id]
- * @property {string} [user_id]
- * @property {string} [created_at]
- * @property {string} [updated_at]
- * @property {string} [expired_at]
+ * @property {string} [_id] - Key used to uniquely identify document that
+ *   contains push token credentials.
+ * @property {string} [bundle_identifier] - Unique identifier used to identify a bundle.
+ * @property {string} [push_token] - A string of codes containing comprehensive
+ *   data that identifies a identity of requester.
+ * @property {string} [unique_device_id] - Unique identifier used to identify a device.
+ * @property {string} [type] - Source address of the requester.
+ * @property {string} [platform] - Source address of the requester.
+ * @property {string} [application_id] - The ID of the sales channel associated
+ *   with the push token.
+ * @property {string} [user_id] - Identifier which can uniquely identify the user.
+ * @property {string} [created_at] - The timestamp indicating when a record was
+ *   initially created.
+ * @property {string} [updated_at] - The timestamp indicating when a record was
+ *   last modified or updated.
+ * @property {string} [expired_at] - The timestamp indicating when a record is
+ *   set to expire or become invalid.
  */
 
 class CommunicationApplicationModel {

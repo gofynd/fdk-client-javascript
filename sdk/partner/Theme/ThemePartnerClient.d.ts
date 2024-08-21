@@ -195,6 +195,26 @@ declare class Theme {
      */
     publishExtensionSections({ extensionId, body, requestHeaders }?: ThemePartnerValidator.PublishExtensionSectionsParam, { responseHeaders }?: object): Promise<ThemePartnerModel.PublishExtensionSectionResponse>;
     /**
+     * @param {ThemePartnerValidator.ApplyExtensionPreviewParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.ExtensionPreviewResponse>} - Success response
+     * @name applyExtensionPreview
+     * @summary: Start a Preview of Extension Section
+     * @description: Use this API to start a local session for previewing the extension section binding. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/applyExtensionPreview/).
+     */
+    applyExtensionPreview({ extensionSectionId, body, requestHeaders }?: ThemePartnerValidator.ApplyExtensionPreviewParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionPreviewResponse>;
+    /**
+     * @param {ThemePartnerValidator.RemoveExtensionPreviewParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.ExtensionPreviewResponse>} - Success response
+     * @name removeExtensionPreview
+     * @summary: Close a Preview of Extension Section
+     * @description: Use this API to close a local session for previewing the extension section binding - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/removeExtensionPreview/).
+     */
+    removeExtensionPreview({ extensionSectionId, body, requestHeaders }?: ThemePartnerValidator.RemoveExtensionPreviewParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionPreviewResponse>;
+    /**
      * @param {ThemePartnerValidator.GetThemeRejectionReasonsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options

@@ -12,6 +12,7 @@ export namespace AVAILABLE_PAGE_TYPE {
     const COLLECTIONS: string;
     const CONTACT_US: string;
     const EXTERNAL: string;
+    const CUSTOM: string;
     const FAQ: string;
     const FRESHCHAT: string;
     const HOME: string;
@@ -120,6 +121,14 @@ export const NAVIGATORS: {
         link: string;
     };
     external: {
+        name: string;
+        link: string;
+        query: {
+            key: string;
+            required: boolean;
+        }[];
+    };
+    custom: {
         name: string;
         link: string;
         query: {

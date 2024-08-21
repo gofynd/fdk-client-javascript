@@ -3,6 +3,11 @@ const Joi = require("joi");
 const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
+ * @typedef AddStateManagerConfigParam
+ * @property {OrderPlatformModel.TransitionConfigPayload} body
+ */
+
+/**
  * @typedef AttachOrderUserParam
  * @property {OrderPlatformModel.AttachOrderUser} body
  */
@@ -323,6 +328,13 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [orderType]
  */
 
+/**
+ * @typedef GetStateManagerConfigParam
+ * @property {string} [appId] - The unique identifier of the application.
+ * @property {string} [orderingChannel] - The channel through which orders are placed.
+ * @property {string} [entity] - The entity for which the configuration is applied.
+ */
+
 /** @typedef GetStateTransitionMapParam */
 
 /**
@@ -432,6 +444,13 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 class OrderPlatformValidator {
+  /** @returns {AddStateManagerConfigParam} */
+  static addStateManagerConfig() {
+    return Joi.object({
+      body: OrderPlatformModel.TransitionConfigPayload().required(),
+    }).required();
+  }
+
   /** @returns {AttachOrderUserParam} */
   static attachOrderUser() {
     return Joi.object({
@@ -809,6 +828,15 @@ class OrderPlatformValidator {
       tags: Joi.string().allow(""),
       customerId: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetStateManagerConfigParam} */
+  static getStateManagerConfig() {
+    return Joi.object({
+      appId: Joi.string().allow(""),
+      orderingChannel: Joi.string().allow(""),
+      entity: Joi.string().allow(""),
     }).required();
   }
 

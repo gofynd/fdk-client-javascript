@@ -114,7 +114,7 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
@@ -532,9 +532,9 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 /**
@@ -549,6 +549,7 @@ export = ThemePlatformModel;
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -779,6 +780,9 @@ type SEObreadcrumb = {
 /** @returns {Action} */
 declare function Action(): Action;
 type Action = {
+    /**
+     * - Type of action to be taken e.g, page.
+     */
     type?: string;
     page?: ActionPage;
     popup?: ActionPage;
@@ -1593,8 +1597,17 @@ type CompanyPrivateTheme = {
 /** @returns {ActionPage} */
 declare function ActionPage(): ActionPage;
 type ActionPage = {
+    /**
+     * - Parameters that should be considered in path.
+     */
     params?: any;
+    /**
+     * - Query parameter if any to be added to the action.
+     */
     query?: any;
+    /**
+     * - The URL for the action.
+     */
     url?: string;
     type: PageType;
 };
@@ -1604,4 +1617,4 @@ type ActionPage = {
  * @returns {PageType}
  */
 declare function PageType(): PageType;
-type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "custom" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";

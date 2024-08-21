@@ -174,27 +174,33 @@ const Joi = require("joi");
 
 /**
  * @typedef CompanyDetail
- * @property {string} [name]
- * @property {string} [address]
- * @property {string} [city]
- * @property {string} [state]
- * @property {string} [country]
- * @property {number} [zip_code]
- * @property {string} [state_code]
- * @property {string} [country_code]
- * @property {string} [gstin]
- * @property {string} [pan]
- * @property {string} [phone_no]
- * @property {string} [cin]
- * @property {string} [website_url]
- * @property {string} [email]
- * @property {string} [display_address]
- * @property {string} [sector]
- * @property {Object} [phone]
- * @property {string} [trn]
- * @property {string} [vat]
- * @property {string} [business_country_timezone]
- * @property {Object} [business_country_currency]
+ * @property {string} [name] - The official name of the company.
+ * @property {string} [address] - The physical street address of the company.
+ * @property {string} [city] - The city where the company is located.
+ * @property {string} [state] - The state or province where the company is located.
+ * @property {string} [country] - The country where the company is based.
+ * @property {number} [zip_code] - The postal code for the company's location.
+ * @property {string} [state_code] - A code representing the state, often used
+ *   in official documents and forms.
+ * @property {string} [country_code] - The code of the country.
+ * @property {string} [gstin] - The Goods and Services Tax Identification
+ *   Number, unique to each business in India.
+ * @property {string} [pan] - The Permanent Account Number, unique to each
+ *   taxpayer in India.
+ * @property {string} [phone_no] - The primary contact phone number for the company.
+ * @property {string} [cin] - The Corporate Identification Number, unique to
+ *   each company registered in India.
+ * @property {string} [website_url] - The URL to the company's official website.
+ * @property {string} [email] - The company's official email address.
+ * @property {string} [display_address] - The display address of the company.
+ * @property {string} [sector] - The sector in which company is located.
+ * @property {Object} [phone] - The provided phone no of country.
+ * @property {string} [trn] - The trn no of the company.
+ * @property {string} [vat] - The vat no of the company.
+ * @property {string} [business_country_timezone] - The bussiness country timezone.
+ * @property {Object} [business_country_currency] - This object represents the
+ *   bussiness country currency.
+ * @property {Object} [meta] - This object represents the meta fields for company.
  */
 
 /**
@@ -460,6 +466,8 @@ const Joi = require("joi");
  * @property {boolean} [is_self_ship]
  * @property {string} [mode]
  * @property {boolean} [is_self_pickup]
+ * @property {Object} [shipment_meta] - This field represents the shipment meta details
+ * @property {Object} [order_meta] - This field represents the order meta details
  * @property {string} [platform_name]
  * @property {number} [amount_to_be_collected]
  * @property {number} [amount_paid]
@@ -476,11 +484,12 @@ const Joi = require("joi");
 
 /**
  * @typedef DummyTemplateData
- * @property {string} [_id]
- * @property {number} [pdf_type_id]
+ * @property {string} [_id] - This field contains the unique identifier for the
+ *   PDF payload.
+ * @property {number} [pdf_type_id] - This is invoice unique id
  * @property {DummyTemplateDataPayload} payload
- * @property {string} [country_code]
- * @property {number} [__v]
+ * @property {string} [country_code] - This field represents the country code.
+ * @property {number} [__v] - This field holds the version number.
  */
 
 /**
@@ -867,6 +876,7 @@ class FileStoragePlatformModel {
       vat: Joi.string().allow(""),
       business_country_timezone: Joi.string().allow(""),
       business_country_currency: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1184,6 +1194,8 @@ class FileStoragePlatformModel {
       is_self_ship: Joi.boolean(),
       mode: Joi.string().allow(""),
       is_self_pickup: Joi.boolean(),
+      shipment_meta: Joi.object().pattern(/\S/, Joi.any()),
+      order_meta: Joi.object().pattern(/\S/, Joi.any()),
       platform_name: Joi.string().allow(""),
       amount_to_be_collected: Joi.number(),
       amount_paid: Joi.number(),

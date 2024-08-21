@@ -9,6 +9,7 @@ const Theme = require("./Theme/ThemePartnerClient");
 const Webhook = require("./Webhook/WebhookPartnerClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
+const { execute } = require("./PartnerAPIClient");
 
 /**
  * Represents the client for the partner APIs.
@@ -43,6 +44,19 @@ class PartnerClient {
     } else {
       throw new FDKClientValidationError("Context value should be an object");
     }
+  }
+
+  async request({
+    method,
+    url,
+    query,
+    body,
+    headers,
+    responseHeaders = false,
+  }) {
+    return await execute(this.config, method, url, query, body, headers, {
+      responseHeaders,
+    });
   }
 }
 

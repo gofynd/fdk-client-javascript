@@ -108,14 +108,18 @@ const Joi = require("joi");
 
 /**
  * @typedef ListViewItems
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} stores_count
- * @property {boolean} is_active
- * @property {number} regions_count
- * @property {number} company_id
- * @property {ListViewChannels[]} channels
+ * @property {string} zone_id - The unique identifier for the zone.
+ * @property {string} name - The name of the zone.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} stores_count - The number of stores within the zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {number} regions_count - The number of regions within the zone.
+ * @property {number} company_id - The unique identifier for the company to
+ *   which the zone belongs.
+ * @property {number[]} [store_ids] - A list of store identifiers associated
+ *   with the zone.
+ * @property {ListViewChannels[]} channels - The name of the zone.
  */
 
 /**
@@ -620,21 +624,43 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
+ */
+
+/**
+ * @typedef CourierPartnerRuleCPListResponse
+ * @property {string} [account_id]
+ * @property {string} [extension_id]
+ * @property {boolean} [is_self_ship]
+ * @property {Object} [scheme_rules]
+ */
+
+/**
+ * @typedef CourierPartnerRuleResponse
+ * @property {boolean} [is_active]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {CourierPartnerRuleConditions} [conditions]
+ * @property {string[]} [sort]
+ * @property {Object} [created_by]
+ * @property {string} [id]
+ * @property {Object} [modified_by]
+ * @property {string} [modified_on]
+ * @property {string} [name]
+ * @property {string} [type]
+ * @property {CourierPartnerRuleCPListResponse[]} [cp_list]
  */
 
 /**
  * @typedef CourierPartnerList
  * @property {string} extension_id
  * @property {string} account_id
- * @property {string} name
- * @property {boolean} is_self_ship
  */
 
 /**
@@ -700,7 +726,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierPartnerRulesListResponse
- * @property {CourierPartnerRule[]} items
+ * @property {CourierPartnerRuleResponse[]} items
  * @property {Page} page
  */
 
@@ -1285,6 +1311,7 @@ class ServiceabilityPlatformModel {
       is_active: Joi.boolean().required(),
       regions_count: Joi.number().required(),
       company_id: Joi.number().required(),
+      store_ids: Joi.array().items(Joi.number()),
       channels: Joi.array()
         .items(ServiceabilityPlatformModel.ListViewChannels())
         .required(),
@@ -1962,13 +1989,41 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {CourierPartnerRuleCPListResponse} */
+  static CourierPartnerRuleCPListResponse() {
+    return Joi.object({
+      account_id: Joi.string().allow(""),
+      extension_id: Joi.string().allow(""),
+      is_self_ship: Joi.boolean(),
+      scheme_rules: Joi.any(),
+    });
+  }
+
+  /** @returns {CourierPartnerRuleResponse} */
+  static CourierPartnerRuleResponse() {
+    return Joi.object({
+      is_active: Joi.boolean(),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
+      conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions(),
+      sort: Joi.array().items(Joi.string().allow("")),
+      created_by: Joi.any().allow(null),
+      id: Joi.string().allow(""),
+      modified_by: Joi.any().allow(null),
+      modified_on: Joi.string().allow("").allow(null),
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      cp_list: Joi.array().items(
+        ServiceabilityPlatformModel.CourierPartnerRuleCPListResponse()
+      ),
+    });
+  }
+
   /** @returns {CourierPartnerList} */
   static CourierPartnerList() {
     return Joi.object({
       extension_id: Joi.string().allow("").required(),
       account_id: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-      is_self_ship: Joi.boolean().required(),
     });
   }
 
@@ -2057,7 +2112,7 @@ class ServiceabilityPlatformModel {
   static CourierPartnerRulesListResponse() {
     return Joi.object({
       items: Joi.array()
-        .items(ServiceabilityPlatformModel.CourierPartnerRule())
+        .items(ServiceabilityPlatformModel.CourierPartnerRuleResponse())
         .required(),
       page: ServiceabilityPlatformModel.Page().required(),
     });

@@ -43,7 +43,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
      * @name followById
      * @summary: Create item, brand, product
-     * @description: Adds a product, brand, or item to the user's followed list by collection Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/followById/).
+     * @description: Add a product, brand, or item to the user's followed list by collection Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/followById/).
      */
     followById({ collectionType, collectionId, requestHeaders }?: CatalogApplicationValidator.FollowByIdParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.FollowPostResponse>;
     /**
@@ -53,7 +53,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.BrandDetailResponse>} - Success response
      * @name getBrandDetailBySlug
      * @summary: Get a brand
-     * @description: Retrieve metadata of a brand such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrandDetailBySlug/).
+     * @description: Get metadata of a brand such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrandDetailBySlug/).
      */
     getBrandDetailBySlug({ slug, requestHeaders }?: CatalogApplicationValidator.GetBrandDetailBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.BrandDetailResponse>;
     /**
@@ -63,7 +63,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.BrandListingResponse>} - Success response
      * @name getBrands
      * @summary: List brands
-     * @description: Retrieves a list of all the availabe brands. Filtering can be applied on department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrands/).
+     * @description: Get a list of all the available brands. Filtering can be applied to the department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrands/).
      */
     getBrands({ department, pageNo, pageSize, requestHeaders }?: CatalogApplicationValidator.GetBrandsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.BrandListingResponse>;
     /**
@@ -71,11 +71,11 @@ declare class Catalog {
      * @param {string} [arg.department] - The name of the department. Use this
      *   parameter to filter products by a particular department. See the list
      *   of available departments below. Also, you can get available departments
-     *   from the endpoint /service/application/catalog/v1.0/departments/
+     *   from the endpoint /service/application/catalog/v1.0/departments/.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Paginator<CatalogApplicationModel.BrandListingResponse>}
      * @summary: List brands
-     * @description: Retrieves a list of all the availabe brands. Filtering can be applied on department.
+     * @description: Get a list of all the available brands. Filtering can be applied to the department.
      */
     getBrandsPaginator({ department, pageSize }?: {
         department?: string;
@@ -89,7 +89,7 @@ declare class Catalog {
      *   Success response
      * @name getCategories
      * @summary: List product categories
-     * @description: Retrieves a list of all available product categories. Also user can filter the categories by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategories/).
+     * @description: List all available product categories. Also, users can filter the categories by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategories/).
      */
     getCategories({ department, requestHeaders }?: CatalogApplicationValidator.GetCategoriesParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.CategoryListingResponse>;
     /**
@@ -99,7 +99,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.CategoryMetaResponse>} - Success response
      * @name getCategoryDetailBySlug
      * @summary: Get category by slug
-     * @description: Retrieve detailed information about a specific product category using its slug and Retrieve metadata of a category such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategoryDetailBySlug/).
+     * @description: Get detailed information about a specific product category using its slug and get metadata of a category such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategoryDetailBySlug/).
      */
     getCategoryDetailBySlug({ slug, requestHeaders }?: CatalogApplicationValidator.GetCategoryDetailBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.CategoryMetaResponse>;
     /**
@@ -112,7 +112,7 @@ declare class Catalog {
      *   Success response
      * @name getCollectionDetailBySlug
      * @summary: Get a collection
-     * @description: Retrieve detailed information about a specific collection using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollectionDetailBySlug/).
+     * @description: Get detailed information about a specific collection using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollectionDetailBySlug/).
      */
     getCollectionDetailBySlug({ slug, requestHeaders }?: CatalogApplicationValidator.GetCollectionDetailBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.CollectionDetailResponse>;
     /**
@@ -135,11 +135,11 @@ declare class Catalog {
      * @param {string} [arg.f] - The search filter parameters. Filter parameters
      *   will be passed in f parameter as shown in the example below. Double
      *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
-     *   indicates a new filter paramater applied as an AND condition.
+     *   indicates a new filter parameter applied as an AND condition.
      * @param {string} [arg.q] - The search query for entering partial or full
      *   name of product, brand, category, or collection.
-     * @param {boolean} [arg.filters] - This is a boolean value, True for
-     *   fetching all filter parameters and False for disabling the filter parameters.
+     * @param {boolean} [arg.filters] - True for fetching all filter parameters
+     *   and False for disabling the filter parameters.
      * @param {string} [arg.sortOn] - The order in which the list of products
      *   should be sorted, e.g. popularity, price, latest and discount, in
      *   either ascending or descending order. See the supported values below.
@@ -165,17 +165,17 @@ declare class Catalog {
      *
      * @name getCollections
      * @summary: List collections
-     * @description: Retrieve a list of curated product collections with filtering options based on tags and collection names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollections/).
+     * @description: List of curated product collections with filtering options based on tags and collection names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollections/).
      */
     getCollections({ pageNo, pageSize, tag, q, requestHeaders }?: CatalogApplicationValidator.GetCollectionsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.GetCollectionListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @param {string[]} [arg.tag] - List of tags to filter collections
-     * @param {string} [arg.q] - Name of the collection to filter collection
+     * @param {string[]} [arg.tag] - List of tags to filter collections.
+     * @param {string} [arg.q] - Name of the collection to filter collection.
      * @returns {Paginator<CatalogApplicationModel.GetCollectionListingResponse>}
      * @summary: List collections
-     * @description: Retrieve a list of curated product collections with filtering options based on tags and collection names.
+     * @description: List of curated product collections with filtering options based on tags and collection names.
      */
     getCollectionsPaginator({ pageSize, tag, q }?: {
         pageSize?: number;
@@ -193,7 +193,7 @@ declare class Catalog {
      *
      * @name getComparedFrequentlyProductBySlug
      * @summary: List frequent products
-     * @description: Retrieve products that are often compared to the product specified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getComparedFrequentlyProductBySlug/).
+     * @description: Get products that are often compared to the product specified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getComparedFrequentlyProductBySlug/).
      */
     getComparedFrequentlyProductBySlug({ slug, requestHeaders }?: CatalogApplicationValidator.GetComparedFrequentlyProductBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductFrequentlyComparedSimilarResponse>;
     /**
@@ -203,7 +203,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.DepartmentResponse>} - Success response
      * @name getDepartments
      * @summary: List departments
-     * @description: Retrieve a list of all departments associated with available products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getDepartments/).
+     * @description: List all departments associated with available products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getDepartments/).
      */
     getDepartments({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogApplicationModel.DepartmentResponse>;
     /**
@@ -213,7 +213,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.FollowIdsResponse>} - Success response
      * @name getFollowIds
      * @summary: List Ids of followed item, brand, product
-     * @description: Retrieves the IDs of all items the user is currently following like Products, Brands and Collections - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowIds/).
+     * @description: Get the IDs of all items the user is currently following, such as Products, Brands, and Collections. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowIds/).
      */
     getFollowIds({ collectionType, requestHeaders }?: CatalogApplicationValidator.GetFollowIdsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.FollowIdsResponse>;
     /**
@@ -224,7 +224,7 @@ declare class Catalog {
      *   Success response
      * @name getFollowedListing
      * @summary: List followed products, brands
-     * @description: Retrieve a list of products or brands the user is following. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowedListing/).
+     * @description: Get a list of products or brands the user is following. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowedListing/).
      */
     getFollowedListing({ collectionType, pageId, pageSize, requestHeaders }?: CatalogApplicationValidator.GetFollowedListingParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.GetFollowListingResponse>;
     /**
@@ -234,7 +234,7 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Page ID to retrieve next set of results.
      * @returns {Paginator<CatalogApplicationModel.GetFollowListingResponse>}
      * @summary: List followed products, brands
-     * @description: Retrieve a list of products or brands the user is following.
+     * @description: Get a list of products or brands the user is following.
      */
     getFollowedListingPaginator({ collectionType, pageSize }?: {
         collectionType: string;
@@ -248,7 +248,7 @@ declare class Catalog {
      *   Success response
      * @name getFollowerCountById
      * @summary: Get follower count
-     * @description: Retrieves the total number of followers for a specific item by its Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowerCountById/).
+     * @description: Get the total number of followers for a specific item by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowerCountById/).
      */
     getFollowerCountById({ collectionType, collectionId, requestHeaders }?: CatalogApplicationValidator.GetFollowerCountByIdParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.FollowerCountResponse>;
     /**
@@ -283,7 +283,7 @@ declare class Catalog {
      *   Success response
      * @name getInStockLocations
      * @summary: List stores with inventory
-     * @description: Lists stores where specified products are currently in stock. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
+     * @description: List stores where specified products are currently in stock. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
      */
     getInStockLocations({ pageNo, pageSize, q, city, range, latitude, longitude, requestHeaders, }?: CatalogApplicationValidator.GetInStockLocationsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ApplicationStoreListing>;
     /**
@@ -292,14 +292,14 @@ declare class Catalog {
      * @param {string} [arg.q] - Search a store by its name or store_code.
      * @param {string} [arg.city] - Search stores by the city in which they are situated.
      * @param {number} [arg.range] - Use this to retrieve stores within a
-     *   particular range in meters, e.g. 10000, to indicate a 10km range
+     *   particular range in meters, e.g. 10000, to indicate a 10km range.
      * @param {number} [arg.latitude] - Latitude of the location from where one
-     *   wants to retreive the nearest stores, e.g. 72.8691788
+     *   wants to retrieve the nearest stores, e.g. 72.8691788.
      * @param {number} [arg.longitude] - Longitude of the location from where
-     *   one wants to retreive the nearest stores, e.g. 19.1174114
+     *   one wants to retrieve the nearest stores, e.g. 19.1174114.
      * @returns {Paginator<CatalogApplicationModel.ApplicationStoreListing>}
      * @summary: List stores with inventory
-     * @description: Lists stores where specified products are currently in stock.
+     * @description: List stores where specified products are currently in stock.
      */
     getInStockLocationsPaginator({ pageSize, q, city, range, latitude, longitude, }?: {
         pageSize?: number;
@@ -316,7 +316,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.StoreDetails>} - Success response
      * @name getLocationDetailsById
      * @summary: Get selling location
-     * @description: This API retrieves comprehensive details about a store based on its location Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
+     * @description: Get details about a store based on its location Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
      */
     getLocationDetailsById({ locationId, requestHeaders }?: CatalogApplicationValidator.GetLocationDetailsByIdParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.StoreDetails>;
     /**
@@ -326,7 +326,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.ProductBundle>} - Success response
      * @name getProductBundlesBySlug
      * @summary: List product bundles
-     * @description: Retrieve products bundles to the one specified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductBundlesBySlug/).
+     * @description: Get products bundles to the one specified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductBundlesBySlug/).
      */
     getProductBundlesBySlug({ slug, id, requestHeaders }?: CatalogApplicationValidator.GetProductBundlesBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductBundle>;
     /**
@@ -339,7 +339,7 @@ declare class Catalog {
      *   Success response
      * @name getProductComparisonBySlugs
      * @summary: List products for comparison
-     * @description: Retrives all the products that have same category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductComparisonBySlugs/).
+     * @description: Get all the products that have the same category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductComparisonBySlugs/).
      */
     getProductComparisonBySlugs({ slug, requestHeaders }?: CatalogApplicationValidator.GetProductComparisonBySlugsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductsComparisonResponse>;
     /**
@@ -349,7 +349,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.ProductDetail>} - Success response
      * @name getProductDetailBySlug
      * @summary: Get a product
-     * @description: Fetches properties related to Product such as price, attributes, HSN code, SKU code, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductDetailBySlug/).
+     * @description: Get product details such as price, attributes, HSN code, SKU code, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductDetailBySlug/).
      */
     getProductDetailBySlug({ slug, requestHeaders }?: CatalogApplicationValidator.GetProductDetailBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductDetail>;
     /**
@@ -360,7 +360,7 @@ declare class Catalog {
      *   Success response
      * @name getProductPriceBySlug
      * @summary: Get product price
-     * @description: Retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
+     * @description: Get the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
      */
     getProductPriceBySlug({ slug, size, storeId, moq, requestHeaders }?: CatalogApplicationValidator.GetProductPriceBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizePriceResponseV3>;
     /**
@@ -372,23 +372,23 @@ declare class Catalog {
      *
      * @name getProductSellersBySlug
      * @summary: List sellers
-     * @description: Retrieve a list of all sellers offering a specific product identified by its slug and size - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
+     * @description: List all sellers offering a specific product identified by its slug and size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
      */
     getProductSellersBySlug({ slug, size, strategy, pageNo, pageSize, requestHeaders }?: CatalogApplicationValidator.GetProductSellersBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
      *   identifier of a product. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/
+     *   /service/application/catalog/v1.0/products/.
      * @param {string} arg.size - A string indicating the size of the product,
      *   e.g. S, M, XL. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/sizes
+     *   /service/application/catalog/v1.0/products/sizes.
      * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
      *   eg, fast-delivery, low-price, optimal.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Paginator<CatalogApplicationModel.ProductSizeSellersResponseV3>}
      * @summary: List sellers
-     * @description: Retrieve a list of all sellers offering a specific product identified by its slug and size
+     * @description: List all sellers offering a specific product identified by its slug and size.
      */
     getProductSellersBySlugPaginator({ slug, size, strategy, pageSize }?: {
         slug: string;
@@ -414,7 +414,7 @@ declare class Catalog {
      *   Success response
      * @name getProductStockByIds
      * @summary: Get product stocks
-     * @description: Retrieves the current stock status for products identified by their IDs. such as SKU,ALU,EAN etc - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockByIds/).
+     * @description: Get the current stock status for products identified by their IDs, such as SKU, ALU, EAN, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockByIds/).
      */
     getProductStockByIds({ itemId, alu, skuCode, ean, upc, requestHeaders }?: CatalogApplicationValidator.GetProductStockByIdsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductStockStatusResponse>;
     /**
@@ -426,16 +426,16 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.ProductStockPolling>} - Success response
      * @name getProductStockForTimeByIds
      * @summary: List future stock
-     * @description: Retrives the available stock levels for all products associated with a particular sales channel at a specified future time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockForTimeByIds/).
+     * @description: Get the available stock levels for all products associated with a particular sales channel at a specified future time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockForTimeByIds/).
      */
     getProductStockForTimeByIds({ timestamp, pageSize, pageId, requestHeaders }?: CatalogApplicationValidator.GetProductStockForTimeByIdsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductStockPolling>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
+     * @param {string} arg.timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z).
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Paginator<CatalogApplicationModel.ProductStockPolling>}
      * @summary: List future stock
-     * @description: Retrives the available stock levels for all products associated with a particular sales channel at a specified future time.
+     * @description: Get the available stock levels for all products associated with a particular sales channel at a specified future time.
      */
     getProductStockForTimeByIdsPaginator({ timestamp, pageSize }?: {
         timestamp: string;
@@ -450,7 +450,7 @@ declare class Catalog {
      *   Success response
      * @name getProductVariantsBySlug
      * @summary: List product variants
-     * @description: Retrieves all available variants of a specific product identified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductVariantsBySlug/).
+     * @description: Get all available variants of a specific product identified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductVariantsBySlug/).
      */
     getProductVariantsBySlug({ slug, requestHeaders }?: CatalogApplicationValidator.GetProductVariantsBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductVariantsResponse>;
     /**
@@ -461,7 +461,7 @@ declare class Catalog {
      *   Success response
      * @name getProducts
      * @summary: List products
-     * @description: Retrieves a list of all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProducts/).
+     * @description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProducts/).
      */
     getProducts({ q, f, filters, sortOn, pageId, pageSize, pageNo, pageType, requestHeaders, }?: CatalogApplicationValidator.GetProductsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductListingResponse>;
     /**
@@ -471,16 +471,16 @@ declare class Catalog {
      * @param {string} [arg.f] - The search filter parameters. Filter parameters
      *   will be passed in f parameter as shown in the example below. Double
      *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
-     *   indicates a new filter paramater applied as an AND condition.
-     * @param {boolean} [arg.filters] - This is a boolean value, True for
-     *   fetching all filter parameters and False for disabling the filter parameters.
+     *   indicates a new filter parameter applied as an AND condition.
+     * @param {boolean} [arg.filters] - True for fetching all filter parameters
+     *   and False for disabling the filter parameters.
      * @param {string} [arg.sortOn] - The order in which the list of products
      *   should be sorted, e.g. popularity, price, latest and discount, in
      *   either ascending or descending order. See the supported values below.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Paginator<CatalogApplicationModel.ProductListingResponse>}
      * @summary: List products
-     * @description: Retrieves a list of all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
+     * @description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
      */
     getProductsPaginator({ q, f, filters, sortOn, pageSize }?: {
         q?: string;
@@ -496,7 +496,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.AutoCompleteResponse>} - Success response
      * @name getSearchResults
      * @summary: List product, brand, category
-     * @description: Retrieve products, brands, or categories based on a search query, which can be a partial or full name match. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSearchResults/).
+     * @description: Get products, brands, or categories based on a search query, which can be a partial or full name match. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSearchResults/).
      */
     getSearchResults({ q, requestHeaders }?: CatalogApplicationValidator.GetSearchResultsParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.AutoCompleteResponse>;
     /**
@@ -509,7 +509,7 @@ declare class Catalog {
      *   Success response
      * @name getSimilarComparisonProductBySlug
      * @summary: List similar products
-     * @description: Retrives all products within the same category as the one specified by the provided slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSimilarComparisonProductBySlug/).
+     * @description: Get all products within the same category as the one specified by the provided slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSimilarComparisonProductBySlug/).
      */
     getSimilarComparisonProductBySlug({ slug, requestHeaders }?: CatalogApplicationValidator.GetSimilarComparisonProductBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductCompareResponse>;
     /**
@@ -519,7 +519,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.StoreListingResponse>} - Success response
      * @name getStores
      * @summary: List available stores
-     * @description: Retrieves a list of all stores associated with sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
+     * @description: List all stores associated with the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
      */
     getStores({ pageNo, pageSize, q, city, range, latitude, longitude, tags, requestHeaders, }?: CatalogApplicationValidator.GetStoresParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.StoreListingResponse>;
     /**
@@ -528,15 +528,15 @@ declare class Catalog {
      * @param {string} [arg.q] - Search a store by its name or store_code.
      * @param {string} [arg.city] - Search stores by the city in which they are situated.
      * @param {number} [arg.range] - Use this to retrieve stores within a
-     *   particular range in meters, e.g. 10000, to indicate a 10km range
+     *   particular range in meters, e.g. 10000, to indicate a 10km range.
      * @param {number} [arg.latitude] - Latitude of the location from where one
-     *   wants to retreive the nearest stores, e.g. 72.8691788
+     *   wants to retrieve the nearest stores, e.g. 72.8691788.
      * @param {number} [arg.longitude] - Longitude of the location from where
-     *   one wants to retreive the nearest stores, e.g. 19.1174114
+     *   one wants to retrieve the nearest stores, e.g. 19.1174114.
      * @param {string} [arg.tags] - Search stores based on tags.
      * @returns {Paginator<CatalogApplicationModel.StoreListingResponse>}
      * @summary: List available stores
-     * @description: Retrieves a list of all stores associated with sales channel
+     * @description: List all stores associated with the sales channel.
      */
     getStoresPaginator({ pageSize, q, city, range, latitude, longitude, tags, }?: {
         pageSize?: number;
@@ -554,7 +554,7 @@ declare class Catalog {
      * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
      * @name unfollowById
      * @summary: Delete item, brand, product
-     * @description: Removes a followed item, brand, or product using its collection ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/unfollowById/).
+     * @description: Remove a followed item, brand, or product using its collection ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/unfollowById/).
      */
     unfollowById({ collectionType, collectionId, requestHeaders }?: CatalogApplicationValidator.UnfollowByIdParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.FollowPostResponse>;
 }

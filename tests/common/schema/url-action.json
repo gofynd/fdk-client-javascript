@@ -1,6 +1,39 @@
 {
   "tests": [
     {
+      "name": "Check theme custom page",
+      "path": "/c/my/custom/page",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "custom",
+            "query": {
+              "url": ["/c/my/custom/page"]
+            },
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "Check theme custom page with query",
+      "path": "/c/my/custom/page?user=Joe",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "custom",
+            "query": {
+              "url": ["/c/my/custom/page"],
+              "user": ["Joe"]
+            },
+            "params": {}
+          }
+        }
+      }
+    },
+    {
       "name": "without preceeding and ending /",
       "path": "products?brand=nokia&brand=nightwear-loungewear&department=electronics&category=casual-shirts&l2_category=",
       "result": {

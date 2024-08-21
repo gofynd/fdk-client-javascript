@@ -55,6 +55,14 @@ declare class ApplicationClient {
      * @throws {FDKClientValidationError} When the provided header is not an object.
      */
     setExtraHeaders(header: object): void;
+    request({ method, url, query, body, headers, responseHeaders, }: {
+        method: any;
+        url: any;
+        query: any;
+        body: any;
+        headers: any;
+        responseHeaders?: boolean;
+    }): Promise<import("axios").AxiosResponse<any, any>>;
 }
 import Cart = require("./Cart/CartApplicationClient");
 import Catalog = require("./Catalog/CatalogApplicationClient");

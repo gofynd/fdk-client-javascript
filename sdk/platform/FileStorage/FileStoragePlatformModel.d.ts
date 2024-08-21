@@ -152,27 +152,33 @@ export = FileStoragePlatformModel;
  */
 /**
  * @typedef CompanyDetail
- * @property {string} [name]
- * @property {string} [address]
- * @property {string} [city]
- * @property {string} [state]
- * @property {string} [country]
- * @property {number} [zip_code]
- * @property {string} [state_code]
- * @property {string} [country_code]
- * @property {string} [gstin]
- * @property {string} [pan]
- * @property {string} [phone_no]
- * @property {string} [cin]
- * @property {string} [website_url]
- * @property {string} [email]
- * @property {string} [display_address]
- * @property {string} [sector]
- * @property {Object} [phone]
- * @property {string} [trn]
- * @property {string} [vat]
- * @property {string} [business_country_timezone]
- * @property {Object} [business_country_currency]
+ * @property {string} [name] - The official name of the company.
+ * @property {string} [address] - The physical street address of the company.
+ * @property {string} [city] - The city where the company is located.
+ * @property {string} [state] - The state or province where the company is located.
+ * @property {string} [country] - The country where the company is based.
+ * @property {number} [zip_code] - The postal code for the company's location.
+ * @property {string} [state_code] - A code representing the state, often used
+ *   in official documents and forms.
+ * @property {string} [country_code] - The code of the country.
+ * @property {string} [gstin] - The Goods and Services Tax Identification
+ *   Number, unique to each business in India.
+ * @property {string} [pan] - The Permanent Account Number, unique to each
+ *   taxpayer in India.
+ * @property {string} [phone_no] - The primary contact phone number for the company.
+ * @property {string} [cin] - The Corporate Identification Number, unique to
+ *   each company registered in India.
+ * @property {string} [website_url] - The URL to the company's official website.
+ * @property {string} [email] - The company's official email address.
+ * @property {string} [display_address] - The display address of the company.
+ * @property {string} [sector] - The sector in which company is located.
+ * @property {Object} [phone] - The provided phone no of country.
+ * @property {string} [trn] - The trn no of the company.
+ * @property {string} [vat] - The vat no of the company.
+ * @property {string} [business_country_timezone] - The bussiness country timezone.
+ * @property {Object} [business_country_currency] - This object represents the
+ *   bussiness country currency.
+ * @property {Object} [meta] - This object represents the meta fields for company.
  */
 /**
  * @typedef StoreDetail
@@ -412,6 +418,8 @@ export = FileStoragePlatformModel;
  * @property {boolean} [is_self_ship]
  * @property {string} [mode]
  * @property {boolean} [is_self_pickup]
+ * @property {Object} [shipment_meta] - This field represents the shipment meta details
+ * @property {Object} [order_meta] - This field represents the order meta details
  * @property {string} [platform_name]
  * @property {number} [amount_to_be_collected]
  * @property {number} [amount_paid]
@@ -427,11 +435,12 @@ export = FileStoragePlatformModel;
  */
 /**
  * @typedef DummyTemplateData
- * @property {string} [_id]
- * @property {number} [pdf_type_id]
+ * @property {string} [_id] - This field contains the unique identifier for the
+ *   PDF payload.
+ * @property {number} [pdf_type_id] - This is invoice unique id
  * @property {DummyTemplateDataPayload} payload
- * @property {string} [country_code]
- * @property {number} [__v]
+ * @property {string} [country_code] - This field represents the country code.
+ * @property {number} [__v] - This field holds the version number.
  */
 /**
  * @typedef DummyTemplateDataItems
@@ -741,27 +750,99 @@ type InvoiceDetail = {
 /** @returns {CompanyDetail} */
 declare function CompanyDetail(): CompanyDetail;
 type CompanyDetail = {
+    /**
+     * - The official name of the company.
+     */
     name?: string;
+    /**
+     * - The physical street address of the company.
+     */
     address?: string;
+    /**
+     * - The city where the company is located.
+     */
     city?: string;
+    /**
+     * - The state or province where the company is located.
+     */
     state?: string;
+    /**
+     * - The country where the company is based.
+     */
     country?: string;
+    /**
+     * - The postal code for the company's location.
+     */
     zip_code?: number;
+    /**
+     * - A code representing the state, often used
+     * in official documents and forms.
+     */
     state_code?: string;
+    /**
+     * - The code of the country.
+     */
     country_code?: string;
+    /**
+     * - The Goods and Services Tax Identification
+     * Number, unique to each business in India.
+     */
     gstin?: string;
+    /**
+     * - The Permanent Account Number, unique to each
+     * taxpayer in India.
+     */
     pan?: string;
+    /**
+     * - The primary contact phone number for the company.
+     */
     phone_no?: string;
+    /**
+     * - The Corporate Identification Number, unique to
+     * each company registered in India.
+     */
     cin?: string;
+    /**
+     * - The URL to the company's official website.
+     */
     website_url?: string;
+    /**
+     * - The company's official email address.
+     */
     email?: string;
+    /**
+     * - The display address of the company.
+     */
     display_address?: string;
+    /**
+     * - The sector in which company is located.
+     */
     sector?: string;
+    /**
+     * - The provided phone no of country.
+     */
     phone?: any;
+    /**
+     * - The trn no of the company.
+     */
     trn?: string;
+    /**
+     * - The vat no of the company.
+     */
     vat?: string;
+    /**
+     * - The bussiness country timezone.
+     */
     business_country_timezone?: string;
+    /**
+     * - This object represents the
+     * bussiness country currency.
+     */
     business_country_currency?: any;
+    /**
+     * - This object represents the meta fields for company.
+     */
+    meta?: any;
 };
 /** @returns {StoreDetail} */
 declare function StoreDetail(): StoreDetail;
@@ -1027,6 +1108,14 @@ type DummyTemplateDataPayload = {
     is_self_ship?: boolean;
     mode?: string;
     is_self_pickup?: boolean;
+    /**
+     * - This field represents the shipment meta details
+     */
+    shipment_meta?: any;
+    /**
+     * - This field represents the order meta details
+     */
+    order_meta?: any;
     platform_name?: string;
     amount_to_be_collected?: number;
     amount_paid?: number;
@@ -1043,10 +1132,23 @@ type DummyTemplateDataPayload = {
 /** @returns {DummyTemplateData} */
 declare function DummyTemplateData(): DummyTemplateData;
 type DummyTemplateData = {
+    /**
+     * - This field contains the unique identifier for the
+     * PDF payload.
+     */
     _id?: string;
+    /**
+     * - This is invoice unique id
+     */
     pdf_type_id?: number;
     payload: DummyTemplateDataPayload;
+    /**
+     * - This field represents the country code.
+     */
     country_code?: string;
+    /**
+     * - This field holds the version number.
+     */
     __v?: number;
 };
 /** @returns {DummyTemplateDataItems} */

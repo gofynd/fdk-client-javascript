@@ -44,7 +44,7 @@ class FileStorage {
    * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
    * @name completeUpload
    * @summary: Complete file upload
-   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
+   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
    */
   async completeUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -199,8 +199,8 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
    * @name startUpload
-   * @summary: Initiate file upload
-   * @description: Get a signed url for uploading a file - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
+   * @summary: Initiates file upload
+   * @description: Starts the process of uploading a file to storage location, and returns a signed url in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
    */
   async startUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },

@@ -70,7 +70,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.SaveAddressResponse>} - Success response
    * @name addAddress
    * @summary: Create a new address
-   * @description: Customers can add a new address to their cart to save details such as name, email, contact information, and address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addAddress/).
+   * @description: Add a new address to their cart to save details such as name, email, contact information, and address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addAddress/).
    */
   async addAddress(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -230,7 +230,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name applyCoupon
    * @summary: Apply coupon
-   * @description: Apply a coupon code to the customer's cart to trigger discounts on eligible items - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyCoupon/).
+   * @description: Apply a coupon code to the cart to trigger discounts on eligible items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyCoupon/).
    */
   async applyCoupon(
     { body, i, b, p, id, buyNow, cartType, requestHeaders } = {
@@ -634,7 +634,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.Address>} - Success response
    * @name getAddressById
    * @summary: Get a address
-   * @description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddressById/).
+   * @description: Get a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddressById/).
    */
   async getAddressById(
     {
@@ -727,7 +727,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.GetAddressesResponse>} - Success response
    * @name getAddresses
    * @summary: List customer addresses
-   * @description: Retrieve a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddresses/).
+   * @description: List all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddresses/).
    */
   async getAddresses(
     {
@@ -819,7 +819,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.BulkPriceResponse>} - Success response
    * @name getBulkDiscountOffers
    * @summary: List bulk discounts
-   * @description: Retrieve a list of offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
+   * @description: List offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
    */
   async getBulkDiscountOffers(
     { itemId, articleId, uid, slug, requestHeaders } = { requestHeaders: {} },
@@ -901,7 +901,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name getCart
    * @summary: Get a cart
-   * @description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
+   * @description: Get details of a cart linked to a specific customer using a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
    */
   async getCart(
     {
@@ -1150,7 +1150,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
    * @name getCartSharedItems
    * @summary: List shared cart items
-   * @description: Retrieve the cart items from the shared cart link based on unique token. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartSharedItems/).
+   * @description: Get cart items from the shared cart link based on unique token. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartSharedItems/).
    */
   async getCartSharedItems(
     { token, requestHeaders } = { requestHeaders: {} },
@@ -1228,7 +1228,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.GetCouponResponse>} - Success response
    * @name getCoupons
    * @summary: List available coupons
-   * @description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCoupons/).
+   * @description: List all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCoupons/).
    */
   async getCoupons(
     { id, buyNow, slug, storeId, requestHeaders } = { requestHeaders: {} },
@@ -1308,7 +1308,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.CartItemCountResponse>} - Success response
    * @name getItemCount
    * @summary: Get a cart items count
-   * @description: Retrieve the total count of items currently present in the customer's cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCount/).
+   * @description: Get total count of items currently present in the customer's cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCount/).
    */
   async getItemCount(
     { id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -1388,7 +1388,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.LadderPriceOffers>} - Success response
    * @name getLadderOffers
    * @summary: List ladder offers
-   * @description: Retrieve ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getLadderOffers/).
+   * @description: Get ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getLadderOffers/).
    */
   async getLadderOffers(
     { slug, storeId, promotionId, pageSize, requestHeaders } = {
@@ -1472,7 +1472,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.PromotionOffersResponse>} - Success response
    * @name getPromotionOffers
    * @summary: List available promotion offers
-   * @description: Retrieve a list of all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionOffers/).
+   * @description: List all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionOffers/).
    */
   async getPromotionOffers(
     { slug, pageSize, promotionGroup, storeId, cartType, requestHeaders } = {
@@ -1559,7 +1559,7 @@ class Cart {
    *
    * @name getPromotionPaymentOffers
    * @summary: Fetch available promotions payment offers
-   * @description: Use this API to get top 5 payment offers available for current product - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionPaymentOffers/).
+   * @description: Use this API to get top 5 payment offers available for current product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionPaymentOffers/).
    */
   async getPromotionPaymentOffers(
     { id, uid, requestHeaders } = { requestHeaders: {} },
@@ -1641,7 +1641,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.CartShipmentsResponse>} - Success response
    * @name getShipments
    * @summary: List shipments
-   * @description: Retrieve shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getShipments/).
+   * @description: Get shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getShipments/).
    */
   async getShipments(
     { p, id, buyNow, addressId, areaCode, orderType, requestHeaders } = {
@@ -1727,7 +1727,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.DeleteAddressResponse>} - Success response
    * @name removeAddress
    * @summary: Delete a address
-   * @description: Removes an existing customer address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeAddress/).
+   * @description: Delete an existing customer address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeAddress/).
    */
   async removeAddress(
     { id, requestHeaders } = { requestHeaders: {} },
@@ -1885,7 +1885,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name selectAddress
    * @summary: Select a delivery address
-   * @description: Selects an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
+   * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
    */
   async selectAddress(
     { body, cartId, buyNow, i, b, requestHeaders } = { requestHeaders: {} },
@@ -1967,7 +1967,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name selectPaymentMode
    * @summary: Select payment mode
-   * @description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
+   * @description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
     { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -2047,7 +2047,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.UpdateAddressResponse>} - Success response
    * @name updateAddress
    * @summary: Update a address
-   * @description: Customer can modify the details of a previously saved addresses.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateAddress/).
+   * @description: Customer can modify the details of a previously saved addresses. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateAddress/).
    */
   async updateAddress(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -2126,7 +2126,7 @@ class Cart {
    *   Success response
    * @name updateCart
    * @summary: Update cart items
-   * @description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
+   * @description: Update cart. Customers can modify added product attributes such as quantity and size, as well as remove items from the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
    */
   async updateCart(
     {
@@ -2219,7 +2219,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.CartMetaResponse>} - Success response
    * @name updateCartMeta
    * @summary: Update cart metadata
-   * @description: Add or modify metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartMeta/).
+   * @description: Update metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartMeta/).
    */
   async updateCartMeta(
     { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
@@ -2299,7 +2299,7 @@ class Cart {
    * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
    * @summary: Update with shared items
-   * @description: Customer can either merge or replace shared cart items with existing cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
+   * @description: Merge or replace shared cart items with existing cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
     { token, action, requestHeaders } = { requestHeaders: {} },

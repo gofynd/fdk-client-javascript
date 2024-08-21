@@ -25,7 +25,8 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 /**
  * @typedef CardDetailsParam
  * @property {string} cardInfo - Card first 6 digit IIN(prefix) number.
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - This is a string value describing the
+ *   aggregator name.
  */
 
 /**
@@ -40,7 +41,7 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef CheckCreditParam
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - Aggregator name.
  */
 
 /**
@@ -60,7 +61,7 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef CustomerCreditSummaryParam
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - Aggregator name.
  */
 
 /**
@@ -85,21 +86,22 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef GetActiveCardAggregatorParam
- * @property {boolean} [refresh]
+ * @property {boolean} [refresh] - Select `true` to remove temporary cache files
+ *   on payment gateway and replace with the latest one.
  */
 
 /** @typedef GetActiveRefundTransferModesParam */
 
 /**
  * @typedef GetActiveUserCardsParam
- * @property {boolean} [forceRefresh]
+ * @property {boolean} [forceRefresh] - Select `true` to clear the cache.
  */
 
 /**
  * @typedef GetAggregatorsConfigParam
- * @property {string} [xApiToken] - Used for basic authentication.
- * @property {boolean} [refresh] - This is a boolean value. Select `true` to
- *   remove temporary cache files on payment gateway and replace with the latest one.
+ * @property {string} [xApiToken] - Basic auth token.
+ * @property {boolean} [refresh] - Select `true` to remove temporary cache files
+ *   on payment gateway and replace with the latest one.
  */
 
 /** @typedef GetEpaylaterBannerDetailsParam */
@@ -112,7 +114,7 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef GetPaymentLinkParam
- * @property {string} [paymentLinkId]
+ * @property {string} [paymentLinkId] - Unique payment link id.
  */
 
 /**
@@ -120,35 +122,35 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  * @property {number} amount - Payable amount.
  * @property {string} [cartId] - Identifier of the cart.
  * @property {string} [checkoutMode] - Option to checkout for self or for others.
- * @property {boolean} [refresh] - This is a boolean value. Select `true` to
- *   remove temporary cache files on payment gateway and replace with the latest one.
- * @property {string} [orderId]
+ * @property {boolean} [refresh] - Select `true` to remove temporary cache files
+ *   on payment gateway and replace with the latest one.
+ * @property {string} [orderId] - Identifier of the order, order_id.
  * @property {string} [cardReference] - Card reference id of user's debit or credit card.
- * @property {string} [userDetails] - URIencoded JSON containing details of an
+ * @property {string} [userDetails] - URLencoded JSON containing details of an
  *   anonymous user.
- * @property {boolean} [displaySplit] - Display Split Payment Option or not
- * @property {boolean} [advancePayment] - Display Advance Payment Options or Normal
- * @property {string} [shipmentId]
+ * @property {boolean} [displaySplit] - Display Split Payment Option or not.
+ * @property {boolean} [advancePayment] - Display Advance Payment Options or Normal.
+ * @property {string} [shipmentId] - Identifier of the shipment, shipment_id.
  */
 
 /**
  * @typedef GetPaymentModeRoutesPaymentLinkParam
- * @property {string} paymentLinkId - Payment link id
+ * @property {string} paymentLinkId - Payment link id.
  */
 
 /**
  * @typedef GetPosPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} [cartId] - Identifier of the cart.
- * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
+ * @property {string} pincode - The PIN Code of the destination address, e.g. 400059.
  * @property {string} [checkoutMode] - Option to checkout for self or for others.
- * @property {boolean} [refresh] - This is a boolean value. Select `true` to
- *   remove temporary cache files on payment gateway and replace with the latest one.
+ * @property {boolean} [refresh] - Select `true` to remove temporary cache files
+ *   on payment gateway and replace with the latest one.
  * @property {string} [cardReference] - Card reference id of user's debit or credit card.
- * @property {string} orderType - The order type of shipment * HomeDelivery - If
- *   the customer wants the order home-delivered * PickAtStore - If the customer
+ * @property {string} orderType - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
  *   wants the handover of an order at the store itself.
- * @property {string} [userDetails] - URIencoded JSON containing details of an
+ * @property {string} [userDetails] - URLencoded JSON containing details of an
  *   anonymous user.
  */
 
@@ -177,25 +179,23 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef OutstandingOrderDetailsParam
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - Merchant user ID as value.
  */
 
 /**
  * @typedef PaidOrderDetailsParam
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - Merchant user ID as value.
  */
 
 /**
  * @typedef PollingPaymentLinkParam
- * @property {string} [paymentLinkId]
+ * @property {string} [paymentLinkId] - Unique payment link id.
  */
 
 /**
  * @typedef RedirectToAggregatorParam
- * @property {string} [source] - This is a String value that contains callback
- *   URL as value.
- * @property {string} [aggregator] - This is a String value that contains
- *   aggregator name as value.
+ * @property {string} [source] - Callback URL to get callback from aggregator.
+ * @property {string} [aggregator] - Aggregator name.
  */
 
 /**

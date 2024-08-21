@@ -507,13 +507,13 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 /**
  * @typedef EdcDeviceListResponse
@@ -701,7 +701,7 @@ export = PaymentPlatformModel;
 /**
  * @typedef ValidateCustomerResponse
  * @property {string} message - Error or success message.
- * @property {Object} data - Payment gateway response data
+ * @property {Object} [data] - Payment gateway response data
  * @property {boolean} success - Response is successful or not
  */
 /**
@@ -2490,12 +2490,33 @@ type EdcDeviceUpdateResponse = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
+    /**
+     * - The total number of items on the page.
+     */
     item_total?: number;
+    /**
+     * - The identifier for the next page.
+     */
     next_id?: string;
+    /**
+     * - Indicates whether there is a previous page.
+     */
     has_previous?: boolean;
+    /**
+     * - Indicates whether there is a next page.
+     */
     has_next?: boolean;
+    /**
+     * - The current page number.
+     */
     current?: number;
+    /**
+     * - The type of the page, such as 'PageType'.
+     */
     type: string;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
 };
 /** @returns {EdcDeviceListResponse} */
@@ -2984,7 +3005,7 @@ type ValidateCustomerResponse = {
     /**
      * - Payment gateway response data
      */
-    data: any;
+    data?: any;
     /**
      * - Response is successful or not
      */

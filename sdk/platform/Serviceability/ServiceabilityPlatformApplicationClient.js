@@ -21,8 +21,9 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponse>}
+   *   - Success response
+   *
    * @name createCourierPartnerRule
    * @summary: Create rourier rule
    * @description: Creates a rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
@@ -78,7 +79,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRule().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -421,8 +422,9 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponse>}
+   *   - Success response
+   *
    * @name getCourierPartnerRule
    * @summary: Get courier rule
    * @description: Retrieves a single rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRule/).
@@ -478,7 +480,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRule().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1094,8 +1096,9 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponse>}
+   *   - Success response
+   *
    * @name updateCourierRule
    * @summary: Update courier rule
    * @description: Updates an existing rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
@@ -1153,7 +1156,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRule().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

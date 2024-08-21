@@ -75,6 +75,17 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ExtensionPreviewRequest
+ * @property {string} [application_id] - Application ID
+ * @property {string} [section_preview_hash] - Hash for the section preview
+ */
+
+/**
+ * @typedef ExtensionPreviewResponse
+ * @property {string} [message]
+ */
+
+/**
  * @typedef PublishExtensionSectionResponse
  * @property {SectionsResponse} [sections]
  */
@@ -120,7 +131,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
@@ -675,9 +686,9 @@ const Joi = require("joi");
 
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 
@@ -693,6 +704,7 @@ const Joi = require("joi");
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -822,6 +834,21 @@ class ThemePartnerModel {
       assets: ThemePartnerModel.AssetsExtension(),
       type: Joi.string().allow(""),
       status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ExtensionPreviewRequest} */
+  static ExtensionPreviewRequest() {
+    return Joi.object({
+      application_id: Joi.string().allow(""),
+      section_preview_hash: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ExtensionPreviewResponse} */
+  static ExtensionPreviewResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
 
@@ -1619,6 +1646,8 @@ class ThemePartnerModel {
       "collection",
 
       "collections",
+
+      "custom",
 
       "contact-us",
 

@@ -153,6 +153,20 @@ class ThemeValidator {
     }).required();
   }
 
+  static applyExtensionPreview() {
+    return Joi.object({
+      extensionSectionId: Joi.string().allow("").required(),
+      body: ThemeModel.ExtensionPreviewRequest().required(),
+    }).required();
+  }
+
+  static removeExtensionPreview() {
+    return Joi.object({
+      extensionSectionId: Joi.string().allow("").required(),
+      body: ThemeModel.ExtensionPreviewRequest().required(),
+    }).required();
+  }
+
   static getThemeRejectionReasons() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),

@@ -9,13 +9,13 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a blog. You can get slug value from the endpoint
  *   /service/application/content/v1.0/blogs/.
- * @property {string} [rootId] - ID given to the HTML element
+ * @property {string} [rootId] - ID given to the HTML element.
  */
 
 /**
  * @typedef GetBlogsParam
  * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
+ *   set of results. Default value is 1. .
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  * @property {string} [tags] - Blogs retrieve based on the list of tags passed.
  * @property {string} [search] - Blogs retrieve based on the title.
@@ -23,13 +23,14 @@ const ContentApplicationModel = require("./ContentApplicationModel");
 
 /**
  * @typedef GetCustomFieldsParam
- * @property {string} resource
- * @property {string} resourceId
+ * @property {string} resource - This is the name of resource for which you want
+ *   to fetch custom fields eg. product, collection, customer etc.
+ * @property {string} resourceId - This is the resource id for which custom fields created
  */
 
 /**
  * @typedef GetCustomObjectParam
- * @property {string} metaobjectId
+ * @property {string} metaobjectId - This is meta object id
  */
 
 /** @typedef GetDataLoadersParam */
@@ -66,7 +67,7 @@ const ContentApplicationModel = require("./ContentApplicationModel");
 /**
  * @typedef GetNavigationsParam
  * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
+ *   set of results. Default value is 1. .
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
@@ -75,13 +76,13 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value from the endpoint
  *   /service/application/content/v2.0/pages/.
- * @property {string} [rootId] - ID given to the HTML element
+ * @property {string} [rootId] - ID given to the HTML element.
  */
 
 /**
  * @typedef GetPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
+ *   set of results. Default value is 1. .
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
@@ -90,7 +91,7 @@ const ContentApplicationModel = require("./ContentApplicationModel");
 /**
  * @typedef GetSEOMarkupSchemasParam
  * @property {string} [pageType] - The type of page against which schema
- *   template was created
+ *   template was created.
  * @property {boolean} [active] - Boolean value for fetching seo schema.
  */
 
@@ -104,7 +105,7 @@ const ContentApplicationModel = require("./ContentApplicationModel");
 /**
  * @typedef GetSlideshowsParam
  * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
+ *   set of results. Default value is 1. .
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 

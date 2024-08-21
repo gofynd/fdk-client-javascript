@@ -23,10 +23,11 @@ const Joi = require("joi");
 
 /**
  * @typedef ErrorResponse
- * @property {number} [status]
- * @property {boolean} [success]
- * @property {string} message
- * @property {string} [error_trace]
+ * @property {number} [status] - The HTTP status code corresponding to the error.
+ * @property {boolean} [success] - Indicates whether the operation was
+ *   successful. Always false in the case of an error.
+ * @property {string} message - A message describing the error that occurred.
+ * @property {string} [error_trace] - Error trace of the error that occurred.
  * @property {string} [error]
  */
 
@@ -1682,14 +1683,229 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ConfigData
+ * @property {boolean} [acknowledged] - Indicates whether the update operation
+ *   was acknowledged by the database.
+ * @property {boolean} [is_upserted] - Indicates whether the update operation
+ *   resulted in an upsert (an update or insert).
+ * @property {boolean} [is_inserted] - Indicates whether the update operation
+ *   resulted in a new document being inserted.
+ */
+
+/**
+ * @typedef ConfigUpdatedResponse
+ * @property {ConfigData[]} data - The result of the config update operation,
+ *   including whether it was acknowledged, upserted, or inserted.
+ * @property {boolean} success - Indicates whether the config update operation
+ *   was successful.
+ */
+
+/**
+ * @typedef FlagData
+ * @property {Object} [value]
+ * @property {Object} [filter]
+ */
+
+/**
+ * @typedef Flags
+ * @property {FlagData[]} [allow_partial_transition] - Indicates whether a
+ *   partial transition of bags to the next state is permissible, allowing some
+ *   bags to progress while others remain in the current state.
+ * @property {FlagData[]} [can_break_entity] - Specifies whether bags within a
+ *   shipment, set,cdf or entity can be broken individually or as a group. If
+ *   set to false, all bags within the entity must remain together and
+ *   transition together to the same state.
+ * @property {FlagData[]} [allowed_bag_updates] - Specifies which fields are
+ *   permitted to be updated at the bag level. Allowed fields are:
+ *
+ *   - Meta
+ *   - Pdf_links
+ *   - Affiliate_meta
+ *   - Delivery_awb_number
+ *   - Store_invoice_id
+ *   - Store_id
+ *   - Return_store_id
+ *   - Eway_bill_id
+ *
+ * @property {FlagData[]} [allowed_bag_status_updates] - Specifies which fields
+ *   are permitted to be updated at the bag status level. Allowed fields are:
+ *
+ *   - Json
+ *
+ * @property {FlagData[]} [allowed_entity_updates] - Specifies which fields are
+ *   permitted to be updated at shipment level. Allowed fields are:
+ *
+ *   - Meta
+ *   - Pdf_links
+ *   - Affiliate_meta
+ *   - Delivery_awb_number
+ *   - Store_invoice_id
+ *   - Store_id
+ *   - Return_store_id
+ *   - Eway_bill_id
+ *   - Logistics_meta
+ *
+ * @property {FlagData[]} [allowed_entity_status_updates] - Specifies which
+ *   fields are permitted to be updated at the Entity status level. Allowed fields are:
+ *
+ *   - Json
+ *
+ * @property {FlagData[]} [status_update_type] - Describes the type of journey
+ *   associated with the particular status of the shipment. Possible values are:
+ *
+ *   - Positive
+ *   - Negative
+ *
+ * @property {FlagData[]} [is_bag_status_reason_allowed] - Indicates whether a
+ *   reason at the product level should be allowed for a particular status.
+ * @property {FlagData[]} [is_entity_status_reason_allowed] - Indicates whether
+ *   a reason at the shipment level should be allowed for a particular status.
+ * @property {FlagData[]} [transition_strategy] - This flag is used to define
+ *   the shipment breaking strategy. Possible values are:
+ *
+ *   - Break_shipment_based_on_location_reassignment
+ *   - Break_shipment_based_on_groups
+ *   - Break_shipment_based_on_stormbreaker
+ */
+
+/**
+ * @typedef Filter
+ * @property {string} [order_type] - Indicates the type or category of the order.
+ *
+ *   - PickAtStore: Pick from store
+ *   - HomeDelivery: Home delivery
+ *   - Digital: Digital
+ *
+ * @property {boolean} [is_partial_transition] - Specifies whether a partial
+ *   transition of the order is allowed, allowing some components to progress
+ *   while others remain in the current state.
+ * @property {boolean} [auto_trigger_dp_assignment_acf] - Indicates whether the
+ *   assignment of a designated person is automatically triggered in the context of ACF.
+ * @property {string} [lock_status] - Indicates the current locking status of
+ *   the shipment.
+ *
+ *   - `complete`: Complete shipment lock
+ *   - `operational`: Operational shipment lock
+ *   - `None`: No lock on shipment
+ *
+ * @property {boolean} [lock_after_transition] - Specifies whether locking is
+ *   required after transitioning to the next status. lock_after_transition :
+ *   true - Lock Transition enabled lock_after_transition : false - Lock
+ *   Transition set false
+ * @property {boolean} [resume_tasks_after_unlock] - Indicates whether tasks
+ *   should resume automatically after unlocking, such as DP assignment task and
+ *   invoicing task.
+ * @property {boolean} [is_invoice_id_present] - Indicates whether an invoice ID
+ *   is present for the order.
+ * @property {boolean} [is_credit_note_generated] - Indicates whether a credit
+ *   note has been generated for the order.
+ * @property {boolean} [fulfill_virtual_invoice] - Specifies whether an
+ *   automated virtual invoice ID is associated with the order.
+ * @property {string} [next_status] - Indicates the next status to which the
+ *   order will transition.
+ * @property {boolean} [is_hook_enabled] - Indicates whether a task is enabled
+ *   for the order.
+ * @property {boolean} [pos_credit_note_check] - Specifies whether a credit note
+ *   check is performed in a point of sale (POS) scenario.
+ * @property {string} [order_platform] - Specifies the platform on which the
+ *   order was placed.
+ *
+ *   - `platform-pos`: POS
+ *   - `platform-site`: WEB
+ *   - `openapi`: OPENAPI
+ *   - `marketplace`: MARKETPLACE
+ *
+ * @property {string} [refund_type] - Indicates the type of refund associated
+ *   with the order.
+ *
+ *   - `credit_note`: CREDIT_NOTE
+ *   - `source`: SOURCE
+ *   - `bank_transfer`: BANK
+ *   - `manual_refund`: MANUAL_REFUND
+ *
+ * @property {boolean} [is_non_pos_platform] - Specifies whether the platform is
+ *   non-point of sale (POS) in nature.
+ * @property {boolean} [is_self_ship] - Indicates whether the order is
+ *   self-shipped by the seller.
+ * @property {string} [seller_country_code] - Specifies the country code of the seller.
+ *
+ *   - `seller_country_code`: US
+ *   - `seller_country_code`: UK
+ *   - `seller_country_code`: IN
+ *
+ * @property {string} [customer_country_code] - Specifies the country code of the seller.
+ *
+ *   - `customer_country_code`: US
+ *   - `customer_country_code`: UK
+ *   - `customer_country_code`: IN
+ *
+ * @property {boolean} [is_test_order] - Indicates whether the order is a test
+ *   order used for testing purposes - `is_test_order` : True - indicates test order
+ * @property {string[]} [task_trigger_condition] - Specifies trigger conditions:
+ *
+ *   - `status_update`: Status Update
+ *   - `data_update`: Data Update
+ */
+
+/**
+ * @typedef PostHook
+ * @property {string} task - Name of the hook that has to be added
+ * @property {Object} [kwargs] - Additional parameters for the hook
+ * @property {Filter} [filters] - Filters for scope selection.
+ */
+
+/**
+ * @typedef PreHook
+ * @property {string} task - Name of the hook that has to be added
+ * @property {Object} [kwargs] - Additional parameters for the hook
+ * @property {Filter} [filters] - Filter
+ */
+
+/**
+ * @typedef Config
+ * @property {string} [from_state] - Source state from which state transition
+ *   will take place
+ * @property {string} [to_state] - Target state to which state transition will take place
+ * @property {PreHook[]} [pre_hooks] - Tasks to be run before state transition
+ * @property {PostHook[]} [post_hooks] - Tasks to be run after state transition
+ * @property {Flags} [flags] - Various flags related to the transition. These
+ *   include options and settings that influence the behavior of the state
+ *   transition, such as whether partial transitions are allowed or whether the
+ *   transition can break the entity.
+ */
+
+/**
+ * @typedef TransitionConfigCondition
+ * @property {string} app_id - The unique identifier of the application to which
+ *   the configuration applies.
+ * @property {string} ordering_channel - The channel through which the order was
+ *   placed, such as ECOMM or another specified channel.
+ * @property {string} entity - The type of entity that the configuration pertains to.
+ */
+
+/**
+ * @typedef TransitionConfigData
+ * @property {TransitionConfigCondition} [conditions] - Conditions that must be
+ *   met for the ESM config to be applied.
+ * @property {Config[]} [configs] - The configuration settings for the entity
+ *   transition. This includes pre_hooks, post_hooks, and flags for each
+ *   transition state.
+ */
+
+/**
+ * @typedef TransitionConfigPayload
+ * @property {TransitionConfigData} [data]
+ */
+
+/**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
@@ -2960,21 +3176,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Attributes
- * @property {string} [primary_material]
- * @property {string} [essential]
- * @property {string} [marketer_name]
- * @property {string} [primary_color]
- * @property {string} [marketer_address]
- * @property {string} [primary_color_hex]
- * @property {string} [brand_name]
- * @property {string} [name]
- * @property {string[]} [gender]
- */
-
-/**
  * @typedef Item
- * @property {Attributes} attributes
+ * @property {Object} attributes - A dictionary of product attributes
  * @property {number} brand_id
  * @property {string} slug_key
  * @property {string} [webstore_product_url]
@@ -5273,6 +5476,136 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {ConfigData} */
+  static ConfigData() {
+    return Joi.object({
+      acknowledged: Joi.boolean(),
+      is_upserted: Joi.boolean(),
+      is_inserted: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ConfigUpdatedResponse} */
+  static ConfigUpdatedResponse() {
+    return Joi.object({
+      data: Joi.array().items(OrderPlatformModel.ConfigData()).required(),
+      success: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {FlagData} */
+  static FlagData() {
+    return Joi.object({
+      value: Joi.any(),
+      filter: Joi.any(),
+    });
+  }
+
+  /** @returns {Flags} */
+  static Flags() {
+    return Joi.object({
+      allow_partial_transition: Joi.array().items(
+        OrderPlatformModel.FlagData()
+      ),
+      can_break_entity: Joi.array().items(OrderPlatformModel.FlagData()),
+      allowed_bag_updates: Joi.array().items(OrderPlatformModel.FlagData()),
+      allowed_bag_status_updates: Joi.array().items(
+        OrderPlatformModel.FlagData()
+      ),
+      allowed_entity_updates: Joi.array().items(OrderPlatformModel.FlagData()),
+      allowed_entity_status_updates: Joi.array().items(
+        OrderPlatformModel.FlagData()
+      ),
+      status_update_type: Joi.array().items(OrderPlatformModel.FlagData()),
+      is_bag_status_reason_allowed: Joi.array().items(
+        OrderPlatformModel.FlagData()
+      ),
+      is_entity_status_reason_allowed: Joi.array().items(
+        OrderPlatformModel.FlagData()
+      ),
+      transition_strategy: Joi.array().items(OrderPlatformModel.FlagData()),
+    });
+  }
+
+  /** @returns {Filter} */
+  static Filter() {
+    return Joi.object({
+      order_type: Joi.string().allow(""),
+      is_partial_transition: Joi.boolean(),
+      auto_trigger_dp_assignment_acf: Joi.boolean(),
+      lock_status: Joi.string().allow(""),
+      lock_after_transition: Joi.boolean(),
+      resume_tasks_after_unlock: Joi.boolean(),
+      is_invoice_id_present: Joi.boolean(),
+      is_credit_note_generated: Joi.boolean(),
+      fulfill_virtual_invoice: Joi.boolean(),
+      next_status: Joi.string().allow(""),
+      is_hook_enabled: Joi.boolean(),
+      pos_credit_note_check: Joi.boolean(),
+      order_platform: Joi.string().allow(""),
+      refund_type: Joi.string().allow(""),
+      is_non_pos_platform: Joi.boolean(),
+      is_self_ship: Joi.boolean(),
+      seller_country_code: Joi.string().allow(""),
+      customer_country_code: Joi.string().allow(""),
+      is_test_order: Joi.boolean(),
+      task_trigger_condition: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {PostHook} */
+  static PostHook() {
+    return Joi.object({
+      task: Joi.string().allow("").required(),
+      kwargs: Joi.object().pattern(/\S/, Joi.any()),
+      filters: OrderPlatformModel.Filter(),
+    });
+  }
+
+  /** @returns {PreHook} */
+  static PreHook() {
+    return Joi.object({
+      task: Joi.string().allow("").required(),
+      kwargs: Joi.object().pattern(/\S/, Joi.any()),
+      filters: OrderPlatformModel.Filter(),
+    });
+  }
+
+  /** @returns {Config} */
+  static Config() {
+    return Joi.object({
+      from_state: Joi.string().allow(""),
+      to_state: Joi.string().allow(""),
+      pre_hooks: Joi.array().items(OrderPlatformModel.PreHook()),
+      post_hooks: Joi.array().items(OrderPlatformModel.PostHook()),
+      flags: OrderPlatformModel.Flags(),
+    });
+  }
+
+  /** @returns {TransitionConfigCondition} */
+  static TransitionConfigCondition() {
+    return Joi.object({
+      app_id: Joi.string().allow("").required(),
+      ordering_channel: Joi.string().allow("").required(),
+      entity: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {TransitionConfigData} */
+  static TransitionConfigData() {
+    return Joi.object({
+      conditions: OrderPlatformModel.TransitionConfigCondition(),
+      configs: Joi.array().items(OrderPlatformModel.Config()),
+    });
+  }
+
+  /** @returns {TransitionConfigPayload} */
+  static TransitionConfigPayload() {
+    return Joi.object({
+      data: OrderPlatformModel.TransitionConfigData(),
+    });
+  }
+
   /** @returns {Page} */
   static Page() {
     return Joi.object({
@@ -6789,25 +7122,10 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {Attributes} */
-  static Attributes() {
-    return Joi.object({
-      primary_material: Joi.string().allow("").allow(null),
-      essential: Joi.string().allow("").allow(null),
-      marketer_name: Joi.string().allow("").allow(null),
-      primary_color: Joi.string().allow("").allow(null),
-      marketer_address: Joi.string().allow("").allow(null),
-      primary_color_hex: Joi.string().allow("").allow(null),
-      brand_name: Joi.string().allow("").allow(null),
-      name: Joi.string().allow("").allow(null),
-      gender: Joi.array().items(Joi.string().allow("")).allow(null, ""),
-    });
-  }
-
   /** @returns {Item} */
   static Item() {
     return Joi.object({
-      attributes: OrderPlatformModel.Attributes().required(),
+      attributes: Joi.any().required(),
       brand_id: Joi.number().required(),
       slug_key: Joi.string().allow("").required(),
       webstore_product_url: Joi.string().allow("").allow(null),

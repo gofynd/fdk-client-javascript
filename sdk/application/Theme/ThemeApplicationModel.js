@@ -2,78 +2,96 @@ const Joi = require("joi");
 
 /**
  * @typedef AllAvailablePageSchema
- * @property {AvailablePageSchema[]} [pages]
+ * @property {AvailablePageSchema[]} [pages] - List all the pages.
  */
 
 /**
  * @typedef AvailablePageSchema
- * @property {string} [value]
- * @property {string} [text]
- * @property {string} [path]
- * @property {string} [type]
- * @property {AvailablePageSchemaSections[]} [sections]
- * @property {AvailablePageSectionMetaAttributes[]} [sections_meta]
- * @property {string} [theme]
+ * @property {string} [value] - The name of the page. For example, 'about-us'.
+ * @property {string} [text] - The textual content associated with the page. For
+ *   example, 'about us'.
+ * @property {string} [path] - The url path for the page. For example, 'about-us'.
+ * @property {string} [type] - The type of the page, which can be 'system',
+ *   'custom', or 'sections'.
+ * @property {AvailablePageSchemaSections[]} [sections] - An array of sections
+ *   that make up the page.
+ * @property {AvailablePageSectionMetaAttributes[]} [sections_meta] - An array
+ *   of metadata attributes for the sections of the page, each represented by an object.
+ * @property {string} [theme] - The unique identifier for the theme associated
+ *   with the section.
  * @property {AvailablePageSeo} [seo]
- * @property {Object[]} [props]
- * @property {string} [_id]
+ * @property {Object[]} [props] - An array of properties associated with the
+ *   object, where each property is represented as an object.
+ * @property {string} [_id] - The unique identifier for the object.
  */
 
 /**
  * @typedef AvailablePageSectionMetaAttributes
- * @property {Object} [attributes]
+ * @property {Object} [attributes] - A key-value pair object containing metadata
+ *   attributes for the section.
  */
 
 /**
  * @typedef SEOMetaItem
- * @property {string} [title]
- * @property {SEOMetaItems[]} [items]
+ * @property {string} [title] - The title of the meta tag item.
+ * @property {SEOMetaItems[]} [items] - An array of items within the meta tag,
+ *   each represented by an object.
  */
 
 /**
  * @typedef SEOMetaItems
- * @property {string} [key]
- * @property {string} [value]
+ * @property {string} [key] - The key of the meta tag item.
+ * @property {string} [value] - The value of the meta tag item.
  */
 
 /**
  * @typedef SEOSitemap
- * @property {number} [priority]
- * @property {string} [frequency]
+ * @property {number} [priority] - The priority of the page in the sitemap,
+ *   typically a value between 0.0 And 1.0.
+ * @property {string} [frequency] - The frequency with which the content of the
+ *   page is likely to change, such as 'always', 'hourly', 'daily', 'weekly',
+ *   'monthly', 'yearly', or 'never'.
  */
 
 /**
  * @typedef SEObreadcrumb
- * @property {string} [url]
+ * @property {string} [url] - The url associated with the breadcrumb.
  * @property {Action} [action]
  */
 
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
 
 /**
  * @typedef AvailablePageSeo
- * @property {string} [title]
- * @property {string} [description]
- * @property {string} [canonical_url]
- * @property {SEOMetaItem[]} [meta_tags]
+ * @property {string} [title] - The seo title of the page.
+ * @property {string} [description] - The seo description of the page.
+ * @property {string} [canonical_url] - The canonical url of the page.
+ * @property {SEOMetaItem[]} [meta_tags] - An array of meta tags for the page,
+ *   each represented by an object.
  * @property {SEOSitemap} [sitemap]
- * @property {SEObreadcrumb[]} [breadcrumb]
- * @property {string} [_id]
+ * @property {SEObreadcrumb[]} [breadcrumb] - An array representing breadcrumb
+ *   navigation, where each item provides information about a step in the
+ *   navigation path.
+ * @property {string} [_id] - The unique identifier for the object.
  */
 
 /**
  * @typedef AvailablePageSchemaSections
- * @property {string} [name]
- * @property {string} [label]
- * @property {string} [source]
- * @property {Object} [props]
- * @property {Object[]} [blocks]
- * @property {Object} [preset]
+ * @property {string} [name] - The name of the section.
+ * @property {string} [label] - A label for the section, which can be used for
+ *   display purposes.
+ * @property {string} [source] - The source of the section, for example, 'themebundle'.
+ * @property {Object} [props] - An object containing various properties
+ *   associated with the section.
+ * @property {Object[]} [blocks] - An array of blocks within the section, where
+ *   each block is represented as an object.
+ * @property {Object} [preset] - An object containing preset configurations for
+ *   the section.
  * @property {AvailablePagePredicate} [predicate]
  */
 
@@ -84,63 +102,70 @@ const Joi = require("joi");
  * @property {AvailablePageRoutePredicate} [route]
  * @property {AvailablePageSchedulePredicate} [schedule]
  * @property {AvailablePagePlatformPredicate} [platform]
- * @property {string[]} [zones] - An array of zone ids associated with the section
+ * @property {string[]} [zones] - An array of zone ids associated with the section.
  */
 
 /**
  * @typedef AvailablePageScreenPredicate
- * @property {boolean} [mobile]
- * @property {boolean} [desktop]
- * @property {boolean} [tablet]
+ * @property {boolean} [mobile] - Indicates if the predicate applies to mobile screens.
+ * @property {boolean} [desktop] - Indicates if the predicate applies to desktop screens.
+ * @property {boolean} [tablet] - Indicates if the predicate applies to tablet screens.
  */
 
 /**
  * @typedef AvailablePageUserPredicate
- * @property {boolean} [authenticated]
- * @property {boolean} [anonymous]
+ * @property {boolean} [authenticated] - Indicates if the predicate applies to
+ *   authenticated users.
+ * @property {boolean} [anonymous] - Indicates if the predicate applies to
+ *   anonymous users.
  */
 
 /**
  * @typedef AvailablePageRoutePredicate
- * @property {string} [selected]
- * @property {string} [exact_url]
- * @property {Object} [query]
+ * @property {string} [selected] - Specifies the type of route selection, which
+ *   can be 'none', 'exact', or 'query'.
+ * @property {string} [exact_url] - The exact url for the route when 'selected'
+ *   is set to 'exact'.
+ * @property {Object} [query] - An object representing query parameters for the
+ *   route when 'selected' is set to 'query'.
  */
 
 /**
  * @typedef AvailablePageSchedulePredicate
- * @property {string} [cron]
- * @property {string} [start]
- * @property {string} [end]
+ * @property {string} [cron] - A cron expression specifying the schedule for the
+ *   predicate.
+ * @property {string} [start] - The start date and time for the schedule, in iso
+ *   8601 format.
+ * @property {string} [end] - The end date and time for the schedule, in iso 8601 format.
  */
 
 /**
  * @typedef ThemesSchema
  * @property {Font} [font]
  * @property {Config} [config]
- * @property {boolean} [applied] - Whether the theme has been applied or not
- * @property {boolean} [is_private] - Whether the theme is private or not
- * @property {string[]} [tags] - An array of tags associated with the theme
- * @property {string} [_id] - The unique identifier of the theme
- * @property {string} [application_id] - The ID of the application
- * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
+ * @property {boolean} [applied] - Whether the theme has been applied or not.
+ * @property {boolean} [is_private] - Whether the theme is private or not.
+ * @property {string[]} [tags] - An array of tags associated with the theme.
+ * @property {string} [_id] - The unique identifier of the theme.
+ * @property {string} [application_id] - The id of the application.
+ * @property {string} [marketplace_theme_id] - The id of the theme in the marketplace.
  * @property {ThemeMeta} [meta]
- * @property {string} [name] - The name of the theme
- * @property {string} [template_theme_id] - The ID of the template theme
- * @property {string} [version] - The version of the theme
- * @property {Object} [styles] - The styles associated with the theme
- * @property {string} [created_at] - The creation timestamp of the theme
- * @property {string} [updated_at] - The last update timestamp of the theme
+ * @property {string} [name] - The name of the theme.
+ * @property {string} [template_theme_id] - The id of the template theme.
+ * @property {string} [version] - The version of the theme.
+ * @property {Object} [styles] - The styles associated with the theme.
+ * @property {string} [created_at] - The creation timestamp of the theme.
+ * @property {string} [updated_at] - The last update timestamp of the theme.
  * @property {Assets} [assets]
- * @property {SectionItem[]} [available_sections] - Available sections information
- * @property {string} [theme_type]
- * @property {number} [company_id] - The company id in which sales channel exists
+ * @property {SectionItem[]} [available_sections] - Available sections information.
+ * @property {string} [theme_type] - The theme or category type associated with the page.
+ * @property {number} [company_id] - The company id in which sales channel exists.
  */
 
 /**
  * @typedef Font
  * @property {FontVariants} variants
- * @property {string} family - The font family
+ * @property {string} family - The font family.
  */
 
 /**
@@ -154,23 +179,25 @@ const Joi = require("joi");
 
 /**
  * @typedef FontVariant
- * @property {string} name - The name of the font variant
- * @property {string} file - The URL of the font file
+ * @property {string} name - The name of the font variant.
+ * @property {string} file - The url of the font file.
  */
 
 /**
  * @typedef Config
- * @property {string} current - The current configuration
- * @property {ThemeConfiguration[]} list - A list of configurations
+ * @property {string} current - The current configuration.
+ * @property {ThemeConfiguration[]} list - A list of configurations.
  * @property {GlobalSchema} [global_schema]
  * @property {Preset} [preset]
  */
 
 /**
  * @typedef ThemeConfiguration
- * @property {string} [name] - The name of the configuration
- * @property {Object} [global_config]
- * @property {string[]} [page] - An array of pages
+ * @property {string} [name] - The name of the configuration.
+ * @property {Object} [global_config] - A global configuration object containing
+ *   various settings for the theme.
+ * @property {string[]} [page] - An array of pages associated with the theme
+ *   configuration.
  */
 
 /**
@@ -180,41 +207,41 @@ const Joi = require("joi");
 
 /**
  * @typedef CustomProps
- * @property {string} [header_bg_color] - The header background color
- * @property {string} [header_text_color] - The header text color
- * @property {string} [header_border_color] - The header border color
- * @property {string} [header_icon_color] - The header icon color
+ * @property {string} [header_bg_color] - The header background color.
+ * @property {string} [header_text_color] - The header text color.
+ * @property {string} [header_border_color] - The header border color.
+ * @property {string} [header_icon_color] - The header icon color.
  * @property {string} [header_cart_notification_bg_color] - The header cart
- *   notification background color
+ *   notification background color.
  * @property {string} [header_cart_notification_text_color] - The header cart
- *   notification text color
- * @property {string} [header_nav_hover_color] - The header navigation hover color
- * @property {string} [button_primary_color] - The primary button color
- * @property {string} [button_primary_label_color] - The primary button label color
- * @property {string} [button_add_to_cart_color] - The add to cart button color
+ *   notification text color.
+ * @property {string} [header_nav_hover_color] - The header navigation hover color.
+ * @property {string} [button_primary_color] - The primary button color.
+ * @property {string} [button_primary_label_color] - The primary button label color.
+ * @property {string} [button_add_to_cart_color] - The add to cart button color.
  * @property {string} [button_add_to_cart_label_color] - The add to cart button
- *   label color
- * @property {string} [button_secondary_color] - The secondary button color
- * @property {string} [button_secondary_label_color] - The secondary button label color
- * @property {string} [button_tertiary_color] - The tertiary button color
- * @property {string} [button_tertiary_label_color] - The tertiary button label color
- * @property {string} [button_tertiary_hover_color] - The tertiary button hover color
+ *   label color.
+ * @property {string} [button_secondary_color] - The secondary button color.
+ * @property {string} [button_secondary_label_color] - The secondary button label color.
+ * @property {string} [button_tertiary_color] - The tertiary button color.
+ * @property {string} [button_tertiary_label_color] - The tertiary button label color.
+ * @property {string} [button_tertiary_hover_color] - The tertiary button hover color.
  * @property {string} [button_tertiary_hover_text_color] - The tertiary button
- *   hover text color
- * @property {string} [text_heading_link_color] - The text heading link color
- * @property {string} [text_body_color] - The text body color
- * @property {string} [text_price_color] - The text price color
- * @property {string} [text_sale_price_color] - The text sale price color
+ *   hover text color.
+ * @property {string} [text_heading_link_color] - The text heading link color.
+ * @property {string} [text_body_color] - The text body color.
+ * @property {string} [text_price_color] - The text price color.
+ * @property {string} [text_sale_price_color] - The text sale price color.
  * @property {string} [text_strikethrough_price_color] - The text strikethrough
- *   price color
- * @property {string} [text_discount_color] - The text discount color
- * @property {string} [footer_bg_color] - The footer background color
- * @property {string} [footer_text_color] - The footer text color
- * @property {string} [footer_border_color] - The footer border color
- * @property {string} [footer_nav_hover_color] - The footer navigation hover color
- * @property {boolean} [disable_cart] - Whether to disable the cart or not
- * @property {boolean} [is_menu_below_logo] - Whether the menu is below the logo or not
- * @property {string} [menu_position] - The position of the menu
+ *   price color.
+ * @property {string} [text_discount_color] - The text discount color.
+ * @property {string} [footer_bg_color] - The footer background color.
+ * @property {string} [footer_text_color] - The footer text color.
+ * @property {string} [footer_border_color] - The footer border color.
+ * @property {string} [footer_nav_hover_color] - The footer navigation hover color.
+ * @property {boolean} [disable_cart] - Whether to disable the cart or not.
+ * @property {boolean} [is_menu_below_logo] - Whether the menu is below the logo or not.
+ * @property {string} [menu_position] - The position of the menu.
  */
 
 /**
@@ -242,69 +269,69 @@ const Joi = require("joi");
 
 /**
  * @typedef UserAlertsSetting
- * @property {string} [success_background] - The success background color
- * @property {string} [success_text] - The success text color
- * @property {string} [error_background] - The error background color
- * @property {string} [error_text] - The error text color
- * @property {string} [info_background] - The info background color
- * @property {string} [info_text] - The info text color
+ * @property {string} [success_background] - The success background color.
+ * @property {string} [success_text] - The success text color.
+ * @property {string} [error_background] - The error background color.
+ * @property {string} [error_text] - The error text color.
+ * @property {string} [info_background] - The info background color.
+ * @property {string} [info_text] - The info text color.
  */
 
 /**
  * @typedef ThemeSetting
- * @property {string} [page_background] - The page background color
- * @property {string} [theme_accent] - The theme accent color
+ * @property {string} [page_background] - The page background color.
+ * @property {string} [theme_accent] - The theme accent color.
  */
 
 /**
  * @typedef TextSetting
- * @property {string} [text_heading] - The text heading color
- * @property {string} [text_body] - The text body color
- * @property {string} [text_label] - The text label color
- * @property {string} [text_secondary] - The secondary text color
+ * @property {string} [text_heading] - The text heading color.
+ * @property {string} [text_body] - The text body color.
+ * @property {string} [text_label] - The text label color.
+ * @property {string} [text_secondary] - The secondary text color.
  */
 
 /**
  * @typedef ButtonSetting
- * @property {string} [button_primary] - The primary button color
- * @property {string} [button_secondary] - The secondary button color
- * @property {string} [button_link] - The button link color
+ * @property {string} [button_primary] - The primary button color.
+ * @property {string} [button_secondary] - The secondary button color.
+ * @property {string} [button_link] - The button link color.
  */
 
 /**
  * @typedef SaleDiscountSetting
- * @property {string} [sale_badge_background] - The sale badge background color
- * @property {string} [sale_badge_text] - The sale badge text color
- * @property {string} [sale_discount_text] - The sale discount text color
- * @property {string} [sale_timer] - The sale timer color
+ * @property {string} [sale_badge_background] - The sale badge background color.
+ * @property {string} [sale_badge_text] - The sale badge text color.
+ * @property {string} [sale_discount_text] - The sale discount text color.
+ * @property {string} [sale_timer] - The sale timer color.
  */
 
 /**
  * @typedef HeaderSetting
- * @property {string} [header_background] - The header background color
- * @property {string} [header_nav] - The header navigation color
- * @property {string} [header_icon] - The header icon color
+ * @property {string} [header_background] - The header background color.
+ * @property {string} [header_nav] - The header navigation color.
+ * @property {string} [header_icon] - The header icon color.
  */
 
 /**
  * @typedef FooterSetting
- * @property {string} [footer_background] - The footer background color
- * @property {string} [footer_bottom_background] - The footer bottom background color
- * @property {string} [footer_heading_text] - The footer heading text color
- * @property {string} [footer_body_text] - The footer body text color
- * @property {string} [footer_icon] - The footer icon color
+ * @property {string} [footer_background] - The footer background color.
+ * @property {string} [footer_bottom_background] - The footer bottom background color.
+ * @property {string} [footer_heading_text] - The footer heading text color.
+ * @property {string} [footer_body_text] - The footer body text color.
+ * @property {string} [footer_icon] - The footer icon color.
  */
 
 /**
  * @typedef OverlayPopupSetting
- * @property {string} [dialog_backgroung] - The dialog background color
- * @property {string} [overlay] - The overlay color
+ * @property {string} [dialog_backgroung] - The dialog background color.
+ * @property {string} [overlay] - The overlay color.
  */
 
 /**
  * @typedef DividerStrokeHighlightSetting
- * @property {string} [divider_strokes] - The divider strokes color
- * @property {string} [highlight] - The highlight color
+ * @property {string} [divider_strokes] - The divider strokes color.
+ * @property {string} [highlight] - The highlight color.
  */
 
 /**
@@ -321,18 +348,18 @@ const Joi = require("joi");
 
 /**
  * @typedef Colors
- * @property {string} [primary_color] - The primary color
- * @property {string} [secondary_color] - The secondary color
- * @property {string} [accent_color] - The accent color
- * @property {string} [link_color] - The link color
- * @property {string} [button_secondary_color] - The secondary button color
- * @property {string} [bg_color] - The background color
+ * @property {string} [primary_color] - The primary color.
+ * @property {string} [secondary_color] - The secondary color.
+ * @property {string} [accent_color] - The accent color.
+ * @property {string} [link_color] - The link color.
+ * @property {string} [button_secondary_color] - The secondary button color.
+ * @property {string} [bg_color] - The background color.
  */
 
 /**
  * @typedef AuthConfig
- * @property {boolean} [show_header_auth] - Whether to show header authentication or not
- * @property {boolean} [show_footer_auth] - Whether to show footer authentication or not
+ * @property {boolean} [show_header_auth] - Whether to show header authentication or not.
+ * @property {boolean} [show_footer_auth] - Whether to show footer authentication or not.
  */
 
 /**
@@ -344,30 +371,30 @@ const Joi = require("joi");
 /**
  * @typedef ThemeMeta
  * @property {ThemePayment} [payment]
- * @property {string} [description] - The description of the theme
- * @property {string[]} [industry] - An array of industries associated with the theme
+ * @property {string} [description] - The description of the theme.
+ * @property {string[]} [industry] - An array of industries associated with the theme.
  * @property {Release} [release]
  * @property {Images} [images]
- * @property {string} [slug] - The slug of the theme
- * @property {string} [name] - The name of the theme
+ * @property {string} [slug] - The slug of the theme.
+ * @property {string} [name] - The name of the theme.
  */
 
 /**
  * @typedef ThemePayment
- * @property {boolean} [is_paid] - Whether the theme is paid or not
- * @property {number} [amount] - The amount of the theme
+ * @property {boolean} [is_paid] - Whether the theme is paid or not.
+ * @property {number} [amount] - The amount of the theme.
  */
 
 /**
  * @typedef Release
- * @property {string} [notes] - The release notes of the theme
- * @property {string} [version] - The version of the theme
+ * @property {string} [notes] - The release notes of the theme.
+ * @property {string} [version] - The version of the theme.
  */
 
 /**
  * @typedef Images
- * @property {string} [desktop] - The URL of the desktop image
- * @property {string} [mobile] - The URL of the mobile image
+ * @property {string} [desktop] - The url of the desktop image.
+ * @property {string} [mobile] - The url of the mobile image.
  */
 
 /**
@@ -379,49 +406,53 @@ const Joi = require("joi");
 
 /**
  * @typedef UMDJs
- * @property {string[]} [links]
+ * @property {string[]} [links] - An array of strings representing urls or links.
  */
 
 /**
  * @typedef CommonJS
- * @property {string} [link]
+ * @property {string} [link] - A string representing the url or link to the
+ *   commonjs module.
  */
 
 /**
  * @typedef CSS
- * @property {string[]} [links]
+ * @property {string[]} [links] - An array of strings representing urls for css assets.
  */
 
 /**
  * @typedef SectionItem
- * @property {Object[]} [props]
- * @property {Object[]} [blocks] - Blocks
- * @property {string} [name] - Name of the section
- * @property {string} [label] - Label for the section
+ * @property {Object[]} [props] - An array of objects representing properties or
+ *   attributes of the section item.
+ * @property {Object[]} [blocks] - An array having blocks of the section.
+ * @property {string} [name] - Name of the section.
+ * @property {string} [label] - Label for the section.
  */
 
 /**
  * @typedef GlobalSchema
- * @property {Prop[]} [props]
+ * @property {Prop[]} [props] - An array of properties associated with the
+ *   global schema, where each property is represented by an object.
  */
 
 /**
  * @typedef Prop
- * @property {string} [type] - The type of the property
- * @property {string} [category] - The category of the property
- * @property {string} [id] - The ID of the property
- * @property {string} [label] - The label of the property
- * @property {string} [info] - Additional information about the property
+ * @property {string} [type] - The type of the property.
+ * @property {string} [category] - The category of the property.
+ * @property {string} [id] - The id of the property.
+ * @property {string} [label] - The label of the property.
+ * @property {string} [info] - Additional information about the property.
  */
 
 /**
  * @typedef Preset
- * @property {Page[]} [pages]
+ * @property {Page[]} [pages] - An array of pages included in the preset, each
+ *   represented by an object.
  */
 
 /**
  * @typedef Page
- * @property {Section[]} [sections]
+ * @property {Section[]} [sections] - An array of sections included in the page.
  * @property {string} [value] - The value of the page.
  */
 
@@ -435,7 +466,7 @@ const Joi = require("joi");
 
 /**
  * @typedef SectionPreset
- * @property {Block[]} [blocks]
+ * @property {Block[]} [blocks] - An array of blocks included in the section preset.
  */
 
 /**
@@ -447,7 +478,7 @@ const Joi = require("joi");
 /**
  * @typedef UrlProp
  * @property {string} [type] - The type of the property.
- * @property {string} [value] - The value of the URL property.
+ * @property {string} [value] - The value of the url property.
  */
 
 /**
@@ -476,7 +507,8 @@ const Joi = require("joi");
 
 /**
  * @typedef Section
- * @property {Block[]} [blocks]
+ * @property {Block[]} [blocks] - An array of blocks included in the section,
+ *   each represented by an object conforming to the block schema.
  * @property {Predicate} [predicate]
  * @property {string} [name] - The name of the section.
  * @property {SectionProps} [props]
@@ -513,31 +545,32 @@ const Joi = require("joi");
 /**
  * @typedef Route
  * @property {string} [selected] - The selected route.
- * @property {string} [exact_url] - The exact URL of the route.
+ * @property {string} [exact_url] - The exact url of the route.
  */
 
 /**
  * @typedef AvailablePagePlatformPredicate
- * @property {boolean} [ios] - Section visibility on ios platform
- * @property {boolean} [android] - Section visibility on android platform
- * @property {boolean} [web] - Section visibility on web platform
+ * @property {boolean} [ios] - Section visibility on ios platform.
+ * @property {boolean} [android] - Section visibility on android platform.
+ * @property {boolean} [web] - Section visibility on web platform.
  */
 
 /**
  * @typedef BlitzkriegInternalServerErrorSchema
- * @property {string} [message]
+ * @property {string} [message] - A descriptive message detailing the internal
+ *   server error.
  */
 
 /**
  * @typedef BlitzkriegApiErrorSchema
- * @property {string} [message]
+ * @property {string} [message] - A descriptive message detailing the api error.
  */
 
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 
@@ -553,6 +586,7 @@ const Joi = require("joi");
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -1311,6 +1345,8 @@ class ThemeApplicationModel {
       "collection",
 
       "collections",
+
+      "custom",
 
       "contact-us",
 

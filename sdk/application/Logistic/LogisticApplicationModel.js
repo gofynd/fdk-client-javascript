@@ -2,148 +2,194 @@ const Joi = require("joi");
 
 /**
  * @typedef GetStoreResponse
- * @property {StoreItemResponse[]} [items]
+ * @property {StoreItemResponse[]} [items] - List of locations, each containing
+ *   detailed information about individual location.
  * @property {Page} [page]
  */
 
 /**
  * @typedef StoreItemResponse
- * @property {number} [id]
- * @property {string} [store_type]
- * @property {string} [fulfillment_type]
- * @property {number} [processing_time]
- * @property {string[]} [tags]
- * @property {number} [company_id]
- * @property {number} [latitude]
- * @property {number} [longitude]
+ * @property {number} [id] - A unique identifier for the location.
+ * @property {string} [store_type] - The type of store, indicating the nature of
+ *   the store, such as retail or warehouse.
+ * @property {string} [fulfillment_type] - The method of fulfillment used by the
+ *   store, such as shipping, pickup, or delivery.
+ * @property {number} [processing_time] - The average time taken by the store to
+ *   process orders, measured in minutes.
+ * @property {string[]} [tags] - List of tags associated with the store for
+ *   categorization and search purposes.
+ * @property {number} [company_id] - The unique identifier of the company that
+ *   owns the store.
+ * @property {number} [latitude] - The geographical latitude coordinate of the
+ *   store location.
+ * @property {number} [longitude] - The geographical longitude coordinate of the
+ *   store location.
  */
 
 /**
  * @typedef ValidateAddressRequest
- * @property {string} [address] - A string representing the complete address,
- *   combining address line 1, address line 2, area, landmark, sector, city,
- *   state, and pincode. This provides a comprehensive view of the address details.
- * @property {string} [address1] - A string representing the first line of the
- *   address, typically containing street or building information.
- * @property {string} [address2] - A string representing the second line of the
- *   address, which can be used for additional address details if needed.
- * @property {string} [area] - A string specifying the locality or area
- *   associated with the address.
- * @property {string} [landmark] - A string representing a prominent nearby
- *   landmark that aids in locating the address.
- * @property {string} [pincode] - A string indicating the postal code or PIN
- *   code of the address area.
- * @property {string} [sector] - A string specifying the sector or district of
- *   the address if applicable.
- * @property {string} [city] - A string denoting the city or municipality of the address.
- * @property {string} [state] - A string indicating the state or province of the address.
- * @property {string} [name] - A string representing the recipient's name or the
- *   organization name associated with the address.
- * @property {string} [phone] - An integer representing the recipient's contact
- *   phone number.
- * @property {string} [email] - A string containing the recipient's email address.
+ * @property {string} [address] - Complete address, combining address line 1,
+ *   address line 2, area, landmark, sector, city, state, and pincode.
+ * @property {string} [address1] - First line of the address, typically
+ *   containing street or building information.
+ * @property {string} [address2] - Second line of the address, which can be used
+ *   for additional address details if needed.
+ * @property {string} [area] - Locality or area associated with the address.
+ * @property {string} [landmark] - Prominent nearby landmark that aids in
+ *   locating the address.
+ * @property {string} [pincode] - Postal code or PIN code of the address area.
+ * @property {string} [sector] - Specifies the sector or district of the address
+ *   if applicable.
+ * @property {string} [city] - Denote the city or municipality of the address.
+ * @property {string} [state] - Indicates the state or province of the address.
+ * @property {string} [name] - Recipient's name associated with the address.
+ * @property {string} [phone] - Recipient's contact phone number.
+ * @property {string} [email] - Recipient's email address.
  */
 
 /**
  * @typedef PincodeParentsResponse
- * @property {string} [sub_type]
- * @property {string} [display_name]
- * @property {string} [name]
- * @property {string} [uid]
+ * @property {string} [sub_type] - Specific type of locality hierarchy the
+ *   pincode belongs to (e.g., city, state, country).
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
+ * @property {string} [name] - The actual geographical data, such as country
+ *   names (India), state names (Maharashtra), pin codes (400603), city names
+ *   (Dubai), or local sectors (Deira).
+ * @property {string} [uid] - Unique identifier for the locality.
  */
 
 /**
  * @typedef PincodeMetaResponse
- * @property {string} [zone]
- * @property {number} [internal_zone_id]
+ * @property {string} [zone] - Geographical region to which the pincode belongs,
+ *   often used to categorize or group pincodes for regional management or
+ *   postal purposes.
+ * @property {number} [internal_zone_id] - A unique identifier used within the
+ *   system to track or reference the specific zone associated with the pincode.
  */
 
 /**
  * @typedef PincodeErrorSchemaResponse
- * @property {string} [message]
- * @property {string} [value]
- * @property {string} [type]
+ * @property {string} [message] - A user-readable description of the error,
+ *   explaining what went wrong.
+ * @property {string} [value] - A specific code or identifier related to the
+ *   error, used for referencing or categorizing the error.
+ * @property {string} [type] - The classification of the error, indicating the
+ *   kind of issue.
  */
 
 /**
  * @typedef CountryMetaResponse
- * @property {string} [country_code]
- * @property {string} [isd_code]
+ * @property {string} [country_code] - The ISO 3166-1 alpha-2 code representing
+ *   the country (e.g., "IN" for India, "US" for the United States).
+ * @property {string} [isd_code] - The International Subscriber Dialing (ISD)
+ *   code, also known as the country dialing code, used for making international
+ *   phone calls to the country (e.g., "+91" for India, "+1" for the United States).
  */
 
 /**
  * @typedef PincodeLatLongData
- * @property {string} [type]
- * @property {string[]} [coordinates]
+ * @property {string} [type] - Specifies the type of geographical feature or
+ *   data, typically "Point" for coordinates in geographic data systems.
+ * @property {string[]} [coordinates] - Contains the latitude and longitude
+ *   values representing the precise location. The format is usually an array
+ *   with two values: [longitude, latitude].
  */
 
 /**
  * @typedef PincodeDataResponse
- * @property {PincodeParentsResponse[]} [parents]
+ * @property {PincodeParentsResponse[]} [parents] - List of object representing
+ *   a collection of geographical locations, each associated with specific
+ *   hierarchical data such as cities, states, or countries.
  * @property {PincodeMetaResponse} [meta]
- * @property {string} [display_name]
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
  * @property {PincodeErrorSchemaResponse} error
  * @property {CountryMetaResponse} [meta_code]
  * @property {PincodeLatLongData} [lat_long]
- * @property {string} [sub_type]
- * @property {string} [name]
- * @property {string} [uid]
+ * @property {string} [sub_type] - Indicates the specific type of locality
+ *   hierarchy the pincode belongs to (e.g., city, state, country).
+ * @property {string} [name] - The actual geographical data, such as country
+ *   names (India), state names (Maharashtra), pin codes (400603), city names
+ *   (Dubai), or local sectors (Deira).
+ * @property {string} [uid] - This field stands for "Unique Identifier," a
+ *   unique value assigned to each instance to ensure differentiation and reference.
  */
 
 /**
  * @typedef PincodeApiResponse
- * @property {boolean} success
- * @property {PincodeDataResponse[]} [data]
+ * @property {boolean} success - Indicates whether the API request was
+ *   successful (true) or failed (false).
+ * @property {PincodeDataResponse[]} [data] - Contains the actual response data
+ *   when the request is successful, providing details like pincode information
+ *   or related data.
  * @property {PincodeErrorSchemaResponse} error
  */
 
 /**
  * @typedef TATCategoryRequest
- * @property {string} [level]
- * @property {number} [id]
+ * @property {string} [level] - Specifies the hierarchical level of the category
+ *   (e.g., country, state, city).
+ * @property {number} [id] - Represents the unique identifier for the category
+ *   at the specified level.
  */
 
 /**
  * @typedef TATArticlesRequest
  * @property {TATCategoryRequest} [category]
- * @property {string} [manufacturing_time_unit]
- * @property {number} [manufacturing_time]
+ * @property {string} [manufacturing_time_unit] - The unit of measurement for
+ *   the manufacturing time, such as hours or days.
+ * @property {number} [manufacturing_time] - The amount of time required to
+ *   manufacture the article, specified in the unit given by `manufacturing_time_unit`.
  */
 
 /**
  * @typedef TATLocationDetailsRequest
- * @property {number} [fulfillment_id]
- * @property {string} [from_pincode]
- * @property {TATArticlesRequest[]} [articles]
+ * @property {number} [fulfillment_id] - A unique identifier of the fulfilling location.
+ * @property {string} [from_pincode] - The postal code of the location from
+ *   which the fulfillment originates.
+ * @property {TATArticlesRequest[]} [articles] - List of articles included in
+ *   the fulfillment request, which provides details about the items to be
+ *   processed or shipped.
  */
 
 /**
  * @typedef TATViewRequest
- * @property {string} [to_pincode]
- * @property {string} [source]
- * @property {string} [action]
- * @property {string} [identifier]
- * @property {TATLocationDetailsRequest[]} [location_details]
- * @property {string} [journey]
+ * @property {string} [to_pincode] - The postal code of the destination location
+ *   where the fulfillment or shipment is headed.
+ * @property {string} [source] - The origin or source of the request, indicating
+ *   where the data or action is coming from.
+ * @property {string} [action] - The specific operation or request being made,
+ *   such as viewing, updating, or managing data.
+ * @property {string} [identifier] - A unique ID used to reference or track the
+ *   specific request or item within the system.
+ * @property {TATLocationDetailsRequest[]} [location_details] - Locations
+ *   involved in the request, including details about both the source and destination.
+ * @property {string} [journey] - Indicates the direction of the request or
+ *   shipment. It can either be "forward" (from the source to the destination)
+ *   or "return" (from the destination back to the source).
  */
 
 /**
  * @typedef TATErrorSchemaResponse
- * @property {string} [message]
- * @property {string} [value]
- * @property {string} [type]
+ * @property {string} [message] - A user-readable description of the error,
+ *   explaining what went wrong.
+ * @property {string} [value] - A specific code or identifier related to the
+ *   error, used for referencing or categorizing the error.
+ * @property {string} [type] - The classification of the error, indicating the
+ *   kind of issue.
  */
 
 /**
  * @typedef TATTimestampResponse
- * @property {number} [min]
- * @property {number} [max]
+ * @property {number} [min] - The earliest possible timestamp.
+ * @property {number} [max] - The latest possible timestamp.
  */
 
 /**
  * @typedef TATFormattedResponse
- * @property {string} [min]
- * @property {string} [max]
+ * @property {string} [min] - The earliest possible timestamp.
+ * @property {string} [max] - The latest possible timestamp.
  */
 
 /**
@@ -154,153 +200,208 @@ const Joi = require("joi");
 
 /**
  * @typedef TATArticlesResponse
- * @property {string} [manufacturing_time_unit]
+ * @property {string} [manufacturing_time_unit] - The unit of measurement for
+ *   the manufacturing time such as hours or days.
  * @property {TATErrorSchemaResponse} [error]
- * @property {boolean} [is_cod_available]
+ * @property {boolean} [is_cod_available] - Indicates whether Cash on Delivery
+ *   (COD) is available for the articles.
  * @property {TATPromiseResponse} [promise]
- * @property {number} [manufacturing_time]
+ * @property {number} [manufacturing_time] - The time required to manufacture
+ *   the articles, measured in the unit specified by manufacturing_time_unit.
  * @property {TATCategoryRequest} [category]
- * @property {number} [_manufacturing_time_seconds]
+ * @property {number} [_manufacturing_time_seconds] - The manufacturing time
+ *   converted into seconds.
  */
 
 /**
  * @typedef TATLocationDetailsResponse
- * @property {number} [fulfillment_id]
- * @property {string} [from_pincode]
- * @property {TATArticlesResponse[]} [articles]
+ * @property {number} [fulfillment_id] - A unique identifier of the fulfilling location.
+ * @property {string} [from_pincode] - The postal code of the location from
+ *   which the fulfillment originates.
+ * @property {TATArticlesResponse[]} [articles] - List of articles included in
+ *   the fulfillment request, which provides details about the items to be
+ *   processed or shipped.
  */
 
 /**
  * @typedef TATViewResponse
- * @property {string} [to_pincode]
- * @property {string} [request_uuid]
- * @property {string} [payment_mode]
- * @property {boolean} [success]
+ * @property {string} [to_pincode] - The postal code of the destination location
+ *   where the fulfillment or shipment is headed.
+ * @property {string} [request_uuid] - A unique identifier for the request.
+ * @property {string} [payment_mode] - The mode of payment used for the transaction.
+ * @property {boolean} [success] - Whether the request was successful (true/false).
  * @property {TATErrorSchemaResponse} [error]
- * @property {boolean} [is_cod_available]
- * @property {string} [source]
- * @property {string} [action]
- * @property {string} [stormbreaker_uuid]
- * @property {string} [to_city]
- * @property {string} [identifier]
- * @property {TATLocationDetailsResponse[]} [location_details]
- * @property {string} [journey]
+ * @property {boolean} [is_cod_available] - Whether Cash on Delivery (COD) is
+ *   available for the request.
+ * @property {string} [source] - The origin or source of the request.
+ * @property {string} [action] - The action performed or requested (e.g.,
+ *   forward, return).
+ * @property {string} [stormbreaker_uuid] - A unique identifier related to the
+ *   stormbreaker process.
+ * @property {string} [to_city] - The city corresponding to the destination pincode.
+ * @property {string} [identifier] - A unique identifier for the request or transaction.
+ * @property {TATLocationDetailsResponse[]} [location_details] - Location
+ *   involved in the request.
+ * @property {string} [journey] - Type of journey, either forward or return.
  */
 
 /**
  * @typedef DP
- * @property {number} fm_priority
- * @property {number} lm_priority
- * @property {number} rvp_priority
- * @property {string} payment_mode
- * @property {string[]} operations
- * @property {string} [area_code]
- * @property {boolean} [assign_dp_from_sb]
- * @property {string} [internal_account_id]
- * @property {string} [external_account_id]
- * @property {string} [transport_mode]
+ * @property {number} fm_priority - First Mile Priority; focuses on the initial
+ *   segment of the logistics process, from the point of origin to the first
+ *   distribution center.
+ * @property {number} lm_priority - Last Mile Priority; deals with the final
+ *   stage of the delivery process, where goods are delivered from the
+ *   distribution center to the final destination.
+ * @property {number} rvp_priority - Reverse Pickup Priority; pertains to the
+ *   process of collecting goods from the customer for return or exchange.
+ * @property {string} payment_mode - The method of payment used for
+ *   transactions, such as credit card, debit card, cash on delivery, etc.
+ * @property {string[]} operations - Refers to the various activities and
+ *   processes involved in managing and executing the delivery and logistics operations.
+ * @property {string} [area_code] - A code that identifies a specific geographic
+ *   area, often used for sorting and routing deliveries.
+ * @property {boolean} [assign_dp_from_sb] - Indicates whether the delivery
+ *   partner (DP) is assigned from stormbreaker service.
+ * @property {string} [internal_account_id] - An identifier used internally to
+ *   track accounts or entities within the organization's system.
+ * @property {string} [external_account_id] - An identifier used to reference
+ *   accounts or entities outside the organization's system, such as partner accounts.
+ * @property {string} [transport_mode] - The method of transportation used for
+ *   delivering goods, such as road, rail, air, or sea.
  */
 
 /**
  * @typedef LogisticsResponse
- * @property {Object} [dp]
+ * @property {Object} [dp] - Provide entity responsible for handling the
+ *   delivery of goods.
  */
 
 /**
  * @typedef CountryEntityResponse
  * @property {CountryMetaResponse} [meta]
  * @property {LogisticsResponse} [logistics]
- * @property {string} [display_name]
- * @property {string} [type]
- * @property {boolean} [is_active]
- * @property {string} [parent_id]
- * @property {string} [sub_type]
- * @property {string} [name]
- * @property {string} [uid]
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
+ * @property {string} [type] - Specifies the type of geographical feature or
+ *   data, typically "Point" for coordinates in geographic data systems.
+ * @property {boolean} [is_active] - Whether the country entity is currently
+ *   active or not.
+ * @property {string} [parent_id] - Identifier for the parent of the current locality.
+ * @property {string} [sub_type] - Specific type of locality hierarchy the
+ *   pincode belongs to (e.g., city, state, country).
+ * @property {string} [name] - Country name.
+ * @property {string} [uid] - Unique identifier for the country.
  */
 
 /**
  * @typedef CountryListResponse
- * @property {CountryEntityResponse[]} [results]
+ * @property {CountryEntityResponse[]} [results] - A list of country entities,
+ *   each containing details about individual countries.
  */
 
 /**
  * @typedef GetZoneFromPincodeViewRequest
- * @property {string} pincode
- * @property {string} country
+ * @property {string} pincode - The postal code or ZIP code used to pinpoint a
+ *   specific geographic area or location.
+ * @property {string} country - The country where the pincode is located.
  */
 
 /**
  * @typedef GetZoneFromPincodeViewResponse
- * @property {string} serviceability_type
- * @property {string[]} zones
+ * @property {string} serviceability_type - Specifies the type of serviceability
+ *   for the given pincode, indicating whether it's deliverable or serviceable
+ *   under certain conditions.
+ * @property {string[]} zones - Lists the zones associated with the pincode,
+ *   detailing the geographical or logistical zones for service.
  */
 
 /**
  * @typedef ReAssignStoreRequest
- * @property {Object} configuration
- * @property {string} to_pincode
- * @property {number[]} ignored_locations
- * @property {string} identifier
- * @property {Object[]} articles
+ * @property {Object} configuration - Specifies the configuration settings or
+ *   parameters for the store reassignment.
+ * @property {string} to_pincode - The postal code of the destination location
+ *   where the fulfillment or shipment is headed.
+ * @property {number[]} ignored_locations - Locations that should be excluded
+ *   from the reassignment process.
+ * @property {string} identifier - A unique identifier for the reassignment request.
+ * @property {Object[]} articles - List of articles or items involved in the
+ *   store reassignment.
  */
 
 /**
  * @typedef ReAssignStoreResponse
- * @property {string} to_pincode
- * @property {string} pystormbreaker_uuid
- * @property {boolean} success
- * @property {Object} error
- * @property {Object[]} [assigned_stores]
+ * @property {string} to_pincode - The postal code of the destination location
+ *   where the fulfillment or shipment is headed.
+ * @property {string} pystormbreaker_uuid - A unique identifier for tracking the
+ *   reassignment operation.
+ * @property {boolean} success - Whether the reassignment was successful or not.
+ * @property {Object} error - Details about any errors encountered during the
+ *   reassignment.
+ * @property {Object[]} [assigned_stores] - List of stores that have been
+ *   successfully reassigned.
  */
 
 /**
  * @typedef CountryHierarchy
- * @property {string} [name]
- * @property {string} [slug]
+ * @property {string} [name] - It represent a country name.
+ * @property {string} [slug] - A URL-friendly version of the name, often used
+ *   for referencing or querying purposes.
  */
 
 /**
  * @typedef CurrencyObject
- * @property {string} [code]
- * @property {string} [name]
- * @property {string} [symbol]
+ * @property {string} [code] - The currency code, typically a three-letter ISO
+ *   code (e.g., "USD" for US Dollar).
+ * @property {string} [name] - It represent a country name.
+ * @property {string} [symbol] - The symbol used to represent the currency
+ *   (e.g., "$" for US Dollar).
  */
 
 /**
  * @typedef CountryObject
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [iso2]
- * @property {string} [iso3]
- * @property {string[]} [timezones]
- * @property {CountryHierarchy[]} [hierarchy]
- * @property {string} [phone_code]
- * @property {string} [latitude]
- * @property {string} [longitude]
+ * @property {string} [id] - Unique identifier for the country.
+ * @property {string} [name] - It represent a country name.
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
+ * @property {string} [iso2] - Two-letter ISO code representing the country.
+ * @property {string} [iso3] - Three-letter ISO code representing the country.
+ * @property {string[]} [timezones] - List of time zones used in the country
+ *   (e.g., ["America/New_York", "America/Los_Angeles"]).
+ * @property {CountryHierarchy[]} [hierarchy] - Levels within the country (e.g.,
+ *   states, cities) and their slugs (e.g., [{"name": "State", "slug": "state"},
+ *   {"name": "City", "slug": "city"}]).
+ * @property {string} [phone_code] - International dialing code for the country
+ *   (e.g., "+1").
+ * @property {string} [latitude] - Geographical latitude of the country (e.g., "37.0902").
+ * @property {string} [longitude] - Geographical longitude of the country (e.g.,
+ *   "-95.7129").
  * @property {CurrencyObject} [currency]
- * @property {string} [type]
+ * @property {string} [type] - Indicates the type of object (e.g., "country").
  */
 
 /**
  * @typedef GetCountries
- * @property {CountryObject[]} [items]
+ * @property {CountryObject[]} [items] - List of countries, each containing
+ *   detailed information about individual country.
  * @property {Page} [page]
  */
 
 /**
  * @typedef GetOneOrAllPath
- * @property {string} [locality_type]
- * @property {string} [locality_value]
+ * @property {string} [locality_type] - Specifies the type of locality to be
+ *   retrieved, such as city, state, or pincode (e.g., "city", "state", "pincode").
+ * @property {string} [locality_value] - The specific value of the locality
+ *   being queried, such as the name of the city or the pincode (e.g., "Mumbai",
+ *   "400093").
  */
 
 /**
  * @typedef GetOneOrAllQuery
- * @property {string} [country]
- * @property {string} [state]
- * @property {string} [city]
- * @property {string} [sector]
+ * @property {string} [country] - The name of the country to filter the results.
+ * @property {string} [state] - The name of the state within the specified country.
+ * @property {string} [city] - The name of the city within the specified state.
+ * @property {string} [sector] - The name of the sector or area within the specified city.
  */
 
 /**
@@ -311,25 +412,27 @@ const Joi = require("joi");
 
 /**
  * @typedef GetOneOrAll
- * @property {string} [operation_id]
+ * @property {string} [operation_id] - Identifier for the specific operation or
+ *   query being performed.
  * @property {GetOneOrAllParams} [params]
  */
 
 /**
  * @typedef LengthValidation
- * @property {number} [min]
- * @property {number} [max]
+ * @property {number} [min] - The minimum number of characters or digits allowed.
+ * @property {number} [max] - The maximum number of characters or digits allowed.
  */
 
 /**
  * @typedef FieldValidationRegex
- * @property {string} [value]
+ * @property {string} [value] - Regular expression pattern used to validate the field.
  * @property {LengthValidation} [length]
  */
 
 /**
  * @typedef FieldValidation
- * @property {string} [type]
+ * @property {string} [type] - Specifies the validation method, such as regex
+ *   for regular expression validation.
  * @property {FieldValidationRegex} [regex]
  */
 
@@ -341,96 +444,135 @@ const Joi = require("joi");
 
 /**
  * @typedef GetCountryFieldsAddress
- * @property {string} display_name
- * @property {string} slug
- * @property {boolean} required
- * @property {boolean} [edit]
- * @property {string} input
+ * @property {string} display_name - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
+ * @property {string} slug - URL-friendly version of the name, often used for
+ *   referencing or querying purposes.
+ * @property {boolean} required - Indicates whether the field is mandatory for
+ *   the user to fill out.
+ * @property {boolean} [edit] - Specifies if the field can be edited by the user.
+ * @property {string} input - Defines the type of input control used for the
+ *   field (e.g., textbox).
  * @property {FieldValidation} [validation]
  * @property {GetCountryFieldsAddressValues} [values]
- * @property {string} [error_text]
+ * @property {string} [error_text] - The message shown to the user if the input
+ *   does not meet the validation criteria.
  */
 
 /**
  * @typedef GetCountryFieldsAddressTemplate
- * @property {string} checkout_form
- * @property {string} store_os_form
- * @property {string} default_display
+ * @property {string} checkout_form - The format used to display or collect
+ *   address information during checkout.
+ * @property {string} store_os_form - The format used for address entry or
+ *   display in the store's operating system.
+ * @property {string} default_display - The general format for displaying
+ *   address information.
  */
 
 /**
  * @typedef GetCountryFields
- * @property {GetCountryFieldsAddress[]} address
- * @property {string[]} serviceability_fields
+ * @property {GetCountryFieldsAddress[]} address - Specifies the fields and
+ *   attributes related to address information, including display names, input
+ *   types, and validation rules. This section defines the details needed for
+ *   address collection and formatting.
+ * @property {string[]} serviceability_fields - Lists the specific address
+ *   fields used to determine whether a location is serviceable. These fields
+ *   are crucial for validating service coverage and availability.
  * @property {GetCountryFieldsAddressTemplate} address_template
  */
 
 /**
  * @typedef GetCountry
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string} [iso2]
- * @property {string} [iso3]
- * @property {string[]} [timezones]
- * @property {CountryHierarchy[]} [hierarchy]
- * @property {string} [phone_code]
- * @property {string} [latitude]
- * @property {string} [longitude]
+ * @property {string} [id] - Unique identifier for the country.
+ * @property {string} [name] - It represent a country name.
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
+ * @property {string} [iso2] - Two-letter ISO code representing the country.
+ * @property {string} [iso3] - Three-letter ISO code representing the country.
+ * @property {string[]} [timezones] - List of time zones used in the country
+ *   (e.g., ["America/New_York", "America/Los_Angeles"]).
+ * @property {CountryHierarchy[]} [hierarchy] - Levels within the country (e.g.,
+ *   states, cities) and their slugs (e.g., [{"name": "State", "slug": "state"},
+ *   {"name": "City", "slug": "city"}]).
+ * @property {string} [phone_code] - International dialing code for the country
+ *   (e.g., "+1").
+ * @property {string} [latitude] - Geographical latitude of the country (e.g., "37.0902").
+ * @property {string} [longitude] - Geographical longitude of the country (e.g.,
+ *   "-95.7129").
  * @property {CurrencyObject} [currency]
- * @property {string} [type]
+ * @property {string} [type] - Indicates the type of object (e.g., "country").
  * @property {GetCountryFields} [fields]
  */
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
  * @typedef Localities
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string[]} [parent_ids]
- * @property {string} [type]
+ * @property {string} [id] - A unique identifier for the locality.
+ * @property {string} [name] - The actual geographical data, such as country
+ *   names (India), state names (Maharashtra), pin codes (400603), city names
+ *   (Dubai), or local sectors (Deira).
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
+ * @property {string[]} [parent_ids] - Identifiers for the parent of the current locality.
+ * @property {string} [type] - Specifies the category of the address component,
+ *   such as pincode, state, city, country, or sector.
+ * @property {LocalityParent[]} [localities] - Representing the localities that
+ *   are associated with or contained within the current locality. It provides
+ *   detailed information about the parent localities, including their names,
+ *   identifiers, and hierarchical relationships.
  */
 
 /**
  * @typedef LocalityParent
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string[]} [parent_ids]
- * @property {string} [type]
+ * @property {string} [id] - A unique identifier for the locality.
+ * @property {string} [name] - The actual geographical data, such as country
+ *   names (India), state names (Maharashtra), pin codes (400603), city names
+ *   (Dubai), or local sectors (Deira).
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
+ * @property {string[]} [parent_ids] - Identifiers for the parent of the current locality.
+ * @property {string} [type] - Specifies the category of the address component,
+ *   such as pincode, state, city, country, or sector.
  */
 
 /**
  * @typedef GetLocalities
- * @property {Localities[]} [items]
+ * @property {Localities[]} [items] - List of localities, each containing
+ *   detailed information about individual locality.
  * @property {Page} [page]
  */
 
 /**
  * @typedef GetLocality
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [display_name]
- * @property {string[]} [parent_ids]
- * @property {string} [type]
- * @property {LocalityParent[]} [localities]
+ * @property {string} [id] - A unique identifier for the locality.
+ * @property {string} [name] - The actual geographical data, such as country
+ *   names (India), state names (Maharashtra), pin codes (400603), city names
+ *   (Dubai), or local sectors (Deira).
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
+ * @property {string[]} [parent_ids] - Identifiers for the parent of the current locality.
+ * @property {string} [type] - Specifies the category of the address component,
+ *   such as pincode, state, city, country, or sector.
+ * @property {LocalityParent[]} [localities] - Representing the localities that
+ *   are associated with or contained within the current locality. It provides
+ *   detailed information about the parent localities, including their names,
+ *   identifiers, and hierarchical relationships.
  */
 
 /**
  * @typedef ErrorResponse
- * @property {string} [error]
- * @property {string} [message]
+ * @property {string} [error] - Error code identifying the type of error.
+ * @property {string} [message] - User-friendly explanation of what went wrong.
  */
 
 class LogisticApplicationModel {
@@ -933,6 +1075,7 @@ class LogisticApplicationModel {
       display_name: Joi.string().allow(""),
       parent_ids: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
+      localities: Joi.array().items(LogisticApplicationModel.LocalityParent()),
     });
   }
 

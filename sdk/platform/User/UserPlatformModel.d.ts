@@ -457,18 +457,18 @@ export = UserPlatformModel;
  */
 /**
  * @typedef PhoneNumber
- * @property {string} [phone] - Phone number
- * @property {number} [country_code] - Country code
- * @property {boolean} [active] - Is the phone number active
- * @property {boolean} [primary] - Is it a primary phone number
- * @property {boolean} [verified] - Is the phone number verified
+ * @property {string} [phone] - Phone number of the user.
+ * @property {number} [country_code] - Country code for mobile number.
+ * @property {boolean} [active] - Is the phone number active.
+ * @property {boolean} [primary] - Is it a primary phone number.
+ * @property {boolean} [verified] - Is the phone number verified.
  */
 /**
  * @typedef Email
- * @property {string} [email] - Email address
- * @property {boolean} [active] - Is the email active
- * @property {boolean} [primary] - Is it a primary email
- * @property {boolean} [verified] - Is the email verified
+ * @property {string} [email] - Email address.
+ * @property {boolean} [active] - Is the email active.
+ * @property {boolean} [primary] - Is it a primary email.
+ * @property {boolean} [verified] - Is the email verified.
  */
 declare class UserPlatformModel {
 }
@@ -1131,23 +1131,23 @@ type UserSearchSchema = {
 declare function PhoneNumber(): PhoneNumber;
 type PhoneNumber = {
     /**
-     * - Phone number
+     * - Phone number of the user.
      */
     phone?: string;
     /**
-     * - Country code
+     * - Country code for mobile number.
      */
     country_code?: number;
     /**
-     * - Is the phone number active
+     * - Is the phone number active.
      */
     active?: boolean;
     /**
-     * - Is it a primary phone number
+     * - Is it a primary phone number.
      */
     primary?: boolean;
     /**
-     * - Is the phone number verified
+     * - Is the phone number verified.
      */
     verified?: boolean;
 };
@@ -1155,19 +1155,19 @@ type PhoneNumber = {
 declare function Email(): Email;
 type Email = {
     /**
-     * - Email address
+     * - Email address.
      */
     email?: string;
     /**
-     * - Is the email active
+     * - Is the email active.
      */
     active?: boolean;
     /**
-     * - Is it a primary email
+     * - Is it a primary email.
      */
     primary?: boolean;
     /**
-     * - Is the email verified
+     * - Is the email verified.
      */
     verified?: boolean;
 };

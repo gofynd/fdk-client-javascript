@@ -6,25 +6,26 @@ const ConfigurationApplicationModel = require("./ConfigurationApplicationModel")
 
 /**
  * @typedef GetAppStaffListParam
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- * @property {boolean} [orderIncent] - This is a boolean value. Select `true` to
- *   retrieve the staff members eligible for getting incentives on orders.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ * @property {boolean} [orderIncent] - Select `true` to retrieve the staff
+ *   members eligible for getting incentives on orders.
  * @property {number} [orderingStore] - ID of the ordering store. Helps in
  *   retrieving staff members working at a particular ordering store.
- * @property {string} [user] - Mongo ID of the staff. Helps in retrieving the
- *   details of a particular staff member.
- * @property {string} [userName] - User name of the member
+ * @property {string} [user] - ID of the staff. Helps in retrieving the details
+ *   of a particular staff member.
+ * @property {string} [userName] - Username of the member.
  */
 
 /**
  * @typedef GetAppStaffsParam
- * @property {boolean} [orderIncent] - This is a boolean value. Select `true` to
- *   retrieve the staff members eligible for getting incentives on orders.
+ * @property {boolean} [orderIncent] - Select `true` to retrieve the staff
+ *   members eligible for getting incentives on orders.
  * @property {number} [orderingStore] - ID of the ordering store. Helps in
  *   retrieving staff members working at a particular ordering store.
- * @property {string} [user] - Mongo ID of the staff. Helps in retrieving the
- *   details of a particular staff member.
+ * @property {string} [user] - ID of the staff. Helps in retrieving the details
+ *   of a particular staff member.
  */
 
 /** @typedef GetApplicationParam */
@@ -37,7 +38,7 @@ const ConfigurationApplicationModel = require("./ConfigurationApplicationModel")
 
 /**
  * @typedef GetCurrencyByIdParam
- * @property {string} id - Object ID assigned to the currency
+ * @property {string} id - ID assigned to the currency.
  */
 
 /** @typedef GetFeaturesParam */
@@ -64,7 +65,7 @@ const ConfigurationApplicationModel = require("./ConfigurationApplicationModel")
 
 /**
  * @typedef GetStoreDetailByIdParam
- * @property {number} storeId - Store uid
+ * @property {number} storeId - Unique identifier for a store.
  */
 
 /** @typedef RemoveOrderingStoreCookieParam */

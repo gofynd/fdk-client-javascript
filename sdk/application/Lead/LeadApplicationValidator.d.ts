@@ -1,7 +1,7 @@
 export = LeadApplicationValidator;
 /**
  * @typedef CreateHistoryParam
- * @property {string} id - Ticket ID for which history is created
+ * @property {string} id - Ticket ID for which history is created.
  * @property {LeadApplicationModel.TicketHistoryPayload} body
  */
 /**
@@ -10,15 +10,15 @@ export = LeadApplicationValidator;
  */
 /**
  * @typedef GetCustomFormParam
- * @property {string} slug - Slug of form whose response is getting submitted
+ * @property {string} slug - Slug of form whose response is getting submitted.
  */
 /**
  * @typedef GetTicketParam
- * @property {string} id - ID of ticket to be retrieved
+ * @property {string} id - ID of ticket to be retrieved.
  */
 /**
  * @typedef SubmitCustomFormParam
- * @property {string} slug - Slug of form whose response is getting submitted
+ * @property {string} slug - Slug of form whose response is getting submitted.
  * @property {LeadApplicationModel.CustomFormSubmissionPayload} body
  */
 declare class LeadApplicationValidator {
@@ -38,7 +38,7 @@ declare namespace LeadApplicationValidator {
 }
 type CreateHistoryParam = {
     /**
-     * - Ticket ID for which history is created
+     * - Ticket ID for which history is created.
      */
     id: string;
     body: LeadApplicationModel.TicketHistoryPayload;
@@ -48,19 +48,19 @@ type CreateTicketParam = {
 };
 type GetCustomFormParam = {
     /**
-     * - Slug of form whose response is getting submitted
+     * - Slug of form whose response is getting submitted.
      */
     slug: string;
 };
 type GetTicketParam = {
     /**
-     * - ID of ticket to be retrieved
+     * - ID of ticket to be retrieved.
      */
     id: string;
 };
 type SubmitCustomFormParam = {
     /**
-     * - Slug of form whose response is getting submitted
+     * - Slug of form whose response is getting submitted.
      */
     slug: string;
     body: LeadApplicationModel.CustomFormSubmissionPayload;

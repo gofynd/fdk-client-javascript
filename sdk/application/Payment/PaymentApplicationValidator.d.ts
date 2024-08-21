@@ -18,7 +18,8 @@ export = PaymentApplicationValidator;
 /**
  * @typedef CardDetailsParam
  * @property {string} cardInfo - Card first 6 digit IIN(prefix) number.
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - This is a string value describing the
+ *   aggregator name.
  */
 /**
  * @typedef CheckAndUpdatePaymentStatusParam
@@ -30,7 +31,7 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef CheckCreditParam
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - Aggregator name.
  */
 /**
  * @typedef CreateOrderHandlerPaymentLinkParam
@@ -46,7 +47,7 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef CustomerCreditSummaryParam
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - Aggregator name.
  */
 /**
  * @typedef CustomerOnboardParam
@@ -66,18 +67,19 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef GetActiveCardAggregatorParam
- * @property {boolean} [refresh]
+ * @property {boolean} [refresh] - Select `true` to remove temporary cache files
+ *   on payment gateway and replace with the latest one.
  */
 /** @typedef GetActiveRefundTransferModesParam */
 /**
  * @typedef GetActiveUserCardsParam
- * @property {boolean} [forceRefresh]
+ * @property {boolean} [forceRefresh] - Select `true` to clear the cache.
  */
 /**
  * @typedef GetAggregatorsConfigParam
- * @property {string} [xApiToken] - Used for basic authentication.
- * @property {boolean} [refresh] - This is a boolean value. Select `true` to
- *   remove temporary cache files on payment gateway and replace with the latest one.
+ * @property {string} [xApiToken] - Basic auth token.
+ * @property {boolean} [refresh] - Select `true` to remove temporary cache files
+ *   on payment gateway and replace with the latest one.
  */
 /** @typedef GetEpaylaterBannerDetailsParam */
 /**
@@ -87,40 +89,40 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef GetPaymentLinkParam
- * @property {string} [paymentLinkId]
+ * @property {string} [paymentLinkId] - Unique payment link id.
  */
 /**
  * @typedef GetPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} [cartId] - Identifier of the cart.
  * @property {string} [checkoutMode] - Option to checkout for self or for others.
- * @property {boolean} [refresh] - This is a boolean value. Select `true` to
- *   remove temporary cache files on payment gateway and replace with the latest one.
- * @property {string} [orderId]
+ * @property {boolean} [refresh] - Select `true` to remove temporary cache files
+ *   on payment gateway and replace with the latest one.
+ * @property {string} [orderId] - Identifier of the order, order_id.
  * @property {string} [cardReference] - Card reference id of user's debit or credit card.
- * @property {string} [userDetails] - URIencoded JSON containing details of an
+ * @property {string} [userDetails] - URLencoded JSON containing details of an
  *   anonymous user.
- * @property {boolean} [displaySplit] - Display Split Payment Option or not
- * @property {boolean} [advancePayment] - Display Advance Payment Options or Normal
- * @property {string} [shipmentId]
+ * @property {boolean} [displaySplit] - Display Split Payment Option or not.
+ * @property {boolean} [advancePayment] - Display Advance Payment Options or Normal.
+ * @property {string} [shipmentId] - Identifier of the shipment, shipment_id.
  */
 /**
  * @typedef GetPaymentModeRoutesPaymentLinkParam
- * @property {string} paymentLinkId - Payment link id
+ * @property {string} paymentLinkId - Payment link id.
  */
 /**
  * @typedef GetPosPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} [cartId] - Identifier of the cart.
- * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
+ * @property {string} pincode - The PIN Code of the destination address, e.g. 400059.
  * @property {string} [checkoutMode] - Option to checkout for self or for others.
- * @property {boolean} [refresh] - This is a boolean value. Select `true` to
- *   remove temporary cache files on payment gateway and replace with the latest one.
+ * @property {boolean} [refresh] - Select `true` to remove temporary cache files
+ *   on payment gateway and replace with the latest one.
  * @property {string} [cardReference] - Card reference id of user's debit or credit card.
- * @property {string} orderType - The order type of shipment * HomeDelivery - If
- *   the customer wants the order home-delivered * PickAtStore - If the customer
+ * @property {string} orderType - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
  *   wants the handover of an order at the store itself.
- * @property {string} [userDetails] - URIencoded JSON containing details of an
+ * @property {string} [userDetails] - URLencoded JSON containing details of an
  *   anonymous user.
  */
 /** @typedef GetRupifiBannerDetailsParam */
@@ -143,22 +145,20 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef OutstandingOrderDetailsParam
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - Merchant user ID as value.
  */
 /**
  * @typedef PaidOrderDetailsParam
- * @property {string} [aggregator]
+ * @property {string} [aggregator] - Merchant user ID as value.
  */
 /**
  * @typedef PollingPaymentLinkParam
- * @property {string} [paymentLinkId]
+ * @property {string} [paymentLinkId] - Unique payment link id.
  */
 /**
  * @typedef RedirectToAggregatorParam
- * @property {string} [source] - This is a String value that contains callback
- *   URL as value.
- * @property {string} [aggregator] - This is a String value that contains
- *   aggregator name as value.
+ * @property {string} [source] - Callback URL to get callback from aggregator.
+ * @property {string} [aggregator] - Aggregator name.
  */
 /**
  * @typedef RenderHTMLParam
@@ -319,6 +319,10 @@ type CardDetailsParam = {
      * - Card first 6 digit IIN(prefix) number.
      */
     cardInfo: string;
+    /**
+     * - This is a string value describing the
+     * aggregator name.
+     */
     aggregator?: string;
 };
 type CheckAndUpdatePaymentStatusParam = {
@@ -328,6 +332,9 @@ type CheckAndUpdatePaymentStatusPaymentLinkParam = {
     body: PaymentApplicationModel.PaymentStatusUpdateRequest;
 };
 type CheckCreditParam = {
+    /**
+     * - Aggregator name.
+     */
     aggregator?: string;
 };
 type CreateOrderHandlerPaymentLinkParam = {
@@ -340,6 +347,9 @@ type CreatePaymentOrderParam = {
     body: PaymentApplicationModel.PaymentOrderRequest;
 };
 type CustomerCreditSummaryParam = {
+    /**
+     * - Aggregator name.
+     */
     aggregator?: string;
 };
 type CustomerOnboardParam = {
@@ -355,19 +365,26 @@ type EnableOrDisableRefundTransferModeParam = {
     body: PaymentApplicationModel.UpdateRefundTransferModeRequest;
 };
 type GetActiveCardAggregatorParam = {
+    /**
+     * - Select `true` to remove temporary cache files
+     * on payment gateway and replace with the latest one.
+     */
     refresh?: boolean;
 };
 type GetActiveUserCardsParam = {
+    /**
+     * - Select `true` to clear the cache.
+     */
     forceRefresh?: boolean;
 };
 type GetAggregatorsConfigParam = {
     /**
-     * - Used for basic authentication.
+     * - Basic auth token.
      */
     xApiToken?: string;
     /**
-     * - This is a boolean value. Select `true` to
-     * remove temporary cache files on payment gateway and replace with the latest one.
+     * - Select `true` to remove temporary cache files
+     * on payment gateway and replace with the latest one.
      */
     refresh?: boolean;
 };
@@ -379,6 +396,9 @@ type GetOrderBeneficiariesDetailParam = {
     orderId: string;
 };
 type GetPaymentLinkParam = {
+    /**
+     * - Unique payment link id.
+     */
     paymentLinkId?: string;
 };
 type GetPaymentModeRoutesParam = {
@@ -395,33 +415,39 @@ type GetPaymentModeRoutesParam = {
      */
     checkoutMode?: string;
     /**
-     * - This is a boolean value. Select `true` to
-     * remove temporary cache files on payment gateway and replace with the latest one.
+     * - Select `true` to remove temporary cache files
+     * on payment gateway and replace with the latest one.
      */
     refresh?: boolean;
+    /**
+     * - Identifier of the order, order_id.
+     */
     orderId?: string;
     /**
      * - Card reference id of user's debit or credit card.
      */
     cardReference?: string;
     /**
-     * - URIencoded JSON containing details of an
+     * - URLencoded JSON containing details of an
      * anonymous user.
      */
     userDetails?: string;
     /**
-     * - Display Split Payment Option or not
+     * - Display Split Payment Option or not.
      */
     displaySplit?: boolean;
     /**
-     * - Display Advance Payment Options or Normal
+     * - Display Advance Payment Options or Normal.
      */
     advancePayment?: boolean;
+    /**
+     * - Identifier of the shipment, shipment_id.
+     */
     shipmentId?: string;
 };
 type GetPaymentModeRoutesPaymentLinkParam = {
     /**
-     * - Payment link id
+     * - Payment link id.
      */
     paymentLinkId: string;
 };
@@ -435,7 +461,7 @@ type GetPosPaymentModeRoutesParam = {
      */
     cartId?: string;
     /**
-     * - The PIN Code of the destination address, e.g. 400059
+     * - The PIN Code of the destination address, e.g. 400059.
      */
     pincode: string;
     /**
@@ -443,8 +469,8 @@ type GetPosPaymentModeRoutesParam = {
      */
     checkoutMode?: string;
     /**
-     * - This is a boolean value. Select `true` to
-     * remove temporary cache files on payment gateway and replace with the latest one.
+     * - Select `true` to remove temporary cache files
+     * on payment gateway and replace with the latest one.
      */
     refresh?: boolean;
     /**
@@ -452,13 +478,13 @@ type GetPosPaymentModeRoutesParam = {
      */
     cardReference?: string;
     /**
-     * - The order type of shipment * HomeDelivery - If
-     * the customer wants the order home-delivered * PickAtStore - If the customer
+     * - The order type of shipment HomeDelivery - If
+     * the customer wants the order home-delivered PickAtStore - If the customer
      * wants the handover of an order at the store itself.
      */
     orderType: string;
     /**
-     * - URIencoded JSON containing details of an
+     * - URLencoded JSON containing details of an
      * anonymous user.
      */
     userDetails?: string;
@@ -480,23 +506,30 @@ type LinkWalletParam = {
     body: PaymentApplicationModel.WalletVerifyRequestSchema;
 };
 type OutstandingOrderDetailsParam = {
+    /**
+     * - Merchant user ID as value.
+     */
     aggregator?: string;
 };
 type PaidOrderDetailsParam = {
+    /**
+     * - Merchant user ID as value.
+     */
     aggregator?: string;
 };
 type PollingPaymentLinkParam = {
+    /**
+     * - Unique payment link id.
+     */
     paymentLinkId?: string;
 };
 type RedirectToAggregatorParam = {
     /**
-     * - This is a String value that contains callback
-     * URL as value.
+     * - Callback URL to get callback from aggregator.
      */
     source?: string;
     /**
-     * - This is a String value that contains
-     * aggregator name as value.
+     * - Aggregator name.
      */
     aggregator?: string;
 };

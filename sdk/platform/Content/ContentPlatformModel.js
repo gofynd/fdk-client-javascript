@@ -181,7 +181,12 @@ const Joi = require("joi");
  * @typedef BlogGetResponse
  * @property {BlogSchema[]} [items]
  * @property {Page} [page]
- * @property {string[]} [filters]
+ * @property {BlogFilters} [filters]
+ */
+
+/**
+ * @typedef BlogFilters
+ * @property {string[]} [tags]
  */
 
 /**
@@ -331,7 +336,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Action
- * @property {string} [type]
+ * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
  * @property {ActionPage} [popup]
  */
@@ -561,13 +566,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [current]
- * @property {string} type
- * @property {number} [size]
+ * @property {number} [item_total] - The total number of items on the page.
+ * @property {string} [next_id] - The identifier for the next page.
+ * @property {boolean} [has_previous] - Indicates whether there is a previous page.
+ * @property {boolean} [has_next] - Indicates whether there is a next page.
+ * @property {number} [current] - The current page number.
+ * @property {string} type - The type of the page, such as 'PageType'.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
@@ -757,7 +762,6 @@ const Joi = require("joi");
  * @typedef Support
  * @property {boolean} [created]
  * @property {string} [_id]
- * @property {string} [config_type]
  * @property {string} [application]
  * @property {string} [created_at]
  * @property {string} [updated_at]
@@ -1328,9 +1332,9 @@ const Joi = require("joi");
 
 /**
  * @typedef ActionPage
- * @property {Object} [params]
- * @property {Object} [query]
- * @property {string} [url]
+ * @property {Object} [params] - Parameters that should be considered in path.
+ * @property {Object} [query] - Query parameter if any to be added to the action.
+ * @property {string} [url] - The URL for the action.
  * @property {PageType} type
  */
 
@@ -1348,6 +1352,7 @@ const Joi = require("joi");
  *   | "category"
  *   | "collection"
  *   | "collections"
+ *   | "custom"
  *   | "contact-us"
  *   | "external"
  *   | "faq"
@@ -1612,7 +1617,14 @@ class ContentPlatformModel {
     return Joi.object({
       items: Joi.array().items(ContentPlatformModel.BlogSchema()),
       page: ContentPlatformModel.Page(),
-      filters: Joi.array().items(Joi.string().allow("")),
+      filters: ContentPlatformModel.BlogFilters(),
+    });
+  }
+
+  /** @returns {BlogFilters} */
+  static BlogFilters() {
+    return Joi.object({
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2327,7 +2339,6 @@ class ContentPlatformModel {
     return Joi.object({
       created: Joi.boolean(),
       _id: Joi.string().allow(""),
-      config_type: Joi.string().allow(""),
       application: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
@@ -3114,6 +3125,8 @@ class ContentPlatformModel {
       "collection",
 
       "collections",
+
+      "custom",
 
       "contact-us",
 

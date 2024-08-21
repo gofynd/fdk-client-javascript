@@ -17,7 +17,7 @@ declare class Theme {
      * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
      * @name getAllPages
      * @summary: List pages
-     * @description: Get all page level configs, sections and SEO data of a theme - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
+     * @description: Get all page level configs, sections and seo data of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
      */
     getAllPages({ themeId, requestHeaders }?: ThemeApplicationValidator.GetAllPagesParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.AllAvailablePageSchema>;
     /**
@@ -37,9 +37,9 @@ declare class Theme {
      * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
      * @name getPage
      * @summary: Get theme page
-     * @description: Get page level configurations, applied sections and SEO data of a page by `page_value` received from list pages API - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
+     * @description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
      */
-    getPage({ themeId, pageValue, filters, company, requestHeaders }?: ThemeApplicationValidator.GetPageParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.AvailablePageSchema>;
+    getPage({ themeId, pageValue, filters, sectionPreviewHash, company, requestHeaders, }?: ThemeApplicationValidator.GetPageParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.AvailablePageSchema>;
     /**
      * @param {ThemeApplicationValidator.GetThemeForPreviewParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -47,7 +47,7 @@ declare class Theme {
      * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
      * @name getThemeForPreview
      * @summary: Get theme for preview
-     * @description: Gets the theme configuration and template details of a theme by theme Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
+     * @description: Gets the theme configuration and template details of a theme by theme id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
      */
     getThemeForPreview({ themeId, requestHeaders }?: ThemeApplicationValidator.GetThemeForPreviewParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
 }

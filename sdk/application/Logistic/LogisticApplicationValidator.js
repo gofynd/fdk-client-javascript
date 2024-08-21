@@ -6,61 +6,57 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
 
 /**
  * @typedef GetCountriesParam
- * @property {boolean} [onboarding] - Only fetch countries which allowed for
- *   onboard on Platform.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
- * @property {string} [q] - Search.
+ * @property {boolean} [onboarding] - List countries which allowed for onboard
+ *   on Platform.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 12.
+ * @property {string} [q] - The number of items to retrieve in each page.
+ *   Default value is 12.
  */
 
 /**
  * @typedef GetCountryParam
- * @property {string} countryIsoCode - The `country_iso_code` is ISO-2 (alpha-2)
- *   code for the country.
+ * @property {string} countryIsoCode - The ISO 3166-1 alpha-2 code representing
+ *   the country (e.g., "IN" for India, "US" for the United States).
  */
 
 /**
  * @typedef GetLocalitiesParam
- * @property {string} localityType - A `locality_type` contains unique
- *   geographical division.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country iso2 code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
- * @property {string} [q] - Search.
+ * @property {string} localityType - Unique geographical division.
+ * @property {string} [country] - Country name.
+ * @property {string} [state] - State or the province.
+ * @property {string} [city] - City.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 12.
+ * @property {string} [q] - This parameter is used to filter or search the records.
  */
 
 /**
  * @typedef GetLocalityParam
- * @property {string} localityType - A `locality_type` contains value
- *   geographical division.
- * @property {string} localityValue - A `locality_value` contains a specific
- *   name of the locality.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country iso2 code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
+ * @property {string} localityType - Geographical division.
+ * @property {string} localityValue - Name of the locality.
+ * @property {string} [country] - Country name.
+ * @property {string} [state] - State or the province.
+ * @property {string} [city] - City.
  */
 
 /**
  * @typedef GetLocationsParam
- * @property {string} xApplicationId - A `x-application-id` is a unique
- *   identifier for a particular sale channel.
- * @property {string} xApplicationData - A `x-application-data` is a unique
- *   identifier for a particular sale channel.
- * @property {string} [country] - A `country` contains a specific value of the
- *   country `iso2` code.
- * @property {string} [state] - A `state` contains a specific value of the
- *   state, province.
- * @property {string} [city] - A `city` contains a specific value of the city.
- * @property {number} [pincode] - A `pincode` contains a specific value of the city.
- * @property {string} [sector] - A `sector` contains a specific value of the city.
- * @property {number} [pageNo] - Page number.
- * @property {number} [pageSize] - Page size.
+ * @property {string} xApplicationId - Unique identifier for a particular sales channel.
+ * @property {string} xApplicationData - Sales channel details.
+ * @property {string} [country] - The country `iso2` code.
+ * @property {string} [state] - State or the province.
+ * @property {string} [city] - City.
+ * @property {number} [pincode] - Pincode of the area.
+ * @property {string} [sector] - Specific sector of the city.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 12.
  */
 
 /**
@@ -70,7 +66,7 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
 
 /**
  * @typedef GetPincodeCityParam
- * @property {string} pincode - A `pincode` contains a specific address of a location.
+ * @property {string} pincode - Postal code or PIN code of the address area.
  */
 
 /**
@@ -85,7 +81,8 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
 
 /**
  * @typedef ValidateAddressParam
- * @property {string} countryIsoCode - The ISO code of the country.
+ * @property {string} countryIsoCode - The ISO 3166-1 alpha-2 code representing
+ *   the country (e.g., "IN" for India, "US" for the United States).
  * @property {string} templateName - The type of address form.
  * @property {LogisticApplicationModel.ValidateAddressRequest} body
  */

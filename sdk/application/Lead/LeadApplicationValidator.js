@@ -4,7 +4,7 @@ const LeadApplicationModel = require("./LeadApplicationModel");
 
 /**
  * @typedef CreateHistoryParam
- * @property {string} id - Ticket ID for which history is created
+ * @property {string} id - Ticket ID for which history is created.
  * @property {LeadApplicationModel.TicketHistoryPayload} body
  */
 
@@ -15,17 +15,17 @@ const LeadApplicationModel = require("./LeadApplicationModel");
 
 /**
  * @typedef GetCustomFormParam
- * @property {string} slug - Slug of form whose response is getting submitted
+ * @property {string} slug - Slug of form whose response is getting submitted.
  */
 
 /**
  * @typedef GetTicketParam
- * @property {string} id - ID of ticket to be retrieved
+ * @property {string} id - ID of ticket to be retrieved.
  */
 
 /**
  * @typedef SubmitCustomFormParam
- * @property {string} slug - Slug of form whose response is getting submitted
+ * @property {string} slug - Slug of form whose response is getting submitted.
  * @property {LeadApplicationModel.CustomFormSubmissionPayload} body
  */
 
