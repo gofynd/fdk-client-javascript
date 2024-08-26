@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.10-beta.1) - fynd-1.9.4-release-1.4.10-beta.v1
+# CHANGE LOG (1.4.10-beta.2) - refs/heads/temp-version/1.9.4 Branch/Tag of API Specifications
 
 ## Application Client
 
