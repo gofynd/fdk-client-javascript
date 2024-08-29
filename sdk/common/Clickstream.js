@@ -30,21 +30,59 @@ const fetchPositionAndQuery = function (utm_params) {
       position: null,
     };
   }
-  const decodedUri = utm_params.utm_content
-    ? atob(utm_params.utm_content)
-    : null;
-  if (decodedUri && utm_params.utm_medium === "search") {
-    const parts = decodedUri.split(":::");
-    return {
-      query: parts[0] || null,
-      position: parts[1] || null,
-    };
+
+  if (utm_params.utm_medium === "search") {
+    try {
+      const decodedUri = utm_params.utm_content
+        ? atob(utm_params.utm_content)
+        : null;
+      if (decodedUri) {
+        const parts = decodedUri.split(":::");
+        return {
+          query: parts[0] || null,
+          position: parts[1] || null,
+        };
+      }
+    } catch (err) {
+      return {
+        query: null,
+        position: null,
+      };
+    }
   }
   return {
     query: null,
     position: null,
   };
 };
+/**
+ * Safely extracts company details from window object
+ *
+ * @author Hitendra Singh
+ * @returns {Object} - Company_id, company_mode and company_created_on
+ */
+const fetchCompanyDetails = function () {
+  //getting the current date in UTC
+  const now = new Date();
+  const formattedDate = now.toISOString();
+  const application = sg(() => window.config.application, null);
+  if (application && Object.keys(application).length) {
+    return {
+      company_id: sg(() => application.company_id, 0),
+      company_mode: sg(() => application.mode, "live"),
+      company_created_on: sg(
+        () => application.company_created_on,
+        formattedDate
+      ),
+    };
+  }
+  return {
+    company_id: 0,
+    company_mode: "live",
+    company_created_on: formattedDate,
+  };
+};
+
 if (typeof window != "undefined") {
   window.FPI.event.on("user.login", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
@@ -54,6 +92,7 @@ if (typeof window != "undefined") {
       phone: sg(() => eventData["phone_number"]),
       login_value: sg(() => eventData["login_value"]),
       method: sg(() => eventData["method"]),
+      ...fetchCompanyDetails(),
     }).catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -66,6 +105,7 @@ if (typeof window != "undefined") {
       email: sg(() => eventData["email"]),
       phone: sg(() => eventData["phone_number"]),
       method: sg(() => eventData["method"]),
+      ...fetchCompanyDetails(),
     }).catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -73,11 +113,12 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("user.logout", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
-    Clickstream.sendEvent("user_logout", { event_type: "identity" }).catch(
-      (err) => {
-        Logger({ level: "ERROR", message: err });
-      }
-    );
+    Clickstream.sendEvent("user_logout", {
+      event_type: "identity",
+      ...fetchCompanyDetails(),
+    }).catch((err) => {
+      Logger({ level: "ERROR", message: err });
+    });
     Clickstream.reset().catch((err) => {
       Logger({ level: "ERROR", message: err });
     });
@@ -98,6 +139,7 @@ if (typeof window != "undefined") {
       currency: sg(() => eventData.item.price.effective.currency_code),
       value: "TODO",
       source_url: "TODO",
+      ...fetchCompanyDetails(),
     };
     const queryResult = fetchPositionAndQuery(eventData.utm_params);
     Clickstream.sendEvent("product_wishlist_add", {
@@ -127,6 +169,7 @@ if (typeof window != "undefined") {
       currency: sg(() => eventData.item.price.effective.currency_code),
       value: "TODO",
       source_url: "TODO",
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -153,6 +196,7 @@ if (typeof window != "undefined") {
       position: null,
       query: null,
       value: "TODO",
+      ...fetchCompanyDetails(),
     };
     const queryResult = fetchPositionAndQuery(eventData.utm_params);
     Clickstream.sendEvent("add_to_cart", { ...payload, ...queryResult })
@@ -179,6 +223,7 @@ if (typeof window != "undefined") {
       source_url: "TODO",
       position: null,
       value: "TODO",
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -193,6 +238,7 @@ if (typeof window != "undefined") {
     Clickstream.sendEvent("order_complete", {
       event_type: "conversion",
       ...eventData,
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -207,6 +253,7 @@ if (typeof window != "undefined") {
     Clickstream.sendEvent("order_refunded", {
       event_type: "conversion",
       ...eventData,
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -239,6 +286,40 @@ if (typeof window != "undefined") {
           article_id: sg(() => p.article["uid"]),
         };
       }),
+      ...fetchCompanyDetails(),
+    })
+      .then((resp) => {
+        Logger({ level: "DEBUG", message: "Click event sent" });
+      })
+      .catch((err) => {
+        Logger({ level: "ERROR", message: err });
+      });
+  });
+  window.FPI.event.on("order.checkedout", (eventData) => {
+    Logger({ level: "DEBUG", message: eventData });
+    Clickstream.sendEvent("order_checkedout", {
+      event_type: "conversion",
+      cart_id: eventData.cart_id,
+      cart_total: sg(() => eventData.breakup_values_raw["mrp_total"]),
+      item_total: sg(() => eventData.products.length),
+      shipping: sg(() => eventData.breakup_values_raw["delivery_charge"]),
+      tax: sg(() => eventData.breakup_values_raw["gst_charges"]),
+      order_total: sg(() => eventData.breakup_values_raw["total"]),
+      currency: sg(() => eventData.products[0]["price"]["currency_code"]),
+      order_id: sg(() => eventData.order_id),
+      products: eventData.products.map((p) => {
+        return {
+          product_id: p.uid,
+          l3_category: sg(() => p.category["name"]),
+          l1_category: "TODO",
+          quantity: sg(() => p.quantity["current"]),
+          price: sg(() => p.price["marked"]),
+          value: sg(() => p.price["effective"]),
+          currency: sg(() => p.price["currency_code"]),
+          article_id: sg(() => p.article["uid"]),
+        };
+      }),
+      ...fetchCompanyDetails(),
     })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
@@ -266,6 +347,7 @@ if (typeof window != "undefined") {
       }),
 
       item_total: sg(() => eventData["page"]["item_total"]),
+      ...fetchCompanyDetails(),
     });
   });
 
@@ -286,7 +368,11 @@ if (typeof window != "undefined") {
       query: null,
     };
     const queryResult = fetchPositionAndQuery(eventData.utm_params);
-    Clickstream.sendEvent("product_view", { ...payload, ...queryResult })
+    Clickstream.sendEvent("product_view", {
+      ...payload,
+      ...queryResult,
+      ...fetchCompanyDetails(),
+    })
       .then((resp) => {
         Logger({ level: "DEBUG", message: "Click event sent" });
       })
@@ -304,21 +390,28 @@ if (typeof window != "undefined") {
       item_total: null,
     };
     //filter eventData.data to find the products array and item total
-    const products = eventData.data
-      .filter((item) => {
-        if ((item["type"] === "product" && item.categories) || item.product)
-          return true;
-      })
-      .map((product) => {
-        return product.display || product.name;
-      });
-    const item_total = sg(() => eventData.page["item_total"]);
+    let products = [];
+    if (eventData.data && eventData.data.length > 0) {
+      products = eventData.data
+        .filter((item) => {
+          if ((item["type"] === "product" && item.categories) || item.product)
+            return true;
+        })
+        .map((product) => {
+          return product.display || product.name;
+        });
+    }
+
+    const item_total = sg(() =>
+      eventData.page["item_total"] ? eventData.page["item_total"] : 0
+    );
     if (payload.query) {
       //only if query is present
       Clickstream.sendEvent("product_search", {
         ...payload,
         products,
         item_total,
+        ...fetchCompanyDetails(),
       })
         .then((resp) => {
           Logger({ level: "DEBUG", message: "Click event sent" });

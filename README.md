@@ -127,9 +127,9 @@ getData();
 
 ---
 
-### Sample Usage - Fetch function.
+### Sample Usage - Request function.
  
-The fetch function allows you to make custom API requests with ease. It is available on both `platform` and `application` client.
+The request function allows you to make custom API requests with ease. It is available on both `platform` and `application` client.
 
 ```javascript
 
@@ -140,7 +140,7 @@ let auditLog = await client.request({
 
 ```
 
-The `fetch` function accepts an object with the following possible keys:
+The `request` function accepts an object with the following possible keys:
 
 - **method** (string): The HTTP method to use (e.g., 'GET', 'POST', 'PUT', 'DELETE').
 - **url** (string): The URL endpoint for the request.
@@ -237,7 +237,7 @@ console.log("Active Theme: ", response.information.name);
 The above code will log the curl command in the console
 
 ```bash
-curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 1.4.9' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
+curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 1.4.10' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
 Active Theme: Emerge
 ```
 
