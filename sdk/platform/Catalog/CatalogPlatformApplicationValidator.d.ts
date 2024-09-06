@@ -96,7 +96,15 @@ export = CatalogPlatformApplicationValidator;
  *   Default is 12.
  */
 /** @typedef GetAllSearchKeywordParam */
-/** @typedef GetAppCategoryReturnConfigParam */
+/**
+ * @typedef GetAppCategoryReturnConfigParam
+ * @property {string} [q] - Get return configurations for categories by matching
+ *   the search string with category names.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 10.
+ */
 /**
  * @typedef GetAppInventoryParam
  * @property {number[]} [itemIds] - The Item Id of the product.
@@ -465,7 +473,7 @@ declare class CatalogPlatformApplicationValidator {
     /** @returns {GetAllSearchKeywordParam} */
     static getAllSearchKeyword(): any;
     /** @returns {GetAppCategoryReturnConfigParam} */
-    static getAppCategoryReturnConfig(): any;
+    static getAppCategoryReturnConfig(): GetAppCategoryReturnConfigParam;
     /** @returns {GetAppInventoryParam} */
     static getAppInventory(): GetAppInventoryParam;
     /** @returns {GetAppLocationsParam} */
@@ -688,6 +696,23 @@ type GetAllCollectionsParam = {
     /**
      * - Number of items to retrieve in each page.
      * Default is 12.
+     */
+    pageSize?: number;
+};
+type GetAppCategoryReturnConfigParam = {
+    /**
+     * - Get return configurations for categories by matching
+     * the search string with category names.
+     */
+    q?: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 10.
      */
     pageSize?: number;
 };
@@ -1289,7 +1314,6 @@ type UpdateSearchKeywordsParam = {
 };
 type DeleteSearchConfigurationParam = any;
 type GetAllSearchKeywordParam = any;
-type GetAppCategoryReturnConfigParam = any;
 type GetAppReturnConfigurationParam = any;
 type GetAutocompleteConfigParam = any;
 type GetCatalogConfigurationParam = any;

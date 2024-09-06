@@ -119,7 +119,15 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /** @typedef GetAllSearchKeywordParam */
 
-/** @typedef GetAppCategoryReturnConfigParam */
+/**
+ * @typedef GetAppCategoryReturnConfigParam
+ * @property {string} [q] - Get return configurations for categories by matching
+ *   the search string with category names.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 10.
+ */
 
 /**
  * @typedef GetAppInventoryParam
@@ -643,7 +651,11 @@ class CatalogPlatformApplicationValidator {
 
   /** @returns {GetAppCategoryReturnConfigParam} */
   static getAppCategoryReturnConfig() {
-    return Joi.object({}).required();
+    return Joi.object({
+      q: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
   }
 
   /** @returns {GetAppInventoryParam} */

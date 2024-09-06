@@ -774,6 +774,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef GoogleMap
+ * @property {boolean} [enabled] - Shows whether Google map integration is enabled or not.
  * @property {GoogleMapCredentials} [credentials]
  */
 /**
@@ -2882,6 +2883,10 @@ type FyndRewardsCredentials = {
 /** @returns {GoogleMap} */
 declare function GoogleMap(): GoogleMap;
 type GoogleMap = {
+    /**
+     * - Shows whether Google map integration is enabled or not.
+     */
+    enabled?: boolean;
     credentials?: GoogleMapCredentials;
 };
 /** @returns {GoogleMapCredentials} */

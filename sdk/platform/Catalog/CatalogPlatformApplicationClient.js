@@ -1746,13 +1746,17 @@ class Catalog {
    * @description: Get all category level configuration level set for an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppCategoryReturnConfig/).
    */
   async getAppCategoryReturnConfig(
-    { requestHeaders } = { requestHeaders: {} },
+    { q, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CatalogPlatformApplicationValidator.getAppCategoryReturnConfig().validate(
-      {},
+      {
+        q,
+        pageNo,
+        pageSize,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1763,7 +1767,11 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogPlatformApplicationValidator.getAppCategoryReturnConfig().validate(
-      {},
+      {
+        q,
+        pageNo,
+        pageSize,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1774,6 +1782,9 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["q"] = q;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,

@@ -876,6 +876,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GoogleMap
+ * @property {boolean} [enabled] - Shows whether Google map integration is enabled or not.
  * @property {GoogleMapCredentials} [credentials]
  */
 
@@ -2473,6 +2474,7 @@ class ConfigurationPlatformModel {
   /** @returns {GoogleMap} */
   static GoogleMap() {
     return Joi.object({
+      enabled: Joi.boolean(),
       credentials: ConfigurationPlatformModel.GoogleMapCredentials(),
     });
   }
