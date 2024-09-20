@@ -1064,7 +1064,7 @@ class FinancePlatformModel {
       code: Joi.string().allow(""),
       symbol: Joi.string().allow(""),
       name: Joi.string().allow(""),
-    });
+    }).allow(null);
   }
 
   /** @returns {GenerateReportJson} */

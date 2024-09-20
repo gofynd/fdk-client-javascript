@@ -483,7 +483,7 @@ class WebhookPlatformModel {
   static UploadServiceObject() {
     return Joi.object({
       cdn: WebhookPlatformModel.CdnObject(),
-    });
+    }).allow(null);
   }
 
   /** @returns {HistoryAssociation} */

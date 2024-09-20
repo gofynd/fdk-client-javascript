@@ -964,7 +964,7 @@ class LogisticApplicationModel {
     return Joi.object({
       operation_id: Joi.string().allow(""),
       params: LogisticApplicationModel.GetOneOrAllParams(),
-    });
+    }).allow(null);
   }
 
   /** @returns {LengthValidation} */
@@ -988,7 +988,7 @@ class LogisticApplicationModel {
     return Joi.object({
       type: Joi.string().allow(""),
       regex: LogisticApplicationModel.FieldValidationRegex(),
-    });
+    }).allow(null);
   }
 
   /** @returns {GetCountryFieldsAddressValues} */
@@ -996,7 +996,7 @@ class LogisticApplicationModel {
     return Joi.object({
       get_one: LogisticApplicationModel.GetOneOrAll(),
       get_all: LogisticApplicationModel.GetOneOrAll(),
-    });
+    }).allow(null);
   }
 
   /** @returns {GetCountryFieldsAddress} */

@@ -3836,7 +3836,7 @@ class OrderPlatformModel {
       dp_options: Joi.any().allow(null),
       lock_status: Joi.boolean().allow(null),
       action_to_status: Joi.any().allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {ShipmentConfig} */
@@ -5746,7 +5746,7 @@ class OrderPlatformModel {
       contact_person: Joi.string().allow("").allow(null),
       state: Joi.string().allow("").allow(null),
       city: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {ShipmentListingChannel} */
@@ -7135,7 +7135,7 @@ class OrderPlatformModel {
       mall_name: Joi.string().allow("").allow(null),
       latitude: Joi.number().allow(null),
       address2: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {Brand} */
@@ -7219,7 +7219,7 @@ class OrderPlatformModel {
       brand_calculated_amount: Joi.number().allow(null),
       tax_collected_at_source: Joi.number().allow(null),
       gstin_code: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {DeliverySlotDetails} */
@@ -7230,7 +7230,7 @@ class OrderPlatformModel {
       lower_bound: Joi.string().allow("").allow(null),
       date: Joi.string().allow("").allow(null),
       type: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {InvoiceDetails} */
@@ -7240,7 +7240,7 @@ class OrderPlatformModel {
       store_invoice_id: Joi.string().allow("").allow(null),
       invoice_url: Joi.string().allow("").allow(null),
       label_url: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {UserDetails} */
@@ -7256,7 +7256,7 @@ class OrderPlatformModel {
       gender: Joi.string().allow("").allow(null),
       mongo_user_id: Joi.string().allow("").allow(null),
       meta: Joi.any().allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {WeightData} */
@@ -7264,7 +7264,7 @@ class OrderPlatformModel {
     return Joi.object({
       value: Joi.number().allow(null),
       unit: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {BagDetails} */
@@ -7371,7 +7371,7 @@ class OrderPlatformModel {
     return Joi.object({
       items: Joi.array().items(OrderPlatformModel.BagDetails()),
       page: OrderPlatformModel.BagsPage(),
-    });
+    }).allow(null);
   }
 
   /** @returns {GetBagsPlatformResponse} */

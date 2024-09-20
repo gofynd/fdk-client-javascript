@@ -1016,7 +1016,7 @@ class OrderApplicationModel {
   static Article() {
     return Joi.object({
       tags: Joi.array().items(Joi.string().allow("")),
-    });
+    }).allow(null);
   }
 
   /** @returns {Address} */

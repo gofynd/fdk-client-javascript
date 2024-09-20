@@ -382,7 +382,7 @@ class WebhookPartnerModel {
   static UploadServiceObject() {
     return Joi.object({
       cdn: WebhookPartnerModel.CdnObject(),
-    });
+    }).allow(null);
   }
 
   /** @returns {HistoryAssociation} */

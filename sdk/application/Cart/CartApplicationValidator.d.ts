@@ -34,12 +34,6 @@ export = CartApplicationValidator;
  * @property {CartApplicationModel.RewardPointRequest} body
  */
 /**
- * @typedef CheckoutCartParam
- * @property {boolean} [buyNow] - This indicates the type of cart to checkout.
- * @property {string} [cartType] - The type of cart.
- * @property {CartApplicationModel.CartCheckoutDetailRequest} body
- */
-/**
  * @typedef CheckoutCartV2Param
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout.
  * @property {string} [cartType] - The type of cart.
@@ -228,8 +222,6 @@ declare class CartApplicationValidator {
     static applyCoupon(): ApplyCouponParam;
     /** @returns {ApplyRewardPointsParam} */
     static applyRewardPoints(): ApplyRewardPointsParam;
-    /** @returns {CheckoutCartParam} */
-    static checkoutCart(): CheckoutCartParam;
     /** @returns {CheckoutCartV2Param} */
     static checkoutCartV2(): CheckoutCartV2Param;
     /** @returns {DeleteCartParam} */
@@ -280,7 +272,7 @@ declare class CartApplicationValidator {
     static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartApplicationValidator {
-    export { AddAddressParam, AddItemsParam, ApplyCouponParam, ApplyRewardPointsParam, CheckoutCartParam, CheckoutCartV2Param, DeleteCartParam, GetAddressByIdParam, GetAddressesParam, GetBulkDiscountOffersParam, GetCartParam, GetCartLastModifiedParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponsParam, GetItemCountParam, GetLadderOffersParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetShipmentsParam, RemoveAddressParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartWithSharedItemsParam, ValidateCouponForPaymentParam };
+    export { AddAddressParam, AddItemsParam, ApplyCouponParam, ApplyRewardPointsParam, CheckoutCartV2Param, DeleteCartParam, GetAddressByIdParam, GetAddressesParam, GetBulkDiscountOffersParam, GetCartParam, GetCartLastModifiedParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponsParam, GetItemCountParam, GetLadderOffersParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetShipmentsParam, RemoveAddressParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartWithSharedItemsParam, ValidateCouponForPaymentParam };
 }
 type AddAddressParam = {
     body: CartApplicationModel.Address;
@@ -359,17 +351,6 @@ type ApplyRewardPointsParam = {
      */
     buyNow?: boolean;
     body: CartApplicationModel.RewardPointRequest;
-};
-type CheckoutCartParam = {
-    /**
-     * - This indicates the type of cart to checkout.
-     */
-    buyNow?: boolean;
-    /**
-     * - The type of cart.
-     */
-    cartType?: string;
-    body: CartApplicationModel.CartCheckoutDetailRequest;
 };
 type CheckoutCartV2Param = {
     /**

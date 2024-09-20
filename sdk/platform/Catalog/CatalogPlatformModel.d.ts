@@ -492,11 +492,6 @@ export = CatalogPlatformModel;
  * @property {number} [uid] - It is the unique identifier of the category.
  */
 /**
- * @typedef CategoryCreateResponse
- * @property {string} [message] - It is the message of the response from the category.
- * @property {number} [uid] - It is the unique identifier of the category.
- */
-/**
  * @typedef CategoryItems
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
@@ -526,31 +521,9 @@ export = CatalogPlatformModel;
  * @property {string} name - It is the name of the Category in the respective platform.
  */
 /**
- * @typedef CategoryRequestBody
- * @property {number[]} departments - It is the list of unique department the
- *   category belongs to.
- * @property {Hierarchy[]} [hierarchy] - It is the list of category hierarchies
- *   for each department of an L3 category.
- * @property {boolean} is_active - It is the flag indicating if the category is active.
- * @property {number} level - It is the level of category
- * @property {CategoryMapping} [marketplaces] - It is the mapping of the
- *   category in different marketplaces.
- * @property {Media1} [media] - It is the details of the media such as banner and logo..
- * @property {string} name - It is the name of the category
- * @property {number} [priority] - It is the priority of the category.
- * @property {string} [slug] - It is the slug of the category.
- * @property {string[]} [synonyms] - It is the list of synonyms.
- * @property {string[]} [tryouts] - It is the list of tryouts.
- */
-/**
  * @typedef CategoryResponse
  * @property {Category[]} [items]
  * @property {Page} [page]
- */
-/**
- * @typedef CategoryUpdateResponse
- * @property {string} [message] - It is the message of the response from the category.
- * @property {boolean} [success] - It is the flag indication the success response.
  */
 /**
  * @typedef Child
@@ -924,29 +897,6 @@ export = CatalogPlatformModel;
  * @property {CategoryItems[]} [items]
  */
 /**
- * @typedef DepartmentCreateErrorResponse
- * @property {string} [error]
- */
-/**
- * @typedef DepartmentCreateResponse
- * @property {string} message
- * @property {number} uid
- */
-/**
- * @typedef DepartmentCreateUpdate
- * @property {string} [_cls]
- * @property {Object} [_custom_json]
- * @property {boolean} [is_active]
- * @property {string} logo
- * @property {string} name
- * @property {Object} [platforms]
- * @property {number} priority_order
- * @property {string} [slug]
- * @property {string[]} [synonyms]
- * @property {string[]} [tags]
- * @property {number} [uid]
- */
-/**
  * @typedef DepartmentErrorResponse
  * @property {string} [code]
  * @property {Object} [errors]
@@ -958,28 +908,6 @@ export = CatalogPlatformModel;
  * @typedef DepartmentIdentifier
  * @property {string} [slug]
  * @property {number} [uid]
- */
-/**
- * @typedef DepartmentModel
- * @property {string} [_cls]
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {UserDetail} [created_by] - User details of the creator of the document
- * @property {string} created_on - Timestamp of the creation of the document
- * @property {boolean} [is_active] - Whether the department is currently active
- * @property {string} logo - The URL of the department's logo
- * @property {UserDetail} [modified_by] - User details of the last modifier of
- *   the document
- * @property {string} modified_on - Timestamp of the last modification of the document
- * @property {string} name - The name of the department
- * @property {number} priority_order - The priority order of the department
- * @property {string} slug - The unique slug identifier for the department
- * @property {string[]} [synonyms] - A list of synonyms for the department name
- * @property {number} uid - The unique ID for the department
- * @property {UserDetail} [verified_by] - User details of the verifier of the
- *   document, if applicable
- * @property {string} [verified_on] - Timestamp of when the document was
- *   verified, if applicable
  */
 /**
  * @typedef DepartmentResponse
@@ -1113,7 +1041,7 @@ export = CatalogPlatformModel;
  * @property {boolean} [primary]
  */
 /**
- * @typedef GenderDetail
+ * @typedef AttributeDetail
  * @property {string[]} [departments]
  * @property {string} [description]
  * @property {AttributeMasterDetails} [details]
@@ -3342,7 +3270,7 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, AllSizes, AllowSingleRequest, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponse, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductListingResponse, ApplicationStoreJson, AppReturnConfigResponse, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponse, Brand, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkProductJob, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, CategoryCreateResponse, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryRequestBody, CategoryResponse, CategoryUpdateResponse, Child, CollectionBadge, CollectionBanner, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteAppCategoryReturnConfig, DeleteResponse, DeleteSearchConfigurationResponse, Department, DepartmentCategoryTree, DepartmentCreateErrorResponse, DepartmentCreateResponse, DepartmentCreateUpdate, DepartmentErrorResponse, DepartmentIdentifier, DepartmentModel, DepartmentResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, FilerList, RawProduct, RawProductListingResponse, GTIN, GenderDetail, GetAddressSerializer, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponse, GetConfigMetadataValues, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetCollectionDetailResponse, CommonResponseSchemaCollection, GetQueryFiltersKeysResponse, GetQueryFiltersResponse, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, Guide, HSNCodesResponse, HSNData, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponse, InventoryExportQuantityFilter, InventoryExportRequest, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, ItemQuery, Items, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, MOQData, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, NetQuantity, NetQuantityResponse, NextSchedule, OptInPostRequest, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponse, PTErrorResponse, Page, PageResponse, PageResponse1, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponse, ProductFilters, GetQueryFiltersValuesResponse, ProductFiltersKeysOnly, ProductFiltersKey, ProductFiltersValue, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductReturnConfigBaseSerializer, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, ProductVariantsResponse, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, Sitemap, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, SeoDetail, SetSize, SingleCategoryResponse, SingleProductResponse, Size, SizeDistribution, SizeGuideResponse, StoreAssignResponse, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateValidationData, TemplatesResponse, TemplatesValidationResponse, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, CreateMarketplaceOptinResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, CreatedBy, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequest, UpdateMarketplaceOptinResponse, ActionPage, PageType };
+    export { Action, AllSizes, AllowSingleRequest, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponse, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductListingResponse, ApplicationStoreJson, AppReturnConfigResponse, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponse, Brand, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkProductJob, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryResponse, Child, CollectionBadge, CollectionBanner, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteAppCategoryReturnConfig, DeleteResponse, DeleteSearchConfigurationResponse, Department, DepartmentCategoryTree, DepartmentErrorResponse, DepartmentIdentifier, DepartmentResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, FilerList, RawProduct, RawProductListingResponse, GTIN, AttributeDetail, GetAddressSerializer, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponse, GetConfigMetadataValues, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetCollectionDetailResponse, CommonResponseSchemaCollection, GetQueryFiltersKeysResponse, GetQueryFiltersResponse, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, Guide, HSNCodesResponse, HSNData, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponse, InventoryExportQuantityFilter, InventoryExportRequest, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, ItemQuery, Items, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, MOQData, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, NetQuantity, NetQuantityResponse, NextSchedule, OptInPostRequest, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponse, PTErrorResponse, Page, PageResponse, PageResponse1, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponse, ProductFilters, GetQueryFiltersValuesResponse, ProductFiltersKeysOnly, ProductFiltersKey, ProductFiltersValue, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductReturnConfigBaseSerializer, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, ProductVariantsResponse, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, Sitemap, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, SeoDetail, SetSize, SingleCategoryResponse, SingleProductResponse, Size, SizeDistribution, SizeGuideResponse, StoreAssignResponse, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateValidationData, TemplatesResponse, TemplatesValidationResponse, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, CreateMarketplaceOptinResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, CreatedBy, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequest, UpdateMarketplaceOptinResponse, ActionPage, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -4075,18 +4003,6 @@ type Category = {
      */
     uid?: number;
 };
-/** @returns {CategoryCreateResponse} */
-declare function CategoryCreateResponse(): CategoryCreateResponse;
-type CategoryCreateResponse = {
-    /**
-     * - It is the message of the response from the category.
-     */
-    message?: string;
-    /**
-     * - It is the unique identifier of the category.
-     */
-    uid?: number;
-};
 /** @returns {CategoryItems} */
 declare function CategoryItems(): CategoryItems;
 type CategoryItems = {
@@ -4135,74 +4051,11 @@ type CategoryMappingValues = {
      */
     name: string;
 };
-/** @returns {CategoryRequestBody} */
-declare function CategoryRequestBody(): CategoryRequestBody;
-type CategoryRequestBody = {
-    /**
-     * - It is the list of unique department the
-     * category belongs to.
-     */
-    departments: number[];
-    /**
-     * - It is the list of category hierarchies
-     * for each department of an L3 category.
-     */
-    hierarchy?: Hierarchy[];
-    /**
-     * - It is the flag indicating if the category is active.
-     */
-    is_active: boolean;
-    /**
-     * - It is the level of category
-     */
-    level: number;
-    /**
-     * - It is the mapping of the
-     * category in different marketplaces.
-     */
-    marketplaces?: CategoryMapping;
-    /**
-     * - It is the details of the media such as banner and logo..
-     */
-    media?: Media1;
-    /**
-     * - It is the name of the category
-     */
-    name: string;
-    /**
-     * - It is the priority of the category.
-     */
-    priority?: number;
-    /**
-     * - It is the slug of the category.
-     */
-    slug?: string;
-    /**
-     * - It is the list of synonyms.
-     */
-    synonyms?: string[];
-    /**
-     * - It is the list of tryouts.
-     */
-    tryouts?: string[];
-};
 /** @returns {CategoryResponse} */
 declare function CategoryResponse(): CategoryResponse;
 type CategoryResponse = {
     items?: Category[];
     page?: Page;
-};
-/** @returns {CategoryUpdateResponse} */
-declare function CategoryUpdateResponse(): CategoryUpdateResponse;
-type CategoryUpdateResponse = {
-    /**
-     * - It is the message of the response from the category.
-     */
-    message?: string;
-    /**
-     * - It is the flag indication the success response.
-     */
-    success?: boolean;
 };
 /** @returns {Child} */
 declare function Child(): Child;
@@ -4677,32 +4530,6 @@ type DepartmentCategoryTree = {
     department?: string;
     items?: CategoryItems[];
 };
-/** @returns {DepartmentCreateErrorResponse} */
-declare function DepartmentCreateErrorResponse(): DepartmentCreateErrorResponse;
-type DepartmentCreateErrorResponse = {
-    error?: string;
-};
-/** @returns {DepartmentCreateResponse} */
-declare function DepartmentCreateResponse(): DepartmentCreateResponse;
-type DepartmentCreateResponse = {
-    message: string;
-    uid: number;
-};
-/** @returns {DepartmentCreateUpdate} */
-declare function DepartmentCreateUpdate(): DepartmentCreateUpdate;
-type DepartmentCreateUpdate = {
-    _cls?: string;
-    _custom_json?: any;
-    is_active?: boolean;
-    logo: string;
-    name: string;
-    platforms?: any;
-    priority_order: number;
-    slug?: string;
-    synonyms?: string[];
-    tags?: string[];
-    uid?: number;
-};
 /** @returns {DepartmentErrorResponse} */
 declare function DepartmentErrorResponse(): DepartmentErrorResponse;
 type DepartmentErrorResponse = {
@@ -4717,68 +4544,6 @@ declare function DepartmentIdentifier(): DepartmentIdentifier;
 type DepartmentIdentifier = {
     slug?: string;
     uid?: number;
-};
-/** @returns {DepartmentModel} */
-declare function DepartmentModel(): DepartmentModel;
-type DepartmentModel = {
-    _cls?: string;
-    _custom_json?: any;
-    _id?: string;
-    /**
-     * - User details of the creator of the document
-     */
-    created_by?: UserDetail;
-    /**
-     * - Timestamp of the creation of the document
-     */
-    created_on: string;
-    /**
-     * - Whether the department is currently active
-     */
-    is_active?: boolean;
-    /**
-     * - The URL of the department's logo
-     */
-    logo: string;
-    /**
-     * - User details of the last modifier of
-     * the document
-     */
-    modified_by?: UserDetail;
-    /**
-     * - Timestamp of the last modification of the document
-     */
-    modified_on: string;
-    /**
-     * - The name of the department
-     */
-    name: string;
-    /**
-     * - The priority order of the department
-     */
-    priority_order: number;
-    /**
-     * - The unique slug identifier for the department
-     */
-    slug: string;
-    /**
-     * - A list of synonyms for the department name
-     */
-    synonyms?: string[];
-    /**
-     * - The unique ID for the department
-     */
-    uid: number;
-    /**
-     * - User details of the verifier of the
-     * document, if applicable
-     */
-    verified_by?: UserDetail;
-    /**
-     * - Timestamp of when the document was
-     * verified, if applicable
-     */
-    verified_on?: string;
 };
 /** @returns {DepartmentResponse} */
 declare function DepartmentResponse(): DepartmentResponse;
@@ -4937,9 +4702,9 @@ type GTIN = {
     gtin_value: string;
     primary?: boolean;
 };
-/** @returns {GenderDetail} */
-declare function GenderDetail(): GenderDetail;
-type GenderDetail = {
+/** @returns {AttributeDetail} */
+declare function AttributeDetail(): AttributeDetail;
+type AttributeDetail = {
     departments?: string[];
     description?: string;
     details?: AttributeMasterDetails;
