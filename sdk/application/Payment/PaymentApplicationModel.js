@@ -1597,7 +1597,7 @@ class PaymentApplicationModel {
         .items(Joi.string().allow("").allow(null))
         .allow(null, ""),
       allow_custom_advance_amount: Joi.boolean().allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {SplitObject} */
@@ -1606,7 +1606,7 @@ class PaymentApplicationModel {
       total_number_of_splits: Joi.number().allow(null),
       splits_remaining: Joi.number().allow(null),
       amount_remaining: Joi.number().allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {AdvancePaymentObject} */

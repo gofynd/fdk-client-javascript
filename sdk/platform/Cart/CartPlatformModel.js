@@ -1707,47 +1707,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CartCheckoutCustomMeta
- * @property {string} key
- * @property {string} value
- */
-
-/**
- * @typedef PlatformCartCheckoutDetailRequest
- * @property {CartCheckoutCustomMeta[]} [custom_meta]
- * @property {string} [address_id]
- * @property {string} [payment_identifier]
- * @property {Object} [payment_params]
- * @property {boolean} [payment_auto_confirm]
- * @property {string} id
- * @property {boolean} [pos]
- * @property {string} [billing_address_id]
- * @property {string} [merchant_code]
- * @property {string} [aggregator]
- * @property {number} [pick_at_store_uid]
- * @property {string} [device_id]
- * @property {Object} [delivery_address]
- * @property {string} payment_mode
- * @property {string} [checkout_mode]
- * @property {Object} [customer_details] - Customer details
- * @property {Object} [meta]
- * @property {StaffCheckout} [staff]
- * @property {string} [employee_code]
- * @property {Object} [billing_address]
- * @property {string} [callback_url]
- * @property {string} user_id
- * @property {Object} [extra_meta]
- * @property {string} order_type
- * @property {Files[]} [files] - List of file url
- * @property {number} [ordering_store]
- * @property {Object} [payment_extra_identifiers]
- * @property {string} [iin]
- * @property {string} [network]
- * @property {string} [type]
- * @property {string} [card_id]
- */
-
-/**
  * @typedef CheckCart
  * @property {string} [coupon_text]
  * @property {string} [cod_message]
@@ -4018,53 +3977,6 @@ class CartPlatformModel {
     return Joi.object({
       key: Joi.string().allow("").required(),
       values: Joi.array().items(Joi.string().allow("")).required(),
-    });
-  }
-
-  /** @returns {CartCheckoutCustomMeta} */
-  static CartCheckoutCustomMeta() {
-    return Joi.object({
-      key: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {PlatformCartCheckoutDetailRequest} */
-  static PlatformCartCheckoutDetailRequest() {
-    return Joi.object({
-      custom_meta: Joi.array().items(
-        CartPlatformModel.CartCheckoutCustomMeta()
-      ),
-      address_id: Joi.string().allow(""),
-      payment_identifier: Joi.string().allow("").allow(null),
-      payment_params: Joi.any().allow(null),
-      payment_auto_confirm: Joi.boolean(),
-      id: Joi.string().allow("").required(),
-      pos: Joi.boolean(),
-      billing_address_id: Joi.string().allow(""),
-      merchant_code: Joi.string().allow(""),
-      aggregator: Joi.string().allow(""),
-      pick_at_store_uid: Joi.number().allow(null),
-      device_id: Joi.string().allow("").allow(null),
-      delivery_address: Joi.any(),
-      payment_mode: Joi.string().allow("").required(),
-      checkout_mode: Joi.string().allow(""),
-      customer_details: Joi.any().allow(null),
-      meta: Joi.any(),
-      staff: CartPlatformModel.StaffCheckout(),
-      employee_code: Joi.string().allow("").allow(null),
-      billing_address: Joi.any(),
-      callback_url: Joi.string().allow("").allow(null),
-      user_id: Joi.string().allow("").allow(null).required(),
-      extra_meta: Joi.any(),
-      order_type: Joi.string().allow("").required(),
-      files: Joi.array().items(CartPlatformModel.Files()),
-      ordering_store: Joi.number().allow(null),
-      payment_extra_identifiers: Joi.any(),
-      iin: Joi.string().allow(""),
-      network: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      card_id: Joi.string().allow(""),
     });
   }
 

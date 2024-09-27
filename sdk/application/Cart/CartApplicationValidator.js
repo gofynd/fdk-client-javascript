@@ -41,13 +41,6 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef CheckoutCartParam
- * @property {boolean} [buyNow] - This indicates the type of cart to checkout.
- * @property {string} [cartType] - The type of cart.
- * @property {CartApplicationModel.CartCheckoutDetailRequest} body
- */
-
-/**
  * @typedef CheckoutCartV2Param
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout.
  * @property {string} [cartType] - The type of cart.
@@ -293,15 +286,6 @@ class CartApplicationValidator {
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
       body: CartApplicationModel.RewardPointRequest().required(),
-    }).required();
-  }
-
-  /** @returns {CheckoutCartParam} */
-  static checkoutCart() {
-    return Joi.object({
-      buyNow: Joi.boolean(),
-      cartType: Joi.string().allow(""),
-      body: CartApplicationModel.CartCheckoutDetailRequest().required(),
     }).required();
   }
 

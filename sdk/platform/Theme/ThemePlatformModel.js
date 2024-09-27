@@ -665,7 +665,8 @@ const Joi = require("joi");
  *   | "register"
  *   | "shipping-policy"
  *   | "return-policy"
- *   | "order-status"} PageType
+ *   | "order-status"
+ *   | "locate-us"} PageType
  */
 
 class ThemePlatformModel {
@@ -1551,7 +1552,9 @@ class ThemePlatformModel {
 
       "return-policy",
 
-      "order-status"
+      "order-status",
+
+      "locate-us"
     );
   }
 }

@@ -387,10 +387,16 @@ export = PaymentPlatformModel;
 /**
  * @typedef MultiTenderPaymentMeta
  * @property {Object} [extra_meta]
- * @property {string} [order_id]
- * @property {string} [payment_id]
- * @property {string} [current_status]
- * @property {string} [payment_gateway]
+ * @property {string} [order_id] - Fynd Platform order ID
+ * @property {string} [payment_id] - A unique identifier associated with a
+ *   specific payment transaction
+ * @property {string} [current_status] - Represents the current state or
+ *   condition of an object, such as an order or payment.
+ * @property {string} [payment_gateway] - Specifies the name or identifier of
+ *   the payment gateway. This will deprecated in future version. We recommend
+ *   switching to `payment_gateway_slug` to ensure uninterrupted payment processing.
+ * @property {string} [payment_gateway_slug] - A simplified, URL-friendly string
+ *   that represents the name of the payment gateway and it will used for refund PG.
  */
 /**
  * @typedef MultiTenderPaymentMethod
@@ -1003,6 +1009,8 @@ export = PaymentPlatformModel;
  * @property {Object[]} articles - List of articles that are added in cart
  * @property {number} cart_value - Total cart value i.e. amount to be paid
  * @property {number} [total_quantity] - Total number of items in cart
+ * @property {Object} [custom_cart_meta] - This field is used to add and
+ *   retrieve custom data fields to cart items.
  */
 /**
  * @typedef RefundDetailsSerializer
@@ -2193,10 +2201,31 @@ type OrderBeneficiaryResponse = {
 declare function MultiTenderPaymentMeta(): MultiTenderPaymentMeta;
 type MultiTenderPaymentMeta = {
     extra_meta?: any;
+    /**
+     * - Fynd Platform order ID
+     */
     order_id?: string;
+    /**
+     * - A unique identifier associated with a
+     * specific payment transaction
+     */
     payment_id?: string;
+    /**
+     * - Represents the current state or
+     * condition of an object, such as an order or payment.
+     */
     current_status?: string;
+    /**
+     * - Specifies the name or identifier of
+     * the payment gateway. This will deprecated in future version. We recommend
+     * switching to `payment_gateway_slug` to ensure uninterrupted payment processing.
+     */
     payment_gateway?: string;
+    /**
+     * - A simplified, URL-friendly string
+     * that represents the name of the payment gateway and it will used for refund PG.
+     */
+    payment_gateway_slug?: string;
 };
 /** @returns {MultiTenderPaymentMethod} */
 declare function MultiTenderPaymentMethod(): MultiTenderPaymentMethod;
@@ -3849,6 +3878,11 @@ type CartDetailsSerializer = {
      * - Total number of items in cart
      */
     total_quantity?: number;
+    /**
+     * - This field is used to add and
+     * retrieve custom data fields to cart items.
+     */
+    custom_cart_meta?: any;
 };
 /** @returns {RefundDetailsSerializer} */
 declare function RefundDetailsSerializer(): RefundDetailsSerializer;

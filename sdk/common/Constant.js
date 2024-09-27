@@ -46,6 +46,7 @@ const AVAILABLE_PAGE_TYPE = {
   SHIPPING_POLICY: "shipping-policy",
   RETURN_POLICY: "return-policy",
   ORDER_STATUS: "order-status",
+  LOCATE_US: "locate-us",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -328,6 +329,10 @@ const NAVIGATORS = {
   "order-status": {
     name: "Order status",
     link: "/cart/order-status",
+  },
+  "locate-us": {
+    name: "Locate us",
+    link: "/locate-us",
   },
 };
 

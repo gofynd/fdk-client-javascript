@@ -435,10 +435,16 @@ const Joi = require("joi");
 /**
  * @typedef MultiTenderPaymentMeta
  * @property {Object} [extra_meta]
- * @property {string} [order_id]
- * @property {string} [payment_id]
- * @property {string} [current_status]
- * @property {string} [payment_gateway]
+ * @property {string} [order_id] - Fynd Platform order ID
+ * @property {string} [payment_id] - A unique identifier associated with a
+ *   specific payment transaction
+ * @property {string} [current_status] - Represents the current state or
+ *   condition of an object, such as an order or payment.
+ * @property {string} [payment_gateway] - Specifies the name or identifier of
+ *   the payment gateway. This will deprecated in future version. We recommend
+ *   switching to `payment_gateway_slug` to ensure uninterrupted payment processing.
+ * @property {string} [payment_gateway_slug] - A simplified, URL-friendly string
+ *   that represents the name of the payment gateway and it will used for refund PG.
  */
 
 /**
@@ -1116,6 +1122,8 @@ const Joi = require("joi");
  * @property {Object[]} articles - List of articles that are added in cart
  * @property {number} cart_value - Total cart value i.e. amount to be paid
  * @property {number} [total_quantity] - Total number of items in cart
+ * @property {Object} [custom_cart_meta] - This field is used to add and
+ *   retrieve custom data fields to cart items.
  */
 
 /**
@@ -1506,7 +1514,7 @@ class PaymentPlatformModel {
       payment_flow_data: Joi.any().allow(null),
       payment_flow: Joi.string().allow("").allow(null),
       api_link: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {PaymentDefaultSelection} */
@@ -1564,7 +1572,7 @@ class PaymentPlatformModel {
         .items(Joi.string().allow("").allow(null))
         .allow(null, ""),
       allow_custom_advance_amount: Joi.boolean().allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {SplitObject} */
@@ -1573,7 +1581,7 @@ class PaymentPlatformModel {
       total_number_of_splits: Joi.number().allow(null),
       splits_remaining: Joi.number().allow(null),
       amount_remaining: Joi.number().allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {AdvancePaymentObject} */
@@ -1868,6 +1876,7 @@ class PaymentPlatformModel {
       payment_id: Joi.string().allow(""),
       current_status: Joi.string().allow(""),
       payment_gateway: Joi.string().allow(""),
+      payment_gateway_slug: Joi.string().allow(""),
     });
   }
 
@@ -2642,6 +2651,7 @@ class PaymentPlatformModel {
       articles: Joi.array().items(Joi.any()).required(),
       cart_value: Joi.number().required(),
       total_quantity: Joi.number(),
+      custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 

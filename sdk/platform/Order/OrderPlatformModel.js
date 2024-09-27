@@ -495,6 +495,36 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DPConfiguration
+ * @property {string} [shipping_by] - Shipping_by denotes dp assignment
+ *   strategy- if shipping_by is fynd dp assignment would be handled by OMS
+ */
+
+/**
+ * @typedef PaymentConfig
+ * @property {string} [mode_of_payment] - Specifies the mode through which the
+ *   payment was collected, serving as an identifier for the payment's origin.
+ * @property {string} [source] - The source field identifies the channel through
+ *   which the order was placed, such as MARKETPLACE, ECOMM.
+ */
+
+/**
+ * @typedef CreateOrderConfig
+ * @property {DPConfiguration} [dp_configuration]
+ * @property {string} [integration_type] - Flag denotes integration type which
+ *   is used to retrieve specific configurations and application details
+ *   relevant to channel fulfillment.
+ * @property {boolean} [location_reassignment] - Flag denotes if the location
+ *   for the store needs to be reassigned post cancellation.
+ * @property {PaymentConfig} [payment]
+ * @property {boolean} [optimal_shipment_creation] - Denotes the shipment
+ *   breaking strategy. If the flag is set true, the shipment is created using
+ *   optimal shipment creation strategy based on the servicability & packaging
+ *   dimensions by OMS .If false, shipment details, including location_id, must
+ *   be passed to FDK for processing.
+ */
+
+/**
  * @typedef CreateOrderPayload
  * @property {string} affiliate_id
  * @property {OrderInfo} order_info
@@ -693,6 +723,14 @@ const Joi = require("joi");
  * @property {OrderDetails} order_details
  * @property {string[]} [errors]
  * @property {ShipmentDetail[]} [shipment_details]
+ * @property {string} [text] - A label or description of the delivery status,
+ *   such as 'Expected Delivery Date'.
+ * @property {string} [value] - The detailed delivery status or time
+ *   information, such as 'Arriving on 24 Nov 2022 15:54:00'.
+ * @property {string} [color_code] - Hex code for the color representing the
+ *   delivery status.
+ * @property {string} [expected_delivery_date] - The ISO 8601 formatted date and
+ *   time when the delivery is expected, e.g., '2022-11-24T22:15:54+00:00'.
  */
 
 /**
@@ -770,8 +808,12 @@ const Joi = require("joi");
  * @property {ProcessingDates} [processing_dates]
  * @property {Object} [meta] - Meta data of the shipment.
  * @property {number} [priority] - Integer value indicating high and low priority.
- * @property {number} location_id - Location Identifier or Store/Fulfillment
- *   Identifier of the shipment.
+ * @property {number} [location_id] - Location Identifier or Store/Fulfillment
+ *   Identifier of the shipment- This field is mandatory when
+ *   optimal_shipment_creation flag is set to false, indicating that shipments
+ *   must be associated with a specific location. When
+ *   `optimal_shipment_creation` is true, the optimal location for order
+ *   creation would be assigned, location_id becomes optional.
  * @property {string} [order_type] - The order type of shipment HomeDelivery -
  *   If the customer wants the order home-delivered PickAtStore - If the
  *   customer wants the handover of an order at the store itself.
@@ -802,17 +844,6 @@ const Joi = require("joi");
  * @property {ShipmentStatusData} [status]
  * @property {Prices} [price]
  * @property {ShipmentGstDetails} [gst]
- */
-
-/**
- * @typedef ShipmentRequestData
- * @property {LineItem[]} line_items
- * @property {ProcessingDates} [processing_dates]
- * @property {Object} [meta] - Meta data of the shipment.
- * @property {number} [priority] - Integer value indicating high and low priority.
- * @property {string} [order_type] - The order type of shipment HomeDelivery -
- *   If the customer wants the order home-delivered PickAtStore - If the
- *   customer wants the handover of an order at the store itself.
  */
 
 /**
@@ -915,7 +946,6 @@ const Joi = require("joi");
 /**
  * @typedef CreateOrderAPI
  * @property {Shipment[]} shipments
- * @property {ShipmentRequestData} [shipment_request_data]
  * @property {ShippingInfo} shipping_info
  * @property {BillingInfo} billing_info
  * @property {Object} [currency_info]
@@ -924,7 +954,7 @@ const Joi = require("joi");
  * @property {string} [external_creation_date]
  * @property {Object} [meta]
  * @property {TaxInfo} [tax_info]
- * @property {Object} [config]
+ * @property {CreateOrderConfig} [config]
  * @property {PaymentInfo} payment_info
  * @property {UserInfo} [user_info]
  * @property {number} [ordering_store_id]
@@ -2784,6 +2814,7 @@ const Joi = require("joi");
  * @property {InvoiceInfo} [invoice]
  * @property {string} [shipment_status]
  * @property {GSTDetailsData} [gst_details]
+ * @property {OrderStatusData} [order_status]
  * @property {Object} [delivery_slot]
  * @property {OrderDetailsData} [order]
  * @property {UserDataInfo} [user]
@@ -3814,7 +3845,7 @@ class OrderPlatformModel {
       dp_options: Joi.any().allow(null),
       lock_status: Joi.boolean().allow(null),
       action_to_status: Joi.any().allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {ShipmentConfig} */
@@ -4013,6 +4044,32 @@ class OrderPlatformModel {
       affiliate_store_id_mapping: Joi.array()
         .items(OrderPlatformModel.AffiliateStoreIdMapping())
         .required(),
+    });
+  }
+
+  /** @returns {DPConfiguration} */
+  static DPConfiguration() {
+    return Joi.object({
+      shipping_by: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PaymentConfig} */
+  static PaymentConfig() {
+    return Joi.object({
+      mode_of_payment: Joi.string().allow(""),
+      source: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateOrderConfig} */
+  static CreateOrderConfig() {
+    return Joi.object({
+      dp_configuration: OrderPlatformModel.DPConfiguration(),
+      integration_type: Joi.string().allow(""),
+      location_reassignment: Joi.boolean(),
+      payment: OrderPlatformModel.PaymentConfig(),
+      optimal_shipment_creation: Joi.boolean(),
     });
   }
 
@@ -4255,6 +4312,10 @@ class OrderPlatformModel {
       order_details: OrderPlatformModel.OrderDetails().required(),
       errors: Joi.array().items(Joi.string().allow("")),
       shipment_details: Joi.array().items(OrderPlatformModel.ShipmentDetail()),
+      text: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+      color_code: Joi.string().allow(""),
+      expected_delivery_date: Joi.string().allow(""),
     });
   }
 
@@ -4346,7 +4407,7 @@ class OrderPlatformModel {
       processing_dates: OrderPlatformModel.ProcessingDates(),
       meta: Joi.any().allow(null),
       priority: Joi.number(),
-      location_id: Joi.number().required(),
+      location_id: Joi.number(),
       order_type: Joi.string().allow(""),
       parent_type: Joi.string().allow("").allow(null),
       store_invoice_id: Joi.string().allow("").allow(null),
@@ -4375,17 +4436,6 @@ class OrderPlatformModel {
       status: OrderPlatformModel.ShipmentStatusData(),
       price: OrderPlatformModel.Prices(),
       gst: OrderPlatformModel.ShipmentGstDetails(),
-    });
-  }
-
-  /** @returns {ShipmentRequestData} */
-  static ShipmentRequestData() {
-    return Joi.object({
-      line_items: Joi.array().items(OrderPlatformModel.LineItem()).required(),
-      processing_dates: OrderPlatformModel.ProcessingDates(),
-      meta: Joi.any(),
-      priority: Joi.number(),
-      order_type: Joi.string().allow(""),
     });
   }
 
@@ -4502,7 +4552,6 @@ class OrderPlatformModel {
   static CreateOrderAPI() {
     return Joi.object({
       shipments: Joi.array().items(OrderPlatformModel.Shipment()).required(),
-      shipment_request_data: OrderPlatformModel.ShipmentRequestData(),
       shipping_info: OrderPlatformModel.ShippingInfo().required(),
       billing_info: OrderPlatformModel.BillingInfo().required(),
       currency_info: Joi.any(),
@@ -4511,7 +4560,7 @@ class OrderPlatformModel {
       external_creation_date: Joi.string().allow(""),
       meta: Joi.any(),
       tax_info: OrderPlatformModel.TaxInfo(),
-      config: Joi.any(),
+      config: OrderPlatformModel.CreateOrderConfig(),
       payment_info: OrderPlatformModel.PaymentInfo().required(),
       user_info: OrderPlatformModel.UserInfo(),
       ordering_store_id: Joi.number(),
@@ -5710,7 +5759,7 @@ class OrderPlatformModel {
       contact_person: Joi.string().allow("").allow(null),
       state: Joi.string().allow("").allow(null),
       city: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {ShipmentListingChannel} */
@@ -6638,6 +6687,7 @@ class OrderPlatformModel {
       invoice: OrderPlatformModel.InvoiceInfo(),
       shipment_status: Joi.string().allow("").allow(null),
       gst_details: OrderPlatformModel.GSTDetailsData(),
+      order_status: OrderPlatformModel.OrderStatusData(),
       delivery_slot: Joi.any().allow(null),
       order: OrderPlatformModel.OrderDetailsData(),
       user: OrderPlatformModel.UserDataInfo(),
@@ -7099,7 +7149,7 @@ class OrderPlatformModel {
       mall_name: Joi.string().allow("").allow(null),
       latitude: Joi.number().allow(null),
       address2: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {Brand} */
@@ -7183,7 +7233,7 @@ class OrderPlatformModel {
       brand_calculated_amount: Joi.number().allow(null),
       tax_collected_at_source: Joi.number().allow(null),
       gstin_code: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {DeliverySlotDetails} */
@@ -7194,7 +7244,7 @@ class OrderPlatformModel {
       lower_bound: Joi.string().allow("").allow(null),
       date: Joi.string().allow("").allow(null),
       type: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {InvoiceDetails} */
@@ -7204,7 +7254,7 @@ class OrderPlatformModel {
       store_invoice_id: Joi.string().allow("").allow(null),
       invoice_url: Joi.string().allow("").allow(null),
       label_url: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {UserDetails} */
@@ -7220,7 +7270,7 @@ class OrderPlatformModel {
       gender: Joi.string().allow("").allow(null),
       mongo_user_id: Joi.string().allow("").allow(null),
       meta: Joi.any().allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {WeightData} */
@@ -7228,7 +7278,7 @@ class OrderPlatformModel {
     return Joi.object({
       value: Joi.number().allow(null),
       unit: Joi.string().allow("").allow(null),
-    });
+    }).allow(null);
   }
 
   /** @returns {BagDetails} */
@@ -7335,7 +7385,7 @@ class OrderPlatformModel {
     return Joi.object({
       items: Joi.array().items(OrderPlatformModel.BagDetails()),
       page: OrderPlatformModel.BagsPage(),
-    });
+    }).allow(null);
   }
 
   /** @returns {GetBagsPlatformResponse} */

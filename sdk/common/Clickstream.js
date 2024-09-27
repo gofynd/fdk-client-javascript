@@ -20,40 +20,59 @@ const sg = function safeGet(fn, defaultValue = null) {
  * Safely extracts search query and click position
  *
  * @author Hitendra Singh
- * @param {Object} [defaultValue] - Utm_params
- * @returns {Object} - Query and position
+ * @property {string | null} query - Extracted search query if available, otherwise null
+ * @property {string | null} position - Click position from the decoded UTM
+ *   content, otherwise null
+ * @property {string | null} utm_medium - The medium of the UTM (e.g.,
+ *   'product_recommendation'), otherwise null
+ * @property {string | null} utm_source - The source of the UTM (e.g.,
+ *   'product_page'), otherwise null
+ * @property {string | null} utm_campaign - The campaign of the UTM (e.g.,
+ *   'trending_products'), otherwise null
+ * @param {Object} [utm_params] - Object containing UTM parameters (utm_medium,
+ *   utm_source, utm_campaign, utm_content)
+ * @returns {Object} - An object with the following properties:
  */
 const fetchPositionAndQuery = function (utm_params) {
   if (!utm_params || !Object.keys(utm_params).length) {
     return {
       query: null,
       position: null,
+      utm_medium: null,
+      utm_source: null,
+      utm_campaign: null,
     };
   }
 
-  if (utm_params.utm_medium === "search") {
+  const {
+    utm_medium = null,
+    utm_source = null,
+    utm_campaign = null,
+  } = utm_params;
+  let query = null;
+  let position = null;
+  const queryResult = {
+    query,
+    position,
+    utm_medium,
+    utm_source,
+    utm_campaign,
+  };
+  if (utm_medium === "search") {
     try {
       const decodedUri = utm_params.utm_content
         ? atob(utm_params.utm_content)
         : null;
       if (decodedUri) {
         const parts = decodedUri.split(":::");
-        return {
-          query: parts[0] || null,
-          position: parts[1] || null,
-        };
+        queryResult.query = parts[0] || null;
+        queryResult.position = parts[1] || null;
       }
     } catch (err) {
-      return {
-        query: null,
-        position: null,
-      };
+      return queryResult;
     }
   }
-  return {
-    query: null,
-    position: null,
-  };
+  return queryResult;
 };
 /**
  * Safely extracts company details from window object
@@ -331,6 +350,10 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("product_list.view", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
+    if (eventData.user && eventData.user.user_id) {
+      //re identify user if the payload contains user id
+      Clickstream.identify(eventData.user.user_id, {}, false);
+    }
     Clickstream.sendEvent("product_listing", {
       event_type: "impression",
       query: sg(() => eventData.slug["q"]),
@@ -353,6 +376,10 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("product.view", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
+    if (eventData.user && eventData.user.user_id) {
+      //re identify user if the payload contains user id
+      Clickstream.identify(eventData.user.user_id, {}, false);
+    }
     const payload = {
       event_type: "click",
       product_id: sg(() => eventData.product["uid"]),
@@ -391,6 +418,10 @@ if (typeof window != "undefined") {
     };
     //filter eventData.data to find the products array and item total
     let products = [];
+    if (eventData.user && eventData.user.user_id) {
+      //re identify user if the payload contains user id
+      Clickstream.identify(eventData.user.user_id, {}, false);
+    }
     if (eventData.data && eventData.data.length > 0) {
       products = eventData.data
         .filter((item) => {

@@ -18,7 +18,6 @@ class Cart {
       addItems: "/service/application/cart/v1.0/detail",
       applyCoupon: "/service/application/cart/v1.0/coupon",
       applyRewardPoints: "/service/application/cart/v1.0/redeem/points/",
-      checkoutCart: "/service/application/cart/v1.0/checkout",
       checkoutCartV2: "/service/application/cart/v2.0/checkout",
       deleteCart: "/service/application/cart/v1.0/cart_archive",
       getAddressById: "/service/application/cart/v1.0/address/{id}",
@@ -69,7 +68,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.SaveAddressResponse>} - Success response
    * @name addAddress
-   * @summary: Create a new address
+   * @summary: Creates a new address for a customer
    * @description: Add a new address to their cart to save details such as name, email, contact information, and address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addAddress/).
    */
   async addAddress(
@@ -390,93 +389,13 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.CheckoutCartParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CartApplicationModel.CartCheckoutResponse>} - Success response
-   * @name checkoutCart
-   * @summary: Checkout cart
-   * @description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
-   */
-  async checkoutCart(
-    { body, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = CartApplicationValidator.checkoutCart().validate(
-      { body, buyNow, cartType },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.checkoutCart().validate(
-      { body, buyNow, cartType },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > checkoutCart \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["buy_now"] = buyNow;
-    query_params["cart_type"] = cartType;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["checkoutCart"],
-        params: {},
-      }),
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CartApplicationModel.CartCheckoutResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Cart > checkoutCart \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {CartApplicationValidator.CheckoutCartV2Param} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartCheckoutResponse>} - Success response
    * @name checkoutCartV2
-   * @summary: Start cart checkout (latest)
-   * @description: Enhanced version of checkout process that supports multiple mode of payment(MOP). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
+   * @summary: Checkout cart
+   * @description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
    */
   async checkoutCartV2(
     { body, buyNow, cartType, requestHeaders } = { requestHeaders: {} },
@@ -633,7 +552,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.Address>} - Success response
    * @name getAddressById
-   * @summary: Get a address
+   * @summary: Get details for a single customer address
    * @description: Get a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddressById/).
    */
   async getAddressById(
@@ -726,7 +645,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.GetAddressesResponse>} - Success response
    * @name getAddresses
-   * @summary: List customer addresses
+   * @summary: Get a list of addresses for a customer
    * @description: List all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddresses/).
    */
   async getAddresses(
@@ -1726,7 +1645,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.DeleteAddressResponse>} - Success response
    * @name removeAddress
-   * @summary: Delete a address
+   * @summary: Removes an address from a customer's address list
    * @description: Delete an existing customer address from the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeAddress/).
    */
   async removeAddress(
@@ -1884,7 +1803,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name selectAddress
-   * @summary: Select a delivery address
+   * @summary: Select customer address for order processing
    * @description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
    */
   async selectAddress(
@@ -2046,7 +1965,7 @@ class Cart {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CartApplicationModel.UpdateAddressResponse>} - Success response
    * @name updateAddress
-   * @summary: Update a address
+   * @summary: Updates an existing customer address
    * @description: Customer can modify the details of a previously saved addresses. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateAddress/).
    */
   async updateAddress(

@@ -861,12 +861,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CartCheckoutCustomMeta
- * @property {string} key - Key name of custom meta.
- * @property {string} value - Value to be added in key.
- */
-
-/**
  * @typedef CustomerDetails
  * @property {string} [email] - Email address of the customer to be added in
  *   customer detail while checkout.
@@ -887,52 +881,6 @@ const Joi = require("joi");
  * @property {string} first_name - First name of staff emplyee who does checkout
  *   on behalf of customer.
  * @property {string} _id - Id of staff who does checkout on behalf of customer.
- */
-
-/**
- * @typedef CartCheckoutDetailRequest
- * @property {CartCheckoutCustomMeta[]} [custom_meta] - Custom meta data to be
- *   added in order.
- * @property {Object} [customer_details] - Customer details to be added in order.
- * @property {string} [merchant_code] - Merchant code of the payment mode
- *   selected to do the payment.
- * @property {string} [id] - Cart id of the user cart.
- * @property {boolean} [payment_auto_confirm] - Payment auto confirm flag if
- *   payment need not to be collected from user.
- * @property {string} payment_mode - Payment mode from which the payment to be
- *   done for the order.
- * @property {string} [aggregator] - Aggregator name of the payment gateway.
- * @property {string} [address_id] - Address id of the user on which the order
- *   to be delivered.
- * @property {string} [callback_url] - Callback url to be redirected after
- *   payment received/failed.
- * @property {Object} [delivery_address] - Delivery address data which includes
- *   customer address, customer phone, customer email, customer pincode,
- *   customer landmark and customer name.
- * @property {StaffCheckout} [staff]
- * @property {string} [order_type] - Order type of the order being placed like
- *   pickAtStore or HomeDelivery.
- * @property {number} [ordering_store] - Ordering store id of the store from
- *   which the order is getting placed.
- * @property {Object} [extra_meta] - Extra meta to be added while checkout in order.
- * @property {string} [payment_identifier] - Payment identifier of the payment
- *   mode selected to do the payment.
- * @property {Object} [billing_address] - Billing address json which includes
- *   customer address, customer phone, customer email, customer pincode,
- *   customer landmark and customer name.
- * @property {Object} [payment_params] - Payment params which includes payment
- *   identifier and merchant code.
- * @property {string} [billing_address_id] - Billing address id of the customer
- *   on which the invoice to be generated after the order is placed.
- * @property {Object} [meta] - Meta data to be added in order.
- * @property {Object} [payment_extra_identifiers] - Payment extra identifier for
- *   the payment mode to do the payment.
- * @property {string} [iin] - Issuer Identification Number' number of card if
- *   payment mode is card.
- * @property {string} [network] - Network of card if payment mode is card to do
- *   the payment.
- * @property {string} [type] - Type of cart if payment mode is card to do the payment.
- * @property {string} [card_id] - Saved card id if payment mode is card to do the payment.
  */
 
 /**
@@ -2173,14 +2121,6 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {CartCheckoutCustomMeta} */
-  static CartCheckoutCustomMeta() {
-    return Joi.object({
-      key: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {CustomerDetails} */
   static CustomerDetails() {
     return Joi.object({
@@ -2198,38 +2138,6 @@ class CartApplicationModel {
       last_name: Joi.string().allow("").required(),
       first_name: Joi.string().allow("").required(),
       _id: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CartCheckoutDetailRequest} */
-  static CartCheckoutDetailRequest() {
-    return Joi.object({
-      custom_meta: Joi.array().items(
-        CartApplicationModel.CartCheckoutCustomMeta()
-      ),
-      customer_details: Joi.any(),
-      merchant_code: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-      payment_auto_confirm: Joi.boolean(),
-      payment_mode: Joi.string().allow("").required(),
-      aggregator: Joi.string().allow(""),
-      address_id: Joi.string().allow(""),
-      callback_url: Joi.string().allow(""),
-      delivery_address: Joi.any(),
-      staff: CartApplicationModel.StaffCheckout(),
-      order_type: Joi.string().allow(""),
-      ordering_store: Joi.number(),
-      extra_meta: Joi.any(),
-      payment_identifier: Joi.string().allow(""),
-      billing_address: Joi.any(),
-      payment_params: Joi.any(),
-      billing_address_id: Joi.string().allow(""),
-      meta: Joi.any(),
-      payment_extra_identifiers: Joi.any(),
-      iin: Joi.string().allow(""),
-      network: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      card_id: Joi.string().allow(""),
     });
   }
 
