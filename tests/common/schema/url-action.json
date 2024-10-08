@@ -722,6 +722,20 @@
           }
         }
       }
+    },
+    {
+      "name": "Locate us",
+      "path": "/locate-us",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "locate-us",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
     }
   ]
 }

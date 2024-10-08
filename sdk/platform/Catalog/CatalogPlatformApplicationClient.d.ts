@@ -23,24 +23,24 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name createAppCategoryReturnConfiguration
      * @summary: Create return configuration
      * @description: Create Category level sales channel Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppCategoryReturnConfiguration/).
      */
-    createAppCategoryReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppCategoryReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    createAppCategoryReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppCategoryReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformApplicationValidator.CreateAppReturnConfigurationParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name createAppReturnConfiguration
      * @summary: Create product return configuration
      * @description: This allows you to configure all return-related settings, such as is_returnable and return window etc. for sales channel level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppReturnConfiguration/).
      */
-    createAppReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    createAppReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateAppReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformApplicationValidator.CreateCollectionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -473,12 +473,13 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
+     * @returns {Promise<CatalogPlatformModel.ApplicationBrandListingSchema>} -
+     *   Success response
      * @name getApplicationBrandListing
      * @summary: List sales channel brands
      * @description: Retrieve brand listings related to the sales channel. A brand is the name under which a product is being sold - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrandListing/).
      */
-    getApplicationBrandListing({ pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationBrandListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BrandListingResponse>;
+    getApplicationBrandListing({ pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationBrandListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ApplicationBrandListingSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - A `company_id` is a unique identifier for
@@ -487,9 +488,9 @@ declare class Catalog {
      *   identifier for a particular sale channel.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
-     * @param {string} [arg.q] - Search query with brand name.Use this parameter
-     *   to search brands by brand name.
-     * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
+     * @param {string} [arg.q] - Search query with brand name. Use this
+     *   parameter to search brands by brand name.
+     * @returns {Paginator<CatalogPlatformModel.ApplicationBrandListingSchema>}
      * @summary: List sales channel brands
      * @description: Retrieve brand listings related to the sales channel. A brand is the name under which a product is being sold
      */
@@ -498,7 +499,7 @@ declare class Catalog {
         applicationId: string;
         pageSize?: number;
         q?: string;
-    }): Paginator<CatalogPlatformModel.BrandListingResponse>;
+    }): Paginator<CatalogPlatformModel.ApplicationBrandListingSchema>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetApplicationBrandsParam} arg
      *   - Arg object
@@ -508,7 +509,7 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
      * @name getApplicationBrands
      * @summary: List brands
-     * @description: List all the brands, and have search capabilities on brand uid, name etc - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
+     * @description: List all the brands. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
      */
     getApplicationBrands({ department, pageNo, pageSize, q, brandId, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationBrandsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BrandListingResponse>;
     /**
@@ -520,16 +521,16 @@ declare class Catalog {
      * @param {string} [arg.department] - The name of the department. Use this
      *   parameter to filter products by a particular department. See below the
      *   list of available departments. You can retrieve available departments
-     *   from the **v1.0/departments/** API
+     *   from the "v1.0/departments/" API
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
-     * @param {string} [arg.q] - Search query with brand name.Use this parameter
-     *   to search brands by brand name.
+     * @param {string} [arg.q] - Search query with brand name. Use this
+     *   parameter to search brands by brand name.
      * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
      *   basis of uid list.
      * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
      * @summary: List brands
-     * @description: List all the brands, and have search capabilities on brand uid, name etc
+     * @description: List all the brands.
      */
     getApplicationBrandsPaginator({ companyId, applicationId, department, pageSize, q, brandId, }?: {
         companyId: string;
@@ -545,12 +546,14 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
+     * @returns {Promise<CatalogPlatformModel.ApplicationCategoryListingSchema>}
+     *   - Success response
+     *
      * @name getApplicationCategoryListing
      * @summary: List sales channel categories
      * @description: Retrieve category listings related to the sales channel , with the ability to filter results based on department ,category names etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationCategoryListing/).
      */
-    getApplicationCategoryListing({ departmentId, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationCategoryListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BrandListingResponse>;
+    getApplicationCategoryListing({ departmentId, pageNo, pageSize, q, requestHeaders }?: CatalogPlatformApplicationValidator.GetApplicationCategoryListingParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ApplicationCategoryListingSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - A `company_id` is a unique identifier for
@@ -561,9 +564,9 @@ declare class Catalog {
      *   identifier for a particular department.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
-     * @param {string} [arg.q] - Search query with brand name.Use this parameter
-     *   to search brands by brand name.
-     * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
+     * @param {string} [arg.q] - A search query string. Use this parameter to
+     *   filter results based on a keyword or specific value.
+     * @returns {Paginator<CatalogPlatformModel.ApplicationCategoryListingSchema>}
      * @summary: List sales channel categories
      * @description: Retrieve category listings related to the sales channel , with the ability to filter results based on department ,category names etc.
      */
@@ -573,7 +576,7 @@ declare class Catalog {
         departmentId?: number;
         pageSize?: number;
         q?: string;
-    }): Paginator<CatalogPlatformModel.BrandListingResponse>;
+    }): Paginator<CatalogPlatformModel.ApplicationCategoryListingSchema>;
     /**
      * @param {CatalogPlatformApplicationValidator.GetApplicationDepartmentListingParam} arg
      *   - Arg object
@@ -596,8 +599,8 @@ declare class Catalog {
      *   identifier for a particular sale channel.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
-     * @param {string} [arg.q] - Search query with brand name.Use this parameter
-     *   to search department by name.
+     * @param {string} [arg.q] - A search query string. Use this parameter to
+     *   filter results based on a keyword or specific value.
      * @returns {Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponse>}
      * @summary: List sales channel departments
      * @description: Retrieve department listings related to the sales channel. Departments are used to categorize similar products, and you can filter the results based on department names
@@ -901,24 +904,24 @@ declare class Catalog {
      * @param {CatalogPlatformApplicationValidator.UpdateAppBrandParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name updateAppBrand
      * @summary: Update sales channel brand
      * @description: Modify data associated to the brand for that particular sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
      */
-    updateAppBrand({ brandUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppBrandParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppBrand({ brandUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppBrandParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateAppCategoryParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name updateAppCategory
      * @summary: Update sales channel category
      * @description: Modify category data related to the sales channel . - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategory/).
      */
-    updateAppCategory({ categoryUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppCategoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppCategory({ categoryUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppCategoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateAppCategoryReturnConfigurationParam} arg
      *   - Arg object
@@ -937,46 +940,46 @@ declare class Catalog {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name updateAppDepartment
      * @summary: Update sales channel department
      * @description: Modify department data associated to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppDepartment/).
      */
-    updateAppDepartment({ departmentUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppDepartmentParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppDepartment({ departmentUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppDepartmentParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateAppLocationParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name updateAppLocation
      * @summary: Update sales channel location
      * @description: Modify location data related to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppLocation/).
      */
-    updateAppLocation({ storeUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppLocationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppLocation({ storeUid, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppLocationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateAppProductParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name updateAppProduct
      * @summary: Update sales channel product
      * @description: Allows to update data associated to a item by its item_id for an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
      */
-    updateAppProduct({ itemId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppProduct({ itemId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateAppReturnConfigurationParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name updateAppReturnConfiguration
      * @summary: Update product return configuration
      * @description: Update Return configuration level set for an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppReturnConfiguration/).
      */
-    updateAppReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppReturnConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateAppReturnConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateAutocompleteKeywordParam} arg
      *   - Arg object

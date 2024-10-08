@@ -193,7 +193,7 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  */
 /**
@@ -201,12 +201,12 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  * @property {number[]} [brandId] - Helps to sort the brands list on the basis
  *   of uid list.
@@ -219,8 +219,8 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search brands by brand name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 /**
  * @typedef GetApplicationDepartmentListingParam
@@ -228,8 +228,8 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search department by name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 /**
  * @typedef GetApplicationFilterKeysParam
@@ -263,14 +263,14 @@ export = CatalogPlatformApplicationValidator;
 /** @typedef GetCatalogConfigurationParam */
 /**
  * @typedef GetCatalogInsightsParam
- * @property {string} [brand] - Brand slug
+ * @property {string} [brand] - Brand slug that is to be searched.
  */
 /**
  * @typedef GetCategoriesParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  */
 /**
  * @typedef GetCollectionDetailParam
@@ -358,12 +358,14 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAppBrandParam
- * @property {string} brandUid - Brand id for which the custom_json is associated.
+ * @property {number} brandUid - A `brand id` is a unique identifier for a
+ *   particular brand.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 /**
  * @typedef UpdateAppCategoryParam
- * @property {string} categoryUid - Category id for which the custom_json is associated.
+ * @property {string} categoryUid - A `category id` is a unique identifier for a
+ *   particular category.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 /**
@@ -924,7 +926,7 @@ type GetApplicationBrandListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
+     * - Search query with brand name. Use this parameter to
      * search brands by brand name.
      */
     q?: string;
@@ -934,7 +936,7 @@ type GetApplicationBrandsParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
      * of available departments. You can retrieve available departments from the
-     * **v1.0/departments/** API
+     * "v1.0/departments/" API
      */
     department?: string;
     /**
@@ -948,7 +950,7 @@ type GetApplicationBrandsParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
+     * - Search query with brand name. Use this parameter to
      * search brands by brand name.
      */
     q?: string;
@@ -975,8 +977,8 @@ type GetApplicationCategoryListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
-     * search brands by brand name.
+     * - A search query string. Use this parameter to filter
+     * results based on a keyword or specific value.
      */
     q?: string;
 };
@@ -992,8 +994,8 @@ type GetApplicationDepartmentListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
-     * search department by name.
+     * - A search query string. Use this parameter to filter
+     * results based on a keyword or specific value.
      */
     q?: string;
 };
@@ -1048,7 +1050,7 @@ type GetAutocompleteKeywordDetailParam = {
 };
 type GetCatalogInsightsParam = {
     /**
-     * - Brand slug
+     * - Brand slug that is to be searched.
      */
     brand?: string;
 };
@@ -1057,7 +1059,7 @@ type GetCategoriesParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
      * of available departments. You can retrieve available departments from the
-     * **v1.0/departments/** API
+     * "v1.0/departments/" API
      */
     department?: string;
 };
@@ -1217,14 +1219,16 @@ type UpdateAllowSingleParam = {
 };
 type UpdateAppBrandParam = {
     /**
-     * - Brand id for which the custom_json is associated.
+     * - A `brand id` is a unique identifier for a
+     * particular brand.
      */
-    brandUid: string;
+    brandUid: number;
     body: CatalogPlatformModel.ApplicationBrandJson;
 };
 type UpdateAppCategoryParam = {
     /**
-     * - Category id for which the custom_json is associated.
+     * - A `category id` is a unique identifier for a
+     * particular category.
      */
     categoryUid: string;
     body: CatalogPlatformModel.ApplicationCategoryJson;

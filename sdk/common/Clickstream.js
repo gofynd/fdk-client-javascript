@@ -350,6 +350,10 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("product_list.view", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
+    if (eventData.user && eventData.user.user_id) {
+      //re identify user if the payload contains user id
+      Clickstream.identify(eventData.user.user_id, {}, false);
+    }
     Clickstream.sendEvent("product_listing", {
       event_type: "impression",
       query: sg(() => eventData.slug["q"]),
@@ -372,6 +376,10 @@ if (typeof window != "undefined") {
 
   window.FPI.event.on("product.view", (eventData) => {
     Logger({ level: "DEBUG", message: eventData });
+    if (eventData.user && eventData.user.user_id) {
+      //re identify user if the payload contains user id
+      Clickstream.identify(eventData.user.user_id, {}, false);
+    }
     const payload = {
       event_type: "click",
       product_id: sg(() => eventData.product["uid"]),
@@ -410,6 +418,10 @@ if (typeof window != "undefined") {
     };
     //filter eventData.data to find the products array and item total
     let products = [];
+    if (eventData.user && eventData.user.user_id) {
+      //re identify user if the payload contains user id
+      Clickstream.identify(eventData.user.user_id, {}, false);
+    }
     if (eventData.data && eventData.data.length > 0) {
       products = eventData.data
         .filter((item) => {

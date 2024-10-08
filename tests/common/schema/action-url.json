@@ -188,6 +188,18 @@
       "result": {
         "path": "/cart/order-status"
       }
+    },
+    {
+      "name": "Locate us",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "locate-us"
+        }
+      },
+      "result": {
+        "path": "/locate-us"
+      }
     }
   ]
 }

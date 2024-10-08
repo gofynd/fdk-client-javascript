@@ -96,12 +96,15 @@ const Joi = require("joi");
 
 /**
  * @typedef ApplicationBrandJson
- * @property {Object} _custom_json
+ * @property {Object} _custom_json - A custom JSON object containing additional
+ *   brand-specific configurations or data. The structure is flexible and may
+ *   vary based on application needs.
  */
 
 /**
  * @typedef ApplicationCategoryJson
- * @property {Object} _custom_json
+ * @property {Object} _custom_json - A custom JSON object containing additional
+ *   details or configurations specific to the application category.
  */
 
 /**
@@ -344,9 +347,12 @@ const Joi = require("joi");
 
 /**
  * @typedef BannerImage
- * @property {string} [aspect_ratio]
- * @property {string} [type]
- * @property {string} [url]
+ * @property {string} [aspect_ratio] - The aspect ratio of the banner image,
+ *   typically represented as a ratio (e.g., '16:9' or '4:3').
+ * @property {string} [type] - The type of media, such as 'image' or 'banner',
+ *   indicating the format of the banner.
+ * @property {string} [url] - The URL where the banner image is located,
+ *   typically a web address pointing to the image resource.
  */
 
 /**
@@ -373,18 +379,77 @@ const Joi = require("joi");
  * @typedef BrandItem
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {string[]} [departments]
- * @property {string} [discount]
- * @property {Media2} [logo]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {string[]} [departments] - An array of department names or
+ *   categories that the brand belongs to, represented as strings.
+ * @property {string} [discount] - A string representing the discount offered by
+ *   the brand, such as percentage or amount off.
+ * @property {BrandMedia} [logo]
+ * @property {string} [name] - The name of the brand.
+ * @property {string} [slug] - A URL-friendly identifier for the brand, often
+ *   used in website routing.
+ * @property {number} [uid] - A unique identifier for the brand, typically used
+ *   for internal reference.
  */
 
 /**
  * @typedef BrandListingResponse
- * @property {BrandItem[]} [items]
+ * @property {BrandItem[]} [items] - An array of brand items, each containing
+ *   detailed information about the brand, such as action, banners, departments,
+ *   discount, logo, and other related fields.
  * @property {Page} page
+ */
+
+/**
+ * @typedef ApplicationBrandListingItemSchema
+ * @property {Object} [_custom_json] - Custom JSON object for additional data.
+ * @property {Object} [_locale_language] - Custom object for locale-specific
+ *   language data.
+ * @property {string} [brand_banner_portrait_url] - URL of the brand's portrait banner.
+ * @property {string} [brand_banner_url] - URL of the brand's landscape banner.
+ * @property {string} [brand_logo_url] - URL of the brand's logo.
+ * @property {string} [description] - Description of the brand.
+ * @property {string} [name] - Name of the brand.
+ * @property {string} [slug_key] - Unique slug key for the brand.
+ * @property {number} [priority] - Priority of the brand in listing.
+ * @property {number} [uid] - Unique identifier of the brand.
+ * @property {string} [created_on] - Timestamp when the category was created.
+ * @property {string} [last_updated] - Timestamp when the category was created.
+ * @property {boolean} [is_active] - Indicates if the brand is active.
+ * @property {number[]} [departments] - List of department IDs associated with the brand.
+ * @property {string} [modified_on] - Timestamp when the brand was last modified.
+ * @property {boolean} [active] - Boolean indicating whether the brand is
+ *   currently active or not.
+ */
+
+/**
+ * @typedef ApplicationBrandListingSchema
+ * @property {ApplicationBrandListingItemSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef ApplicationCategoryListingSchema
+ * @property {ApplicationCategoryListingItemSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef ApplicationCategoryListingItemSchema
+ * @property {string} [name] - Name of the category.
+ * @property {string} [logo] - URL of the category's logo.
+ * @property {number[]} [departments] - List of department IDs.
+ * @property {string} [attr_name] - Attribute name of the category.
+ * @property {string} [landscape_url] - URL of the landscape banner.
+ * @property {string} [portrait_url] - URL of the portrait banner.
+ * @property {Object} [_custom_json] - Custom JSON object for additional data.
+ * @property {number} [priority] - Priority of the category.
+ * @property {CreatedBy} [created_by]
+ * @property {string} [created_on] - Timestamp when the category was created.
+ * @property {CreatedBy} [modified_by]
+ * @property {string} [modified_on] - Timestamp when the category was last modified.
+ * @property {string} [app_id] - Application ID associated with the category.
+ * @property {boolean} [is_active] - Indicates whether the category is active.
+ * @property {number} [uid] - Unique identifier of the category.
  */
 
 /**
@@ -394,7 +459,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BrandMeta1
+ * @typedef InventoryBrandMeta
  * @property {number} [id]
  * @property {string} [name]
  */
@@ -497,19 +562,26 @@ const Joi = require("joi");
 
 /**
  * @typedef CatalogInsightBrand
- * @property {number} [article_freshness]
- * @property {number} [available_articles]
- * @property {number} [available_sizes]
- * @property {string} [name]
- * @property {number} [total_articles]
- * @property {number} [total_sizes]
+ * @property {number} [article_freshness] - The average freshness of the
+ *   articles based on the time since they were added to the catalog.
+ * @property {number} [available_articles] - The number of articles that are
+ *   currently available for purchase.
+ * @property {number} [available_sizes] - The total number of unique sizes
+ *   available across all articles.
+ * @property {string} [name] - The name of the brand.
+ * @property {number} [total_articles] - The total number of articles listed
+ *   under the brand.
+ * @property {number} [total_sizes] - The total number of sizes offered across
+ *   all articles for the brand.
  */
 
 /**
  * @typedef CatalogInsightItem
- * @property {number} [count]
- * @property {number} [out_of_stock_count]
- * @property {number} [sellable_count]
+ * @property {number} [count] - The total number of catalog items available.
+ * @property {number} [out_of_stock_count] - The number of items that are
+ *   currently out of stock.
+ * @property {number} [sellable_count] - The number of items that are currently
+ *   sellable (in stock).
  */
 
 /**
@@ -556,6 +628,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CategoryItems
+ * @property {Object} [_custom_json]
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
  * @property {Child[]} [childs]
@@ -566,8 +639,12 @@ const Joi = require("joi");
 
 /**
  * @typedef CategoryListingResponse
- * @property {DepartmentCategoryTree[]} [data]
- * @property {DepartmentIdentifier[]} [departments]
+ * @property {DepartmentCategoryTree[]} [data] - An array containing the
+ *   department category trees, which provide hierarchical information about
+ *   categories and their associated departments.
+ * @property {DepartmentIdentifier[]} [departments] - An array of department
+ *   identifiers, each providing basic information like name, slug, and unique
+ *   ID for departments within the catalog.
  */
 
 /**
@@ -595,19 +672,23 @@ const Joi = require("joi");
 
 /**
  * @typedef Child
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom JSON object to store additional
+ *   data for the child.
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {SecondLevelChild[]} [childs]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {SecondLevelChild[]} [childs] - A list of second-level child
+ *   elements under the current child.
+ * @property {string} [name] - Name of the child element.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the child element.
+ * @property {number} [uid] - Unique identifier for the child element.
  */
 
 /**
  * @typedef CollectionBadge
- * @property {string} [color]
- * @property {string} [text]
+ * @property {string} [color] - The color of the badge displayed with the
+ *   collection, typically represented as a string (e.g., a hex code or color name).
+ * @property {string} [text] - The text displayed on the badge, which may
+ *   indicate a label or promotion related to the collection.
  */
 
 /**
@@ -618,26 +699,41 @@ const Joi = require("joi");
 
 /**
  * @typedef CollectionCreateResponse
- * @property {string} [uid]
- * @property {Object} [_schedule]
- * @property {boolean} [allow_facets]
- * @property {boolean} [allow_sort]
- * @property {string} [app_id]
- * @property {Object} [badge]
+ * @property {string} [uid] - Unique identifier for the collection.
+ * @property {CollectionSchedule} [_schedule]
+ * @property {boolean} [allow_facets] - Indicates whether facet-based filtering
+ *   is allowed for the collection.
+ * @property {boolean} [allow_sort] - Indicates whether sorting options are
+ *   allowed for the collection.
+ * @property {string} [app_id] - The application ID associated with the collection.
+ * @property {Object} [badge] - Details of the badge associated with the collection.
  * @property {ImageUrls} [banners]
- * @property {Object} [cron]
- * @property {string} [description]
- * @property {boolean} [is_active]
+ * @property {string} [description] - A description of the collection.
+ * @property {boolean} [is_active] - Indicates whether the collection is currently active.
  * @property {BannerImage} [logo]
- * @property {Object} [meta]
- * @property {string} [name]
- * @property {number} [priority]
- * @property {CollectionQuery[]} [query]
- * @property {string} [slug]
- * @property {string} [sort_on]
- * @property {string[]} [tag]
- * @property {string} [type]
- * @property {string[]} [visible_facets_keys]
+ * @property {Object} [meta] - Additional metadata related to the collection.
+ * @property {string} [name] - The name of the collection.
+ * @property {number} [priority] - The priority level of the collection, used to
+ *   determine its display order.
+ * @property {CollectionQuery[]} [query] - Query objects that define how the
+ *   collection's items are retrieved or filtered.
+ * @property {string} [slug] - The URL-friendly identifier for the collection.
+ * @property {string} [sort_on] - The default sorting order for items in the
+ *   collection, e.g., 'popular'.
+ * @property {string[]} [tag] - Array of tags associated with the collection for
+ *   categorization and filtering.
+ * @property {string} [type] - The type of collection, such as 'items' for
+ *   manually added items or 'query' for dynamically fetched items.
+ * @property {string[]} [visible_facets_keys] - Keys of the facets that are
+ *   visible and can be used for filtering the collection.
+ * @property {boolean} [published] - Indicates whether the collection is published.
+ * @property {string[]} [tags] - List of tags associated with the collection.
+ * @property {Action} [action]
+ * @property {Object} [_custom_json] - Custom JSON data for additional information.
+ * @property {Object} [_locale_language] - Locale language settings for the collection.
+ * @property {SeoDetail} [seo]
+ * @property {boolean} [is_visible] - Indicates if the collection is visible to users.
+ * @property {string} [id] - Unique identifier for the collection.
  */
 
 /**
@@ -665,8 +761,11 @@ const Joi = require("joi");
 
 /**
  * @typedef CollectionImage
- * @property {string} aspect_ratio
- * @property {string} url
+ * @property {string} aspect_ratio - The aspect ratio of the image, typically
+ *   represented as a string (e.g., "16:9" or "4:3") to indicate the
+ *   proportional relationship between the image's width and height.
+ * @property {string} url - The URL of the image, which provides the location
+ *   where the image is hosted and can be accessed.
  */
 
 /**
@@ -688,22 +787,24 @@ const Joi = require("joi");
 
 /**
  * @typedef CollectionListingFilter
- * @property {CollectionListingFilterTag[]} [tags]
- * @property {CollectionListingFilterType[]} [type]
+ * @property {CollectionListingFilterTag[]} [tags] - A list of tags used to
+ *   filter the collection listing.
+ * @property {CollectionListingFilterType[]} [type] - A list of types used to
+ *   filter the collection listing.
  */
 
 /**
  * @typedef CollectionListingFilterTag
- * @property {string} [display]
- * @property {boolean} [is_selected]
- * @property {string} [name]
+ * @property {string} [display] - The display name of the tag for the collection listing.
+ * @property {boolean} [is_selected] - Indicates whether the tag is currently selected.
+ * @property {string} [name] - The name of the tag.
  */
 
 /**
  * @typedef CollectionListingFilterType
- * @property {string} [display]
- * @property {boolean} [is_selected]
- * @property {string} [name]
+ * @property {string} [display] - The display name of the type for the collection listing.
+ * @property {boolean} [is_selected] - Indicates whether the type is currently selected.
+ * @property {string} [name] - The internal name of the type.
  */
 
 /**
@@ -716,11 +817,17 @@ const Joi = require("joi");
 
 /**
  * @typedef CollectionSchedule
- * @property {string} [cron]
- * @property {number} [duration]
- * @property {string} [end]
- * @property {NextSchedule[]} [next_schedule]
- * @property {string} [start]
+ * @property {string} [cron] - The cron expression that defines the scheduling
+ *   pattern, allowing for tasks or events to be repeated at specific intervals
+ *   (e.g., daily, weekly).
+ * @property {number} [duration] - The duration in seconds for which the
+ *   collection is active or valid.
+ * @property {string} [end] - The end date and time for the collection's
+ *   schedule, formatted as a date-time string.
+ * @property {NextSchedule[]} [next_schedule] - The next set of scheduled times
+ *   when the collection will become active, based on the cron expression.
+ * @property {string} [start] - The start date and time for the collection's
+ *   schedule, formatted as a date-time string.
  */
 
 /**
@@ -737,7 +844,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyMeta1
+ * @typedef InventoryCompanyMeta
  * @property {number} [id]
  */
 
@@ -879,31 +986,45 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateCollection
- * @property {Object} [_custom_json]
- * @property {Object} [_locale_language]
+ * @property {Object} [_custom_json] - Custom JSON data for the collection, used
+ *   for any additional information.
+ * @property {Object} [_locale_language] - Locale-specific data for supporting
+ *   multiple languages.
  * @property {CollectionSchedule} [_schedule]
- * @property {boolean} [allow_facets]
- * @property {boolean} [allow_sort]
- * @property {string} app_id
+ * @property {boolean} [allow_facets] - Indicates whether facet-based filtering
+ *   is allowed for the collection.
+ * @property {boolean} [allow_sort] - Indicates whether sorting options are
+ *   allowed for the collection.
+ * @property {string} app_id - The application ID associated with the collection.
  * @property {CollectionBadge} [badge]
  * @property {CollectionBanner} banners
- * @property {UserInfo} [created_by]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_visible]
+ * @property {UserInfo} [created_by] - Information about the user who created
+ *   the collection.
+ * @property {string} [description] - A description of the collection.
+ * @property {boolean} [is_active] - Indicates whether the collection is currently active.
+ * @property {boolean} [is_visible] - Indicates whether the collection is
+ *   visible to users.
  * @property {CollectionImage} logo
- * @property {Object} [meta]
- * @property {UserInfo} [modified_by]
- * @property {string} name
- * @property {number} [priority]
- * @property {boolean} [published]
- * @property {CollectionQuery[]} [query]
+ * @property {Object} [meta] - Additional metadata related to the collection.
+ * @property {UserInfo} [modified_by] - Information about the user who last
+ *   modified the collection.
+ * @property {string} name - The name of the collection.
+ * @property {number} [priority] - The priority level of the collection, used to
+ *   determine its display order.
+ * @property {boolean} [published] - Indicates whether the collection is
+ *   published and available to users.
+ * @property {CollectionQuery[]} [query] - Query objects that define how the
+ *   collection's items are retrieved or filtered.
  * @property {SeoDetail} [seo]
- * @property {string} slug
- * @property {string} [sort_on]
- * @property {string[]} [tags]
- * @property {string} type
- * @property {string[]} [visible_facets_keys]
+ * @property {string} slug - The URL-friendly identifier for the collection.
+ * @property {string} [sort_on] - The default sorting order for items in the
+ *   collection, e.g., 'popular'.
+ * @property {string[]} [tags] - Array of tags associated with the collection
+ *   for categorization and filtering.
+ * @property {string} type - The type of collection, either 'items' for manually
+ *   added items or 'query' for dynamically fetched items.
+ * @property {string[]} [visible_facets_keys] - Keys of the facets that are
+ *   visible and can be used for filtering the collection.
  */
 
 /**
@@ -1008,8 +1129,10 @@ const Joi = require("joi");
 
 /**
  * @typedef DepartmentCategoryTree
- * @property {string} [department]
- * @property {CategoryItems[]} [items]
+ * @property {string} [department] - The name of the department that this
+ *   category tree belongs to, such as 'Men', 'Women', or 'Electronics'.
+ * @property {CategoryItems[]} [items] - An array of categories that fall under
+ *   the specified department, each containing details about category items.
  */
 
 /**
@@ -1023,8 +1146,12 @@ const Joi = require("joi");
 
 /**
  * @typedef DepartmentIdentifier
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {string} [name] - The name of the department, such as
+ *   'Electronics', 'Apparel', or 'Home Appliances'.
+ * @property {string} [slug] - A URL-friendly identifier for the department,
+ *   often used in creating department-specific links or routes.
+ * @property {number} [uid] - A unique identifier for the department, used to
+ *   distinguish it from other departments in the system.
  */
 
 /**
@@ -1048,7 +1175,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DimensionResponse1
+ * @typedef InventoryDimensionResponse
  * @property {number} [height]
  * @property {number} [length]
  * @property {string} [unit]
@@ -1076,11 +1203,12 @@ const Joi = require("joi");
 
 /**
  * @typedef ErrorResponse
- * @property {string} [code]
- * @property {string} [error]
- * @property {string} [message]
- * @property {Object} [meta]
- * @property {number} [status]
+ * @property {string} [code] - A string representing the specific error code.
+ * @property {string} [error] - A brief description of the error type.
+ * @property {string} [message] - A detailed message explaining the error.
+ * @property {Object} [meta] - Additional metadata or context about the error,
+ *   if available.
+ * @property {number} [status] - The HTTP status code associated with the error.
  */
 
 /**
@@ -1254,40 +1382,54 @@ const Joi = require("joi");
 
 /**
  * @typedef GetCollectionDetailNest
- * @property {Object} [_schedule]
+ * @property {CollectionSchedule} [_schedule]
  * @property {Action} [action]
- * @property {boolean} [allow_facets]
- * @property {boolean} [allow_sort]
- * @property {string} [app_id]
- * @property {Object} [badge]
+ * @property {boolean} [allow_facets] - Indicates whether facets are allowed for
+ *   filtering the collection.
+ * @property {boolean} [allow_sort] - Indicates whether sorting options are
+ *   allowed for the collection.
+ * @property {string} [app_id] - The application ID associated with the collection.
+ * @property {CollectionBadge} [badge]
  * @property {ImageUrls} [banners]
- * @property {Object} [cron]
- * @property {string} [description]
- * @property {boolean} [is_active]
+ * @property {string} [description] - A description of the collection.
+ * @property {boolean} [is_active] - Indicates whether the collection is currently active.
  * @property {Media} [logo]
- * @property {Object} [meta]
- * @property {string} [name]
- * @property {number} [priority]
- * @property {CollectionQuery[]} [query]
- * @property {string} [slug]
- * @property {string[]} [tag]
- * @property {string} [type]
- * @property {string} [uid]
- * @property {string[]} [visible_facets_keys]
+ * @property {Object} [meta] - Additional metadata related to the collection.
+ * @property {string} [name] - The name of the collection.
+ * @property {number} [priority] - The priority level of the collection in the
+ *   display list.
+ * @property {CollectionQuery[]} [query] - Array of queries that define how the
+ *   collection is fetched or filtered.
+ * @property {string} [slug] - The URL-friendly identifier of the collection.
+ * @property {string[]} [tag] - Array of tags associated with the collection.
+ * @property {string} [type] - The type of collection, such as manual or automated.
+ * @property {string} [uid] - The unique identifier for the collection.
+ * @property {string[]} [visible_facets_keys] - List of facet keys that are
+ *   visible for filtering the collection.
+ * @property {string} [_id] - Internal identifier for the collection.
+ * @property {boolean} [published] - Indicates if the collection is published.
+ * @property {string[]} [tags] - Tags associated with the collection.
+ * @property {string} [sort_on] - Sort criteria for the collection.
+ * @property {Object} [_custom_json] - Custom JSON data for the collection.
+ * @property {Object} [_locale_language] - Locale-specific language settings.
+ * @property {SeoDetail} [seo]
+ * @property {boolean} [is_visible] - Indicates if the collection is visible.
  */
 
 /**
  * @typedef GetCollectionItemsResponse
- * @property {ProductFilters[]} [filters]
- * @property {ProductListingDetail[]} [items]
+ * @property {ProductFilters[]} [filters] - An array of filters applicable to
+ *   the products in the collection.
+ * @property {ProductListingDetail[]} [items] - List of product details in the collection.
  * @property {Page} [page]
- * @property {ProductSortOn[]} [sort_on]
+ * @property {ProductSortOn[]} [sort_on] - Sorting options available for the
+ *   products in the collection.
  */
 
 /**
  * @typedef GetCollectionListingResponse
  * @property {CollectionListingFilter} [filters]
- * @property {GetCollectionDetailNest[]} [items]
+ * @property {GetCollectionDetailNest[]} [items] - Array of nested collection details.
  * @property {Page} [page]
  */
 
@@ -1363,12 +1505,12 @@ const Joi = require("joi");
 
 /**
  * @typedef GetDepartment
- * @property {UserSerializer1} [created_by]
+ * @property {RequestUserSerializer} [created_by]
  * @property {string} [created_on]
  * @property {boolean} [is_active]
  * @property {string} [item_type]
  * @property {string} [logo]
- * @property {UserSerializer1} [modified_by]
+ * @property {RequestUserSerializer} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {number} [page_no]
@@ -1382,24 +1524,24 @@ const Joi = require("joi");
 
 /**
  * @typedef GetInventories
- * @property {BrandMeta1} [brand]
- * @property {CompanyMeta1} [company]
+ * @property {InventoryBrandMeta} [brand]
+ * @property {InventoryCompanyMeta} [company]
  * @property {string} [country_of_origin]
- * @property {UserSerializer1} [created_by]
+ * @property {RequestUserSerializer} [created_by]
  * @property {DateMeta} [date_meta]
- * @property {DimensionResponse1} [dimension]
+ * @property {InventoryDimensionResponse} [dimension]
  * @property {string} [expiration_date]
  * @property {string} [id]
  * @property {Object} [identifier]
  * @property {string} [inventory_updated_on]
  * @property {boolean} [is_set]
  * @property {number} [item_id]
- * @property {ManufacturerResponse1} [manufacturer]
- * @property {UserSerializer1} [modified_by]
+ * @property {InventoryManufacturerResponse} [manufacturer]
+ * @property {RequestUserSerializer} [modified_by]
  * @property {Object} [platforms]
  * @property {PriceArticle} [price]
  * @property {QuantitiesArticle} [quantities]
- * @property {ReturnConfig2} [return_config]
+ * @property {ReturnConfig} [return_config]
  * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {string} [stage]
@@ -1409,9 +1551,9 @@ const Joi = require("joi");
  * @property {number} [total_quantity]
  * @property {string} [trace_id]
  * @property {boolean} [track_inventory]
- * @property {Trader2[]} [trader]
+ * @property {TraderResponse[]} [trader]
  * @property {string} [uid]
- * @property {WeightResponse1} [weight]
+ * @property {InventoryWeightResponse} [weight]
  */
 
 /**
@@ -2198,7 +2340,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ManufacturerResponse1
+ * @typedef InventoryManufacturerResponse
  * @property {string} [address]
  * @property {boolean} [is_default]
  * @property {string} [name]
@@ -2223,6 +2365,16 @@ const Joi = require("joi");
  * @property {string} [aspect_ratio]
  * @property {string} [type]
  * @property {string} [url]
+ */
+
+/**
+ * @typedef BrandMedia
+ * @property {string} [aspect_ratio] - The aspect ratio of the media, typically
+ *   represented as a string like '16:9' or '4:3'.
+ * @property {string} [type] - The type of media, such as 'image', 'video', or
+ *   'audio', describing the content format.
+ * @property {string} [url] - The URL where the media file is hosted, typically
+ *   a link to an image or video resource.
  */
 
 /**
@@ -2285,8 +2437,8 @@ const Joi = require("joi");
 
 /**
  * @typedef NextSchedule
- * @property {string} [end]
- * @property {string} [start]
+ * @property {string} [end] - The end time of the schedule.
+ * @property {string} [start] - The start time of the schedule.
  */
 
 /**
@@ -2366,16 +2518,6 @@ const Joi = require("joi");
  * @property {number} [item_total] - It is the total number of item present for
  *   the filter.
  * @property {number} [size] - It is the size of each page.
- */
-
-/**
- * @typedef PageResponse1
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
  */
 
 /**
@@ -3063,38 +3205,44 @@ const Joi = require("joi");
 
 /**
  * @typedef Sitemap
- * @property {number} [priority]
- * @property {string} [frequency]
+ * @property {number} [priority] - Indicates the priority of this URL relative
+ *   to other URLs on the site. A value between 0.0 and 1.0, where 1.0 is the
+ *   highest priority.
+ * @property {string} [frequency] - How frequently the content at the URL is
+ *   likely to change.
  */
 
 /**
  * @typedef ApplicationItemSeoAction
- * @property {Object} [page]
- * @property {string} type
+ * @property {Object} [page] - Details of the page associated with this SEO action.
+ * @property {string} type - Type of action, such as navigation or redirection.
  */
 
 /**
  * @typedef ApplicationItemSeoBreadcrumbs
- * @property {string} [url]
- * @property {ApplicationItemSeoAction[]} [action]
+ * @property {string} [url] - The URL that this breadcrumb points to.
+ * @property {ApplicationItemSeoAction[]} [action] - The actions available for
+ *   this breadcrumb, defining what happens when it's clicked or interacted with.
  */
 
 /**
  * @typedef ApplicationItemSeoMetaTagItem
- * @property {string} key
- * @property {string} value
+ * @property {string} key - The name of the meta tag.
+ * @property {string} value - The value associated with the meta tag.
  */
 
 /**
  * @typedef ApplicationItemSeoMetaTags
- * @property {string} title
- * @property {ApplicationItemSeoMetaTagItem[]} [items]
+ * @property {string} title - The title for this set of meta tags.
+ * @property {ApplicationItemSeoMetaTagItem[]} [items] - A list of meta tag
+ *   items, each defined by key-value pairs.
  */
 
 /**
  * @typedef Metatags
- * @property {string} [title]
- * @property {ApplicationItemSeoMetaTagItem[]} [items]
+ * @property {string} [title] - The title or heading for the meta tags section.
+ * @property {ApplicationItemSeoMetaTagItem[]} [items] - An array of meta tag
+ *   items, each consisting of key-value pairs.
  */
 
 /**
@@ -3131,13 +3279,16 @@ const Joi = require("joi");
 
 /**
  * @typedef SecondLevelChild
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom JSON object to store additional
+ *   data for the second-level child.
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {ThirdLevelChild[]} [childs]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {ThirdLevelChild[]} [childs] - A list of third-level child elements
+ *   under the second-level child.
+ * @property {string} [name] - Name of the second-level child element.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the
+ *   second-level child element.
+ * @property {number} [uid] - Unique identifier for the second-level child element.
  */
 
 /**
@@ -3148,12 +3299,20 @@ const Joi = require("joi");
 
 /**
  * @typedef SeoDetail
- * @property {string} [description]
- * @property {string} [title]
- * @property {Object} [sitemap]
- * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs]
- * @property {Metatags[]} [meta_tags]
- * @property {string} [canonical_url]
+ * @property {string} [description] - SEO meta description for the item or
+ *   collection. This is used to describe the content for search engines.
+ * @property {string} [title] - SEO meta title for the item or collection. It is
+ *   used as the title that appears in search results.
+ * @property {Object} [sitemap] - Information regarding the sitemap
+ *   configuration for the item or collection.
+ * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs] - List of
+ *   breadcrumbs for navigation, showing the hierarchy of pages leading to the
+ *   current page.
+ * @property {Metatags[]} [meta_tags] - An array of meta tags, each containing
+ *   key-value pairs for various SEO meta tags used to enhance search visibility.
+ * @property {string} [canonical_url] - The canonical URL for the item or
+ *   collection, which tells search engines the preferred version of the URL to
+ *   avoid duplicate content issues.
  */
 
 /**
@@ -3251,9 +3410,10 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SuccessResponse1
- * @property {boolean} [success]
- * @property {number} [uid]
+ * @typedef SuccessResponseObject
+ * @property {boolean} [success] - Indicates whether the operation was successful or not.
+ * @property {number} [uid] - A unique identifier associated with the successful
+ *   operation.
  */
 
 /**
@@ -3314,13 +3474,16 @@ const Joi = require("joi");
 
 /**
  * @typedef ThirdLevelChild
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom JSON object to store additional
+ *   data for the third-level child.
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {Object[]} [childs]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {Object[]} [childs] - A list of further nested child elements under
+ *   the third-level child (if applicable).
+ * @property {string} [name] - Name of the third-level child element.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the
+ *   third-level child element.
+ * @property {number} [uid] - Unique identifier for the third-level child element.
  */
 
 /**
@@ -3338,7 +3501,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Trader2
+ * @typedef TraderResponse
  * @property {string[]} [address]
  * @property {string} [name]
  * @property {string} [type]
@@ -3358,7 +3521,7 @@ const Joi = require("joi");
  * @property {boolean} [is_visible]
  * @property {CollectionImage} [logo]
  * @property {Object} [meta]
- * @property {string} [modified_by] - User info.
+ * @property {UserInfo} [modified_by]
  * @property {string} [name]
  * @property {number} [priority]
  * @property {boolean} [published]
@@ -3455,7 +3618,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserSerializer1
+ * @typedef RequestUserSerializer
  * @property {string} [_id]
  * @property {string} [contact]
  * @property {string} [uid]
@@ -3522,7 +3685,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef WeightResponse1
+ * @typedef InventoryWeightResponse
  * @property {number} [shipping]
  * @property {string} [unit]
  */
@@ -3633,7 +3796,8 @@ const Joi = require("joi");
  *   | "register"
  *   | "shipping-policy"
  *   | "return-policy"
- *   | "order-status"} PageType
+ *   | "order-status"
+ *   | "locate-us"} PageType
  */
 
 class CatalogPlatformModel {
@@ -4104,7 +4268,7 @@ class CatalogPlatformModel {
       banners: CatalogPlatformModel.ImageUrls(),
       departments: Joi.array().items(Joi.string().allow("")),
       discount: Joi.string().allow(""),
-      logo: CatalogPlatformModel.Media2(),
+      logo: CatalogPlatformModel.BrandMedia(),
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       uid: Joi.number(),
@@ -4119,6 +4283,69 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {ApplicationBrandListingItemSchema} */
+  static ApplicationBrandListingItemSchema() {
+    return Joi.object({
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _locale_language: Joi.object().pattern(/\S/, Joi.any()),
+      brand_banner_portrait_url: Joi.string().allow(""),
+      brand_banner_url: Joi.string().allow(""),
+      brand_logo_url: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      slug_key: Joi.string().allow(""),
+      priority: Joi.number(),
+      uid: Joi.number(),
+      created_on: Joi.string().allow(""),
+      last_updated: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      departments: Joi.array().items(Joi.number()),
+      modified_on: Joi.string().allow(""),
+      active: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ApplicationBrandListingSchema} */
+  static ApplicationBrandListingSchema() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.ApplicationBrandListingItemSchema()
+      ),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {ApplicationCategoryListingSchema} */
+  static ApplicationCategoryListingSchema() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.ApplicationCategoryListingItemSchema()
+      ),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {ApplicationCategoryListingItemSchema} */
+  static ApplicationCategoryListingItemSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+      departments: Joi.array().items(Joi.number()),
+      attr_name: Joi.string().allow(""),
+      landscape_url: Joi.string().allow(""),
+      portrait_url: Joi.string().allow(""),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      priority: Joi.number(),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      created_on: Joi.string().allow(""),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      modified_on: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      uid: Joi.number(),
+    });
+  }
+
   /** @returns {BrandMeta} */
   static BrandMeta() {
     return Joi.object({
@@ -4127,8 +4354,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {BrandMeta1} */
-  static BrandMeta1() {
+  /** @returns {InventoryBrandMeta} */
+  static InventoryBrandMeta() {
     return Joi.object({
       id: Joi.number(),
       name: Joi.string().allow(""),
@@ -4316,6 +4543,7 @@ class CatalogPlatformModel {
   /** @returns {CategoryItems} */
   static CategoryItems() {
     return Joi.object({
+      _custom_json: Joi.any().allow(null),
       action: CatalogPlatformModel.Action(),
       banners: CatalogPlatformModel.ImageUrls(),
       childs: Joi.array().items(CatalogPlatformModel.Child()),
@@ -4393,13 +4621,12 @@ class CatalogPlatformModel {
   static CollectionCreateResponse() {
     return Joi.object({
       uid: Joi.string().allow(""),
-      _schedule: Joi.any(),
+      _schedule: CatalogPlatformModel.CollectionSchedule(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
       badge: Joi.any(),
       banners: CatalogPlatformModel.ImageUrls(),
-      cron: Joi.any(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
       logo: CatalogPlatformModel.BannerImage(),
@@ -4412,6 +4639,14 @@ class CatalogPlatformModel {
       tag: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+      published: Joi.boolean(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      action: CatalogPlatformModel.Action(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _locale_language: Joi.object().pattern(/\S/, Joi.any()),
+      seo: CatalogPlatformModel.SeoDetail(),
+      is_visible: Joi.boolean(),
+      id: Joi.string().allow(""),
     });
   }
 
@@ -4536,8 +4771,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {CompanyMeta1} */
-  static CompanyMeta1() {
+  /** @returns {InventoryCompanyMeta} */
+  static InventoryCompanyMeta() {
     return Joi.object({
       id: Joi.number(),
     });
@@ -4727,7 +4962,7 @@ class CatalogPlatformModel {
   static CreateCollection() {
     return Joi.object({
       _custom_json: Joi.any(),
-      _locale_language: Joi.any(),
+      _locale_language: Joi.object().pattern(/\S/, Joi.any()),
       _schedule: CatalogPlatformModel.CollectionSchedule(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
@@ -4896,6 +5131,7 @@ class CatalogPlatformModel {
   /** @returns {DepartmentIdentifier} */
   static DepartmentIdentifier() {
     return Joi.object({
+      name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       uid: Joi.number(),
     });
@@ -4927,8 +5163,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {DimensionResponse1} */
-  static DimensionResponse1() {
+  /** @returns {InventoryDimensionResponse} */
+  static InventoryDimensionResponse() {
     return Joi.object({
       height: Joi.number(),
       length: Joi.number(),
@@ -5171,14 +5407,13 @@ class CatalogPlatformModel {
   /** @returns {GetCollectionDetailNest} */
   static GetCollectionDetailNest() {
     return Joi.object({
-      _schedule: Joi.any(),
+      _schedule: CatalogPlatformModel.CollectionSchedule(),
       action: CatalogPlatformModel.Action(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
-      badge: Joi.any(),
+      badge: CatalogPlatformModel.CollectionBadge(),
       banners: CatalogPlatformModel.ImageUrls(),
-      cron: Joi.any(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
       logo: CatalogPlatformModel.Media(),
@@ -5191,6 +5426,14 @@ class CatalogPlatformModel {
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+      _id: Joi.string().allow(""),
+      published: Joi.boolean(),
+      tags: Joi.array().items(Joi.string().allow("")),
+      sort_on: Joi.string().allow(""),
+      _custom_json: Joi.any(),
+      _locale_language: Joi.any(),
+      seo: CatalogPlatformModel.SeoDetail(),
+      is_visible: Joi.boolean(),
     });
   }
 
@@ -5304,12 +5547,12 @@ class CatalogPlatformModel {
   /** @returns {GetDepartment} */
   static GetDepartment() {
     return Joi.object({
-      created_by: CatalogPlatformModel.UserSerializer1(),
+      created_by: CatalogPlatformModel.RequestUserSerializer(),
       created_on: Joi.string().allow(""),
       is_active: Joi.boolean(),
       item_type: Joi.string().allow(""),
       logo: Joi.string().allow(""),
-      modified_by: CatalogPlatformModel.UserSerializer1(),
+      modified_by: CatalogPlatformModel.RequestUserSerializer(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       page_no: Joi.number(),
@@ -5325,24 +5568,24 @@ class CatalogPlatformModel {
   /** @returns {GetInventories} */
   static GetInventories() {
     return Joi.object({
-      brand: CatalogPlatformModel.BrandMeta1(),
-      company: CatalogPlatformModel.CompanyMeta1(),
+      brand: CatalogPlatformModel.InventoryBrandMeta(),
+      company: CatalogPlatformModel.InventoryCompanyMeta(),
       country_of_origin: Joi.string().allow(""),
-      created_by: CatalogPlatformModel.UserSerializer1(),
+      created_by: CatalogPlatformModel.RequestUserSerializer(),
       date_meta: CatalogPlatformModel.DateMeta(),
-      dimension: CatalogPlatformModel.DimensionResponse1(),
+      dimension: CatalogPlatformModel.InventoryDimensionResponse(),
       expiration_date: Joi.string().allow(""),
       id: Joi.string().allow(""),
       identifier: Joi.any(),
       inventory_updated_on: Joi.string().allow(""),
       is_set: Joi.boolean(),
       item_id: Joi.number(),
-      manufacturer: CatalogPlatformModel.ManufacturerResponse1(),
-      modified_by: CatalogPlatformModel.UserSerializer1(),
+      manufacturer: CatalogPlatformModel.InventoryManufacturerResponse(),
+      modified_by: CatalogPlatformModel.RequestUserSerializer(),
       platforms: Joi.any(),
       price: CatalogPlatformModel.PriceArticle(),
       quantities: CatalogPlatformModel.QuantitiesArticle(),
-      return_config: CatalogPlatformModel.ReturnConfig2(),
+      return_config: CatalogPlatformModel.ReturnConfig(),
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
       stage: Joi.string().allow(""),
@@ -5352,9 +5595,9 @@ class CatalogPlatformModel {
       total_quantity: Joi.number(),
       trace_id: Joi.string().allow(""),
       track_inventory: Joi.boolean(),
-      trader: Joi.array().items(CatalogPlatformModel.Trader2()),
+      trader: Joi.array().items(CatalogPlatformModel.TraderResponse()),
       uid: Joi.string().allow(""),
-      weight: CatalogPlatformModel.WeightResponse1(),
+      weight: CatalogPlatformModel.InventoryWeightResponse(),
     });
   }
 
@@ -6267,8 +6510,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {ManufacturerResponse1} */
-  static ManufacturerResponse1() {
+  /** @returns {InventoryManufacturerResponse} */
+  static InventoryManufacturerResponse() {
     return Joi.object({
       address: Joi.string().allow(""),
       is_default: Joi.boolean(),
@@ -6296,6 +6539,15 @@ class CatalogPlatformModel {
 
   /** @returns {Media2} */
   static Media2() {
+    return Joi.object({
+      aspect_ratio: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BrandMedia} */
+  static BrandMedia() {
     return Joi.object({
       aspect_ratio: Joi.string().allow(""),
       type: Joi.string().allow(""),
@@ -6480,18 +6732,6 @@ class CatalogPlatformModel {
       has_previous: Joi.boolean(),
       item_total: Joi.number(),
       size: Joi.number(),
-    });
-  }
-
-  /** @returns {PageResponse1} */
-  static PageResponse1() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      size: Joi.number(),
-      type: Joi.string().allow(""),
     });
   }
 
@@ -7545,8 +7785,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {SuccessResponse1} */
-  static SuccessResponse1() {
+  /** @returns {SuccessResponseObject} */
+  static SuccessResponseObject() {
     return Joi.object({
       success: Joi.boolean(),
       uid: Joi.number(),
@@ -7654,8 +7894,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {Trader2} */
-  static Trader2() {
+  /** @returns {TraderResponse} */
+  static TraderResponse() {
     return Joi.object({
       address: Joi.array().items(Joi.string().allow("")),
       name: Joi.string().allow(""),
@@ -7678,7 +7918,7 @@ class CatalogPlatformModel {
       is_visible: Joi.boolean(),
       logo: CatalogPlatformModel.CollectionImage(),
       meta: Joi.any(),
-      modified_by: Joi.string().allow("").allow(null),
+      modified_by: CatalogPlatformModel.UserInfo(),
       name: Joi.string().allow(""),
       priority: Joi.number(),
       published: Joi.boolean(),
@@ -7788,8 +8028,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {UserSerializer1} */
-  static UserSerializer1() {
+  /** @returns {RequestUserSerializer} */
+  static RequestUserSerializer() {
     return Joi.object({
       _id: Joi.string().allow(""),
       contact: Joi.string().allow(""),
@@ -7871,8 +8111,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {WeightResponse1} */
-  static WeightResponse1() {
+  /** @returns {InventoryWeightResponse} */
+  static InventoryWeightResponse() {
     return Joi.object({
       shipping: Joi.number(),
       unit: Joi.string().allow(""),
@@ -8055,7 +8295,9 @@ class CatalogPlatformModel {
 
       "return-policy",
 
-      "order-status"
+      "order-status",
+
+      "locate-us"
     );
   }
 }

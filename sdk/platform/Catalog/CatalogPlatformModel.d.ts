@@ -86,11 +86,14 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef ApplicationBrandJson
- * @property {Object} _custom_json
+ * @property {Object} _custom_json - A custom JSON object containing additional
+ *   brand-specific configurations or data. The structure is flexible and may
+ *   vary based on application needs.
  */
 /**
  * @typedef ApplicationCategoryJson
- * @property {Object} _custom_json
+ * @property {Object} _custom_json - A custom JSON object containing additional
+ *   details or configurations specific to the application category.
  */
 /**
  * @typedef ApplicationDepartment
@@ -304,9 +307,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef BannerImage
- * @property {string} [aspect_ratio]
- * @property {string} [type]
- * @property {string} [url]
+ * @property {string} [aspect_ratio] - The aspect ratio of the banner image,
+ *   typically represented as a ratio (e.g., '16:9' or '4:3').
+ * @property {string} [type] - The type of media, such as 'image' or 'banner',
+ *   indicating the format of the banner.
+ * @property {string} [url] - The URL where the banner image is located,
+ *   typically a web address pointing to the image resource.
  */
 /**
  * @typedef BaseAppCategoryReturnConfig
@@ -329,17 +335,72 @@ export = CatalogPlatformModel;
  * @typedef BrandItem
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {string[]} [departments]
- * @property {string} [discount]
- * @property {Media2} [logo]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {string[]} [departments] - An array of department names or
+ *   categories that the brand belongs to, represented as strings.
+ * @property {string} [discount] - A string representing the discount offered by
+ *   the brand, such as percentage or amount off.
+ * @property {BrandMedia} [logo]
+ * @property {string} [name] - The name of the brand.
+ * @property {string} [slug] - A URL-friendly identifier for the brand, often
+ *   used in website routing.
+ * @property {number} [uid] - A unique identifier for the brand, typically used
+ *   for internal reference.
  */
 /**
  * @typedef BrandListingResponse
- * @property {BrandItem[]} [items]
+ * @property {BrandItem[]} [items] - An array of brand items, each containing
+ *   detailed information about the brand, such as action, banners, departments,
+ *   discount, logo, and other related fields.
  * @property {Page} page
+ */
+/**
+ * @typedef ApplicationBrandListingItemSchema
+ * @property {Object} [_custom_json] - Custom JSON object for additional data.
+ * @property {Object} [_locale_language] - Custom object for locale-specific
+ *   language data.
+ * @property {string} [brand_banner_portrait_url] - URL of the brand's portrait banner.
+ * @property {string} [brand_banner_url] - URL of the brand's landscape banner.
+ * @property {string} [brand_logo_url] - URL of the brand's logo.
+ * @property {string} [description] - Description of the brand.
+ * @property {string} [name] - Name of the brand.
+ * @property {string} [slug_key] - Unique slug key for the brand.
+ * @property {number} [priority] - Priority of the brand in listing.
+ * @property {number} [uid] - Unique identifier of the brand.
+ * @property {string} [created_on] - Timestamp when the category was created.
+ * @property {string} [last_updated] - Timestamp when the category was created.
+ * @property {boolean} [is_active] - Indicates if the brand is active.
+ * @property {number[]} [departments] - List of department IDs associated with the brand.
+ * @property {string} [modified_on] - Timestamp when the brand was last modified.
+ * @property {boolean} [active] - Boolean indicating whether the brand is
+ *   currently active or not.
+ */
+/**
+ * @typedef ApplicationBrandListingSchema
+ * @property {ApplicationBrandListingItemSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef ApplicationCategoryListingSchema
+ * @property {ApplicationCategoryListingItemSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef ApplicationCategoryListingItemSchema
+ * @property {string} [name] - Name of the category.
+ * @property {string} [logo] - URL of the category's logo.
+ * @property {number[]} [departments] - List of department IDs.
+ * @property {string} [attr_name] - Attribute name of the category.
+ * @property {string} [landscape_url] - URL of the landscape banner.
+ * @property {string} [portrait_url] - URL of the portrait banner.
+ * @property {Object} [_custom_json] - Custom JSON object for additional data.
+ * @property {number} [priority] - Priority of the category.
+ * @property {CreatedBy} [created_by]
+ * @property {string} [created_on] - Timestamp when the category was created.
+ * @property {CreatedBy} [modified_by]
+ * @property {string} [modified_on] - Timestamp when the category was last modified.
+ * @property {string} [app_id] - Application ID associated with the category.
+ * @property {boolean} [is_active] - Indicates whether the category is active.
+ * @property {number} [uid] - Unique identifier of the category.
  */
 /**
  * @typedef BrandMeta
@@ -347,7 +408,7 @@ export = CatalogPlatformModel;
  * @property {string} name
  */
 /**
- * @typedef BrandMeta1
+ * @typedef InventoryBrandMeta
  * @property {number} [id]
  * @property {string} [name]
  */
@@ -439,18 +500,25 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CatalogInsightBrand
- * @property {number} [article_freshness]
- * @property {number} [available_articles]
- * @property {number} [available_sizes]
- * @property {string} [name]
- * @property {number} [total_articles]
- * @property {number} [total_sizes]
+ * @property {number} [article_freshness] - The average freshness of the
+ *   articles based on the time since they were added to the catalog.
+ * @property {number} [available_articles] - The number of articles that are
+ *   currently available for purchase.
+ * @property {number} [available_sizes] - The total number of unique sizes
+ *   available across all articles.
+ * @property {string} [name] - The name of the brand.
+ * @property {number} [total_articles] - The total number of articles listed
+ *   under the brand.
+ * @property {number} [total_sizes] - The total number of sizes offered across
+ *   all articles for the brand.
  */
 /**
  * @typedef CatalogInsightItem
- * @property {number} [count]
- * @property {number} [out_of_stock_count]
- * @property {number} [sellable_count]
+ * @property {number} [count] - The total number of catalog items available.
+ * @property {number} [out_of_stock_count] - The number of items that are
+ *   currently out of stock.
+ * @property {number} [sellable_count] - The number of items that are currently
+ *   sellable (in stock).
  */
 /**
  * @typedef CatalogInsightResponse
@@ -493,6 +561,7 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CategoryItems
+ * @property {Object} [_custom_json]
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
  * @property {Child[]} [childs]
@@ -502,8 +571,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CategoryListingResponse
- * @property {DepartmentCategoryTree[]} [data]
- * @property {DepartmentIdentifier[]} [departments]
+ * @property {DepartmentCategoryTree[]} [data] - An array containing the
+ *   department category trees, which provide hierarchical information about
+ *   categories and their associated departments.
+ * @property {DepartmentIdentifier[]} [departments] - An array of department
+ *   identifiers, each providing basic information like name, slug, and unique
+ *   ID for departments within the catalog.
  */
 /**
  * @typedef CategoryMapping
@@ -527,18 +600,22 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef Child
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom JSON object to store additional
+ *   data for the child.
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {SecondLevelChild[]} [childs]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {SecondLevelChild[]} [childs] - A list of second-level child
+ *   elements under the current child.
+ * @property {string} [name] - Name of the child element.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the child element.
+ * @property {number} [uid] - Unique identifier for the child element.
  */
 /**
  * @typedef CollectionBadge
- * @property {string} [color]
- * @property {string} [text]
+ * @property {string} [color] - The color of the badge displayed with the
+ *   collection, typically represented as a string (e.g., a hex code or color name).
+ * @property {string} [text] - The text displayed on the badge, which may
+ *   indicate a label or promotion related to the collection.
  */
 /**
  * @typedef CollectionBanner
@@ -547,26 +624,41 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CollectionCreateResponse
- * @property {string} [uid]
- * @property {Object} [_schedule]
- * @property {boolean} [allow_facets]
- * @property {boolean} [allow_sort]
- * @property {string} [app_id]
- * @property {Object} [badge]
+ * @property {string} [uid] - Unique identifier for the collection.
+ * @property {CollectionSchedule} [_schedule]
+ * @property {boolean} [allow_facets] - Indicates whether facet-based filtering
+ *   is allowed for the collection.
+ * @property {boolean} [allow_sort] - Indicates whether sorting options are
+ *   allowed for the collection.
+ * @property {string} [app_id] - The application ID associated with the collection.
+ * @property {Object} [badge] - Details of the badge associated with the collection.
  * @property {ImageUrls} [banners]
- * @property {Object} [cron]
- * @property {string} [description]
- * @property {boolean} [is_active]
+ * @property {string} [description] - A description of the collection.
+ * @property {boolean} [is_active] - Indicates whether the collection is currently active.
  * @property {BannerImage} [logo]
- * @property {Object} [meta]
- * @property {string} [name]
- * @property {number} [priority]
- * @property {CollectionQuery[]} [query]
- * @property {string} [slug]
- * @property {string} [sort_on]
- * @property {string[]} [tag]
- * @property {string} [type]
- * @property {string[]} [visible_facets_keys]
+ * @property {Object} [meta] - Additional metadata related to the collection.
+ * @property {string} [name] - The name of the collection.
+ * @property {number} [priority] - The priority level of the collection, used to
+ *   determine its display order.
+ * @property {CollectionQuery[]} [query] - Query objects that define how the
+ *   collection's items are retrieved or filtered.
+ * @property {string} [slug] - The URL-friendly identifier for the collection.
+ * @property {string} [sort_on] - The default sorting order for items in the
+ *   collection, e.g., 'popular'.
+ * @property {string[]} [tag] - Array of tags associated with the collection for
+ *   categorization and filtering.
+ * @property {string} [type] - The type of collection, such as 'items' for
+ *   manually added items or 'query' for dynamically fetched items.
+ * @property {string[]} [visible_facets_keys] - Keys of the facets that are
+ *   visible and can be used for filtering the collection.
+ * @property {boolean} [published] - Indicates whether the collection is published.
+ * @property {string[]} [tags] - List of tags associated with the collection.
+ * @property {Action} [action]
+ * @property {Object} [_custom_json] - Custom JSON data for additional information.
+ * @property {Object} [_locale_language] - Locale language settings for the collection.
+ * @property {SeoDetail} [seo]
+ * @property {boolean} [is_visible] - Indicates if the collection is visible to users.
+ * @property {string} [id] - Unique identifier for the collection.
  */
 /**
  * @typedef CollectionDetailResponse
@@ -592,8 +684,11 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CollectionImage
- * @property {string} aspect_ratio
- * @property {string} url
+ * @property {string} aspect_ratio - The aspect ratio of the image, typically
+ *   represented as a string (e.g., "16:9" or "4:3") to indicate the
+ *   proportional relationship between the image's width and height.
+ * @property {string} url - The URL of the image, which provides the location
+ *   where the image is hosted and can be accessed.
  */
 /**
  * @typedef CollectionItem
@@ -612,20 +707,22 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CollectionListingFilter
- * @property {CollectionListingFilterTag[]} [tags]
- * @property {CollectionListingFilterType[]} [type]
+ * @property {CollectionListingFilterTag[]} [tags] - A list of tags used to
+ *   filter the collection listing.
+ * @property {CollectionListingFilterType[]} [type] - A list of types used to
+ *   filter the collection listing.
  */
 /**
  * @typedef CollectionListingFilterTag
- * @property {string} [display]
- * @property {boolean} [is_selected]
- * @property {string} [name]
+ * @property {string} [display] - The display name of the tag for the collection listing.
+ * @property {boolean} [is_selected] - Indicates whether the tag is currently selected.
+ * @property {string} [name] - The name of the tag.
  */
 /**
  * @typedef CollectionListingFilterType
- * @property {string} [display]
- * @property {boolean} [is_selected]
- * @property {string} [name]
+ * @property {string} [display] - The display name of the type for the collection listing.
+ * @property {boolean} [is_selected] - Indicates whether the type is currently selected.
+ * @property {string} [name] - The internal name of the type.
  */
 /**
  * @typedef CollectionQuery
@@ -636,11 +733,17 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CollectionSchedule
- * @property {string} [cron]
- * @property {number} [duration]
- * @property {string} [end]
- * @property {NextSchedule[]} [next_schedule]
- * @property {string} [start]
+ * @property {string} [cron] - The cron expression that defines the scheduling
+ *   pattern, allowing for tasks or events to be repeated at specific intervals
+ *   (e.g., daily, weekly).
+ * @property {number} [duration] - The duration in seconds for which the
+ *   collection is active or valid.
+ * @property {string} [end] - The end date and time for the collection's
+ *   schedule, formatted as a date-time string.
+ * @property {NextSchedule[]} [next_schedule] - The next set of scheduled times
+ *   when the collection will become active, based on the cron expression.
+ * @property {string} [start] - The start date and time for the collection's
+ *   schedule, formatted as a date-time string.
  */
 /**
  * @typedef CompanyBrandDetail
@@ -654,7 +757,7 @@ export = CatalogPlatformModel;
  * @property {number} id
  */
 /**
- * @typedef CompanyMeta1
+ * @typedef InventoryCompanyMeta
  * @property {number} [id]
  */
 /**
@@ -778,31 +881,45 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CreateCollection
- * @property {Object} [_custom_json]
- * @property {Object} [_locale_language]
+ * @property {Object} [_custom_json] - Custom JSON data for the collection, used
+ *   for any additional information.
+ * @property {Object} [_locale_language] - Locale-specific data for supporting
+ *   multiple languages.
  * @property {CollectionSchedule} [_schedule]
- * @property {boolean} [allow_facets]
- * @property {boolean} [allow_sort]
- * @property {string} app_id
+ * @property {boolean} [allow_facets] - Indicates whether facet-based filtering
+ *   is allowed for the collection.
+ * @property {boolean} [allow_sort] - Indicates whether sorting options are
+ *   allowed for the collection.
+ * @property {string} app_id - The application ID associated with the collection.
  * @property {CollectionBadge} [badge]
  * @property {CollectionBanner} banners
- * @property {UserInfo} [created_by]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_visible]
+ * @property {UserInfo} [created_by] - Information about the user who created
+ *   the collection.
+ * @property {string} [description] - A description of the collection.
+ * @property {boolean} [is_active] - Indicates whether the collection is currently active.
+ * @property {boolean} [is_visible] - Indicates whether the collection is
+ *   visible to users.
  * @property {CollectionImage} logo
- * @property {Object} [meta]
- * @property {UserInfo} [modified_by]
- * @property {string} name
- * @property {number} [priority]
- * @property {boolean} [published]
- * @property {CollectionQuery[]} [query]
+ * @property {Object} [meta] - Additional metadata related to the collection.
+ * @property {UserInfo} [modified_by] - Information about the user who last
+ *   modified the collection.
+ * @property {string} name - The name of the collection.
+ * @property {number} [priority] - The priority level of the collection, used to
+ *   determine its display order.
+ * @property {boolean} [published] - Indicates whether the collection is
+ *   published and available to users.
+ * @property {CollectionQuery[]} [query] - Query objects that define how the
+ *   collection's items are retrieved or filtered.
  * @property {SeoDetail} [seo]
- * @property {string} slug
- * @property {string} [sort_on]
- * @property {string[]} [tags]
- * @property {string} type
- * @property {string[]} [visible_facets_keys]
+ * @property {string} slug - The URL-friendly identifier for the collection.
+ * @property {string} [sort_on] - The default sorting order for items in the
+ *   collection, e.g., 'popular'.
+ * @property {string[]} [tags] - Array of tags associated with the collection
+ *   for categorization and filtering.
+ * @property {string} type - The type of collection, either 'items' for manually
+ *   added items or 'query' for dynamically fetched items.
+ * @property {string[]} [visible_facets_keys] - Keys of the facets that are
+ *   visible and can be used for filtering the collection.
  */
 /**
  * @typedef CreateSearchConfigurationRequest
@@ -893,8 +1010,10 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef DepartmentCategoryTree
- * @property {string} [department]
- * @property {CategoryItems[]} [items]
+ * @property {string} [department] - The name of the department that this
+ *   category tree belongs to, such as 'Men', 'Women', or 'Electronics'.
+ * @property {CategoryItems[]} [items] - An array of categories that fall under
+ *   the specified department, each containing details about category items.
  */
 /**
  * @typedef DepartmentErrorResponse
@@ -906,8 +1025,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef DepartmentIdentifier
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {string} [name] - The name of the department, such as
+ *   'Electronics', 'Apparel', or 'Home Appliances'.
+ * @property {string} [slug] - A URL-friendly identifier for the department,
+ *   often used in creating department-specific links or routes.
+ * @property {number} [uid] - A unique identifier for the department, used to
+ *   distinguish it from other departments in the system.
  */
 /**
  * @typedef DepartmentResponse
@@ -927,7 +1050,7 @@ export = CatalogPlatformModel;
  * @property {number} width - The width dimension.
  */
 /**
- * @typedef DimensionResponse1
+ * @typedef InventoryDimensionResponse
  * @property {number} [height]
  * @property {number} [length]
  * @property {string} [unit]
@@ -952,11 +1075,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef ErrorResponse
- * @property {string} [code]
- * @property {string} [error]
- * @property {string} [message]
- * @property {Object} [meta]
- * @property {number} [status]
+ * @property {string} [code] - A string representing the specific error code.
+ * @property {string} [error] - A brief description of the error type.
+ * @property {string} [message] - A detailed message explaining the error.
+ * @property {Object} [meta] - Additional metadata or context about the error,
+ *   if available.
+ * @property {number} [status] - The HTTP status code associated with the error.
  */
 /**
  * @typedef FilerList
@@ -1115,38 +1239,52 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef GetCollectionDetailNest
- * @property {Object} [_schedule]
+ * @property {CollectionSchedule} [_schedule]
  * @property {Action} [action]
- * @property {boolean} [allow_facets]
- * @property {boolean} [allow_sort]
- * @property {string} [app_id]
- * @property {Object} [badge]
+ * @property {boolean} [allow_facets] - Indicates whether facets are allowed for
+ *   filtering the collection.
+ * @property {boolean} [allow_sort] - Indicates whether sorting options are
+ *   allowed for the collection.
+ * @property {string} [app_id] - The application ID associated with the collection.
+ * @property {CollectionBadge} [badge]
  * @property {ImageUrls} [banners]
- * @property {Object} [cron]
- * @property {string} [description]
- * @property {boolean} [is_active]
+ * @property {string} [description] - A description of the collection.
+ * @property {boolean} [is_active] - Indicates whether the collection is currently active.
  * @property {Media} [logo]
- * @property {Object} [meta]
- * @property {string} [name]
- * @property {number} [priority]
- * @property {CollectionQuery[]} [query]
- * @property {string} [slug]
- * @property {string[]} [tag]
- * @property {string} [type]
- * @property {string} [uid]
- * @property {string[]} [visible_facets_keys]
+ * @property {Object} [meta] - Additional metadata related to the collection.
+ * @property {string} [name] - The name of the collection.
+ * @property {number} [priority] - The priority level of the collection in the
+ *   display list.
+ * @property {CollectionQuery[]} [query] - Array of queries that define how the
+ *   collection is fetched or filtered.
+ * @property {string} [slug] - The URL-friendly identifier of the collection.
+ * @property {string[]} [tag] - Array of tags associated with the collection.
+ * @property {string} [type] - The type of collection, such as manual or automated.
+ * @property {string} [uid] - The unique identifier for the collection.
+ * @property {string[]} [visible_facets_keys] - List of facet keys that are
+ *   visible for filtering the collection.
+ * @property {string} [_id] - Internal identifier for the collection.
+ * @property {boolean} [published] - Indicates if the collection is published.
+ * @property {string[]} [tags] - Tags associated with the collection.
+ * @property {string} [sort_on] - Sort criteria for the collection.
+ * @property {Object} [_custom_json] - Custom JSON data for the collection.
+ * @property {Object} [_locale_language] - Locale-specific language settings.
+ * @property {SeoDetail} [seo]
+ * @property {boolean} [is_visible] - Indicates if the collection is visible.
  */
 /**
  * @typedef GetCollectionItemsResponse
- * @property {ProductFilters[]} [filters]
- * @property {ProductListingDetail[]} [items]
+ * @property {ProductFilters[]} [filters] - An array of filters applicable to
+ *   the products in the collection.
+ * @property {ProductListingDetail[]} [items] - List of product details in the collection.
  * @property {Page} [page]
- * @property {ProductSortOn[]} [sort_on]
+ * @property {ProductSortOn[]} [sort_on] - Sorting options available for the
+ *   products in the collection.
  */
 /**
  * @typedef GetCollectionListingResponse
  * @property {CollectionListingFilter} [filters]
- * @property {GetCollectionDetailNest[]} [items]
+ * @property {GetCollectionDetailNest[]} [items] - Array of nested collection details.
  * @property {Page} [page]
  */
 /**
@@ -1212,12 +1350,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef GetDepartment
- * @property {UserSerializer1} [created_by]
+ * @property {RequestUserSerializer} [created_by]
  * @property {string} [created_on]
  * @property {boolean} [is_active]
  * @property {string} [item_type]
  * @property {string} [logo]
- * @property {UserSerializer1} [modified_by]
+ * @property {RequestUserSerializer} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {number} [page_no]
@@ -1230,24 +1368,24 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef GetInventories
- * @property {BrandMeta1} [brand]
- * @property {CompanyMeta1} [company]
+ * @property {InventoryBrandMeta} [brand]
+ * @property {InventoryCompanyMeta} [company]
  * @property {string} [country_of_origin]
- * @property {UserSerializer1} [created_by]
+ * @property {RequestUserSerializer} [created_by]
  * @property {DateMeta} [date_meta]
- * @property {DimensionResponse1} [dimension]
+ * @property {InventoryDimensionResponse} [dimension]
  * @property {string} [expiration_date]
  * @property {string} [id]
  * @property {Object} [identifier]
  * @property {string} [inventory_updated_on]
  * @property {boolean} [is_set]
  * @property {number} [item_id]
- * @property {ManufacturerResponse1} [manufacturer]
- * @property {UserSerializer1} [modified_by]
+ * @property {InventoryManufacturerResponse} [manufacturer]
+ * @property {RequestUserSerializer} [modified_by]
  * @property {Object} [platforms]
  * @property {PriceArticle} [price]
  * @property {QuantitiesArticle} [quantities]
- * @property {ReturnConfig2} [return_config]
+ * @property {ReturnConfig} [return_config]
  * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {string} [stage]
@@ -1257,9 +1395,9 @@ export = CatalogPlatformModel;
  * @property {number} [total_quantity]
  * @property {string} [trace_id]
  * @property {boolean} [track_inventory]
- * @property {Trader2[]} [trader]
+ * @property {TraderResponse[]} [trader]
  * @property {string} [uid]
- * @property {WeightResponse1} [weight]
+ * @property {InventoryWeightResponse} [weight]
  */
 /**
  * @typedef GetInventoriesResponse
@@ -1970,7 +2108,7 @@ export = CatalogPlatformModel;
  * @property {string} name - The name of the manufacturer.
  */
 /**
- * @typedef ManufacturerResponse1
+ * @typedef InventoryManufacturerResponse
  * @property {string} [address]
  * @property {boolean} [is_default]
  * @property {string} [name]
@@ -1992,6 +2130,15 @@ export = CatalogPlatformModel;
  * @property {string} [aspect_ratio]
  * @property {string} [type]
  * @property {string} [url]
+ */
+/**
+ * @typedef BrandMedia
+ * @property {string} [aspect_ratio] - The aspect ratio of the media, typically
+ *   represented as a string like '16:9' or '4:3'.
+ * @property {string} [type] - The type of media, such as 'image', 'video', or
+ *   'audio', describing the content format.
+ * @property {string} [url] - The URL where the media file is hosted, typically
+ *   a link to an image or video resource.
  */
 /**
  * @typedef Meta
@@ -2044,8 +2191,8 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef NextSchedule
- * @property {string} [end]
- * @property {string} [start]
+ * @property {string} [end] - The end time of the schedule.
+ * @property {string} [start] - The start time of the schedule.
  */
 /**
  * @typedef OptInPostRequest
@@ -2116,15 +2263,6 @@ export = CatalogPlatformModel;
  * @property {number} [item_total] - It is the total number of item present for
  *   the filter.
  * @property {number} [size] - It is the size of each page.
- */
-/**
- * @typedef PageResponse1
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
  */
 /**
  * @typedef PageResponseType
@@ -2755,33 +2893,39 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef Sitemap
- * @property {number} [priority]
- * @property {string} [frequency]
+ * @property {number} [priority] - Indicates the priority of this URL relative
+ *   to other URLs on the site. A value between 0.0 and 1.0, where 1.0 is the
+ *   highest priority.
+ * @property {string} [frequency] - How frequently the content at the URL is
+ *   likely to change.
  */
 /**
  * @typedef ApplicationItemSeoAction
- * @property {Object} [page]
- * @property {string} type
+ * @property {Object} [page] - Details of the page associated with this SEO action.
+ * @property {string} type - Type of action, such as navigation or redirection.
  */
 /**
  * @typedef ApplicationItemSeoBreadcrumbs
- * @property {string} [url]
- * @property {ApplicationItemSeoAction[]} [action]
+ * @property {string} [url] - The URL that this breadcrumb points to.
+ * @property {ApplicationItemSeoAction[]} [action] - The actions available for
+ *   this breadcrumb, defining what happens when it's clicked or interacted with.
  */
 /**
  * @typedef ApplicationItemSeoMetaTagItem
- * @property {string} key
- * @property {string} value
+ * @property {string} key - The name of the meta tag.
+ * @property {string} value - The value associated with the meta tag.
  */
 /**
  * @typedef ApplicationItemSeoMetaTags
- * @property {string} title
- * @property {ApplicationItemSeoMetaTagItem[]} [items]
+ * @property {string} title - The title for this set of meta tags.
+ * @property {ApplicationItemSeoMetaTagItem[]} [items] - A list of meta tag
+ *   items, each defined by key-value pairs.
  */
 /**
  * @typedef Metatags
- * @property {string} [title]
- * @property {ApplicationItemSeoMetaTagItem[]} [items]
+ * @property {string} [title] - The title or heading for the meta tags section.
+ * @property {ApplicationItemSeoMetaTagItem[]} [items] - An array of meta tag
+ *   items, each consisting of key-value pairs.
  */
 /**
  * @typedef SizePromotionThreshold
@@ -2813,13 +2957,16 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef SecondLevelChild
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom JSON object to store additional
+ *   data for the second-level child.
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {ThirdLevelChild[]} [childs]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {ThirdLevelChild[]} [childs] - A list of third-level child elements
+ *   under the second-level child.
+ * @property {string} [name] - Name of the second-level child element.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the
+ *   second-level child element.
+ * @property {number} [uid] - Unique identifier for the second-level child element.
  */
 /**
  * @typedef SellerPhoneNumber
@@ -2828,12 +2975,20 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef SeoDetail
- * @property {string} [description]
- * @property {string} [title]
- * @property {Object} [sitemap]
- * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs]
- * @property {Metatags[]} [meta_tags]
- * @property {string} [canonical_url]
+ * @property {string} [description] - SEO meta description for the item or
+ *   collection. This is used to describe the content for search engines.
+ * @property {string} [title] - SEO meta title for the item or collection. It is
+ *   used as the title that appears in search results.
+ * @property {Object} [sitemap] - Information regarding the sitemap
+ *   configuration for the item or collection.
+ * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs] - List of
+ *   breadcrumbs for navigation, showing the hierarchy of pages leading to the
+ *   current page.
+ * @property {Metatags[]} [meta_tags] - An array of meta tags, each containing
+ *   key-value pairs for various SEO meta tags used to enhance search visibility.
+ * @property {string} [canonical_url] - The canonical URL for the item or
+ *   collection, which tells search engines the preferred version of the URL to
+ *   avoid duplicate content issues.
  */
 /**
  * @typedef SetSize
@@ -2920,9 +3075,10 @@ export = CatalogPlatformModel;
  * @property {boolean} [success]
  */
 /**
- * @typedef SuccessResponse1
- * @property {boolean} [success]
- * @property {number} [uid]
+ * @typedef SuccessResponseObject
+ * @property {boolean} [success] - Indicates whether the operation was successful or not.
+ * @property {number} [uid] - A unique identifier associated with the successful
+ *   operation.
  */
 /**
  * @typedef TaxIdentifier
@@ -2975,13 +3131,16 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef ThirdLevelChild
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom JSON object to store additional
+ *   data for the third-level child.
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {Object[]} [childs]
- * @property {string} [name]
- * @property {string} [slug]
- * @property {number} [uid]
+ * @property {Object[]} [childs] - A list of further nested child elements under
+ *   the third-level child (if applicable).
+ * @property {string} [name] - Name of the third-level child element.
+ * @property {string} [slug] - Slug or URL-friendly identifier for the
+ *   third-level child element.
+ * @property {number} [uid] - Unique identifier for the third-level child element.
  */
 /**
  * @typedef Trader
@@ -2996,7 +3155,7 @@ export = CatalogPlatformModel;
  * @property {string} type
  */
 /**
- * @typedef Trader2
+ * @typedef TraderResponse
  * @property {string[]} [address]
  * @property {string} [name]
  * @property {string} [type]
@@ -3015,7 +3174,7 @@ export = CatalogPlatformModel;
  * @property {boolean} [is_visible]
  * @property {CollectionImage} [logo]
  * @property {Object} [meta]
- * @property {string} [modified_by] - User info.
+ * @property {UserInfo} [modified_by]
  * @property {string} [name]
  * @property {number} [priority]
  * @property {boolean} [published]
@@ -3102,7 +3261,7 @@ export = CatalogPlatformModel;
  * @property {string} [username] - The username of the user.
  */
 /**
- * @typedef UserSerializer1
+ * @typedef RequestUserSerializer
  * @property {string} [_id]
  * @property {string} [contact]
  * @property {string} [uid]
@@ -3161,7 +3320,7 @@ export = CatalogPlatformModel;
  * @property {string} unit - The unit of weight.
  */
 /**
- * @typedef WeightResponse1
+ * @typedef InventoryWeightResponse
  * @property {number} [shipping]
  * @property {string} [unit]
  */
@@ -3265,12 +3424,13 @@ export = CatalogPlatformModel;
  *   | "register"
  *   | "shipping-policy"
  *   | "return-policy"
- *   | "order-status"} PageType
+ *   | "order-status"
+ *   | "locate-us"} PageType
  */
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, AllSizes, AllowSingleRequest, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponse, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductListingResponse, ApplicationStoreJson, AppReturnConfigResponse, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponse, Brand, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkProductJob, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryResponse, Child, CollectionBadge, CollectionBanner, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteAppCategoryReturnConfig, DeleteResponse, DeleteSearchConfigurationResponse, Department, DepartmentCategoryTree, DepartmentErrorResponse, DepartmentIdentifier, DepartmentResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, FilerList, RawProduct, RawProductListingResponse, GTIN, AttributeDetail, GetAddressSerializer, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponse, GetConfigMetadataValues, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetCollectionDetailResponse, CommonResponseSchemaCollection, GetQueryFiltersKeysResponse, GetQueryFiltersResponse, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, Guide, HSNCodesResponse, HSNData, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponse, InventoryExportQuantityFilter, InventoryExportRequest, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, ItemQuery, Items, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, MOQData, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, NetQuantity, NetQuantityResponse, NextSchedule, OptInPostRequest, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponse, PTErrorResponse, Page, PageResponse, PageResponse1, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponse, ProductFilters, GetQueryFiltersValuesResponse, ProductFiltersKeysOnly, ProductFiltersKey, ProductFiltersValue, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductReturnConfigBaseSerializer, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, ProductVariantsResponse, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, Sitemap, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, SeoDetail, SetSize, SingleCategoryResponse, SingleProductResponse, Size, SizeDistribution, SizeGuideResponse, StoreAssignResponse, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateValidationData, TemplatesResponse, TemplatesValidationResponse, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, CreateMarketplaceOptinResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, CreatedBy, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequest, UpdateMarketplaceOptinResponse, ActionPage, PageType };
+    export { Action, AllSizes, AllowSingleRequest, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponse, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMOQ, ApplicationItemMeta, ApplicationItemSeoSitemap, ApplicationItemSEO, ApplicationProductListingResponse, ApplicationStoreJson, AppReturnConfigResponse, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutoCompleteMedia, AutocompleteAction, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponse, Brand, BrandItem, BrandListingResponse, ApplicationBrandListingItemSchema, ApplicationBrandListingSchema, ApplicationCategoryListingSchema, ApplicationCategoryListingItemSchema, BrandMeta, InventoryBrandMeta, BulkAssetResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, FailedRecord, BulkInventoryGetItems, BulkProductJob, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryResponse, Child, CollectionBadge, CollectionBanner, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, InventoryCompanyMeta, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteAppCategoryReturnConfig, DeleteResponse, DeleteSearchConfigurationResponse, Department, DepartmentCategoryTree, DepartmentErrorResponse, DepartmentIdentifier, DepartmentResponse, DepartmentsResponse, DimensionResponse, InventoryDimensionResponse, Document, EntityConfiguration, ErrorResponse, FilerList, RawProduct, RawProductListingResponse, GTIN, AttributeDetail, GetAddressSerializer, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, ConditionItem, DataItem, ValueTypeItem, SortTypeItem, GetConfigMetadataResponse, GetConfigMetadataValues, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetCollectionDetailResponse, CommonResponseSchemaCollection, GetQueryFiltersKeysResponse, GetQueryFiltersResponse, GetCollectionItemsResponseSchemaV2, Page1, CollectionItemSchemaV2, CollectionItemUpdateSchema, CollectionQuerySchemaV2, ProductDetailV2, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, Guide, HSNCodesResponse, HSNData, HSNDataInsertV2, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HsnUpsert, Image, ImageUrls, InvSize, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponse, InventoryExportQuantityFilter, InventoryExportRequest, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, ItemQuery, Items, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, MOQData, ManufacturerResponse, InventoryManufacturerResponse, Media, Media1, Media2, BrandMedia, Meta, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, NetQuantity, NetQuantityResponse, NextSchedule, OptInPostRequest, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptinStoreDetails, OwnerAppItemResponse, PTErrorResponse, Page, PageResponse, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponse, ProductFilters, GetQueryFiltersValuesResponse, ProductFiltersKeysOnly, ProductFiltersKey, ProductFiltersValue, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductReturnConfigBaseSerializer, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, ProductVariantsResponse, Properties, Quantities, QuantitiesArticle, Quantity, QuantityBase, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, Sitemap, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, Metatags, SizePromotionThreshold, SEOData, SearchKeywordResult, SearchableAttribute, SecondLevelChild, SellerPhoneNumber, SeoDetail, SetSize, SingleCategoryResponse, SingleProductResponse, Size, SizeDistribution, SizeGuideResponse, StoreAssignResponse, StoreDetail, StoreMeta, SuccessResponse, SuccessResponseObject, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplateValidationData, TemplatesResponse, TemplatesValidationResponse, ThirdLevelChild, Trader, Trader1, TraderResponse, UpdateCollection, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, CreateMarketplaceOptinResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, RequestUserSerializer, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, InventoryWeightResponse, CreatedBy, Marketplaces, GetAllMarketplaces, UpdateMarketplaceOptinRequest, UpdateMarketplaceOptinResponse, ActionPage, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -3387,11 +3547,20 @@ type AppConfigurationsSort = {
 /** @returns {ApplicationBrandJson} */
 declare function ApplicationBrandJson(): ApplicationBrandJson;
 type ApplicationBrandJson = {
+    /**
+     * - A custom JSON object containing additional
+     * brand-specific configurations or data. The structure is flexible and may
+     * vary based on application needs.
+     */
     _custom_json: any;
 };
 /** @returns {ApplicationCategoryJson} */
 declare function ApplicationCategoryJson(): ApplicationCategoryJson;
 type ApplicationCategoryJson = {
+    /**
+     * - A custom JSON object containing additional
+     * details or configurations specific to the application category.
+     */
     _custom_json: any;
 };
 /** @returns {ApplicationDepartment} */
@@ -3701,8 +3870,20 @@ type AutocompleteResult = {
 /** @returns {BannerImage} */
 declare function BannerImage(): BannerImage;
 type BannerImage = {
+    /**
+     * - The aspect ratio of the banner image,
+     * typically represented as a ratio (e.g., '16:9' or '4:3').
+     */
     aspect_ratio?: string;
+    /**
+     * - The type of media, such as 'image' or 'banner',
+     * indicating the format of the banner.
+     */
     type?: string;
+    /**
+     * - The URL where the banner image is located,
+     * typically a web address pointing to the image resource.
+     */
     url?: string;
 };
 /** @returns {BaseAppCategoryReturnConfig} */
@@ -3739,18 +3920,182 @@ declare function BrandItem(): BrandItem;
 type BrandItem = {
     action?: Action;
     banners?: ImageUrls;
+    /**
+     * - An array of department names or
+     * categories that the brand belongs to, represented as strings.
+     */
     departments?: string[];
+    /**
+     * - A string representing the discount offered by
+     * the brand, such as percentage or amount off.
+     */
     discount?: string;
-    logo?: Media2;
+    logo?: BrandMedia;
+    /**
+     * - The name of the brand.
+     */
     name?: string;
+    /**
+     * - A URL-friendly identifier for the brand, often
+     * used in website routing.
+     */
     slug?: string;
+    /**
+     * - A unique identifier for the brand, typically used
+     * for internal reference.
+     */
     uid?: number;
 };
 /** @returns {BrandListingResponse} */
 declare function BrandListingResponse(): BrandListingResponse;
 type BrandListingResponse = {
+    /**
+     * - An array of brand items, each containing
+     * detailed information about the brand, such as action, banners, departments,
+     * discount, logo, and other related fields.
+     */
     items?: BrandItem[];
     page: Page;
+};
+/** @returns {ApplicationBrandListingItemSchema} */
+declare function ApplicationBrandListingItemSchema(): ApplicationBrandListingItemSchema;
+type ApplicationBrandListingItemSchema = {
+    /**
+     * - Custom JSON object for additional data.
+     */
+    _custom_json?: any;
+    /**
+     * - Custom object for locale-specific
+     * language data.
+     */
+    _locale_language?: any;
+    /**
+     * - URL of the brand's portrait banner.
+     */
+    brand_banner_portrait_url?: string;
+    /**
+     * - URL of the brand's landscape banner.
+     */
+    brand_banner_url?: string;
+    /**
+     * - URL of the brand's logo.
+     */
+    brand_logo_url?: string;
+    /**
+     * - Description of the brand.
+     */
+    description?: string;
+    /**
+     * - Name of the brand.
+     */
+    name?: string;
+    /**
+     * - Unique slug key for the brand.
+     */
+    slug_key?: string;
+    /**
+     * - Priority of the brand in listing.
+     */
+    priority?: number;
+    /**
+     * - Unique identifier of the brand.
+     */
+    uid?: number;
+    /**
+     * - Timestamp when the category was created.
+     */
+    created_on?: string;
+    /**
+     * - Timestamp when the category was created.
+     */
+    last_updated?: string;
+    /**
+     * - Indicates if the brand is active.
+     */
+    is_active?: boolean;
+    /**
+     * - List of department IDs associated with the brand.
+     */
+    departments?: number[];
+    /**
+     * - Timestamp when the brand was last modified.
+     */
+    modified_on?: string;
+    /**
+     * - Boolean indicating whether the brand is
+     * currently active or not.
+     */
+    active?: boolean;
+};
+/** @returns {ApplicationBrandListingSchema} */
+declare function ApplicationBrandListingSchema(): ApplicationBrandListingSchema;
+type ApplicationBrandListingSchema = {
+    items?: ApplicationBrandListingItemSchema[];
+    page?: Page;
+};
+/** @returns {ApplicationCategoryListingSchema} */
+declare function ApplicationCategoryListingSchema(): ApplicationCategoryListingSchema;
+type ApplicationCategoryListingSchema = {
+    items?: ApplicationCategoryListingItemSchema[];
+    page?: Page;
+};
+/** @returns {ApplicationCategoryListingItemSchema} */
+declare function ApplicationCategoryListingItemSchema(): ApplicationCategoryListingItemSchema;
+type ApplicationCategoryListingItemSchema = {
+    /**
+     * - Name of the category.
+     */
+    name?: string;
+    /**
+     * - URL of the category's logo.
+     */
+    logo?: string;
+    /**
+     * - List of department IDs.
+     */
+    departments?: number[];
+    /**
+     * - Attribute name of the category.
+     */
+    attr_name?: string;
+    /**
+     * - URL of the landscape banner.
+     */
+    landscape_url?: string;
+    /**
+     * - URL of the portrait banner.
+     */
+    portrait_url?: string;
+    /**
+     * - Custom JSON object for additional data.
+     */
+    _custom_json?: any;
+    /**
+     * - Priority of the category.
+     */
+    priority?: number;
+    created_by?: CreatedBy;
+    /**
+     * - Timestamp when the category was created.
+     */
+    created_on?: string;
+    modified_by?: CreatedBy;
+    /**
+     * - Timestamp when the category was last modified.
+     */
+    modified_on?: string;
+    /**
+     * - Application ID associated with the category.
+     */
+    app_id?: string;
+    /**
+     * - Indicates whether the category is active.
+     */
+    is_active?: boolean;
+    /**
+     * - Unique identifier of the category.
+     */
+    uid?: number;
 };
 /** @returns {BrandMeta} */
 declare function BrandMeta(): BrandMeta;
@@ -3758,9 +4103,9 @@ type BrandMeta = {
     id: number;
     name: string;
 };
-/** @returns {BrandMeta1} */
-declare function BrandMeta1(): BrandMeta1;
-type BrandMeta1 = {
+/** @returns {InventoryBrandMeta} */
+declare function InventoryBrandMeta(): InventoryBrandMeta;
+type InventoryBrandMeta = {
     id?: number;
     name?: string;
 };
@@ -3896,18 +4241,52 @@ type BulkResponse = {
 /** @returns {CatalogInsightBrand} */
 declare function CatalogInsightBrand(): CatalogInsightBrand;
 type CatalogInsightBrand = {
+    /**
+     * - The average freshness of the
+     * articles based on the time since they were added to the catalog.
+     */
     article_freshness?: number;
+    /**
+     * - The number of articles that are
+     * currently available for purchase.
+     */
     available_articles?: number;
+    /**
+     * - The total number of unique sizes
+     * available across all articles.
+     */
     available_sizes?: number;
+    /**
+     * - The name of the brand.
+     */
     name?: string;
+    /**
+     * - The total number of articles listed
+     * under the brand.
+     */
     total_articles?: number;
+    /**
+     * - The total number of sizes offered across
+     * all articles for the brand.
+     */
     total_sizes?: number;
 };
 /** @returns {CatalogInsightItem} */
 declare function CatalogInsightItem(): CatalogInsightItem;
 type CatalogInsightItem = {
+    /**
+     * - The total number of catalog items available.
+     */
     count?: number;
+    /**
+     * - The number of items that are
+     * currently out of stock.
+     */
     out_of_stock_count?: number;
+    /**
+     * - The number of items that are currently
+     * sellable (in stock).
+     */
     sellable_count?: number;
 };
 /** @returns {CatalogInsightResponse} */
@@ -4006,6 +4385,7 @@ type Category = {
 /** @returns {CategoryItems} */
 declare function CategoryItems(): CategoryItems;
 type CategoryItems = {
+    _custom_json?: any;
     action?: Action;
     banners?: ImageUrls;
     childs?: Child[];
@@ -4016,7 +4396,17 @@ type CategoryItems = {
 /** @returns {CategoryListingResponse} */
 declare function CategoryListingResponse(): CategoryListingResponse;
 type CategoryListingResponse = {
+    /**
+     * - An array containing the
+     * department category trees, which provide hierarchical information about
+     * categories and their associated departments.
+     */
     data?: DepartmentCategoryTree[];
+    /**
+     * - An array of department
+     * identifiers, each providing basic information like name, slug, and unique
+     * ID for departments within the catalog.
+     */
     departments?: DepartmentIdentifier[];
 };
 /** @returns {CategoryMapping} */
@@ -4060,18 +4450,43 @@ type CategoryResponse = {
 /** @returns {Child} */
 declare function Child(): Child;
 type Child = {
+    /**
+     * - Custom JSON object to store additional
+     * data for the child.
+     */
     _custom_json?: any;
     action?: Action;
     banners?: ImageUrls;
+    /**
+     * - A list of second-level child
+     * elements under the current child.
+     */
     childs?: SecondLevelChild[];
+    /**
+     * - Name of the child element.
+     */
     name?: string;
+    /**
+     * - Slug or URL-friendly identifier for the child element.
+     */
     slug?: string;
+    /**
+     * - Unique identifier for the child element.
+     */
     uid?: number;
 };
 /** @returns {CollectionBadge} */
 declare function CollectionBadge(): CollectionBadge;
 type CollectionBadge = {
+    /**
+     * - The color of the badge displayed with the
+     * collection, typically represented as a string (e.g., a hex code or color name).
+     */
     color?: string;
+    /**
+     * - The text displayed on the badge, which may
+     * indicate a label or promotion related to the collection.
+     */
     text?: string;
 };
 /** @returns {CollectionBanner} */
@@ -4083,26 +4498,107 @@ type CollectionBanner = {
 /** @returns {CollectionCreateResponse} */
 declare function CollectionCreateResponse(): CollectionCreateResponse;
 type CollectionCreateResponse = {
+    /**
+     * - Unique identifier for the collection.
+     */
     uid?: string;
-    _schedule?: any;
+    _schedule?: CollectionSchedule;
+    /**
+     * - Indicates whether facet-based filtering
+     * is allowed for the collection.
+     */
     allow_facets?: boolean;
+    /**
+     * - Indicates whether sorting options are
+     * allowed for the collection.
+     */
     allow_sort?: boolean;
+    /**
+     * - The application ID associated with the collection.
+     */
     app_id?: string;
+    /**
+     * - Details of the badge associated with the collection.
+     */
     badge?: any;
     banners?: ImageUrls;
-    cron?: any;
+    /**
+     * - A description of the collection.
+     */
     description?: string;
+    /**
+     * - Indicates whether the collection is currently active.
+     */
     is_active?: boolean;
     logo?: BannerImage;
+    /**
+     * - Additional metadata related to the collection.
+     */
     meta?: any;
+    /**
+     * - The name of the collection.
+     */
     name?: string;
+    /**
+     * - The priority level of the collection, used to
+     * determine its display order.
+     */
     priority?: number;
+    /**
+     * - Query objects that define how the
+     * collection's items are retrieved or filtered.
+     */
     query?: CollectionQuery[];
+    /**
+     * - The URL-friendly identifier for the collection.
+     */
     slug?: string;
+    /**
+     * - The default sorting order for items in the
+     * collection, e.g., 'popular'.
+     */
     sort_on?: string;
+    /**
+     * - Array of tags associated with the collection for
+     * categorization and filtering.
+     */
     tag?: string[];
+    /**
+     * - The type of collection, such as 'items' for
+     * manually added items or 'query' for dynamically fetched items.
+     */
     type?: string;
+    /**
+     * - Keys of the facets that are
+     * visible and can be used for filtering the collection.
+     */
     visible_facets_keys?: string[];
+    /**
+     * - Indicates whether the collection is published.
+     */
+    published?: boolean;
+    /**
+     * - List of tags associated with the collection.
+     */
+    tags?: string[];
+    action?: Action;
+    /**
+     * - Custom JSON data for additional information.
+     */
+    _custom_json?: any;
+    /**
+     * - Locale language settings for the collection.
+     */
+    _locale_language?: any;
+    seo?: SeoDetail;
+    /**
+     * - Indicates if the collection is visible to users.
+     */
+    is_visible?: boolean;
+    /**
+     * - Unique identifier for the collection.
+     */
+    id?: string;
 };
 /** @returns {CollectionDetailResponse} */
 declare function CollectionDetailResponse(): CollectionDetailResponse;
@@ -4130,7 +4626,16 @@ type CollectionDetailResponse = {
 /** @returns {CollectionImage} */
 declare function CollectionImage(): CollectionImage;
 type CollectionImage = {
+    /**
+     * - The aspect ratio of the image, typically
+     * represented as a string (e.g., "16:9" or "4:3") to indicate the
+     * proportional relationship between the image's width and height.
+     */
     aspect_ratio: string;
+    /**
+     * - The URL of the image, which provides the location
+     * where the image is hosted and can be accessed.
+     */
     url: string;
 };
 /** @returns {CollectionItem} */
@@ -4153,21 +4658,47 @@ type CollectionItemUpdate = {
 /** @returns {CollectionListingFilter} */
 declare function CollectionListingFilter(): CollectionListingFilter;
 type CollectionListingFilter = {
+    /**
+     * - A list of tags used to
+     * filter the collection listing.
+     */
     tags?: CollectionListingFilterTag[];
+    /**
+     * - A list of types used to
+     * filter the collection listing.
+     */
     type?: CollectionListingFilterType[];
 };
 /** @returns {CollectionListingFilterTag} */
 declare function CollectionListingFilterTag(): CollectionListingFilterTag;
 type CollectionListingFilterTag = {
+    /**
+     * - The display name of the tag for the collection listing.
+     */
     display?: string;
+    /**
+     * - Indicates whether the tag is currently selected.
+     */
     is_selected?: boolean;
+    /**
+     * - The name of the tag.
+     */
     name?: string;
 };
 /** @returns {CollectionListingFilterType} */
 declare function CollectionListingFilterType(): CollectionListingFilterType;
 type CollectionListingFilterType = {
+    /**
+     * - The display name of the type for the collection listing.
+     */
     display?: string;
+    /**
+     * - Indicates whether the type is currently selected.
+     */
     is_selected?: boolean;
+    /**
+     * - The internal name of the type.
+     */
     name?: string;
 };
 /** @returns {CollectionQuery} */
@@ -4190,10 +4721,31 @@ type CollectionQuery = {
 /** @returns {CollectionSchedule} */
 declare function CollectionSchedule(): CollectionSchedule;
 type CollectionSchedule = {
+    /**
+     * - The cron expression that defines the scheduling
+     * pattern, allowing for tasks or events to be repeated at specific intervals
+     * (e.g., daily, weekly).
+     */
     cron?: string;
+    /**
+     * - The duration in seconds for which the
+     * collection is active or valid.
+     */
     duration?: number;
+    /**
+     * - The end date and time for the collection's
+     * schedule, formatted as a date-time string.
+     */
     end?: string;
+    /**
+     * - The next set of scheduled times
+     * when the collection will become active, based on the cron expression.
+     */
     next_schedule?: NextSchedule[];
+    /**
+     * - The start date and time for the collection's
+     * schedule, formatted as a date-time string.
+     */
     start?: string;
 };
 /** @returns {CompanyBrandDetail} */
@@ -4209,9 +4761,9 @@ declare function CompanyMeta(): CompanyMeta;
 type CompanyMeta = {
     id: number;
 };
-/** @returns {CompanyMeta1} */
-declare function CompanyMeta1(): CompanyMeta1;
-type CompanyMeta1 = {
+/** @returns {InventoryCompanyMeta} */
+declare function InventoryCompanyMeta(): InventoryCompanyMeta;
+type InventoryCompanyMeta = {
     id?: number;
 };
 /** @returns {CompanyOptIn} */
@@ -4353,30 +4905,104 @@ type CreateAutocompleteWordsResponse = {
 /** @returns {CreateCollection} */
 declare function CreateCollection(): CreateCollection;
 type CreateCollection = {
+    /**
+     * - Custom JSON data for the collection, used
+     * for any additional information.
+     */
     _custom_json?: any;
+    /**
+     * - Locale-specific data for supporting
+     * multiple languages.
+     */
     _locale_language?: any;
     _schedule?: CollectionSchedule;
+    /**
+     * - Indicates whether facet-based filtering
+     * is allowed for the collection.
+     */
     allow_facets?: boolean;
+    /**
+     * - Indicates whether sorting options are
+     * allowed for the collection.
+     */
     allow_sort?: boolean;
+    /**
+     * - The application ID associated with the collection.
+     */
     app_id: string;
     badge?: CollectionBadge;
     banners: CollectionBanner;
+    /**
+     * - Information about the user who created
+     * the collection.
+     */
     created_by?: UserInfo;
+    /**
+     * - A description of the collection.
+     */
     description?: string;
+    /**
+     * - Indicates whether the collection is currently active.
+     */
     is_active?: boolean;
+    /**
+     * - Indicates whether the collection is
+     * visible to users.
+     */
     is_visible?: boolean;
     logo: CollectionImage;
+    /**
+     * - Additional metadata related to the collection.
+     */
     meta?: any;
+    /**
+     * - Information about the user who last
+     * modified the collection.
+     */
     modified_by?: UserInfo;
+    /**
+     * - The name of the collection.
+     */
     name: string;
+    /**
+     * - The priority level of the collection, used to
+     * determine its display order.
+     */
     priority?: number;
+    /**
+     * - Indicates whether the collection is
+     * published and available to users.
+     */
     published?: boolean;
+    /**
+     * - Query objects that define how the
+     * collection's items are retrieved or filtered.
+     */
     query?: CollectionQuery[];
     seo?: SeoDetail;
+    /**
+     * - The URL-friendly identifier for the collection.
+     */
     slug: string;
+    /**
+     * - The default sorting order for items in the
+     * collection, e.g., 'popular'.
+     */
     sort_on?: string;
+    /**
+     * - Array of tags associated with the collection
+     * for categorization and filtering.
+     */
     tags?: string[];
+    /**
+     * - The type of collection, either 'items' for manually
+     * added items or 'query' for dynamically fetched items.
+     */
     type: string;
+    /**
+     * - Keys of the facets that are
+     * visible and can be used for filtering the collection.
+     */
     visible_facets_keys?: string[];
 };
 /** @returns {CreateSearchConfigurationRequest} */
@@ -4527,7 +5153,15 @@ type Department = {
 /** @returns {DepartmentCategoryTree} */
 declare function DepartmentCategoryTree(): DepartmentCategoryTree;
 type DepartmentCategoryTree = {
+    /**
+     * - The name of the department that this
+     * category tree belongs to, such as 'Men', 'Women', or 'Electronics'.
+     */
     department?: string;
+    /**
+     * - An array of categories that fall under
+     * the specified department, each containing details about category items.
+     */
     items?: CategoryItems[];
 };
 /** @returns {DepartmentErrorResponse} */
@@ -4542,7 +5176,20 @@ type DepartmentErrorResponse = {
 /** @returns {DepartmentIdentifier} */
 declare function DepartmentIdentifier(): DepartmentIdentifier;
 type DepartmentIdentifier = {
+    /**
+     * - The name of the department, such as
+     * 'Electronics', 'Apparel', or 'Home Appliances'.
+     */
+    name?: string;
+    /**
+     * - A URL-friendly identifier for the department,
+     * often used in creating department-specific links or routes.
+     */
     slug?: string;
+    /**
+     * - A unique identifier for the department, used to
+     * distinguish it from other departments in the system.
+     */
     uid?: number;
 };
 /** @returns {DepartmentResponse} */
@@ -4580,9 +5227,9 @@ type DimensionResponse = {
      */
     width: number;
 };
-/** @returns {DimensionResponse1} */
-declare function DimensionResponse1(): DimensionResponse1;
-type DimensionResponse1 = {
+/** @returns {InventoryDimensionResponse} */
+declare function InventoryDimensionResponse(): InventoryDimensionResponse;
+type InventoryDimensionResponse = {
     height?: number;
     length?: number;
     unit?: string;
@@ -4610,10 +5257,26 @@ type EntityConfiguration = {
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
+    /**
+     * - A string representing the specific error code.
+     */
     code?: string;
+    /**
+     * - A brief description of the error type.
+     */
     error?: string;
+    /**
+     * - A detailed message explaining the error.
+     */
     message?: string;
+    /**
+     * - Additional metadata or context about the error,
+     * if available.
+     */
     meta?: any;
+    /**
+     * - The HTTP status code associated with the error.
+     */
     status?: number;
 };
 /** @returns {FilerList} */
@@ -4788,39 +5451,128 @@ type GetCatalogConfigurationMetaData = {
 /** @returns {GetCollectionDetailNest} */
 declare function GetCollectionDetailNest(): GetCollectionDetailNest;
 type GetCollectionDetailNest = {
-    _schedule?: any;
+    _schedule?: CollectionSchedule;
     action?: Action;
+    /**
+     * - Indicates whether facets are allowed for
+     * filtering the collection.
+     */
     allow_facets?: boolean;
+    /**
+     * - Indicates whether sorting options are
+     * allowed for the collection.
+     */
     allow_sort?: boolean;
+    /**
+     * - The application ID associated with the collection.
+     */
     app_id?: string;
-    badge?: any;
+    badge?: CollectionBadge;
     banners?: ImageUrls;
-    cron?: any;
+    /**
+     * - A description of the collection.
+     */
     description?: string;
+    /**
+     * - Indicates whether the collection is currently active.
+     */
     is_active?: boolean;
     logo?: Media;
+    /**
+     * - Additional metadata related to the collection.
+     */
     meta?: any;
+    /**
+     * - The name of the collection.
+     */
     name?: string;
+    /**
+     * - The priority level of the collection in the
+     * display list.
+     */
     priority?: number;
+    /**
+     * - Array of queries that define how the
+     * collection is fetched or filtered.
+     */
     query?: CollectionQuery[];
+    /**
+     * - The URL-friendly identifier of the collection.
+     */
     slug?: string;
+    /**
+     * - Array of tags associated with the collection.
+     */
     tag?: string[];
+    /**
+     * - The type of collection, such as manual or automated.
+     */
     type?: string;
+    /**
+     * - The unique identifier for the collection.
+     */
     uid?: string;
+    /**
+     * - List of facet keys that are
+     * visible for filtering the collection.
+     */
     visible_facets_keys?: string[];
+    /**
+     * - Internal identifier for the collection.
+     */
+    _id?: string;
+    /**
+     * - Indicates if the collection is published.
+     */
+    published?: boolean;
+    /**
+     * - Tags associated with the collection.
+     */
+    tags?: string[];
+    /**
+     * - Sort criteria for the collection.
+     */
+    sort_on?: string;
+    /**
+     * - Custom JSON data for the collection.
+     */
+    _custom_json?: any;
+    /**
+     * - Locale-specific language settings.
+     */
+    _locale_language?: any;
+    seo?: SeoDetail;
+    /**
+     * - Indicates if the collection is visible.
+     */
+    is_visible?: boolean;
 };
 /** @returns {GetCollectionItemsResponse} */
 declare function GetCollectionItemsResponse(): GetCollectionItemsResponse;
 type GetCollectionItemsResponse = {
+    /**
+     * - An array of filters applicable to
+     * the products in the collection.
+     */
     filters?: ProductFilters[];
+    /**
+     * - List of product details in the collection.
+     */
     items?: ProductListingDetail[];
     page?: Page;
+    /**
+     * - Sorting options available for the
+     * products in the collection.
+     */
     sort_on?: ProductSortOn[];
 };
 /** @returns {GetCollectionListingResponse} */
 declare function GetCollectionListingResponse(): GetCollectionListingResponse;
 type GetCollectionListingResponse = {
     filters?: CollectionListingFilter;
+    /**
+     * - Array of nested collection details.
+     */
     items?: GetCollectionDetailNest[];
     page?: Page;
 };
@@ -4897,12 +5649,12 @@ type GetConfigResponse = {
 /** @returns {GetDepartment} */
 declare function GetDepartment(): GetDepartment;
 type GetDepartment = {
-    created_by?: UserSerializer1;
+    created_by?: RequestUserSerializer;
     created_on?: string;
     is_active?: boolean;
     item_type?: string;
     logo?: string;
-    modified_by?: UserSerializer1;
+    modified_by?: RequestUserSerializer;
     modified_on?: string;
     name?: string;
     page_no?: number;
@@ -4916,24 +5668,24 @@ type GetDepartment = {
 /** @returns {GetInventories} */
 declare function GetInventories(): GetInventories;
 type GetInventories = {
-    brand?: BrandMeta1;
-    company?: CompanyMeta1;
+    brand?: InventoryBrandMeta;
+    company?: InventoryCompanyMeta;
     country_of_origin?: string;
-    created_by?: UserSerializer1;
+    created_by?: RequestUserSerializer;
     date_meta?: DateMeta;
-    dimension?: DimensionResponse1;
+    dimension?: InventoryDimensionResponse;
     expiration_date?: string;
     id?: string;
     identifier?: any;
     inventory_updated_on?: string;
     is_set?: boolean;
     item_id?: number;
-    manufacturer?: ManufacturerResponse1;
-    modified_by?: UserSerializer1;
+    manufacturer?: InventoryManufacturerResponse;
+    modified_by?: RequestUserSerializer;
     platforms?: any;
     price?: PriceArticle;
     quantities?: QuantitiesArticle;
-    return_config?: ReturnConfig2;
+    return_config?: ReturnConfig;
     seller_identifier?: string;
     size?: string;
     stage?: string;
@@ -4943,9 +5695,9 @@ type GetInventories = {
     total_quantity?: number;
     trace_id?: string;
     track_inventory?: boolean;
-    trader?: Trader2[];
+    trader?: TraderResponse[];
     uid?: string;
-    weight?: WeightResponse1;
+    weight?: InventoryWeightResponse;
 };
 /** @returns {GetInventoriesResponse} */
 declare function GetInventoriesResponse(): GetInventoriesResponse;
@@ -6234,9 +6986,9 @@ type ManufacturerResponse = {
      */
     name: string;
 };
-/** @returns {ManufacturerResponse1} */
-declare function ManufacturerResponse1(): ManufacturerResponse1;
-type ManufacturerResponse1 = {
+/** @returns {InventoryManufacturerResponse} */
+declare function InventoryManufacturerResponse(): InventoryManufacturerResponse;
+type InventoryManufacturerResponse = {
     address?: string;
     is_default?: boolean;
     name?: string;
@@ -6269,6 +7021,25 @@ declare function Media2(): Media2;
 type Media2 = {
     aspect_ratio?: string;
     type?: string;
+    url?: string;
+};
+/** @returns {BrandMedia} */
+declare function BrandMedia(): BrandMedia;
+type BrandMedia = {
+    /**
+     * - The aspect ratio of the media, typically
+     * represented as a string like '16:9' or '4:3'.
+     */
+    aspect_ratio?: string;
+    /**
+     * - The type of media, such as 'image', 'video', or
+     * 'audio', describing the content format.
+     */
+    type?: string;
+    /**
+     * - The URL where the media file is hosted, typically
+     * a link to an image or video resource.
+     */
     url?: string;
 };
 /** @returns {Meta} */
@@ -6344,7 +7115,13 @@ type NetQuantityResponse = {
 /** @returns {NextSchedule} */
 declare function NextSchedule(): NextSchedule;
 type NextSchedule = {
+    /**
+     * - The end time of the schedule.
+     */
     end?: string;
+    /**
+     * - The start time of the schedule.
+     */
     start?: string;
 };
 /** @returns {OptInPostRequest} */
@@ -6467,16 +7244,6 @@ type PageResponse = {
      * - It is the size of each page.
      */
     size?: number;
-};
-/** @returns {PageResponse1} */
-declare function PageResponse1(): PageResponse1;
-type PageResponse1 = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    item_total?: number;
-    size?: number;
-    type?: string;
 };
 /** @returns {PageResponseType} */
 declare function PageResponseType(): PageResponseType;
@@ -7257,37 +8024,79 @@ type ReturnConfigResponse = {
 /** @returns {Sitemap} */
 declare function Sitemap(): Sitemap;
 type Sitemap = {
+    /**
+     * - Indicates the priority of this URL relative
+     * to other URLs on the site. A value between 0.0 and 1.0, where 1.0 is the
+     * highest priority.
+     */
     priority?: number;
+    /**
+     * - How frequently the content at the URL is
+     * likely to change.
+     */
     frequency?: string;
 };
 /** @returns {ApplicationItemSeoAction} */
 declare function ApplicationItemSeoAction(): ApplicationItemSeoAction;
 type ApplicationItemSeoAction = {
+    /**
+     * - Details of the page associated with this SEO action.
+     */
     page?: any;
+    /**
+     * - Type of action, such as navigation or redirection.
+     */
     type: string;
 };
 /** @returns {ApplicationItemSeoBreadcrumbs} */
 declare function ApplicationItemSeoBreadcrumbs(): ApplicationItemSeoBreadcrumbs;
 type ApplicationItemSeoBreadcrumbs = {
+    /**
+     * - The URL that this breadcrumb points to.
+     */
     url?: string;
+    /**
+     * - The actions available for
+     * this breadcrumb, defining what happens when it's clicked or interacted with.
+     */
     action?: ApplicationItemSeoAction[];
 };
 /** @returns {ApplicationItemSeoMetaTagItem} */
 declare function ApplicationItemSeoMetaTagItem(): ApplicationItemSeoMetaTagItem;
 type ApplicationItemSeoMetaTagItem = {
+    /**
+     * - The name of the meta tag.
+     */
     key: string;
+    /**
+     * - The value associated with the meta tag.
+     */
     value: string;
 };
 /** @returns {ApplicationItemSeoMetaTags} */
 declare function ApplicationItemSeoMetaTags(): ApplicationItemSeoMetaTags;
 type ApplicationItemSeoMetaTags = {
+    /**
+     * - The title for this set of meta tags.
+     */
     title: string;
+    /**
+     * - A list of meta tag
+     * items, each defined by key-value pairs.
+     */
     items?: ApplicationItemSeoMetaTagItem[];
 };
 /** @returns {Metatags} */
 declare function Metatags(): Metatags;
 type Metatags = {
+    /**
+     * - The title or heading for the meta tags section.
+     */
     title?: string;
+    /**
+     * - An array of meta tag
+     * items, each consisting of key-value pairs.
+     */
     items?: ApplicationItemSeoMetaTagItem[];
 };
 /** @returns {SizePromotionThreshold} */
@@ -7334,12 +8143,30 @@ type SearchableAttribute = {
 /** @returns {SecondLevelChild} */
 declare function SecondLevelChild(): SecondLevelChild;
 type SecondLevelChild = {
+    /**
+     * - Custom JSON object to store additional
+     * data for the second-level child.
+     */
     _custom_json?: any;
     action?: Action;
     banners?: ImageUrls;
+    /**
+     * - A list of third-level child elements
+     * under the second-level child.
+     */
     childs?: ThirdLevelChild[];
+    /**
+     * - Name of the second-level child element.
+     */
     name?: string;
+    /**
+     * - Slug or URL-friendly identifier for the
+     * second-level child element.
+     */
     slug?: string;
+    /**
+     * - Unique identifier for the second-level child element.
+     */
     uid?: number;
 };
 /** @returns {SellerPhoneNumber} */
@@ -7351,11 +8178,37 @@ type SellerPhoneNumber = {
 /** @returns {SeoDetail} */
 declare function SeoDetail(): SeoDetail;
 type SeoDetail = {
+    /**
+     * - SEO meta description for the item or
+     * collection. This is used to describe the content for search engines.
+     */
     description?: string;
+    /**
+     * - SEO meta title for the item or collection. It is
+     * used as the title that appears in search results.
+     */
     title?: string;
+    /**
+     * - Information regarding the sitemap
+     * configuration for the item or collection.
+     */
     sitemap?: any;
+    /**
+     * - List of
+     * breadcrumbs for navigation, showing the hierarchy of pages leading to the
+     * current page.
+     */
     breadcrumbs?: ApplicationItemSeoBreadcrumbs[];
+    /**
+     * - An array of meta tags, each containing
+     * key-value pairs for various SEO meta tags used to enhance search visibility.
+     */
     meta_tags?: Metatags[];
+    /**
+     * - The canonical URL for the item or
+     * collection, which tells search engines the preferred version of the URL to
+     * avoid duplicate content issues.
+     */
     canonical_url?: string;
 };
 /** @returns {SetSize} */
@@ -7452,10 +8305,17 @@ declare function SuccessResponse(): SuccessResponse;
 type SuccessResponse = {
     success?: boolean;
 };
-/** @returns {SuccessResponse1} */
-declare function SuccessResponse1(): SuccessResponse1;
-type SuccessResponse1 = {
+/** @returns {SuccessResponseObject} */
+declare function SuccessResponseObject(): SuccessResponseObject;
+type SuccessResponseObject = {
+    /**
+     * - Indicates whether the operation was successful or not.
+     */
     success?: boolean;
+    /**
+     * - A unique identifier associated with the successful
+     * operation.
+     */
     uid?: number;
 };
 /** @returns {TaxIdentifier} */
@@ -7517,12 +8377,30 @@ type TemplatesValidationResponse = {
 /** @returns {ThirdLevelChild} */
 declare function ThirdLevelChild(): ThirdLevelChild;
 type ThirdLevelChild = {
+    /**
+     * - Custom JSON object to store additional
+     * data for the third-level child.
+     */
     _custom_json?: any;
     action?: Action;
     banners?: ImageUrls;
+    /**
+     * - A list of further nested child elements under
+     * the third-level child (if applicable).
+     */
     childs?: any[];
+    /**
+     * - Name of the third-level child element.
+     */
     name?: string;
+    /**
+     * - Slug or URL-friendly identifier for the
+     * third-level child element.
+     */
     slug?: string;
+    /**
+     * - Unique identifier for the third-level child element.
+     */
     uid?: number;
 };
 /** @returns {Trader} */
@@ -7539,9 +8417,9 @@ type Trader1 = {
     name: string;
     type: string;
 };
-/** @returns {Trader2} */
-declare function Trader2(): Trader2;
-type Trader2 = {
+/** @returns {TraderResponse} */
+declare function TraderResponse(): TraderResponse;
+type TraderResponse = {
     address?: string[];
     name?: string;
     type?: string;
@@ -7561,10 +8439,7 @@ type UpdateCollection = {
     is_visible?: boolean;
     logo?: CollectionImage;
     meta?: any;
-    /**
-     * - User info.
-     */
-    modified_by?: string;
+    modified_by?: UserInfo;
     name?: string;
     priority?: number;
     published?: boolean;
@@ -7719,9 +8594,9 @@ type UserSerializer = {
      */
     username?: string;
 };
-/** @returns {UserSerializer1} */
-declare function UserSerializer1(): UserSerializer1;
-type UserSerializer1 = {
+/** @returns {RequestUserSerializer} */
+declare function RequestUserSerializer(): RequestUserSerializer;
+type RequestUserSerializer = {
     _id?: string;
     contact?: string;
     uid?: string;
@@ -7795,9 +8670,9 @@ type WeightResponse = {
      */
     unit: string;
 };
-/** @returns {WeightResponse1} */
-declare function WeightResponse1(): WeightResponse1;
-type WeightResponse1 = {
+/** @returns {InventoryWeightResponse} */
+declare function InventoryWeightResponse(): InventoryWeightResponse;
+type InventoryWeightResponse = {
     shipping?: number;
     unit?: string;
 };
@@ -7875,4 +8750,4 @@ type ActionPage = {
  * @returns {PageType}
  */
 declare function PageType(): PageType;
-type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "custom" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "custom" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status" | "locate-us";
