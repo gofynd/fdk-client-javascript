@@ -27,6 +27,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
+
+/**
  * @typedef SeoSchema
  * @property {string} [app] - Application ID - Identifier for a Sales channel.
  * @property {string} [_id] - Unique identifier of an entry.
@@ -111,7 +117,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BlogGetResponse
+ * @typedef BlogGetDetails
  * @property {BlogSchema[]} [items] - List of blogs with details.
  * @property {Page} [page]
  * @property {BlogFilters} [filters]
@@ -414,7 +420,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef NavigationGetResponse
+ * @typedef NavigationGetDetails
  * @property {NavigationSchema[]} [items] - List of navigation items.
  * @property {Page} [page]
  */
@@ -446,7 +452,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PageGetResponse
+ * @typedef PageGetDetails
  * @property {PageSchema[]} [items] - List of details of custom pages.
  * @property {Page} [page]
  */
@@ -487,7 +493,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SlideshowGetResponse
+ * @typedef SlideshowGetDetails
  * @property {SlideshowSchema[]} [items] - Details related to slideshow/screensaver.
  * @property {Page} [page]
  */
@@ -592,7 +598,7 @@ const Joi = require("joi");
 /**
  * @typedef CustomObjectFieldSchema
  * @property {string} [_id] - Unique identifier of an entry.
- * @property {string} [key] - Key of custom field inside custom object.
+ * @property {string} [slug] - Slug of custom field inside custom object.
  * @property {CustomObjectFieldValue[]} [value] - Value of custom field inside
  *   custom object.
  * @property {string} [type] - Data type of custom field inside custom object.
@@ -602,7 +608,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CustomObjectByIdSchema
- * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [id] - Unique identifier of an entry.
  * @property {string} [status] - String denoting whether custom object is active
  *   or inactive.
  * @property {string} [display_name] - Unique Display name of a custom object
@@ -623,10 +629,8 @@ const Joi = require("joi");
  * @typedef CustomFieldSchema
  * @property {string} [_id] - Unique identifier of an entry.
  * @property {string} [namespace] - Namespace under which custom field is present.
- * @property {string} [key] - Unique identifier for a custom field.
+ * @property {string} [slug] - Unique identifier for a custom field in a given namespace.
  * @property {string} [resource] - Type of an entity under which custom field is defined.
- * @property {string} [creator] - Denotes where the custom field has been
- *   defined - within a company or within a sales channel.
  * @property {CustomFieldValue[]} [value] - Array containing values of custom field.
  * @property {string} [resource_id] - Unique identifier for the entity under
  *   which custom field is defined.
@@ -639,7 +643,6 @@ const Joi = require("joi");
  * @property {boolean} [has_invalid_values] - Whether the custom field has invalid values.
  * @property {Object[]} [invalid_value_errors] - Array denoting if there's a
  *   validation failure on a custom field inside a custom object.
- * @property {string} [created_by] - Details of the owner of custom field creator.
  * @property {boolean} [is_deleted] - Whether the custom field definition is deleted.
  * @property {string} [created_at] - Timestamp which represent the time when
  *   data was created.
@@ -650,6 +653,25 @@ const Joi = require("joi");
 /**
  * @typedef CustomFieldsResponseByResourceIdSchema
  * @property {CustomFieldSchema[]} [items] - List of custom fields against a resource.
+ */
+
+/**
+ * @typedef CustomObjectListItemSchema
+ * @property {string} [_id] - Unique system generated if for a custom object
+ * @property {string} [definition_id] - Unique system generated id for a custom
+ *   object definition
+ * @property {string} [status] - Flag to denote whether custom object is active or not
+ * @property {string} [updated_at] - Updation time of custom object entry
+ * @property {string} [display_name] - A custom field inside custom object used
+ *   to display the entry of custom object in listing
+ * @property {CustomObjectListItemDefinationSchema} [definition]
+ * @property {number} [references]
+ */
+
+/**
+ * @typedef CustomObjectsSchema
+ * @property {CustomObjectListItemSchema[]} [items]
+ * @property {Page} [page]
  */
 
 /**
@@ -739,6 +761,14 @@ class ContentApplicationModel {
   static SeoComponent() {
     return Joi.object({
       seo: ContentApplicationModel.SeoSchema(),
+    });
+  }
+
+  /** @returns {ValidationError} */
+  static ValidationError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      field: Joi.string().allow("").required(),
     });
   }
 
@@ -837,8 +867,8 @@ class ContentApplicationModel {
     });
   }
 
-  /** @returns {BlogGetResponse} */
-  static BlogGetResponse() {
+  /** @returns {BlogGetDetails} */
+  static BlogGetDetails() {
     return Joi.object({
       items: Joi.array().items(ContentApplicationModel.BlogSchema()),
       page: ContentApplicationModel.Page(),
@@ -883,7 +913,7 @@ class ContentApplicationModel {
   static BlogSchema() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       application: Joi.string().allow(""),
       archived: Joi.boolean(),
       author: ContentApplicationModel.Author(),
@@ -1082,7 +1112,7 @@ class ContentApplicationModel {
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       stack_trace: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1104,7 +1134,7 @@ class ContentApplicationModel {
       slug: Joi.string().allow(""),
       application: Joi.string().allow(""),
       icon_url: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1130,7 +1160,7 @@ class ContentApplicationModel {
       slug: Joi.string().allow(""),
       application: Joi.string().allow(""),
       icon_url: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1191,12 +1221,12 @@ class ContentApplicationModel {
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
       archived: Joi.boolean(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {NavigationGetResponse} */
-  static NavigationGetResponse() {
+  /** @returns {NavigationGetDetails} */
+  static NavigationGetDetails() {
     return Joi.object({
       items: Joi.array().items(ContentApplicationModel.NavigationSchema()),
       page: ContentApplicationModel.Page(),
@@ -1230,8 +1260,8 @@ class ContentApplicationModel {
     });
   }
 
-  /** @returns {PageGetResponse} */
-  static PageGetResponse() {
+  /** @returns {PageGetDetails} */
+  static PageGetDetails() {
     return Joi.object({
       items: Joi.array().items(ContentApplicationModel.PageSchema()),
       page: ContentApplicationModel.Page(),
@@ -1252,7 +1282,7 @@ class ContentApplicationModel {
       feature_image: ContentApplicationModel.Asset(),
       page_meta: Joi.array().items(Joi.any()),
       _schedule: ContentApplicationModel.ScheduleSchema(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       orientation: Joi.string().allow(""),
       platform: Joi.string().allow(""),
       published: Joi.boolean(),
@@ -1261,7 +1291,7 @@ class ContentApplicationModel {
       title: Joi.string().allow(""),
       type: Joi.string().allow(""),
       seo: ContentApplicationModel.SEO(),
-      visibility: Joi.any(),
+      visibility: Joi.object().pattern(/\S/, Joi.any()),
       archived: Joi.boolean(),
     });
   }
@@ -1273,8 +1303,8 @@ class ContentApplicationModel {
     });
   }
 
-  /** @returns {SlideshowGetResponse} */
-  static SlideshowGetResponse() {
+  /** @returns {SlideshowGetDetails} */
+  static SlideshowGetDetails() {
     return Joi.object({
       items: Joi.array().items(ContentApplicationModel.SlideshowSchema()),
       page: ContentApplicationModel.Page(),
@@ -1293,7 +1323,7 @@ class ContentApplicationModel {
       media: Joi.array().items(ContentApplicationModel.SlideshowMedia()),
       active: Joi.boolean(),
       archived: Joi.boolean(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1369,7 +1399,7 @@ class ContentApplicationModel {
       sub_type: Joi.string().allow(""),
       _id: Joi.string().allow(""),
       position: Joi.string().allow(""),
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
       content: Joi.string().allow(""),
       pages: Joi.array().items(Joi.any()),
       __source: ContentApplicationModel.TagSourceSchema(),
@@ -1404,7 +1434,7 @@ class ContentApplicationModel {
   static CustomObjectFieldSchema() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      key: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
       value: Joi.array().items(
         ContentApplicationModel.CustomObjectFieldValue()
       ),
@@ -1416,7 +1446,7 @@ class ContentApplicationModel {
   /** @returns {CustomObjectByIdSchema} */
   static CustomObjectByIdSchema() {
     return Joi.object({
-      _id: Joi.string().allow(""),
+      id: Joi.string().allow(""),
       status: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
       definition: ContentApplicationModel.CustomObjectListItemDefinationSchema(),
@@ -1439,9 +1469,8 @@ class ContentApplicationModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       namespace: Joi.string().allow(""),
-      key: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
       resource: Joi.string().allow(""),
-      creator: Joi.string().allow(""),
       value: Joi.array().items(ContentApplicationModel.CustomFieldValue()),
       resource_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
@@ -1451,7 +1480,6 @@ class ContentApplicationModel {
       definition_id: Joi.string().allow(""),
       has_invalid_values: Joi.boolean(),
       invalid_value_errors: Joi.array().items(Joi.any()),
-      created_by: Joi.string().allow(""),
       is_deleted: Joi.boolean(),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
@@ -1462,6 +1490,29 @@ class ContentApplicationModel {
   static CustomFieldsResponseByResourceIdSchema() {
     return Joi.object({
       items: Joi.array().items(ContentApplicationModel.CustomFieldSchema()),
+    });
+  }
+
+  /** @returns {CustomObjectListItemSchema} */
+  static CustomObjectListItemSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      definition_id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      definition: ContentApplicationModel.CustomObjectListItemDefinationSchema(),
+      references: Joi.number(),
+    });
+  }
+
+  /** @returns {CustomObjectsSchema} */
+  static CustomObjectsSchema() {
+    return Joi.object({
+      items: Joi.array().items(
+        ContentApplicationModel.CustomObjectListItemSchema()
+      ),
+      page: ContentApplicationModel.Page(),
     });
   }
 

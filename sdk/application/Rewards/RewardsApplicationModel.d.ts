@@ -6,15 +6,15 @@ export = RewardsApplicationModel;
  * @property {number} [price]
  */
 /**
- * @typedef CatalogueOrderResponse
+ * @typedef CatalogueOrderDetails
  * @property {RewardsArticle[]} [articles]
  */
 /**
- * @typedef CatalogueOrderRequest
+ * @typedef CatalogueOrderCreation
  * @property {RewardsArticle[]} [articles]
  */
 /**
- * @typedef PointsResponse
+ * @typedef PointsDetails
  * @property {number} [points] - Total points available
  */
 /**
@@ -74,7 +74,7 @@ export = RewardsApplicationModel;
  * @property {string} [whatsapp]
  */
 /**
- * @typedef ReferralDetailsResponse
+ * @typedef ReferralDetails
  * @property {Offer} [referral]
  * @property {ShareMessages} [share]
  * @property {ReferralDetailsUser} [user]
@@ -82,7 +82,7 @@ export = RewardsApplicationModel;
  * @property {string} [terms_conditions_link]
  */
 /**
- * @typedef OrderDiscountRequest
+ * @typedef RetrieveOrderDiscount
  * @property {number} order_amount
  * @property {string} [currency]
  */
@@ -103,7 +103,7 @@ export = RewardsApplicationModel;
  * @property {number} [percent]
  */
 /**
- * @typedef OrderDiscountResponse
+ * @typedef OrderDiscountDetails
  * @property {number} [order_amount]
  * @property {number} [points]
  * @property {DiscountProperties} [discount]
@@ -111,12 +111,12 @@ export = RewardsApplicationModel;
  * @property {OrderDiscountRuleBucket} [applied_rule_bucket]
  */
 /**
- * @typedef RedeemReferralCodeRequest
+ * @typedef RedeemReferralCode
  * @property {string} [device_id]
  * @property {string} [referral_code]
  */
 /**
- * @typedef RedeemReferralCodeResponse
+ * @typedef RedeemReferralCodeDetails
  * @property {boolean} [redeemed]
  * @property {string} [message]
  * @property {string} [referrer_info]
@@ -124,7 +124,7 @@ export = RewardsApplicationModel;
  * @property {number} [points]
  */
 /**
- * @typedef PointsHistoryResponse
+ * @typedef PointsHistoryDetails
  * @property {PointsHistory[]} [items] - History is the list of points transaction.
  * @property {Page} [page]
  */
@@ -158,7 +158,7 @@ export = RewardsApplicationModel;
 declare class RewardsApplicationModel {
 }
 declare namespace RewardsApplicationModel {
-    export { RewardsArticle, CatalogueOrderResponse, CatalogueOrderRequest, PointsResponse, ReferralDetailsUser, Offer, Schedule, Error, Asset, ShareMessages, ReferralDetailsResponse, OrderDiscountRequest, OrderDiscountRuleBucket, DiscountProperties, OrderDiscountResponse, RedeemReferralCodeRequest, RedeemReferralCodeResponse, PointsHistoryResponse, PointsHistory, Page };
+    export { RewardsArticle, CatalogueOrderDetails, CatalogueOrderCreation, PointsDetails, ReferralDetailsUser, Offer, Schedule, Error, Asset, ShareMessages, ReferralDetails, RetrieveOrderDiscount, OrderDiscountRuleBucket, DiscountProperties, OrderDiscountDetails, RedeemReferralCode, RedeemReferralCodeDetails, PointsHistoryDetails, PointsHistory, Page };
 }
 /** @returns {RewardsArticle} */
 declare function RewardsArticle(): RewardsArticle;
@@ -167,19 +167,19 @@ type RewardsArticle = {
     points?: number;
     price?: number;
 };
-/** @returns {CatalogueOrderResponse} */
-declare function CatalogueOrderResponse(): CatalogueOrderResponse;
-type CatalogueOrderResponse = {
+/** @returns {CatalogueOrderDetails} */
+declare function CatalogueOrderDetails(): CatalogueOrderDetails;
+type CatalogueOrderDetails = {
     articles?: RewardsArticle[];
 };
-/** @returns {CatalogueOrderRequest} */
-declare function CatalogueOrderRequest(): CatalogueOrderRequest;
-type CatalogueOrderRequest = {
+/** @returns {CatalogueOrderCreation} */
+declare function CatalogueOrderCreation(): CatalogueOrderCreation;
+type CatalogueOrderCreation = {
     articles?: RewardsArticle[];
 };
-/** @returns {PointsResponse} */
-declare function PointsResponse(): PointsResponse;
-type PointsResponse = {
+/** @returns {PointsDetails} */
+declare function PointsDetails(): PointsDetails;
+type PointsDetails = {
     /**
      * - Total points available
      */
@@ -247,18 +247,18 @@ type ShareMessages = {
     twitter?: string;
     whatsapp?: string;
 };
-/** @returns {ReferralDetailsResponse} */
-declare function ReferralDetailsResponse(): ReferralDetailsResponse;
-type ReferralDetailsResponse = {
+/** @returns {ReferralDetails} */
+declare function ReferralDetails(): ReferralDetails;
+type ReferralDetails = {
     referral?: Offer;
     share?: ShareMessages;
     user?: ReferralDetailsUser;
     referrer_info?: string;
     terms_conditions_link?: string;
 };
-/** @returns {OrderDiscountRequest} */
-declare function OrderDiscountRequest(): OrderDiscountRequest;
-type OrderDiscountRequest = {
+/** @returns {RetrieveOrderDiscount} */
+declare function RetrieveOrderDiscount(): RetrieveOrderDiscount;
+type RetrieveOrderDiscount = {
     order_amount: number;
     currency?: string;
 };
@@ -280,33 +280,33 @@ type DiscountProperties = {
     display_percent?: string;
     percent?: number;
 };
-/** @returns {OrderDiscountResponse} */
-declare function OrderDiscountResponse(): OrderDiscountResponse;
-type OrderDiscountResponse = {
+/** @returns {OrderDiscountDetails} */
+declare function OrderDiscountDetails(): OrderDiscountDetails;
+type OrderDiscountDetails = {
     order_amount?: number;
     points?: number;
     discount?: DiscountProperties;
     base_discount?: DiscountProperties;
     applied_rule_bucket?: OrderDiscountRuleBucket;
 };
-/** @returns {RedeemReferralCodeRequest} */
-declare function RedeemReferralCodeRequest(): RedeemReferralCodeRequest;
-type RedeemReferralCodeRequest = {
+/** @returns {RedeemReferralCode} */
+declare function RedeemReferralCode(): RedeemReferralCode;
+type RedeemReferralCode = {
     device_id?: string;
     referral_code?: string;
 };
-/** @returns {RedeemReferralCodeResponse} */
-declare function RedeemReferralCodeResponse(): RedeemReferralCodeResponse;
-type RedeemReferralCodeResponse = {
+/** @returns {RedeemReferralCodeDetails} */
+declare function RedeemReferralCodeDetails(): RedeemReferralCodeDetails;
+type RedeemReferralCodeDetails = {
     redeemed?: boolean;
     message?: string;
     referrer_info?: string;
     referrer_id?: string;
     points?: number;
 };
-/** @returns {PointsHistoryResponse} */
-declare function PointsHistoryResponse(): PointsHistoryResponse;
-type PointsHistoryResponse = {
+/** @returns {PointsHistoryDetails} */
+declare function PointsHistoryDetails(): PointsHistoryDetails;
+type PointsHistoryDetails = {
     /**
      * - History is the list of points transaction.
      */

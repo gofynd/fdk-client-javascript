@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ApplicationResponse
+ * @typedef ApplicationResponseSchema
  * @property {Application} [application]
  */
 
@@ -99,7 +99,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BadRequest
+ * @typedef BadRequestSchema
  * @property {string} [message] - Failure message (in a string format).
  */
 
@@ -146,8 +146,8 @@ const Joi = require("joi");
  */
 
 class CommonApplicationModel {
-  /** @returns {ApplicationResponse} */
-  static ApplicationResponse() {
+  /** @returns {ApplicationResponseSchema} */
+  static ApplicationResponseSchema() {
     return Joi.object({
       application: CommonApplicationModel.Application(),
     });
@@ -251,8 +251,8 @@ class CommonApplicationModel {
     });
   }
 
-  /** @returns {BadRequest} */
-  static BadRequest() {
+  /** @returns {BadRequestSchema} */
+  static BadRequestSchema() {
     return Joi.object({
       message: Joi.string().allow(""),
     });

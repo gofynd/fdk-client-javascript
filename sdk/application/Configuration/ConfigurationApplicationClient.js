@@ -55,8 +55,9 @@ class Configuration {
    * @param {ConfigurationApplicationValidator.GetAppCurrenciesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.AppCurrencyResponse>} -
-   *   Success response
+   * @returns {Promise<ConfigurationApplicationModel.AppCurrencyResponseSchema>}
+   *   - Success response
+   *
    * @name getAppCurrencies
    * @summary: Get currency configuration
    * @description: Get currency configuration of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
@@ -113,7 +114,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppCurrencyResponse().validate(
+    } = ConfigurationApplicationModel.AppCurrencyResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -136,8 +137,9 @@ class Configuration {
    * @param {ConfigurationApplicationValidator.GetAppStaffListParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.AppStaffListResponse>} -
-   *   Success response
+   * @returns {Promise<ConfigurationApplicationModel.AppStaffListResponseSchema>}
+   *   - Success response
+   *
    * @name getAppStaffList
    * @summary: List staff members
    * @description: List all staff members of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
@@ -208,7 +210,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppStaffListResponse().validate(
+    } = ConfigurationApplicationModel.AppStaffListResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -231,8 +233,9 @@ class Configuration {
    * @param {ConfigurationApplicationValidator.GetAppStaffsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.AppStaffResponse>} -
-   *   Success response
+   * @returns {Promise<ConfigurationApplicationModel.AppStaffResponseSchema>}
+   *   - Success response
+   *
    * @name getAppStaffs
    * @summary: Get staff member
    * @description: Get a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
@@ -292,7 +295,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppStaffResponse().validate(
+    } = ConfigurationApplicationModel.AppStaffResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -558,8 +561,9 @@ class Configuration {
    * @param {ConfigurationApplicationValidator.GetCurrenciesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.CurrenciesResponse>} -
-   *   Success response
+   * @returns {Promise<ConfigurationApplicationModel.CurrenciesResponseSchema>}
+   *   - Success response
+   *
    * @name getCurrencies
    * @summary: List currencies
    * @description: List available currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
@@ -616,7 +620,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.CurrenciesResponse().validate(
+    } = ConfigurationApplicationModel.CurrenciesResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -719,8 +723,9 @@ class Configuration {
    * @param {ConfigurationApplicationValidator.GetFeaturesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.AppFeatureResponse>} -
-   *   Success response
+   * @returns {Promise<ConfigurationApplicationModel.AppFeatureResponseSchema>}
+   *   - Success response
+   *
    * @name getFeatures
    * @summary: Get sales channel features
    * @description: Get configuration of the features of the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
@@ -775,7 +780,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppFeatureResponse().validate(
+    } = ConfigurationApplicationModel.AppFeatureResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -800,8 +805,9 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.AppTokenResponse>} -
-   *   Success response
+   * @returns {Promise<ConfigurationApplicationModel.AppTokenResponseSchema>}
+   *   - Success response
+   *
    * @name getIntegrationTokens
    * @summary: Get API tokens
    * @description: Get tools integration token of the sales channel. For example, Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, and Facebook. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
@@ -858,7 +864,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppTokenResponse().validate(
+    } = ConfigurationApplicationModel.AppTokenResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -881,8 +887,9 @@ class Configuration {
    * @param {ConfigurationApplicationValidator.GetLanguagesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.LanguageResponse>} -
-   *   Success response
+   * @returns {Promise<ConfigurationApplicationModel.LanguageResponseSchema>}
+   *   - Success response
+   *
    * @name getLanguages
    * @summary: List languages
    * @description: List available languages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
@@ -937,7 +944,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.LanguageResponse().validate(
+    } = ConfigurationApplicationModel.LanguageResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -962,7 +969,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
+   * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponseSchema>}
    *   - Success response
    *
    * @name getOrderingStoreCookie
@@ -1021,7 +1028,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.SuccessMessageResponse().validate(
+    } = ConfigurationApplicationModel.SuccessMessageResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1127,7 +1134,7 @@ class Configuration {
    * @param {ConfigurationApplicationValidator.GetOwnerInfoParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.ApplicationAboutResponse>}
+   * @returns {Promise<ConfigurationApplicationModel.ApplicationAboutResponseSchema>}
    *   - Success response
    *
    * @name getOwnerInfo
@@ -1184,7 +1191,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.ApplicationAboutResponse().validate(
+    } = ConfigurationApplicationModel.ApplicationAboutResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1290,7 +1297,7 @@ class Configuration {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
+   * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponseSchema>}
    *   - Success response
    *
    * @name removeOrderingStoreCookie
@@ -1349,7 +1356,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.SuccessMessageResponse().validate(
+    } = ConfigurationApplicationModel.SuccessMessageResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

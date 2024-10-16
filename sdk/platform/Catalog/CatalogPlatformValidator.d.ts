@@ -3,7 +3,7 @@ export = CatalogPlatformValidator;
  * @typedef AddInventoryParam
  * @property {number} itemId - Item code of the product of which size is to be get.
  * @property {string} size - Size in which inventory is to be added.
- * @property {CatalogPlatformModel.InventoryRequest} body
+ * @property {CatalogPlatformModel.InventoryRequestSchema} body
  */
 /**
  * @typedef AllSizesParam
@@ -16,7 +16,7 @@ export = CatalogPlatformValidator;
 /**
  * @typedef CreateBulkInventoryParam
  * @property {string} batchId - Batch Id of the bulk create job.
- * @property {CatalogPlatformModel.InventoryBulkRequest} body
+ * @property {CatalogPlatformModel.InventoryBulkRequestSchema} body
  */
 /**
  * @typedef CreateBulkInventoryJobParam
@@ -28,17 +28,17 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef CreateInventoryExportParam
- * @property {CatalogPlatformModel.InventoryCreateRequest} body
+ * @property {CatalogPlatformModel.InventoryCreateRequestSchema} body
  */
 /**
  * @typedef CreateInventoryExportJobParam
- * @property {CatalogPlatformModel.InventoryExportRequest} body
+ * @property {CatalogPlatformModel.InventoryExportRequestSchema} body
  */
 /**
  * @typedef CreateMarketplaceOptinParam
  * @property {string} marketplaceSlug - The marketplace for which the detail
  *   needs to be retrieved.
- * @property {CatalogPlatformModel.OptInPostRequest} body
+ * @property {CatalogPlatformModel.OptInPostRequestSchema} body
  */
 /**
  * @typedef CreateProductParam
@@ -50,7 +50,7 @@ export = CatalogPlatformValidator;
  */
 /**
  * @typedef CreateProductBundleParam
- * @property {CatalogPlatformModel.ProductBundleRequest} body
+ * @property {CatalogPlatformModel.ProductBundleRequestSchema} body
  */
 /**
  * @typedef CreateProductExportJobParam
@@ -59,7 +59,7 @@ export = CatalogPlatformValidator;
 /**
  * @typedef CreateProductsInBulkParam
  * @property {string} batchId - Batch Id in which assets to be uploaded.
- * @property {CatalogPlatformModel.BulkProductRequest} body
+ * @property {CatalogPlatformModel.BulkProductRequestSchema} body
  */
 /**
  * @typedef CreateSizeGuideParam
@@ -413,13 +413,13 @@ export = CatalogPlatformValidator;
 /**
  * @typedef UpdateMarketplaceOptinParam
  * @property {string} marketplaceSlug - Slug of the marketplace .
- * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequest} body
+ * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema} body
  */
 /**
  * @typedef UpdateProductBundleParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
- * @property {CatalogPlatformModel.ProductBundleUpdateRequest} body
+ * @property {CatalogPlatformModel.ProductBundleUpdateRequestSchema} body
  */
 /**
  * @typedef UpdateRealtimeInventoryParam
@@ -617,7 +617,7 @@ type AddInventoryParam = {
      * - Size in which inventory is to be added.
      */
     size: string;
-    body: CatalogPlatformModel.InventoryRequest;
+    body: CatalogPlatformModel.InventoryRequestSchema;
 };
 type AllSizesParam = {
     /**
@@ -633,7 +633,7 @@ type CreateBulkInventoryParam = {
      * - Batch Id of the bulk create job.
      */
     batchId: string;
-    body: CatalogPlatformModel.InventoryBulkRequest;
+    body: CatalogPlatformModel.InventoryBulkRequestSchema;
 };
 type CreateBulkInventoryJobParam = {
     body: CatalogPlatformModel.BulkJob;
@@ -642,10 +642,10 @@ type CreateBulkProductUploadJobParam = {
     body: CatalogPlatformModel.BulkJob;
 };
 type CreateInventoryExportParam = {
-    body: CatalogPlatformModel.InventoryCreateRequest;
+    body: CatalogPlatformModel.InventoryCreateRequestSchema;
 };
 type CreateInventoryExportJobParam = {
-    body: CatalogPlatformModel.InventoryExportRequest;
+    body: CatalogPlatformModel.InventoryExportRequestSchema;
 };
 type CreateMarketplaceOptinParam = {
     /**
@@ -653,7 +653,7 @@ type CreateMarketplaceOptinParam = {
      * needs to be retrieved.
      */
     marketplaceSlug: string;
-    body: CatalogPlatformModel.OptInPostRequest;
+    body: CatalogPlatformModel.OptInPostRequestSchema;
 };
 type CreateProductParam = {
     body: CatalogPlatformModel.ProductCreateUpdateSchemaV2;
@@ -662,7 +662,7 @@ type CreateProductAssetsInBulkParam = {
     body: CatalogPlatformModel.ProductBulkAssets;
 };
 type CreateProductBundleParam = {
-    body: CatalogPlatformModel.ProductBundleRequest;
+    body: CatalogPlatformModel.ProductBundleRequestSchema;
 };
 type CreateProductExportJobParam = {
     body: CatalogPlatformModel.ProductTemplateDownloadsExport;
@@ -672,7 +672,7 @@ type CreateProductsInBulkParam = {
      * - Batch Id in which assets to be uploaded.
      */
     batchId: string;
-    body: CatalogPlatformModel.BulkProductRequest;
+    body: CatalogPlatformModel.BulkProductRequestSchema;
 };
 type CreateSizeGuideParam = {
     body: CatalogPlatformModel.ValidateSizeGuide;
@@ -1392,7 +1392,7 @@ type UpdateMarketplaceOptinParam = {
      * - Slug of the marketplace .
      */
     marketplaceSlug: string;
-    body: CatalogPlatformModel.UpdateMarketplaceOptinRequest;
+    body: CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema;
 };
 type UpdateProductBundleParam = {
     /**
@@ -1400,7 +1400,7 @@ type UpdateProductBundleParam = {
      * detail. Pass the `id` of the keywords which you want to delete.
      */
     id: string;
-    body: CatalogPlatformModel.ProductBundleUpdateRequest;
+    body: CatalogPlatformModel.ProductBundleUpdateRequestSchema;
 };
 type UpdateRealtimeInventoryParam = {
     /**

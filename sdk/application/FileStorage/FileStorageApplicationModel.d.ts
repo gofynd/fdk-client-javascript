@@ -11,7 +11,7 @@ export = FileStorageApplicationModel;
  * @property {string} url - The signed URL for uploading the file.
  */
 /**
- * @typedef StartResponse
+ * @typedef FileUpload
  * @property {string} file_name - The name of the file that was uploaded.
  * @property {string} file_path - The path to the file in the storage location.
  * @property {string} content_type - The content type of the file.
@@ -20,7 +20,6 @@ export = FileStorageApplicationModel;
  * @property {string} operation - The operation to be performed on the storage service.
  * @property {number} size - The size of the file in bytes.
  * @property {Upload} upload
- * @property {CDN} cdn
  * @property {string[]} [tags] - Tags associated with the file.
  */
 /**
@@ -29,7 +28,7 @@ export = FileStorageApplicationModel;
  *   within the storage structure where the file should be placed or is located.
  */
 /**
- * @typedef StartRequest
+ * @typedef FileUploadStart
  * @property {string} file_name - The name of the file to be uploaded.
  * @property {string} content_type - The name of the file to be uploaded.
  * @property {number} size - The size of the file in bytes.
@@ -41,7 +40,7 @@ export = FileStorageApplicationModel;
  * @property {string} [username] - The username of the user who created the file.
  */
 /**
- * @typedef CompleteResponse
+ * @typedef FileUploadComplete
  * @property {string} _id - The unique identifier of the uploaded file.
  * @property {string} file_name - The name of the file that was uploaded.
  * @property {string} file_path - The path to the file in the storage location.
@@ -65,18 +64,18 @@ export = FileStorageApplicationModel;
  * @property {number} expiry - The expiration time for the signed URL.
  */
 /**
- * @typedef SignUrlResponse
+ * @typedef SignUrlResult
  * @property {Urls[]} urls - Signed URL object.
  */
 /**
- * @typedef SignUrlRequest
+ * @typedef SignUrl
  * @property {number} expiry - The expiration time for the signed URL.
- * @property {string[]} urls - List of asset URLs to be signed. .
+ * @property {string[]} urls - List of asset URLs to be signed.
  */
 declare class FileStorageApplicationModel {
 }
 declare namespace FileStorageApplicationModel {
-    export { CDN, Upload, StartResponse, Params, StartRequest, CreatedBy, CompleteResponse, Urls, SignUrlResponse, SignUrlRequest };
+    export { CDN, Upload, FileUpload, Params, FileUploadStart, CreatedBy, FileUploadComplete, Urls, SignUrlResult, SignUrl };
 }
 /** @returns {CDN} */
 declare function CDN(): CDN;
@@ -106,9 +105,9 @@ type Upload = {
      */
     url: string;
 };
-/** @returns {StartResponse} */
-declare function StartResponse(): StartResponse;
-type StartResponse = {
+/** @returns {FileUpload} */
+declare function FileUpload(): FileUpload;
+type FileUpload = {
     /**
      * - The name of the file that was uploaded.
      */
@@ -138,7 +137,6 @@ type StartResponse = {
      */
     size: number;
     upload: Upload;
-    cdn: CDN;
     /**
      * - Tags associated with the file.
      */
@@ -153,9 +151,9 @@ type Params = {
      */
     subpath?: string;
 };
-/** @returns {StartRequest} */
-declare function StartRequest(): StartRequest;
-type StartRequest = {
+/** @returns {FileUploadStart} */
+declare function FileUploadStart(): FileUploadStart;
+type FileUploadStart = {
     /**
      * - The name of the file to be uploaded.
      */
@@ -182,9 +180,9 @@ type CreatedBy = {
      */
     username?: string;
 };
-/** @returns {CompleteResponse} */
-declare function CompleteResponse(): CompleteResponse;
-type CompleteResponse = {
+/** @returns {FileUploadComplete} */
+declare function FileUploadComplete(): FileUploadComplete;
+type FileUploadComplete = {
     /**
      * - The unique identifier of the uploaded file.
      */
@@ -250,23 +248,23 @@ type Urls = {
      */
     expiry: number;
 };
-/** @returns {SignUrlResponse} */
-declare function SignUrlResponse(): SignUrlResponse;
-type SignUrlResponse = {
+/** @returns {SignUrlResult} */
+declare function SignUrlResult(): SignUrlResult;
+type SignUrlResult = {
     /**
      * - Signed URL object.
      */
     urls: Urls[];
 };
-/** @returns {SignUrlRequest} */
-declare function SignUrlRequest(): SignUrlRequest;
-type SignUrlRequest = {
+/** @returns {SignUrl} */
+declare function SignUrl(): SignUrl;
+type SignUrl = {
     /**
      * - The expiration time for the signed URL.
      */
     expiry: number;
     /**
-     * - List of asset URLs to be signed. .
+     * - List of asset URLs to be signed.
      */
     urls: string[];
 };

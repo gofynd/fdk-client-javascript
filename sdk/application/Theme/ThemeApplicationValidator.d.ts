@@ -3,7 +3,10 @@ export = ThemeApplicationValidator;
  * @typedef GetAllPagesParam
  * @property {string} themeId - Id of the theme to be retrieved.
  */
-/** @typedef GetAppliedThemeParam */
+/**
+ * @typedef GetAppliedThemeParam
+ * @property {boolean} [filters] - Filters on sections to be applied or not.
+ */
 /**
  * @typedef GetPageParam
  * @property {string} themeId - Id of the theme to be retrieved.
@@ -15,12 +18,13 @@ export = ThemeApplicationValidator;
 /**
  * @typedef GetThemeForPreviewParam
  * @property {string} themeId - Id of the theme to be retrieved.
+ * @property {boolean} [filters] - Filters on sections to be applied or not.
  */
 declare class ThemeApplicationValidator {
     /** @returns {GetAllPagesParam} */
     static getAllPages(): GetAllPagesParam;
     /** @returns {GetAppliedThemeParam} */
-    static getAppliedTheme(): any;
+    static getAppliedTheme(): GetAppliedThemeParam;
     /** @returns {GetPageParam} */
     static getPage(): GetPageParam;
     /** @returns {GetThemeForPreviewParam} */
@@ -34,6 +38,12 @@ type GetAllPagesParam = {
      * - Id of the theme to be retrieved.
      */
     themeId: string;
+};
+type GetAppliedThemeParam = {
+    /**
+     * - Filters on sections to be applied or not.
+     */
+    filters?: boolean;
 };
 type GetPageParam = {
     /**
@@ -62,5 +72,8 @@ type GetThemeForPreviewParam = {
      * - Id of the theme to be retrieved.
      */
     themeId: string;
+    /**
+     * - Filters on sections to be applied or not.
+     */
+    filters?: boolean;
 };
-type GetAppliedThemeParam = any;

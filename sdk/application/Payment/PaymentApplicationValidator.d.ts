@@ -1,19 +1,19 @@
 export = PaymentApplicationValidator;
 /**
  * @typedef AddBeneficiaryDetailsParam
- * @property {PaymentApplicationModel.AddBeneficiaryDetailsRequest} body
+ * @property {PaymentApplicationModel.AddBeneficiaryDetails} body
  */
 /**
  * @typedef AddRefundBankAccountUsingOTPParam
- * @property {PaymentApplicationModel.AddBeneficiaryDetailsOTPRequest} body
+ * @property {PaymentApplicationModel.AddBeneficiaryDetailsOTP} body
  */
 /**
  * @typedef AttachCardToCustomerParam
- * @property {PaymentApplicationModel.AttachCardRequest} body
+ * @property {PaymentApplicationModel.AttachCard} body
  */
 /**
  * @typedef CancelPaymentLinkParam
- * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
+ * @property {PaymentApplicationModel.CancelOrResendPaymentLink} body
  */
 /**
  * @typedef CardDetailsParam
@@ -23,11 +23,11 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef CheckAndUpdatePaymentStatusParam
- * @property {PaymentApplicationModel.PaymentStatusUpdateRequest} body
+ * @property {PaymentApplicationModel.PaymentStatusUpdate} body
  */
 /**
  * @typedef CheckAndUpdatePaymentStatusPaymentLinkParam
- * @property {PaymentApplicationModel.PaymentStatusUpdateRequest} body
+ * @property {PaymentApplicationModel.PaymentStatusUpdate} body
  */
 /**
  * @typedef CheckCreditParam
@@ -35,15 +35,15 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef CreateOrderHandlerPaymentLinkParam
- * @property {PaymentApplicationModel.CreateOrderUserRequest} body
+ * @property {PaymentApplicationModel.CreateOrderUser} body
  */
 /**
  * @typedef CreatePaymentLinkParam
- * @property {PaymentApplicationModel.CreatePaymentLinkRequest} body
+ * @property {PaymentApplicationModel.CreatePaymentLink} body
  */
 /**
  * @typedef CreatePaymentOrderParam
- * @property {PaymentApplicationModel.PaymentOrderRequest} body
+ * @property {PaymentApplicationModel.PaymentOrder} body
  */
 /**
  * @typedef CustomerCreditSummaryParam
@@ -51,11 +51,11 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef CustomerOnboardParam
- * @property {PaymentApplicationModel.CustomerOnboardingRequest} body
+ * @property {PaymentApplicationModel.CustomerOnboarding} body
  */
 /**
  * @typedef DeleteUserCardParam
- * @property {PaymentApplicationModel.DeletehCardRequest} body
+ * @property {PaymentApplicationModel.DeleteCard} body
  */
 /**
  * @typedef DelinkWalletParam
@@ -63,7 +63,7 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef EnableOrDisableRefundTransferModeParam
- * @property {PaymentApplicationModel.UpdateRefundTransferModeRequest} body
+ * @property {PaymentApplicationModel.UpdateRefundTransferMode} body
  */
 /**
  * @typedef GetActiveCardAggregatorParam
@@ -133,11 +133,11 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef InitialisePaymentParam
- * @property {PaymentApplicationModel.PaymentInitializationRequest} body
+ * @property {PaymentApplicationModel.PaymentInitialization} body
  */
 /**
  * @typedef InitialisePaymentPaymentLinkParam
- * @property {PaymentApplicationModel.PaymentInitializationRequest} body
+ * @property {PaymentApplicationModel.PaymentInitialization} body
  */
 /**
  * @typedef LinkWalletParam
@@ -162,31 +162,31 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef RenderHTMLParam
- * @property {PaymentApplicationModel.renderHTMLRequest} body
+ * @property {PaymentApplicationModel.RenderHTML} body
  */
 /**
  * @typedef ResendOrCancelPaymentParam
- * @property {PaymentApplicationModel.ResendOrCancelPaymentRequest} body
+ * @property {PaymentApplicationModel.ResendOrCancelPayment} body
  */
 /**
  * @typedef ResendPaymentLinkParam
- * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
+ * @property {PaymentApplicationModel.CancelOrResendPaymentLink} body
  */
 /**
  * @typedef UpdateDefaultBeneficiaryParam
- * @property {PaymentApplicationModel.SetDefaultBeneficiaryRequest} body
+ * @property {PaymentApplicationModel.SetDefaultBeneficiary} body
  */
 /**
  * @typedef ValidateVPAParam
- * @property {PaymentApplicationModel.ValidateVPARequest} body
+ * @property {PaymentApplicationModel.ValidateVPA} body
  */
 /**
  * @typedef VerifyAndChargePaymentParam
- * @property {PaymentApplicationModel.ChargeCustomerRequest} body
+ * @property {PaymentApplicationModel.ChargeCustomer} body
  */
 /**
  * @typedef VerifyCustomerForPaymentParam
- * @property {PaymentApplicationModel.ValidateCustomerRequest} body
+ * @property {PaymentApplicationModel.ValidateCustomer} body
  */
 /**
  * @typedef VerifyIfscCodeParam
@@ -195,11 +195,11 @@ export = PaymentApplicationValidator;
  */
 /**
  * @typedef VerifyOtpAndAddBeneficiaryForBankParam
- * @property {PaymentApplicationModel.AddBeneficiaryViaOtpVerificationRequest} body
+ * @property {PaymentApplicationModel.AddBeneficiaryViaOtpVerification} body
  */
 /**
  * @typedef VerifyOtpAndAddBeneficiaryForWalletParam
- * @property {PaymentApplicationModel.WalletOtpRequest} body
+ * @property {PaymentApplicationModel.WalletOtp} body
  */
 /**
  * @typedef WalletLinkInitiateParam
@@ -303,16 +303,16 @@ declare namespace PaymentApplicationValidator {
     export { AddBeneficiaryDetailsParam, AddRefundBankAccountUsingOTPParam, AttachCardToCustomerParam, CancelPaymentLinkParam, CardDetailsParam, CheckAndUpdatePaymentStatusParam, CheckAndUpdatePaymentStatusPaymentLinkParam, CheckCreditParam, CreateOrderHandlerPaymentLinkParam, CreatePaymentLinkParam, CreatePaymentOrderParam, CustomerCreditSummaryParam, CustomerOnboardParam, DeleteUserCardParam, DelinkWalletParam, EnableOrDisableRefundTransferModeParam, GetActiveCardAggregatorParam, GetActiveRefundTransferModesParam, GetActiveUserCardsParam, GetAggregatorsConfigParam, GetEpaylaterBannerDetailsParam, GetOrderBeneficiariesDetailParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPaymentModeRoutesPaymentLinkParam, GetPosPaymentModeRoutesParam, GetRupifiBannerDetailsParam, GetUserBeneficiariesDetailParam, InitialisePaymentParam, InitialisePaymentPaymentLinkParam, LinkWalletParam, OutstandingOrderDetailsParam, PaidOrderDetailsParam, PollingPaymentLinkParam, RedirectToAggregatorParam, RenderHTMLParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, UpdateDefaultBeneficiaryParam, ValidateVPAParam, VerifyAndChargePaymentParam, VerifyCustomerForPaymentParam, VerifyIfscCodeParam, VerifyOtpAndAddBeneficiaryForBankParam, VerifyOtpAndAddBeneficiaryForWalletParam, WalletLinkInitiateParam };
 }
 type AddBeneficiaryDetailsParam = {
-    body: PaymentApplicationModel.AddBeneficiaryDetailsRequest;
+    body: PaymentApplicationModel.AddBeneficiaryDetails;
 };
 type AddRefundBankAccountUsingOTPParam = {
-    body: PaymentApplicationModel.AddBeneficiaryDetailsOTPRequest;
+    body: PaymentApplicationModel.AddBeneficiaryDetailsOTP;
 };
 type AttachCardToCustomerParam = {
-    body: PaymentApplicationModel.AttachCardRequest;
+    body: PaymentApplicationModel.AttachCard;
 };
 type CancelPaymentLinkParam = {
-    body: PaymentApplicationModel.CancelOrResendPaymentLinkRequest;
+    body: PaymentApplicationModel.CancelOrResendPaymentLink;
 };
 type CardDetailsParam = {
     /**
@@ -326,10 +326,10 @@ type CardDetailsParam = {
     aggregator?: string;
 };
 type CheckAndUpdatePaymentStatusParam = {
-    body: PaymentApplicationModel.PaymentStatusUpdateRequest;
+    body: PaymentApplicationModel.PaymentStatusUpdate;
 };
 type CheckAndUpdatePaymentStatusPaymentLinkParam = {
-    body: PaymentApplicationModel.PaymentStatusUpdateRequest;
+    body: PaymentApplicationModel.PaymentStatusUpdate;
 };
 type CheckCreditParam = {
     /**
@@ -338,13 +338,13 @@ type CheckCreditParam = {
     aggregator?: string;
 };
 type CreateOrderHandlerPaymentLinkParam = {
-    body: PaymentApplicationModel.CreateOrderUserRequest;
+    body: PaymentApplicationModel.CreateOrderUser;
 };
 type CreatePaymentLinkParam = {
-    body: PaymentApplicationModel.CreatePaymentLinkRequest;
+    body: PaymentApplicationModel.CreatePaymentLink;
 };
 type CreatePaymentOrderParam = {
-    body: PaymentApplicationModel.PaymentOrderRequest;
+    body: PaymentApplicationModel.PaymentOrder;
 };
 type CustomerCreditSummaryParam = {
     /**
@@ -353,16 +353,16 @@ type CustomerCreditSummaryParam = {
     aggregator?: string;
 };
 type CustomerOnboardParam = {
-    body: PaymentApplicationModel.CustomerOnboardingRequest;
+    body: PaymentApplicationModel.CustomerOnboarding;
 };
 type DeleteUserCardParam = {
-    body: PaymentApplicationModel.DeletehCardRequest;
+    body: PaymentApplicationModel.DeleteCard;
 };
 type DelinkWalletParam = {
     body: PaymentApplicationModel.WalletDelinkRequestSchema;
 };
 type EnableOrDisableRefundTransferModeParam = {
-    body: PaymentApplicationModel.UpdateRefundTransferModeRequest;
+    body: PaymentApplicationModel.UpdateRefundTransferMode;
 };
 type GetActiveCardAggregatorParam = {
     /**
@@ -497,10 +497,10 @@ type GetUserBeneficiariesDetailParam = {
     orderId: string;
 };
 type InitialisePaymentParam = {
-    body: PaymentApplicationModel.PaymentInitializationRequest;
+    body: PaymentApplicationModel.PaymentInitialization;
 };
 type InitialisePaymentPaymentLinkParam = {
-    body: PaymentApplicationModel.PaymentInitializationRequest;
+    body: PaymentApplicationModel.PaymentInitialization;
 };
 type LinkWalletParam = {
     body: PaymentApplicationModel.WalletVerifyRequestSchema;
@@ -534,25 +534,25 @@ type RedirectToAggregatorParam = {
     aggregator?: string;
 };
 type RenderHTMLParam = {
-    body: PaymentApplicationModel.renderHTMLRequest;
+    body: PaymentApplicationModel.RenderHTML;
 };
 type ResendOrCancelPaymentParam = {
-    body: PaymentApplicationModel.ResendOrCancelPaymentRequest;
+    body: PaymentApplicationModel.ResendOrCancelPayment;
 };
 type ResendPaymentLinkParam = {
-    body: PaymentApplicationModel.CancelOrResendPaymentLinkRequest;
+    body: PaymentApplicationModel.CancelOrResendPaymentLink;
 };
 type UpdateDefaultBeneficiaryParam = {
-    body: PaymentApplicationModel.SetDefaultBeneficiaryRequest;
+    body: PaymentApplicationModel.SetDefaultBeneficiary;
 };
 type ValidateVPAParam = {
-    body: PaymentApplicationModel.ValidateVPARequest;
+    body: PaymentApplicationModel.ValidateVPA;
 };
 type VerifyAndChargePaymentParam = {
-    body: PaymentApplicationModel.ChargeCustomerRequest;
+    body: PaymentApplicationModel.ChargeCustomer;
 };
 type VerifyCustomerForPaymentParam = {
-    body: PaymentApplicationModel.ValidateCustomerRequest;
+    body: PaymentApplicationModel.ValidateCustomer;
 };
 type VerifyIfscCodeParam = {
     /**
@@ -562,10 +562,10 @@ type VerifyIfscCodeParam = {
     ifscCode?: string;
 };
 type VerifyOtpAndAddBeneficiaryForBankParam = {
-    body: PaymentApplicationModel.AddBeneficiaryViaOtpVerificationRequest;
+    body: PaymentApplicationModel.AddBeneficiaryViaOtpVerification;
 };
 type VerifyOtpAndAddBeneficiaryForWalletParam = {
-    body: PaymentApplicationModel.WalletOtpRequest;
+    body: PaymentApplicationModel.WalletOtp;
 };
 type WalletLinkInitiateParam = {
     body: PaymentApplicationModel.WalletLinkRequestSchema;

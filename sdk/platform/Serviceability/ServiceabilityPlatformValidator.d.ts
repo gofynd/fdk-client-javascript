@@ -3,17 +3,17 @@ export = ServiceabilityPlatformValidator;
  * @typedef BulkServiceabilityParam
  * @property {string} extensionId - Unique Identifier of CP Extension
  * @property {string} schemeId - Unique identifier of a scheme
- * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
  */
 /**
  * @typedef BulkTatParam
  * @property {string} extensionId - Unique Identifier of CP Extension
  * @property {string} schemeId - Unique identifier of a scheme
- * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
  */
 /**
  * @typedef CreateCourierPartnerAccountParam
- * @property {ServiceabilityPlatformModel.CourierAccountRequestBody} body
+ * @property {ServiceabilityPlatformModel.CourierAccountDetailsBody} body
  */
 /**
  * @typedef CreatePackageMaterialParam
@@ -71,7 +71,7 @@ export = ServiceabilityPlatformValidator;
  */
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
+ * @property {ServiceabilityPlatformModel.OptimlLocationsDetailsSchema} body
  */
 /**
  * @typedef GetPackageMaterialListParam
@@ -219,7 +219,7 @@ type BulkServiceabilityParam = {
      * - Unique identifier of a scheme
      */
     schemeId: string;
-    body: ServiceabilityPlatformModel.BulkRegionJobSerializer;
+    body: ServiceabilityPlatformModel.BulkRegionJobDetails;
 };
 type BulkTatParam = {
     /**
@@ -230,10 +230,10 @@ type BulkTatParam = {
      * - Unique identifier of a scheme
      */
     schemeId: string;
-    body: ServiceabilityPlatformModel.BulkRegionJobSerializer;
+    body: ServiceabilityPlatformModel.BulkRegionJobDetails;
 };
 type CreateCourierPartnerAccountParam = {
-    body: ServiceabilityPlatformModel.CourierAccountRequestBody;
+    body: ServiceabilityPlatformModel.CourierAccountDetailsBody;
 };
 type CreatePackageMaterialParam = {
     body: ServiceabilityPlatformModel.PackageMaterial;
@@ -365,7 +365,7 @@ type GetCourierPartnerAccountsParam = {
     transportType?: string;
 };
 type GetOptimalLocationsParam = {
-    body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema;
+    body: ServiceabilityPlatformModel.OptimlLocationsDetailsSchema;
 };
 type GetPackageMaterialListParam = {
     /**

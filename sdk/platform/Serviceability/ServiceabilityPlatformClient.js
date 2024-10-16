@@ -18,7 +18,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.BulkServiceabilityParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResponseItemData>}
+   * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResultItemData>}
    *   - Success response
    *
    * @name bulkServiceability
@@ -82,7 +82,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.BulkRegionResponseItemData().validate(
+    } = ServiceabilityPlatformModel.BulkRegionResultItemData().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -105,7 +105,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.BulkTatParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResponseItemData>}
+   * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResultItemData>}
    *   - Success response
    *
    * @name bulkTat
@@ -168,7 +168,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.BulkRegionResponseItemData().validate(
+    } = ServiceabilityPlatformModel.BulkRegionResultItemData().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -276,9 +276,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResult>} -
+   *   Success response
    * @name createPackageMaterial
    * @summary: Create packaging material
    * @description: Creates a packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createPackageMaterial/).
@@ -336,7 +335,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageMaterialResponse().validate(
+    } = ServiceabilityPlatformModel.PackageMaterialResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -361,7 +360,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
+   * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResult>} -
    *   Success response
    * @name createPackageMaterialRule
    * @summary: Create packaging rule
@@ -420,10 +419,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageRuleResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.PackageRuleResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -443,7 +442,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.CreateZoneParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneResult>} - Success response
    * @name createZone
    * @summary: Create zone
    * @description: Creates a delivery zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
@@ -499,7 +498,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ZoneResponse().validate(responseData, {
+    } = ServiceabilityPlatformModel.ZoneResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -522,7 +521,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetAllStoresParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+   * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResult>} -
    *   Success response
    * @name getAllStores
    * @summary: Get all stores
@@ -575,7 +574,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.GetStoresViewResponse().validate(
+    } = ServiceabilityPlatformModel.GetStoresViewResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -600,8 +599,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResponse>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResult>} - Success response
    * @name getBulkServiceability
    * @summary: Bulk update history
    * @description: Retrieves the history of changes made to serviceability settings for a scheme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkServiceability/).
@@ -701,10 +699,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.BulkRegionResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.BulkRegionResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -724,8 +722,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetBulkTatParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResponse>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.BulkRegionResult>} - Success response
    * @name getBulkTat
    * @summary: Locality TAT change history
    * @description: Retrieves the history of changes made to TAT(Turn Around Time) for scheme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getBulkTat/).
@@ -823,10 +820,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.BulkRegionResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.BulkRegionResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -927,7 +924,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponse>} -
+   * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResult>} -
    *   Success response
    * @name getCourierPartnerAccount
    * @summary: Get courier account
@@ -986,7 +983,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierAccountResponse().validate(
+    } = ServiceabilityPlatformModel.CourierAccountResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1011,7 +1008,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResult>}
    *   - Success response
    *
    * @name getCourierPartnerAccounts
@@ -1086,7 +1083,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResponse().validate(
+    } = ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1109,9 +1106,8 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.OptimalLocationsResult>} -
+   *   Success response
    * @name getOptimalLocations
    * @summary: Get selling locations
    * @description: Retrieves a list selling locations which are best suited to fullfil an order for a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
@@ -1169,7 +1165,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.OptimalLocationsResponse().validate(
+    } = ServiceabilityPlatformModel.OptimalLocationsResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1293,7 +1289,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
+   * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResult>} -
    *   Success response
    * @name getPackageMaterialRule
    * @summary: Get packaging material rule
@@ -1352,10 +1348,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageRuleResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.PackageRuleResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1467,9 +1463,8 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetPackageMaterialsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResult>} -
+   *   Success response
    * @name getPackageMaterials
    * @summary: Get packaging material
    * @description: Retrieve a single packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getPackageMaterials/).
@@ -1527,7 +1522,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageMaterialResponse().validate(
+    } = ServiceabilityPlatformModel.PackageMaterialResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1718,7 +1713,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.GetZonesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+   * @returns {Promise<ServiceabilityPlatformModel.ListViewResult>} - Success response
    * @name getZones
    * @summary: Get zones
    * @description: Retrieves a list of delivery zones. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
@@ -1814,7 +1809,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ListViewResponse().validate(responseData, {
+    } = ServiceabilityPlatformModel.ListViewResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1922,7 +1917,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResponse>} -
+   * @returns {Promise<ServiceabilityPlatformModel.CourierAccountResult>} -
    *   Success response
    * @name updateCourierPartnerAccount
    * @summary: Update courier account
@@ -1983,7 +1978,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierAccountResponse().validate(
+    } = ServiceabilityPlatformModel.CourierAccountResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2008,7 +2003,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResponse>} -
+   * @returns {Promise<ServiceabilityPlatformModel.PackageRuleResult>} -
    *   Success response
    * @name updatePackageMaterialRule
    * @summary: Update packaging rule
@@ -2069,10 +2064,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageRuleResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.PackageRuleResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2094,9 +2089,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.PackageMaterialResult>} -
+   *   Success response
    * @name updatePackageMaterials
    * @summary: Update packaging material
    * @description: Update an existing packaging material - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePackageMaterials/).
@@ -2156,7 +2150,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PackageMaterialResponse().validate(
+    } = ServiceabilityPlatformModel.PackageMaterialResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2269,7 +2263,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.UpdateZoneByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResult>} -
    *   Success response
    * @name updateZoneById
    * @summary: Update a zone
@@ -2328,10 +2322,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ZoneSuccessResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.ZoneSuccessResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

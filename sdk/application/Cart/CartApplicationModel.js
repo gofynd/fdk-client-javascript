@@ -21,6 +21,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef FreeGiftItem
+ * @property {string} [item_slug] - Item slug.
+ * @property {string} [item_name] - Item name.
+ * @property {Object} [item_price_details] - Item price details.
+ * @property {string} [item_brand_name] - Item brand name.
+ * @property {number} [item_id] - Item id.
+ * @property {string[]} [item_images_url] - Item images URL.
+ */
+
+/**
  * @typedef AppliedFreeArticles
  * @property {FreeGiftItems} [free_gift_item_details] - Free gift items details.
  * @property {string} [parent_item_identifier] - Parent item identifier for free article.
@@ -236,10 +246,23 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ProductActionParams
+ * @property {string[]} [slug] - Unique product url name generated via product
+ *   name and other meta data.
+ */
+
+/**
+ * @typedef ProductActionPage
+ * @property {string} [type] - Entity of page to be redirected on click
+ * @property {ProductActionParams} [params]
+ */
+
+/**
  * @typedef ProductAction
  * @property {ActionQuery} [query]
- * @property {string} [url] - Url of the product to render the product .
+ * @property {string} [url] - Url of the product to render the product
  * @property {string} [type] - Type of action.
+ * @property {ProductActionPage} [page]
  */
 
 /**
@@ -454,7 +477,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CartDetailResponse
+ * @typedef CartDetailResult
  * @property {number} [cart_id] - Unique identifier of the user cart.
  * @property {string} [uid] - Unique identifier of the user cart.
  * @property {AppliedPromotion[]} [applied_promo_details] - List of applied
@@ -526,7 +549,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AddCartRequest
+ * @typedef AddCartCreation
  * @property {AddProductCart[]} [items] - List of items detail which need to be
  *   added to cart like item id, item size, and item quantity.
  * @property {boolean} [new_cart] - Field to create to new cart whille user adds
@@ -534,11 +557,11 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AddCartDetailResponse
+ * @typedef AddCartDetailResult
  * @property {string} [message] - Message of add to cart API response.
  * @property {boolean} [partial] - When adding multiple items check if all
  *   added. True if only few are added.
- * @property {CartDetailResponse} [cart]
+ * @property {CartDetailResult} [cart]
  * @property {boolean} [success] - True if all items are added successfully.
  *   False if partially added or not added.
  */
@@ -560,30 +583,39 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UpdateCartRequest
+ * @typedef FreeGiftItemCreation
+ * @property {string} promotion_id - Unique identifier of the free gift promotion.
+ * @property {string} item_id - Unique identifier of the selected free gift item.
+ * @property {string} item_size - Size of the selected free gift item.
+ */
+
+/**
+ * @typedef UpdateCartCreation
  * @property {UpdateProductCart[]} [items] - List items data that needs to be
  *   updated in cart.
+ * @property {FreeGiftItemCreation[]} [free_gift_items] - List of free gift
+ *   items with updated sizes.
  * @property {string} operation - Field to determine if item to be removed from
  *   cart or it needs to be updated.
  */
 
 /**
- * @typedef UpdateCartDetailResponse
+ * @typedef UpdateCartDetailResult
  * @property {string} [message] - Message of update cart API response.
- * @property {CartDetailResponse} [cart]
+ * @property {CartDetailResult} [cart]
  * @property {boolean} [success] - True if all items are added successfully.
  *   False if partially added or not added.
  */
 
 /**
- * @typedef DeleteCartDetailResponse
+ * @typedef DeleteCartDetailResult
  * @property {string} [message] - Message for delete cart response.
  * @property {boolean} [success] - True if cart is archived successfully. False
  *   if not archived.
  */
 
 /**
- * @typedef CartItemCountResponse
+ * @typedef CartItemCountResult
  * @property {number} [user_cart_items_count] - Item count present in cart.
  */
 
@@ -630,14 +662,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetCouponResponse
+ * @typedef GetCouponResult
  * @property {PageCoupon} [page]
  * @property {Coupon[]} [available_coupon_list] - List of available coupon which
  *   can be applied on cart.
  */
 
 /**
- * @typedef ApplyCouponRequest
+ * @typedef ApplyCoupon
  * @property {string} coupon_code - Coupon code to be applied.
  */
 
@@ -682,13 +714,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkPriceResponse
+ * @typedef BulkPriceResult
  * @property {BulkPriceOffer[]} [data] - Actual data to be in response consist
  *   of offers from multiple seller.
  */
 
 /**
- * @typedef RewardPointRequest
+ * @typedef RewardPointCreation
  * @property {boolean} points - Points to be applied for cart.
  */
 
@@ -734,22 +766,29 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetAddressesResponse
- * @property {boolean} [pii_masking] - Personally Identifiable Information
- *   masking flag to denote if the user data in address is masked or not.
- * @property {Address[]} [address] - Address description for address data.
+ * @typedef ValidationConfig
+ * @property {number} address_max_limit - The maximum number of addresses a user can have.
+ * @property {number} user_address_count - The total number of addresses saved by a user.
  */
 
 /**
- * @typedef SaveAddressResponse
+ * @typedef GetAddressesResult
+ * @property {boolean} [pii_masking] - Personally Identifiable Information
+ *   masking flag to denote if the user data in address is masked or not.
+ * @property {Address[]} [address] - Address description for address data.
+ * @property {ValidationConfig} [validation_config]
+ */
+
+/**
+ * @typedef SaveAddressResult
  * @property {string} [id] - Id of the address.
- * @property {boolean} [success] - Success flag of save address Response.
+ * @property {boolean} [success] - Success flag of save address Result.
  * @property {boolean} [is_default_address] - Default address flag if no address
  *   selected then this should be the default address selected.
  */
 
 /**
- * @typedef UpdateAddressResponse
+ * @typedef UpdateAddressResult
  * @property {boolean} [is_updated] - Updated flag for update address operation
  *   if the address updated or not.
  * @property {string} [id] - ID of an address.
@@ -759,14 +798,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DeleteAddressResponse
+ * @typedef DeleteAddressResult
  * @property {string} [id] - Id of the address.
  * @property {boolean} [is_deleted] - Deleted flag in delete address response
  *   states whether the address was deleted or not.
  */
 
 /**
- * @typedef SelectCartAddressRequest
+ * @typedef SelectCartAddressCreation
  * @property {string} [id] - Address is selected by user on which shipment to be
  *   delivered.
  * @property {string} [billing_address_id] - Billing address id selected by user
@@ -776,7 +815,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UpdateCartPaymentRequest
+ * @typedef UpdateCartPaymentCreation
  * @property {string} [id] - Cart id of the user cart for which the update cart
  *   payment operation performed.
  * @property {string} [payment_identifier] - Payment identifier of the payment
@@ -800,6 +839,7 @@ const Joi = require("joi");
  *   is valid or not.
  * @property {string} [display_message_en] - Display message for coupon validity.
  * @property {string} [code] - Coupon code of the coupon applied.
+ * @property {string} [error_en] - Error message for the selected payment mode.
  */
 
 /**
@@ -811,7 +851,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ShipmentResponse
+ * @typedef ShipmentResult
  * @property {number} [shipments] - Count of shipments that will be shipped.
  * @property {ShipmentPromise} [promise]
  * @property {string} [order_type] - Order type of the shipment like pickAtStore
@@ -830,11 +870,11 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CartShipmentsResponse
+ * @typedef CartShipmentsResult
  * @property {string} [delivery_charge_info] - Delivery charge in information
  *   message on shipment.
  * @property {string} [checkout_mode] - Checkout mode of cart.
- * @property {string} [message] - Response message of get shipments API.
+ * @property {string} [message] - Result message of get shipments API.
  * @property {string} [gstin] - GSTIN number added in cart.
  * @property {boolean} [restrict_checkout] - Restrict checkout flag to restrict
  *   the checkout process.
@@ -845,7 +885,7 @@ const Joi = require("joi");
  * @property {CartBreakup} [breakup_values]
  * @property {CartCurrency} [currency]
  * @property {string} [id] - Cart id of the user cart.
- * @property {ShipmentResponse[]} [shipments] - List of Shipments which includes
+ * @property {ShipmentResult[]} [shipments] - List of Shipments which includes
  *   shipment data like shipment items, shipment promise, Shipment type,
  *   shipment order type, shipment dp options etc.
  * @property {PaymentSelectionLock} [payment_selection_lock]
@@ -858,6 +898,12 @@ const Joi = require("joi");
  * @property {string} [uid] - Cart id of the user cart.
  * @property {Object} [custom_cart_meta] - Custom meta details added cart
  *   checkout API payload.
+ */
+
+/**
+ * @typedef CartCheckoutCustomMeta
+ * @property {string} key - Key name of custom meta.
+ * @property {string} value - Value to be added in key.
  */
 
 /**
@@ -881,6 +927,52 @@ const Joi = require("joi");
  * @property {string} first_name - First name of staff emplyee who does checkout
  *   on behalf of customer.
  * @property {string} _id - Id of staff who does checkout on behalf of customer.
+ */
+
+/**
+ * @typedef CartCheckoutDetailCreation
+ * @property {CartCheckoutCustomMeta[]} [custom_meta] - Custom meta data to be
+ *   added in order.
+ * @property {CustomerDetails} [customer_details] - Customer details to be added in order.
+ * @property {string} [merchant_code] - Merchant code of the payment mode
+ *   selected to do the payment.
+ * @property {string} [id] - Cart id of the user cart.
+ * @property {boolean} [payment_auto_confirm] - Payment auto confirm flag if
+ *   payment need not to be collected from user.
+ * @property {string} payment_mode - Payment mode from which the payment to be
+ *   done for the order.
+ * @property {string} [aggregator] - Aggregator name of the payment gateway.
+ * @property {string} [address_id] - Address id of the user on which the order
+ *   to be delivered.
+ * @property {string} [callback_url] - Callback url to be redirected after
+ *   payment received/failed.
+ * @property {Object} [delivery_address] - Delivery address data which includes
+ *   customer address, customer phone, customer email, customer pincode,
+ *   customer landmark and customer name.
+ * @property {StaffCheckout} [staff]
+ * @property {string} [order_type] - Order type of the order being placed like
+ *   pickAtStore or HomeDelivery.
+ * @property {number} [ordering_store] - Ordering store id of the store from
+ *   which the order is getting placed.
+ * @property {Object} [extra_meta] - Extra meta to be added while checkout in order.
+ * @property {string} [payment_identifier] - Payment identifier of the payment
+ *   mode selected to do the payment.
+ * @property {Object} [billing_address] - Billing address json which includes
+ *   customer address, customer phone, customer email, customer pincode,
+ *   customer landmark and customer name.
+ * @property {Object} [payment_params] - Payment params which includes payment
+ *   identifier and merchant code.
+ * @property {string} [billing_address_id] - Billing address id of the customer
+ *   on which the invoice to be generated after the order is placed.
+ * @property {Object} [meta] - Meta data to be added in order.
+ * @property {Object} [payment_extra_identifiers] - Payment extra identifier for
+ *   the payment mode to do the payment.
+ * @property {string} [iin] - Issuer Identification Number' number of card if
+ *   payment mode is card.
+ * @property {string} [network] - Network of card if payment mode is card to do
+ *   the payment.
+ * @property {string} [type] - Type of cart if payment mode is card to do the payment.
+ * @property {string} [card_id] - Saved card id if payment mode is card to do the payment.
  */
 
 /**
@@ -919,11 +1011,11 @@ const Joi = require("joi");
  * @property {string} [coupon_text] - Coupon text of the applied coupon on order placed.
  * @property {boolean} [buy_now] - Buy now flag of user cart.
  * @property {number} [cod_charges] - Cash On Delivery charges of the user cart.
- * @property {Object} [custom_cart_meta] - Meta data for customCart of user.
+ * @property {Object} [custom_cart_meta] - Custom cart meta details added in cart.
  */
 
 /**
- * @typedef CartCheckoutResponse
+ * @typedef CartCheckoutResult
  * @property {string} [payment_confirm_url] - Payment confirm url used to
  *   redirect after payment is confirmed.
  * @property {string} [app_intercept_url] - App intercept url which is used to
@@ -952,7 +1044,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CartMetaRequest
+ * @typedef CartMetaCreation
  * @property {Object} [delivery_slots] - Delivery slots details includes article
  *   level time slot when the shipment can be delivered.
  * @property {ArticleGiftDetail} [gift_details]
@@ -967,25 +1059,25 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CartMetaResponse
+ * @typedef CartMetaResult
  * @property {string} [message] - Detailed message.
  * @property {boolean} [is_valid] - Whether added meta was vaild.
  */
 
 /**
- * @typedef CartMetaMissingResponse
+ * @typedef CartMetaMissingResult
  * @property {string[]} [errors] - Detailed errors for invalid cart meta request.
  */
 
 /**
- * @typedef GetShareCartLinkRequest
+ * @typedef GetShareCartLinkCreation
  * @property {string} [id] - Cart id of user cart for generating cart sharing token.
  * @property {Object} [meta] - Staff, Ordering store or any other data. This
  *   data will be used to generate link as well as sent as shared details.
  */
 
 /**
- * @typedef GetShareCartLinkResponse
+ * @typedef GetShareCartLinkResult
  * @property {string} [token] - Short url unique id of the cart which is opted
  *   to share with other user.
  * @property {string} [share_url] - Short shareable final url which can populate
@@ -1032,7 +1124,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SharedCartResponse
+ * @typedef SharedCartResult
  * @property {string} [error] - Error details if any error occurs which includes
  *   type of error, error code and error message.
  * @property {SharedCart} [cart]
@@ -1052,14 +1144,25 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ArticlePriceDetails
+ * @property {number} [marked] - The Marked Price refers to the initial price of
+ *   the free gift article before product discount.
+ * @property {number} [effective] - The Effective Price refers to the final
+ *   amount of the free gift article after applying the product discount.
+ */
+
+/**
  * @typedef FreeGiftItems
  * @property {string} [item_slug] - Slug for an item.
  * @property {string} [item_name] - Name of the free gift item received via free
  *   gift promotion.
  * @property {ItemPriceDetails} [item_price_details]
+ * @property {ArticlePriceDetails} [article_price]
  * @property {string} [item_brand_name] - Item brand name of the free gift item
  *   promotion applied on cart.
  * @property {number} [item_id] - Item id of the free gift item.
+ * @property {string[]} [available_sizes] - Available sizes for the free gift item.
+ * @property {string} [size] - Selected size for the free gift item.
  * @property {string[]} [item_images_url] - Images URLs for free gift items.
  */
 
@@ -1087,7 +1190,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PromotionOffersResponse
+ * @typedef PromotionOffersResult
  * @property {PromotionOffer[]} [available_promotions] - Available promotion
  *   details which are available on product which includes promotion data like
  *   promotion id, promotion name, buy rules, discount rules validity dates etc.
@@ -1115,14 +1218,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PromotionPaymentOffersResponse
+ * @typedef PromotionPaymentOffersResult
  * @property {boolean} [success] - Success flag of get payment offers API response.
  * @property {PromotionPaymentOffer[]} [promotions] - List of promotions data
  *   which are applicable on cart/product.
  */
 
 /**
- * @typedef OperationErrorResponse
+ * @typedef OperationErrorResult
  * @property {string} [message] - Message of get payment offer API response.
  * @property {boolean} [success] - Success flag of get payment offer API response.
  */
@@ -1204,9 +1307,10 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CartCheckoutDetailV2Request
- * @property {Object} [custom_meta] - Custom meta data to be added in order.
- * @property {Object} [customer_details] - Customer details to be added in order.
+ * @typedef CartCheckoutDetailV2Creation
+ * @property {CartCheckoutCustomMeta[]} [custom_meta] - Custom meta data to be
+ *   added in order.
+ * @property {CustomerDetails} [customer_details]
  * @property {string} [merchant_code] - Merchant code of the payment mode
  *   selected to do the payment.
  * @property {string} [cart_id] - Cart id of the user cart.
@@ -1248,12 +1352,18 @@ const Joi = require("joi");
  * @property {string} [card_id] - Saved card id if payment mode is card to do the payment.
  */
 
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
+
 class CartApplicationModel {
   /** @returns {BuyRules} */
   static BuyRules() {
     return Joi.object({
-      item_criteria: Joi.any(),
-      cart_conditions: Joi.any(),
+      item_criteria: Joi.object().pattern(/\S/, Joi.any()),
+      cart_conditions: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1261,9 +1371,9 @@ class CartApplicationModel {
   static DiscountRulesApp() {
     return Joi.object({
       matched_buy_rules: Joi.array().items(Joi.string().allow("")),
-      raw_offer: Joi.any(),
-      offer: Joi.any(),
-      item_criteria: Joi.any(),
+      raw_offer: Joi.object().pattern(/\S/, Joi.any()),
+      offer: Joi.object().pattern(/\S/, Joi.any()),
+      item_criteria: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1272,6 +1382,18 @@ class CartApplicationModel {
     return Joi.object({
       payable_category: Joi.string().allow(""),
       payable_by: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FreeGiftItem} */
+  static FreeGiftItem() {
+    return Joi.object({
+      item_slug: Joi.string().allow(""),
+      item_name: Joi.string().allow(""),
+      item_price_details: Joi.object().pattern(/\S/, Joi.any()),
+      item_brand_name: Joi.string().allow(""),
+      item_id: Joi.number(),
+      item_images_url: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -1304,7 +1426,7 @@ class CartApplicationModel {
         CartApplicationModel.AppliedFreeArticles()
       ),
       promotion_type: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       code: Joi.string().allow("").allow(null),
     });
   }
@@ -1391,20 +1513,20 @@ class CartApplicationModel {
     return Joi.object({
       price: CartApplicationModel.ArticlePriceInfo(),
       product_group_tags: Joi.array().items(Joi.string().allow("")),
-      extra_meta: Joi.any(),
+      extra_meta: Joi.object().pattern(/\S/, Joi.any()),
       quantity: Joi.number(),
-      _custom_json: Joi.any(),
-      meta: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       size: Joi.string().allow(""),
       mto_quantity: Joi.number(),
       seller: CartApplicationModel.BaseInfo(),
       seller_identifier: Joi.string().allow(""),
-      parent_item_identifiers: Joi.any(),
-      identifier: Joi.any(),
+      parent_item_identifiers: Joi.object().pattern(/\S/, Joi.any()),
+      identifier: Joi.object().pattern(/\S/, Joi.any()),
       store: CartApplicationModel.StoreInfo(),
-      cart_item_meta: Joi.any(),
+      cart_item_meta: Joi.object().pattern(/\S/, Joi.any()),
       uid: Joi.string().allow(""),
-      gift_card: Joi.any(),
+      gift_card: Joi.object().pattern(/\S/, Joi.any()),
       is_gift_visible: Joi.boolean(),
       type: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
@@ -1436,7 +1558,7 @@ class CartApplicationModel {
   /** @returns {Charges} */
   static Charges() {
     return Joi.object({
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       amount: CartApplicationModel.ChargesAmount(),
       name: Joi.string().allow(""),
       allow_refund: Joi.boolean(),
@@ -1515,19 +1637,35 @@ class CartApplicationModel {
     });
   }
 
+  /** @returns {ProductActionParams} */
+  static ProductActionParams() {
+    return Joi.object({
+      slug: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {ProductActionPage} */
+  static ProductActionPage() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      params: CartApplicationModel.ProductActionParams(),
+    });
+  }
+
   /** @returns {ProductAction} */
   static ProductAction() {
     return Joi.object({
       query: CartApplicationModel.ActionQuery(),
       url: Joi.string().allow(""),
       type: Joi.string().allow(""),
+      page: CartApplicationModel.ProductActionPage(),
     });
   }
 
   /** @returns {Tags} */
   static Tags() {
     return Joi.object({
-      tags: Joi.any(),
+      tags: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1551,7 +1689,7 @@ class CartApplicationModel {
   /** @returns {CartProduct} */
   static CartProduct() {
     return Joi.object({
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       brand: CartApplicationModel.BaseInfo(),
       action: CartApplicationModel.ProductAction(),
       teaser_tag: CartApplicationModel.Tags(),
@@ -1563,7 +1701,7 @@ class CartApplicationModel {
       categories: Joi.array().items(CartApplicationModel.CategoryInfo()),
       tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1580,7 +1718,7 @@ class CartApplicationModel {
   static CartProductInfo() {
     return Joi.object({
       article: CartApplicationModel.ProductArticle(),
-      moq: Joi.any(),
+      moq: Joi.object().pattern(/\S/, Joi.any()),
       identifiers: CartApplicationModel.CartProductIdentifer().required(),
       promo_meta: CartApplicationModel.PromoMeta(),
       price: CartApplicationModel.ProductPriceInfo(),
@@ -1591,10 +1729,10 @@ class CartApplicationModel {
       delivery_promise: CartApplicationModel.ShipmentPromise(),
       product: CartApplicationModel.CartProduct(),
       product_ean_id: Joi.string().allow(""),
-      bulk_offer: Joi.any(),
-      parent_item_identifiers: Joi.any(),
+      bulk_offer: Joi.object().pattern(/\S/, Joi.any()),
+      parent_item_identifiers: Joi.object().pattern(/\S/, Joi.any()),
       coupon: CartApplicationModel.CouponDetails(),
-      custom_order: Joi.any(),
+      custom_order: Joi.object().pattern(/\S/, Joi.any()),
       coupon_message: Joi.string().allow(""),
       key: Joi.string().allow(""),
       message: Joi.string().allow(""),
@@ -1732,8 +1870,8 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {CartDetailResponse} */
-  static CartDetailResponse() {
+  /** @returns {CartDetailResult} */
+  static CartDetailResult() {
     return Joi.object({
       cart_id: Joi.number(),
       uid: Joi.string().allow(""),
@@ -1752,7 +1890,7 @@ class CartApplicationModel {
       common_config: CartApplicationModel.CartCommonConfig(),
       coupon: CartApplicationModel.CartDetailCoupon(),
       message: Joi.string().allow(""),
-      notification: Joi.any(),
+      notification: Joi.object().pattern(/\S/, Joi.any()),
       staff_user_id: Joi.string().allow(""),
       success: Joi.boolean(),
       gstin: Joi.string().allow(""),
@@ -1762,19 +1900,19 @@ class CartApplicationModel {
       currency: CartApplicationModel.CartCurrency(),
       coupon_text: Joi.string().allow(""),
       buy_now: Joi.boolean(),
-      pan_config: Joi.any(),
-      custom_cart_meta: Joi.any(),
+      pan_config: Joi.object().pattern(/\S/, Joi.any()),
+      custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
   /** @returns {AddProductCart} */
   static AddProductCart() {
     return Joi.object({
-      article_assignment: Joi.any(),
+      article_assignment: Joi.object().pattern(/\S/, Joi.any()),
       product_group_tags: Joi.array().items(Joi.string().allow("").allow(null)),
-      extra_meta: Joi.any(),
+      extra_meta: Joi.object().pattern(/\S/, Joi.any()),
       quantity: Joi.number(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       item_size: Joi.string().allow(""),
       store_id: Joi.number(),
       display: Joi.string().allow(""),
@@ -1785,25 +1923,25 @@ class CartApplicationModel {
       seller_id: Joi.number(),
       pos: Joi.boolean(),
       item_id: Joi.number(),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       seller_identifier: Joi.string().allow(""),
     });
   }
 
-  /** @returns {AddCartRequest} */
-  static AddCartRequest() {
+  /** @returns {AddCartCreation} */
+  static AddCartCreation() {
     return Joi.object({
       items: Joi.array().items(CartApplicationModel.AddProductCart()),
       new_cart: Joi.boolean(),
     });
   }
 
-  /** @returns {AddCartDetailResponse} */
-  static AddCartDetailResponse() {
+  /** @returns {AddCartDetailResult} */
+  static AddCartDetailResult() {
     return Joi.object({
       message: Joi.string().allow(""),
       partial: Joi.boolean(),
-      cart: CartApplicationModel.CartDetailResponse(),
+      cart: CartApplicationModel.CartDetailResult(),
       success: Joi.boolean(),
     });
   }
@@ -1811,46 +1949,58 @@ class CartApplicationModel {
   /** @returns {UpdateProductCart} */
   static UpdateProductCart() {
     return Joi.object({
-      extra_meta: Joi.any(),
-      _custom_json: Joi.any(),
+      extra_meta: Joi.object().pattern(/\S/, Joi.any()),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       quantity: Joi.number(),
       item_size: Joi.string().allow(""),
       item_index: Joi.number(),
       identifiers: CartApplicationModel.CartProductIdentifer().required(),
       article_id: Joi.string().allow(""),
-      parent_item_identifiers: Joi.any(),
+      parent_item_identifiers: Joi.object().pattern(/\S/, Joi.any()),
       item_id: Joi.number(),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {UpdateCartRequest} */
-  static UpdateCartRequest() {
+  /** @returns {FreeGiftItemCreation} */
+  static FreeGiftItemCreation() {
+    return Joi.object({
+      promotion_id: Joi.string().allow("").required(),
+      item_id: Joi.string().allow("").required(),
+      item_size: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {UpdateCartCreation} */
+  static UpdateCartCreation() {
     return Joi.object({
       items: Joi.array().items(CartApplicationModel.UpdateProductCart()),
+      free_gift_items: Joi.array().items(
+        CartApplicationModel.FreeGiftItemCreation()
+      ),
       operation: Joi.string().allow("").required(),
     });
   }
 
-  /** @returns {UpdateCartDetailResponse} */
-  static UpdateCartDetailResponse() {
+  /** @returns {UpdateCartDetailResult} */
+  static UpdateCartDetailResult() {
     return Joi.object({
       message: Joi.string().allow(""),
-      cart: CartApplicationModel.CartDetailResponse(),
+      cart: CartApplicationModel.CartDetailResult(),
       success: Joi.boolean(),
     });
   }
 
-  /** @returns {DeleteCartDetailResponse} */
-  static DeleteCartDetailResponse() {
+  /** @returns {DeleteCartDetailResult} */
+  static DeleteCartDetailResult() {
     return Joi.object({
       message: Joi.string().allow(""),
       success: Joi.boolean(),
     });
   }
 
-  /** @returns {CartItemCountResponse} */
-  static CartItemCountResponse() {
+  /** @returns {CartItemCountResult} */
+  static CartItemCountResult() {
     return Joi.object({
       user_cart_items_count: Joi.number(),
     });
@@ -1891,16 +2041,16 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {GetCouponResponse} */
-  static GetCouponResponse() {
+  /** @returns {GetCouponResult} */
+  static GetCouponResult() {
     return Joi.object({
       page: CartApplicationModel.PageCoupon(),
       available_coupon_list: Joi.array().items(CartApplicationModel.Coupon()),
     });
   }
 
-  /** @returns {ApplyCouponRequest} */
-  static ApplyCouponRequest() {
+  /** @returns {ApplyCoupon} */
+  static ApplyCoupon() {
     return Joi.object({
       coupon_code: Joi.string().allow("").required(),
     });
@@ -1946,15 +2096,15 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {BulkPriceResponse} */
-  static BulkPriceResponse() {
+  /** @returns {BulkPriceResult} */
+  static BulkPriceResult() {
     return Joi.object({
       data: Joi.array().items(CartApplicationModel.BulkPriceOffer()),
     });
   }
 
-  /** @returns {RewardPointRequest} */
-  static RewardPointRequest() {
+  /** @returns {RewardPointCreation} */
+  static RewardPointCreation() {
     return Joi.object({
       points: Joi.boolean().required(),
     });
@@ -1980,7 +2130,7 @@ class CartApplicationModel {
       area_code_slug: Joi.string().allow(""),
       geo_location: CartApplicationModel.GeoLocation(),
       id: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       city: Joi.string().allow(""),
       sector: Joi.string().allow(""),
       state_code: Joi.string().allow(""),
@@ -1988,7 +2138,7 @@ class CartApplicationModel {
       landmark: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      google_map_point: Joi.any(),
+      google_map_point: Joi.object().pattern(/\S/, Joi.any()),
       is_active: Joi.boolean(),
       tags: Joi.array().items(Joi.string().allow("")),
       country_code: Joi.string().allow(""),
@@ -1998,20 +2148,29 @@ class CartApplicationModel {
       area_code: Joi.string().allow(""),
       email: Joi.string().allow(""),
       state: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {GetAddressesResponse} */
-  static GetAddressesResponse() {
+  /** @returns {ValidationConfig} */
+  static ValidationConfig() {
+    return Joi.object({
+      address_max_limit: Joi.number().required(),
+      user_address_count: Joi.number().required(),
+    });
+  }
+
+  /** @returns {GetAddressesResult} */
+  static GetAddressesResult() {
     return Joi.object({
       pii_masking: Joi.boolean(),
       address: Joi.array().items(CartApplicationModel.Address()),
+      validation_config: CartApplicationModel.ValidationConfig(),
     });
   }
 
-  /** @returns {SaveAddressResponse} */
-  static SaveAddressResponse() {
+  /** @returns {SaveAddressResult} */
+  static SaveAddressResult() {
     return Joi.object({
       id: Joi.string().allow(""),
       success: Joi.boolean(),
@@ -2019,8 +2178,8 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {UpdateAddressResponse} */
-  static UpdateAddressResponse() {
+  /** @returns {UpdateAddressResult} */
+  static UpdateAddressResult() {
     return Joi.object({
       is_updated: Joi.boolean(),
       id: Joi.string().allow(""),
@@ -2029,16 +2188,16 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {DeleteAddressResponse} */
-  static DeleteAddressResponse() {
+  /** @returns {DeleteAddressResult} */
+  static DeleteAddressResult() {
     return Joi.object({
       id: Joi.string().allow(""),
       is_deleted: Joi.boolean(),
     });
   }
 
-  /** @returns {SelectCartAddressRequest} */
-  static SelectCartAddressRequest() {
+  /** @returns {SelectCartAddressCreation} */
+  static SelectCartAddressCreation() {
     return Joi.object({
       id: Joi.string().allow(""),
       billing_address_id: Joi.string().allow(""),
@@ -2046,8 +2205,8 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {UpdateCartPaymentRequest} */
-  static UpdateCartPaymentRequest() {
+  /** @returns {UpdateCartPaymentCreation} */
+  static UpdateCartPaymentCreation() {
     return Joi.object({
       id: Joi.string().allow(""),
       payment_identifier: Joi.string().allow("").allow(null),
@@ -2067,6 +2226,7 @@ class CartApplicationModel {
       valid: Joi.boolean(),
       display_message_en: Joi.string().allow("").allow(null),
       code: Joi.string().allow("").allow(null),
+      error_en: Joi.string().allow("").allow(null),
     });
   }
 
@@ -2079,15 +2239,15 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {ShipmentResponse} */
-  static ShipmentResponse() {
+  /** @returns {ShipmentResult} */
+  static ShipmentResult() {
     return Joi.object({
       shipments: Joi.number(),
       promise: CartApplicationModel.ShipmentPromise(),
       order_type: Joi.string().allow(""),
       box_type: Joi.string().allow("").allow(null),
       shipment_type: Joi.string().allow(""),
-      dp_options: Joi.any().allow(null),
+      dp_options: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       dp_id: Joi.string().allow("").allow(null),
       items: Joi.array().items(CartApplicationModel.CartProductInfo()),
       fulfillment_type: Joi.string().allow(""),
@@ -2095,8 +2255,8 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {CartShipmentsResponse} */
-  static CartShipmentsResponse() {
+  /** @returns {CartShipmentsResult} */
+  static CartShipmentsResult() {
     return Joi.object({
       delivery_charge_info: Joi.string().allow(""),
       checkout_mode: Joi.string().allow(""),
@@ -2109,7 +2269,7 @@ class CartApplicationModel {
       breakup_values: CartApplicationModel.CartBreakup(),
       currency: CartApplicationModel.CartCurrency(),
       id: Joi.string().allow(""),
-      shipments: Joi.array().items(CartApplicationModel.ShipmentResponse()),
+      shipments: Joi.array().items(CartApplicationModel.ShipmentResult()),
       payment_selection_lock: CartApplicationModel.PaymentSelectionLock(),
       coupon_text: Joi.string().allow(""),
       delivery_promise: CartApplicationModel.ShipmentPromise(),
@@ -2117,7 +2277,15 @@ class CartApplicationModel {
       comment: Joi.string().allow(""),
       buy_now: Joi.boolean(),
       uid: Joi.string().allow(""),
-      custom_cart_meta: Joi.any(),
+      custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {CartCheckoutCustomMeta} */
+  static CartCheckoutCustomMeta() {
+    return Joi.object({
+      key: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
     });
   }
 
@@ -2138,6 +2306,38 @@ class CartApplicationModel {
       last_name: Joi.string().allow("").required(),
       first_name: Joi.string().allow("").required(),
       _id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CartCheckoutDetailCreation} */
+  static CartCheckoutDetailCreation() {
+    return Joi.object({
+      custom_meta: Joi.array().items(
+        CartApplicationModel.CartCheckoutCustomMeta()
+      ),
+      customer_details: CartApplicationModel.CustomerDetails(),
+      merchant_code: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      payment_auto_confirm: Joi.boolean(),
+      payment_mode: Joi.string().allow("").required(),
+      aggregator: Joi.string().allow(""),
+      address_id: Joi.string().allow(""),
+      callback_url: Joi.string().allow(""),
+      delivery_address: Joi.object().pattern(/\S/, Joi.any()),
+      staff: CartApplicationModel.StaffCheckout(),
+      order_type: Joi.string().allow(""),
+      ordering_store: Joi.number(),
+      extra_meta: Joi.object().pattern(/\S/, Joi.any()),
+      payment_identifier: Joi.string().allow(""),
+      billing_address: Joi.object().pattern(/\S/, Joi.any()),
+      payment_params: Joi.object().pattern(/\S/, Joi.any()),
+      billing_address_id: Joi.string().allow(""),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
+      payment_extra_identifiers: Joi.object().pattern(/\S/, Joi.any()),
+      iin: Joi.string().allow(""),
+      network: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      card_id: Joi.string().allow(""),
     });
   }
 
@@ -2173,19 +2373,19 @@ class CartApplicationModel {
       coupon_text: Joi.string().allow(""),
       buy_now: Joi.boolean(),
       cod_charges: Joi.number(),
-      custom_cart_meta: Joi.any(),
+      custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {CartCheckoutResponse} */
-  static CartCheckoutResponse() {
+  /** @returns {CartCheckoutResult} */
+  static CartCheckoutResult() {
     return Joi.object({
       payment_confirm_url: Joi.string().allow(""),
       app_intercept_url: Joi.string().allow(""),
       success: Joi.boolean(),
       callback_url: Joi.string().allow(""),
       message: Joi.string().allow(""),
-      data: Joi.any(),
+      data: Joi.object().pattern(/\S/, Joi.any()),
       order_id: Joi.string().allow(""),
       cart: CartApplicationModel.CheckCart(),
     });
@@ -2206,44 +2406,44 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {CartMetaRequest} */
-  static CartMetaRequest() {
+  /** @returns {CartMetaCreation} */
+  static CartMetaCreation() {
     return Joi.object({
-      delivery_slots: Joi.any(),
+      delivery_slots: Joi.object().pattern(/\S/, Joi.any()),
       gift_details: CartApplicationModel.ArticleGiftDetail(),
-      pick_up_customer_details: Joi.any(),
+      pick_up_customer_details: Joi.object().pattern(/\S/, Joi.any()),
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
       gstin: Joi.string().allow(""),
-      custom_cart_meta: Joi.any(),
+      custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {CartMetaResponse} */
-  static CartMetaResponse() {
+  /** @returns {CartMetaResult} */
+  static CartMetaResult() {
     return Joi.object({
       message: Joi.string().allow(""),
       is_valid: Joi.boolean(),
     });
   }
 
-  /** @returns {CartMetaMissingResponse} */
-  static CartMetaMissingResponse() {
+  /** @returns {CartMetaMissingResult} */
+  static CartMetaMissingResult() {
     return Joi.object({
       errors: Joi.array().items(Joi.string().allow("")),
     });
   }
 
-  /** @returns {GetShareCartLinkRequest} */
-  static GetShareCartLinkRequest() {
+  /** @returns {GetShareCartLinkCreation} */
+  static GetShareCartLinkCreation() {
     return Joi.object({
       id: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {GetShareCartLinkResponse} */
-  static GetShareCartLinkResponse() {
+  /** @returns {GetShareCartLinkResult} */
+  static GetShareCartLinkResult() {
     return Joi.object({
       token: Joi.string().allow(""),
       share_url: Joi.string().allow(""),
@@ -2254,10 +2454,10 @@ class CartApplicationModel {
   static SharedCartDetails() {
     return Joi.object({
       token: Joi.string().allow(""),
-      user: Joi.any(),
+      user: Joi.object().pattern(/\S/, Joi.any()),
       created_on: Joi.string().allow(""),
-      source: Joi.any(),
-      meta: Joi.any(),
+      source: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -2283,12 +2483,12 @@ class CartApplicationModel {
       currency: CartApplicationModel.CartCurrency(),
       coupon_text: Joi.string().allow(""),
       buy_now: Joi.boolean(),
-      custom_cart_meta: Joi.any(),
+      custom_cart_meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {SharedCartResponse} */
-  static SharedCartResponse() {
+  /** @returns {SharedCartResult} */
+  static SharedCartResult() {
     return Joi.object({
       error: Joi.string().allow(""),
       cart: CartApplicationModel.SharedCart(),
@@ -2312,14 +2512,25 @@ class CartApplicationModel {
     });
   }
 
+  /** @returns {ArticlePriceDetails} */
+  static ArticlePriceDetails() {
+    return Joi.object({
+      marked: Joi.number(),
+      effective: Joi.number(),
+    });
+  }
+
   /** @returns {FreeGiftItems} */
   static FreeGiftItems() {
     return Joi.object({
       item_slug: Joi.string().allow(""),
       item_name: Joi.string().allow(""),
       item_price_details: CartApplicationModel.ItemPriceDetails(),
+      article_price: CartApplicationModel.ArticlePriceDetails(),
       item_brand_name: Joi.string().allow(""),
       item_id: Joi.number(),
+      available_sizes: Joi.array().items(Joi.string().allow("")),
+      size: Joi.string().allow(""),
       item_images_url: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -2328,7 +2539,7 @@ class CartApplicationModel {
   static PromotionOffer() {
     return Joi.object({
       id: Joi.string().allow(""),
-      buy_rules: Joi.any(),
+      buy_rules: Joi.object().pattern(/\S/, Joi.any()),
       offer_text: Joi.string().allow(""),
       promotion_type: Joi.string().allow(""),
       promotion_name: Joi.string().allow(""),
@@ -2340,8 +2551,8 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {PromotionOffersResponse} */
-  static PromotionOffersResponse() {
+  /** @returns {PromotionOffersResult} */
+  static PromotionOffersResult() {
     return Joi.object({
       available_promotions: Joi.array().items(
         CartApplicationModel.PromotionOffer()
@@ -2365,8 +2576,8 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {PromotionPaymentOffersResponse} */
-  static PromotionPaymentOffersResponse() {
+  /** @returns {PromotionPaymentOffersResult} */
+  static PromotionPaymentOffersResult() {
     return Joi.object({
       success: Joi.boolean(),
       promotions: Joi.array().items(
@@ -2375,8 +2586,8 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {OperationErrorResponse} */
-  static OperationErrorResponse() {
+  /** @returns {OperationErrorResult} */
+  static OperationErrorResult() {
     return Joi.object({
       message: Joi.string().allow(""),
       success: Joi.boolean(),
@@ -2409,7 +2620,7 @@ class CartApplicationModel {
   static LadderPriceOffer() {
     return Joi.object({
       id: Joi.string().allow(""),
-      buy_rules: Joi.any(),
+      buy_rules: Joi.object().pattern(/\S/, Joi.any()),
       calculate_on: Joi.string().allow(""),
       offer_text: Joi.string().allow(""),
       promotion_group: Joi.string().allow(""),
@@ -2457,15 +2668,17 @@ class CartApplicationModel {
       payment: Joi.string().allow(""),
       amount: Joi.number().allow(null),
       name: Joi.string().allow(""),
-      payment_extra_identifiers: Joi.any(),
+      payment_extra_identifiers: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {CartCheckoutDetailV2Request} */
-  static CartCheckoutDetailV2Request() {
+  /** @returns {CartCheckoutDetailV2Creation} */
+  static CartCheckoutDetailV2Creation() {
     return Joi.object({
-      custom_meta: Joi.any(),
-      customer_details: Joi.any().allow(null),
+      custom_meta: Joi.array().items(
+        CartApplicationModel.CartCheckoutCustomMeta()
+      ),
+      customer_details: CartApplicationModel.CustomerDetails(),
       merchant_code: Joi.string().allow(""),
       cart_id: Joi.string().allow(""),
       id: Joi.string().allow("").allow(null),
@@ -2477,20 +2690,28 @@ class CartApplicationModel {
       aggregator: Joi.string().allow(""),
       address_id: Joi.string().allow(""),
       callback_url: Joi.string().allow("").allow(null),
-      delivery_address: Joi.any(),
+      delivery_address: Joi.object().pattern(/\S/, Joi.any()),
       staff: CartApplicationModel.StaffCheckout(),
       order_type: Joi.string().allow(""),
       ordering_store: Joi.number().allow(null),
-      extra_meta: Joi.any(),
+      extra_meta: Joi.object().pattern(/\S/, Joi.any()),
       payment_identifier: Joi.string().allow("").allow(null),
-      billing_address: Joi.any(),
-      payment_params: Joi.any().allow(null),
+      billing_address: Joi.object().pattern(/\S/, Joi.any()),
+      payment_params: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       billing_address_id: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       iin: Joi.string().allow(""),
       network: Joi.string().allow(""),
       type: Joi.string().allow(""),
       card_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ValidationError} */
+  static ValidationError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      field: Joi.string().allow("").required(),
     });
   }
 }

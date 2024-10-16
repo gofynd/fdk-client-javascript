@@ -85,7 +85,6 @@ const Joi = require("joi");
  * @property {string} [name] - The name of the section.
  * @property {string} [label] - A label for the section, which can be used for
  *   display purposes.
- * @property {string} [source] - The source of the section, for example, 'themebundle'.
  * @property {Object} [props] - An object containing various properties
  *   associated with the section.
  * @property {Object[]} [blocks] - An array of blocks within the section, where
@@ -93,6 +92,23 @@ const Joi = require("joi");
  * @property {Object} [preset] - An object containing preset configurations for
  *   the section.
  * @property {AvailablePagePredicate} [predicate]
+ * @property {SectionSource} [__source]
+ * @property {SectionAssets} [assets]
+ */
+
+/**
+ * @typedef SectionAssets
+ * @property {string} [js] - The CDN URL of JS bundle.
+ * @property {string} [css] - The CDN URL of CSS file.
+ */
+
+/**
+ * @typedef SectionSource
+ * @property {string} [id] - The source id specifying the source of the section.
+ * @property {string} [bundle_name] - This is the extension binding name
+ *   containing this section.
+ * @property {string} [type] - This is source type. It will either be
+ *   themeBundle or extension.
  */
 
 /**
@@ -242,12 +258,6 @@ const Joi = require("joi");
  * @property {boolean} [disable_cart] - Whether to disable the cart or not.
  * @property {boolean} [is_menu_below_logo] - Whether the menu is below the logo or not.
  * @property {string} [menu_position] - The position of the menu.
- */
-
-/**
- * @typedef GlobalConfig
- * @property {StaticConfig} [statics]
- * @property {CustomConfig} [custom]
  */
 
 /**
@@ -656,7 +666,7 @@ class ThemeApplicationModel {
   /** @returns {AvailablePageSectionMetaAttributes} */
   static AvailablePageSectionMetaAttributes() {
     return Joi.object({
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -719,11 +729,29 @@ class ThemeApplicationModel {
     return Joi.object({
       name: Joi.string().allow(""),
       label: Joi.string().allow(""),
-      source: Joi.string().allow(""),
-      props: Joi.any(),
+      props: Joi.object().pattern(/\S/, Joi.any()),
       blocks: Joi.array().items(Joi.any()),
-      preset: Joi.any(),
+      preset: Joi.object().pattern(/\S/, Joi.any()),
       predicate: ThemeApplicationModel.AvailablePagePredicate(),
+      __source: ThemeApplicationModel.SectionSource(),
+      assets: ThemeApplicationModel.SectionAssets(),
+    });
+  }
+
+  /** @returns {SectionAssets} */
+  static SectionAssets() {
+    return Joi.object({
+      js: Joi.string().allow(""),
+      css: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SectionSource} */
+  static SectionSource() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      bundle_name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -761,7 +789,7 @@ class ThemeApplicationModel {
     return Joi.object({
       selected: Joi.string().allow(""),
       exact_url: Joi.string().allow(""),
-      query: Joi.any(),
+      query: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -789,7 +817,7 @@ class ThemeApplicationModel {
       name: Joi.string().allow(""),
       template_theme_id: Joi.string().allow(""),
       version: Joi.string().allow(""),
-      styles: Joi.any(),
+      styles: Joi.object().pattern(/\S/, Joi.any()),
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       assets: ThemeApplicationModel.Assets(),
@@ -844,7 +872,7 @@ class ThemeApplicationModel {
   static ThemeConfiguration() {
     return Joi.object({
       name: Joi.string().allow(""),
-      global_config: Joi.any(),
+      global_config: Joi.object().pattern(/\S/, Joi.any()),
       page: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -889,14 +917,6 @@ class ThemeApplicationModel {
       disable_cart: Joi.boolean(),
       is_menu_below_logo: Joi.boolean(),
       menu_position: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GlobalConfig} */
-  static GlobalConfig() {
-    return Joi.object({
-      statics: ThemeApplicationModel.StaticConfig(),
-      custom: ThemeApplicationModel.CustomConfig(),
     });
   }
 

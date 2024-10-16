@@ -35,7 +35,12 @@ const Joi = require("joi");
  * @property {string} [name] - The official name of the entity.
  * @property {string} [display] - The name of the entity as it should be displayed.
  * @property {string} [currency_code] - The international currency code
- *   representing the currency used for the value.
+ *   representing the currency used for the value. This specifies the currency
+ *   code for all amounts. The currency_code field will hold a string value
+ *   representing the code for the currency in which all monetary amounts are
+ *   denominated. This code typically follows the ISO 4217 standard, which uses
+ *   three-letter alphabetic codes to define different currencies around the
+ *   world. For example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
  */
 
 /**
@@ -79,8 +84,47 @@ const Joi = require("joi");
  * @property {string} [code] - A code associated with the store.
  * @property {string} [name] - The name of the store.
  * @property {string} [company_name] - The name of the company associated with the store.
- * @property {number} [company_id] - The identifier of the company associated
- *   with the store.
+ * @property {number} [company_id] - Schema for fulfilling store.
+ */
+
+/**
+ * @typedef ChargeDistributionSchema
+ * @property {string} type - This field defines the distribution type, e.g
+ *   values('multi', 'single') multi: distribute the changes across all entity
+ *   single: distribute the changes across to any one single entity
+ * @property {string} logic - This field defines the distribution logic e.g
+ *   values('apportion', 'equally') apportion: distribute charge amount based of
+ *   weighted average amount of all the entity (like article with [10, 20] will
+ *   get charge of 9 as [3, 6]) equally: distribute charge amount 'equally' to
+ *   all the entity
+ */
+
+/**
+ * @typedef ChargeDistributionLogic
+ * @property {ChargeDistributionSchema} distribution
+ * @property {string} distribution_level - This field defines the distribution
+ *   level, e.g distribution level is (order, shipment, article)
+ */
+
+/**
+ * @typedef ChargeAmountCurrency
+ * @property {number} value - Charge currency value or amount
+ * @property {string} currency - Charge currency code
+ */
+
+/**
+ * @typedef ChargeAmount
+ * @property {ChargeAmountCurrency} base_currency
+ * @property {ChargeAmountCurrency} ordering_currency
+ */
+
+/**
+ * @typedef PriceAdjustmentCharge
+ * @property {string} [code] - Code defined for charge
+ * @property {string} name - Display name for charge (charge is unique by the name)
+ * @property {string} [type] - Type defined for charge
+ * @property {ChargeAmount} amount
+ * @property {ChargeDistributionLogic} distribution_logic
  */
 
 /**
@@ -90,7 +134,10 @@ const Joi = require("joi");
  * @property {string} [title] - The title or display name representing the
  *   shipment status.
  * @property {string} [hex_code] - The hexadecimal color code associated with
- *   the shipment status.
+ *   the shipment status. Each state of a shipment (like "processing",
+ *   "cancelled", "delivered", etc.) is associated with a unique color,
+ *   represented by a hex code. This color coding makes it visually intuitive
+ *   for users to understand the status of their shipment at a glance.
  */
 
 /**
@@ -170,7 +217,12 @@ const Joi = require("joi");
  * @property {number} [promotion_effective_discount] - The effective discount
  *   from promotions.
  * @property {number} [refund_amount] - The amount refunded to the customer.
- * @property {string} [currency_code] - The code of the currency used.
+ * @property {string} [currency_code] - This specifies the currency code for all
+ *   amounts. The currency_code field will hold a string value representing the
+ *   code for the currency in which all monetary amounts are denominated. This
+ *   code typically follows the ISO 4217 standard, which uses three-letter
+ *   alphabetic codes to define different currencies around the world. For
+ *   example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
  * @property {number} [fynd_credits] - The amount of Fynd credits used.
  * @property {number} [amount_to_be_collected] - The total amount that needs to
  *   be collected from the customer.
@@ -191,7 +243,9 @@ const Joi = require("joi");
  * @property {string} [code] - The code or SKU of the item.
  * @property {number} [id] - The unique identifier of the item.
  * @property {string} [name] - The name of the item.
- * @property {string} [l3_category_name] - The level 3 category name.
+ * @property {string} [l3_category_name] - This key specifies the name of the
+ *   third-level category under which the product is listed, offering a more
+ *   detailed classification within the e-commerce platform's hierarchy.
  * @property {string} [slug_key] - A unique key or identifier for the item slug.
  * @property {string[]} [l2_categories] - An array of level 2 categories the
  *   item belongs to.
@@ -217,7 +271,22 @@ const Joi = require("joi");
  *   qualify for the promotion.
  * @property {string} [promo_id] - The unique identifier for the promotion.
  * @property {number} [amount] - The discount amount provided by the promotion.
- * @property {string} [promotion_type] - The type of promotion.
+ * @property {string} [promotion_type] - Specifies the type of discount or deal
+ *   applied to the current promotion, defining how the promotion modifies the
+ *   price or adds value to the purchase. Each type represents a different
+ *   promotional strategy - percentage- Discount by a percentage of the original
+ *   price. - amount- Discount by a specific amount off the original price. -
+ *   fixed_price- Sets the price to a specific fixed amount. - bogo- Buy One Get
+ *   One or at a discount. - contract_price- Special pricing based on a contract
+ *   or agreement. - shipping_price- Discount or deal related to the shipping
+ *   cost. - ladder_price- Price changes based on quantity purchased. -
+ *   bundle_price_percentage- Discount on a bundle purchase by a percentage. -
+ *   bundle_price_amount- Discount on a bundle purchase by a specific amount. -
+ *   bundle_amount_percentage- A percentage of the purchase amount is applied as
+ *   a discount when buying in a bundle. - custom- A custom promotion not
+ *   covered by other types. - free_gift_items- Free gift items are included
+ *   with the purchase. - free_non_sellable_items- Free items that are not for
+ *   sale are included with the purchase.
  * @property {AppliedFreeArticles[]} [applied_free_articles] - An array
  *   containing details of free articles applied under the promotion.
  */
@@ -225,7 +294,12 @@ const Joi = require("joi");
 /**
  * @typedef Identifiers
  * @property {string} [ean] - The European Article Number (EAN) of the item.
- * @property {string} [sku_code] - The Stock Keeping Unit (SKU) code of the item.
+ * @property {string} [sku_code] - The Stock Keeping Unit (SKU) code of the item
+ *   - uniquely identifies each distinct product. SKUs are used to track
+ *   inventory levels, facilitate accurate stocktaking, and streamline order
+ *   fulfillment processes. This code is essential for inventory management,
+ *   allowing for the differentiation between products based on attributes such
+ *   as price, color, and size.
  */
 
 /**
@@ -237,8 +311,12 @@ const Joi = require("joi");
  *   other charges.
  * @property {number} [price_marked] - The original marked price of the item.
  * @property {number} [coupon_effective_discount] - The effective discount from coupons.
- * @property {string} [hsn_code] - The HSN (Harmonized System of Nomenclature)
- *   code of the item.
+ * @property {string} [hsn_code] - The HSN Code (Harmonized System of
+ *   Nomenclature Code) is an internationally standardized system for
+ *   classifying goods. It is used in trade and commerce to identify products
+ *   and services uniformly across different countries and industries. The
+ *   system was developed by the World Customs Organization (WCO) and is widely
+ *   used in customs processes and tax systems.
  * @property {number} [discount] - The discount applied to the item.
  * @property {number} [gst_tax_percentage] - The GST tax percentage applied .
  * @property {number} [cod_charges] - The cash on delivery charges, if applicable.
@@ -271,8 +349,13 @@ const Joi = require("joi");
  * @property {string} [updated_at] - The date and time when the status was last updated.
  * @property {string} [name] - The name or label indicating the current state or status.
  * @property {string} [status] - The current status of the bag.
- * @property {string} [journey_type] - The type of journey for the shipment,
- *   indicating the direction of the shipment.
+ * @property {string} [journey_type] - It is a type being used to represent the
+ *   journey of shipment through the performed status transition. Forward
+ *   Journey: The forward journey encompasses all the stages of shipping,
+ *   including order placement, packing, dispatch, in-transit updates, and
+ *   delivery. Return Journey: Contrary to the forward journey, the return
+ *   journey involves the process of sending items back from the customer to the
+ *   original sender or a designated return facility.
  */
 
 /**
@@ -295,11 +378,19 @@ const Joi = require("joi");
  *   financial details of the item.
  * @property {Object} [parent_promo_bags] - An object containing details of
  *   parent promotional bags.
- * @property {Object} [meta] - An object containing metadata for the item.
- * @property {string} [currency_code] - The code of the currency used.
+ * @property {Object} [meta] - It contains the additional properties related to
+ *   shipment status transition like Kafka_emission_status, user_name, etc.
+ *   Additionally it is dynamic.
+ * @property {string} [currency_code] - This specifies the currency code for all
+ *   amounts. The currency_code field will hold a string value representing the
+ *   code for the currency in which all monetary amounts are denominated. This
+ *   code typically follows the ISO 4217 standard, which uses three-letter
+ *   alphabetic codes to define different currencies around the world. For
+ *   example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
  * @property {string} [seller_identifier] - The identifier for the seller.
  * @property {CurrentStatus} [current_status]
  * @property {Article} [article]
+ * @property {PriceAdjustmentCharge[]} [charges]
  */
 
 /**
@@ -324,7 +415,7 @@ const Joi = require("joi");
  * @property {string} [area] - The area or locality.
  * @property {string} [city] - The city of the address.
  * @property {string} [address] - The full address.
- * @property {string} [address_type] - The type of address.
+ * @property {string} [address_type] - The type of the address (e.g., home, office).
  * @property {number} [longitude] - The longitude coordinate.
  * @property {string} [country_iso_code] - The ISO code for the country.
  * @property {string} [state] - The state of the address.
@@ -334,7 +425,20 @@ const Joi = require("joi");
  *   typically used for printing or displaying in user interfaces.
  * @property {string} [name] - The name of the person associated with the address.
  * @property {string} [contact_person] - The name of the contact person.
- * @property {string} [address_category] - The category of the address.
+ * @property {string} [address_category] - Category or classification of the
+ *   address. The address_category field that includes "store", "delivery", and
+ *   "billing" serves to classify addresses based on various business processes
+ *
+ *   - 'store': Identifies addresses associated with physical retail locations or
+ *       warehouses which is essential for inventory management, order
+ *       fulfillment, and facilitating in-store pickups or returns.
+ *   - 'delivery': Identifies addresses where orders are shipped to customers which
+ *       ensures successful delivery, enhancing customer satisfaction, and
+ *       optimizing logistics operations.
+ *   - 'billing': Identifies addresses used for billing and financial transactions
+ *       which are essential for payment processing, invoice generation, and
+ *       maintaining financial accuracy.
+ *
  * @property {string} [email] - The email address.
  * @property {string} [country_phone_code] - The country phone code.
  * @property {string} [version] - The version of the address format.
@@ -348,8 +452,25 @@ const Joi = require("joi");
  * @property {ShipmentPaymentInfo[]} [payment_info] - Array of objects
  *   containing payment methods used for placing an order. Each object will
  *   provide information about corresponding payment method with relevant details.
- * @property {string} [order_type] - The type of order.
- * @property {string} [gstin_code] - The GSTIN code for the shipment.
+ * @property {string} [order_type] - Defines the specific journey a shipment
+ *   will follow based on the application's operational needs and customer
+ *   preferences. This field categorizes orders into distinct types, each
+ *   associated with a unique processing flow. For example:
+ *
+ *   - "HomeDelivery": The order undergoes all state transitions typical for a
+ *       delivery, from processing the shipment to final delivery at the
+ *       customer's address.
+ *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
+ *       is ready to be handed over directly to the customer at the store. This
+ *       type streamlines the process by bypassing traditional shipping stages
+ *       and facilitating a quicker transition to the final handover stage.
+ *
+ * @property {string} [gstin_code] - A GST Number (Goods and Services Tax
+ *   Identification Number, often abbreviated as GSTIN) is a unique identifier
+ *   assigned to a business or individual registered under the Goods and
+ *   Services Tax (GST) system in countries like India. The GST number is
+ *   essential for businesses to comply with tax regulations and for the
+ *   government to track tax payments and returns.
  * @property {boolean} [show_download_invoice] - Indicates if the download
  *   invoice option should be shown.
  * @property {boolean} [can_cancel] - Indicates if the shipment can be canceled.
@@ -396,7 +517,8 @@ const Joi = require("joi");
  * @property {Object} [return_meta] - An object containing metadata about the
  *   return process.
  * @property {string} [delivery_date] - The expected delivery date.
- * @property {OrderRequest} [order]
+ * @property {OrderRequestSchema} [order]
+ * @property {PriceAdjustmentCharge[]} [charges]
  */
 
 /**
@@ -419,7 +541,12 @@ const Joi = require("joi");
  * @typedef OrderSchema
  * @property {number} [total_shipments_in_order] - The total number of shipments
  *   in the order.
- * @property {string} [gstin_code] - The GSTIN code for the shipment.
+ * @property {string} [gstin_code] - A GST Number (Goods and Services Tax
+ *   Identification Number, often abbreviated as GSTIN) is a unique identifier
+ *   assigned to a business or individual registered under the Goods and
+ *   Services Tax (GST) system in countries like India. The GST number is
+ *   essential for businesses to comply with tax regulations and for the
+ *   government to track tax payments and returns.
  * @property {UserInfo} [user_info]
  * @property {BreakupValues[]} [breakup_values] - An array containing the
  *   breakup of various charges and discounts.
@@ -428,7 +555,8 @@ const Joi = require("joi");
  * @property {string} [order_id] - The unique identifier for the order.
  * @property {Shipments[]} [shipments] - An array containing details of
  *   individual shipments within the order.
- * @property {BagsForReorder[]} [bags_for_reorder] - An array containing details
+ * @property {BagsForReorder[]} [bags_for_reorder] - Order details.
+ * @property {PriceAdjustmentCharge[]} [charges] - An array containing details
  *   of bags available for reorder.
  * @property {Object} [meta] - An object containing additional metadata for the order.
  */
@@ -498,7 +626,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CustomerDetailsResponse
+ * @typedef CustomerDetailsResponseSchema
  * @property {string} [phone] - Customer's phone number.
  * @property {string} [shipment_id] - Unique identifier of the shipment.
  * @property {string} [name] - Customer's name.
@@ -507,7 +635,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SendOtpToCustomerResponse
+ * @typedef SendOtpToCustomerResponseSchema
  * @property {string} [request_id] - Unique identifier for the request.
  * @property {string} [message] - Message indicating the result of the request.
  * @property {boolean} [success] - Indicates whether the request was successful.
@@ -521,7 +649,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef VerifyOtpResponse
+ * @typedef VerifyOtpResponseSchema
  * @property {boolean} [success] - Indicates whether the request was successful.
  */
 
@@ -539,7 +667,20 @@ const Joi = require("joi");
 
 /**
  * @typedef BagReasons
- * @property {string[]} [qc_type] - A list of quality check types.
+ * @property {string[]} [qc_type] - List of QC (Quality Control) types -- having
+ *   return reason types indicating the stage at which QC is performed. -
+ *   "Doorstep QC" refers to the quality control checks that occur at the
+ *   customer's doorstep. This could be part of a delivery process where the
+ *   product is inspected for any damages, defects, or discrepancies in the
+ *   presence of the customer before the final handover. - "Pre QC" represents a
+ *   proactive quality control approach where the customer plays an active role
+ *   in the QC process before the product is collected for return or exchange.
+ *   In this procedure, customers are required to upload photos of the product
+ *   for a preliminary quality check by the operations team. Approval from this
+ *   team is necessary before a delivery partner is dispatched to pick up the
+ *   product. This innovative method ensures that the product meets return or
+ *   exchange criteria, streamlining the process for both the customer and the
+ *   operations team, and minimizing unnecessary logistics movements.
  * @property {number} [id] - The unique identifier.
  * @property {string} [display_name] - The text displayed.
  * @property {BagReasonMeta} [meta]
@@ -551,6 +692,9 @@ const Joi = require("joi");
  * @typedef ShipmentBagReasons
  * @property {BagReasons[]} [reasons] - A list of shipment's bag reasons.
  * @property {boolean} [success] - Indicates if the operation was successful.
+ * @property {number} [rule_id] - The unique identifier for the rule that is
+ *   associated with the given reasons. This ID serves as a reference to the
+ *   specific rule within the RMA system that governs or influences the reasons listed.
  */
 
 /**
@@ -616,8 +760,16 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductsDataUpdatesFilters
- * @property {number} [line_number] - The specific line item of bag.
- * @property {string} [identifier] - The quantity of the product.
+ * @property {number} [line_number] - Represents the specific line item within a
+ *   bag, used to identify and reference a particular product in a list. This
+ *   helps in pinpointing the exact item being updated or processed.
+ * @property {string} [identifier] - A unique string that serves as the
+ *   product’s identifier, such as a SKU, barcode, or another distinct code.
+ *   This ensures the product is correctly identified and distinguished from
+ *   other items in the system.
+ * @property {number} [quantity] - The quantity of the product or item,
+ *   specified as an integer. This indicates how many units of the product are
+ *   being referenced or processed, such as the number of items in a bag or shipment.
  */
 
 /**
@@ -640,7 +792,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ShipmentsRequest
+ * @typedef ShipmentsRequestSchema
  * @property {ReasonsData} [reasons]
  * @property {Products[]} [products] - Specific bag to be updated.
  * @property {DataUpdates} [data_updates]
@@ -649,22 +801,23 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StatuesRequest
- * @property {ShipmentsRequest[]} [shipments] - A list containing information
- *   about shipments.
+ * @typedef StatuesRequestSchema
+ * @property {ShipmentsRequestSchema[]} [shipments] - A list containing
+ *   information about shipments.
  * @property {string} [exclude_bags_next_state] - State to be change for
  *   Remaining Bag/Products.
  * @property {string} [status] - The status to which the entity is to be transitioned.
  */
 
 /**
- * @typedef OrderRequest
+ * @typedef OrderRequestSchema
  * @property {Object} [meta] - Metadata for the order.
  */
 
 /**
- * @typedef UpdateShipmentStatusRequest
- * @property {StatuesRequest[]} [statuses] - An array containing different status details.
+ * @typedef UpdateShipmentStatusRequestSchema
+ * @property {StatuesRequestSchema[]} [statuses] - An array containing different
+ *   status details.
  * @property {boolean} [task] - Indicates whether the task is active or required.
  * @property {boolean} [lock_after_transition] - Indicates whether the status
  *   should be locked after the transition.
@@ -675,18 +828,18 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StatusesBodyResponse
+ * @typedef StatusesBodyResponseSchema
  * @property {Object[]} [shipments] - List of shipments.
  */
 
 /**
- * @typedef ShipmentApplicationStatusResponse
- * @property {StatusesBodyResponse[]} [statuses] - An array containing different
- *   status options of shipments.
+ * @typedef ShipmentApplicationStatusResponseSchema
+ * @property {StatusesBodyResponseSchema[]} [statuses] - An array containing
+ *   different status options of shipments.
  */
 
 /**
- * @typedef ErrorResponse
+ * @typedef ErrorResponseSchema
  * @property {string} [code] - The HTTP status code of the response.
  * @property {string} [message] - A message providing details about the response.
  * @property {number} [status] - An additional code providing more context about
@@ -775,6 +928,49 @@ class OrderApplicationModel {
       name: Joi.string().allow(""),
       company_name: Joi.string().allow(""),
       company_id: Joi.number(),
+    });
+  }
+
+  /** @returns {ChargeDistributionSchema} */
+  static ChargeDistributionSchema() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      logic: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ChargeDistributionLogic} */
+  static ChargeDistributionLogic() {
+    return Joi.object({
+      distribution: OrderApplicationModel.ChargeDistributionSchema().required(),
+      distribution_level: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ChargeAmountCurrency} */
+  static ChargeAmountCurrency() {
+    return Joi.object({
+      value: Joi.number().required(),
+      currency: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {ChargeAmount} */
+  static ChargeAmount() {
+    return Joi.object({
+      base_currency: OrderApplicationModel.ChargeAmountCurrency().required(),
+      ordering_currency: OrderApplicationModel.ChargeAmountCurrency().required(),
+    });
+  }
+
+  /** @returns {PriceAdjustmentCharge} */
+  static PriceAdjustmentCharge() {
+    return Joi.object({
+      code: Joi.string().allow("").allow(null),
+      name: Joi.string().allow("").required(),
+      type: Joi.string().allow("").allow(null),
+      amount: OrderApplicationModel.ChargeAmount().required(),
+      distribution_logic: OrderApplicationModel.ChargeDistributionLogic().required(),
     });
   }
 
@@ -905,7 +1101,7 @@ class OrderApplicationModel {
   static AppliedFreeArticles() {
     return Joi.object({
       article_id: Joi.string().allow(""),
-      free_gift_item_details: Joi.any(),
+      free_gift_item_details: Joi.object().pattern(/\S/, Joi.any()),
       parent_item_identifier: Joi.string().allow(""),
       quantity: Joi.number(),
     });
@@ -995,12 +1191,13 @@ class OrderApplicationModel {
       financial_breakup: Joi.array().items(
         OrderApplicationModel.FinancialBreakup()
       ),
-      parent_promo_bags: Joi.any(),
-      meta: Joi.any(),
+      parent_promo_bags: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       currency_code: Joi.string().allow(""),
       seller_identifier: Joi.string().allow(""),
       current_status: OrderApplicationModel.CurrentStatus(),
       article: OrderApplicationModel.Article(),
+      charges: Joi.array().items(OrderApplicationModel.PriceAdjustmentCharge()),
     });
   }
 
@@ -1067,9 +1264,9 @@ class OrderApplicationModel {
       comment: Joi.string().allow(""),
       invoice: OrderApplicationModel.Invoice(),
       show_track_link: Joi.boolean(),
-      refund_details: Joi.any(),
+      refund_details: Joi.object().pattern(/\S/, Joi.any()),
       breakup_values: Joi.array().items(OrderApplicationModel.BreakupValues()),
-      can_break: Joi.any(),
+      can_break: Joi.object().pattern(/\S/, Joi.any()),
       traking_no: Joi.string().allow(""),
       tracking_details: Joi.array().items(
         OrderApplicationModel.TrackingDetails()
@@ -1081,7 +1278,7 @@ class OrderApplicationModel {
       returnable_date: Joi.string().allow("").allow(null),
       shipment_created_at: Joi.string().allow(""),
       shipment_created_ts: Joi.string().allow(""),
-      size_info: Joi.any(),
+      size_info: Joi.object().pattern(/\S/, Joi.any()),
       bags: Joi.array().items(OrderApplicationModel.Bags()),
       dp_name: Joi.string().allow(""),
       awb_no: Joi.string().allow(""),
@@ -1093,9 +1290,10 @@ class OrderApplicationModel {
       track_url: Joi.string().allow(""),
       order_id: Joi.string().allow(""),
       need_help_url: Joi.string().allow(""),
-      return_meta: Joi.any(),
+      return_meta: Joi.object().pattern(/\S/, Joi.any()),
       delivery_date: Joi.string().allow("").allow(null),
-      order: OrderApplicationModel.OrderRequest(),
+      order: OrderApplicationModel.OrderRequestSchema(),
+      charges: Joi.array().items(OrderApplicationModel.PriceAdjustmentCharge()),
     });
   }
 
@@ -1133,6 +1331,7 @@ class OrderApplicationModel {
       bags_for_reorder: Joi.array().items(
         OrderApplicationModel.BagsForReorder()
       ),
+      charges: Joi.array().items(OrderApplicationModel.PriceAdjustmentCharge()),
       meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
@@ -1215,8 +1414,8 @@ class OrderApplicationModel {
     });
   }
 
-  /** @returns {CustomerDetailsResponse} */
-  static CustomerDetailsResponse() {
+  /** @returns {CustomerDetailsResponseSchema} */
+  static CustomerDetailsResponseSchema() {
     return Joi.object({
       phone: Joi.string().allow(""),
       shipment_id: Joi.string().allow(""),
@@ -1226,8 +1425,8 @@ class OrderApplicationModel {
     });
   }
 
-  /** @returns {SendOtpToCustomerResponse} */
-  static SendOtpToCustomerResponse() {
+  /** @returns {SendOtpToCustomerResponseSchema} */
+  static SendOtpToCustomerResponseSchema() {
     return Joi.object({
       request_id: Joi.string().allow(""),
       message: Joi.string().allow(""),
@@ -1244,8 +1443,8 @@ class OrderApplicationModel {
     });
   }
 
-  /** @returns {VerifyOtpResponse} */
-  static VerifyOtpResponse() {
+  /** @returns {VerifyOtpResponseSchema} */
+  static VerifyOtpResponseSchema() {
     return Joi.object({
       success: Joi.boolean(),
     });
@@ -1283,6 +1482,7 @@ class OrderApplicationModel {
     return Joi.object({
       reasons: Joi.array().items(OrderApplicationModel.BagReasons()),
       success: Joi.boolean(),
+      rule_id: Joi.number().allow(null),
     });
   }
 
@@ -1370,13 +1570,14 @@ class OrderApplicationModel {
     return Joi.object({
       line_number: Joi.number(),
       identifier: Joi.string().allow(""),
+      quantity: Joi.number(),
     });
   }
 
   /** @returns {ProductsDataUpdates} */
   static ProductsDataUpdates() {
     return Joi.object({
-      data: Joi.any(),
+      data: Joi.object().pattern(/\S/, Joi.any()),
       filters: Joi.array().items(
         OrderApplicationModel.ProductsDataUpdatesFilters()
       ),
@@ -1386,7 +1587,7 @@ class OrderApplicationModel {
   /** @returns {EntitiesDataUpdates} */
   static EntitiesDataUpdates() {
     return Joi.object({
-      data: Joi.any(),
+      data: Joi.object().pattern(/\S/, Joi.any()),
       filters: Joi.array().items(Joi.any()),
     });
   }
@@ -1399,8 +1600,8 @@ class OrderApplicationModel {
     });
   }
 
-  /** @returns {ShipmentsRequest} */
-  static ShipmentsRequest() {
+  /** @returns {ShipmentsRequestSchema} */
+  static ShipmentsRequestSchema() {
     return Joi.object({
       reasons: OrderApplicationModel.ReasonsData(),
       products: Joi.array().items(OrderApplicationModel.Products()),
@@ -1409,26 +1610,28 @@ class OrderApplicationModel {
     });
   }
 
-  /** @returns {StatuesRequest} */
-  static StatuesRequest() {
+  /** @returns {StatuesRequestSchema} */
+  static StatuesRequestSchema() {
     return Joi.object({
-      shipments: Joi.array().items(OrderApplicationModel.ShipmentsRequest()),
+      shipments: Joi.array().items(
+        OrderApplicationModel.ShipmentsRequestSchema()
+      ),
       exclude_bags_next_state: Joi.string().allow(""),
       status: Joi.string().allow(""),
     });
   }
 
-  /** @returns {OrderRequest} */
-  static OrderRequest() {
+  /** @returns {OrderRequestSchema} */
+  static OrderRequestSchema() {
     return Joi.object({
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {UpdateShipmentStatusRequest} */
-  static UpdateShipmentStatusRequest() {
+  /** @returns {UpdateShipmentStatusRequestSchema} */
+  static UpdateShipmentStatusRequestSchema() {
     return Joi.object({
-      statuses: Joi.array().items(OrderApplicationModel.StatuesRequest()),
+      statuses: Joi.array().items(OrderApplicationModel.StatuesRequestSchema()),
       task: Joi.boolean(),
       lock_after_transition: Joi.boolean(),
       force_transition: Joi.boolean(),
@@ -1436,22 +1639,24 @@ class OrderApplicationModel {
     });
   }
 
-  /** @returns {StatusesBodyResponse} */
-  static StatusesBodyResponse() {
+  /** @returns {StatusesBodyResponseSchema} */
+  static StatusesBodyResponseSchema() {
     return Joi.object({
       shipments: Joi.array().items(Joi.any()),
     });
   }
 
-  /** @returns {ShipmentApplicationStatusResponse} */
-  static ShipmentApplicationStatusResponse() {
+  /** @returns {ShipmentApplicationStatusResponseSchema} */
+  static ShipmentApplicationStatusResponseSchema() {
     return Joi.object({
-      statuses: Joi.array().items(OrderApplicationModel.StatusesBodyResponse()),
+      statuses: Joi.array().items(
+        OrderApplicationModel.StatusesBodyResponseSchema()
+      ),
     });
   }
 
-  /** @returns {ErrorResponse} */
-  static ErrorResponse() {
+  /** @returns {ErrorResponseSchema} */
+  static ErrorResponseSchema() {
     return Joi.object({
       code: Joi.string().allow("").allow(null),
       message: Joi.string().allow("").allow(null),

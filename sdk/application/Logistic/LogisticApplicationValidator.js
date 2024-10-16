@@ -14,12 +14,28 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  *   Default value is 12.
  * @property {string} [q] - The number of items to retrieve in each page.
  *   Default value is 12.
+ * @property {string} [hierarchy] - Fetch countries that has certain heirarchy present.
  */
 
 /**
  * @typedef GetCountryParam
  * @property {string} countryIsoCode - The ISO 3166-1 alpha-2 code representing
  *   the country (e.g., "IN" for India, "US" for the United States).
+ */
+
+/**
+ * @typedef GetCourierPartnersParam
+ * @property {number} companyId - Unique identifier of the company.
+ * @property {string} applicationId - Unique identifier of the sales channel.
+ * @property {LogisticApplicationModel.ShipmentCourierPartnerDetails} body
+ */
+
+/**
+ * @typedef GetDeliveryPromiseParam
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 12.
  */
 
 /**
@@ -61,7 +77,7 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
 
 /**
  * @typedef GetOptimalLocationsParam
- * @property {LogisticApplicationModel.ReAssignStoreRequest} body
+ * @property {LogisticApplicationModel.ReAssignStoreDetails} body
  */
 
 /**
@@ -71,12 +87,12 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
 
 /**
  * @typedef GetPincodeZonesParam
- * @property {LogisticApplicationModel.GetZoneFromPincodeViewRequest} body
+ * @property {LogisticApplicationModel.GetZoneFromPincodeViewDetails} body
  */
 
 /**
  * @typedef GetTatProductParam
- * @property {LogisticApplicationModel.TATViewRequest} body
+ * @property {LogisticApplicationModel.TATViewDetails} body
  */
 
 /**
@@ -84,7 +100,7 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  * @property {string} countryIsoCode - The ISO 3166-1 alpha-2 code representing
  *   the country (e.g., "IN" for India, "US" for the United States).
  * @property {string} templateName - The type of address form.
- * @property {LogisticApplicationModel.ValidateAddressRequest} body
+ * @property {LogisticApplicationModel.ValidateAddressDetails} body
  */
 
 class LogisticApplicationValidator {
@@ -100,6 +116,7 @@ class LogisticApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+      hierarchy: Joi.string().allow(""),
     });
   }
 
@@ -108,6 +125,23 @@ class LogisticApplicationValidator {
     return Joi.object({
       countryIsoCode: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {GetCourierPartnersParam} */
+  static getCourierPartners() {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      applicationId: Joi.string().allow("").required(),
+      body: LogisticApplicationModel.ShipmentCourierPartnerDetails().required(),
+    }).required();
+  }
+
+  /** @returns {GetDeliveryPromiseParam} */
+  static getDeliveryPromise() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    });
   }
 
   /** @returns {GetLocalitiesParam} */
@@ -152,7 +186,7 @@ class LogisticApplicationValidator {
   /** @returns {GetOptimalLocationsParam} */
   static getOptimalLocations() {
     return Joi.object({
-      body: LogisticApplicationModel.ReAssignStoreRequest().required(),
+      body: LogisticApplicationModel.ReAssignStoreDetails().required(),
     }).required();
   }
 
@@ -166,14 +200,14 @@ class LogisticApplicationValidator {
   /** @returns {GetPincodeZonesParam} */
   static getPincodeZones() {
     return Joi.object({
-      body: LogisticApplicationModel.GetZoneFromPincodeViewRequest().required(),
+      body: LogisticApplicationModel.GetZoneFromPincodeViewDetails().required(),
     }).required();
   }
 
   /** @returns {GetTatProductParam} */
   static getTatProduct() {
     return Joi.object({
-      body: LogisticApplicationModel.TATViewRequest().required(),
+      body: LogisticApplicationModel.TATViewDetails().required(),
     }).required();
   }
 
@@ -182,7 +216,7 @@ class LogisticApplicationValidator {
     return Joi.object({
       countryIsoCode: Joi.string().allow("").required(),
       templateName: Joi.string().allow("").required(),
-      body: LogisticApplicationModel.ValidateAddressRequest().required(),
+      body: LogisticApplicationModel.ValidateAddressDetails().required(),
     }).required();
   }
 }

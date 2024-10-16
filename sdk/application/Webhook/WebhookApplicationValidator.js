@@ -4,14 +4,14 @@ const WebhookApplicationModel = require("./WebhookApplicationModel");
 
 /**
  * @typedef SaveClickEventParam
- * @property {WebhookApplicationModel.ClickEventRequest} body
+ * @property {WebhookApplicationModel.ClickEventPayload} body
  */
 
 class WebhookApplicationValidator {
   /** @returns {SaveClickEventParam} */
   static saveClickEvent() {
     return Joi.object({
-      body: WebhookApplicationModel.ClickEventRequest().required(),
+      body: WebhookApplicationModel.ClickEventPayload().required(),
     }).required();
   }
 }

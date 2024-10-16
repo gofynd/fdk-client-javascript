@@ -1,6 +1,6 @@
 export = ConfigurationApplicationModel;
 /**
- * @typedef ApplicationAboutResponse
+ * @typedef ApplicationAboutResponseSchema
  * @property {ApplicationInfo} [application_info]
  */
 /**
@@ -61,20 +61,20 @@ export = ConfigurationApplicationModel;
  * @property {string} [code] - Unique code of supported language, e.g. hi-IN.
  */
 /**
- * @typedef LanguageResponse
+ * @typedef LanguageResponseSchema
  * @property {SupportedLanguage[]} [items] - List of supported languages.
  */
 /**
- * @typedef AppStaffResponse
+ * @typedef AppStaffResponseSchema
  * @property {AppStaff[]} [staff_users] - List of staff users.
  */
 /**
- * @typedef AppStaffListResponse
+ * @typedef AppStaffListResponseSchema
  * @property {Page} [page]
  * @property {AppStaff[]} [items] - List of staff users.
  */
 /**
- * @typedef OrderingStoreSelectRequest
+ * @typedef OrderingStoreSelectRequestSchema
  * @property {OrderingStoreSelect} ordering_store
  */
 /**
@@ -100,7 +100,7 @@ export = ConfigurationApplicationModel;
  * @property {string} [profile_pic_url] - Profile image hosted url of the staff member.
  */
 /**
- * @typedef AppTokenResponse
+ * @typedef AppTokenResponseSchema
  * @property {Tokens} [tokens]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the token.
@@ -398,7 +398,7 @@ export = ConfigurationApplicationModel;
  *   value is false.
  */
 /**
- * @typedef AppFeatureResponse
+ * @typedef AppFeatureResponseSchema
  * @property {AppFeature} [feature]
  */
 /**
@@ -516,15 +516,11 @@ export = ConfigurationApplicationModel;
  * @property {string} [message] - Response message for not found.
  */
 /**
- * @typedef InvalidPayloadRequest
+ * @typedef InvalidPayloadRequestSchema
  * @property {string} [message] - Error message when request body payload is improper.
  */
 /**
- * @typedef UnhandledError
- * @property {string} [message] - Error message for unhandled errors.
- */
-/**
- * @typedef SuccessMessageResponse
+ * @typedef SuccessMessageResponseSchema
  * @property {string} [message] - Success message shown to the user (in a string format).
  */
 /**
@@ -723,7 +719,7 @@ export = ConfigurationApplicationModel;
  *   where the sales channel is mapped.
  */
 /**
- * @typedef CurrenciesResponse
+ * @typedef CurrenciesResponseSchema
  * @property {Currency[]} [items] - A list of currency objects. Each object
  *   represents a different currency.
  */
@@ -735,7 +731,7 @@ export = ConfigurationApplicationModel;
  *   INR, EUR, USD.
  */
 /**
- * @typedef AppCurrencyResponse
+ * @typedef AppCurrencyResponseSchema
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account.
  * @property {DefaultCurrency} [default_currency]
@@ -795,11 +791,11 @@ export = ConfigurationApplicationModel;
 declare class ConfigurationApplicationModel {
 }
 declare namespace ConfigurationApplicationModel {
-    export { ApplicationAboutResponse, ApplicationInfo, CompanyInfo, OwnerInfo, SupportedLanguage, LanguageResponse, AppStaffResponse, AppStaffListResponse, OrderingStoreSelectRequest, OrderingStoreSelect, AppStaff, AppTokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, NotFound, InvalidPayloadRequest, UnhandledError, SuccessMessageResponse, CompanyAboutAddress, UserEmail, UserPhoneNumber, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationSupportPhone, InformationSupportEmail, InformationLoc, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, DefaultCurrency, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores };
+    export { ApplicationAboutResponseSchema, ApplicationInfo, CompanyInfo, OwnerInfo, SupportedLanguage, LanguageResponseSchema, AppStaffResponseSchema, AppStaffListResponseSchema, OrderingStoreSelectRequestSchema, OrderingStoreSelect, AppStaff, AppTokenResponseSchema, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, InternationalShipping, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureResponseSchema, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, TokenSchema, NotFound, InvalidPayloadRequestSchema, SuccessMessageResponseSchema, CompanyAboutAddress, UserEmail, UserPhoneNumber, Page, ApplicationInformation, InformationAddress, InformationPhone, InformationSupportPhone, InformationSupportEmail, InformationLoc, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponseSchema, DefaultCurrency, AppCurrencyResponseSchema, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores };
 }
-/** @returns {ApplicationAboutResponse} */
-declare function ApplicationAboutResponse(): ApplicationAboutResponse;
-type ApplicationAboutResponse = {
+/** @returns {ApplicationAboutResponseSchema} */
+declare function ApplicationAboutResponseSchema(): ApplicationAboutResponseSchema;
+type ApplicationAboutResponseSchema = {
     application_info?: ApplicationInfo;
 };
 /** @returns {ApplicationInfo} */
@@ -944,34 +940,34 @@ type SupportedLanguage = {
      */
     code?: string;
 };
-/** @returns {LanguageResponse} */
-declare function LanguageResponse(): LanguageResponse;
-type LanguageResponse = {
+/** @returns {LanguageResponseSchema} */
+declare function LanguageResponseSchema(): LanguageResponseSchema;
+type LanguageResponseSchema = {
     /**
      * - List of supported languages.
      */
     items?: SupportedLanguage[];
 };
-/** @returns {AppStaffResponse} */
-declare function AppStaffResponse(): AppStaffResponse;
-type AppStaffResponse = {
+/** @returns {AppStaffResponseSchema} */
+declare function AppStaffResponseSchema(): AppStaffResponseSchema;
+type AppStaffResponseSchema = {
     /**
      * - List of staff users.
      */
     staff_users?: AppStaff[];
 };
-/** @returns {AppStaffListResponse} */
-declare function AppStaffListResponse(): AppStaffListResponse;
-type AppStaffListResponse = {
+/** @returns {AppStaffListResponseSchema} */
+declare function AppStaffListResponseSchema(): AppStaffListResponseSchema;
+type AppStaffListResponseSchema = {
     page?: Page;
     /**
      * - List of staff users.
      */
     items?: AppStaff[];
 };
-/** @returns {OrderingStoreSelectRequest} */
-declare function OrderingStoreSelectRequest(): OrderingStoreSelectRequest;
-type OrderingStoreSelectRequest = {
+/** @returns {OrderingStoreSelectRequestSchema} */
+declare function OrderingStoreSelectRequestSchema(): OrderingStoreSelectRequestSchema;
+type OrderingStoreSelectRequestSchema = {
     ordering_store: OrderingStoreSelect;
 };
 /** @returns {OrderingStoreSelect} */
@@ -1031,9 +1027,9 @@ type AppStaff = {
      */
     profile_pic_url?: string;
 };
-/** @returns {AppTokenResponse} */
-declare function AppTokenResponse(): AppTokenResponse;
-type AppTokenResponse = {
+/** @returns {AppTokenResponseSchema} */
+declare function AppTokenResponseSchema(): AppTokenResponseSchema;
+type AppTokenResponseSchema = {
     tokens?: Tokens;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
@@ -1594,9 +1590,9 @@ type OrderFeature = {
      */
     buy_again?: boolean;
 };
-/** @returns {AppFeatureResponse} */
-declare function AppFeatureResponse(): AppFeatureResponse;
-type AppFeatureResponse = {
+/** @returns {AppFeatureResponseSchema} */
+declare function AppFeatureResponseSchema(): AppFeatureResponseSchema;
+type AppFeatureResponseSchema = {
     feature?: AppFeature;
 };
 /** @returns {Currency} */
@@ -1877,25 +1873,17 @@ type NotFound = {
      */
     message?: string;
 };
-/** @returns {InvalidPayloadRequest} */
-declare function InvalidPayloadRequest(): InvalidPayloadRequest;
-type InvalidPayloadRequest = {
+/** @returns {InvalidPayloadRequestSchema} */
+declare function InvalidPayloadRequestSchema(): InvalidPayloadRequestSchema;
+type InvalidPayloadRequestSchema = {
     /**
      * - Error message when request body payload is improper.
      */
     message?: string;
 };
-/** @returns {UnhandledError} */
-declare function UnhandledError(): UnhandledError;
-type UnhandledError = {
-    /**
-     * - Error message for unhandled errors.
-     */
-    message?: string;
-};
-/** @returns {SuccessMessageResponse} */
-declare function SuccessMessageResponse(): SuccessMessageResponse;
-type SuccessMessageResponse = {
+/** @returns {SuccessMessageResponseSchema} */
+declare function SuccessMessageResponseSchema(): SuccessMessageResponseSchema;
+type SuccessMessageResponseSchema = {
     /**
      * - Success message shown to the user (in a string format).
      */
@@ -2381,9 +2369,9 @@ type ApplicationDetail = {
      */
     company_id?: number;
 };
-/** @returns {CurrenciesResponse} */
-declare function CurrenciesResponse(): CurrenciesResponse;
-type CurrenciesResponse = {
+/** @returns {CurrenciesResponseSchema} */
+declare function CurrenciesResponseSchema(): CurrenciesResponseSchema;
+type CurrenciesResponseSchema = {
     /**
      * - A list of currency objects. Each object
      * represents a different currency.
@@ -2404,9 +2392,9 @@ type DefaultCurrency = {
      */
     code?: string;
 };
-/** @returns {AppCurrencyResponse} */
-declare function AppCurrencyResponse(): AppCurrencyResponse;
-type AppCurrencyResponse = {
+/** @returns {AppCurrencyResponseSchema} */
+declare function AppCurrencyResponseSchema(): AppCurrencyResponseSchema;
+type AppCurrencyResponseSchema = {
     /**
      * - Alphanumeric ID allotted to an application
      * (sales channel website) created within a business account.

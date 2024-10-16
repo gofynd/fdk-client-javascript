@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef UpdateUserAttributesRequest
+ * @typedef UpdateUserAttributes
  * @property {Object} [attributes] - Describes the request structure to update
  *   the user attribute.
  */
@@ -211,13 +211,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserExistsResponse
+ * @typedef UserExistsDetails
  * @property {boolean} [user_exists] - Boolean which specifies if user is
  *   registered or not.
  */
 
 /**
- * @typedef SendOtpResponse
+ * @typedef SendOtp
  * @property {number} [resend_timer] - Time after which opt can be resent.
  * @property {string} [resend_token] - Unique token to identify the OTP send
  *   request and resend the token.
@@ -336,7 +336,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OtpSuccess
+ * @typedef SendOtpSuccess
  * @property {number} [resend_timer] - The time in seconds before an OTP can be resent.
  * @property {string} [resend_token] - A token used to authorize the resending of an OTP.
  * @property {string} [register_token] - A token used for completing the
@@ -639,17 +639,17 @@ const Joi = require("joi");
  */
 
 class UserApplicationModel {
-  /** @returns {UpdateUserAttributesRequest} */
-  static UpdateUserAttributesRequest() {
+  /** @returns {UpdateUserAttributes} */
+  static UpdateUserAttributes() {
     return Joi.object({
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
   /** @returns {UserAttributes} */
   static UserAttributes() {
     return Joi.object({
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -904,15 +904,15 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {UserExistsResponse} */
-  static UserExistsResponse() {
+  /** @returns {UserExistsDetails} */
+  static UserExistsDetails() {
     return Joi.object({
       user_exists: Joi.boolean(),
     });
   }
 
-  /** @returns {SendOtpResponse} */
-  static SendOtpResponse() {
+  /** @returns {SendOtp} */
+  static SendOtp() {
     return Joi.object({
       resend_timer: Joi.number(),
       resend_token: Joi.string().allow(""),
@@ -1038,8 +1038,8 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {OtpSuccess} */
-  static OtpSuccess() {
+  /** @returns {SendOtpSuccess} */
+  static SendOtpSuccess() {
     return Joi.object({
       resend_timer: Joi.number(),
       resend_token: Joi.string().allow(""),
@@ -1105,7 +1105,7 @@ class UserApplicationModel {
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       error: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       authenticated: Joi.boolean(),
     });
   }
@@ -1340,7 +1340,7 @@ class UserApplicationModel {
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserApplicationModel.PhoneNumber()),
       emails: Joi.array().items(UserApplicationModel.Email()),

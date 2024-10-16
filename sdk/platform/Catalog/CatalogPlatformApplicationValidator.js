@@ -60,7 +60,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateSearchConfigurationParam
- * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
+ * @property {CatalogPlatformModel.CreateSearchConfigurationRequestSchema} body
  */
 
 /**
@@ -189,41 +189,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /** @typedef GetAppReturnConfigurationParam */
 
 /**
- * @typedef GetAppicationProductsParam
- * @property {string} [q] - The search query. This can be a partial or complete
- *   name of a either a product, brand or category
- * @property {string} [f] - The search filter parameters. All the parameter
- *   filtered from filter parameters will be passed in **f** parameter in this
- *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
- * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
- * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
- *   details. This flag is used to fetch all filters
- * @property {boolean} [isDependent] - This query parameter is used to get the
- *   dependent products in the listing.
- * @property {string} [sortOn] - The order to sort the list of products on. The
- *   supported sort parameters are popularity, price, redemption and discount in
- *   either ascending or descending order. See the supported values below.
- * @property {string} [pageId] - Each response will contain **page_id** param,
- *   which should be sent back to make pagination work.
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {number} [pageNo] - If page_type is number then pass it to fetch
- *   page items. Default is 1.
- * @property {string} [pageType] - For pagination type should be cursor or
- *   number. Default is cursor.
- * @property {number[]} [itemIds] - Item Ids of product
- */
-
-/**
  * @typedef GetApplicationBrandListingParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name. Use this parameter to
+ * @property {string} [q] - Search query with brand name.Use this parameter to
  *   search brands by brand name.
  */
 
@@ -232,12 +203,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   "v1.0/departments/" API
+ *   **v1.0/departments/** API
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name. Use this parameter to
+ * @property {string} [q] - Search query with brand name.Use this parameter to
  *   search brands by brand name.
  * @property {number[]} [brandId] - Helps to sort the brands list on the basis
  *   of uid list.
@@ -251,8 +222,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - A search query string. Use this parameter to filter
- *   results based on a keyword or specific value.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search brands by brand name.
  */
 
 /**
@@ -261,8 +232,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - A search query string. Use this parameter to filter
- *   results based on a keyword or specific value.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search department by name.
  */
 
 /**
@@ -290,6 +261,35 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [q] - Get Values filtered by q string
  */
 
+/**
+ * @typedef GetApplicationProductsParam
+ * @property {string} [q] - The search query. This can be a partial or complete
+ *   name of a either a product, brand or category
+ * @property {string} [f] - The search filter parameters. All the parameter
+ *   filtered from filter parameters will be passed in **f** parameter in this
+ *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
+ *   details. This flag is used to fetch all filters
+ * @property {boolean} [isDependent] - This query parameter is used to get the
+ *   dependent products in the listing.
+ * @property {string} [sortOn] - The order to sort the list of products on. The
+ *   supported sort parameters are popularity, price, redemption and discount in
+ *   either ascending or descending order. See the supported values below.
+ * @property {string} [pageId] - Each response will contain **page_id** param,
+ *   which should be sent back to make pagination work.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {number} [pageNo] - If page_type is number then pass it to fetch
+ *   page items. Default is 1.
+ * @property {string} [pageType] - For pagination type should be cursor or
+ *   number. Default is cursor.
+ * @property {number[]} [itemIds] - Item Ids of product
+ */
+
 /** @typedef GetAutocompleteConfigParam */
 
 /**
@@ -302,7 +302,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetCatalogInsightsParam
- * @property {string} [brand] - Brand slug that is to be searched.
+ * @property {string} [brand] - Brand slug
  */
 
 /**
@@ -310,7 +310,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   "v1.0/departments/" API
+ *   **v1.0/departments/** API
  */
 
 /**
@@ -408,20 +408,18 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateAllowSingleParam
- * @property {CatalogPlatformModel.AllowSingleRequest} body
+ * @property {CatalogPlatformModel.AllowSingleRequestSchema} body
  */
 
 /**
  * @typedef UpdateAppBrandParam
- * @property {number} brandUid - A `brand id` is a unique identifier for a
- *   particular brand.
+ * @property {string} brandUid - Brand id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 
 /**
  * @typedef UpdateAppCategoryParam
- * @property {string} categoryUid - A `category id` is a unique identifier for a
- *   particular category.
+ * @property {string} categoryUid - Category id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 
@@ -469,7 +467,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateDefaultSortParam
- * @property {CatalogPlatformModel.DefaultKeyRequest} body
+ * @property {CatalogPlatformModel.DefaultKeyRequestSchema} body
  */
 
 /**
@@ -492,7 +490,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateSearchConfigurationParam
- * @property {CatalogPlatformModel.UpdateSearchConfigurationRequest} body
+ * @property {CatalogPlatformModel.UpdateSearchConfigurationRequestSchema} body
  */
 
 /**
@@ -580,7 +578,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {CreateSearchConfigurationParam} */
   static createSearchConfiguration() {
     return Joi.object({
-      body: CatalogPlatformModel.CreateSearchConfigurationRequest().required(),
+      body: CatalogPlatformModel.CreateSearchConfigurationRequestSchema().required(),
     }).required();
   }
 
@@ -718,23 +716,6 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetAppicationProductsParam} */
-  static getAppicationProducts() {
-    return Joi.object({
-      q: Joi.string().allow(""),
-      f: Joi.string().allow(""),
-      c: Joi.string().allow(""),
-      filters: Joi.boolean(),
-      isDependent: Joi.boolean(),
-      sortOn: Joi.string().allow(""),
-      pageId: Joi.string().allow(""),
-      pageSize: Joi.number(),
-      pageNo: Joi.number(),
-      pageType: Joi.string().allow(""),
-      itemIds: Joi.array().items(Joi.number()),
-    }).required();
-  }
-
   /** @returns {GetApplicationBrandListingParam} */
   static getApplicationBrandListing() {
     return Joi.object({
@@ -790,6 +771,23 @@ class CatalogPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetApplicationProductsParam} */
+  static getApplicationProducts() {
+    return Joi.object({
+      q: Joi.string().allow(""),
+      f: Joi.string().allow(""),
+      c: Joi.string().allow(""),
+      filters: Joi.boolean(),
+      isDependent: Joi.boolean(),
+      sortOn: Joi.string().allow(""),
+      pageId: Joi.string().allow(""),
+      pageSize: Joi.number(),
+      pageNo: Joi.number(),
+      pageType: Joi.string().allow(""),
+      itemIds: Joi.array().items(Joi.number()),
     }).required();
   }
 
@@ -929,14 +927,14 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateAllowSingleParam} */
   static updateAllowSingle() {
     return Joi.object({
-      body: CatalogPlatformModel.AllowSingleRequest().required(),
+      body: CatalogPlatformModel.AllowSingleRequestSchema().required(),
     }).required();
   }
 
   /** @returns {UpdateAppBrandParam} */
   static updateAppBrand() {
     return Joi.object({
-      brandUid: Joi.number().required(),
+      brandUid: Joi.string().allow("").required(),
       body: CatalogPlatformModel.ApplicationBrandJson().required(),
     }).required();
   }
@@ -1006,7 +1004,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateDefaultSortParam} */
   static updateDefaultSort() {
     return Joi.object({
-      body: CatalogPlatformModel.DefaultKeyRequest().required(),
+      body: CatalogPlatformModel.DefaultKeyRequestSchema().required(),
     }).required();
   }
 
@@ -1031,7 +1029,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateSearchConfigurationParam} */
   static updateSearchConfiguration() {
     return Joi.object({
-      body: CatalogPlatformModel.UpdateSearchConfigurationRequest().required(),
+      body: CatalogPlatformModel.UpdateSearchConfigurationRequestSchema().required(),
     }).required();
   }
 

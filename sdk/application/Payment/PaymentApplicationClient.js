@@ -112,8 +112,7 @@ class Payment {
    * @param {PaymentApplicationValidator.AddBeneficiaryDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
-   *   Success response
+   * @returns {Promise<PaymentApplicationModel.RefundAccountDetails>} - Success response
    * @name addBeneficiaryDetails
    * @summary: Add beneficiary for refund
    * @description: Add beneficiary details specifically for refund transactions, including account holder name, account number and bank details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addBeneficiaryDetails/).
@@ -170,7 +169,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.RefundAccountResponse().validate(responseData, {
+    } = PaymentApplicationModel.RefundAccountDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -195,8 +194,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
-   *   Success response
+   * @returns {Promise<PaymentApplicationModel.RefundAccountDetails>} - Success response
    * @name addRefundBankAccountUsingOTP
    * @summary: Add refund account using OTP verification
    * @description: Add bank account specifically for refunds, employing OTP verification for security. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addRefundBankAccountUsingOTP/).
@@ -253,7 +251,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.RefundAccountResponse().validate(responseData, {
+    } = PaymentApplicationModel.RefundAccountDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -276,7 +274,7 @@ class Payment {
    * @param {PaymentApplicationValidator.AttachCardToCustomerParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.AttachCardsResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.AttachCardsDetails>} - Success response
    * @name attachCardToCustomer
    * @summary: Link payment card to customer
    * @description: Link payment card to a user account for seamless transactions. Upon successful linking, the card becomes associated with the user's profile, enabling secure and convenient payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/attachCardToCustomer/).
@@ -333,7 +331,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.AttachCardsResponse().validate(responseData, {
+    } = PaymentApplicationModel.AttachCardsDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -356,7 +354,7 @@ class Payment {
    * @param {PaymentApplicationValidator.CancelPaymentLinkParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.CancelPaymentLinkResponse>} -
+   * @returns {Promise<PaymentApplicationModel.CancelPaymentLinkDetails>} -
    *   Success response
    * @name cancelPaymentLink
    * @summary: Cancel payment link
@@ -412,7 +410,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CancelPaymentLinkResponse().validate(
+    } = PaymentApplicationModel.CancelPaymentLinkDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -435,7 +433,8 @@ class Payment {
    * @param {PaymentApplicationValidator.CardDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.CardDetailsResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.CardDetailsFetchedDetails>} -
+   *   Success response
    * @name cardDetails
    * @summary: Get card details
    * @description: Get details of a specified payment card, including information such as the card type, brand, country, and expiration date. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cardDetails/).
@@ -491,10 +490,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CardDetailsResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentApplicationModel.CardDetailsFetchedDetails().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -516,9 +515,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateDetails>} -
+   *   Success response
    * @name checkAndUpdatePaymentStatus
    * @summary: Update payment status
    * @description: Polling process to confirm the payment status. It periodically checks and updates the current status of a payment, ensuring timely and accurate confirmation of payment transactions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatus/).
@@ -575,7 +573,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentStatusUpdateResponse().validate(
+    } = PaymentApplicationModel.PaymentStatusUpdateDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -600,9 +598,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateDetails>} -
+   *   Success response
    * @name checkAndUpdatePaymentStatusPaymentLink
    * @summary: Update payment link status
    * @description: Verify and update status of a payment made through a link.Upon successful verification and update, the response includes details about the aggregator name, payment status, and whether retrying the process is required. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatusPaymentLink/).
@@ -659,7 +656,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentStatusUpdateResponse().validate(
+    } = PaymentApplicationModel.PaymentStatusUpdateDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -682,7 +679,7 @@ class Payment {
    * @param {PaymentApplicationValidator.CheckCreditParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.CheckCreditResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.CheckCreditDetails>} - Success response
    * @name checkCredit
    * @summary: Verify credit availability and status
    * @description: Check the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkCredit/).
@@ -738,7 +735,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CheckCreditResponse().validate(responseData, {
+    } = PaymentApplicationModel.CheckCreditDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -763,7 +760,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.CreateOrderUserResponse>} -
+   * @returns {Promise<PaymentApplicationModel.CreateOrderUserDetails>} -
    *   Success response
    * @name createOrderHandlerPaymentLink
    * @summary: Create order for payment via link
@@ -821,7 +818,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CreateOrderUserResponse().validate(
+    } = PaymentApplicationModel.CreateOrderUserDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -844,7 +841,7 @@ class Payment {
    * @param {PaymentApplicationValidator.CreatePaymentLinkParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.CreatePaymentLinkResponse>} -
+   * @returns {Promise<PaymentApplicationModel.CreatePaymentLinkDetails>} -
    *   Success response
    * @name createPaymentLink
    * @summary: Create payment link
@@ -900,7 +897,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CreatePaymentLinkResponse().validate(
+    } = PaymentApplicationModel.CreatePaymentLinkDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -923,7 +920,7 @@ class Payment {
    * @param {PaymentApplicationValidator.CreatePaymentOrderParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaymentOrderResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.PaymentOrderDetails>} - Success response
    * @name createPaymentOrder
    * @summary: Create Order
    * @description: Create an order and payment on the aggregator side. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentOrder/).
@@ -978,7 +975,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentOrderResponse().validate(responseData, {
+    } = PaymentApplicationModel.PaymentOrderDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1001,7 +998,7 @@ class Payment {
    * @param {PaymentApplicationValidator.CustomerCreditSummaryParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.CustomerCreditSummaryResponse>}
+   * @returns {Promise<PaymentApplicationModel.CustomerCreditSummaryDetails>}
    *   - Success response
    *
    * @name customerCreditSummary
@@ -1061,7 +1058,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CustomerCreditSummaryResponse().validate(
+    } = PaymentApplicationModel.CustomerCreditSummaryDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1084,7 +1081,7 @@ class Payment {
    * @param {PaymentApplicationValidator.CustomerOnboardParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.CustomerOnboardingResponse>} -
+   * @returns {Promise<PaymentApplicationModel.CustomerOnboardingDetails>} -
    *   Success response
    * @name customerOnboard
    * @summary: Onboard customer for payment
@@ -1140,7 +1137,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CustomerOnboardingResponse().validate(
+    } = PaymentApplicationModel.CustomerOnboardingDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1163,7 +1160,7 @@ class Payment {
    * @param {PaymentApplicationValidator.DeleteUserCardParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.DeleteCardsResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.DeleteCardsDetails>} - Success response
    * @name deleteUserCard
    * @summary: Delete customer card
    * @description: Delete payment card from the user's account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteUserCard/).
@@ -1218,7 +1215,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.DeleteCardsResponse().validate(responseData, {
+    } = PaymentApplicationModel.DeleteCardsDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1321,7 +1318,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.UpdateRefundTransferModeResponse>}
+   * @returns {Promise<PaymentApplicationModel.RefundTransferModeUpdateDetails>}
    *   - Success response
    *
    * @name enableOrDisableRefundTransferMode
@@ -1380,7 +1377,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.UpdateRefundTransferModeResponse().validate(
+    } = PaymentApplicationModel.RefundTransferModeUpdateDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1403,7 +1400,7 @@ class Payment {
    * @param {PaymentApplicationValidator.GetActiveCardAggregatorParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ActiveCardPaymentGatewayResponse>}
+   * @returns {Promise<PaymentApplicationModel.ActiveCardPaymentGatewayDetails>}
    *   - Success response
    *
    * @name getActiveCardAggregator
@@ -1463,7 +1460,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ActiveCardPaymentGatewayResponse().validate(
+    } = PaymentApplicationModel.ActiveCardPaymentGatewayDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1488,7 +1485,8 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.TransferModeResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.TransferModeFetchDetails>} -
+   *   Success response
    * @name getActiveRefundTransferModes
    * @summary: Get refund transfer modes
    * @description: Lists available refund modes, such as UPI, providing details like display name, logo, and ID for each mode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveRefundTransferModes/).
@@ -1545,10 +1543,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.TransferModeResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = PaymentApplicationModel.TransferModeFetchDetails().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -1568,7 +1566,7 @@ class Payment {
    * @param {PaymentApplicationValidator.GetActiveUserCardsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ListCardsResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.ListCardsDetails>} - Success response
    * @name getActiveUserCards
    * @summary: Get customer cards
    * @description: List all active cards saved by the user.Includes details such as the card's aggregator name, card ID, token, reference, number, expiration date, type, issuer, brand, nickname, and whether it has expired. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveUserCards/).
@@ -1624,7 +1622,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ListCardsResponse().validate(responseData, {
+    } = PaymentApplicationModel.ListCardsDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1647,9 +1645,8 @@ class Payment {
    * @param {PaymentApplicationValidator.GetAggregatorsConfigParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.AggregatorsConfigDetailResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<PaymentApplicationModel.AggregatorsConfigDetail>} -
+   *   Success response
    * @name getAggregatorsConfig
    * @summary: Get payment aggregators
    * @description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
@@ -1708,7 +1705,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.AggregatorsConfigDetailResponse().validate(
+    } = PaymentApplicationModel.AggregatorsConfigDetail().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1733,7 +1730,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.EpaylaterBannerResponse>} -
+   * @returns {Promise<PaymentApplicationModel.EpaylaterBannerDetails>} -
    *   Success response
    * @name getEpaylaterBannerDetails
    * @summary: Epaylater banner info
@@ -1791,7 +1788,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.EpaylaterBannerResponse().validate(
+    } = PaymentApplicationModel.EpaylaterBannerDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1816,8 +1813,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponse>} -
-   *   Success response
+   * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryFetchDetails>}
+   *   - Success response
+   *
    * @name getOrderBeneficiariesDetail
    * @summary: Retrieve beneficiary details
    * @description: Get beneficiary details like bank name , ifsc code , branch name associated with a specific order for refund processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getOrderBeneficiariesDetail/).
@@ -1875,7 +1873,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.OrderBeneficiaryResponse().validate(
+    } = PaymentApplicationModel.OrderBeneficiaryFetchDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1898,7 +1896,7 @@ class Payment {
    * @param {PaymentApplicationValidator.GetPaymentLinkParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.GetPaymentLinkResponse>} -
+   * @returns {Promise<PaymentApplicationModel.GetPaymentLinkDetails>} -
    *   Success response
    * @name getPaymentLink
    * @summary: Get payment link
@@ -1955,10 +1953,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.GetPaymentLinkResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = PaymentApplicationModel.GetPaymentLinkDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -1978,7 +1976,7 @@ class Payment {
    * @param {PaymentApplicationValidator.GetPaymentModeRoutesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
+   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteDetails>} -
    *   Success response
    * @name getPaymentModeRoutes
    * @summary: Get payment modes
@@ -2080,7 +2078,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
+    } = PaymentApplicationModel.PaymentModeRouteDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2105,7 +2103,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
+   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteDetails>} -
    *   Success response
    * @name getPaymentModeRoutesPaymentLink
    * @summary: Payment modes for payment link
@@ -2164,7 +2162,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
+    } = PaymentApplicationModel.PaymentModeRouteDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2187,7 +2185,7 @@ class Payment {
    * @param {PaymentApplicationValidator.GetPosPaymentModeRoutesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
+   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteDetails>} -
    *   Success response
    * @name getPosPaymentModeRoutes
    * @summary: POS payment modes
@@ -2281,7 +2279,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
+    } = PaymentApplicationModel.PaymentModeRouteDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2304,7 +2302,7 @@ class Payment {
    * @param {PaymentApplicationValidator.GetRupifiBannerDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.RupifiBannerResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.RupifiBannerDetails>} - Success response
    * @name getRupifiBannerDetails
    * @summary: Rupifi banner info
    * @description: Get Rupifi payment banner details. It provides information such as the KYC URL and the current status of the Rupifi payment banner. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRupifiBannerDetails/).
@@ -2361,7 +2359,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.RupifiBannerResponse().validate(responseData, {
+    } = PaymentApplicationModel.RupifiBannerDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2386,8 +2384,9 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponse>} -
-   *   Success response
+   * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryFetchDetails>}
+   *   - Success response
+   *
    * @name getUserBeneficiariesDetail
    * @summary: Retrieve beneficiary details
    * @description: Get beneficiaries associated with the user for processing refunds, based on the provided order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetail/).
@@ -2445,7 +2444,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.OrderBeneficiaryResponse().validate(
+    } = PaymentApplicationModel.OrderBeneficiaryFetchDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2468,7 +2467,7 @@ class Payment {
    * @param {PaymentApplicationValidator.InitialisePaymentParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaymentInitializationResponse>}
+   * @returns {Promise<PaymentApplicationModel.PaymentInitializationDetails>}
    *   - Success response
    *
    * @name initialisePayment
@@ -2525,7 +2524,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentInitializationResponse().validate(
+    } = PaymentApplicationModel.PaymentInitializationDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2550,7 +2549,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaymentInitializationResponse>}
+   * @returns {Promise<PaymentApplicationModel.PaymentInitializationDetails>}
    *   - Success response
    *
    * @name initialisePaymentPaymentLink
@@ -2609,7 +2608,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentInitializationResponse().validate(
+    } = PaymentApplicationModel.PaymentInitializationDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2710,9 +2709,8 @@ class Payment {
    * @param {PaymentApplicationValidator.OutstandingOrderDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.OutstandingOrderDetailsResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<PaymentApplicationModel.OutstandingOrderDetails>} -
+   *   Success response
    * @name outstandingOrderDetails
    * @summary: Outstanding orders
    * @description: Get details of orders with outstanding payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
@@ -2770,7 +2768,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.OutstandingOrderDetailsResponse().validate(
+    } = PaymentApplicationModel.OutstandingOrderDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2793,8 +2791,7 @@ class Payment {
    * @param {PaymentApplicationValidator.PaidOrderDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PaidOrderDetailsResponse>} -
-   *   Success response
+   * @returns {Promise<PaymentApplicationModel.PaidOrderDetails>} - Success response
    * @name paidOrderDetails
    * @summary: Retrieve details of paid orders
    * @description: Get details of orders that have been paid for, including shipment ID, order ID, due date, payment date, amount, and transaction ID, based on the aggregator merchant user ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/paidOrderDetails/).
@@ -2850,10 +2847,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaidOrderDetailsResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = PaymentApplicationModel.PaidOrderDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -2873,7 +2870,7 @@ class Payment {
    * @param {PaymentApplicationValidator.PollingPaymentLinkParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.PollingPaymentLinkResponse>} -
+   * @returns {Promise<PaymentApplicationModel.PollingPaymentLinkDetails>} -
    *   Success response
    * @name pollingPaymentLink
    * @summary: Poll status of payment link
@@ -2930,7 +2927,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PollingPaymentLinkResponse().validate(
+    } = PaymentApplicationModel.PollingPaymentLinkDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2953,7 +2950,7 @@ class Payment {
    * @param {PaymentApplicationValidator.RedirectToAggregatorParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.RedirectToAggregatorResponse>}
+   * @returns {Promise<PaymentApplicationModel.RedirectToAggregatorDetails>}
    *   - Success response
    *
    * @name redirectToAggregator
@@ -3014,7 +3011,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.RedirectToAggregatorResponse().validate(
+    } = PaymentApplicationModel.RedirectToAggregatorDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3037,7 +3034,7 @@ class Payment {
    * @param {PaymentApplicationValidator.RenderHTMLParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.renderHTMLResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.RenderHTMLDetails>} - Success response
    * @name renderHTML
    * @summary: Render HTML
    * @description: Render HTML for a payment aggregator page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/renderHTML/).
@@ -3092,7 +3089,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.renderHTMLResponse().validate(responseData, {
+    } = PaymentApplicationModel.RenderHTMLDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3115,7 +3112,7 @@ class Payment {
    * @param {PaymentApplicationValidator.ResendOrCancelPaymentParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ResendOrCancelPaymentResponse>}
+   * @returns {Promise<PaymentApplicationModel.ResendOrCancelPaymentDetails>}
    *   - Success response
    *
    * @name resendOrCancelPayment
@@ -3174,7 +3171,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ResendOrCancelPaymentResponse().validate(
+    } = PaymentApplicationModel.ResendOrCancelPaymentDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3197,7 +3194,7 @@ class Payment {
    * @param {PaymentApplicationValidator.ResendPaymentLinkParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ResendPaymentLinkResponse>} -
+   * @returns {Promise<PaymentApplicationModel.ResendPaymentLinkDetails>} -
    *   Success response
    * @name resendPaymentLink
    * @summary: Resend payment link
@@ -3253,7 +3250,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ResendPaymentLinkResponse().validate(
+    } = PaymentApplicationModel.ResendPaymentLinkDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3277,7 +3274,7 @@ class Payment {
    *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.SetDefaultBeneficiaryResponse>}
+   * @returns {Promise<PaymentApplicationModel.SetDefaultBeneficiaryDetails>}
    *   - Success response
    *
    * @name updateDefaultBeneficiary
@@ -3336,7 +3333,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.SetDefaultBeneficiaryResponse().validate(
+    } = PaymentApplicationModel.SetDefaultBeneficiaryDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3359,7 +3356,7 @@ class Payment {
    * @param {PaymentApplicationValidator.ValidateVPAParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ValidateVPAResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.ValidateVPADetails>} - Success response
    * @name validateVPA
    * @summary: Validate VPA
    * @description: Validate if a Virtual Payment Address (VPA) is valid for processing payments and returns the validation result.is_valid boolean value indicating whether the VPA is valid for payments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateVPA/).
@@ -3414,7 +3411,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ValidateVPAResponse().validate(responseData, {
+    } = PaymentApplicationModel.ValidateVPADetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3437,7 +3434,7 @@ class Payment {
    * @param {PaymentApplicationValidator.VerifyAndChargePaymentParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ChargeCustomerResponse>} -
+   * @returns {Promise<PaymentApplicationModel.ChargeCustomerDetails>} -
    *   Success response
    * @name verifyAndChargePayment
    * @summary: Verify order confirmation and charge
@@ -3495,10 +3492,10 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ChargeCustomerResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = PaymentApplicationModel.ChargeCustomerDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -3519,7 +3516,7 @@ class Payment {
    *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.ValidateCustomerResponse>} -
+   * @returns {Promise<PaymentApplicationModel.ValidateCustomerDetails>} -
    *   Success response
    * @name verifyCustomerForPayment
    * @summary: Verify payment customer
@@ -3577,7 +3574,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ValidateCustomerResponse().validate(
+    } = PaymentApplicationModel.ValidateCustomerDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3600,7 +3597,7 @@ class Payment {
    * @param {PaymentApplicationValidator.VerifyIfscCodeParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.IfscCodeResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.IfscCodeDetails>} - Success response
    * @name verifyIfscCode
    * @summary: Verify IFSC
    * @description: Validate IFSC code and returns bank details if valid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyIfscCode/).
@@ -3656,7 +3653,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.IfscCodeResponse().validate(responseData, {
+    } = PaymentApplicationModel.IfscCodeDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3681,7 +3678,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse>}
+   * @returns {Promise<PaymentApplicationModel.AddBeneficiaryViaOtpVerificationDetails>}
    *   - Success response
    *
    * @name verifyOtpAndAddBeneficiaryForBank
@@ -3740,7 +3737,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse().validate(
+    } = PaymentApplicationModel.AddBeneficiaryViaOtpVerificationDetails().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3765,7 +3762,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PaymentApplicationModel.WalletOtpResponse>} - Success response
+   * @returns {Promise<PaymentApplicationModel.WalletOtpDetails>} - Success response
    * @name verifyOtpAndAddBeneficiaryForWallet
    * @summary: Verify OTP for wallet
    * @description: Verify OTP provided by the user and adds a wallet beneficiary. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForWallet/).
@@ -3822,7 +3819,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.WalletOtpResponse().validate(responseData, {
+    } = PaymentApplicationModel.WalletOtpDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

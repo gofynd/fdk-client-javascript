@@ -8,17 +8,17 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CatalogueOrderResponse
+ * @typedef CatalogueOrderDetails
  * @property {RewardsArticle[]} [articles]
  */
 
 /**
- * @typedef CatalogueOrderRequest
+ * @typedef CatalogueOrderCreation
  * @property {RewardsArticle[]} [articles]
  */
 
 /**
- * @typedef PointsResponse
+ * @typedef PointsDetails
  * @property {number} [points] - Total points available
  */
 
@@ -85,7 +85,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ReferralDetailsResponse
+ * @typedef ReferralDetails
  * @property {Offer} [referral]
  * @property {ShareMessages} [share]
  * @property {ReferralDetailsUser} [user]
@@ -94,7 +94,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OrderDiscountRequest
+ * @typedef RetrieveOrderDiscount
  * @property {number} order_amount
  * @property {string} [currency]
  */
@@ -118,7 +118,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OrderDiscountResponse
+ * @typedef OrderDiscountDetails
  * @property {number} [order_amount]
  * @property {number} [points]
  * @property {DiscountProperties} [discount]
@@ -127,13 +127,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef RedeemReferralCodeRequest
+ * @typedef RedeemReferralCode
  * @property {string} [device_id]
  * @property {string} [referral_code]
  */
 
 /**
- * @typedef RedeemReferralCodeResponse
+ * @typedef RedeemReferralCodeDetails
  * @property {boolean} [redeemed]
  * @property {string} [message]
  * @property {string} [referrer_info]
@@ -142,7 +142,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PointsHistoryResponse
+ * @typedef PointsHistoryDetails
  * @property {PointsHistory[]} [items] - History is the list of points transaction.
  * @property {Page} [page]
  */
@@ -186,22 +186,22 @@ class RewardsApplicationModel {
     });
   }
 
-  /** @returns {CatalogueOrderResponse} */
-  static CatalogueOrderResponse() {
+  /** @returns {CatalogueOrderDetails} */
+  static CatalogueOrderDetails() {
     return Joi.object({
       articles: Joi.array().items(RewardsApplicationModel.RewardsArticle()),
     });
   }
 
-  /** @returns {CatalogueOrderRequest} */
-  static CatalogueOrderRequest() {
+  /** @returns {CatalogueOrderCreation} */
+  static CatalogueOrderCreation() {
     return Joi.object({
       articles: Joi.array().items(RewardsApplicationModel.RewardsArticle()),
     });
   }
 
-  /** @returns {PointsResponse} */
-  static PointsResponse() {
+  /** @returns {PointsDetails} */
+  static PointsDetails() {
     return Joi.object({
       points: Joi.number(),
     });
@@ -226,7 +226,7 @@ class RewardsApplicationModel {
       banner_image: RewardsApplicationModel.Asset(),
       created_at: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      rule: Joi.any(),
+      rule: Joi.object().pattern(/\S/, Joi.any()),
       share: RewardsApplicationModel.ShareMessages(),
       sub_text: Joi.string().allow(""),
       text: Joi.string().allow(""),
@@ -281,8 +281,8 @@ class RewardsApplicationModel {
     });
   }
 
-  /** @returns {ReferralDetailsResponse} */
-  static ReferralDetailsResponse() {
+  /** @returns {ReferralDetails} */
+  static ReferralDetails() {
     return Joi.object({
       referral: RewardsApplicationModel.Offer(),
       share: RewardsApplicationModel.ShareMessages(),
@@ -292,8 +292,8 @@ class RewardsApplicationModel {
     });
   }
 
-  /** @returns {OrderDiscountRequest} */
-  static OrderDiscountRequest() {
+  /** @returns {RetrieveOrderDiscount} */
+  static RetrieveOrderDiscount() {
     return Joi.object({
       order_amount: Joi.number().required(),
       currency: Joi.string().allow(""),
@@ -322,8 +322,8 @@ class RewardsApplicationModel {
     });
   }
 
-  /** @returns {OrderDiscountResponse} */
-  static OrderDiscountResponse() {
+  /** @returns {OrderDiscountDetails} */
+  static OrderDiscountDetails() {
     return Joi.object({
       order_amount: Joi.number(),
       points: Joi.number(),
@@ -333,16 +333,16 @@ class RewardsApplicationModel {
     });
   }
 
-  /** @returns {RedeemReferralCodeRequest} */
-  static RedeemReferralCodeRequest() {
+  /** @returns {RedeemReferralCode} */
+  static RedeemReferralCode() {
     return Joi.object({
       device_id: Joi.string().allow(""),
       referral_code: Joi.string().allow(""),
     });
   }
 
-  /** @returns {RedeemReferralCodeResponse} */
-  static RedeemReferralCodeResponse() {
+  /** @returns {RedeemReferralCodeDetails} */
+  static RedeemReferralCodeDetails() {
     return Joi.object({
       redeemed: Joi.boolean(),
       message: Joi.string().allow(""),
@@ -352,8 +352,8 @@ class RewardsApplicationModel {
     });
   }
 
-  /** @returns {PointsHistoryResponse} */
-  static PointsHistoryResponse() {
+  /** @returns {PointsHistoryDetails} */
+  static PointsHistoryDetails() {
     return Joi.object({
       items: Joi.array().items(RewardsApplicationModel.PointsHistory()),
       page: RewardsApplicationModel.Page(),
@@ -368,7 +368,7 @@ class RewardsApplicationModel {
       claimed: Joi.boolean(),
       created_at: Joi.string().allow(""),
       expires_on: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       points: Joi.number(),
       remaining_points: Joi.number(),
       text_1: Joi.string().allow(""),

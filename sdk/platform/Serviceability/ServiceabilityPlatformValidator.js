@@ -6,19 +6,19 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @typedef BulkServiceabilityParam
  * @property {string} extensionId - Unique Identifier of CP Extension
  * @property {string} schemeId - Unique identifier of a scheme
- * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
  */
 
 /**
  * @typedef BulkTatParam
  * @property {string} extensionId - Unique Identifier of CP Extension
  * @property {string} schemeId - Unique identifier of a scheme
- * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ * @property {ServiceabilityPlatformModel.BulkRegionJobDetails} body
  */
 
 /**
  * @typedef CreateCourierPartnerAccountParam
- * @property {ServiceabilityPlatformModel.CourierAccountRequestBody} body
+ * @property {ServiceabilityPlatformModel.CourierAccountDetailsBody} body
  */
 
 /**
@@ -86,7 +86,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef GetOptimalLocationsParam
- * @property {ServiceabilityPlatformModel.OptimlLocationsRequestSchema} body
+ * @property {ServiceabilityPlatformModel.OptimlLocationsDetailsSchema} body
  */
 
 /**
@@ -188,7 +188,7 @@ class ServiceabilityPlatformValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       schemeId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.BulkRegionJobSerializer().required(),
+      body: ServiceabilityPlatformModel.BulkRegionJobDetails().required(),
     }).required();
   }
 
@@ -197,14 +197,14 @@ class ServiceabilityPlatformValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       schemeId: Joi.string().allow("").required(),
-      body: ServiceabilityPlatformModel.BulkRegionJobSerializer().required(),
+      body: ServiceabilityPlatformModel.BulkRegionJobDetails().required(),
     }).required();
   }
 
   /** @returns {CreateCourierPartnerAccountParam} */
   static createCourierPartnerAccount() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.CourierAccountRequestBody().required(),
+      body: ServiceabilityPlatformModel.CourierAccountDetailsBody().required(),
     }).required();
   }
 
@@ -294,7 +294,7 @@ class ServiceabilityPlatformValidator {
   /** @returns {GetOptimalLocationsParam} */
   static getOptimalLocations() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.OptimlLocationsRequestSchema().required(),
+      body: ServiceabilityPlatformModel.OptimlLocationsDetailsSchema().required(),
     }).required();
   }
 

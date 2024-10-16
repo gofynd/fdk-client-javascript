@@ -49,7 +49,7 @@ const ConfigurationApplicationModel = require("./ConfigurationApplicationModel")
 
 /**
  * @typedef GetOrderingStoreCookieParam
- * @property {ConfigurationApplicationModel.OrderingStoreSelectRequest} body
+ * @property {ConfigurationApplicationModel.OrderingStoreSelectRequestSchema} body
  */
 
 /**
@@ -142,7 +142,7 @@ class ConfigurationApplicationValidator {
   /** @returns {GetOrderingStoreCookieParam} */
   static getOrderingStoreCookie() {
     return Joi.object({
-      body: ConfigurationApplicationModel.OrderingStoreSelectRequest().required(),
+      body: ConfigurationApplicationModel.OrderingStoreSelectRequestSchema().required(),
     }).required();
   }
 

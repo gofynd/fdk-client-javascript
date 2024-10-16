@@ -14,7 +14,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StartResponse
+ * @typedef FileUpload
  * @property {string} file_name - The name of the file that was uploaded.
  * @property {string} file_path - The path to the file in the storage location.
  * @property {string} content_type - The content type of the file.
@@ -23,7 +23,6 @@ const Joi = require("joi");
  * @property {string} operation - The operation to be performed on the storage service.
  * @property {number} size - The size of the file in bytes.
  * @property {Upload} upload
- * @property {CDN} cdn
  * @property {string[]} [tags] - Tags associated with the file.
  */
 
@@ -34,7 +33,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StartRequest
+ * @typedef FileUploadStart
  * @property {string} file_name - The name of the file to be uploaded.
  * @property {string} content_type - The name of the file to be uploaded.
  * @property {number} size - The size of the file in bytes.
@@ -48,7 +47,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompleteResponse
+ * @typedef FileUploadComplete
  * @property {string} _id - The unique identifier of the uploaded file.
  * @property {string} file_name - The name of the file that was uploaded.
  * @property {string} file_path - The path to the file in the storage location.
@@ -74,14 +73,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SignUrlResponse
+ * @typedef SignUrlResult
  * @property {Urls[]} urls - Signed URL object.
  */
 
 /**
- * @typedef SignUrlRequest
+ * @typedef SignUrl
  * @property {number} expiry - The expiration time for the signed URL.
- * @property {string[]} urls - List of asset URLs to be signed. .
+ * @property {string[]} urls - List of asset URLs to be signed.
  */
 
 class FileStorageApplicationModel {
@@ -102,8 +101,8 @@ class FileStorageApplicationModel {
     });
   }
 
-  /** @returns {StartResponse} */
-  static StartResponse() {
+  /** @returns {FileUpload} */
+  static FileUpload() {
     return Joi.object({
       file_name: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
@@ -113,7 +112,6 @@ class FileStorageApplicationModel {
       operation: Joi.string().allow("").required(),
       size: Joi.number().required(),
       upload: FileStorageApplicationModel.Upload().required(),
-      cdn: FileStorageApplicationModel.CDN().required(),
       tags: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -125,8 +123,8 @@ class FileStorageApplicationModel {
     });
   }
 
-  /** @returns {StartRequest} */
-  static StartRequest() {
+  /** @returns {FileUploadStart} */
+  static FileUploadStart() {
     return Joi.object({
       file_name: Joi.string().allow("").required(),
       content_type: Joi.string().allow("").required(),
@@ -143,8 +141,8 @@ class FileStorageApplicationModel {
     });
   }
 
-  /** @returns {CompleteResponse} */
-  static CompleteResponse() {
+  /** @returns {FileUploadComplete} */
+  static FileUploadComplete() {
     return Joi.object({
       _id: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
@@ -172,15 +170,15 @@ class FileStorageApplicationModel {
     });
   }
 
-  /** @returns {SignUrlResponse} */
-  static SignUrlResponse() {
+  /** @returns {SignUrlResult} */
+  static SignUrlResult() {
     return Joi.object({
       urls: Joi.array().items(FileStorageApplicationModel.Urls()).required(),
     });
   }
 
-  /** @returns {SignUrlRequest} */
-  static SignUrlRequest() {
+  /** @returns {SignUrl} */
+  static SignUrl() {
     return Joi.object({
       expiry: Joi.number().required(),
       urls: Joi.array().items(Joi.string().allow("")).required(),

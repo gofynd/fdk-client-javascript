@@ -1,7 +1,7 @@
 export = RewardsApplicationValidator;
 /**
  * @typedef CatalogueOrderParam
- * @property {RewardsApplicationModel.CatalogueOrderRequest} body
+ * @property {RewardsApplicationModel.CatalogueOrderCreation} body
  */
 /**
  * @typedef GetOfferByNameParam
@@ -9,7 +9,7 @@ export = RewardsApplicationValidator;
  */
 /**
  * @typedef GetOrderDiscountParam
- * @property {RewardsApplicationModel.OrderDiscountRequest} body
+ * @property {RewardsApplicationModel.RetrieveOrderDiscount} body
  */
 /** @typedef GetUserPointsParam */
 /**
@@ -21,7 +21,7 @@ export = RewardsApplicationValidator;
 /** @typedef GetUserReferralDetailsParam */
 /**
  * @typedef RedeemReferralCodeParam
- * @property {RewardsApplicationModel.RedeemReferralCodeRequest} body
+ * @property {RewardsApplicationModel.RedeemReferralCode} body
  */
 declare class RewardsApplicationValidator {
     /** @returns {CatalogueOrderParam} */
@@ -43,7 +43,7 @@ declare namespace RewardsApplicationValidator {
     export { CatalogueOrderParam, GetOfferByNameParam, GetOrderDiscountParam, GetUserPointsParam, GetUserPointsHistoryParam, GetUserReferralDetailsParam, RedeemReferralCodeParam };
 }
 type CatalogueOrderParam = {
-    body: RewardsApplicationModel.CatalogueOrderRequest;
+    body: RewardsApplicationModel.CatalogueOrderCreation;
 };
 type GetOfferByNameParam = {
     /**
@@ -52,7 +52,7 @@ type GetOfferByNameParam = {
     name: string;
 };
 type GetOrderDiscountParam = {
-    body: RewardsApplicationModel.OrderDiscountRequest;
+    body: RewardsApplicationModel.RetrieveOrderDiscount;
 };
 type GetUserPointsHistoryParam = {
     /**
@@ -66,7 +66,7 @@ type GetUserPointsHistoryParam = {
     pageSize?: number;
 };
 type RedeemReferralCodeParam = {
-    body: RewardsApplicationModel.RedeemReferralCodeRequest;
+    body: RewardsApplicationModel.RedeemReferralCode;
 };
 type GetUserPointsParam = any;
 type GetUserReferralDetailsParam = any;

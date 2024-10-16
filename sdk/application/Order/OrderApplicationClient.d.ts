@@ -7,6 +7,7 @@ declare class Order {
         getInvoiceByShipmentId: string;
         getOrderById: string;
         getOrders: string;
+        getPosOrderById: string;
         getShipmentBagReasons: string;
         getShipmentById: string;
         getShipmentReasons: string;
@@ -23,13 +24,14 @@ declare class Order {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<OrderApplicationModel.CustomerDetailsResponse>} -
-     *   Success response
+     * @returns {Promise<OrderApplicationModel.CustomerDetailsResponseSchema>}
+     *   - Success response
+     *
      * @name getCustomerDetailsByShipmentId
      * @summary: Get shipment's customer
      * @description: Get customer details such as mobile number using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
      */
-    getCustomerDetailsByShipmentId({ orderId, shipmentId, requestHeaders }?: OrderApplicationValidator.GetCustomerDetailsByShipmentIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.CustomerDetailsResponse>;
+    getCustomerDetailsByShipmentId({ orderId, shipmentId, requestHeaders }?: OrderApplicationValidator.GetCustomerDetailsByShipmentIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.CustomerDetailsResponseSchema>;
     /**
      * @param {OrderApplicationValidator.GetInvoiceByShipmentIdParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -61,6 +63,16 @@ declare class Order {
      * @description: Get all orders associated with a customer account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
      */
     getOrders({ status, pageNo, pageSize, fromDate, toDate, startDate, endDate, customMeta, allowInactive, requestHeaders, }?: OrderApplicationValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderList>;
+    /**
+     * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
+     * @name getPosOrderById
+     * @summary: Retrieves POS order details
+     * @description: Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getPosOrderById/).
+     */
+    getPosOrderById({ orderId, requestHeaders }?: OrderApplicationValidator.GetPosOrderByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderById>;
     /**
      * @param {OrderApplicationValidator.GetShipmentBagReasonsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -95,13 +107,14 @@ declare class Order {
      * @param {OrderApplicationValidator.SendOtpToShipmentCustomerParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponse>} -
-     *   Success response
+     * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponseSchema>}
+     *   - Success response
+     *
      * @name sendOtpToShipmentCustomer
      * @summary: Send OTP to customer
      * @description: Send OTP to the customer for shipment verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
      */
-    sendOtpToShipmentCustomer({ orderId, shipmentId, requestHeaders }?: OrderApplicationValidator.SendOtpToShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.SendOtpToCustomerResponse>;
+    sendOtpToShipmentCustomer({ orderId, shipmentId, requestHeaders }?: OrderApplicationValidator.SendOtpToShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.SendOtpToCustomerResponseSchema>;
     /**
      * @param {OrderApplicationValidator.TrackShipmentParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -116,24 +129,25 @@ declare class Order {
      * @param {OrderApplicationValidator.UpdateShipmentStatusParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>}
+     * @returns {Promise<OrderApplicationModel.ShipmentApplicationStatusResponseSchema>}
      *   - Success response
      *
      * @name updateShipmentStatus
      * @summary: Updates shipment status
      * @description: Update current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
      */
-    updateShipmentStatus({ shipmentId, body, requestHeaders }?: OrderApplicationValidator.UpdateShipmentStatusParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>;
+    updateShipmentStatus({ shipmentId, body, requestHeaders }?: OrderApplicationValidator.UpdateShipmentStatusParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentApplicationStatusResponseSchema>;
     /**
      * @param {OrderApplicationValidator.VerifyOtpShipmentCustomerParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<OrderApplicationModel.VerifyOtpResponse>} - Success response
+     * @returns {Promise<OrderApplicationModel.VerifyOtpResponseSchema>} -
+     *   Success response
      * @name verifyOtpShipmentCustomer
      * @summary: Verifies OTP
      * @description: Verify OTP sent by customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
      */
-    verifyOtpShipmentCustomer({ orderId, shipmentId, body, requestHeaders }?: OrderApplicationValidator.VerifyOtpShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.VerifyOtpResponse>;
+    verifyOtpShipmentCustomer({ orderId, shipmentId, body, requestHeaders }?: OrderApplicationValidator.VerifyOtpShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.VerifyOtpResponseSchema>;
 }
 import OrderApplicationValidator = require("./OrderApplicationValidator");
 import OrderApplicationModel = require("./OrderApplicationModel");

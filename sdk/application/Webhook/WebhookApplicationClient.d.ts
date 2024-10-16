@@ -11,12 +11,12 @@ declare class Webhook {
      * @param {WebhookApplicationValidator.SaveClickEventParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<WebhookApplicationModel.ClickEventResponse>} - Success response
+     * @returns {Promise<WebhookApplicationModel.ClickEventDetails>} - Success response
      * @name saveClickEvent
-     * @summary: Endpoint to capture click events from sales channels and persist them in database.
-     * @description: Send click events from sales channels. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/webhook/saveClickEvent/).
+     * @summary: Capture and save click events from various sales channels
+     * @description: Send click events from various sales channels to enable insightful data collection and analysis. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/webhook/saveClickEvent/).
      */
-    saveClickEvent({ body, requestHeaders }?: WebhookApplicationValidator.SaveClickEventParam, { responseHeaders }?: object): Promise<WebhookApplicationModel.ClickEventResponse>;
+    saveClickEvent({ body, requestHeaders }?: WebhookApplicationValidator.SaveClickEventParam, { responseHeaders }?: object): Promise<WebhookApplicationModel.ClickEventDetails>;
 }
 import WebhookApplicationValidator = require("./WebhookApplicationValidator");
 import WebhookApplicationModel = require("./WebhookApplicationModel");

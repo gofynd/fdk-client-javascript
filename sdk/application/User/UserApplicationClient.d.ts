@@ -223,12 +223,12 @@ declare class User {
      * @param {UserApplicationValidator.LoginWithOTPParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UserApplicationModel.SendOtpResponse>} - Success response
+     * @returns {Promise<UserApplicationModel.SendOtp>} - Success response
      * @name loginWithOTP
      * @summary: Login with Mobile OTP
      * @description: Allow users to log in using a one-time password sent to their mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
      */
-    loginWithOTP({ body, platform, requestHeaders }?: UserApplicationValidator.LoginWithOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendOtpResponse>;
+    loginWithOTP({ body, platform, requestHeaders }?: UserApplicationValidator.LoginWithOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendOtp>;
     /**
      * @param {UserApplicationValidator.LoginWithTokenParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -284,12 +284,12 @@ declare class User {
      * @param {UserApplicationValidator.SendForgotOTPOnMobileParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
+     * @returns {Promise<UserApplicationModel.SendOtpSuccess>} - Success response
      * @name sendForgotOTPOnMobile
      * @summary: Send mobile OTP for forgot-password
      * @description: Send a one-time password to the user's mobile for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
      */
-    sendForgotOTPOnMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendForgotOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.OtpSuccess>;
+    sendForgotOTPOnMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendForgotOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendOtpSuccess>;
     /**
      * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -304,12 +304,12 @@ declare class User {
      * @param {UserApplicationValidator.SendOTPOnMobileParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
+     * @returns {Promise<UserApplicationModel.SendOtpSuccess>} - Success response
      * @name sendOTPOnMobile
      * @summary: Send OTP on Mobile
      * @description: Send a one-time password to the user's mobile for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
      */
-    sendOTPOnMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.OtpSuccess>;
+    sendOTPOnMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.SendOtpSuccess>;
     /**
      * @param {UserApplicationValidator.SendResetPasswordEmailParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -391,7 +391,7 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
      * @name updatePassword
-     * @summary: Update Password
+     * @summary: Update password
      * @description: Allow user to change their password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updatePassword/).
      */
     updatePassword({ body, requestHeaders }?: UserApplicationValidator.UpdatePasswordParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyEmailSuccess>;
@@ -419,12 +419,12 @@ declare class User {
      * @param {UserApplicationValidator.UserExistsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UserApplicationModel.UserExistsResponse>} - Success response
+     * @returns {Promise<UserApplicationModel.UserExistsDetails>} - Success response
      * @name userExists
      * @summary: Chcek User Existence
      * @description: Check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).
      */
-    userExists({ q, requestHeaders }?: UserApplicationValidator.UserExistsParam, { responseHeaders }?: object): Promise<UserApplicationModel.UserExistsResponse>;
+    userExists({ q, requestHeaders }?: UserApplicationValidator.UserExistsParam, { responseHeaders }?: object): Promise<UserApplicationModel.UserExistsDetails>;
     /**
      * @param {UserApplicationValidator.VerifyEmailParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -481,7 +481,7 @@ declare class User {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
      * @name verifyMobileOTP
-     * @summary: Verify Mobile OTP
+     * @summary: Verify mobile OTP
      * @description: Verify one-time password sent to user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
      */
     verifyMobileOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyOtpSuccess>;

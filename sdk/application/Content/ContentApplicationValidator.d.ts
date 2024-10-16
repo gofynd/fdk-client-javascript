@@ -6,6 +6,7 @@ export = ContentApplicationValidator;
  *   a blog. You can get slug value from the endpoint
  *   /service/application/content/v1.0/blogs/.
  * @property {string} [rootId] - ID given to the HTML element.
+ * @property {boolean} [preview] - Boolean value to get the preview for the blogs.
  */
 /**
  * @typedef GetBlogsParam
@@ -16,14 +17,16 @@ export = ContentApplicationValidator;
  * @property {string} [search] - Blogs retrieve based on the title.
  */
 /**
- * @typedef GetCustomFieldsParam
+ * @typedef GetCustomFieldsByResourceIdParam
  * @property {string} resource - This is the name of resource for which you want
  *   to fetch custom fields eg. product, collection, customer etc.
- * @property {string} resourceId - This is the resource id for which custom fields created
+ * @property {string} resourceSlug - This is the resource id for which custom
+ *   fields created
  */
 /**
- * @typedef GetCustomObjectParam
- * @property {string} metaobjectId - This is meta object id
+ * @typedef GetCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
  */
 /** @typedef GetDataLoadersParam */
 /**
@@ -95,10 +98,10 @@ declare class ContentApplicationValidator {
     static getBlog(): GetBlogParam;
     /** @returns {GetBlogsParam} */
     static getBlogs(): GetBlogsParam;
-    /** @returns {GetCustomFieldsParam} */
-    static getCustomFields(): GetCustomFieldsParam;
-    /** @returns {GetCustomObjectParam} */
-    static getCustomObject(): GetCustomObjectParam;
+    /** @returns {GetCustomFieldsByResourceIdParam} */
+    static getCustomFieldsByResourceId(): GetCustomFieldsByResourceIdParam;
+    /** @returns {GetCustomObjectBySlugParam} */
+    static getCustomObjectBySlug(): GetCustomObjectBySlugParam;
     /** @returns {GetDataLoadersParam} */
     static getDataLoaders(): any;
     /** @returns {GetFaqBySlugParam} */
@@ -135,7 +138,7 @@ declare class ContentApplicationValidator {
     static getTags(): any;
 }
 declare namespace ContentApplicationValidator {
-    export { GetAnnouncementsParam, GetBlogParam, GetBlogsParam, GetCustomFieldsParam, GetCustomObjectParam, GetDataLoadersParam, GetFaqBySlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugParam, GetFaqsParam, GetFaqsByCategorySlugParam, GetLandingPageParam, GetLegalInformationParam, GetNavigationsParam, GetPageParam, GetPagesParam, GetSEOConfigurationParam, GetSEOMarkupSchemasParam, GetSlideshowParam, GetSlideshowsParam, GetSupportInformationParam, GetTagsParam };
+    export { GetAnnouncementsParam, GetBlogParam, GetBlogsParam, GetCustomFieldsByResourceIdParam, GetCustomObjectBySlugParam, GetDataLoadersParam, GetFaqBySlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugParam, GetFaqsParam, GetFaqsByCategorySlugParam, GetLandingPageParam, GetLegalInformationParam, GetNavigationsParam, GetPageParam, GetPagesParam, GetSEOConfigurationParam, GetSEOMarkupSchemasParam, GetSlideshowParam, GetSlideshowsParam, GetSupportInformationParam, GetTagsParam };
 }
 type GetBlogParam = {
     /**
@@ -148,6 +151,10 @@ type GetBlogParam = {
      * - ID given to the HTML element.
      */
     rootId?: string;
+    /**
+     * - Boolean value to get the preview for the blogs.
+     */
+    preview?: boolean;
 };
 type GetBlogsParam = {
     /**
@@ -168,22 +175,21 @@ type GetBlogsParam = {
      */
     search?: string;
 };
-type GetCustomFieldsParam = {
+type GetCustomFieldsByResourceIdParam = {
     /**
      * - This is the name of resource for which you want
      * to fetch custom fields eg. product, collection, customer etc.
      */
     resource: string;
     /**
-     * - This is the resource id for which custom fields created
+     * - This is the resource id for which custom
+     * fields created
      */
-    resourceId: string;
+    resourceSlug: string;
 };
-type GetCustomObjectParam = {
-    /**
-     * - This is meta object id
-     */
-    metaobjectId: string;
+type GetCustomObjectBySlugParam = {
+    definitionSlug: string;
+    slug: string;
 };
 type GetFaqBySlugParam = {
     /**

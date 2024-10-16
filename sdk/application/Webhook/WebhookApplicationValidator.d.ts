@@ -1,7 +1,7 @@
 export = WebhookApplicationValidator;
 /**
  * @typedef SaveClickEventParam
- * @property {WebhookApplicationModel.ClickEventRequest} body
+ * @property {WebhookApplicationModel.ClickEventPayload} body
  */
 declare class WebhookApplicationValidator {
     /** @returns {SaveClickEventParam} */
@@ -11,6 +11,6 @@ declare namespace WebhookApplicationValidator {
     export { SaveClickEventParam };
 }
 type SaveClickEventParam = {
-    body: WebhookApplicationModel.ClickEventRequest;
+    body: WebhookApplicationModel.ClickEventPayload;
 };
 import WebhookApplicationModel = require("./WebhookApplicationModel");

@@ -181,7 +181,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ErrorResponse
+ * @typedef ErrorResponseSchema
  * @property {string} [error] - A brief description of the error.
  */
 
@@ -296,14 +296,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductsComparisonResponse
+ * @typedef ProductsComparisonResponseSchema
  * @property {ProductDetail[]} [items] - List of product details for comparison.
  * @property {AttributeMetadata[]} [attributes_metadata] - Metadata about
  *   attributes used for comparing products.
  */
 
 /**
- * @typedef ProductCompareResponse
+ * @typedef ProductCompareResponseSchema
  * @property {string} [title] - Title or name of the comparison.
  * @property {ProductDetail[]} [items] - List of product details for comparison.
  * @property {AttributeMetadata[]} [attributes_metadata] - Metadata about
@@ -312,12 +312,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductFrequentlyComparedSimilarResponse
- * @property {ProductCompareResponse} [similars]
+ * @typedef ProductFrequentlyComparedSimilarResponseSchema
+ * @property {ProductCompareResponseSchema} [similars]
  */
 
 /**
- * @typedef ProductVariantItemResponse
+ * @typedef ProductVariantItemResponseSchema
  * @property {number} [uid] - Unique identifier for the product variant.
  * @property {string} [color_name] - Name of the color for the variant.
  * @property {string} [color] - Color code or representation for the variant.
@@ -335,21 +335,21 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductVariantResponse
+ * @typedef ProductVariantResponseSchema
  * @property {string} [display_type] - The type of display for the product
  *   variant (e.g., image, text, image, color).
  * @property {string} [header] - Header or title for the product variant section.
  * @property {string} [group_id] - Group ID used to group variants.
- * @property {ProductVariantItemResponse[]} [items] - List of product variant items.
+ * @property {ProductVariantItemResponseSchema[]} [items] - List of product variant items.
  * @property {string} [key] - Attribute identifier of the variant.
  * @property {string} [logo] - URL or path to the logo associated with the
  *   product variant.
  */
 
 /**
- * @typedef ProductVariantsResponse
- * @property {ProductVariantResponse[]} [variants] - A list of product variant
- *   responses, each detailing a specific variant.
+ * @typedef ProductVariantsResponseSchema
+ * @property {ProductVariantResponseSchema[]} [variants] - A list of product
+ *   variant responses, each detailing a specific variant.
  */
 
 /**
@@ -390,11 +390,11 @@ const Joi = require("joi");
  * @property {CompanyDetail} [company]
  * @property {number} [item_id] - NA.
  * @property {Seller} [seller]
- * @property {Object} [identifier] - NA.
+ * @property {Identifier} [identifier]
  */
 
 /**
- * @typedef ProductStockStatusResponse
+ * @typedef ProductStockStatusResponseSchema
  * @property {ProductStockStatusItem[]} [items] - NA.
  */
 
@@ -416,10 +416,10 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductVariantListingResponse
+ * @typedef ProductVariantListingResponseSchema
  * @property {string} [header] - Header or title for the product variant section.
- * @property {ProductVariantItemResponse[]} [items] - List of Upto 5 product
- *   variant items.
+ * @property {ProductVariantItemResponseSchema[]} [items] - List of Upto 5
+ *   product variant items.
  * @property {number} [total] - The total number of product variants available.
  * @property {string} [key] - Attribute identifier of the variant.
  * @property {string} [display_type] - The type of display for the product
@@ -464,8 +464,8 @@ const Joi = require("joi");
  * @property {boolean} [sellable] - Indicates whether the product is available for sale.
  * @property {Object} [attributes] - Additional attributes or characteristics of
  *   the product.
- * @property {ProductVariantListingResponse[]} [variants] - List of product
- *   variants available for the product.
+ * @property {ProductVariantListingResponseSchema[]} [variants] - List of
+ *   product variants available for the product.
  * @property {string} [discount] - Discount details or percentage applied to the product.
  * @property {string[]} [tryouts] - List of tryout options available for the product.
  * @property {string[]} [identifiers] - List of seller identifiers for the product.
@@ -530,7 +530,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProductListingResponse
+ * @typedef ProductListingResponseSchema
  * @property {ProductListingDetail[]} [items] - List of product details included
  *   in the response.
  * @property {ProductFilters[]} [filters] - List of filters available for
@@ -564,13 +564,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BrandListingResponse
+ * @typedef BrandListingResponseSchema
  * @property {BrandItem[]} [items] - List of brand items included in the response.
  * @property {Page} page
  */
 
 /**
- * @typedef BrandDetailResponse
+ * @typedef BrandDetailResponseSchema
  * @property {Media} [logo]
  * @property {number} [uid] - The unique identifier for the brand.
  * @property {string} [description] - Detailed description of the brand,
@@ -646,13 +646,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CategoryListingResponse
+ * @typedef CategoryListingResponseSchema
  * @property {DepartmentCategoryTree[]} [data] - List of department category trees.
  * @property {DepartmentIdentifier[]} [departments] - List of departments.
  */
 
 /**
- * @typedef CategoryMetaResponse
+ * @typedef CategoryMetaResponseSchema
  * @property {Media} [logo]
  * @property {number} [uid] - Unique identifier for the category.
  * @property {ImageUrls} [banners]
@@ -662,7 +662,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef HomeListingResponse
+ * @typedef HomeListingResponseSchema
  * @property {ProductListingDetail[]} [items] - List of product details
  *   displayed on the home page.
  * @property {Page} page
@@ -682,7 +682,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DepartmentResponse
+ * @typedef DepartmentResponseSchema
  * @property {Department[]} [items] - List of department detail objects.
  */
 
@@ -698,7 +698,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AutoCompleteResponse
+ * @typedef AutoCompleteResponseSchema
  * @property {AutocompleteItem[]} [items] - List of autocomplete items suggested
  *   based on user input.
  */
@@ -775,7 +775,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetCollectionListingResponse
+ * @typedef GetCollectionListingResponseSchema
  * @property {GetCollectionDetailNest[]} [items] - An array of collection
  *   details. Each item in the array represents a collection with various
  *   attributes and configurations.
@@ -784,7 +784,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CollectionDetailResponse
+ * @typedef CollectionDetailResponseSchema
  * @property {boolean} [is_active] - Indicates whether the collection is active.
  * @property {string} [sort_on] - Criteria used to sort the items within the
  *   collection, such as price, popularity, or newest first.
@@ -817,7 +817,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetFollowListingResponse
+ * @typedef GetFollowListingResponseSchema
  * @property {ProductListingDetail[]} items - An array of product details that
  *   the user is following. Each item includes information such as the product
  *   name, price, and other attributes.
@@ -825,7 +825,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FollowPostResponse
+ * @typedef FollowPostResponseSchema
  * @property {string} message - A message indicating the result of the follow or
  *   unfollow operation. This could be a confirmation message or an error message.
  * @property {string} id - A unique identifier for the follow operation, which
@@ -833,7 +833,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FollowerCountResponse
+ * @typedef FollowerCountResponseSchema
  * @property {number} [count] - The number of followers for the item. This count
  *   indicates how many users are following the specified item.
  */
@@ -849,7 +849,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FollowIdsResponse
+ * @typedef FollowIdsResponseSchema
  * @property {FollowIdsData} [data]
  */
 
@@ -859,6 +859,12 @@ const Joi = require("joi");
  *   longitude values of the location.
  * @property {string} [type] - The type of geographic coordinate system used.
  *   For example, "Point" indicates a single point in a geographic coordinate system.
+ */
+
+/**
+ * @typedef StoreContact
+ * @property {string} [number] - The contact number of the Store Manager.
+ * @property {number} [country_code] - The country code for the contact number.
  */
 
 /**
@@ -875,10 +881,11 @@ const Joi = require("joi");
  * @property {LatLong} [lat_long]
  * @property {string} [name] - The name of the store.
  * @property {string[]} [tags] - The list of tags mapped to the store.
+ * @property {StoreContact[]} [contacts] - List of contact numbers for the store.
  */
 
 /**
- * @typedef StoreListingResponse
+ * @typedef StoreListingResponseSchema
  * @property {Store[]} items - An array of store details. Each store includes
  *   information such as name, address, and geographic coordinates.
  * @property {Page} page
@@ -919,14 +926,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreManagerSerializer
+ * @typedef StoreManagerSchema
  * @property {string} [name] - The name of the store manager.
  * @property {string} [email] - The email address of the store manager.
  * @property {SellerPhoneNumber} [mobile_no]
  */
 
 /**
- * @typedef StoreAddressSerializer
+ * @typedef StoreAddressSchema
  * @property {number} [latitude] - The latitude of the store's location.
  * @property {string} [state] - The state where the store is located.
  * @property {string} [country] - The country where the store is located.
@@ -943,9 +950,9 @@ const Joi = require("joi");
  * @property {number} [uid] - The unique identifier for the application store.
  * @property {StoreDepartments[]} [departments] - A list of departments within the store.
  * @property {CompanyStore} [company]
- * @property {StoreManagerSerializer} [manager]
+ * @property {StoreManagerSchema} [manager]
  * @property {string} [store_code] - A unique code for identifying the store.
- * @property {StoreAddressSerializer} [address]
+ * @property {StoreAddressSchema} [address]
  * @property {string} [name] - The name of the store.
  * @property {SellerPhoneNumber[]} [contact_numbers] - A list of contact numbers
  *   for the store.
@@ -977,11 +984,11 @@ const Joi = require("joi");
  * @property {number} [uid] - The unique identifier for the store.
  * @property {StoreDepartments[]} [departments] - A list of departments within the store.
  * @property {CompanyStore} [company]
- * @property {StoreManagerSerializer} [manager]
+ * @property {StoreManagerSchema} [manager]
  * @property {string} [store_code] - A unique code for identifying the store.
  * @property {StoreTiming[]} [timing] - The opening and closing times for the
  *   store throughout the week.
- * @property {StoreAddressSerializer} [address]
+ * @property {StoreAddressSchema} [address]
  * @property {Object} [_custom_json] - Custom JSON data for the store.
  * @property {string} [name] - The name of the store.
  * @property {SellerPhoneNumber[]} [contact_numbers] - A list of contact numbers
@@ -1033,7 +1040,7 @@ const Joi = require("joi");
  * @property {Object[]} [images] - A list of image URLs for the product.
  * @property {Object} [slug] - The slug of the product.
  * @property {number} [rating] - The rating of the product.
- * @property {Object} [identifier] - A dictionary of product identifiers.
+ * @property {Identifier} [identifier]
  * @property {Object[]} [highlights] - A list of highlights for the product.
  * @property {number} [brand_uid] - The unique ID of the product's brand.
  */
@@ -1247,6 +1254,17 @@ const Joi = require("joi");
  *   and filtering criteria applied to the sellers' data.
  */
 
+/**
+ * @typedef Identifier
+ * @property {string} [ean] - The European Article Number (EAN) of the item.
+ * @property {string} [sku_code] - The Stock Keeping Unit (SKU) code of the item.
+ * @property {string} [alu] - The Alternative Lookup Product of the item.
+ * @property {string} [upc] - Universal Product Code of the item.
+ * @property {string} [isbn] - ISBN (International Standard Book Number) is a
+ *   unique identifier used globally to identify books and other non-periodical
+ *   publications
+ */
+
 class CatalogApplicationModel {
   /** @returns {ProductDetailCustomOrder} */
   static ProductDetailCustomOrder() {
@@ -1278,8 +1296,8 @@ class CatalogApplicationModel {
   static ProductListingActionPage() {
     return Joi.object({
       type: Joi.string().allow(""),
-      query: Joi.any(),
-      params: Joi.any(),
+      query: Joi.object().pattern(/\S/, Joi.any()),
+      params: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1425,13 +1443,13 @@ class CatalogApplicationModel {
       color: Joi.string().allow(""),
       type: Joi.string().allow(""),
       product_online_date: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       item_code: Joi.string().allow(""),
       name: Joi.string().allow(""),
       moq: CatalogApplicationModel.ApplicationItemMOQ(),
       short_description: Joi.string().allow(""),
       categories: Joi.array().items(CatalogApplicationModel.ProductBrand()),
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
       discount: Joi.string().allow(""),
       tryouts: Joi.array().items(Joi.string().allow("")),
       slug: Joi.string().allow("").required(),
@@ -1447,8 +1465,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {ErrorResponse} */
-  static ErrorResponse() {
+  /** @returns {ErrorResponseSchema} */
+  static ErrorResponseSchema() {
     return Joi.object({
       error: Joi.string().allow(""),
     });
@@ -1582,8 +1600,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {ProductsComparisonResponse} */
-  static ProductsComparisonResponse() {
+  /** @returns {ProductsComparisonResponseSchema} */
+  static ProductsComparisonResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CatalogApplicationModel.ProductDetail()),
       attributes_metadata: Joi.array().items(
@@ -1592,8 +1610,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {ProductCompareResponse} */
-  static ProductCompareResponse() {
+  /** @returns {ProductCompareResponseSchema} */
+  static ProductCompareResponseSchema() {
     return Joi.object({
       title: Joi.string().allow(""),
       items: Joi.array().items(CatalogApplicationModel.ProductDetail()),
@@ -1604,15 +1622,15 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {ProductFrequentlyComparedSimilarResponse} */
-  static ProductFrequentlyComparedSimilarResponse() {
+  /** @returns {ProductFrequentlyComparedSimilarResponseSchema} */
+  static ProductFrequentlyComparedSimilarResponseSchema() {
     return Joi.object({
-      similars: CatalogApplicationModel.ProductCompareResponse(),
+      similars: CatalogApplicationModel.ProductCompareResponseSchema(),
     });
   }
 
-  /** @returns {ProductVariantItemResponse} */
-  static ProductVariantItemResponse() {
+  /** @returns {ProductVariantItemResponseSchema} */
+  static ProductVariantItemResponseSchema() {
     return Joi.object({
       uid: Joi.number(),
       color_name: Joi.string().allow(""),
@@ -1630,25 +1648,25 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {ProductVariantResponse} */
-  static ProductVariantResponse() {
+  /** @returns {ProductVariantResponseSchema} */
+  static ProductVariantResponseSchema() {
     return Joi.object({
       display_type: Joi.string().allow(""),
       header: Joi.string().allow(""),
       group_id: Joi.string().allow(""),
       items: Joi.array().items(
-        CatalogApplicationModel.ProductVariantItemResponse()
+        CatalogApplicationModel.ProductVariantItemResponseSchema()
       ),
       key: Joi.string().allow(""),
       logo: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ProductVariantsResponse} */
-  static ProductVariantsResponse() {
+  /** @returns {ProductVariantsResponseSchema} */
+  static ProductVariantsResponseSchema() {
     return Joi.object({
       variants: Joi.array().items(
-        CatalogApplicationModel.ProductVariantResponse()
+        CatalogApplicationModel.ProductVariantResponseSchema()
       ),
     });
   }
@@ -1700,12 +1718,12 @@ class CatalogApplicationModel {
       company: CatalogApplicationModel.CompanyDetail(),
       item_id: Joi.number(),
       seller: CatalogApplicationModel.Seller(),
-      identifier: Joi.any(),
+      identifier: CatalogApplicationModel.Identifier(),
     });
   }
 
-  /** @returns {ProductStockStatusResponse} */
-  static ProductStockStatusResponse() {
+  /** @returns {ProductStockStatusResponseSchema} */
+  static ProductStockStatusResponseSchema() {
     return Joi.object({
       items: Joi.array().items(
         CatalogApplicationModel.ProductStockStatusItem()
@@ -1736,12 +1754,12 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {ProductVariantListingResponse} */
-  static ProductVariantListingResponse() {
+  /** @returns {ProductVariantListingResponseSchema} */
+  static ProductVariantListingResponseSchema() {
     return Joi.object({
       header: Joi.string().allow(""),
       items: Joi.array().items(
-        CatalogApplicationModel.ProductVariantItemResponse()
+        CatalogApplicationModel.ProductVariantItemResponseSchema()
       ),
       total: Joi.number(),
       key: Joi.string().allow(""),
@@ -1775,16 +1793,16 @@ class CatalogApplicationModel {
       color: Joi.string().allow(""),
       type: Joi.string().allow(""),
       product_online_date: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       item_code: Joi.string().allow(""),
       name: Joi.string().allow(""),
       moq: CatalogApplicationModel.ApplicationItemMOQ(),
       short_description: Joi.string().allow(""),
       categories: Joi.array().items(CatalogApplicationModel.ProductBrand()),
       sellable: Joi.boolean(),
-      attributes: Joi.any(),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
       variants: Joi.array().items(
-        CatalogApplicationModel.ProductVariantListingResponse()
+        CatalogApplicationModel.ProductVariantListingResponseSchema()
       ),
       discount: Joi.string().allow(""),
       tryouts: Joi.array().items(Joi.string().allow("")),
@@ -1850,8 +1868,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {ProductListingResponse} */
-  static ProductListingResponse() {
+  /** @returns {ProductListingResponseSchema} */
+  static ProductListingResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CatalogApplicationModel.ProductListingDetail()),
       filters: Joi.array().items(CatalogApplicationModel.ProductFilters()),
@@ -1883,22 +1901,22 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {BrandListingResponse} */
-  static BrandListingResponse() {
+  /** @returns {BrandListingResponseSchema} */
+  static BrandListingResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CatalogApplicationModel.BrandItem()),
       page: CatalogApplicationModel.Page().required(),
     });
   }
 
-  /** @returns {BrandDetailResponse} */
-  static BrandDetailResponse() {
+  /** @returns {BrandDetailResponseSchema} */
+  static BrandDetailResponseSchema() {
     return Joi.object({
       logo: CatalogApplicationModel.Media(),
       uid: Joi.number(),
       description: Joi.string().allow(""),
       banners: CatalogApplicationModel.ImageUrls(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       name: Joi.string().allow(""),
     });
   }
@@ -1916,8 +1934,8 @@ class CatalogApplicationModel {
     return Joi.object({
       uid: Joi.number(),
       banners: CatalogApplicationModel.ImageUrls(),
-      childs: Joi.array().items(Joi.any()),
-      _custom_json: Joi.any(),
+      childs: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       action: CatalogApplicationModel.ProductListingAction(),
@@ -1930,7 +1948,7 @@ class CatalogApplicationModel {
       uid: Joi.number(),
       banners: CatalogApplicationModel.ImageUrls(),
       childs: Joi.array().items(CatalogApplicationModel.ThirdLevelChild()),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       action: CatalogApplicationModel.ProductListingAction(),
@@ -1943,7 +1961,7 @@ class CatalogApplicationModel {
       uid: Joi.number(),
       banners: CatalogApplicationModel.ImageUrls(),
       childs: Joi.array().items(CatalogApplicationModel.SecondLevelChild()),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       action: CatalogApplicationModel.ProductListingAction(),
@@ -1978,8 +1996,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {CategoryListingResponse} */
-  static CategoryListingResponse() {
+  /** @returns {CategoryListingResponseSchema} */
+  static CategoryListingResponseSchema() {
     return Joi.object({
       data: Joi.array().items(CatalogApplicationModel.DepartmentCategoryTree()),
       departments: Joi.array().items(
@@ -1988,19 +2006,19 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {CategoryMetaResponse} */
-  static CategoryMetaResponse() {
+  /** @returns {CategoryMetaResponseSchema} */
+  static CategoryMetaResponseSchema() {
     return Joi.object({
       logo: CatalogApplicationModel.Media(),
       uid: Joi.number(),
       banners: CatalogApplicationModel.ImageUrls(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       name: Joi.string().allow(""),
     });
   }
 
-  /** @returns {HomeListingResponse} */
-  static HomeListingResponse() {
+  /** @returns {HomeListingResponseSchema} */
+  static HomeListingResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CatalogApplicationModel.ProductListingDetail()),
       page: CatalogApplicationModel.Page().required(),
@@ -2019,8 +2037,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {DepartmentResponse} */
-  static DepartmentResponse() {
+  /** @returns {DepartmentResponseSchema} */
+  static DepartmentResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CatalogApplicationModel.Department()),
     });
@@ -2032,13 +2050,13 @@ class CatalogApplicationModel {
       logo: CatalogApplicationModel.Media(),
       display: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       action: CatalogApplicationModel.ProductListingAction(),
     });
   }
 
-  /** @returns {AutoCompleteResponse} */
-  static AutoCompleteResponse() {
+  /** @returns {AutoCompleteResponseSchema} */
+  static AutoCompleteResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CatalogApplicationModel.AutocompleteItem()),
     });
@@ -2059,18 +2077,18 @@ class CatalogApplicationModel {
       is_active: Joi.boolean(),
       uid: Joi.string().allow(""),
       sort_on: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       banners: CatalogApplicationModel.ImageUrls(),
-      cron: Joi.any(),
-      _schedule: Joi.any(),
+      cron: Joi.object().pattern(/\S/, Joi.any()),
+      _schedule: Joi.object().pattern(/\S/, Joi.any()),
       query: Joi.array().items(CatalogApplicationModel.CollectionQuery()),
       description: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       name: Joi.string().allow(""),
       allow_sort: Joi.boolean(),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
-      badge: Joi.any(),
+      badge: Joi.object().pattern(/\S/, Joi.any()),
       slug: Joi.string().allow(""),
       action: CatalogApplicationModel.ProductListingAction(),
       allow_facets: Joi.boolean(),
@@ -2111,8 +2129,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {GetCollectionListingResponse} */
-  static GetCollectionListingResponse() {
+  /** @returns {GetCollectionListingResponseSchema} */
+  static GetCollectionListingResponseSchema() {
     return Joi.object({
       items: Joi.array().items(
         CatalogApplicationModel.GetCollectionDetailNest()
@@ -2122,23 +2140,23 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {CollectionDetailResponse} */
-  static CollectionDetailResponse() {
+  /** @returns {CollectionDetailResponseSchema} */
+  static CollectionDetailResponseSchema() {
     return Joi.object({
       is_active: Joi.boolean(),
       sort_on: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       banners: CatalogApplicationModel.ImageUrls(),
-      cron: Joi.any(),
-      _schedule: Joi.any(),
+      cron: Joi.object().pattern(/\S/, Joi.any()),
+      _schedule: Joi.object().pattern(/\S/, Joi.any()),
       query: Joi.array().items(CatalogApplicationModel.CollectionQuery()),
       description: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       name: Joi.string().allow(""),
       allow_sort: Joi.boolean(),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
-      badge: Joi.any(),
+      badge: Joi.object().pattern(/\S/, Joi.any()),
       slug: Joi.string().allow(""),
       allow_facets: Joi.boolean(),
       logo: CatalogApplicationModel.Media(),
@@ -2148,8 +2166,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {GetFollowListingResponse} */
-  static GetFollowListingResponse() {
+  /** @returns {GetFollowListingResponseSchema} */
+  static GetFollowListingResponseSchema() {
     return Joi.object({
       items: Joi.array()
         .items(CatalogApplicationModel.ProductListingDetail())
@@ -2158,16 +2176,16 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {FollowPostResponse} */
-  static FollowPostResponse() {
+  /** @returns {FollowPostResponseSchema} */
+  static FollowPostResponseSchema() {
     return Joi.object({
       message: Joi.string().allow("").required(),
       id: Joi.string().allow("").required(),
     });
   }
 
-  /** @returns {FollowerCountResponse} */
-  static FollowerCountResponse() {
+  /** @returns {FollowerCountResponseSchema} */
+  static FollowerCountResponseSchema() {
     return Joi.object({
       count: Joi.number(),
     });
@@ -2182,8 +2200,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {FollowIdsResponse} */
-  static FollowIdsResponse() {
+  /** @returns {FollowIdsResponseSchema} */
+  static FollowIdsResponseSchema() {
     return Joi.object({
       data: CatalogApplicationModel.FollowIdsData(),
     });
@@ -2194,6 +2212,14 @@ class CatalogApplicationModel {
     return Joi.object({
       coordinates: Joi.array().items(Joi.number()),
       type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {StoreContact} */
+  static StoreContact() {
+    return Joi.object({
+      number: Joi.string().allow(""),
+      country_code: Joi.number(),
     });
   }
 
@@ -2211,11 +2237,12 @@ class CatalogApplicationModel {
       lat_long: CatalogApplicationModel.LatLong(),
       name: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
+      contacts: Joi.array().items(CatalogApplicationModel.StoreContact()),
     });
   }
 
-  /** @returns {StoreListingResponse} */
-  static StoreListingResponse() {
+  /** @returns {StoreListingResponseSchema} */
+  static StoreListingResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CatalogApplicationModel.Store()).required(),
       page: CatalogApplicationModel.Page().required(),
@@ -2226,7 +2253,7 @@ class CatalogApplicationModel {
   static StoreDepartments() {
     return Joi.object({
       uid: Joi.number(),
-      logo: Joi.any(),
+      logo: Joi.object().pattern(/\S/, Joi.any()),
       priority_order: Joi.number(),
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
@@ -2251,8 +2278,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {StoreManagerSerializer} */
-  static StoreManagerSerializer() {
+  /** @returns {StoreManagerSchema} */
+  static StoreManagerSchema() {
     return Joi.object({
       name: Joi.string().allow(""),
       email: Joi.string().allow(""),
@@ -2260,8 +2287,8 @@ class CatalogApplicationModel {
     });
   }
 
-  /** @returns {StoreAddressSerializer} */
-  static StoreAddressSerializer() {
+  /** @returns {StoreAddressSchema} */
+  static StoreAddressSchema() {
     return Joi.object({
       latitude: Joi.number(),
       state: Joi.string().allow(""),
@@ -2283,9 +2310,9 @@ class CatalogApplicationModel {
         CatalogApplicationModel.StoreDepartments()
       ),
       company: CatalogApplicationModel.CompanyStore(),
-      manager: CatalogApplicationModel.StoreManagerSerializer(),
+      manager: CatalogApplicationModel.StoreManagerSchema(),
       store_code: Joi.string().allow(""),
-      address: CatalogApplicationModel.StoreAddressSerializer(),
+      address: CatalogApplicationModel.StoreAddressSchema(),
       name: Joi.string().allow(""),
       contact_numbers: Joi.array().items(
         CatalogApplicationModel.SellerPhoneNumber()
@@ -2296,7 +2323,7 @@ class CatalogApplicationModel {
   /** @returns {ApplicationStoreListing} */
   static ApplicationStoreListing() {
     return Joi.object({
-      filters: Joi.array().items(Joi.any()),
+      filters: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
       items: Joi.array().items(CatalogApplicationModel.AppStore()),
       page: CatalogApplicationModel.Page(),
     });
@@ -2328,11 +2355,11 @@ class CatalogApplicationModel {
         CatalogApplicationModel.StoreDepartments()
       ),
       company: CatalogApplicationModel.CompanyStore(),
-      manager: CatalogApplicationModel.StoreManagerSerializer(),
+      manager: CatalogApplicationModel.StoreManagerSchema(),
       store_code: Joi.string().allow(""),
       timing: Joi.array().items(CatalogApplicationModel.StoreTiming()),
-      address: CatalogApplicationModel.StoreAddressSerializer(),
-      _custom_json: Joi.any(),
+      address: CatalogApplicationModel.StoreAddressSchema(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       name: Joi.string().allow(""),
       contact_numbers: Joi.array().items(
         CatalogApplicationModel.SellerPhoneNumber()
@@ -2381,18 +2408,18 @@ class CatalogApplicationModel {
       description: Joi.any(),
       out_of_stock: Joi.boolean(),
       hsn_code: Joi.number(),
-      grouped_attributes: Joi.any(),
+      grouped_attributes: Joi.object().pattern(/\S/, Joi.any()),
       item_code: Joi.any(),
       name: Joi.any(),
       country_of_origin: Joi.any(),
       short_description: Joi.any(),
-      media: Joi.array().items(Joi.any()),
-      attributes: Joi.any(),
+      media: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
       is_set: Joi.boolean(),
       images: Joi.array().items(Joi.any()),
       slug: Joi.any(),
       rating: Joi.number(),
-      identifier: Joi.any(),
+      identifier: CatalogApplicationModel.Identifier(),
       highlights: Joi.array().items(Joi.any()),
       brand_uid: Joi.number(),
     });
@@ -2418,7 +2445,7 @@ class CatalogApplicationModel {
     return Joi.object({
       logo: Joi.string().allow("").allow(null),
       is_active: Joi.boolean(),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       verified_by: CatalogApplicationModel.UserDetail(),
       created_on: Joi.string().allow("").required(),
       company_id: Joi.number(),
@@ -2623,6 +2650,17 @@ class CatalogApplicationModel {
       sort_on: Joi.array().items(
         CatalogApplicationModel.ProductSizeSellerFilterSchemaV3()
       ),
+    });
+  }
+
+  /** @returns {Identifier} */
+  static Identifier() {
+    return Joi.object({
+      ean: Joi.string().allow(""),
+      sku_code: Joi.string().allow(""),
+      alu: Joi.string().allow(""),
+      upc: Joi.string().allow(""),
+      isbn: Joi.string().allow(""),
     });
   }
 }

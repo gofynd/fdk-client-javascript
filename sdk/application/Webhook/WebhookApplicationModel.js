@@ -6,12 +6,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ClickEventRequest
+ * @typedef ClickEventPayload
  * @property {ClickEventBatch[]} [batch] - List of click events captured.
+ * @property {string} [sent_at]
  */
 
 /**
- * @typedef ClickEventResponse
+ * @typedef ClickEventDetails
  * @property {number} [success_count] - Count of valid events.
  * @property {number} [failed_count] - Count of events failed in schema validation.
  * @property {ClickEventBatch[]} [failed_events] - List of failed events with error.
@@ -25,15 +26,16 @@ class WebhookApplicationModel {
     });
   }
 
-  /** @returns {ClickEventRequest} */
-  static ClickEventRequest() {
+  /** @returns {ClickEventPayload} */
+  static ClickEventPayload() {
     return Joi.object({
       batch: Joi.array().items(WebhookApplicationModel.ClickEventBatch()),
+      sent_at: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ClickEventResponse} */
-  static ClickEventResponse() {
+  /** @returns {ClickEventDetails} */
+  static ClickEventDetails() {
     return Joi.object({
       success_count: Joi.number(),
       failed_count: Joi.number(),

@@ -1,12 +1,12 @@
 export = LogisticsPartnerModel;
 /**
- * @typedef BulkRegionServiceabilityTatRequest
+ * @typedef BulkRegionServiceabilityTatDetails
  * @property {string} country
  * @property {string} region
  * @property {string} type
  */
 /**
- * @typedef BulkRegionServiceabilityTatResponseItemData
+ * @typedef BulkRegionServiceabilityTatResultItemData
  * @property {string} [country]
  * @property {string} [region]
  * @property {string} [type]
@@ -16,19 +16,19 @@ export = LogisticsPartnerModel;
  * @property {string} [file_path]
  */
 /**
- * @typedef ErrorResponse
+ * @typedef ErrorResult
  * @property {string} value
  * @property {string} message
  * @property {string} type
  */
 /**
- * @typedef FailureResponse
+ * @typedef FailureResult
  * @property {boolean} success
- * @property {ErrorResponse[]} error
+ * @property {ErrorResult[]} error
  */
 /**
- * @typedef BulkRegionServiceabilityTatResponse
- * @property {BulkRegionServiceabilityTatResponseItemData[]} [items]
+ * @typedef BulkRegionServiceabilityTatResult
+ * @property {BulkRegionServiceabilityTatResultItemData[]} [items]
  * @property {Page} [page]
  */
 /**
@@ -42,14 +42,178 @@ export = LogisticsPartnerModel;
  * @property {number} [size] - The number of items per page.
  */
 /**
- * @typedef BulkRegionJobSerializer
+ * @typedef RegionTatItemResult
+ * @property {RegionTatResult[]} items
+ * @property {Page} page
+ */
+/**
+ * @typedef RegionServiceabilityItemResult
+ * @property {RegionServiceabilityResult[]} items
+ * @property {Page} page
+ */
+/**
+ * @typedef ServiceabilityDetailsResult
+ * @property {boolean} [first_mile] - Boolean value indicating whether
+ *   first-mile service is available or not.
+ * @property {boolean} [last_mile] - Boolean value indicating whether last-mile
+ *   service is available or not.
+ * @property {number} [cod_limit] - Limit on the amount of cash on delivery
+ *   (COD) payments allowed in the specified region.
+ * @property {boolean} [doorstep_return] - Indicates if doorstep return service
+ *   is available. This refers to the ability to return items directly from the
+ *   customer's doorstep.
+ * @property {boolean} [doorstep_qc] - Indicates if doorstep quality check
+ *   service is available. This refers to the ability to perform quality checks
+ *   on items at the customer's doorstep.
+ * @property {string} [pickup_cutoff] - Time of day by which pickups must be
+ *   scheduled to be processed on the same day.
+ * @property {boolean} [installation] - Boolean value indicating whether
+ *   installation services are available in the specified region or not.
+ * @property {string} [id] - Unique identifier for the serviceability record.
+ */
+/**
+ * @typedef ServiceabilityDetails
+ * @property {boolean} [first_mile] - Boolean value indicating whether
+ *   first-mile service is available or not.
+ * @property {boolean} [last_mile] - Boolean value indicating whether last-mile
+ *   service is available or not.
+ * @property {number} [cod_limit] - Limit on the amount of cash on delivery
+ *   (COD) payments allowed in the specified region.
+ * @property {boolean} [doorstep_return] - Indicates if doorstep return service
+ *   is available. This refers to the ability to return items directly from the
+ *   customer's doorstep.
+ * @property {boolean} [doorstep_qc] - Indicates if doorstep quality check
+ *   service is available. This refers to the ability to perform quality checks
+ *   on items at the customer's doorstep.
+ * @property {string} [pickup_cutoff] - Time of day by which pickups must be
+ *   scheduled to be processed on the same day.
+ * @property {boolean} [installation] - Boolean value indicating whether
+ *   installation services are available in the specified region or not.
+ */
+/**
+ * @typedef RegionServiceabilityResult
+ * @property {string} country_code - ISO2 code representing the country where
+ *   the serviceability is being specified.
+ * @property {string} [state_code] - Code representing the state or province
+ *   within the country where the serviceability is being specified.
+ * @property {string} [city_code] - Code representing the city within the state
+ *   where the serviceability is being specified.
+ * @property {string} [sector_code] - Code representing a specific sector or
+ *   district within the city where the serviceability is being specified.
+ * @property {string} [pincode] - Postal or ZIP code for the specific area
+ *   within the city where the serviceability is being specified.
+ * @property {boolean} [first_mile] - Boolean value indicating whether
+ *   first-mile service is available or not.
+ * @property {boolean} [last_mile] - Boolean value indicating whether last-mile
+ *   service is available or not.
+ * @property {number} [cod_limit] - Limit on the amount of cash on delivery
+ *   (COD) payments allowed in the specified region.
+ * @property {boolean} [doorstep_return] - Indicates if doorstep return service
+ *   is available. This refers to the ability to return items directly from the
+ *   customer's doorstep.
+ * @property {boolean} [doorstep_qc] - Indicates if doorstep quality check
+ *   service is available. This refers to the ability to perform quality checks
+ *   on items at the customer's doorstep.
+ * @property {string} [pickup_cutoff] - Time of day by which pickups must be
+ *   scheduled to be processed on the same day.
+ * @property {boolean} [installation] - Boolean value indicating whether
+ *   installation services are available in the specified region or not.
+ * @property {string} id - Unique identifier for the serviceability record.
+ */
+/**
+ * @typedef RegionServiceabilityDetails
+ * @property {string} country_code - ISO2 code representing the country where
+ *   the serviceability is being specified.
+ * @property {string} [state_code] - Code representing the state or province
+ *   within the country where the serviceability is being specified.
+ * @property {string} [city_code] - Code representing the city within the state
+ *   where the serviceability is being specified.
+ * @property {string} [sector_code] - Code representing a specific sector or
+ *   district within the city where the serviceability is being specified.
+ * @property {string} [pincode] - Postal or ZIP code for the specific area
+ *   within the city where the serviceability is being specified.
+ * @property {boolean} [first_mile] - Boolean value indicating whether
+ *   first-mile service is available or not.
+ * @property {boolean} [last_mile] - Boolean value indicating whether last-mile
+ *   service is available or not.
+ * @property {number} [cod_limit] - Limit on the amount of cash on delivery
+ *   (COD) payments allowed in the specified region.
+ * @property {boolean} [doorstep_return] - Indicates if doorstep return service
+ *   is available. This refers to the ability to return items directly from the
+ *   customer's doorstep.
+ * @property {boolean} [doorstep_qc] - Indicates if doorstep quality check
+ *   service is available. This refers to the ability to perform quality checks
+ *   on items at the customer's doorstep.
+ * @property {string} [pickup_cutoff] - Time of day by which pickups must be
+ *   scheduled to be processed on the same day.
+ * @property {boolean} [installation] - Boolean value indicating whether
+ *   installation services are available in the specified region or not.
+ */
+/**
+ * @typedef RegionTatDetails
+ * @property {string} from_country_code - ISO2 code representing the country of
+ *   origin for the delivery.
+ * @property {string} [from_state_code] - Code representing the state or
+ *   province of origin within the country.
+ * @property {string} [from_city_code] - Code representing the city of origin
+ *   within the state.
+ * @property {string} [from_sector_code] - Code representing a specific sector
+ *   or district within the city of origin.
+ * @property {string} [from_pincode] - Postal or ZIP code of the origin area.
+ * @property {string} to_country_code - ISO2 code representing the destination country.
+ * @property {string} [to_state_code] - Code representing the state or province
+ *   of the destination within the country.
+ * @property {string} [to_city_code] - Code representing the city of destination
+ *   within the state.
+ * @property {string} [to_sector_code] - Code representing a specific sector or
+ *   district within the city of destination.
+ * @property {string} [to_pincode] - Postal or ZIP code of the destination area.
+ * @property {number} [max_delivery_time] - Maximum time required for delivery
+ *   from the origin to the destination in seconds.
+ * @property {number} [min_delivery_time] - Minimum time required for delivery
+ *   from the origin to the destination in seconds.
+ */
+/**
+ * @typedef RegionTatUpdateDetails
+ * @property {number} [max_delivery_time] - Maximum time required for delivery
+ *   from the origin to the destination in seconds.
+ * @property {number} [min_delivery_time] - Minimum time required for delivery
+ *   from the origin to the destination in seconds.
+ */
+/**
+ * @typedef RegionTatResult
+ * @property {string} from_country_code - ISO2 code representing the country of
+ *   origin for the delivery.
+ * @property {string} [from_state_code] - Code representing the state or
+ *   province of origin within the country.
+ * @property {string} [from_city_code] - Code representing the city of origin
+ *   within the state.
+ * @property {string} [from_sector_code] - Code representing a specific sector
+ *   or district within the city of origin.
+ * @property {string} [from_pincode] - Postal or ZIP code of the origin area.
+ * @property {string} to_country_code - ISO2 code representing the destination country.
+ * @property {string} [to_state_code] - Code representing the state or province
+ *   of the destination within the country.
+ * @property {string} [to_city_code] - Code representing the city of destination
+ *   within the state.
+ * @property {string} [to_sector_code] - Code representing a specific sector or
+ *   district within the city of destination.
+ * @property {string} [to_pincode] - Postal or ZIP code of the destination area.
+ * @property {number} [max_delivery_time] - Maximum time required for delivery
+ *   from the origin to the destination in seconds.
+ * @property {number} [min_delivery_time] - Minimum time required for delivery
+ *   from the origin to the destination in seconds.
+ * @property {string} id - Unique identifier for the delivery time record.
+ */
+/**
+ * @typedef BulkRegionJobDetails
  * @property {string} [file_path]
  * @property {string} country
  * @property {string} action
  * @property {string} region
  */
 /**
- * @typedef BulkRegionResponseItemData
+ * @typedef BulkRegionResultItemData
  * @property {string} file_path
  * @property {number} [failed]
  * @property {Object[]} [failed_records]
@@ -63,8 +227,8 @@ export = LogisticsPartnerModel;
  * @property {string} [error_file_path]
  */
 /**
- * @typedef BulkRegionResponse
- * @property {BulkRegionResponseItemData[]} items
+ * @typedef BulkRegionResult
+ * @property {BulkRegionResultItemData[]} items
  * @property {Page} page
  */
 /**
@@ -77,7 +241,7 @@ export = LogisticsPartnerModel;
  * @property {boolean} is_own_account
  */
 /**
- * @typedef CourierAccountRequestBody
+ * @typedef CourierAccountDetailsBody
  * @property {string} extension_id
  * @property {string} [account_id]
  * @property {string} scheme_id
@@ -86,17 +250,17 @@ export = LogisticsPartnerModel;
  * @property {boolean} is_own_account
  */
 /**
- * @typedef CourierPartnerAccountFailureResponse
+ * @typedef CourierPartnerAccountFailureResult
  * @property {boolean} success
- * @property {ErrorResponse[]} error
+ * @property {ErrorResult[]} error
  */
 /**
- * @typedef CompanyCourierPartnerAccountListResponse
- * @property {CourierAccountResponse[]} items
+ * @typedef CompanyCourierPartnerAccountListResult
+ * @property {CourierAccountResult[]} items
  * @property {Page} page
  */
 /**
- * @typedef CourierAccountResponse
+ * @typedef CourierAccountResult
  * @property {string} account_id
  * @property {string} scheme_id
  * @property {boolean} is_self_ship
@@ -118,7 +282,7 @@ export = LogisticsPartnerModel;
  * @property {CourierPartnerSchemeFeatures} feature
  */
 /**
- * @typedef CourierPartnerSchemeRequestModel
+ * @typedef CourierPartnerSchemeDetailsModel
  * @property {string} extension_id
  * @property {string} [scheme_id]
  * @property {string} name
@@ -132,24 +296,47 @@ export = LogisticsPartnerModel;
  */
 /**
  * @typedef CourierPartnerSchemeFeatures
- * @property {boolean} [doorstep_qc]
- * @property {boolean} [qr]
- * @property {boolean} [mps]
- * @property {boolean} [ndr]
- * @property {number} [ndr_attempts]
- * @property {boolean} [dangerous_goods]
- * @property {boolean} [fragile_goods]
- * @property {boolean} [restricted_goods]
- * @property {boolean} [cold_storage_goods]
- * @property {boolean} [doorstep_exchange]
- * @property {boolean} [doorstep_return]
- * @property {boolean} [product_installation]
- * @property {boolean} [openbox_delivery]
- * @property {string} [status_updates]
- * @property {boolean} [multi_pick_single_drop]
- * @property {boolean} [single_pick_multi_drop]
- * @property {boolean} [multi_pick_multi_drop]
- * @property {boolean} [ewaybill]
+ * @property {boolean} [doorstep_qc] - Indicates if the courier partner offers
+ *   doorstep quality check services.
+ * @property {boolean} [qr] - Specifies whether the courier partner supports QR
+ *   code-based operations.
+ * @property {boolean} [mps] - Denotes if the courier partner supports
+ *   multi-part shipment services.
+ * @property {boolean} [ndr] - Indicates if the Non-Delivery Report (NDR)
+ *   feature is supported by the courier partner.
+ * @property {number} [ndr_attempts] - Number of attempts allowed for resolving
+ *   Non-Delivery Reports (NDR).
+ * @property {boolean} [dangerous_goods] - Specifies if the courier partner
+ *   handles the transportation of dangerous goods.
+ * @property {boolean} [fragile_goods] - Indicates whether the courier partner
+ *   manages the shipment of fragile goods.
+ * @property {boolean} [restricted_goods] - Indicates if the courier partner
+ *   handles restricted goods, as per regulatory guidelines.
+ * @property {boolean} [cold_storage_goods] - Denotes if the courier partner
+ *   provides cold storage facilities for goods.
+ * @property {boolean} [doorstep_exchange] - Indicates if the courier partner
+ *   supports doorstep exchange services.
+ * @property {boolean} [doorstep_return] - Specifies if the courier partner
+ *   offers doorstep return services.
+ * @property {boolean} [product_installation] - Indicates if the courier partner
+ *   provides product installation services upon delivery.
+ * @property {boolean} [openbox_delivery] - Specifies whether the courier
+ *   partner supports open-box delivery, allowing customers to inspect goods
+ *   before accepting.
+ * @property {string} [status_updates] - Describes the type of status updates
+ *   provided by the courier partner (e.g., real-time, periodic).
+ * @property {boolean} [multi_pick_single_drop] - Indicates if the courier
+ *   partner supports multiple pickups to a single drop location.
+ * @property {boolean} [single_pick_multi_drop] - Indicates whether the courier
+ *   partner supports single pickup to multiple drop locations.
+ * @property {boolean} [multi_pick_multi_drop] - Denotes if the courier partner
+ *   offers services for multiple pickups to multiple drop locations.
+ * @property {boolean} [ewaybill] - Specifies if the courier partner requires or
+ *   supports the generation of e-waybills for shipments.
+ * @property {number} [qc_shipment_item_quantity] - Defines the maximum quantity
+ *   of items allowed in a quality check shipment.
+ * @property {number} [non_qc_shipment_item_quantity] - Defines the maximum
+ *   quantity of items allowed in a non-quality check shipment.
  */
 /**
  * @typedef ArithmeticOperations
@@ -159,7 +346,7 @@ export = LogisticsPartnerModel;
  * @property {number} [gte]
  */
 /**
- * @typedef CourierPartnerSchemeUpdateRequest
+ * @typedef CourierPartnerSchemeUpdateDetails
  * @property {string} name
  * @property {ArithmeticOperations} weight
  * @property {string} transport_type
@@ -188,27 +375,39 @@ export = LogisticsPartnerModel;
  * @property {string} [latitude]
  * @property {string} [longitude]
  * @property {string} [display_name]
+ * @property {boolean} [has_next_hierarchy] - More detailed hierarchical data is
+ *   available, meaning states, cities, or other regions within the country have
+ *   been populated in the system.
  */
 /**
  * @typedef HierarchyItems
  * @property {string} [display_name]
  * @property {string} [slug]
  */
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
+/**
+ * @typedef StandardError
+ * @property {string} message - A brief description of the error.
+ */
 declare class LogisticsPartnerModel {
 }
 declare namespace LogisticsPartnerModel {
-    export { BulkRegionServiceabilityTatRequest, BulkRegionServiceabilityTatResponseItemData, ErrorResponse, FailureResponse, BulkRegionServiceabilityTatResponse, Page, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, CourierAccount, CourierAccountRequestBody, CourierPartnerAccountFailureResponse, CompanyCourierPartnerAccountListResponse, CourierAccountResponse, CourierPartnerSchemeModel, CourierPartnerSchemeRequestModel, CourierPartnerSchemeFeatures, ArithmeticOperations, CourierPartnerSchemeUpdateRequest, GetCountries, GetCountriesItems, HierarchyItems };
+    export { BulkRegionServiceabilityTatDetails, BulkRegionServiceabilityTatResultItemData, ErrorResult, FailureResult, BulkRegionServiceabilityTatResult, Page, RegionTatItemResult, RegionServiceabilityItemResult, ServiceabilityDetailsResult, ServiceabilityDetails, RegionServiceabilityResult, RegionServiceabilityDetails, RegionTatDetails, RegionTatUpdateDetails, RegionTatResult, BulkRegionJobDetails, BulkRegionResultItemData, BulkRegionResult, CourierAccount, CourierAccountDetailsBody, CourierPartnerAccountFailureResult, CompanyCourierPartnerAccountListResult, CourierAccountResult, CourierPartnerSchemeModel, CourierPartnerSchemeDetailsModel, CourierPartnerSchemeFeatures, ArithmeticOperations, CourierPartnerSchemeUpdateDetails, GetCountries, GetCountriesItems, HierarchyItems, ValidationError, StandardError };
 }
-/** @returns {BulkRegionServiceabilityTatRequest} */
-declare function BulkRegionServiceabilityTatRequest(): BulkRegionServiceabilityTatRequest;
-type BulkRegionServiceabilityTatRequest = {
+/** @returns {BulkRegionServiceabilityTatDetails} */
+declare function BulkRegionServiceabilityTatDetails(): BulkRegionServiceabilityTatDetails;
+type BulkRegionServiceabilityTatDetails = {
     country: string;
     region: string;
     type: string;
 };
-/** @returns {BulkRegionServiceabilityTatResponseItemData} */
-declare function BulkRegionServiceabilityTatResponseItemData(): BulkRegionServiceabilityTatResponseItemData;
-type BulkRegionServiceabilityTatResponseItemData = {
+/** @returns {BulkRegionServiceabilityTatResultItemData} */
+declare function BulkRegionServiceabilityTatResultItemData(): BulkRegionServiceabilityTatResultItemData;
+type BulkRegionServiceabilityTatResultItemData = {
     country?: string;
     region?: string;
     type?: string;
@@ -217,23 +416,23 @@ type BulkRegionServiceabilityTatResponseItemData = {
     failed_records?: any[];
     file_path?: string;
 };
-/** @returns {ErrorResponse} */
-declare function ErrorResponse(): ErrorResponse;
-type ErrorResponse = {
+/** @returns {ErrorResult} */
+declare function ErrorResult(): ErrorResult;
+type ErrorResult = {
     value: string;
     message: string;
     type: string;
 };
-/** @returns {FailureResponse} */
-declare function FailureResponse(): FailureResponse;
-type FailureResponse = {
+/** @returns {FailureResult} */
+declare function FailureResult(): FailureResult;
+type FailureResult = {
     success: boolean;
-    error: ErrorResponse[];
+    error: ErrorResult[];
 };
-/** @returns {BulkRegionServiceabilityTatResponse} */
-declare function BulkRegionServiceabilityTatResponse(): BulkRegionServiceabilityTatResponse;
-type BulkRegionServiceabilityTatResponse = {
-    items?: BulkRegionServiceabilityTatResponseItemData[];
+/** @returns {BulkRegionServiceabilityTatResult} */
+declare function BulkRegionServiceabilityTatResult(): BulkRegionServiceabilityTatResult;
+type BulkRegionServiceabilityTatResult = {
+    items?: BulkRegionServiceabilityTatResultItemData[];
     page?: Page;
 };
 /** @returns {Page} */
@@ -268,17 +467,391 @@ type Page = {
      */
     size?: number;
 };
-/** @returns {BulkRegionJobSerializer} */
-declare function BulkRegionJobSerializer(): BulkRegionJobSerializer;
-type BulkRegionJobSerializer = {
+/** @returns {RegionTatItemResult} */
+declare function RegionTatItemResult(): RegionTatItemResult;
+type RegionTatItemResult = {
+    items: RegionTatResult[];
+    page: Page;
+};
+/** @returns {RegionServiceabilityItemResult} */
+declare function RegionServiceabilityItemResult(): RegionServiceabilityItemResult;
+type RegionServiceabilityItemResult = {
+    items: RegionServiceabilityResult[];
+    page: Page;
+};
+/** @returns {ServiceabilityDetailsResult} */
+declare function ServiceabilityDetailsResult(): ServiceabilityDetailsResult;
+type ServiceabilityDetailsResult = {
+    /**
+     * - Boolean value indicating whether
+     * first-mile service is available or not.
+     */
+    first_mile?: boolean;
+    /**
+     * - Boolean value indicating whether last-mile
+     * service is available or not.
+     */
+    last_mile?: boolean;
+    /**
+     * - Limit on the amount of cash on delivery
+     * (COD) payments allowed in the specified region.
+     */
+    cod_limit?: number;
+    /**
+     * - Indicates if doorstep return service
+     * is available. This refers to the ability to return items directly from the
+     * customer's doorstep.
+     */
+    doorstep_return?: boolean;
+    /**
+     * - Indicates if doorstep quality check
+     * service is available. This refers to the ability to perform quality checks
+     * on items at the customer's doorstep.
+     */
+    doorstep_qc?: boolean;
+    /**
+     * - Time of day by which pickups must be
+     * scheduled to be processed on the same day.
+     */
+    pickup_cutoff?: string;
+    /**
+     * - Boolean value indicating whether
+     * installation services are available in the specified region or not.
+     */
+    installation?: boolean;
+    /**
+     * - Unique identifier for the serviceability record.
+     */
+    id?: string;
+};
+/** @returns {ServiceabilityDetails} */
+declare function ServiceabilityDetails(): ServiceabilityDetails;
+type ServiceabilityDetails = {
+    /**
+     * - Boolean value indicating whether
+     * first-mile service is available or not.
+     */
+    first_mile?: boolean;
+    /**
+     * - Boolean value indicating whether last-mile
+     * service is available or not.
+     */
+    last_mile?: boolean;
+    /**
+     * - Limit on the amount of cash on delivery
+     * (COD) payments allowed in the specified region.
+     */
+    cod_limit?: number;
+    /**
+     * - Indicates if doorstep return service
+     * is available. This refers to the ability to return items directly from the
+     * customer's doorstep.
+     */
+    doorstep_return?: boolean;
+    /**
+     * - Indicates if doorstep quality check
+     * service is available. This refers to the ability to perform quality checks
+     * on items at the customer's doorstep.
+     */
+    doorstep_qc?: boolean;
+    /**
+     * - Time of day by which pickups must be
+     * scheduled to be processed on the same day.
+     */
+    pickup_cutoff?: string;
+    /**
+     * - Boolean value indicating whether
+     * installation services are available in the specified region or not.
+     */
+    installation?: boolean;
+};
+/** @returns {RegionServiceabilityResult} */
+declare function RegionServiceabilityResult(): RegionServiceabilityResult;
+type RegionServiceabilityResult = {
+    /**
+     * - ISO2 code representing the country where
+     * the serviceability is being specified.
+     */
+    country_code: string;
+    /**
+     * - Code representing the state or province
+     * within the country where the serviceability is being specified.
+     */
+    state_code?: string;
+    /**
+     * - Code representing the city within the state
+     * where the serviceability is being specified.
+     */
+    city_code?: string;
+    /**
+     * - Code representing a specific sector or
+     * district within the city where the serviceability is being specified.
+     */
+    sector_code?: string;
+    /**
+     * - Postal or ZIP code for the specific area
+     * within the city where the serviceability is being specified.
+     */
+    pincode?: string;
+    /**
+     * - Boolean value indicating whether
+     * first-mile service is available or not.
+     */
+    first_mile?: boolean;
+    /**
+     * - Boolean value indicating whether last-mile
+     * service is available or not.
+     */
+    last_mile?: boolean;
+    /**
+     * - Limit on the amount of cash on delivery
+     * (COD) payments allowed in the specified region.
+     */
+    cod_limit?: number;
+    /**
+     * - Indicates if doorstep return service
+     * is available. This refers to the ability to return items directly from the
+     * customer's doorstep.
+     */
+    doorstep_return?: boolean;
+    /**
+     * - Indicates if doorstep quality check
+     * service is available. This refers to the ability to perform quality checks
+     * on items at the customer's doorstep.
+     */
+    doorstep_qc?: boolean;
+    /**
+     * - Time of day by which pickups must be
+     * scheduled to be processed on the same day.
+     */
+    pickup_cutoff?: string;
+    /**
+     * - Boolean value indicating whether
+     * installation services are available in the specified region or not.
+     */
+    installation?: boolean;
+    /**
+     * - Unique identifier for the serviceability record.
+     */
+    id: string;
+};
+/** @returns {RegionServiceabilityDetails} */
+declare function RegionServiceabilityDetails(): RegionServiceabilityDetails;
+type RegionServiceabilityDetails = {
+    /**
+     * - ISO2 code representing the country where
+     * the serviceability is being specified.
+     */
+    country_code: string;
+    /**
+     * - Code representing the state or province
+     * within the country where the serviceability is being specified.
+     */
+    state_code?: string;
+    /**
+     * - Code representing the city within the state
+     * where the serviceability is being specified.
+     */
+    city_code?: string;
+    /**
+     * - Code representing a specific sector or
+     * district within the city where the serviceability is being specified.
+     */
+    sector_code?: string;
+    /**
+     * - Postal or ZIP code for the specific area
+     * within the city where the serviceability is being specified.
+     */
+    pincode?: string;
+    /**
+     * - Boolean value indicating whether
+     * first-mile service is available or not.
+     */
+    first_mile?: boolean;
+    /**
+     * - Boolean value indicating whether last-mile
+     * service is available or not.
+     */
+    last_mile?: boolean;
+    /**
+     * - Limit on the amount of cash on delivery
+     * (COD) payments allowed in the specified region.
+     */
+    cod_limit?: number;
+    /**
+     * - Indicates if doorstep return service
+     * is available. This refers to the ability to return items directly from the
+     * customer's doorstep.
+     */
+    doorstep_return?: boolean;
+    /**
+     * - Indicates if doorstep quality check
+     * service is available. This refers to the ability to perform quality checks
+     * on items at the customer's doorstep.
+     */
+    doorstep_qc?: boolean;
+    /**
+     * - Time of day by which pickups must be
+     * scheduled to be processed on the same day.
+     */
+    pickup_cutoff?: string;
+    /**
+     * - Boolean value indicating whether
+     * installation services are available in the specified region or not.
+     */
+    installation?: boolean;
+};
+/** @returns {RegionTatDetails} */
+declare function RegionTatDetails(): RegionTatDetails;
+type RegionTatDetails = {
+    /**
+     * - ISO2 code representing the country of
+     * origin for the delivery.
+     */
+    from_country_code: string;
+    /**
+     * - Code representing the state or
+     * province of origin within the country.
+     */
+    from_state_code?: string;
+    /**
+     * - Code representing the city of origin
+     * within the state.
+     */
+    from_city_code?: string;
+    /**
+     * - Code representing a specific sector
+     * or district within the city of origin.
+     */
+    from_sector_code?: string;
+    /**
+     * - Postal or ZIP code of the origin area.
+     */
+    from_pincode?: string;
+    /**
+     * - ISO2 code representing the destination country.
+     */
+    to_country_code: string;
+    /**
+     * - Code representing the state or province
+     * of the destination within the country.
+     */
+    to_state_code?: string;
+    /**
+     * - Code representing the city of destination
+     * within the state.
+     */
+    to_city_code?: string;
+    /**
+     * - Code representing a specific sector or
+     * district within the city of destination.
+     */
+    to_sector_code?: string;
+    /**
+     * - Postal or ZIP code of the destination area.
+     */
+    to_pincode?: string;
+    /**
+     * - Maximum time required for delivery
+     * from the origin to the destination in seconds.
+     */
+    max_delivery_time?: number;
+    /**
+     * - Minimum time required for delivery
+     * from the origin to the destination in seconds.
+     */
+    min_delivery_time?: number;
+};
+/** @returns {RegionTatUpdateDetails} */
+declare function RegionTatUpdateDetails(): RegionTatUpdateDetails;
+type RegionTatUpdateDetails = {
+    /**
+     * - Maximum time required for delivery
+     * from the origin to the destination in seconds.
+     */
+    max_delivery_time?: number;
+    /**
+     * - Minimum time required for delivery
+     * from the origin to the destination in seconds.
+     */
+    min_delivery_time?: number;
+};
+/** @returns {RegionTatResult} */
+declare function RegionTatResult(): RegionTatResult;
+type RegionTatResult = {
+    /**
+     * - ISO2 code representing the country of
+     * origin for the delivery.
+     */
+    from_country_code: string;
+    /**
+     * - Code representing the state or
+     * province of origin within the country.
+     */
+    from_state_code?: string;
+    /**
+     * - Code representing the city of origin
+     * within the state.
+     */
+    from_city_code?: string;
+    /**
+     * - Code representing a specific sector
+     * or district within the city of origin.
+     */
+    from_sector_code?: string;
+    /**
+     * - Postal or ZIP code of the origin area.
+     */
+    from_pincode?: string;
+    /**
+     * - ISO2 code representing the destination country.
+     */
+    to_country_code: string;
+    /**
+     * - Code representing the state or province
+     * of the destination within the country.
+     */
+    to_state_code?: string;
+    /**
+     * - Code representing the city of destination
+     * within the state.
+     */
+    to_city_code?: string;
+    /**
+     * - Code representing a specific sector or
+     * district within the city of destination.
+     */
+    to_sector_code?: string;
+    /**
+     * - Postal or ZIP code of the destination area.
+     */
+    to_pincode?: string;
+    /**
+     * - Maximum time required for delivery
+     * from the origin to the destination in seconds.
+     */
+    max_delivery_time?: number;
+    /**
+     * - Minimum time required for delivery
+     * from the origin to the destination in seconds.
+     */
+    min_delivery_time?: number;
+    /**
+     * - Unique identifier for the delivery time record.
+     */
+    id: string;
+};
+/** @returns {BulkRegionJobDetails} */
+declare function BulkRegionJobDetails(): BulkRegionJobDetails;
+type BulkRegionJobDetails = {
     file_path?: string;
     country: string;
     action: string;
     region: string;
 };
-/** @returns {BulkRegionResponseItemData} */
-declare function BulkRegionResponseItemData(): BulkRegionResponseItemData;
-type BulkRegionResponseItemData = {
+/** @returns {BulkRegionResultItemData} */
+declare function BulkRegionResultItemData(): BulkRegionResultItemData;
+type BulkRegionResultItemData = {
     file_path: string;
     failed?: number;
     failed_records?: any[];
@@ -291,10 +864,10 @@ type BulkRegionResponseItemData = {
     total?: number;
     error_file_path?: string;
 };
-/** @returns {BulkRegionResponse} */
-declare function BulkRegionResponse(): BulkRegionResponse;
-type BulkRegionResponse = {
-    items: BulkRegionResponseItemData[];
+/** @returns {BulkRegionResult} */
+declare function BulkRegionResult(): BulkRegionResult;
+type BulkRegionResult = {
+    items: BulkRegionResultItemData[];
     page: Page;
 };
 /** @returns {CourierAccount} */
@@ -307,9 +880,9 @@ type CourierAccount = {
     stage: string;
     is_own_account: boolean;
 };
-/** @returns {CourierAccountRequestBody} */
-declare function CourierAccountRequestBody(): CourierAccountRequestBody;
-type CourierAccountRequestBody = {
+/** @returns {CourierAccountDetailsBody} */
+declare function CourierAccountDetailsBody(): CourierAccountDetailsBody;
+type CourierAccountDetailsBody = {
     extension_id: string;
     account_id?: string;
     scheme_id: string;
@@ -317,21 +890,21 @@ type CourierAccountRequestBody = {
     stage: string;
     is_own_account: boolean;
 };
-/** @returns {CourierPartnerAccountFailureResponse} */
-declare function CourierPartnerAccountFailureResponse(): CourierPartnerAccountFailureResponse;
-type CourierPartnerAccountFailureResponse = {
+/** @returns {CourierPartnerAccountFailureResult} */
+declare function CourierPartnerAccountFailureResult(): CourierPartnerAccountFailureResult;
+type CourierPartnerAccountFailureResult = {
     success: boolean;
-    error: ErrorResponse[];
+    error: ErrorResult[];
 };
-/** @returns {CompanyCourierPartnerAccountListResponse} */
-declare function CompanyCourierPartnerAccountListResponse(): CompanyCourierPartnerAccountListResponse;
-type CompanyCourierPartnerAccountListResponse = {
-    items: CourierAccountResponse[];
+/** @returns {CompanyCourierPartnerAccountListResult} */
+declare function CompanyCourierPartnerAccountListResult(): CompanyCourierPartnerAccountListResult;
+type CompanyCourierPartnerAccountListResult = {
+    items: CourierAccountResult[];
     page: Page;
 };
-/** @returns {CourierAccountResponse} */
-declare function CourierAccountResponse(): CourierAccountResponse;
-type CourierAccountResponse = {
+/** @returns {CourierAccountResult} */
+declare function CourierAccountResult(): CourierAccountResult;
+type CourierAccountResult = {
     account_id: string;
     scheme_id: string;
     is_self_ship: boolean;
@@ -353,9 +926,9 @@ type CourierPartnerSchemeModel = {
     stage: string;
     feature: CourierPartnerSchemeFeatures;
 };
-/** @returns {CourierPartnerSchemeRequestModel} */
-declare function CourierPartnerSchemeRequestModel(): CourierPartnerSchemeRequestModel;
-type CourierPartnerSchemeRequestModel = {
+/** @returns {CourierPartnerSchemeDetailsModel} */
+declare function CourierPartnerSchemeDetailsModel(): CourierPartnerSchemeDetailsModel;
+type CourierPartnerSchemeDetailsModel = {
     extension_id: string;
     scheme_id?: string;
     name: string;
@@ -370,24 +943,107 @@ type CourierPartnerSchemeRequestModel = {
 /** @returns {CourierPartnerSchemeFeatures} */
 declare function CourierPartnerSchemeFeatures(): CourierPartnerSchemeFeatures;
 type CourierPartnerSchemeFeatures = {
+    /**
+     * - Indicates if the courier partner offers
+     * doorstep quality check services.
+     */
     doorstep_qc?: boolean;
+    /**
+     * - Specifies whether the courier partner supports QR
+     * code-based operations.
+     */
     qr?: boolean;
+    /**
+     * - Denotes if the courier partner supports
+     * multi-part shipment services.
+     */
     mps?: boolean;
+    /**
+     * - Indicates if the Non-Delivery Report (NDR)
+     * feature is supported by the courier partner.
+     */
     ndr?: boolean;
+    /**
+     * - Number of attempts allowed for resolving
+     * Non-Delivery Reports (NDR).
+     */
     ndr_attempts?: number;
+    /**
+     * - Specifies if the courier partner
+     * handles the transportation of dangerous goods.
+     */
     dangerous_goods?: boolean;
+    /**
+     * - Indicates whether the courier partner
+     * manages the shipment of fragile goods.
+     */
     fragile_goods?: boolean;
+    /**
+     * - Indicates if the courier partner
+     * handles restricted goods, as per regulatory guidelines.
+     */
     restricted_goods?: boolean;
+    /**
+     * - Denotes if the courier partner
+     * provides cold storage facilities for goods.
+     */
     cold_storage_goods?: boolean;
+    /**
+     * - Indicates if the courier partner
+     * supports doorstep exchange services.
+     */
     doorstep_exchange?: boolean;
+    /**
+     * - Specifies if the courier partner
+     * offers doorstep return services.
+     */
     doorstep_return?: boolean;
+    /**
+     * - Indicates if the courier partner
+     * provides product installation services upon delivery.
+     */
     product_installation?: boolean;
+    /**
+     * - Specifies whether the courier
+     * partner supports open-box delivery, allowing customers to inspect goods
+     * before accepting.
+     */
     openbox_delivery?: boolean;
+    /**
+     * - Describes the type of status updates
+     * provided by the courier partner (e.g., real-time, periodic).
+     */
     status_updates?: string;
+    /**
+     * - Indicates if the courier
+     * partner supports multiple pickups to a single drop location.
+     */
     multi_pick_single_drop?: boolean;
+    /**
+     * - Indicates whether the courier
+     * partner supports single pickup to multiple drop locations.
+     */
     single_pick_multi_drop?: boolean;
+    /**
+     * - Denotes if the courier partner
+     * offers services for multiple pickups to multiple drop locations.
+     */
     multi_pick_multi_drop?: boolean;
+    /**
+     * - Specifies if the courier partner requires or
+     * supports the generation of e-waybills for shipments.
+     */
     ewaybill?: boolean;
+    /**
+     * - Defines the maximum quantity
+     * of items allowed in a quality check shipment.
+     */
+    qc_shipment_item_quantity?: number;
+    /**
+     * - Defines the maximum
+     * quantity of items allowed in a non-quality check shipment.
+     */
+    non_qc_shipment_item_quantity?: number;
 };
 /** @returns {ArithmeticOperations} */
 declare function ArithmeticOperations(): ArithmeticOperations;
@@ -397,9 +1053,9 @@ type ArithmeticOperations = {
     lte?: number;
     gte?: number;
 };
-/** @returns {CourierPartnerSchemeUpdateRequest} */
-declare function CourierPartnerSchemeUpdateRequest(): CourierPartnerSchemeUpdateRequest;
-type CourierPartnerSchemeUpdateRequest = {
+/** @returns {CourierPartnerSchemeUpdateDetails} */
+declare function CourierPartnerSchemeUpdateDetails(): CourierPartnerSchemeUpdateDetails;
+type CourierPartnerSchemeUpdateDetails = {
     name: string;
     weight: ArithmeticOperations;
     transport_type: string;
@@ -430,10 +1086,36 @@ type GetCountriesItems = {
     latitude?: string;
     longitude?: string;
     display_name?: string;
+    /**
+     * - More detailed hierarchical data is
+     * available, meaning states, cities, or other regions within the country have
+     * been populated in the system.
+     */
+    has_next_hierarchy?: boolean;
 };
 /** @returns {HierarchyItems} */
 declare function HierarchyItems(): HierarchyItems;
 type HierarchyItems = {
     display_name?: string;
     slug?: string;
+};
+/** @returns {ValidationError} */
+declare function ValidationError(): ValidationError;
+type ValidationError = {
+    /**
+     * - A brief description of the error encountered.
+     */
+    message: string;
+    /**
+     * - The field in the request that caused the error.
+     */
+    field: string;
+};
+/** @returns {StandardError} */
+declare function StandardError(): StandardError;
+type StandardError = {
+    /**
+     * - A brief description of the error.
+     */
+    message: string;
 };

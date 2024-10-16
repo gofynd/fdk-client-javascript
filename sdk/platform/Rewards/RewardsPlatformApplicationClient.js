@@ -574,7 +574,7 @@ class Rewards {
    * @param {RewardsPlatformApplicationValidator.ShowGiveawaysParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
+   * @returns {Promise<RewardsPlatformModel.ListGiveaway>} - Success response
    * @name showGiveaways
    * @summary: List giveaways
    * @description: Retrieve and display available giveaways. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
@@ -634,7 +634,7 @@ class Rewards {
 
     const {
       error: res_error,
-    } = RewardsPlatformModel.GiveawayResponse().validate(responseData, {
+    } = RewardsPlatformModel.ListGiveaway().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

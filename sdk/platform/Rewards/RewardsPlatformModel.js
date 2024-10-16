@@ -9,7 +9,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GiveawayResponse
+ * @typedef ListGiveaway
  * @property {Giveaway[]} [items]
  * @property {Page} [page]
  */
@@ -178,7 +178,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ConfigurationRequest
+ * @typedef SetConfiguration
  * @property {string[]} [valid_android_packages]
  * @property {string} [terms_conditions_link]
  */
@@ -194,8 +194,8 @@ class RewardsPlatformModel {
     });
   }
 
-  /** @returns {GiveawayResponse} */
-  static GiveawayResponse() {
+  /** @returns {ListGiveaway} */
+  static ListGiveaway() {
     return Joi.object({
       items: Joi.array().items(RewardsPlatformModel.Giveaway()),
       page: RewardsPlatformModel.Page(),
@@ -276,7 +276,7 @@ class RewardsPlatformModel {
       banner_image: RewardsPlatformModel.Asset(),
       created_at: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      rule: Joi.any(),
+      rule: Joi.object().pattern(/\S/, Joi.any()),
       share: RewardsPlatformModel.ShareMessages(),
       sub_text: Joi.string().allow(""),
       text: Joi.string().allow(""),
@@ -368,7 +368,7 @@ class RewardsPlatformModel {
       claimed: Joi.boolean(),
       created_at: Joi.string().allow(""),
       expires_on: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       points: Joi.number(),
       remaining_points: Joi.number(),
       text_1: Joi.string().allow(""),
@@ -397,8 +397,8 @@ class RewardsPlatformModel {
     });
   }
 
-  /** @returns {ConfigurationRequest} */
-  static ConfigurationRequest() {
+  /** @returns {SetConfiguration} */
+  static SetConfiguration() {
     return Joi.object({
       valid_android_packages: Joi.array().items(Joi.string().allow("")),
       terms_conditions_link: Joi.string().allow(""),

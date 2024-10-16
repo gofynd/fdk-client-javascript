@@ -7,7 +7,10 @@ const ThemeApplicationModel = require("./ThemeApplicationModel");
  * @property {string} themeId - Id of the theme to be retrieved.
  */
 
-/** @typedef GetAppliedThemeParam */
+/**
+ * @typedef GetAppliedThemeParam
+ * @property {boolean} [filters] - Filters on sections to be applied or not.
+ */
 
 /**
  * @typedef GetPageParam
@@ -21,6 +24,7 @@ const ThemeApplicationModel = require("./ThemeApplicationModel");
 /**
  * @typedef GetThemeForPreviewParam
  * @property {string} themeId - Id of the theme to be retrieved.
+ * @property {boolean} [filters] - Filters on sections to be applied or not.
  */
 
 class ThemeApplicationValidator {
@@ -33,7 +37,9 @@ class ThemeApplicationValidator {
 
   /** @returns {GetAppliedThemeParam} */
   static getAppliedTheme() {
-    return Joi.object({});
+    return Joi.object({
+      filters: Joi.boolean(),
+    });
   }
 
   /** @returns {GetPageParam} */
@@ -51,6 +57,7 @@ class ThemeApplicationValidator {
   static getThemeForPreview() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
+      filters: Joi.boolean(),
     }).required();
   }
 }

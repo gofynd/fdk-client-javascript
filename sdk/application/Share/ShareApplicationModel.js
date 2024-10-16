@@ -213,7 +213,7 @@ class ShareApplicationModel {
       application: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       updated_at: Joi.string().allow(""),
       personalized: Joi.boolean(),
       campaign: ShareApplicationModel.CampaignShortLink(),

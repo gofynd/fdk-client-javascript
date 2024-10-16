@@ -16,10 +16,10 @@ class FileStorage {
     this._conf = _conf;
     this._relativeUrls = {
       completeUpload:
-        "/service/application/assets/v1.0/namespaces/{namespace}/upload/complete",
+        "/service/application/assets/v2.0/namespaces/{namespace}/upload/complete",
       signUrls: "/service/application/assets/v1.0/sign-urls",
       startUpload:
-        "/service/application/assets/v1.0/namespaces/{namespace}/upload/start",
+        "/service/application/assets/v2.0/namespaces/{namespace}/upload/start",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -41,9 +41,10 @@ class FileStorage {
    * @param {FileStorageApplicationValidator.CompleteUploadParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
+   * @returns {Promise<FileStorageApplicationModel.FileUploadComplete>} -
+   *   Success response
    * @name completeUpload
-   * @summary: Complete file upload
+   * @summary: Finalizes upload process.
    * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
    */
   async completeUpload(
@@ -96,10 +97,10 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStorageApplicationModel.CompleteResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = FileStorageApplicationModel.FileUploadComplete().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -119,9 +120,9 @@ class FileStorage {
    * @param {FileStorageApplicationValidator.SignUrlsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
+   * @returns {Promise<FileStorageApplicationModel.SignUrlResult>} - Success response
    * @name signUrls
-   * @summary: Get signed URLs
+   * @summary: Signs file URLs.
    * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
    */
   async signUrls(
@@ -174,7 +175,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStorageApplicationModel.SignUrlResponse().validate(responseData, {
+    } = FileStorageApplicationModel.SignUrlResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -197,7 +198,7 @@ class FileStorage {
    * @param {FileStorageApplicationValidator.StartUploadParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
+   * @returns {Promise<FileStorageApplicationModel.FileUpload>} - Success response
    * @name startUpload
    * @summary: Initiates file upload
    * @description: Starts the process of uploading a file to storage location, and returns a signed url in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
@@ -252,7 +253,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStorageApplicationModel.StartResponse().validate(responseData, {
+    } = FileStorageApplicationModel.FileUpload().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

@@ -10,6 +10,7 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  *   a blog. You can get slug value from the endpoint
  *   /service/application/content/v1.0/blogs/.
  * @property {string} [rootId] - ID given to the HTML element.
+ * @property {boolean} [preview] - Boolean value to get the preview for the blogs.
  */
 
 /**
@@ -22,15 +23,17 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  */
 
 /**
- * @typedef GetCustomFieldsParam
+ * @typedef GetCustomFieldsByResourceIdParam
  * @property {string} resource - This is the name of resource for which you want
  *   to fetch custom fields eg. product, collection, customer etc.
- * @property {string} resourceId - This is the resource id for which custom fields created
+ * @property {string} resourceSlug - This is the resource id for which custom
+ *   fields created
  */
 
 /**
- * @typedef GetCustomObjectParam
- * @property {string} metaobjectId - This is meta object id
+ * @typedef GetCustomObjectBySlugParam
+ * @property {string} definitionSlug
+ * @property {string} slug
  */
 
 /** @typedef GetDataLoadersParam */
@@ -124,6 +127,7 @@ class ContentApplicationValidator {
     return Joi.object({
       slug: Joi.string().allow("").required(),
       rootId: Joi.string().allow(""),
+      preview: Joi.boolean(),
     }).required();
   }
 
@@ -137,18 +141,19 @@ class ContentApplicationValidator {
     });
   }
 
-  /** @returns {GetCustomFieldsParam} */
-  static getCustomFields() {
+  /** @returns {GetCustomFieldsByResourceIdParam} */
+  static getCustomFieldsByResourceId() {
     return Joi.object({
       resource: Joi.string().allow("").required(),
-      resourceId: Joi.string().allow("").required(),
+      resourceSlug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetCustomObjectParam} */
-  static getCustomObject() {
+  /** @returns {GetCustomObjectBySlugParam} */
+  static getCustomObjectBySlug() {
     return Joi.object({
-      metaobjectId: Joi.string().allow("").required(),
+      definitionSlug: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 

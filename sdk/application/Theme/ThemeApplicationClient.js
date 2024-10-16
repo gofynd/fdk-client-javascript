@@ -123,11 +123,11 @@ class Theme {
    * @description: Gets the theme configuration and template details of a theme applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
    */
   async getAppliedTheme(
-    { requestHeaders } = { requestHeaders: {} },
+    { filters, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemeApplicationValidator.getAppliedTheme().validate(
-      {},
+      { filters },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -138,7 +138,7 @@ class Theme {
     const {
       error: warrning,
     } = ThemeApplicationValidator.getAppliedTheme().validate(
-      {},
+      { filters },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -149,6 +149,7 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["filters"] = filters;
 
     const xHeaders = {};
 
@@ -287,11 +288,11 @@ class Theme {
    * @description: Gets the theme configuration and template details of a theme by theme id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
    */
   async getThemeForPreview(
-    { themeId, requestHeaders } = { requestHeaders: {} },
+    { themeId, filters, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemeApplicationValidator.getThemeForPreview().validate(
-      { themeId },
+      { themeId, filters },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -302,7 +303,7 @@ class Theme {
     const {
       error: warrning,
     } = ThemeApplicationValidator.getThemeForPreview().validate(
-      { themeId },
+      { themeId, filters },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -313,6 +314,7 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["filters"] = filters;
 
     const xHeaders = {};
 

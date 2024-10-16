@@ -42,6 +42,12 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  */
 
 /**
+ * @typedef GetPosOrderByIdParam
+ * @property {string} orderId - A unique number used for identifying and
+ *   tracking your orders.
+ */
+
+/**
  * @typedef GetShipmentBagReasonsParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
@@ -86,7 +92,7 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
- * @property {OrderApplicationModel.UpdateShipmentStatusRequest} body
+ * @property {OrderApplicationModel.UpdateShipmentStatusRequestSchema} body
  */
 
 /**
@@ -138,6 +144,13 @@ class OrderApplicationValidator {
     });
   }
 
+  /** @returns {GetPosOrderByIdParam} */
+  static getPosOrderById() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetShipmentBagReasonsParam} */
   static getShipmentBagReasons() {
     return Joi.object({
@@ -180,7 +193,7 @@ class OrderApplicationValidator {
   static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      body: OrderApplicationModel.UpdateShipmentStatusRequest().required(),
+      body: OrderApplicationModel.UpdateShipmentStatusRequestSchema().required(),
     }).required();
   }
 

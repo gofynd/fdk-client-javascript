@@ -35,7 +35,7 @@ export = ConfigurationApplicationValidator;
 /** @typedef GetLanguagesParam */
 /**
  * @typedef GetOrderingStoreCookieParam
- * @property {ConfigurationApplicationModel.OrderingStoreSelectRequest} body
+ * @property {ConfigurationApplicationModel.OrderingStoreSelectRequestSchema} body
  */
 /**
  * @typedef GetOrderingStoresParam
@@ -142,7 +142,7 @@ type GetCurrencyByIdParam = {
     id: string;
 };
 type GetOrderingStoreCookieParam = {
-    body: ConfigurationApplicationModel.OrderingStoreSelectRequest;
+    body: ConfigurationApplicationModel.OrderingStoreSelectRequestSchema;
 };
 type GetOrderingStoresParam = {
     /**

@@ -1,12 +1,12 @@
 export = LogisticApplicationModel;
 /**
- * @typedef GetStoreResponse
- * @property {StoreItemResponse[]} [items] - List of locations, each containing
+ * @typedef GetStoreResult
+ * @property {StoreItemResult[]} [items] - List of locations, each containing
  *   detailed information about individual location.
  * @property {Page} [page]
  */
 /**
- * @typedef StoreItemResponse
+ * @typedef StoreItemResult
  * @property {number} [id] - A unique identifier for the location.
  * @property {string} [store_type] - The type of store, indicating the nature of
  *   the store, such as retail or warehouse.
@@ -24,7 +24,7 @@ export = LogisticApplicationModel;
  *   store location.
  */
 /**
- * @typedef ValidateAddressRequest
+ * @typedef ValidateAddressDetails
  * @property {string} [address] - Complete address, combining address line 1,
  *   address line 2, area, landmark, sector, city, state, and pincode.
  * @property {string} [address1] - First line of the address, typically
@@ -44,7 +44,7 @@ export = LogisticApplicationModel;
  * @property {string} [email] - Recipient's email address.
  */
 /**
- * @typedef PincodeParentsResponse
+ * @typedef PincodeParentsResult
  * @property {string} [sub_type] - Specific type of locality hierarchy the
  *   pincode belongs to (e.g., city, state, country).
  * @property {string} [display_name] - User-friendly version of the geographical
@@ -55,7 +55,7 @@ export = LogisticApplicationModel;
  * @property {string} [uid] - Unique identifier for the locality.
  */
 /**
- * @typedef PincodeMetaResponse
+ * @typedef PincodeMetaResult
  * @property {string} [zone] - Geographical region to which the pincode belongs,
  *   often used to categorize or group pincodes for regional management or
  *   postal purposes.
@@ -63,7 +63,7 @@ export = LogisticApplicationModel;
  *   system to track or reference the specific zone associated with the pincode.
  */
 /**
- * @typedef PincodeErrorSchemaResponse
+ * @typedef PincodeErrorSchemaResult
  * @property {string} [message] - A user-readable description of the error,
  *   explaining what went wrong.
  * @property {string} [value] - A specific code or identifier related to the
@@ -72,7 +72,7 @@ export = LogisticApplicationModel;
  *   kind of issue.
  */
 /**
- * @typedef CountryMetaResponse
+ * @typedef CountryMetaResult
  * @property {string} [country_code] - The ISO 3166-1 alpha-2 code representing
  *   the country (e.g., "IN" for India, "US" for the United States).
  * @property {string} [isd_code] - The International Subscriber Dialing (ISD)
@@ -88,15 +88,15 @@ export = LogisticApplicationModel;
  *   with two values: [longitude, latitude].
  */
 /**
- * @typedef PincodeDataResponse
- * @property {PincodeParentsResponse[]} [parents] - List of object representing
- *   a collection of geographical locations, each associated with specific
+ * @typedef PincodeDataResult
+ * @property {PincodeParentsResult[]} [parents] - List of object representing a
+ *   collection of geographical locations, each associated with specific
  *   hierarchical data such as cities, states, or countries.
- * @property {PincodeMetaResponse} [meta]
+ * @property {PincodeMetaResult} [meta]
  * @property {string} [display_name] - User-friendly version of the geographical
  *   data, which may be more descriptive or formatted differently.
- * @property {PincodeErrorSchemaResponse} error
- * @property {CountryMetaResponse} [meta_code]
+ * @property {PincodeErrorSchemaResult} error
+ * @property {CountryMetaResult} [meta_code]
  * @property {PincodeLatLongData} [lat_long]
  * @property {string} [sub_type] - Indicates the specific type of locality
  *   hierarchy the pincode belongs to (e.g., city, state, country).
@@ -107,40 +107,40 @@ export = LogisticApplicationModel;
  *   unique value assigned to each instance to ensure differentiation and reference.
  */
 /**
- * @typedef PincodeApiResponse
+ * @typedef PincodeDetails
  * @property {boolean} success - Indicates whether the API request was
  *   successful (true) or failed (false).
- * @property {PincodeDataResponse[]} [data] - Contains the actual response data
+ * @property {PincodeDataResult[]} [data] - Contains the actual response data
  *   when the request is successful, providing details like pincode information
  *   or related data.
- * @property {PincodeErrorSchemaResponse} error
+ * @property {PincodeErrorSchemaResult} error
  */
 /**
- * @typedef TATCategoryRequest
+ * @typedef TATCategoryDetails
  * @property {string} [level] - Specifies the hierarchical level of the category
  *   (e.g., country, state, city).
  * @property {number} [id] - Represents the unique identifier for the category
  *   at the specified level.
  */
 /**
- * @typedef TATArticlesRequest
- * @property {TATCategoryRequest} [category]
+ * @typedef TATArticlesDetails
+ * @property {TATCategoryDetails} [category]
  * @property {string} [manufacturing_time_unit] - The unit of measurement for
  *   the manufacturing time, such as hours or days.
  * @property {number} [manufacturing_time] - The amount of time required to
  *   manufacture the article, specified in the unit given by `manufacturing_time_unit`.
  */
 /**
- * @typedef TATLocationDetailsRequest
+ * @typedef TATLocationDetailsDetails
  * @property {number} [fulfillment_id] - A unique identifier of the fulfilling location.
  * @property {string} [from_pincode] - The postal code of the location from
  *   which the fulfillment originates.
- * @property {TATArticlesRequest[]} [articles] - List of articles included in
+ * @property {TATArticlesDetails[]} [articles] - List of articles included in
  *   the fulfillment request, which provides details about the items to be
  *   processed or shipped.
  */
 /**
- * @typedef TATViewRequest
+ * @typedef TATViewDetails
  * @property {string} [to_pincode] - The postal code of the destination location
  *   where the fulfillment or shipment is headed.
  * @property {string} [source] - The origin or source of the request, indicating
@@ -149,14 +149,14 @@ export = LogisticApplicationModel;
  *   such as viewing, updating, or managing data.
  * @property {string} [identifier] - A unique ID used to reference or track the
  *   specific request or item within the system.
- * @property {TATLocationDetailsRequest[]} [location_details] - Locations
+ * @property {TATLocationDetailsDetails[]} [location_details] - Locations
  *   involved in the request, including details about both the source and destination.
  * @property {string} [journey] - Indicates the direction of the request or
  *   shipment. It can either be "forward" (from the source to the destination)
  *   or "return" (from the destination back to the source).
  */
 /**
- * @typedef TATErrorSchemaResponse
+ * @typedef TATErrorSchemaResult
  * @property {string} [message] - A user-readable description of the error,
  *   explaining what went wrong.
  * @property {string} [value] - A specific code or identifier related to the
@@ -165,51 +165,51 @@ export = LogisticApplicationModel;
  *   kind of issue.
  */
 /**
- * @typedef TATTimestampResponse
+ * @typedef TATTimestampResult
  * @property {number} [min] - The earliest possible timestamp.
  * @property {number} [max] - The latest possible timestamp.
  */
 /**
- * @typedef TATFormattedResponse
+ * @typedef TATFormattedResult
  * @property {string} [min] - The earliest possible timestamp.
  * @property {string} [max] - The latest possible timestamp.
  */
 /**
- * @typedef TATPromiseResponse
- * @property {TATTimestampResponse} [timestamp]
- * @property {TATFormattedResponse} [formatted]
+ * @typedef TATPromiseResult
+ * @property {TATTimestampResult} [timestamp]
+ * @property {TATFormattedResult} [formatted]
  */
 /**
- * @typedef TATArticlesResponse
+ * @typedef TATArticlesResult
  * @property {string} [manufacturing_time_unit] - The unit of measurement for
  *   the manufacturing time such as hours or days.
- * @property {TATErrorSchemaResponse} [error]
+ * @property {TATErrorSchemaResult} [error]
  * @property {boolean} [is_cod_available] - Indicates whether Cash on Delivery
  *   (COD) is available for the articles.
- * @property {TATPromiseResponse} [promise]
+ * @property {TATPromiseResult} [promise]
  * @property {number} [manufacturing_time] - The time required to manufacture
  *   the articles, measured in the unit specified by manufacturing_time_unit.
- * @property {TATCategoryRequest} [category]
+ * @property {TATCategoryDetails} [category]
  * @property {number} [_manufacturing_time_seconds] - The manufacturing time
  *   converted into seconds.
  */
 /**
- * @typedef TATLocationDetailsResponse
+ * @typedef TATLocationDetailsResult
  * @property {number} [fulfillment_id] - A unique identifier of the fulfilling location.
  * @property {string} [from_pincode] - The postal code of the location from
  *   which the fulfillment originates.
- * @property {TATArticlesResponse[]} [articles] - List of articles included in
- *   the fulfillment request, which provides details about the items to be
- *   processed or shipped.
+ * @property {TATArticlesResult[]} [articles] - List of articles included in the
+ *   fulfillment request, which provides details about the items to be processed
+ *   or shipped.
  */
 /**
- * @typedef TATViewResponse
+ * @typedef TATViewResult
  * @property {string} [to_pincode] - The postal code of the destination location
  *   where the fulfillment or shipment is headed.
  * @property {string} [request_uuid] - A unique identifier for the request.
  * @property {string} [payment_mode] - The mode of payment used for the transaction.
  * @property {boolean} [success] - Whether the request was successful (true/false).
- * @property {TATErrorSchemaResponse} [error]
+ * @property {TATErrorSchemaResult} [error]
  * @property {boolean} [is_cod_available] - Whether Cash on Delivery (COD) is
  *   available for the request.
  * @property {string} [source] - The origin or source of the request.
@@ -219,8 +219,8 @@ export = LogisticApplicationModel;
  *   stormbreaker process.
  * @property {string} [to_city] - The city corresponding to the destination pincode.
  * @property {string} [identifier] - A unique identifier for the request or transaction.
- * @property {TATLocationDetailsResponse[]} [location_details] - Location
- *   involved in the request.
+ * @property {TATLocationDetailsResult[]} [location_details] - Location involved
+ *   in the request.
  * @property {string} [journey] - Type of journey, either forward or return.
  */
 /**
@@ -249,14 +249,13 @@ export = LogisticApplicationModel;
  *   delivering goods, such as road, rail, air, or sea.
  */
 /**
- * @typedef LogisticsResponse
- * @property {Object} [dp] - Provide entity responsible for handling the
- *   delivery of goods.
+ * @typedef LogisticsResult
+ * @property {DP} [dp]
  */
 /**
- * @typedef CountryEntityResponse
- * @property {CountryMetaResponse} [meta]
- * @property {LogisticsResponse} [logistics]
+ * @typedef CountryEntityResult
+ * @property {CountryMetaResult} [meta]
+ * @property {LogisticsResult} [logistics]
  * @property {string} [display_name] - User-friendly version of the geographical
  *   data, which may be more descriptive or formatted differently.
  * @property {string} [type] - Specifies the type of geographical feature or
@@ -270,18 +269,18 @@ export = LogisticApplicationModel;
  * @property {string} [uid] - Unique identifier for the country.
  */
 /**
- * @typedef CountryListResponse
- * @property {CountryEntityResponse[]} [results] - A list of country entities,
+ * @typedef CountryListResult
+ * @property {CountryEntityResult[]} [results] - A list of country entities,
  *   each containing details about individual countries.
  */
 /**
- * @typedef GetZoneFromPincodeViewRequest
+ * @typedef GetZoneFromPincodeViewDetails
  * @property {string} pincode - The postal code or ZIP code used to pinpoint a
  *   specific geographic area or location.
  * @property {string} country - The country where the pincode is located.
  */
 /**
- * @typedef GetZoneFromPincodeViewResponse
+ * @typedef GetZoneFromPincodeViewResult
  * @property {string} serviceability_type - Specifies the type of serviceability
  *   for the given pincode, indicating whether it's deliverable or serviceable
  *   under certain conditions.
@@ -289,7 +288,7 @@ export = LogisticApplicationModel;
  *   detailing the geographical or logistical zones for service.
  */
 /**
- * @typedef ReAssignStoreRequest
+ * @typedef ReAssignStoreDetails
  * @property {Object} configuration - Specifies the configuration settings or
  *   parameters for the store reassignment.
  * @property {string} to_pincode - The postal code of the destination location
@@ -301,7 +300,7 @@ export = LogisticApplicationModel;
  *   store reassignment.
  */
 /**
- * @typedef ReAssignStoreResponse
+ * @typedef ReAssignStoreResult
  * @property {string} to_pincode - The postal code of the destination location
  *   where the fulfillment or shipment is headed.
  * @property {string} pystormbreaker_uuid - A unique identifier for tracking the
@@ -474,6 +473,7 @@ export = LogisticApplicationModel;
  * @property {string} [name] - The actual geographical data, such as country
  *   names (India), state names (Maharashtra), pin codes (400603), city names
  *   (Dubai), or local sectors (Deira).
+ * @property {Object} [custom_meta] - Custom meta to store custom json against hierarchy.
  * @property {string} [display_name] - User-friendly version of the geographical
  *   data, which may be more descriptive or formatted differently.
  * @property {string[]} [parent_ids] - Identifiers for the parent of the current locality.
@@ -492,6 +492,9 @@ export = LogisticApplicationModel;
  *   (Dubai), or local sectors (Deira).
  * @property {string} [display_name] - User-friendly version of the geographical
  *   data, which may be more descriptive or formatted differently.
+ * @property {string} [code] - Code assigned to a locality, which is unique to
+ *   its immediate parent.
+ * @property {Object} [custom_meta] - Custom meta to store custom json against hierarchy.
  * @property {string[]} [parent_ids] - Identifiers for the parent of the current locality.
  * @property {string} [type] - Specifies the category of the address component,
  *   such as pincode, state, city, country, or sector.
@@ -510,6 +513,9 @@ export = LogisticApplicationModel;
  *   (Dubai), or local sectors (Deira).
  * @property {string} [display_name] - User-friendly version of the geographical
  *   data, which may be more descriptive or formatted differently.
+ * @property {string} [code] - Code assigned to a locality, which is unique to
+ *   its immediate parent.
+ * @property {Object} [custom_meta] - Custom meta to store custom json against hierarchy.
  * @property {string[]} [parent_ids] - Identifiers for the parent of the current locality.
  * @property {string} [type] - Specifies the category of the address component,
  *   such as pincode, state, city, country, or sector.
@@ -519,28 +525,125 @@ export = LogisticApplicationModel;
  *   identifiers, and hierarchical relationships.
  */
 /**
- * @typedef ErrorResponse
+ * @typedef ShipmentsArticles
+ * @property {number} [item_id] - Unique identifier of the item.
+ * @property {number} [category_id] - Unique identifier of the category.
+ * @property {number} [brand_id] - Unique identifier of the brand.
+ * @property {number} [department_id] - Unique identifier of the department.
+ * @property {string[]} [tags] - Tags associated with the item.
+ */
+/**
+ * @typedef ShipmentDimension
+ * @property {number} height - Height of the shipment in centimeters.
+ * @property {number} length - Length of the shipment in centimeters.
+ * @property {number} width - Width of the shipment in centimeters.
+ */
+/**
+ * @typedef Shipments
+ * @property {string} [id] - Unique identifier of the shipment.
+ * @property {number} [location_id] - Unique identifier of the selling location.
+ * @property {string[]} [location_tags] - Tags associated with the selling location.
+ * @property {number} [shipment_weight] - Weight of the shipment.
+ * @property {number} [shipment_volumetric_weight] - Volumetric weight of the shipment.
+ * @property {number} [shipment_cost] - Total Cost of the shipment.
+ * @property {ShipmentDimension} [shipment_dimension]
+ * @property {string[]} [courier_partner_schemes] - A List of courier schemes.
+ * @property {ShipmentsArticles[]} [articles] - List of articles in the shipment.
+ */
+/**
+ * @typedef ShipmentCourierPartnerDetails
+ * @property {ShipmentsCourierPartnersServiceability} from_location
+ * @property {ShipmentsCourierPartnersServiceability} to_location
+ * @property {Shipments[]} [shipments] - List of shipments.
+ * @property {string} [journey] - Journey type of the shipment forward or return.
+ * @property {string} [payment_mode] - Payment mode opted for the shipment.
+ */
+/**
+ * @typedef CourierPartnerPromise
+ * @property {string} min - The earliest possible timestamp.
+ * @property {string} max - The latest possible timestamp.
+ */
+/**
+ * @typedef CourierPartners
+ * @property {string} [extension_id] - Unique identifier of courier partner extension.
+ * @property {string} [scheme_id] - Unique identifier of courier partner scheme.
+ * @property {string} [name] - Name of the courier partner.
+ * @property {CourierPartnerPromise} [delivery_promise]
+ */
+/**
+ * @typedef ShipmentCourierPartners
+ * @property {string} [id] - Unique identifier of the shipment.
+ * @property {CourierPartners[]} [courier_partners] - Courier partners of the shipment.
+ */
+/**
+ * @typedef ShipmentCourierPartnerResult
+ * @property {CourierPartners[]} [courier_partners]
+ * @property {ShipmentCourierPartners[]} [shipments]
+ */
+/**
+ * @typedef ShipmentsCourierPartnersServiceability
+ * @property {string} [pincode] - Postal code or PIN code of the address area.
+ * @property {string} [sector_code] - Specifies the sector or district code of
+ *   the address if applicable.
+ * @property {string} [state_code] - Indicates the state or province code of the address.
+ * @property {string} [city_code] - Denote the city or municipality code of the address.
+ * @property {string} country_code - ISO2 code for the country of the address.
+ */
+/**
+ * @typedef ServiceabilityLocation
+ * @property {string} longitude - Geographical longitude coordinate of the location.
+ * @property {string} latitude - Geographical latitude coordinate of the location.
+ */
+/**
+ * @typedef GetPromiseDetails
+ * @property {StorePromise[]} [items] - List of delivery promises for each store.
+ * @property {Promise} [delivery_promise]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef StorePromise
+ * @property {number} [uid] - Unique identifier of a store.
+ * @property {string} [code] - Code assigned to a store.
+ * @property {string} [name] - Name of a store.
+ * @property {Promise} [delivery_promise]
+ */
+/**
+ * @typedef Promise
+ * @property {string} [min] - Earliest delivery time.
+ * @property {string} [max] - Latest delivery time.
+ */
+/**
+ * @typedef ErrorResult
  * @property {string} [error] - Error code identifying the type of error.
  * @property {string} [message] - User-friendly explanation of what went wrong.
+ */
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
+/**
+ * @typedef StandardError
+ * @property {string} message - A brief description of the error.
  */
 declare class LogisticApplicationModel {
 }
 declare namespace LogisticApplicationModel {
-    export { GetStoreResponse, StoreItemResponse, ValidateAddressRequest, PincodeParentsResponse, PincodeMetaResponse, PincodeErrorSchemaResponse, CountryMetaResponse, PincodeLatLongData, PincodeDataResponse, PincodeApiResponse, TATCategoryRequest, TATArticlesRequest, TATLocationDetailsRequest, TATViewRequest, TATErrorSchemaResponse, TATTimestampResponse, TATFormattedResponse, TATPromiseResponse, TATArticlesResponse, TATLocationDetailsResponse, TATViewResponse, DP, LogisticsResponse, CountryEntityResponse, CountryListResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, ReAssignStoreRequest, ReAssignStoreResponse, CountryHierarchy, CurrencyObject, CountryObject, GetCountries, GetOneOrAllPath, GetOneOrAllQuery, GetOneOrAllParams, GetOneOrAll, LengthValidation, FieldValidationRegex, FieldValidation, GetCountryFieldsAddressValues, GetCountryFieldsAddress, GetCountryFieldsAddressTemplate, GetCountryFields, GetCountry, Page, Localities, LocalityParent, GetLocalities, GetLocality, ErrorResponse };
+    export { GetStoreResult, StoreItemResult, ValidateAddressDetails, PincodeParentsResult, PincodeMetaResult, PincodeErrorSchemaResult, CountryMetaResult, PincodeLatLongData, PincodeDataResult, PincodeDetails, TATCategoryDetails, TATArticlesDetails, TATLocationDetailsDetails, TATViewDetails, TATErrorSchemaResult, TATTimestampResult, TATFormattedResult, TATPromiseResult, TATArticlesResult, TATLocationDetailsResult, TATViewResult, DP, LogisticsResult, CountryEntityResult, CountryListResult, GetZoneFromPincodeViewDetails, GetZoneFromPincodeViewResult, ReAssignStoreDetails, ReAssignStoreResult, CountryHierarchy, CurrencyObject, CountryObject, GetCountries, GetOneOrAllPath, GetOneOrAllQuery, GetOneOrAllParams, GetOneOrAll, LengthValidation, FieldValidationRegex, FieldValidation, GetCountryFieldsAddressValues, GetCountryFieldsAddress, GetCountryFieldsAddressTemplate, GetCountryFields, GetCountry, Page, Localities, LocalityParent, GetLocalities, GetLocality, ShipmentsArticles, ShipmentDimension, Shipments, ShipmentCourierPartnerDetails, CourierPartnerPromise, CourierPartners, ShipmentCourierPartners, ShipmentCourierPartnerResult, ShipmentsCourierPartnersServiceability, ServiceabilityLocation, GetPromiseDetails, StorePromise, Promise, ErrorResult, ValidationError, StandardError };
 }
-/** @returns {GetStoreResponse} */
-declare function GetStoreResponse(): GetStoreResponse;
-type GetStoreResponse = {
+/** @returns {GetStoreResult} */
+declare function GetStoreResult(): GetStoreResult;
+type GetStoreResult = {
     /**
      * - List of locations, each containing
      * detailed information about individual location.
      */
-    items?: StoreItemResponse[];
+    items?: StoreItemResult[];
     page?: Page;
 };
-/** @returns {StoreItemResponse} */
-declare function StoreItemResponse(): StoreItemResponse;
-type StoreItemResponse = {
+/** @returns {StoreItemResult} */
+declare function StoreItemResult(): StoreItemResult;
+type StoreItemResult = {
     /**
      * - A unique identifier for the location.
      */
@@ -581,9 +684,9 @@ type StoreItemResponse = {
      */
     longitude?: number;
 };
-/** @returns {ValidateAddressRequest} */
-declare function ValidateAddressRequest(): ValidateAddressRequest;
-type ValidateAddressRequest = {
+/** @returns {ValidateAddressDetails} */
+declare function ValidateAddressDetails(): ValidateAddressDetails;
+type ValidateAddressDetails = {
     /**
      * - Complete address, combining address line 1,
      * address line 2, area, landmark, sector, city, state, and pincode.
@@ -638,9 +741,9 @@ type ValidateAddressRequest = {
      */
     email?: string;
 };
-/** @returns {PincodeParentsResponse} */
-declare function PincodeParentsResponse(): PincodeParentsResponse;
-type PincodeParentsResponse = {
+/** @returns {PincodeParentsResult} */
+declare function PincodeParentsResult(): PincodeParentsResult;
+type PincodeParentsResult = {
     /**
      * - Specific type of locality hierarchy the
      * pincode belongs to (e.g., city, state, country).
@@ -662,9 +765,9 @@ type PincodeParentsResponse = {
      */
     uid?: string;
 };
-/** @returns {PincodeMetaResponse} */
-declare function PincodeMetaResponse(): PincodeMetaResponse;
-type PincodeMetaResponse = {
+/** @returns {PincodeMetaResult} */
+declare function PincodeMetaResult(): PincodeMetaResult;
+type PincodeMetaResult = {
     /**
      * - Geographical region to which the pincode belongs,
      * often used to categorize or group pincodes for regional management or
@@ -677,9 +780,9 @@ type PincodeMetaResponse = {
      */
     internal_zone_id?: number;
 };
-/** @returns {PincodeErrorSchemaResponse} */
-declare function PincodeErrorSchemaResponse(): PincodeErrorSchemaResponse;
-type PincodeErrorSchemaResponse = {
+/** @returns {PincodeErrorSchemaResult} */
+declare function PincodeErrorSchemaResult(): PincodeErrorSchemaResult;
+type PincodeErrorSchemaResult = {
     /**
      * - A user-readable description of the error,
      * explaining what went wrong.
@@ -696,9 +799,9 @@ type PincodeErrorSchemaResponse = {
      */
     type?: string;
 };
-/** @returns {CountryMetaResponse} */
-declare function CountryMetaResponse(): CountryMetaResponse;
-type CountryMetaResponse = {
+/** @returns {CountryMetaResult} */
+declare function CountryMetaResult(): CountryMetaResult;
+type CountryMetaResult = {
     /**
      * - The ISO 3166-1 alpha-2 code representing
      * the country (e.g., "IN" for India, "US" for the United States).
@@ -726,23 +829,23 @@ type PincodeLatLongData = {
      */
     coordinates?: string[];
 };
-/** @returns {PincodeDataResponse} */
-declare function PincodeDataResponse(): PincodeDataResponse;
-type PincodeDataResponse = {
+/** @returns {PincodeDataResult} */
+declare function PincodeDataResult(): PincodeDataResult;
+type PincodeDataResult = {
     /**
-     * - List of object representing
-     * a collection of geographical locations, each associated with specific
+     * - List of object representing a
+     * collection of geographical locations, each associated with specific
      * hierarchical data such as cities, states, or countries.
      */
-    parents?: PincodeParentsResponse[];
-    meta?: PincodeMetaResponse;
+    parents?: PincodeParentsResult[];
+    meta?: PincodeMetaResult;
     /**
      * - User-friendly version of the geographical
      * data, which may be more descriptive or formatted differently.
      */
     display_name?: string;
-    error: PincodeErrorSchemaResponse;
-    meta_code?: CountryMetaResponse;
+    error: PincodeErrorSchemaResult;
+    meta_code?: CountryMetaResult;
     lat_long?: PincodeLatLongData;
     /**
      * - Indicates the specific type of locality
@@ -761,9 +864,9 @@ type PincodeDataResponse = {
      */
     uid?: string;
 };
-/** @returns {PincodeApiResponse} */
-declare function PincodeApiResponse(): PincodeApiResponse;
-type PincodeApiResponse = {
+/** @returns {PincodeDetails} */
+declare function PincodeDetails(): PincodeDetails;
+type PincodeDetails = {
     /**
      * - Indicates whether the API request was
      * successful (true) or failed (false).
@@ -774,12 +877,12 @@ type PincodeApiResponse = {
      * when the request is successful, providing details like pincode information
      * or related data.
      */
-    data?: PincodeDataResponse[];
-    error: PincodeErrorSchemaResponse;
+    data?: PincodeDataResult[];
+    error: PincodeErrorSchemaResult;
 };
-/** @returns {TATCategoryRequest} */
-declare function TATCategoryRequest(): TATCategoryRequest;
-type TATCategoryRequest = {
+/** @returns {TATCategoryDetails} */
+declare function TATCategoryDetails(): TATCategoryDetails;
+type TATCategoryDetails = {
     /**
      * - Specifies the hierarchical level of the category
      * (e.g., country, state, city).
@@ -791,10 +894,10 @@ type TATCategoryRequest = {
      */
     id?: number;
 };
-/** @returns {TATArticlesRequest} */
-declare function TATArticlesRequest(): TATArticlesRequest;
-type TATArticlesRequest = {
-    category?: TATCategoryRequest;
+/** @returns {TATArticlesDetails} */
+declare function TATArticlesDetails(): TATArticlesDetails;
+type TATArticlesDetails = {
+    category?: TATCategoryDetails;
     /**
      * - The unit of measurement for
      * the manufacturing time, such as hours or days.
@@ -806,9 +909,9 @@ type TATArticlesRequest = {
      */
     manufacturing_time?: number;
 };
-/** @returns {TATLocationDetailsRequest} */
-declare function TATLocationDetailsRequest(): TATLocationDetailsRequest;
-type TATLocationDetailsRequest = {
+/** @returns {TATLocationDetailsDetails} */
+declare function TATLocationDetailsDetails(): TATLocationDetailsDetails;
+type TATLocationDetailsDetails = {
     /**
      * - A unique identifier of the fulfilling location.
      */
@@ -823,11 +926,11 @@ type TATLocationDetailsRequest = {
      * the fulfillment request, which provides details about the items to be
      * processed or shipped.
      */
-    articles?: TATArticlesRequest[];
+    articles?: TATArticlesDetails[];
 };
-/** @returns {TATViewRequest} */
-declare function TATViewRequest(): TATViewRequest;
-type TATViewRequest = {
+/** @returns {TATViewDetails} */
+declare function TATViewDetails(): TATViewDetails;
+type TATViewDetails = {
     /**
      * - The postal code of the destination location
      * where the fulfillment or shipment is headed.
@@ -852,7 +955,7 @@ type TATViewRequest = {
      * - Locations
      * involved in the request, including details about both the source and destination.
      */
-    location_details?: TATLocationDetailsRequest[];
+    location_details?: TATLocationDetailsDetails[];
     /**
      * - Indicates the direction of the request or
      * shipment. It can either be "forward" (from the source to the destination)
@@ -860,9 +963,9 @@ type TATViewRequest = {
      */
     journey?: string;
 };
-/** @returns {TATErrorSchemaResponse} */
-declare function TATErrorSchemaResponse(): TATErrorSchemaResponse;
-type TATErrorSchemaResponse = {
+/** @returns {TATErrorSchemaResult} */
+declare function TATErrorSchemaResult(): TATErrorSchemaResult;
+type TATErrorSchemaResult = {
     /**
      * - A user-readable description of the error,
      * explaining what went wrong.
@@ -879,9 +982,9 @@ type TATErrorSchemaResponse = {
      */
     type?: string;
 };
-/** @returns {TATTimestampResponse} */
-declare function TATTimestampResponse(): TATTimestampResponse;
-type TATTimestampResponse = {
+/** @returns {TATTimestampResult} */
+declare function TATTimestampResult(): TATTimestampResult;
+type TATTimestampResult = {
     /**
      * - The earliest possible timestamp.
      */
@@ -891,9 +994,9 @@ type TATTimestampResponse = {
      */
     max?: number;
 };
-/** @returns {TATFormattedResponse} */
-declare function TATFormattedResponse(): TATFormattedResponse;
-type TATFormattedResponse = {
+/** @returns {TATFormattedResult} */
+declare function TATFormattedResult(): TATFormattedResult;
+type TATFormattedResult = {
     /**
      * - The earliest possible timestamp.
      */
@@ -903,42 +1006,42 @@ type TATFormattedResponse = {
      */
     max?: string;
 };
-/** @returns {TATPromiseResponse} */
-declare function TATPromiseResponse(): TATPromiseResponse;
-type TATPromiseResponse = {
-    timestamp?: TATTimestampResponse;
-    formatted?: TATFormattedResponse;
+/** @returns {TATPromiseResult} */
+declare function TATPromiseResult(): TATPromiseResult;
+type TATPromiseResult = {
+    timestamp?: TATTimestampResult;
+    formatted?: TATFormattedResult;
 };
-/** @returns {TATArticlesResponse} */
-declare function TATArticlesResponse(): TATArticlesResponse;
-type TATArticlesResponse = {
+/** @returns {TATArticlesResult} */
+declare function TATArticlesResult(): TATArticlesResult;
+type TATArticlesResult = {
     /**
      * - The unit of measurement for
      * the manufacturing time such as hours or days.
      */
     manufacturing_time_unit?: string;
-    error?: TATErrorSchemaResponse;
+    error?: TATErrorSchemaResult;
     /**
      * - Indicates whether Cash on Delivery
      * (COD) is available for the articles.
      */
     is_cod_available?: boolean;
-    promise?: TATPromiseResponse;
+    promise?: TATPromiseResult;
     /**
      * - The time required to manufacture
      * the articles, measured in the unit specified by manufacturing_time_unit.
      */
     manufacturing_time?: number;
-    category?: TATCategoryRequest;
+    category?: TATCategoryDetails;
     /**
      * - The manufacturing time
      * converted into seconds.
      */
     _manufacturing_time_seconds?: number;
 };
-/** @returns {TATLocationDetailsResponse} */
-declare function TATLocationDetailsResponse(): TATLocationDetailsResponse;
-type TATLocationDetailsResponse = {
+/** @returns {TATLocationDetailsResult} */
+declare function TATLocationDetailsResult(): TATLocationDetailsResult;
+type TATLocationDetailsResult = {
     /**
      * - A unique identifier of the fulfilling location.
      */
@@ -949,15 +1052,15 @@ type TATLocationDetailsResponse = {
      */
     from_pincode?: string;
     /**
-     * - List of articles included in
-     * the fulfillment request, which provides details about the items to be
-     * processed or shipped.
+     * - List of articles included in the
+     * fulfillment request, which provides details about the items to be processed
+     * or shipped.
      */
-    articles?: TATArticlesResponse[];
+    articles?: TATArticlesResult[];
 };
-/** @returns {TATViewResponse} */
-declare function TATViewResponse(): TATViewResponse;
-type TATViewResponse = {
+/** @returns {TATViewResult} */
+declare function TATViewResult(): TATViewResult;
+type TATViewResult = {
     /**
      * - The postal code of the destination location
      * where the fulfillment or shipment is headed.
@@ -975,7 +1078,7 @@ type TATViewResponse = {
      * - Whether the request was successful (true/false).
      */
     success?: boolean;
-    error?: TATErrorSchemaResponse;
+    error?: TATErrorSchemaResult;
     /**
      * - Whether Cash on Delivery (COD) is
      * available for the request.
@@ -1004,10 +1107,10 @@ type TATViewResponse = {
      */
     identifier?: string;
     /**
-     * - Location
-     * involved in the request.
+     * - Location involved
+     * in the request.
      */
-    location_details?: TATLocationDetailsResponse[];
+    location_details?: TATLocationDetailsResult[];
     /**
      * - Type of journey, either forward or return.
      */
@@ -1069,20 +1172,16 @@ type DP = {
      */
     transport_mode?: string;
 };
-/** @returns {LogisticsResponse} */
-declare function LogisticsResponse(): LogisticsResponse;
-type LogisticsResponse = {
-    /**
-     * - Provide entity responsible for handling the
-     * delivery of goods.
-     */
-    dp?: any;
+/** @returns {LogisticsResult} */
+declare function LogisticsResult(): LogisticsResult;
+type LogisticsResult = {
+    dp?: DP;
 };
-/** @returns {CountryEntityResponse} */
-declare function CountryEntityResponse(): CountryEntityResponse;
-type CountryEntityResponse = {
-    meta?: CountryMetaResponse;
-    logistics?: LogisticsResponse;
+/** @returns {CountryEntityResult} */
+declare function CountryEntityResult(): CountryEntityResult;
+type CountryEntityResult = {
+    meta?: CountryMetaResult;
+    logistics?: LogisticsResult;
     /**
      * - User-friendly version of the geographical
      * data, which may be more descriptive or formatted differently.
@@ -1116,18 +1215,18 @@ type CountryEntityResponse = {
      */
     uid?: string;
 };
-/** @returns {CountryListResponse} */
-declare function CountryListResponse(): CountryListResponse;
-type CountryListResponse = {
+/** @returns {CountryListResult} */
+declare function CountryListResult(): CountryListResult;
+type CountryListResult = {
     /**
      * - A list of country entities,
      * each containing details about individual countries.
      */
-    results?: CountryEntityResponse[];
+    results?: CountryEntityResult[];
 };
-/** @returns {GetZoneFromPincodeViewRequest} */
-declare function GetZoneFromPincodeViewRequest(): GetZoneFromPincodeViewRequest;
-type GetZoneFromPincodeViewRequest = {
+/** @returns {GetZoneFromPincodeViewDetails} */
+declare function GetZoneFromPincodeViewDetails(): GetZoneFromPincodeViewDetails;
+type GetZoneFromPincodeViewDetails = {
     /**
      * - The postal code or ZIP code used to pinpoint a
      * specific geographic area or location.
@@ -1138,9 +1237,9 @@ type GetZoneFromPincodeViewRequest = {
      */
     country: string;
 };
-/** @returns {GetZoneFromPincodeViewResponse} */
-declare function GetZoneFromPincodeViewResponse(): GetZoneFromPincodeViewResponse;
-type GetZoneFromPincodeViewResponse = {
+/** @returns {GetZoneFromPincodeViewResult} */
+declare function GetZoneFromPincodeViewResult(): GetZoneFromPincodeViewResult;
+type GetZoneFromPincodeViewResult = {
     /**
      * - Specifies the type of serviceability
      * for the given pincode, indicating whether it's deliverable or serviceable
@@ -1153,9 +1252,9 @@ type GetZoneFromPincodeViewResponse = {
      */
     zones: string[];
 };
-/** @returns {ReAssignStoreRequest} */
-declare function ReAssignStoreRequest(): ReAssignStoreRequest;
-type ReAssignStoreRequest = {
+/** @returns {ReAssignStoreDetails} */
+declare function ReAssignStoreDetails(): ReAssignStoreDetails;
+type ReAssignStoreDetails = {
     /**
      * - Specifies the configuration settings or
      * parameters for the store reassignment.
@@ -1181,9 +1280,9 @@ type ReAssignStoreRequest = {
      */
     articles: any[];
 };
-/** @returns {ReAssignStoreResponse} */
-declare function ReAssignStoreResponse(): ReAssignStoreResponse;
-type ReAssignStoreResponse = {
+/** @returns {ReAssignStoreResult} */
+declare function ReAssignStoreResult(): ReAssignStoreResult;
+type ReAssignStoreResult = {
     /**
      * - The postal code of the destination location
      * where the fulfillment or shipment is headed.
@@ -1567,6 +1666,10 @@ type Localities = {
      */
     name?: string;
     /**
+     * - Custom meta to store custom json against hierarchy.
+     */
+    custom_meta?: any;
+    /**
      * - User-friendly version of the geographical
      * data, which may be more descriptive or formatted differently.
      */
@@ -1607,6 +1710,15 @@ type LocalityParent = {
      */
     display_name?: string;
     /**
+     * - Code assigned to a locality, which is unique to
+     * its immediate parent.
+     */
+    code?: string;
+    /**
+     * - Custom meta to store custom json against hierarchy.
+     */
+    custom_meta?: any;
+    /**
      * - Identifiers for the parent of the current locality.
      */
     parent_ids?: string[];
@@ -1645,6 +1757,15 @@ type GetLocality = {
      */
     display_name?: string;
     /**
+     * - Code assigned to a locality, which is unique to
+     * its immediate parent.
+     */
+    code?: string;
+    /**
+     * - Custom meta to store custom json against hierarchy.
+     */
+    custom_meta?: any;
+    /**
      * - Identifiers for the parent of the current locality.
      */
     parent_ids?: string[];
@@ -1661,9 +1782,227 @@ type GetLocality = {
      */
     localities?: LocalityParent[];
 };
-/** @returns {ErrorResponse} */
-declare function ErrorResponse(): ErrorResponse;
-type ErrorResponse = {
+/** @returns {ShipmentsArticles} */
+declare function ShipmentsArticles(): ShipmentsArticles;
+type ShipmentsArticles = {
+    /**
+     * - Unique identifier of the item.
+     */
+    item_id?: number;
+    /**
+     * - Unique identifier of the category.
+     */
+    category_id?: number;
+    /**
+     * - Unique identifier of the brand.
+     */
+    brand_id?: number;
+    /**
+     * - Unique identifier of the department.
+     */
+    department_id?: number;
+    /**
+     * - Tags associated with the item.
+     */
+    tags?: string[];
+};
+/** @returns {ShipmentDimension} */
+declare function ShipmentDimension(): ShipmentDimension;
+type ShipmentDimension = {
+    /**
+     * - Height of the shipment in centimeters.
+     */
+    height: number;
+    /**
+     * - Length of the shipment in centimeters.
+     */
+    length: number;
+    /**
+     * - Width of the shipment in centimeters.
+     */
+    width: number;
+};
+/** @returns {Shipments} */
+declare function Shipments(): Shipments;
+type Shipments = {
+    /**
+     * - Unique identifier of the shipment.
+     */
+    id?: string;
+    /**
+     * - Unique identifier of the selling location.
+     */
+    location_id?: number;
+    /**
+     * - Tags associated with the selling location.
+     */
+    location_tags?: string[];
+    /**
+     * - Weight of the shipment.
+     */
+    shipment_weight?: number;
+    /**
+     * - Volumetric weight of the shipment.
+     */
+    shipment_volumetric_weight?: number;
+    /**
+     * - Total Cost of the shipment.
+     */
+    shipment_cost?: number;
+    shipment_dimension?: ShipmentDimension;
+    /**
+     * - A List of courier schemes.
+     */
+    courier_partner_schemes?: string[];
+    /**
+     * - List of articles in the shipment.
+     */
+    articles?: ShipmentsArticles[];
+};
+/** @returns {ShipmentCourierPartnerDetails} */
+declare function ShipmentCourierPartnerDetails(): ShipmentCourierPartnerDetails;
+type ShipmentCourierPartnerDetails = {
+    from_location: ShipmentsCourierPartnersServiceability;
+    to_location: ShipmentsCourierPartnersServiceability;
+    /**
+     * - List of shipments.
+     */
+    shipments?: Shipments[];
+    /**
+     * - Journey type of the shipment forward or return.
+     */
+    journey?: string;
+    /**
+     * - Payment mode opted for the shipment.
+     */
+    payment_mode?: string;
+};
+/** @returns {CourierPartnerPromise} */
+declare function CourierPartnerPromise(): CourierPartnerPromise;
+type CourierPartnerPromise = {
+    /**
+     * - The earliest possible timestamp.
+     */
+    min: string;
+    /**
+     * - The latest possible timestamp.
+     */
+    max: string;
+};
+/** @returns {CourierPartners} */
+declare function CourierPartners(): CourierPartners;
+type CourierPartners = {
+    /**
+     * - Unique identifier of courier partner extension.
+     */
+    extension_id?: string;
+    /**
+     * - Unique identifier of courier partner scheme.
+     */
+    scheme_id?: string;
+    /**
+     * - Name of the courier partner.
+     */
+    name?: string;
+    delivery_promise?: CourierPartnerPromise;
+};
+/** @returns {ShipmentCourierPartners} */
+declare function ShipmentCourierPartners(): ShipmentCourierPartners;
+type ShipmentCourierPartners = {
+    /**
+     * - Unique identifier of the shipment.
+     */
+    id?: string;
+    /**
+     * - Courier partners of the shipment.
+     */
+    courier_partners?: CourierPartners[];
+};
+/** @returns {ShipmentCourierPartnerResult} */
+declare function ShipmentCourierPartnerResult(): ShipmentCourierPartnerResult;
+type ShipmentCourierPartnerResult = {
+    courier_partners?: CourierPartners[];
+    shipments?: ShipmentCourierPartners[];
+};
+/** @returns {ShipmentsCourierPartnersServiceability} */
+declare function ShipmentsCourierPartnersServiceability(): ShipmentsCourierPartnersServiceability;
+type ShipmentsCourierPartnersServiceability = {
+    /**
+     * - Postal code or PIN code of the address area.
+     */
+    pincode?: string;
+    /**
+     * - Specifies the sector or district code of
+     * the address if applicable.
+     */
+    sector_code?: string;
+    /**
+     * - Indicates the state or province code of the address.
+     */
+    state_code?: string;
+    /**
+     * - Denote the city or municipality code of the address.
+     */
+    city_code?: string;
+    /**
+     * - ISO2 code for the country of the address.
+     */
+    country_code: string;
+};
+/** @returns {ServiceabilityLocation} */
+declare function ServiceabilityLocation(): ServiceabilityLocation;
+type ServiceabilityLocation = {
+    /**
+     * - Geographical longitude coordinate of the location.
+     */
+    longitude: string;
+    /**
+     * - Geographical latitude coordinate of the location.
+     */
+    latitude: string;
+};
+/** @returns {GetPromiseDetails} */
+declare function GetPromiseDetails(): GetPromiseDetails;
+type GetPromiseDetails = {
+    /**
+     * - List of delivery promises for each store.
+     */
+    items?: StorePromise[];
+    delivery_promise?: Promise;
+    page?: Page;
+};
+/** @returns {StorePromise} */
+declare function StorePromise(): StorePromise;
+type StorePromise = {
+    /**
+     * - Unique identifier of a store.
+     */
+    uid?: number;
+    /**
+     * - Code assigned to a store.
+     */
+    code?: string;
+    /**
+     * - Name of a store.
+     */
+    name?: string;
+    delivery_promise?: Promise;
+};
+/** @returns {Promise} */
+declare function Promise(): Promise;
+type Promise = {
+    /**
+     * - Earliest delivery time.
+     */
+    min?: string;
+    /**
+     * - Latest delivery time.
+     */
+    max?: string;
+};
+/** @returns {ErrorResult} */
+declare function ErrorResult(): ErrorResult;
+type ErrorResult = {
     /**
      * - Error code identifying the type of error.
      */
@@ -1672,4 +2011,24 @@ type ErrorResponse = {
      * - User-friendly explanation of what went wrong.
      */
     message?: string;
+};
+/** @returns {ValidationError} */
+declare function ValidationError(): ValidationError;
+type ValidationError = {
+    /**
+     * - A brief description of the error encountered.
+     */
+    message: string;
+    /**
+     * - The field in the request that caused the error.
+     */
+    field: string;
+};
+/** @returns {StandardError} */
+declare function StandardError(): StandardError;
+type StandardError = {
+    /**
+     * - A brief description of the error.
+     */
+    message: string;
 };

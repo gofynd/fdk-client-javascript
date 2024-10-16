@@ -9,10 +9,11 @@ export = OrderPlatformApplicationValidator;
 /**
  * @typedef GetApplicationShipmentsParam
  * @property {string} [lane]
- * @property {string} [searchType]
+ * @property {string} [searchType] - Search_type refers to the field that will
+ *   be used as the target for the search operation
  * @property {string} [searchId]
- * @property {string} [fromDate]
- * @property {string} [toDate]
+ * @property {string} [fromDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [toDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [dpIds]
  * @property {string} [orderingCompanyId]
  * @property {string} [stores]
@@ -27,6 +28,10 @@ export = OrderPlatformApplicationValidator;
 /**
  * @typedef GetPlatformShipmentReasonsParam
  * @property {string} action
+ */
+/**
+ * @typedef GetRulesParam
+ * @property {OrderPlatformModel.RuleListRequestSchema} body
  */
 /**
  * @typedef GetShipmentBagReasonsParam
@@ -45,13 +50,15 @@ declare class OrderPlatformApplicationValidator {
     static getApplicationShipments(): GetApplicationShipmentsParam;
     /** @returns {GetPlatformShipmentReasonsParam} */
     static getPlatformShipmentReasons(): GetPlatformShipmentReasonsParam;
+    /** @returns {GetRulesParam} */
+    static getRules(): GetRulesParam;
     /** @returns {GetShipmentBagReasonsParam} */
     static getShipmentBagReasons(): GetShipmentBagReasonsParam;
     /** @returns {TrackShipmentPlatformParam} */
     static trackShipmentPlatform(): TrackShipmentPlatformParam;
 }
 declare namespace OrderPlatformApplicationValidator {
-    export { FailedOrderLogsParam, GetApplicationShipmentsParam, GetPlatformShipmentReasonsParam, GetShipmentBagReasonsParam, TrackShipmentPlatformParam };
+    export { FailedOrderLogsParam, GetApplicationShipmentsParam, GetPlatformShipmentReasonsParam, GetRulesParam, GetShipmentBagReasonsParam, TrackShipmentPlatformParam };
 }
 type FailedOrderLogsParam = {
     /**
@@ -73,9 +80,19 @@ type FailedOrderLogsParam = {
 };
 type GetApplicationShipmentsParam = {
     lane?: string;
+    /**
+     * - Search_type refers to the field that will
+     * be used as the target for the search operation
+     */
     searchType?: string;
     searchId?: string;
+    /**
+     * - Date time in UTC timezone as per ISO format.
+     */
     fromDate?: string;
+    /**
+     * - Date time in UTC timezone as per ISO format.
+     */
     toDate?: string;
     dpIds?: string;
     orderingCompanyId?: string;
@@ -90,6 +107,9 @@ type GetApplicationShipmentsParam = {
 };
 type GetPlatformShipmentReasonsParam = {
     action: string;
+};
+type GetRulesParam = {
+    body: OrderPlatformModel.RuleListRequestSchema;
 };
 type GetShipmentBagReasonsParam = {
     /**
@@ -108,3 +128,4 @@ type TrackShipmentPlatformParam = {
      */
     shipmentId: string;
 };
+import OrderPlatformModel = require("./OrderPlatformModel");

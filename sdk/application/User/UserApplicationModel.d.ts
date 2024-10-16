@@ -1,6 +1,6 @@
 export = UserApplicationModel;
 /**
- * @typedef UpdateUserAttributesRequest
+ * @typedef UpdateUserAttributes
  * @property {Object} [attributes] - Describes the request structure to update
  *   the user attribute.
  */
@@ -181,12 +181,12 @@ export = UserApplicationModel;
  * @property {UserSchema} [user]
  */
 /**
- * @typedef UserExistsResponse
+ * @typedef UserExistsDetails
  * @property {boolean} [user_exists] - Boolean which specifies if user is
  *   registered or not.
  */
 /**
- * @typedef SendOtpResponse
+ * @typedef SendOtp
  * @property {number} [resend_timer] - Time after which opt can be resent.
  * @property {string} [resend_token] - Unique token to identify the OTP send
  *   request and resend the token.
@@ -293,7 +293,7 @@ export = UserApplicationModel;
  * @property {boolean} [success] - Whether the user deletion operation was successful.
  */
 /**
- * @typedef OtpSuccess
+ * @typedef SendOtpSuccess
  * @property {number} [resend_timer] - The time in seconds before an OTP can be resent.
  * @property {string} [resend_token] - A token used to authorize the resending of an OTP.
  * @property {string} [register_token] - A token used for completing the
@@ -563,11 +563,11 @@ export = UserApplicationModel;
 declare class UserApplicationModel {
 }
 declare namespace UserApplicationModel {
-    export { UpdateUserAttributesRequest, UserAttributes, DeleteApplicationUserRequestSchema, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, EditProfileMobileSchema, SendEmailOtpRequestSchema, SendEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailForgotOtpRequestSchema, VerifyOtpRequestSchema, VerifyMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileForgotOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, OAuthRequestAppleSchema, UserObjectSchema, AuthSuccess, UserExistsResponse, SendOtpResponse, ProfileEditSuccess, LoginSuccess, ResetForgotPasswordSuccess, VerifyOtpSuccess, VerifyForgotOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, DeleteUserSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, APIError, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UserSchema, PhoneNumber, Email };
+    export { UpdateUserAttributes, UserAttributes, DeleteApplicationUserRequestSchema, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, EditProfileMobileSchema, SendEmailOtpRequestSchema, SendEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailForgotOtpRequestSchema, VerifyOtpRequestSchema, VerifyMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileForgotOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, OAuthRequestAppleSchema, UserObjectSchema, AuthSuccess, UserExistsDetails, SendOtp, ProfileEditSuccess, LoginSuccess, ResetForgotPasswordSuccess, VerifyOtpSuccess, VerifyForgotOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, DeleteUserSuccess, SendOtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, APIError, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UserSchema, PhoneNumber, Email };
 }
-/** @returns {UpdateUserAttributesRequest} */
-declare function UpdateUserAttributesRequest(): UpdateUserAttributesRequest;
-type UpdateUserAttributesRequest = {
+/** @returns {UpdateUserAttributes} */
+declare function UpdateUserAttributes(): UpdateUserAttributes;
+type UpdateUserAttributes = {
     /**
      * - Describes the request structure to update
      * the user attribute.
@@ -1024,18 +1024,18 @@ type AuthSuccess = {
     user_exists?: boolean;
     user?: UserSchema;
 };
-/** @returns {UserExistsResponse} */
-declare function UserExistsResponse(): UserExistsResponse;
-type UserExistsResponse = {
+/** @returns {UserExistsDetails} */
+declare function UserExistsDetails(): UserExistsDetails;
+type UserExistsDetails = {
     /**
      * - Boolean which specifies if user is
      * registered or not.
      */
     user_exists?: boolean;
 };
-/** @returns {SendOtpResponse} */
-declare function SendOtpResponse(): SendOtpResponse;
-type SendOtpResponse = {
+/** @returns {SendOtp} */
+declare function SendOtp(): SendOtp;
+type SendOtp = {
     /**
      * - Time after which opt can be resent.
      */
@@ -1308,9 +1308,9 @@ type DeleteUserSuccess = {
      */
     success?: boolean;
 };
-/** @returns {OtpSuccess} */
-declare function OtpSuccess(): OtpSuccess;
-type OtpSuccess = {
+/** @returns {SendOtpSuccess} */
+declare function SendOtpSuccess(): SendOtpSuccess;
+type SendOtpSuccess = {
     /**
      * - The time in seconds before an OTP can be resent.
      */

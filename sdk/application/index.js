@@ -16,6 +16,8 @@ module.exports = {
 
     FileStorageApplicationModel: require("./FileStorage/FileStorageApplicationModel"),
 
+    FinanceApplicationModel: require("./Finance/FinanceApplicationModel"),
+
     LeadApplicationModel: require("./Lead/LeadApplicationModel"),
 
     LogisticApplicationModel: require("./Logistic/LogisticApplicationModel"),

@@ -20,6 +20,8 @@ class Order {
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
       getOrderById: "/service/application/order/v1.0/orders/{order_id}",
       getOrders: "/service/application/order/v1.0/orders",
+      getPosOrderById:
+        "/service/application/order/v1.0/orders/pos-order/{order_id}",
       getShipmentBagReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
@@ -57,8 +59,9 @@ class Order {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OrderApplicationModel.CustomerDetailsResponse>} -
-   *   Success response
+   * @returns {Promise<OrderApplicationModel.CustomerDetailsResponseSchema>}
+   *   - Success response
+   *
    * @name getCustomerDetailsByShipmentId
    * @summary: Get shipment's customer
    * @description: Get customer details such as mobile number using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
@@ -115,10 +118,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderApplicationModel.CustomerDetailsResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = OrderApplicationModel.CustomerDetailsResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -411,6 +414,84 @@ class Order {
   }
 
   /**
+   * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
+   * @name getPosOrderById
+   * @summary: Retrieves POS order details
+   * @description: Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getPosOrderById/).
+   */
+  async getPosOrderById(
+    { orderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderApplicationValidator.getPosOrderById().validate(
+      { orderId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.getPosOrderById().validate(
+      { orderId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Order > getPosOrderById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPosOrderById"],
+        params: { orderId },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderApplicationModel.OrderById().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getPosOrderById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderApplicationValidator.GetShipmentBagReasonsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -651,8 +732,9 @@ class Order {
    * @param {OrderApplicationValidator.SendOtpToShipmentCustomerParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponse>} -
-   *   Success response
+   * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponseSchema>}
+   *   - Success response
+   *
    * @name sendOtpToShipmentCustomer
    * @summary: Send OTP to customer
    * @description: Send OTP to the customer for shipment verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
@@ -709,7 +791,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderApplicationModel.SendOtpToCustomerResponse().validate(
+    } = OrderApplicationModel.SendOtpToCustomerResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -810,7 +892,7 @@ class Order {
    * @param {OrderApplicationValidator.UpdateShipmentStatusParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>}
+   * @returns {Promise<OrderApplicationModel.ShipmentApplicationStatusResponseSchema>}
    *   - Success response
    *
    * @name updateShipmentStatus
@@ -867,7 +949,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderApplicationModel.ShipmentApplicationStatusResponse().validate(
+    } = OrderApplicationModel.ShipmentApplicationStatusResponseSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -890,7 +972,8 @@ class Order {
    * @param {OrderApplicationValidator.VerifyOtpShipmentCustomerParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OrderApplicationModel.VerifyOtpResponse>} - Success response
+   * @returns {Promise<OrderApplicationModel.VerifyOtpResponseSchema>} -
+   *   Success response
    * @name verifyOtpShipmentCustomer
    * @summary: Verifies OTP
    * @description: Verify OTP sent by customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
@@ -947,7 +1030,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderApplicationModel.VerifyOtpResponse().validate(responseData, {
+    } = OrderApplicationModel.VerifyOtpResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

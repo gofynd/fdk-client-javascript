@@ -8,12 +8,12 @@ const FileStorageApplicationModel = require("./FileStorageApplicationModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStorageApplicationModel.StartResponse} body
+ * @property {FileStorageApplicationModel.FileUpload} body
  */
 
 /**
  * @typedef SignUrlsParam
- * @property {FileStorageApplicationModel.SignUrlRequest} body
+ * @property {FileStorageApplicationModel.SignUrl} body
  */
 
 /**
@@ -22,7 +22,7 @@ const FileStorageApplicationModel = require("./FileStorageApplicationModel");
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStorageApplicationModel.StartRequest} body
+ * @property {FileStorageApplicationModel.FileUploadStart} body
  */
 
 class FileStorageApplicationValidator {
@@ -30,14 +30,14 @@ class FileStorageApplicationValidator {
   static completeUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
-      body: FileStorageApplicationModel.StartResponse().required(),
+      body: FileStorageApplicationModel.FileUpload().required(),
     }).required();
   }
 
   /** @returns {SignUrlsParam} */
   static signUrls() {
     return Joi.object({
-      body: FileStorageApplicationModel.SignUrlRequest().required(),
+      body: FileStorageApplicationModel.SignUrl().required(),
     }).required();
   }
 
@@ -45,7 +45,7 @@ class FileStorageApplicationValidator {
   static startUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
-      body: FileStorageApplicationModel.StartRequest().required(),
+      body: FileStorageApplicationModel.FileUploadStart().required(),
     }).required();
   }
 }

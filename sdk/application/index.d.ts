@@ -8,6 +8,7 @@ export namespace ApplicationModel {
     const ConfigurationApplicationModel: typeof import("./Configuration/ConfigurationApplicationModel");
     const ContentApplicationModel: typeof import("./Content/ContentApplicationModel");
     const FileStorageApplicationModel: typeof import("./FileStorage/FileStorageApplicationModel");
+    const FinanceApplicationModel: typeof import("./Finance/FinanceApplicationModel");
     const LeadApplicationModel: typeof import("./Lead/LeadApplicationModel");
     const LogisticApplicationModel: typeof import("./Logistic/LogisticApplicationModel");
     const OrderApplicationModel: typeof import("./Order/OrderApplicationModel");

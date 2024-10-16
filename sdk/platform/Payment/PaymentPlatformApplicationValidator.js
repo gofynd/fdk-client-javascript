@@ -5,43 +5,43 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef AddEdcDeviceParam
  * @property {string} terminalUniqueIdentifier - Terminal unique identifier
- * @property {PaymentPlatformModel.EdcUpdateRequest} body
+ * @property {PaymentPlatformModel.EdcUpdate} body
  */
 
 /**
  * @typedef AddRefundBankAccountUsingOTPParam
- * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest} body
+ * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation} body
  */
 
 /**
  * @typedef CancelPaymentLinkParam
- * @property {PaymentPlatformModel.CancelOrResendPaymentLinkRequest} body
+ * @property {PaymentPlatformModel.CancelOrResendPaymentLinkCreation} body
  */
 
 /**
  * @typedef CheckAndUpdatePaymentStatusParam
- * @property {PaymentPlatformModel.PaymentStatusUpdateRequest} body
+ * @property {PaymentPlatformModel.PaymentStatusUpdateCreation} body
  */
 
 /**
  * @typedef ConfirmPaymentParam
- * @property {PaymentPlatformModel.PaymentConfirmationRequest} body
+ * @property {PaymentPlatformModel.PaymentConfirmationCreation} body
  */
 
 /**
  * @typedef CreateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
- * @property {PaymentPlatformModel.RefundPriorityRequestSerializer} body
+ * @property {PaymentPlatformModel.RefundPriorityCreation} body
  */
 
 /**
  * @typedef CreatePaymentLinkParam
- * @property {PaymentPlatformModel.CreatePaymentLinkRequest} body
+ * @property {PaymentPlatformModel.CreatePaymentLinkCreation} body
  */
 
 /**
  * @typedef CreatePaymentOrderParam
- * @property {PaymentPlatformModel.PaymentOrderRequest} body
+ * @property {PaymentPlatformModel.PaymentOrderCreation} body
  */
 
 /** @typedef EdcAggregatorsAndModelListParam */
@@ -171,12 +171,12 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
  * @typedef InitialisePaymentParam
- * @property {PaymentPlatformModel.PaymentInitializationRequest} body
+ * @property {PaymentPlatformModel.PaymentInitializationCreation} body
  */
 
 /**
  * @typedef MerchantOnBoardingParam
- * @property {PaymentPlatformModel.MerchantOnBoardingRequest} body
+ * @property {PaymentPlatformModel.MerchantOnBoardingCreation} body
  */
 
 /**
@@ -189,23 +189,23 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /**
  * @typedef PatchMerchantAggregatorPaymentModeDetailsParam
  * @property {number} aggregatorId - Aggregators Id
- * @property {PaymentPlatformModel.PlatformPaymentModeResponse} body
+ * @property {PaymentPlatformModel.PlatformPaymentModeDetails} body
  */
 
 /**
  * @typedef PatchMerchantPaymentOptionParam
- * @property {PaymentPlatformModel.MerchnatPaymentModeRequest} body
+ * @property {PaymentPlatformModel.MerchnatPaymentModeCreation} body
  */
 
 /**
  * @typedef PatchMerchantPaymentOptionVersionParam
  * @property {number} aggregatorId - Aggregators Id
- * @property {PaymentPlatformModel.AggregatorControlRequest} body
+ * @property {PaymentPlatformModel.PatchAggregatorControl} body
  */
 
 /**
  * @typedef PaymentStatusBulkParam
- * @property {PaymentPlatformModel.PaymentStatusBulkHandlerRequest} body
+ * @property {PaymentPlatformModel.PaymentStatusBulkHandlerCreation} body
  */
 
 /**
@@ -220,12 +220,12 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
  * @typedef ResendOrCancelPaymentParam
- * @property {PaymentPlatformModel.ResendOrCancelPaymentRequest} body
+ * @property {PaymentPlatformModel.ResendOrCancelPaymentCreation} body
  */
 
 /**
  * @typedef ResendPaymentLinkParam
- * @property {PaymentPlatformModel.CancelOrResendPaymentLinkRequest} body
+ * @property {PaymentPlatformModel.CancelOrResendPaymentLinkCreation} body
  */
 
 /**
@@ -235,13 +235,13 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
  * @typedef SaveBrandPaymentGatewayConfigParam
- * @property {PaymentPlatformModel.PaymentGatewayConfigRequest} body
+ * @property {PaymentPlatformModel.PaymentGatewayConfigCreation} body
  */
 
 /**
  * @typedef SetMerchantModeControlRoutesParam
  * @property {string} mode - Offline / advance payment mode
- * @property {PaymentPlatformModel.MerchantPaymentModeRequest} body
+ * @property {PaymentPlatformModel.MerchantPaymentModeCreation} body
  */
 
 /**
@@ -252,18 +252,18 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
  * @typedef SetUserCODlimitRoutesParam
- * @property {PaymentPlatformModel.SetCODForUserRequest} body
+ * @property {PaymentPlatformModel.SetCODForUserCreation} body
  */
 
 /**
  * @typedef UpdateEdcDeviceParam
- * @property {PaymentPlatformModel.EdcAddRequest} body
+ * @property {PaymentPlatformModel.EdcAddCreation} body
  */
 
 /**
  * @typedef UpdateMerchantRefundPriorityParam
  * @property {string} configType - Configuration for merchant or customer
- * @property {PaymentPlatformModel.RefundPriorityRequestSerializer} body
+ * @property {PaymentPlatformModel.RefundPriorityCreation} body
  */
 
 /**
@@ -271,7 +271,7 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {PaymentPlatformModel.PaymentSessionRequestSerializer} body
+ * @property {PaymentPlatformModel.PaymentSessionCreation} body
  */
 
 /**
@@ -281,12 +281,12 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  *   Fynd payments platform and is unique.
  * @property {string} requestId - A unique id that was used to initiate a refund
  *   session. This is generated by Fynd platform and is usually shipment_id.
- * @property {PaymentPlatformModel.RefundSessionRequestSerializer} body
+ * @property {PaymentPlatformModel.RefundSessionCreation} body
  */
 
 /**
  * @typedef VerifyCustomerForPaymentParam
- * @property {PaymentPlatformModel.ValidateCustomerRequest} body
+ * @property {PaymentPlatformModel.ValidateCustomerCreation} body
  */
 
 class PaymentPlatformApplicationValidator {
@@ -294,35 +294,35 @@ class PaymentPlatformApplicationValidator {
   static addEdcDevice() {
     return Joi.object({
       terminalUniqueIdentifier: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.EdcUpdateRequest().required(),
+      body: PaymentPlatformModel.EdcUpdate().required(),
     }).required();
   }
 
   /** @returns {AddRefundBankAccountUsingOTPParam} */
   static addRefundBankAccountUsingOTP() {
     return Joi.object({
-      body: PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest().required(),
+      body: PaymentPlatformModel.AddBeneficiaryDetailsOTPCreation().required(),
     }).required();
   }
 
   /** @returns {CancelPaymentLinkParam} */
   static cancelPaymentLink() {
     return Joi.object({
-      body: PaymentPlatformModel.CancelOrResendPaymentLinkRequest().required(),
+      body: PaymentPlatformModel.CancelOrResendPaymentLinkCreation().required(),
     }).required();
   }
 
   /** @returns {CheckAndUpdatePaymentStatusParam} */
   static checkAndUpdatePaymentStatus() {
     return Joi.object({
-      body: PaymentPlatformModel.PaymentStatusUpdateRequest().required(),
+      body: PaymentPlatformModel.PaymentStatusUpdateCreation().required(),
     }).required();
   }
 
   /** @returns {ConfirmPaymentParam} */
   static confirmPayment() {
     return Joi.object({
-      body: PaymentPlatformModel.PaymentConfirmationRequest().required(),
+      body: PaymentPlatformModel.PaymentConfirmationCreation().required(),
     }).required();
   }
 
@@ -330,21 +330,21 @@ class PaymentPlatformApplicationValidator {
   static createMerchantRefundPriority() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.RefundPriorityRequestSerializer().required(),
+      body: PaymentPlatformModel.RefundPriorityCreation().required(),
     }).required();
   }
 
   /** @returns {CreatePaymentLinkParam} */
   static createPaymentLink() {
     return Joi.object({
-      body: PaymentPlatformModel.CreatePaymentLinkRequest().required(),
+      body: PaymentPlatformModel.CreatePaymentLinkCreation().required(),
     }).required();
   }
 
   /** @returns {CreatePaymentOrderParam} */
   static createPaymentOrder() {
     return Joi.object({
-      body: PaymentPlatformModel.PaymentOrderRequest().required(),
+      body: PaymentPlatformModel.PaymentOrderCreation().required(),
     }).required();
   }
 
@@ -516,14 +516,14 @@ class PaymentPlatformApplicationValidator {
   /** @returns {InitialisePaymentParam} */
   static initialisePayment() {
     return Joi.object({
-      body: PaymentPlatformModel.PaymentInitializationRequest().required(),
+      body: PaymentPlatformModel.PaymentInitializationCreation().required(),
     }).required();
   }
 
   /** @returns {MerchantOnBoardingParam} */
   static merchantOnBoarding() {
     return Joi.object({
-      body: PaymentPlatformModel.MerchantOnBoardingRequest().required(),
+      body: PaymentPlatformModel.MerchantOnBoardingCreation().required(),
     }).required();
   }
 
@@ -540,14 +540,14 @@ class PaymentPlatformApplicationValidator {
   static patchMerchantAggregatorPaymentModeDetails() {
     return Joi.object({
       aggregatorId: Joi.number().required(),
-      body: PaymentPlatformModel.PlatformPaymentModeResponse().required(),
+      body: PaymentPlatformModel.PlatformPaymentModeDetails().required(),
     }).required();
   }
 
   /** @returns {PatchMerchantPaymentOptionParam} */
   static patchMerchantPaymentOption() {
     return Joi.object({
-      body: PaymentPlatformModel.MerchnatPaymentModeRequest().required(),
+      body: PaymentPlatformModel.MerchnatPaymentModeCreation().required(),
     }).required();
   }
 
@@ -555,14 +555,14 @@ class PaymentPlatformApplicationValidator {
   static patchMerchantPaymentOptionVersion() {
     return Joi.object({
       aggregatorId: Joi.number().required(),
-      body: PaymentPlatformModel.AggregatorControlRequest().required(),
+      body: PaymentPlatformModel.PatchAggregatorControl().required(),
     }).required();
   }
 
   /** @returns {PaymentStatusBulkParam} */
   static paymentStatusBulk() {
     return Joi.object({
-      body: PaymentPlatformModel.PaymentStatusBulkHandlerRequest().required(),
+      body: PaymentPlatformModel.PaymentStatusBulkHandlerCreation().required(),
     }).required();
   }
 
@@ -583,14 +583,14 @@ class PaymentPlatformApplicationValidator {
   /** @returns {ResendOrCancelPaymentParam} */
   static resendOrCancelPayment() {
     return Joi.object({
-      body: PaymentPlatformModel.ResendOrCancelPaymentRequest().required(),
+      body: PaymentPlatformModel.ResendOrCancelPaymentCreation().required(),
     }).required();
   }
 
   /** @returns {ResendPaymentLinkParam} */
   static resendPaymentLink() {
     return Joi.object({
-      body: PaymentPlatformModel.CancelOrResendPaymentLinkRequest().required(),
+      body: PaymentPlatformModel.CancelOrResendPaymentLinkCreation().required(),
     }).required();
   }
 
@@ -604,7 +604,7 @@ class PaymentPlatformApplicationValidator {
   /** @returns {SaveBrandPaymentGatewayConfigParam} */
   static saveBrandPaymentGatewayConfig() {
     return Joi.object({
-      body: PaymentPlatformModel.PaymentGatewayConfigRequest().required(),
+      body: PaymentPlatformModel.PaymentGatewayConfigCreation().required(),
     }).required();
   }
 
@@ -612,7 +612,7 @@ class PaymentPlatformApplicationValidator {
   static setMerchantModeControlRoutes() {
     return Joi.object({
       mode: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.MerchantPaymentModeRequest().required(),
+      body: PaymentPlatformModel.MerchantPaymentModeCreation().required(),
     }).required();
   }
 
@@ -627,14 +627,14 @@ class PaymentPlatformApplicationValidator {
   /** @returns {SetUserCODlimitRoutesParam} */
   static setUserCODlimitRoutes() {
     return Joi.object({
-      body: PaymentPlatformModel.SetCODForUserRequest().required(),
+      body: PaymentPlatformModel.SetCODForUserCreation().required(),
     }).required();
   }
 
   /** @returns {UpdateEdcDeviceParam} */
   static updateEdcDevice() {
     return Joi.object({
-      body: PaymentPlatformModel.EdcAddRequest().required(),
+      body: PaymentPlatformModel.EdcAddCreation().required(),
     }).required();
   }
 
@@ -642,7 +642,7 @@ class PaymentPlatformApplicationValidator {
   static updateMerchantRefundPriority() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.RefundPriorityRequestSerializer().required(),
+      body: PaymentPlatformModel.RefundPriorityCreation().required(),
     }).required();
   }
 
@@ -650,7 +650,7 @@ class PaymentPlatformApplicationValidator {
   static updatePaymentSession() {
     return Joi.object({
       gid: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.PaymentSessionRequestSerializer().required(),
+      body: PaymentPlatformModel.PaymentSessionCreation().required(),
     }).required();
   }
 
@@ -659,14 +659,14 @@ class PaymentPlatformApplicationValidator {
     return Joi.object({
       gid: Joi.string().allow("").required(),
       requestId: Joi.string().allow("").required(),
-      body: PaymentPlatformModel.RefundSessionRequestSerializer().required(),
+      body: PaymentPlatformModel.RefundSessionCreation().required(),
     }).required();
   }
 
   /** @returns {VerifyCustomerForPaymentParam} */
   static verifyCustomerForPayment() {
     return Joi.object({
-      body: PaymentPlatformModel.ValidateCustomerRequest().required(),
+      body: PaymentPlatformModel.ValidateCustomerCreation().required(),
     }).required();
   }
 }

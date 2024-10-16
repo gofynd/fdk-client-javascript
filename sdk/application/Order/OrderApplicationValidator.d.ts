@@ -35,6 +35,11 @@ export = OrderApplicationValidator;
  *   shipments are allowed.
  */
 /**
+ * @typedef GetPosOrderByIdParam
+ * @property {string} orderId - A unique number used for identifying and
+ *   tracking your orders.
+ */
+/**
  * @typedef GetShipmentBagReasonsParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
@@ -74,7 +79,7 @@ export = OrderApplicationValidator;
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
- * @property {OrderApplicationModel.UpdateShipmentStatusRequest} body
+ * @property {OrderApplicationModel.UpdateShipmentStatusRequestSchema} body
  */
 /**
  * @typedef VerifyOtpShipmentCustomerParam
@@ -94,6 +99,8 @@ declare class OrderApplicationValidator {
     static getOrderById(): GetOrderByIdParam;
     /** @returns {GetOrdersParam} */
     static getOrders(): GetOrdersParam;
+    /** @returns {GetPosOrderByIdParam} */
+    static getPosOrderById(): GetPosOrderByIdParam;
     /** @returns {GetShipmentBagReasonsParam} */
     static getShipmentBagReasons(): GetShipmentBagReasonsParam;
     /** @returns {GetShipmentByIdParam} */
@@ -110,7 +117,7 @@ declare class OrderApplicationValidator {
     static verifyOtpShipmentCustomer(): VerifyOtpShipmentCustomerParam;
 }
 declare namespace OrderApplicationValidator {
-    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
+    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetPosOrderByIdParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
 }
 type GetCustomerDetailsByShipmentIdParam = {
     /**
@@ -185,6 +192,13 @@ type GetOrdersParam = {
      */
     allowInactive?: boolean;
 };
+type GetPosOrderByIdParam = {
+    /**
+     * - A unique number used for identifying and
+     * tracking your orders.
+     */
+    orderId: string;
+};
 type GetShipmentBagReasonsParam = {
     /**
      * - ID of the shipment. An order may contain
@@ -246,7 +260,7 @@ type UpdateShipmentStatusParam = {
      * its own ID.
      */
     shipmentId: string;
-    body: OrderApplicationModel.UpdateShipmentStatusRequest;
+    body: OrderApplicationModel.UpdateShipmentStatusRequestSchema;
 };
 type VerifyOtpShipmentCustomerParam = {
     /**

@@ -6,8 +6,8 @@ declare class Content {
         getAnnouncements: string;
         getBlog: string;
         getBlogs: string;
-        getCustomFields: string;
-        getCustomObject: string;
+        getCustomFieldsByResourceId: string;
+        getCustomObjectBySlug: string;
         getDataLoaders: string;
         getFaqBySlug: string;
         getFaqCategories: string;
@@ -49,40 +49,42 @@ declare class Content {
      * @summary: Get a blog
      * @description: Get information related to a specific blog such as it's contents, author, publish date, SEO related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
      */
-    getBlog({ slug, rootId, requestHeaders }?: ContentApplicationValidator.GetBlogParam, { responseHeaders }?: object): Promise<ContentApplicationModel.BlogSchema>;
+    getBlog({ slug, rootId, preview, requestHeaders }?: ContentApplicationValidator.GetBlogParam, { responseHeaders }?: object): Promise<ContentApplicationModel.BlogSchema>;
     /**
      * @param {ContentApplicationValidator.GetBlogsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ContentApplicationModel.BlogGetResponse>} - Success response
+     * @returns {Promise<ContentApplicationModel.BlogGetDetails>} - Success response
      * @name getBlogs
      * @summary: List blogs
      * @description: List all the blogs against an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
      */
-    getBlogs({ pageNo, pageSize, tags, search, requestHeaders }?: ContentApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.BlogGetResponse>;
+    getBlogs({ pageNo, pageSize, tags, search, requestHeaders }?: ContentApplicationValidator.GetBlogsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.BlogGetDetails>;
     /**
-     * @param {ContentApplicationValidator.GetCustomFieldsParam} arg - Arg object.
+     * @param {ContentApplicationValidator.GetCustomFieldsByResourceIdParam} arg
+     *   - Arg object.
+     *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ContentApplicationModel.CustomFieldsResponseByResourceIdSchema>}
      *   - Success response
      *
-     * @name getCustomFields
-     * @summary: Get list of custom fields
-     * @description: List custom fields attached to a particular resource by using the resource. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFields/).
+     * @name getCustomFieldsByResourceId
+     * @summary: Get list of custom fields of given resource and resource slug
+     * @description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFieldsByResourceId/).
      */
-    getCustomFields({ resource, resourceId, requestHeaders }?: ContentApplicationValidator.GetCustomFieldsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.CustomFieldsResponseByResourceIdSchema>;
+    getCustomFieldsByResourceId({ resource, resourceSlug, requestHeaders }?: ContentApplicationValidator.GetCustomFieldsByResourceIdParam, { responseHeaders }?: object): Promise<ContentApplicationModel.CustomFieldsResponseByResourceIdSchema>;
     /**
-     * @param {ContentApplicationValidator.GetCustomObjectParam} arg - Arg object.
+     * @param {ContentApplicationValidator.GetCustomObjectBySlugParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<ContentApplicationModel.CustomObjectByIdSchema>} -
      *   Success response
-     * @name getCustomObject
-     * @summary: Get custom object
-     * @description: Get details of custom objects, their field details, definitions, and references can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObject/).
+     * @name getCustomObjectBySlug
+     * @summary: Get custom object details
+     * @description: Details of a custom object entry can be obtained using this endpoint. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObjectBySlug/).
      */
-    getCustomObject({ metaobjectId, requestHeaders }?: ContentApplicationValidator.GetCustomObjectParam, { responseHeaders }?: object): Promise<ContentApplicationModel.CustomObjectByIdSchema>;
+    getCustomObjectBySlug({ definitionSlug, slug, requestHeaders }?: ContentApplicationValidator.GetCustomObjectBySlugParam, { responseHeaders }?: object): Promise<ContentApplicationModel.CustomObjectByIdSchema>;
     /**
      * @param {ContentApplicationValidator.GetDataLoadersParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -169,13 +171,12 @@ declare class Content {
      * @param {ContentApplicationValidator.GetNavigationsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ContentApplicationModel.NavigationGetResponse>} -
-     *   Success response
+     * @returns {Promise<ContentApplicationModel.NavigationGetDetails>} - Success response
      * @name getNavigations
      * @summary: List navigation items
      * @description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
      */
-    getNavigations({ pageNo, pageSize, requestHeaders }?: ContentApplicationValidator.GetNavigationsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.NavigationGetResponse>;
+    getNavigations({ pageNo, pageSize, requestHeaders }?: ContentApplicationValidator.GetNavigationsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.NavigationGetDetails>;
     /**
      * @param {ContentApplicationValidator.GetPageParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -190,12 +191,12 @@ declare class Content {
      * @param {ContentApplicationValidator.GetPagesParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ContentApplicationModel.PageGetResponse>} - Success response
+     * @returns {Promise<ContentApplicationModel.PageGetDetails>} - Success response
      * @name getPages
      * @summary: Lists pages
      * @description: Lists all Custom Pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
      */
-    getPages({ pageNo, pageSize, requestHeaders }?: ContentApplicationValidator.GetPagesParam, { responseHeaders }?: object): Promise<ContentApplicationModel.PageGetResponse>;
+    getPages({ pageNo, pageSize, requestHeaders }?: ContentApplicationValidator.GetPagesParam, { responseHeaders }?: object): Promise<ContentApplicationModel.PageGetDetails>;
     /**
      * @param {ContentApplicationValidator.GetSEOConfigurationParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -230,22 +231,12 @@ declare class Content {
      * @param {ContentApplicationValidator.GetSlideshowsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<ContentApplicationModel.SlideshowGetResponse>} - Success response
+     * @returns {Promise<ContentApplicationModel.SlideshowGetDetails>} - Success response
      * @name getSlideshows
      * @summary: List Slideshows
      * @description: List slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
      */
-    getSlideshows({ pageNo, pageSize, requestHeaders }?: ContentApplicationValidator.GetSlideshowsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.SlideshowGetResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<ContentApplicationModel.SlideshowGetResponse>}
-     * @summary: List Slideshows
-     * @description: List slideshows along with their details.
-     */
-    getSlideshowsPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator<ContentApplicationModel.SlideshowGetResponse>;
+    getSlideshows({ pageNo, pageSize, requestHeaders }?: ContentApplicationValidator.GetSlideshowsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.SlideshowGetDetails>;
     /**
      * @param {ContentApplicationValidator.GetSupportInformationParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -269,4 +260,3 @@ declare class Content {
 }
 import ContentApplicationModel = require("./ContentApplicationModel");
 import ContentApplicationValidator = require("./ContentApplicationValidator");
-import Paginator = require("../../common/Paginator");

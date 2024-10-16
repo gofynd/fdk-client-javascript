@@ -13,7 +13,7 @@ export = CartApplicationValidator;
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
  *   the customer wants the order home-delivered PickAtStore - If the customer
  *   wants the handover of an order at the store itself.
- * @property {CartApplicationModel.AddCartRequest} body
+ * @property {CartApplicationModel.AddCartCreation} body
  */
 /**
  * @typedef ApplyCouponParam
@@ -23,7 +23,7 @@ export = CartApplicationValidator;
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart.
  * @property {string} [cartType] - The type of cart.
- * @property {CartApplicationModel.ApplyCouponRequest} body
+ * @property {CartApplicationModel.ApplyCoupon} body
  */
 /**
  * @typedef ApplyRewardPointsParam
@@ -31,13 +31,19 @@ export = CartApplicationValidator;
  * @property {boolean} [i] - Select `true` to retrieve all the items added in the cart.
  * @property {boolean} [b] - Select `true` to retrieve the price breakup of cart items.
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart.
- * @property {CartApplicationModel.RewardPointRequest} body
+ * @property {CartApplicationModel.RewardPointCreation} body
+ */
+/**
+ * @typedef CheckoutCartParam
+ * @property {boolean} [buyNow] - This indicates the type of cart to checkout.
+ * @property {string} [cartType] - The type of cart.
+ * @property {CartApplicationModel.CartCheckoutDetailCreation} body
  */
 /**
  * @typedef CheckoutCartV2Param
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout.
  * @property {string} [cartType] - The type of cart.
- * @property {CartApplicationModel.CartCheckoutDetailV2Request} body
+ * @property {CartApplicationModel.CartCheckoutDetailV2Creation} body
  */
 /**
  * @typedef DeleteCartParam
@@ -91,7 +97,7 @@ export = CartApplicationValidator;
  */
 /**
  * @typedef GetCartShareLinkParam
- * @property {CartApplicationModel.GetShareCartLinkRequest} body
+ * @property {CartApplicationModel.GetShareCartLinkCreation} body
  */
 /**
  * @typedef GetCartSharedItemsParam
@@ -160,13 +166,13 @@ export = CartApplicationValidator;
  * @property {boolean} [buyNow] - Whether to get buy_now cart.
  * @property {boolean} [i] - Select `true` to retrieve all the items added in the cart.
  * @property {boolean} [b] - Select `true` to retrieve the price breakup of cart items.
- * @property {CartApplicationModel.SelectCartAddressRequest} body
+ * @property {CartApplicationModel.SelectCartAddressCreation} body
  */
 /**
  * @typedef SelectPaymentModeParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Whether to get buy_now cart.
- * @property {CartApplicationModel.UpdateCartPaymentRequest} body
+ * @property {CartApplicationModel.UpdateCartPaymentCreation} body
  */
 /**
  * @typedef UpdateAddressParam
@@ -184,13 +190,13 @@ export = CartApplicationValidator;
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
  *   the customer wants the order home-delivered PickAtStore - If the customer
  *   wants the handover of an order at the store itself.
- * @property {CartApplicationModel.UpdateCartRequest} body
+ * @property {CartApplicationModel.UpdateCartCreation} body
  */
 /**
  * @typedef UpdateCartMetaParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Whether to get buy_now cart.
- * @property {CartApplicationModel.CartMetaRequest} body
+ * @property {CartApplicationModel.CartMetaCreation} body
  */
 /**
  * @typedef UpdateCartWithSharedItemsParam
@@ -222,6 +228,8 @@ declare class CartApplicationValidator {
     static applyCoupon(): ApplyCouponParam;
     /** @returns {ApplyRewardPointsParam} */
     static applyRewardPoints(): ApplyRewardPointsParam;
+    /** @returns {CheckoutCartParam} */
+    static checkoutCart(): CheckoutCartParam;
     /** @returns {CheckoutCartV2Param} */
     static checkoutCartV2(): CheckoutCartV2Param;
     /** @returns {DeleteCartParam} */
@@ -272,7 +280,7 @@ declare class CartApplicationValidator {
     static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartApplicationValidator {
-    export { AddAddressParam, AddItemsParam, ApplyCouponParam, ApplyRewardPointsParam, CheckoutCartV2Param, DeleteCartParam, GetAddressByIdParam, GetAddressesParam, GetBulkDiscountOffersParam, GetCartParam, GetCartLastModifiedParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponsParam, GetItemCountParam, GetLadderOffersParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetShipmentsParam, RemoveAddressParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartWithSharedItemsParam, ValidateCouponForPaymentParam };
+    export { AddAddressParam, AddItemsParam, ApplyCouponParam, ApplyRewardPointsParam, CheckoutCartParam, CheckoutCartV2Param, DeleteCartParam, GetAddressByIdParam, GetAddressesParam, GetBulkDiscountOffersParam, GetCartParam, GetCartLastModifiedParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponsParam, GetItemCountParam, GetLadderOffersParam, GetPromotionOffersParam, GetPromotionPaymentOffersParam, GetShipmentsParam, RemoveAddressParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartWithSharedItemsParam, ValidateCouponForPaymentParam };
 }
 type AddAddressParam = {
     body: CartApplicationModel.Address;
@@ -304,7 +312,7 @@ type AddItemsParam = {
      * wants the handover of an order at the store itself.
      */
     orderType?: string;
-    body: CartApplicationModel.AddCartRequest;
+    body: CartApplicationModel.AddCartCreation;
 };
 type ApplyCouponParam = {
     /**
@@ -331,7 +339,7 @@ type ApplyCouponParam = {
      * - The type of cart.
      */
     cartType?: string;
-    body: CartApplicationModel.ApplyCouponRequest;
+    body: CartApplicationModel.ApplyCoupon;
 };
 type ApplyRewardPointsParam = {
     /**
@@ -350,7 +358,18 @@ type ApplyRewardPointsParam = {
      * - This is boolean to get buy_now cart.
      */
     buyNow?: boolean;
-    body: CartApplicationModel.RewardPointRequest;
+    body: CartApplicationModel.RewardPointCreation;
+};
+type CheckoutCartParam = {
+    /**
+     * - This indicates the type of cart to checkout.
+     */
+    buyNow?: boolean;
+    /**
+     * - The type of cart.
+     */
+    cartType?: string;
+    body: CartApplicationModel.CartCheckoutDetailCreation;
 };
 type CheckoutCartV2Param = {
     /**
@@ -361,7 +380,7 @@ type CheckoutCartV2Param = {
      * - The type of cart.
      */
     cartType?: string;
-    body: CartApplicationModel.CartCheckoutDetailV2Request;
+    body: CartApplicationModel.CartCheckoutDetailV2Creation;
 };
 type DeleteCartParam = {
     /**
@@ -489,7 +508,7 @@ type GetCartLastModifiedParam = {
     id?: string;
 };
 type GetCartShareLinkParam = {
-    body: CartApplicationModel.GetShareCartLinkRequest;
+    body: CartApplicationModel.GetShareCartLinkCreation;
 };
 type GetCartSharedItemsParam = {
     /**
@@ -641,7 +660,7 @@ type SelectAddressParam = {
      * - Select `true` to retrieve the price breakup of cart items.
      */
     b?: boolean;
-    body: CartApplicationModel.SelectCartAddressRequest;
+    body: CartApplicationModel.SelectCartAddressCreation;
 };
 type SelectPaymentModeParam = {
     /**
@@ -652,7 +671,7 @@ type SelectPaymentModeParam = {
      * - Whether to get buy_now cart.
      */
     buyNow?: boolean;
-    body: CartApplicationModel.UpdateCartPaymentRequest;
+    body: CartApplicationModel.UpdateCartPaymentCreation;
 };
 type UpdateAddressParam = {
     /**
@@ -692,7 +711,7 @@ type UpdateCartParam = {
      * wants the handover of an order at the store itself.
      */
     orderType?: string;
-    body: CartApplicationModel.UpdateCartRequest;
+    body: CartApplicationModel.UpdateCartCreation;
 };
 type UpdateCartMetaParam = {
     /**
@@ -703,7 +722,7 @@ type UpdateCartMetaParam = {
      * - Whether to get buy_now cart.
      */
     buyNow?: boolean;
-    body: CartApplicationModel.CartMetaRequest;
+    body: CartApplicationModel.CartMetaCreation;
 };
 type UpdateCartWithSharedItemsParam = {
     /**

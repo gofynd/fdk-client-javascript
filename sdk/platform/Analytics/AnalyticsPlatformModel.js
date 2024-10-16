@@ -13,15 +13,32 @@ const Joi = require("joi");
 
 /**
  * @typedef FileDownloadRequestBody
- * @property {string} query - Base64 encoded query to execute on clickhouse.
- * @property {boolean} [split_files] - Flag to indicate whether to split files
- *   for larger data.
+ * @property {string} query - Base64 encoded SQL query to execute on ClickHouse.
+ * @property {boolean} [split_files] - Flag indicating whether to split the
+ *   files for larger datasets.
  */
 
 /**
  * @typedef JobExecute
- * @property {string} query - Base64 encoded query to execute on clickhouse.
+ * @property {string} query - Base64 encoded SQL query to execute on ClickHouse.
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef JobExecutionResult
+ * @property {Object[]} [rows] - Array of rows resulting from the job execution.
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef JobStatus
+ * @property {string} [start_date] - The start date and time of the job.
+ * @property {string} [end_date] - The end date and time of the job.
+ * @property {string} [status] - The current status of the job.
+ * @property {string} [message] - Message providing additional details about the
+ *   job status.
+ * @property {Object[]} [file_metadata] - Metadata about files associated with
+ *   the job, if any.
  */
 
 class AnalyticsPlatformModel {
@@ -51,6 +68,25 @@ class AnalyticsPlatformModel {
     return Joi.object({
       query: Joi.string().allow("").required(),
       page: AnalyticsPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {JobExecutionResult} */
+  static JobExecutionResult() {
+    return Joi.object({
+      rows: Joi.array().items(Joi.any()),
+      page: AnalyticsPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {JobStatus} */
+  static JobStatus() {
+    return Joi.object({
+      start_date: Joi.string().allow(""),
+      end_date: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      file_metadata: Joi.array().items(Joi.any()).allow(null, ""),
     });
   }
 }

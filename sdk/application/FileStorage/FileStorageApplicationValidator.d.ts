@@ -5,11 +5,11 @@ export = FileStorageApplicationValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStorageApplicationModel.StartResponse} body
+ * @property {FileStorageApplicationModel.FileUpload} body
  */
 /**
  * @typedef SignUrlsParam
- * @property {FileStorageApplicationModel.SignUrlRequest} body
+ * @property {FileStorageApplicationModel.SignUrl} body
  */
 /**
  * @typedef StartUploadParam
@@ -17,7 +17,7 @@ export = FileStorageApplicationValidator;
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
  *   inside the storage bucket.
- * @property {FileStorageApplicationModel.StartRequest} body
+ * @property {FileStorageApplicationModel.FileUploadStart} body
  */
 declare class FileStorageApplicationValidator {
     /** @returns {CompleteUploadParam} */
@@ -38,10 +38,10 @@ type CompleteUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStorageApplicationModel.StartResponse;
+    body: FileStorageApplicationModel.FileUpload;
 };
 type SignUrlsParam = {
-    body: FileStorageApplicationModel.SignUrlRequest;
+    body: FileStorageApplicationModel.SignUrl;
 };
 type StartUploadParam = {
     /**
@@ -51,6 +51,6 @@ type StartUploadParam = {
      * inside the storage bucket.
      */
     namespace: string;
-    body: FileStorageApplicationModel.StartRequest;
+    body: FileStorageApplicationModel.FileUploadStart;
 };
 import FileStorageApplicationModel = require("./FileStorageApplicationModel");

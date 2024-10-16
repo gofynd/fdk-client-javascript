@@ -350,8 +350,7 @@ class Lead {
    * @param {LeadApplicationValidator.SubmitCustomFormParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LeadApplicationModel.SubmitCustomFormResponse>} -
-   *   Success response
+   * @returns {Promise<LeadApplicationModel.SubmitCustomFormDetails>} - Success response
    * @name submitCustomForm
    * @summary: Submits form data
    * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
@@ -406,7 +405,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadApplicationModel.SubmitCustomFormResponse().validate(responseData, {
+    } = LeadApplicationModel.SubmitCustomFormDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

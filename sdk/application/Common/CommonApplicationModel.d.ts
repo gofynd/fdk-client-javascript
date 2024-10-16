@@ -1,6 +1,6 @@
 export = CommonApplicationModel;
 /**
- * @typedef ApplicationResponse
+ * @typedef ApplicationResponseSchema
  * @property {Application} [application]
  */
 /**
@@ -88,7 +88,7 @@ export = CommonApplicationModel;
  * @property {string} [message] - Response message for not found.
  */
 /**
- * @typedef BadRequest
+ * @typedef BadRequestSchema
  * @property {string} [message] - Failure message (in a string format).
  */
 /**
@@ -132,11 +132,11 @@ export = CommonApplicationModel;
 declare class CommonApplicationModel {
 }
 declare namespace CommonApplicationModel {
-    export { ApplicationResponse, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequest, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
+    export { ApplicationResponseSchema, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequestSchema, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations };
 }
-/** @returns {ApplicationResponse} */
-declare function ApplicationResponse(): ApplicationResponse;
-type ApplicationResponse = {
+/** @returns {ApplicationResponseSchema} */
+declare function ApplicationResponseSchema(): ApplicationResponseSchema;
+type ApplicationResponseSchema = {
     application?: Application;
 };
 /** @returns {Domain} */
@@ -334,9 +334,9 @@ type NotFound = {
      */
     message?: string;
 };
-/** @returns {BadRequest} */
-declare function BadRequest(): BadRequest;
-type BadRequest = {
+/** @returns {BadRequestSchema} */
+declare function BadRequestSchema(): BadRequestSchema;
+type BadRequestSchema = {
     /**
      * - Failure message (in a string format).
      */

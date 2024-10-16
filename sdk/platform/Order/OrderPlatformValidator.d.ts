@@ -9,15 +9,13 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef BulkListingParam
- * @property {number} pageSize - The number of records to return per page in the response.
- * @property {number} pageNo - The page number to fetch from the paginated results.
- * @property {string} startDate - The start date for filtering the jobs,
- *   expressed in UTC format
- * @property {string} endDate - The end date for filtering the jobs, expressed
- *   in UTC format
- * @property {string} [status] - The status of the jobs to filter the results.
- * @property {string} [bulkActionType] - Pecifies the type of job action being requested.
- * @property {string} [searchKey] - A key or keyword used to search for specific jobs.
+ * @property {number} pageSize - Page size
+ * @property {number} pageNo - Page number
+ * @property {string} startDate - UTC start date in ISO format
+ * @property {string} endDate - UTC end date in ISO format
+ * @property {string} [status] - Status for which to fetch the jobs.
+ * @property {string} [bulkActionType] - Job type.
+ * @property {string} [searchKey] - Search_key.
  */
 /**
  * @typedef BulkStateTransistionParam
@@ -26,6 +24,10 @@ export = OrderPlatformValidator;
 /**
  * @typedef CheckOrderStatusParam
  * @property {OrderPlatformModel.OrderStatus} body
+ */
+/**
+ * @typedef CreateChannelConfigParam
+ * @property {OrderPlatformModel.CreateChannelConfigData} body
  */
 /**
  * @typedef CreateOrderParam
@@ -41,7 +43,7 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef DownloadLanesReportParam
- * @property {OrderPlatformModel.BulkReportsDownloadRequest} body
+ * @property {OrderPlatformModel.BulkReportsDownloadRequestSchema} body
  */
 /**
  * @typedef EInvoiceRetryParam
@@ -50,6 +52,10 @@ export = OrderPlatformValidator;
 /**
  * @typedef FailedOrderLogDetailsParam
  * @property {string} logId - Log Error ID
+ */
+/**
+ * @typedef FetchCreditBalanceDetailParam
+ * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
  */
 /**
  * @typedef FetchRefundModeConfigParam
@@ -68,18 +74,18 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef GenerateProcessManifestParam
- * @property {OrderPlatformModel.ProcessManifestRequest} body
+ * @property {OrderPlatformModel.ProcessManifestRequestSchema} body
  */
 /**
  * @typedef GetAllowedStateTransitionParam
- * @property {string} orderingChannel - The channel through which orders are placed.
- * @property {string} status - The status key indicates the current status for
- *   which the API will provide a list of possible next state transitions.
+ * @property {string} orderingChannel - Ordering channel
+ * @property {string} status - Current status of a shipment
  */
 /** @typedef GetAllowedTemplatesForBulkParam */
 /**
  * @typedef GetAnnouncementsParam
- * @property {string} [date] - Date On which the announcement is Active.
+ * @property {string} [date] - Date On which the announcement is Active (Date
+ *   should in ISO Datetime format IST Time)
  */
 /**
  * @typedef GetBagByIdParam
@@ -104,8 +110,8 @@ export = OrderPlatformValidator;
  * @typedef GetBulkShipmentExcelFileParam
  * @property {string} [salesChannels] - Comma separated values of sales channel ids
  * @property {string} [dpIds] - Comma separated values of delivery partner ids
- * @property {string} [startDate] - UTC start date in ISO format
- * @property {string} [endDate] - UTC end date in ISO format
+ * @property {string} [startDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [endDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [stores] - Comma separated values of store ids
  * @property {string} [tags] - Comma separated values of tags
  * @property {string} [bagStatus] - Comma separated values of bag statuses
@@ -115,12 +121,13 @@ export = OrderPlatformValidator;
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  */
+/** @typedef GetChannelConfigParam */
 /**
  * @typedef GetFileByStatusParam
- * @property {string} batchId - Batch Id to identify the bulk operation request.
- * @property {string} status - The status of the jobs to filter the results.
- * @property {string} fileType - The type of file to be downloaded.
- * @property {string} [reportType] - The type of report to be downloaded.
+ * @property {string} batchId
+ * @property {string} status
+ * @property {string} fileType - It contains the type of file.
+ * @property {string} [reportType]
  */
 /**
  * @typedef GetLaneConfigParam
@@ -135,38 +142,44 @@ export = OrderPlatformValidator;
  * @property {string} [salesChannels]
  * @property {string} [paymentMode] - Comma separated values of payment modes
  * @property {string} [bagStatus] - Comma separated values of bag statuses
- * @property {string} [searchType]
+ * @property {string} [searchType] - Search_type refers to the field that will
+ *   be used as the target for the search operation
  * @property {string} [searchValue]
  * @property {string} [tags]
- * @property {number} [timeToDispatch]
+ * @property {number} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
  * @property {string} [paymentMethods]
  * @property {boolean} [myOrders]
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
  *   company order
- * @property {string} [orderType]
+ * @property {string} [orderType] - Defines the specific journey a shipment will
+ *   follow based on the application's operational needs and customer
+ *   preferences. This field categorizes orders into distinct types, each
+ *   associated with a unique processing flow. For example:
+ *
+ *   - "HomeDelivery": The order undergoes all state transitions typical for a
+ *       delivery, from processing the shipment to final delivery at the
+ *       customer's address.
+ *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
+ *       is ready to be handed over directly to the customer at the store. This
+ *       type streamlines the process by bypassing traditional shipping stages
+ *       and facilitating a quicker transition to the final handover stage.
  */
 /**
  * @typedef GetManifestDetailsParam
- * @property {string} manifestId - The unique identifier assigned to the manifest.
- * @property {string} [dpIds] - Filter shipments with the specific Courier
- *   partner Ids which is a combination of courier partner extension and scheme Ids.
- * @property {string} [endDate] - End date for the shipment search range in manifest.
- * @property {string} [startDate] - Start date for the shipment search range in manifest.
- * @property {number} [pageNo] - Page number for pagination.
- * @property {number} [pageSize] - Number of records per page for pagination.
+ * @property {string} manifestId
  */
 /**
  * @typedef GetManifestShipmentsParam
  * @property {string} dpIds - Filter shipments with the specific Courier partner
  *   Ids which is a combination of courier partner extension and scheme Ids.
- * @property {number} stores - Filter results based on specific store IDs.
+ * @property {number} stores - Filter with the specific store.
  * @property {string} toDate - End date for the shipment search range.
  * @property {string} fromDate - Start date for the shipment search range.
- * @property {string} [dpName] - Filter results based on specific courier partner name.
- * @property {string} [salesChannels] - Filter results based on comma-separated
- *   list of sales channels.
- * @property {string} [searchType] - Filter results based on search type.
- * @property {string} [searchValue] - Filter results based on the search value.
+ * @property {string} [dpName] - Filter with the specific courier partner name.
+ * @property {string} [salesChannels] - Comma-separated list of sales channels.
+ * @property {string} [searchType] - Type of search (e.g., by shipment ID, order
+ *   ID, AWB number).
+ * @property {string} [searchValue] - Value to search for based on the search type.
  * @property {number} [pageNo] - Page number for pagination.
  * @property {number} [pageSize] - Number of records per page for pagination.
  */
@@ -176,20 +189,16 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef GetManifestsParam
- * @property {string} [status] - Filter for the status of manifests.
- * @property {string} [startDate] - The starting date for filtering manifests in
- *   ISO format
- * @property {string} [endDate] - The end date for filtering manifests in ISO format
- * @property {string} [searchType] - Specifies the type of search to perform.
- * @property {number} [storeId] - Filter to fetch manifests for a specific store
- *   by its ID.
- * @property {string} [searchValue] - The value to search for based on the
- *   selected search type.
- * @property {string} [dpIds] - A comma-separated list of courier partner IDs
- *   (DP IDs) to filter the manifests.
- * @property {number} [pageNo] - The number of the page to fetch data.
- * @property {number} [pageSize] - The number of records to return per page for
- *   pagination.
+ * @property {string} [status] - Possible Status [ active, closed ]
+ * @property {string} [startDate] - UTC Start Date in ISO format
+ * @property {string} [endDate] - UTC End Date in ISO format
+ * @property {string} [searchType] - Search type options [ fynd_order_id,
+ *   shipment_id, manifest_id, dp_name, awb_no ]
+ * @property {number} [storeId] - Fetch manifests for a Store.
+ * @property {string} [searchValue] - Search value for selected search type
+ * @property {string} [dpIds] - DP Ids separated by ',' (comma)
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
  */
 /**
  * @typedef GetOrderByIdParam
@@ -211,10 +220,10 @@ export = OrderPlatformValidator;
  *   associated with the order
  * @property {string} [searchValue] - Search_value is matched against the field
  *   specified by the search_type
- * @property {string} [fromDate]
- * @property {string} [toDate]
- * @property {string} [startDate]
- * @property {string} [endDate]
+ * @property {string} [fromDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [toDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [startDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [endDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [dpIds] - Delivery Partner IDs to which shipments are assigned.
  * @property {string} [stores]
  * @property {string} [salesChannels]
@@ -229,6 +238,11 @@ export = OrderPlatformValidator;
  * @property {string} [orderType]
  * @property {boolean} [allowInactive] - Flag indicating whether inactive
  *   shipments are allowed
+ * @property {string} [groupEntity] - Defines the grouping criterion for
+ *   retrieving shipments or orders. It specifies whether the results should be
+ *   organized based on shipment groups or order groups. For example, using
+ *   'shipments' groups results by shipment, while an invalid value like 'abcd'
+ *   may not be recognized, leading to errors or default behavior.
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
@@ -242,8 +256,8 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef GetShipmentHistoryParam
- * @property {string} [shipmentId] - Identifier for the shipment
- * @property {number} [bagId] - Identifier for a bag or product.
+ * @property {string} [shipmentId] - Shipment Id
+ * @property {number} [bagId] - Bag/Product Id
  */
 /**
  * @typedef GetShipmentReasonsParam
@@ -260,8 +274,9 @@ export = OrderPlatformValidator;
  * @property {string} [bagStatus] - Comma separated values of bag statuses
  * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
  *   bag_status and override lane
- * @property {number} [timeToDispatch]
- * @property {string} [searchType] - Search type key
+ * @property {number} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
+ * @property {string} [searchType] - Search_type refers to the field that will
+ *   be used as the target for the search operation
  * @property {string} [searchValue] - Search type value
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
  * @property {string} [toDate] - End Date in DD-MM-YYYY format
@@ -288,7 +303,24 @@ export = OrderPlatformValidator;
  *   company order
  * @property {string} [tags] - Comma separated values of tags
  * @property {string} [customerId]
- * @property {string} [orderType]
+ * @property {string} [orderType] - Defines the specific journey a shipment will
+ *   follow based on the application's operational needs and customer
+ *   preferences. This field categorizes orders into distinct types, each
+ *   associated with a unique processing flow. For example:
+ *
+ *   - "HomeDelivery": The order undergoes all state transitions typical for a
+ *       delivery, from processing the shipment to final delivery at the
+ *       customer's address.
+ *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
+ *       is ready to be handed over directly to the customer at the store. This
+ *       type streamlines the process by bypassing traditional shipping stages
+ *       and facilitating a quicker transition to the final handover stage.
+ *
+ * @property {string} [groupEntity] - Defines the grouping criterion for
+ *   retrieving shipments or orders. It specifies whether the results should be
+ *   organized based on shipment groups or order groups. For example, using
+ *   'shipments' groups results by shipment, while an invalid value like 'abcd'
+ *   may not be recognized, leading to errors or default behavior.
  */
 /**
  * @typedef GetStateManagerConfigParam
@@ -312,8 +344,7 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef JobDetailsParam
- * @property {string} batchId - A unique identifier for the batch associated
- *   with this bulk action.
+ * @property {string} batchId
  */
 /**
  * @typedef OrderUpdateParam
@@ -322,6 +353,10 @@ export = OrderPlatformValidator;
 /**
  * @typedef PostShipmentHistoryParam
  * @property {OrderPlatformModel.PostShipmentHistory} body
+ */
+/**
+ * @typedef ProcessManifestsParam
+ * @property {OrderPlatformModel.ProcessManifest} body
  */
 /**
  * @typedef ReassignLocationParam
@@ -337,29 +372,23 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef TrackShipmentParam
- * @property {string} [shipmentId] - Unique identifier of a shipment on the platform.
+ * @property {string} [shipmentId] - Shipment ID
  * @property {string} [awb] - AWB number
- * @property {number} [pageNo] - Page number for pagination.
- * @property {number} [pageSize] - Number of records per page for pagination.
+ * @property {number} [pageNo] - Page number
+ * @property {number} [pageSize] - Page size
  */
 /**
  * @typedef UpdateAddressParam
- * @property {string} shipmentId
- * @property {string} [name]
- * @property {string} [address]
- * @property {string} [addressType]
- * @property {string} [pincode]
- * @property {string} [phone]
- * @property {string} [email]
- * @property {string} [landmark]
- * @property {string} addressCategory
- * @property {string} [city]
- * @property {string} [state]
- * @property {string} [country]
+ * @property {string} shipmentId - Unique shipment no. that is auto-generated
+ * @property {OrderPlatformModel.UpdateAddressRequestBody} body
  */
 /**
  * @typedef UpdatePackagingDimensionsParam
  * @property {OrderPlatformModel.UpdatePackagingDimensionsPayload} body
+ */
+/**
+ * @typedef UpdatePaymentInfoParam
+ * @property {OrderPlatformModel.UpdateShipmentPaymentMode} body
  */
 /**
  * @typedef UpdateShipmentLockParam
@@ -375,7 +404,8 @@ export = OrderPlatformValidator;
  */
 /**
  * @typedef UploadConsentsParam
- * @property {OrderPlatformModel.UploadManifestConsent} body
+ * @property {string} manifestId
+ * @property {OrderPlatformModel.UploadConsent} body
  */
 /**
  * @typedef VerifyMobileOTPParam
@@ -392,6 +422,8 @@ declare class OrderPlatformValidator {
     static bulkStateTransistion(): BulkStateTransistionParam;
     /** @returns {CheckOrderStatusParam} */
     static checkOrderStatus(): CheckOrderStatusParam;
+    /** @returns {CreateChannelConfigParam} */
+    static createChannelConfig(): CreateChannelConfigParam;
     /** @returns {CreateOrderParam} */
     static createOrder(): CreateOrderParam;
     /** @returns {DispatchManifestsParam} */
@@ -404,6 +436,8 @@ declare class OrderPlatformValidator {
     static eInvoiceRetry(): EInvoiceRetryParam;
     /** @returns {FailedOrderLogDetailsParam} */
     static failedOrderLogDetails(): FailedOrderLogDetailsParam;
+    /** @returns {FetchCreditBalanceDetailParam} */
+    static fetchCreditBalanceDetail(): FetchCreditBalanceDetailParam;
     /** @returns {FetchRefundModeConfigParam} */
     static fetchRefundModeConfig(): FetchRefundModeConfigParam;
     /** @returns {GenerateInvoiceIDParam} */
@@ -426,6 +460,8 @@ declare class OrderPlatformValidator {
     static getBulkActionTemplate(): any;
     /** @returns {GetBulkShipmentExcelFileParam} */
     static getBulkShipmentExcelFile(): GetBulkShipmentExcelFileParam;
+    /** @returns {GetChannelConfigParam} */
+    static getChannelConfig(): any;
     /** @returns {GetFileByStatusParam} */
     static getFileByStatus(): GetFileByStatusParam;
     /** @returns {GetLaneConfigParam} */
@@ -468,6 +504,8 @@ declare class OrderPlatformValidator {
     static orderUpdate(): OrderUpdateParam;
     /** @returns {PostShipmentHistoryParam} */
     static postShipmentHistory(): PostShipmentHistoryParam;
+    /** @returns {ProcessManifestsParam} */
+    static processManifests(): ProcessManifestsParam;
     /** @returns {ReassignLocationParam} */
     static reassignLocation(): ReassignLocationParam;
     /** @returns {SendSmsNinjaParam} */
@@ -480,6 +518,8 @@ declare class OrderPlatformValidator {
     static updateAddress(): UpdateAddressParam;
     /** @returns {UpdatePackagingDimensionsParam} */
     static updatePackagingDimensions(): UpdatePackagingDimensionsParam;
+    /** @returns {UpdatePaymentInfoParam} */
+    static updatePaymentInfo(): UpdatePaymentInfoParam;
     /** @returns {UpdateShipmentLockParam} */
     static updateShipmentLock(): UpdateShipmentLockParam;
     /** @returns {UpdateShipmentStatusParam} */
@@ -492,7 +532,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
+    export { AddStateManagerConfigParam, AttachOrderUserParam, BulkListingParam, BulkStateTransistionParam, CheckOrderStatusParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestsParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FailedOrderLogDetailsParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GenerateProcessManifestParam, GetAllowedStateTransitionParam, GetAllowedTemplatesForBulkParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetFileByStatusParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateManagerConfigParam, GetStateTransitionMapParam, GetTemplateParam, GetfiltersParam, InvalidateShipmentCacheParam, JobDetailsParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestsParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdatePaymentInfoParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentsParam, VerifyMobileOTPParam };
 }
 type AddStateManagerConfigParam = {
     body: OrderPlatformModel.TransitionConfigPayload;
@@ -502,33 +542,31 @@ type AttachOrderUserParam = {
 };
 type BulkListingParam = {
     /**
-     * - The number of records to return per page in the response.
+     * - Page size
      */
     pageSize: number;
     /**
-     * - The page number to fetch from the paginated results.
+     * - Page number
      */
     pageNo: number;
     /**
-     * - The start date for filtering the jobs,
-     * expressed in UTC format
+     * - UTC start date in ISO format
      */
     startDate: string;
     /**
-     * - The end date for filtering the jobs, expressed
-     * in UTC format
+     * - UTC end date in ISO format
      */
     endDate: string;
     /**
-     * - The status of the jobs to filter the results.
+     * - Status for which to fetch the jobs.
      */
     status?: string;
     /**
-     * - Pecifies the type of job action being requested.
+     * - Job type.
      */
     bulkActionType?: string;
     /**
-     * - A key or keyword used to search for specific jobs.
+     * - Search_key.
      */
     searchKey?: string;
 };
@@ -537,6 +575,9 @@ type BulkStateTransistionParam = {
 };
 type CheckOrderStatusParam = {
     body: OrderPlatformModel.OrderStatus;
+};
+type CreateChannelConfigParam = {
+    body: OrderPlatformModel.CreateChannelConfigData;
 };
 type CreateOrderParam = {
     body: OrderPlatformModel.CreateOrderAPI;
@@ -551,7 +592,7 @@ type DownloadBulkActionTemplateParam = {
     templateSlug?: string;
 };
 type DownloadLanesReportParam = {
-    body: OrderPlatformModel.BulkReportsDownloadRequest;
+    body: OrderPlatformModel.BulkReportsDownloadRequestSchema;
 };
 type EInvoiceRetryParam = {
     body: OrderPlatformModel.EInvoiceRetry;
@@ -561,6 +602,9 @@ type FailedOrderLogDetailsParam = {
      * - Log Error ID
      */
     logId: string;
+};
+type FetchCreditBalanceDetailParam = {
+    body: OrderPlatformModel.FetchCreditBalanceRequestPayload;
 };
 type FetchRefundModeConfigParam = {
     body: OrderPlatformModel.RefundModeConfigRequestPayload;
@@ -578,22 +622,22 @@ type GeneratePOSReceiptByOrderIdParam = {
     documentType?: string;
 };
 type GenerateProcessManifestParam = {
-    body: OrderPlatformModel.ProcessManifestRequest;
+    body: OrderPlatformModel.ProcessManifestRequestSchema;
 };
 type GetAllowedStateTransitionParam = {
     /**
-     * - The channel through which orders are placed.
+     * - Ordering channel
      */
     orderingChannel: string;
     /**
-     * - The status key indicates the current status for
-     * which the API will provide a list of possible next state transitions.
+     * - Current status of a shipment
      */
     status: string;
 };
 type GetAnnouncementsParam = {
     /**
-     * - Date On which the announcement is Active.
+     * - Date On which the announcement is Active (Date
+     * should in ISO Datetime format IST Time)
      */
     date?: string;
 };
@@ -659,11 +703,11 @@ type GetBulkShipmentExcelFileParam = {
      */
     dpIds?: string;
     /**
-     * - UTC start date in ISO format
+     * - Date time in UTC timezone as per ISO format.
      */
     startDate?: string;
     /**
-     * - UTC end date in ISO format
+     * - Date time in UTC timezone as per ISO format.
      */
     endDate?: string;
     /**
@@ -694,21 +738,12 @@ type GetBulkShipmentExcelFileParam = {
     pageSize?: number;
 };
 type GetFileByStatusParam = {
-    /**
-     * - Batch Id to identify the bulk operation request.
-     */
     batchId: string;
-    /**
-     * - The status of the jobs to filter the results.
-     */
     status: string;
     /**
-     * - The type of file to be downloaded.
+     * - It contains the type of file.
      */
     fileType: string;
-    /**
-     * - The type of report to be downloaded.
-     */
     reportType?: string;
 };
 type GetLaneConfigParam = {
@@ -753,9 +788,16 @@ type GetLaneConfigParam = {
      * - Comma separated values of bag statuses
      */
     bagStatus?: string;
+    /**
+     * - Search_type refers to the field that will
+     * be used as the target for the search operation
+     */
     searchType?: string;
     searchValue?: string;
     tags?: string;
+    /**
+     * - Time_to_dispatch refers to estimated SLA time.
+     */
     timeToDispatch?: number;
     paymentMethods?: string;
     myOrders?: boolean;
@@ -764,34 +806,24 @@ type GetLaneConfigParam = {
      * company order
      */
     showCrossCompanyData?: boolean;
+    /**
+     * - Defines the specific journey a shipment will
+     * follow based on the application's operational needs and customer
+     * preferences. This field categorizes orders into distinct types, each
+     * associated with a unique processing flow. For example:
+     *
+     * - "HomeDelivery": The order undergoes all state transitions typical for a
+     * delivery, from processing the shipment to final delivery at the
+     * customer's address.
+     * - "PickAtStore": The order is prepared for pickup and moved to a state where it
+     * is ready to be handed over directly to the customer at the store. This
+     * type streamlines the process by bypassing traditional shipping stages
+     * and facilitating a quicker transition to the final handover stage.
+     */
     orderType?: string;
 };
 type GetManifestDetailsParam = {
-    /**
-     * - The unique identifier assigned to the manifest.
-     */
     manifestId: string;
-    /**
-     * - Filter shipments with the specific Courier
-     * partner Ids which is a combination of courier partner extension and scheme Ids.
-     */
-    dpIds?: string;
-    /**
-     * - End date for the shipment search range in manifest.
-     */
-    endDate?: string;
-    /**
-     * - Start date for the shipment search range in manifest.
-     */
-    startDate?: string;
-    /**
-     * - Page number for pagination.
-     */
-    pageNo?: number;
-    /**
-     * - Number of records per page for pagination.
-     */
-    pageSize?: number;
 };
 type GetManifestShipmentsParam = {
     /**
@@ -800,7 +832,7 @@ type GetManifestShipmentsParam = {
      */
     dpIds: string;
     /**
-     * - Filter results based on specific store IDs.
+     * - Filter with the specific store.
      */
     stores: number;
     /**
@@ -812,20 +844,20 @@ type GetManifestShipmentsParam = {
      */
     fromDate: string;
     /**
-     * - Filter results based on specific courier partner name.
+     * - Filter with the specific courier partner name.
      */
     dpName?: string;
     /**
-     * - Filter results based on comma-separated
-     * list of sales channels.
+     * - Comma-separated list of sales channels.
      */
     salesChannels?: string;
     /**
-     * - Filter results based on search type.
+     * - Type of search (e.g., by shipment ID, order
+     * ID, AWB number).
      */
     searchType?: string;
     /**
-     * - Filter results based on the search value.
+     * - Value to search for based on the search type.
      */
     searchValue?: string;
     /**
@@ -845,45 +877,35 @@ type GetManifestfiltersParam = {
 };
 type GetManifestsParam = {
     /**
-     * - Filter for the status of manifests.
+     * - Possible Status [ active, closed ]
      */
     status?: string;
     /**
-     * - The starting date for filtering manifests in
-     * ISO format
+     * - UTC Start Date in ISO format
      */
     startDate?: string;
     /**
-     * - The end date for filtering manifests in ISO format
+     * - UTC End Date in ISO format
      */
     endDate?: string;
     /**
-     * - Specifies the type of search to perform.
+     * - Search type options [ fynd_order_id,
+     * shipment_id, manifest_id, dp_name, awb_no ]
      */
     searchType?: string;
     /**
-     * - Filter to fetch manifests for a specific store
-     * by its ID.
+     * - Fetch manifests for a Store.
      */
     storeId?: number;
     /**
-     * - The value to search for based on the
-     * selected search type.
+     * - Search value for selected search type
      */
     searchValue?: string;
     /**
-     * - A comma-separated list of courier partner IDs
-     * (DP IDs) to filter the manifests.
+     * - DP Ids separated by ',' (comma)
      */
     dpIds?: string;
-    /**
-     * - The number of the page to fetch data.
-     */
     pageNo?: number;
-    /**
-     * - The number of records to return per page for
-     * pagination.
-     */
     pageSize?: number;
 };
 type GetOrderByIdParam = {
@@ -925,9 +947,21 @@ type GetOrdersParam = {
      * specified by the search_type
      */
     searchValue?: string;
+    /**
+     * - Date time in UTC timezone as per ISO format.
+     */
     fromDate?: string;
+    /**
+     * - Date time in UTC timezone as per ISO format.
+     */
     toDate?: string;
+    /**
+     * - Date time in UTC timezone as per ISO format.
+     */
     startDate?: string;
+    /**
+     * - Date time in UTC timezone as per ISO format.
+     */
     endDate?: string;
     /**
      * - Delivery Partner IDs to which shipments are assigned.
@@ -952,6 +986,14 @@ type GetOrdersParam = {
      * shipments are allowed
      */
     allowInactive?: boolean;
+    /**
+     * - Defines the grouping criterion for
+     * retrieving shipments or orders. It specifies whether the results should be
+     * organized based on shipment groups or order groups. For example, using
+     * 'shipments' groups results by shipment, while an invalid value like 'abcd'
+     * may not be recognized, leading to errors or default behavior.
+     */
+    groupEntity?: string;
 };
 type GetShipmentByIdParam = {
     /**
@@ -975,11 +1017,11 @@ type GetShipmentByIdParam = {
 };
 type GetShipmentHistoryParam = {
     /**
-     * - Identifier for the shipment
+     * - Shipment Id
      */
     shipmentId?: string;
     /**
-     * - Identifier for a bag or product.
+     * - Bag/Product Id
      */
     bagId?: number;
 };
@@ -1014,9 +1056,13 @@ type GetShipmentsParam = {
      * bag_status and override lane
      */
     statusOverrideLane?: boolean;
+    /**
+     * - Time_to_dispatch refers to estimated SLA time.
+     */
     timeToDispatch?: number;
     /**
-     * - Search type key
+     * - Search_type refers to the field that will
+     * be used as the target for the search operation
      */
     searchType?: string;
     /**
@@ -1102,7 +1148,29 @@ type GetShipmentsParam = {
      */
     tags?: string;
     customerId?: string;
+    /**
+     * - Defines the specific journey a shipment will
+     * follow based on the application's operational needs and customer
+     * preferences. This field categorizes orders into distinct types, each
+     * associated with a unique processing flow. For example:
+     *
+     * - "HomeDelivery": The order undergoes all state transitions typical for a
+     * delivery, from processing the shipment to final delivery at the
+     * customer's address.
+     * - "PickAtStore": The order is prepared for pickup and moved to a state where it
+     * is ready to be handed over directly to the customer at the store. This
+     * type streamlines the process by bypassing traditional shipping stages
+     * and facilitating a quicker transition to the final handover stage.
+     */
     orderType?: string;
+    /**
+     * - Defines the grouping criterion for
+     * retrieving shipments or orders. It specifies whether the results should be
+     * organized based on shipment groups or order groups. For example, using
+     * 'shipments' groups results by shipment, while an invalid value like 'abcd'
+     * may not be recognized, leading to errors or default behavior.
+     */
+    groupEntity?: string;
 };
 type GetStateManagerConfigParam = {
     /**
@@ -1135,10 +1203,6 @@ type InvalidateShipmentCacheParam = {
     body: OrderPlatformModel.InvalidateShipmentCachePayload;
 };
 type JobDetailsParam = {
-    /**
-     * - A unique identifier for the batch associated
-     * with this bulk action.
-     */
     batchId: string;
 };
 type OrderUpdateParam = {
@@ -1146,6 +1210,9 @@ type OrderUpdateParam = {
 };
 type PostShipmentHistoryParam = {
     body: OrderPlatformModel.PostShipmentHistory;
+};
+type ProcessManifestsParam = {
+    body: OrderPlatformModel.ProcessManifest;
 };
 type ReassignLocationParam = {
     body: OrderPlatformModel.StoreReassign;
@@ -1158,7 +1225,7 @@ type SendUserMobileOTPParam = {
 };
 type TrackShipmentParam = {
     /**
-     * - Unique identifier of a shipment on the platform.
+     * - Shipment ID
      */
     shipmentId?: string;
     /**
@@ -1166,30 +1233,26 @@ type TrackShipmentParam = {
      */
     awb?: string;
     /**
-     * - Page number for pagination.
+     * - Page number
      */
     pageNo?: number;
     /**
-     * - Number of records per page for pagination.
+     * - Page size
      */
     pageSize?: number;
 };
 type UpdateAddressParam = {
+    /**
+     * - Unique shipment no. that is auto-generated
+     */
     shipmentId: string;
-    name?: string;
-    address?: string;
-    addressType?: string;
-    pincode?: string;
-    phone?: string;
-    email?: string;
-    landmark?: string;
-    addressCategory: string;
-    city?: string;
-    state?: string;
-    country?: string;
+    body: OrderPlatformModel.UpdateAddressRequestBody;
 };
 type UpdatePackagingDimensionsParam = {
     body: OrderPlatformModel.UpdatePackagingDimensionsPayload;
+};
+type UpdatePaymentInfoParam = {
+    body: OrderPlatformModel.UpdateShipmentPaymentMode;
 };
 type UpdateShipmentLockParam = {
     body: OrderPlatformModel.UpdateShipmentLockPayload;
@@ -1201,13 +1264,15 @@ type UpdateShipmentTrackingParam = {
     body: OrderPlatformModel.CourierPartnerTrackingDetails;
 };
 type UploadConsentsParam = {
-    body: OrderPlatformModel.UploadManifestConsent;
+    manifestId: string;
+    body: OrderPlatformModel.UploadConsent;
 };
 type VerifyMobileOTPParam = {
     body: OrderPlatformModel.VerifyMobileOTP;
 };
 type GetAllowedTemplatesForBulkParam = any;
 type GetBulkActionTemplateParam = any;
+type GetChannelConfigParam = any;
 type GetRoleBasedActionsParam = any;
 type GetStateTransitionMapParam = any;
 import OrderPlatformModel = require("./OrderPlatformModel");

@@ -13,14 +13,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SubmitCustomFormResponse
+ * @typedef SubmitCustomFormDetails
  * @property {string} message - Success message for form submission.
  * @property {Ticket} [ticket]
- * @property {FormFieldResponse} [response]
+ * @property {FormFieldDetails} [response]
  */
 
 /**
- * @typedef FormFieldResponse
+ * @typedef FormFieldDetails
  * @property {string} [_id] - Unique identifier for a custom form response.
  * @property {number} [__v] - Version of the form.
  * @property {string} [application_id] - Unique identifier for a Sales channel.
@@ -199,7 +199,7 @@ class LeadApplicationModel {
   /** @returns {TicketHistoryPayload} */
   static TicketHistoryPayload() {
     return Joi.object({
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
       type: LeadApplicationModel.HistoryTypeEnum().required(),
     });
   }
@@ -212,17 +212,17 @@ class LeadApplicationModel {
     });
   }
 
-  /** @returns {SubmitCustomFormResponse} */
-  static SubmitCustomFormResponse() {
+  /** @returns {SubmitCustomFormDetails} */
+  static SubmitCustomFormDetails() {
     return Joi.object({
       message: Joi.string().allow("").required(),
       ticket: LeadApplicationModel.Ticket(),
-      response: LeadApplicationModel.FormFieldResponse(),
+      response: LeadApplicationModel.FormFieldDetails(),
     });
   }
 
-  /** @returns {FormFieldResponse} */
-  static FormFieldResponse() {
+  /** @returns {FormFieldDetails} */
+  static FormFieldDetails() {
     return Joi.object({
       _id: Joi.string().allow(""),
       __v: Joi.number(),
@@ -278,12 +278,12 @@ class LeadApplicationModel {
   /** @returns {AddTicketPayload} */
   static AddTicketPayload() {
     return Joi.object({
-      created_by: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
       status: Joi.string().allow(""),
       priority: LeadApplicationModel.PriorityEnum(),
       category: Joi.string().allow("").required(),
       content: LeadApplicationModel.TicketContent().required(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       subscribers: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -348,9 +348,9 @@ class LeadApplicationModel {
   /** @returns {FeedbackForm} */
   static FeedbackForm() {
     return Joi.object({
-      inputs: Joi.any(),
+      inputs: Joi.object().pattern(/\S/, Joi.any()),
       title: Joi.string().allow(""),
-      timestamps: Joi.any(),
+      timestamps: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -369,10 +369,10 @@ class LeadApplicationModel {
   static TicketHistory() {
     return Joi.object({
       type: Joi.string().allow("").required(),
-      value: Joi.any().required(),
+      value: Joi.object().pattern(/\S/, Joi.any()).required(),
       ticket_id: Joi.string().allow("").required(),
       created_on: LeadApplicationModel.CreatedOn(),
-      created_by: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -391,12 +391,12 @@ class LeadApplicationModel {
       source: LeadApplicationModel.TicketSourceEnum().required(),
       status: LeadApplicationModel.Status().required(),
       priority: LeadApplicationModel.Priority().required(),
-      created_by: Joi.any(),
-      assigned_to: Joi.any(),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
+      assigned_to: Joi.object().pattern(/\S/, Joi.any()),
       tags: Joi.array().items(Joi.string().allow("")),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       is_feedback_pending: Joi.boolean(),
-      integration: Joi.any(),
+      integration: Joi.object().pattern(/\S/, Joi.any()),
       _id: Joi.string().allow("").required(),
       updated_at: Joi.string().allow(""),
       created_at: Joi.string().allow(""),

@@ -10,13 +10,13 @@ export = LeadApplicationModel;
  * @property {TicketAsset[]} [attachments] - List of all attachments related to the form.
  */
 /**
- * @typedef SubmitCustomFormResponse
+ * @typedef SubmitCustomFormDetails
  * @property {string} message - Success message for form submission.
  * @property {Ticket} [ticket]
- * @property {FormFieldResponse} [response]
+ * @property {FormFieldDetails} [response]
  */
 /**
- * @typedef FormFieldResponse
+ * @typedef FormFieldDetails
  * @property {string} [_id] - Unique identifier for a custom form response.
  * @property {number} [__v] - Version of the form.
  * @property {string} [application_id] - Unique identifier for a Sales channel.
@@ -174,7 +174,7 @@ export = LeadApplicationModel;
 declare class LeadApplicationModel {
 }
 declare namespace LeadApplicationModel {
-    export { TicketHistoryPayload, CustomFormSubmissionPayload, SubmitCustomFormResponse, FormFieldResponse, FormFieldResponseValues, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { TicketHistoryPayload, CustomFormSubmissionPayload, SubmitCustomFormDetails, FormFieldDetails, FormFieldResponseValues, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, SubmitButton, PollForAssignment, CustomForm, FeedbackForm, TicketCategory, TicketHistory, Ticket, PriorityEnum, HistoryTypeEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {TicketHistoryPayload} */
 declare function TicketHistoryPayload(): TicketHistoryPayload;
@@ -197,19 +197,19 @@ type CustomFormSubmissionPayload = {
      */
     attachments?: TicketAsset[];
 };
-/** @returns {SubmitCustomFormResponse} */
-declare function SubmitCustomFormResponse(): SubmitCustomFormResponse;
-type SubmitCustomFormResponse = {
+/** @returns {SubmitCustomFormDetails} */
+declare function SubmitCustomFormDetails(): SubmitCustomFormDetails;
+type SubmitCustomFormDetails = {
     /**
      * - Success message for form submission.
      */
     message: string;
     ticket?: Ticket;
-    response?: FormFieldResponse;
+    response?: FormFieldDetails;
 };
-/** @returns {FormFieldResponse} */
-declare function FormFieldResponse(): FormFieldResponse;
-type FormFieldResponse = {
+/** @returns {FormFieldDetails} */
+declare function FormFieldDetails(): FormFieldDetails;
+type FormFieldDetails = {
     /**
      * - Unique identifier for a custom form response.
      */

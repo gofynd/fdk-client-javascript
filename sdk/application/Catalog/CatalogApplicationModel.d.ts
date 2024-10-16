@@ -162,7 +162,7 @@ export = CatalogApplicationModel;
  *   the product.
  */
 /**
- * @typedef ErrorResponse
+ * @typedef ErrorResponseSchema
  * @property {string} [error] - A brief description of the error.
  */
 /**
@@ -264,13 +264,13 @@ export = CatalogApplicationModel;
  *   attributes.
  */
 /**
- * @typedef ProductsComparisonResponse
+ * @typedef ProductsComparisonResponseSchema
  * @property {ProductDetail[]} [items] - List of product details for comparison.
  * @property {AttributeMetadata[]} [attributes_metadata] - Metadata about
  *   attributes used for comparing products.
  */
 /**
- * @typedef ProductCompareResponse
+ * @typedef ProductCompareResponseSchema
  * @property {string} [title] - Title or name of the comparison.
  * @property {ProductDetail[]} [items] - List of product details for comparison.
  * @property {AttributeMetadata[]} [attributes_metadata] - Metadata about
@@ -278,11 +278,11 @@ export = CatalogApplicationModel;
  * @property {string} [subtitle] - Subtitle or additional description for the comparison.
  */
 /**
- * @typedef ProductFrequentlyComparedSimilarResponse
- * @property {ProductCompareResponse} [similars]
+ * @typedef ProductFrequentlyComparedSimilarResponseSchema
+ * @property {ProductCompareResponseSchema} [similars]
  */
 /**
- * @typedef ProductVariantItemResponse
+ * @typedef ProductVariantItemResponseSchema
  * @property {number} [uid] - Unique identifier for the product variant.
  * @property {string} [color_name] - Name of the color for the variant.
  * @property {string} [color] - Color code or representation for the variant.
@@ -299,20 +299,20 @@ export = CatalogApplicationModel;
  * @property {ProductListingAction} [action]
  */
 /**
- * @typedef ProductVariantResponse
+ * @typedef ProductVariantResponseSchema
  * @property {string} [display_type] - The type of display for the product
  *   variant (e.g., image, text, image, color).
  * @property {string} [header] - Header or title for the product variant section.
  * @property {string} [group_id] - Group ID used to group variants.
- * @property {ProductVariantItemResponse[]} [items] - List of product variant items.
+ * @property {ProductVariantItemResponseSchema[]} [items] - List of product variant items.
  * @property {string} [key] - Attribute identifier of the variant.
  * @property {string} [logo] - URL or path to the logo associated with the
  *   product variant.
  */
 /**
- * @typedef ProductVariantsResponse
- * @property {ProductVariantResponse[]} [variants] - A list of product variant
- *   responses, each detailing a specific variant.
+ * @typedef ProductVariantsResponseSchema
+ * @property {ProductVariantResponseSchema[]} [variants] - A list of product
+ *   variant responses, each detailing a specific variant.
  */
 /**
  * @typedef StoreDetail
@@ -348,10 +348,10 @@ export = CatalogApplicationModel;
  * @property {CompanyDetail} [company]
  * @property {number} [item_id] - NA.
  * @property {Seller} [seller]
- * @property {Object} [identifier] - NA.
+ * @property {Identifier} [identifier]
  */
 /**
- * @typedef ProductStockStatusResponse
+ * @typedef ProductStockStatusResponseSchema
  * @property {ProductStockStatusItem[]} [items] - NA.
  */
 /**
@@ -370,10 +370,10 @@ export = CatalogApplicationModel;
  * @property {Page} page
  */
 /**
- * @typedef ProductVariantListingResponse
+ * @typedef ProductVariantListingResponseSchema
  * @property {string} [header] - Header or title for the product variant section.
- * @property {ProductVariantItemResponse[]} [items] - List of Upto 5 product
- *   variant items.
+ * @property {ProductVariantItemResponseSchema[]} [items] - List of Upto 5
+ *   product variant items.
  * @property {number} [total] - The total number of product variants available.
  * @property {string} [key] - Attribute identifier of the variant.
  * @property {string} [display_type] - The type of display for the product
@@ -417,8 +417,8 @@ export = CatalogApplicationModel;
  * @property {boolean} [sellable] - Indicates whether the product is available for sale.
  * @property {Object} [attributes] - Additional attributes or characteristics of
  *   the product.
- * @property {ProductVariantListingResponse[]} [variants] - List of product
- *   variants available for the product.
+ * @property {ProductVariantListingResponseSchema[]} [variants] - List of
+ *   product variants available for the product.
  * @property {string} [discount] - Discount details or percentage applied to the product.
  * @property {string[]} [tryouts] - List of tryout options available for the product.
  * @property {string[]} [identifiers] - List of seller identifiers for the product.
@@ -478,7 +478,7 @@ export = CatalogApplicationModel;
  * @property {string} [display] - Display name or label for the sorting option.
  */
 /**
- * @typedef ProductListingResponse
+ * @typedef ProductListingResponseSchema
  * @property {ProductListingDetail[]} [items] - List of product details included
  *   in the response.
  * @property {ProductFilters[]} [filters] - List of filters available for
@@ -509,12 +509,12 @@ export = CatalogApplicationModel;
  * @property {ProductListingAction} [action]
  */
 /**
- * @typedef BrandListingResponse
+ * @typedef BrandListingResponseSchema
  * @property {BrandItem[]} [items] - List of brand items included in the response.
  * @property {Page} page
  */
 /**
- * @typedef BrandDetailResponse
+ * @typedef BrandDetailResponseSchema
  * @property {Media} [logo]
  * @property {number} [uid] - The unique identifier for the brand.
  * @property {string} [description] - Detailed description of the brand,
@@ -582,12 +582,12 @@ export = CatalogApplicationModel;
  * @property {string} [slug] - Slug or URL-friendly identifier for the department.
  */
 /**
- * @typedef CategoryListingResponse
+ * @typedef CategoryListingResponseSchema
  * @property {DepartmentCategoryTree[]} [data] - List of department category trees.
  * @property {DepartmentIdentifier[]} [departments] - List of departments.
  */
 /**
- * @typedef CategoryMetaResponse
+ * @typedef CategoryMetaResponseSchema
  * @property {Media} [logo]
  * @property {number} [uid] - Unique identifier for the category.
  * @property {ImageUrls} [banners]
@@ -596,7 +596,7 @@ export = CatalogApplicationModel;
  * @property {string} [name] - Name of the category.
  */
 /**
- * @typedef HomeListingResponse
+ * @typedef HomeListingResponseSchema
  * @property {ProductListingDetail[]} [items] - List of product details
  *   displayed on the home page.
  * @property {Page} page
@@ -614,7 +614,7 @@ export = CatalogApplicationModel;
  *   used in the web address to access the department's page on the platform.
  */
 /**
- * @typedef DepartmentResponse
+ * @typedef DepartmentResponseSchema
  * @property {Department[]} [items] - List of department detail objects.
  */
 /**
@@ -628,7 +628,7 @@ export = CatalogApplicationModel;
  * @property {ProductListingAction} [action]
  */
 /**
- * @typedef AutoCompleteResponse
+ * @typedef AutoCompleteResponseSchema
  * @property {AutocompleteItem[]} [items] - List of autocomplete items suggested
  *   based on user input.
  */
@@ -699,7 +699,7 @@ export = CatalogApplicationModel;
  *   category or attribute for filtering.
  */
 /**
- * @typedef GetCollectionListingResponse
+ * @typedef GetCollectionListingResponseSchema
  * @property {GetCollectionDetailNest[]} [items] - An array of collection
  *   details. Each item in the array represents a collection with various
  *   attributes and configurations.
@@ -707,7 +707,7 @@ export = CatalogApplicationModel;
  * @property {Page} page
  */
 /**
- * @typedef CollectionDetailResponse
+ * @typedef CollectionDetailResponseSchema
  * @property {boolean} [is_active] - Indicates whether the collection is active.
  * @property {string} [sort_on] - Criteria used to sort the items within the
  *   collection, such as price, popularity, or newest first.
@@ -739,21 +739,21 @@ export = CatalogApplicationModel;
  * @property {string} [app_id] - Application ID associated with the collection.
  */
 /**
- * @typedef GetFollowListingResponse
+ * @typedef GetFollowListingResponseSchema
  * @property {ProductListingDetail[]} items - An array of product details that
  *   the user is following. Each item includes information such as the product
  *   name, price, and other attributes.
  * @property {Page} page
  */
 /**
- * @typedef FollowPostResponse
+ * @typedef FollowPostResponseSchema
  * @property {string} message - A message indicating the result of the follow or
  *   unfollow operation. This could be a confirmation message or an error message.
  * @property {string} id - A unique identifier for the follow operation, which
  *   can be used to reference or track the follow status.
  */
 /**
- * @typedef FollowerCountResponse
+ * @typedef FollowerCountResponseSchema
  * @property {number} [count] - The number of followers for the item. This count
  *   indicates how many users are following the specified item.
  */
@@ -767,7 +767,7 @@ export = CatalogApplicationModel;
  *   the user is following.
  */
 /**
- * @typedef FollowIdsResponse
+ * @typedef FollowIdsResponseSchema
  * @property {FollowIdsData} [data]
  */
 /**
@@ -776,6 +776,11 @@ export = CatalogApplicationModel;
  *   longitude values of the location.
  * @property {string} [type] - The type of geographic coordinate system used.
  *   For example, "Point" indicates a single point in a geographic coordinate system.
+ */
+/**
+ * @typedef StoreContact
+ * @property {string} [number] - The contact number of the Store Manager.
+ * @property {number} [country_code] - The country code for the contact number.
  */
 /**
  * @typedef Store
@@ -791,9 +796,10 @@ export = CatalogApplicationModel;
  * @property {LatLong} [lat_long]
  * @property {string} [name] - The name of the store.
  * @property {string[]} [tags] - The list of tags mapped to the store.
+ * @property {StoreContact[]} [contacts] - List of contact numbers for the store.
  */
 /**
- * @typedef StoreListingResponse
+ * @typedef StoreListingResponseSchema
  * @property {Store[]} items - An array of store details. Each store includes
  *   information such as name, address, and geographic coordinates.
  * @property {Page} page
@@ -830,13 +836,13 @@ export = CatalogApplicationModel;
  * @property {string} number - The seller's contact number.
  */
 /**
- * @typedef StoreManagerSerializer
+ * @typedef StoreManagerSchema
  * @property {string} [name] - The name of the store manager.
  * @property {string} [email] - The email address of the store manager.
  * @property {SellerPhoneNumber} [mobile_no]
  */
 /**
- * @typedef StoreAddressSerializer
+ * @typedef StoreAddressSchema
  * @property {number} [latitude] - The latitude of the store's location.
  * @property {string} [state] - The state where the store is located.
  * @property {string} [country] - The country where the store is located.
@@ -852,9 +858,9 @@ export = CatalogApplicationModel;
  * @property {number} [uid] - The unique identifier for the application store.
  * @property {StoreDepartments[]} [departments] - A list of departments within the store.
  * @property {CompanyStore} [company]
- * @property {StoreManagerSerializer} [manager]
+ * @property {StoreManagerSchema} [manager]
  * @property {string} [store_code] - A unique code for identifying the store.
- * @property {StoreAddressSerializer} [address]
+ * @property {StoreAddressSchema} [address]
  * @property {string} [name] - The name of the store.
  * @property {SellerPhoneNumber[]} [contact_numbers] - A list of contact numbers
  *   for the store.
@@ -882,11 +888,11 @@ export = CatalogApplicationModel;
  * @property {number} [uid] - The unique identifier for the store.
  * @property {StoreDepartments[]} [departments] - A list of departments within the store.
  * @property {CompanyStore} [company]
- * @property {StoreManagerSerializer} [manager]
+ * @property {StoreManagerSchema} [manager]
  * @property {string} [store_code] - A unique code for identifying the store.
  * @property {StoreTiming[]} [timing] - The opening and closing times for the
  *   store throughout the week.
- * @property {StoreAddressSerializer} [address]
+ * @property {StoreAddressSchema} [address]
  * @property {Object} [_custom_json] - Custom JSON data for the store.
  * @property {string} [name] - The name of the store.
  * @property {SellerPhoneNumber[]} [contact_numbers] - A list of contact numbers
@@ -934,7 +940,7 @@ export = CatalogApplicationModel;
  * @property {Object[]} [images] - A list of image URLs for the product.
  * @property {Object} [slug] - The slug of the product.
  * @property {number} [rating] - The rating of the product.
- * @property {Object} [identifier] - A dictionary of product identifiers.
+ * @property {Identifier} [identifier]
  * @property {Object[]} [highlights] - A list of highlights for the product.
  * @property {number} [brand_uid] - The unique ID of the product's brand.
  */
@@ -1127,10 +1133,20 @@ export = CatalogApplicationModel;
  * @property {ProductSizeSellerFilterSchemaV3[]} [sort_on] - A list of sorting
  *   and filtering criteria applied to the sellers' data.
  */
+/**
+ * @typedef Identifier
+ * @property {string} [ean] - The European Article Number (EAN) of the item.
+ * @property {string} [sku_code] - The Stock Keeping Unit (SKU) code of the item.
+ * @property {string} [alu] - The Alternative Lookup Product of the item.
+ * @property {string} [upc] - Universal Product Code of the item.
+ * @property {string} [isbn] - ISBN (International Standard Book Number) is a
+ *   unique identifier used globally to identify books and other non-periodical
+ *   publications
+ */
 declare class CatalogApplicationModel {
 }
 declare namespace CatalogApplicationModel {
-    export { ProductDetailCustomOrder, Meta, Media, ProductListingActionPage, ProductListingAction, ProductBrand, ProductDepartment, ProductCategoryMap, NetQuantity, CustomMetaFields, ApplicationItemSEO, ProductDetailAttribute, ProductDetailGroupedAttribute, ApplicationItemMOQ, Price, ProductListingPrice, ProductSizesPrice, ProductDetail, ErrorResponse, Dimension, Weight, DiscountMeta, ProductSize, SizeChartValues, ColumnHeader, ColumnHeaders, SizeChart, ProductSizeStores, ProductSizes, AttributeDetail, AttributeMetadata, ProductsComparisonResponse, ProductCompareResponse, ProductFrequentlyComparedSimilarResponse, ProductVariantItemResponse, ProductVariantResponse, ProductVariantsResponse, StoreDetail, ProductStockPrice, CompanyDetail, Seller, ProductStockStatusItem, ProductStockStatusResponse, Page, ProductStockPolling, ProductVariantListingResponse, ProductListingDetail, ProductFiltersValue, ProductFiltersKey, ProductFilters, ProductSortOn, ProductListingResponse, ImageUrls, BrandItem, BrandListingResponse, BrandDetailResponse, CategoryBanner, ThirdLevelChild, SecondLevelChild, Child, CategoryItems, DepartmentCategoryTree, DepartmentIdentifier, CategoryListingResponse, CategoryMetaResponse, HomeListingResponse, Department, DepartmentResponse, AutocompleteItem, AutoCompleteResponse, CollectionQuery, GetCollectionDetailNest, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, GetCollectionListingResponse, CollectionDetailResponse, GetFollowListingResponse, FollowPostResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, LatLong, Store, StoreListingResponse, StoreDepartments, CompanyStore, SellerPhoneNumber, StoreManagerSerializer, StoreAddressSerializer, AppStore, ApplicationStoreListing, Time, StoreTiming, StoreDetails, UserDetail, Size, ProductGroupPrice, ProductDetails, ProductInGroup, ProductGroupingModel, ProductBundle, StoreV3, ArticleAssignmentV3, StrategyWiseListingSchemaV3, DetailsSchemaV3, SellerGroupAttributes, ReturnConfigSchemaV3, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductStockPriceV3, ProductStockUnitPriceV3, MarketPlaceSttributesSchemaV3, SellerV3, PromiseSchema, ProductSizePriceResponseV3, ProductSizeSellerFilterSchemaV3, ProductSizeSellersResponseV3 };
+    export { ProductDetailCustomOrder, Meta, Media, ProductListingActionPage, ProductListingAction, ProductBrand, ProductDepartment, ProductCategoryMap, NetQuantity, CustomMetaFields, ApplicationItemSEO, ProductDetailAttribute, ProductDetailGroupedAttribute, ApplicationItemMOQ, Price, ProductListingPrice, ProductSizesPrice, ProductDetail, ErrorResponseSchema, Dimension, Weight, DiscountMeta, ProductSize, SizeChartValues, ColumnHeader, ColumnHeaders, SizeChart, ProductSizeStores, ProductSizes, AttributeDetail, AttributeMetadata, ProductsComparisonResponseSchema, ProductCompareResponseSchema, ProductFrequentlyComparedSimilarResponseSchema, ProductVariantItemResponseSchema, ProductVariantResponseSchema, ProductVariantsResponseSchema, StoreDetail, ProductStockPrice, CompanyDetail, Seller, ProductStockStatusItem, ProductStockStatusResponseSchema, Page, ProductStockPolling, ProductVariantListingResponseSchema, ProductListingDetail, ProductFiltersValue, ProductFiltersKey, ProductFilters, ProductSortOn, ProductListingResponseSchema, ImageUrls, BrandItem, BrandListingResponseSchema, BrandDetailResponseSchema, CategoryBanner, ThirdLevelChild, SecondLevelChild, Child, CategoryItems, DepartmentCategoryTree, DepartmentIdentifier, CategoryListingResponseSchema, CategoryMetaResponseSchema, HomeListingResponseSchema, Department, DepartmentResponseSchema, AutocompleteItem, AutoCompleteResponseSchema, CollectionQuery, GetCollectionDetailNest, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, GetCollectionListingResponseSchema, CollectionDetailResponseSchema, GetFollowListingResponseSchema, FollowPostResponseSchema, FollowerCountResponseSchema, FollowIdsData, FollowIdsResponseSchema, LatLong, StoreContact, Store, StoreListingResponseSchema, StoreDepartments, CompanyStore, SellerPhoneNumber, StoreManagerSchema, StoreAddressSchema, AppStore, ApplicationStoreListing, Time, StoreTiming, StoreDetails, UserDetail, Size, ProductGroupPrice, ProductDetails, ProductInGroup, ProductGroupingModel, ProductBundle, StoreV3, ArticleAssignmentV3, StrategyWiseListingSchemaV3, DetailsSchemaV3, SellerGroupAttributes, ReturnConfigSchemaV3, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductStockPriceV3, ProductStockUnitPriceV3, MarketPlaceSttributesSchemaV3, SellerV3, PromiseSchema, ProductSizePriceResponseV3, ProductSizeSellerFilterSchemaV3, ProductSizeSellersResponseV3, Identifier };
 }
 /** @returns {ProductDetailCustomOrder} */
 declare function ProductDetailCustomOrder(): ProductDetailCustomOrder;
@@ -1501,9 +1517,9 @@ type ProductDetail = {
      */
     teaser_tag?: string;
 };
-/** @returns {ErrorResponse} */
-declare function ErrorResponse(): ErrorResponse;
-type ErrorResponse = {
+/** @returns {ErrorResponseSchema} */
+declare function ErrorResponseSchema(): ErrorResponseSchema;
+type ErrorResponseSchema = {
     /**
      * - A brief description of the error.
      */
@@ -1745,9 +1761,9 @@ type AttributeMetadata = {
      */
     details?: AttributeDetail[];
 };
-/** @returns {ProductsComparisonResponse} */
-declare function ProductsComparisonResponse(): ProductsComparisonResponse;
-type ProductsComparisonResponse = {
+/** @returns {ProductsComparisonResponseSchema} */
+declare function ProductsComparisonResponseSchema(): ProductsComparisonResponseSchema;
+type ProductsComparisonResponseSchema = {
     /**
      * - List of product details for comparison.
      */
@@ -1758,9 +1774,9 @@ type ProductsComparisonResponse = {
      */
     attributes_metadata?: AttributeMetadata[];
 };
-/** @returns {ProductCompareResponse} */
-declare function ProductCompareResponse(): ProductCompareResponse;
-type ProductCompareResponse = {
+/** @returns {ProductCompareResponseSchema} */
+declare function ProductCompareResponseSchema(): ProductCompareResponseSchema;
+type ProductCompareResponseSchema = {
     /**
      * - Title or name of the comparison.
      */
@@ -1779,14 +1795,14 @@ type ProductCompareResponse = {
      */
     subtitle?: string;
 };
-/** @returns {ProductFrequentlyComparedSimilarResponse} */
-declare function ProductFrequentlyComparedSimilarResponse(): ProductFrequentlyComparedSimilarResponse;
-type ProductFrequentlyComparedSimilarResponse = {
-    similars?: ProductCompareResponse;
+/** @returns {ProductFrequentlyComparedSimilarResponseSchema} */
+declare function ProductFrequentlyComparedSimilarResponseSchema(): ProductFrequentlyComparedSimilarResponseSchema;
+type ProductFrequentlyComparedSimilarResponseSchema = {
+    similars?: ProductCompareResponseSchema;
 };
-/** @returns {ProductVariantItemResponse} */
-declare function ProductVariantItemResponse(): ProductVariantItemResponse;
-type ProductVariantItemResponse = {
+/** @returns {ProductVariantItemResponseSchema} */
+declare function ProductVariantItemResponseSchema(): ProductVariantItemResponseSchema;
+type ProductVariantItemResponseSchema = {
     /**
      * - Unique identifier for the product variant.
      */
@@ -1832,9 +1848,9 @@ type ProductVariantItemResponse = {
     _custom_json?: any;
     action?: ProductListingAction;
 };
-/** @returns {ProductVariantResponse} */
-declare function ProductVariantResponse(): ProductVariantResponse;
-type ProductVariantResponse = {
+/** @returns {ProductVariantResponseSchema} */
+declare function ProductVariantResponseSchema(): ProductVariantResponseSchema;
+type ProductVariantResponseSchema = {
     /**
      * - The type of display for the product
      * variant (e.g., image, text, image, color).
@@ -1851,7 +1867,7 @@ type ProductVariantResponse = {
     /**
      * - List of product variant items.
      */
-    items?: ProductVariantItemResponse[];
+    items?: ProductVariantItemResponseSchema[];
     /**
      * - Attribute identifier of the variant.
      */
@@ -1862,14 +1878,14 @@ type ProductVariantResponse = {
      */
     logo?: string;
 };
-/** @returns {ProductVariantsResponse} */
-declare function ProductVariantsResponse(): ProductVariantsResponse;
-type ProductVariantsResponse = {
+/** @returns {ProductVariantsResponseSchema} */
+declare function ProductVariantsResponseSchema(): ProductVariantsResponseSchema;
+type ProductVariantsResponseSchema = {
     /**
-     * - A list of product variant
-     * responses, each detailing a specific variant.
+     * - A list of product
+     * variant responses, each detailing a specific variant.
      */
-    variants?: ProductVariantResponse[];
+    variants?: ProductVariantResponseSchema[];
 };
 /** @returns {StoreDetail} */
 declare function StoreDetail(): StoreDetail;
@@ -1958,14 +1974,11 @@ type ProductStockStatusItem = {
      */
     item_id?: number;
     seller?: Seller;
-    /**
-     * - NA.
-     */
-    identifier?: any;
+    identifier?: Identifier;
 };
-/** @returns {ProductStockStatusResponse} */
-declare function ProductStockStatusResponse(): ProductStockStatusResponse;
-type ProductStockStatusResponse = {
+/** @returns {ProductStockStatusResponseSchema} */
+declare function ProductStockStatusResponseSchema(): ProductStockStatusResponseSchema;
+type ProductStockStatusResponseSchema = {
     /**
      * - NA.
      */
@@ -2012,18 +2025,18 @@ type ProductStockPolling = {
     items?: ProductStockStatusItem[];
     page: Page;
 };
-/** @returns {ProductVariantListingResponse} */
-declare function ProductVariantListingResponse(): ProductVariantListingResponse;
-type ProductVariantListingResponse = {
+/** @returns {ProductVariantListingResponseSchema} */
+declare function ProductVariantListingResponseSchema(): ProductVariantListingResponseSchema;
+type ProductVariantListingResponseSchema = {
     /**
      * - Header or title for the product variant section.
      */
     header?: string;
     /**
-     * - List of Upto 5 product
-     * variant items.
+     * - List of Upto 5
+     * product variant items.
      */
-    items?: ProductVariantItemResponse[];
+    items?: ProductVariantItemResponseSchema[];
     /**
      * - The total number of product variants available.
      */
@@ -2144,10 +2157,10 @@ type ProductListingDetail = {
      */
     attributes?: any;
     /**
-     * - List of product
-     * variants available for the product.
+     * - List of
+     * product variants available for the product.
      */
-    variants?: ProductVariantListingResponse[];
+    variants?: ProductVariantListingResponseSchema[];
     /**
      * - Discount details or percentage applied to the product.
      */
@@ -2303,9 +2316,9 @@ type ProductSortOn = {
      */
     display?: string;
 };
-/** @returns {ProductListingResponse} */
-declare function ProductListingResponse(): ProductListingResponse;
-type ProductListingResponse = {
+/** @returns {ProductListingResponseSchema} */
+declare function ProductListingResponseSchema(): ProductListingResponseSchema;
+type ProductListingResponseSchema = {
     /**
      * - List of product details included
      * in the response.
@@ -2364,18 +2377,18 @@ type BrandItem = {
     slug?: string;
     action?: ProductListingAction;
 };
-/** @returns {BrandListingResponse} */
-declare function BrandListingResponse(): BrandListingResponse;
-type BrandListingResponse = {
+/** @returns {BrandListingResponseSchema} */
+declare function BrandListingResponseSchema(): BrandListingResponseSchema;
+type BrandListingResponseSchema = {
     /**
      * - List of brand items included in the response.
      */
     items?: BrandItem[];
     page: Page;
 };
-/** @returns {BrandDetailResponse} */
-declare function BrandDetailResponse(): BrandDetailResponse;
-type BrandDetailResponse = {
+/** @returns {BrandDetailResponseSchema} */
+declare function BrandDetailResponseSchema(): BrandDetailResponseSchema;
+type BrandDetailResponseSchema = {
     logo?: Media;
     /**
      * - The unique identifier for the brand.
@@ -2530,9 +2543,9 @@ type DepartmentIdentifier = {
      */
     slug?: string;
 };
-/** @returns {CategoryListingResponse} */
-declare function CategoryListingResponse(): CategoryListingResponse;
-type CategoryListingResponse = {
+/** @returns {CategoryListingResponseSchema} */
+declare function CategoryListingResponseSchema(): CategoryListingResponseSchema;
+type CategoryListingResponseSchema = {
     /**
      * - List of department category trees.
      */
@@ -2542,9 +2555,9 @@ type CategoryListingResponse = {
      */
     departments?: DepartmentIdentifier[];
 };
-/** @returns {CategoryMetaResponse} */
-declare function CategoryMetaResponse(): CategoryMetaResponse;
-type CategoryMetaResponse = {
+/** @returns {CategoryMetaResponseSchema} */
+declare function CategoryMetaResponseSchema(): CategoryMetaResponseSchema;
+type CategoryMetaResponseSchema = {
     logo?: Media;
     /**
      * - Unique identifier for the category.
@@ -2561,9 +2574,9 @@ type CategoryMetaResponse = {
      */
     name?: string;
 };
-/** @returns {HomeListingResponse} */
-declare function HomeListingResponse(): HomeListingResponse;
-type HomeListingResponse = {
+/** @returns {HomeListingResponseSchema} */
+declare function HomeListingResponseSchema(): HomeListingResponseSchema;
+type HomeListingResponseSchema = {
     /**
      * - List of product details
      * displayed on the home page.
@@ -2599,9 +2612,9 @@ type Department = {
      */
     slug?: string;
 };
-/** @returns {DepartmentResponse} */
-declare function DepartmentResponse(): DepartmentResponse;
-type DepartmentResponse = {
+/** @returns {DepartmentResponseSchema} */
+declare function DepartmentResponseSchema(): DepartmentResponseSchema;
+type DepartmentResponseSchema = {
     /**
      * - List of department detail objects.
      */
@@ -2627,9 +2640,9 @@ type AutocompleteItem = {
     _custom_json?: any;
     action?: ProductListingAction;
 };
-/** @returns {AutoCompleteResponse} */
-declare function AutoCompleteResponse(): AutoCompleteResponse;
-type AutoCompleteResponse = {
+/** @returns {AutoCompleteResponseSchema} */
+declare function AutoCompleteResponseSchema(): AutoCompleteResponseSchema;
+type AutoCompleteResponseSchema = {
     /**
      * - List of autocomplete items suggested
      * based on user input.
@@ -2797,9 +2810,9 @@ type CollectionListingFilter = {
      */
     type?: CollectionListingFilterType[];
 };
-/** @returns {GetCollectionListingResponse} */
-declare function GetCollectionListingResponse(): GetCollectionListingResponse;
-type GetCollectionListingResponse = {
+/** @returns {GetCollectionListingResponseSchema} */
+declare function GetCollectionListingResponseSchema(): GetCollectionListingResponseSchema;
+type GetCollectionListingResponseSchema = {
     /**
      * - An array of collection
      * details. Each item in the array represents a collection with various
@@ -2809,9 +2822,9 @@ type GetCollectionListingResponse = {
     filters?: CollectionListingFilter;
     page: Page;
 };
-/** @returns {CollectionDetailResponse} */
-declare function CollectionDetailResponse(): CollectionDetailResponse;
-type CollectionDetailResponse = {
+/** @returns {CollectionDetailResponseSchema} */
+declare function CollectionDetailResponseSchema(): CollectionDetailResponseSchema;
+type CollectionDetailResponseSchema = {
     /**
      * - Indicates whether the collection is active.
      */
@@ -2896,9 +2909,9 @@ type CollectionDetailResponse = {
      */
     app_id?: string;
 };
-/** @returns {GetFollowListingResponse} */
-declare function GetFollowListingResponse(): GetFollowListingResponse;
-type GetFollowListingResponse = {
+/** @returns {GetFollowListingResponseSchema} */
+declare function GetFollowListingResponseSchema(): GetFollowListingResponseSchema;
+type GetFollowListingResponseSchema = {
     /**
      * - An array of product details that
      * the user is following. Each item includes information such as the product
@@ -2907,9 +2920,9 @@ type GetFollowListingResponse = {
     items: ProductListingDetail[];
     page: Page;
 };
-/** @returns {FollowPostResponse} */
-declare function FollowPostResponse(): FollowPostResponse;
-type FollowPostResponse = {
+/** @returns {FollowPostResponseSchema} */
+declare function FollowPostResponseSchema(): FollowPostResponseSchema;
+type FollowPostResponseSchema = {
     /**
      * - A message indicating the result of the follow or
      * unfollow operation. This could be a confirmation message or an error message.
@@ -2921,9 +2934,9 @@ type FollowPostResponse = {
      */
     id: string;
 };
-/** @returns {FollowerCountResponse} */
-declare function FollowerCountResponse(): FollowerCountResponse;
-type FollowerCountResponse = {
+/** @returns {FollowerCountResponseSchema} */
+declare function FollowerCountResponseSchema(): FollowerCountResponseSchema;
+type FollowerCountResponseSchema = {
     /**
      * - The number of followers for the item. This count
      * indicates how many users are following the specified item.
@@ -2949,9 +2962,9 @@ type FollowIdsData = {
      */
     brands?: number[];
 };
-/** @returns {FollowIdsResponse} */
-declare function FollowIdsResponse(): FollowIdsResponse;
-type FollowIdsResponse = {
+/** @returns {FollowIdsResponseSchema} */
+declare function FollowIdsResponseSchema(): FollowIdsResponseSchema;
+type FollowIdsResponseSchema = {
     data?: FollowIdsData;
 };
 /** @returns {LatLong} */
@@ -2967,6 +2980,18 @@ type LatLong = {
      * For example, "Point" indicates a single point in a geographic coordinate system.
      */
     type?: string;
+};
+/** @returns {StoreContact} */
+declare function StoreContact(): StoreContact;
+type StoreContact = {
+    /**
+     * - The contact number of the Store Manager.
+     */
+    number?: string;
+    /**
+     * - The country code for the contact number.
+     */
+    country_code?: number;
 };
 /** @returns {Store} */
 declare function Store(): Store;
@@ -3013,10 +3038,14 @@ type Store = {
      * - The list of tags mapped to the store.
      */
     tags?: string[];
+    /**
+     * - List of contact numbers for the store.
+     */
+    contacts?: StoreContact[];
 };
-/** @returns {StoreListingResponse} */
-declare function StoreListingResponse(): StoreListingResponse;
-type StoreListingResponse = {
+/** @returns {StoreListingResponseSchema} */
+declare function StoreListingResponseSchema(): StoreListingResponseSchema;
+type StoreListingResponseSchema = {
     /**
      * - An array of store details. Each store includes
      * information such as name, address, and geographic coordinates.
@@ -3091,9 +3120,9 @@ type SellerPhoneNumber = {
      */
     number: string;
 };
-/** @returns {StoreManagerSerializer} */
-declare function StoreManagerSerializer(): StoreManagerSerializer;
-type StoreManagerSerializer = {
+/** @returns {StoreManagerSchema} */
+declare function StoreManagerSchema(): StoreManagerSchema;
+type StoreManagerSchema = {
     /**
      * - The name of the store manager.
      */
@@ -3104,9 +3133,9 @@ type StoreManagerSerializer = {
     email?: string;
     mobile_no?: SellerPhoneNumber;
 };
-/** @returns {StoreAddressSerializer} */
-declare function StoreAddressSerializer(): StoreAddressSerializer;
-type StoreAddressSerializer = {
+/** @returns {StoreAddressSchema} */
+declare function StoreAddressSchema(): StoreAddressSchema;
+type StoreAddressSchema = {
     /**
      * - The latitude of the store's location.
      */
@@ -3156,12 +3185,12 @@ type AppStore = {
      */
     departments?: StoreDepartments[];
     company?: CompanyStore;
-    manager?: StoreManagerSerializer;
+    manager?: StoreManagerSchema;
     /**
      * - A unique code for identifying the store.
      */
     store_code?: string;
-    address?: StoreAddressSerializer;
+    address?: StoreAddressSchema;
     /**
      * - The name of the store.
      */
@@ -3223,7 +3252,7 @@ type StoreDetails = {
      */
     departments?: StoreDepartments[];
     company?: CompanyStore;
-    manager?: StoreManagerSerializer;
+    manager?: StoreManagerSchema;
     /**
      * - A unique code for identifying the store.
      */
@@ -3233,7 +3262,7 @@ type StoreDetails = {
      * store throughout the week.
      */
     timing?: StoreTiming[];
-    address?: StoreAddressSerializer;
+    address?: StoreAddressSchema;
     /**
      * - Custom JSON data for the store.
      */
@@ -3387,10 +3416,7 @@ type ProductDetails = {
      * - The rating of the product.
      */
     rating?: number;
-    /**
-     * - A dictionary of product identifiers.
-     */
-    identifier?: any;
+    identifier?: Identifier;
     /**
      * - A list of highlights for the product.
      */
@@ -3854,4 +3880,30 @@ type ProductSizeSellersResponseV3 = {
      * and filtering criteria applied to the sellers' data.
      */
     sort_on?: ProductSizeSellerFilterSchemaV3[];
+};
+/** @returns {Identifier} */
+declare function Identifier(): Identifier;
+type Identifier = {
+    /**
+     * - The European Article Number (EAN) of the item.
+     */
+    ean?: string;
+    /**
+     * - The Stock Keeping Unit (SKU) code of the item.
+     */
+    sku_code?: string;
+    /**
+     * - The Alternative Lookup Product of the item.
+     */
+    alu?: string;
+    /**
+     * - Universal Product Code of the item.
+     */
+    upc?: string;
+    /**
+     * - ISBN (International Standard Book Number) is a
+     * unique identifier used globally to identify books and other non-periodical
+     * publications
+     */
+    isbn?: string;
 };

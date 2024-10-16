@@ -118,7 +118,8 @@ class Common {
    * @param {CommonApplicationValidator.SearchApplicationParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CommonApplicationModel.ApplicationResponse>} - Success response
+   * @returns {Promise<CommonApplicationModel.ApplicationResponseSchema>} -
+   *   Success response
    * @name searchApplication
    * @summary: Get sales channel
    * @description: Get an active sales channel based on a provided query. The query can be a valid sales channel ID or a verified domain name. If the sales channel is found, a success response is returned. If not, a 404 error response is returned. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
@@ -175,10 +176,10 @@ class Common {
 
     const {
       error: res_error,
-    } = CommonApplicationModel.ApplicationResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CommonApplicationModel.ApplicationResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {

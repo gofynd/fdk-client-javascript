@@ -4,11 +4,12 @@ export = WebhookApplicationModel;
  * @property {string} [event_name] - Name of click event.
  */
 /**
- * @typedef ClickEventRequest
+ * @typedef ClickEventPayload
  * @property {ClickEventBatch[]} [batch] - List of click events captured.
+ * @property {string} [sent_at]
  */
 /**
- * @typedef ClickEventResponse
+ * @typedef ClickEventDetails
  * @property {number} [success_count] - Count of valid events.
  * @property {number} [failed_count] - Count of events failed in schema validation.
  * @property {ClickEventBatch[]} [failed_events] - List of failed events with error.
@@ -16,7 +17,7 @@ export = WebhookApplicationModel;
 declare class WebhookApplicationModel {
 }
 declare namespace WebhookApplicationModel {
-    export { ClickEventBatch, ClickEventRequest, ClickEventResponse };
+    export { ClickEventBatch, ClickEventPayload, ClickEventDetails };
 }
 /** @returns {ClickEventBatch} */
 declare function ClickEventBatch(): ClickEventBatch;
@@ -26,17 +27,18 @@ type ClickEventBatch = {
      */
     event_name?: string;
 };
-/** @returns {ClickEventRequest} */
-declare function ClickEventRequest(): ClickEventRequest;
-type ClickEventRequest = {
+/** @returns {ClickEventPayload} */
+declare function ClickEventPayload(): ClickEventPayload;
+type ClickEventPayload = {
     /**
      * - List of click events captured.
      */
     batch?: ClickEventBatch[];
+    sent_at?: string;
 };
-/** @returns {ClickEventResponse} */
-declare function ClickEventResponse(): ClickEventResponse;
-type ClickEventResponse = {
+/** @returns {ClickEventDetails} */
+declare function ClickEventDetails(): ClickEventDetails;
+type ClickEventDetails = {
     /**
      * - Count of valid events.
      */

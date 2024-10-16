@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef ApplicationAboutResponse
+ * @typedef ApplicationAboutResponseSchema
  * @property {ApplicationInfo} [application_info]
  */
 
@@ -67,23 +67,23 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef LanguageResponse
+ * @typedef LanguageResponseSchema
  * @property {SupportedLanguage[]} [items] - List of supported languages.
  */
 
 /**
- * @typedef AppStaffResponse
+ * @typedef AppStaffResponseSchema
  * @property {AppStaff[]} [staff_users] - List of staff users.
  */
 
 /**
- * @typedef AppStaffListResponse
+ * @typedef AppStaffListResponseSchema
  * @property {Page} [page]
  * @property {AppStaff[]} [items] - List of staff users.
  */
 
 /**
- * @typedef OrderingStoreSelectRequest
+ * @typedef OrderingStoreSelectRequestSchema
  * @property {OrderingStoreSelect} ordering_store
  */
 
@@ -112,7 +112,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AppTokenResponse
+ * @typedef AppTokenResponseSchema
  * @property {Tokens} [tokens]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the token.
@@ -453,7 +453,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AppFeatureResponse
+ * @typedef AppFeatureResponseSchema
  * @property {AppFeature} [feature]
  */
 
@@ -583,17 +583,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InvalidPayloadRequest
+ * @typedef InvalidPayloadRequestSchema
  * @property {string} [message] - Error message when request body payload is improper.
  */
 
 /**
- * @typedef UnhandledError
- * @property {string} [message] - Error message for unhandled errors.
- */
-
-/**
- * @typedef SuccessMessageResponse
+ * @typedef SuccessMessageResponseSchema
  * @property {string} [message] - Success message shown to the user (in a string format).
  */
 
@@ -817,7 +812,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CurrenciesResponse
+ * @typedef CurrenciesResponseSchema
  * @property {Currency[]} [items] - A list of currency objects. Each object
  *   represents a different currency.
  */
@@ -831,7 +826,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AppCurrencyResponse
+ * @typedef AppCurrencyResponseSchema
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account.
  * @property {DefaultCurrency} [default_currency]
@@ -894,8 +889,8 @@ const Joi = require("joi");
  */
 
 class ConfigurationApplicationModel {
-  /** @returns {ApplicationAboutResponse} */
-  static ApplicationAboutResponse() {
+  /** @returns {ApplicationAboutResponseSchema} */
+  static ApplicationAboutResponseSchema() {
     return Joi.object({
       application_info: ConfigurationApplicationModel.ApplicationInfo(),
     });
@@ -965,8 +960,8 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {LanguageResponse} */
-  static LanguageResponse() {
+  /** @returns {LanguageResponseSchema} */
+  static LanguageResponseSchema() {
     return Joi.object({
       items: Joi.array().items(
         ConfigurationApplicationModel.SupportedLanguage()
@@ -974,23 +969,23 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {AppStaffResponse} */
-  static AppStaffResponse() {
+  /** @returns {AppStaffResponseSchema} */
+  static AppStaffResponseSchema() {
     return Joi.object({
       staff_users: Joi.array().items(ConfigurationApplicationModel.AppStaff()),
     });
   }
 
-  /** @returns {AppStaffListResponse} */
-  static AppStaffListResponse() {
+  /** @returns {AppStaffListResponseSchema} */
+  static AppStaffListResponseSchema() {
     return Joi.object({
       page: ConfigurationApplicationModel.Page(),
       items: Joi.array().items(ConfigurationApplicationModel.AppStaff()),
     });
   }
 
-  /** @returns {OrderingStoreSelectRequest} */
-  static OrderingStoreSelectRequest() {
+  /** @returns {OrderingStoreSelectRequestSchema} */
+  static OrderingStoreSelectRequestSchema() {
     return Joi.object({
       ordering_store: ConfigurationApplicationModel.OrderingStoreSelect().required(),
     });
@@ -1019,8 +1014,8 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {AppTokenResponse} */
-  static AppTokenResponse() {
+  /** @returns {AppTokenResponseSchema} */
+  static AppTokenResponseSchema() {
     return Joi.object({
       tokens: ConfigurationApplicationModel.Tokens(),
       _id: Joi.string().allow(""),
@@ -1225,8 +1220,8 @@ class ConfigurationApplicationModel {
   static LaunchPage() {
     return Joi.object({
       page_type: Joi.string().allow(""),
-      params: Joi.any(),
-      query: Joi.any(),
+      params: Joi.object().pattern(/\S/, Joi.any()),
+      query: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -1392,8 +1387,8 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {AppFeatureResponse} */
-  static AppFeatureResponse() {
+  /** @returns {AppFeatureResponseSchema} */
+  static AppFeatureResponseSchema() {
     return Joi.object({
       feature: ConfigurationApplicationModel.AppFeature(),
     });
@@ -1526,22 +1521,15 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {InvalidPayloadRequest} */
-  static InvalidPayloadRequest() {
+  /** @returns {InvalidPayloadRequestSchema} */
+  static InvalidPayloadRequestSchema() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
   }
 
-  /** @returns {UnhandledError} */
-  static UnhandledError() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SuccessMessageResponse} */
-  static SuccessMessageResponse() {
+  /** @returns {SuccessMessageResponseSchema} */
+  static SuccessMessageResponseSchema() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
@@ -1804,8 +1792,8 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {CurrenciesResponse} */
-  static CurrenciesResponse() {
+  /** @returns {CurrenciesResponseSchema} */
+  static CurrenciesResponseSchema() {
     return Joi.object({
       items: Joi.array().items(ConfigurationApplicationModel.Currency()),
     });
@@ -1819,8 +1807,8 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {AppCurrencyResponse} */
-  static AppCurrencyResponse() {
+  /** @returns {AppCurrencyResponseSchema} */
+  static AppCurrencyResponseSchema() {
     return Joi.object({
       application: Joi.string().allow(""),
       default_currency: ConfigurationApplicationModel.DefaultCurrency(),

@@ -29,7 +29,7 @@ declare class Theme {
      * @summary: Get applied theme
      * @description: Gets the theme configuration and template details of a theme applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
      */
-    getAppliedTheme({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
+    getAppliedTheme({ filters, requestHeaders }?: ThemeApplicationValidator.GetAppliedThemeParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
     /**
      * @param {ThemeApplicationValidator.GetPageParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -49,7 +49,7 @@ declare class Theme {
      * @summary: Get theme for preview
      * @description: Gets the theme configuration and template details of a theme by theme id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
      */
-    getThemeForPreview({ themeId, requestHeaders }?: ThemeApplicationValidator.GetThemeForPreviewParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
+    getThemeForPreview({ themeId, filters, requestHeaders }?: ThemeApplicationValidator.GetThemeForPreviewParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.ThemesSchema>;
 }
 import ThemeApplicationValidator = require("./ThemeApplicationValidator");
 import ThemeApplicationModel = require("./ThemeApplicationModel");

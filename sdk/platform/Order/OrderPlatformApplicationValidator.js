@@ -13,10 +13,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef GetApplicationShipmentsParam
  * @property {string} [lane]
- * @property {string} [searchType]
+ * @property {string} [searchType] - Search_type refers to the field that will
+ *   be used as the target for the search operation
  * @property {string} [searchId]
- * @property {string} [fromDate]
- * @property {string} [toDate]
+ * @property {string} [fromDate] - Date time in UTC timezone as per ISO format.
+ * @property {string} [toDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [dpIds]
  * @property {string} [orderingCompanyId]
  * @property {string} [stores]
@@ -32,6 +33,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef GetPlatformShipmentReasonsParam
  * @property {string} action
+ */
+
+/**
+ * @typedef GetRulesParam
+ * @property {OrderPlatformModel.RuleListRequestSchema} body
  */
 
 /**
@@ -82,6 +88,13 @@ class OrderPlatformApplicationValidator {
   static getPlatformShipmentReasons() {
     return Joi.object({
       action: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetRulesParam} */
+  static getRules() {
+    return Joi.object({
+      body: OrderPlatformModel.RuleListRequestSchema().required(),
     }).required();
   }
 

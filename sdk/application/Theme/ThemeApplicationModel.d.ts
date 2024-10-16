@@ -75,7 +75,6 @@ export = ThemeApplicationModel;
  * @property {string} [name] - The name of the section.
  * @property {string} [label] - A label for the section, which can be used for
  *   display purposes.
- * @property {string} [source] - The source of the section, for example, 'themebundle'.
  * @property {Object} [props] - An object containing various properties
  *   associated with the section.
  * @property {Object[]} [blocks] - An array of blocks within the section, where
@@ -83,6 +82,21 @@ export = ThemeApplicationModel;
  * @property {Object} [preset] - An object containing preset configurations for
  *   the section.
  * @property {AvailablePagePredicate} [predicate]
+ * @property {SectionSource} [__source]
+ * @property {SectionAssets} [assets]
+ */
+/**
+ * @typedef SectionAssets
+ * @property {string} [js] - The CDN URL of JS bundle.
+ * @property {string} [css] - The CDN URL of CSS file.
+ */
+/**
+ * @typedef SectionSource
+ * @property {string} [id] - The source id specifying the source of the section.
+ * @property {string} [bundle_name] - This is the extension binding name
+ *   containing this section.
+ * @property {string} [type] - This is source type. It will either be
+ *   themeBundle or extension.
  */
 /**
  * @typedef AvailablePagePredicate
@@ -219,11 +233,6 @@ export = ThemeApplicationModel;
  * @property {boolean} [disable_cart] - Whether to disable the cart or not.
  * @property {boolean} [is_menu_below_logo] - Whether the menu is below the logo or not.
  * @property {string} [menu_position] - The position of the menu.
- */
-/**
- * @typedef GlobalConfig
- * @property {StaticConfig} [statics]
- * @property {CustomConfig} [custom]
  */
 /**
  * @typedef GeneralSetting
@@ -555,7 +564,7 @@ export = ThemeApplicationModel;
 declare class ThemeApplicationModel {
 }
 declare namespace ThemeApplicationModel {
-    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GlobalConfig, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema, ActionPage, PageType };
+    export { AllAvailablePageSchema, AvailablePageSchema, AvailablePageSectionMetaAttributes, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSeo, AvailablePageSchemaSections, SectionAssets, SectionSource, AvailablePagePredicate, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, CustomConfig, CustomProps, GeneralSetting, AdvanceSetting, UserAlertsSetting, ThemeSetting, TextSetting, ButtonSetting, SaleDiscountSetting, HeaderSetting, FooterSetting, OverlayPopupSetting, DividerStrokeHighlightSetting, StaticConfig, StaticProps, Colors, AuthConfig, PaletteConfig, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, AvailablePagePlatformPredicate, BlitzkriegInternalServerErrorSchema, BlitzkriegApiErrorSchema, ActionPage, PageType };
 }
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -725,10 +734,6 @@ type AvailablePageSchemaSections = {
      */
     label?: string;
     /**
-     * - The source of the section, for example, 'themebundle'.
-     */
-    source?: string;
-    /**
      * - An object containing various properties
      * associated with the section.
      */
@@ -744,6 +749,38 @@ type AvailablePageSchemaSections = {
      */
     preset?: any;
     predicate?: AvailablePagePredicate;
+    __source?: SectionSource;
+    assets?: SectionAssets;
+};
+/** @returns {SectionAssets} */
+declare function SectionAssets(): SectionAssets;
+type SectionAssets = {
+    /**
+     * - The CDN URL of JS bundle.
+     */
+    js?: string;
+    /**
+     * - The CDN URL of CSS file.
+     */
+    css?: string;
+};
+/** @returns {SectionSource} */
+declare function SectionSource(): SectionSource;
+type SectionSource = {
+    /**
+     * - The source id specifying the source of the section.
+     */
+    id?: string;
+    /**
+     * - This is the extension binding name
+     * containing this section.
+     */
+    bundle_name?: string;
+    /**
+     * - This is source type. It will either be
+     * themeBundle or extension.
+     */
+    type?: string;
 };
 /** @returns {AvailablePagePredicate} */
 declare function AvailablePagePredicate(): AvailablePagePredicate;
@@ -1088,12 +1125,6 @@ type CustomProps = {
      * - The position of the menu.
      */
     menu_position?: string;
-};
-/** @returns {GlobalConfig} */
-declare function GlobalConfig(): GlobalConfig;
-type GlobalConfig = {
-    statics?: StaticConfig;
-    custom?: CustomConfig;
 };
 /** @returns {GeneralSetting} */
 declare function GeneralSetting(): GeneralSetting;

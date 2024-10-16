@@ -32,7 +32,12 @@ export = OrderApplicationModel;
  * @property {string} [name] - The official name of the entity.
  * @property {string} [display] - The name of the entity as it should be displayed.
  * @property {string} [currency_code] - The international currency code
- *   representing the currency used for the value.
+ *   representing the currency used for the value. This specifies the currency
+ *   code for all amounts. The currency_code field will hold a string value
+ *   representing the code for the currency in which all monetary amounts are
+ *   denominated. This code typically follows the ISO 4217 standard, which uses
+ *   three-letter alphabetic codes to define different currencies around the
+ *   world. For example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
  */
 /**
  * @typedef ShipmentPayment
@@ -72,8 +77,42 @@ export = OrderApplicationModel;
  * @property {string} [code] - A code associated with the store.
  * @property {string} [name] - The name of the store.
  * @property {string} [company_name] - The name of the company associated with the store.
- * @property {number} [company_id] - The identifier of the company associated
- *   with the store.
+ * @property {number} [company_id] - Schema for fulfilling store.
+ */
+/**
+ * @typedef ChargeDistributionSchema
+ * @property {string} type - This field defines the distribution type, e.g
+ *   values('multi', 'single') multi: distribute the changes across all entity
+ *   single: distribute the changes across to any one single entity
+ * @property {string} logic - This field defines the distribution logic e.g
+ *   values('apportion', 'equally') apportion: distribute charge amount based of
+ *   weighted average amount of all the entity (like article with [10, 20] will
+ *   get charge of 9 as [3, 6]) equally: distribute charge amount 'equally' to
+ *   all the entity
+ */
+/**
+ * @typedef ChargeDistributionLogic
+ * @property {ChargeDistributionSchema} distribution
+ * @property {string} distribution_level - This field defines the distribution
+ *   level, e.g distribution level is (order, shipment, article)
+ */
+/**
+ * @typedef ChargeAmountCurrency
+ * @property {number} value - Charge currency value or amount
+ * @property {string} currency - Charge currency code
+ */
+/**
+ * @typedef ChargeAmount
+ * @property {ChargeAmountCurrency} base_currency
+ * @property {ChargeAmountCurrency} ordering_currency
+ */
+/**
+ * @typedef PriceAdjustmentCharge
+ * @property {string} [code] - Code defined for charge
+ * @property {string} name - Display name for charge (charge is unique by the name)
+ * @property {string} [type] - Type defined for charge
+ * @property {ChargeAmount} amount
+ * @property {ChargeDistributionLogic} distribution_logic
  */
 /**
  * @typedef ShipmentStatus
@@ -82,7 +121,10 @@ export = OrderApplicationModel;
  * @property {string} [title] - The title or display name representing the
  *   shipment status.
  * @property {string} [hex_code] - The hexadecimal color code associated with
- *   the shipment status.
+ *   the shipment status. Each state of a shipment (like "processing",
+ *   "cancelled", "delivered", etc.) is associated with a unique color,
+ *   represented by a hex code. This color coding makes it visually intuitive
+ *   for users to understand the status of their shipment at a glance.
  */
 /**
  * @typedef Invoice
@@ -155,7 +197,12 @@ export = OrderApplicationModel;
  * @property {number} [promotion_effective_discount] - The effective discount
  *   from promotions.
  * @property {number} [refund_amount] - The amount refunded to the customer.
- * @property {string} [currency_code] - The code of the currency used.
+ * @property {string} [currency_code] - This specifies the currency code for all
+ *   amounts. The currency_code field will hold a string value representing the
+ *   code for the currency in which all monetary amounts are denominated. This
+ *   code typically follows the ISO 4217 standard, which uses three-letter
+ *   alphabetic codes to define different currencies around the world. For
+ *   example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
  * @property {number} [fynd_credits] - The amount of Fynd credits used.
  * @property {number} [amount_to_be_collected] - The total amount that needs to
  *   be collected from the customer.
@@ -174,7 +221,9 @@ export = OrderApplicationModel;
  * @property {string} [code] - The code or SKU of the item.
  * @property {number} [id] - The unique identifier of the item.
  * @property {string} [name] - The name of the item.
- * @property {string} [l3_category_name] - The level 3 category name.
+ * @property {string} [l3_category_name] - This key specifies the name of the
+ *   third-level category under which the product is listed, offering a more
+ *   detailed classification within the e-commerce platform's hierarchy.
  * @property {string} [slug_key] - A unique key or identifier for the item slug.
  * @property {string[]} [l2_categories] - An array of level 2 categories the
  *   item belongs to.
@@ -198,14 +247,34 @@ export = OrderApplicationModel;
  *   qualify for the promotion.
  * @property {string} [promo_id] - The unique identifier for the promotion.
  * @property {number} [amount] - The discount amount provided by the promotion.
- * @property {string} [promotion_type] - The type of promotion.
+ * @property {string} [promotion_type] - Specifies the type of discount or deal
+ *   applied to the current promotion, defining how the promotion modifies the
+ *   price or adds value to the purchase. Each type represents a different
+ *   promotional strategy - percentage- Discount by a percentage of the original
+ *   price. - amount- Discount by a specific amount off the original price. -
+ *   fixed_price- Sets the price to a specific fixed amount. - bogo- Buy One Get
+ *   One or at a discount. - contract_price- Special pricing based on a contract
+ *   or agreement. - shipping_price- Discount or deal related to the shipping
+ *   cost. - ladder_price- Price changes based on quantity purchased. -
+ *   bundle_price_percentage- Discount on a bundle purchase by a percentage. -
+ *   bundle_price_amount- Discount on a bundle purchase by a specific amount. -
+ *   bundle_amount_percentage- A percentage of the purchase amount is applied as
+ *   a discount when buying in a bundle. - custom- A custom promotion not
+ *   covered by other types. - free_gift_items- Free gift items are included
+ *   with the purchase. - free_non_sellable_items- Free items that are not for
+ *   sale are included with the purchase.
  * @property {AppliedFreeArticles[]} [applied_free_articles] - An array
  *   containing details of free articles applied under the promotion.
  */
 /**
  * @typedef Identifiers
  * @property {string} [ean] - The European Article Number (EAN) of the item.
- * @property {string} [sku_code] - The Stock Keeping Unit (SKU) code of the item.
+ * @property {string} [sku_code] - The Stock Keeping Unit (SKU) code of the item
+ *   - uniquely identifies each distinct product. SKUs are used to track
+ *   inventory levels, facilitate accurate stocktaking, and streamline order
+ *   fulfillment processes. This code is essential for inventory management,
+ *   allowing for the differentiation between products based on attributes such
+ *   as price, color, and size.
  */
 /**
  * @typedef FinancialBreakup
@@ -216,8 +285,12 @@ export = OrderApplicationModel;
  *   other charges.
  * @property {number} [price_marked] - The original marked price of the item.
  * @property {number} [coupon_effective_discount] - The effective discount from coupons.
- * @property {string} [hsn_code] - The HSN (Harmonized System of Nomenclature)
- *   code of the item.
+ * @property {string} [hsn_code] - The HSN Code (Harmonized System of
+ *   Nomenclature Code) is an internationally standardized system for
+ *   classifying goods. It is used in trade and commerce to identify products
+ *   and services uniformly across different countries and industries. The
+ *   system was developed by the World Customs Organization (WCO) and is widely
+ *   used in customs processes and tax systems.
  * @property {number} [discount] - The discount applied to the item.
  * @property {number} [gst_tax_percentage] - The GST tax percentage applied .
  * @property {number} [cod_charges] - The cash on delivery charges, if applicable.
@@ -249,8 +322,13 @@ export = OrderApplicationModel;
  * @property {string} [updated_at] - The date and time when the status was last updated.
  * @property {string} [name] - The name or label indicating the current state or status.
  * @property {string} [status] - The current status of the bag.
- * @property {string} [journey_type] - The type of journey for the shipment,
- *   indicating the direction of the shipment.
+ * @property {string} [journey_type] - It is a type being used to represent the
+ *   journey of shipment through the performed status transition. Forward
+ *   Journey: The forward journey encompasses all the stages of shipping,
+ *   including order placement, packing, dispatch, in-transit updates, and
+ *   delivery. Return Journey: Contrary to the forward journey, the return
+ *   journey involves the process of sending items back from the customer to the
+ *   original sender or a designated return facility.
  */
 /**
  * @typedef Bags
@@ -272,11 +350,19 @@ export = OrderApplicationModel;
  *   financial details of the item.
  * @property {Object} [parent_promo_bags] - An object containing details of
  *   parent promotional bags.
- * @property {Object} [meta] - An object containing metadata for the item.
- * @property {string} [currency_code] - The code of the currency used.
+ * @property {Object} [meta] - It contains the additional properties related to
+ *   shipment status transition like Kafka_emission_status, user_name, etc.
+ *   Additionally it is dynamic.
+ * @property {string} [currency_code] - This specifies the currency code for all
+ *   amounts. The currency_code field will hold a string value representing the
+ *   code for the currency in which all monetary amounts are denominated. This
+ *   code typically follows the ISO 4217 standard, which uses three-letter
+ *   alphabetic codes to define different currencies around the world. For
+ *   example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
  * @property {string} [seller_identifier] - The identifier for the seller.
  * @property {CurrentStatus} [current_status]
  * @property {Article} [article]
+ * @property {PriceAdjustmentCharge[]} [charges]
  */
 /**
  * @typedef FulfillingCompany
@@ -298,7 +384,7 @@ export = OrderApplicationModel;
  * @property {string} [area] - The area or locality.
  * @property {string} [city] - The city of the address.
  * @property {string} [address] - The full address.
- * @property {string} [address_type] - The type of address.
+ * @property {string} [address_type] - The type of the address (e.g., home, office).
  * @property {number} [longitude] - The longitude coordinate.
  * @property {string} [country_iso_code] - The ISO code for the country.
  * @property {string} [state] - The state of the address.
@@ -308,7 +394,20 @@ export = OrderApplicationModel;
  *   typically used for printing or displaying in user interfaces.
  * @property {string} [name] - The name of the person associated with the address.
  * @property {string} [contact_person] - The name of the contact person.
- * @property {string} [address_category] - The category of the address.
+ * @property {string} [address_category] - Category or classification of the
+ *   address. The address_category field that includes "store", "delivery", and
+ *   "billing" serves to classify addresses based on various business processes
+ *
+ *   - 'store': Identifies addresses associated with physical retail locations or
+ *       warehouses which is essential for inventory management, order
+ *       fulfillment, and facilitating in-store pickups or returns.
+ *   - 'delivery': Identifies addresses where orders are shipped to customers which
+ *       ensures successful delivery, enhancing customer satisfaction, and
+ *       optimizing logistics operations.
+ *   - 'billing': Identifies addresses used for billing and financial transactions
+ *       which are essential for payment processing, invoice generation, and
+ *       maintaining financial accuracy.
+ *
  * @property {string} [email] - The email address.
  * @property {string} [country_phone_code] - The country phone code.
  * @property {string} [version] - The version of the address format.
@@ -321,8 +420,25 @@ export = OrderApplicationModel;
  * @property {ShipmentPaymentInfo[]} [payment_info] - Array of objects
  *   containing payment methods used for placing an order. Each object will
  *   provide information about corresponding payment method with relevant details.
- * @property {string} [order_type] - The type of order.
- * @property {string} [gstin_code] - The GSTIN code for the shipment.
+ * @property {string} [order_type] - Defines the specific journey a shipment
+ *   will follow based on the application's operational needs and customer
+ *   preferences. This field categorizes orders into distinct types, each
+ *   associated with a unique processing flow. For example:
+ *
+ *   - "HomeDelivery": The order undergoes all state transitions typical for a
+ *       delivery, from processing the shipment to final delivery at the
+ *       customer's address.
+ *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
+ *       is ready to be handed over directly to the customer at the store. This
+ *       type streamlines the process by bypassing traditional shipping stages
+ *       and facilitating a quicker transition to the final handover stage.
+ *
+ * @property {string} [gstin_code] - A GST Number (Goods and Services Tax
+ *   Identification Number, often abbreviated as GSTIN) is a unique identifier
+ *   assigned to a business or individual registered under the Goods and
+ *   Services Tax (GST) system in countries like India. The GST number is
+ *   essential for businesses to comply with tax regulations and for the
+ *   government to track tax payments and returns.
  * @property {boolean} [show_download_invoice] - Indicates if the download
  *   invoice option should be shown.
  * @property {boolean} [can_cancel] - Indicates if the shipment can be canceled.
@@ -369,7 +485,8 @@ export = OrderApplicationModel;
  * @property {Object} [return_meta] - An object containing metadata about the
  *   return process.
  * @property {string} [delivery_date] - The expected delivery date.
- * @property {OrderRequest} [order]
+ * @property {OrderRequestSchema} [order]
+ * @property {PriceAdjustmentCharge[]} [charges]
  */
 /**
  * @typedef BagsForReorderArticleAssignment
@@ -389,7 +506,12 @@ export = OrderApplicationModel;
  * @typedef OrderSchema
  * @property {number} [total_shipments_in_order] - The total number of shipments
  *   in the order.
- * @property {string} [gstin_code] - The GSTIN code for the shipment.
+ * @property {string} [gstin_code] - A GST Number (Goods and Services Tax
+ *   Identification Number, often abbreviated as GSTIN) is a unique identifier
+ *   assigned to a business or individual registered under the Goods and
+ *   Services Tax (GST) system in countries like India. The GST number is
+ *   essential for businesses to comply with tax regulations and for the
+ *   government to track tax payments and returns.
  * @property {UserInfo} [user_info]
  * @property {BreakupValues[]} [breakup_values] - An array containing the
  *   breakup of various charges and discounts.
@@ -398,7 +520,8 @@ export = OrderApplicationModel;
  * @property {string} [order_id] - The unique identifier for the order.
  * @property {Shipments[]} [shipments] - An array containing details of
  *   individual shipments within the order.
- * @property {BagsForReorder[]} [bags_for_reorder] - An array containing details
+ * @property {BagsForReorder[]} [bags_for_reorder] - Order details.
+ * @property {PriceAdjustmentCharge[]} [charges] - An array containing details
  *   of bags available for reorder.
  * @property {Object} [meta] - An object containing additional metadata for the order.
  */
@@ -458,7 +581,7 @@ export = OrderApplicationModel;
  * @property {Track[]} [results] - A array containing tracking details.
  */
 /**
- * @typedef CustomerDetailsResponse
+ * @typedef CustomerDetailsResponseSchema
  * @property {string} [phone] - Customer's phone number.
  * @property {string} [shipment_id] - Unique identifier of the shipment.
  * @property {string} [name] - Customer's name.
@@ -466,7 +589,7 @@ export = OrderApplicationModel;
  * @property {string} [country] - Country of the customer.
  */
 /**
- * @typedef SendOtpToCustomerResponse
+ * @typedef SendOtpToCustomerResponseSchema
  * @property {string} [request_id] - Unique identifier for the request.
  * @property {string} [message] - Message indicating the result of the request.
  * @property {boolean} [success] - Indicates whether the request was successful.
@@ -478,7 +601,7 @@ export = OrderApplicationModel;
  * @property {string} [request_id] - Unique identifier for the request.
  */
 /**
- * @typedef VerifyOtpResponse
+ * @typedef VerifyOtpResponseSchema
  * @property {boolean} [success] - Indicates whether the request was successful.
  */
 /**
@@ -493,7 +616,20 @@ export = OrderApplicationModel;
  */
 /**
  * @typedef BagReasons
- * @property {string[]} [qc_type] - A list of quality check types.
+ * @property {string[]} [qc_type] - List of QC (Quality Control) types -- having
+ *   return reason types indicating the stage at which QC is performed. -
+ *   "Doorstep QC" refers to the quality control checks that occur at the
+ *   customer's doorstep. This could be part of a delivery process where the
+ *   product is inspected for any damages, defects, or discrepancies in the
+ *   presence of the customer before the final handover. - "Pre QC" represents a
+ *   proactive quality control approach where the customer plays an active role
+ *   in the QC process before the product is collected for return or exchange.
+ *   In this procedure, customers are required to upload photos of the product
+ *   for a preliminary quality check by the operations team. Approval from this
+ *   team is necessary before a delivery partner is dispatched to pick up the
+ *   product. This innovative method ensures that the product meets return or
+ *   exchange criteria, streamlining the process for both the customer and the
+ *   operations team, and minimizing unnecessary logistics movements.
  * @property {number} [id] - The unique identifier.
  * @property {string} [display_name] - The text displayed.
  * @property {BagReasonMeta} [meta]
@@ -504,6 +640,9 @@ export = OrderApplicationModel;
  * @typedef ShipmentBagReasons
  * @property {BagReasons[]} [reasons] - A list of shipment's bag reasons.
  * @property {boolean} [success] - Indicates if the operation was successful.
+ * @property {number} [rule_id] - The unique identifier for the rule that is
+ *   associated with the given reasons. This ID serves as a reference to the
+ *   specific rule within the RMA system that governs or influences the reasons listed.
  */
 /**
  * @typedef ShipmentReason
@@ -559,8 +698,16 @@ export = OrderApplicationModel;
  */
 /**
  * @typedef ProductsDataUpdatesFilters
- * @property {number} [line_number] - The specific line item of bag.
- * @property {string} [identifier] - The quantity of the product.
+ * @property {number} [line_number] - Represents the specific line item within a
+ *   bag, used to identify and reference a particular product in a list. This
+ *   helps in pinpointing the exact item being updated or processed.
+ * @property {string} [identifier] - A unique string that serves as the
+ *   product’s identifier, such as a SKU, barcode, or another distinct code.
+ *   This ensures the product is correctly identified and distinguished from
+ *   other items in the system.
+ * @property {number} [quantity] - The quantity of the product or item,
+ *   specified as an integer. This indicates how many units of the product are
+ *   being referenced or processed, such as the number of items in a bag or shipment.
  */
 /**
  * @typedef ProductsDataUpdates
@@ -579,7 +726,7 @@ export = OrderApplicationModel;
  * @property {EntitiesDataUpdates[]} [entities] - Data updates for shipments.
  */
 /**
- * @typedef ShipmentsRequest
+ * @typedef ShipmentsRequestSchema
  * @property {ReasonsData} [reasons]
  * @property {Products[]} [products] - Specific bag to be updated.
  * @property {DataUpdates} [data_updates]
@@ -587,20 +734,21 @@ export = OrderApplicationModel;
  *   the shipment_id.
  */
 /**
- * @typedef StatuesRequest
- * @property {ShipmentsRequest[]} [shipments] - A list containing information
- *   about shipments.
+ * @typedef StatuesRequestSchema
+ * @property {ShipmentsRequestSchema[]} [shipments] - A list containing
+ *   information about shipments.
  * @property {string} [exclude_bags_next_state] - State to be change for
  *   Remaining Bag/Products.
  * @property {string} [status] - The status to which the entity is to be transitioned.
  */
 /**
- * @typedef OrderRequest
+ * @typedef OrderRequestSchema
  * @property {Object} [meta] - Metadata for the order.
  */
 /**
- * @typedef UpdateShipmentStatusRequest
- * @property {StatuesRequest[]} [statuses] - An array containing different status details.
+ * @typedef UpdateShipmentStatusRequestSchema
+ * @property {StatuesRequestSchema[]} [statuses] - An array containing different
+ *   status details.
  * @property {boolean} [task] - Indicates whether the task is active or required.
  * @property {boolean} [lock_after_transition] - Indicates whether the status
  *   should be locked after the transition.
@@ -610,16 +758,16 @@ export = OrderApplicationModel;
  *   should be unlocked before the transition.
  */
 /**
- * @typedef StatusesBodyResponse
+ * @typedef StatusesBodyResponseSchema
  * @property {Object[]} [shipments] - List of shipments.
  */
 /**
- * @typedef ShipmentApplicationStatusResponse
- * @property {StatusesBodyResponse[]} [statuses] - An array containing different
- *   status options of shipments.
+ * @typedef ShipmentApplicationStatusResponseSchema
+ * @property {StatusesBodyResponseSchema[]} [statuses] - An array containing
+ *   different status options of shipments.
  */
 /**
- * @typedef ErrorResponse
+ * @typedef ErrorResponseSchema
  * @property {string} [code] - The HTTP status code of the response.
  * @property {string} [message] - A message providing details about the response.
  * @property {number} [status] - An additional code providing more context about
@@ -630,7 +778,7 @@ export = OrderApplicationModel;
 declare class OrderApplicationModel {
 }
 declare namespace OrderApplicationModel {
-    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentPaymentInfo, ShipmentUserInfo, FulfillingStore, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, Article, Address, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponse, SendOtpToCustomerResponse, VerifyOtp, VerifyOtpResponse, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, OrderRequest, UpdateShipmentStatusRequest, StatusesBodyResponse, ShipmentApplicationStatusResponse, ErrorResponse };
+    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentPaymentInfo, ShipmentUserInfo, FulfillingStore, ChargeDistributionSchema, ChargeDistributionLogic, ChargeAmountCurrency, ChargeAmount, PriceAdjustmentCharge, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, Article, Address, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponseSchema, SendOtpToCustomerResponseSchema, VerifyOtp, VerifyOtpResponseSchema, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequestSchema, StatuesRequestSchema, OrderRequestSchema, UpdateShipmentStatusRequestSchema, StatusesBodyResponseSchema, ShipmentApplicationStatusResponseSchema, ErrorResponseSchema };
 }
 /** @returns {OrderPage} */
 declare function OrderPage(): OrderPage;
@@ -714,7 +862,12 @@ type BreakupValues = {
     display?: string;
     /**
      * - The international currency code
-     * representing the currency used for the value.
+     * representing the currency used for the value. This specifies the currency
+     * code for all amounts. The currency_code field will hold a string value
+     * representing the code for the currency in which all monetary amounts are
+     * denominated. This code typically follows the ISO 4217 standard, which uses
+     * three-letter alphabetic codes to define different currencies around the
+     * world. For example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
      */
     currency_code?: string;
 };
@@ -830,10 +983,73 @@ type FulfillingStore = {
      */
     company_name?: string;
     /**
-     * - The identifier of the company associated
-     * with the store.
+     * - Schema for fulfilling store.
      */
     company_id?: number;
+};
+/** @returns {ChargeDistributionSchema} */
+declare function ChargeDistributionSchema(): ChargeDistributionSchema;
+type ChargeDistributionSchema = {
+    /**
+     * - This field defines the distribution type, e.g
+     * values('multi', 'single') multi: distribute the changes across all entity
+     * single: distribute the changes across to any one single entity
+     */
+    type: string;
+    /**
+     * - This field defines the distribution logic e.g
+     * values('apportion', 'equally') apportion: distribute charge amount based of
+     * weighted average amount of all the entity (like article with [10, 20] will
+     * get charge of 9 as [3, 6]) equally: distribute charge amount 'equally' to
+     * all the entity
+     */
+    logic: string;
+};
+/** @returns {ChargeDistributionLogic} */
+declare function ChargeDistributionLogic(): ChargeDistributionLogic;
+type ChargeDistributionLogic = {
+    distribution: ChargeDistributionSchema;
+    /**
+     * - This field defines the distribution
+     * level, e.g distribution level is (order, shipment, article)
+     */
+    distribution_level: string;
+};
+/** @returns {ChargeAmountCurrency} */
+declare function ChargeAmountCurrency(): ChargeAmountCurrency;
+type ChargeAmountCurrency = {
+    /**
+     * - Charge currency value or amount
+     */
+    value: number;
+    /**
+     * - Charge currency code
+     */
+    currency: string;
+};
+/** @returns {ChargeAmount} */
+declare function ChargeAmount(): ChargeAmount;
+type ChargeAmount = {
+    base_currency: ChargeAmountCurrency;
+    ordering_currency: ChargeAmountCurrency;
+};
+/** @returns {PriceAdjustmentCharge} */
+declare function PriceAdjustmentCharge(): PriceAdjustmentCharge;
+type PriceAdjustmentCharge = {
+    /**
+     * - Code defined for charge
+     */
+    code?: string;
+    /**
+     * - Display name for charge (charge is unique by the name)
+     */
+    name: string;
+    /**
+     * - Type defined for charge
+     */
+    type?: string;
+    amount: ChargeAmount;
+    distribution_logic: ChargeDistributionLogic;
 };
 /** @returns {ShipmentStatus} */
 declare function ShipmentStatus(): ShipmentStatus;
@@ -850,7 +1066,10 @@ type ShipmentStatus = {
     title?: string;
     /**
      * - The hexadecimal color code associated with
-     * the shipment status.
+     * the shipment status. Each state of a shipment (like "processing",
+     * "cancelled", "delivered", etc.) is associated with a unique color,
+     * represented by a hex code. This color coding makes it visually intuitive
+     * for users to understand the status of their shipment at a glance.
      */
     hex_code?: string;
 };
@@ -1053,7 +1272,12 @@ type Prices = {
      */
     refund_amount?: number;
     /**
-     * - The code of the currency used.
+     * - This specifies the currency code for all
+     * amounts. The currency_code field will hold a string value representing the
+     * code for the currency in which all monetary amounts are denominated. This
+     * code typically follows the ISO 4217 standard, which uses three-letter
+     * alphabetic codes to define different currencies around the world. For
+     * example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
      */
     currency_code?: string;
     /**
@@ -1107,7 +1331,9 @@ type Item = {
      */
     name?: string;
     /**
-     * - The level 3 category name.
+     * - This key specifies the name of the
+     * third-level category under which the product is listed, offering a more
+     * detailed classification within the e-commerce platform's hierarchy.
      */
     l3_category_name?: string;
     /**
@@ -1175,7 +1401,22 @@ type AppliedPromos = {
      */
     amount?: number;
     /**
-     * - The type of promotion.
+     * - Specifies the type of discount or deal
+     * applied to the current promotion, defining how the promotion modifies the
+     * price or adds value to the purchase. Each type represents a different
+     * promotional strategy - percentage- Discount by a percentage of the original
+     * price. - amount- Discount by a specific amount off the original price. -
+     * fixed_price- Sets the price to a specific fixed amount. - bogo- Buy One Get
+     * One or at a discount. - contract_price- Special pricing based on a contract
+     * or agreement. - shipping_price- Discount or deal related to the shipping
+     * cost. - ladder_price- Price changes based on quantity purchased. -
+     * bundle_price_percentage- Discount on a bundle purchase by a percentage. -
+     * bundle_price_amount- Discount on a bundle purchase by a specific amount. -
+     * bundle_amount_percentage- A percentage of the purchase amount is applied as
+     * a discount when buying in a bundle. - custom- A custom promotion not
+     * covered by other types. - free_gift_items- Free gift items are included
+     * with the purchase. - free_non_sellable_items- Free items that are not for
+     * sale are included with the purchase.
      */
     promotion_type?: string;
     /**
@@ -1192,7 +1433,12 @@ type Identifiers = {
      */
     ean?: string;
     /**
-     * - The Stock Keeping Unit (SKU) code of the item.
+     * - The Stock Keeping Unit (SKU) code of the item
+     * - uniquely identifies each distinct product. SKUs are used to track
+     * inventory levels, facilitate accurate stocktaking, and streamline order
+     * fulfillment processes. This code is essential for inventory management,
+     * allowing for the differentiation between products based on attributes such
+     * as price, color, and size.
      */
     sku_code?: string;
 };
@@ -1225,8 +1471,12 @@ type FinancialBreakup = {
      */
     coupon_effective_discount?: number;
     /**
-     * - The HSN (Harmonized System of Nomenclature)
-     * code of the item.
+     * - The HSN Code (Harmonized System of
+     * Nomenclature Code) is an internationally standardized system for
+     * classifying goods. It is used in trade and commerce to identify products
+     * and services uniformly across different countries and industries. The
+     * system was developed by the World Customs Organization (WCO) and is widely
+     * used in customs processes and tax systems.
      */
     hsn_code?: string;
     /**
@@ -1331,8 +1581,13 @@ type CurrentStatus = {
      */
     status?: string;
     /**
-     * - The type of journey for the shipment,
-     * indicating the direction of the shipment.
+     * - It is a type being used to represent the
+     * journey of shipment through the performed status transition. Forward
+     * Journey: The forward journey encompasses all the stages of shipping,
+     * including order placement, packing, dispatch, in-transit updates, and
+     * delivery. Return Journey: Contrary to the forward journey, the return
+     * journey involves the process of sending items back from the customer to the
+     * original sender or a designated return facility.
      */
     journey_type?: string;
 };
@@ -1391,11 +1646,18 @@ type Bags = {
      */
     parent_promo_bags?: any;
     /**
-     * - An object containing metadata for the item.
+     * - It contains the additional properties related to
+     * shipment status transition like Kafka_emission_status, user_name, etc.
+     * Additionally it is dynamic.
      */
     meta?: any;
     /**
-     * - The code of the currency used.
+     * - This specifies the currency code for all
+     * amounts. The currency_code field will hold a string value representing the
+     * code for the currency in which all monetary amounts are denominated. This
+     * code typically follows the ISO 4217 standard, which uses three-letter
+     * alphabetic codes to define different currencies around the world. For
+     * example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
      */
     currency_code?: string;
     /**
@@ -1404,6 +1666,7 @@ type Bags = {
     seller_identifier?: string;
     current_status?: CurrentStatus;
     article?: Article;
+    charges?: PriceAdjustmentCharge[];
 };
 /** @returns {FulfillingCompany} */
 declare function FulfillingCompany(): FulfillingCompany;
@@ -1462,7 +1725,7 @@ type Address = {
      */
     address?: string;
     /**
-     * - The type of address.
+     * - The type of the address (e.g., home, office).
      */
     address_type?: string;
     /**
@@ -1499,7 +1762,19 @@ type Address = {
      */
     contact_person?: string;
     /**
-     * - The category of the address.
+     * - Category or classification of the
+     * address. The address_category field that includes "store", "delivery", and
+     * "billing" serves to classify addresses based on various business processes
+     *
+     * - 'store': Identifies addresses associated with physical retail locations or
+     * warehouses which is essential for inventory management, order
+     * fulfillment, and facilitating in-store pickups or returns.
+     * - 'delivery': Identifies addresses where orders are shipped to customers which
+     * ensures successful delivery, enhancing customer satisfaction, and
+     * optimizing logistics operations.
+     * - 'billing': Identifies addresses used for billing and financial transactions
+     * which are essential for payment processing, invoice generation, and
+     * maintaining financial accuracy.
      */
     address_category?: string;
     /**
@@ -1534,11 +1809,27 @@ type Shipments = {
      */
     payment_info?: ShipmentPaymentInfo[];
     /**
-     * - The type of order.
+     * - Defines the specific journey a shipment
+     * will follow based on the application's operational needs and customer
+     * preferences. This field categorizes orders into distinct types, each
+     * associated with a unique processing flow. For example:
+     *
+     * - "HomeDelivery": The order undergoes all state transitions typical for a
+     * delivery, from processing the shipment to final delivery at the
+     * customer's address.
+     * - "PickAtStore": The order is prepared for pickup and moved to a state where it
+     * is ready to be handed over directly to the customer at the store. This
+     * type streamlines the process by bypassing traditional shipping stages
+     * and facilitating a quicker transition to the final handover stage.
      */
     order_type?: string;
     /**
-     * - The GSTIN code for the shipment.
+     * - A GST Number (Goods and Services Tax
+     * Identification Number, often abbreviated as GSTIN) is a unique identifier
+     * assigned to a business or individual registered under the Goods and
+     * Services Tax (GST) system in countries like India. The GST number is
+     * essential for businesses to comply with tax regulations and for the
+     * government to track tax payments and returns.
      */
     gstin_code?: string;
     /**
@@ -1665,7 +1956,8 @@ type Shipments = {
      * - The expected delivery date.
      */
     delivery_date?: string;
-    order?: OrderRequest;
+    order?: OrderRequestSchema;
+    charges?: PriceAdjustmentCharge[];
 };
 /** @returns {BagsForReorderArticleAssignment} */
 declare function BagsForReorderArticleAssignment(): BagsForReorderArticleAssignment;
@@ -1713,7 +2005,12 @@ type OrderSchema = {
      */
     total_shipments_in_order?: number;
     /**
-     * - The GSTIN code for the shipment.
+     * - A GST Number (Goods and Services Tax
+     * Identification Number, often abbreviated as GSTIN) is a unique identifier
+     * assigned to a business or individual registered under the Goods and
+     * Services Tax (GST) system in countries like India. The GST number is
+     * essential for businesses to comply with tax regulations and for the
+     * government to track tax payments and returns.
      */
     gstin_code?: string;
     user_info?: UserInfo;
@@ -1740,10 +2037,14 @@ type OrderSchema = {
      */
     shipments?: Shipments[];
     /**
+     * - Order details.
+     */
+    bags_for_reorder?: BagsForReorder[];
+    /**
      * - An array containing details
      * of bags available for reorder.
      */
-    bags_for_reorder?: BagsForReorder[];
+    charges?: PriceAdjustmentCharge[];
     /**
      * - An object containing additional metadata for the order.
      */
@@ -1873,9 +2174,9 @@ type ShipmentTrack = {
      */
     results?: Track[];
 };
-/** @returns {CustomerDetailsResponse} */
-declare function CustomerDetailsResponse(): CustomerDetailsResponse;
-type CustomerDetailsResponse = {
+/** @returns {CustomerDetailsResponseSchema} */
+declare function CustomerDetailsResponseSchema(): CustomerDetailsResponseSchema;
+type CustomerDetailsResponseSchema = {
     /**
      * - Customer's phone number.
      */
@@ -1897,9 +2198,9 @@ type CustomerDetailsResponse = {
      */
     country?: string;
 };
-/** @returns {SendOtpToCustomerResponse} */
-declare function SendOtpToCustomerResponse(): SendOtpToCustomerResponse;
-type SendOtpToCustomerResponse = {
+/** @returns {SendOtpToCustomerResponseSchema} */
+declare function SendOtpToCustomerResponseSchema(): SendOtpToCustomerResponseSchema;
+type SendOtpToCustomerResponseSchema = {
     /**
      * - Unique identifier for the request.
      */
@@ -1929,9 +2230,9 @@ type VerifyOtp = {
      */
     request_id?: string;
 };
-/** @returns {VerifyOtpResponse} */
-declare function VerifyOtpResponse(): VerifyOtpResponse;
-type VerifyOtpResponse = {
+/** @returns {VerifyOtpResponseSchema} */
+declare function VerifyOtpResponseSchema(): VerifyOtpResponseSchema;
+type VerifyOtpResponseSchema = {
     /**
      * - Indicates whether the request was successful.
      */
@@ -1962,7 +2263,20 @@ type QuestionSet = {
 declare function BagReasons(): BagReasons;
 type BagReasons = {
     /**
-     * - A list of quality check types.
+     * - List of QC (Quality Control) types -- having
+     * return reason types indicating the stage at which QC is performed. -
+     * "Doorstep QC" refers to the quality control checks that occur at the
+     * customer's doorstep. This could be part of a delivery process where the
+     * product is inspected for any damages, defects, or discrepancies in the
+     * presence of the customer before the final handover. - "Pre QC" represents a
+     * proactive quality control approach where the customer plays an active role
+     * in the QC process before the product is collected for return or exchange.
+     * In this procedure, customers are required to upload photos of the product
+     * for a preliminary quality check by the operations team. Approval from this
+     * team is necessary before a delivery partner is dispatched to pick up the
+     * product. This innovative method ensures that the product meets return or
+     * exchange criteria, streamlining the process for both the customer and the
+     * operations team, and minimizing unnecessary logistics movements.
      */
     qc_type?: string[];
     /**
@@ -1994,6 +2308,12 @@ type ShipmentBagReasons = {
      * - Indicates if the operation was successful.
      */
     success?: boolean;
+    /**
+     * - The unique identifier for the rule that is
+     * associated with the given reasons. This ID serves as a reference to the
+     * specific rule within the RMA system that governs or influences the reasons listed.
+     */
+    rule_id?: number;
 };
 /** @returns {ShipmentReason} */
 declare function ShipmentReason(): ShipmentReason;
@@ -2123,13 +2443,24 @@ type Products = {
 declare function ProductsDataUpdatesFilters(): ProductsDataUpdatesFilters;
 type ProductsDataUpdatesFilters = {
     /**
-     * - The specific line item of bag.
+     * - Represents the specific line item within a
+     * bag, used to identify and reference a particular product in a list. This
+     * helps in pinpointing the exact item being updated or processed.
      */
     line_number?: number;
     /**
-     * - The quantity of the product.
+     * - A unique string that serves as the
+     * product’s identifier, such as a SKU, barcode, or another distinct code.
+     * This ensures the product is correctly identified and distinguished from
+     * other items in the system.
      */
     identifier?: string;
+    /**
+     * - The quantity of the product or item,
+     * specified as an integer. This indicates how many units of the product are
+     * being referenced or processed, such as the number of items in a bag or shipment.
+     */
+    quantity?: number;
 };
 /** @returns {ProductsDataUpdates} */
 declare function ProductsDataUpdates(): ProductsDataUpdates;
@@ -2168,9 +2499,9 @@ type DataUpdates = {
      */
     entities?: EntitiesDataUpdates[];
 };
-/** @returns {ShipmentsRequest} */
-declare function ShipmentsRequest(): ShipmentsRequest;
-type ShipmentsRequest = {
+/** @returns {ShipmentsRequestSchema} */
+declare function ShipmentsRequestSchema(): ShipmentsRequestSchema;
+type ShipmentsRequestSchema = {
     reasons?: ReasonsData;
     /**
      * - Specific bag to be updated.
@@ -2183,14 +2514,14 @@ type ShipmentsRequest = {
      */
     identifier: string;
 };
-/** @returns {StatuesRequest} */
-declare function StatuesRequest(): StatuesRequest;
-type StatuesRequest = {
+/** @returns {StatuesRequestSchema} */
+declare function StatuesRequestSchema(): StatuesRequestSchema;
+type StatuesRequestSchema = {
     /**
-     * - A list containing information
-     * about shipments.
+     * - A list containing
+     * information about shipments.
      */
-    shipments?: ShipmentsRequest[];
+    shipments?: ShipmentsRequestSchema[];
     /**
      * - State to be change for
      * Remaining Bag/Products.
@@ -2201,21 +2532,22 @@ type StatuesRequest = {
      */
     status?: string;
 };
-/** @returns {OrderRequest} */
-declare function OrderRequest(): OrderRequest;
-type OrderRequest = {
+/** @returns {OrderRequestSchema} */
+declare function OrderRequestSchema(): OrderRequestSchema;
+type OrderRequestSchema = {
     /**
      * - Metadata for the order.
      */
     meta?: any;
 };
-/** @returns {UpdateShipmentStatusRequest} */
-declare function UpdateShipmentStatusRequest(): UpdateShipmentStatusRequest;
-type UpdateShipmentStatusRequest = {
+/** @returns {UpdateShipmentStatusRequestSchema} */
+declare function UpdateShipmentStatusRequestSchema(): UpdateShipmentStatusRequestSchema;
+type UpdateShipmentStatusRequestSchema = {
     /**
-     * - An array containing different status details.
+     * - An array containing different
+     * status details.
      */
-    statuses?: StatuesRequest[];
+    statuses?: StatuesRequestSchema[];
     /**
      * - Indicates whether the task is active or required.
      */
@@ -2236,26 +2568,26 @@ type UpdateShipmentStatusRequest = {
      */
     unlock_before_transition?: boolean;
 };
-/** @returns {StatusesBodyResponse} */
-declare function StatusesBodyResponse(): StatusesBodyResponse;
-type StatusesBodyResponse = {
+/** @returns {StatusesBodyResponseSchema} */
+declare function StatusesBodyResponseSchema(): StatusesBodyResponseSchema;
+type StatusesBodyResponseSchema = {
     /**
      * - List of shipments.
      */
     shipments?: any[];
 };
-/** @returns {ShipmentApplicationStatusResponse} */
-declare function ShipmentApplicationStatusResponse(): ShipmentApplicationStatusResponse;
-type ShipmentApplicationStatusResponse = {
+/** @returns {ShipmentApplicationStatusResponseSchema} */
+declare function ShipmentApplicationStatusResponseSchema(): ShipmentApplicationStatusResponseSchema;
+type ShipmentApplicationStatusResponseSchema = {
     /**
-     * - An array containing different
-     * status options of shipments.
+     * - An array containing
+     * different status options of shipments.
      */
-    statuses?: StatusesBodyResponse[];
+    statuses?: StatusesBodyResponseSchema[];
 };
-/** @returns {ErrorResponse} */
-declare function ErrorResponse(): ErrorResponse;
-type ErrorResponse = {
+/** @returns {ErrorResponseSchema} */
+declare function ErrorResponseSchema(): ErrorResponseSchema;
+type ErrorResponseSchema = {
     /**
      * - The HTTP status code of the response.
      */

@@ -164,7 +164,7 @@ export = UserApplicationValidator;
  */
 /**
  * @typedef UpdateUserAttributesParam
- * @property {UserApplicationModel.UpdateUserAttributesRequest} body
+ * @property {UserApplicationModel.UpdateUserAttributes} body
  */
 /**
  * @typedef UserExistsParam
@@ -511,7 +511,7 @@ type UpdateProfileParam = {
     body: UserApplicationModel.EditProfileRequestSchema;
 };
 type UpdateUserAttributesParam = {
-    body: UserApplicationModel.UpdateUserAttributesRequest;
+    body: UserApplicationModel.UpdateUserAttributes;
 };
 type UserExistsParam = {
     /**

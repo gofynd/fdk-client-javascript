@@ -23,6 +23,11 @@ export = ContentApplicationModel;
  * @property {SeoSchema} [seo]
  */
 /**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
+/**
  * @typedef SeoSchema
  * @property {string} [app] - Application ID - Identifier for a Sales channel.
  * @property {string} [_id] - Unique identifier of an entry.
@@ -98,7 +103,7 @@ export = ContentApplicationModel;
  * @property {string} [end] - End time of schedule.
  */
 /**
- * @typedef BlogGetResponse
+ * @typedef BlogGetDetails
  * @property {BlogSchema[]} [items] - List of blogs with details.
  * @property {Page} [page]
  * @property {BlogFilters} [filters]
@@ -366,7 +371,7 @@ export = ContentApplicationModel;
  * @property {Object} [_custom_json] - Custom JSON object for specific use cases.
  */
 /**
- * @typedef NavigationGetResponse
+ * @typedef NavigationGetDetails
  * @property {NavigationSchema[]} [items] - List of navigation items.
  * @property {Page} [page]
  */
@@ -395,7 +400,7 @@ export = ContentApplicationModel;
  *   links and relevant details.
  */
 /**
- * @typedef PageGetResponse
+ * @typedef PageGetDetails
  * @property {PageSchema[]} [items] - List of details of custom pages.
  * @property {Page} [page]
  */
@@ -433,7 +438,7 @@ export = ContentApplicationModel;
  * @property {string} [id] - Details containing the creator of custom page.
  */
 /**
- * @typedef SlideshowGetResponse
+ * @typedef SlideshowGetDetails
  * @property {SlideshowSchema[]} [items] - Details related to slideshow/screensaver.
  * @property {Page} [page]
  */
@@ -525,7 +530,7 @@ export = ContentApplicationModel;
 /**
  * @typedef CustomObjectFieldSchema
  * @property {string} [_id] - Unique identifier of an entry.
- * @property {string} [key] - Key of custom field inside custom object.
+ * @property {string} [slug] - Slug of custom field inside custom object.
  * @property {CustomObjectFieldValue[]} [value] - Value of custom field inside
  *   custom object.
  * @property {string} [type] - Data type of custom field inside custom object.
@@ -534,7 +539,7 @@ export = ContentApplicationModel;
  */
 /**
  * @typedef CustomObjectByIdSchema
- * @property {string} [_id] - Unique identifier of an entry.
+ * @property {string} [id] - Unique identifier of an entry.
  * @property {string} [status] - String denoting whether custom object is active
  *   or inactive.
  * @property {string} [display_name] - Unique Display name of a custom object
@@ -553,10 +558,8 @@ export = ContentApplicationModel;
  * @typedef CustomFieldSchema
  * @property {string} [_id] - Unique identifier of an entry.
  * @property {string} [namespace] - Namespace under which custom field is present.
- * @property {string} [key] - Unique identifier for a custom field.
+ * @property {string} [slug] - Unique identifier for a custom field in a given namespace.
  * @property {string} [resource] - Type of an entity under which custom field is defined.
- * @property {string} [creator] - Denotes where the custom field has been
- *   defined - within a company or within a sales channel.
  * @property {CustomFieldValue[]} [value] - Array containing values of custom field.
  * @property {string} [resource_id] - Unique identifier for the entity under
  *   which custom field is defined.
@@ -569,7 +572,6 @@ export = ContentApplicationModel;
  * @property {boolean} [has_invalid_values] - Whether the custom field has invalid values.
  * @property {Object[]} [invalid_value_errors] - Array denoting if there's a
  *   validation failure on a custom field inside a custom object.
- * @property {string} [created_by] - Details of the owner of custom field creator.
  * @property {boolean} [is_deleted] - Whether the custom field definition is deleted.
  * @property {string} [created_at] - Timestamp which represent the time when
  *   data was created.
@@ -579,6 +581,23 @@ export = ContentApplicationModel;
 /**
  * @typedef CustomFieldsResponseByResourceIdSchema
  * @property {CustomFieldSchema[]} [items] - List of custom fields against a resource.
+ */
+/**
+ * @typedef CustomObjectListItemSchema
+ * @property {string} [_id] - Unique system generated if for a custom object
+ * @property {string} [definition_id] - Unique system generated id for a custom
+ *   object definition
+ * @property {string} [status] - Flag to denote whether custom object is active or not
+ * @property {string} [updated_at] - Updation time of custom object entry
+ * @property {string} [display_name] - A custom field inside custom object used
+ *   to display the entry of custom object in listing
+ * @property {CustomObjectListItemDefinationSchema} [definition]
+ * @property {number} [references]
+ */
+/**
+ * @typedef CustomObjectsSchema
+ * @property {CustomObjectListItemSchema[]} [items]
+ * @property {Page} [page]
  */
 /**
  * @typedef ActionPage
@@ -640,7 +659,7 @@ export = ContentApplicationModel;
 declare class ContentApplicationModel {
 }
 declare namespace ContentApplicationModel {
-    export { ApplicationLegal, ApplicationLegalFAQ, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, AnnouncementSchema, ScheduleStartSchema, BlogGetResponse, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, LocaleLanguage, Language, Action, NavigationReference, ConfigurationSchema, SlideshowMedia, AnnouncementsResponseSchema, FaqResponseSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, FAQCategorySchema, FaqSchema, GetFaqSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageSchema, NavigationGetResponse, Orientation, NavigationSchema, PageGetResponse, PageSchema, CreatedBySchema, SlideshowGetResponse, SlideshowSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, CustomObjectFieldValue, CustomObjectListItemDefinationSchema, CustomObjectFieldSchema, CustomObjectByIdSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseByResourceIdSchema, ActionPage, PageType };
+    export { ApplicationLegal, ApplicationLegalFAQ, SeoComponent, ValidationError, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, AnnouncementSchema, ScheduleStartSchema, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, LocaleLanguage, Language, Action, NavigationReference, ConfigurationSchema, SlideshowMedia, AnnouncementsResponseSchema, FaqResponseSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, FAQCategorySchema, FaqSchema, GetFaqSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageSchema, NavigationGetDetails, Orientation, NavigationSchema, PageGetDetails, PageSchema, CreatedBySchema, SlideshowGetDetails, SlideshowSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, CustomObjectFieldValue, CustomObjectListItemDefinationSchema, CustomObjectFieldSchema, CustomObjectByIdSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseByResourceIdSchema, CustomObjectListItemSchema, CustomObjectsSchema, ActionPage, PageType };
 }
 /** @returns {ApplicationLegal} */
 declare function ApplicationLegal(): ApplicationLegal;
@@ -700,6 +719,18 @@ type ApplicationLegalFAQ = {
 declare function SeoComponent(): SeoComponent;
 type SeoComponent = {
     seo?: SeoSchema;
+};
+/** @returns {ValidationError} */
+declare function ValidationError(): ValidationError;
+type ValidationError = {
+    /**
+     * - A brief description of the error encountered.
+     */
+    message: string;
+    /**
+     * - The field in the request that caused the error.
+     */
+    field: string;
 };
 /** @returns {SeoSchema} */
 declare function SeoSchema(): SeoSchema;
@@ -890,9 +921,9 @@ type ScheduleStartSchema = {
      */
     end?: string;
 };
-/** @returns {BlogGetResponse} */
-declare function BlogGetResponse(): BlogGetResponse;
-type BlogGetResponse = {
+/** @returns {BlogGetDetails} */
+declare function BlogGetDetails(): BlogGetDetails;
+type BlogGetDetails = {
     /**
      * - List of blogs with details.
      */
@@ -1562,9 +1593,9 @@ type LandingPageSchema = {
      */
     _custom_json?: any;
 };
-/** @returns {NavigationGetResponse} */
-declare function NavigationGetResponse(): NavigationGetResponse;
-type NavigationGetResponse = {
+/** @returns {NavigationGetDetails} */
+declare function NavigationGetDetails(): NavigationGetDetails;
+type NavigationGetDetails = {
     /**
      * - List of navigation items.
      */
@@ -1627,9 +1658,9 @@ type NavigationSchema = {
      */
     navigation?: NavigationReference[];
 };
-/** @returns {PageGetResponse} */
-declare function PageGetResponse(): PageGetResponse;
-type PageGetResponse = {
+/** @returns {PageGetDetails} */
+declare function PageGetDetails(): PageGetDetails;
+type PageGetDetails = {
     /**
      * - List of details of custom pages.
      */
@@ -1725,9 +1756,9 @@ type CreatedBySchema = {
      */
     id?: string;
 };
-/** @returns {SlideshowGetResponse} */
-declare function SlideshowGetResponse(): SlideshowGetResponse;
-type SlideshowGetResponse = {
+/** @returns {SlideshowGetDetails} */
+declare function SlideshowGetDetails(): SlideshowGetDetails;
+type SlideshowGetDetails = {
     /**
      * - Details related to slideshow/screensaver.
      */
@@ -1962,9 +1993,9 @@ type CustomObjectFieldSchema = {
      */
     _id?: string;
     /**
-     * - Key of custom field inside custom object.
+     * - Slug of custom field inside custom object.
      */
-    key?: string;
+    slug?: string;
     /**
      * - Value of custom field inside
      * custom object.
@@ -1986,7 +2017,7 @@ type CustomObjectByIdSchema = {
     /**
      * - Unique identifier of an entry.
      */
-    _id?: string;
+    id?: string;
     /**
      * - String denoting whether custom object is active
      * or inactive.
@@ -2029,18 +2060,13 @@ type CustomFieldSchema = {
      */
     namespace?: string;
     /**
-     * - Unique identifier for a custom field.
+     * - Unique identifier for a custom field in a given namespace.
      */
-    key?: string;
+    slug?: string;
     /**
      * - Type of an entity under which custom field is defined.
      */
     resource?: string;
-    /**
-     * - Denotes where the custom field has been
-     * defined - within a company or within a sales channel.
-     */
-    creator?: string;
     /**
      * - Array containing values of custom field.
      */
@@ -2081,10 +2107,6 @@ type CustomFieldSchema = {
      */
     invalid_value_errors?: any[];
     /**
-     * - Details of the owner of custom field creator.
-     */
-    created_by?: string;
-    /**
      * - Whether the custom field definition is deleted.
      */
     is_deleted?: boolean;
@@ -2106,6 +2128,40 @@ type CustomFieldsResponseByResourceIdSchema = {
      * - List of custom fields against a resource.
      */
     items?: CustomFieldSchema[];
+};
+/** @returns {CustomObjectListItemSchema} */
+declare function CustomObjectListItemSchema(): CustomObjectListItemSchema;
+type CustomObjectListItemSchema = {
+    /**
+     * - Unique system generated if for a custom object
+     */
+    _id?: string;
+    /**
+     * - Unique system generated id for a custom
+     * object definition
+     */
+    definition_id?: string;
+    /**
+     * - Flag to denote whether custom object is active or not
+     */
+    status?: string;
+    /**
+     * - Updation time of custom object entry
+     */
+    updated_at?: string;
+    /**
+     * - A custom field inside custom object used
+     * to display the entry of custom object in listing
+     */
+    display_name?: string;
+    definition?: CustomObjectListItemDefinationSchema;
+    references?: number;
+};
+/** @returns {CustomObjectsSchema} */
+declare function CustomObjectsSchema(): CustomObjectsSchema;
+type CustomObjectsSchema = {
+    items?: CustomObjectListItemSchema[];
+    page?: Page;
 };
 /** @returns {ActionPage} */
 declare function ActionPage(): ActionPage;

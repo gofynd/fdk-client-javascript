@@ -47,7 +47,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef CreateSearchConfigurationParam
- * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
+ * @property {CatalogPlatformModel.CreateSearchConfigurationRequestSchema} body
  */
 /**
  * @typedef DeleteAppCategoryReturnConfigurationParam
@@ -160,7 +160,74 @@ export = CatalogPlatformApplicationValidator;
  */
 /** @typedef GetAppReturnConfigurationParam */
 /**
- * @typedef GetAppicationProductsParam
+ * @typedef GetApplicationBrandListingParam
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search brands by brand name.
+ */
+/**
+ * @typedef GetApplicationBrandsParam
+ * @property {string} [department] - The name of the department. Use this
+ *   parameter to filter products by a particular department. See below the list
+ *   of available departments. You can retrieve available departments from the
+ *   **v1.0/departments/** API
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search brands by brand name.
+ * @property {number[]} [brandId] - Helps to sort the brands list on the basis
+ *   of uid list.
+ */
+/**
+ * @typedef GetApplicationCategoryListingParam
+ * @property {number} [departmentId] - A `department_id` is a unique identifier
+ *   for a particular department.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search brands by brand name.
+ */
+/**
+ * @typedef GetApplicationDepartmentListingParam
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search department by name.
+ */
+/**
+ * @typedef GetApplicationFilterKeysParam
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ */
+/**
+ * @typedef GetApplicationFilterValuesParam
+ * @property {string} filterKey - A `filter_key` is a filter key for a for which
+ *   all the available filter values will returned. channel.
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {string} [collectionId] - A `collection_id` is a unique identifier
+ *   for a particular collection. channel.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 10.
+ * @property {string} [q] - Get Values filtered by q string
+ */
+/**
+ * @typedef GetApplicationProductsParam
  * @property {string} [q] - The search query. This can be a partial or complete
  *   name of a either a product, brand or category
  * @property {string} [f] - The search filter parameters. All the parameter
@@ -187,73 +254,6 @@ export = CatalogPlatformApplicationValidator;
  *   number. Default is cursor.
  * @property {number[]} [itemIds] - Item Ids of product
  */
-/**
- * @typedef GetApplicationBrandListingParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {string} [q] - Search query with brand name. Use this parameter to
- *   search brands by brand name.
- */
-/**
- * @typedef GetApplicationBrandsParam
- * @property {string} [department] - The name of the department. Use this
- *   parameter to filter products by a particular department. See below the list
- *   of available departments. You can retrieve available departments from the
- *   "v1.0/departments/" API
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {string} [q] - Search query with brand name. Use this parameter to
- *   search brands by brand name.
- * @property {number[]} [brandId] - Helps to sort the brands list on the basis
- *   of uid list.
- */
-/**
- * @typedef GetApplicationCategoryListingParam
- * @property {number} [departmentId] - A `department_id` is a unique identifier
- *   for a particular department.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {string} [q] - A search query string. Use this parameter to filter
- *   results based on a keyword or specific value.
- */
-/**
- * @typedef GetApplicationDepartmentListingParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {string} [q] - A search query string. Use this parameter to filter
- *   results based on a keyword or specific value.
- */
-/**
- * @typedef GetApplicationFilterKeysParam
- * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
- */
-/**
- * @typedef GetApplicationFilterValuesParam
- * @property {string} filterKey - A `filter_key` is a filter key for a for which
- *   all the available filter values will returned. channel.
- * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
- * @property {string} [collectionId] - A `collection_id` is a unique identifier
- *   for a particular collection. channel.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 10.
- * @property {string} [q] - Get Values filtered by q string
- */
 /** @typedef GetAutocompleteConfigParam */
 /**
  * @typedef GetAutocompleteKeywordDetailParam
@@ -263,14 +263,14 @@ export = CatalogPlatformApplicationValidator;
 /** @typedef GetCatalogConfigurationParam */
 /**
  * @typedef GetCatalogInsightsParam
- * @property {string} [brand] - Brand slug that is to be searched.
+ * @property {string} [brand] - Brand slug
  */
 /**
  * @typedef GetCategoriesParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   "v1.0/departments/" API
+ *   **v1.0/departments/** API
  */
 /**
  * @typedef GetCollectionDetailParam
@@ -354,18 +354,16 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAllowSingleParam
- * @property {CatalogPlatformModel.AllowSingleRequest} body
+ * @property {CatalogPlatformModel.AllowSingleRequestSchema} body
  */
 /**
  * @typedef UpdateAppBrandParam
- * @property {number} brandUid - A `brand id` is a unique identifier for a
- *   particular brand.
+ * @property {string} brandUid - Brand id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 /**
  * @typedef UpdateAppCategoryParam
- * @property {string} categoryUid - A `category id` is a unique identifier for a
- *   particular category.
+ * @property {string} categoryUid - Category id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 /**
@@ -405,7 +403,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateDefaultSortParam
- * @property {CatalogPlatformModel.DefaultKeyRequest} body
+ * @property {CatalogPlatformModel.DefaultKeyRequestSchema} body
  */
 /**
  * @typedef UpdateGroupConfigurationParam
@@ -425,7 +423,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateSearchConfigurationParam
- * @property {CatalogPlatformModel.UpdateSearchConfigurationRequest} body
+ * @property {CatalogPlatformModel.UpdateSearchConfigurationRequestSchema} body
  */
 /**
  * @typedef UpdateSearchKeywordsParam
@@ -486,8 +484,6 @@ declare class CatalogPlatformApplicationValidator {
     static getAppProducts(): GetAppProductsParam;
     /** @returns {GetAppReturnConfigurationParam} */
     static getAppReturnConfiguration(): any;
-    /** @returns {GetAppicationProductsParam} */
-    static getAppicationProducts(): GetAppicationProductsParam;
     /** @returns {GetApplicationBrandListingParam} */
     static getApplicationBrandListing(): GetApplicationBrandListingParam;
     /** @returns {GetApplicationBrandsParam} */
@@ -500,6 +496,8 @@ declare class CatalogPlatformApplicationValidator {
     static getApplicationFilterKeys(): GetApplicationFilterKeysParam;
     /** @returns {GetApplicationFilterValuesParam} */
     static getApplicationFilterValues(): GetApplicationFilterValuesParam;
+    /** @returns {GetApplicationProductsParam} */
+    static getApplicationProducts(): GetApplicationProductsParam;
     /** @returns {GetAutocompleteConfigParam} */
     static getAutocompleteConfig(): any;
     /** @returns {GetAutocompleteKeywordDetailParam} */
@@ -568,7 +566,7 @@ declare class CatalogPlatformApplicationValidator {
     static updateSearchKeywords(): UpdateSearchKeywordsParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
+    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetApplicationProductsParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
 }
 type AddCollectionItemsParam = {
     /**
@@ -619,7 +617,7 @@ type CreateListingConfigurationParam = {
     body: CatalogPlatformModel.AppConfigurationsSort;
 };
 type CreateSearchConfigurationParam = {
-    body: CatalogPlatformModel.CreateSearchConfigurationRequest;
+    body: CatalogPlatformModel.CreateSearchConfigurationRequestSchema;
 };
 type DeleteAppCategoryReturnConfigurationParam = {
     body: CatalogPlatformModel.DeleteAppCategoryReturnConfig;
@@ -854,7 +852,134 @@ type GetAppProductsParam = {
      */
     q?: string;
 };
-type GetAppicationProductsParam = {
+type GetApplicationBrandListingParam = {
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
+    /**
+     * - Search query with brand name.Use this parameter to
+     * search brands by brand name.
+     */
+    q?: string;
+};
+type GetApplicationBrandsParam = {
+    /**
+     * - The name of the department. Use this
+     * parameter to filter products by a particular department. See below the list
+     * of available departments. You can retrieve available departments from the
+     * **v1.0/departments/** API
+     */
+    department?: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
+    /**
+     * - Search query with brand name.Use this parameter to
+     * search brands by brand name.
+     */
+    q?: string;
+    /**
+     * - Helps to sort the brands list on the basis
+     * of uid list.
+     */
+    brandId?: number[];
+};
+type GetApplicationCategoryListingParam = {
+    /**
+     * - A `department_id` is a unique identifier
+     * for a particular department.
+     */
+    departmentId?: number;
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
+    /**
+     * - Search query with brand name.Use this parameter to
+     * search brands by brand name.
+     */
+    q?: string;
+};
+type GetApplicationDepartmentListingParam = {
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
+    /**
+     * - Search query with brand name.Use this parameter to
+     * search department by name.
+     */
+    q?: string;
+};
+type GetApplicationFilterKeysParam = {
+    /**
+     * - The search filter parameters for collection items.
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     */
+    c?: string;
+};
+type GetApplicationFilterValuesParam = {
+    /**
+     * - A `filter_key` is a filter key for a for which
+     * all the available filter values will returned. channel.
+     */
+    filterKey: string;
+    /**
+     * - The search filter parameters for collection items.
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     */
+    c?: string;
+    /**
+     * - A `collection_id` is a unique identifier
+     * for a particular collection. channel.
+     */
+    collectionId?: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 10.
+     */
+    pageSize?: number;
+    /**
+     * - Get Values filtered by q string
+     */
+    q?: string;
+};
+type GetApplicationProductsParam = {
     /**
      * - The search query. This can be a partial or complete
      * name of a either a product, brand or category
@@ -914,133 +1039,6 @@ type GetAppicationProductsParam = {
      */
     itemIds?: number[];
 };
-type GetApplicationBrandListingParam = {
-    /**
-     * - The page number to navigate through the given
-     * set of results
-     */
-    pageNo?: number;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
-    /**
-     * - Search query with brand name. Use this parameter to
-     * search brands by brand name.
-     */
-    q?: string;
-};
-type GetApplicationBrandsParam = {
-    /**
-     * - The name of the department. Use this
-     * parameter to filter products by a particular department. See below the list
-     * of available departments. You can retrieve available departments from the
-     * "v1.0/departments/" API
-     */
-    department?: string;
-    /**
-     * - The page number to navigate through the given
-     * set of results
-     */
-    pageNo?: number;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
-    /**
-     * - Search query with brand name. Use this parameter to
-     * search brands by brand name.
-     */
-    q?: string;
-    /**
-     * - Helps to sort the brands list on the basis
-     * of uid list.
-     */
-    brandId?: number[];
-};
-type GetApplicationCategoryListingParam = {
-    /**
-     * - A `department_id` is a unique identifier
-     * for a particular department.
-     */
-    departmentId?: number;
-    /**
-     * - The page number to navigate through the given
-     * set of results
-     */
-    pageNo?: number;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
-    /**
-     * - A search query string. Use this parameter to filter
-     * results based on a keyword or specific value.
-     */
-    q?: string;
-};
-type GetApplicationDepartmentListingParam = {
-    /**
-     * - The page number to navigate through the given
-     * set of results
-     */
-    pageNo?: number;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
-    /**
-     * - A search query string. Use this parameter to filter
-     * results based on a keyword or specific value.
-     */
-    q?: string;
-};
-type GetApplicationFilterKeysParam = {
-    /**
-     * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in **c**
-     * parameter in this format.
-     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
-     */
-    c?: string;
-};
-type GetApplicationFilterValuesParam = {
-    /**
-     * - A `filter_key` is a filter key for a for which
-     * all the available filter values will returned. channel.
-     */
-    filterKey: string;
-    /**
-     * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in **c**
-     * parameter in this format.
-     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
-     */
-    c?: string;
-    /**
-     * - A `collection_id` is a unique identifier
-     * for a particular collection. channel.
-     */
-    collectionId?: string;
-    /**
-     * - The page number to navigate through the given
-     * set of results
-     */
-    pageNo?: number;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 10.
-     */
-    pageSize?: number;
-    /**
-     * - Get Values filtered by q string
-     */
-    q?: string;
-};
 type GetAutocompleteKeywordDetailParam = {
     /**
      * - A `id` is a unique identifier for a particular
@@ -1050,7 +1048,7 @@ type GetAutocompleteKeywordDetailParam = {
 };
 type GetCatalogInsightsParam = {
     /**
-     * - Brand slug that is to be searched.
+     * - Brand slug
      */
     brand?: string;
 };
@@ -1059,7 +1057,7 @@ type GetCategoriesParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
      * of available departments. You can retrieve available departments from the
-     * "v1.0/departments/" API
+     * **v1.0/departments/** API
      */
     department?: string;
 };
@@ -1215,20 +1213,18 @@ type GetSearchKeywordsParam = {
     id: string;
 };
 type UpdateAllowSingleParam = {
-    body: CatalogPlatformModel.AllowSingleRequest;
+    body: CatalogPlatformModel.AllowSingleRequestSchema;
 };
 type UpdateAppBrandParam = {
     /**
-     * - A `brand id` is a unique identifier for a
-     * particular brand.
+     * - Brand id for which the custom_json is associated.
      */
-    brandUid: number;
+    brandUid: string;
     body: CatalogPlatformModel.ApplicationBrandJson;
 };
 type UpdateAppCategoryParam = {
     /**
-     * - A `category id` is a unique identifier for a
-     * particular category.
+     * - Category id for which the custom_json is associated.
      */
     categoryUid: string;
     body: CatalogPlatformModel.ApplicationCategoryJson;
@@ -1277,7 +1273,7 @@ type UpdateCollectionParam = {
     body: CatalogPlatformModel.UpdateCollection;
 };
 type UpdateDefaultSortParam = {
-    body: CatalogPlatformModel.DefaultKeyRequest;
+    body: CatalogPlatformModel.DefaultKeyRequestSchema;
 };
 type UpdateGroupConfigurationParam = {
     /**
@@ -1306,7 +1302,7 @@ type UpdateListingConfigurationParam = {
     body: CatalogPlatformModel.AppConfigurationsSort;
 };
 type UpdateSearchConfigurationParam = {
-    body: CatalogPlatformModel.UpdateSearchConfigurationRequest;
+    body: CatalogPlatformModel.UpdateSearchConfigurationRequestSchema;
 };
 type UpdateSearchKeywordsParam = {
     /**

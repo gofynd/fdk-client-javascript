@@ -4,7 +4,7 @@ const RewardsApplicationModel = require("./RewardsApplicationModel");
 
 /**
  * @typedef CatalogueOrderParam
- * @property {RewardsApplicationModel.CatalogueOrderRequest} body
+ * @property {RewardsApplicationModel.CatalogueOrderCreation} body
  */
 
 /**
@@ -14,7 +14,7 @@ const RewardsApplicationModel = require("./RewardsApplicationModel");
 
 /**
  * @typedef GetOrderDiscountParam
- * @property {RewardsApplicationModel.OrderDiscountRequest} body
+ * @property {RewardsApplicationModel.RetrieveOrderDiscount} body
  */
 
 /** @typedef GetUserPointsParam */
@@ -30,14 +30,14 @@ const RewardsApplicationModel = require("./RewardsApplicationModel");
 
 /**
  * @typedef RedeemReferralCodeParam
- * @property {RewardsApplicationModel.RedeemReferralCodeRequest} body
+ * @property {RewardsApplicationModel.RedeemReferralCode} body
  */
 
 class RewardsApplicationValidator {
   /** @returns {CatalogueOrderParam} */
   static catalogueOrder() {
     return Joi.object({
-      body: RewardsApplicationModel.CatalogueOrderRequest().required(),
+      body: RewardsApplicationModel.CatalogueOrderCreation().required(),
     }).required();
   }
 
@@ -51,7 +51,7 @@ class RewardsApplicationValidator {
   /** @returns {GetOrderDiscountParam} */
   static getOrderDiscount() {
     return Joi.object({
-      body: RewardsApplicationModel.OrderDiscountRequest().required(),
+      body: RewardsApplicationModel.RetrieveOrderDiscount().required(),
     }).required();
   }
 
@@ -76,7 +76,7 @@ class RewardsApplicationValidator {
   /** @returns {RedeemReferralCodeParam} */
   static redeemReferralCode() {
     return Joi.object({
-      body: RewardsApplicationModel.RedeemReferralCodeRequest().required(),
+      body: RewardsApplicationModel.RedeemReferralCode().required(),
     }).required();
   }
 }

@@ -17,6 +17,15 @@ export = CartApplicationModel;
  * @property {string} [payable_by] - Promotion amount bearable party.
  */
 /**
+ * @typedef FreeGiftItem
+ * @property {string} [item_slug] - Item slug.
+ * @property {string} [item_name] - Item name.
+ * @property {Object} [item_price_details] - Item price details.
+ * @property {string} [item_brand_name] - Item brand name.
+ * @property {number} [item_id] - Item id.
+ * @property {string[]} [item_images_url] - Item images URL.
+ */
+/**
  * @typedef AppliedFreeArticles
  * @property {FreeGiftItems} [free_gift_item_details] - Free gift items details.
  * @property {string} [parent_item_identifier] - Parent item identifier for free article.
@@ -209,10 +218,21 @@ export = CartApplicationModel;
  * @property {string[]} [product_slug] - Contains list of product slug.
  */
 /**
+ * @typedef ProductActionParams
+ * @property {string[]} [slug] - Unique product url name generated via product
+ *   name and other meta data.
+ */
+/**
+ * @typedef ProductActionPage
+ * @property {string} [type] - Entity of page to be redirected on click
+ * @property {ProductActionParams} [params]
+ */
+/**
  * @typedef ProductAction
  * @property {ActionQuery} [query]
- * @property {string} [url] - Url of the product to render the product .
+ * @property {string} [url] - Url of the product to render the product
  * @property {string} [type] - Type of action.
+ * @property {ProductActionPage} [page]
  */
 /**
  * @typedef Tags
@@ -410,7 +430,7 @@ export = CartApplicationModel;
  * @property {DeliveryChargesConfig} [delivery_charges_config]
  */
 /**
- * @typedef CartDetailResponse
+ * @typedef CartDetailResult
  * @property {number} [cart_id] - Unique identifier of the user cart.
  * @property {string} [uid] - Unique identifier of the user cart.
  * @property {AppliedPromotion[]} [applied_promo_details] - List of applied
@@ -480,18 +500,18 @@ export = CartApplicationModel;
  *   for store os.
  */
 /**
- * @typedef AddCartRequest
+ * @typedef AddCartCreation
  * @property {AddProductCart[]} [items] - List of items detail which need to be
  *   added to cart like item id, item size, and item quantity.
  * @property {boolean} [new_cart] - Field to create to new cart whille user adds
  *   item to cart.
  */
 /**
- * @typedef AddCartDetailResponse
+ * @typedef AddCartDetailResult
  * @property {string} [message] - Message of add to cart API response.
  * @property {boolean} [partial] - When adding multiple items check if all
  *   added. True if only few are added.
- * @property {CartDetailResponse} [cart]
+ * @property {CartDetailResult} [cart]
  * @property {boolean} [success] - True if all items are added successfully.
  *   False if partially added or not added.
  */
@@ -511,27 +531,35 @@ export = CartApplicationModel;
  * @property {Object} [meta] - Field to update meta of the item in cart.
  */
 /**
- * @typedef UpdateCartRequest
+ * @typedef FreeGiftItemCreation
+ * @property {string} promotion_id - Unique identifier of the free gift promotion.
+ * @property {string} item_id - Unique identifier of the selected free gift item.
+ * @property {string} item_size - Size of the selected free gift item.
+ */
+/**
+ * @typedef UpdateCartCreation
  * @property {UpdateProductCart[]} [items] - List items data that needs to be
  *   updated in cart.
+ * @property {FreeGiftItemCreation[]} [free_gift_items] - List of free gift
+ *   items with updated sizes.
  * @property {string} operation - Field to determine if item to be removed from
  *   cart or it needs to be updated.
  */
 /**
- * @typedef UpdateCartDetailResponse
+ * @typedef UpdateCartDetailResult
  * @property {string} [message] - Message of update cart API response.
- * @property {CartDetailResponse} [cart]
+ * @property {CartDetailResult} [cart]
  * @property {boolean} [success] - True if all items are added successfully.
  *   False if partially added or not added.
  */
 /**
- * @typedef DeleteCartDetailResponse
+ * @typedef DeleteCartDetailResult
  * @property {string} [message] - Message for delete cart response.
  * @property {boolean} [success] - True if cart is archived successfully. False
  *   if not archived.
  */
 /**
- * @typedef CartItemCountResponse
+ * @typedef CartItemCountResult
  * @property {number} [user_cart_items_count] - Item count present in cart.
  */
 /**
@@ -575,13 +603,13 @@ export = CartApplicationModel;
  *   coupon is applicable for only if payment done by bank or mode specified in coupon.
  */
 /**
- * @typedef GetCouponResponse
+ * @typedef GetCouponResult
  * @property {PageCoupon} [page]
  * @property {Coupon[]} [available_coupon_list] - List of available coupon which
  *   can be applied on cart.
  */
 /**
- * @typedef ApplyCouponRequest
+ * @typedef ApplyCoupon
  * @property {string} coupon_code - Coupon code to be applied.
  */
 /**
@@ -621,12 +649,12 @@ export = CartApplicationModel;
  * @property {OfferSeller} [seller]
  */
 /**
- * @typedef BulkPriceResponse
+ * @typedef BulkPriceResult
  * @property {BulkPriceOffer[]} [data] - Actual data to be in response consist
  *   of offers from multiple seller.
  */
 /**
- * @typedef RewardPointRequest
+ * @typedef RewardPointCreation
  * @property {boolean} points - Points to be applied for cart.
  */
 /**
@@ -669,20 +697,26 @@ export = CartApplicationModel;
  * @property {Object} [meta] - Metadata of the address.
  */
 /**
- * @typedef GetAddressesResponse
+ * @typedef ValidationConfig
+ * @property {number} address_max_limit - The maximum number of addresses a user can have.
+ * @property {number} user_address_count - The total number of addresses saved by a user.
+ */
+/**
+ * @typedef GetAddressesResult
  * @property {boolean} [pii_masking] - Personally Identifiable Information
  *   masking flag to denote if the user data in address is masked or not.
  * @property {Address[]} [address] - Address description for address data.
+ * @property {ValidationConfig} [validation_config]
  */
 /**
- * @typedef SaveAddressResponse
+ * @typedef SaveAddressResult
  * @property {string} [id] - Id of the address.
- * @property {boolean} [success] - Success flag of save address Response.
+ * @property {boolean} [success] - Success flag of save address Result.
  * @property {boolean} [is_default_address] - Default address flag if no address
  *   selected then this should be the default address selected.
  */
 /**
- * @typedef UpdateAddressResponse
+ * @typedef UpdateAddressResult
  * @property {boolean} [is_updated] - Updated flag for update address operation
  *   if the address updated or not.
  * @property {string} [id] - ID of an address.
@@ -691,13 +725,13 @@ export = CartApplicationModel;
  *   selected then this should be the default address selected.
  */
 /**
- * @typedef DeleteAddressResponse
+ * @typedef DeleteAddressResult
  * @property {string} [id] - Id of the address.
  * @property {boolean} [is_deleted] - Deleted flag in delete address response
  *   states whether the address was deleted or not.
  */
 /**
- * @typedef SelectCartAddressRequest
+ * @typedef SelectCartAddressCreation
  * @property {string} [id] - Address is selected by user on which shipment to be
  *   delivered.
  * @property {string} [billing_address_id] - Billing address id selected by user
@@ -706,7 +740,7 @@ export = CartApplicationModel;
  *   address operation performed.
  */
 /**
- * @typedef UpdateCartPaymentRequest
+ * @typedef UpdateCartPaymentCreation
  * @property {string} [id] - Cart id of the user cart for which the update cart
  *   payment operation performed.
  * @property {string} [payment_identifier] - Payment identifier of the payment
@@ -729,6 +763,7 @@ export = CartApplicationModel;
  *   is valid or not.
  * @property {string} [display_message_en] - Display message for coupon validity.
  * @property {string} [code] - Coupon code of the coupon applied.
+ * @property {string} [error_en] - Error message for the selected payment mode.
  */
 /**
  * @typedef PaymentCouponValidate
@@ -738,7 +773,7 @@ export = CartApplicationModel;
  *   API response.
  */
 /**
- * @typedef ShipmentResponse
+ * @typedef ShipmentResult
  * @property {number} [shipments] - Count of shipments that will be shipped.
  * @property {ShipmentPromise} [promise]
  * @property {string} [order_type] - Order type of the shipment like pickAtStore
@@ -756,11 +791,11 @@ export = CartApplicationModel;
  * @property {number} [fulfillment_id] - Fulfilment id of the shipment.
  */
 /**
- * @typedef CartShipmentsResponse
+ * @typedef CartShipmentsResult
  * @property {string} [delivery_charge_info] - Delivery charge in information
  *   message on shipment.
  * @property {string} [checkout_mode] - Checkout mode of cart.
- * @property {string} [message] - Response message of get shipments API.
+ * @property {string} [message] - Result message of get shipments API.
  * @property {string} [gstin] - GSTIN number added in cart.
  * @property {boolean} [restrict_checkout] - Restrict checkout flag to restrict
  *   the checkout process.
@@ -771,7 +806,7 @@ export = CartApplicationModel;
  * @property {CartBreakup} [breakup_values]
  * @property {CartCurrency} [currency]
  * @property {string} [id] - Cart id of the user cart.
- * @property {ShipmentResponse[]} [shipments] - List of Shipments which includes
+ * @property {ShipmentResult[]} [shipments] - List of Shipments which includes
  *   shipment data like shipment items, shipment promise, Shipment type,
  *   shipment order type, shipment dp options etc.
  * @property {PaymentSelectionLock} [payment_selection_lock]
@@ -784,6 +819,11 @@ export = CartApplicationModel;
  * @property {string} [uid] - Cart id of the user cart.
  * @property {Object} [custom_cart_meta] - Custom meta details added cart
  *   checkout API payload.
+ */
+/**
+ * @typedef CartCheckoutCustomMeta
+ * @property {string} key - Key name of custom meta.
+ * @property {string} value - Value to be added in key.
  */
 /**
  * @typedef CustomerDetails
@@ -805,6 +845,51 @@ export = CartApplicationModel;
  * @property {string} first_name - First name of staff emplyee who does checkout
  *   on behalf of customer.
  * @property {string} _id - Id of staff who does checkout on behalf of customer.
+ */
+/**
+ * @typedef CartCheckoutDetailCreation
+ * @property {CartCheckoutCustomMeta[]} [custom_meta] - Custom meta data to be
+ *   added in order.
+ * @property {CustomerDetails} [customer_details] - Customer details to be added in order.
+ * @property {string} [merchant_code] - Merchant code of the payment mode
+ *   selected to do the payment.
+ * @property {string} [id] - Cart id of the user cart.
+ * @property {boolean} [payment_auto_confirm] - Payment auto confirm flag if
+ *   payment need not to be collected from user.
+ * @property {string} payment_mode - Payment mode from which the payment to be
+ *   done for the order.
+ * @property {string} [aggregator] - Aggregator name of the payment gateway.
+ * @property {string} [address_id] - Address id of the user on which the order
+ *   to be delivered.
+ * @property {string} [callback_url] - Callback url to be redirected after
+ *   payment received/failed.
+ * @property {Object} [delivery_address] - Delivery address data which includes
+ *   customer address, customer phone, customer email, customer pincode,
+ *   customer landmark and customer name.
+ * @property {StaffCheckout} [staff]
+ * @property {string} [order_type] - Order type of the order being placed like
+ *   pickAtStore or HomeDelivery.
+ * @property {number} [ordering_store] - Ordering store id of the store from
+ *   which the order is getting placed.
+ * @property {Object} [extra_meta] - Extra meta to be added while checkout in order.
+ * @property {string} [payment_identifier] - Payment identifier of the payment
+ *   mode selected to do the payment.
+ * @property {Object} [billing_address] - Billing address json which includes
+ *   customer address, customer phone, customer email, customer pincode,
+ *   customer landmark and customer name.
+ * @property {Object} [payment_params] - Payment params which includes payment
+ *   identifier and merchant code.
+ * @property {string} [billing_address_id] - Billing address id of the customer
+ *   on which the invoice to be generated after the order is placed.
+ * @property {Object} [meta] - Meta data to be added in order.
+ * @property {Object} [payment_extra_identifiers] - Payment extra identifier for
+ *   the payment mode to do the payment.
+ * @property {string} [iin] - Issuer Identification Number' number of card if
+ *   payment mode is card.
+ * @property {string} [network] - Network of card if payment mode is card to do
+ *   the payment.
+ * @property {string} [type] - Type of cart if payment mode is card to do the payment.
+ * @property {string} [card_id] - Saved card id if payment mode is card to do the payment.
  */
 /**
  * @typedef CheckCart
@@ -842,10 +927,10 @@ export = CartApplicationModel;
  * @property {string} [coupon_text] - Coupon text of the applied coupon on order placed.
  * @property {boolean} [buy_now] - Buy now flag of user cart.
  * @property {number} [cod_charges] - Cash On Delivery charges of the user cart.
- * @property {Object} [custom_cart_meta] - Meta data for customCart of user.
+ * @property {Object} [custom_cart_meta] - Custom cart meta details added in cart.
  */
 /**
- * @typedef CartCheckoutResponse
+ * @typedef CartCheckoutResult
  * @property {string} [payment_confirm_url] - Payment confirm url used to
  *   redirect after payment is confirmed.
  * @property {string} [app_intercept_url] - App intercept url which is used to
@@ -871,7 +956,7 @@ export = CartApplicationModel;
  * @property {GiftDetail} [article_id]
  */
 /**
- * @typedef CartMetaRequest
+ * @typedef CartMetaCreation
  * @property {Object} [delivery_slots] - Delivery slots details includes article
  *   level time slot when the shipment can be delivered.
  * @property {ArticleGiftDetail} [gift_details]
@@ -885,22 +970,22 @@ export = CartApplicationModel;
  *   meta in order detail API or webhook.
  */
 /**
- * @typedef CartMetaResponse
+ * @typedef CartMetaResult
  * @property {string} [message] - Detailed message.
  * @property {boolean} [is_valid] - Whether added meta was vaild.
  */
 /**
- * @typedef CartMetaMissingResponse
+ * @typedef CartMetaMissingResult
  * @property {string[]} [errors] - Detailed errors for invalid cart meta request.
  */
 /**
- * @typedef GetShareCartLinkRequest
+ * @typedef GetShareCartLinkCreation
  * @property {string} [id] - Cart id of user cart for generating cart sharing token.
  * @property {Object} [meta] - Staff, Ordering store or any other data. This
  *   data will be used to generate link as well as sent as shared details.
  */
 /**
- * @typedef GetShareCartLinkResponse
+ * @typedef GetShareCartLinkResult
  * @property {string} [token] - Short url unique id of the cart which is opted
  *   to share with other user.
  * @property {string} [share_url] - Short shareable final url which can populate
@@ -944,7 +1029,7 @@ export = CartApplicationModel;
  *   via update cart meta API.
  */
 /**
- * @typedef SharedCartResponse
+ * @typedef SharedCartResult
  * @property {string} [error] - Error details if any error occurs which includes
  *   type of error, error code and error message.
  * @property {SharedCart} [cart]
@@ -961,14 +1046,24 @@ export = CartApplicationModel;
  * @property {string} [currency] - Currency of the article added in cart.
  */
 /**
+ * @typedef ArticlePriceDetails
+ * @property {number} [marked] - The Marked Price refers to the initial price of
+ *   the free gift article before product discount.
+ * @property {number} [effective] - The Effective Price refers to the final
+ *   amount of the free gift article after applying the product discount.
+ */
+/**
  * @typedef FreeGiftItems
  * @property {string} [item_slug] - Slug for an item.
  * @property {string} [item_name] - Name of the free gift item received via free
  *   gift promotion.
  * @property {ItemPriceDetails} [item_price_details]
+ * @property {ArticlePriceDetails} [article_price]
  * @property {string} [item_brand_name] - Item brand name of the free gift item
  *   promotion applied on cart.
  * @property {number} [item_id] - Item id of the free gift item.
+ * @property {string[]} [available_sizes] - Available sizes for the free gift item.
+ * @property {string} [size] - Selected size for the free gift item.
  * @property {string[]} [item_images_url] - Images URLs for free gift items.
  */
 /**
@@ -994,7 +1089,7 @@ export = CartApplicationModel;
  *   promotion which is avaiable on product.
  */
 /**
- * @typedef PromotionOffersResponse
+ * @typedef PromotionOffersResult
  * @property {PromotionOffer[]} [available_promotions] - Available promotion
  *   details which are available on product which includes promotion data like
  *   promotion id, promotion name, buy rules, discount rules validity dates etc.
@@ -1020,13 +1115,13 @@ export = CartApplicationModel;
  * @property {string} [promotion_name] - Name of the promotion which is available on cart.
  */
 /**
- * @typedef PromotionPaymentOffersResponse
+ * @typedef PromotionPaymentOffersResult
  * @property {boolean} [success] - Success flag of get payment offers API response.
  * @property {PromotionPaymentOffer[]} [promotions] - List of promotions data
  *   which are applicable on cart/product.
  */
 /**
- * @typedef OperationErrorResponse
+ * @typedef OperationErrorResult
  * @property {string} [message] - Message of get payment offer API response.
  * @property {boolean} [success] - Success flag of get payment offer API response.
  */
@@ -1100,9 +1195,10 @@ export = CartApplicationModel;
  *   the payment mode to do the payment.
  */
 /**
- * @typedef CartCheckoutDetailV2Request
- * @property {Object} [custom_meta] - Custom meta data to be added in order.
- * @property {Object} [customer_details] - Customer details to be added in order.
+ * @typedef CartCheckoutDetailV2Creation
+ * @property {CartCheckoutCustomMeta[]} [custom_meta] - Custom meta data to be
+ *   added in order.
+ * @property {CustomerDetails} [customer_details]
  * @property {string} [merchant_code] - Merchant code of the payment mode
  *   selected to do the payment.
  * @property {string} [cart_id] - Cart id of the user cart.
@@ -1143,10 +1239,15 @@ export = CartApplicationModel;
  * @property {string} [type] - Type of cart if payment mode is card to do the payment.
  * @property {string} [card_id] - Saved card id if payment mode is card to do the payment.
  */
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
 declare class CartApplicationModel {
 }
 declare namespace CartApplicationModel {
-    export { BuyRules, DiscountRulesApp, Ownership, AppliedFreeArticles, AppliedPromotion, PaymentSelectionLock, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, BasePrice, ArticlePriceInfo, BaseInfo, StoreInfo, ProductArticle, CartProductIdentifer, PromoMeta, ChargesAmount, Charges, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, ProductAvailabilitySize, ProductAvailability, ActionQuery, ProductAction, Tags, ProductImage, CategoryInfo, CartProduct, CouponDetails, CartProductInfo, DisplayBreakup, RawBreakup, CouponBreakup, LoyaltyPoints, CartBreakup, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, DeleteCartDetailResponse, CartItemCountResponse, PageCoupon, Coupon, GetCouponResponse, ApplyCouponRequest, OfferPrice, OfferItem, OfferSeller, BulkPriceOffer, BulkPriceResponse, RewardPointRequest, GeoLocation, Address, GetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, SelectCartAddressRequest, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, ShipmentResponse, CartShipmentsResponse, CustomerDetails, StaffCheckout, CheckCart, CartCheckoutResponse, GiftDetail, ArticleGiftDetail, CartMetaRequest, CartMetaResponse, CartMetaMissingResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, PriceMinMax, ItemPriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersResponse, PromotionPaymentOffer, PromotionPaymentOffersResponse, OperationErrorResponse, LadderPrice, LadderOfferItem, LadderPriceOffer, CurrencyInfo, LadderPriceOffers, PaymentMeta, PaymentMethod, CartCheckoutDetailV2Request };
+    export { BuyRules, DiscountRulesApp, Ownership, FreeGiftItem, AppliedFreeArticles, AppliedPromotion, PaymentSelectionLock, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, BasePrice, ArticlePriceInfo, BaseInfo, StoreInfo, ProductArticle, CartProductIdentifer, PromoMeta, ChargesAmount, Charges, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, ProductAvailabilitySize, ProductAvailability, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, Tags, ProductImage, CategoryInfo, CartProduct, CouponDetails, CartProductInfo, DisplayBreakup, RawBreakup, CouponBreakup, LoyaltyPoints, CartBreakup, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, DeleteCartDetailResult, CartItemCountResult, PageCoupon, Coupon, GetCouponResult, ApplyCoupon, OfferPrice, OfferItem, OfferSeller, BulkPriceOffer, BulkPriceResult, RewardPointCreation, GeoLocation, Address, ValidationConfig, GetAddressesResult, SaveAddressResult, UpdateAddressResult, DeleteAddressResult, SelectCartAddressCreation, UpdateCartPaymentCreation, CouponValidity, PaymentCouponValidate, ShipmentResult, CartShipmentsResult, CartCheckoutCustomMeta, CustomerDetails, StaffCheckout, CartCheckoutDetailCreation, CheckCart, CartCheckoutResult, GiftDetail, ArticleGiftDetail, CartMetaCreation, CartMetaResult, CartMetaMissingResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersResult, PromotionPaymentOffer, PromotionPaymentOffersResult, OperationErrorResult, LadderPrice, LadderOfferItem, LadderPriceOffer, CurrencyInfo, LadderPriceOffers, PaymentMeta, PaymentMethod, CartCheckoutDetailV2Creation, ValidationError };
 }
 /** @returns {BuyRules} */
 declare function BuyRules(): BuyRules;
@@ -1191,6 +1292,34 @@ type Ownership = {
      * - Promotion amount bearable party.
      */
     payable_by?: string;
+};
+/** @returns {FreeGiftItem} */
+declare function FreeGiftItem(): FreeGiftItem;
+type FreeGiftItem = {
+    /**
+     * - Item slug.
+     */
+    item_slug?: string;
+    /**
+     * - Item name.
+     */
+    item_name?: string;
+    /**
+     * - Item price details.
+     */
+    item_price_details?: any;
+    /**
+     * - Item brand name.
+     */
+    item_brand_name?: string;
+    /**
+     * - Item id.
+     */
+    item_id?: number;
+    /**
+     * - Item images URL.
+     */
+    item_images_url?: string[];
 };
 /** @returns {AppliedFreeArticles} */
 declare function AppliedFreeArticles(): AppliedFreeArticles;
@@ -1656,18 +1785,37 @@ type ActionQuery = {
      */
     product_slug?: string[];
 };
+/** @returns {ProductActionParams} */
+declare function ProductActionParams(): ProductActionParams;
+type ProductActionParams = {
+    /**
+     * - Unique product url name generated via product
+     * name and other meta data.
+     */
+    slug?: string[];
+};
+/** @returns {ProductActionPage} */
+declare function ProductActionPage(): ProductActionPage;
+type ProductActionPage = {
+    /**
+     * - Entity of page to be redirected on click
+     */
+    type?: string;
+    params?: ProductActionParams;
+};
 /** @returns {ProductAction} */
 declare function ProductAction(): ProductAction;
 type ProductAction = {
     query?: ActionQuery;
     /**
-     * - Url of the product to render the product .
+     * - Url of the product to render the product
      */
     url?: string;
     /**
      * - Type of action.
      */
     type?: string;
+    page?: ProductActionPage;
 };
 /** @returns {Tags} */
 declare function Tags(): Tags;
@@ -2162,9 +2310,9 @@ declare function CartCommonConfig(): CartCommonConfig;
 type CartCommonConfig = {
     delivery_charges_config?: DeliveryChargesConfig;
 };
-/** @returns {CartDetailResponse} */
-declare function CartDetailResponse(): CartDetailResponse;
-type CartDetailResponse = {
+/** @returns {CartDetailResult} */
+declare function CartDetailResult(): CartDetailResult;
+type CartDetailResult = {
     /**
      * - Unique identifier of the user cart.
      */
@@ -2342,9 +2490,9 @@ type AddProductCart = {
      */
     seller_identifier?: string;
 };
-/** @returns {AddCartRequest} */
-declare function AddCartRequest(): AddCartRequest;
-type AddCartRequest = {
+/** @returns {AddCartCreation} */
+declare function AddCartCreation(): AddCartCreation;
+type AddCartCreation = {
     /**
      * - List of items detail which need to be
      * added to cart like item id, item size, and item quantity.
@@ -2356,9 +2504,9 @@ type AddCartRequest = {
      */
     new_cart?: boolean;
 };
-/** @returns {AddCartDetailResponse} */
-declare function AddCartDetailResponse(): AddCartDetailResponse;
-type AddCartDetailResponse = {
+/** @returns {AddCartDetailResult} */
+declare function AddCartDetailResult(): AddCartDetailResult;
+type AddCartDetailResult = {
     /**
      * - Message of add to cart API response.
      */
@@ -2368,7 +2516,7 @@ type AddCartDetailResponse = {
      * added. True if only few are added.
      */
     partial?: boolean;
-    cart?: CartDetailResponse;
+    cart?: CartDetailResult;
     /**
      * - True if all items are added successfully.
      * False if partially added or not added.
@@ -2418,37 +2566,58 @@ type UpdateProductCart = {
      */
     meta?: any;
 };
-/** @returns {UpdateCartRequest} */
-declare function UpdateCartRequest(): UpdateCartRequest;
-type UpdateCartRequest = {
+/** @returns {FreeGiftItemCreation} */
+declare function FreeGiftItemCreation(): FreeGiftItemCreation;
+type FreeGiftItemCreation = {
+    /**
+     * - Unique identifier of the free gift promotion.
+     */
+    promotion_id: string;
+    /**
+     * - Unique identifier of the selected free gift item.
+     */
+    item_id: string;
+    /**
+     * - Size of the selected free gift item.
+     */
+    item_size: string;
+};
+/** @returns {UpdateCartCreation} */
+declare function UpdateCartCreation(): UpdateCartCreation;
+type UpdateCartCreation = {
     /**
      * - List items data that needs to be
      * updated in cart.
      */
     items?: UpdateProductCart[];
     /**
+     * - List of free gift
+     * items with updated sizes.
+     */
+    free_gift_items?: FreeGiftItemCreation[];
+    /**
      * - Field to determine if item to be removed from
      * cart or it needs to be updated.
      */
     operation: string;
 };
-/** @returns {UpdateCartDetailResponse} */
-declare function UpdateCartDetailResponse(): UpdateCartDetailResponse;
-type UpdateCartDetailResponse = {
+/** @returns {UpdateCartDetailResult} */
+declare function UpdateCartDetailResult(): UpdateCartDetailResult;
+type UpdateCartDetailResult = {
     /**
      * - Message of update cart API response.
      */
     message?: string;
-    cart?: CartDetailResponse;
+    cart?: CartDetailResult;
     /**
      * - True if all items are added successfully.
      * False if partially added or not added.
      */
     success?: boolean;
 };
-/** @returns {DeleteCartDetailResponse} */
-declare function DeleteCartDetailResponse(): DeleteCartDetailResponse;
-type DeleteCartDetailResponse = {
+/** @returns {DeleteCartDetailResult} */
+declare function DeleteCartDetailResult(): DeleteCartDetailResult;
+type DeleteCartDetailResult = {
     /**
      * - Message for delete cart response.
      */
@@ -2459,9 +2628,9 @@ type DeleteCartDetailResponse = {
      */
     success?: boolean;
 };
-/** @returns {CartItemCountResponse} */
-declare function CartItemCountResponse(): CartItemCountResponse;
-type CartItemCountResponse = {
+/** @returns {CartItemCountResult} */
+declare function CartItemCountResult(): CartItemCountResult;
+type CartItemCountResult = {
     /**
      * - Item count present in cart.
      */
@@ -2578,9 +2747,9 @@ type Coupon = {
      */
     is_bank_offer?: boolean;
 };
-/** @returns {GetCouponResponse} */
-declare function GetCouponResponse(): GetCouponResponse;
-type GetCouponResponse = {
+/** @returns {GetCouponResult} */
+declare function GetCouponResult(): GetCouponResult;
+type GetCouponResult = {
     page?: PageCoupon;
     /**
      * - List of available coupon which
@@ -2588,9 +2757,9 @@ type GetCouponResponse = {
      */
     available_coupon_list?: Coupon[];
 };
-/** @returns {ApplyCouponRequest} */
-declare function ApplyCouponRequest(): ApplyCouponRequest;
-type ApplyCouponRequest = {
+/** @returns {ApplyCoupon} */
+declare function ApplyCoupon(): ApplyCoupon;
+type ApplyCoupon = {
     /**
      * - Coupon code to be applied.
      */
@@ -2678,18 +2847,18 @@ type BulkPriceOffer = {
     offers?: OfferItem[];
     seller?: OfferSeller;
 };
-/** @returns {BulkPriceResponse} */
-declare function BulkPriceResponse(): BulkPriceResponse;
-type BulkPriceResponse = {
+/** @returns {BulkPriceResult} */
+declare function BulkPriceResult(): BulkPriceResult;
+type BulkPriceResult = {
     /**
      * - Actual data to be in response consist
      * of offers from multiple seller.
      */
     data?: BulkPriceOffer[];
 };
-/** @returns {RewardPointRequest} */
-declare function RewardPointRequest(): RewardPointRequest;
-type RewardPointRequest = {
+/** @returns {RewardPointCreation} */
+declare function RewardPointCreation(): RewardPointCreation;
+type RewardPointCreation = {
     /**
      * - Points to be applied for cart.
      */
@@ -2823,9 +2992,21 @@ type Address = {
      */
     meta?: any;
 };
-/** @returns {GetAddressesResponse} */
-declare function GetAddressesResponse(): GetAddressesResponse;
-type GetAddressesResponse = {
+/** @returns {ValidationConfig} */
+declare function ValidationConfig(): ValidationConfig;
+type ValidationConfig = {
+    /**
+     * - The maximum number of addresses a user can have.
+     */
+    address_max_limit: number;
+    /**
+     * - The total number of addresses saved by a user.
+     */
+    user_address_count: number;
+};
+/** @returns {GetAddressesResult} */
+declare function GetAddressesResult(): GetAddressesResult;
+type GetAddressesResult = {
     /**
      * - Personally Identifiable Information
      * masking flag to denote if the user data in address is masked or not.
@@ -2835,16 +3016,17 @@ type GetAddressesResponse = {
      * - Address description for address data.
      */
     address?: Address[];
+    validation_config?: ValidationConfig;
 };
-/** @returns {SaveAddressResponse} */
-declare function SaveAddressResponse(): SaveAddressResponse;
-type SaveAddressResponse = {
+/** @returns {SaveAddressResult} */
+declare function SaveAddressResult(): SaveAddressResult;
+type SaveAddressResult = {
     /**
      * - Id of the address.
      */
     id?: string;
     /**
-     * - Success flag of save address Response.
+     * - Success flag of save address Result.
      */
     success?: boolean;
     /**
@@ -2853,9 +3035,9 @@ type SaveAddressResponse = {
      */
     is_default_address?: boolean;
 };
-/** @returns {UpdateAddressResponse} */
-declare function UpdateAddressResponse(): UpdateAddressResponse;
-type UpdateAddressResponse = {
+/** @returns {UpdateAddressResult} */
+declare function UpdateAddressResult(): UpdateAddressResult;
+type UpdateAddressResult = {
     /**
      * - Updated flag for update address operation
      * if the address updated or not.
@@ -2875,9 +3057,9 @@ type UpdateAddressResponse = {
      */
     is_default_address?: boolean;
 };
-/** @returns {DeleteAddressResponse} */
-declare function DeleteAddressResponse(): DeleteAddressResponse;
-type DeleteAddressResponse = {
+/** @returns {DeleteAddressResult} */
+declare function DeleteAddressResult(): DeleteAddressResult;
+type DeleteAddressResult = {
     /**
      * - Id of the address.
      */
@@ -2888,9 +3070,9 @@ type DeleteAddressResponse = {
      */
     is_deleted?: boolean;
 };
-/** @returns {SelectCartAddressRequest} */
-declare function SelectCartAddressRequest(): SelectCartAddressRequest;
-type SelectCartAddressRequest = {
+/** @returns {SelectCartAddressCreation} */
+declare function SelectCartAddressCreation(): SelectCartAddressCreation;
+type SelectCartAddressCreation = {
     /**
      * - Address is selected by user on which shipment to be
      * delivered.
@@ -2907,9 +3089,9 @@ type SelectCartAddressRequest = {
      */
     cart_id?: string;
 };
-/** @returns {UpdateCartPaymentRequest} */
-declare function UpdateCartPaymentRequest(): UpdateCartPaymentRequest;
-type UpdateCartPaymentRequest = {
+/** @returns {UpdateCartPaymentCreation} */
+declare function UpdateCartPaymentCreation(): UpdateCartPaymentCreation;
+type UpdateCartPaymentCreation = {
     /**
      * - Cart id of the user cart for which the update cart
      * payment operation performed.
@@ -2969,6 +3151,10 @@ type CouponValidity = {
      * - Coupon code of the coupon applied.
      */
     code?: string;
+    /**
+     * - Error message for the selected payment mode.
+     */
+    error_en?: string;
 };
 /** @returns {PaymentCouponValidate} */
 declare function PaymentCouponValidate(): PaymentCouponValidate;
@@ -2984,9 +3170,9 @@ type PaymentCouponValidate = {
      */
     success: boolean;
 };
-/** @returns {ShipmentResponse} */
-declare function ShipmentResponse(): ShipmentResponse;
-type ShipmentResponse = {
+/** @returns {ShipmentResult} */
+declare function ShipmentResult(): ShipmentResult;
+type ShipmentResult = {
     /**
      * - Count of shipments that will be shipped.
      */
@@ -3030,9 +3216,9 @@ type ShipmentResponse = {
      */
     fulfillment_id?: number;
 };
-/** @returns {CartShipmentsResponse} */
-declare function CartShipmentsResponse(): CartShipmentsResponse;
-type CartShipmentsResponse = {
+/** @returns {CartShipmentsResult} */
+declare function CartShipmentsResult(): CartShipmentsResult;
+type CartShipmentsResult = {
     /**
      * - Delivery charge in information
      * message on shipment.
@@ -3043,7 +3229,7 @@ type CartShipmentsResponse = {
      */
     checkout_mode?: string;
     /**
-     * - Response message of get shipments API.
+     * - Result message of get shipments API.
      */
     message?: string;
     /**
@@ -3079,7 +3265,7 @@ type CartShipmentsResponse = {
      * shipment data like shipment items, shipment promise, Shipment type,
      * shipment order type, shipment dp options etc.
      */
-    shipments?: ShipmentResponse[];
+    shipments?: ShipmentResult[];
     payment_selection_lock?: PaymentSelectionLock;
     /**
      * - Coupon text of coupon applied on cart.
@@ -3108,6 +3294,18 @@ type CartShipmentsResponse = {
      * checkout API payload.
      */
     custom_cart_meta?: any;
+};
+/** @returns {CartCheckoutCustomMeta} */
+declare function CartCheckoutCustomMeta(): CartCheckoutCustomMeta;
+type CartCheckoutCustomMeta = {
+    /**
+     * - Key name of custom meta.
+     */
+    key: string;
+    /**
+     * - Value to be added in key.
+     */
+    value: string;
 };
 /** @returns {CustomerDetails} */
 declare function CustomerDetails(): CustomerDetails;
@@ -3155,6 +3353,121 @@ type StaffCheckout = {
      * - Id of staff who does checkout on behalf of customer.
      */
     _id: string;
+};
+/** @returns {CartCheckoutDetailCreation} */
+declare function CartCheckoutDetailCreation(): CartCheckoutDetailCreation;
+type CartCheckoutDetailCreation = {
+    /**
+     * - Custom meta data to be
+     * added in order.
+     */
+    custom_meta?: CartCheckoutCustomMeta[];
+    /**
+     * - Customer details to be added in order.
+     */
+    customer_details?: CustomerDetails;
+    /**
+     * - Merchant code of the payment mode
+     * selected to do the payment.
+     */
+    merchant_code?: string;
+    /**
+     * - Cart id of the user cart.
+     */
+    id?: string;
+    /**
+     * - Payment auto confirm flag if
+     * payment need not to be collected from user.
+     */
+    payment_auto_confirm?: boolean;
+    /**
+     * - Payment mode from which the payment to be
+     * done for the order.
+     */
+    payment_mode: string;
+    /**
+     * - Aggregator name of the payment gateway.
+     */
+    aggregator?: string;
+    /**
+     * - Address id of the user on which the order
+     * to be delivered.
+     */
+    address_id?: string;
+    /**
+     * - Callback url to be redirected after
+     * payment received/failed.
+     */
+    callback_url?: string;
+    /**
+     * - Delivery address data which includes
+     * customer address, customer phone, customer email, customer pincode,
+     * customer landmark and customer name.
+     */
+    delivery_address?: any;
+    staff?: StaffCheckout;
+    /**
+     * - Order type of the order being placed like
+     * pickAtStore or HomeDelivery.
+     */
+    order_type?: string;
+    /**
+     * - Ordering store id of the store from
+     * which the order is getting placed.
+     */
+    ordering_store?: number;
+    /**
+     * - Extra meta to be added while checkout in order.
+     */
+    extra_meta?: any;
+    /**
+     * - Payment identifier of the payment
+     * mode selected to do the payment.
+     */
+    payment_identifier?: string;
+    /**
+     * - Billing address json which includes
+     * customer address, customer phone, customer email, customer pincode,
+     * customer landmark and customer name.
+     */
+    billing_address?: any;
+    /**
+     * - Payment params which includes payment
+     * identifier and merchant code.
+     */
+    payment_params?: any;
+    /**
+     * - Billing address id of the customer
+     * on which the invoice to be generated after the order is placed.
+     */
+    billing_address_id?: string;
+    /**
+     * - Meta data to be added in order.
+     */
+    meta?: any;
+    /**
+     * - Payment extra identifier for
+     * the payment mode to do the payment.
+     */
+    payment_extra_identifiers?: any;
+    /**
+     * - Issuer Identification Number' number of card if
+     * payment mode is card.
+     */
+    iin?: string;
+    /**
+     * - Network of card if payment mode is card to do
+     * the payment.
+     */
+    network?: string;
+    /**
+     * - Type of cart if payment mode is card to do the payment.
+     */
+    type?: string;
+    /**
+     * - Saved card id if payment mode is card to do the payment.
+     */
+    card_id?: string;
 };
 /** @returns {CheckCart} */
 declare function CheckCart(): CheckCart;
@@ -3269,13 +3582,13 @@ type CheckCart = {
      */
     cod_charges?: number;
     /**
-     * - Meta data for customCart of user.
+     * - Custom cart meta details added in cart.
      */
     custom_cart_meta?: any;
 };
-/** @returns {CartCheckoutResponse} */
-declare function CartCheckoutResponse(): CartCheckoutResponse;
-type CartCheckoutResponse = {
+/** @returns {CartCheckoutResult} */
+declare function CartCheckoutResult(): CartCheckoutResult;
+type CartCheckoutResult = {
     /**
      * - Payment confirm url used to
      * redirect after payment is confirmed.
@@ -3329,9 +3642,9 @@ declare function ArticleGiftDetail(): ArticleGiftDetail;
 type ArticleGiftDetail = {
     article_id?: GiftDetail;
 };
-/** @returns {CartMetaRequest} */
-declare function CartMetaRequest(): CartMetaRequest;
-type CartMetaRequest = {
+/** @returns {CartMetaCreation} */
+declare function CartMetaCreation(): CartMetaCreation;
+type CartMetaCreation = {
     /**
      * - Delivery slots details includes article
      * level time slot when the shipment can be delivered.
@@ -3362,9 +3675,9 @@ type CartMetaRequest = {
      */
     custom_cart_meta?: any;
 };
-/** @returns {CartMetaResponse} */
-declare function CartMetaResponse(): CartMetaResponse;
-type CartMetaResponse = {
+/** @returns {CartMetaResult} */
+declare function CartMetaResult(): CartMetaResult;
+type CartMetaResult = {
     /**
      * - Detailed message.
      */
@@ -3374,17 +3687,17 @@ type CartMetaResponse = {
      */
     is_valid?: boolean;
 };
-/** @returns {CartMetaMissingResponse} */
-declare function CartMetaMissingResponse(): CartMetaMissingResponse;
-type CartMetaMissingResponse = {
+/** @returns {CartMetaMissingResult} */
+declare function CartMetaMissingResult(): CartMetaMissingResult;
+type CartMetaMissingResult = {
     /**
      * - Detailed errors for invalid cart meta request.
      */
     errors?: string[];
 };
-/** @returns {GetShareCartLinkRequest} */
-declare function GetShareCartLinkRequest(): GetShareCartLinkRequest;
-type GetShareCartLinkRequest = {
+/** @returns {GetShareCartLinkCreation} */
+declare function GetShareCartLinkCreation(): GetShareCartLinkCreation;
+type GetShareCartLinkCreation = {
     /**
      * - Cart id of user cart for generating cart sharing token.
      */
@@ -3395,9 +3708,9 @@ type GetShareCartLinkRequest = {
      */
     meta?: any;
 };
-/** @returns {GetShareCartLinkResponse} */
-declare function GetShareCartLinkResponse(): GetShareCartLinkResponse;
-type GetShareCartLinkResponse = {
+/** @returns {GetShareCartLinkResult} */
+declare function GetShareCartLinkResult(): GetShareCartLinkResult;
+type GetShareCartLinkResult = {
     /**
      * - Short url unique id of the cart which is opted
      * to share with other user.
@@ -3508,9 +3821,9 @@ type SharedCart = {
      */
     custom_cart_meta?: any;
 };
-/** @returns {SharedCartResponse} */
-declare function SharedCartResponse(): SharedCartResponse;
-type SharedCartResponse = {
+/** @returns {SharedCartResult} */
+declare function SharedCartResult(): SharedCartResult;
+type SharedCartResult = {
     /**
      * - Error details if any error occurs which includes
      * type of error, error code and error message.
@@ -3540,6 +3853,20 @@ type ItemPriceDetails = {
      */
     currency?: string;
 };
+/** @returns {ArticlePriceDetails} */
+declare function ArticlePriceDetails(): ArticlePriceDetails;
+type ArticlePriceDetails = {
+    /**
+     * - The Marked Price refers to the initial price of
+     * the free gift article before product discount.
+     */
+    marked?: number;
+    /**
+     * - The Effective Price refers to the final
+     * amount of the free gift article after applying the product discount.
+     */
+    effective?: number;
+};
 /** @returns {FreeGiftItems} */
 declare function FreeGiftItems(): FreeGiftItems;
 type FreeGiftItems = {
@@ -3553,6 +3880,7 @@ type FreeGiftItems = {
      */
     item_name?: string;
     item_price_details?: ItemPriceDetails;
+    article_price?: ArticlePriceDetails;
     /**
      * - Item brand name of the free gift item
      * promotion applied on cart.
@@ -3562,6 +3890,14 @@ type FreeGiftItems = {
      * - Item id of the free gift item.
      */
     item_id?: number;
+    /**
+     * - Available sizes for the free gift item.
+     */
+    available_sizes?: string[];
+    /**
+     * - Selected size for the free gift item.
+     */
+    size?: string;
     /**
      * - Images URLs for free gift items.
      */
@@ -3620,9 +3956,9 @@ type PromotionOffer = {
      */
     description?: string;
 };
-/** @returns {PromotionOffersResponse} */
-declare function PromotionOffersResponse(): PromotionOffersResponse;
-type PromotionOffersResponse = {
+/** @returns {PromotionOffersResult} */
+declare function PromotionOffersResult(): PromotionOffersResult;
+type PromotionOffersResult = {
     /**
      * - Available promotion
      * details which are available on product which includes promotion data like
@@ -3681,9 +4017,9 @@ type PromotionPaymentOffer = {
      */
     promotion_name?: string;
 };
-/** @returns {PromotionPaymentOffersResponse} */
-declare function PromotionPaymentOffersResponse(): PromotionPaymentOffersResponse;
-type PromotionPaymentOffersResponse = {
+/** @returns {PromotionPaymentOffersResult} */
+declare function PromotionPaymentOffersResult(): PromotionPaymentOffersResult;
+type PromotionPaymentOffersResult = {
     /**
      * - Success flag of get payment offers API response.
      */
@@ -3694,9 +4030,9 @@ type PromotionPaymentOffersResponse = {
      */
     promotions?: PromotionPaymentOffer[];
 };
-/** @returns {OperationErrorResponse} */
-declare function OperationErrorResponse(): OperationErrorResponse;
-type OperationErrorResponse = {
+/** @returns {OperationErrorResult} */
+declare function OperationErrorResult(): OperationErrorResult;
+type OperationErrorResult = {
     /**
      * - Message of get payment offer API response.
      */
@@ -3875,17 +4211,15 @@ type PaymentMethod = {
      */
     payment_extra_identifiers?: any;
 };
-/** @returns {CartCheckoutDetailV2Request} */
-declare function CartCheckoutDetailV2Request(): CartCheckoutDetailV2Request;
-type CartCheckoutDetailV2Request = {
+/** @returns {CartCheckoutDetailV2Creation} */
+declare function CartCheckoutDetailV2Creation(): CartCheckoutDetailV2Creation;
+type CartCheckoutDetailV2Creation = {
     /**
-     * - Custom meta data to be added in order.
+     * - Custom meta data to be
+     * added in order.
      */
-    custom_meta?: any;
-    /**
-     * - Customer details to be added in order.
-     */
-    customer_details?: any;
+    custom_meta?: CartCheckoutCustomMeta[];
+    customer_details?: CustomerDetails;
     /**
      * - Merchant code of the payment mode
      * selected to do the payment.
@@ -3991,4 +4325,16 @@ type CartCheckoutDetailV2Request = {
      * - Saved card id if payment mode is card to do the payment.
      */
     card_id?: string;
+};
+/** @returns {ValidationError} */
+declare function ValidationError(): ValidationError;
+type ValidationError = {
+    /**
+     * - A brief description of the error encountered.
+     */
+    message: string;
+    /**
+     * - The field in the request that caused the error.
+     */
+    field: string;
 };

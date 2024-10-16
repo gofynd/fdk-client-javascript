@@ -1,12 +1,12 @@
 const Joi = require("joi");
 
 /**
- * @typedef UpdateZoneConfigRequest
+ * @typedef UpdateZoneConfigDetails
  * @property {string} [serviceability_type]
  */
 
 /**
- * @typedef ServiceabilityErrorResponse
+ * @typedef ServiceabilityErrorResult
  * @property {string} message
  * @property {string} value
  * @property {string} type
@@ -20,14 +20,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ApplicationServiceabilityConfigResponse
- * @property {ServiceabilityErrorResponse} [error]
+ * @typedef ApplicationServiceabilityConfigResult
+ * @property {ServiceabilityErrorResult} [error]
  * @property {ApplicationServiceabilityConfig} [data]
  * @property {boolean} success
  */
 
 /**
- * @typedef EntityRegionView_Request
+ * @typedef EntityRegionView_Details
  * @property {string[]} sub_type
  * @property {string[]} [parent_id]
  */
@@ -49,7 +49,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef getAppRegionZonesResponse
+ * @typedef getAppRegionZonesResult
  * @property {PageSchema[]} page
  * @property {ListViewItems[]} items
  */
@@ -71,7 +71,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef EntityRegionView_Response
+ * @typedef EntityRegionView_Result
  * @property {EntityRegionView_Error} error
  * @property {EntityRegionView_page} page
  * @property {EntityRegionView_Items[]} data
@@ -123,7 +123,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ListViewResponse
+ * @typedef ListViewResult
  * @property {ZoneDataItem} page
  * @property {ListViewItems[]} items
  */
@@ -138,7 +138,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyStoreView_Response
+ * @typedef CompanyStoreView_Result
  * @property {CompanyStoreView_PageItems[]} page
  * @property {Object[]} [items]
  */
@@ -178,13 +178,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ZoneUpdateRequest
+ * @typedef ZoneUpdateDetails
  * @property {string} identifier
  * @property {UpdateZoneData} data
  */
 
 /**
- * @typedef ZoneSuccessResponse
+ * @typedef ZoneSuccessResult
  * @property {number} status_code
  * @property {boolean} success
  */
@@ -206,7 +206,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetSingleZoneDataViewResponse
+ * @typedef GetSingleZoneDataViewResult
  * @property {GetZoneDataViewItems} data
  */
 
@@ -240,14 +240,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ZoneResponse
+ * @typedef ZoneResult
  * @property {number} status_code
  * @property {string} zone_id
  * @property {boolean} success
  */
 
 /**
- * @typedef GetZoneFromPincodeViewRequest
+ * @typedef GetZoneFromPincodeViewDetails
  * @property {string} country
  * @property {string} pincode
  */
@@ -265,19 +265,19 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetZoneFromPincodeViewResponse
+ * @typedef GetZoneFromPincodeViewResult
  * @property {string} serviceability_type
  * @property {Zone[]} zones
  */
 
 /**
- * @typedef GetZoneFromApplicationIdViewResponse
+ * @typedef GetZoneFromApplicationIdViewResult
  * @property {ZoneDataItem[]} page
  * @property {ListViewItems[]} items
  */
 
 /**
- * @typedef ServiceabilityPageResponse
+ * @typedef ServiceabilityPageResult
  * @property {string} [type]
  * @property {boolean} [has_next]
  * @property {number} [item_total]
@@ -292,37 +292,37 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ManagerResponse
+ * @typedef ManagerResult
  * @property {string} [email]
  * @property {MobileNo} [mobile_no]
  * @property {string} [name]
  */
 
 /**
- * @typedef ModifiedByResponse
+ * @typedef ModifiedByResult
  * @property {string} [username]
  * @property {string} [user_id]
  */
 
 /**
- * @typedef IntegrationTypeResponse
+ * @typedef IntegrationTypeResult
  * @property {string} [inventory]
  * @property {string} [order]
  */
 
 /**
- * @typedef ProductReturnConfigResponse
+ * @typedef ProductReturnConfigResult
  * @property {boolean} [on_same_store]
  */
 
 /**
- * @typedef ContactNumberResponse
+ * @typedef ContactNumberResult
  * @property {string} [number]
  * @property {number} [country_code]
  */
 
 /**
- * @typedef AddressResponse
+ * @typedef AddressResult
  * @property {string} [city]
  * @property {string} [address1]
  * @property {number} [pincode]
@@ -335,29 +335,29 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreatedByResponse
+ * @typedef CreatedByResult
  * @property {string} [username]
  * @property {string} [user_id]
  */
 
 /**
- * @typedef EwayBillResponse
+ * @typedef EwayBillResult
  * @property {boolean} [enabled]
  */
 
 /**
- * @typedef EinvoiceResponse
+ * @typedef EinvoiceResult
  * @property {boolean} [enabled]
  */
 
 /**
- * @typedef GstCredentialsResponse
- * @property {EwayBillResponse} [e_waybill]
- * @property {EinvoiceResponse} [e_invoice]
+ * @typedef GstCredentialsResult
+ * @property {EwayBillResult} [e_waybill]
+ * @property {EinvoiceResult} [e_invoice]
  */
 
 /**
- * @typedef WarningsResponse
+ * @typedef WarningsResult
  * @property {string} [store_address]
  */
 
@@ -368,7 +368,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TimmingResponse
+ * @typedef TimmingResult
  * @property {boolean} [open]
  * @property {string} [weekday]
  * @property {OpeningClosing} [closing]
@@ -376,7 +376,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DocumentsResponse
+ * @typedef DocumentsResult
  * @property {string} [legal_name]
  * @property {string} [value]
  * @property {string} [type]
@@ -398,47 +398,47 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef LogisticsResponse
+ * @typedef LogisticsResult
  * @property {boolean} [override]
  * @property {Dp} [dp]
  */
 
 /**
- * @typedef ItemResponse
+ * @typedef ItemResult
  * @property {string} [created_on]
- * @property {ManagerResponse} [manager]
- * @property {ModifiedByResponse} [modified_by]
- * @property {IntegrationTypeResponse} [integration_type]
+ * @property {ManagerResult} [manager]
+ * @property {ModifiedByResult} [modified_by]
+ * @property {IntegrationTypeResult} [integration_type]
  * @property {string} [verified_on]
- * @property {ProductReturnConfigResponse} [product_return_config]
- * @property {ContactNumberResponse[]} [contact_numbers]
- * @property {ModifiedByResponse} [verified_by]
+ * @property {ProductReturnConfigResult} [product_return_config]
+ * @property {ContactNumberResult[]} [contact_numbers]
+ * @property {ModifiedByResult} [verified_by]
  * @property {string} [stage]
- * @property {AddressResponse} [address]
+ * @property {AddressResult} [address]
  * @property {string} [modified_on]
- * @property {CreatedByResponse} [created_by]
- * @property {GstCredentialsResponse} [gst_credentials]
+ * @property {CreatedByResult} [created_by]
+ * @property {GstCredentialsResult} [gst_credentials]
  * @property {string} [display_name]
  * @property {number} [company_id]
  * @property {number} [uid]
  * @property {Object} [_custom_json]
  * @property {string} [code]
- * @property {WarningsResponse} [warnings]
+ * @property {WarningsResult} [warnings]
  * @property {string} [name]
- * @property {TimmingResponse[]} [timing]
- * @property {DocumentsResponse[]} [documents]
+ * @property {TimmingResult[]} [timing]
+ * @property {DocumentsResult[]} [documents]
  * @property {string} [store_type]
  * @property {string} [sub_type]
  * @property {number} [company]
  * @property {string} [_cls]
- * @property {LogisticsResponse} [logistics]
+ * @property {LogisticsResult} [logistics]
  * @property {string[]} [notification_emails]
  */
 
 /**
- * @typedef GetStoresViewResponse
- * @property {ServiceabilityPageResponse} page
- * @property {ItemResponse[]} [items]
+ * @typedef GetStoresViewResult
+ * @property {ServiceabilityPageResult} page
+ * @property {ItemResult[]} [items]
  */
 
 /**
@@ -449,7 +449,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PincodeMopUpdateResponse
+ * @typedef PincodeMopUpdateResult
  * @property {number} pincode
  * @property {string} channel_id
  * @property {string} country
@@ -457,14 +457,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PincodeMOPresponse
+ * @typedef PincodeMOPResult
  * @property {boolean} success
  * @property {number} status_code
  * @property {string} batch_id
  * @property {string} country
  * @property {string} action
  * @property {number[]} [pincodes]
- * @property {PincodeMopUpdateResponse[]} [updated_pincodes]
+ * @property {PincodeMopUpdateResult[]} [updated_pincodes]
  */
 
 /**
@@ -481,13 +481,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PincodeBulkViewResponse
+ * @typedef PincodeBulkViewResult
  * @property {string} batch_id
  * @property {string} s3_url
  */
 
 /**
- * @typedef PincodeCodStatusListingRequest
+ * @typedef PincodeCodStatusListingDetails
  * @property {string} [country]
  * @property {boolean} [is_active]
  * @property {number} [pincode]
@@ -496,9 +496,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PincodeCodStatusListingResponse
+ * @typedef PincodeCodStatusListingResult
  * @property {string} country
- * @property {PincodeCodStatusListingResponse[]} data
+ * @property {PincodeCodStatusListingResult[]} data
  * @property {boolean} success
  * @property {Error[]} [errors]
  * @property {PincodeCodStatusListingPage} page
@@ -528,7 +528,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PincodeMopUpdateAuditHistoryRequest
+ * @typedef PincodeMopUpdateAuditHistoryDetails
  * @property {string} entity_type
  * @property {string} [file_name]
  */
@@ -543,7 +543,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PincodeMopUpdateAuditHistoryResponse
+ * @typedef PincodeMopUpdateAuditHistoryResult
  * @property {string} [batch_id]
  * @property {string} [entity_type]
  * @property {string} [error_file_s3_url]
@@ -555,10 +555,10 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PincodeMopUpdateAuditHistoryResponseData
+ * @typedef PincodeMopUpdateAuditHistoryResultData
  * @property {string} [entity_type]
  * @property {PincodeMopUpdateAuditHistoryPaging} page
- * @property {PincodeMopUpdateAuditHistoryResponse[]} data
+ * @property {PincodeMopUpdateAuditHistoryResult[]} data
  */
 
 /**
@@ -600,7 +600,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CourierAccountRequestBody
+ * @typedef CourierAccountDetailsBody
  * @property {string} extension_id
  * @property {string} [account_id]
  * @property {string} scheme_id
@@ -610,16 +610,16 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ErrorResponse
+ * @typedef ErrorResult
  * @property {string} value
  * @property {string} message
  * @property {string} type
  */
 
 /**
- * @typedef CourierPartnerAccountFailureResponse
+ * @typedef CourierPartnerAccountFailureResult
  * @property {boolean} success
- * @property {ErrorResponse[]} error
+ * @property {ErrorResult[]} error
  */
 
 /**
@@ -634,7 +634,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CourierPartnerRuleCPListResponse
+ * @typedef CourierPartnerRuleCPListResult
  * @property {string} [account_id]
  * @property {string} [extension_id]
  * @property {boolean} [is_self_ship]
@@ -642,7 +642,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CourierPartnerRuleResponse
+ * @typedef CourierPartnerRuleResult
  * @property {boolean} [is_active]
  * @property {string} [application_id]
  * @property {number} [company_id]
@@ -654,7 +654,7 @@ const Joi = require("joi");
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [type]
- * @property {CourierPartnerRuleCPListResponse[]} [cp_list]
+ * @property {CourierPartnerRuleCPListResult[]} [cp_list]
  */
 
 /**
@@ -719,15 +719,89 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FailureResponse
+ * @typedef FailureResult
  * @property {boolean} success
- * @property {ErrorResponse[]} error
+ * @property {ErrorResult[]} error
  */
 
 /**
- * @typedef CourierPartnerRulesListResponse
- * @property {CourierPartnerRuleResponse[]} items
+ * @typedef CourierPartnerRulesListResult
+ * @property {CourierPartnerRuleResult[]} items
  * @property {Page} page
+ */
+
+/**
+ * @typedef ShipmentsArticles
+ * @property {number} [item_id] - Unique identifier of the item.
+ * @property {number} [category_id] - Unique identifier of the category.
+ * @property {number} [brand_id] - Unique identifier of the brand.
+ * @property {number} [department_id] - Unique identifier of the department.
+ * @property {string[]} [tags] - Tags associated with the item.
+ */
+
+/**
+ * @typedef ShipmentDimension
+ * @property {number} height - Height of the shipment in centimeters.
+ * @property {number} length - Length of the shipment in centimeters.
+ * @property {number} width - Width of the shipment in centimeters.
+ */
+
+/**
+ * @typedef Shipments
+ * @property {string} [id] - Unique identifier of the shipment.
+ * @property {number} [location_id] - Unique identifier of the selling location.
+ * @property {string[]} [location_tags] - Tags associated with the selling location.
+ * @property {number} [shipment_weight] - Weight of the shipment.
+ * @property {number} [shipment_volumetric_weight] - Volumetric weight of the shipment.
+ * @property {number} [shipment_cost] - Total Cost of the shipment.
+ * @property {ShipmentDimension} [shipment_dimension]
+ * @property {string[]} [courier_partner_schemes] - A List of courier schemes.
+ * @property {ShipmentsArticles[]} [articles] - List of articles in the shipment.
+ */
+
+/**
+ * @typedef ShipmentCourierPartnerDetails
+ * @property {ShipmentsCourierPartnersServiceability} from_location
+ * @property {ShipmentsCourierPartnersServiceability} to_location
+ * @property {Shipments[]} [shipments] - List of shipments.
+ * @property {string} [journey] - Journey type of the shipment forward or return.
+ * @property {string} [payment_mode] - Payment mode opted for the shipment.
+ */
+
+/**
+ * @typedef CourierPartnerPromise
+ * @property {string} min - The earliest possible timestamp.
+ * @property {string} max - The latest possible timestamp.
+ */
+
+/**
+ * @typedef CourierPartners
+ * @property {string} [extension_id] - Unique identifier of courier partner extension.
+ * @property {string} [scheme_id] - Unique identifier of courier partner scheme.
+ * @property {string} [name] - Name of the courier partner.
+ * @property {CourierPartnerPromise} [delivery_promise]
+ */
+
+/**
+ * @typedef ShipmentCourierPartners
+ * @property {string} [id] - Unique identifier of the shipment.
+ * @property {CourierPartners[]} [courier_partners] - Courier partners of the shipment.
+ */
+
+/**
+ * @typedef ShipmentCourierPartnerResult
+ * @property {CourierPartners[]} [courier_partners]
+ * @property {ShipmentCourierPartners[]} [shipments]
+ */
+
+/**
+ * @typedef ShipmentsCourierPartnersServiceability
+ * @property {string} [pincode] - Postal code or PIN code of the address area.
+ * @property {string} [sector_code] - Specifies the sector or district code of
+ *   the address if applicable.
+ * @property {string} [state_code] - Indicates the state or province code of the address.
+ * @property {string} [city_code] - Denote the city or municipality code of the address.
+ * @property {string} country_code - ISO2 code for the country of the address.
  */
 
 /**
@@ -750,7 +824,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkRegionJobSerializer
+ * @typedef BulkRegionJobDetails
  * @property {string} [file_path]
  * @property {string} country
  * @property {string} action
@@ -758,7 +832,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkRegionResponseItemData
+ * @typedef BulkRegionResultItemData
  * @property {string} file_path
  * @property {number} [failed]
  * @property {Object[]} [failed_records]
@@ -773,25 +847,25 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkRegionResponse
- * @property {BulkRegionResponseItemData[]} items
+ * @typedef BulkRegionResult
+ * @property {BulkRegionResultItemData[]} items
  * @property {Page} page
  */
 
 /**
- * @typedef SelfShipResponse
+ * @typedef SelfShipResult
  * @property {boolean} is_active
  * @property {number} tat
  */
 
 /**
  * @typedef ApplicationSelfShipConfig
- * @property {Object} [self_ship]
+ * @property {SelfShipResult} [self_ship]
  */
 
 /**
- * @typedef ApplicationSelfShipConfigResponse
- * @property {ServiceabilityErrorResponse} [error]
+ * @typedef ApplicationSelfShipConfigResult
+ * @property {ServiceabilityErrorResult} [error]
  * @property {ApplicationSelfShipConfig} [data]
  * @property {boolean} success
  */
@@ -850,13 +924,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetStoreRulesApiResponse
+ * @typedef GetStoreRulesApiResult
  * @property {StoreRuleDataSchema[]} [items]
  * @property {Page} [page]
  */
 
 /**
- * @typedef CreateStoreRuleRequestSchema
+ * @typedef CreateStoreRuleDetailsSchema
  * @property {string} [name]
  * @property {boolean} [is_active]
  * @property {StoreRuleConditionSchema} [conditions]
@@ -867,7 +941,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreRuleResponseSchema
+ * @typedef StoreRuleResultSchema
  * @property {string} [id]
  * @property {string} [name]
  * @property {string} [type]
@@ -880,7 +954,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreRuleUpdateResponseSchema
+ * @typedef StoreRuleUpdateResultSchema
  * @property {string} [id]
  * @property {string} [name]
  * @property {string} [type]
@@ -898,8 +972,8 @@ const Joi = require("joi");
  * @typedef ServiceabilityModel
  * @property {number} lm_cod_limit
  * @property {boolean} is_qc
- * @property {string} pickup_cutoff
- * @property {string} route_code
+ * @property {string} [pickup_cutoff]
+ * @property {string} [route_code]
  * @property {boolean} is_first_mile
  * @property {boolean} is_return
  * @property {boolean} is_installation
@@ -942,7 +1016,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CourierAccountResponse
+ * @typedef CourierAccountResult
  * @property {string} account_id
  * @property {string} scheme_id
  * @property {boolean} is_self_ship
@@ -952,8 +1026,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyCourierPartnerAccountListResponse
- * @property {CourierAccountResponse[]} items
+ * @typedef CompanyCourierPartnerAccountListResult
+ * @property {CourierAccountResult[]} items
  * @property {Page} page
  */
 
@@ -979,7 +1053,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PackageMaterialResponse
+ * @typedef PackageMaterialResult
  * @property {string} name
  * @property {string} [id]
  * @property {number} [item_id]
@@ -1020,7 +1094,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PackageRuleResponse
+ * @typedef PackageRuleResult
  * @property {string} [id]
  * @property {string} name
  * @property {number} company_id
@@ -1039,13 +1113,13 @@ const Joi = require("joi");
 
 /**
  * @typedef PackageMaterialRuleList
- * @property {PackageRuleResponse} [items]
+ * @property {PackageRuleResult} [items]
  * @property {Page} [page]
  */
 
 /**
  * @typedef PackageMaterialList
- * @property {PackageMaterialResponse} [items]
+ * @property {PackageMaterialResult} [items]
  * @property {Page} [page]
  */
 
@@ -1071,13 +1145,13 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef RulePriorityRequest
+ * @typedef RulePriorityDetails
  * @property {string} rule_id
  * @property {number} priority
  */
 
 /**
- * @typedef RulePriorityResponse
+ * @typedef RulePriorityResult
  * @property {boolean} [success]
  */
 
@@ -1109,7 +1183,7 @@ const Joi = require("joi");
  * @typedef OptimalLocationsArticles
  * @property {number} item_id
  * @property {string} size
- * @property {string} quantity
+ * @property {number} quantity
  * @property {string} [group_id]
  * @property {boolean} [is_primary_item]
  * @property {Object} [meta]
@@ -1120,16 +1194,16 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OptimlLocationsRequestSchema
+ * @typedef OptimlLocationsDetailsSchema
  * @property {string} channel_id
  * @property {string} channel_type
  * @property {string} [channel_identifier]
  * @property {LocationDetailsServiceability} to_serviceability
- * @property {OptimalLocationsArticles} [article]
+ * @property {OptimalLocationsArticles[]} [articles]
  */
 
 /**
- * @typedef OptimalLocationArticlesResponse
+ * @typedef OptimalLocationArticlesResult
  * @property {number} item_id
  * @property {string} size
  * @property {number} quantity
@@ -1147,27 +1221,38 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OptimalLocationAssignedStoresResponse
+ * @typedef OptimalLocationAssignedStoresResult
  * @property {number} store_id
- * @property {OptimalLocationArticlesResponse[]} articles
+ * @property {OptimalLocationArticlesResult[]} articles
  */
 
 /**
- * @typedef OptimalLocationsResponse
- * @property {OptimalLocationAssignedStoresResponse[]} assigned_stores
- * @property {ErrorResponse[]} [faulty_articles]
+ * @typedef OptimalLocationsResult
+ * @property {OptimalLocationAssignedStoresResult[]} assigned_stores
+ * @property {ErrorResult[]} [faulty_articles]
+ */
+
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
+ */
+
+/**
+ * @typedef StandardError
+ * @property {string} message - A brief description of the error.
  */
 
 class ServiceabilityPlatformModel {
-  /** @returns {UpdateZoneConfigRequest} */
-  static UpdateZoneConfigRequest() {
+  /** @returns {UpdateZoneConfigDetails} */
+  static UpdateZoneConfigDetails() {
     return Joi.object({
       serviceability_type: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ServiceabilityErrorResponse} */
-  static ServiceabilityErrorResponse() {
+  /** @returns {ServiceabilityErrorResult} */
+  static ServiceabilityErrorResult() {
     return Joi.object({
       message: Joi.string().allow("").required(),
       value: Joi.string().allow("").required(),
@@ -1184,17 +1269,17 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ApplicationServiceabilityConfigResponse} */
-  static ApplicationServiceabilityConfigResponse() {
+  /** @returns {ApplicationServiceabilityConfigResult} */
+  static ApplicationServiceabilityConfigResult() {
     return Joi.object({
-      error: ServiceabilityPlatformModel.ServiceabilityErrorResponse(),
+      error: ServiceabilityPlatformModel.ServiceabilityErrorResult(),
       data: ServiceabilityPlatformModel.ApplicationServiceabilityConfig(),
       success: Joi.boolean().required(),
     });
   }
 
-  /** @returns {EntityRegionView_Request} */
-  static EntityRegionView_Request() {
+  /** @returns {EntityRegionView_Details} */
+  static EntityRegionView_Details() {
     return Joi.object({
       sub_type: Joi.array().items(Joi.string().allow("")).required(),
       parent_id: Joi.array().items(Joi.string().allow("")),
@@ -1221,8 +1306,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {getAppRegionZonesResponse} */
-  static getAppRegionZonesResponse() {
+  /** @returns {getAppRegionZonesResult} */
+  static getAppRegionZonesResult() {
     return Joi.object({
       page: Joi.array()
         .items(ServiceabilityPlatformModel.PageSchema())
@@ -1253,8 +1338,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {EntityRegionView_Response} */
-  static EntityRegionView_Response() {
+  /** @returns {EntityRegionView_Result} */
+  static EntityRegionView_Result() {
     return Joi.object({
       error: ServiceabilityPlatformModel.EntityRegionView_Error().required(),
       page: ServiceabilityPlatformModel.EntityRegionView_page().required(),
@@ -1318,8 +1403,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ListViewResponse} */
-  static ListViewResponse() {
+  /** @returns {ListViewResult} */
+  static ListViewResult() {
     return Joi.object({
       page: ServiceabilityPlatformModel.ZoneDataItem().required(),
       items: Joi.array()
@@ -1339,8 +1424,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {CompanyStoreView_Response} */
-  static CompanyStoreView_Response() {
+  /** @returns {CompanyStoreView_Result} */
+  static CompanyStoreView_Result() {
     return Joi.object({
       page: Joi.array()
         .items(ServiceabilityPlatformModel.CompanyStoreView_PageItems())
@@ -1395,16 +1480,16 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ZoneUpdateRequest} */
-  static ZoneUpdateRequest() {
+  /** @returns {ZoneUpdateDetails} */
+  static ZoneUpdateDetails() {
     return Joi.object({
       identifier: Joi.string().allow("").required(),
       data: ServiceabilityPlatformModel.UpdateZoneData().required(),
     });
   }
 
-  /** @returns {ZoneSuccessResponse} */
-  static ZoneSuccessResponse() {
+  /** @returns {ZoneSuccessResult} */
+  static ZoneSuccessResult() {
     return Joi.object({
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
@@ -1433,8 +1518,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {GetSingleZoneDataViewResponse} */
-  static GetSingleZoneDataViewResponse() {
+  /** @returns {GetSingleZoneDataViewResult} */
+  static GetSingleZoneDataViewResult() {
     return Joi.object({
       data: ServiceabilityPlatformModel.GetZoneDataViewItems().required(),
     });
@@ -1481,8 +1566,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ZoneResponse} */
-  static ZoneResponse() {
+  /** @returns {ZoneResult} */
+  static ZoneResult() {
     return Joi.object({
       status_code: Joi.number().required(),
       zone_id: Joi.string().allow("").required(),
@@ -1490,8 +1575,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {GetZoneFromPincodeViewRequest} */
-  static GetZoneFromPincodeViewRequest() {
+  /** @returns {GetZoneFromPincodeViewDetails} */
+  static GetZoneFromPincodeViewDetails() {
     return Joi.object({
       country: Joi.string().allow("").required(),
       pincode: Joi.string().allow("").required(),
@@ -1512,16 +1597,16 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {GetZoneFromPincodeViewResponse} */
-  static GetZoneFromPincodeViewResponse() {
+  /** @returns {GetZoneFromPincodeViewResult} */
+  static GetZoneFromPincodeViewResult() {
     return Joi.object({
       serviceability_type: Joi.string().allow("").required(),
       zones: Joi.array().items(ServiceabilityPlatformModel.Zone()).required(),
     });
   }
 
-  /** @returns {GetZoneFromApplicationIdViewResponse} */
-  static GetZoneFromApplicationIdViewResponse() {
+  /** @returns {GetZoneFromApplicationIdViewResult} */
+  static GetZoneFromApplicationIdViewResult() {
     return Joi.object({
       page: Joi.array()
         .items(ServiceabilityPlatformModel.ZoneDataItem())
@@ -1532,8 +1617,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ServiceabilityPageResponse} */
-  static ServiceabilityPageResponse() {
+  /** @returns {ServiceabilityPageResult} */
+  static ServiceabilityPageResult() {
     return Joi.object({
       type: Joi.string().allow(""),
       has_next: Joi.boolean(),
@@ -1551,8 +1636,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ManagerResponse} */
-  static ManagerResponse() {
+  /** @returns {ManagerResult} */
+  static ManagerResult() {
     return Joi.object({
       email: Joi.string().allow(""),
       mobile_no: ServiceabilityPlatformModel.MobileNo(),
@@ -1560,39 +1645,39 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ModifiedByResponse} */
-  static ModifiedByResponse() {
+  /** @returns {ModifiedByResult} */
+  static ModifiedByResult() {
     return Joi.object({
       username: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
     });
   }
 
-  /** @returns {IntegrationTypeResponse} */
-  static IntegrationTypeResponse() {
+  /** @returns {IntegrationTypeResult} */
+  static IntegrationTypeResult() {
     return Joi.object({
       inventory: Joi.string().allow(""),
       order: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ProductReturnConfigResponse} */
-  static ProductReturnConfigResponse() {
+  /** @returns {ProductReturnConfigResult} */
+  static ProductReturnConfigResult() {
     return Joi.object({
       on_same_store: Joi.boolean(),
     });
   }
 
-  /** @returns {ContactNumberResponse} */
-  static ContactNumberResponse() {
+  /** @returns {ContactNumberResult} */
+  static ContactNumberResult() {
     return Joi.object({
       number: Joi.string().allow(""),
       country_code: Joi.number(),
     });
   }
 
-  /** @returns {AddressResponse} */
-  static AddressResponse() {
+  /** @returns {AddressResult} */
+  static AddressResult() {
     return Joi.object({
       city: Joi.string().allow(""),
       address1: Joi.string().allow(""),
@@ -1606,38 +1691,38 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {CreatedByResponse} */
-  static CreatedByResponse() {
+  /** @returns {CreatedByResult} */
+  static CreatedByResult() {
     return Joi.object({
       username: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
     });
   }
 
-  /** @returns {EwayBillResponse} */
-  static EwayBillResponse() {
+  /** @returns {EwayBillResult} */
+  static EwayBillResult() {
     return Joi.object({
       enabled: Joi.boolean(),
     });
   }
 
-  /** @returns {EinvoiceResponse} */
-  static EinvoiceResponse() {
+  /** @returns {EinvoiceResult} */
+  static EinvoiceResult() {
     return Joi.object({
       enabled: Joi.boolean(),
     });
   }
 
-  /** @returns {GstCredentialsResponse} */
-  static GstCredentialsResponse() {
+  /** @returns {GstCredentialsResult} */
+  static GstCredentialsResult() {
     return Joi.object({
-      e_waybill: ServiceabilityPlatformModel.EwayBillResponse(),
-      e_invoice: ServiceabilityPlatformModel.EinvoiceResponse(),
+      e_waybill: ServiceabilityPlatformModel.EwayBillResult(),
+      e_invoice: ServiceabilityPlatformModel.EinvoiceResult(),
     });
   }
 
-  /** @returns {WarningsResponse} */
-  static WarningsResponse() {
+  /** @returns {WarningsResult} */
+  static WarningsResult() {
     return Joi.object({
       store_address: Joi.string().allow(""),
     });
@@ -1651,8 +1736,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {TimmingResponse} */
-  static TimmingResponse() {
+  /** @returns {TimmingResult} */
+  static TimmingResult() {
     return Joi.object({
       open: Joi.boolean(),
       weekday: Joi.string().allow(""),
@@ -1661,8 +1746,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {DocumentsResponse} */
-  static DocumentsResponse() {
+  /** @returns {DocumentsResult} */
+  static DocumentsResult() {
     return Joi.object({
       legal_name: Joi.string().allow(""),
       value: Joi.string().allow(""),
@@ -1687,57 +1772,57 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {LogisticsResponse} */
-  static LogisticsResponse() {
+  /** @returns {LogisticsResult} */
+  static LogisticsResult() {
     return Joi.object({
       override: Joi.boolean(),
       dp: ServiceabilityPlatformModel.Dp(),
     });
   }
 
-  /** @returns {ItemResponse} */
-  static ItemResponse() {
+  /** @returns {ItemResult} */
+  static ItemResult() {
     return Joi.object({
       created_on: Joi.string().allow(""),
-      manager: ServiceabilityPlatformModel.ManagerResponse(),
-      modified_by: ServiceabilityPlatformModel.ModifiedByResponse(),
-      integration_type: ServiceabilityPlatformModel.IntegrationTypeResponse(),
+      manager: ServiceabilityPlatformModel.ManagerResult(),
+      modified_by: ServiceabilityPlatformModel.ModifiedByResult(),
+      integration_type: ServiceabilityPlatformModel.IntegrationTypeResult(),
       verified_on: Joi.string().allow(""),
-      product_return_config: ServiceabilityPlatformModel.ProductReturnConfigResponse(),
+      product_return_config: ServiceabilityPlatformModel.ProductReturnConfigResult(),
       contact_numbers: Joi.array().items(
-        ServiceabilityPlatformModel.ContactNumberResponse()
+        ServiceabilityPlatformModel.ContactNumberResult()
       ),
-      verified_by: ServiceabilityPlatformModel.ModifiedByResponse(),
+      verified_by: ServiceabilityPlatformModel.ModifiedByResult(),
       stage: Joi.string().allow(""),
-      address: ServiceabilityPlatformModel.AddressResponse(),
+      address: ServiceabilityPlatformModel.AddressResult(),
       modified_on: Joi.string().allow(""),
-      created_by: ServiceabilityPlatformModel.CreatedByResponse(),
-      gst_credentials: ServiceabilityPlatformModel.GstCredentialsResponse(),
+      created_by: ServiceabilityPlatformModel.CreatedByResult(),
+      gst_credentials: ServiceabilityPlatformModel.GstCredentialsResult(),
       display_name: Joi.string().allow(""),
       company_id: Joi.number(),
       uid: Joi.number(),
-      _custom_json: Joi.any(),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       code: Joi.string().allow(""),
-      warnings: ServiceabilityPlatformModel.WarningsResponse(),
+      warnings: ServiceabilityPlatformModel.WarningsResult(),
       name: Joi.string().allow(""),
-      timing: Joi.array().items(ServiceabilityPlatformModel.TimmingResponse()),
+      timing: Joi.array().items(ServiceabilityPlatformModel.TimmingResult()),
       documents: Joi.array().items(
-        ServiceabilityPlatformModel.DocumentsResponse()
+        ServiceabilityPlatformModel.DocumentsResult()
       ),
       store_type: Joi.string().allow(""),
       sub_type: Joi.string().allow(""),
       company: Joi.number(),
       _cls: Joi.string().allow(""),
-      logistics: ServiceabilityPlatformModel.LogisticsResponse(),
+      logistics: ServiceabilityPlatformModel.LogisticsResult(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
     });
   }
 
-  /** @returns {GetStoresViewResponse} */
-  static GetStoresViewResponse() {
+  /** @returns {GetStoresViewResult} */
+  static GetStoresViewResult() {
     return Joi.object({
-      page: ServiceabilityPlatformModel.ServiceabilityPageResponse().required(),
-      items: Joi.array().items(ServiceabilityPlatformModel.ItemResponse()),
+      page: ServiceabilityPlatformModel.ServiceabilityPageResult().required(),
+      items: Joi.array().items(ServiceabilityPlatformModel.ItemResult()),
     });
   }
 
@@ -1750,8 +1835,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PincodeMopUpdateResponse} */
-  static PincodeMopUpdateResponse() {
+  /** @returns {PincodeMopUpdateResult} */
+  static PincodeMopUpdateResult() {
     return Joi.object({
       pincode: Joi.number().required(),
       channel_id: Joi.string().allow("").required(),
@@ -1760,8 +1845,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PincodeMOPresponse} */
-  static PincodeMOPresponse() {
+  /** @returns {PincodeMOPResult} */
+  static PincodeMOPResult() {
     return Joi.object({
       success: Joi.boolean().required(),
       status_code: Joi.number().required(),
@@ -1770,7 +1855,7 @@ class ServiceabilityPlatformModel {
       action: Joi.string().allow("").required(),
       pincodes: Joi.array().items(Joi.number()),
       updated_pincodes: Joi.array().items(
-        ServiceabilityPlatformModel.PincodeMopUpdateResponse()
+        ServiceabilityPlatformModel.PincodeMopUpdateResult()
       ),
     });
   }
@@ -1792,16 +1877,16 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PincodeBulkViewResponse} */
-  static PincodeBulkViewResponse() {
+  /** @returns {PincodeBulkViewResult} */
+  static PincodeBulkViewResult() {
     return Joi.object({
       batch_id: Joi.string().allow("").required(),
       s3_url: Joi.string().allow("").required(),
     });
   }
 
-  /** @returns {PincodeCodStatusListingRequest} */
-  static PincodeCodStatusListingRequest() {
+  /** @returns {PincodeCodStatusListingDetails} */
+  static PincodeCodStatusListingDetails() {
     return Joi.object({
       country: Joi.string().allow(""),
       is_active: Joi.boolean(),
@@ -1811,18 +1896,18 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PincodeCodStatusListingResponse} */
-  static PincodeCodStatusListingResponse() {
+  /** @returns {PincodeCodStatusListingResult} */
+  static PincodeCodStatusListingResult() {
     return Joi.object({
       country: Joi.string().allow("").required(),
       data: Joi.array()
-        .items(Joi.link("#PincodeCodStatusListingResponse"))
+        .items(Joi.link("#PincodeCodStatusListingResult"))
         .required(),
       success: Joi.boolean().required(),
       errors: Joi.array().items(ServiceabilityPlatformModel.Error()),
       page: ServiceabilityPlatformModel.PincodeCodStatusListingPage().required(),
       summary: ServiceabilityPlatformModel.PincodeCodStatusListingSummary().required(),
-    }).id("PincodeCodStatusListingResponse");
+    }).id("PincodeCodStatusListingResult");
   }
 
   /** @returns {Error} */
@@ -1853,8 +1938,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PincodeMopUpdateAuditHistoryRequest} */
-  static PincodeMopUpdateAuditHistoryRequest() {
+  /** @returns {PincodeMopUpdateAuditHistoryDetails} */
+  static PincodeMopUpdateAuditHistoryDetails() {
     return Joi.object({
       entity_type: Joi.string().allow("").required(),
       file_name: Joi.string().allow(""),
@@ -1872,8 +1957,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PincodeMopUpdateAuditHistoryResponse} */
-  static PincodeMopUpdateAuditHistoryResponse() {
+  /** @returns {PincodeMopUpdateAuditHistoryResult} */
+  static PincodeMopUpdateAuditHistoryResult() {
     return Joi.object({
       batch_id: Joi.string().allow(""),
       entity_type: Joi.string().allow(""),
@@ -1886,15 +1971,13 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PincodeMopUpdateAuditHistoryResponseData} */
-  static PincodeMopUpdateAuditHistoryResponseData() {
+  /** @returns {PincodeMopUpdateAuditHistoryResultData} */
+  static PincodeMopUpdateAuditHistoryResultData() {
     return Joi.object({
       entity_type: Joi.string().allow(""),
       page: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryPaging().required(),
       data: Joi.array()
-        .items(
-          ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponse()
-        )
+        .items(ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResult())
         .required(),
     });
   }
@@ -1945,8 +2028,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {CourierAccountRequestBody} */
-  static CourierAccountRequestBody() {
+  /** @returns {CourierAccountDetailsBody} */
+  static CourierAccountDetailsBody() {
     return Joi.object({
       extension_id: Joi.string().allow("").required(),
       account_id: Joi.string().allow(""),
@@ -1957,8 +2040,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {ErrorResponse} */
-  static ErrorResponse() {
+  /** @returns {ErrorResult} */
+  static ErrorResult() {
     return Joi.object({
       value: Joi.string().allow("").required(),
       message: Joi.string().allow("").required(),
@@ -1966,12 +2049,12 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {CourierPartnerAccountFailureResponse} */
-  static CourierPartnerAccountFailureResponse() {
+  /** @returns {CourierPartnerAccountFailureResult} */
+  static CourierPartnerAccountFailureResult() {
     return Joi.object({
       success: Joi.boolean().required(),
       error: Joi.array()
-        .items(ServiceabilityPlatformModel.ErrorResponse())
+        .items(ServiceabilityPlatformModel.ErrorResult())
         .required(),
     });
   }
@@ -1989,32 +2072,32 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {CourierPartnerRuleCPListResponse} */
-  static CourierPartnerRuleCPListResponse() {
+  /** @returns {CourierPartnerRuleCPListResult} */
+  static CourierPartnerRuleCPListResult() {
     return Joi.object({
       account_id: Joi.string().allow(""),
       extension_id: Joi.string().allow(""),
       is_self_ship: Joi.boolean(),
-      scheme_rules: Joi.any(),
+      scheme_rules: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
-  /** @returns {CourierPartnerRuleResponse} */
-  static CourierPartnerRuleResponse() {
+  /** @returns {CourierPartnerRuleResult} */
+  static CourierPartnerRuleResult() {
     return Joi.object({
       is_active: Joi.boolean(),
       application_id: Joi.string().allow(""),
       company_id: Joi.number(),
       conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions(),
       sort: Joi.array().items(Joi.string().allow("")),
-      created_by: Joi.any().allow(null),
+      created_by: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       id: Joi.string().allow(""),
-      modified_by: Joi.any().allow(null),
+      modified_by: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       modified_on: Joi.string().allow("").allow(null),
       name: Joi.string().allow(""),
       type: Joi.string().allow(""),
       cp_list: Joi.array().items(
-        ServiceabilityPlatformModel.CourierPartnerRuleCPListResponse()
+        ServiceabilityPlatformModel.CourierPartnerRuleCPListResult()
       ),
     });
   }
@@ -2098,23 +2181,122 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {FailureResponse} */
-  static FailureResponse() {
+  /** @returns {FailureResult} */
+  static FailureResult() {
     return Joi.object({
       success: Joi.boolean().required(),
       error: Joi.array()
-        .items(ServiceabilityPlatformModel.ErrorResponse())
+        .items(ServiceabilityPlatformModel.ErrorResult())
         .required(),
     });
   }
 
-  /** @returns {CourierPartnerRulesListResponse} */
-  static CourierPartnerRulesListResponse() {
+  /** @returns {CourierPartnerRulesListResult} */
+  static CourierPartnerRulesListResult() {
     return Joi.object({
       items: Joi.array()
-        .items(ServiceabilityPlatformModel.CourierPartnerRuleResponse())
+        .items(ServiceabilityPlatformModel.CourierPartnerRuleResult())
         .required(),
       page: ServiceabilityPlatformModel.Page().required(),
+    });
+  }
+
+  /** @returns {ShipmentsArticles} */
+  static ShipmentsArticles() {
+    return Joi.object({
+      item_id: Joi.number(),
+      category_id: Joi.number(),
+      brand_id: Joi.number(),
+      department_id: Joi.number(),
+      tags: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {ShipmentDimension} */
+  static ShipmentDimension() {
+    return Joi.object({
+      height: Joi.number().required(),
+      length: Joi.number().required(),
+      width: Joi.number().required(),
+    });
+  }
+
+  /** @returns {Shipments} */
+  static Shipments() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      location_id: Joi.number(),
+      location_tags: Joi.array().items(Joi.string().allow("")),
+      shipment_weight: Joi.number(),
+      shipment_volumetric_weight: Joi.number(),
+      shipment_cost: Joi.number(),
+      shipment_dimension: ServiceabilityPlatformModel.ShipmentDimension(),
+      courier_partner_schemes: Joi.array().items(Joi.string().allow("")),
+      articles: Joi.array().items(
+        ServiceabilityPlatformModel.ShipmentsArticles()
+      ),
+    });
+  }
+
+  /** @returns {ShipmentCourierPartnerDetails} */
+  static ShipmentCourierPartnerDetails() {
+    return Joi.object({
+      from_location: ServiceabilityPlatformModel.ShipmentsCourierPartnersServiceability().required(),
+      to_location: ServiceabilityPlatformModel.ShipmentsCourierPartnersServiceability().required(),
+      shipments: Joi.array().items(ServiceabilityPlatformModel.Shipments()),
+      journey: Joi.string().allow(""),
+      payment_mode: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CourierPartnerPromise} */
+  static CourierPartnerPromise() {
+    return Joi.object({
+      min: Joi.string().allow("").required(),
+      max: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CourierPartners} */
+  static CourierPartners() {
+    return Joi.object({
+      extension_id: Joi.string().allow(""),
+      scheme_id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      delivery_promise: ServiceabilityPlatformModel.CourierPartnerPromise(),
+    });
+  }
+
+  /** @returns {ShipmentCourierPartners} */
+  static ShipmentCourierPartners() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      courier_partners: Joi.array().items(
+        ServiceabilityPlatformModel.CourierPartners()
+      ),
+    });
+  }
+
+  /** @returns {ShipmentCourierPartnerResult} */
+  static ShipmentCourierPartnerResult() {
+    return Joi.object({
+      courier_partners: Joi.array().items(
+        ServiceabilityPlatformModel.CourierPartners()
+      ),
+      shipments: Joi.array().items(
+        ServiceabilityPlatformModel.ShipmentCourierPartners()
+      ),
+    });
+  }
+
+  /** @returns {ShipmentsCourierPartnersServiceability} */
+  static ShipmentsCourierPartnersServiceability() {
+    return Joi.object({
+      pincode: Joi.string().allow(""),
+      sector_code: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
+      city_code: Joi.string().allow(""),
+      country_code: Joi.string().allow("").required(),
     });
   }
 
@@ -2143,8 +2325,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {BulkRegionJobSerializer} */
-  static BulkRegionJobSerializer() {
+  /** @returns {BulkRegionJobDetails} */
+  static BulkRegionJobDetails() {
     return Joi.object({
       file_path: Joi.string().allow(""),
       country: Joi.string().allow("").required(),
@@ -2153,12 +2335,12 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {BulkRegionResponseItemData} */
-  static BulkRegionResponseItemData() {
+  /** @returns {BulkRegionResultItemData} */
+  static BulkRegionResultItemData() {
     return Joi.object({
       file_path: Joi.string().allow("").required(),
       failed: Joi.number(),
-      failed_records: Joi.array().items(Joi.any()),
+      failed_records: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
       action: Joi.string().allow("").required(),
       batch_id: Joi.string().allow("").required(),
       country: Joi.string().allow("").required(),
@@ -2170,18 +2352,18 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {BulkRegionResponse} */
-  static BulkRegionResponse() {
+  /** @returns {BulkRegionResult} */
+  static BulkRegionResult() {
     return Joi.object({
       items: Joi.array()
-        .items(ServiceabilityPlatformModel.BulkRegionResponseItemData())
+        .items(ServiceabilityPlatformModel.BulkRegionResultItemData())
         .required(),
       page: ServiceabilityPlatformModel.Page().required(),
     });
   }
 
-  /** @returns {SelfShipResponse} */
-  static SelfShipResponse() {
+  /** @returns {SelfShipResult} */
+  static SelfShipResult() {
     return Joi.object({
       is_active: Joi.boolean().required(),
       tat: Joi.number().required(),
@@ -2191,14 +2373,14 @@ class ServiceabilityPlatformModel {
   /** @returns {ApplicationSelfShipConfig} */
   static ApplicationSelfShipConfig() {
     return Joi.object({
-      self_ship: Joi.any().allow(null),
+      self_ship: ServiceabilityPlatformModel.SelfShipResult(),
     });
   }
 
-  /** @returns {ApplicationSelfShipConfigResponse} */
-  static ApplicationSelfShipConfigResponse() {
+  /** @returns {ApplicationSelfShipConfigResult} */
+  static ApplicationSelfShipConfigResult() {
     return Joi.object({
-      error: ServiceabilityPlatformModel.ServiceabilityErrorResponse(),
+      error: ServiceabilityPlatformModel.ServiceabilityErrorResult(),
       data: ServiceabilityPlatformModel.ApplicationSelfShipConfig(),
       success: Joi.boolean().required(),
     });
@@ -2271,8 +2453,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {GetStoreRulesApiResponse} */
-  static GetStoreRulesApiResponse() {
+  /** @returns {GetStoreRulesApiResult} */
+  static GetStoreRulesApiResult() {
     return Joi.object({
       items: Joi.array().items(
         ServiceabilityPlatformModel.StoreRuleDataSchema()
@@ -2281,8 +2463,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {CreateStoreRuleRequestSchema} */
-  static CreateStoreRuleRequestSchema() {
+  /** @returns {CreateStoreRuleDetailsSchema} */
+  static CreateStoreRuleDetailsSchema() {
     return Joi.object({
       name: Joi.string().allow(""),
       is_active: Joi.boolean(),
@@ -2296,8 +2478,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {StoreRuleResponseSchema} */
-  static StoreRuleResponseSchema() {
+  /** @returns {StoreRuleResultSchema} */
+  static StoreRuleResultSchema() {
     return Joi.object({
       id: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -2313,8 +2495,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {StoreRuleUpdateResponseSchema} */
-  static StoreRuleUpdateResponseSchema() {
+  /** @returns {StoreRuleUpdateResultSchema} */
+  static StoreRuleUpdateResultSchema() {
     return Joi.object({
       id: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -2337,8 +2519,8 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       lm_cod_limit: Joi.number().required(),
       is_qc: Joi.boolean().required(),
-      pickup_cutoff: Joi.string().allow("").allow(null).required(),
-      route_code: Joi.string().allow("").allow(null).required(),
+      pickup_cutoff: Joi.string().allow("").allow(null),
+      route_code: Joi.string().allow("").allow(null),
       is_first_mile: Joi.boolean().required(),
       is_return: Joi.boolean().required(),
       is_installation: Joi.boolean().required(),
@@ -2385,8 +2567,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {CourierAccountResponse} */
-  static CourierAccountResponse() {
+  /** @returns {CourierAccountResult} */
+  static CourierAccountResult() {
     return Joi.object({
       account_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
@@ -2397,11 +2579,11 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {CompanyCourierPartnerAccountListResponse} */
-  static CompanyCourierPartnerAccountListResponse() {
+  /** @returns {CompanyCourierPartnerAccountListResult} */
+  static CompanyCourierPartnerAccountListResult() {
     return Joi.object({
       items: Joi.array()
-        .items(ServiceabilityPlatformModel.CourierAccountResponse())
+        .items(ServiceabilityPlatformModel.CourierAccountResult())
         .required(),
       page: ServiceabilityPlatformModel.Page().required(),
     });
@@ -2434,8 +2616,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PackageMaterialResponse} */
-  static PackageMaterialResponse() {
+  /** @returns {PackageMaterialResult} */
+  static PackageMaterialResult() {
     return Joi.object({
       name: Joi.string().allow("").required(),
       id: Joi.string().allow(""),
@@ -2485,8 +2667,8 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {PackageRuleResponse} */
-  static PackageRuleResponse() {
+  /** @returns {PackageRuleResult} */
+  static PackageRuleResult() {
     return Joi.object({
       id: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
@@ -2510,7 +2692,7 @@ class ServiceabilityPlatformModel {
   /** @returns {PackageMaterialRuleList} */
   static PackageMaterialRuleList() {
     return Joi.object({
-      items: ServiceabilityPlatformModel.PackageRuleResponse(),
+      items: ServiceabilityPlatformModel.PackageRuleResult(),
       page: ServiceabilityPlatformModel.Page(),
     });
   }
@@ -2518,7 +2700,7 @@ class ServiceabilityPlatformModel {
   /** @returns {PackageMaterialList} */
   static PackageMaterialList() {
     return Joi.object({
-      items: ServiceabilityPlatformModel.PackageMaterialResponse(),
+      items: ServiceabilityPlatformModel.PackageMaterialResult(),
       page: ServiceabilityPlatformModel.Page(),
     });
   }
@@ -2552,16 +2734,16 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {RulePriorityRequest} */
-  static RulePriorityRequest() {
+  /** @returns {RulePriorityDetails} */
+  static RulePriorityDetails() {
     return Joi.object({
       rule_id: Joi.string().allow("").required(),
       priority: Joi.number().required(),
     });
   }
 
-  /** @returns {RulePriorityResponse} */
-  static RulePriorityResponse() {
+  /** @returns {RulePriorityResult} */
+  static RulePriorityResult() {
     return Joi.object({
       success: Joi.boolean(),
     });
@@ -2601,10 +2783,10 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       item_id: Joi.number().required(),
       size: Joi.string().allow("").required(),
-      quantity: Joi.string().allow("").required(),
+      quantity: Joi.number().required(),
       group_id: Joi.string().allow(""),
       is_primary_item: Joi.boolean(),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       article_assignment: ServiceabilityPlatformModel.ArticleAssignment().required(),
       ignore_locations: Joi.array().items(Joi.number()).required(),
       assign_locations: Joi.array().items(Joi.number()).required(),
@@ -2612,26 +2794,28 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {OptimlLocationsRequestSchema} */
-  static OptimlLocationsRequestSchema() {
+  /** @returns {OptimlLocationsDetailsSchema} */
+  static OptimlLocationsDetailsSchema() {
     return Joi.object({
       channel_id: Joi.string().allow("").required(),
       channel_type: Joi.string().allow("").required(),
       channel_identifier: Joi.string().allow(""),
       to_serviceability: ServiceabilityPlatformModel.LocationDetailsServiceability().required(),
-      article: ServiceabilityPlatformModel.OptimalLocationsArticles(),
+      articles: Joi.array().items(
+        ServiceabilityPlatformModel.OptimalLocationsArticles()
+      ),
     });
   }
 
-  /** @returns {OptimalLocationArticlesResponse} */
-  static OptimalLocationArticlesResponse() {
+  /** @returns {OptimalLocationArticlesResult} */
+  static OptimalLocationArticlesResult() {
     return Joi.object({
       item_id: Joi.number().required(),
       size: Joi.string().allow("").required(),
       quantity: Joi.number().required(),
       group_id: Joi.string().allow(""),
       is_primary_item: Joi.boolean(),
-      meta: Joi.any(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       article_assignment: ServiceabilityPlatformModel.ArticleAssignment().required(),
       seller_id: Joi.number(),
       ignore_locations: Joi.array().items(Joi.number()).required(),
@@ -2643,27 +2827,42 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {OptimalLocationAssignedStoresResponse} */
-  static OptimalLocationAssignedStoresResponse() {
+  /** @returns {OptimalLocationAssignedStoresResult} */
+  static OptimalLocationAssignedStoresResult() {
     return Joi.object({
       store_id: Joi.number().required(),
       articles: Joi.array()
-        .items(ServiceabilityPlatformModel.OptimalLocationArticlesResponse())
+        .items(ServiceabilityPlatformModel.OptimalLocationArticlesResult())
         .required(),
     });
   }
 
-  /** @returns {OptimalLocationsResponse} */
-  static OptimalLocationsResponse() {
+  /** @returns {OptimalLocationsResult} */
+  static OptimalLocationsResult() {
     return Joi.object({
       assigned_stores: Joi.array()
         .items(
-          ServiceabilityPlatformModel.OptimalLocationAssignedStoresResponse()
+          ServiceabilityPlatformModel.OptimalLocationAssignedStoresResult()
         )
         .required(),
       faulty_articles: Joi.array().items(
-        ServiceabilityPlatformModel.ErrorResponse()
+        ServiceabilityPlatformModel.ErrorResult()
       ),
+    });
+  }
+
+  /** @returns {ValidationError} */
+  static ValidationError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      field: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {StandardError} */
+  static StandardError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
     });
   }
 }

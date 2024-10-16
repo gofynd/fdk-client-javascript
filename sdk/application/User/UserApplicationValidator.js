@@ -202,7 +202,7 @@ const UserApplicationModel = require("./UserApplicationModel");
 
 /**
  * @typedef UpdateUserAttributesParam
- * @property {UserApplicationModel.UpdateUserAttributesRequest} body
+ * @property {UserApplicationModel.UpdateUserAttributes} body
  */
 
 /**
@@ -512,7 +512,7 @@ class UserApplicationValidator {
   /** @returns {UpdateUserAttributesParam} */
   static updateUserAttributes() {
     return Joi.object({
-      body: UserApplicationModel.UpdateUserAttributesRequest().required(),
+      body: UserApplicationModel.UpdateUserAttributes().required(),
     }).required();
   }
 

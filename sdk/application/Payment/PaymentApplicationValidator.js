@@ -4,22 +4,22 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef AddBeneficiaryDetailsParam
- * @property {PaymentApplicationModel.AddBeneficiaryDetailsRequest} body
+ * @property {PaymentApplicationModel.AddBeneficiaryDetails} body
  */
 
 /**
  * @typedef AddRefundBankAccountUsingOTPParam
- * @property {PaymentApplicationModel.AddBeneficiaryDetailsOTPRequest} body
+ * @property {PaymentApplicationModel.AddBeneficiaryDetailsOTP} body
  */
 
 /**
  * @typedef AttachCardToCustomerParam
- * @property {PaymentApplicationModel.AttachCardRequest} body
+ * @property {PaymentApplicationModel.AttachCard} body
  */
 
 /**
  * @typedef CancelPaymentLinkParam
- * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
+ * @property {PaymentApplicationModel.CancelOrResendPaymentLink} body
  */
 
 /**
@@ -31,12 +31,12 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef CheckAndUpdatePaymentStatusParam
- * @property {PaymentApplicationModel.PaymentStatusUpdateRequest} body
+ * @property {PaymentApplicationModel.PaymentStatusUpdate} body
  */
 
 /**
  * @typedef CheckAndUpdatePaymentStatusPaymentLinkParam
- * @property {PaymentApplicationModel.PaymentStatusUpdateRequest} body
+ * @property {PaymentApplicationModel.PaymentStatusUpdate} body
  */
 
 /**
@@ -46,17 +46,17 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef CreateOrderHandlerPaymentLinkParam
- * @property {PaymentApplicationModel.CreateOrderUserRequest} body
+ * @property {PaymentApplicationModel.CreateOrderUser} body
  */
 
 /**
  * @typedef CreatePaymentLinkParam
- * @property {PaymentApplicationModel.CreatePaymentLinkRequest} body
+ * @property {PaymentApplicationModel.CreatePaymentLink} body
  */
 
 /**
  * @typedef CreatePaymentOrderParam
- * @property {PaymentApplicationModel.PaymentOrderRequest} body
+ * @property {PaymentApplicationModel.PaymentOrder} body
  */
 
 /**
@@ -66,12 +66,12 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef CustomerOnboardParam
- * @property {PaymentApplicationModel.CustomerOnboardingRequest} body
+ * @property {PaymentApplicationModel.CustomerOnboarding} body
  */
 
 /**
  * @typedef DeleteUserCardParam
- * @property {PaymentApplicationModel.DeletehCardRequest} body
+ * @property {PaymentApplicationModel.DeleteCard} body
  */
 
 /**
@@ -81,7 +81,7 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef EnableOrDisableRefundTransferModeParam
- * @property {PaymentApplicationModel.UpdateRefundTransferModeRequest} body
+ * @property {PaymentApplicationModel.UpdateRefundTransferMode} body
  */
 
 /**
@@ -164,12 +164,12 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef InitialisePaymentParam
- * @property {PaymentApplicationModel.PaymentInitializationRequest} body
+ * @property {PaymentApplicationModel.PaymentInitialization} body
  */
 
 /**
  * @typedef InitialisePaymentPaymentLinkParam
- * @property {PaymentApplicationModel.PaymentInitializationRequest} body
+ * @property {PaymentApplicationModel.PaymentInitialization} body
  */
 
 /**
@@ -200,37 +200,37 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef RenderHTMLParam
- * @property {PaymentApplicationModel.renderHTMLRequest} body
+ * @property {PaymentApplicationModel.RenderHTML} body
  */
 
 /**
  * @typedef ResendOrCancelPaymentParam
- * @property {PaymentApplicationModel.ResendOrCancelPaymentRequest} body
+ * @property {PaymentApplicationModel.ResendOrCancelPayment} body
  */
 
 /**
  * @typedef ResendPaymentLinkParam
- * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
+ * @property {PaymentApplicationModel.CancelOrResendPaymentLink} body
  */
 
 /**
  * @typedef UpdateDefaultBeneficiaryParam
- * @property {PaymentApplicationModel.SetDefaultBeneficiaryRequest} body
+ * @property {PaymentApplicationModel.SetDefaultBeneficiary} body
  */
 
 /**
  * @typedef ValidateVPAParam
- * @property {PaymentApplicationModel.ValidateVPARequest} body
+ * @property {PaymentApplicationModel.ValidateVPA} body
  */
 
 /**
  * @typedef VerifyAndChargePaymentParam
- * @property {PaymentApplicationModel.ChargeCustomerRequest} body
+ * @property {PaymentApplicationModel.ChargeCustomer} body
  */
 
 /**
  * @typedef VerifyCustomerForPaymentParam
- * @property {PaymentApplicationModel.ValidateCustomerRequest} body
+ * @property {PaymentApplicationModel.ValidateCustomer} body
  */
 
 /**
@@ -241,12 +241,12 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
  * @typedef VerifyOtpAndAddBeneficiaryForBankParam
- * @property {PaymentApplicationModel.AddBeneficiaryViaOtpVerificationRequest} body
+ * @property {PaymentApplicationModel.AddBeneficiaryViaOtpVerification} body
  */
 
 /**
  * @typedef VerifyOtpAndAddBeneficiaryForWalletParam
- * @property {PaymentApplicationModel.WalletOtpRequest} body
+ * @property {PaymentApplicationModel.WalletOtp} body
  */
 
 /**
@@ -258,28 +258,28 @@ class PaymentApplicationValidator {
   /** @returns {AddBeneficiaryDetailsParam} */
   static addBeneficiaryDetails() {
     return Joi.object({
-      body: PaymentApplicationModel.AddBeneficiaryDetailsRequest().required(),
+      body: PaymentApplicationModel.AddBeneficiaryDetails().required(),
     }).required();
   }
 
   /** @returns {AddRefundBankAccountUsingOTPParam} */
   static addRefundBankAccountUsingOTP() {
     return Joi.object({
-      body: PaymentApplicationModel.AddBeneficiaryDetailsOTPRequest().required(),
+      body: PaymentApplicationModel.AddBeneficiaryDetailsOTP().required(),
     }).required();
   }
 
   /** @returns {AttachCardToCustomerParam} */
   static attachCardToCustomer() {
     return Joi.object({
-      body: PaymentApplicationModel.AttachCardRequest().required(),
+      body: PaymentApplicationModel.AttachCard().required(),
     }).required();
   }
 
   /** @returns {CancelPaymentLinkParam} */
   static cancelPaymentLink() {
     return Joi.object({
-      body: PaymentApplicationModel.CancelOrResendPaymentLinkRequest().required(),
+      body: PaymentApplicationModel.CancelOrResendPaymentLink().required(),
     }).required();
   }
 
@@ -294,14 +294,14 @@ class PaymentApplicationValidator {
   /** @returns {CheckAndUpdatePaymentStatusParam} */
   static checkAndUpdatePaymentStatus() {
     return Joi.object({
-      body: PaymentApplicationModel.PaymentStatusUpdateRequest().required(),
+      body: PaymentApplicationModel.PaymentStatusUpdate().required(),
     }).required();
   }
 
   /** @returns {CheckAndUpdatePaymentStatusPaymentLinkParam} */
   static checkAndUpdatePaymentStatusPaymentLink() {
     return Joi.object({
-      body: PaymentApplicationModel.PaymentStatusUpdateRequest().required(),
+      body: PaymentApplicationModel.PaymentStatusUpdate().required(),
     }).required();
   }
 
@@ -315,21 +315,21 @@ class PaymentApplicationValidator {
   /** @returns {CreateOrderHandlerPaymentLinkParam} */
   static createOrderHandlerPaymentLink() {
     return Joi.object({
-      body: PaymentApplicationModel.CreateOrderUserRequest().required(),
+      body: PaymentApplicationModel.CreateOrderUser().required(),
     }).required();
   }
 
   /** @returns {CreatePaymentLinkParam} */
   static createPaymentLink() {
     return Joi.object({
-      body: PaymentApplicationModel.CreatePaymentLinkRequest().required(),
+      body: PaymentApplicationModel.CreatePaymentLink().required(),
     }).required();
   }
 
   /** @returns {CreatePaymentOrderParam} */
   static createPaymentOrder() {
     return Joi.object({
-      body: PaymentApplicationModel.PaymentOrderRequest().required(),
+      body: PaymentApplicationModel.PaymentOrder().required(),
     }).required();
   }
 
@@ -343,14 +343,14 @@ class PaymentApplicationValidator {
   /** @returns {CustomerOnboardParam} */
   static customerOnboard() {
     return Joi.object({
-      body: PaymentApplicationModel.CustomerOnboardingRequest().required(),
+      body: PaymentApplicationModel.CustomerOnboarding().required(),
     }).required();
   }
 
   /** @returns {DeleteUserCardParam} */
   static deleteUserCard() {
     return Joi.object({
-      body: PaymentApplicationModel.DeletehCardRequest().required(),
+      body: PaymentApplicationModel.DeleteCard().required(),
     }).required();
   }
 
@@ -364,7 +364,7 @@ class PaymentApplicationValidator {
   /** @returns {EnableOrDisableRefundTransferModeParam} */
   static enableOrDisableRefundTransferMode() {
     return Joi.object({
-      body: PaymentApplicationModel.UpdateRefundTransferModeRequest().required(),
+      body: PaymentApplicationModel.UpdateRefundTransferMode().required(),
     }).required();
   }
 
@@ -466,14 +466,14 @@ class PaymentApplicationValidator {
   /** @returns {InitialisePaymentParam} */
   static initialisePayment() {
     return Joi.object({
-      body: PaymentApplicationModel.PaymentInitializationRequest().required(),
+      body: PaymentApplicationModel.PaymentInitialization().required(),
     }).required();
   }
 
   /** @returns {InitialisePaymentPaymentLinkParam} */
   static initialisePaymentPaymentLink() {
     return Joi.object({
-      body: PaymentApplicationModel.PaymentInitializationRequest().required(),
+      body: PaymentApplicationModel.PaymentInitialization().required(),
     }).required();
   }
 
@@ -516,49 +516,49 @@ class PaymentApplicationValidator {
   /** @returns {RenderHTMLParam} */
   static renderHTML() {
     return Joi.object({
-      body: PaymentApplicationModel.renderHTMLRequest().required(),
+      body: PaymentApplicationModel.RenderHTML().required(),
     }).required();
   }
 
   /** @returns {ResendOrCancelPaymentParam} */
   static resendOrCancelPayment() {
     return Joi.object({
-      body: PaymentApplicationModel.ResendOrCancelPaymentRequest().required(),
+      body: PaymentApplicationModel.ResendOrCancelPayment().required(),
     }).required();
   }
 
   /** @returns {ResendPaymentLinkParam} */
   static resendPaymentLink() {
     return Joi.object({
-      body: PaymentApplicationModel.CancelOrResendPaymentLinkRequest().required(),
+      body: PaymentApplicationModel.CancelOrResendPaymentLink().required(),
     }).required();
   }
 
   /** @returns {UpdateDefaultBeneficiaryParam} */
   static updateDefaultBeneficiary() {
     return Joi.object({
-      body: PaymentApplicationModel.SetDefaultBeneficiaryRequest().required(),
+      body: PaymentApplicationModel.SetDefaultBeneficiary().required(),
     }).required();
   }
 
   /** @returns {ValidateVPAParam} */
   static validateVPA() {
     return Joi.object({
-      body: PaymentApplicationModel.ValidateVPARequest().required(),
+      body: PaymentApplicationModel.ValidateVPA().required(),
     }).required();
   }
 
   /** @returns {VerifyAndChargePaymentParam} */
   static verifyAndChargePayment() {
     return Joi.object({
-      body: PaymentApplicationModel.ChargeCustomerRequest().required(),
+      body: PaymentApplicationModel.ChargeCustomer().required(),
     }).required();
   }
 
   /** @returns {VerifyCustomerForPaymentParam} */
   static verifyCustomerForPayment() {
     return Joi.object({
-      body: PaymentApplicationModel.ValidateCustomerRequest().required(),
+      body: PaymentApplicationModel.ValidateCustomer().required(),
     }).required();
   }
 
@@ -572,14 +572,14 @@ class PaymentApplicationValidator {
   /** @returns {VerifyOtpAndAddBeneficiaryForBankParam} */
   static verifyOtpAndAddBeneficiaryForBank() {
     return Joi.object({
-      body: PaymentApplicationModel.AddBeneficiaryViaOtpVerificationRequest().required(),
+      body: PaymentApplicationModel.AddBeneficiaryViaOtpVerification().required(),
     }).required();
   }
 
   /** @returns {VerifyOtpAndAddBeneficiaryForWalletParam} */
   static verifyOtpAndAddBeneficiaryForWallet() {
     return Joi.object({
-      body: PaymentApplicationModel.WalletOtpRequest().required(),
+      body: PaymentApplicationModel.WalletOtp().required(),
     }).required();
   }
 

@@ -17,7 +17,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
  *   the customer wants the order home-delivered PickAtStore - If the customer
  *   wants the handover of an order at the store itself.
- * @property {CartApplicationModel.AddCartRequest} body
+ * @property {CartApplicationModel.AddCartCreation} body
  */
 
 /**
@@ -28,7 +28,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart.
  * @property {string} [cartType] - The type of cart.
- * @property {CartApplicationModel.ApplyCouponRequest} body
+ * @property {CartApplicationModel.ApplyCoupon} body
  */
 
 /**
@@ -37,14 +37,21 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {boolean} [i] - Select `true` to retrieve all the items added in the cart.
  * @property {boolean} [b] - Select `true` to retrieve the price breakup of cart items.
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart.
- * @property {CartApplicationModel.RewardPointRequest} body
+ * @property {CartApplicationModel.RewardPointCreation} body
+ */
+
+/**
+ * @typedef CheckoutCartParam
+ * @property {boolean} [buyNow] - This indicates the type of cart to checkout.
+ * @property {string} [cartType] - The type of cart.
+ * @property {CartApplicationModel.CartCheckoutDetailCreation} body
  */
 
 /**
  * @typedef CheckoutCartV2Param
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout.
  * @property {string} [cartType] - The type of cart.
- * @property {CartApplicationModel.CartCheckoutDetailV2Request} body
+ * @property {CartApplicationModel.CartCheckoutDetailV2Creation} body
  */
 
 /**
@@ -105,7 +112,7 @@ const CartApplicationModel = require("./CartApplicationModel");
 
 /**
  * @typedef GetCartShareLinkParam
- * @property {CartApplicationModel.GetShareCartLinkRequest} body
+ * @property {CartApplicationModel.GetShareCartLinkCreation} body
  */
 
 /**
@@ -184,14 +191,14 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {boolean} [buyNow] - Whether to get buy_now cart.
  * @property {boolean} [i] - Select `true` to retrieve all the items added in the cart.
  * @property {boolean} [b] - Select `true` to retrieve the price breakup of cart items.
- * @property {CartApplicationModel.SelectCartAddressRequest} body
+ * @property {CartApplicationModel.SelectCartAddressCreation} body
  */
 
 /**
  * @typedef SelectPaymentModeParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Whether to get buy_now cart.
- * @property {CartApplicationModel.UpdateCartPaymentRequest} body
+ * @property {CartApplicationModel.UpdateCartPaymentCreation} body
  */
 
 /**
@@ -211,14 +218,14 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
  *   the customer wants the order home-delivered PickAtStore - If the customer
  *   wants the handover of an order at the store itself.
- * @property {CartApplicationModel.UpdateCartRequest} body
+ * @property {CartApplicationModel.UpdateCartCreation} body
  */
 
 /**
  * @typedef UpdateCartMetaParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Whether to get buy_now cart.
- * @property {CartApplicationModel.CartMetaRequest} body
+ * @property {CartApplicationModel.CartMetaCreation} body
  */
 
 /**
@@ -261,7 +268,7 @@ class CartApplicationValidator {
       buyNow: Joi.boolean(),
       id: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
-      body: CartApplicationModel.AddCartRequest().required(),
+      body: CartApplicationModel.AddCartCreation().required(),
     }).required();
   }
 
@@ -274,7 +281,7 @@ class CartApplicationValidator {
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       cartType: Joi.string().allow(""),
-      body: CartApplicationModel.ApplyCouponRequest().required(),
+      body: CartApplicationModel.ApplyCoupon().required(),
     }).required();
   }
 
@@ -285,7 +292,16 @@ class CartApplicationValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
-      body: CartApplicationModel.RewardPointRequest().required(),
+      body: CartApplicationModel.RewardPointCreation().required(),
+    }).required();
+  }
+
+  /** @returns {CheckoutCartParam} */
+  static checkoutCart() {
+    return Joi.object({
+      buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
+      body: CartApplicationModel.CartCheckoutDetailCreation().required(),
     }).required();
   }
 
@@ -294,7 +310,7 @@ class CartApplicationValidator {
     return Joi.object({
       buyNow: Joi.boolean(),
       cartType: Joi.string().allow(""),
-      body: CartApplicationModel.CartCheckoutDetailV2Request().required(),
+      body: CartApplicationModel.CartCheckoutDetailV2Creation().required(),
     }).required();
   }
 
@@ -364,7 +380,7 @@ class CartApplicationValidator {
   /** @returns {GetCartShareLinkParam} */
   static getCartShareLink() {
     return Joi.object({
-      body: CartApplicationModel.GetShareCartLinkRequest().required(),
+      body: CartApplicationModel.GetShareCartLinkCreation().required(),
     }).required();
   }
 
@@ -456,7 +472,7 @@ class CartApplicationValidator {
       buyNow: Joi.boolean(),
       i: Joi.boolean(),
       b: Joi.boolean(),
-      body: CartApplicationModel.SelectCartAddressRequest().required(),
+      body: CartApplicationModel.SelectCartAddressCreation().required(),
     }).required();
   }
 
@@ -465,7 +481,7 @@ class CartApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
-      body: CartApplicationModel.UpdateCartPaymentRequest().required(),
+      body: CartApplicationModel.UpdateCartPaymentCreation().required(),
     }).required();
   }
 
@@ -487,7 +503,7 @@ class CartApplicationValidator {
       buyNow: Joi.boolean(),
       cartType: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
-      body: CartApplicationModel.UpdateCartRequest().required(),
+      body: CartApplicationModel.UpdateCartCreation().required(),
     }).required();
   }
 
@@ -496,7 +512,7 @@ class CartApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
-      body: CartApplicationModel.CartMetaRequest().required(),
+      body: CartApplicationModel.CartMetaCreation().required(),
     }).required();
   }
 
