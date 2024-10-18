@@ -98,12 +98,12 @@ declare class Catalog {
      * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name createProduct
      * @summary: Create product
      * @description: Users can create a product using this API, associating it with the provided company ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
      */
-    createProduct({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    createProduct({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformValidator.CreateProductAssetsInBulkParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

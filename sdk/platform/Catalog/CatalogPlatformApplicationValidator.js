@@ -223,7 +223,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  */
 
@@ -232,12 +232,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  * @property {number[]} [brandId] - Helps to sort the brands list on the basis
  *   of uid list.
@@ -251,8 +251,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search brands by brand name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 
 /**
@@ -261,8 +261,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search department by name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 
 /**
@@ -302,7 +302,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetCatalogInsightsParam
- * @property {string} [brand] - Brand slug
+ * @property {string} [brand] - Brand slug that is to be searched.
  */
 
 /**
@@ -310,7 +310,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  */
 
 /**
@@ -413,13 +413,15 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateAppBrandParam
- * @property {string} brandUid - Brand id for which the custom_json is associated.
+ * @property {number} brandUid - A `brand id` is a unique identifier for a
+ *   particular brand.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 
 /**
  * @typedef UpdateAppCategoryParam
- * @property {string} categoryUid - Category id for which the custom_json is associated.
+ * @property {string} categoryUid - A `category id` is a unique identifier for a
+ *   particular category.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 
@@ -934,7 +936,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateAppBrandParam} */
   static updateAppBrand() {
     return Joi.object({
-      brandUid: Joi.string().allow("").required(),
+      brandUid: Joi.number().required(),
       body: CatalogPlatformModel.ApplicationBrandJson().required(),
     }).required();
   }

@@ -1,6 +1,6 @@
 {
   "name": "@gofynd/fdk-client-javascript",
-  "version": "1.4.12-beta.1",
+  "version": "v1.4.15-beta.1",
   "description": "",
   "main": "index.js",
   "scripts": {

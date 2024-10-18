@@ -18,56 +18,74 @@ export = OrderPlatformModel;
  * @property {InvalidateShipmentCacheNestedResponse[]} [response]
  */
 /**
+ * @typedef UpdatePackingErrorResponse
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {string} [error] - Descriptive error message that occurred.
+ */
+/**
  * @typedef ErrorResponse
- * @property {number} [status] - The HTTP status code corresponding to the error.
- * @property {boolean} [success] - Indicates whether the operation was
- *   successful. Always false in the case of an error.
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
  * @property {string} message - A message describing the error that occurred.
  * @property {string} [error_trace] - Error trace of the error that occurred.
  * @property {string} [error]
  */
 /**
  * @typedef StoreReassign
- * @property {number} store_id
- * @property {number} [bag_id]
- * @property {string} [affiliate_order_id]
- * @property {string} [affiliate_id]
- * @property {string} [item_id]
- * @property {string} [fynd_order_id]
- * @property {string} [set_id]
- * @property {string} [affiliate_bag_id]
- * @property {number[]} [reason_ids]
- * @property {string} [mongo_article_id]
+ * @property {number} store_id - Unique id of the store.
+ * @property {number} [bag_id] - Identifier for the bag associated with the reassignment.
+ * @property {string} [affiliate_order_id] - Identifier for the affiliate order
+ *   id associated with the reassignment.
+ * @property {string} [affiliate_id] - Identifier for the affiliate id
+ *   associated with the reassignment.
+ * @property {string} [item_id] - Identifier for the item associated with the
+ *   reassignment.
+ * @property {string} [fynd_order_id] - Identifier for the fynd order id
+ *   associated with the reassignment.
+ * @property {string} [set_id] - Identifier for the set of items associated with
+ *   the reassignment.
+ * @property {string} [affiliate_bag_id] - Identifiers for bags associated with
+ *   the reassignment.
+ * @property {number[]} [reason_ids] - List of reason ids for the reassignment.
+ * @property {string} [mongo_article_id] - Identifier for the article id
+ *   associated with the reassignment.
  */
 /**
  * @typedef StoreReassignResponse
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 /**
- * @typedef Entities
+ * @typedef LockManagerEntities
  * @property {string} [id] - Shipment ID if 'entity_type': shipments | Bag Id if
  *   'entity_type': bags
- * @property {string} [affiliate_order_id] - Application/Affiliate Order ID,
- *   Required if the ID is missing
- * @property {string} [affiliate_id] - Application/Affiliate ID, Required if the
- *   ID is missing
- * @property {string} reason_text - Reason For Shipment/Bag Action
- * @property {string} [affiliate_bag_id] - Application/Affiliate Bag ID,
- *   Required if the ID is missing
- * @property {string} [affiliate_shipment_id] - Application/Affiliate Shipment
- *   ID, Required if the ID is missing
+ * @property {string} [affiliate_order_id] - External identifier for the order
+ *   id associated with shipment.
+ * @property {string} [affiliate_id] - Identifier for application associated
+ *   with the shipment.
+ * @property {string} reason_text - A descriptive reason text for lock/unlock
+ *   action of a shipment/bag.
+ * @property {string} [affiliate_bag_id] - External identifier for the bag id
+ *   associated with orders/shipment.
+ * @property {string} [affiliate_shipment_id] - External identifier for the
+ *   shipment id associated with orders/shipment.
  */
 /**
  * @typedef UpdateShipmentLockPayload
- * @property {string} entity_type - Expected entity_type: [bags, shipments]
- * @property {string} action - Expected Actions: [lock, unlock, check]
- * @property {string} action_type - Expected action_type: [complete,
- *   operational, financial]
- * @property {Entities[]} entities - Shipment/Entity
- * @property {boolean} [resume_tasks_after_unlock]
- * @property {boolean} [lock_after_transition] - Lock Shipment After Transition
- * @property {boolean} [unlock_before_transition] - Unlock Shipment After Transition
+ * @property {string} entity_type - Specifies the type of entity being locked or unlocked.
+ * @property {string} action - Indicates the action to be performed on the entity.
+ * @property {string} action_type - Specifies the type of action being taken.
+ * @property {LockManagerEntities[]} entities - List of entities to be locked or unlocked
+ * @property {boolean} [resume_tasks_after_unlock] - Indicates whether tasks
+ *   should resume automatically after unlocking, such as DP assignment task and
+ *   invoicing task.
+ * @property {boolean} [lock_after_transition] - Specifies whether the shipment
+ *   should be locked automatically after a transition occurs.
+ * @property {boolean} [unlock_before_transition] - Specifies whether the
+ *   shipment should be unlocked before a transition occurs.
  */
 /**
  * @typedef OriginalFilter
@@ -98,133 +116,174 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef UpdateShipmentLockResponse
- * @property {boolean} [success]
- * @property {string} [message]
- * @property {CheckResponse[]} [check_response] - Entity Lock Status, If the
- *   action input as 'check'
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response, such as success confirmation or error details.
+ * @property {CheckResponse[]} [check_response] - An array containing the lock
+ *   status of entities if the action performed was a 'check'. Each item in the
+ *   array represents the status of a specific entity.
  */
 /**
  * @typedef AnnouncementResponse
- * @property {string} [to_datetime]
- * @property {number} id
- * @property {string} [description]
- * @property {string} [platform_name]
- * @property {string} [from_datetime]
- * @property {string} [platform_id]
- * @property {string} [title]
- * @property {number} [company_id]
- * @property {string} [logo_url]
- * @property {string} [created_at]
+ * @property {string} [to_datetime] - The end date and time for the event,
+ *   indicating when the issue is expected to be resolved.
+ * @property {number} id - A unique identifier for the announcement.
+ * @property {string} [description] - A brief description providing additional
+ *   context about the announcement.
+ * @property {string} [platform_name] - The name of the platform associated with
+ *   this announcement.
+ * @property {string} [from_datetime] - The start date and time of the
+ *   announcement going live.
+ * @property {string} [platform_id] - The unique identifier associated with the
+ *   platform. In this case, it appears to be the same as the platform name,
+ *   which might indicate a specific category or type.
+ * @property {string} [title] - The title summarizing the nature of the announcement.
+ * @property {number} [company_id] - A unique identifier for the company related
+ *   to this announcement.
+ * @property {string} [logo_url] - A URL linking to the logo image associated
+ *   with the platform or company.
+ * @property {string} [created_at] - The timestamp of when this announcement was
+ *   created, providing context for its age and relevance.
  */
 /**
  * @typedef AnnouncementsResponse
  * @property {AnnouncementResponse[]} [announcements]
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {number} [status] - Represents the HTTP status code of the API response
  */
 /**
  * @typedef BaseResponse
- * @property {boolean} [success]
- * @property {string} [message]
- */
-/**
- * @typedef Click2CallResponse
- * @property {string} call_id - Call ID from the provider
- * @property {boolean} success - Success
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 /**
  * @typedef ErrorDetail
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 /**
  * @typedef ProductsReasonsFilters
- * @property {number} [line_number] - Product/Bag Line number for the
- *   Product/Bag Identifier
- * @property {string} [identifier] - Product/Bag Article/Item Identifier
- * @property {number} [quantity]
+ * @property {number} [line_number] - The line number for the product or bag,
+ *   which helps identify the specific item in a list or order.
+ * @property {string} [identifier] - The unique article or item identifier for
+ *   the product or bag.
+ * @property {number} [quantity] - The quantity of the product or bag being referenced.
  */
 /**
  * @typedef ProductsReasonsData
- * @property {string} [reason_text]
- * @property {number} [reason_id]
+ * @property {string} [reason_text] - A descriptive text providing the reason
+ *   for the action or status associated with the product or bag.
+ * @property {number} [reason_id] - A unique identifier for the reason, used to
+ *   reference specific reasons in the system.
  */
 /**
  * @typedef ProductsReasons
- * @property {ProductsReasonsFilters[]} [filters]
+ * @property {ProductsReasonsFilters[]} [filters] - A list of filters applied to
+ *   specify which products the reasons pertain to.
  * @property {ProductsReasonsData} [data]
  */
 /**
  * @typedef EntityReasonData
- * @property {string} [reason_text]
- * @property {number} [reason_id]
+ * @property {string} [reason_text] - A descriptive text providing the reason
+ *   for the action or status associated with the product or bag.
+ * @property {number} [reason_id] - A unique identifier for the reason, used to
+ *   reference specific reasons in the system.
  */
 /**
  * @typedef EntitiesReasons
- * @property {Object[]} [filters]
+ * @property {Object[]} [filters] - A list of filters applied to specify which
+ *   entities the reasons pertain to.
  * @property {EntityReasonData} [data]
  */
 /**
  * @typedef ReasonsData
- * @property {ProductsReasons[]} [products]
- * @property {EntitiesReasons[]} [entities]
+ * @property {ProductsReasons[]} [products] - A list of reasons specifically
+ *   related to products involved in the shipment.
+ * @property {EntitiesReasons[]} [entities] - A list of reasons specifically
+ *   related to shipment.
  */
 /**
  * @typedef Products
- * @property {number} [line_number] - Product/Bag Line number for the
- *   Product/Bag Identifier
- * @property {string} [identifier] - Product/Bag Article/Item Identifier
- * @property {number} [quantity]
+ * @property {number} [line_number] - The line number for the product or bag,
+ *   which helps identify the specific item in a list or order.
+ * @property {string} [identifier] - The unique article or item identifier for
+ *   the product or bag.
+ * @property {number} [quantity] - The quantity of the product or bag being referenced.
  */
 /**
  * @typedef OrderItemDataUpdates
- * @property {Object} [data]
+ * @property {Object} [data] - Contains the specific data for updating shipment bags data.
  */
 /**
  * @typedef ProductsDataUpdatesFilters
- * @property {number} [line_number] - Product/Bag Line number for the
- *   Product/Bag Identifier
- * @property {string} [identifier] - Product/Bag Article/Item Identifier
+ * @property {number} [line_number] - The line number for the product or bag.
+ * @property {string} [identifier] - The unique article or item identifier for
+ *   the product or bag.
  */
 /**
  * @typedef ProductsDataUpdates
- * @property {ProductsDataUpdatesFilters[]} [filters] - Filter for the Product/Bag
- * @property {Object} [data]
+ * @property {ProductsDataUpdatesFilters[]} [filters] - A list of filters
+ *   applied to specify which products or bags are targeted for updates.
+ * @property {Object} [data] - Contains the specific data for updating the
+ *   products or bags.
  */
 /**
  * @typedef EntitiesDataUpdates
- * @property {Object[]} [filters]
- * @property {Object} [data]
+ * @property {Object[]} [filters] - A list of filters used to specify which
+ *   shipments are targeted for updates.
+ * @property {Object} [data] - Contains the specific data for updating the shipment.
  */
 /**
  * @typedef DataUpdates
- * @property {OrderItemDataUpdates[]} [order_item_status]
- * @property {ProductsDataUpdates[]} [products]
- * @property {EntitiesDataUpdates[]} [entities]
+ * @property {OrderItemDataUpdates[]} [order_item_status] - A list of updates
+ *   related to the status of order items.
+ * @property {ProductsDataUpdates[]} [products] - A list of updates related to
+ *   the properties of products or bags.
+ * @property {EntitiesDataUpdates[]} [entities] - A list of updates related to
+ *   the properties of any relevant entities.
  */
 /**
  * @typedef ShipmentsRequest
- * @property {string} identifier - Shipment ID
+ * @property {string} identifier - Unique identifier for the shipment.
  * @property {ReasonsData} [reasons]
- * @property {Products[]} [products] - Product/Bag to be updated
+ * @property {Products[]} [products] - A list of products or bags that need to
+ *   be updated as part of the shipment status change.
  * @property {DataUpdates} [data_updates]
  */
 /**
  * @typedef StatuesRequest
- * @property {string} [status]
- * @property {ShipmentsRequest[]} [shipments]
- * @property {string} [exclude_bags_next_state] - State to be change for
- *   Remaining Bag/Products
- * @property {boolean} [split_shipment] - Flag to split shipment
+ * @property {string} [status] - The new status to be assigned to the shipment(s).
+ * @property {ShipmentsRequest[]} [shipments] - A list of shipments to which the
+ *   new status will be applied.
+ * @property {string} [exclude_bags_next_state] - Specifies the state to which
+ *   remaining bags or products should be changed, effectively excluding them
+ *   from the current status update.
+ * @property {boolean} [split_shipment] - A flag indicating whether the shipment
+ *   should be split into multiple parts. If set to true, the shipment will be
+ *   divided according to the specified logic or criteria.
  */
 /**
- * @typedef UpdateShipmentStatusRequest
- * @property {boolean} [force_transition] - Force Transition
- * @property {StatuesRequest[]} [statuses]
- * @property {boolean} [lock_after_transition] - Lock Shipment After Transition
- * @property {boolean} [unlock_before_transition] - Unlock Shipment After Transition
- * @property {boolean} [task] - To Run Status Update as a background Task
- * @property {boolean} [resume_tasks_after_unlock] - Resume Tasks After Unlock
+ * @typedef UpdateShipmentStatusRequestSchema
+ * @property {boolean} [force_transition] - Indicates whether to force the
+ *   status transition, overriding any restrictions or checks that may normally apply.
+ * @property {StatuesRequest[]} [statuses] - A list of status updates to be
+ *   applied to the shipment.
+ * @property {boolean} [lock_after_transition] - Specifies whether the shipment
+ *   should be locked automatically after a transition occurs.
+ * @property {boolean} [unlock_before_transition] - Specifies whether the
+ *   shipment should be unlocked before a transition occurs.
+ * @property {boolean} [task] - Indicates whether to run the status update as a
+ *   background task, allowing other processes to continue without waiting for
+ *   this operation to complete.
+ * @property {boolean} [resume_tasks_after_unlock] - Indicates whether tasks
+ *   should resume automatically after unlocking, such as DP assignment task and
+ *   invoicing task.
  */
 /**
  * @typedef ShipmentsResponse
@@ -246,196 +305,6 @@ export = OrderPlatformModel;
  * @property {StatuesResponse[]} [statuses]
  */
 /**
- * @typedef OrderUser
- * @property {number} phone
- * @property {string} last_name
- * @property {string} [address1]
- * @property {string} state
- * @property {string} pincode
- * @property {string} first_name
- * @property {number} mobile
- * @property {string} [address2]
- * @property {string} email
- * @property {string} country
- * @property {string} city
- */
-/**
- * @typedef OrderPriority
- * @property {string} [fulfilment_priority_text]
- * @property {string} [affiliate_priority_code]
- * @property {number} [fulfilment_priority]
- */
-/**
- * @typedef ArticleDetails
- * @property {string} _id
- * @property {number} brand_id
- * @property {Object} dimension
- * @property {Object} category
- * @property {Object} weight
- * @property {Object} attributes
- * @property {number} quantity
- */
-/**
- * @typedef LocationDetails
- * @property {string} fulfillment_type
- * @property {ArticleDetails[]} articles
- * @property {number} fulfillment_id
- */
-/**
- * @typedef ShipmentDetails
- * @property {string} [box_type]
- * @property {number} shipments
- * @property {number} fulfillment_id
- * @property {ArticleDetails[]} articles
- * @property {string} [dp_id]
- * @property {Object} [meta]
- * @property {string} affiliate_shipment_id
- * @property {Object} [dp_options]
- * @property {boolean} [lock_status]
- * @property {Object} [action_to_status]
- */
-/**
- * @typedef ShipmentConfig
- * @property {LocationDetails} [location_details]
- * @property {string} source
- * @property {string} to_pincode
- * @property {ShipmentDetails[]} shipment
- * @property {string} identifier
- * @property {string} payment_mode
- * @property {string} action
- * @property {string} journey
- */
-/**
- * @typedef ShipmentData
- * @property {ShipmentConfig} shipment_data
- */
-/**
- * @typedef MarketPlacePdf
- * @property {string} [invoice]
- * @property {string} [label]
- */
-/**
- * @typedef AffiliateBag
- * @property {MarketPlacePdf} [pdf_links]
- * @property {number} store_id
- * @property {string} sku
- * @property {number} discount
- * @property {number} unit_price
- * @property {number} price_effective
- * @property {string} affiliate_store_id
- * @property {Object} identifier
- * @property {string} seller_identifier
- * @property {string} item_size
- * @property {number} amount_paid
- * @property {string} fynd_store_id
- * @property {number} item_id
- * @property {number} delivery_charge
- * @property {number} avl_qty
- * @property {number} price_marked
- * @property {number} quantity
- * @property {number} company_id
- * @property {string} hsn_code_id
- * @property {string} _id
- * @property {Object} affiliate_meta
- * @property {string} modified_on
- * @property {number} transfer_price
- */
-/**
- * @typedef UserData
- * @property {OrderUser} [shipping_user]
- * @property {OrderUser} [billing_user]
- */
-/**
- * @typedef OrderInfo
- * @property {string} [affiliate_order_id]
- * @property {number} cod_charges
- * @property {Object} items
- * @property {number} discount
- * @property {OrderUser} billing_address
- * @property {Object} [payment]
- * @property {OrderPriority} [order_priority]
- * @property {ShipmentData} [shipment]
- * @property {number} delivery_charges
- * @property {OrderUser} shipping_address
- * @property {number} order_value
- * @property {string} payment_mode
- * @property {AffiliateBag[]} bags
- * @property {UserData} user
- * @property {string} [coupon]
- */
-/**
- * @typedef AffiliateAppConfigMeta
- * @property {string} value
- * @property {string} name
- */
-/**
- * @typedef AffiliateAppConfig
- * @property {string} id
- * @property {string} [description]
- * @property {string} updated_at
- * @property {string} name
- * @property {string} token
- * @property {AffiliateAppConfigMeta[]} [meta]
- * @property {string} owner
- * @property {string} secret
- * @property {string} created_at
- */
-/**
- * @typedef AffiliateInventoryArticleAssignmentConfig
- * @property {boolean} [post_order_reassignment]
- */
-/**
- * @typedef AffiliateInventoryPaymentConfig
- * @property {string} [source]
- * @property {string} [mode_of_payment]
- */
-/**
- * @typedef AffiliateInventoryStoreConfig
- * @property {Object} [store]
- */
-/**
- * @typedef AffiliateInventoryOrderConfig
- * @property {boolean} [force_reassignment]
- */
-/**
- * @typedef AffiliateInventoryLogisticsConfig
- * @property {boolean} [dp_assignment]
- */
-/**
- * @typedef AffiliateInventoryConfig
- * @property {AffiliateInventoryArticleAssignmentConfig} [article_assignment]
- * @property {AffiliateInventoryPaymentConfig} [payment]
- * @property {AffiliateInventoryStoreConfig} [inventory]
- * @property {AffiliateInventoryOrderConfig} [order]
- * @property {AffiliateInventoryLogisticsConfig} [logistics]
- */
-/**
- * @typedef AffiliateConfig
- * @property {AffiliateAppConfig} [app]
- * @property {AffiliateInventoryConfig} [inventory]
- * @property {number} [app_company_id]
- */
-/**
- * @typedef Affiliate
- * @property {string} id
- * @property {AffiliateConfig} [config]
- * @property {string} token
- */
-/**
- * @typedef AffiliateStoreIdMapping
- * @property {number} store_id
- * @property {string} marketplace_store_id
- */
-/**
- * @typedef OrderConfig
- * @property {boolean} [create_user]
- * @property {string} [article_lookup]
- * @property {string} [bag_end_state]
- * @property {Affiliate} affiliate
- * @property {string} [store_lookup]
- * @property {AffiliateStoreIdMapping[]} affiliate_store_id_mapping
- */
-/**
  * @typedef DPConfiguration
  * @property {string} [shipping_by] - Shipping_by denotes dp assignment
  *   strategy- if shipping_by is fynd dp assignment would be handled by OMS
@@ -449,7 +318,7 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef CreateOrderConfig
- * @property {DPConfiguration} [dp_configuration]
+ * @property {DPConfiguration} dp_configuration
  * @property {string} [integration_type] - Flag denotes integration type which
  *   is used to retrieve specific configurations and application details
  *   relevant to channel fulfillment.
@@ -463,131 +332,160 @@ export = OrderPlatformModel;
  *   be passed to FDK for processing.
  */
 /**
- * @typedef CreateOrderPayload
- * @property {string} affiliate_id
- * @property {OrderInfo} order_info
- * @property {OrderConfig} order_config
- */
-/**
  * @typedef CreateOrderResponse
- * @property {string} fynd_order_id
+ * @property {string} fynd_order_id - A string that represents the unique
+ *   identifier assigned to the order.
  */
 /**
  * @typedef DispatchManifest
- * @property {string} manifest_id - Id of the manifest.
+ * @property {string} manifest_id - The unique identifier for the manifest being
+ *   dispatched.
  */
 /**
  * @typedef SuccessResponse
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 /**
  * @typedef ActionInfo
- * @property {string} display_text
- * @property {number} id
- * @property {string} description
- * @property {string} slug
+ * @property {string} display_text - A user-friendly text that represents the
+ *   action associated with the permission.
+ * @property {number} id - A unique identifier for the permission, used for
+ *   referencing within the system.
+ * @property {string} description - A detailed explanation of what the
+ *   permission allows the user to do.
+ * @property {string} slug - A URL-friendly string that serves as a unique
+ *   identifier for the permission, often used in routing or API calls.
  */
 /**
  * @typedef GetActionsResponse
- * @property {ActionInfo[]} [permissions]
+ * @property {ActionInfo[]} [permissions] - A response object that contains a
+ *   list of permissions available to the user.
  */
 /**
  * @typedef HistoryReason
- * @property {string} [text]
- * @property {string} [category]
- * @property {string} [state]
- * @property {string} [dislay_name]
- * @property {number} [code]
- * @property {number} [quantity]
+ * @property {string} [text] - A reason for the activity or change.
+ * @property {string} [category] - Category of the reason for the status change.
+ * @property {string} [state] - Current state related to the reason.
+ * @property {string} [dislay_name] - Display name of the reason for better user
+ *   understanding.
+ * @property {number} [code] - Unique code identifying the reason.
+ * @property {number} [quantity] - Quantity related to the reason, if applicable.
  */
 /**
  * @typedef HistoryMeta
- * @property {number} [store_id]
- * @property {string} [status]
- * @property {string} [status1]
- * @property {string} [call_id]
- * @property {string} [starttime]
+ * @property {number} [store_id] - Unique identifier for the store involved in
+ *   the activity.
+ * @property {string} [status] - Current status of the activity or item.
+ * @property {string} [status1] - Additional status information if necessary.
+ * @property {string} [call_id] - Identifier for any related calls, if applicable.
+ * @property {string} [starttime] - Start time of the activity.
  * @property {HistoryReason} [reason]
- * @property {string} [short_link]
- * @property {string} [endtime]
- * @property {string} [store_name]
- * @property {string} [caller]
- * @property {string} [store_code]
- * @property {string} [billsec]
- * @property {string} [recordpath]
- * @property {string} [status2]
- * @property {string} [callerid]
- * @property {string} [duration]
- * @property {string} [channel_type]
- * @property {string} [activity_comment]
- * @property {string} [activity_type]
- * @property {string} [receiver]
- * @property {string} [recipient]
- * @property {string} [slug]
- * @property {string} [message]
+ * @property {string} [short_link] - A shortened link related to the activity,
+ *   if available.
+ * @property {string} [endtime] - End time of the activity.
+ * @property {string} [store_name] - Name of the store involved in the activity.
+ * @property {string} [caller] - Name of the caller associated with the activity.
+ * @property {string} [store_code] - Code associated with the store.
+ * @property {string} [billsec] - Duration of the billable period, if applicable.
+ * @property {string} [recordpath] - Path to any related recordings, if applicable.
+ * @property {string} [status2] - Additional status information if necessary.
+ * @property {string} [callerid] - Caller ID associated with the activity, if applicable.
+ * @property {string} [duration] - Total duration of the activity.
+ * @property {string} [channel_type] - Type of channel used for the activity, if
+ *   applicable.
+ * @property {string} [activity_comment] - Comments related to the activity, if
+ *   applicable.
+ * @property {string} [activity_type] - Type of activity being recorded, if applicable.
+ * @property {string} [receiver] - Name of the receiver involved in the
+ *   activity, if applicable.
+ * @property {string} [recipient] - Recipient of the activity, if applicable.
+ * @property {string} [slug] - Slug identifier for the activity.
+ * @property {string} [message] - Any additional messages related to the activity.
  */
 /**
  * @typedef HistoryDict
- * @property {string} [display_message] - Display Message
- * @property {number} [bag_id] - Bag ID
- * @property {string} [ticket_url] - Ticket URL
- * @property {string} [l3_detail] - L3 details of bag
- * @property {string} createdat - Create date
- * @property {string} [ticket_id] - Ticket ID
- * @property {string} type - Type of history, Expected Values: [
- *   activity_status, activity_escalation, activity_comment,
- *   outbound_notification, outbound_voice ]
- * @property {string} [l2_detail] - L2 details of bag
- * @property {string} [assigned_agent] - Assigned Agent
- * @property {HistoryMeta} [meta] - Meta
- * @property {string} [l1_detail] - L1 details of bag
- * @property {string} message - History Message or comment
- * @property {string} user - User who created the history
+ * @property {string} [display_message] - User-friendly message displaying the
+ *   activity or status change.
+ * @property {number} [bag_id] - Identifier for the bag associated with the activity.
+ * @property {string} [ticket_url] - URL for any related tickets.
+ * @property {string} [l3_detail] - L3 details regarding the bag or activity.
+ * @property {string} createdat - Date and time when the activity was created.
+ * @property {string} [created_ts] - Timestamp for when the activity was created
+ *   in ISO format.
+ * @property {string} [ticket_id] - Unique identifier for the ticket associated
+ *   with the activity.
+ * @property {string} type - Type of activity history
+ * @property {string} [l2_detail] - L2 details regarding the bag or activity.
+ * @property {string} [assigned_agent] - Name of the agent assigned to the activity.
+ * @property {HistoryMeta} [meta] - Metadata about the activity
+ * @property {string} [l1_detail] - L1 details regarding the bag or activity.
+ * @property {string} message - Message or comment regarding the history.
+ * @property {string} user - Name of the user who created the history record.
  */
 /**
  * @typedef ShipmentHistoryResponse
- * @property {boolean} [success]
- * @property {HistoryDict[]} activity_history
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {HistoryDict[]} activity_history - A list of activity records
+ *   related to the shipment, providing details on actions taken, comments
+ *   added, or notifications sent.
  */
 /**
  * @typedef PostHistoryFilters
- * @property {string} shipment_id
- * @property {string} [line_number]
- * @property {string} [identifier]
+ * @property {string} shipment_id - Unique identifier for the shipment
+ * @property {string} [line_number] - Optional field to specify a particular
+ *   line item in the shipment.
+ * @property {string} [identifier] - Optional field for any additional
+ *   identifier related to the shipment.
  */
 /**
  * @typedef PostHistoryData
- * @property {string} user_name
- * @property {string} message
+ * @property {string} user_name - The name or email of the user who performed
+ *   the action or recorded the entry.
+ * @property {string} message - A descriptive message detailing the action taken
+ *   or the status related to the shipment.
  */
 /**
  * @typedef PostHistoryDict
- * @property {PostHistoryFilters[]} filters
+ * @property {PostHistoryFilters[]} filters - A list of filter objects, each
+ *   following the PostHistoryFilters schema, used to identify which shipment
+ *   history records are relevant.
  * @property {PostHistoryData} data
  */
 /**
  * @typedef PostShipmentHistory
- * @property {PostHistoryDict[]} [activity_history]
+ * @property {PostHistoryDict[]} [activity_history] - A list of activity history
+ *   records, each adhering to the PostHistoryDict schema.
  */
 /**
  * @typedef SmsDataPayload
- * @property {number} shipment_id - ShipmentId
- * @property {number} phone_number - Phone number for communication
- * @property {number} [amount_paid] - Data mapped in Communication template: amount_paid
- * @property {string} order_id - OrderId
- * @property {string} [payment_mode] - Data mapped in Communication template: payment_mode
- * @property {string} [customer_name] - Data mapped in Communication template:
- *   customer_name
- * @property {string} [brand_name] - Data mapped in Communication template: brand_name
- * @property {string} message - Message to be send in SMS
- * @property {string} country_code - Country code for SMS
+ * @property {number} shipment_id - Unique identifier for the shipment
+ *   associated with the SMS.
+ * @property {number} phone_number - The recipient's phone number for communication.
+ * @property {number} [amount_paid] - The amount that has been paid, as mapped
+ *   in the communication template.
+ * @property {string} order_id - Unique identifier for the order associated with
+ *   the shipment.
+ * @property {string} [payment_mode] - The mode of payment used for the order,
+ *   as mapped in the communication template.
+ * @property {string} [customer_name] - The name of the customer, as mapped in
+ *   the communication template.
+ * @property {string} [brand_name] - The name of the brand associated with the
+ *   order, as mapped in the communication template.
+ * @property {string} message - The content of the SMS to be sent to the recipient.
+ * @property {string} country_code - The country code for the recipient's phone
+ *   number, necessary for proper SMS delivery.
  */
 /**
  * @typedef SendSmsPayload
- * @property {number} bag_id - Bag_id for the activity history track
- * @property {SmsDataPayload} [data] - SMS Data
- * @property {string} slug - Slug name for the template mapped in pointblank
+ * @property {number} bag_id - Unique identifier for the bag, used for tracking
+ *   activity history related to this SMS.
+ * @property {SmsDataPayload} [data] - Contains the SMS data necessary for communication.
+ * @property {string} slug - Slug name for the SMS template mapped in the
+ *   communication system, used to identify the specific messaging format or content.
  */
 /**
  * @typedef OrderDetails
@@ -625,23 +523,32 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Meta
- * @property {number} [kafka_emission_status]
- * @property {string} [state_manager_used]
+ * @property {number} [kafka_emission_status] - An integer representing the
+ *   status of the message upon emission to Kafka. 0 indicates success, while 1
+ *   indicates failure.
+ * @property {string} [state_manager_used] - A string that specifies the state
+ *   manager utilized for handling the order's state.
  */
 /**
  * @typedef ShipmentDetail
- * @property {string} [shipment_id]
- * @property {string} [status]
- * @property {number} id
- * @property {number[]} [bag_list]
+ * @property {string} [shipment_id] - Unique identifier for the shipment
+ *   associated with the order.
+ * @property {string} [status] - A string representing the current status of the shipment
+ * @property {number} id - An integer that serves as a unique identifier for the
+ *   shipment detail
+ * @property {number[]} [bag_list] - A list of bag identifiers associated with
+ *   the shipment.
  * @property {Meta} meta
- * @property {string} [remarks]
+ * @property {string} [remarks] - A string for any additional comments or notes
+ *   related to the shipment,
  */
 /**
  * @typedef OrderStatusData
  * @property {OrderDetails} order_details
- * @property {string[]} [errors]
- * @property {ShipmentDetail[]} [shipment_details]
+ * @property {string[]} [errors] - A list of any errors that occurred while
+ *   attempting to obtain the order's status.
+ * @property {ShipmentDetail[]} [shipment_details] - A list of the individual
+ *   shipments associated with the order and their current statuses.
  * @property {string} [text] - A label or description of the delivery status,
  *   such as 'Expected Delivery Date'.
  * @property {string} [value] - The detailed delivery status or time
@@ -653,22 +560,25 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef OrderStatusResult
- * @property {string} success
- * @property {OrderStatusData[]} [result]
+ * @property {string} success - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {OrderStatusData[]} [result] - The order's current status and
+ *   related shipment details.
  */
 /**
  * @typedef Dimension
- * @property {string} [packaging_type]
- * @property {string} [weight]
- * @property {string} [height]
- * @property {number} [length]
- * @property {number} [width]
+ * @property {string} [packaging_type] - Describes the type of packaging used.
+ * @property {number} [weight] - The weight of the package in kilograms.
+ * @property {number} [height] - The height of the package in centimetres.
+ * @property {number} [length] - The length of the package in centimetres.
+ * @property {number} [width] - The width of the package in centimetres.
  */
 /**
  * @typedef UpdatePackagingDimensionsPayload
- * @property {string} shipment_id
- * @property {string} current_status
- * @property {Dimension[]} dimension
+ * @property {string} shipment_id - Unique identifier for the shipment for which
+ *   the packaging dimensions are being updated.
+ * @property {string} current_status - The current status of the shipment.
+ * @property {Dimension[]} dimension - A list of dimensions for the packaging.
  */
 /**
  * @typedef UpdatePackagingDimensionsResponse
@@ -676,16 +586,24 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Tax
- * @property {string} name
- * @property {number} rate
- * @property {Object[]} [breakup]
- * @property {Object} amount
+ * @property {string} name - The name of the tax, indicating its purpose (e.g.,
+ *   VAT, sales tax).
+ * @property {number} rate - The tax rate as a decimal, applied to the transaction amount.
+ * @property {Object[]} [breakup] - An array of objects detailing the components
+ *   or breakdown of the tax applied.
+ * @property {Object} amount - An object representing the total tax amount
+ *   calculated for the transaction.
+ */
+/**
+ * @typedef AmountSchema
+ * @property {string} [currency] - The value indicating the currency used for
+ *   the transactions.
+ * @property {number} [value] - The final amount of the charge.
  */
 /**
  * @typedef Charge
- * @property {string} name - The name of the charge.
- * @property {Object} amount - The monetary value of the charge, including value
- *   and currency details.
+ * @property {string} name - The name of the charge that indicates its purpose.
+ * @property {AmountSchema} amount
  * @property {Tax} [tax]
  * @property {string} [code] - An optional code associated with the charge for
  *   internal tracking.
@@ -693,40 +611,49 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef LineItem
- * @property {Charge[]} [charges]
- * @property {Object} [meta] - Meta data of the articles or line items.
- * @property {string} [custom_message] - Meta data of the articles or line items.
+ * @property {Charge[]} [charges] - An array of Charge objects related to the line item.
+ * @property {Object} [meta] - An object containing metadata relevant to
+ *   articles or line items.
+ * @property {string} [custom_message] - A string for any special instructions
+ *   or messages related to the line item.
  * @property {number} [quantity] - Quantity of the articles or line items.
- * @property {string} seller_identifier - Seller identifier of the articles or line items.
+ * @property {string} seller_identifier - Unique identifier of the articles or
+ *   line items set by seller.
  * @property {string} [external_line_id] - External unique identifier of the
  *   articles or line items.
  */
 /**
  * @typedef ProcessingDates
- * @property {Object} [dp_pickup_slot]
- * @property {string} [dispatch_after_date]
- * @property {string} [dispatch_by_date]
- * @property {string} [confirm_by_date]
- * @property {Object} [customer_pickup_slot]
- * @property {string} [pack_by_date]
+ * @property {Object} [dp_pickup_slot] - An object that provides details about
+ *   the designated pickup time slot for the order.
+ * @property {string} [dispatch_after_date] - A string indicating the date after
+ *   which the order will be dispatched.
+ * @property {string} [dispatch_by_date] - A string representing the latest date
+ *   by which the order must be dispatched to meet delivery expectations.
+ * @property {string} [confirm_by_date] - A string that indicates the deadline
+ *   for the merchant to confirm the order.
+ * @property {Object} [customer_pickup_slot] - An object that provides details
+ *   of the pick-up time slot set by the customer.
+ * @property {string} [pack_by_date] - A string indicating the date by which the
+ *   order must be packaged for fulfillment.
  */
 /**
  * @typedef Shipment
- * @property {LineItem[]} line_items
+ * @property {LineItem[]} line_items - An array of LineItem objects that
+ *   represent the items included in the shipment.
  * @property {string} [external_shipment_id] - External shipment identifier or
  *   marketplace's unique shipment identifier.
  * @property {ProcessingDates} [processing_dates]
- * @property {Object} [meta] - Meta data of the shipment.
- * @property {number} [priority] - Integer value indicating high and low priority.
+ * @property {Object} [meta] - An object containing metadata related to the shipment.
+ * @property {number} [priority] - An integer indicating the priority level of
+ *   the shipment.
  * @property {number} [location_id] - Location Identifier or Store/Fulfillment
  *   Identifier of the shipment- This field is mandatory when
  *   optimal_shipment_creation flag is set to false, indicating that shipments
  *   must be associated with a specific location. When
  *   `optimal_shipment_creation` is true, the optimal location for order
  *   creation would be assigned, location_id becomes optional.
- * @property {string} [order_type] - The order type of shipment HomeDelivery -
- *   If the customer wants the order home-delivered PickAtStore - If the
- *   customer wants the handover of an order at the store itself.
+ * @property {string} [order_type] - The order type of shipment.
  * @property {string} [parent_type]
  * @property {string} [store_invoice_id]
  * @property {string} [lock_status]
@@ -756,187 +683,179 @@ export = OrderPlatformModel;
  * @property {ShipmentGstDetails} [gst]
  */
 /**
- * @typedef ShippingInfo
- * @property {string} [alternate_mobile_number]
- * @property {string} [state]
- * @property {string} [customer_code]
- * @property {string} [shipping_type]
- * @property {string} [middle_name]
- * @property {string} [primary_mobile_number]
- * @property {string} [last_name]
- * @property {Object} [geo_location]
- * @property {string} [gender]
- * @property {string} [house_no]
- * @property {string} [first_name]
- * @property {string} [title]
- * @property {string} [landmark]
- * @property {string} [country]
- * @property {string} [address_type]
- * @property {string} [state_code]
- * @property {string} [city]
- * @property {string} [external_customer_code]
- * @property {string} [floor_no]
- * @property {string} [alternate_email]
- * @property {Object[]} [slot]
- * @property {string} [address]
- * @property {string} [area]
- * @property {string} [address1]
- * @property {string} [pincode]
- * @property {string} [primary_email]
- * @property {string} [address2]
- * @property {string} [country_code]
- * @property {string} [country_iso_code] - Country Code in ISO 2 format (e.g. US, IN)
+ * @typedef GeoLocationSchema
+ * @property {number} [latitude] - A number representing the geographical
+ *   latitude of the location.
+ * @property {number} [longitude] - A number representing the geographical
+ *   longitude of the location
  */
 /**
- * @typedef BillingInfo
- * @property {string} [alternate_mobile_number]
- * @property {string} [state]
- * @property {string} [customer_code]
- * @property {string} [middle_name]
- * @property {string} [primary_mobile_number]
- * @property {string} [last_name]
- * @property {string} [gender]
- * @property {string} [house_no]
- * @property {string} [first_name]
- * @property {string} [title]
- * @property {string} [country]
- * @property {string} [state_code]
- * @property {string} [city]
- * @property {string} [external_customer_code]
- * @property {string} [floor_no]
- * @property {string} [alternate_email]
- * @property {string} [address]
- * @property {string} [area]
- * @property {string} [address1]
- * @property {string} [pincode]
- * @property {string} [primary_email]
- * @property {string} [address2]
- * @property {string} [landmark]
- * @property {string} [country_code]
+ * @typedef ShippingInfo
+ * @property {string} [alternate_mobile_number] - A string for an alternate
+ *   mobile number to reach the customer, providing an additional contact method.
+ * @property {string} [state] - A string representing the name of the state for
+ *   shipping purposes.
+ * @property {string} [customer_code] - A string representing the customer's
+ *   unique identifier in the seller's system.
+ * @property {string} [shipping_type] - A string describing the shipping type.
+ * @property {string} [middle_name] - A string containing the customer's middle name.
+ * @property {string} [primary_mobile_number] - A string for the customer's
+ *   primary mobile number.
+ * @property {string} [last_name] - A string containing the customer's last name.
+ * @property {GeoLocationSchema} [geo_location]
+ * @property {string} [gender] - A string representing the customer's gender.
+ * @property {string} [house_no] - A string representing the house or apartment
+ *   number of the customer.
+ * @property {string} [first_name] - A string representing the customer's first name.
+ * @property {string} [title] - A string representing the customer's title or prefix.
+ * @property {string} [landmark] - A string representing a landmark or reference
+ *   point near the customer's location.
+ * @property {string} [country] - A string representing the customer's country.
+ * @property {string} [address_type] - A string representing the address type in
+ *   the seller's system.
+ * @property {string} [state_code] - A string representing the state code of the
+ *   customer's location.
+ * @property {string} [city] - A string representing the city of the customer's location.
+ * @property {string} [external_customer_code] - A string representing an
+ *   external customer code in the seller's system.
+ * @property {string} [floor_no] - A string representing the floor number of the
+ *   customer's location.
+ * @property {string} [alternate_email] - A string representing an alternate
+ *   email address for the customer.
+ * @property {Object[]} [slot] - A list of objects representing available time
+ *   slot for delivery or pickup.
+ * @property {string} [address] - A comma-separated string representing the address.
+ * @property {string} [area] - A string representing the area of the customer's location.
+ * @property {string} [address1] - A string representing the first line of the address.
+ * @property {string} [pincode] - A string representing the pincode of the
+ *   customer's location.
+ * @property {string} [primary_email] - A string representing the primary email
+ *   address for the customer.
+ * @property {string} [address2] - A string representing the second line of the address.
+ * @property {string} [country_code] - A string representing the country code of
+ *   the customer's location.
  * @property {string} [country_iso_code] - Country Code in ISO 2 format (e.g. US, IN)
  */
 /**
  * @typedef UserInfo
- * @property {string} [user_id]
- * @property {string} [user_type]
- * @property {string} [primary_email]
- * @property {string} [gender]
- * @property {string} first_name
- * @property {string} [last_name]
- * @property {string} primary_mobile_number
+ * @property {string} [user_id] - The unique identifier assigned to the user.
+ * @property {string} [user_type] - A string representing the type of the user.
+ * @property {string} [primary_email] - A string representing the primary email
+ *   address for the user.
+ * @property {string} [gender] - A string specifying the gender of the user.
+ * @property {string} first_name - A string which specifies the user's first name.
+ * @property {string} [last_name] - A string which specifies the user's last name.
+ * @property {string} primary_mobile_number - A string representing the primary
+ *   mobile number for the user.
  */
 /**
  * @typedef TaxInfo
- * @property {string} [b2b_gstin_number]
- * @property {string} [gstin]
- * @property {string} [pan_no]
+ * @property {string} [b2b_gstin_number] - A string representing the GSTIN
+ *   (Goods and Services Tax Identification Number) for business-to-business
+ *   transactions.
+ * @property {string} [gstin] - A string that specifies the GSTIN for the seller.
+ * @property {string} [pan_no] - A string representing the PAN assigned to
+ *   individuals or entities for tax purposes in India.
  */
 /**
  * @typedef PaymentMethod
- * @property {string} collect_by
- * @property {string} mode
- * @property {string} refund_by
- * @property {string} name
- * @property {number} amount
- * @property {Object} [meta]
- * @property {Object} [transaction_data]
+ * @property {string} collect_by - A string indicating the entity responsible
+ *   for collecting the payment.
+ * @property {string} mode - A string that specifies the mode of payment.
+ * @property {string} refund_by - A string that indicates the entity responsible
+ *   for processing refunds.
+ * @property {string} name - A string representing the name of the payment method.
+ * @property {number} amount - A number representing the monetary value
+ *   associated with the payment method.
+ * @property {Object} [meta] - An object for any additional metadata related to
+ *   the payment method.
+ * @property {Object} [transaction_data] - An object that holds
+ *   transaction-specific information.
  */
 /**
  * @typedef PaymentInfo
- * @property {string} primary_mode
- * @property {PaymentMethod[]} [payment_methods]
+ * @property {string} primary_mode - A string that indicates the primary payment
+ *   method used for the order.
+ * @property {string} [payment_mode] - A string that indicates the payment mode
+ *   used for the order.
+ * @property {PaymentMethod[]} [payment_methods] - A lists all available payment
+ *   methods used in the transaction.
  */
 /**
  * @typedef CreateOrderAPI
- * @property {Shipment[]} shipments
+ * @property {Shipment[]} shipments - An array of shipment objects that detail
+ *   the items being shipped as part of the order.
  * @property {ShippingInfo} shipping_info
- * @property {BillingInfo} billing_info
- * @property {Object} [currency_info]
- * @property {string} [external_order_id]
- * @property {Charge[]} [charges]
- * @property {string} [external_creation_date]
- * @property {Object} [meta]
+ * @property {ShippingInfo} billing_info
+ * @property {Object} [currency_info] - An object that provides details about
+ *   the currency in which the order is processed, including currency code and
+ *   conversion rates if applicable.
+ * @property {string} [external_order_id] - A unique identifier for the order
+ *   assigned by an external system.
+ * @property {Charge[]} [charges] - An array of charge objects that detail the
+ *   various fees associated with the order.
+ * @property {string} [external_creation_date] - A string that specifies the
+ *   date and time when the order was created in an external system
+ * @property {Object} [meta] - A generic object that can hold any additional
+ *   metadata related to the order.
  * @property {TaxInfo} [tax_info]
- * @property {CreateOrderConfig} [config]
+ * @property {CreateOrderConfig} config
  * @property {PaymentInfo} payment_info
  * @property {UserInfo} [user_info]
- * @property {number} [ordering_store_id]
- * @property {string} [order_platform]
+ * @property {number} [ordering_store_id] - Unique identifier for the store
+ *   where the order was placed.
+ * @property {string} [order_platform] - The platform used to place the order.
+ * @property {string} [order_type] - A string that specifies the type of order
+ *   being placed.
+ * @property {string} [fynd_order_id] - Unique identifier for the order.
+ * @property {string} [application_id] - A unique identifier for the application
+ *   or system that is making the order request.
+ * @property {string} [external_shipment_id] - External shipment identifier or
+ *   marketplace's unique shipment identifier.
  */
 /**
  * @typedef CreateOrderErrorReponse
- * @property {string} [request_id]
- * @property {number} status
- * @property {Object} [info]
- * @property {string} [stack_trace]
- * @property {string} [code]
- * @property {string} [meta]
- * @property {string} message
- * @property {string} [exception]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [errors] - Contains details about the error.
+ * @property {number} [status_code] - Represents the HTTP status code of the API response.
+ * @property {string} [fynd_order_id] - A string that represents the unique
+ *   identifier assigned to the order.
  */
 /**
- * @typedef DpConfiguration
- * @property {string} [shipping_by]
- */
-/**
- * @typedef PaymentMethods
- * @property {string} [collect_by]
- * @property {string} [refund_by]
- * @property {string} [mode]
- */
-/**
- * @typedef CreateChannelPaymentInfo
- * @property {string} [source]
- * @property {PaymentMethods[]} [payment_methods]
- * @property {string} [mode_of_payment]
- */
-/**
- * @typedef CreateChannelConfig
- * @property {DpConfiguration} [dp_configuration]
- * @property {string} [shipment_assignment]
- * @property {boolean} [location_reassignment]
- * @property {Object} [logo_url]
- * @property {CreateChannelPaymentInfo} [payment_info]
- * @property {string[]} [lock_states]
- */
-/**
- * @typedef CreateChannelConfigData
- * @property {CreateChannelConfig} [config_data]
- */
-/**
- * @typedef CreateChannelConifgErrorResponse
- * @property {string} [error]
- */
-/**
- * @typedef CreateChannelConfigResponse
- * @property {boolean} [is_inserted]
- * @property {boolean} [is_upserted]
- * @property {boolean} [acknowledged]
- */
-/**
- * @typedef UploadConsent
- * @property {string} consent_url
- * @property {string} manifest_id
+ * @typedef UploadManifestConsent
+ * @property {string} consent_url - A URL that directs users to a consent page
+ *   or document related to the upload of the manifest.
+ * @property {string} manifest_id - The unique identifier for the manifest being uploaded.
  */
 /**
  * @typedef PlatformOrderUpdate
- * @property {string} order_id
+ * @property {string} order_id - A string that represents the unique identifier
+ *   assigned to the order.
  */
 /**
  * @typedef ResponseDetail
- * @property {boolean} [success]
- * @property {string[]} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
+ * @property {number} [status] - Represents the HTTP status code of the API response.
  */
 /**
  * @typedef FyndOrderIdList
- * @property {string[]} [fynd_order_id]
+ * @property {string[]} [fynd_order_id] - An array of strings that represent
+ *   unique identifiers assigned to an order.
+ * @property {string} [start_date] - A string representing the start date for
+ *   the order status query.
+ * @property {string} [end_date] - A string representing the end date for the
+ *   order status query.
+ * @property {number} [mobile] - An integer representing the mobile number
+ *   associated with the order.
  */
 /**
  * @typedef OrderStatus
- * @property {FyndOrderIdList[]} [order_details]
- * @property {string} start_date
- * @property {string} end_date
- * @property {number} mobile
+ * @property {FyndOrderIdList[]} [order_details] - An array of objects that
+ *   provide details about the orders, including their respective order IDs.
  */
 /**
  * @typedef BagStateTransitionMap
@@ -945,151 +864,186 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef RoleBaseStateTransitionMapping
- * @property {boolean} [success]
- * @property {string[]} [next_statuses]
- */
-/**
- * @typedef FetchCreditBalanceRequestPayload
- * @property {string} affiliate_id
- * @property {string} seller_id
- * @property {string} customer_mobile_number
- */
-/**
- * @typedef CreditBalanceInfo
- * @property {string} [total_credited_balance]
- * @property {string} [reason]
- * @property {string} [customer_mobile_number]
- */
-/**
- * @typedef FetchCreditBalanceResponsePayload
- * @property {boolean} success
- * @property {CreditBalanceInfo} data
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string[]} [next_statuses] - A list of possible next statuses that
+ *   can be transitioned to from the current status.
  */
 /**
  * @typedef RefundModeConfigRequestPayload
- * @property {string} fynd_order_id
- * @property {number} seller_id
- * @property {string} affiliate_id
- * @property {string} [customer_mobile_number]
+ * @property {string} fynd_order_id - A unique identifier for the order placed
+ *   through the Fynd platform.
+ * @property {number} seller_id - A unique identifier representing the seller
+ *   associated with the order.
+ * @property {string} affiliate_id - An identifier for the affiliate partner
+ *   associated with the order.
+ * @property {number} [customer_mobile_number] - The mobile phone number of the
+ *   customer who placed the order.
  */
 /**
  * @typedef RefundOption
- * @property {string} [value]
- * @property {string} [slug]
- * @property {string} [name]
- * @property {string} [type]
+ * @property {string} [value] - The actual value representing the refund option.
+ * @property {string} [slug] - A unique identifier for the refund mode
+ * @property {string} [name] - A user-friendly name for the refund option.
+ * @property {string} [type] - A string indicating the type of refund
+ *   information provided.
+ */
+/**
+ * @typedef RefundModeFormat
+ * @property {string} [refund_to] - Specifies the destination or method for the refunds.
  */
 /**
  * @typedef RefundModeInfo
- * @property {boolean} [is_active]
- * @property {string} [slug]
- * @property {RefundOption[]} [options]
- * @property {string} [display_name]
+ * @property {boolean} [is_active] - A flag indicating whether the refund mode
+ *   is currently active or not.
+ * @property {string} [slug] - A unique identifier for the refund mode.
+ * @property {RefundOption[]} [options] - A list of available refund options
+ *   associated with this refund mode.
+ * @property {string} [display_name] - A user-friendly name for the refund mode.
+ * @property {RefundModeFormat} [format]
  */
 /**
  * @typedef RefundModeConfigResponsePayload
- * @property {boolean} success
- * @property {RefundModeInfo[]} data
+ * @property {boolean} success - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {RefundModeInfo[]} data - An array of possible refund mode
+ *   information objects.
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 /**
  * @typedef AttachUserOtpData
- * @property {string} request_id
+ * @property {string} request_id - A string representing a unique identifier for
+ *   the OTP request.
  */
 /**
  * @typedef AttachUserInfo
- * @property {string} first_name
- * @property {string} last_name
- * @property {string} mobile
- * @property {string} [country_code]
+ * @property {string} first_name - A string representing the user's first name.
+ * @property {string} last_name - A string representing the user's last name.
+ * @property {string} mobile - A string representing the user's mobile number.
+ * @property {string} [country_code] - A string representing the user's country code.
  */
 /**
  * @typedef AttachOrderUser
  * @property {AttachUserOtpData} otp_data
- * @property {string} fynd_order_id
+ * @property {string} fynd_order_id - A unique identifier for the order
+ *   associated with the user attach.
  * @property {AttachUserInfo} user_info
  */
 /**
  * @typedef AttachOrderUserResponse
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 /**
  * @typedef SendUserMobileOTP
- * @property {string} mobile
- * @property {string} [country_code]
+ * @property {number} mobile - The mobile phone number of the user to whom the
+ *   OTP (One-Time Password) will be sent.
+ * @property {string} [country_code] - The country code associated with the
+ *   user's mobile number.
  */
 /**
  * @typedef PointBlankOtpData
- * @property {string} [request_id]
- * @property {number} [resend_timer]
- * @property {string} [message]
- * @property {number} [mobile]
+ * @property {string} [request_id] - A unique identifier for the OTP request.
+ * @property {number} [resend_timer] - The amount of time (in seconds) before
+ *   the OTP can be resent to the user.
+ * @property {string} [message] - A message providing additional information
+ *   about the OTP request.
+ * @property {number} [mobile] - The mobile number (in integer format)
+ *   associated with the OTP request.
  */
 /**
  * @typedef SendUserMobileOtpResponse
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {number} [status] - The HTTP status code of the API response
+ *   (200/400/500/503).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  * @property {PointBlankOtpData} [data]
  */
 /**
  * @typedef VerifyOtpData
- * @property {string} request_id
- * @property {string} mobile
- * @property {number} otp_code
+ * @property {string} request_id - A unique identifier for the OTP verification request.
+ * @property {string} mobile - The mobile number associated with the OTP verification.
+ * @property {number} otp_code - The OTP code received by the user.
  */
 /**
  * @typedef VerifyMobileOTP
  * @property {VerifyOtpData} otp_data
- * @property {string} fynd_order_id
+ * @property {string} fynd_order_id - A unique identifier for the order
+ *   associated with the OTP verification.
  */
 /**
  * @typedef VerifyOtpResponseData
- * @property {string} [mobile]
- * @property {string} [message]
- * @property {string} [fynd_order_id]
- * @property {string} [country_code]
+ * @property {string} [mobile] - The mobile number associated with the verified OTP.
+ * @property {string} [message] - A string that provides a message about the
+ *   outcome of the verification process.
+ * @property {string} [fynd_order_id] - Unique identifier for the order
+ *   associated with the OTP verification.
+ * @property {string} [country_code] - A string indicating the country code
+ *   associated with the mobile number.
  */
 /**
  * @typedef VerifyOtpResponse
- * @property {number} [status]
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  * @property {VerifyOtpResponseData} [data]
  */
 /**
  * @typedef BulkReportsDownloadRequest
- * @property {string[]} [store_ids] - Download for specific store ids.
- * @property {string} [lane_type]
- * @property {string} [custom_headers] - Download report with specific headers
- * @property {string} [report_type] - Type of report
- * @property {string} [start_date] - UTC start date in ISO format
- * @property {string} [end_date] - UTC end date in ISO format
- * @property {string[]} [entities] - Download for specific enitites, entities
- *   can be bag, shipment or order_id, etc.
- * @property {string} [filter_type]
- * @property {boolean} [is_cross_company_enabled] - Download lanes for cross company.
- * @property {Object} [custom_filters_for_lane]
+ * @property {string[]} [store_ids] - A list of specific store IDs for which the
+ *   reports should be generated.
+ * @property {string} [lane_type] - Specifies the type of lane for which the
+ *   report is being requested.
+ * @property {string[]} [custom_headers] - Allows users to specify custom
+ *   headers for the downloaded report.
+ * @property {string} [report_type] - Indicates the type of report being requested.
+ * @property {string} [start_date] - UTC start date in ISO format, defines the
+ *   beginning of the date range for which the report data should be collected.
+ * @property {string} [end_date] - UTC end date in ISO format, defines the end
+ *   date range for which the report data should be collected.
+ * @property {string[]} [entities] - Download for specific enitites or for
+ *   search filters applied, entities can be bag, shipment or order_id, etc.
+ * @property {string} [filter_type] - Specifies the type of filtering to be
+ *   applied to the report data.
+ * @property {boolean} [is_cross_company_enabled] - Indicates whether the report
+ *   should include data from cross-company operations.
+ * @property {Object} [custom_filters_for_lane] - A flexible object that allows
+ *   users to define custom filters specific to the lanes being reported on.
  */
 /**
  * @typedef BulkReportsDownloadResponse
- * @property {boolean} [success]
- * @property {string} [batch_id]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [batch_id] - A unique identifier for the batch of reports generated.
  */
 /**
- * @typedef BulkFailedResponse
- * @property {boolean} [status]
- * @property {string} [error]
+ * @typedef APIFailedResponse
+ * @property {boolean} [status] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [error] - A descriptive message detailing the error that
+ *   occurred during the API call.
  */
 /**
- * @typedef BulkStateTransistionRequest
- * @property {string} [url]
- * @property {string} [file_name]
+ * @typedef BulkStateTransistionRequestSchema
+ * @property {string} [url] - Endpoint or resource URL where the bulk state
+ *   transition request should be directed.
+ * @property {string} [file_name] - Name of the file associated with the bulk operation.
  */
 /**
  * @typedef BulkStateTransistionResponse
- * @property {boolean} [status]
- * @property {string} [message]
- * @property {string} [batch_id]
+ * @property {boolean} [status] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
+ * @property {string} [batch_id] - A unique identifier for the batch of reports generated.
  */
 /**
  * @typedef ShipmentActionInfo
@@ -1105,149 +1059,221 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef BulkActionListingData
- * @property {number} [store_id]
- * @property {string} [uploaded_on]
- * @property {number} [company_id]
+ * @property {number} [store_id] - The unique identifier for the store
+ *   associated with the bulk action.
+ * @property {string} [uploaded_on] - A timestamp indicating when the bulk
+ *   action was uploaded.
+ * @property {number} [company_id] - Unique identifier of a company on the platform.
  * @property {ShipmentActionInfo} [shipments_action_info]
- * @property {boolean} [is_invoiceable]
- * @property {string} [user_name]
- * @property {string} [file_url]
- * @property {Object} [meta]
- * @property {string} [invoice_document_type]
- * @property {string} [label_document_type]
- * @property {string} [file_name]
- * @property {string} [store_name]
- * @property {number} [updated_ts]
- * @property {boolean} [status]
- * @property {string} [store_code]
- * @property {string} [bulk_action_type]
- * @property {string} [created_ts]
- * @property {string} [invoice_status]
- * @property {boolean} [do_invoice_label_generated]
- * @property {number} [id]
- * @property {string} [user_id]
- * @property {string} [last_selected_invoice_label_type]
- * @property {string} [batch_id]
- * @property {string} [uploaded_by]
+ * @property {boolean} [is_invoiceable] - Indicates whether the bulk action is
+ *   eligible for invoicing.
+ * @property {string} [user_name] - The name of the user who initiated or
+ *   uploaded the bulk action.
+ * @property {string} [file_url] - The URL where the uploaded file can be accessed.
+ * @property {Object} [meta] - A flexible object that can contain additional
+ *   metadata related to the bulk action.
+ * @property {string} [invoice_document_type] - The type of document that is
+ *   used for invoicing this bulk action.
+ * @property {string} [label_document_type] - The type of document that is used
+ *   for creating labels for this bulk action.
+ * @property {string} [file_name] - The name of the file that was uploaded as
+ *   part of the bulk action.
+ * @property {string} [store_name] - The name of the store associated with the
+ *   bulk action.
+ * @property {number} [updated_ts] - A timestamp (in Unix format) indicating
+ *   when the bulk action was last updated.
+ * @property {boolean} [status] - Indicates the current status of the bulk action.
+ * @property {string} [store_code] - A code representing the store, which can be
+ *   used for internal tracking or identification.
+ * @property {string} [bulk_action_type] - Specifies the type of bulk action
+ *   being performed.
+ * @property {string} [created_ts] - A timestamp indicating when the bulk action
+ *   was created.
+ * @property {string} [invoice_status] - Represents the current status of the
+ *   invoice associated with the bulk action.
+ * @property {boolean} [do_invoice_label_generated] - Indicates whether an
+ *   invoice label has been generated for the bulk action or not.
+ * @property {number} [id] - A unique identifier for the bulk action record.
+ * @property {string} [user_id] - The unique identifier for the user who
+ *   initiated the bulk action.
+ * @property {string} [last_selected_invoice_label_type] - Indicates the last
+ *   invoice label type selected for the bulk action.
+ * @property {string} [batch_id] - A unique identifier for the batch associated
+ *   with this bulk action.
+ * @property {string} [uploaded_by] - The identifier or name of the individual
+ *   or system that uploaded the bulk action.
+ * @property {string} [invoicelabel_document_type] - The type of document
+ *   generated for invoice labels.
+ * @property {number} [failed_sh_count] - The number of failed shipments in this
+ *   bulk action.
+ * @property {number} [successful_sh_count] - The number of successful shipments
+ *   in this bulk action.
+ * @property {number} [total_count] - The total number of shipments processed in
+ *   this bulk action.
+ * @property {string[]} [failed_shipments] - An array of shipment identifiers
+ *   that failed during processing.
+ * @property {number} [successful_invoiced_count] - The number of shipments
+ *   successfully invoiced.
+ * @property {number} [failed_invoiced_count] - The number of shipments that
+ *   failed during invoicing.
+ * @property {number} [total_invoiced_count] - The total number of shipments
+ *   that have been invoiced.
  */
 /**
  * @typedef BulkListinPage
- * @property {number} [current]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [total]
- * @property {number} [item_total]
- * @property {string} [type]
- * @property {number} [size]
+ * @property {number} [current] - Indicates the current page number being viewed
+ *   in the pagination.
+ * @property {boolean} [has_previous] - A flag indicating whether there is a
+ *   previous page available.
+ * @property {boolean} [has_next] - A flag indicating whether there is a next
+ *   page available.
+ * @property {number} [total] - The total number of items available in the
+ *   dataset, regardless of pagination.
+ * @property {number} [item_total] - The total number of items present on the
+ *   current page.
+ * @property {string} [type] - A string that may indicate the type of pagination
+ *   or the context of the data being paginated.
+ * @property {number} [size] - The number of items per page.
  */
 /**
  * @typedef BulkListingResponse
- * @property {boolean} [success]
- * @property {BulkActionListingData[]} [data]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {BulkActionListingData[]} [data] - An array containing the details
+ *   of the bulk actions listed.
  * @property {BulkListinPage} [page]
- * @property {number} [total_count]
+ * @property {number} [total_count] - Total number of bulk actions available in
+ *   the system, regardless of pagination.
  */
 /**
  * @typedef JobDetailsData
- * @property {string} [batch_id]
- * @property {number} [total_shipments_count]
- * @property {string[]} [successful_shipment_ids]
- * @property {number} [successful_shipments_count]
- * @property {number} [failed_shipments_count]
- * @property {number} [processing_shipments_count]
- * @property {string} [company_id]
+ * @property {string} [batch_id] - A unique identifier for the batch of bulk
+ *   actions associated with this job.
+ * @property {number} [total_shipments_count] - The total number of shipments
+ *   processed in this job.
+ * @property {string[]} [successful_shipment_ids] - An array of identifiers for
+ *   shipments that were successfully processed.
+ * @property {number} [successful_shipments_count] - The number of successful
+ *   shipments processed in this job.
+ * @property {number} [failed_shipments_count] - The number of shipments that
+ *   failed to process in this job.
+ * @property {number} [processing_shipments_count] - The number of shipments
+ *   currently being processed for this job.
+ * @property {string} [company_id] - Unique identifier of a company on the platform.
  */
 /**
  * @typedef JobDetailsResponse
- * @property {boolean} [success]
- * @property {JobDetailsData[]} [data]
- * @property {string} [file_url]
- * @property {string} [message]
- * @property {Object[]} [failed_records]
- * @property {string} [uploaded_by]
- * @property {string} [user_id]
- * @property {string} [created_ts]
- * @property {string} [uploaded_on]
- * @property {string} [status]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {JobDetailsData[]} [data] - An array representing the details of a job.
+ * @property {string} [file_url] - An URL to download the submitted job file.
+ * @property {string} [message] - A message providing additional context about
+ *   the request's outcome.
+ * @property {Object[]} [failed_records] - An array of records that failed
+ *   during processing, with additional properties providing details about each failure.
+ * @property {string} [uploaded_by] - The name or identifier of the user who
+ *   uploaded the job.
+ * @property {string} [user_id] - The unique identifier for the user who
+ *   performed the upload.
+ * @property {string} [created_ts] - A timestamp indicating when the job was created.
+ * @property {string} [uploaded_on] - A timestamp indicating when the job was uploaded.
+ * @property {string} [status] - The current status of the job.
  */
 /**
  * @typedef JobFailedResponse
- * @property {string} [file_name]
- * @property {string} [url]
+ * @property {string} [file_name] - The name of the file associated with the failed job.
+ * @property {string} [url] - The URL where the uploaded bulk file can be accessed.
  */
 /**
  * @typedef ManifestPageInfo
- * @property {number} current
- * @property {number} total
- * @property {boolean} has_next
- * @property {number} size
- * @property {boolean} has_previous
- * @property {string} type
+ * @property {number} current - The current page number being viewed.
+ * @property {number} total - The total number of records available across all pages.
+ * @property {boolean} has_next - Indicates whether there is a next page available.
+ * @property {number} size - The size of the current page's results set.
+ * @property {boolean} has_previous - Indicates whether there is a previous page
+ *   available.
+ * @property {string} type - Indicates whether there is a previous page available.
  */
 /**
  * @typedef ManifestItemDetails
- * @property {number} [quantity]
- * @property {string} shipment_id
- * @property {string} order_id
- * @property {string} [awb_number]
- * @property {string} [invoice_id]
- * @property {string} [shipment_created_at]
+ * @property {number} [quantity] - The quantity of items in the shipment.
+ * @property {string} shipment_id - Unique identifier for the shipment.
+ * @property {string} order_id - Unique identifier for the order.
+ * @property {string} [awb_number] - Unique identifier for the shipment's air
+ *   waybill number.
+ * @property {string} [invoice_id] - Unique identifier for the invoice
+ *   associated with the shipment.
+ * @property {string} [shipment_created_at] - Timestamp indicating when the
+ *   shipment was created.
  */
 /**
  * @typedef ManifestShipmentListing
- * @property {number} total_count
- * @property {string} [lane]
+ * @property {number} total_count - Total number of shipment items in the manifest.
+ * @property {string} lane - Identifier or name for the lane associated with the
+ *   shipments.
  * @property {ManifestPageInfo} page
- * @property {boolean} success
- * @property {number} status
- * @property {ManifestItemDetails[]} [items]
- * @property {string} [message]
+ * @property {boolean} success - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {ManifestItemDetails[]} items - List of items in the manifest, each
+ *   containing detailed shipment information.
+ * @property {string} [message] - Additional message or information regarding
+ *   the response.
  */
 /**
  * @typedef DateRange
- * @property {string} [from_date]
- * @property {string} [to_date]
+ * @property {string} [from_date] - The start date of the range.
+ * @property {string} [to_date] - The end date of the range.
  */
 /**
  * @typedef Filters
  * @property {DateRange} [date_range]
  * @property {string} [logo] - CDN link of the logo displayed on the manifest page.
- * @property {string} [from_date] - UTC start date in ISO format.
- * @property {number} [stores] - Filter with the specific store.
- * @property {string} [to_date] - UTC end date in ISO format.
- * @property {string} [dp_name] - Filter with the specific courier partner name.
+ * @property {string} [from_date] - The start date for filtering records,
+ *   provided in UTC and formatted in ISO format.
+ * @property {number} [stores] - Specifies a specific store ID for filtering the records.
+ * @property {string} [to_date] - The end date for filtering records, provided
+ *   in UTC and formatted in ISO format.
+ * @property {string} [dp_name] - The name of the courier partner to filter records by.
  * @property {string} [dp_ids] - Combination of courier partner ids separated by
- *   byte operator.
- * @property {string} [lane] - Criteria for lane on which shipments must be fetched.
- * @property {string} [selected_shipments] - Selected shipments mapped to the manifest.
- * @property {string} [store_name] - Filter with the specific store name.
- * @property {string} [deselected_shipments] - Deselected shipments unmapped
- *   from the manifest.
+ *   comma operator.
+ * @property {string} [lane] - Specifies criteria related to the shipment lanes.
+ * @property {string} [selected_shipments] - A list of selected shipments that
+ *   are mapped to the manifest.
+ * @property {string} [store_name] - The name of the store for filtering records.
+ * @property {string} [deselected_shipments] - A list of shipments that have
+ *   been unmapped from the manifest.
  */
 /**
  * @typedef ManifestFile
- * @property {string} [key]
- * @property {string} [region]
- * @property {string} [bucket]
+ * @property {string} [key] - This field represents the unique identifier for
+ *   the file within the storage system.
+ * @property {string} [region] - Indicates the geographical region where the
+ *   file is stored.
+ * @property {string} [bucket] - The name of the storage bucket where the file is stored.
  */
 /**
  * @typedef ManifestMediaUpdate
- * @property {string} [entity]
- * @property {string} [link]
- * @property {number} [code]
- * @property {string} [media_type]
- * @property {boolean} [status]
+ * @property {string} [entity] - The name or type of the media entity being updated.
+ * @property {string} [link] - A URL or link to the media resource.
+ * @property {number} [code] - A numerical code representing the media update
+ *   status or type.
+ * @property {string} [media_type] - The type of media being updated.
+ * @property {boolean} [status] - Indicate the status of this media update.
  * @property {ManifestFile} [file]
  */
 /**
  * @typedef PDFMeta
- * @property {string} [consent]
- * @property {ManifestMediaUpdate[]} [media_updates]
+ * @property {string} [consent] - This field contains information related to user consent.
+ * @property {ManifestMediaUpdate[]} [media_updates] - An array of media update
+ *   entries associated with the manifest.
  */
 /**
  * @typedef TotalShipmentPricesCount
- * @property {number} [total_price]
- * @property {number} [shipment_count]
+ * @property {number} [total_price] - This field represents the total monetary
+ *   value of the shipments.
+ * @property {number} [shipment_count] - This field represents the number of
+ *   shipments associated with the manifest.
  */
 /**
  * @typedef ManifestMeta
@@ -1256,80 +1282,65 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Manifest
- * @property {number} company_id
+ * @property {number} company_id - Unique identifier of a company on the platform.
  * @property {Filters} [filters]
  * @property {PDFMeta} [pdf_meta]
  * @property {ManifestMeta} [meta]
- * @property {boolean} is_active
- * @property {string} user_id
- * @property {string} created_at
- * @property {string} [created_ts]
- * @property {string} manifest_id
- * @property {string} status
- * @property {number} id
- * @property {string} uid
- * @property {string} created_by
+ * @property {boolean} is_active - Indicates whether the manifest is currently
+ *   active or has been completed/closed.
+ * @property {string} user_id - The unique identifier of the user who created or
+ *   modified the manifest.
+ * @property {string} created_at - The date and time when the manifest was created.
+ * @property {string} [created_ts] - A timestamp representing when the manifest
+ *   was created, typically in UTC.
+ * @property {string} manifest_id - The unique identifier assigned to the manifest.
+ * @property {string} status - The current status of the Manifest.
+ * @property {number} id - The unique identifier assigned to the manifest item.
+ * @property {string} uid - A universally unique identifier for the manifest.
+ * @property {string} created_by - The username or identifier of the individual
+ *   who created the manifest.
  */
 /**
  * @typedef ManifestList
- * @property {Manifest[]} [items]
+ * @property {Manifest[]} [items] - A list of manifest records.
  * @property {ManifestPageInfo} [page]
  */
 /**
  * @typedef ManifestDetails
- * @property {ManifestItemDetails[]} [items]
+ * @property {ManifestItemDetails[]} [items] - An list of detailed information
+ *   about individual shipments within the manifest.
  * @property {ManifestPageInfo} [page]
- * @property {number} [additional_shipment_count]
- * @property {Manifest[]} [manifest_details]
- */
-/**
- * @typedef FiltersRequest
- * @property {DateRange} [date_range]
- * @property {string} [logo]
- * @property {number} stores
- * @property {string} dp_name
- * @property {number} dp_ids
- * @property {string} lane
- * @property {string} store_name
- */
-/**
- * @typedef ProcessManifest
- * @property {FiltersRequest} filters
- * @property {string} action
- * @property {string} unique_id
- * @property {string} [manifest_id]
- */
-/**
- * @typedef ProcessManifestResponse
- * @property {number} [company_id] - Id of the company.
- * @property {Filters} [filters]
- * @property {string} [user_id] - Id of the user.
- * @property {string} [manifest_id] - Id of the manifest.
- * @property {string} [action]
- * @property {string} [uid]
- * @property {string} [created_by]
- */
-/**
- * @typedef ProcessManifestItemResponse
- * @property {ProcessManifestResponse} [items]
+ * @property {number} [additional_shipment_count] - Represents the count of
+ *   additional shipments associated with the manifest.
+ * @property {Manifest[]} [manifest_details] - An array of manifest objects that
+ *   provide overarching details about the manifest itself.
  */
 /**
  * @typedef FilterInfoOption
- * @property {string} [text]
- * @property {string} [name]
- * @property {string} [placeholder_text]
- * @property {string} [value]
- * @property {number} [min_search_size]
- * @property {boolean} [show_ui]
+ * @property {string} [text] - The option value or text set for the filter option.
+ * @property {string} [name] - The option name indicating the type of
+ *   information the filter relates to.
+ * @property {string} [placeholder_text] - Represents the placeholder text that
+ *   might appear in a UI element.
+ * @property {string} [value] - A unique value for the filter used in processing
+ *   filter selections.
+ * @property {number} [min_search_size] - Indicates the minimum size for search
+ *   criteria, potentially related to how many items to display or filter.
+ * @property {boolean} [show_ui] - Indicates whether this option should be
+ *   visible in the user interface.
  */
 /**
  * @typedef FiltersInfo
  * @property {FilterInfoOption[]} [options]
- * @property {string} text
- * @property {string} [placeholder_text]
- * @property {string} value
- * @property {boolean} [required]
- * @property {string} type
+ * @property {string} text - The label or name for the filter, which indicates
+ *   what the filter is related to.
+ * @property {string} [placeholder_text] - A placeholder text that provides
+ *   guidance on how to use the filter.
+ * @property {string} value - A unique identifier for the filter, used for
+ *   processing filter selections.
+ * @property {boolean} [required] - Indicates whether the filter is mandatory to
+ *   fill out when applying the filter set.
+ * @property {string} type - Specifies the type of filter.
  */
 /**
  * @typedef ManifestFiltersResponse
@@ -1409,22 +1420,28 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef CourierPartnerTrackingDetails
- * @property {string} awb - AWB Number
- * @property {string} [dp_location] - Current location of Courier partner
- * @property {string} dp_name - Courier Partner name
- * @property {string} dp_status - Status at Courier partner end
- * @property {string} dp_status_updated_at - Date Time at which status was
- *   updated at Courier partner
- * @property {string} [estimated_delivery_date] - Estimated delivery date
- *   received from Courier partner
- * @property {number} [id] - Id of Tracking history
- * @property {string} journey - Journey type of the shipment
- * @property {Object} [meta] - Meta field to store Courier partner's meta data
- * @property {string} operational_status - Operational status of OMS
- * @property {string} [promised_delivery_date] - Promised delivery date received
- *   from Courier partner
- * @property {string} [remark] - Remark from courier partner
- * @property {string} shipment_id - Shipment ID
+ * @property {string} awb - The Air Waybill (AWB) number associated with the
+ *   shipment, used for tracking the parcel in transit.
+ * @property {string} [dp_location] - The current geographic location of the
+ *   courier partner.
+ * @property {string} dp_name - The name of the courier partner responsible for
+ *   the shipment.
+ * @property {string} dp_status - The current status of the shipment as updated
+ *   by the courier partner.
+ * @property {string} dp_status_updated_at - The timestamp when the status was
+ *   last updated by the courier partner.
+ * @property {string} [estimated_delivery_date] - The estimated date and time
+ *   for delivery as provided by the courier partner.
+ * @property {number} [id] - A unique identifier for the tracking history entry.
+ * @property {string} journey - Indicates the type of journey the shipment.
+ * @property {Object} [meta] - A field to store additional metadata related to
+ *   the courier partner's operations or the shipment.
+ * @property {string} operational_status - The operational status of the shipment.
+ * @property {string} [promised_delivery_date] - PThe promised date and time for
+ *   delivery as provided by the courier partner.
+ * @property {string} [remark] - Any additional remarks or comments from the
+ *   courier partner regarding the shipment.
+ * @property {string} shipment_id - The unique identifier for the shipment.
  */
 /**
  * @typedef CourierPartnerTrackingResponse
@@ -1480,7 +1497,7 @@ export = OrderPlatformModel;
  * @property {string} [error_message]
  */
 /**
- * @typedef GenerateInvoiceIDRequest
+ * @typedef GenerateInvoiceIDRequestSchema
  * @property {string[]} shipment_ids
  */
 /**
@@ -1497,29 +1514,33 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef ProcessManifestRequest
- * @property {string} [action] - Expected Actions: [save, process,
- *   pdf_generated,invalidate,pdf_failed,complete]
- * @property {string} [manifest_id] - Id of The Manifest.
- * @property {Filters} [filters]
- * @property {string} [unique_id] - Unique Id.
+ * @property {string} action - Represents the operation to be performed on the manifest.
+ * @property {string} [manifest_id] - Represents the identifier for a specific manifest.
+ * @property {Filters} filters
+ * @property {string} unique_id - A unique identifier for the request or the
+ *   operation being performed.
  */
 /**
  * @typedef ManifestItems
  * @property {Filters} [filters]
- * @property {string} [manifest_id] - Id of the manifest.
- * @property {string} [unique_id] - Unique Id.
- * @property {number} [company_id] - Id of the company.
- * @property {string} [dp_id] - Shipment with the specific courier partner Id.
- * @property {string} [courier_partner_slug]
- * @property {string} [action] - Expected Actions: [Save, Process, Pdf
- *   Generated, Invalidate, Pdf Failed, Complete]
- * @property {string} [created_by] - Created date of the manifest.
- * @property {string} [user_id] - Id of user.
+ * @property {string} [manifest_id] - The unique identifier for the manifest.
+ * @property {string} [unique_id] - A unique identifier for the request or
+ *   operation involving the manifest items.
+ * @property {number} [company_id] - Unique identifier of a company on the platform.
+ * @property {string} [dp_id] - Unique identifier of the delivery partner.
+ * @property {string} [courier_partner_slug] - A slug or unique identifier for
+ *   the courier partner.
+ * @property {string} [action] - Defines the expected action for the manifest items.
+ * @property {string} [created_by] - The identifier for the user or system that
+ *   created the manifest.
+ * @property {string} [user_id] - The identifier for the user associated with
+ *   the manifest items.
  */
 /**
  * @typedef ManifestErrorResponse
- * @property {boolean} [success] - Success State.
- * @property {string} [error] - Error String.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [error] - Provides a descriptive error message.
  */
 /**
  * @typedef ConfigData
@@ -1539,7 +1560,6 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef FlagData
- * @property {Object} [value]
  * @property {Object} [filter]
  */
 /**
@@ -1724,6 +1744,17 @@ export = OrderPlatformModel;
 /**
  * @typedef TransitionConfigPayload
  * @property {TransitionConfigData} [data]
+ */
+/**
+ * @typedef CommonErrorResponse
+ * @property {number} [status] - The HTTP status code corresponding to the error.
+ * @property {string} [message] - A message describing the error that occurred.
+ */
+/**
+ * @typedef ExceptionErrorResponse
+ * @property {string} [message] - A message describing the error that occurred.
+ * @property {string} [exception] - The class path of the exception that was thrown.
+ * @property {string} [stack_trace] - The stack trace from the server for the error.
  */
 /**
  * @typedef Page
@@ -2372,6 +2403,10 @@ export = OrderPlatformModel;
  * @property {string} [po_invoice]
  */
 /**
+ * @typedef AffiliateConfig
+ * @property {number} [app_company_id]
+ */
+/**
  * @typedef AffiliateDetails
  * @property {ShipmentMeta} shipment_meta
  * @property {AffiliateMeta} affiliate_meta
@@ -2968,6 +3003,13 @@ export = OrderPlatformModel;
  * @property {string} [label_url]
  */
 /**
+ * @typedef ShipmentDetails
+ * @property {string} [dp_id]
+ * @property {Object} [dp_options]
+ * @property {boolean} [lock_status]
+ * @property {Object} [action_to_status]
+ */
+/**
  * @typedef UserDetails
  * @property {string} [user_oid]
  * @property {string} [external_customer_id]
@@ -2996,7 +3038,7 @@ export = OrderPlatformModel;
  * @property {Article} [article]
  * @property {ArticleStatusDetails} [article_details]
  * @property {BagStatusHistory[]} [bag_status]
- * @property {BagStatusHistory} [bag_status_history]
+ * @property {BagStatusHistory[]} [bag_status_history]
  * @property {Brand} [brand]
  * @property {Company} [company]
  * @property {BagStatusHistory} [current_operational_status]
@@ -3112,10 +3154,15 @@ export = OrderPlatformModel;
  * @property {string} [message]
  * @property {boolean} [success]
  */
+/**
+ * @typedef BulkFailedResponse
+ * @property {boolean} [status]
+ * @property {string} [error]
+ */
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, ErrorResponse, StoreReassign, StoreReassignResponse, Entities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, BaseResponse, Click2CallResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, OrderUser, OrderPriority, ArticleDetails, LocationDetails, ShipmentDetails, ShipmentConfig, ShipmentData, MarketPlacePdf, AffiliateBag, UserData, OrderInfo, AffiliateAppConfigMeta, AffiliateAppConfig, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateInventoryOrderConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryConfig, AffiliateConfig, Affiliate, AffiliateStoreIdMapping, OrderConfig, DPConfiguration, PaymentConfig, CreateOrderConfig, CreateOrderPayload, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, Charge, LineItem, ProcessingDates, Shipment, ShippingInfo, BillingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, DpConfiguration, PaymentMethods, CreateChannelPaymentInfo, CreateChannelConfig, CreateChannelConfigData, CreateChannelConifgErrorResponse, CreateChannelConfigResponse, UploadConsent, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, FetchCreditBalanceRequestPayload, CreditBalanceInfo, FetchCreditBalanceResponsePayload, RefundModeConfigRequestPayload, RefundOption, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BulkFailedResponse, BulkStateTransistionRequest, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FiltersRequest, ProcessManifest, ProcessManifestResponse, ProcessManifestItemResponse, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequest, GenerateInvoiceIDResponse, GenerateInvoiceIDErrorResponse, ManifestResponse, ProcessManifestRequest, ManifestItems, ManifestErrorResponse, ConfigData, ConfigUpdatedResponse, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, PlatformDeliveryAddress, ShipmentListingChannel, Prices, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, Reason, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, TemplateDownloadResponse, Error };
+    export { InvalidateShipmentCachePayload, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCacheResponse, UpdatePackingErrorResponse, ErrorResponse, StoreReassign, StoreReassignResponse, LockManagerEntities, UpdateShipmentLockPayload, OriginalFilter, Bags, CheckResponse, UpdateShipmentLockResponse, AnnouncementResponse, AnnouncementsResponse, BaseResponse, ErrorDetail, ProductsReasonsFilters, ProductsReasonsData, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, OrderItemDataUpdates, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequestSchema, ShipmentsResponse, StatuesResponse, UpdateShipmentStatusResponseBody, DPConfiguration, PaymentConfig, CreateOrderConfig, CreateOrderResponse, DispatchManifest, SuccessResponse, ActionInfo, GetActionsResponse, HistoryReason, HistoryMeta, HistoryDict, ShipmentHistoryResponse, PostHistoryFilters, PostHistoryData, PostHistoryDict, PostShipmentHistory, SmsDataPayload, SendSmsPayload, OrderDetails, Meta, ShipmentDetail, OrderStatusData, OrderStatusResult, Dimension, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, Tax, AmountSchema, Charge, LineItem, ProcessingDates, Shipment, GeoLocationSchema, ShippingInfo, UserInfo, TaxInfo, PaymentMethod, PaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, UploadManifestConsent, PlatformOrderUpdate, ResponseDetail, FyndOrderIdList, OrderStatus, BagStateTransitionMap, RoleBaseStateTransitionMapping, RefundModeConfigRequestPayload, RefundOption, RefundModeFormat, RefundModeInfo, RefundModeConfigResponsePayload, AttachUserOtpData, AttachUserInfo, AttachOrderUser, AttachOrderUserResponse, SendUserMobileOTP, PointBlankOtpData, SendUserMobileOtpResponse, VerifyOtpData, VerifyMobileOTP, VerifyOtpResponseData, VerifyOtpResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, APIFailedResponse, BulkStateTransistionRequestSchema, BulkStateTransistionResponse, ShipmentActionInfo, BulkActionListingData, BulkListinPage, BulkListingResponse, JobDetailsData, JobDetailsResponse, JobFailedResponse, ManifestPageInfo, ManifestItemDetails, ManifestShipmentListing, DateRange, Filters, ManifestFile, ManifestMediaUpdate, PDFMeta, TotalShipmentPricesCount, ManifestMeta, Manifest, ManifestList, ManifestDetails, FilterInfoOption, FiltersInfo, ManifestFiltersResponse, PageDetails, EInvoiceIrnDetails, EInvoiceErrorDetails, EInvoiceDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceErrorInfo, EInvoiceErrorResponseData, EInvoiceErrorResponse, EInvoiceErrorResponseDetails, EInvoiceRetryShipmentData, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, LogsChannelDetails, LogPaymentDetails, FailedOrdersItem, FailedOrderLogs, FailedOrderLogDetails, GenerateInvoiceIDResponseData, GenerateInvoiceIDErrorResponseData, GenerateInvoiceIDRequestSchema, GenerateInvoiceIDResponse, GenerateInvoiceIDErrorResponse, ManifestResponse, ProcessManifestRequest, ManifestItems, ManifestErrorResponse, ConfigData, ConfigUpdatedResponse, FlagData, Flags, Filter, PostHook, PreHook, Config, TransitionConfigCondition, TransitionConfigData, TransitionConfigPayload, CommonErrorResponse, ExceptionErrorResponse, Page, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentStatus, UserDataInfo, PlatformDeliveryAddress, ShipmentListingChannel, Prices, Identifier, FinancialBreakup, GSTDetailsData, BagStateMapper, BagStatusHistory, Dimensions, ReturnConfig, Weight, Article, ShipmentListingBrand, ReplacementDetails, AffiliateMeta, AffiliateBagDetails, PlatformArticleAttributes, PlatformItem, Dates, BagReturnableCancelableStatus, BagUnit, ShipmentItemFulFillingStore, Currency, OrderingCurrency, ConversionRate, CurrencyInfo, ShipmentItem, ShipmentInternalPlatformViewResponse, TrackingList, InvoiceInfo, OrderDetailsData, UserDetailsData, PhoneDetails, ContactDetails, CompanyDetails, OrderingStoreDetails, DPDetailsData, BuyerDetails, DebugInfo, EinvoiceInfo, Formatted, ShipmentTags, LockData, ShipmentTimeStamp, ShipmentMeta, PDFLinks, AffiliateConfig, AffiliateDetails, BagConfigs, OrderBagArticle, OrderBrandName, AffiliateBagsDetails, BagPaymentMethods, DiscountRules, ItemCriterias, BuyRules, AppliedPromos, CurrentStatus, OrderBags, FulfillingStore, ShipmentPayments, ShipmentStatusData, ShipmentLockDetails, PlatformShipment, ShipmentInfoResponse, TaxDetails, PaymentInfoData, OrderData, OrderDetailsResponse, SubLane, SuperLane, LaneConfigResponse, PlatformBreakupValues, PlatformChannel, PlatformOrderItems, OrderListingResponse, PlatformTrack, PlatformShipmentTrack, AdvanceFilterInfo, FiltersResponse, URL, FileResponse, BulkActionTemplate, BulkActionTemplateResponse, Reason, PlatformShipmentReasonsResponse, ShipmentResponseReasons, ShipmentReasonsResponse, StoreAddress, EInvoicePortalDetails, StoreEinvoice, StoreEwaybill, StoreGstCredentials, Document, StoreDocuments, StoreMeta, Store, Brand, Item, ArticleStatusDetails, Company, ShipmentGstDetails, DeliverySlotDetails, InvoiceDetails, ShipmentDetails, UserDetails, WeightData, BagDetails, BagDetailsPlatformResponse, BagsPage, BagData, GetBagsPlatformResponse, GeneratePosOrderReceiptResponse, Templates, AllowedTemplatesResponse, TemplateDownloadResponse, Error, BulkFailedResponse };
 }
 /** @returns {InvalidateShipmentCachePayload} */
 declare function InvalidateShipmentCachePayload(): InvalidateShipmentCachePayload;
@@ -3147,16 +3194,28 @@ declare function InvalidateShipmentCacheResponse(): InvalidateShipmentCacheRespo
 type InvalidateShipmentCacheResponse = {
     response?: InvalidateShipmentCacheNestedResponse[];
 };
+/** @returns {UpdatePackingErrorResponse} */
+declare function UpdatePackingErrorResponse(): UpdatePackingErrorResponse;
+type UpdatePackingErrorResponse = {
+    /**
+     * - Represents the HTTP status code of the API response.
+     */
+    status?: number;
+    /**
+     * - Descriptive error message that occurred.
+     */
+    error?: string;
+};
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
     /**
-     * - The HTTP status code corresponding to the error.
+     * - Represents the HTTP status code of the API response.
      */
     status?: number;
     /**
-     * - Indicates whether the operation was
-     * successful. Always false in the case of an error.
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
      */
     success?: boolean;
     /**
@@ -3172,53 +3231,99 @@ type ErrorResponse = {
 /** @returns {StoreReassign} */
 declare function StoreReassign(): StoreReassign;
 type StoreReassign = {
+    /**
+     * - Unique id of the store.
+     */
     store_id: number;
+    /**
+     * - Identifier for the bag associated with the reassignment.
+     */
     bag_id?: number;
+    /**
+     * - Identifier for the affiliate order
+     * id associated with the reassignment.
+     */
     affiliate_order_id?: string;
+    /**
+     * - Identifier for the affiliate id
+     * associated with the reassignment.
+     */
     affiliate_id?: string;
+    /**
+     * - Identifier for the item associated with the
+     * reassignment.
+     */
     item_id?: string;
+    /**
+     * - Identifier for the fynd order id
+     * associated with the reassignment.
+     */
     fynd_order_id?: string;
+    /**
+     * - Identifier for the set of items associated with
+     * the reassignment.
+     */
     set_id?: string;
+    /**
+     * - Identifiers for bags associated with
+     * the reassignment.
+     */
     affiliate_bag_id?: string;
+    /**
+     * - List of reason ids for the reassignment.
+     */
     reason_ids?: number[];
+    /**
+     * - Identifier for the article id
+     * associated with the reassignment.
+     */
     mongo_article_id?: string;
 };
 /** @returns {StoreReassignResponse} */
 declare function StoreReassignResponse(): StoreReassignResponse;
 type StoreReassignResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
     message?: string;
 };
-/** @returns {Entities} */
-declare function Entities(): Entities;
-type Entities = {
+/** @returns {LockManagerEntities} */
+declare function LockManagerEntities(): LockManagerEntities;
+type LockManagerEntities = {
     /**
      * - Shipment ID if 'entity_type': shipments | Bag Id if
      * 'entity_type': bags
      */
     id?: string;
     /**
-     * - Application/Affiliate Order ID,
-     * Required if the ID is missing
+     * - External identifier for the order
+     * id associated with shipment.
      */
     affiliate_order_id?: string;
     /**
-     * - Application/Affiliate ID, Required if the
-     * ID is missing
+     * - Identifier for application associated
+     * with the shipment.
      */
     affiliate_id?: string;
     /**
-     * - Reason For Shipment/Bag Action
+     * - A descriptive reason text for lock/unlock
+     * action of a shipment/bag.
      */
     reason_text: string;
     /**
-     * - Application/Affiliate Bag ID,
-     * Required if the ID is missing
+     * - External identifier for the bag id
+     * associated with orders/shipment.
      */
     affiliate_bag_id?: string;
     /**
-     * - Application/Affiliate Shipment
-     * ID, Required if the ID is missing
+     * - External identifier for the
+     * shipment id associated with orders/shipment.
      */
     affiliate_shipment_id?: string;
 };
@@ -3226,29 +3331,35 @@ type Entities = {
 declare function UpdateShipmentLockPayload(): UpdateShipmentLockPayload;
 type UpdateShipmentLockPayload = {
     /**
-     * - Expected entity_type: [bags, shipments]
+     * - Specifies the type of entity being locked or unlocked.
      */
     entity_type: string;
     /**
-     * - Expected Actions: [lock, unlock, check]
+     * - Indicates the action to be performed on the entity.
      */
     action: string;
     /**
-     * - Expected action_type: [complete,
-     * operational, financial]
+     * - Specifies the type of action being taken.
      */
     action_type: string;
     /**
-     * - Shipment/Entity
+     * - List of entities to be locked or unlocked
      */
-    entities: Entities[];
+    entities: LockManagerEntities[];
+    /**
+     * - Indicates whether tasks
+     * should resume automatically after unlocking, such as DP assignment task and
+     * invoicing task.
+     */
     resume_tasks_after_unlock?: boolean;
     /**
-     * - Lock Shipment After Transition
+     * - Specifies whether the shipment
+     * should be locked automatically after a transition occurs.
      */
     lock_after_transition?: boolean;
     /**
-     * - Unlock Shipment After Transition
+     * - Specifies whether the
+     * shipment should be unlocked before a transition occurs.
      */
     unlock_before_transition?: boolean;
 };
@@ -3327,132 +3438,234 @@ type CheckResponse = {
 /** @returns {UpdateShipmentLockResponse} */
 declare function UpdateShipmentLockResponse(): UpdateShipmentLockResponse;
 type UpdateShipmentLockResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response, such as success confirmation or error details.
+     */
     message?: string;
     /**
-     * - Entity Lock Status, If the
-     * action input as 'check'
+     * - An array containing the lock
+     * status of entities if the action performed was a 'check'. Each item in the
+     * array represents the status of a specific entity.
      */
     check_response?: CheckResponse[];
 };
 /** @returns {AnnouncementResponse} */
 declare function AnnouncementResponse(): AnnouncementResponse;
 type AnnouncementResponse = {
+    /**
+     * - The end date and time for the event,
+     * indicating when the issue is expected to be resolved.
+     */
     to_datetime?: string;
+    /**
+     * - A unique identifier for the announcement.
+     */
     id: number;
+    /**
+     * - A brief description providing additional
+     * context about the announcement.
+     */
     description?: string;
+    /**
+     * - The name of the platform associated with
+     * this announcement.
+     */
     platform_name?: string;
+    /**
+     * - The start date and time of the
+     * announcement going live.
+     */
     from_datetime?: string;
+    /**
+     * - The unique identifier associated with the
+     * platform. In this case, it appears to be the same as the platform name,
+     * which might indicate a specific category or type.
+     */
     platform_id?: string;
+    /**
+     * - The title summarizing the nature of the announcement.
+     */
     title?: string;
+    /**
+     * - A unique identifier for the company related
+     * to this announcement.
+     */
     company_id?: number;
+    /**
+     * - A URL linking to the logo image associated
+     * with the platform or company.
+     */
     logo_url?: string;
+    /**
+     * - The timestamp of when this announcement was
+     * created, providing context for its age and relevance.
+     */
     created_at?: string;
 };
 /** @returns {AnnouncementsResponse} */
 declare function AnnouncementsResponse(): AnnouncementsResponse;
 type AnnouncementsResponse = {
     announcements?: AnnouncementResponse[];
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
-    message?: string;
+    /**
+     * - Represents the HTTP status code of the API response
+     */
+    status?: number;
 };
 /** @returns {BaseResponse} */
 declare function BaseResponse(): BaseResponse;
 type BaseResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
     message?: string;
-};
-/** @returns {Click2CallResponse} */
-declare function Click2CallResponse(): Click2CallResponse;
-type Click2CallResponse = {
-    /**
-     * - Call ID from the provider
-     */
-    call_id: string;
-    /**
-     * - Success
-     */
-    success: boolean;
 };
 /** @returns {ErrorDetail} */
 declare function ErrorDetail(): ErrorDetail;
 type ErrorDetail = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
     message?: string;
 };
 /** @returns {ProductsReasonsFilters} */
 declare function ProductsReasonsFilters(): ProductsReasonsFilters;
 type ProductsReasonsFilters = {
     /**
-     * - Product/Bag Line number for the
-     * Product/Bag Identifier
+     * - The line number for the product or bag,
+     * which helps identify the specific item in a list or order.
      */
     line_number?: number;
     /**
-     * - Product/Bag Article/Item Identifier
+     * - The unique article or item identifier for
+     * the product or bag.
      */
     identifier?: string;
+    /**
+     * - The quantity of the product or bag being referenced.
+     */
     quantity?: number;
 };
 /** @returns {ProductsReasonsData} */
 declare function ProductsReasonsData(): ProductsReasonsData;
 type ProductsReasonsData = {
+    /**
+     * - A descriptive text providing the reason
+     * for the action or status associated with the product or bag.
+     */
     reason_text?: string;
+    /**
+     * - A unique identifier for the reason, used to
+     * reference specific reasons in the system.
+     */
     reason_id?: number;
 };
 /** @returns {ProductsReasons} */
 declare function ProductsReasons(): ProductsReasons;
 type ProductsReasons = {
+    /**
+     * - A list of filters applied to
+     * specify which products the reasons pertain to.
+     */
     filters?: ProductsReasonsFilters[];
     data?: ProductsReasonsData;
 };
 /** @returns {EntityReasonData} */
 declare function EntityReasonData(): EntityReasonData;
 type EntityReasonData = {
+    /**
+     * - A descriptive text providing the reason
+     * for the action or status associated with the product or bag.
+     */
     reason_text?: string;
+    /**
+     * - A unique identifier for the reason, used to
+     * reference specific reasons in the system.
+     */
     reason_id?: number;
 };
 /** @returns {EntitiesReasons} */
 declare function EntitiesReasons(): EntitiesReasons;
 type EntitiesReasons = {
+    /**
+     * - A list of filters applied to specify which
+     * entities the reasons pertain to.
+     */
     filters?: any[];
     data?: EntityReasonData;
 };
 /** @returns {ReasonsData} */
 declare function ReasonsData(): ReasonsData;
 type ReasonsData = {
+    /**
+     * - A list of reasons specifically
+     * related to products involved in the shipment.
+     */
     products?: ProductsReasons[];
+    /**
+     * - A list of reasons specifically
+     * related to shipment.
+     */
     entities?: EntitiesReasons[];
 };
 /** @returns {Products} */
 declare function Products(): Products;
 type Products = {
     /**
-     * - Product/Bag Line number for the
-     * Product/Bag Identifier
+     * - The line number for the product or bag,
+     * which helps identify the specific item in a list or order.
      */
     line_number?: number;
     /**
-     * - Product/Bag Article/Item Identifier
+     * - The unique article or item identifier for
+     * the product or bag.
      */
     identifier?: string;
+    /**
+     * - The quantity of the product or bag being referenced.
+     */
     quantity?: number;
 };
 /** @returns {OrderItemDataUpdates} */
 declare function OrderItemDataUpdates(): OrderItemDataUpdates;
 type OrderItemDataUpdates = {
+    /**
+     * - Contains the specific data for updating shipment bags data.
+     */
     data?: any;
 };
 /** @returns {ProductsDataUpdatesFilters} */
 declare function ProductsDataUpdatesFilters(): ProductsDataUpdatesFilters;
 type ProductsDataUpdatesFilters = {
     /**
-     * - Product/Bag Line number for the
-     * Product/Bag Identifier
+     * - The line number for the product or bag.
      */
     line_number?: number;
     /**
-     * - Product/Bag Article/Item Identifier
+     * - The unique article or item identifier for
+     * the product or bag.
      */
     identifier?: string;
 };
@@ -3460,34 +3673,59 @@ type ProductsDataUpdatesFilters = {
 declare function ProductsDataUpdates(): ProductsDataUpdates;
 type ProductsDataUpdates = {
     /**
-     * - Filter for the Product/Bag
+     * - A list of filters
+     * applied to specify which products or bags are targeted for updates.
      */
     filters?: ProductsDataUpdatesFilters[];
+    /**
+     * - Contains the specific data for updating the
+     * products or bags.
+     */
     data?: any;
 };
 /** @returns {EntitiesDataUpdates} */
 declare function EntitiesDataUpdates(): EntitiesDataUpdates;
 type EntitiesDataUpdates = {
+    /**
+     * - A list of filters used to specify which
+     * shipments are targeted for updates.
+     */
     filters?: any[];
+    /**
+     * - Contains the specific data for updating the shipment.
+     */
     data?: any;
 };
 /** @returns {DataUpdates} */
 declare function DataUpdates(): DataUpdates;
 type DataUpdates = {
+    /**
+     * - A list of updates
+     * related to the status of order items.
+     */
     order_item_status?: OrderItemDataUpdates[];
+    /**
+     * - A list of updates related to
+     * the properties of products or bags.
+     */
     products?: ProductsDataUpdates[];
+    /**
+     * - A list of updates related to
+     * the properties of any relevant entities.
+     */
     entities?: EntitiesDataUpdates[];
 };
 /** @returns {ShipmentsRequest} */
 declare function ShipmentsRequest(): ShipmentsRequest;
 type ShipmentsRequest = {
     /**
-     * - Shipment ID
+     * - Unique identifier for the shipment.
      */
     identifier: string;
     reasons?: ReasonsData;
     /**
-     * - Product/Bag to be updated
+     * - A list of products or bags that need to
+     * be updated as part of the shipment status change.
      */
     products?: Products[];
     data_updates?: DataUpdates;
@@ -3495,40 +3733,61 @@ type ShipmentsRequest = {
 /** @returns {StatuesRequest} */
 declare function StatuesRequest(): StatuesRequest;
 type StatuesRequest = {
+    /**
+     * - The new status to be assigned to the shipment(s).
+     */
     status?: string;
+    /**
+     * - A list of shipments to which the
+     * new status will be applied.
+     */
     shipments?: ShipmentsRequest[];
     /**
-     * - State to be change for
-     * Remaining Bag/Products
+     * - Specifies the state to which
+     * remaining bags or products should be changed, effectively excluding them
+     * from the current status update.
      */
     exclude_bags_next_state?: string;
     /**
-     * - Flag to split shipment
+     * - A flag indicating whether the shipment
+     * should be split into multiple parts. If set to true, the shipment will be
+     * divided according to the specified logic or criteria.
      */
     split_shipment?: boolean;
 };
-/** @returns {UpdateShipmentStatusRequest} */
-declare function UpdateShipmentStatusRequest(): UpdateShipmentStatusRequest;
-type UpdateShipmentStatusRequest = {
+/** @returns {UpdateShipmentStatusRequestSchema} */
+declare function UpdateShipmentStatusRequestSchema(): UpdateShipmentStatusRequestSchema;
+type UpdateShipmentStatusRequestSchema = {
     /**
-     * - Force Transition
+     * - Indicates whether to force the
+     * status transition, overriding any restrictions or checks that may normally apply.
      */
     force_transition?: boolean;
+    /**
+     * - A list of status updates to be
+     * applied to the shipment.
+     */
     statuses?: StatuesRequest[];
     /**
-     * - Lock Shipment After Transition
+     * - Specifies whether the shipment
+     * should be locked automatically after a transition occurs.
      */
     lock_after_transition?: boolean;
     /**
-     * - Unlock Shipment After Transition
+     * - Specifies whether the
+     * shipment should be unlocked before a transition occurs.
      */
     unlock_before_transition?: boolean;
     /**
-     * - To Run Status Update as a background Task
+     * - Indicates whether to run the status update as a
+     * background task, allowing other processes to continue without waiting for
+     * this operation to complete.
      */
     task?: boolean;
     /**
-     * - Resume Tasks After Unlock
+     * - Indicates whether tasks
+     * should resume automatically after unlocking, such as DP assignment task and
+     * invoicing task.
      */
     resume_tasks_after_unlock?: boolean;
 };
@@ -3553,219 +3812,6 @@ type StatuesResponse = {
 declare function UpdateShipmentStatusResponseBody(): UpdateShipmentStatusResponseBody;
 type UpdateShipmentStatusResponseBody = {
     statuses?: StatuesResponse[];
-};
-/** @returns {OrderUser} */
-declare function OrderUser(): OrderUser;
-type OrderUser = {
-    phone: number;
-    last_name: string;
-    address1?: string;
-    state: string;
-    pincode: string;
-    first_name: string;
-    mobile: number;
-    address2?: string;
-    email: string;
-    country: string;
-    city: string;
-};
-/** @returns {OrderPriority} */
-declare function OrderPriority(): OrderPriority;
-type OrderPriority = {
-    fulfilment_priority_text?: string;
-    affiliate_priority_code?: string;
-    fulfilment_priority?: number;
-};
-/** @returns {ArticleDetails} */
-declare function ArticleDetails(): ArticleDetails;
-type ArticleDetails = {
-    _id: string;
-    brand_id: number;
-    dimension: any;
-    category: any;
-    weight: any;
-    attributes: any;
-    quantity: number;
-};
-/** @returns {LocationDetails} */
-declare function LocationDetails(): LocationDetails;
-type LocationDetails = {
-    fulfillment_type: string;
-    articles: ArticleDetails[];
-    fulfillment_id: number;
-};
-/** @returns {ShipmentDetails} */
-declare function ShipmentDetails(): ShipmentDetails;
-type ShipmentDetails = {
-    box_type?: string;
-    shipments: number;
-    fulfillment_id: number;
-    articles: ArticleDetails[];
-    dp_id?: string;
-    meta?: any;
-    affiliate_shipment_id: string;
-    dp_options?: any;
-    lock_status?: boolean;
-    action_to_status?: any;
-};
-/** @returns {ShipmentConfig} */
-declare function ShipmentConfig(): ShipmentConfig;
-type ShipmentConfig = {
-    location_details?: LocationDetails;
-    source: string;
-    to_pincode: string;
-    shipment: ShipmentDetails[];
-    identifier: string;
-    payment_mode: string;
-    action: string;
-    journey: string;
-};
-/** @returns {ShipmentData} */
-declare function ShipmentData(): ShipmentData;
-type ShipmentData = {
-    shipment_data: ShipmentConfig;
-};
-/** @returns {MarketPlacePdf} */
-declare function MarketPlacePdf(): MarketPlacePdf;
-type MarketPlacePdf = {
-    invoice?: string;
-    label?: string;
-};
-/** @returns {AffiliateBag} */
-declare function AffiliateBag(): AffiliateBag;
-type AffiliateBag = {
-    pdf_links?: MarketPlacePdf;
-    store_id: number;
-    sku: string;
-    discount: number;
-    unit_price: number;
-    price_effective: number;
-    affiliate_store_id: string;
-    identifier: any;
-    seller_identifier: string;
-    item_size: string;
-    amount_paid: number;
-    fynd_store_id: string;
-    item_id: number;
-    delivery_charge: number;
-    avl_qty: number;
-    price_marked: number;
-    quantity: number;
-    company_id: number;
-    hsn_code_id: string;
-    _id: string;
-    affiliate_meta: any;
-    modified_on: string;
-    transfer_price: number;
-};
-/** @returns {UserData} */
-declare function UserData(): UserData;
-type UserData = {
-    shipping_user?: OrderUser;
-    billing_user?: OrderUser;
-};
-/** @returns {OrderInfo} */
-declare function OrderInfo(): OrderInfo;
-type OrderInfo = {
-    affiliate_order_id?: string;
-    cod_charges: number;
-    items: any;
-    discount: number;
-    billing_address: OrderUser;
-    payment?: any;
-    order_priority?: OrderPriority;
-    shipment?: ShipmentData;
-    delivery_charges: number;
-    shipping_address: OrderUser;
-    order_value: number;
-    payment_mode: string;
-    bags: AffiliateBag[];
-    user: UserData;
-    coupon?: string;
-};
-/** @returns {AffiliateAppConfigMeta} */
-declare function AffiliateAppConfigMeta(): AffiliateAppConfigMeta;
-type AffiliateAppConfigMeta = {
-    value: string;
-    name: string;
-};
-/** @returns {AffiliateAppConfig} */
-declare function AffiliateAppConfig(): AffiliateAppConfig;
-type AffiliateAppConfig = {
-    id: string;
-    description?: string;
-    updated_at: string;
-    name: string;
-    token: string;
-    meta?: AffiliateAppConfigMeta[];
-    owner: string;
-    secret: string;
-    created_at: string;
-};
-/** @returns {AffiliateInventoryArticleAssignmentConfig} */
-declare function AffiliateInventoryArticleAssignmentConfig(): AffiliateInventoryArticleAssignmentConfig;
-type AffiliateInventoryArticleAssignmentConfig = {
-    post_order_reassignment?: boolean;
-};
-/** @returns {AffiliateInventoryPaymentConfig} */
-declare function AffiliateInventoryPaymentConfig(): AffiliateInventoryPaymentConfig;
-type AffiliateInventoryPaymentConfig = {
-    source?: string;
-    mode_of_payment?: string;
-};
-/** @returns {AffiliateInventoryStoreConfig} */
-declare function AffiliateInventoryStoreConfig(): AffiliateInventoryStoreConfig;
-type AffiliateInventoryStoreConfig = {
-    store?: any;
-};
-/** @returns {AffiliateInventoryOrderConfig} */
-declare function AffiliateInventoryOrderConfig(): AffiliateInventoryOrderConfig;
-type AffiliateInventoryOrderConfig = {
-    force_reassignment?: boolean;
-};
-/** @returns {AffiliateInventoryLogisticsConfig} */
-declare function AffiliateInventoryLogisticsConfig(): AffiliateInventoryLogisticsConfig;
-type AffiliateInventoryLogisticsConfig = {
-    dp_assignment?: boolean;
-};
-/** @returns {AffiliateInventoryConfig} */
-declare function AffiliateInventoryConfig(): AffiliateInventoryConfig;
-type AffiliateInventoryConfig = {
-    article_assignment?: AffiliateInventoryArticleAssignmentConfig;
-    payment?: AffiliateInventoryPaymentConfig;
-    inventory?: AffiliateInventoryStoreConfig;
-    order?: AffiliateInventoryOrderConfig;
-    logistics?: AffiliateInventoryLogisticsConfig;
-};
-/** @returns {AffiliateConfig} */
-declare function AffiliateConfig(): AffiliateConfig;
-type AffiliateConfig = {
-    app?: AffiliateAppConfig;
-    inventory?: AffiliateInventoryConfig;
-    app_company_id?: number;
-};
-/** @returns {Affiliate} */
-declare function Affiliate(): Affiliate;
-type Affiliate = {
-    id: string;
-    config?: AffiliateConfig;
-    token: string;
-};
-/** @returns {AffiliateStoreIdMapping} */
-declare function AffiliateStoreIdMapping(): AffiliateStoreIdMapping;
-type AffiliateStoreIdMapping = {
-    store_id: number;
-    marketplace_store_id: string;
-};
-/** @returns {OrderConfig} */
-declare function OrderConfig(): OrderConfig;
-type OrderConfig = {
-    create_user?: boolean;
-    article_lookup?: string;
-    bag_end_state?: string;
-    affiliate: Affiliate;
-    store_lookup?: string;
-    affiliate_store_id_mapping: AffiliateStoreIdMapping[];
 };
 /** @returns {DPConfiguration} */
 declare function DPConfiguration(): DPConfiguration;
@@ -3793,7 +3839,7 @@ type PaymentConfig = {
 /** @returns {CreateOrderConfig} */
 declare function CreateOrderConfig(): CreateOrderConfig;
 type CreateOrderConfig = {
-    dp_configuration?: DPConfiguration;
+    dp_configuration: DPConfiguration;
     /**
      * - Flag denotes integration type which
      * is used to retrieve specific configurations and application details
@@ -3815,208 +3861,372 @@ type CreateOrderConfig = {
      */
     optimal_shipment_creation?: boolean;
 };
-/** @returns {CreateOrderPayload} */
-declare function CreateOrderPayload(): CreateOrderPayload;
-type CreateOrderPayload = {
-    affiliate_id: string;
-    order_info: OrderInfo;
-    order_config: OrderConfig;
-};
 /** @returns {CreateOrderResponse} */
 declare function CreateOrderResponse(): CreateOrderResponse;
 type CreateOrderResponse = {
+    /**
+     * - A string that represents the unique
+     * identifier assigned to the order.
+     */
     fynd_order_id: string;
 };
 /** @returns {DispatchManifest} */
 declare function DispatchManifest(): DispatchManifest;
 type DispatchManifest = {
     /**
-     * - Id of the manifest.
+     * - The unique identifier for the manifest being
+     * dispatched.
      */
     manifest_id: string;
 };
 /** @returns {SuccessResponse} */
 declare function SuccessResponse(): SuccessResponse;
 type SuccessResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
     message?: string;
 };
 /** @returns {ActionInfo} */
 declare function ActionInfo(): ActionInfo;
 type ActionInfo = {
+    /**
+     * - A user-friendly text that represents the
+     * action associated with the permission.
+     */
     display_text: string;
+    /**
+     * - A unique identifier for the permission, used for
+     * referencing within the system.
+     */
     id: number;
+    /**
+     * - A detailed explanation of what the
+     * permission allows the user to do.
+     */
     description: string;
+    /**
+     * - A URL-friendly string that serves as a unique
+     * identifier for the permission, often used in routing or API calls.
+     */
     slug: string;
 };
 /** @returns {GetActionsResponse} */
 declare function GetActionsResponse(): GetActionsResponse;
 type GetActionsResponse = {
+    /**
+     * - A response object that contains a
+     * list of permissions available to the user.
+     */
     permissions?: ActionInfo[];
 };
 /** @returns {HistoryReason} */
 declare function HistoryReason(): HistoryReason;
 type HistoryReason = {
+    /**
+     * - A reason for the activity or change.
+     */
     text?: string;
+    /**
+     * - Category of the reason for the status change.
+     */
     category?: string;
+    /**
+     * - Current state related to the reason.
+     */
     state?: string;
+    /**
+     * - Display name of the reason for better user
+     * understanding.
+     */
     dislay_name?: string;
+    /**
+     * - Unique code identifying the reason.
+     */
     code?: number;
+    /**
+     * - Quantity related to the reason, if applicable.
+     */
     quantity?: number;
 };
 /** @returns {HistoryMeta} */
 declare function HistoryMeta(): HistoryMeta;
 type HistoryMeta = {
+    /**
+     * - Unique identifier for the store involved in
+     * the activity.
+     */
     store_id?: number;
+    /**
+     * - Current status of the activity or item.
+     */
     status?: string;
+    /**
+     * - Additional status information if necessary.
+     */
     status1?: string;
+    /**
+     * - Identifier for any related calls, if applicable.
+     */
     call_id?: string;
+    /**
+     * - Start time of the activity.
+     */
     starttime?: string;
     reason?: HistoryReason;
+    /**
+     * - A shortened link related to the activity,
+     * if available.
+     */
     short_link?: string;
+    /**
+     * - End time of the activity.
+     */
     endtime?: string;
+    /**
+     * - Name of the store involved in the activity.
+     */
     store_name?: string;
+    /**
+     * - Name of the caller associated with the activity.
+     */
     caller?: string;
+    /**
+     * - Code associated with the store.
+     */
     store_code?: string;
+    /**
+     * - Duration of the billable period, if applicable.
+     */
     billsec?: string;
+    /**
+     * - Path to any related recordings, if applicable.
+     */
     recordpath?: string;
+    /**
+     * - Additional status information if necessary.
+     */
     status2?: string;
+    /**
+     * - Caller ID associated with the activity, if applicable.
+     */
     callerid?: string;
+    /**
+     * - Total duration of the activity.
+     */
     duration?: string;
+    /**
+     * - Type of channel used for the activity, if
+     * applicable.
+     */
     channel_type?: string;
+    /**
+     * - Comments related to the activity, if
+     * applicable.
+     */
     activity_comment?: string;
+    /**
+     * - Type of activity being recorded, if applicable.
+     */
     activity_type?: string;
+    /**
+     * - Name of the receiver involved in the
+     * activity, if applicable.
+     */
     receiver?: string;
+    /**
+     * - Recipient of the activity, if applicable.
+     */
     recipient?: string;
+    /**
+     * - Slug identifier for the activity.
+     */
     slug?: string;
+    /**
+     * - Any additional messages related to the activity.
+     */
     message?: string;
 };
 /** @returns {HistoryDict} */
 declare function HistoryDict(): HistoryDict;
 type HistoryDict = {
     /**
-     * - Display Message
+     * - User-friendly message displaying the
+     * activity or status change.
      */
     display_message?: string;
     /**
-     * - Bag ID
+     * - Identifier for the bag associated with the activity.
      */
     bag_id?: number;
     /**
-     * - Ticket URL
+     * - URL for any related tickets.
      */
     ticket_url?: string;
     /**
-     * - L3 details of bag
+     * - L3 details regarding the bag or activity.
      */
     l3_detail?: string;
     /**
-     * - Create date
+     * - Date and time when the activity was created.
      */
     createdat: string;
     /**
-     * - Ticket ID
+     * - Timestamp for when the activity was created
+     * in ISO format.
+     */
+    created_ts?: string;
+    /**
+     * - Unique identifier for the ticket associated
+     * with the activity.
      */
     ticket_id?: string;
     /**
-     * - Type of history, Expected Values: [
-     * activity_status, activity_escalation, activity_comment,
-     * outbound_notification, outbound_voice ]
+     * - Type of activity history
      */
     type: string;
     /**
-     * - L2 details of bag
+     * - L2 details regarding the bag or activity.
      */
     l2_detail?: string;
     /**
-     * - Assigned Agent
+     * - Name of the agent assigned to the activity.
      */
     assigned_agent?: string;
     /**
-     * - Meta
+     * - Metadata about the activity
      */
     meta?: HistoryMeta;
     /**
-     * - L1 details of bag
+     * - L1 details regarding the bag or activity.
      */
     l1_detail?: string;
     /**
-     * - History Message or comment
+     * - Message or comment regarding the history.
      */
     message: string;
     /**
-     * - User who created the history
+     * - Name of the user who created the history record.
      */
     user: string;
 };
 /** @returns {ShipmentHistoryResponse} */
 declare function ShipmentHistoryResponse(): ShipmentHistoryResponse;
 type ShipmentHistoryResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A list of activity records
+     * related to the shipment, providing details on actions taken, comments
+     * added, or notifications sent.
+     */
     activity_history: HistoryDict[];
 };
 /** @returns {PostHistoryFilters} */
 declare function PostHistoryFilters(): PostHistoryFilters;
 type PostHistoryFilters = {
+    /**
+     * - Unique identifier for the shipment
+     */
     shipment_id: string;
+    /**
+     * - Optional field to specify a particular
+     * line item in the shipment.
+     */
     line_number?: string;
+    /**
+     * - Optional field for any additional
+     * identifier related to the shipment.
+     */
     identifier?: string;
 };
 /** @returns {PostHistoryData} */
 declare function PostHistoryData(): PostHistoryData;
 type PostHistoryData = {
+    /**
+     * - The name or email of the user who performed
+     * the action or recorded the entry.
+     */
     user_name: string;
+    /**
+     * - A descriptive message detailing the action taken
+     * or the status related to the shipment.
+     */
     message: string;
 };
 /** @returns {PostHistoryDict} */
 declare function PostHistoryDict(): PostHistoryDict;
 type PostHistoryDict = {
+    /**
+     * - A list of filter objects, each
+     * following the PostHistoryFilters schema, used to identify which shipment
+     * history records are relevant.
+     */
     filters: PostHistoryFilters[];
     data: PostHistoryData;
 };
 /** @returns {PostShipmentHistory} */
 declare function PostShipmentHistory(): PostShipmentHistory;
 type PostShipmentHistory = {
+    /**
+     * - A list of activity history
+     * records, each adhering to the PostHistoryDict schema.
+     */
     activity_history?: PostHistoryDict[];
 };
 /** @returns {SmsDataPayload} */
 declare function SmsDataPayload(): SmsDataPayload;
 type SmsDataPayload = {
     /**
-     * - ShipmentId
+     * - Unique identifier for the shipment
+     * associated with the SMS.
      */
     shipment_id: number;
     /**
-     * - Phone number for communication
+     * - The recipient's phone number for communication.
      */
     phone_number: number;
     /**
-     * - Data mapped in Communication template: amount_paid
+     * - The amount that has been paid, as mapped
+     * in the communication template.
      */
     amount_paid?: number;
     /**
-     * - OrderId
+     * - Unique identifier for the order associated with
+     * the shipment.
      */
     order_id: string;
     /**
-     * - Data mapped in Communication template: payment_mode
+     * - The mode of payment used for the order,
+     * as mapped in the communication template.
      */
     payment_mode?: string;
     /**
-     * - Data mapped in Communication template:
-     * customer_name
+     * - The name of the customer, as mapped in
+     * the communication template.
      */
     customer_name?: string;
     /**
-     * - Data mapped in Communication template: brand_name
+     * - The name of the brand associated with the
+     * order, as mapped in the communication template.
      */
     brand_name?: string;
     /**
-     * - Message to be send in SMS
+     * - The content of the SMS to be sent to the recipient.
      */
     message: string;
     /**
-     * - Country code for SMS
+     * - The country code for the recipient's phone
+     * number, necessary for proper SMS delivery.
      */
     country_code: string;
 };
@@ -4024,15 +4234,17 @@ type SmsDataPayload = {
 declare function SendSmsPayload(): SendSmsPayload;
 type SendSmsPayload = {
     /**
-     * - Bag_id for the activity history track
+     * - Unique identifier for the bag, used for tracking
+     * activity history related to this SMS.
      */
     bag_id: number;
     /**
-     * - SMS Data
+     * - Contains the SMS data necessary for communication.
      */
     data?: SmsDataPayload;
     /**
-     * - Slug name for the template mapped in pointblank
+     * - Slug name for the SMS template mapped in the
+     * communication system, used to identify the specific messaging format or content.
      */
     slug: string;
 };
@@ -4074,24 +4286,60 @@ type OrderDetails = {
 /** @returns {Meta} */
 declare function Meta(): Meta;
 type Meta = {
+    /**
+     * - An integer representing the
+     * status of the message upon emission to Kafka. 0 indicates success, while 1
+     * indicates failure.
+     */
     kafka_emission_status?: number;
+    /**
+     * - A string that specifies the state
+     * manager utilized for handling the order's state.
+     */
     state_manager_used?: string;
 };
 /** @returns {ShipmentDetail} */
 declare function ShipmentDetail(): ShipmentDetail;
 type ShipmentDetail = {
+    /**
+     * - Unique identifier for the shipment
+     * associated with the order.
+     */
     shipment_id?: string;
+    /**
+     * - A string representing the current status of the shipment
+     */
     status?: string;
+    /**
+     * - An integer that serves as a unique identifier for the
+     * shipment detail
+     */
     id: number;
+    /**
+     * - A list of bag identifiers associated with
+     * the shipment.
+     */
     bag_list?: number[];
     meta: Meta;
+    /**
+     * - A string for any additional comments or notes
+     * related to the shipment,
+     */
     remarks?: string;
 };
 /** @returns {OrderStatusData} */
 declare function OrderStatusData(): OrderStatusData;
 type OrderStatusData = {
     order_details: OrderDetails;
+    /**
+     * - A list of any errors that occurred while
+     * attempting to obtain the order's status.
+     */
     errors?: string[];
+    /**
+     * - A list of the individual
+     * shipments associated with the order and their current statuses.
+     */
     shipment_details?: ShipmentDetail[];
     /**
      * - A label or description of the delivery status,
@@ -4117,23 +4365,56 @@ type OrderStatusData = {
 /** @returns {OrderStatusResult} */
 declare function OrderStatusResult(): OrderStatusResult;
 type OrderStatusResult = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success: string;
+    /**
+     * - The order's current status and
+     * related shipment details.
+     */
     result?: OrderStatusData[];
 };
 /** @returns {Dimension} */
 declare function Dimension(): Dimension;
 type Dimension = {
+    /**
+     * - Describes the type of packaging used.
+     */
     packaging_type?: string;
-    weight?: string;
-    height?: string;
+    /**
+     * - The weight of the package in kilograms.
+     */
+    weight?: number;
+    /**
+     * - The height of the package in centimetres.
+     */
+    height?: number;
+    /**
+     * - The length of the package in centimetres.
+     */
     length?: number;
+    /**
+     * - The width of the package in centimetres.
+     */
     width?: number;
 };
 /** @returns {UpdatePackagingDimensionsPayload} */
 declare function UpdatePackagingDimensionsPayload(): UpdatePackagingDimensionsPayload;
 type UpdatePackagingDimensionsPayload = {
+    /**
+     * - Unique identifier for the shipment for which
+     * the packaging dimensions are being updated.
+     */
     shipment_id: string;
+    /**
+     * - The current status of the shipment.
+     */
     current_status: string;
+    /**
+     * - A list of dimensions for the packaging.
+     */
     dimension: Dimension[];
 };
 /** @returns {UpdatePackagingDimensionsResponse} */
@@ -4144,23 +4425,47 @@ type UpdatePackagingDimensionsResponse = {
 /** @returns {Tax} */
 declare function Tax(): Tax;
 type Tax = {
+    /**
+     * - The name of the tax, indicating its purpose (e.g.,
+     * VAT, sales tax).
+     */
     name: string;
+    /**
+     * - The tax rate as a decimal, applied to the transaction amount.
+     */
     rate: number;
+    /**
+     * - An array of objects detailing the components
+     * or breakdown of the tax applied.
+     */
     breakup?: any[];
+    /**
+     * - An object representing the total tax amount
+     * calculated for the transaction.
+     */
     amount: any;
+};
+/** @returns {AmountSchema} */
+declare function AmountSchema(): AmountSchema;
+type AmountSchema = {
+    /**
+     * - The value indicating the currency used for
+     * the transactions.
+     */
+    currency?: string;
+    /**
+     * - The final amount of the charge.
+     */
+    value?: number;
 };
 /** @returns {Charge} */
 declare function Charge(): Charge;
 type Charge = {
     /**
-     * - The name of the charge.
+     * - The name of the charge that indicates its purpose.
      */
     name: string;
-    /**
-     * - The monetary value of the charge, including value
-     * and currency details.
-     */
-    amount: any;
+    amount: AmountSchema;
     tax?: Tax;
     /**
      * - An optional code associated with the charge for
@@ -4175,13 +4480,18 @@ type Charge = {
 /** @returns {LineItem} */
 declare function LineItem(): LineItem;
 type LineItem = {
+    /**
+     * - An array of Charge objects related to the line item.
+     */
     charges?: Charge[];
     /**
-     * - Meta data of the articles or line items.
+     * - An object containing metadata relevant to
+     * articles or line items.
      */
     meta?: any;
     /**
-     * - Meta data of the articles or line items.
+     * - A string for any special instructions
+     * or messages related to the line item.
      */
     custom_message?: string;
     /**
@@ -4189,7 +4499,8 @@ type LineItem = {
      */
     quantity?: number;
     /**
-     * - Seller identifier of the articles or line items.
+     * - Unique identifier of the articles or
+     * line items set by seller.
      */
     seller_identifier: string;
     /**
@@ -4201,16 +4512,44 @@ type LineItem = {
 /** @returns {ProcessingDates} */
 declare function ProcessingDates(): ProcessingDates;
 type ProcessingDates = {
+    /**
+     * - An object that provides details about
+     * the designated pickup time slot for the order.
+     */
     dp_pickup_slot?: any;
+    /**
+     * - A string indicating the date after
+     * which the order will be dispatched.
+     */
     dispatch_after_date?: string;
+    /**
+     * - A string representing the latest date
+     * by which the order must be dispatched to meet delivery expectations.
+     */
     dispatch_by_date?: string;
+    /**
+     * - A string that indicates the deadline
+     * for the merchant to confirm the order.
+     */
     confirm_by_date?: string;
+    /**
+     * - An object that provides details
+     * of the pick-up time slot set by the customer.
+     */
     customer_pickup_slot?: any;
+    /**
+     * - A string indicating the date by which the
+     * order must be packaged for fulfillment.
+     */
     pack_by_date?: string;
 };
 /** @returns {Shipment} */
 declare function Shipment(): Shipment;
 type Shipment = {
+    /**
+     * - An array of LineItem objects that
+     * represent the items included in the shipment.
+     */
     line_items: LineItem[];
     /**
      * - External shipment identifier or
@@ -4219,11 +4558,12 @@ type Shipment = {
     external_shipment_id?: string;
     processing_dates?: ProcessingDates;
     /**
-     * - Meta data of the shipment.
+     * - An object containing metadata related to the shipment.
      */
     meta?: any;
     /**
-     * - Integer value indicating high and low priority.
+     * - An integer indicating the priority level of
+     * the shipment.
      */
     priority?: number;
     /**
@@ -4236,9 +4576,7 @@ type Shipment = {
      */
     location_id?: number;
     /**
-     * - The order type of shipment HomeDelivery -
-     * If the customer wants the order home-delivered PickAtStore - If the
-     * customer wants the handover of an order at the store itself.
+     * - The order type of shipment.
      */
     order_type?: string;
     parent_type?: string;
@@ -4269,68 +4607,146 @@ type Shipment = {
     price?: Prices;
     gst?: ShipmentGstDetails;
 };
+/** @returns {GeoLocationSchema} */
+declare function GeoLocationSchema(): GeoLocationSchema;
+type GeoLocationSchema = {
+    /**
+     * - A number representing the geographical
+     * latitude of the location.
+     */
+    latitude?: number;
+    /**
+     * - A number representing the geographical
+     * longitude of the location
+     */
+    longitude?: number;
+};
 /** @returns {ShippingInfo} */
 declare function ShippingInfo(): ShippingInfo;
 type ShippingInfo = {
-    alternate_mobile_number?: string;
-    state?: string;
-    customer_code?: string;
-    shipping_type?: string;
-    middle_name?: string;
-    primary_mobile_number?: string;
-    last_name?: string;
-    geo_location?: any;
-    gender?: string;
-    house_no?: string;
-    first_name?: string;
-    title?: string;
-    landmark?: string;
-    country?: string;
-    address_type?: string;
-    state_code?: string;
-    city?: string;
-    external_customer_code?: string;
-    floor_no?: string;
-    alternate_email?: string;
-    slot?: any[];
-    address?: string;
-    area?: string;
-    address1?: string;
-    pincode?: string;
-    primary_email?: string;
-    address2?: string;
-    country_code?: string;
     /**
-     * - Country Code in ISO 2 format (e.g. US, IN)
+     * - A string for an alternate
+     * mobile number to reach the customer, providing an additional contact method.
      */
-    country_iso_code?: string;
-};
-/** @returns {BillingInfo} */
-declare function BillingInfo(): BillingInfo;
-type BillingInfo = {
     alternate_mobile_number?: string;
+    /**
+     * - A string representing the name of the state for
+     * shipping purposes.
+     */
     state?: string;
+    /**
+     * - A string representing the customer's
+     * unique identifier in the seller's system.
+     */
     customer_code?: string;
+    /**
+     * - A string describing the shipping type.
+     */
+    shipping_type?: string;
+    /**
+     * - A string containing the customer's middle name.
+     */
     middle_name?: string;
+    /**
+     * - A string for the customer's
+     * primary mobile number.
+     */
     primary_mobile_number?: string;
+    /**
+     * - A string containing the customer's last name.
+     */
     last_name?: string;
+    geo_location?: GeoLocationSchema;
+    /**
+     * - A string representing the customer's gender.
+     */
     gender?: string;
+    /**
+     * - A string representing the house or apartment
+     * number of the customer.
+     */
     house_no?: string;
+    /**
+     * - A string representing the customer's first name.
+     */
     first_name?: string;
+    /**
+     * - A string representing the customer's title or prefix.
+     */
     title?: string;
-    country?: string;
-    state_code?: string;
-    city?: string;
-    external_customer_code?: string;
-    floor_no?: string;
-    alternate_email?: string;
-    address?: string;
-    area?: string;
-    address1?: string;
-    pincode?: string;
-    primary_email?: string;
-    address2?: string;
+    /**
+     * - A string representing a landmark or reference
+     * point near the customer's location.
+     */
     landmark?: string;
+    /**
+     * - A string representing the customer's country.
+     */
+    country?: string;
+    /**
+     * - A string representing the address type in
+     * the seller's system.
+     */
+    address_type?: string;
+    /**
+     * - A string representing the state code of the
+     * customer's location.
+     */
+    state_code?: string;
+    /**
+     * - A string representing the city of the customer's location.
+     */
+    city?: string;
+    /**
+     * - A string representing an
+     * external customer code in the seller's system.
+     */
+    external_customer_code?: string;
+    /**
+     * - A string representing the floor number of the
+     * customer's location.
+     */
+    floor_no?: string;
+    /**
+     * - A string representing an alternate
+     * email address for the customer.
+     */
+    alternate_email?: string;
+    /**
+     * - A list of objects representing available time
+     * slot for delivery or pickup.
+     */
+    slot?: any[];
+    /**
+     * - A comma-separated string representing the address.
+     */
+    address?: string;
+    /**
+     * - A string representing the area of the customer's location.
+     */
+    area?: string;
+    /**
+     * - A string representing the first line of the address.
+     */
+    address1?: string;
+    /**
+     * - A string representing the pincode of the
+     * customer's location.
+     */
+    pincode?: string;
+    /**
+     * - A string representing the primary email
+     * address for the customer.
+     */
+    primary_email?: string;
+    /**
+     * - A string representing the second line of the address.
+     */
+    address2?: string;
+    /**
+     * - A string representing the country code of
+     * the customer's location.
+     */
     country_code?: string;
     /**
      * - Country Code in ISO 2 format (e.g. US, IN)
@@ -4340,143 +4756,275 @@ type BillingInfo = {
 /** @returns {UserInfo} */
 declare function UserInfo(): UserInfo;
 type UserInfo = {
+    /**
+     * - The unique identifier assigned to the user.
+     */
     user_id?: string;
+    /**
+     * - A string representing the type of the user.
+     */
     user_type?: string;
+    /**
+     * - A string representing the primary email
+     * address for the user.
+     */
     primary_email?: string;
+    /**
+     * - A string specifying the gender of the user.
+     */
     gender?: string;
+    /**
+     * - A string which specifies the user's first name.
+     */
     first_name: string;
+    /**
+     * - A string which specifies the user's last name.
+     */
     last_name?: string;
+    /**
+     * - A string representing the primary
+     * mobile number for the user.
+     */
     primary_mobile_number: string;
 };
 /** @returns {TaxInfo} */
 declare function TaxInfo(): TaxInfo;
 type TaxInfo = {
+    /**
+     * - A string representing the GSTIN
+     * (Goods and Services Tax Identification Number) for business-to-business
+     * transactions.
+     */
     b2b_gstin_number?: string;
+    /**
+     * - A string that specifies the GSTIN for the seller.
+     */
     gstin?: string;
+    /**
+     * - A string representing the PAN assigned to
+     * individuals or entities for tax purposes in India.
+     */
     pan_no?: string;
 };
 /** @returns {PaymentMethod} */
 declare function PaymentMethod(): PaymentMethod;
 type PaymentMethod = {
+    /**
+     * - A string indicating the entity responsible
+     * for collecting the payment.
+     */
     collect_by: string;
+    /**
+     * - A string that specifies the mode of payment.
+     */
     mode: string;
+    /**
+     * - A string that indicates the entity responsible
+     * for processing refunds.
+     */
     refund_by: string;
+    /**
+     * - A string representing the name of the payment method.
+     */
     name: string;
+    /**
+     * - A number representing the monetary value
+     * associated with the payment method.
+     */
     amount: number;
+    /**
+     * - An object for any additional metadata related to
+     * the payment method.
+     */
     meta?: any;
+    /**
+     * - An object that holds
+     * transaction-specific information.
+     */
     transaction_data?: any;
 };
 /** @returns {PaymentInfo} */
 declare function PaymentInfo(): PaymentInfo;
 type PaymentInfo = {
+    /**
+     * - A string that indicates the primary payment
+     * method used for the order.
+     */
     primary_mode: string;
+    /**
+     * - A string that indicates the payment mode
+     * used for the order.
+     */
+    payment_mode?: string;
+    /**
+     * - A lists all available payment
+     * methods used in the transaction.
+     */
     payment_methods?: PaymentMethod[];
 };
 /** @returns {CreateOrderAPI} */
 declare function CreateOrderAPI(): CreateOrderAPI;
 type CreateOrderAPI = {
+    /**
+     * - An array of shipment objects that detail
+     * the items being shipped as part of the order.
+     */
     shipments: Shipment[];
     shipping_info: ShippingInfo;
-    billing_info: BillingInfo;
+    billing_info: ShippingInfo;
+    /**
+     * - An object that provides details about
+     * the currency in which the order is processed, including currency code and
+     * conversion rates if applicable.
+     */
     currency_info?: any;
+    /**
+     * - A unique identifier for the order
+     * assigned by an external system.
+     */
     external_order_id?: string;
+    /**
+     * - An array of charge objects that detail the
+     * various fees associated with the order.
+     */
     charges?: Charge[];
+    /**
+     * - A string that specifies the
+     * date and time when the order was created in an external system
+     */
     external_creation_date?: string;
+    /**
+     * - A generic object that can hold any additional
+     * metadata related to the order.
+     */
     meta?: any;
     tax_info?: TaxInfo;
-    config?: CreateOrderConfig;
+    config: CreateOrderConfig;
     payment_info: PaymentInfo;
     user_info?: UserInfo;
+    /**
+     * - Unique identifier for the store
+     * where the order was placed.
+     */
     ordering_store_id?: number;
+    /**
+     * - The platform used to place the order.
+     */
     order_platform?: string;
+    /**
+     * - A string that specifies the type of order
+     * being placed.
+     */
+    order_type?: string;
+    /**
+     * - Unique identifier for the order.
+     */
+    fynd_order_id?: string;
+    /**
+     * - A unique identifier for the application
+     * or system that is making the order request.
+     */
+    application_id?: string;
+    /**
+     * - External shipment identifier or
+     * marketplace's unique shipment identifier.
+     */
+    external_shipment_id?: string;
 };
 /** @returns {CreateOrderErrorReponse} */
 declare function CreateOrderErrorReponse(): CreateOrderErrorReponse;
 type CreateOrderErrorReponse = {
-    request_id?: string;
-    status: number;
-    info?: any;
-    stack_trace?: string;
-    code?: string;
-    meta?: string;
-    message: string;
-    exception?: string;
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
+    success?: boolean;
+    /**
+     * - Contains details about the error.
+     */
+    errors?: string;
+    /**
+     * - Represents the HTTP status code of the API response.
+     */
+    status_code?: number;
+    /**
+     * - A string that represents the unique
+     * identifier assigned to the order.
+     */
+    fynd_order_id?: string;
 };
-/** @returns {DpConfiguration} */
-declare function DpConfiguration(): DpConfiguration;
-type DpConfiguration = {
-    shipping_by?: string;
-};
-/** @returns {PaymentMethods} */
-declare function PaymentMethods(): PaymentMethods;
-type PaymentMethods = {
-    collect_by?: string;
-    refund_by?: string;
-    mode?: string;
-};
-/** @returns {CreateChannelPaymentInfo} */
-declare function CreateChannelPaymentInfo(): CreateChannelPaymentInfo;
-type CreateChannelPaymentInfo = {
-    source?: string;
-    payment_methods?: PaymentMethods[];
-    mode_of_payment?: string;
-};
-/** @returns {CreateChannelConfig} */
-declare function CreateChannelConfig(): CreateChannelConfig;
-type CreateChannelConfig = {
-    dp_configuration?: DpConfiguration;
-    shipment_assignment?: string;
-    location_reassignment?: boolean;
-    logo_url?: any;
-    payment_info?: CreateChannelPaymentInfo;
-    lock_states?: string[];
-};
-/** @returns {CreateChannelConfigData} */
-declare function CreateChannelConfigData(): CreateChannelConfigData;
-type CreateChannelConfigData = {
-    config_data?: CreateChannelConfig;
-};
-/** @returns {CreateChannelConifgErrorResponse} */
-declare function CreateChannelConifgErrorResponse(): CreateChannelConifgErrorResponse;
-type CreateChannelConifgErrorResponse = {
-    error?: string;
-};
-/** @returns {CreateChannelConfigResponse} */
-declare function CreateChannelConfigResponse(): CreateChannelConfigResponse;
-type CreateChannelConfigResponse = {
-    is_inserted?: boolean;
-    is_upserted?: boolean;
-    acknowledged?: boolean;
-};
-/** @returns {UploadConsent} */
-declare function UploadConsent(): UploadConsent;
-type UploadConsent = {
+/** @returns {UploadManifestConsent} */
+declare function UploadManifestConsent(): UploadManifestConsent;
+type UploadManifestConsent = {
+    /**
+     * - A URL that directs users to a consent page
+     * or document related to the upload of the manifest.
+     */
     consent_url: string;
+    /**
+     * - The unique identifier for the manifest being uploaded.
+     */
     manifest_id: string;
 };
 /** @returns {PlatformOrderUpdate} */
 declare function PlatformOrderUpdate(): PlatformOrderUpdate;
 type PlatformOrderUpdate = {
+    /**
+     * - A string that represents the unique identifier
+     * assigned to the order.
+     */
     order_id: string;
 };
 /** @returns {ResponseDetail} */
 declare function ResponseDetail(): ResponseDetail;
 type ResponseDetail = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
-    message?: string[];
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
+    message?: string;
+    /**
+     * - Represents the HTTP status code of the API response.
+     */
+    status?: number;
 };
 /** @returns {FyndOrderIdList} */
 declare function FyndOrderIdList(): FyndOrderIdList;
 type FyndOrderIdList = {
+    /**
+     * - An array of strings that represent
+     * unique identifiers assigned to an order.
+     */
     fynd_order_id?: string[];
+    /**
+     * - A string representing the start date for
+     * the order status query.
+     */
+    start_date?: string;
+    /**
+     * - A string representing the end date for the
+     * order status query.
+     */
+    end_date?: string;
+    /**
+     * - An integer representing the mobile number
+     * associated with the order.
+     */
+    mobile?: number;
 };
 /** @returns {OrderStatus} */
 declare function OrderStatus(): OrderStatus;
 type OrderStatus = {
+    /**
+     * - An array of objects that
+     * provide details about the orders, including their respective order IDs.
+     */
     order_details?: FyndOrderIdList[];
-    start_date: string;
-    end_date: string;
-    mobile: number;
 };
 /** @returns {BagStateTransitionMap} */
 declare function BagStateTransitionMap(): BagStateTransitionMap;
@@ -4487,132 +5035,292 @@ type BagStateTransitionMap = {
 /** @returns {RoleBaseStateTransitionMapping} */
 declare function RoleBaseStateTransitionMapping(): RoleBaseStateTransitionMapping;
 type RoleBaseStateTransitionMapping = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A list of possible next statuses that
+     * can be transitioned to from the current status.
+     */
     next_statuses?: string[];
-};
-/** @returns {FetchCreditBalanceRequestPayload} */
-declare function FetchCreditBalanceRequestPayload(): FetchCreditBalanceRequestPayload;
-type FetchCreditBalanceRequestPayload = {
-    affiliate_id: string;
-    seller_id: string;
-    customer_mobile_number: string;
-};
-/** @returns {CreditBalanceInfo} */
-declare function CreditBalanceInfo(): CreditBalanceInfo;
-type CreditBalanceInfo = {
-    total_credited_balance?: string;
-    reason?: string;
-    customer_mobile_number?: string;
-};
-/** @returns {FetchCreditBalanceResponsePayload} */
-declare function FetchCreditBalanceResponsePayload(): FetchCreditBalanceResponsePayload;
-type FetchCreditBalanceResponsePayload = {
-    success: boolean;
-    data: CreditBalanceInfo;
 };
 /** @returns {RefundModeConfigRequestPayload} */
 declare function RefundModeConfigRequestPayload(): RefundModeConfigRequestPayload;
 type RefundModeConfigRequestPayload = {
+    /**
+     * - A unique identifier for the order placed
+     * through the Fynd platform.
+     */
     fynd_order_id: string;
+    /**
+     * - A unique identifier representing the seller
+     * associated with the order.
+     */
     seller_id: number;
+    /**
+     * - An identifier for the affiliate partner
+     * associated with the order.
+     */
     affiliate_id: string;
-    customer_mobile_number?: string;
+    /**
+     * - The mobile phone number of the
+     * customer who placed the order.
+     */
+    customer_mobile_number?: number;
 };
 /** @returns {RefundOption} */
 declare function RefundOption(): RefundOption;
 type RefundOption = {
+    /**
+     * - The actual value representing the refund option.
+     */
     value?: string;
+    /**
+     * - A unique identifier for the refund mode
+     */
     slug?: string;
+    /**
+     * - A user-friendly name for the refund option.
+     */
     name?: string;
+    /**
+     * - A string indicating the type of refund
+     * information provided.
+     */
     type?: string;
+};
+/** @returns {RefundModeFormat} */
+declare function RefundModeFormat(): RefundModeFormat;
+type RefundModeFormat = {
+    /**
+     * - Specifies the destination or method for the refunds.
+     */
+    refund_to?: string;
 };
 /** @returns {RefundModeInfo} */
 declare function RefundModeInfo(): RefundModeInfo;
 type RefundModeInfo = {
+    /**
+     * - A flag indicating whether the refund mode
+     * is currently active or not.
+     */
     is_active?: boolean;
+    /**
+     * - A unique identifier for the refund mode.
+     */
     slug?: string;
+    /**
+     * - A list of available refund options
+     * associated with this refund mode.
+     */
     options?: RefundOption[];
+    /**
+     * - A user-friendly name for the refund mode.
+     */
     display_name?: string;
+    format?: RefundModeFormat;
 };
 /** @returns {RefundModeConfigResponsePayload} */
 declare function RefundModeConfigResponsePayload(): RefundModeConfigResponsePayload;
 type RefundModeConfigResponsePayload = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success: boolean;
+    /**
+     * - An array of possible refund mode
+     * information objects.
+     */
     data: RefundModeInfo[];
+    /**
+     * - Represents the HTTP status code of the API response.
+     */
+    status?: number;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
+    message?: string;
 };
 /** @returns {AttachUserOtpData} */
 declare function AttachUserOtpData(): AttachUserOtpData;
 type AttachUserOtpData = {
+    /**
+     * - A string representing a unique identifier for
+     * the OTP request.
+     */
     request_id: string;
 };
 /** @returns {AttachUserInfo} */
 declare function AttachUserInfo(): AttachUserInfo;
 type AttachUserInfo = {
+    /**
+     * - A string representing the user's first name.
+     */
     first_name: string;
+    /**
+     * - A string representing the user's last name.
+     */
     last_name: string;
+    /**
+     * - A string representing the user's mobile number.
+     */
     mobile: string;
+    /**
+     * - A string representing the user's country code.
+     */
     country_code?: string;
 };
 /** @returns {AttachOrderUser} */
 declare function AttachOrderUser(): AttachOrderUser;
 type AttachOrderUser = {
     otp_data: AttachUserOtpData;
+    /**
+     * - A unique identifier for the order
+     * associated with the user attach.
+     */
     fynd_order_id: string;
     user_info: AttachUserInfo;
 };
 /** @returns {AttachOrderUserResponse} */
 declare function AttachOrderUserResponse(): AttachOrderUserResponse;
 type AttachOrderUserResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
     message?: string;
 };
 /** @returns {SendUserMobileOTP} */
 declare function SendUserMobileOTP(): SendUserMobileOTP;
 type SendUserMobileOTP = {
-    mobile: string;
+    /**
+     * - The mobile phone number of the user to whom the
+     * OTP (One-Time Password) will be sent.
+     */
+    mobile: number;
+    /**
+     * - The country code associated with the
+     * user's mobile number.
+     */
     country_code?: string;
 };
 /** @returns {PointBlankOtpData} */
 declare function PointBlankOtpData(): PointBlankOtpData;
 type PointBlankOtpData = {
+    /**
+     * - A unique identifier for the OTP request.
+     */
     request_id?: string;
+    /**
+     * - The amount of time (in seconds) before
+     * the OTP can be resent to the user.
+     */
     resend_timer?: number;
+    /**
+     * - A message providing additional information
+     * about the OTP request.
+     */
     message?: string;
+    /**
+     * - The mobile number (in integer format)
+     * associated with the OTP request.
+     */
     mobile?: number;
 };
 /** @returns {SendUserMobileOtpResponse} */
 declare function SendUserMobileOtpResponse(): SendUserMobileOtpResponse;
 type SendUserMobileOtpResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - The HTTP status code of the API response
+     * (200/400/500/503).
+     */
+    status?: number;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
     message?: string;
     data?: PointBlankOtpData;
 };
 /** @returns {VerifyOtpData} */
 declare function VerifyOtpData(): VerifyOtpData;
 type VerifyOtpData = {
+    /**
+     * - A unique identifier for the OTP verification request.
+     */
     request_id: string;
+    /**
+     * - The mobile number associated with the OTP verification.
+     */
     mobile: string;
+    /**
+     * - The OTP code received by the user.
+     */
     otp_code: number;
 };
 /** @returns {VerifyMobileOTP} */
 declare function VerifyMobileOTP(): VerifyMobileOTP;
 type VerifyMobileOTP = {
     otp_data: VerifyOtpData;
+    /**
+     * - A unique identifier for the order
+     * associated with the OTP verification.
+     */
     fynd_order_id: string;
 };
 /** @returns {VerifyOtpResponseData} */
 declare function VerifyOtpResponseData(): VerifyOtpResponseData;
 type VerifyOtpResponseData = {
+    /**
+     * - The mobile number associated with the verified OTP.
+     */
     mobile?: string;
+    /**
+     * - A string that provides a message about the
+     * outcome of the verification process.
+     */
     message?: string;
+    /**
+     * - Unique identifier for the order
+     * associated with the OTP verification.
+     */
     fynd_order_id?: string;
+    /**
+     * - A string indicating the country code
+     * associated with the mobile number.
+     */
     country_code?: string;
 };
 /** @returns {VerifyOtpResponse} */
 declare function VerifyOtpResponse(): VerifyOtpResponse;
 type VerifyOtpResponse = {
+    /**
+     * - Represents the HTTP status code of the API response.
+     */
     status?: number;
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
     message?: string;
     data?: VerifyOtpResponseData;
 };
@@ -4620,61 +5328,111 @@ type VerifyOtpResponse = {
 declare function BulkReportsDownloadRequest(): BulkReportsDownloadRequest;
 type BulkReportsDownloadRequest = {
     /**
-     * - Download for specific store ids.
+     * - A list of specific store IDs for which the
+     * reports should be generated.
      */
     store_ids?: string[];
+    /**
+     * - Specifies the type of lane for which the
+     * report is being requested.
+     */
     lane_type?: string;
     /**
-     * - Download report with specific headers
+     * - Allows users to specify custom
+     * headers for the downloaded report.
      */
-    custom_headers?: string;
+    custom_headers?: string[];
     /**
-     * - Type of report
+     * - Indicates the type of report being requested.
      */
     report_type?: string;
     /**
-     * - UTC start date in ISO format
+     * - UTC start date in ISO format, defines the
+     * beginning of the date range for which the report data should be collected.
      */
     start_date?: string;
     /**
-     * - UTC end date in ISO format
+     * - UTC end date in ISO format, defines the end
+     * date range for which the report data should be collected.
      */
     end_date?: string;
     /**
-     * - Download for specific enitites, entities
-     * can be bag, shipment or order_id, etc.
+     * - Download for specific enitites or for
+     * search filters applied, entities can be bag, shipment or order_id, etc.
      */
     entities?: string[];
+    /**
+     * - Specifies the type of filtering to be
+     * applied to the report data.
+     */
     filter_type?: string;
     /**
-     * - Download lanes for cross company.
+     * - Indicates whether the report
+     * should include data from cross-company operations.
      */
     is_cross_company_enabled?: boolean;
+    /**
+     * - A flexible object that allows
+     * users to define custom filters specific to the lanes being reported on.
+     */
     custom_filters_for_lane?: any;
 };
 /** @returns {BulkReportsDownloadResponse} */
 declare function BulkReportsDownloadResponse(): BulkReportsDownloadResponse;
 type BulkReportsDownloadResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - A unique identifier for the batch of reports generated.
+     */
     batch_id?: string;
 };
-/** @returns {BulkFailedResponse} */
-declare function BulkFailedResponse(): BulkFailedResponse;
-type BulkFailedResponse = {
+/** @returns {APIFailedResponse} */
+declare function APIFailedResponse(): APIFailedResponse;
+type APIFailedResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     status?: boolean;
+    /**
+     * - A descriptive message detailing the error that
+     * occurred during the API call.
+     */
     error?: string;
 };
-/** @returns {BulkStateTransistionRequest} */
-declare function BulkStateTransistionRequest(): BulkStateTransistionRequest;
-type BulkStateTransistionRequest = {
+/** @returns {BulkStateTransistionRequestSchema} */
+declare function BulkStateTransistionRequestSchema(): BulkStateTransistionRequestSchema;
+type BulkStateTransistionRequestSchema = {
+    /**
+     * - Endpoint or resource URL where the bulk state
+     * transition request should be directed.
+     */
     url?: string;
+    /**
+     * - Name of the file associated with the bulk operation.
+     */
     file_name?: string;
 };
 /** @returns {BulkStateTransistionResponse} */
 declare function BulkStateTransistionResponse(): BulkStateTransistionResponse;
 type BulkStateTransistionResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     status?: boolean;
+    /**
+     * - A descriptive message providing additional
+     * information about the API response.
+     */
     message?: string;
+    /**
+     * - A unique identifier for the batch of reports generated.
+     */
     batch_id?: string;
 };
 /** @returns {ShipmentActionInfo} */
@@ -4693,116 +5451,419 @@ type ShipmentActionInfo = {
 /** @returns {BulkActionListingData} */
 declare function BulkActionListingData(): BulkActionListingData;
 type BulkActionListingData = {
+    /**
+     * - The unique identifier for the store
+     * associated with the bulk action.
+     */
     store_id?: number;
+    /**
+     * - A timestamp indicating when the bulk
+     * action was uploaded.
+     */
     uploaded_on?: string;
+    /**
+     * - Unique identifier of a company on the platform.
+     */
     company_id?: number;
     shipments_action_info?: ShipmentActionInfo;
+    /**
+     * - Indicates whether the bulk action is
+     * eligible for invoicing.
+     */
     is_invoiceable?: boolean;
+    /**
+     * - The name of the user who initiated or
+     * uploaded the bulk action.
+     */
     user_name?: string;
+    /**
+     * - The URL where the uploaded file can be accessed.
+     */
     file_url?: string;
+    /**
+     * - A flexible object that can contain additional
+     * metadata related to the bulk action.
+     */
     meta?: any;
+    /**
+     * - The type of document that is
+     * used for invoicing this bulk action.
+     */
     invoice_document_type?: string;
+    /**
+     * - The type of document that is used
+     * for creating labels for this bulk action.
+     */
     label_document_type?: string;
+    /**
+     * - The name of the file that was uploaded as
+     * part of the bulk action.
+     */
     file_name?: string;
+    /**
+     * - The name of the store associated with the
+     * bulk action.
+     */
     store_name?: string;
+    /**
+     * - A timestamp (in Unix format) indicating
+     * when the bulk action was last updated.
+     */
     updated_ts?: number;
+    /**
+     * - Indicates the current status of the bulk action.
+     */
     status?: boolean;
+    /**
+     * - A code representing the store, which can be
+     * used for internal tracking or identification.
+     */
     store_code?: string;
+    /**
+     * - Specifies the type of bulk action
+     * being performed.
+     */
     bulk_action_type?: string;
+    /**
+     * - A timestamp indicating when the bulk action
+     * was created.
+     */
     created_ts?: string;
+    /**
+     * - Represents the current status of the
+     * invoice associated with the bulk action.
+     */
     invoice_status?: string;
+    /**
+     * - Indicates whether an
+     * invoice label has been generated for the bulk action or not.
+     */
     do_invoice_label_generated?: boolean;
+    /**
+     * - A unique identifier for the bulk action record.
+     */
     id?: number;
+    /**
+     * - The unique identifier for the user who
+     * initiated the bulk action.
+     */
     user_id?: string;
+    /**
+     * - Indicates the last
+     * invoice label type selected for the bulk action.
+     */
     last_selected_invoice_label_type?: string;
+    /**
+     * - A unique identifier for the batch associated
+     * with this bulk action.
+     */
     batch_id?: string;
+    /**
+     * - The identifier or name of the individual
+     * or system that uploaded the bulk action.
+     */
     uploaded_by?: string;
+    /**
+     * - The type of document
+     * generated for invoice labels.
+     */
+    invoicelabel_document_type?: string;
+    /**
+     * - The number of failed shipments in this
+     * bulk action.
+     */
+    failed_sh_count?: number;
+    /**
+     * - The number of successful shipments
+     * in this bulk action.
+     */
+    successful_sh_count?: number;
+    /**
+     * - The total number of shipments processed in
+     * this bulk action.
+     */
+    total_count?: number;
+    /**
+     * - An array of shipment identifiers
+     * that failed during processing.
+     */
+    failed_shipments?: string[];
+    /**
+     * - The number of shipments
+     * successfully invoiced.
+     */
+    successful_invoiced_count?: number;
+    /**
+     * - The number of shipments that
+     * failed during invoicing.
+     */
+    failed_invoiced_count?: number;
+    /**
+     * - The total number of shipments
+     * that have been invoiced.
+     */
+    total_invoiced_count?: number;
 };
 /** @returns {BulkListinPage} */
 declare function BulkListinPage(): BulkListinPage;
 type BulkListinPage = {
+    /**
+     * - Indicates the current page number being viewed
+     * in the pagination.
+     */
     current?: number;
+    /**
+     * - A flag indicating whether there is a
+     * previous page available.
+     */
     has_previous?: boolean;
+    /**
+     * - A flag indicating whether there is a next
+     * page available.
+     */
     has_next?: boolean;
+    /**
+     * - The total number of items available in the
+     * dataset, regardless of pagination.
+     */
     total?: number;
+    /**
+     * - The total number of items present on the
+     * current page.
+     */
     item_total?: number;
+    /**
+     * - A string that may indicate the type of pagination
+     * or the context of the data being paginated.
+     */
     type?: string;
+    /**
+     * - The number of items per page.
+     */
     size?: number;
 };
 /** @returns {BulkListingResponse} */
 declare function BulkListingResponse(): BulkListingResponse;
 type BulkListingResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - An array containing the details
+     * of the bulk actions listed.
+     */
     data?: BulkActionListingData[];
     page?: BulkListinPage;
+    /**
+     * - Total number of bulk actions available in
+     * the system, regardless of pagination.
+     */
     total_count?: number;
 };
 /** @returns {JobDetailsData} */
 declare function JobDetailsData(): JobDetailsData;
 type JobDetailsData = {
+    /**
+     * - A unique identifier for the batch of bulk
+     * actions associated with this job.
+     */
     batch_id?: string;
+    /**
+     * - The total number of shipments
+     * processed in this job.
+     */
     total_shipments_count?: number;
+    /**
+     * - An array of identifiers for
+     * shipments that were successfully processed.
+     */
     successful_shipment_ids?: string[];
+    /**
+     * - The number of successful
+     * shipments processed in this job.
+     */
     successful_shipments_count?: number;
+    /**
+     * - The number of shipments that
+     * failed to process in this job.
+     */
     failed_shipments_count?: number;
+    /**
+     * - The number of shipments
+     * currently being processed for this job.
+     */
     processing_shipments_count?: number;
+    /**
+     * - Unique identifier of a company on the platform.
+     */
     company_id?: string;
 };
 /** @returns {JobDetailsResponse} */
 declare function JobDetailsResponse(): JobDetailsResponse;
 type JobDetailsResponse = {
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success?: boolean;
+    /**
+     * - An array representing the details of a job.
+     */
     data?: JobDetailsData[];
+    /**
+     * - An URL to download the submitted job file.
+     */
     file_url?: string;
+    /**
+     * - A message providing additional context about
+     * the request's outcome.
+     */
     message?: string;
+    /**
+     * - An array of records that failed
+     * during processing, with additional properties providing details about each failure.
+     */
     failed_records?: any[];
+    /**
+     * - The name or identifier of the user who
+     * uploaded the job.
+     */
     uploaded_by?: string;
+    /**
+     * - The unique identifier for the user who
+     * performed the upload.
+     */
     user_id?: string;
+    /**
+     * - A timestamp indicating when the job was created.
+     */
     created_ts?: string;
+    /**
+     * - A timestamp indicating when the job was uploaded.
+     */
     uploaded_on?: string;
+    /**
+     * - The current status of the job.
+     */
     status?: string;
 };
 /** @returns {JobFailedResponse} */
 declare function JobFailedResponse(): JobFailedResponse;
 type JobFailedResponse = {
+    /**
+     * - The name of the file associated with the failed job.
+     */
     file_name?: string;
+    /**
+     * - The URL where the uploaded bulk file can be accessed.
+     */
     url?: string;
 };
 /** @returns {ManifestPageInfo} */
 declare function ManifestPageInfo(): ManifestPageInfo;
 type ManifestPageInfo = {
+    /**
+     * - The current page number being viewed.
+     */
     current: number;
+    /**
+     * - The total number of records available across all pages.
+     */
     total: number;
+    /**
+     * - Indicates whether there is a next page available.
+     */
     has_next: boolean;
+    /**
+     * - The size of the current page's results set.
+     */
     size: number;
+    /**
+     * - Indicates whether there is a previous page
+     * available.
+     */
     has_previous: boolean;
+    /**
+     * - Indicates whether there is a previous page available.
+     */
     type: string;
 };
 /** @returns {ManifestItemDetails} */
 declare function ManifestItemDetails(): ManifestItemDetails;
 type ManifestItemDetails = {
+    /**
+     * - The quantity of items in the shipment.
+     */
     quantity?: number;
+    /**
+     * - Unique identifier for the shipment.
+     */
     shipment_id: string;
+    /**
+     * - Unique identifier for the order.
+     */
     order_id: string;
+    /**
+     * - Unique identifier for the shipment's air
+     * waybill number.
+     */
     awb_number?: string;
+    /**
+     * - Unique identifier for the invoice
+     * associated with the shipment.
+     */
     invoice_id?: string;
+    /**
+     * - Timestamp indicating when the
+     * shipment was created.
+     */
     shipment_created_at?: string;
 };
 /** @returns {ManifestShipmentListing} */
 declare function ManifestShipmentListing(): ManifestShipmentListing;
 type ManifestShipmentListing = {
+    /**
+     * - Total number of shipment items in the manifest.
+     */
     total_count: number;
-    lane?: string;
+    /**
+     * - Identifier or name for the lane associated with the
+     * shipments.
+     */
+    lane: string;
     page: ManifestPageInfo;
+    /**
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
+     */
     success: boolean;
-    status: number;
-    items?: ManifestItemDetails[];
+    /**
+     * - Represents the HTTP status code of the API response.
+     */
+    status?: number;
+    /**
+     * - List of items in the manifest, each
+     * containing detailed shipment information.
+     */
+    items: ManifestItemDetails[];
+    /**
+     * - Additional message or information regarding
+     * the response.
+     */
     message?: string;
 };
 /** @returns {DateRange} */
 declare function DateRange(): DateRange;
 type DateRange = {
+    /**
+     * - The start date of the range.
+     */
     from_date?: string;
+    /**
+     * - The end date of the range.
+     */
     to_date?: string;
 };
 /** @returns {Filters} */
@@ -4814,71 +5875,116 @@ type Filters = {
      */
     logo?: string;
     /**
-     * - UTC start date in ISO format.
+     * - The start date for filtering records,
+     * provided in UTC and formatted in ISO format.
      */
     from_date?: string;
     /**
-     * - Filter with the specific store.
+     * - Specifies a specific store ID for filtering the records.
      */
     stores?: number;
     /**
-     * - UTC end date in ISO format.
+     * - The end date for filtering records, provided
+     * in UTC and formatted in ISO format.
      */
     to_date?: string;
     /**
-     * - Filter with the specific courier partner name.
+     * - The name of the courier partner to filter records by.
      */
     dp_name?: string;
     /**
      * - Combination of courier partner ids separated by
-     * byte operator.
+     * comma operator.
      */
     dp_ids?: string;
     /**
-     * - Criteria for lane on which shipments must be fetched.
+     * - Specifies criteria related to the shipment lanes.
      */
     lane?: string;
     /**
-     * - Selected shipments mapped to the manifest.
+     * - A list of selected shipments that
+     * are mapped to the manifest.
      */
     selected_shipments?: string;
     /**
-     * - Filter with the specific store name.
+     * - The name of the store for filtering records.
      */
     store_name?: string;
     /**
-     * - Deselected shipments unmapped
-     * from the manifest.
+     * - A list of shipments that have
+     * been unmapped from the manifest.
      */
     deselected_shipments?: string;
 };
 /** @returns {ManifestFile} */
 declare function ManifestFile(): ManifestFile;
 type ManifestFile = {
+    /**
+     * - This field represents the unique identifier for
+     * the file within the storage system.
+     */
     key?: string;
+    /**
+     * - Indicates the geographical region where the
+     * file is stored.
+     */
     region?: string;
+    /**
+     * - The name of the storage bucket where the file is stored.
+     */
     bucket?: string;
 };
 /** @returns {ManifestMediaUpdate} */
 declare function ManifestMediaUpdate(): ManifestMediaUpdate;
 type ManifestMediaUpdate = {
+    /**
+     * - The name or type of the media entity being updated.
+     */
     entity?: string;
+    /**
+     * - A URL or link to the media resource.
+     */
     link?: string;
+    /**
+     * - A numerical code representing the media update
+     * status or type.
+     */
     code?: number;
+    /**
+     * - The type of media being updated.
+     */
     media_type?: string;
+    /**
+     * - Indicate the status of this media update.
+     */
     status?: boolean;
     file?: ManifestFile;
 };
 /** @returns {PDFMeta} */
 declare function PDFMeta(): PDFMeta;
 type PDFMeta = {
+    /**
+     * - This field contains information related to user consent.
+     */
     consent?: string;
+    /**
+     * - An array of media update
+     * entries associated with the manifest.
+     */
     media_updates?: ManifestMediaUpdate[];
 };
 /** @returns {TotalShipmentPricesCount} */
 declare function TotalShipmentPricesCount(): TotalShipmentPricesCount;
 type TotalShipmentPricesCount = {
+    /**
+     * - This field represents the total monetary
+     * value of the shipments.
+     */
     total_price?: number;
+    /**
+     * - This field represents the number of
+     * shipments associated with the manifest.
+     */
     shipment_count?: number;
 };
 /** @returns {ManifestMeta} */
@@ -4890,96 +5996,143 @@ type ManifestMeta = {
 /** @returns {Manifest} */
 declare function Manifest(): Manifest;
 type Manifest = {
+    /**
+     * - Unique identifier of a company on the platform.
+     */
     company_id: number;
     filters?: Filters;
     pdf_meta?: PDFMeta;
     meta?: ManifestMeta;
+    /**
+     * - Indicates whether the manifest is currently
+     * active or has been completed/closed.
+     */
     is_active: boolean;
+    /**
+     * - The unique identifier of the user who created or
+     * modified the manifest.
+     */
     user_id: string;
+    /**
+     * - The date and time when the manifest was created.
+     */
     created_at: string;
+    /**
+     * - A timestamp representing when the manifest
+     * was created, typically in UTC.
+     */
     created_ts?: string;
+    /**
+     * - The unique identifier assigned to the manifest.
+     */
     manifest_id: string;
+    /**
+     * - The current status of the Manifest.
+     */
     status: string;
+    /**
+     * - The unique identifier assigned to the manifest item.
+     */
     id: number;
+    /**
+     * - A universally unique identifier for the manifest.
+     */
     uid: string;
+    /**
+     * - The username or identifier of the individual
+     * who created the manifest.
+     */
     created_by: string;
 };
 /** @returns {ManifestList} */
 declare function ManifestList(): ManifestList;
 type ManifestList = {
+    /**
+     * - A list of manifest records.
+     */
     items?: Manifest[];
     page?: ManifestPageInfo;
 };
 /** @returns {ManifestDetails} */
 declare function ManifestDetails(): ManifestDetails;
 type ManifestDetails = {
+    /**
+     * - An list of detailed information
+     * about individual shipments within the manifest.
+     */
     items?: ManifestItemDetails[];
     page?: ManifestPageInfo;
+    /**
+     * - Represents the count of
+     * additional shipments associated with the manifest.
+     */
     additional_shipment_count?: number;
+    /**
+     * - An array of manifest objects that
+     * provide overarching details about the manifest itself.
+     */
     manifest_details?: Manifest[];
-};
-/** @returns {FiltersRequest} */
-declare function FiltersRequest(): FiltersRequest;
-type FiltersRequest = {
-    date_range?: DateRange;
-    logo?: string;
-    stores: number;
-    dp_name: string;
-    dp_ids: number;
-    lane: string;
-    store_name: string;
-};
-/** @returns {ProcessManifest} */
-declare function ProcessManifest(): ProcessManifest;
-type ProcessManifest = {
-    filters: FiltersRequest;
-    action: string;
-    unique_id: string;
-    manifest_id?: string;
-};
-/** @returns {ProcessManifestResponse} */
-declare function ProcessManifestResponse(): ProcessManifestResponse;
-type ProcessManifestResponse = {
-    /**
-     * - Id of the company.
-     */
-    company_id?: number;
-    filters?: Filters;
-    /**
-     * - Id of the user.
-     */
-    user_id?: string;
-    /**
-     * - Id of the manifest.
-     */
-    manifest_id?: string;
-    action?: string;
-    uid?: string;
-    created_by?: string;
-};
-/** @returns {ProcessManifestItemResponse} */
-declare function ProcessManifestItemResponse(): ProcessManifestItemResponse;
-type ProcessManifestItemResponse = {
-    items?: ProcessManifestResponse;
 };
 /** @returns {FilterInfoOption} */
 declare function FilterInfoOption(): FilterInfoOption;
 type FilterInfoOption = {
+    /**
+     * - The option value or text set for the filter option.
+     */
     text?: string;
+    /**
+     * - The option name indicating the type of
+     * information the filter relates to.
+     */
     name?: string;
+    /**
+     * - Represents the placeholder text that
+     * might appear in a UI element.
+     */
     placeholder_text?: string;
+    /**
+     * - A unique value for the filter used in processing
+     * filter selections.
+     */
     value?: string;
+    /**
+     * - Indicates the minimum size for search
+     * criteria, potentially related to how many items to display or filter.
+     */
     min_search_size?: number;
+    /**
+     * - Indicates whether this option should be
+     * visible in the user interface.
+     */
     show_ui?: boolean;
 };
 /** @returns {FiltersInfo} */
 declare function FiltersInfo(): FiltersInfo;
 type FiltersInfo = {
     options?: FilterInfoOption[];
+    /**
+     * - The label or name for the filter, which indicates
+     * what the filter is related to.
+     */
     text: string;
+    /**
+     * - A placeholder text that provides
+     * guidance on how to use the filter.
+     */
     placeholder_text?: string;
+    /**
+     * - A unique identifier for the filter, used for
+     * processing filter selections.
+     */
     value: string;
+    /**
+     * - Indicates whether the filter is mandatory to
+     * fill out when applying the filter set.
+     */
     required?: boolean;
+    /**
+     * - Specifies the type of filter.
+     */
     type: string;
 };
 /** @returns {ManifestFiltersResponse} */
@@ -5093,58 +6246,64 @@ type EInvoiceRetryShipmentData = {
 declare function CourierPartnerTrackingDetails(): CourierPartnerTrackingDetails;
 type CourierPartnerTrackingDetails = {
     /**
-     * - AWB Number
+     * - The Air Waybill (AWB) number associated with the
+     * shipment, used for tracking the parcel in transit.
      */
     awb: string;
     /**
-     * - Current location of Courier partner
+     * - The current geographic location of the
+     * courier partner.
      */
     dp_location?: string;
     /**
-     * - Courier Partner name
+     * - The name of the courier partner responsible for
+     * the shipment.
      */
     dp_name: string;
     /**
-     * - Status at Courier partner end
+     * - The current status of the shipment as updated
+     * by the courier partner.
      */
     dp_status: string;
     /**
-     * - Date Time at which status was
-     * updated at Courier partner
+     * - The timestamp when the status was
+     * last updated by the courier partner.
      */
     dp_status_updated_at: string;
     /**
-     * - Estimated delivery date
-     * received from Courier partner
+     * - The estimated date and time
+     * for delivery as provided by the courier partner.
      */
     estimated_delivery_date?: string;
     /**
-     * - Id of Tracking history
+     * - A unique identifier for the tracking history entry.
      */
     id?: number;
     /**
-     * - Journey type of the shipment
+     * - Indicates the type of journey the shipment.
      */
     journey: string;
     /**
-     * - Meta field to store Courier partner's meta data
+     * - A field to store additional metadata related to
+     * the courier partner's operations or the shipment.
      */
     meta?: any;
     /**
-     * - Operational status of OMS
+     * - The operational status of the shipment.
      */
     operational_status: string;
     /**
-     * - Promised delivery date received
-     * from Courier partner
+     * - PThe promised date and time for
+     * delivery as provided by the courier partner.
      */
     promised_delivery_date?: string;
     /**
-     * - Remark from courier partner
+     * - Any additional remarks or comments from the
+     * courier partner regarding the shipment.
      */
     remark?: string;
     /**
-     * - Shipment ID
+     * - The unique identifier for the shipment.
      */
     shipment_id: string;
 };
@@ -5209,9 +6368,9 @@ type GenerateInvoiceIDErrorResponseData = {
     invoice_id?: boolean;
     error_message?: string;
 };
-/** @returns {GenerateInvoiceIDRequest} */
-declare function GenerateInvoiceIDRequest(): GenerateInvoiceIDRequest;
-type GenerateInvoiceIDRequest = {
+/** @returns {GenerateInvoiceIDRequestSchema} */
+declare function GenerateInvoiceIDRequestSchema(): GenerateInvoiceIDRequestSchema;
+type GenerateInvoiceIDRequestSchema = {
     shipment_ids: string[];
 };
 /** @returns {GenerateInvoiceIDResponse} */
@@ -5233,52 +6392,58 @@ type ManifestResponse = {
 declare function ProcessManifestRequest(): ProcessManifestRequest;
 type ProcessManifestRequest = {
     /**
-     * - Expected Actions: [save, process,
-     * pdf_generated,invalidate,pdf_failed,complete]
+     * - Represents the operation to be performed on the manifest.
      */
-    action?: string;
+    action: string;
     /**
-     * - Id of The Manifest.
+     * - Represents the identifier for a specific manifest.
      */
     manifest_id?: string;
-    filters?: Filters;
+    filters: Filters;
     /**
-     * - Unique Id.
+     * - A unique identifier for the request or the
+     * operation being performed.
      */
-    unique_id?: string;
+    unique_id: string;
 };
 /** @returns {ManifestItems} */
 declare function ManifestItems(): ManifestItems;
 type ManifestItems = {
     filters?: Filters;
     /**
-     * - Id of the manifest.
+     * - The unique identifier for the manifest.
      */
     manifest_id?: string;
     /**
-     * - Unique Id.
+     * - A unique identifier for the request or
+     * operation involving the manifest items.
      */
     unique_id?: string;
     /**
-     * - Id of the company.
+     * - Unique identifier of a company on the platform.
      */
     company_id?: number;
     /**
-     * - Shipment with the specific courier partner Id.
+     * - Unique identifier of the delivery partner.
      */
     dp_id?: string;
+    /**
+     * - A slug or unique identifier for
+     * the courier partner.
+     */
     courier_partner_slug?: string;
     /**
-     * - Expected Actions: [Save, Process, Pdf
-     * Generated, Invalidate, Pdf Failed, Complete]
+     * - Defines the expected action for the manifest items.
      */
     action?: string;
     /**
-     * - Created date of the manifest.
+     * - The identifier for the user or system that
+     * created the manifest.
      */
     created_by?: string;
     /**
-     * - Id of user.
+     * - The identifier for the user associated with
+     * the manifest items.
      */
     user_id?: string;
 };
@@ -5286,11 +6451,12 @@ type ManifestItems = {
 declare function ManifestErrorResponse(): ManifestErrorResponse;
 type ManifestErrorResponse = {
     /**
-     * - Success State.
+     * - Indicates whether the API call was successful
+     * (true) or not (false).
      */
     success?: boolean;
     /**
-     * - Error String.
+     * - Provides a descriptive error message.
      */
     error?: string;
 };
@@ -5330,7 +6496,6 @@ type ConfigUpdatedResponse = {
 /** @returns {FlagData} */
 declare function FlagData(): FlagData;
 type FlagData = {
-    value?: any;
     filter?: any;
 };
 /** @returns {Flags} */
@@ -5650,6 +6815,34 @@ type TransitionConfigData = {
 declare function TransitionConfigPayload(): TransitionConfigPayload;
 type TransitionConfigPayload = {
     data?: TransitionConfigData;
+};
+/** @returns {CommonErrorResponse} */
+declare function CommonErrorResponse(): CommonErrorResponse;
+type CommonErrorResponse = {
+    /**
+     * - The HTTP status code corresponding to the error.
+     */
+    status?: number;
+    /**
+     * - A message describing the error that occurred.
+     */
+    message?: string;
+};
+/** @returns {ExceptionErrorResponse} */
+declare function ExceptionErrorResponse(): ExceptionErrorResponse;
+type ExceptionErrorResponse = {
+    /**
+     * - A message describing the error that occurred.
+     */
+    message?: string;
+    /**
+     * - The class path of the exception that was thrown.
+     */
+    exception?: string;
+    /**
+     * - The stack trace from the server for the error.
+     */
+    stack_trace?: string;
 };
 /** @returns {Page} */
 declare function Page(): Page;
@@ -6374,6 +7567,11 @@ type PDFLinks = {
     invoice_pos?: string;
     po_invoice?: string;
 };
+/** @returns {AffiliateConfig} */
+declare function AffiliateConfig(): AffiliateConfig;
+type AffiliateConfig = {
+    app_company_id?: number;
+};
 /** @returns {AffiliateDetails} */
 declare function AffiliateDetails(): AffiliateDetails;
 type AffiliateDetails = {
@@ -7039,6 +8237,14 @@ type InvoiceDetails = {
     invoice_url?: string;
     label_url?: string;
 };
+/** @returns {ShipmentDetails} */
+declare function ShipmentDetails(): ShipmentDetails;
+type ShipmentDetails = {
+    dp_id?: string;
+    dp_options?: any;
+    lock_status?: boolean;
+    action_to_status?: any;
+};
 /** @returns {UserDetails} */
 declare function UserDetails(): UserDetails;
 type UserDetails = {
@@ -7071,7 +8277,7 @@ type BagDetails = {
     article?: Article;
     article_details?: ArticleStatusDetails;
     bag_status?: BagStatusHistory[];
-    bag_status_history?: BagStatusHistory;
+    bag_status_history?: BagStatusHistory[];
     brand?: Brand;
     company?: Company;
     current_operational_status?: BagStatusHistory;
@@ -7195,4 +8401,10 @@ declare function Error(): Error;
 type Error = {
     message?: string;
     success?: boolean;
+};
+/** @returns {BulkFailedResponse} */
+declare function BulkFailedResponse(): BulkFailedResponse;
+type BulkFailedResponse = {
+    status?: boolean;
+    error?: string;
 };

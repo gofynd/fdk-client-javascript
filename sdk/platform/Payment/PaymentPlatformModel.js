@@ -2,13 +2,13 @@ const Joi = require("joi");
 
 /**
  * @typedef PaymentGatewayConfigResponse
- * @property {Object[]} [aggregators] - List of all speceific Payment options
- *   with their Details.
+ * @property {Object[]} [aggregators] - List of all config specific to the
+ *   aggregator with their Details.
  * @property {string} app_id - Application Id to which Payment config Mapped
- * @property {string[]} excluded_fields - List of all excluded options with their Details.
+ * @property {string[]} excluded_fields - List of all excluded config with their Details.
  * @property {boolean} success - Response is successful or not
  * @property {boolean} created - Response is created or not
- * @property {string[]} display_fields - List of all included options with their Details.
+ * @property {string[]} display_fields - List of all display related configs, i.e. logo
  */
 
 /**
@@ -24,7 +24,8 @@ const Joi = require("joi");
  * @property {string} config_type - Config Type of the aggregator
  * @property {boolean} [is_active] - Enable or Disable Flag
  * @property {string} key - Api key of the payment aggregator
- * @property {string} merchant_salt - Merchant key of the payment aggregator
+ * @property {string} merchant_salt - The secret key or token provided by the
+ *   payment aggregator for the merchant.
  */
 
 /**
@@ -181,7 +182,7 @@ const Joi = require("joi");
 /**
  * @typedef PaymentOptionAndFlow
  * @property {RootPaymentMode[]} payment_option - Payment options
- * @property {PaymentFlow} payment_flows
+ * @property {PaymentFlow} [payment_flows]
  * @property {PaymentDefaultSelection} [payment_default_selection]
  */
 
@@ -368,9 +369,9 @@ const Joi = require("joi");
 
 /**
  * @typedef RefundAccountResponse
- * @property {boolean} [is_verified_flag]
- * @property {string} message - Response message
- * @property {Object} [data] - Refund account data.
+ * @property {boolean} [is_verified_flag] - Account is verified or not
+ * @property {string} [message] - Response message
+ * @property {Object} data - Refund account data.
  * @property {boolean} success - Success or failure flag.
  */
 
@@ -383,16 +384,16 @@ const Joi = require("joi");
 
 /**
  * @typedef BankDetailsForOTP
- * @property {string} ifsc_code
- * @property {string} account_no
- * @property {string} branch_name
- * @property {string} bank_name
- * @property {string} account_holder
+ * @property {string} ifsc_code - IFSC code of account
+ * @property {string} account_no - Account number
+ * @property {string} branch_name - Branch name of account
+ * @property {string} bank_name - Bank name of account
+ * @property {string} account_holder - Accountg holder name of account
  */
 
 /**
  * @typedef AddBeneficiaryDetailsOTPRequest
- * @property {string} order_id
+ * @property {string} order_id - Order_id for which account will be added
  * @property {BankDetailsForOTP} details
  */
 
@@ -415,11 +416,11 @@ const Joi = require("joi");
  * @property {string} display_name - Display Name Of Account
  * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
  * @property {string} transfer_mode - Transfer Mode Of Account
- * @property {string} email - EMail of User
+ * @property {string} email - Email of User
  * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
  * @property {string} [branch_name] - Branch Name Of Account
  * @property {string} address - Address of User
- * @property {string} modified_on - MOdification Date of Beneficiary
+ * @property {string} modified_on - Modification Date of Beneficiary
  * @property {string} beneficiary_id - Benenficiary Id
  * @property {string} account_no - Account Number
  * @property {string} bank_name - Bank Name Of Account
@@ -434,7 +435,7 @@ const Joi = require("joi");
 
 /**
  * @typedef MultiTenderPaymentMeta
- * @property {Object} [extra_meta]
+ * @property {Object} [extra_meta] - Key value pair for extra data related to payment mode
  * @property {string} [order_id] - Fynd Platform order ID
  * @property {string} [payment_id] - A unique identifier associated with a
  *   specific payment transaction
@@ -452,7 +453,7 @@ const Joi = require("joi");
  * @property {string} [name] - Payment mode name
  * @property {MultiTenderPaymentMeta} [meta]
  * @property {number} amount - Payment amount
- * @property {string} mode
+ * @property {string} mode - Payment mode short code
  */
 
 /**
@@ -478,9 +479,33 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CODLimitConfig
+ * @property {number} storefront - Limit for storefront
+ * @property {number} pos - Limit for pos
+ */
+
+/**
+ * @typedef CODPaymentLimitConfig
+ * @property {boolean} is_active - Boolean flag to show the status
+ * @property {number} usages - Used cod limit
+ * @property {number} user_id - User_id
+ * @property {string} merchant_user_id - Merchant_user_id
+ * @property {number} remaining_limit - Remaining COD limit
+ * @property {CODLimitConfig} limit
+ */
+
+/**
+ * @typedef GetUserBULimitResponse
+ * @property {string} business_unit - COD limit business unit
+ * @property {string} display_name - Display name for cod limit
+ * @property {CODPaymentLimitConfig} config
+ */
+
+/**
  * @typedef GetUserCODLimitResponse
- * @property {CODdata} user_cod_data
+ * @property {GetUserBULimitResponse[]} items
  * @property {boolean} success - Response is successful or not
+ * @property {string} [message] - Message for cod limit
  */
 
 /**
@@ -807,7 +832,8 @@ const Joi = require("joi");
  * @property {string} [payment_link_url] - Url of payment link
  * @property {string} [payment_link_current_status] - Status of payment link
  * @property {string} [external_order_id] - Merchant order id
- * @property {number} [polling_timeout] - Polling request timeout
+ * @property {number} [polling_timeout] - Polling request timeout, perform
+ *   polling till timeout elapsed or payment status is success/failure
  * @property {boolean} success - Successful or failure
  */
 
@@ -833,10 +859,11 @@ const Joi = require("joi");
 
 /**
  * @typedef CreatePaymentLinkMeta
- * @property {string} cart_id
- * @property {string} checkout_mode
- * @property {string} amount
- * @property {string} [assign_card_id]
+ * @property {string} cart_id - Cart id for which payment link needs to be generated.
+ * @property {string} checkout_mode - Checkout mode for the payment link i.e. self
+ * @property {string} amount - Payment link amount to be paid by the customer
+ * @property {string} [assign_card_id] - Assigned card id against which payment
+ *   to be done via payment link
  */
 
 /**
@@ -982,7 +1009,8 @@ const Joi = require("joi");
  * @property {AddressDetail} [shipping_address] - Shipping address
  * @property {number} amount_captured - Amount which is captured or credited to
  *   merchant account
- * @property {number} [amount_refunded]
+ * @property {number} [amount_refunded] - Amount refunded or credited back to
+ *   customer accout
  * @property {string} [aggregator_customer_id] - Unique customer id generated by
  *   payment gateway, not required for standard checkout.
  * @property {string} cancel_url - Cancel url sent by Fynd platform at the time
@@ -1004,13 +1032,13 @@ const Joi = require("joi");
  * @property {AddressDetail} [billing_address] - Billing address
  * @property {boolean} [captured] - Whether the payment is captured (credited to
  *   merchant account) by payment gateway.
- * @property {Object} [meta] - Metadata
- * @property {string} status - Stautus of the payment
+ * @property {Object} [meta] - Extra meta data specific to extension
+ * @property {string} status - Status of the payment
  */
 
 /**
  * @typedef PaymentSessionRequestSerializer
- * @property {Object} [meta] - Meta
+ * @property {Object} [meta] - Extra meta data specific to extensions
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
@@ -1021,6 +1049,7 @@ const Joi = require("joi");
  *   the schema `PaymentSessionDetail`.
  * @property {number} total_amount - Amount paid.
  * @property {string} checksum - Checksum to verify the payload
+ * @property {string} [source] - Source of payment update session
  */
 
 /**
@@ -1083,33 +1112,34 @@ const Joi = require("joi");
 
 /**
  * @typedef PaymentDetailsSerializer
- * @property {Object[]} payment_methods - Method of payment
+ * @property {Object[]} payment_methods - List of payment methods
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {number} [amount_refunded]
+ * @property {number} [amount_refunded] - Already refunded amount for the given
+ *   gid (global identifier for the order).
  * @property {string} currency - Currency of the payment.
  * @property {string} mode - Test or live, test mode uses test credentials so
  *   that actual payment is not created.
- * @property {string} [merchant_locale] - Merchant's locale
- * @property {Object} [meta] - Metadata
+ * @property {string} [merchant_locale] - Merchant's locale (language) i.e. en
+ * @property {Object} [meta] - Extra meta data related to the payment methods
  * @property {string} [kind] - Optional kind of purchase/payment - one time
  *   payment (sale) or subcription. defaults to sale.
  * @property {string} [success_url] - Success url sent by Fynd platform at the
  *   time of payment creation
- * @property {string} status - Stautus of the payment
+ * @property {string} status - Status of the payment
  * @property {boolean} [captured] - Whether the payment is captured (credited to
  *   merchant account) by payment gateway.
  * @property {string} [payment_id] - Unique transaction id generated by payment gateway
  * @property {string} g_user_id - Global user identifier - unique user id
  *   generated by Fynd platform
- * @property {string} [locale] - User's locale
+ * @property {string} [locale] - User's locale (language), i.e. en
  * @property {string} [cancel_url] - Cancel url sent by Fynd platform at the
- *   time of payment creation
+ *   time of payment creation, redirect on payment cancellation
  * @property {string} [created] - Timestamp in epoch
  * @property {number} amount_captured - Amount which is captured or credited to
  *   merchant account
- * @property {number} amount - Amount paid.
+ * @property {number} amount - Amount paid for the order.
  * @property {string} [aggregator_customer_id] - Unique customer id generated by
  *   payment gateway, not required for standard checkout.
  * @property {string} [aggregator_order_id] - Unique order id or payment request
@@ -1551,7 +1581,7 @@ class PaymentPlatformModel {
       payment_option: Joi.array()
         .items(PaymentPlatformModel.RootPaymentMode())
         .required(),
-      payment_flows: PaymentPlatformModel.PaymentFlow().required(),
+      payment_flows: PaymentPlatformModel.PaymentFlow(),
       payment_default_selection: PaymentPlatformModel.PaymentDefaultSelection(),
     });
   }
@@ -1790,8 +1820,8 @@ class PaymentPlatformModel {
   static RefundAccountResponse() {
     return Joi.object({
       is_verified_flag: Joi.boolean(),
-      message: Joi.string().allow("").required(),
-      data: Joi.any(),
+      message: Joi.string().allow(""),
+      data: Joi.any().required(),
       success: Joi.boolean().required(),
     });
   }
@@ -1920,11 +1950,43 @@ class PaymentPlatformModel {
     });
   }
 
+  /** @returns {CODLimitConfig} */
+  static CODLimitConfig() {
+    return Joi.object({
+      storefront: Joi.number().required(),
+      pos: Joi.number().required(),
+    });
+  }
+
+  /** @returns {CODPaymentLimitConfig} */
+  static CODPaymentLimitConfig() {
+    return Joi.object({
+      is_active: Joi.boolean().required(),
+      usages: Joi.number().required(),
+      user_id: Joi.number().required(),
+      merchant_user_id: Joi.string().allow("").required(),
+      remaining_limit: Joi.number().required(),
+      limit: PaymentPlatformModel.CODLimitConfig().required(),
+    });
+  }
+
+  /** @returns {GetUserBULimitResponse} */
+  static GetUserBULimitResponse() {
+    return Joi.object({
+      business_unit: Joi.string().allow("").required(),
+      display_name: Joi.string().allow("").required(),
+      config: PaymentPlatformModel.CODPaymentLimitConfig().required(),
+    });
+  }
+
   /** @returns {GetUserCODLimitResponse} */
   static GetUserCODLimitResponse() {
     return Joi.object({
-      user_cod_data: PaymentPlatformModel.CODdata().required(),
+      items: Joi.array()
+        .items(PaymentPlatformModel.GetUserBULimitResponse())
+        .required(),
       success: Joi.boolean().required(),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -2556,6 +2618,7 @@ class PaymentPlatformModel {
         .required(),
       total_amount: Joi.number().required(),
       checksum: Joi.string().allow("").required(),
+      source: Joi.string().allow(""),
     });
   }
 

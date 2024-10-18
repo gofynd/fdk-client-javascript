@@ -168,7 +168,12 @@ export = OrderApplicationModel;
 /**
  * @typedef Item
  * @property {string[]} [image] - An array of URLs pointing to images of the item.
- * @property {string[]} [l1_categories] - An array of level 1 categories the item belongs.
+ * @property {string[]} [l1_categories] - An array of level 1 categories to
+ *   which the item belongs.
+ * @property {string[]} [l2_category] - An array of level 2 categories to which
+ *   the item belongs.
+ * @property {number} [l2_category_id] - ID representing the level 2 category
+ *   classification of the item
  * @property {ItemBrand} [brand]
  * @property {string} [seller_identifier] - The identifier for the seller .
  * @property {string} [code] - The code or SKU of the item.
@@ -1086,9 +1091,20 @@ type Item = {
      */
     image?: string[];
     /**
-     * - An array of level 1 categories the item belongs.
+     * - An array of level 1 categories to
+     * which the item belongs.
      */
     l1_categories?: string[];
+    /**
+     * - An array of level 2 categories to which
+     * the item belongs.
+     */
+    l2_category?: string[];
+    /**
+     * - ID representing the level 2 category
+     * classification of the item
+     */
+    l2_category_id?: number;
     brand?: ItemBrand;
     /**
      * - The identifier for the seller .

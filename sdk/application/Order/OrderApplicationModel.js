@@ -185,7 +185,12 @@ const Joi = require("joi");
 /**
  * @typedef Item
  * @property {string[]} [image] - An array of URLs pointing to images of the item.
- * @property {string[]} [l1_categories] - An array of level 1 categories the item belongs.
+ * @property {string[]} [l1_categories] - An array of level 1 categories to
+ *   which the item belongs.
+ * @property {string[]} [l2_category] - An array of level 2 categories to which
+ *   the item belongs.
+ * @property {number} [l2_category_id] - ID representing the level 2 category
+ *   classification of the item
  * @property {ItemBrand} [brand]
  * @property {string} [seller_identifier] - The identifier for the seller .
  * @property {string} [code] - The code or SKU of the item.
@@ -888,6 +893,8 @@ class OrderApplicationModel {
     return Joi.object({
       image: Joi.array().items(Joi.string().allow("")),
       l1_categories: Joi.array().items(Joi.string().allow("")),
+      l2_category: Joi.array().items(Joi.string().allow("")),
+      l2_category_id: Joi.number(),
       brand: OrderApplicationModel.ItemBrand(),
       seller_identifier: Joi.string().allow(""),
       code: Joi.string().allow(""),

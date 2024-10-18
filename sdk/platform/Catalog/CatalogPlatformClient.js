@@ -743,7 +743,7 @@ class Catalog {
    * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name createProduct
    * @summary: Create product
    * @description: Users can create a product using this API, associating it with the provided company ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
@@ -799,7 +799,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

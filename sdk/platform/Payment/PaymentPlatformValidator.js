@@ -49,7 +49,7 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
  * @typedef VerifyIfscCodeParam
- * @property {string} [ifscCode]
+ * @property {string} ifscCode
  */
 
 class PaymentPlatformValidator {
@@ -120,7 +120,7 @@ class PaymentPlatformValidator {
   /** @returns {VerifyIfscCodeParam} */
   static verifyIfscCode() {
     return Joi.object({
-      ifscCode: Joi.string().allow(""),
+      ifscCode: Joi.string().allow("").required(),
     }).required();
   }
 }

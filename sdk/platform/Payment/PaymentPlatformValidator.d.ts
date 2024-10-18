@@ -37,7 +37,7 @@ export = PaymentPlatformValidator;
  */
 /**
  * @typedef VerifyIfscCodeParam
- * @property {string} [ifscCode]
+ * @property {string} ifscCode
  */
 declare class PaymentPlatformValidator {
     /** @returns {ActivateAndDectivatePayoutParam} */
@@ -107,7 +107,7 @@ type UpdatePayoutParam = {
     body: PaymentPlatformModel.PayoutRequest;
 };
 type VerifyIfscCodeParam = {
-    ifscCode?: string;
+    ifscCode: string;
 };
 type GetSubscriptionConfigParam = any;
 import PaymentPlatformModel = require("./PaymentPlatformModel");
