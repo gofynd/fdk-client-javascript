@@ -156,10 +156,24 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ZoneMappingDetailType
+ * @property {string} country - Uid for the country.
+ * @property {ZoneMappingRegions[]} [regions] - List of regions with its details.
+ */
+
+/**
  * @typedef ZoneMappingType
  * @property {string} country
- * @property {string[]} [pincode]
- * @property {string[]} [state]
+ * @property {string[]} regions
+ */
+
+/**
+ * @typedef ZoneMappingRegions
+ * @property {string} [display_name] - Name of the region that is in proper casing.
+ * @property {string[]} [parent_id]
+ * @property {string} [parent_uid] - Unique identifier for that regions parent.
+ * @property {string} [sub_type] - What type does the region belong to.
+ * @property {string} [uid] - Unique identifier for that region.
  */
 
 /**
@@ -174,7 +188,6 @@ const Joi = require("joi");
  * @property {number[]} store_ids
  * @property {string} region_type
  * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
  */
 
 /**
@@ -201,7 +214,6 @@ const Joi = require("joi");
  * @property {number[]} store_ids
  * @property {string} [region_type]
  * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
  * @property {number} stores_count
  */
 
@@ -221,9 +233,7 @@ const Joi = require("joi");
  * @property {ZoneProductTypes} product
  * @property {number[]} store_ids
  * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
+ * @property {ZoneMappingDetailType[]} mapping - Country to region mapping for the zone.
  */
 
 /**
@@ -234,9 +244,9 @@ const Joi = require("joi");
  * @property {boolean} is_active
  * @property {GetZoneDataViewChannels[]} channels
  * @property {number[]} store_ids
+ * @property {ZoneProductTypes} product
  * @property {string} region_type
  * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
  */
 
 /**
@@ -261,7 +271,6 @@ const Joi = require("joi");
  * @property {string} slug
  * @property {boolean} is_active
  * @property {number[]} store_ids
- * @property {string} assignment_preference
  */
 
 /**
@@ -1365,12 +1374,32 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {ZoneMappingDetailType} */
+  static ZoneMappingDetailType() {
+    return Joi.object({
+      country: Joi.string().allow("").required(),
+      regions: Joi.array().items(
+        ServiceabilityPlatformModel.ZoneMappingRegions()
+      ),
+    });
+  }
+
   /** @returns {ZoneMappingType} */
   static ZoneMappingType() {
     return Joi.object({
       country: Joi.string().allow("").required(),
-      pincode: Joi.array().items(Joi.string().allow("")),
-      state: Joi.array().items(Joi.string().allow("")),
+      regions: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {ZoneMappingRegions} */
+  static ZoneMappingRegions() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      parent_id: Joi.array().items(Joi.string().allow("")),
+      parent_uid: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
     });
   }
 
@@ -1391,7 +1420,6 @@ class ServiceabilityPlatformModel {
       mapping: Joi.array()
         .items(ServiceabilityPlatformModel.ZoneMappingType())
         .required(),
-      assignment_preference: Joi.string().allow(""),
     });
   }
 
@@ -1428,7 +1456,6 @@ class ServiceabilityPlatformModel {
       mapping: Joi.array()
         .items(ServiceabilityPlatformModel.ZoneMappingType())
         .required(),
-      assignment_preference: Joi.string().allow(""),
       stores_count: Joi.number().required(),
     });
   }
@@ -1455,10 +1482,8 @@ class ServiceabilityPlatformModel {
       store_ids: Joi.array().items(Joi.number()).required(),
       region_type: Joi.string().allow("").required(),
       mapping: Joi.array()
-        .items(ServiceabilityPlatformModel.ZoneMappingType())
+        .items(ServiceabilityPlatformModel.ZoneMappingDetailType())
         .required(),
-      assignment_preference: Joi.string().allow(""),
-      stores_count: Joi.number().required(),
     });
   }
 
@@ -1473,11 +1498,11 @@ class ServiceabilityPlatformModel {
         .items(ServiceabilityPlatformModel.GetZoneDataViewChannels())
         .required(),
       store_ids: Joi.array().items(Joi.number()).required(),
+      product: ServiceabilityPlatformModel.ZoneProductTypes().required(),
       region_type: Joi.string().allow("").required(),
       mapping: Joi.array()
         .items(ServiceabilityPlatformModel.ZoneMappingType())
         .required(),
-      assignment_preference: Joi.string().allow(""),
     });
   }
 
@@ -1508,7 +1533,6 @@ class ServiceabilityPlatformModel {
       slug: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
       store_ids: Joi.array().items(Joi.number()).required(),
-      assignment_preference: Joi.string().allow("").required(),
     });
   }
 

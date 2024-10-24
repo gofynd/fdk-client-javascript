@@ -533,6 +533,8 @@ export = CartPlatformModel;
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
  */
@@ -554,6 +556,8 @@ export = CartPlatformModel;
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
  */
@@ -585,6 +589,8 @@ export = CartPlatformModel;
  * @property {Article[]} article_ids - The list of article object in the price adjustment
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  */
 /**
  * @typedef CartItem
@@ -2505,6 +2511,11 @@ type PriceAdjustmentUpdate = {
      * - The list of article object in the price adjustment
      */
     article_ids: Article[];
+    /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
     meta?: any;
     /**
      * - The ID of the cart
@@ -2554,6 +2565,11 @@ type PriceAdjustment = {
      * - The list of article object in the price adjustment
      */
     article_ids: Article[];
+    /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
     meta?: any;
     /**
      * - The ID of the cart
@@ -2621,6 +2637,11 @@ type PriceAdjustmentAdd = {
      * - The ID of the cart
      */
     cart_id: string;
+    /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
 };
 /** @returns {CartItem} */
 declare function CartItem(): CartItem;

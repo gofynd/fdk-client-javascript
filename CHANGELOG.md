@@ -1,4 +1,4 @@
-# CHANGE LOG (v1.4.15-beta.1) - 1.9.4
+# CHANGE LOG (1.4.15-beta.2) - 1.9.4
 
 ## Application Client
 
@@ -2446,7 +2446,8 @@
 #### updatePriceAdjustment
 
 - ##### What's New
-	- [Added] properties <code>data.value</code>, <code>data.message</code>, <code>data.apply_expiry</code>, <code>data.restrictions</code>, <code>data.article_level_distribution</code>, <code>data.id</code>, <code>data.collection</code>, <code>data.type</code>, <code>data.allowed_refund</code>, <code>data.is_authenticated</code>, <code>data.article_ids</code>, <code>data.meta</code>, <code>data.cart_id</code> in response with status code 200
+	- [Added] property <code>auto_remove</code> of schema <code>PriceAdjustmentUpdate</code> in request body
+	- [Added] properties <code>data.value</code>, <code>data.message</code>, <code>data.apply_expiry</code>, <code>data.restrictions</code>, <code>data.article_level_distribution</code>, <code>data.id</code>, <code>data.collection</code>, <code>data.type</code>, <code>data.allowed_refund</code>, <code>data.is_authenticated</code>, <code>data.article_ids</code>, <code>data.auto_remove</code>, <code>data.meta</code>, <code>data.cart_id</code> in response with status code 200
 	- [Added] <code>data.article_ids</code>, <code>data.article_level_distribution</code>, <code>data.cart_id</code>, <code>data.collection</code>, <code>data.is_authenticated</code>, <code>data.message</code>, <code>data.type</code>, <code>data.value</code> made required in response with status code 200
 
 - ##### What's Deprecated
@@ -2459,7 +2460,8 @@
 #### addPriceAdjustment
 
 - ##### What's New
-	- [Added] properties <code>data.value</code>, <code>data.message</code>, <code>data.apply_expiry</code>, <code>data.restrictions</code>, <code>data.article_level_distribution</code>, <code>data.id</code>, <code>data.collection</code>, <code>data.type</code>, <code>data.allowed_refund</code>, <code>data.is_authenticated</code>, <code>data.article_ids</code>, <code>data.meta</code>, <code>data.cart_id</code> in response with status code 201
+	- [Added] property <code>auto_remove</code> of schema <code>PriceAdjustmentAdd</code> in request body
+	- [Added] properties <code>data.value</code>, <code>data.message</code>, <code>data.apply_expiry</code>, <code>data.restrictions</code>, <code>data.article_level_distribution</code>, <code>data.id</code>, <code>data.collection</code>, <code>data.type</code>, <code>data.allowed_refund</code>, <code>data.is_authenticated</code>, <code>data.article_ids</code>, <code>data.auto_remove</code>, <code>data.meta</code>, <code>data.cart_id</code> in response with status code 201
 	- [Added] <code>data.article_ids</code>, <code>data.article_level_distribution</code>, <code>data.cart_id</code>, <code>data.collection</code>, <code>data.is_authenticated</code>, <code>data.message</code>, <code>data.type</code>, <code>data.value</code> made required in response with status code 201
 
 - ##### What's Deprecated
@@ -2467,6 +2469,12 @@
 
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>data</code> of schema <code>GetPriceAdjustmentResult</code> in response with status code 201
+
+
+#### getPriceAdjustments
+
+- ##### What's New
+	- [Added] property <code>data[].auto_remove</code> of schema <code>PriceAdjustment</code> in response with status code 200
 
 
 #### fetchAndvalidateCartItems
@@ -5630,7 +5638,42 @@
 #### createZone
 
 - ##### What's New
+	- [Added] property <code>mapping[].regions</code> of schema <code>ZoneMappingType</code> in request body
+	- [Breaking] [Added] <code>mapping[].regions</code> made required in request body
+	- [Added] property <code>product</code> of schema <code>CreateZoneData</code> in request body
 	- [Breaking] [Added] <code>store_ids</code> made required in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>mapping[].pincode</code> of schema <code>ZoneMappingType</code> in request body
+	- [Breaking] [Deleted] property <code>mapping[].state</code> of schema <code>ZoneMappingType</code> in request body
+	- [Breaking] [Deleted] property <code>assignment_preference</code> of schema <code>CreateZoneData</code> in request body
+
+
+#### updateZoneById
+
+- ##### What's New
+	- [Added] property <code>mapping[].regions</code> of schema <code>ZoneMappingType</code> in request body
+	- [Breaking] [Added] <code>mapping[].regions</code> made required in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>mapping[].pincode</code> of schema <code>ZoneMappingType</code> in request body
+	- [Breaking] [Deleted] property <code>mapping[].state</code> of schema <code>ZoneMappingType</code> in request body
+	- [Breaking] [Deleted] property <code>assignment_preference</code> of schema <code>UpdateZoneData</code> in request body
+
+
+#### getZoneById
+
+- ##### What's New
+	- [Added] property <code>mapping[].regions</code> of schema <code>ZoneMappingDetailType</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>mapping[].pincode</code> of schema <code>ZoneMappingType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>mapping[].state</code> of schema <code>ZoneMappingType</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>assignment_preference</code> of schema <code>GetZoneByIdSchema</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>stores_count</code> of schema <code>GetZoneByIdSchema</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>stores_count</code> made optional in response with status code 200
 
 
 #### getAllStores

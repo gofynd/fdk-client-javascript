@@ -593,6 +593,8 @@ const Joi = require("joi");
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
  */
@@ -615,6 +617,8 @@ const Joi = require("joi");
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
  */
@@ -649,6 +653,8 @@ const Joi = require("joi");
  * @property {Article[]} article_ids - The list of article object in the price adjustment
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  */
 
 /**
@@ -2647,6 +2653,7 @@ class CartPlatformModel {
       allowed_refund: Joi.boolean(),
       is_authenticated: Joi.boolean().required(),
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
+      auto_remove: Joi.boolean(),
       meta: Joi.any(),
       cart_id: Joi.string().allow("").required(),
     });
@@ -2666,6 +2673,7 @@ class CartPlatformModel {
       allowed_refund: Joi.boolean(),
       is_authenticated: Joi.boolean().required(),
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
+      auto_remove: Joi.boolean(),
       meta: Joi.any(),
       cart_id: Joi.string().allow("").required(),
     });
@@ -2701,6 +2709,7 @@ class CartPlatformModel {
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
       meta: Joi.any(),
       cart_id: Joi.string().allow("").required(),
+      auto_remove: Joi.boolean(),
     });
   }
 

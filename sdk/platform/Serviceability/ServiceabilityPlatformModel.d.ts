@@ -134,10 +134,22 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} tags
  */
 /**
+ * @typedef ZoneMappingDetailType
+ * @property {string} country - Uid for the country.
+ * @property {ZoneMappingRegions[]} [regions] - List of regions with its details.
+ */
+/**
  * @typedef ZoneMappingType
  * @property {string} country
- * @property {string[]} [pincode]
- * @property {string[]} [state]
+ * @property {string[]} regions
+ */
+/**
+ * @typedef ZoneMappingRegions
+ * @property {string} [display_name] - Name of the region that is in proper casing.
+ * @property {string[]} [parent_id]
+ * @property {string} [parent_uid] - Unique identifier for that regions parent.
+ * @property {string} [sub_type] - What type does the region belong to.
+ * @property {string} [uid] - Unique identifier for that region.
  */
 /**
  * @typedef UpdateZoneData
@@ -151,7 +163,6 @@ export = ServiceabilityPlatformModel;
  * @property {number[]} store_ids
  * @property {string} region_type
  * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
  */
 /**
  * @typedef ZoneUpdateRequest
@@ -175,7 +186,6 @@ export = ServiceabilityPlatformModel;
  * @property {number[]} store_ids
  * @property {string} [region_type]
  * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
  * @property {number} stores_count
  */
 /**
@@ -193,9 +203,7 @@ export = ServiceabilityPlatformModel;
  * @property {ZoneProductTypes} product
  * @property {number[]} store_ids
  * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
+ * @property {ZoneMappingDetailType[]} mapping - Country to region mapping for the zone.
  */
 /**
  * @typedef CreateZoneData
@@ -205,9 +213,9 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} is_active
  * @property {GetZoneDataViewChannels[]} channels
  * @property {number[]} store_ids
+ * @property {ZoneProductTypes} product
  * @property {string} region_type
  * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
  */
 /**
  * @typedef ZoneResponse
@@ -229,7 +237,6 @@ export = ServiceabilityPlatformModel;
  * @property {string} slug
  * @property {boolean} is_active
  * @property {number[]} store_ids
- * @property {string} assignment_preference
  */
 /**
  * @typedef GetZoneFromPincodeViewResponse
@@ -1027,7 +1034,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, CourierAccountRequestBody, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerRuleCPListResponse, CourierPartnerRuleResponse, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, ArticleAssignment, ServiceabilityLocation, LocationDetailsServiceability, OptimalLocationsArticles, OptimlLocationsRequestSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse };
+    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingDetailType, ZoneMappingType, ZoneMappingRegions, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, CourierAccountRequestBody, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerRuleCPListResponse, CourierPartnerRuleResponse, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse, ArticleAssignment, ServiceabilityLocation, LocationDetailsServiceability, OptimalLocationsArticles, OptimlLocationsRequestSchema, OptimalLocationArticlesResponse, OptimalLocationAssignedStoresResponse, OptimalLocationsResponse };
 }
 /** @returns {UpdateZoneConfigRequest} */
 declare function UpdateZoneConfigRequest(): UpdateZoneConfigRequest;
@@ -1211,12 +1218,44 @@ type ZoneProductTypes = {
     type: string;
     tags: string[];
 };
+/** @returns {ZoneMappingDetailType} */
+declare function ZoneMappingDetailType(): ZoneMappingDetailType;
+type ZoneMappingDetailType = {
+    /**
+     * - Uid for the country.
+     */
+    country: string;
+    /**
+     * - List of regions with its details.
+     */
+    regions?: ZoneMappingRegions[];
+};
 /** @returns {ZoneMappingType} */
 declare function ZoneMappingType(): ZoneMappingType;
 type ZoneMappingType = {
     country: string;
-    pincode?: string[];
-    state?: string[];
+    regions: string[];
+};
+/** @returns {ZoneMappingRegions} */
+declare function ZoneMappingRegions(): ZoneMappingRegions;
+type ZoneMappingRegions = {
+    /**
+     * - Name of the region that is in proper casing.
+     */
+    display_name?: string;
+    parent_id?: string[];
+    /**
+     * - Unique identifier for that regions parent.
+     */
+    parent_uid?: string;
+    /**
+     * - What type does the region belong to.
+     */
+    sub_type?: string;
+    /**
+     * - Unique identifier for that region.
+     */
+    uid?: string;
 };
 /** @returns {UpdateZoneData} */
 declare function UpdateZoneData(): UpdateZoneData;
@@ -1231,7 +1270,6 @@ type UpdateZoneData = {
     store_ids: number[];
     region_type: string;
     mapping: ZoneMappingType[];
-    assignment_preference?: string;
 };
 /** @returns {ZoneUpdateRequest} */
 declare function ZoneUpdateRequest(): ZoneUpdateRequest;
@@ -1258,7 +1296,6 @@ type GetZoneDataViewItems = {
     store_ids: number[];
     region_type?: string;
     mapping: ZoneMappingType[];
-    assignment_preference?: string;
     stores_count: number;
 };
 /** @returns {GetSingleZoneDataViewResponse} */
@@ -1278,9 +1315,10 @@ type GetZoneByIdSchema = {
     product: ZoneProductTypes;
     store_ids: number[];
     region_type: string;
-    mapping: ZoneMappingType[];
-    assignment_preference?: string;
-    stores_count: number;
+    /**
+     * - Country to region mapping for the zone.
+     */
+    mapping: ZoneMappingDetailType[];
 };
 /** @returns {CreateZoneData} */
 declare function CreateZoneData(): CreateZoneData;
@@ -1291,9 +1329,9 @@ type CreateZoneData = {
     is_active: boolean;
     channels: GetZoneDataViewChannels[];
     store_ids: number[];
+    product: ZoneProductTypes;
     region_type: string;
     mapping: ZoneMappingType[];
-    assignment_preference?: string;
 };
 /** @returns {ZoneResponse} */
 declare function ZoneResponse(): ZoneResponse;
@@ -1318,7 +1356,6 @@ type Zone = {
     slug: string;
     is_active: boolean;
     store_ids: number[];
-    assignment_preference: string;
 };
 /** @returns {GetZoneFromPincodeViewResponse} */
 declare function GetZoneFromPincodeViewResponse(): GetZoneFromPincodeViewResponse;
