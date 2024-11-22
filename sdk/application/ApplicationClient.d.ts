@@ -15,6 +15,7 @@ declare class ApplicationClient {
     configuration: Configuration;
     content: Content;
     fileStorage: FileStorage;
+    finance: Finance;
     lead: Lead;
     logistic: Logistic;
     order: Order;
@@ -71,6 +72,7 @@ import Communication = require("./Communication/CommunicationApplicationClient")
 import Configuration = require("./Configuration/ConfigurationApplicationClient");
 import Content = require("./Content/ContentApplicationClient");
 import FileStorage = require("./FileStorage/FileStorageApplicationClient");
+import Finance = require("./Finance/FinanceApplicationClient");
 import Lead = require("./Lead/LeadApplicationClient");
 import Logistic = require("./Logistic/LogisticApplicationClient");
 import Order = require("./Order/OrderApplicationClient");

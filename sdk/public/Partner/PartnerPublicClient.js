@@ -1,14 +1,16 @@
-const PublicAPIClient = require("../PublicAPIClient");
 const {
   FDKClientValidationError,
   FDKResponseValidationError,
 } = require("../../common/FDKError");
+
+const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+
 const PartnerPublicValidator = require("./PartnerPublicValidator");
 const PartnerPublicModel = require("./PartnerPublicModel");
-const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
+const { Logger } = require("./../../common/Logger");
 
 class Partner {
   constructor(_conf) {

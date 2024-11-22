@@ -133,7 +133,7 @@ export = UserPlatformApplicationValidator;
  * @property {string} attributeDefId - The unique identifier of the attribute
  *   definition to update.
  * @property {string} userId - The unique identifier of the user to update.
- * @property {UserPlatformModel.CreateUserAttributeRequest} body
+ * @property {UserPlatformModel.CreateUserAttribute} body
  */
 /**
  * @typedef UpdateUserAttributeDefinitionParam
@@ -447,7 +447,7 @@ type UpdateUserAttributeParam = {
      * - The unique identifier of the user to update.
      */
     userId: string;
-    body: UserPlatformModel.CreateUserAttributeRequest;
+    body: UserPlatformModel.CreateUserAttribute;
 };
 type UpdateUserAttributeDefinitionParam = {
     /**

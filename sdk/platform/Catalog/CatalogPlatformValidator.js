@@ -4,9 +4,9 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef AddInventoryParam
- * @property {number} itemId - Item code of the product of which size is to be get.
+ * @property {number} itemId - Item id of the product of which size is to be get.
  * @property {string} size - Size in which inventory is to be added.
- * @property {CatalogPlatformModel.InventoryRequest} body
+ * @property {CatalogPlatformModel.InventoryRequestSchema} body
  */
 
 /**
@@ -22,7 +22,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef CreateBulkInventoryParam
  * @property {string} batchId - Batch Id of the bulk create job.
- * @property {CatalogPlatformModel.InventoryBulkRequest} body
+ * @property {CatalogPlatformModel.InventoryBulkRequestSchema} body
  */
 
 /**
@@ -37,19 +37,19 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateInventoryExportParam
- * @property {CatalogPlatformModel.InventoryCreateRequest} body
+ * @property {CatalogPlatformModel.InventoryCreateRequestSchema} body
  */
 
 /**
  * @typedef CreateInventoryExportJobParam
- * @property {CatalogPlatformModel.InventoryExportRequest} body
+ * @property {CatalogPlatformModel.InventoryExportRequestSchema} body
  */
 
 /**
  * @typedef CreateMarketplaceOptinParam
  * @property {string} marketplaceSlug - The marketplace for which the detail
  *   needs to be retrieved.
- * @property {CatalogPlatformModel.OptInPostRequest} body
+ * @property {CatalogPlatformModel.OptInPostRequestSchema} body
  */
 
 /**
@@ -64,7 +64,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateProductBundleParam
- * @property {CatalogPlatformModel.ProductBundleRequest} body
+ * @property {CatalogPlatformModel.ProductBundleRequestSchema} body
  */
 
 /**
@@ -75,7 +75,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef CreateProductsInBulkParam
  * @property {string} batchId - Batch Id in which assets to be uploaded.
- * @property {CatalogPlatformModel.BulkProductRequest} body
+ * @property {CatalogPlatformModel.BulkProductRequestSchema} body
  */
 
 /**
@@ -90,7 +90,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef DeleteProductParam
- * @property {number} itemId - Id of the product to be updated.
+ * @property {number} itemId - Id of the product to be deleted.
+ * @property {CatalogPlatformModel.DeleteProductRequestBody} body
  */
 
 /**
@@ -139,8 +140,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetAllProductHsnCodesParam
- * @property {number} [pageNo] - Page no
- * @property {number} [pageSize] - Page size
+ * @property {number} [pageNo] - Indicates current page number
+ * @property {number} [pageSize] - Indicates page size
  * @property {string} [q] - Search using hsn code, description, reporting_hsn
  * @property {string} [type] - Search using type
  */
@@ -292,6 +293,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef GetProductBundleParam
  * @property {string} [q] - A search string that is searched with product bundle name.
  * @property {string[]} [slug] - Slugs of bundles to be retrieved.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
  */
 
 /**
@@ -433,7 +438,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef ListInventoryExportParam
- * @property {string} [status] - Status of the export job.
+ * @property {string} [status] - Status of the export job.(Pending, Running, Success)
  * @property {string} [fromDate] - Inventory export history filtered according
  *   to from_date.
  * @property {string} [toDate] - Inventory export history filtered according to from_date.
@@ -483,14 +488,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef UpdateMarketplaceOptinParam
  * @property {string} marketplaceSlug - Slug of the marketplace .
- * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequest} body
+ * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema} body
  */
 
 /**
  * @typedef UpdateProductBundleParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
- * @property {CatalogPlatformModel.ProductBundleUpdateRequest} body
+ * @property {CatalogPlatformModel.ProductBundleUpdateRequestSchema} body
  */
 
 /**
@@ -511,8 +516,18 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef UploadBulkProductsParam
  * @property {string} department - Department of the product to be uploaded.
  * @property {string} productType - Product type of the product to be uploaded
- *   i.e. set, standard , digital.
+ *   i.e. set, standard, digital.
  * @property {CatalogPlatformModel.BulkProductJob} body
+ */
+
+/**
+ * @typedef ValidateProductGlobalTemplateParam
+ * @property {string} [itemType] - An `item_type` defines the type of item. The
+ *   default value is standard.
+ * @property {boolean} [bulk] - This specification determines the schema type to
+ *   be retrieved. When set to true, it will return the schema for bulk data;
+ *   when set to false, it will provide the schema for a single product. The
+ *   default value is false.
  */
 
 /**
@@ -538,7 +553,7 @@ class CatalogPlatformValidator {
     return Joi.object({
       itemId: Joi.number().required(),
       size: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.InventoryRequest().required(),
+      body: CatalogPlatformModel.InventoryRequestSchema().required(),
     }).required();
   }
 
@@ -560,7 +575,7 @@ class CatalogPlatformValidator {
   static createBulkInventory() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.InventoryBulkRequest().required(),
+      body: CatalogPlatformModel.InventoryBulkRequestSchema().required(),
     }).required();
   }
 
@@ -581,14 +596,14 @@ class CatalogPlatformValidator {
   /** @returns {CreateInventoryExportParam} */
   static createInventoryExport() {
     return Joi.object({
-      body: CatalogPlatformModel.InventoryCreateRequest().required(),
+      body: CatalogPlatformModel.InventoryCreateRequestSchema().required(),
     }).required();
   }
 
   /** @returns {CreateInventoryExportJobParam} */
   static createInventoryExportJob() {
     return Joi.object({
-      body: CatalogPlatformModel.InventoryExportRequest().required(),
+      body: CatalogPlatformModel.InventoryExportRequestSchema().required(),
     }).required();
   }
 
@@ -596,7 +611,7 @@ class CatalogPlatformValidator {
   static createMarketplaceOptin() {
     return Joi.object({
       marketplaceSlug: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.OptInPostRequest().required(),
+      body: CatalogPlatformModel.OptInPostRequestSchema().required(),
     }).required();
   }
 
@@ -617,7 +632,7 @@ class CatalogPlatformValidator {
   /** @returns {CreateProductBundleParam} */
   static createProductBundle() {
     return Joi.object({
-      body: CatalogPlatformModel.ProductBundleRequest().required(),
+      body: CatalogPlatformModel.ProductBundleRequestSchema().required(),
     }).required();
   }
 
@@ -632,7 +647,7 @@ class CatalogPlatformValidator {
   static createProductsInBulk() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.BulkProductRequest().required(),
+      body: CatalogPlatformModel.BulkProductRequestSchema().required(),
     }).required();
   }
 
@@ -654,6 +669,7 @@ class CatalogPlatformValidator {
   static deleteProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
+      body: CatalogPlatformModel.DeleteProductRequestBody().required(),
     }).required();
   }
 
@@ -888,6 +904,8 @@ class CatalogPlatformValidator {
     return Joi.object({
       q: Joi.string().allow(""),
       slug: Joi.array().items(Joi.string().allow("")),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -1094,7 +1112,7 @@ class CatalogPlatformValidator {
   static updateMarketplaceOptin() {
     return Joi.object({
       marketplaceSlug: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.UpdateMarketplaceOptinRequest().required(),
+      body: CatalogPlatformModel.UpdateMarketplaceOptinRequestSchema().required(),
     }).required();
   }
 
@@ -1102,7 +1120,7 @@ class CatalogPlatformValidator {
   static updateProductBundle() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.ProductBundleUpdateRequest().required(),
+      body: CatalogPlatformModel.ProductBundleUpdateRequestSchema().required(),
     }).required();
   }
 
@@ -1129,6 +1147,14 @@ class CatalogPlatformValidator {
       department: Joi.string().allow("").required(),
       productType: Joi.string().allow("").required(),
       body: CatalogPlatformModel.BulkProductJob().required(),
+    }).required();
+  }
+
+  /** @returns {ValidateProductGlobalTemplateParam} */
+  static validateProductGlobalTemplate() {
+    return Joi.object({
+      itemType: Joi.string().allow(""),
+      bulk: Joi.boolean(),
     }).required();
   }
 

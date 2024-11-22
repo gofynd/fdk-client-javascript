@@ -97,7 +97,7 @@ export = DiscountPlatformModel;
  * @property {DiscountItems[]} items
  */
 /**
- * @typedef FileJobResponse
+ * @typedef FileJobResponseSchema
  * @property {string} stage
  * @property {number} total
  * @property {number} failed
@@ -115,7 +115,7 @@ export = DiscountPlatformModel;
  * @property {UserDetails} [created_by]
  */
 /**
- * @typedef FileJobRequest
+ * @typedef FileJobRequestSchema
  * @property {string} name
  * @property {boolean} is_active
  * @property {number} company_id
@@ -135,7 +135,7 @@ export = DiscountPlatformModel;
  * @property {number[]} [store_ids]
  */
 /**
- * @typedef CancelJobResponse
+ * @typedef CancelJobResponseSchema
  * @property {boolean} success
  */
 /**
@@ -170,7 +170,7 @@ export = DiscountPlatformModel;
 declare class DiscountPlatformModel {
 }
 declare namespace DiscountPlatformModel {
-    export { ValidityObject, CreateUpdateDiscount, DiscountMeta, DiscountJob, FileJobBody, ListOrCalender, DiscountItems, BulkDiscount, FileJobResponse, FileJobRequest, DownloadFileJob, CancelJobResponse, Page, UserDetails, BadRequestObject, BadRequestData, BadRequestObjectGet };
+    export { ValidityObject, CreateUpdateDiscount, DiscountMeta, DiscountJob, FileJobBody, ListOrCalender, DiscountItems, BulkDiscount, FileJobResponseSchema, FileJobRequestSchema, DownloadFileJob, CancelJobResponseSchema, Page, UserDetails, BadRequestObject, BadRequestData, BadRequestObjectGet };
 }
 /** @returns {ValidityObject} */
 declare function ValidityObject(): ValidityObject;
@@ -286,9 +286,9 @@ type BulkDiscount = {
     company_id: number;
     items: DiscountItems[];
 };
-/** @returns {FileJobResponse} */
-declare function FileJobResponse(): FileJobResponse;
-type FileJobResponse = {
+/** @returns {FileJobResponseSchema} */
+declare function FileJobResponseSchema(): FileJobResponseSchema;
+type FileJobResponseSchema = {
     stage: string;
     total: number;
     failed: number;
@@ -308,9 +308,9 @@ type FileJobResponse = {
     modified_on?: string;
     created_by?: UserDetails;
 };
-/** @returns {FileJobRequest} */
-declare function FileJobRequest(): FileJobRequest;
-type FileJobRequest = {
+/** @returns {FileJobRequestSchema} */
+declare function FileJobRequestSchema(): FileJobRequestSchema;
+type FileJobRequestSchema = {
     name: string;
     is_active: boolean;
     company_id: number;
@@ -330,9 +330,9 @@ type DownloadFileJob = {
     brand_ids?: number[];
     store_ids?: number[];
 };
-/** @returns {CancelJobResponse} */
-declare function CancelJobResponse(): CancelJobResponse;
-type CancelJobResponse = {
+/** @returns {CancelJobResponseSchema} */
+declare function CancelJobResponseSchema(): CancelJobResponseSchema;
+type CancelJobResponseSchema = {
     success: boolean;
 };
 /** @returns {Page} */

@@ -1,14 +1,6 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const {
-  FDKClientValidationError,
-  FDKResponseValidationError,
-} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const CommunicationApplicationValidator = require("./CommunicationApplicationValidator");
-const CommunicationApplicationModel = require("./CommunicationApplicationModel");
-const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Communication {
   constructor(_conf) {
@@ -37,13 +29,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationApplicationValidator.GetCommunicationConsentParam} arg
-   *   - Arg object.
-   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CommunicationApplicationModel.CommunicationConsent>} -
-   *   Success response
+   * @returns {Promise<CommunicationConsent>} - Success response
    * @name getCommunicationConsent
    * @summary: Retrieve consent status
    * @description: Get the consent provided by the user for receiving communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/getCommunicationConsent/).
@@ -52,30 +40,6 @@ class Communication {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = CommunicationApplicationValidator.getCommunicationConsent().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationApplicationValidator.getCommunicationConsent().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Communication > getCommunicationConsent \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -98,33 +62,13 @@ class Communication {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = CommunicationApplicationModel.CommunicationConsent().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Communication > getCommunicationConsent \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {CommunicationApplicationValidator.UpsertAppPushtokenParam} arg -
-   *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CommunicationApplicationModel.PushtokenRes>} - Success response
+   * @returns {Promise<PushtokenRes>} - Success response
    * @name upsertAppPushtoken
    * @summary: Update or adds app push token
    * @description: Update or inserts the push token of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertAppPushtoken/).
@@ -133,30 +77,6 @@ class Communication {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = CommunicationApplicationValidator.upsertAppPushtoken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationApplicationValidator.upsertAppPushtoken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Communication > upsertAppPushtoken \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -179,36 +99,13 @@ class Communication {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = CommunicationApplicationModel.PushtokenRes().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Communication > upsertAppPushtoken \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {CommunicationApplicationValidator.UpsertCommunicationConsentParam} arg
-   *   - Arg object.
-   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CommunicationApplicationModel.CommunicationConsentRes>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationConsentRes>} - Success response
    * @name upsertCommunicationConsent
    * @summary: Update or adds consent settings
    * @description: Update or insert the consent provided by the user for receiving communication messages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertCommunicationConsent/).
@@ -217,30 +114,6 @@ class Communication {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = CommunicationApplicationValidator.upsertCommunicationConsent().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationApplicationValidator.upsertCommunicationConsent().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Communication > upsertCommunicationConsent \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -261,24 +134,6 @@ class Communication {
     let responseData = response;
     if (responseHeaders) {
       responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CommunicationApplicationModel.CommunicationConsentRes().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Communication > upsertCommunicationConsent \n ${res_error}`,
-        });
-      }
     }
 
     return response;

@@ -15,7 +15,7 @@ export = ThemePartnerModel;
  * @property {string} [updated_at] - The last update timestamp of the page
  */
 /**
- * @typedef DraftExtensionSectionRequest
+ * @typedef DraftExtensionSection
  * @property {string} [extension_id]
  * @property {string} [bundle_name]
  * @property {string} [organization_id]
@@ -25,11 +25,11 @@ export = ThemePartnerModel;
  * @property {string} [status]
  */
 /**
- * @typedef DraftExtensionSectionResponse
- * @property {SectionsResponse} [sections]
+ * @typedef ExtensionSectionDraft
+ * @property {Sections} [sections]
  */
 /**
- * @typedef SectionsResponse
+ * @typedef Sections
  * @property {boolean} [acknowledged]
  * @property {number} [matched_count]
  * @property {number} [modified_count]
@@ -56,7 +56,7 @@ export = ThemePartnerModel;
  * @property {string} [css]
  */
 /**
- * @typedef PublishExtensionSectionRequest
+ * @typedef PublishExtensionSection
  * @property {string} [extension_id]
  * @property {string} [bundle_name]
  * @property {string} [organization_id]
@@ -66,17 +66,17 @@ export = ThemePartnerModel;
  * @property {string} [status]
  */
 /**
- * @typedef ExtensionPreviewRequest
+ * @typedef PreviewExtension
  * @property {string} [application_id] - Application ID
  * @property {string} [section_preview_hash] - Hash for the section preview
  */
 /**
- * @typedef ExtensionPreviewResponse
+ * @typedef ExtensionPreview
  * @property {string} [message]
  */
 /**
- * @typedef PublishExtensionSectionResponse
- * @property {SectionsResponse} [sections]
+ * @typedef ExtensionSectionPublish
+ * @property {Sections} [sections]
  */
 /**
  * @typedef AvailablePageSectionMetaAttributes
@@ -125,7 +125,15 @@ export = ThemePartnerModel;
  * @property {Object[]} [blocks]
  * @property {Object} [preset]
  * @property {AvailablePagePredicate} [predicate]
- * @property {string} [source]
+ * @property {SectionSource} [__source]
+ */
+/**
+ * @typedef SectionSource
+ * @property {string} [id] - The source id specifying the source of the section.
+ * @property {string} [bundle_name] - This is the extension binding name
+ *   containing this section.
+ * @property {string} [type] - This is source type. It will either be
+ *   themeBundle or extension.
  */
 /**
  * @typedef AvailablePageScreenPredicate
@@ -273,11 +281,25 @@ export = ThemePartnerModel;
  * @property {string} admin_id - The ID of the admin who rejected the theme
  * @property {string} user_id - The ID of the user who submitted the theme
  * @property {string} status - The status of the theme (e.g., rejected)
- * @property {Object} rejection_reasons
+ * @property {RejectedMessages} rejection_reasons
  * @property {string} [created_at] - The date and time when the theme rejection
  *   reasons object was created
  * @property {string} [updated_at] - The date and time when the theme rejection
  *   reasons object was last updated
+ */
+/**
+ * @typedef RejectedMessages
+ * @property {ThemeReviewRequestMessage} [theme_file]
+ * @property {ThemeReviewRequestMessage} [theme_details]
+ * @property {ThemeReviewRequestMessage} [theme_value_proposition]
+ * @property {ThemeReviewRequestMessage} [theme_attributes]
+ * @property {ThemeReviewRequestMessage} [theme_variations]
+ * @property {ThemeReviewRequestMessage} [theme_docs]
+ * @property {ThemeReviewRequestMessage} [theme_review]
+ */
+/**
+ * @typedef ThemeReviewRequestMessage
+ * @property {string} [message] - Message Explaining what the issue is
  */
 /**
  * @typedef AllAvailablePageSchema
@@ -656,7 +678,7 @@ export = ThemePartnerModel;
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { AvailablePageSchema, DraftExtensionSectionRequest, DraftExtensionSectionResponse, SectionsResponse, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSectionRequest, ExtensionPreviewRequest, ExtensionPreviewResponse, PublishExtensionSectionResponse, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
+    export { AvailablePageSchema, DraftExtensionSection, ExtensionSectionDraft, Sections, ExtensionSection, PropExtension, AssetsExtension, PublishExtensionSection, PreviewExtension, ExtensionPreview, ExtensionSectionPublish, AvailablePageSectionMetaAttributes, AvailablePageSeo, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, Action, AvailablePageSchemaSections, SectionSource, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePlatformPredicate, AvailablePageSchedulePredicate, AvailablePagePredicate, MarketplaceThemeSchema, MarketplaceTheme, PaymentInfo, ContactInfo, CatalogSize, MarketplaceThemeImages, CarouselItem, ExploreInfo, Feature, FeatureItem, Highlight, Variation, Documentation, Comments, ThemeRejectionReasons, RejectedMessages, ThemeReviewRequestMessage, AllAvailablePageSchema, PaginationSchema, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, ThemesSchema, Font, FontVariants, FontVariant, Config, ThemeConfiguration, OverlayPopup, DividerStrokeHighlight, UserAlerts, OrderTracking, ThemeConfigListPage, ThemeConfigListPageSettingsProps, CustomConfig, CustomProps, ThemeMeta, ThemePayment, Release, Images, Assets, UMDJs, CommonJS, CSS, SectionItem, GlobalSchema, Prop, Preset, Page, SectionProps, SectionPreset, ImagePickerProp, UrlProp, BlockProps, TextProp, CheckboxProp, RangeProp, Section, Block, Predicate, Screen, ThemeUserSchema, Route, UpdateThemeRequestBody, CreateNewTheme, ActionPage, PageType };
 }
 /** @returns {AvailablePageSchema} */
 declare function AvailablePageSchema(): AvailablePageSchema;
@@ -680,9 +702,9 @@ type AvailablePageSchema = {
      */
     updated_at?: string;
 };
-/** @returns {DraftExtensionSectionRequest} */
-declare function DraftExtensionSectionRequest(): DraftExtensionSectionRequest;
-type DraftExtensionSectionRequest = {
+/** @returns {DraftExtensionSection} */
+declare function DraftExtensionSection(): DraftExtensionSection;
+type DraftExtensionSection = {
     extension_id?: string;
     bundle_name?: string;
     organization_id?: string;
@@ -691,14 +713,14 @@ type DraftExtensionSectionRequest = {
     type?: string;
     status?: string;
 };
-/** @returns {DraftExtensionSectionResponse} */
-declare function DraftExtensionSectionResponse(): DraftExtensionSectionResponse;
-type DraftExtensionSectionResponse = {
-    sections?: SectionsResponse;
+/** @returns {ExtensionSectionDraft} */
+declare function ExtensionSectionDraft(): ExtensionSectionDraft;
+type ExtensionSectionDraft = {
+    sections?: Sections;
 };
-/** @returns {SectionsResponse} */
-declare function SectionsResponse(): SectionsResponse;
-type SectionsResponse = {
+/** @returns {Sections} */
+declare function Sections(): Sections;
+type Sections = {
     acknowledged?: boolean;
     matched_count?: number;
     modified_count?: number;
@@ -727,9 +749,9 @@ type AssetsExtension = {
     js?: string;
     css?: string;
 };
-/** @returns {PublishExtensionSectionRequest} */
-declare function PublishExtensionSectionRequest(): PublishExtensionSectionRequest;
-type PublishExtensionSectionRequest = {
+/** @returns {PublishExtensionSection} */
+declare function PublishExtensionSection(): PublishExtensionSection;
+type PublishExtensionSection = {
     extension_id?: string;
     bundle_name?: string;
     organization_id?: string;
@@ -738,9 +760,9 @@ type PublishExtensionSectionRequest = {
     type?: string;
     status?: string;
 };
-/** @returns {ExtensionPreviewRequest} */
-declare function ExtensionPreviewRequest(): ExtensionPreviewRequest;
-type ExtensionPreviewRequest = {
+/** @returns {PreviewExtension} */
+declare function PreviewExtension(): PreviewExtension;
+type PreviewExtension = {
     /**
      * - Application ID
      */
@@ -750,15 +772,15 @@ type ExtensionPreviewRequest = {
      */
     section_preview_hash?: string;
 };
-/** @returns {ExtensionPreviewResponse} */
-declare function ExtensionPreviewResponse(): ExtensionPreviewResponse;
-type ExtensionPreviewResponse = {
+/** @returns {ExtensionPreview} */
+declare function ExtensionPreview(): ExtensionPreview;
+type ExtensionPreview = {
     message?: string;
 };
-/** @returns {PublishExtensionSectionResponse} */
-declare function PublishExtensionSectionResponse(): PublishExtensionSectionResponse;
-type PublishExtensionSectionResponse = {
-    sections?: SectionsResponse;
+/** @returns {ExtensionSectionPublish} */
+declare function ExtensionSectionPublish(): ExtensionSectionPublish;
+type ExtensionSectionPublish = {
+    sections?: Sections;
 };
 /** @returns {AvailablePageSectionMetaAttributes} */
 declare function AvailablePageSectionMetaAttributes(): AvailablePageSectionMetaAttributes;
@@ -818,7 +840,25 @@ type AvailablePageSchemaSections = {
     blocks?: any[];
     preset?: any;
     predicate?: AvailablePagePredicate;
-    source?: string;
+    __source?: SectionSource;
+};
+/** @returns {SectionSource} */
+declare function SectionSource(): SectionSource;
+type SectionSource = {
+    /**
+     * - The source id specifying the source of the section.
+     */
+    id?: string;
+    /**
+     * - This is the extension binding name
+     * containing this section.
+     */
+    bundle_name?: string;
+    /**
+     * - This is source type. It will either be
+     * themeBundle or extension.
+     */
+    type?: string;
 };
 /** @returns {AvailablePageScreenPredicate} */
 declare function AvailablePageScreenPredicate(): AvailablePageScreenPredicate;
@@ -1143,7 +1183,7 @@ type ThemeRejectionReasons = {
      * - The status of the theme (e.g., rejected)
      */
     status: string;
-    rejection_reasons: any;
+    rejection_reasons: RejectedMessages;
     /**
      * - The date and time when the theme rejection
      * reasons object was created
@@ -1154,6 +1194,25 @@ type ThemeRejectionReasons = {
      * reasons object was last updated
      */
     updated_at?: string;
+};
+/** @returns {RejectedMessages} */
+declare function RejectedMessages(): RejectedMessages;
+type RejectedMessages = {
+    theme_file?: ThemeReviewRequestMessage;
+    theme_details?: ThemeReviewRequestMessage;
+    theme_value_proposition?: ThemeReviewRequestMessage;
+    theme_attributes?: ThemeReviewRequestMessage;
+    theme_variations?: ThemeReviewRequestMessage;
+    theme_docs?: ThemeReviewRequestMessage;
+    theme_review?: ThemeReviewRequestMessage;
+};
+/** @returns {ThemeReviewRequestMessage} */
+declare function ThemeReviewRequestMessage(): ThemeReviewRequestMessage;
+type ThemeReviewRequestMessage = {
+    /**
+     * - Message Explaining what the issue is
+     */
+    message?: string;
 };
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;

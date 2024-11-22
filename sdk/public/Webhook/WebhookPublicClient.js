@@ -1,14 +1,16 @@
-const PublicAPIClient = require("../PublicAPIClient");
 const {
   FDKClientValidationError,
   FDKResponseValidationError,
 } = require("../../common/FDKError");
+
+const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+
 const WebhookPublicValidator = require("./WebhookPublicValidator");
 const WebhookPublicModel = require("./WebhookPublicModel");
-const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
+const { Logger } = require("./../../common/Logger");
 
 class Webhook {
   constructor(_conf) {
@@ -44,7 +46,7 @@ class Webhook {
    * @param {WebhookPublicValidator.FetchAllWebhookEventsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
+   * @returns {Promise<WebhookPublicModel.EventDetails>} - Success response
    * @name fetchAllWebhookEvents
    * @summary: Fetch all webhook events.
    * @description: Retrieve a list of all webhook events in the public server setup. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/fetchAllWebhookEvents/).
@@ -99,7 +101,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPublicModel.EventConfigResponse().validate(responseData, {
+    } = WebhookPublicModel.EventDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -200,7 +202,7 @@ class Webhook {
    * @param {WebhookPublicValidator.QueryWebhookEventDetailsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
+   * @returns {Promise<WebhookPublicModel.EventDetails>} - Success response
    * @name queryWebhookEventDetails
    * @summary: Query webhook event details.
    * @description: Query and obtain detailed information about webhook events in the public server configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/queryWebhookEventDetails/).
@@ -257,7 +259,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPublicModel.EventConfigResponse().validate(responseData, {
+    } = WebhookPublicModel.EventDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -280,7 +282,7 @@ class Webhook {
    * @param {WebhookPublicValidator.TestHandlerTransformationParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<WebhookPublicModel.TransformEventResponse>} - Success response
+   * @returns {Promise<WebhookPublicModel.TransformEventResult>} - Success response
    * @name testHandlerTransformation
    * @summary: Test transformation of handler
    * @description: Test transformation of handler - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/testHandlerTransformation/).
@@ -337,7 +339,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPublicModel.TransformEventResponse().validate(responseData, {
+    } = WebhookPublicModel.TransformEventResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -360,7 +362,7 @@ class Webhook {
    * @param {WebhookPublicValidator.ValidateSchemaParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<WebhookPublicModel.ValidateSchemaResponse>} - Success response
+   * @returns {Promise<WebhookPublicModel.ValidateSchemaResult>} - Success response
    * @name validateSchema
    * @summary: Validate Schema for an event
    * @description: Validate Schema for an event - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/validateSchema/).
@@ -415,7 +417,7 @@ class Webhook {
 
     const {
       error: res_error,
-    } = WebhookPublicModel.ValidateSchemaResponse().validate(responseData, {
+    } = WebhookPublicModel.ValidateSchemaResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

@@ -570,7 +570,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>}
+   * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult>}
    *   - Success response
    *
    * @name createEventSubscriptions
@@ -628,7 +628,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse().validate(
+    } = CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -654,7 +654,7 @@ class Communication {
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<
-   *   CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse[]
+   *   CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult[]
    * >}
    *   - Success response
    *
@@ -712,7 +712,7 @@ class Communication {
     }
 
     const { error: res_error } = Joi.array()
-      .items(CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse())
+      .items(CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult())
       .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
@@ -1462,7 +1462,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>}
+   * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult>}
    *   - Success response
    *
    * @name editEventSubscriptions
@@ -1522,7 +1522,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse().validate(
+    } = CommunicationPlatformModel.EventSubscriptionsBulkUpdateResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3043,7 +3043,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>}
+   * @returns {Promise<CommunicationPlatformModel.GetGlobalVariablesResult>}
    *   - Success response
    *
    * @name getGlobalVariables
@@ -3097,7 +3097,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GlobalVariablesGetResponse().validate(
+    } = CommunicationPlatformModel.GetGlobalVariablesResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4360,7 +4360,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>}
+   * @returns {Promise<CommunicationPlatformModel.CreateGlobalVariablesResult>}
    *   - Success response
    *
    * @name postGlobalVariables
@@ -4418,7 +4418,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GlobalVariablesPostResponse().validate(
+    } = CommunicationPlatformModel.CreateGlobalVariablesResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4443,7 +4443,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EngineResult>} - Success response
    * @name sendCommunicationAsynchronously
    * @summary: Send communication asynchronously
    * @description: Sends communications to sellers with deffered delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationAsynchronously/).
@@ -4499,7 +4499,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EngineResponse().validate(responseData, {
+    } = CommunicationPlatformModel.EngineResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4524,7 +4524,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EngineResult>} - Success response
    * @name sendCommunicationSynchronously
    * @summary: Send communication synchronously
    * @description: Sends real-time communications to sellers with immediate delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationSynchronously/).
@@ -4580,7 +4580,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EngineResponse().validate(responseData, {
+    } = CommunicationPlatformModel.EngineResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4684,8 +4684,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
-   *   Success response
+   * @returns {Promise<CommunicationPlatformModel.TriggerJobResult>} - Success response
    * @name triggerCampaignJob
    * @summary: Trigger a campaign job
    * @description: Initiates a job to execute a communication campaign. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/triggerCampaignJob/).
@@ -4741,7 +4740,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.TriggerJobResponse().validate(responseData, {
+    } = CommunicationPlatformModel.TriggerJobResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

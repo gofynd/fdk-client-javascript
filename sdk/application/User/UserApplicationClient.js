@@ -1,14 +1,6 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const {
-  FDKClientValidationError,
-  FDKResponseValidationError,
-} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const UserApplicationValidator = require("./UserApplicationValidator");
-const UserApplicationModel = require("./UserApplicationModel");
-const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class User {
   constructor(_conf) {
@@ -103,10 +95,9 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.AddEmailParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyEmailOTPSuccess>} - Success response
+   * @returns {Promise<VerifyEmailOTPSuccess>} - Success response
    * @name addEmail
    * @summary: Add Email to Profile
    * @description: Add a new email address to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
@@ -115,26 +106,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.addEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.addEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > addEmail \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -158,32 +129,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyEmailOTPSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > addEmail \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.AddMobileNumberParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyMobileOTPSuccess>} - Success response
+   * @returns {Promise<VerifyMobileOTPSuccess>} - Success response
    * @name addMobileNumber
    * @summary: Add Mobile Number to Profile
    * @description: Add a new mobile number to the user's profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
@@ -192,28 +144,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.addMobileNumber().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.addMobileNumber().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > addMobileNumber \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -237,32 +167,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyMobileOTPSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > addMobileNumber \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.DeleteEmailParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
+   * @returns {Promise<LoginSuccess>} - Success response
    * @name deleteEmail
    * @summary: Delete Email From Profile
    * @description: Delete email from profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteEmail/).
@@ -273,26 +184,6 @@ class User {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.deleteEmail().validate(
-      { active, primary, verified, email, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.deleteEmail().validate(
-      { active, primary, verified, email, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > deleteEmail \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
     query_params["active"] = active;
@@ -320,32 +211,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > deleteEmail \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.DeleteMobileNumberParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
+   * @returns {Promise<LoginSuccess>} - Success response
    * @name deleteMobileNumber
    * @summary: Delete Mobile Number From Profile
    * @description: Delete mobile number from profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteMobileNumber/).
@@ -362,28 +234,6 @@ class User {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.deleteMobileNumber().validate(
-      { active, primary, verified, countryCode, phone, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.deleteMobileNumber().validate(
-      { active, primary, verified, countryCode, phone, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > deleteMobileNumber \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
     query_params["active"] = active;
@@ -412,32 +262,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > deleteMobileNumber \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.DeleteUserParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.DeleteUserSuccess>} - Success response
+   * @returns {Promise<DeleteUserSuccess>} - Success response
    * @name deleteUser
    * @summary: Verify OTP and Delete User
    * @description: Verify OTP sent to mobile/email and delete the user's account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteUser/).
@@ -446,26 +277,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.deleteUser().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.deleteUser().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > deleteUser \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -488,32 +299,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.DeleteUserSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > deleteUser \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.ForgotPasswordParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
+   * @returns {Promise<LoginSuccess>} - Success response
    * @name forgotPassword
    * @summary: Reset Password via Code and login
    * @description: Reset a password using the code sent on email or sms the login. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/forgotPassword/).
@@ -522,28 +314,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.forgotPassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.forgotPassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > forgotPassword \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -566,32 +336,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > forgotPassword \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.GetListOfActiveSessionsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.SessionListSuccess>} - Success response
+   * @returns {Promise<SessionListSuccess>} - Success response
    * @name getListOfActiveSessions
    * @summary: Get List OF Active Sessions
    * @description: Retrieve all active sessions of a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getListOfActiveSessions/).
@@ -600,30 +351,6 @@ class User {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = UserApplicationValidator.getListOfActiveSessions().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.getListOfActiveSessions().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > getListOfActiveSessions \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -646,32 +373,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.SessionListSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > getListOfActiveSessions \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.GetLoggedInUserParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.UserObjectSchema>} - Success response
+   * @returns {Promise<UserObjectSchema>} - Success response
    * @name getLoggedInUser
    * @summary: Get Logged in User
    * @description: Retrieve information about the currently logged-in user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getLoggedInUser/).
@@ -680,28 +388,6 @@ class User {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.getLoggedInUser().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.getLoggedInUser().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > getLoggedInUser \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -724,32 +410,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.UserObjectSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > getLoggedInUser \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.GetPlatformConfigParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.PlatformSchema>} - Success response
+   * @returns {Promise<PlatformSchema>} - Success response
    * @name getPlatformConfig
    * @summary: Get Platform Configuration
    * @description: Retrieve platform sales channel authentication configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getPlatformConfig/).
@@ -758,28 +425,6 @@ class User {
     { name, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.getPlatformConfig().validate(
-      { name },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.getPlatformConfig().validate(
-      { name },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > getPlatformConfig \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["name"] = name;
 
@@ -803,32 +448,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.PlatformSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > getPlatformConfig \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.GetUserAttributesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
+   * @returns {Promise<UserAttributes>} - Success response
    * @name getUserAttributes
    * @summary: Get User Attributes
    * @description: Get the list of user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
@@ -837,28 +463,6 @@ class User {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.getUserAttributes().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.getUserAttributes().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > getUserAttributes \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["slug"] = slug;
 
@@ -882,32 +486,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.UserAttributes().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > getUserAttributes \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.HasPasswordParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.HasPasswordSuccess>} - Success response
+   * @returns {Promise<HasPasswordSuccess>} - Success response
    * @name hasPassword
    * @summary: Check Password Existence
    * @description: Check if user has set an account password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/hasPassword/).
@@ -916,26 +501,6 @@ class User {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.hasPassword().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.hasPassword().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > hasPassword \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -958,32 +523,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.HasPasswordSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > hasPassword \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithAppleIOSParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
+   * @returns {Promise<AuthSuccess>} - Success response
    * @name loginWithAppleIOS
    * @summary: iOS Login with Apple
    * @description: Enable ios users to log in to the system using their apple id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
@@ -992,28 +538,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.loginWithAppleIOS().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithAppleIOS().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithAppleIOS \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1037,32 +561,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > loginWithAppleIOS \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithEmailAndPasswordParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
+   * @returns {Promise<LoginSuccess>} - Success response
    * @name loginWithEmailAndPassword
    * @summary: Email and Password Login
    * @description: Allow login using an email and password combination. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithEmailAndPassword/).
@@ -1071,30 +576,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = UserApplicationValidator.loginWithEmailAndPassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithEmailAndPassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithEmailAndPassword \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1117,32 +598,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > loginWithEmailAndPassword \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithFacebookParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
+   * @returns {Promise<AuthSuccess>} - Success response
    * @name loginWithFacebook
    * @summary: Login with Facebook
    * @description: Enable users to log in to the system using their facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
@@ -1151,28 +613,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.loginWithFacebook().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithFacebook().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithFacebook \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1196,32 +636,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > loginWithFacebook \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithGoogleParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
+   * @returns {Promise<AuthSuccess>} - Success response
    * @name loginWithGoogle
    * @summary: Login with Google
    * @description: Enable website users to log in to the system using their google accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
@@ -1230,28 +651,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.loginWithGoogle().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithGoogle().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithGoogle \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1275,32 +674,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > loginWithGoogle \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithGoogleAndroidParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
+   * @returns {Promise<AuthSuccess>} - Success response
    * @name loginWithGoogleAndroid
    * @summary: Android Login with Google
    * @description: Enable android users to log in to the system using their facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
@@ -1309,30 +689,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = UserApplicationValidator.loginWithGoogleAndroid().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithGoogleAndroid().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithGoogleAndroid \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1356,32 +712,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > loginWithGoogleAndroid \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithGoogleIOSParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
+   * @returns {Promise<AuthSuccess>} - Success response
    * @name loginWithGoogleIOS
    * @summary: iOS Login with Google
    * @description: Enable ios users to log in to the system using their facebook accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
@@ -1390,28 +727,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.loginWithGoogleIOS().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithGoogleIOS().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithGoogleIOS \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1435,32 +750,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > loginWithGoogleIOS \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithOTPParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.SendOtpResponse>} - Success response
+   * @returns {Promise<SendOtp>} - Success response
    * @name loginWithOTP
    * @summary: Login with Mobile OTP
    * @description: Allow users to log in using a one-time password sent to their mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
@@ -1469,28 +765,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.loginWithOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithOTP \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1514,32 +788,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.SendOtpResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > loginWithOTP \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithTokenParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
+   * @returns {Promise<LoginSuccess>} - Success response
    * @name loginWithToken
    * @summary: Login with Token
    * @description: Login user using a token for authentication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithToken/).
@@ -1548,28 +803,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.loginWithToken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithToken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithToken \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1592,32 +825,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > loginWithToken \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LogoutParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.LogoutSuccess>} - Success response
+   * @returns {Promise<LogoutSuccess>} - Success response
    * @name logout
    * @summary: Logout Current User
    * @description: Logout currently logged-in user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/logout/).
@@ -1626,26 +840,6 @@ class User {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.logout().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.logout().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > logout \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1668,32 +862,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LogoutSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > logout \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.RegisterWithFormParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.RegisterFormSuccess>} - Success response
+   * @returns {Promise<RegisterFormSuccess>} - Success response
    * @name registerWithForm
    * @summary: Register User with Form
    * @description: Enable new users to register using a form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
@@ -1702,28 +877,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.registerWithForm().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.registerWithForm().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > registerWithForm \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1747,33 +900,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.RegisterFormSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > registerWithForm \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.ResetForgotPasswordParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.ResetForgotPasswordSuccess>} -
-   *   Success response
+   * @returns {Promise<ResetForgotPasswordSuccess>} - Success response
    * @name resetForgotPassword
    * @summary: Reset Password via Code
    * @description: Reset a password using the code sent on email or sms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/resetForgotPassword/).
@@ -1782,28 +915,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.resetForgotPassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.resetForgotPassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > resetForgotPassword \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1826,32 +937,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.ResetForgotPasswordSuccess().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > resetForgotPassword \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendForgotOTPOnEmailParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
+   * @returns {Promise<EmailOtpSuccess>} - Success response
    * @name sendForgotOTPOnEmail
    * @summary: Send Email OTP for Forgot Password
    * @description: Send a one-time password to the user's email for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
@@ -1860,28 +952,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.sendForgotOTPOnEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendForgotOTPOnEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendForgotOTPOnEmail \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1905,32 +975,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.EmailOtpSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendForgotOTPOnEmail \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendForgotOTPOnMobileParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
+   * @returns {Promise<SendOtpSuccess>} - Success response
    * @name sendForgotOTPOnMobile
    * @summary: Send mobile OTP for forgot-password
    * @description: Send a one-time password to the user's mobile for verification when resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
@@ -1939,28 +990,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.sendForgotOTPOnMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendForgotOTPOnMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendForgotOTPOnMobile \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1984,32 +1013,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.OtpSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendForgotOTPOnMobile \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
+   * @returns {Promise<EmailOtpSuccess>} - Success response
    * @name sendOTPOnEmail
    * @summary: Send OTP on Email
    * @description: Send a one-time password to the user's email for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
@@ -2018,28 +1028,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.sendOTPOnEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendOTPOnEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendOTPOnEmail \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -2063,32 +1051,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.EmailOtpSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendOTPOnEmail \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendOTPOnMobileParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
+   * @returns {Promise<SendOtpSuccess>} - Success response
    * @name sendOTPOnMobile
    * @summary: Send OTP on Mobile
    * @description: Send a one-time password to the user's mobile for verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
@@ -2097,28 +1066,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.sendOTPOnMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendOTPOnMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendOTPOnMobile \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -2142,32 +1089,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.OtpSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendOTPOnMobile \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendResetPasswordEmailParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
+   * @returns {Promise<ResetPasswordSuccess>} - Success response
    * @name sendResetPasswordEmail
    * @summary: Reset Password via Email
    * @description: Send a password reset link to the user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
@@ -2176,30 +1104,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = UserApplicationValidator.sendResetPasswordEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendResetPasswordEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendResetPasswordEmail \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -2223,29 +1127,10 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendResetPasswordEmail \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<any>} - Success response
@@ -2257,30 +1142,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = UserApplicationValidator.sendResetPasswordMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendResetPasswordMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendResetPasswordMobile \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -2304,29 +1165,13 @@ class User {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: true });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendResetPasswordMobile \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendResetTokenParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
+   * @returns {Promise<ResetPasswordSuccess>} - Success response
    * @name sendResetToken
    * @summary: Validate Password Reset Code
    * @description: Validate password reset link code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetToken/).
@@ -2335,28 +1180,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.sendResetToken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendResetToken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendResetToken \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2379,34 +1202,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendResetToken \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendVerificationLinkToEmailParam} arg -
-   *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>} -
-   *   Success response
+   * @returns {Promise<SendEmailVerifyLinkSuccess>} - Success response
    * @name sendVerificationLinkToEmail
    * @summary: Send Verification Link to Email
    * @description: Send a verification link to a newly added email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
@@ -2415,30 +1217,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = UserApplicationValidator.sendVerificationLinkToEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendVerificationLinkToEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendVerificationLinkToEmail \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -2462,35 +1240,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.SendEmailVerifyLinkSuccess().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendVerificationLinkToEmail \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendVerificationLinkToMobileParam} arg
-   *   - Arg object.
-   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>} -
-   *   Success response
+   * @returns {Promise<SendMobileVerifyLinkSuccess>} - Success response
    * @name sendVerificationLinkToMobile
    * @summary: Send Verification Link to Mobile
    * @description: Send a verification link to a newly added mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
@@ -2499,30 +1255,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = UserApplicationValidator.sendVerificationLinkToMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendVerificationLinkToMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendVerificationLinkToMobile \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -2546,32 +1278,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.SendMobileVerifyLinkSuccess().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > sendVerificationLinkToMobile \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SetEmailAsPrimaryParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
+   * @returns {Promise<LoginSuccess>} - Success response
    * @name setEmailAsPrimary
    * @summary: Set Email as Primary
    * @description: Set an email address as the primary contact for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setEmailAsPrimary/).
@@ -2580,28 +1293,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.setEmailAsPrimary().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.setEmailAsPrimary().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > setEmailAsPrimary \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2624,32 +1315,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > setEmailAsPrimary \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SetMobileNumberAsPrimaryParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
+   * @returns {Promise<LoginSuccess>} - Success response
    * @name setMobileNumberAsPrimary
    * @summary: Set Mobile as Primary
    * @description: Set a mobile number as the primary contact for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setMobileNumberAsPrimary/).
@@ -2658,30 +1330,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = UserApplicationValidator.setMobileNumberAsPrimary().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.setMobileNumberAsPrimary().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > setMobileNumberAsPrimary \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2704,62 +1352,21 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > setMobileNumberAsPrimary \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.UpdatePasswordParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
+   * @returns {Promise<VerifyEmailSuccess>} - Success response
    * @name updatePassword
-   * @summary: Update Password
+   * @summary: Update password
    * @description: Allow user to change their password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updatePassword/).
    */
   async updatePassword(
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.updatePassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.updatePassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > updatePassword \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2782,32 +1389,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > updatePassword \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.UpdateProfileParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.ProfileEditSuccess>} - Success response
+   * @returns {Promise<ProfileEditSuccess>} - Success response
    * @name updateProfile
    * @summary: Edit User Profile Details
    * @description: Allow users to modify and update their profile details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
@@ -2816,28 +1404,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.updateProfile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.updateProfile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > updateProfile \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -2861,32 +1427,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.ProfileEditSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > updateProfile \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.UpdateUserAttributesParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
+   * @returns {Promise<UserAttributes>} - Success response
    * @name updateUserAttributes
    * @summary: Update User Attributes
    * @description: Update user attributes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
@@ -2895,28 +1442,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.updateUserAttributes().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.updateUserAttributes().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > updateUserAttributes \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -2939,32 +1464,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.UserAttributes().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > updateUserAttributes \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.UserExistsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.UserExistsResponse>} - Success response
+   * @returns {Promise<UserExistsDetails>} - Success response
    * @name userExists
    * @summary: Chcek User Existence
    * @description: Check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).
@@ -2973,26 +1479,6 @@ class User {
     { q, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.userExists().validate(
-      { q },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.userExists().validate(
-      { q },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > userExists \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["q"] = q;
 
@@ -3016,32 +1502,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.UserExistsResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > userExists \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyEmailParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
+   * @returns {Promise<VerifyEmailSuccess>} - Success response
    * @name verifyEmail
    * @summary: Verify Email with Code
    * @description: Verify user email with a code sent within a link sent to their email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmail/).
@@ -3050,26 +1517,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.verifyEmail().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.verifyEmail().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyEmail \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -3092,32 +1539,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > verifyEmail \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyEmailForgotOTPParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
+   * @returns {Promise<VerifyForgotOtpSuccess>} - Success response
    * @name verifyEmailForgotOTP
    * @summary: Verify Email OTP for Forgot Password
    * @description: Verify one-time password sent to user's email for resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
@@ -3126,28 +1554,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.verifyEmailForgotOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.verifyEmailForgotOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyEmailForgotOTP \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -3171,32 +1577,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyForgotOtpSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > verifyEmailForgotOTP \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyEmailOTPParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
+   * @returns {Promise<VerifyOtpSuccess>} - Success response
    * @name verifyEmailOTP
    * @summary: Verify Email OTP
    * @description: Verify one-time password sent to user's email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailOTP/).
@@ -3205,28 +1592,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.verifyEmailOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.verifyEmailOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyEmailOTP \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -3250,32 +1615,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyOtpSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > verifyEmailOTP \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyMobileParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
+   * @returns {Promise<VerifyEmailSuccess>} - Success response
    * @name verifyMobile
    * @summary: Verify Mobile with Code
    * @description: Verify user mobile with a code sent within a link sent to their mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobile/).
@@ -3284,28 +1630,6 @@ class User {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.verifyMobile().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.verifyMobile().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyMobile \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -3328,32 +1652,13 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > verifyMobile \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyMobileForgotOTPParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
+   * @returns {Promise<VerifyForgotOtpSuccess>} - Success response
    * @name verifyMobileForgotOTP
    * @summary: Verify Mobile OTP for Forgot Password
    * @description: Verify one-time password sent to user's mobile for resetting a forgotten password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
@@ -3362,28 +1667,6 @@ class User {
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.verifyMobileForgotOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.verifyMobileForgotOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyMobileForgotOTP \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -3407,62 +1690,21 @@ class User {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyForgotOtpSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > verifyMobileForgotOTP \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyMobileOTPParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
+   * @returns {Promise<VerifyOtpSuccess>} - Success response
    * @name verifyMobileOTP
-   * @summary: Verify Mobile OTP
+   * @summary: Verify mobile OTP
    * @description: Verify one-time password sent to user's mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
    */
   async verifyMobileOTP(
     { body, platform, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = UserApplicationValidator.verifyMobileOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.verifyMobileOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyMobileOTP \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -3484,24 +1726,6 @@ class User {
     let responseData = response;
     if (responseHeaders) {
       responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = UserApplicationModel.VerifyOtpSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > User > verifyMobileOTP \n ${res_error}`,
-        });
-      }
     }
 
     return response;

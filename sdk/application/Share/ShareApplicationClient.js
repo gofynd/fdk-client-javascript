@@ -1,14 +1,6 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const {
-  FDKClientValidationError,
-  FDKResponseValidationError,
-} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const ShareApplicationValidator = require("./ShareApplicationValidator");
-const ShareApplicationModel = require("./ShareApplicationModel");
-const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Share {
   constructor(_conf) {
@@ -43,10 +35,9 @@ class Share {
   }
 
   /**
-   * @param {ShareApplicationValidator.CreateShortLinkParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
+   * @returns {Promise<ShortLinkRes>} - Success response
    * @name createShortLink
    * @summary: Shorten URL
    * @description: Creates a shortened version of a given URL for easier sharing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/createShortLink/).
@@ -55,28 +46,6 @@ class Share {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ShareApplicationValidator.createShortLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareApplicationValidator.createShortLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Share > createShortLink \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -99,32 +68,13 @@ class Share {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = ShareApplicationModel.ShortLinkRes().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Share > createShortLink \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {ShareApplicationValidator.GetApplicationQRCodeParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
+   * @returns {Promise<QRCodeResp>} - Success response
    * @name getApplicationQRCode
    * @summary: App QR code
    * @description: Generates a QR code for the application for easy sharing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getApplicationQRCode/).
@@ -133,28 +83,6 @@ class Share {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ShareApplicationValidator.getApplicationQRCode().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareApplicationValidator.getApplicationQRCode().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Share > getApplicationQRCode \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -177,32 +105,13 @@ class Share {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = ShareApplicationModel.QRCodeResp().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Share > getApplicationQRCode \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {ShareApplicationValidator.GetCollectionQRCodeBySlugParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
+   * @returns {Promise<QRCodeResp>} - Success response
    * @name getCollectionQRCodeBySlug
    * @summary: Collection QR code
    * @description: Generates a QR code for a specific product collection using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getCollectionQRCodeBySlug/).
@@ -211,30 +120,6 @@ class Share {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = ShareApplicationValidator.getCollectionQRCodeBySlug().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareApplicationValidator.getCollectionQRCodeBySlug().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Share > getCollectionQRCodeBySlug \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -257,33 +142,13 @@ class Share {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = ShareApplicationModel.QRCodeResp().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Share > getCollectionQRCodeBySlug \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {ShareApplicationValidator.GetOriginalShortLinkByHashParam} arg -
-   *   Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
+   * @returns {Promise<ShortLinkRes>} - Success response
    * @name getOriginalShortLinkByHash
    * @summary: Original URL
    * @description: Retrieve the original link from a short-link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getOriginalShortLinkByHash/).
@@ -292,30 +157,6 @@ class Share {
     { hash, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = ShareApplicationValidator.getOriginalShortLinkByHash().validate(
-      { hash },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareApplicationValidator.getOriginalShortLinkByHash().validate(
-      { hash },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Share > getOriginalShortLinkByHash \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -338,32 +179,13 @@ class Share {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = ShareApplicationModel.ShortLinkRes().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Share > getOriginalShortLinkByHash \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {ShareApplicationValidator.GetProductQRCodeBySlugParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
+   * @returns {Promise<QRCodeResp>} - Success response
    * @name getProductQRCodeBySlug
    * @summary: Product QR code
    * @description: Creates a QR code for a specific product identified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getProductQRCodeBySlug/).
@@ -372,30 +194,6 @@ class Share {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = ShareApplicationValidator.getProductQRCodeBySlug().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareApplicationValidator.getProductQRCodeBySlug().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Share > getProductQRCodeBySlug \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -418,32 +216,13 @@ class Share {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = ShareApplicationModel.QRCodeResp().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Share > getProductQRCodeBySlug \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {ShareApplicationValidator.GetShortLinkByHashParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
+   * @returns {Promise<ShortLinkRes>} - Success response
    * @name getShortLinkByHash
    * @summary: Get short link
    * @description: Retrieves a previously created short link using its hash identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getShortLinkByHash/).
@@ -452,28 +231,6 @@ class Share {
     { hash, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ShareApplicationValidator.getShortLinkByHash().validate(
-      { hash },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareApplicationValidator.getShortLinkByHash().validate(
-      { hash },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Share > getShortLinkByHash \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -496,32 +253,13 @@ class Share {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = ShareApplicationModel.ShortLinkRes().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Share > getShortLinkByHash \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {ShareApplicationValidator.GetUrlQRCodeParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
+   * @returns {Promise<QRCodeResp>} - Success response
    * @name getUrlQRCode
    * @summary: URL to QR code
    * @description: Converts a given URL into a scannable QR code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getUrlQRCode/).
@@ -530,28 +268,6 @@ class Share {
     { url, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = ShareApplicationValidator.getUrlQRCode().validate(
-      { url },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareApplicationValidator.getUrlQRCode().validate(
-      { url },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Share > getUrlQRCode \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["url"] = url;
 
@@ -573,24 +289,6 @@ class Share {
     let responseData = response;
     if (responseHeaders) {
       responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ShareApplicationModel.QRCodeResp().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Share > getUrlQRCode \n ${res_error}`,
-        });
-      }
     }
 
     return response;

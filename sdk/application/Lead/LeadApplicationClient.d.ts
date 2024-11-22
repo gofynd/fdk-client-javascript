@@ -12,56 +12,48 @@ declare class Lead {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {LeadApplicationValidator.CreateHistoryParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
+     * @returns {Promise<TicketHistory>} - Success response
      * @name createHistory
      * @summary: Log ticket history
      * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
      */
-    createHistory({ id, body, requestHeaders }?: LeadApplicationValidator.CreateHistoryParam, { responseHeaders }?: object): Promise<LeadApplicationModel.TicketHistory>;
+    createHistory({ id, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<TicketHistory>;
     /**
-     * @param {LeadApplicationValidator.CreateTicketParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
+     * @returns {Promise<Ticket>} - Success response
      * @name createTicket
      * @summary: Creates a ticket
      * @description: Create a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
      */
-    createTicket({ body, requestHeaders }?: LeadApplicationValidator.CreateTicketParam, { responseHeaders }?: object): Promise<LeadApplicationModel.Ticket>;
+    createTicket({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Ticket>;
     /**
-     * @param {LeadApplicationValidator.GetCustomFormParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LeadApplicationModel.CustomForm>} - Success response
+     * @returns {Promise<CustomForm>} - Success response
      * @name getCustomForm
      * @summary: Get custom form
      * @description: Get a customizable form template for data collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
      */
-    getCustomForm({ slug, requestHeaders }?: LeadApplicationValidator.GetCustomFormParam, { responseHeaders }?: object): Promise<LeadApplicationModel.CustomForm>;
+    getCustomForm({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CustomForm>;
     /**
-     * @param {LeadApplicationValidator.GetTicketParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
+     * @returns {Promise<Ticket>} - Success response
      * @name getTicket
      * @summary: Get a support ticket
      * @description: Get details of a specific customer support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
      */
-    getTicket({ id, requestHeaders }?: LeadApplicationValidator.GetTicketParam, { responseHeaders }?: object): Promise<LeadApplicationModel.Ticket>;
+    getTicket({ id, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Ticket>;
     /**
-     * @param {LeadApplicationValidator.SubmitCustomFormParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<LeadApplicationModel.SubmitCustomFormResponse>} -
-     *   Success response
+     * @returns {Promise<SubmitCustomFormDetails>} - Success response
      * @name submitCustomForm
      * @summary: Submits form data
      * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
      */
-    submitCustomForm({ slug, body, requestHeaders }?: LeadApplicationValidator.SubmitCustomFormParam, { responseHeaders }?: object): Promise<LeadApplicationModel.SubmitCustomFormResponse>;
+    submitCustomForm({ slug, body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<SubmitCustomFormDetails>;
 }
-import LeadApplicationValidator = require("./LeadApplicationValidator");
-import LeadApplicationModel = require("./LeadApplicationModel");

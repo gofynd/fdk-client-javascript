@@ -5,6 +5,7 @@ const Communication = require("./Communication/CommunicationApplicationClient");
 const Configuration = require("./Configuration/ConfigurationApplicationClient");
 const Content = require("./Content/ContentApplicationClient");
 const FileStorage = require("./FileStorage/FileStorageApplicationClient");
+const Finance = require("./Finance/FinanceApplicationClient");
 const Lead = require("./Lead/LeadApplicationClient");
 const Logistic = require("./Logistic/LogisticApplicationClient");
 const Order = require("./Order/OrderApplicationClient");
@@ -35,6 +36,7 @@ class ApplicationClient {
     this.configuration = new Configuration(config);
     this.content = new Content(config);
     this.fileStorage = new FileStorage(config);
+    this.finance = new Finance(config);
     this.lead = new Lead(config);
     this.logistic = new Logistic(config);
     this.order = new Order(config);
@@ -44,24 +46,6 @@ class ApplicationClient {
     this.theme = new Theme(config);
     this.user = new User(config);
     this.webhook = new Webhook(config);
-    if (
-      typeof window != "undefined" &&
-      config.options &&
-      config.options.enable_clickstream
-    ) {
-      const Clickstream = require("@gofynd/flick");
-      Logger({
-        level: "DEBUG",
-        message: `initializing clickstream with base url ${config.domain}`,
-      });
-      Clickstream.initialize(
-        config.domain,
-        convertStringToBase64(
-          config.applicationID + ":" + config.applicationToken
-        )
-      );
-      require("../common/Clickstream");
-    }
   }
 
   /**

@@ -14,80 +14,66 @@ declare class Rewards {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {RewardsApplicationValidator.CatalogueOrderParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RewardsApplicationModel.CatalogueOrderResponse>} -
-     *   Success response
+     * @returns {Promise<CatalogueOrderDetails>} - Success response
      * @name catalogueOrder
      * @summary: Order from catalogue
-     * @description: Place an reward on order items available in the catalogue. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/catalogueOrder/).
+     * @description: Place a reward on order items available in the catalogue. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/catalogueOrder/).
      */
-    catalogueOrder({ body, requestHeaders }?: RewardsApplicationValidator.CatalogueOrderParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.CatalogueOrderResponse>;
+    catalogueOrder({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<CatalogueOrderDetails>;
     /**
-     * @param {RewardsApplicationValidator.GetOfferByNameParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RewardsApplicationModel.Offer>} - Success response
+     * @returns {Promise<Offer>} - Success response
      * @name getOfferByName
      * @summary: Get specific offer
      * @description: Retrieves detailed information about an offer by its name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOfferByName/).
      */
-    getOfferByName({ name, requestHeaders }?: RewardsApplicationValidator.GetOfferByNameParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.Offer>;
+    getOfferByName({ name, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Offer>;
     /**
-     * @param {RewardsApplicationValidator.GetOrderDiscountParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RewardsApplicationModel.OrderDiscountResponse>} -
-     *   Success response
+     * @returns {Promise<OrderDiscountDetails>} - Success response
      * @name getOrderDiscount
      * @summary: Order discount
      * @description: Retrieve the discount applied to a specific order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOrderDiscount/).
      */
-    getOrderDiscount({ body, requestHeaders }?: RewardsApplicationValidator.GetOrderDiscountParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.OrderDiscountResponse>;
+    getOrderDiscount({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<OrderDiscountDetails>;
     /**
-     * @param {RewardsApplicationValidator.GetUserPointsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RewardsApplicationModel.PointsResponse>} - Success response
+     * @returns {Promise<PointsDetails>} - Success response
      * @name getUserPoints
      * @summary: Current points
      * @description: Retrieves the current reward points balance for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPoints/).
      */
-    getUserPoints({ requestHeaders }?: any, { responseHeaders }?: object): Promise<RewardsApplicationModel.PointsResponse>;
+    getUserPoints({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PointsDetails>;
     /**
-     * @param {RewardsApplicationValidator.GetUserPointsHistoryParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RewardsApplicationModel.PointsHistoryResponse>} -
-     *   Success response
+     * @returns {Promise<PointsHistoryDetails>} - Success response
      * @name getUserPointsHistory
      * @summary: Points history
      * @description: Gets the historical data of points earned or spent by the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPointsHistory/).
      */
-    getUserPointsHistory({ pageId, pageSize, requestHeaders }?: RewardsApplicationValidator.GetUserPointsHistoryParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.PointsHistoryResponse>;
+    getUserPointsHistory({ pageId, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PointsHistoryDetails>;
     /**
-     * @param {RewardsApplicationValidator.GetUserReferralDetailsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RewardsApplicationModel.ReferralDetailsResponse>} -
-     *   Success response
+     * @returns {Promise<ReferralDetails>} - Success response
      * @name getUserReferralDetails
      * @summary: Referral details
      * @description: Gets the details of the user’s referral status and codes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserReferralDetails/).
      */
-    getUserReferralDetails({ requestHeaders }?: any, { responseHeaders }?: object): Promise<RewardsApplicationModel.ReferralDetailsResponse>;
+    getUserReferralDetails({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ReferralDetails>;
     /**
-     * @param {RewardsApplicationValidator.RedeemReferralCodeParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<RewardsApplicationModel.RedeemReferralCodeResponse>} -
-     *   Success response
+     * @returns {Promise<RedeemReferralCodeDetails>} - Success response
      * @name redeemReferralCode
      * @summary: Redeem code
      * @description: Applies a referral code to earn or redeem rewards. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/redeemReferralCode/).
      */
-    redeemReferralCode({ body, requestHeaders }?: RewardsApplicationValidator.RedeemReferralCodeParam, { responseHeaders }?: object): Promise<RewardsApplicationModel.RedeemReferralCodeResponse>;
+    redeemReferralCode({ body, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<RedeemReferralCodeDetails>;
 }
-import RewardsApplicationValidator = require("./RewardsApplicationValidator");
-import RewardsApplicationModel = require("./RewardsApplicationModel");

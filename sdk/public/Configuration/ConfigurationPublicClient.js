@@ -1,14 +1,16 @@
-const PublicAPIClient = require("../PublicAPIClient");
 const {
   FDKClientValidationError,
   FDKResponseValidationError,
 } = require("../../common/FDKError");
+
+const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+
 const ConfigurationPublicValidator = require("./ConfigurationPublicValidator");
 const ConfigurationPublicModel = require("./ConfigurationPublicModel");
-const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
+const { Logger } = require("./../../common/Logger");
 
 class Configuration {
   constructor(_conf) {
@@ -118,7 +120,8 @@ class Configuration {
    * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
+   * @returns {Promise<ConfigurationPublicModel.ApplicationResponseSchema>} -
+   *   Success response
    * @name searchApplication
    * @summary: Search application
    * @description: Provide application name or domain url. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
@@ -175,10 +178,10 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationPublicModel.ApplicationResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ConfigurationPublicModel.ApplicationResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
