@@ -26,6 +26,7 @@ class Cart {
       getPromotionOffers: "/service/application/cart/v1.0/available-promotions",
       getPromotionPaymentOffers:
         "/service/application/cart/v1.0/available-payment-offers",
+      getPromotions: "/service/application/cart/v1.0/promotion",
       getShipments: "/service/application/cart/v1.0/shipment",
       removeAddress: "/service/application/cart/v1.0/address/{id}",
       removeCoupon: "/service/application/cart/v1.0/coupon",
@@ -847,6 +848,45 @@ class Cart {
       "get",
       constructUrl({
         url: this._urls["getPromotionPaymentOffers"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Promotions>} - Success response
+   * @name getPromotions
+   * @summary: List all available promotions of the sales channel
+   * @description: List all promotional offers available for the sales channel, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotions/).
+   */
+  async getPromotions(
+    { pageSize, pageNo, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const query_params = {};
+    query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPromotions"],
         params: {},
       }),
       query_params,

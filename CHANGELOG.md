@@ -103,6 +103,13 @@
 	- [Added] property <code>cart.items[].promotions_applied[].float_amount</code> of schema <code>AppliedPromotion</code> in response with status code 200
 
 
+#### getPromotions
+
+- ##### What's New
+	- [Added] method <code>getPromotions</code>
+
+
+
 ### Logistic
 
 

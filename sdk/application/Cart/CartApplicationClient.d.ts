@@ -22,6 +22,7 @@ declare class Cart {
         getLadderOffers: string;
         getPromotionOffers: string;
         getPromotionPaymentOffers: string;
+        getPromotions: string;
         getShipments: string;
         removeAddress: string;
         removeCoupon: string;
@@ -206,6 +207,15 @@ declare class Cart {
      * @description: Use this API to get top 5 payment offers available for current product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionPaymentOffers/).
      */
     getPromotionPaymentOffers({ id, uid, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<PromotionPaymentOffersResult>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<Promotions>} - Success response
+     * @name getPromotions
+     * @summary: List all available promotions of the sales channel
+     * @description: List all promotional offers available for the sales channel, including details such as offer text, unique promotion ID, and validity period. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotions/).
+     */
+    getPromotions({ pageSize, pageNo, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<Promotions>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
