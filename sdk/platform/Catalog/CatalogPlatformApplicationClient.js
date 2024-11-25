@@ -106,7 +106,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name createAppCategoryReturnConfiguration
    * @summary: Create return configuration
    * @description: Create Category level sales channel Return Configuration setttings - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppCategoryReturnConfiguration/).
@@ -162,7 +162,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -187,7 +187,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name createAppReturnConfiguration
    * @summary: Create product return configuration
    * @description: This allows you to configure all return-related settings, such as is_returnable and return window etc. for sales channel level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createAppReturnConfiguration/).
@@ -243,7 +243,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -274,7 +274,17 @@ class Catalog {
    * @description: Create a collection for a sales channel linked to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCollection/).
    */
   async createCollection(
-    { body, requestHeaders } = { requestHeaders: {} },
+    {
+      body,
+      q,
+      scheduleStatus,
+      type,
+      tags,
+      isActive,
+      pageNo,
+      pageSize,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -282,6 +292,13 @@ class Catalog {
     } = CatalogPlatformApplicationValidator.createCollection().validate(
       {
         body,
+        q,
+        scheduleStatus,
+        type,
+        tags,
+        isActive,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -295,6 +312,13 @@ class Catalog {
     } = CatalogPlatformApplicationValidator.createCollection().validate(
       {
         body,
+        q,
+        scheduleStatus,
+        type,
+        tags,
+        isActive,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -306,6 +330,13 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["q"] = q;
+    query_params["schedule_status"] = scheduleStatus;
+    query_params["type"] = type;
+    query_params["tags"] = tags;
+    query_params["is_active"] = isActive;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1835,7 +1866,7 @@ class Catalog {
    *   Success response
    * @name getAppInventory
    * @summary: List sales channel inventory
-   * @description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
+   * @description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
    */
   async getAppInventory(
     {
@@ -1962,7 +1993,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.LocationListSchema>} - Success response
    * @name getAppLocations
    * @summary: List sales channels
-   * @description: Retrieve all stores associated with an sales channel, with support for searching by store name and filtering by store type and status (verified/unverified) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
+   * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
    */
   async getAppLocations(
     {
@@ -2068,9 +2099,10 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Id of the company whose locations are to fetched
-   * @param {string} arg.applicationId - Id of the application whose locations
-   *   are to fetched
+   * @param {number} arg.companyId - A `company_id` is a unique identifier for
+   *   a particular seller account.
+   * @param {string} arg.applicationId - A `application_id` is a unique
+   *   identifier for a particular sale channel.
    * @param {string} [arg.storeType] - Helps to sort the location list on the
    *   basis of location type.
    * @param {number[]} [arg.uid] - Helps to sort the location list on the
@@ -2084,7 +2116,7 @@ class Catalog {
    * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
    * @returns {Paginator<CatalogPlatformModel.LocationListSchema>}
    * @summary: List sales channels
-   * @description: Retrieve all stores associated with an sales channel, with support for searching by store name and filtering by store type and status (verified/unverified)
+   * @description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status.
    */
   getAppLocationsPaginator({
     companyId,
@@ -2319,7 +2351,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - A `company_id` is a unique identifier for
+   * @param {number} arg.companyId - A `company_id` is a unique identifier for
    *   a particular seller account.
    * @param {string} arg.applicationId - A `application_id` is a unique
    *   identifier for a particular sale channel.
@@ -2384,7 +2416,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.AppReturnConfigResponseSchema>} -
    *   Success response
    * @name getAppReturnConfiguration
-   * @summary: get product-return configuration
+   * @summary: Get product-return configuration
    * @description: Get Product Return configuration set at an sales channel level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppReturnConfiguration/).
    */
   async getAppReturnConfiguration(
@@ -2550,8 +2582,8 @@ class Catalog {
    *   identifier for a particular sale channel.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
+   * @param {string} [arg.q] - Search query with brand name. Use this
+   *   parameter to search brands by brand name.
    * @returns {Paginator<CatalogPlatformModel.ApplicationBrandListingSchema>}
    * @summary: List sales channel brands
    * @description: Retrieve brand listings related to the sales channel. A brand is the name under which a product is being sold
@@ -2594,7 +2626,7 @@ class Catalog {
    *   Success response
    * @name getApplicationBrands
    * @summary: List brands
-   * @description: List all the brands, and have search capabilities on brand uid, name etc - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
+   * @description: List all the brands. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
    */
   async getApplicationBrands(
     { department, pageNo, pageSize, q, brandId, requestHeaders } = {
@@ -2690,16 +2722,16 @@ class Catalog {
    * @param {string} [arg.department] - The name of the department. Use this
    *   parameter to filter products by a particular department. See below the
    *   list of available departments. You can retrieve available departments
-   *   from the **v1.0/departments/** API
+   *   from the "v1.0/departments/" API
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
+   * @param {string} [arg.q] - Search query with brand name. Use this
+   *   parameter to search brands by brand name.
    * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
    *   basis of uid list.
    * @returns {Paginator<CatalogPlatformModel.BrandListingResponseSchema>}
    * @summary: List brands
-   * @description: List all the brands, and have search capabilities on brand uid, name etc
+   * @description: List all the brands.
    */
   getApplicationBrandsPaginator({
     companyId,
@@ -2838,8 +2870,8 @@ class Catalog {
    *   identifier for a particular department.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
+   * @param {string} [arg.q] - A search query string. Use this parameter to
+   *   filter results based on a keyword or specific value.
    * @returns {Paginator<CatalogPlatformModel.ApplicationCategoryListingSchema>}
    * @summary: List sales channel categories
    * @description: Retrieve category listings related to the sales channel , with the ability to filter results based on department ,category names etc.
@@ -2966,14 +2998,14 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - A `company_id` is a unique identifier for
+   * @param {number} arg.companyId - A `company_id` is a unique identifier for
    *   a particular seller account.
    * @param {string} arg.applicationId - A `application_id` is a unique
    *   identifier for a particular sale channel.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search department by name.
+   * @param {string} [arg.q] - A search query string. Use this parameter to
+   *   filter results based on a keyword or specific value.
    * @returns {Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponseSchema>}
    * @summary: List sales channel departments
    * @description: Retrieve department listings related to the sales channel. Departments are used to categorize similar products, and you can filter the results based on department names
@@ -3320,7 +3352,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - A `company_id` is a unique identifier for
+   * @param {number} arg.companyId - A `company_id` is a unique identifier for
    *   a particular seller account.
    * @param {string} arg.applicationId - A `application_id` is a unique
    *   identifier for a particular sale channel.
@@ -3343,7 +3375,7 @@ class Catalog {
    *   values below.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {number[]} [arg.itemIds] - Item Ids of product
+   * @param {string[]} [arg.itemIds] - Item Ids of product
    * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponseSchema>}
    * @summary: List sales channel products
    * @description: Retrieve products associated with the sales channel. List all the products associated with a brand, collection or category in a requested sort order.
@@ -3892,7 +3924,9 @@ class Catalog {
    * @description: Get items from a collection specified by its id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionItems/).
    */
   async getCollectionItems(
-    { id, sortOn, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
+    { id, sortOn, pageId, pageSize, pageNo, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3903,6 +3937,7 @@ class Catalog {
         sortOn,
         pageId,
         pageSize,
+        pageNo,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3919,6 +3954,7 @@ class Catalog {
         sortOn,
         pageId,
         pageSize,
+        pageNo,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3933,6 +3969,7 @@ class Catalog {
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4310,7 +4347,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
+   * @returns {Promise<CatalogPlatformModel.ApplicationInventorySellerIdentifierResponsePaginated>}
    *   - Success response
    *
    * @name getDiscountedInventoryBySizeIdentifier
@@ -4323,7 +4360,6 @@ class Catalog {
       sizeIdentifier,
       pageNo,
       pageSize,
-      q,
       locationIds,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -4337,7 +4373,6 @@ class Catalog {
         sizeIdentifier,
         pageNo,
         pageSize,
-        q,
         locationIds,
       },
       { abortEarly: false, allowUnknown: true }
@@ -4355,7 +4390,6 @@ class Catalog {
         sizeIdentifier,
         pageNo,
         pageSize,
-        q,
         locationIds,
       },
       { abortEarly: false, allowUnknown: false }
@@ -4370,7 +4404,6 @@ class Catalog {
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
-    query_params["q"] = q;
     query_params["location_ids"] = locationIds;
 
     const response = await PlatformAPIClient.execute(
@@ -4390,7 +4423,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.InventorySellerIdentifierResponsePaginated().validate(
+    } = CatalogPlatformModel.ApplicationInventorySellerIdentifierResponsePaginated().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4411,17 +4444,18 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Id of the company associated to product
-   *   that is to be viewed.
-   * @param {string} arg.applicationId - Uniquer Application ID.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
-   *   or Primary Identifier) of which inventory is to get.
+   * @param {number} arg.companyId - A `company_id` is a unique identifier for
+   *   a particular seller account.
+   * @param {string} arg.applicationId - A `application_id` is a unique
+   *   identifier for a particular sale channel.
+   * @param {number} arg.itemId - A `item_id` is a unique identifier for a
+   *   specific product.
+   * @param {number} arg.sizeIdentifier - Size Identifier (Seller Identifier
+   *   or Primary Identifier).
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.q] - Search with help of store code.
    * @param {number[]} [arg.locationIds] - Search by store ids.
-   * @returns {Paginator<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
+   * @returns {Paginator<CatalogPlatformModel.ApplicationInventorySellerIdentifierResponsePaginated>}
    * @summary: Get discounted inventory
    * @description: Allows to retrieve Inventory data for particular company grouped by size and store.
    */
@@ -4431,7 +4465,6 @@ class Catalog {
     itemId,
     sizeIdentifier,
     pageSize,
-    q,
     locationIds,
   } = {}) {
     const paginator = new Paginator();
@@ -4446,7 +4479,6 @@ class Catalog {
         sizeIdentifier: sizeIdentifier,
         pageNo: pageNo,
         pageSize: pageSize,
-        q: q,
         locationIds: locationIds,
       });
       paginator.setPaginator({
@@ -5051,7 +5083,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.UpdateAppBrandParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name updateAppBrand
    * @summary: Update sales channel brand
    * @description: Modify data associated to the brand for that particular sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
@@ -5109,7 +5141,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5134,7 +5166,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name updateAppCategory
    * @summary: Update sales channel category
    * @description: Modify category data related to the sales channel . - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategory/).
@@ -5192,7 +5224,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5298,7 +5330,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name updateAppDepartment
    * @summary: Update sales channel department
    * @description: Modify department data associated to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppDepartment/).
@@ -5356,7 +5388,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5381,7 +5413,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name updateAppLocation
    * @summary: Update sales channel location
    * @description: Modify location data related to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppLocation/).
@@ -5439,7 +5471,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5462,10 +5494,10 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.UpdateAppProductParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name updateAppProduct
    * @summary: Update sales channel product
-   * @description: Allows to update data associated to a item by its item_id for an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
+   * @description: Allows to update data associated to a item by its item_id for a sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
    */
   async updateAppProduct(
     { itemId, body, requestHeaders } = { requestHeaders: {} },
@@ -5520,7 +5552,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5545,7 +5577,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name updateAppReturnConfiguration
    * @summary: Update product return configuration
    * @description: Update Return configuration level set for an sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppReturnConfiguration/).
@@ -5601,7 +5633,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

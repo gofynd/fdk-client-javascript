@@ -100,12 +100,12 @@ declare class Catalog {
      * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
      * @name createProduct
      * @summary: Create product
      * @description: Users can create a product using this API, associating it with the provided company ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
      */
-    createProduct({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
+    createProduct({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseObject>;
     /**
      * @param {CatalogPlatformValidator.CreateProductAssetsInBulkParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -177,9 +177,9 @@ declare class Catalog {
      * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
      * @name deleteProduct
      * @summary: Delete product
-     * @description: Users can delete a product using this by providing the itemid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
+     * @description: Users can delete a product by providing the item_id and company_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
      */
-    deleteProduct({ itemId, requestHeaders }?: CatalogPlatformValidator.DeleteProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
+    deleteProduct({ itemId, body, requestHeaders }?: CatalogPlatformValidator.DeleteProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponseSchema>;
     /**
      * @param {CatalogPlatformValidator.DeleteProductBulkJobParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -608,7 +608,7 @@ declare class Catalog {
      * @summary: List product bundles
      * @description: Retrieve a list of product bundles available in the catalog associated to a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundle/).
      */
-    getProductBundle({ q, slug, requestHeaders }?: CatalogPlatformValidator.GetProductBundleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleListingResponseSchema>;
+    getProductBundle({ q, slug, pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetProductBundleParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetProductBundleListingResponseSchema>;
     /**
      * @param {CatalogPlatformValidator.GetProductBundleDetailParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -962,6 +962,30 @@ declare class Catalog {
      */
     updateInventories({ body, requestHeaders }?: CatalogPlatformValidator.UpdateInventoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryUpdateResponseSchema>;
     /**
+     * @param {CatalogPlatformValidator.UpdateLocationPriceParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>}
+     *   - Success response
+     *
+     * @name updateLocationPrice
+     * @summary: Update an Article Price
+     * @description: enables you to update article price for a specific size and selling location (store). The price updates will be reflected instantly after the API call. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateLocationPrice/).
+     */
+    updateLocationPrice({ storeId, sellerIdentifier, body, requestHeaders }?: CatalogPlatformValidator.UpdateLocationPriceParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>;
+    /**
+     * @param {CatalogPlatformValidator.UpdateLocationQuantityParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>}
+     *   - Success response
+     *
+     * @name updateLocationQuantity
+     * @summary: Update an Article Quantity
+     * @description: enables you to update article quantity for a specific size and selling location (store). The quantity updates will be reflected instantly after the API call. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateLocationQuantity/).
+     */
+    updateLocationQuantity({ storeId, sellerIdentifier, body, requestHeaders }?: CatalogPlatformValidator.UpdateLocationQuantityParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>;
+    /**
      * @param {CatalogPlatformValidator.UpdateMarketplaceOptinParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -1016,6 +1040,20 @@ declare class Catalog {
      * @description: Users can create multiple products by providing the required information needed for product creation in a CSV or Excel file format. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/uploadBulkProducts/).
      */
     uploadBulkProducts({ department, productType, body, requestHeaders }?: CatalogPlatformValidator.UploadBulkProductsParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.BulkResponseSchema>;
+    /**
+     * @param {CatalogPlatformValidator.ValidateProductGlobalTemplateParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.TemplatesGlobalValidationResponseSchema>}
+     *   - Success response
+     *
+     * @name validateProductGlobalTemplate
+     * @summary: Validate product template
+     * @description: Allows you to list all product templates global validation values for all the fields present in the database for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductGlobalTemplate/).
+     */
+    validateProductGlobalTemplate({ itemType, bulk, requestHeaders }?: CatalogPlatformValidator.ValidateProductGlobalTemplateParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.TemplatesGlobalValidationResponseSchema>;
     /**
      * @param {CatalogPlatformValidator.ValidateProductTemplateParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

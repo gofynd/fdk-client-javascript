@@ -23,10 +23,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef UpdatePackingErrorResponseSchema
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {string} [error] - Descriptive error message that occurred.
+ */
+
+/**
  * @typedef ErrorResponseSchema
- * @property {number} [status] - The HTTP status code corresponding to the error.
- * @property {boolean} [success] - Indicates whether the operation was
- *   successful. Always false in the case of an error.
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
  * @property {string} message - A message describing the error that occurred.
  * @property {string} [error_trace] - This field is intended to store the error
  *   trace of the error that occurred.For example, "Exception Trace" represents
@@ -39,48 +45,53 @@ const Joi = require("joi");
 
 /**
  * @typedef StoreReassign
- * @property {number} store_id
- * @property {number} [bag_id]
- * @property {string} [affiliate_order_id]
- * @property {string} [affiliate_id]
- * @property {string} [item_id]
- * @property {string} [fynd_order_id]
- * @property {string} [set_id]
- * @property {string} [affiliate_bag_id]
- * @property {number[]} [reason_ids]
- * @property {string} [mongo_article_id]
+ * @property {number} store_id - Unique id of the store.
+ * @property {number} [bag_id] - Identifier for the bag associated with the reassignment.
+ * @property {string} [affiliate_order_id] - Identifier for the affiliate order
+ *   id associated with the reassignment.
+ * @property {string} [affiliate_id] - Identifier for the affiliate id
+ *   associated with the reassignment.
+ * @property {string} [item_id] - Identifier for the item associated with the
+ *   reassignment.
+ * @property {string} [fynd_order_id] - Identifier for the fynd order id
+ *   associated with the reassignment.
+ * @property {string} [set_id] - Identifier for the set of items associated with
+ *   the reassignment.
+ * @property {string} [affiliate_bag_id] - Identifiers for bags associated with
+ *   the reassignment.
+ * @property {number[]} [reason_ids] - List of reason ids for the reassignment.
+ * @property {string} [mongo_article_id] - Identifier for the article id
+ *   associated with the reassignment.
  */
 
 /**
  * @typedef StoreReassignResponseSchema
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 
 /**
- * @typedef Entities
+ * @typedef LockManagerEntities
  * @property {string} [id] - Shipment ID if 'entity_type': shipments | Bag Id if
  *   'entity_type': bags
- * @property {string} [affiliate_order_id] - Application/Affiliate Order ID,
- *   Required if the ID is missing
- * @property {string} [affiliate_id] - Application/Affiliate ID, Required if the
- *   ID is missing
- * @property {string} reason_text - Reason For Shipment/Bag Action
- * @property {string} [affiliate_bag_id] - Application/Affiliate Bag ID,
- *   Required if the ID is missing
- * @property {string} [affiliate_shipment_id] - Application/Affiliate Shipment
- *   ID, Required if the ID is missing
+ * @property {string} [affiliate_order_id] - External identifier for the order
+ *   id associated with shipment.
+ * @property {string} [affiliate_id] - Identifier for application associated
+ *   with the shipment.
+ * @property {string} reason_text - A descriptive reason text for lock/unlock
+ *   action of a shipment/bag.
+ * @property {string} [affiliate_bag_id] - External identifier for the bag id
+ *   associated with orders/shipment.
+ * @property {string} [affiliate_shipment_id] - External identifier for the
+ *   shipment id associated with orders/shipment.
  */
 
 /**
  * @typedef UpdateShipmentLockPayload
- * @property {string} entity_type - Type of entity that the tag is associated to
- *   (bag, shipments).
- * @property {string} action - Specifies the operation to be performed on a
- *   shipment, with available actions including 'lock', 'unlock', and 'check'.
- *   Each action triggers a specific transition - lock-- Locks the shipment,
- *   preventing any modifications. - unlock-- Unlocks the shipment, allowing for
- *   modifications. - check-- Verifies the shipment's status or condition.
+ * @property {string} entity_type - Specifies the type of entity being locked or unlocked.
+ * @property {string} action - Indicates the action to be performed on the entity.
  * @property {string} action_type - Defines the current lock state or lock type
  *   of a shipment, dictating the types of transitions or actions that can be
  *   performed next.The action_type can be one of the following - complete-
@@ -88,10 +99,14 @@ const Joi = require("joi");
  *   - operational- The shipment is in an operational phase, during which only
  *   financial-related actions are permissible. - financial- The shipment is in
  *   a financial phase, allowing for operational actions to be taken.
- * @property {Entities[]} entities - Shipment/Entity
- * @property {boolean} [resume_tasks_after_unlock]
- * @property {boolean} [lock_after_transition] - Lock Shipment After Transition
- * @property {boolean} [unlock_before_transition] - Unlock Shipment After Transition
+ * @property {LockManagerEntities[]} entities - List of entities to be locked or unlocked
+ * @property {boolean} [resume_tasks_after_unlock] - Indicates whether tasks
+ *   should resume automatically after unlocking, such as DP assignment task and
+ *   invoicing task.
+ * @property {boolean} [lock_after_transition] - Specifies whether the shipment
+ *   should be locked automatically after a transition occurs.
+ * @property {boolean} [unlock_before_transition] - Specifies whether the
+ *   shipment should be unlocked before a transition occurs.
  */
 
 /**
@@ -126,102 +141,123 @@ const Joi = require("joi");
 
 /**
  * @typedef UpdateShipmentLockResponseSchema
- * @property {boolean} [success]
- * @property {string} [message]
- * @property {CheckResponseSchema[]} [check_response] - Entity Lock Status, If
- *   the action input as 'check'
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response, such as success confirmation or error details.
+ * @property {CheckResponseSchema[]} [check_response] - An array containing the
+ *   lock status of entities if the action performed was a 'check'. Each item in
+ *   the array represents the status of a specific entity.
  */
 
 /**
  * @typedef AnnouncementResponseSchema
- * @property {string} [to_datetime]
- * @property {number} id
- * @property {string} [description]
- * @property {string} [platform_name]
- * @property {string} [from_datetime]
- * @property {string} [platform_id]
- * @property {string} [title]
- * @property {number} [company_id]
- * @property {string} [logo_url]
- * @property {string} [created_at] - The date and time when the announcement was
- *   created and active.
+ * @property {string} [to_datetime] - The end date and time for the event,
+ *   indicating when the issue is expected to be resolved.
+ * @property {number} id - A unique identifier for the announcement.
+ * @property {string} [description] - A brief description providing additional
+ *   context about the announcement.
+ * @property {string} [platform_name] - The name of the platform associated with
+ *   this announcement.
+ * @property {string} [from_datetime] - The start date and time of the
+ *   announcement going live.
+ * @property {string} [platform_id] - The unique identifier associated with the
+ *   platform. In this case, it appears to be the same as the platform name,
+ *   which might indicate a specific category or type.
+ * @property {string} [title] - The title summarizing the nature of the announcement.
+ * @property {number} [company_id] - A unique identifier for the company related
+ *   to this announcement.
+ * @property {string} [logo_url] - A URL linking to the logo image associated
+ *   with the platform or company.
+ * @property {string} [created_at] - The timestamp of when this announcement was
+ *   created, providing context for its age and relevance.
  */
 
 /**
  * @typedef AnnouncementsResponseSchema
  * @property {AnnouncementResponseSchema[]} [announcements]
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {number} [status] - Represents the HTTP status code of the API response
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 
 /**
  * @typedef BaseResponseSchema
- * @property {boolean} [success]
- * @property {string} [message]
- */
-
-/**
- * @typedef Click2CallResponseSchema
- * @property {string} call_id - Call ID from the provider
- * @property {boolean} success - Success
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 
 /**
  * @typedef ErrorDetail
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 
 /**
  * @typedef ProductsReasonsFilters
- * @property {number} [line_number] - Product/Bag Line number for the
- *   Product/Bag Identifier
- * @property {string} [identifier] - Product/Bag Article/Item Identifier
- * @property {number} [quantity]
+ * @property {number} [line_number] - The line number for the product or bag,
+ *   which helps identify the specific item in a list or order.
+ * @property {string} [identifier] - The unique article or item identifier for
+ *   the product or bag.
+ * @property {number} [quantity] - The quantity of the product or bag being referenced.
  */
 
 /**
  * @typedef ProductsReasonsData
- * @property {string} [reason_text]
- * @property {number} [reason_id]
+ * @property {string} [reason_text] - A descriptive text providing the reason
+ *   for the action or status associated with the product or bag.
+ * @property {number} [reason_id] - A unique identifier for the reason, used to
+ *   reference specific reasons in the system.
  */
 
 /**
  * @typedef ProductsReasons
- * @property {ProductsReasonsFilters[]} [filters]
+ * @property {ProductsReasonsFilters[]} [filters] - A list of filters applied to
+ *   specify which products the reasons pertain to.
  * @property {ProductsReasonsData} [data]
  */
 
 /**
  * @typedef EntityReasonData
- * @property {string} [reason_text]
- * @property {number} [reason_id]
+ * @property {string} [reason_text] - A descriptive text providing the reason
+ *   for the action or status associated with the product or bag.
+ * @property {number} [reason_id] - A unique identifier for the reason, used to
+ *   reference specific reasons in the system.
  */
 
 /**
  * @typedef EntitiesReasons
- * @property {Object[]} [filters]
+ * @property {Object[]} [filters] - A list of filters applied to specify which
+ *   entities the reasons pertain to.
  * @property {EntityReasonData} [data]
  */
 
 /**
  * @typedef ReasonsData
- * @property {ProductsReasons[]} [products]
- * @property {EntitiesReasons[]} [entities]
+ * @property {ProductsReasons[]} [products] - A list of reasons specifically
+ *   related to products involved in the shipment.
+ * @property {EntitiesReasons[]} [entities] - A list of reasons specifically
+ *   related to shipment.
  */
 
 /**
  * @typedef Products
- * @property {number} [line_number] - Product/Bag Line number for the
- *   Product/Bag Identifier
- * @property {string} [identifier] - Product/Bag Article/Item Identifier
- * @property {number} [quantity]
+ * @property {number} [line_number] - The line number for the product or bag,
+ *   which helps identify the specific item in a list or order.
+ * @property {string} [identifier] - The unique article or item identifier for
+ *   the product or bag.
+ * @property {number} [quantity] - The quantity of the product or bag being referenced.
  */
 
 /**
  * @typedef OrderItemDataUpdates
- * @property {Object} [data] - Encapsulates a dynamic set of updates and
- *   modifications applied to bag status object.
+ * @property {Object} [data] - Contains the specific data for updating shipment bags data.
  */
 
 /**
@@ -240,14 +276,16 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductsDataUpdates
- * @property {ProductsDataUpdatesFilters[]} [filters] - Filter for the Product/Bag
- * @property {Object} [data] - Encapsulates a dynamic set of updates and
- *   modifications applied to a product.
+ * @property {ProductsDataUpdatesFilters[]} [filters] - A list of filters
+ *   applied to specify which products or bags are targeted for updates.
+ * @property {Object} [data] - Contains the specific data for updating the
+ *   products or bags.
  */
 
 /**
  * @typedef EntitiesDataUpdates
- * @property {Object[]} [filters]
+ * @property {Object[]} [filters] - A list of filters used to specify which
+ *   shipments are targeted for updates.
  * @property {Object} [data] - Encapsulates a dynamic set of updates and
  *   modifications applied to the entity.
  */
@@ -260,17 +298,21 @@ const Joi = require("joi");
 
 /**
  * @typedef DataUpdates
- * @property {OrderItemDataUpdates[]} [order_item_status]
- * @property {ProductsDataUpdates[]} [products]
- * @property {EntitiesDataUpdates[]} [entities]
+ * @property {OrderItemDataUpdates[]} [order_item_status] - A list of updates
+ *   related to the status of order items.
+ * @property {ProductsDataUpdates[]} [products] - A list of updates related to
+ *   the properties of products or bags.
+ * @property {EntitiesDataUpdates[]} [entities] - A list of updates related to
+ *   the properties of any relevant entities.
  * @property {OrderDataUpdates[]} [order]
  */
 
 /**
  * @typedef ShipmentsRequestSchema
- * @property {string} identifier - Shipment ID
+ * @property {string} identifier - Unique identifier for the shipment.
  * @property {ReasonsData} [reasons]
- * @property {Products[]} [products] - Product/Bag to be updated
+ * @property {Products[]} [products] - A list of products or bags that need to
+ *   be updated as part of the shipment status change.
  * @property {DataUpdates} [data_updates]
  */
 
@@ -303,28 +345,33 @@ const Joi = require("joi");
 
 /**
  * @typedef StatuesRequestSchema
- * @property {string} [status]
- * @property {ShipmentsRequestSchema[]} [shipments] - An array of shipment
- *   objects, each containing identifiers, product details and reasons for the
- *   shipment's current status.
- * @property {string} [exclude_bags_next_state] - State to be change for
- *   Remaining Bag/Products
- * @property {boolean} [split_shipment] - Flag to split shipment
+ * @property {string} [status] - The new status to be assigned to the shipment(s).
+ * @property {ShipmentsRequestSchema[]} [shipments] - A list of shipments to
+ *   which the new status will be applied.
+ * @property {string} [exclude_bags_next_state] - Specifies the state to which
+ *   remaining bags or products should be changed, effectively excluding them
+ *   from the current status update.
+ * @property {boolean} [split_shipment] - A flag indicating whether the shipment
+ *   should be split into multiple parts. If set to true, the shipment will be
+ *   divided according to the specified logic or criteria.
  */
 
 /**
  * @typedef UpdateShipmentStatusRequestSchema
- * @property {boolean} [force_transition] - Indicates whether the transition
- *   should be forced.
- * @property {StatuesRequestSchema[]} [statuses] - An array detailing the
- *   various stages a shipment can undergo, each entry representing a distinct
- *   status. Each status object includes comprehensive details about shipments
- *   under that status, product specifics, reasons for the status (if
- *   applicable), and any updates to shipment or product data.
- * @property {boolean} [lock_after_transition] - Lock Shipment After Transition
- * @property {boolean} [unlock_before_transition] - Unlock Shipment After Transition
- * @property {boolean} [task] - To Run Status Update as a background Task
- * @property {boolean} [resume_tasks_after_unlock] - Resume Tasks After Unlock
+ * @property {boolean} [force_transition] - Indicates whether to force the
+ *   status transition, overriding any restrictions or checks that may normally apply.
+ * @property {StatuesRequestSchema[]} [statuses] - A list of status updates to
+ *   be applied to the shipment.
+ * @property {boolean} [lock_after_transition] - Specifies whether the shipment
+ *   should be locked automatically after a transition occurs.
+ * @property {boolean} [unlock_before_transition] - Specifies whether the
+ *   shipment should be unlocked before a transition occurs.
+ * @property {boolean} [task] - Indicates whether to run the status update as a
+ *   background task, allowing other processes to continue without waiting for
+ *   this operation to complete.
+ * @property {boolean} [resume_tasks_after_unlock] - Indicates whether tasks
+ *   should resume automatically after unlocking, such as DP assignment task and
+ *   invoicing task.
  */
 
 /**
@@ -362,7 +409,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateOrderConfig
- * @property {DPConfiguration} [dp_configuration]
+ * @property {DPConfiguration} dp_configuration
  * @property {boolean} [location_reassignment] - Flag denotes if the location
  *   for the store needs to be reassigned post cancellation. If true,location
  *   for the store gets auto reassigned post cancellation, if set false location
@@ -375,6 +422,9 @@ const Joi = require("joi");
  *   be passed to FDK for processing.
  * @property {LockStateMessage[]} [lock_state_messages] - A list of
  *   state-specific custom lock messages.
+ * @property {string} [integration_type] - Flag denotes integration type which
+ *   is used to retrieve specific configurations and application details
+ *   relevant to channel fulfillment.
  */
 
 /**
@@ -605,7 +655,9 @@ const Joi = require("joi");
  * @typedef AffiliateConfig
  * @property {AffiliateAppConfig} [app]
  * @property {AffiliateInventoryConfig} [inventory]
- * @property {number} [app_company_id]
+ * @property {number} [app_company_id] - A unique identifier for the company
+ *   associated with the affiliate app, used for tracking and managing affiliate
+ *   relationships.
  */
 
 /**
@@ -633,41 +685,51 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateOrderResponseSchema
- * @property {string} fynd_order_id
+ * @property {string} fynd_order_id - A string that represents the unique
+ *   identifier assigned to the order.
  */
 
 /**
  * @typedef DispatchManifest
- * @property {string} manifest_id - Id of the manifest.
+ * @property {string} manifest_id - The unique identifier for the manifest being
+ *   dispatched.
  */
 
 /**
  * @typedef SuccessResponseSchema
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 
 /**
  * @typedef ActionInfo
- * @property {string} display_text
- * @property {number} id
- * @property {string} description
- * @property {string} slug
+ * @property {string} display_text - A user-friendly text that represents the
+ *   action associated with the permission.
+ * @property {number} id - A unique identifier for the permission, used for
+ *   referencing within the system.
+ * @property {string} description - A detailed explanation of what the
+ *   permission allows the user to do.
+ * @property {string} slug - A URL-friendly string that serves as a unique
+ *   identifier for the permission, often used in routing or API calls.
  */
 
 /**
  * @typedef GetActionsResponseSchema
- * @property {ActionInfo[]} [permissions]
+ * @property {ActionInfo[]} [permissions] - A response object that contains a
+ *   list of permissions available to the user.
  */
 
 /**
  * @typedef HistoryReason
- * @property {string} [text]
- * @property {string} [category]
- * @property {string} [state]
- * @property {string} [dislay_name]
- * @property {number} [code]
- * @property {number} [quantity]
+ * @property {string} [text] - A reason for the activity or change.
+ * @property {string} [category] - Category of the reason for the status change.
+ * @property {string} [state] - Current state related to the reason.
+ * @property {string} [dislay_name] - Display name of the reason for better user
+ *   understanding.
+ * @property {number} [code] - Unique code identifying the reason.
+ * @property {number} [quantity] - Quantity related to the reason, if applicable.
  */
 
 /**
@@ -689,33 +751,37 @@ const Joi = require("joi");
 
 /**
  * @typedef HistoryMeta
- * @property {number} [store_id]
- * @property {string} [status]
- * @property {string} [status1]
- * @property {string} [call_id]
- * @property {string} [starttime]
+ * @property {number} [store_id] - Unique identifier for the store involved in
+ *   the activity.
+ * @property {string} [status] - Current status of the activity or item.
+ * @property {string} [status1] - Additional status information if necessary.
+ * @property {string} [call_id] - Identifier for any related calls, if applicable.
+ * @property {string} [starttime] - Start time of the activity.
  * @property {HistoryReason} [reason]
- * @property {string} [short_link]
- * @property {string} [endtime]
- * @property {string} [store_name]
- * @property {string} [caller]
- * @property {string} [store_code] - The unique identifier representing the code
- *   for the affiliate's store, often used for internal reference.
- * @property {string} [billsec]
- * @property {string} [recordpath]
- * @property {string} [status2]
- * @property {string} [callerid]
- * @property {string} [duration]
- * @property {string} [channel_type] - This represents the Ordering channel type.
- * @property {string} [activity_comment]
+ * @property {string} [short_link] - A shortened link related to the activity,
+ *   if available.
+ * @property {string} [endtime] - End time of the activity.
+ * @property {string} [store_name] - Name of the store involved in the activity.
+ * @property {string} [caller] - Name of the caller associated with the activity.
+ * @property {string} [store_code] - Code associated with the store.
+ * @property {string} [billsec] - Duration of the billable period, if applicable.
+ * @property {string} [recordpath] - Path to any related recordings, if applicable.
+ * @property {string} [status2] - Additional status information if necessary.
+ * @property {string} [callerid] - Caller ID associated with the activity, if applicable.
+ * @property {string} [duration] - Total duration of the activity.
+ * @property {string} [channel_type] - Type of channel used for the activity, if
+ *   applicable.
+ * @property {string} [activity_comment] - Comments related to the activity, if
+ *   applicable.
  * @property {string} [activity_type] - Defines the category of event-related
  *   information for a shipment, indicating the nature of the update. This
  *   includes whether the update pertains to the status of the shipment,
  *   comments added to it, or notifications about specific events.
- * @property {string} [receiver]
- * @property {string} [recipient]
- * @property {string} [slug]
- * @property {string} [message]
+ * @property {string} [receiver] - Name of the receiver involved in the
+ *   activity, if applicable.
+ * @property {string} [recipient] - Recipient of the activity, if applicable.
+ * @property {string} [slug] - Slug identifier for the activity.
+ * @property {string} [message] - Any additional messages related to the activity.
  * @property {string} [prev_store_name] - The name of the store where the item
  *   was previously located before being transferred or processed. This field
  *   can be null if the previous store information is not applicable or available.
@@ -734,78 +800,95 @@ const Joi = require("joi");
 
 /**
  * @typedef HistoryDict
- * @property {string} [display_message] - Display Message
- * @property {number} [bag_id] - Bag ID
- * @property {string} [ticket_url] - Ticket URL
- * @property {string} [l3_detail] - L3 details of bag
- * @property {string} createdat - Create date
- * @property {string} [ticket_id] - Ticket ID
+ * @property {string} [display_message] - User-friendly message displaying the
+ *   activity or status change.
+ * @property {number} [bag_id] - Identifier for the bag associated with the activity.
+ * @property {string} [ticket_url] - URL for any related tickets.
+ * @property {string} [l3_detail] - L3 details regarding the bag or activity.
+ * @property {string} createdat - Date and time when the activity was created.
+ * @property {string} [created_ts] - Timestamp for when the activity was created
+ *   in ISO format.
+ * @property {string} [ticket_id] - Unique identifier for the ticket associated
+ *   with the activity.
  * @property {string} activity_type - Defines the category of event-related
  *   information for a shipment, indicating the nature of the update. This
  *   includes whether the update pertains to the status of the shipment,
  *   comments added to it, or notifications about specific events.
- * @property {string} [l2_detail] - L2 details of bag
- * @property {string} [assigned_agent] - Assigned Agent
+ * @property {string} [l2_detail] - L2 details regarding the bag or activity.
+ * @property {string} [assigned_agent] - Name of the agent assigned to the activity.
  * @property {HistoryMeta} [meta]
- * @property {string} [l1_detail] - L1 details of bag
- * @property {string} message - History Message or comment
- * @property {string} user - User who created the history
+ * @property {string} [l1_detail] - L1 details regarding the bag or activity.
+ * @property {string} message - Message or comment regarding the history.
+ * @property {string} user - Name of the user who created the history record.
  */
 
 /**
  * @typedef ShipmentHistoryResponseSchema
- * @property {boolean} [success]
- * @property {HistoryDict[]} activity_history
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {HistoryDict[]} activity_history - A list of activity records
+ *   related to the shipment, providing details on actions taken, comments
+ *   added, or notifications sent.
  */
 
 /**
  * @typedef PostHistoryFilters
- * @property {string} shipment_id
- * @property {string} [line_number]
- * @property {string} [identifier]
+ * @property {string} shipment_id - Unique identifier for the shipment
+ * @property {string} [line_number] - Optional field to specify a particular
+ *   line item in the shipment.
+ * @property {string} [identifier] - Optional field for any additional
+ *   identifier related to the shipment.
  */
 
 /**
  * @typedef PostHistoryData
- * @property {string} user_name
- * @property {string} message
+ * @property {string} user_name - The name or email of the user who performed
+ *   the action or recorded the entry.
+ * @property {string} message - A descriptive message detailing the action taken
+ *   or the status related to the shipment.
  */
 
 /**
  * @typedef PostHistoryDict
- * @property {PostHistoryFilters[]} filters
+ * @property {PostHistoryFilters[]} filters - A list of filter objects, each
+ *   following the PostHistoryFilters schema, used to identify which shipment
+ *   history records are relevant.
  * @property {PostHistoryData} data
  */
 
 /**
  * @typedef PostShipmentHistory
- * @property {PostHistoryDict[]} [activity_history]
+ * @property {PostHistoryDict[]} [activity_history] - A list of activity history
+ *   records, each adhering to the PostHistoryDict schema.
  */
 
 /**
  * @typedef SmsDataPayload
  * @property {string} shipment_id - Unique identifier which is used to identify
  *   a shipment.
- * @property {string} phone_number - Phone number for communication
- * @property {number} [amount_paid] - Data mapped in Communication template: amount_paid
- * @property {string} order_id - OrderId
- * @property {string} [payment_mode] - Data mapped in Communication template: payment_mode
- * @property {string} [customer_name] - Data mapped in Communication template:
- *   customer_name
- * @property {string} [brand_name] - Data mapped in Communication template: brand_name
- * @property {string} message - Message to be send in SMS
- * @property {string} country_code - Uniquely identifies the country associated
- *   with the mobile number in ISO 3166-1 alpha-2 format. This code is essential
- *   for for correctly formatting and routing the OTP messages to mobile phones
- *   across international borders. Examples include 'US' for the United States,
- *   'IN' for India.
+ * @property {string} phone_number - The recipient's phone number for communication.
+ * @property {number} [amount_paid] - The amount that has been paid, as mapped
+ *   in the communication template.
+ * @property {string} order_id - Unique identifier for the order associated with
+ *   the shipment.
+ * @property {string} [payment_mode] - The mode of payment used for the order,
+ *   as mapped in the communication template.
+ * @property {string} [customer_name] - The name of the customer, as mapped in
+ *   the communication template.
+ * @property {string} [brand_name] - The name of the brand associated with the
+ *   order, as mapped in the communication template.
+ * @property {string} message - The content of the SMS to be sent to the recipient.
+ * @property {string} country_code - The country code for the recipient's phone
+ *   number, necessary for proper SMS delivery.
  */
 
 /**
  * @typedef SendSmsPayload
- * @property {string} bag_id - Bag_id for the activity history track
- * @property {SmsDataPayload} [data] - SMS Data
- * @property {string} slug - Slug name for the template mapped in pointblank
+ * @property {number} bag_id - Unique identifier for the bag, used for tracking
+ *   activity history related to this SMS.
+ * @property {SmsDataPayload} [data] - Contains the SMS data necessary for communication.
+ * @property {string} slug - Slug name for the SMS template mapped in the
+ *   communication system, used to identify the specific messaging format or content.
  */
 
 /**
@@ -822,7 +905,8 @@ const Joi = require("joi");
  * @property {number} [coupon_value]
  * @property {number} [order_value]
  * @property {string} [created_time]
- * @property {string} [currency]
+ * @property {string} [currency] - The currency in which the prices details
+ *   associated with the item is specified.
  * @property {number} [total_order_value]
  * @property {string} [ordering_channel]
  * @property {Object} [meta] - Meta data of the order data contains additional,
@@ -855,25 +939,34 @@ const Joi = require("joi");
 
 /**
  * @typedef Meta
- * @property {number} [kafka_emission_status]
- * @property {string} [state_manager_used]
+ * @property {number} [kafka_emission_status] - An integer representing the
+ *   status of the message upon emission to Kafka. 0 indicates success, while 1
+ *   indicates failure.
+ * @property {string} [state_manager_used] - A string that specifies the state
+ *   manager utilized for handling the order's state.
  */
 
 /**
  * @typedef ShipmentDetail
- * @property {string} [shipment_id]
- * @property {string} [status]
- * @property {number} id
- * @property {number[]} [bag_list]
+ * @property {string} [shipment_id] - Unique identifier for the shipment
+ *   associated with the order.
+ * @property {string} [status] - A string representing the current status of the shipment
+ * @property {number} id - An integer that serves as a unique identifier for the
+ *   shipment detail
+ * @property {number[]} [bag_list] - A list of bag identifiers associated with
+ *   the shipment.
  * @property {Meta} meta
- * @property {string} [remarks]
+ * @property {string} [remarks] - A string for any additional comments or notes
+ *   related to the shipment,
  */
 
 /**
  * @typedef OrderStatusData
  * @property {OrderDetails} order_details
- * @property {string[]} [errors]
- * @property {ShipmentDetail[]} [shipment_details]
+ * @property {string[]} [errors] - A list of any errors that occurred while
+ *   attempting to obtain the order's status.
+ * @property {ShipmentDetail[]} [shipment_details] - A list of the individual
+ *   shipments associated with the order and their current statuses.
  * @property {string} [text] - A label or description of the delivery status,
  *   such as 'Expected Delivery Date'.
  * @property {string} [value] - The detailed delivery status or time
@@ -886,8 +979,10 @@ const Joi = require("joi");
 
 /**
  * @typedef OrderStatusResult
- * @property {string} success
- * @property {OrderStatusData[]} [result]
+ * @property {string} success - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {OrderStatusData[]} [result] - The order's current status and
+ *   related shipment details.
  */
 
 /**
@@ -904,17 +999,18 @@ const Joi = require("joi");
  * @typedef Dimension
  * @property {string} [packaging_type] - Defines the type of packaging used for
  *   the product, encompassing materials, design, and form factors.
- * @property {string} [weight]
- * @property {string} [height]
- * @property {number} [length]
- * @property {number} [width]
+ * @property {number} [weight] - The weight of the package in kilograms.
+ * @property {number} [height] - The height of the package in centimetres.
+ * @property {number} [length] - The length of the package in centimetres.
+ * @property {number} [width] - The width of the package in centimetres.
  */
 
 /**
  * @typedef UpdatePackagingDimensionsPayload
- * @property {string} shipment_id
- * @property {string} current_status
- * @property {Dimension[]} dimension
+ * @property {string} shipment_id - Unique identifier for the shipment for which
+ *   the packaging dimensions are being updated.
+ * @property {string} current_status - The current status of the shipment.
+ * @property {Dimension[]} dimension - A list of dimensions for the packaging.
  */
 
 /**
@@ -924,17 +1020,26 @@ const Joi = require("joi");
 
 /**
  * @typedef Tax
- * @property {string} name
- * @property {number} rate
- * @property {Object[]} [breakup]
- * @property {Object} amount - The base amount of the tax.
+ * @property {string} name - The name of the tax, indicating its purpose (e.g.,
+ *   VAT, sales tax).
+ * @property {number} rate - The tax rate as a decimal, applied to the transaction amount.
+ * @property {Object[]} [breakup] - An array of objects detailing the components
+ *   or breakdown of the tax applied.
+ * @property {Object} amount - An object representing the total tax amount
+ *   calculated for the transaction.
+ */
+
+/**
+ * @typedef AmountSchema
+ * @property {string} [currency] - The value indicating the currency used for
+ *   the transactions.
+ * @property {number} [value] - The final amount of the charge.
  */
 
 /**
  * @typedef Charge
- * @property {string} name - The name of the charge.
- * @property {Object} amount - The monetary value of the charge, including value
- *   and currency details.
+ * @property {string} name - The name of the charge that indicates its purpose.
+ * @property {AmountSchema} amount
  * @property {Tax} [tax]
  * @property {string} [code] - An optional code associated with the charge for
  *   internal tracking.
@@ -943,32 +1048,30 @@ const Joi = require("joi");
 
 /**
  * @typedef LineItem
- * @property {Charge[]} [charges]
- * @property {Object} [meta] - Meta data of the articles or line items.
- * @property {string} [custom_message] - Meta data of the articles or line items.
+ * @property {Charge[]} [charges] - An array of Charge objects related to the line item.
+ * @property {Object} [meta] - An object containing metadata relevant to
+ *   articles or line items.
+ * @property {string} [custom_message] - A string for any special instructions
+ *   or messages related to the line item.
  * @property {number} [quantity] - Quantity of the articles or line items.
- * @property {string} seller_identifier - Seller identifier of the articles or line items.
+ * @property {string} seller_identifier - Unique identifier of the articles or
+ *   line items set by seller.
  * @property {string} [external_line_id] - External unique identifier of the
  *   articles or line items.
  */
 
 /**
  * @typedef ProcessingDates
- * @property {Object} [dp_pickup_slot] - Specifies the designated time slot for
- *   the delivery partner to pick up the package, ensuring efficient
- *   coordination and scheduling.
- * @property {string} [dispatch_after_date] - Indicates the earliest date and
- *   time when the package can be dispatched, helping to manage logistics and
- *   delivery expectations.
- * @property {string} [dispatch_by_date] - Sets the deadline by which the
- *   package must be dispatched to meet delivery timelines, crucial for
- *   maintaining service level agreements.
- * @property {string} [confirm_by_date] - Specifies the deadline for order
- *   confirmation, ensuring that processing begins in a timely manner to meet
- *   dispatch and delivery schedules.
- * @property {Object} [customer_pickup_slot] - Allocates a specific time slot
- *   for the customer to pick up the package, enhancing convenience and customer
- *   satisfaction.
+ * @property {Object} [dp_pickup_slot] - An object that provides details about
+ *   the designated pickup time slot for the order.
+ * @property {string} [dispatch_after_date] - A string indicating the date after
+ *   which the order will be dispatched.
+ * @property {string} [dispatch_by_date] - A string representing the latest date
+ *   by which the order must be dispatched to meet delivery expectations.
+ * @property {string} [confirm_by_date] - A string that indicates the deadline
+ *   for the merchant to confirm the order.
+ * @property {Object} [customer_pickup_slot] - An object that provides details
+ *   of the pick-up time slot set by the customer.
  * @property {string} [pack_by_date] - Defines the deadline for having the
  *   package fully packed and ready for dispatch or pickup, integral to
  *   streamlining the fulfillment process.
@@ -1002,13 +1105,15 @@ const Joi = require("joi");
 
 /**
  * @typedef Shipment
- * @property {LineItem[]} line_items
+ * @property {LineItem[]} line_items - An array of LineItem objects that
+ *   represent the items included in the shipment.
  * @property {string} [external_shipment_id] - External shipment identifier or
  *   marketplace's unique shipment identifier.
  * @property {ProcessingDates} [processing_dates]
  * @property {Object} [meta] - Meta data of the shipment contains additional,
  *   potentially dynamic information about the shipment.
- * @property {number} [priority] - Integer value indicating high and low priority.
+ * @property {number} [priority] - An integer indicating the priority level of
+ *   the shipment.
  * @property {number} [location_id] - Location Identifier or Store/Fulfillment
  *   Identifier of the shipment- This field is mandatory when
  *   optimal_shipment_creation flag is set to false, indicating that shipments
@@ -1065,41 +1170,57 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GeoLocationSchema
+ * @property {number} [latitude] - A number representing the geographical
+ *   latitude of the location.
+ * @property {number} [longitude] - A number representing the geographical
+ *   longitude of the location
+ */
+
+/**
  * @typedef ShippingInfo
- * @property {string} [alternate_mobile_number]
- * @property {string} [state]
- * @property {string} [customer_code] - A unique identifier assigned to the
- *   customer, facilitating order tracking and service customization.
+ * @property {string} [alternate_mobile_number] - A string for an alternate
+ *   mobile number to reach the customer, providing an additional contact method.
+ * @property {string} [state] - A string representing the name of the state for
+ *   shipping purposes.
+ * @property {string} [customer_code] - A string representing the customer's
+ *   unique identifier in the seller's system.
  * @property {string} [shipping_type] - Specifies the method or service used for
  *   the shipping of the shipment.
- * @property {string} [middle_name]
- * @property {string} [primary_mobile_number]
- * @property {string} [last_name]
- * @property {Object} [geo_location] - Geographic coordinates (latitude and
- *   longitude) of the shipping address
- * @property {string} [gender]
- * @property {string} [house_no]
- * @property {string} [first_name]
- * @property {string} [title]
- * @property {string} [landmark]
- * @property {string} [country]
- * @property {string} [address_type] - The type of the address.
- * @property {string} [state_code] - The code representing the state or region
- *   within the country, if applicable.
- * @property {string} [city]
- * @property {string} [external_customer_code] - A unique identifier assigned to
- *   customers by an external system or partner organization. This code is
- *   crucial for integrating and synchronizing customer information across
- *   different platforms or services.
- * @property {string} [floor_no]
- * @property {string} [alternate_email]
- * @property {Object[]} [slot]
- * @property {string} [address]
- * @property {string} [area]
- * @property {string} [address1]
- * @property {string} [pincode]
- * @property {string} [primary_email]
- * @property {string} [address2]
+ * @property {string} [middle_name] - A string containing the customer's middle name.
+ * @property {string} [primary_mobile_number] - A string for the customer's
+ *   primary mobile number.
+ * @property {string} [last_name] - A string containing the customer's last name.
+ * @property {GeoLocationSchema} [geo_location]
+ * @property {string} [gender] - A string representing the customer's gender.
+ * @property {string} [house_no] - A string representing the house or apartment
+ *   number of the customer.
+ * @property {string} [first_name] - A string representing the customer's first name.
+ * @property {string} [title] - A string representing the customer's title or prefix.
+ * @property {string} [landmark] - A string representing a landmark or reference
+ *   point near the customer's location.
+ * @property {string} [country] - A string representing the customer's country.
+ * @property {string} [address_type] - A string representing the address type in
+ *   the seller's system.
+ * @property {string} [state_code] - A string representing the state code of the
+ *   customer's location.
+ * @property {string} [city] - A string representing the city of the customer's location.
+ * @property {string} [external_customer_code] - A string representing an
+ *   external customer code in the seller's system.
+ * @property {string} [floor_no] - A string representing the floor number of the
+ *   customer's location.
+ * @property {string} [alternate_email] - A string representing an alternate
+ *   email address for the customer.
+ * @property {Object[]} [slot] - A list of objects representing available time
+ *   slot for delivery or pickup.
+ * @property {string} [address] - A comma-separated string representing the address.
+ * @property {string} [area] - A string representing the area of the customer's location.
+ * @property {string} [address1] - A string representing the first line of the address.
+ * @property {string} [pincode] - A string representing the pincode of the
+ *   customer's location.
+ * @property {string} [primary_email] - A string representing the primary email
+ *   address for the customer.
+ * @property {string} [address2] - A string representing the second line of the address.
  * @property {string} [country_code] - Uniquely identifies the country
  *   associated with the shipping address. This code is essential for
  *   international shipments, ensuring accurate routing and delivery across
@@ -1135,12 +1256,13 @@ const Joi = require("joi");
  * @property {string} [floor_no]
  * @property {string} [alternate_email]
  * @property {string} [address]
- * @property {string} [area]
- * @property {string} [address1]
- * @property {string} [pincode]
- * @property {string} [primary_email]
- * @property {string} [address2]
- * @property {string} [landmark]
+ * @property {string} [area] - A string representing the area of the customer's location.
+ * @property {string} [address1] - A string representing the first line of the address.
+ * @property {string} [pincode] - A string representing the pincode of the
+ *   customer's location.
+ * @property {string} [primary_email] - A string representing the primary email
+ *   address for the customer.
+ * @property {string} [address2] - A string representing the second line of the address.
  * @property {string} [country_code] - Uniquely identifies the country
  *   associated with the billing address details. This code is essential for
  *   international shipments, ensuring accurate routing and delivery across
@@ -1153,39 +1275,51 @@ const Joi = require("joi");
 
 /**
  * @typedef UserInfo
- * @property {string} [user_id]
- * @property {string} [user_type] - User type of the user.
- * @property {string} [primary_email]
- * @property {string} [gender]
- * @property {string} first_name
- * @property {string} [last_name]
- * @property {string} primary_mobile_number
+ * @property {string} [user_id] - The unique identifier assigned to the user.
+ * @property {string} [user_type] - A string representing the type of the user.
+ * @property {string} [primary_email] - A string representing the primary email
+ *   address for the user.
+ * @property {string} [gender] - A string specifying the gender of the user.
+ * @property {string} first_name - A string which specifies the user's first name.
+ * @property {string} [last_name] - A string which specifies the user's last name.
+ * @property {string} primary_mobile_number - A string representing the primary
+ *   mobile number for the user.
  */
 
 /**
  * @typedef TaxInfo
- * @property {string} [b2b_gstin_number]
- * @property {string} [gstin]
- * @property {string} [pan_no]
+ * @property {string} [b2b_gstin_number] - A string representing the GSTIN
+ *   (Goods and Services Tax Identification Number) for business-to-business
+ *   transactions.
+ * @property {string} [gstin] - A string that specifies the GSTIN for the seller.
+ * @property {string} [pan_no] - A string representing the PAN assigned to
+ *   individuals or entities for tax purposes in India.
  */
 
 /**
  * @typedef PaymentMethod
- * @property {string} collect_by
- * @property {string} mode
- * @property {string} refund_by
- * @property {string} name
- * @property {number} amount
- * @property {Object} [meta] - An object containing additional metadata for the
- *   Payment Method.
- * @property {Object} [transaction_data] - An object containing transaction data
- *   for the Payment Method.
+ * @property {string} collect_by - A string indicating the entity responsible
+ *   for collecting the payment.
+ * @property {string} mode - A string that specifies the mode of payment.
+ * @property {string} refund_by - A string that indicates the entity responsible
+ *   for processing refunds.
+ * @property {string} name - A string representing the name of the payment method.
+ * @property {number} amount - A number representing the monetary value
+ *   associated with the payment method.
+ * @property {Object} [meta] - An object for any additional metadata related to
+ *   the payment method.
+ * @property {Object} [transaction_data] - An object that holds
+ *   transaction-specific information.
  */
 
 /**
  * @typedef PaymentInfo
- * @property {string} primary_mode
- * @property {PaymentMethod[]} [payment_methods]
+ * @property {string} primary_mode - A string that indicates the primary payment
+ *   method used for the order.
+ * @property {string} [payment_mode] - A string that indicates the payment mode
+ *   used for the order.
+ * @property {PaymentMethod[]} [payment_methods] - A lists all available payment
+ *   methods used in the transaction.
  */
 
 /**
@@ -1194,38 +1328,46 @@ const Joi = require("joi");
  *   data like shipment items, shipment promise, Shipment type, shipment order
  *   type, shipment dp options etc.
  * @property {ShippingInfo} shipping_info
- * @property {BillingInfo} billing_info
+ * @property {ShippingInfo} billing_info
  * @property {Object} [currency_info] - This object can accommodate a range of
  *   currency-related information, provides a flexible structure for storing
  *   comprehensive details about the currency or currencies involved in a transaction.
- * @property {string} [external_order_id]
- * @property {Charge[]} [charges]
- * @property {string} [external_creation_date] - Specifies the date and time
- *   when the record was initially created in an external system.
+ * @property {string} [external_order_id] - A unique identifier for the order
+ *   assigned by an external system.
+ * @property {Charge[]} [charges] - An array of charge objects that detail the
+ *   various fees associated with the order.
+ * @property {string} [external_creation_date] - A string that specifies the
+ *   date and time when the order was created in an external system
  * @property {Object} [meta] - Meta data of the order that contains additional,
  *   potentially dynamic information about the order.
  * @property {TaxInfo} [tax_info]
- * @property {CreateOrderConfig} [config]
+ * @property {CreateOrderConfig} config
  * @property {PaymentInfo} payment_info
  * @property {UserInfo} [user_info]
- * @property {number} [ordering_store_id]
- * @property {string} [order_platform]
+ * @property {number} [ordering_store_id] - Unique identifier for the store
+ *   where the order was placed.
+ * @property {string} [order_platform] - The platform used to place the order.
  * @property {string} [status] - Represents the current status of the order,
  *   specifying whether the order is in a 'pendency' state (awaiting further
  *   action) or marked as 'complete'.
  * @property {SystemMessages[]} [system_messages]
+ * @property {string} [order_type] - A string that specifies the type of order
+ *   being placed.
+ * @property {string} [fynd_order_id] - Unique identifier for the order.
+ * @property {string} [application_id] - A unique identifier for the application
+ *   or system that is making the order request.
+ * @property {string} [external_shipment_id] - External shipment identifier or
+ *   marketplace's unique shipment identifier.
  */
 
 /**
  * @typedef CreateOrderErrorReponse
- * @property {string} [request_id]
- * @property {number} status
- * @property {Object} [info]
- * @property {string} [stack_trace]
- * @property {string} [code]
- * @property {string} [meta]
- * @property {string} message
- * @property {string} [exception]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [errors] - Contains details about the error.
+ * @property {number} [status_code] - Represents the HTTP status code of the API response.
+ * @property {string} [fynd_order_id] - A string that represents the unique
+ *   identifier assigned to the order.
  */
 
 /**
@@ -1259,7 +1401,23 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateChannelConifgErrorResponseSchema
- * @property {string} [error]
+ * @property {string} [error] - A string that represents the unique identifier
+ *   assigned to the order.
+ * @property {string} [request_id]
+ * @property {number} status
+ * @property {Object} [info]
+ * @property {string} [stack_trace]
+ * @property {string} [code]
+ * @property {string} [meta]
+ * @property {string} message
+ * @property {string} [exception]
+ */
+
+/**
+ * @typedef UploadManifestConsent
+ * @property {string} consent_url - A URL that directs users to a consent page
+ *   or document related to the upload of the manifest.
+ * @property {string} manifest_id - The unique identifier for the manifest being uploaded.
  */
 
 /**
@@ -1270,30 +1428,36 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UploadConsent
- * @property {string} consent_url
- * @property {string} manifest_id
- */
-
-/**
  * @typedef PlatformOrderUpdate
- * @property {string} order_id
+ * @property {string} order_id - A string that represents the unique identifier
+ *   assigned to the order.
  */
 
 /**
  * @typedef ResponseDetail
- * @property {boolean} [success]
- * @property {string[]} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
+ * @property {number} [status] - Represents the HTTP status code of the API response.
  */
 
 /**
  * @typedef FyndOrderIdList
- * @property {string[]} [fynd_order_id]
+ * @property {string[]} [fynd_order_id] - An array of strings that represent
+ *   unique identifiers assigned to an order.
+ * @property {string} [start_date] - A string representing the start date for
+ *   the order status query.
+ * @property {string} [end_date] - A string representing the end date for the
+ *   order status query.
+ * @property {number} [mobile] - An integer representing the mobile number
+ *   associated with the order.
  */
 
 /**
  * @typedef OrderStatus
- * @property {FyndOrderIdList[]} [order_details]
+ * @property {FyndOrderIdList[]} [order_details] - An array of objects that
+ *   provide details about the orders, including their respective order IDs.
  * @property {string} start_date - Denotes the start date and time when the
  *   order was created.
  * @property {string} end_date - Specifies the deadline by which a particular
@@ -1309,8 +1473,10 @@ const Joi = require("joi");
 
 /**
  * @typedef RoleBaseStateTransitionMapping
- * @property {boolean} [success]
- * @property {string[]} [next_statuses]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string[]} [next_statuses] - A list of possible next statuses that
+ *   can be transitioned to from the current status.
  */
 
 /**
@@ -1335,44 +1501,63 @@ const Joi = require("joi");
 
 /**
  * @typedef RefundModeConfigRequestPayload
- * @property {string} fynd_order_id
- * @property {number} seller_id
- * @property {string} affiliate_id
- * @property {string} [customer_mobile_number]
+ * @property {string} fynd_order_id - A unique identifier for the order placed
+ *   through the Fynd platform.
+ * @property {number} seller_id - A unique identifier representing the seller
+ *   associated with the order.
+ * @property {string} affiliate_id - An identifier for the affiliate partner
+ *   associated with the order.
+ * @property {number} [customer_mobile_number] - The mobile phone number of the
+ *   customer who placed the order.
  */
 
 /**
  * @typedef RefundOption
- * @property {string} [value]
- * @property {string} [slug]
- * @property {string} [name]
- * @property {string} [type]
+ * @property {string} [value] - The actual value representing the refund option.
+ * @property {string} [slug] - A unique identifier for the refund mode
+ * @property {string} [name] - A user-friendly name for the refund option.
+ * @property {string} [type] - A string indicating the type of refund
+ *   information provided.
+ */
+
+/**
+ * @typedef RefundModeFormat
+ * @property {string} [refund_to] - Specifies the destination or method for the refunds.
  */
 
 /**
  * @typedef RefundModeInfo
- * @property {boolean} [is_active]
- * @property {string} [slug]
- * @property {RefundOption[]} [options]
- * @property {string} [display_name]
+ * @property {boolean} [is_active] - A flag indicating whether the refund mode
+ *   is currently active or not.
+ * @property {string} [slug] - A unique identifier for the refund mode.
+ * @property {RefundOption[]} [options] - A list of available refund options
+ *   associated with this refund mode.
+ * @property {string} [display_name] - A user-friendly name for the refund mode.
+ * @property {RefundModeFormat} [format]
  */
 
 /**
  * @typedef RefundModeConfigResponsePayload
- * @property {boolean} success
- * @property {RefundModeInfo[]} data
+ * @property {boolean} success - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {RefundModeInfo[]} data - An array of possible refund mode
+ *   information objects.
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 
 /**
  * @typedef AttachUserOtpData
- * @property {string} request_id
+ * @property {string} request_id - A string representing a unique identifier for
+ *   the OTP request.
  */
 
 /**
  * @typedef AttachUserInfo
- * @property {string} first_name
- * @property {string} last_name
- * @property {string} mobile
+ * @property {string} first_name - A string representing the user's first name.
+ * @property {string} last_name - A string representing the user's last name.
+ * @property {string} mobile - A string representing the user's mobile number.
  * @property {string} [country_code] - Uniquely identifies the country
  *   associated with the user information. This code is essential for
  *   international shipments, ensuring accurate routing and delivery across
@@ -1383,19 +1568,23 @@ const Joi = require("joi");
 /**
  * @typedef AttachOrderUser
  * @property {AttachUserOtpData} otp_data
- * @property {string} fynd_order_id
+ * @property {string} fynd_order_id - A unique identifier for the order
+ *   associated with the user attach.
  * @property {AttachUserInfo} user_info
  */
 
 /**
  * @typedef AttachOrderUserResponseSchema
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  */
 
 /**
  * @typedef SendUserMobileOTP
- * @property {string} mobile
+ * @property {number} mobile - The mobile phone number of the user to whom the
+ *   OTP (One-Time Password) will be sent.
  * @property {string} [country_code] - Uniquely identifies the country
  *   associated with the mobile number. This code is essential for for correctly
  *   formatting and routing the OTP messages to mobile phones across
@@ -1404,97 +1593,136 @@ const Joi = require("joi");
 
 /**
  * @typedef PointBlankOtpData
- * @property {string} [request_id]
- * @property {number} [resend_timer]
- * @property {string} [message]
- * @property {number} [mobile]
+ * @property {string} [request_id] - A unique identifier for the OTP request.
+ * @property {number} [resend_timer] - The amount of time (in seconds) before
+ *   the OTP can be resent to the user.
+ * @property {string} [message] - A message providing additional information
+ *   about the OTP request.
+ * @property {number} [mobile] - The mobile number (in integer format)
+ *   associated with the OTP request.
  */
 
 /**
  * @typedef SendUserMobileOtpResponseSchema
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {number} [status] - The HTTP status code of the API response
+ *   (200/400/500/503).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  * @property {PointBlankOtpData} [data]
  */
 
 /**
  * @typedef VerifyOtpData
- * @property {string} request_id
- * @property {string} mobile
- * @property {number} otp_code - The OTP entered by the user for verification.
- *   This code is a temporary, numeric password that validates the user's access request.
+ * @property {string} request_id - A unique identifier for the OTP verification request.
+ * @property {string} mobile - The mobile number associated with the OTP verification.
+ * @property {number} otp_code - The OTP code received by the user.
  */
 
 /**
  * @typedef VerifyMobileOTP
  * @property {VerifyOtpData} otp_data
- * @property {string} fynd_order_id
+ * @property {string} fynd_order_id - A unique identifier for the order
+ *   associated with the OTP verification.
  */
 
 /**
  * @typedef VerifyOtpResponseData
- * @property {string} [mobile]
- * @property {string} [message]
- * @property {string} [fynd_order_id]
- * @property {string} [country_code] - Uniquely identifies the country
- *   associated with the mobile number. This code is essential for for correctly
- *   formatting and routing the OTP messages to mobile phones across
- *   international borders. Examples include 'US' for the United States, 'IN' for India.
+ * @property {string} [mobile] - The mobile number associated with the verified OTP.
+ * @property {string} [message] - A string that provides a message about the
+ *   outcome of the verification process.
+ * @property {string} [fynd_order_id] - Unique identifier for the order
+ *   associated with the OTP verification.
+ * @property {string} [country_code] - A string indicating the country code
+ *   associated with the mobile number.
  */
 
 /**
  * @typedef VerifyOtpResponseSchema
- * @property {number} [status]
- * @property {boolean} [success]
- * @property {string} [message]
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
  * @property {VerifyOtpResponseData} [data]
  */
 
 /**
+ * @typedef BulkReportsFiltersSchema
+ * @property {string} [bag_status] - Comma separated values of bag statuses(to
+ *   be deprecated).
+ * @property {string} [operational_status] - Comma separated values of
+ *   shipment's operational statuses.
+ * @property {string} [stores] - Comma separated values of store ids.
+ * @property {string} [time_to_dispatch] - Specifies the type of shipments to
+ *   retrieve. Use "1" for non-breached shipments and "-1" for breached shipments.
+ * @property {string} [payment_methods] - Filters shipments by payment method.
+ *   Use "PREPAID" for shipments paid in advance, and "COD" for cash-on-delivery
+ *   shipments.
+ * @property {string} [dp_ids] - Comma separated values of delivery partners.
+ *   Either dp_id or slug(extension_id|scheme_id).
+ * @property {string} [sales_channels] - Comma separated values of sales channels ids.
+ * @property {string} [tags] - A comma-separated list of tags associated with
+ *   the entity. Each tag is a keyword or label that categorizes or describes the entity.
+ * @property {string} [lock_status] - Indicates the lock status of the entity.
+ *   "true" means the shipment is in a complete or partial lock state, while
+ *   "false" means it is unlocked.
+ */
+
+/**
  * @typedef BulkReportsDownloadRequestSchema
- * @property {string[]} [store_ids] - Download for specific store ids.
+ * @property {string[]} [store_ids] - A list of specific store IDs for which the
+ *   reports should be generated.
  * @property {string} [lane_type] - Defines the category or type of lane for
  *   which the report is being requested for download.
- * @property {string} [custom_headers] - Download report with specific headers
- * @property {string} [report_type] - Specifies the type of report to be
- *   fetched. The value must be one of the following- - generation_report-
- *   Retrieves records related to state transition failed shipment attempts from
- *   the BulkAction table. - invoice_report- Retrieves records related to failed
- *   invoiced shipments from the BulkAction table. Based on the provided report
- *   type, the API will fetch the corresponding failed records.
- * @property {string} [start_date] - UTC start date in ISO format
- * @property {string} [end_date] - UTC end date in ISO format
- * @property {string[]} [entities] - Download for specific enitites, entities
- *   can be bag, shipment or order_id, etc.
- * @property {string} [filter_type]
- * @property {boolean} [is_cross_company_enabled] - Download lanes for cross company.
- * @property {Object} [custom_filters_for_lane] - Provides a the option for
- *   defining custom filters specific to a logistics or transportation lane.
+ * @property {string[]} [custom_headers] - Allows users to specify custom
+ *   headers for the downloaded report.
+ * @property {string} [report_type] - Indicates the type of report being requested.
+ * @property {string} [start_date] - UTC start date in ISO format, defines the
+ *   beginning of the date range for which the report data should be collected.
+ * @property {string} [end_date] - UTC end date in ISO format, defines the end
+ *   date range for which the report data should be collected.
+ * @property {string[]} [entities] - Download for specific enitites or for
+ *   search filters applied, entities can be bag, shipment or order_id, etc.
+ * @property {string} [filter_type] - Specifies the type of filtering to be
+ *   applied to the report data.
+ * @property {boolean} [is_cross_company_enabled] - Indicates whether the report
+ *   should include data from cross-company operations.
+ * @property {Object} [custom_filters_for_lane] - A flexible object that allows
+ *   users to define custom filters specific to the lanes being reported on.
+ * @property {BulkReportsFiltersSchema} [filters]
  */
 
 /**
  * @typedef BulkReportsDownloadResponseSchema
- * @property {boolean} [success]
- * @property {string} [batch_id]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [batch_id] - A unique identifier for the batch of reports generated.
  */
 
 /**
- * @typedef BulkFailedResponseSchema
- * @property {boolean} [status]
- * @property {string} [error]
+ * @typedef APIFailedResponseSchema
+ * @property {boolean} [status] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [error] - A descriptive message detailing the error that
+ *   occurred during the API call.
  */
 
 /**
  * @typedef BulkStateTransistionRequestSchema
- * @property {string} [url]
- * @property {string} [file_name]
+ * @property {string} [url] - Endpoint or resource URL where the bulk state
+ *   transition request should be directed.
+ * @property {string} [file_name] - Name of the file associated with the bulk operation.
  */
 
 /**
  * @typedef BulkStateTransistionResponseSchema
- * @property {boolean} [status]
- * @property {string} [message]
- * @property {string} [batch_id]
+ * @property {boolean} [status] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
+ * @property {string} [batch_id] - A unique identifier for the batch of reports generated.
  */
 
 /**
@@ -1515,172 +1743,235 @@ const Joi = require("joi");
 
 /**
  * @typedef BulkActionListingData
- * @property {number} [store_id]
- * @property {string} [uploaded_on]
- * @property {number} [company_id]
+ * @property {number} [store_id] - The unique identifier for the store
+ *   associated with the bulk action.
+ * @property {string} [uploaded_on] - A timestamp indicating when the bulk
+ *   action was uploaded.
+ * @property {number} [company_id] - Unique identifier of a company on the platform.
  * @property {ShipmentActionInfo} [shipments_action_info]
- * @property {boolean} [is_invoiceable]
- * @property {string} [user_name]
- * @property {string} [file_url]
- * @property {Object} [meta] - Meta data of the bulk action listing data that
- *   contains additional, potentially dynamic information about the shipments.
- * @property {string} [invoice_document_type] - Denotes the format in which the
- *   invoice is streamed.
- * @property {string} [label_document_type] - Denotes the format in which the
- *   label is streamed.
- * @property {string} [file_name]
- * @property {string} [store_name]
- * @property {number} [updated_ts]
- * @property {boolean} [status]
- * @property {string} [store_code] - The unique identifier representing the code
- *   for the affiliate's store, often used for internal reference.
- * @property {string} [bulk_action_type] - Specifies the type of bulk action to
- *   be performed, categorizing the job into distinct operational tasks. Each
- *   option represents a specific automated process designed to handle large
- *   volumes of data or actions efficiently
- * @property {string} [created_ts]
- * @property {string} [invoice_status]
- * @property {boolean} [do_invoice_label_generated]
- * @property {number} [id]
- * @property {string} [user_id]
- * @property {string} [last_selected_invoice_label_type] - Denotes the format in
- *   which the last selected invoice label is streamed.
- * @property {string} [batch_id]
- * @property {string} [uploaded_by]
+ * @property {boolean} [is_invoiceable] - Indicates whether the bulk action is
+ *   eligible for invoicing.
+ * @property {string} [user_name] - The name of the user who initiated or
+ *   uploaded the bulk action.
+ * @property {string} [file_url] - The URL where the uploaded file can be accessed.
+ * @property {Object} [meta] - A flexible object that can contain additional
+ *   metadata related to the bulk action.
+ * @property {string} [invoice_document_type] - The type of document that is
+ *   used for invoicing this bulk action.
+ * @property {string} [label_document_type] - The type of document that is used
+ *   for creating labels for this bulk action.
+ * @property {string} [file_name] - The name of the file that was uploaded as
+ *   part of the bulk action.
+ * @property {string} [store_name] - The name of the store associated with the
+ *   bulk action.
+ * @property {number} [updated_ts] - A timestamp (in Unix format) indicating
+ *   when the bulk action was last updated.
+ * @property {string} [status] - Indicates the current status of the bulk action.
+ * @property {string} [store_code] - A code representing the store, which can be
+ *   used for internal tracking or identification.
+ * @property {string} [bulk_action_type] - Specifies the type of bulk action
+ *   being performed.
+ * @property {string} [created_ts] - A timestamp indicating when the bulk action
+ *   was created.
+ * @property {string} [invoice_status] - Represents the current status of the
+ *   invoice associated with the bulk action.
+ * @property {boolean} [do_invoice_label_generated] - Indicates whether an
+ *   invoice label has been generated for the bulk action or not.
+ * @property {number} [id] - A unique identifier for the bulk action record.
+ * @property {string} [user_id] - The unique identifier for the user who
+ *   initiated the bulk action.
+ * @property {string} [last_selected_invoice_label_type] - Indicates the last
+ *   invoice label type selected for the bulk action.
+ * @property {string} [batch_id] - A unique identifier for the batch associated
+ *   with this bulk action.
+ * @property {string} [uploaded_by] - The identifier or name of the individual
+ *   or system that uploaded the bulk action.
+ * @property {string} [invoicelabel_document_type] - The type of document
+ *   generated for invoice labels.
+ * @property {number} [failed_sh_count] - The number of failed shipments in this
+ *   bulk action.
+ * @property {number} [successful_sh_count] - The number of successful shipments
+ *   in this bulk action.
+ * @property {number} [total_count] - The total number of shipments processed in
+ *   this bulk action.
+ * @property {string[]} [failed_shipments] - An array of shipment identifiers
+ *   that failed during processing.
+ * @property {number} [successful_invoiced_count] - The number of shipments
+ *   successfully invoiced.
+ * @property {number} [failed_invoiced_count] - The number of shipments that
+ *   failed during invoicing.
+ * @property {number} [total_invoiced_count] - The total number of shipments
+ *   that have been invoiced.
  */
 
 /**
  * @typedef BulkListinPage
- * @property {number} [current]
- * @property {boolean} [has_previous]
- * @property {boolean} [has_next]
- * @property {number} [total]
- * @property {number} [item_total]
- * @property {string} [type]
- * @property {number} [size]
+ * @property {number} [current] - Indicates the current page number being viewed
+ *   in the pagination.
+ * @property {boolean} [has_previous] - A flag indicating whether there is a
+ *   previous page available.
+ * @property {boolean} [has_next] - A flag indicating whether there is a next
+ *   page available.
+ * @property {number} [total] - The total number of items available in the
+ *   dataset, regardless of pagination.
+ * @property {number} [item_total] - The total number of items present on the
+ *   current page.
+ * @property {string} [type] - A string that may indicate the type of pagination
+ *   or the context of the data being paginated.
+ * @property {number} [size] - The number of items per page.
  */
 
 /**
  * @typedef BulkListingResponseSchema
- * @property {boolean} [success]
- * @property {BulkActionListingData[]} [data]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {BulkActionListingData[]} [data] - An array containing the details
+ *   of the bulk actions listed.
  * @property {BulkListinPage} [page]
- * @property {number} [total_count]
+ * @property {number} [total_count] - Total number of bulk actions available in
+ *   the system, regardless of pagination.
  */
 
 /**
  * @typedef JobDetailsData
- * @property {string} [batch_id]
- * @property {number} [total_shipments_count]
- * @property {string[]} [successful_shipment_ids]
- * @property {number} [successful_shipments_count]
- * @property {number} [failed_shipments_count]
- * @property {number} [processing_shipments_count]
- * @property {string} [company_id]
+ * @property {string} [batch_id] - A unique identifier for the batch of bulk
+ *   actions associated with this job.
+ * @property {number} [total_shipments_count] - The total number of shipments
+ *   processed in this job.
+ * @property {string[]} [successful_shipment_ids] - An array of identifiers for
+ *   shipments that were successfully processed.
+ * @property {number} [successful_shipments_count] - The number of successful
+ *   shipments processed in this job.
+ * @property {number} [failed_shipments_count] - The number of shipments that
+ *   failed to process in this job.
+ * @property {number} [processing_shipments_count] - The number of shipments
+ *   currently being processed for this job.
+ * @property {string} [company_id] - Unique identifier of a company on the platform.
  */
 
 /**
  * @typedef JobDetailsResponseSchema
- * @property {boolean} [success]
- * @property {JobDetailsData[]} [data]
- * @property {string} [file_url]
- * @property {string} [message]
- * @property {Object[]} [failed_records]
- * @property {string} [uploaded_by]
- * @property {string} [user_id]
- * @property {string} [created_ts]
- * @property {string} [uploaded_on]
- * @property {string} [status]
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {JobDetailsData[]} [data] - An array representing the details of a job.
+ * @property {string} [file_url] - An URL to download the submitted job file.
+ * @property {string} [message] - A message providing additional context about
+ *   the request's outcome.
+ * @property {Object[]} [failed_records] - An array of records that failed
+ *   during processing, with additional properties providing details about each failure.
+ * @property {string} [uploaded_by] - The name or identifier of the user who
+ *   uploaded the job.
+ * @property {string} [user_id] - The unique identifier for the user who
+ *   performed the upload.
+ * @property {string} [created_ts] - A timestamp indicating when the job was created.
+ * @property {string} [uploaded_on] - A timestamp indicating when the job was uploaded.
+ * @property {string} [status] - The current status of the job.
  */
 
 /**
  * @typedef JobFailedResponseSchema
- * @property {string} [file_name]
- * @property {string} [url]
+ * @property {string} [file_name] - The name of the file associated with the failed job.
+ * @property {string} [url] - The URL where the uploaded bulk file can be accessed.
  */
 
 /**
  * @typedef ManifestPageInfo
- * @property {number} current
- * @property {number} total
- * @property {boolean} has_next
- * @property {number} size
- * @property {boolean} has_previous
- * @property {string} type
+ * @property {number} current - The current page number being viewed.
+ * @property {number} total - The total number of records available across all pages.
+ * @property {boolean} has_next - Indicates whether there is a next page available.
+ * @property {number} size - The size of the current page's results set.
+ * @property {boolean} has_previous - Indicates whether there is a previous page
+ *   available.
+ * @property {string} type - Indicates whether there is a previous page available.
  */
 
 /**
  * @typedef ManifestItemDetails
- * @property {number} [quantity]
- * @property {string} shipment_id
- * @property {string} order_id
- * @property {string} [awb_number]
- * @property {string} [invoice_id]
- * @property {string} [shipment_created_at]
+ * @property {number} [quantity] - The quantity of items in the shipment.
+ * @property {string} shipment_id - Unique identifier for the shipment.
+ * @property {string} order_id - Unique identifier for the order.
+ * @property {string} [awb_number] - Unique identifier for the shipment's air
+ *   waybill number.
+ * @property {string} [invoice_id] - Unique identifier for the invoice
+ *   associated with the shipment.
+ * @property {string} [shipment_created_at] - Timestamp indicating when the
+ *   shipment was created.
  */
 
 /**
  * @typedef ManifestShipmentListing
- * @property {number} total_count
- * @property {string} [lane]
+ * @property {number} total_count - Total number of shipment items in the manifest.
+ * @property {string} lane - Identifier or name for the lane associated with the
+ *   shipments.
  * @property {ManifestPageInfo} page
- * @property {boolean} success
- * @property {number} status
- * @property {ManifestItemDetails[]} [items]
- * @property {string} [message]
+ * @property {boolean} success - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {number} [status] - Represents the HTTP status code of the API response.
+ * @property {ManifestItemDetails[]} items - List of items in the manifest, each
+ *   containing detailed shipment information.
+ * @property {string} [message] - Additional message or information regarding
+ *   the response.
  */
 
 /**
  * @typedef DateRange
- * @property {string} [from_date] - Start Date in DD-MM-YYYY format
- * @property {string} [to_date] - End Date in DD-MM-YYYY format
+ * @property {string} [from_date] - The start date of the range.
+ * @property {string} [to_date] - The end date of the range.
  */
 
 /**
  * @typedef Filters
  * @property {DateRange} [date_range]
  * @property {string} [logo] - CDN link of the logo displayed on the manifest page.
- * @property {string} [from_date] - UTC start date in ISO format.
- * @property {number} [stores] - Filter with the specific store.
- * @property {string} [to_date] - UTC end date in ISO format.
- * @property {string} [dp_name] - Filter with the specific courier partner name.
+ * @property {string} [from_date] - The start date for filtering records,
+ *   provided in UTC and formatted in ISO format.
+ * @property {number} [stores] - Specifies a specific store ID for filtering the records.
+ * @property {string} [to_date] - The end date for filtering records, provided
+ *   in UTC and formatted in ISO format.
+ * @property {string} [dp_name] - The name of the courier partner to filter records by.
  * @property {string} [dp_ids] - Combination of courier partner ids separated by
- *   byte operator.
- * @property {string} [lane] - Criteria for lane on which shipments must be fetched.
- * @property {string} [selected_shipments] - Selected shipments mapped to the manifest.
- * @property {string} [store_name] - Filter with the specific store name.
- * @property {string} [deselected_shipments] - Deselected shipments unmapped
- *   from the manifest.
+ *   comma operator.
+ * @property {string} [lane] - Specifies criteria related to the shipment lanes.
+ * @property {string} [selected_shipments] - A list of selected shipments that
+ *   are mapped to the manifest.
+ * @property {string} [store_name] - The name of the store for filtering records.
+ * @property {string} [deselected_shipments] - A list of shipments that have
+ *   been unmapped from the manifest.
  */
 
 /**
  * @typedef ManifestFile
- * @property {string} [key]
- * @property {string} [region]
- * @property {string} [bucket]
+ * @property {string} [key] - This field represents the unique identifier for
+ *   the file within the storage system.
+ * @property {string} [region] - Indicates the geographical region where the
+ *   file is stored.
+ * @property {string} [bucket] - The name of the storage bucket where the file is stored.
  */
 
 /**
  * @typedef ManifestMediaUpdate
- * @property {string} [entity]
- * @property {string} [link]
- * @property {number} [code]
- * @property {string} [media_type] - Specifies the format or type of media being
- *   linked to the manifest.
- * @property {boolean} [status]
+ * @property {string} [entity] - The name or type of the media entity being updated.
+ * @property {string} [link] - A URL or link to the media resource.
+ * @property {number} [code] - A numerical code representing the media update
+ *   status or type.
+ * @property {string} [media_type] - The type of media being updated.
+ * @property {boolean} [status] - Indicate the status of this media update.
  * @property {ManifestFile} [file]
  */
 
 /**
  * @typedef PDFMeta
- * @property {string} [consent]
- * @property {ManifestMediaUpdate[]} [media_updates]
+ * @property {string} [consent] - This field contains information related to user consent.
+ * @property {ManifestMediaUpdate[]} [media_updates] - An array of media update
+ *   entries associated with the manifest.
  */
 
 /**
  * @typedef TotalShipmentPricesCount
- * @property {number} [total_price]
- * @property {number} [shipment_count]
+ * @property {number} [total_price] - This field represents the total monetary
+ *   value of the shipments.
+ * @property {number} [shipment_count] - This field represents the number of
+ *   shipments associated with the manifest.
  */
 
 /**
@@ -1691,33 +1982,40 @@ const Joi = require("joi");
 
 /**
  * @typedef Manifest
- * @property {number} company_id
+ * @property {number} company_id - Unique identifier of a company on the platform.
  * @property {Filters} [filters]
  * @property {PDFMeta} [pdf_meta]
  * @property {ManifestMeta} [meta]
- * @property {boolean} is_active
- * @property {string} user_id
- * @property {string} created_at - Timestamp when the manifest was created.
- * @property {string} [created_ts]
- * @property {string} manifest_id
- * @property {string} status
- * @property {number} id
- * @property {string} uid
- * @property {string} created_by
+ * @property {boolean} is_active - Indicates whether the manifest is currently
+ *   active or has been completed/closed.
+ * @property {string} user_id - The unique identifier of the user who created or
+ *   modified the manifest.
+ * @property {string} created_at - The date and time when the manifest was created.
+ * @property {string} [created_ts] - A timestamp representing when the manifest
+ *   was created, typically in UTC.
+ * @property {string} manifest_id - The unique identifier assigned to the manifest.
+ * @property {string} status - The current status of the Manifest.
+ * @property {number} id - The unique identifier assigned to the manifest item.
+ * @property {string} uid - A universally unique identifier for the manifest.
+ * @property {string} created_by - The username or identifier of the individual
+ *   who created the manifest.
  */
 
 /**
  * @typedef ManifestList
- * @property {Manifest[]} [items]
+ * @property {Manifest[]} [items] - A list of manifest records.
  * @property {ManifestPageInfo} [page]
  */
 
 /**
  * @typedef ManifestDetails
- * @property {ManifestItemDetails[]} [items]
+ * @property {ManifestItemDetails[]} [items] - An list of detailed information
+ *   about individual shipments within the manifest.
  * @property {ManifestPageInfo} [page]
- * @property {number} [additional_shipment_count]
- * @property {Manifest[]} [manifest_details]
+ * @property {number} [additional_shipment_count] - Represents the count of
+ *   additional shipments associated with the manifest.
+ * @property {Manifest[]} [manifest_details] - An array of manifest objects that
+ *   provide overarching details about the manifest itself.
  */
 
 /**
@@ -1757,22 +2055,22 @@ const Joi = require("joi");
 
 /**
  * @typedef FilterInfoOption
- * @property {string} [text]
- * @property {string} [name]
- * @property {string} [placeholder_text]
- * @property {string} [value]
- * @property {number} [min_search_size]
- * @property {boolean} [show_ui]
+ * @property {string} [text] - The display text of the option.
+ * @property {string} [name] - Name of the option.
+ * @property {string} [placeholder_text] - Placeholder text of the option.
+ * @property {string} [value] - The value of the option.
+ * @property {number} [min_search_size] - Minimum search size of the option.
+ * @property {boolean} [show_ui] - Specifies whether the option should be shown in the UI.
  */
 
 /**
  * @typedef FiltersInfo
- * @property {FilterInfoOption[]} [options]
- * @property {string} text
- * @property {string} [placeholder_text]
- * @property {string} value
- * @property {boolean} [required]
- * @property {string} type
+ * @property {FilterInfoOption[]} [options] - Options of the filter.[dropdown]
+ * @property {string} text - Display text of filter
+ * @property {string} [placeholder_text] - Placeholder text of filter.
+ * @property {string} value - The value of the filter.
+ * @property {boolean} [required] - Specifies whether the filter is required or not.
+ * @property {string} type - Single_select/multi_select
  */
 
 /**
@@ -1894,22 +2192,28 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierPartnerTrackingDetails
- * @property {string} awb - AWB Number
- * @property {string} [dp_location] - Current location of Courier partner
- * @property {string} dp_name - Courier Partner name
- * @property {string} dp_status - Status at Courier partner end
- * @property {string} dp_status_updated_at - Date Time at which status was
- *   updated at Courier partner
- * @property {string} [estimated_delivery_date] - Estimated delivery date
- *   received from Courier partner
- * @property {number} [id] - Id of Tracking history
- * @property {string} journey - Journey type of the shipment
- * @property {Object} [meta] - Meta field to store Courier partner's meta data
- * @property {string} operational_status - Operational status of OMS
- * @property {string} [promised_delivery_date] - Promised delivery date received
- *   from Courier partner
- * @property {string} [remark] - Remark from courier partner
- * @property {string} shipment_id - Shipment ID
+ * @property {string} awb - The Air Waybill (AWB) number associated with the
+ *   shipment, used for tracking the parcel in transit.
+ * @property {string} [dp_location] - The current geographic location of the
+ *   courier partner.
+ * @property {string} dp_name - The name of the courier partner responsible for
+ *   the shipment.
+ * @property {string} dp_status - The current status of the shipment as updated
+ *   by the courier partner.
+ * @property {string} dp_status_updated_at - The timestamp when the status was
+ *   last updated by the courier partner.
+ * @property {string} [estimated_delivery_date] - The estimated date and time
+ *   for delivery as provided by the courier partner.
+ * @property {number} [id] - A unique identifier for the tracking history entry.
+ * @property {string} journey - Indicates the type of journey the shipment.
+ * @property {Object} [meta] - A field to store additional metadata related to
+ *   the courier partner's operations or the shipment.
+ * @property {string} operational_status - The operational status of the shipment.
+ * @property {string} [promised_delivery_date] - PThe promised date and time for
+ *   delivery as provided by the courier partner.
+ * @property {string} [remark] - Any additional remarks or comments from the
+ *   courier partner regarding the shipment.
+ * @property {string} shipment_id - The unique identifier for the shipment.
  */
 
 /**
@@ -1970,10 +2274,13 @@ const Joi = require("joi");
 
 /**
  * @typedef GenerateInvoiceIDResponseData
- * @property {string} [shipment_id]
- * @property {boolean} [success]
- * @property {string} [invoice_id]
- * @property {boolean} [error_message]
+ * @property {string} [shipment_id] - The unique identifier for the shipment
+ *   associated with the invoice.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [invoice_id] - The generated invoice ID, or null if the
+ *   generation failed.
+ * @property {boolean} [error_message] - Provides a descriptive error message.
  */
 
 /**
@@ -1986,7 +2293,8 @@ const Joi = require("joi");
 
 /**
  * @typedef GenerateInvoiceIDRequestSchema
- * @property {string[]} shipment_ids
+ * @property {string[]} shipment_ids - List of shipment IDs for which invoice
+ *   need to be generated.
  */
 
 /**
@@ -2006,25 +2314,35 @@ const Joi = require("joi");
 
 /**
  * @typedef ProcessManifestRequestSchema
- * @property {string} [action] - Expected Actions: [save, process,
- *   pdf_generated,invalidate,pdf_failed,complete]
- * @property {string} [manifest_id] - Id of The Manifest.
- * @property {Filters} [filters]
- * @property {string} [unique_id] - Unique Id.
+ * @property {string} action - Represents the operation to be performed on the manifest.
+ * @property {string} [manifest_id] - Represents the identifier for a specific manifest.
+ * @property {Filters} filters
+ * @property {string} unique_id - A unique identifier for the request or the
+ *   operation being performed.
  */
 
 /**
  * @typedef ManifestItems
  * @property {Filters} [filters]
- * @property {string} [manifest_id] - Id of the manifest.
- * @property {string} [unique_id] - Unique Id.
- * @property {number} [company_id] - Id of the company.
- * @property {string} [dp_id] - Shipment with the specific courier partner Id.
- * @property {string} [courier_partner_slug]
- * @property {string} [action] - Expected Actions: [Save, Process, Pdf
- *   Generated, Invalidate, Pdf Failed, Complete]
- * @property {string} [created_by] - Created date of the manifest.
- * @property {string} [user_id] - Id of user.
+ * @property {string} [manifest_id] - The unique identifier for the manifest.
+ * @property {string} [unique_id] - A unique identifier for the request or
+ *   operation involving the manifest items.
+ * @property {number} [company_id] - Unique identifier of a company on the platform.
+ * @property {string} [dp_id] - Unique identifier of the delivery partner.
+ * @property {string} [courier_partner_slug] - A slug or unique identifier for
+ *   the courier partner.
+ * @property {string} [action] - Defines the expected action for the manifest items.
+ * @property {string} [created_by] - The identifier for the user or system that
+ *   created the manifest.
+ * @property {string} [user_id] - The identifier for the user associated with
+ *   the manifest items.
+ */
+
+/**
+ * @typedef ManifestErrorResponseSchema
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {string} [error] - Provides a descriptive error message.
  */
 
 /**
@@ -2119,15 +2437,13 @@ const Joi = require("joi");
  *   preferences. This field categorizes orders into distinct types, each
  *   associated with a unique processing flow. For example:
  *
- *   - "HomeDelivery": The order undergoes all state transitions typical for a
- *       delivery, from processing the shipment to final delivery at the
- *       customer's address.
- *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
- *       is ready to be handed over directly to the customer at the store. This
- *       type streamlines the process by bypassing traditional shipping stages.
- *   - "Digital": This order type refers, when an order is placed for a digital
- *       product, the order directly transitions, bypassing the shipping steps
- *       necessary for physical goods.
+ *   - "HomeDelivery": The order goes through all the steps needed for delivery,
+ *       from being packed to arriving at the customer’s address.
+ *   - "PickAtStore": The order is prepared for pickup at the store, skipping
+ *       shipping steps to make it ready faster for the customer to collect in person.
+ *   - "Digital": This order type likely refers to orders that involve digital goods
+ *       or services, such as software, digital subscriptions, e-books, online
+ *       courses, or any other item that can be delivered electronically.
  *
  * @property {boolean} [is_partial_transition] - Specifies whether a partial
  *   transition of the order is allowed, allowing some components to progress
@@ -2136,11 +2452,6 @@ const Joi = require("joi");
  *   assignment of a designated person is automatically triggered in the context of ACF.
  * @property {string} [lock_status] - Indicates the current locking status of
  *   the shipment.
- *
- *   - `complete`: Complete shipment lock
- *   - `operational`: Operational shipment lock
- *   - `None`: No lock on shipment
- *
  * @property {boolean} [lock_after_transition] - Specifies whether locking is
  *   required after transitioning to the next status. lock_after_transition :
  *   true - Lock Transition enabled lock_after_transition : false - Lock
@@ -2162,20 +2473,8 @@ const Joi = require("joi");
  *   check is performed in a point of sale (POS) scenario.
  * @property {string} [order_platform] - Specifies the platform on which the
  *   order was placed.
- *
- *   - `platform-pos`: POS
- *   - `platform-site`: WEB
- *   - `openapi`: OPENAPI
- *   - `marketplace`: MARKETPLACE
- *
  * @property {string} [refund_type] - Indicates the type of refund associated
  *   with the order.
- *
- *   - `credit_note`: CREDIT_NOTE
- *   - `source`: SOURCE
- *   - `bank_transfer`: BANK
- *   - `manual_refund`: MANUAL_REFUND
- *
  * @property {boolean} [is_non_pos_platform] - Specifies whether the platform is
  *   non-point of sale (POS) in nature.
  * @property {boolean} [is_self_ship] - Indicates whether the order is
@@ -2206,14 +2505,16 @@ const Joi = require("joi");
  * @typedef PostHook
  * @property {string} task - Name of the hook that has to be added
  * @property {Object} [kwargs] - Additional parameters for the hook
- * @property {Filter} [filters] - Filters for scope selection.
+ * @property {Filter} [filters] - Criteria to filter which hooks are applied
+ *   based on certain conditions.
  */
 
 /**
  * @typedef PreHook
  * @property {string} task - Name of the hook that has to be added
  * @property {Object} [kwargs] - Additional parameters for the hook
- * @property {Filter} [filters] - Filter
+ * @property {Filter} [filters] - Criteria to filter which hooks are applied
+ *   based on certain conditions.
  */
 
 /**
@@ -2309,29 +2610,20 @@ const Joi = require("joi");
 
 /**
  * @typedef Reason
- * @property {number} [id] - The unique identifier for the reason. This ID helps
- *   in differentiating between various reasons associated with the rule.
- * @property {string} display_name - The display name for the reason. This name
- *   is what users see when selecting a reason during the RMA process.
+ * @property {number} [id] - A unique identifier for the reason.
+ * @property {string} display_name - The display name for the reason, used for
+ *   user-facing purposes.
  * @property {Reason[]} [reasons] - A list of sub-reasons under the main reason.
  *   These provide additional layers of granularity to the main reason.
  * @property {string[]} qc_type - List of QC (Quality Control) types -- having
  *   return reason types indicating the stage at which QC is performed. -
- *   "Doorstep QC" refers to the quality control checks that occur at the
- *   customer's doorstep. This could be part of a delivery process where the
- *   product is inspected for any damages, defects, or discrepancies in the
- *   presence of the customer before the final handover. - "Pre QC" represents a
- *   proactive quality control approach where the customer plays an active role
- *   in the QC process before the product is collected for return or exchange.
- *   In this procedure, customers are required to upload photos of the product
- *   for a preliminary quality check by the operations team. Approval from this
- *   team is necessary before a delivery partner is dispatched to pick up the
- *   product. This innovative method ensures that the product meets return or
- *   exchange criteria, streamlining the process for both the customer and the
- *   operations team, and minimizing unnecessary logistics movements.
- * @property {QuestionSet[]} question_set - A set of questions associated with
- *   the reason. These questions are often used for gathering additional
- *   information during the RMA process.
+ *   "Doorstep QC" refers involves inspecting products for damages at the
+ *   customer's location before delivery. - "Pre QC" requires customers to
+ *   upload product photos for a preliminary quality check by the operations
+ *   team before a return or exchange pickup is arranged, ensuring criteria are
+ *   met and optimizing logistics.
+ * @property {QuestionSet[]} question_set - An array of question sets linked to
+ *   the reason, defining the questions to be answered.
  * @property {Object} meta - Meta object of the reason. This contains any
  *   additional metadata that might be relevant to the reason.
  * @property {boolean} is_active - Indicates whether the reason is currently
@@ -2411,6 +2703,19 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CommonErrorResponseSchema
+ * @property {number} [status] - The HTTP status code corresponding to the error.
+ * @property {string} [message] - A message describing the error that occurred.
+ */
+
+/**
+ * @typedef ExceptionErrorResponseSchema
+ * @property {string} [message] - A message describing the error that occurred.
+ * @property {string} [exception] - The class path of the exception that was thrown.
+ * @property {string} [stack_trace] - The stack trace from the server for the error.
+ */
+
+/**
  * @typedef ProductSchema
  * @property {number} line_number - The line number of a product used to
  *   uniquely identify and filter the specific product within the shipment.
@@ -2482,42 +2787,42 @@ const Joi = require("joi");
 
 /**
  * @typedef BagReasonMeta
- * @property {boolean} [show_text_area]
+ * @property {boolean} [show_text_area] - Indicates whether a text area should
+ *   be displayed for additional input related to the bag reason.
  */
 
 /**
  * @typedef QuestionSet
- * @property {number} [id]
- * @property {string} [display_name]
+ * @property {number} [id] - A unique identifier for the question set.
+ * @property {string} [display_name] - The display name for the question set,
+ *   used for user-facing purposes.
  */
 
 /**
  * @typedef BagReasons
  * @property {string[]} [qc_type] - List of QC (Quality Control) types -- having
  *   return reason types indicating the stage at which QC is performed. -
- *   "Doorstep QC" refers to the quality control checks that occur at the
- *   customer's doorstep. This could be part of a delivery process where the
- *   product is inspected for any damages, defects, or discrepancies in the
- *   presence of the customer before the final handover. - "Pre QC" represents a
- *   proactive quality control approach where the customer plays an active role
- *   in the QC process before the product is collected for return or exchange.
- *   In this procedure, customers are required to upload photos of the product
- *   for a preliminary quality check by the operations team. Approval from this
- *   team is necessary before a delivery partner is dispatched to pick up the
- *   product. This innovative method ensures that the product meets return or
- *   exchange criteria, streamlining the process for both the customer and the
- *   operations team, and minimizing unnecessary logistics movements.
- * @property {number} [id]
- * @property {string} [display_name]
+ *   "Doorstep QC" refers involves inspecting products for damages at the
+ *   customer's location before delivery. - "Pre QC" requires customers to
+ *   upload product photos for a preliminary quality check by the operations
+ *   team before a return or exchange pickup is arranged, ensuring criteria are
+ *   met and optimizing logistics.
+ * @property {number} [id] - A unique identifier for the bag reason.
+ * @property {string} [display_name] - The display name for the bag reason, used
+ *   for user-facing purposes.
  * @property {BagReasonMeta} [meta]
- * @property {QuestionSet[]} [question_set]
- * @property {BagReasons[]} [reasons]
+ * @property {QuestionSet[]} [question_set] - An array of question sets linked
+ *   to the bag reason, defining the questions to be answered.
+ * @property {BagReasons[]} [reasons] - An array of nested bag reasons that can
+ *   further explain the primary reason.
  */
 
 /**
  * @typedef ShipmentBagReasons
- * @property {BagReasons[]} [reasons]
- * @property {boolean} [success]
+ * @property {BagReasons[]} [reasons] - List of bag reasons for a shipment with
+ *   a corresponding shipment status.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
  * @property {number} [rule_id] - The unique identifier for the rule that is
  *   associated with the given reasons. This ID serves as a reference to the
  *   specific rule within the RMA system that governs or influences the reasons listed.
@@ -2525,52 +2830,70 @@ const Joi = require("joi");
 
 /**
  * @typedef ShipmentStatus
- * @property {string} [current_shipment_status]
+ * @property {string} [current_shipment_status] - The current status of the shipment.
  * @property {Object} [meta] - It contains the additional properties related to
  *   shipment status transition like Kafka_emission_status, user_name, etc.
  *   Additionally it is dynamic.
- * @property {number} [shipment_status_id]
- * @property {string[]} [bag_list]
- * @property {string} title
+ * @property {number} [id] - A unique identifier for the shipment status.
+ * @property {string[]} [bag_list] - A list of bags associated with the
+ *   shipment, useful for tracking individual items within the shipment.
+ * @property {string} title - A brief title or label for the shipment status,
+ *   summarizing its current state.
+ * @property {string} [display_name] - A user-friendly name or identifier for
+ *   the shipment status.
  * @property {string} [created_at] - Timestamp when the shipment was initially
  *   created.This timestamp is crucial for tracking the shipment's age,
  *   scheduling, and historical analysis.
- * @property {string} [created_ts]
- * @property {string} [shipment_id]
+ * @property {string} [created_ts] - A general timestamp for when the shipment
+ *   was created, formatted for internal processing.
+ * @property {string} [shipment_id] - A unique identifier for the shipment.
  * @property {string} [status_created_at] - Timestamp when the transition for
  *   the status of the shipment was created. Date time in UTC timezone as per ISO format.
- * @property {string} [status_created_ts]
- * @property {string} status - This key denotes the status of the shipment.
+ * @property {string} [updated_ts] - A general timestamp indicating when the
+ *   status was updated, useful for processing and tracking.
+ * @property {string} status - This key denotes the status of the shipment,
+ *   providing a clear indication of its current processing stage.
  */
 
 /**
  * @typedef UserDataInfo
- * @property {number} [uid]
- * @property {string} [user_oid]
- * @property {string} [external_customer_id]
- * @property {string} [first_name]
- * @property {string} [last_name]
- * @property {string} [mobile]
- * @property {string} [email]
- * @property {boolean} [is_anonymous_user]
- * @property {string} [avis_user_id]
- * @property {string} [name]
- * @property {string} [gender]
+ * @property {number} [id] - The unique identifier associated with the user.
+ * @property {string} [user_oid] - The object ID for the user, used for
+ *   referencing the user in various operations.
+ * @property {string} [mongo_user_id] - The identifier for the user.
+ * @property {string} [external_customer_id] - The identifier for the user in
+ *   external systems.
+ * @property {string} [first_name] - The first name of the user.
+ * @property {string} [last_name] - The last name of the user.
+ * @property {string} [mobile] - The mobile phone number of the user.
+ * @property {string} [email] - The email address of the user.
+ * @property {string} [meta] - Additional metadata related to the user.
+ * @property {boolean} [is_anonymous_user] - Indicates whether the user is an
+ *   anonymous user (true) or registered (false).
+ * @property {string} [name] - A full name of the user, which may be a
+ *   combination of first and last name.
+ * @property {string} [gender] - The gender of the user.
+ * @property {string} [country_phone_code] - The country-specific phone code,
+ *   useful for formatting mobile numbers correctly.
  */
 
 /**
  * @typedef Address
- * @property {string} [phone] - The phone number at the address.
+ * @property {string} [phone] - The phone number at the address, used for
+ *   contact purposes.
  * @property {string} [address2] - An optional additional field for the street
+ *   address of the address.
+ * @property {string} [address] - An optional additional field for the street
  *   address of the address.
  * @property {number} [longitude] - The longitude coordinate of the address.
  * @property {string} [pincode] - The postal code of the address.
  * @property {string} [area] - Area details of the address.
- * @property {string} [address_type] - The type of the address (e.g., home, office).
+ * @property {string} [address_type] - The type of the address.
  * @property {string} [country] - The name of the country of the address.
  * @property {string} [address_category] - Category or classification of the
  *   address. The address_category field that includes "store", "delivery", and
- *   "billing" serves to classify addresses based on various business processes
+ *   "billing" serves to classify addresses based on various business processes.
+ *   addresses based on various business processes
  *
  *   - 'store': Identifies addresses associated with physical retail locations or
  *       warehouses which is essential for inventory management, order
@@ -2580,7 +2903,7 @@ const Joi = require("joi");
  *       optimizing logistics operations.
  *   - 'billing': Identifies addresses used for billing and financial transactions
  *       which are essential for payment processing, invoice generation, and
- *       maintaining financial accuracy.
+ *       maintaining financial accuracy
  *
  * @property {string} [email] - The email of the person associated with the order.
  * @property {string} [created_at] - Created at date for address
@@ -2590,57 +2913,94 @@ const Joi = require("joi");
  *   {area} {state} {country}, Address1 compiles all into a single formatted string.
  * @property {string} [display_address] - A formatted version of the address for
  *   display purposes.
- * @property {string} [landmark] - A notable landmark near the address.
+ * @property {string} [landmark] - A notable landmark near the address, aiding
+ *   in location identification.
  * @property {string} [updated_at] - Updated at date for address
- * @property {string} [version] - The version number of the address schema.
+ * @property {string} [version] - The version number of the address record
  * @property {number} [latitude] - The latitude coordinate of the address.
  * @property {string} [contact_person] - The full name of the person associated
  *   with the address.
  * @property {string} [state] - The name of the region (for example, province,
  *   state, or prefecture) of the address.
  * @property {string} [city] - The city, town of the address.
+ * @property {string} [area_code_slug] - A slug representation of the area code.
+ * @property {string} [country_code] - A code representing the country for the address.
+ * @property {string} [country_iso_code] - The ISO code representing the country
+ *   for the address.
+ * @property {string} [country_phone_code] - The country-specific phone code for
+ *   formatting phone numbers.
+ * @property {string} [delivery_address_id] - A unique identifier for the
+ *   delivery address.
+ * @property {Object} [geo_location] - An object containing additional
+ *   geographical information related to the address.
+ * @property {string} [name] - A unique identifier for the name associated with
+ *   the address.
+ * @property {string} [sector] - The sector or zone of the address, if applicable.
+ * @property {string} [state_code] - A code representing the state or region for
+ *   the address.
+ * @property {string} [uid] - A unique identifier for the user associated with
+ *   the address.
+ * @property {string} [user_id] - The unique identifier of the user in the system.
  */
 
 /**
  * @typedef ShipmentListingChannel
- * @property {string} [channel_shipment_id]
- * @property {boolean} [is_affiliate]
- * @property {string} [logo]
- * @property {string} [name]
+ * @property {string} [channel_shipment_id] - A unique identifier for the
+ *   shipment associated with a specific channel, facilitating tracking and management.
+ * @property {boolean} [is_affiliate] - Indicates whether the shipment is
+ *   associated with an affiliate program, which may affect processing and fulfillment.
+ * @property {string} [logo] - A URL or path to the logo of the shipment
+ *   channel, used for branding and identification purposes.
+ * @property {string} [name] - The name of the shipment channel, providing a
+ *   human-readable reference for the channel through which the shipment is processed.
  */
 
 /**
  * @typedef Prices
- * @property {number} [refund_credit] - Refund credits applicable
- * @property {number} [amount_paid_roundoff] - Total Amount paid rounded off to
- *   nearest integer
- * @property {number} [price_effective] - MRP - Discount
- * @property {number} [promotion_effective_discount] - Promotion discount as applicable
- * @property {number} [pm_price_split] - Updated Selling Price of product in
- *   case of repricing
- * @property {number} [refund_amount] - Amount to be refunded on cancellation and return
+ * @property {number} [refund_credit] - Refund credits applicable to the
+ *   customer in case of returns or cancellations.
+ * @property {number} [amount_paid_roundoff] - Total amount paid, rounded off to
+ *   the nearest integer.
+ * @property {number} [price_effective] - Effective price after applying
+ *   discounts to the MRP (Maximum Retail Price).
+ * @property {number} [promotion_effective_discount] - Discount amount provided
+ *   through promotions applicable to the purchase.
+ * @property {number} [pm_price_split] - Updated selling price of the product in
+ *   the event of repricing.
+ * @property {number} [refund_amount] - Total amount to be refunded in case of
+ *   cancellation or return.
  * @property {number} [transfer_price] - Fixed selling price applicable for
- *   payouts by brand
- * @property {number} [coupon_effective_discount] - Coupon Discount as applicable
+ *   payouts by the brand to the platform.
+ * @property {number} [coupon_effective_discount] - Discount amount applicable
+ *   when using a coupon.
  * @property {number} [tax_collected_at_source] - Tax amount collected at the
- *   source of income or transaction
- * @property {number} [brand_calculated_amount] - Price Effective - Coupon
- *   Discount (Seller) - Promotion (Seller)
- * @property {number} [delivery_charge] - Fee applicable as per delivery partner
- * @property {number} [cashback] - Cashback points provided to the customer
- * @property {number} [value_of_good] - Effective selling price - Product GST Amount
- * @property {number} [cashback_applied] - Effective Cashback value as applicable
- * @property {number} [cod_charges] - Fee applicable for COD order
- * @property {number} [price_marked] - The indicated price or value assigned to
- *   an item before any discounts or adjustments
- * @property {number} [amount_paid] - Total Amount paid by the customer
- * @property {number} [coupon_value] - Effective coupon value as applicable
- * @property {number} [discount] - Total amount discounted from the original
- *   MRP/actual price
- * @property {number} [fynd_credits] - Credits provided by Fynd
- * @property {number} [gift_price] - Gift card amount
- * @property {number} [amount_to_be_collected] - Amount to be collected in case
- *   of multiple mode of payments
+ *   source during the transaction.
+ * @property {number} [brand_calculated_amount] - Calculated price after
+ *   deducting coupon and promotion discounts from the effective price.
+ * @property {number} [delivery_charge] - Fee charged for delivery, as
+ *   stipulated by the delivery partner.
+ * @property {number} [cashback] - Cashback points or amount provided to the
+ *   customer post-purchase.
+ * @property {number} [value_of_good] - Effective selling price minus the GST
+ *   amount applicable to the product.
+ * @property {number} [cashback_applied] - Actual cashback value that has been
+ *   applied to the purchase.
+ * @property {number} [cod_charges] - Charges applicable for Cash on Delivery
+ *   (COD) orders.
+ * @property {number} [price_marked] - The marked price of the item before any
+ *   discounts or adjustments.
+ * @property {number} [amount_paid] - Total amount actually paid by the customer
+ *   for the purchase.
+ * @property {number} [coupon_value] - The effective value of the coupon applied
+ *   to the transaction.
+ * @property {number} [discount] - Total discount amount deducted from the
+ *   original price of the product.
+ * @property {number} [fynd_credits] - Credits awarded by Fynd, which can be
+ *   used for future purchases.
+ * @property {number} [gift_price] - The amount associated with any gift card
+ *   used in the transaction.
+ * @property {number} [amount_to_be_collected] - Total amount to be collected in
+ *   scenarios involving multiple payment methods.
  */
 
 /**
@@ -2685,111 +3045,163 @@ const Joi = require("joi");
 
 /**
  * @typedef OrderingCurrencyPrices
- * @property {number} [refund_credit] - Refund credits applicable
- * @property {number} [amount_paid_roundoff] - Total Amount paid rounded off to
- *   nearest integer
- * @property {number} [price_effective] - MRP - Discount
- * @property {number} [promotion_effective_discount] - Promotion discount as applicable
- * @property {number} [pm_price_split] - Updated Selling Price of product in
- *   case of repricing
- * @property {number} [refund_amount] - Amount to be refunded on cancellation and return
- * @property {number} [transfer_price] - Fixed selling price applicable for
- *   payouts by brand
- * @property {number} [coupon_effective_discount] - Coupon Discount as applicable
- * @property {number} [tax_collected_at_source] - Tax amount collected at the
- *   source of income or transaction
- * @property {number} [brand_calculated_amount] - Price Effective - Coupon
- *   Discount (Seller) - Promotion (Seller)
- * @property {number} [delivery_charge] - Fee applicable as per delivery partner
- * @property {number} [cashback] - Cashback points provided to the customer
- * @property {number} [value_of_good] - Effective selling price - Product GST Amount
- * @property {number} [cashback_applied] - Effective Cashback value as applicable
- * @property {number} [cod_charges] - Fee applicable for COD order
- * @property {number} [price_marked] - The indicated price or value assigned to
- *   an item before any discounts or adjustments
- * @property {number} [amount_paid] - Total Amount paid by the customer
- * @property {number} [coupon_value] - Effective coupon value as applicable
+ * @property {number} [refund_credit] - Amount of refund credits applicable to
+ *   the customer's account for returned items or cancellations.
+ * @property {number} [amount_paid_roundoff] - Total amount paid by the
+ *   customer, rounded off to the nearest integer for ease of processing.
+ * @property {number} [price_effective] - Final effective price of the product
+ *   after applying discounts to the marked retail price (MRP).
+ * @property {number} [promotion_effective_discount] - Total discount amount
+ *   applied through promotional offers specific to the customer's purchase.
+ * @property {number} [pm_price_split] - Updated selling price of the product
+ *   after any repricing adjustments made before the sale.
+ * @property {number} [refund_amount] - Amount that will be refunded to the
+ *   customer in case of order cancellation or product return.
+ * @property {number} [transfer_price] - Fixed price set for payouts by the
+ *   brand, representing the cost to the retailer or affiliate.
+ * @property {number} [coupon_effective_discount] - Discount value realized
+ *   through the use of a coupon code applied at the time of purchase.
+ * @property {number} [tax_collected_at_source] - Total tax amount that is
+ *   collected at the point of sale, often applicable for tax regulations.
+ * @property {number} [brand_calculated_amount] - Amount calculated by the brand
+ *   after applying any relevant coupons and promotions to the base price.
+ * @property {number} [delivery_charge] - Cost charged for the delivery service,
+ *   as determined by the delivery partner handling the shipment.
+ * @property {number} [cashback] - Points or monetary value returned to the
+ *   customer as a reward for their purchase, which can be used for future transactions.
+ * @property {number} [value_of_good] - Net selling price of the product after
+ *   excluding the GST (Goods and Services Tax) amount from the total.
+ * @property {number} [cashback_applied] - Total cashback value that has been
+ *   applied to the customer's account or to the current transaction.
+ * @property {number} [cod_charges] - Additional fee charged for orders placed
+ *   via cash on delivery (COD) payment method.
+ * @property {number} [price_marked] - The original price indicated for the
+ *   product before any discounts or promotions are applied.
+ * @property {number} [amount_paid] - The total amount the customer has paid for
+ *   their order, including all applicable charges and discounts.
+ * @property {number} [coupon_value] - The specific value of the coupon used in
+ *   the transaction, reflecting its impact on the total price.
  * @property {number} [discount] - Total amount discounted from the original
- *   MRP/actual price
- * @property {number} [fynd_credits] - Credits provided by Fynd
- * @property {number} [gift_price] - Gift card amount
- * @property {number} [amount_to_be_collected] - Amount to be collected in case
- *   of multiple mode of payments
+ *   price of the product, reflecting savings for the customer.
+ * @property {number} [fynd_credits] - Credits provided by Fynd, which can be
+ *   used for discounts on future purchases.
+ * @property {number} [gift_price] - Monetary value assigned to a gift card
+ *   purchased by the customer, usable for future transactions.
+ * @property {number} [amount_to_be_collected] - Amount to be collected from the
+ *   customer when multiple payment methods are utilized for a single order.
  */
 
 /**
  * @typedef Identifier
- * @property {string} [alu]
- * @property {string} [ean]
+ * @property {string} [alu] - The ALU (Article Level Unit) code used to identify
+ *   the item at a detailed level, often specific to certain retail or
+ *   distribution systems.
+ * @property {string} [ean] - The European Article Number (EAN) is a unique
+ *   identifier for products, primarily used in retail and logistics. It helps
+ *   in tracking and managing inventory across various platforms.
  * @property {string} [sku_code] - The Stock Keeping Unit (SKU) code of the item
  *   - uniquely identifies each distinct product. SKUs are used to track
  *   inventory levels, facilitate accurate stocktaking, and streamline order
  *   fulfillment processes. This code is essential for inventory management,
  *   allowing for the differentiation between products based on attributes such
  *   as price, color, and size.
- * @property {string} [upc]
- * @property {string} [isbn]
+ * @property {string} [upc] - The Universal Product Code (UPC) is a barcode
+ *   symbol used for tracking trade items in stores. It is widely used in North
+ *   America and helps in identifying products quickly during point-of-sale transactions.
+ * @property {string} [isbn] - The International Standard Book Number (ISBN) is
+ *   a unique identifier for books, allowing for easier management and tracking
+ *   of book inventories in retail and library systems.
  */
 
 /**
  * @typedef FinancialBreakup
- * @property {number} refund_credit
- * @property {number} [amount_paid_roundoff]
- * @property {number} price_effective
- * @property {number} promotion_effective_discount
- * @property {number} transfer_price
- * @property {number} coupon_effective_discount
- * @property {number} gst_fee
- * @property {number} [tax_collected_at_source]
- * @property {number} brand_calculated_amount
- * @property {number} delivery_charge
- * @property {string} gst_tag
+ * @property {number} refund_credit - The amount of refund credits applicable
+ *   for the transaction.
+ * @property {number} [amount_paid_roundoff] - Total amount paid, rounded off to
+ *   the nearest integer for billing purposes.
+ * @property {number} price_effective - The effective price after applying
+ *   discounts and before any taxes.
+ * @property {number} promotion_effective_discount - The amount of discount
+ *   applied from promotional offers.
+ * @property {number} transfer_price - The fixed selling price applicable for
+ *   payouts by the brand.
+ * @property {number} coupon_effective_discount - The discount applied through a
+ *   coupon code, if applicable.
+ * @property {number} gst_fee - Total Goods and Services Tax (GST) fee charged
+ *   on the goods or services.
+ * @property {number} [tax_collected_at_source] - Tax amount collected at the
+ *   source of income or transaction.
+ * @property {number} brand_calculated_amount - Amount calculated by the brand,
+ *   possibly reflecting various costs or fees.
+ * @property {number} delivery_charge - Fee applicable for the delivery of the goods.
+ * @property {string} gst_tag - A tag used to denote GST-related attributes or
+ *   classifications.
  * @property {string} hsn_code - The HSN Code (Harmonized System of Nomenclature
- *   Code) is an internationally standardized system for classifying goods. It
- *   is used in trade and commerce to identify products and services uniformly
- *   across different countries and industries. The system was developed by the
- *   World Customs Organization (WCO) and is widely used in customs processes
- *   and tax systems.
- * @property {number} cashback
- * @property {string} item_name
- * @property {number} value_of_good
- * @property {number} cashback_applied
- * @property {number} cod_charges
- * @property {number} price_marked
- * @property {string} size
- * @property {number} amount_paid
- * @property {number} coupon_value
- * @property {number} discount
- * @property {number} fynd_credits
- * @property {number} gst_tax_percentage
- * @property {number} [amount_to_be_collected]
+ *   Code) is an internationally standardized system for classifying goods, used
+ *   in trade and commerce for uniform identification across different countries.
+ * @property {number} cashback - The cashback amount provided to the customer,
+ *   if applicable.
+ * @property {string} item_name - The name or description of the item related to
+ *   the financial breakup.
+ * @property {number} value_of_good - The assessed value of the goods before
+ *   applying any taxes or fees.
+ * @property {number} cashback_applied - The effective cashback value that has
+ *   been applied to the transaction.
+ * @property {number} cod_charges - Charges applicable for Cash on Delivery (COD) orders.
+ * @property {number} price_marked - The indicated price or value assigned to an
+ *   item before any discounts or adjustments.
+ * @property {string} size - The size of the item, if applicable.
+ * @property {number} amount_paid - Total amount paid by the customer for the transaction.
+ * @property {number} coupon_value - The effective value of the coupon used in
+ *   the transaction.
+ * @property {number} discount - Total amount discounted from the original price
+ *   of the goods.
+ * @property {number} fynd_credits - Credits provided by Fynd to the customer,
+ *   possibly as part of a rewards program.
+ * @property {number} gst_tax_percentage - The percentage of GST applicable on
+ *   the goods or services.
+ * @property {number} [amount_to_be_collected] - Amount to be collected in case
+ *   of multiple modes of payments.
  * @property {Identifier} identifiers
- * @property {number} total_units
- * @property {boolean} added_to_fynd_cash
+ * @property {number} total_units - The total number of units involved in the transaction.
+ * @property {boolean} added_to_fynd_cash - Indicates whether the amount has
+ *   been added to Fynd cash for future use.
  */
 
 /**
  * @typedef GSTDetailsData
- * @property {number} [cgst_tax_percentage]
+ * @property {number} [cgst_tax_percentage] - The percentage of Central Goods
+ *   and Services Tax (CGST) applicable on the goods or services.
  * @property {string} [gstin_code] - A GST Number (Goods and Services Tax
  *   Identification Number, often abbreviated as GSTIN) is a unique identifier
  *   assigned to a business or individual registered under the Goods and
  *   Services Tax (GST) system in countries like India. The GST number is
  *   essential for businesses to comply with tax regulations and for the
  *   government to track tax payments and returns.
- * @property {number} value_of_good
- * @property {number} gst_fee
- * @property {number} [igst_tax_percentage]
- * @property {number} [gst_tax_percentage]
- * @property {string} [hsn_code_id]
- * @property {number} [igst_gst_fee]
- * @property {boolean} [is_default_hsn_code]
- * @property {number} [sgst_gst_fee]
- * @property {number} tax_collected_at_source
- * @property {number} brand_calculated_amount
- * @property {number} [cgst_gst_fee]
- * @property {string} [gst_tag]
- * @property {number} [sgst_tax_percentage]
+ * @property {number} value_of_good - The assessed value of the goods before
+ *   applying any taxes or fees.
+ * @property {number} gst_fee - The total GST fee charged on the goods or services.
+ * @property {number} [igst_tax_percentage] - The percentage of Integrated Goods
+ *   and Services Tax (IGST) applicable for inter-state transactions.
+ * @property {number} [gst_tax_percentage] - The overall GST tax percentage
+ *   applicable to the goods or services.
+ * @property {string} [hsn_code_id] - Unique identifier for the Harmonized
+ *   System of Nomenclature (HSN) code used to classify goods.
+ * @property {number} [igst_gst_fee] - The GST fee applicable for IGST, usually
+ *   for inter-state transactions.
+ * @property {boolean} [is_default_hsn_code] - Indicates whether this HSN code
+ *   is the default classification for the goods.
+ * @property {number} [sgst_gst_fee] - The GST fee applicable for State Goods
+ *   and Services Tax (SGST).
+ * @property {number} tax_collected_at_source - Tax amount collected at the
+ *   source of income or transaction, often for compliance and revenue tracking.
+ * @property {number} brand_calculated_amount - Amount calculated by the brand,
+ *   potentially reflecting costs, fees, or pricing structures.
+ * @property {number} [cgst_gst_fee] - The GST fee applicable for CGST.
+ * @property {string} [gst_tag] - A tag or label used to denote GST-related
+ *   attributes or classifications.
+ * @property {number} [sgst_tax_percentage] - The percentage of State Goods and
+ *   Services Tax (SGST) applicable on the goods or services.
  * @property {string} [hsn_code] - The HSN Code (Harmonized System of
  *   Nomenclature Code) is an internationally standardized system for
  *   classifying goods. It is used in trade and commerce to identify products
@@ -2800,8 +3212,10 @@ const Joi = require("joi");
 
 /**
  * @typedef BagStateMapper
- * @property {boolean} [is_active]
- * @property {string} [app_display_name]
+ * @property {boolean} [is_active] - Indicates whether the state is currently
+ *   active in the shipment process.
+ * @property {string} [app_display_name] - Display name used in the application
+ *   to represent this state.
  * @property {string} state_type - Serves as a key identifier to differentiate
  *   among the diverse types of states a shipment can undergo throughout its journey.
  *
@@ -2821,188 +3235,233 @@ const Joi = require("joi");
  *   delivery. Return Journey: Contrary to the forward journey, the return
  *   journey involves the process of sending items back from the customer to the
  *   original sender or a designated return facility.
- * @property {string} [app_state_name]
- * @property {string} name
- * @property {boolean} [app_facing]
- * @property {boolean} [notify_customer]
- * @property {string} display_name
+ * @property {string} [app_state_name] - The name of the state as used within
+ *   the application, providing a clear reference.
+ * @property {string} name - Official name of the state in the context of the
+ *   shipment process.
+ * @property {boolean} [app_facing] - Indicates if this state is visible to the
+ *   customer in the application.
+ * @property {boolean} [notify_customer] - Indicates whether the customer should
+ *   be notified upon reaching this state.
+ * @property {string} display_name - User-friendly name for the state, suitable
+ *   for display purposes.
  */
 
 /**
  * @typedef BagStatusHistory
- * @property {boolean} [forward]
- * @property {number} [store_id]
- * @property {string} [delivery_awb_number]
- * @property {boolean} [kafka_sync]
- * @property {number} [delivery_partner_id]
- * @property {string} [app_display_name]
- * @property {number} [state_id]
+ * @property {boolean} [forward] - Indicates whether the bag is being forwarded
+ *   to the next stage in the shipment process.
+ * @property {number} [store_id] - Unique identifier for the store associated
+ *   with the bag's current status.
+ * @property {string} [delivery_awb_number] - The Air Waybill (AWB) number used
+ *   for tracking the delivery of the bag.
+ * @property {boolean} [kafka_sync] - Indicates if the status update has been
+ *   synchronized with Kafka for real-time processing.
+ * @property {number} [delivery_partner_id] - Identifier for the delivery
+ *   partner responsible for the shipment.
+ * @property {string} [app_display_name] - The display name of the application
+ *   that is handling the bag status update.
+ * @property {number} [state_id] - Unique identifier for the current state of
+ *   the bag in the shipment process.
  * @property {string} [state_type] - Serves as a key identifier to differentiate
  *   among the diverse types of states a shipment can undergo throughout its journey.
- *
- *   - 'operational': Pertains to states that involve the physical handling and
- *       movement of the shipment, such as packing, in transit, and delivery.
- *   - 'financial': Relates to states associated with the payment, invoicing, and
- *       any monetary transactions or obligations tied to the shipment.
- *   - 'logistics': Encompasses states that deal with the broader logistical
- *       planning and coordination necessary for the shipment's journey,
- *       including route optimization and carrier selection.
- *
- * @property {number} [bsh_id]
+ * @property {number} [bsh_id] - Unique identifier for the bag status history entry.
  * @property {string} [created_at] - Timestamp when the bag status history
  *   transaction was created.
- * @property {string} [created_ts]
- * @property {string} [shipment_id]
+ * @property {string} [created_ts] - Timestamp of creation in a different
+ *   format, if applicable.
+ * @property {string} [shipment_id] - Identifier for the shipment associated
+ *   with this bag status entry.
  * @property {string} [updated_at] - Timestamp when the bag status history
- *   transaction was updated.
- * @property {string} [updated_ts]
+ *   transaction was last updated.
+ * @property {string} [updated_ts] - Timestamp of last update in a different
+ *   format, if applicable.
  * @property {BagStateMapper} [bag_state_mapper]
- * @property {number} [bag_id]
- * @property {Object[]} [reasons]
- * @property {string} status
- * @property {string} [display_name]
+ * @property {number} [bag_id] - Unique identifier for the bag whose status is
+ *   being tracked.
+ * @property {Object[]} [reasons] - List of reasons associated with the current
+ *   status of the bag.
+ * @property {string} status - Current status of the bag in the shipment process.
+ * @property {string} [display_name] - User-friendly name that describes the
+ *   current state of the bag.
  */
 
 /**
  * @typedef Dimensions
- * @property {number} [height]
- * @property {number} [width]
- * @property {boolean} [is_default]
- * @property {string} [unit]
- * @property {number} [length]
+ * @property {number} [height] - The height measurement of the object, typically
+ *   representing the vertical dimension.
+ * @property {number} [width] - The width measurement of the object, indicating
+ *   the horizontal dimension.
+ * @property {boolean} [is_default] - A flag indicating whether these dimensions
+ *   are the default measurements for the object.
+ * @property {string} [unit] - The unit of measurement used for the dimensions
+ *   (e.g., centimeters, inches).
+ * @property {number} [length] - The length measurement of the object,
+ *   representing the longest dimension.
  */
 
 /**
  * @typedef ReturnConfig
- * @property {boolean} [returnable]
- * @property {number} [time]
- * @property {string} [unit]
+ * @property {boolean} [returnable] - Indicates whether the article is eligible
+ *   for return, allowing customers to send it back under specified conditions.
+ * @property {number} [time] - The time frame within which the return must be
+ *   initiated, typically measured in days.
+ * @property {string} [unit] - The unit of time for the return period (e.g., days, weeks).
  */
 
 /**
  * @typedef Weight
- * @property {boolean} [is_default]
- * @property {number} [shipping]
- * @property {string} [unit]
+ * @property {boolean} [is_default] - Indicates whether this weight value is the
+ *   default weight used for the article.
+ * @property {number} [shipping] - The weight of the article specifically for
+ *   shipping purposes, usually measured in grams or kilograms.
+ * @property {string} [unit] - The unit of measurement for the weight (e.g.,
+ *   grams, kilograms, pounds).
  */
 
 /**
  * @typedef Article
- * @property {Object} [child_details] - Contains a flexible set of key-value
- *   pairs representing detailed information about the article's child entities
- *   which includes dimensions (width, height, length), weight, and unique
+ * @property {Object[]} [child_details] - Contains a flexible set of key-value
+ *   pairs representing detailed information about the article's child entities,
+ *   including dimensions (width, height, length), weight, and unique
  *   identifiers (EAN, article code, seller identifier) for each child entity.
- * @property {string} seller_identifier
- * @property {string} uid
- * @property {Object} [set] - Represents the data related to combination of
+ * @property {string} seller_identifier - Unique identifier assigned by the
+ *   seller to the article, used for inventory management.
+ * @property {string} uid - A unique identifier for the article within the system.
+ * @property {Object} [set] - Represents the data related to combinations of
  *   articles that, while being the same product, vary by size, color, or other
  *   distinguishing features.
  * @property {Dimensions} [dimensions]
  * @property {Object} [currency] - Currency in which the transaction amount
  *   associated with the article is specified.
- * @property {boolean} [esp_modified]
- * @property {ReturnConfig} [return_config]
- * @property {string} [code]
+ * @property {boolean} [esp_modified] - Indicates whether the article has been
+ *   modified by the ESP (e-commerce service provider).
+ * @property {ReturnConfig} [return_config] - Configuration related to the
+ *   return policy for the article.
+ * @property {string} [code] - Internal code or identifier for the article, used
+ *   for reference.
  * @property {Weight} [weight]
- * @property {string} _id
- * @property {Object} identifiers - Details of Identifiers associated with the
- *   article including sku_code.
- * @property {string} [raw_meta]
- * @property {string} size
- * @property {boolean} [is_set]
- * @property {string[]} [tags]
+ * @property {string} _id - The unique identifier for the article within the database.
+ * @property {Object} identifiers - Details of identifiers associated with the
+ *   article, including SKU codes and other relevant identifiers.
+ * @property {string} [raw_meta] - Raw metadata associated with the article,
+ *   providing additional context or information.
+ * @property {string} size - Size of the article, which may vary for clothing,
+ *   accessories, etc.
+ * @property {boolean} [is_set] - Indicates whether the article is part of a set
+ *   or collection.
+ * @property {string[]} [tags] - Tags associated with the article for
+ *   categorization and search optimization.
  */
 
 /**
  * @typedef ShipmentListingBrand
- * @property {string} [logo]
- * @property {string} [created_on] - Timestamp of the transaction when the brand
- *   of the shipment was created.
- * @property {string} [name]
- * @property {string} [logo_base64]
+ * @property {string} [logo] - URL or path to the logo image of the brand
+ *   associated with the shipment.
+ * @property {string} [created_on] - Timestamp indicating when the brand of the
+ *   shipment was created, formatted as date-time.
+ * @property {string} [name] - The name of the brand linked to the shipment.
+ * @property {string} [logo_base64] - Base64 encoded string of the brand's logo
+ *   image, allowing for direct embedding in documents or applications.
  */
 
 /**
  * @typedef ReplacementDetails
  * @property {string} [replacement_type] - Specifies the nature or category of
  *   the replacement requested or processed for an item.
- * @property {string} [original_affiliate_order_id]
+ * @property {string} [original_affiliate_order_id] - The original order ID
+ *   associated with the item that is being replaced.
  */
 
 /**
  * @typedef AffiliateMeta
- * @property {string} [order_item_id]
- * @property {string} [channel_order_id]
- * @property {number} [employee_discount]
+ * @property {string} [order_item_id] - A unique identifier for the order item
+ *   associated with the affiliate shipment.
+ * @property {string} [channel_order_id] - The order ID assigned by the sales
+ *   channel for tracking purposes.
+ * @property {number} [employee_discount] - The discount percentage or amount
+ *   applied to the order for employees.
  * @property {string} [box_type] - Box type of the shipment in which the
  *   shipment will be delivered.
- * @property {number} [quantity]
- * @property {number} [size_level_total_qty]
- * @property {number} [loyalty_discount]
+ * @property {number} [quantity] - The total quantity of items in the order.
+ * @property {number} [size_level_total_qty] - The total quantity of items
+ *   grouped by size level for the order.
+ * @property {number} [loyalty_discount] - The discount percentage or amount
+ *   applied to the order based on customer loyalty.
  * @property {ReplacementDetails} [replacement_details]
- * @property {string} [channel_shipment_id]
- * @property {string} [marketplace_invoice_id]
+ * @property {string} [channel_shipment_id] - The shipment ID assigned by the
+ *   sales channel for tracking purposes.
+ * @property {string} [marketplace_invoice_id] - The invoice ID related to the
+ *   marketplace for the transaction.
  * @property {string} [due_date] - Specifies the deadline by which a particular
  *   action related to the affiliate shipment needs to be completed.
  * @property {string} [coupon_code] - A unique code provided to customers for
  *   redeeming special offers or discounts on their purchases.
- * @property {boolean} [is_priority]
- * @property {boolean} [is_serial_number_required]
- * @property {number} [fulfilment_priority]
- * @property {number} [customer_selling_price]
+ * @property {boolean} [is_priority] - Indicates whether the shipment is a
+ *   priority for fulfillment.
+ * @property {boolean} [is_serial_number_required] - Indicates whether a serial
+ *   number is required for the items in the shipment.
+ * @property {number} [fulfilment_priority] - A value indicating the priority
+ *   level of order fulfillment.
+ * @property {number} [customer_selling_price] - The selling price at which the
+ *   product is offered to the customer.
  */
 
 /**
  * @typedef AffiliateBagDetails
  * @property {AffiliateMeta} affiliate_meta
- * @property {string} affiliate_order_id
- * @property {number} [employee_discount]
- * @property {string} affiliate_bag_id
- * @property {number} [loyalty_discount]
+ * @property {string} affiliate_order_id - Unique identifier for the affiliate
+ *   order associated with the bag.
+ * @property {number} [employee_discount] - Discount percentage or amount
+ *   applicable to employees for this order.
+ * @property {string} affiliate_bag_id - Unique identifier for the affiliate
+ *   bag, used for tracking and reference.
+ * @property {number} [loyalty_discount] - Discount amount applied based on
+ *   customer loyalty, if applicable.
  */
 
 /**
  * @typedef PlatformArticleAttributes
- * @property {string} [currency]
+ * @property {string} [currency] - The currency in which the price of the
+ *   article is specified.
  */
 
 /**
  * @typedef PlatformItem
- * @property {number} [id]
+ * @property {number} [id] - Unique identifier for the platform item.
  * @property {PlatformArticleAttributes} [attributes]
- * @property {number} [brand_id]
- * @property {string} [slug_key]
+ * @property {number} [brand_id] - Identifier for the brand associated with the item.
+ * @property {string} [slug_key] - A user-friendly string that represents the
+ *   item, often used in URLs.
  * @property {number} [l3_category] - Represents the product's classification at
  *   the third level in the e-commerce platform's category hierarchy, using an
- *   integer identifier. This finer level of categorization allows for precise
- *   product organization and easier navigation for customers seeking specific items.
- * @property {string} [l3_category_name] - This key specifies the name of the
- *   third-level category under which the product is listed, offering a more
- *   detailed classification within the e-commerce platform's hierarchy.
- * @property {string} [last_updated_at] - Denotes the timestamp when any aspect
- *   of the associated record was modified.
- * @property {string} [name]
- * @property {string[]} [l2_category] - The l2_category field represents the
- *   second level of categorization for items within an e-commerce platform's
- *   hierarchy. This allows for classification beyond the top-tier (level 1)
- *   categories, helping customers to narrow down their search and find products
- * @property {string} [brand]
- * @property {string[]} [image]
- * @property {string} [code]
- * @property {string[]} [l1_category] - The l1_category field represents the
- *   highest or top-tier level of categorization to which a product belongs
- *   within an e-commerce platform.It's an array, indicating that a product can
- *   belong to multiple top-tier categories, which provides a broad
- *   classification of the product.
- * @property {string} [size]
- * @property {boolean} [can_cancel]
- * @property {boolean} [can_return]
- * @property {string} [branch_url]
- * @property {Object} [meta] - Meta data of the item contains additional,
- *   potentially dynamic information about the item.
- * @property {string} [color]
- * @property {number} [department_id]
- * @property {string[]} [images]
+ *   integer identifier.
+ * @property {string} [l3_category_name] - Name of the third-level category
+ *   under which the product is listed.
+ * @property {string} [last_updated_at] - Timestamp when any aspect of the
+ *   associated record was modified, formatted as date-time.
+ * @property {string} [name] - The name of the product item.
+ * @property {string[]} [l2_category] - Represents the second level of
+ *   categorization for items, helping customers narrow down their search.
+ * @property {string} [brand] - Name of the brand associated with the item.
+ * @property {string[]} [image] - Array of image URLs representing the item.
+ * @property {string} [code] - Unique code for the item, often used for
+ *   inventory management.
+ * @property {string[]} [l1_category] - Represents the highest or top-tier level
+ *   of categorization for the product.
+ * @property {string} [size] - Size specification of the product, if applicable.
+ * @property {boolean} [can_cancel] - Indicates whether the item can be canceled
+ *   after order placement.
+ * @property {boolean} [can_return] - Indicates whether the item is eligible for return.
+ * @property {string} [branch_url] - URL linking to a specific branch or store
+ *   where the item is available.
+ * @property {Object} [meta] - Meta data containing additional, dynamic
+ *   information about the item.
+ * @property {string} [color] - Color specification of the product, if applicable.
+ * @property {number} [department_id] - Identifier for the department associated
+ *   with the product.
+ * @property {string[]} [images] - Array of image URLs representing different
+ *   views or angles of the item.
  */
 
 /**
@@ -3014,11 +3473,16 @@ const Joi = require("joi");
 
 /**
  * @typedef BagReturnableCancelableStatus
- * @property {boolean} is_returnable
- * @property {boolean} is_active
- * @property {boolean} can_be_cancelled
- * @property {boolean} enable_tracking
- * @property {boolean} is_customer_return_allowed
+ * @property {boolean} is_returnable - Indicates whether the bag can be returned
+ *   by the customer.
+ * @property {boolean} is_active - Specifies if the current status of the bag is
+ *   active, affecting its eligibility for return or cancellation.
+ * @property {boolean} can_be_cancelled - Indicates if the bag order can be
+ *   cancelled by the customer.
+ * @property {boolean} enable_tracking - Indicates whether tracking is enabled
+ *   for the bag, allowing customers to monitor its status.
+ * @property {boolean} is_customer_return_allowed - Specifies if the customer is
+ *   permitted to return the bag, based on the return policy.
  */
 
 /**
@@ -3036,32 +3500,45 @@ const Joi = require("joi");
  * @property {ShipmentListingBrand} [brand]
  * @property {AffiliateBagDetails} [affiliate_bag_details]
  * @property {PlatformItem} [item]
- * @property {Object[]} [reasons]
- * @property {number} product_quantity
- * @property {boolean} [can_return]
- * @property {string} [display_name]
- * @property {boolean} [can_cancel]
- * @property {string} [size]
- * @property {number} [line_number]
+ * @property {Object[]} [reasons] - A collection of reasons associated with the
+ *   bag, which could pertain to returns, cancellations, or other relevant contexts.
+ * @property {number} product_quantity - The total quantity of products
+ *   contained within the bag.
+ * @property {boolean} [can_return] - Indicates whether the items in the bag are
+ *   eligible for return.
+ * @property {string} [display_name] - A user-friendly name or label for the
+ *   bag, which may be displayed in interfaces.
+ * @property {boolean} [can_cancel] - Indicates whether the bag or its contents
+ *   can be canceled.
+ * @property {string} [size] - Specifies the size of the bag, which may be
+ *   relevant for packaging or shipping considerations.
+ * @property {number} [line_number] - Represents the line number in an order or
+ *   transaction associated with the bag.
  * @property {Object} [meta] - Meta data of the bag contains additional,
  *   potentially dynamic information about the bag.
  * @property {Prices} [prices]
  * @property {OrderingCurrencyPrices} [ordering_currency_prices]
  * @property {Dates} [dates]
  * @property {BagStatusHistory} current_status
- * @property {number} bag_id
- * @property {string} [entity_type]
+ * @property {number} bag_id - Unique identifier for the bag.
+ * @property {string} [entity_type] - Specifies the type of entity.
  * @property {BagReturnableCancelableStatus} status
  */
 
 /**
  * @typedef ShipmentItemFulFillingStore
- * @property {string} [phone]
- * @property {string[]} [brand_store_tags]
- * @property {string} [pincode]
- * @property {Object} [meta] - Meta data of the fulfilling store contains
+ * @property {string} [phone] - Contact number for the fulfilling store,
+ *   allowing customers to reach out for inquiries or assistance.
+ * @property {string[]} [brand_store_tags] - Tags associated with the brand
+ *   store, providing additional categorization or identification of the store's
+ *   attributes.
+ * @property {string} [pincode] - Postal code for the fulfilling store's
+ *   location, essential for identifying the specific area and ensuring accurate
+ *   deliveries.
+ * @property {Object} [meta] - Meta data of the fulfilling store that contains
  *   additional, potentially dynamic information about the fulfilling store.
- * @property {string} [address] - It contains the address details of the fulfilling store.
+ * @property {string} [address] - Comprehensive address details of the
+ *   fulfilling store, including all necessary components for locating the store.
  * @property {string} [address1] - The primary address dynamically forms based
  *   on a template. If the template includes a single key, Address1 contains
  *   that data. For templates with multiple keys like Address1 compiles all into
@@ -3069,15 +3546,22 @@ const Joi = require("joi");
  *   and whichever keys are present in the template are populated as is from
  *   store address fields. Template Example: {address} {address2}_{area}
  *   {state}_{country},
- * @property {string} [display_address]
+ * @property {string} [display_address] - A user-friendly formatted version of
+ *   the store's address for display purposes, making it easier for customers to read.
  * @property {string} [location_type] - Type of location of the fulfilling store.
- * @property {number} id
- * @property {string} code
- * @property {string} [store_email]
- * @property {string} [name]
- * @property {string} [state]
- * @property {string} [city]
- * @property {string[]} [tags]
+ * @property {number} id - Unique identifier for the fulfilling store in the database.
+ * @property {string} code - A specific code assigned to the store, often used
+ *   for internal tracking or categorization purposes.
+ * @property {string} [store_email] - Email address for the fulfilling store,
+ *   allowing for electronic communication and inquiries.
+ * @property {string} [name] - The name of the fulfilling store, which helps
+ *   customers identify the store.
+ * @property {string} [state] - The state where the fulfilling store is located,
+ *   important for regional identification.
+ * @property {string} [city] - The city where the fulfilling store is situated,
+ *   providing more specific location details.
+ * @property {string[]} [tags] - Additional tags associated with the store, used
+ *   for categorization and filtering purposes.
  */
 
 /**
@@ -3088,15 +3572,15 @@ const Joi = require("joi");
  *   code typically follows the ISO 4217 standard, which uses three-letter
  *   alphabetic codes to define different currencies around the world. For
  *   example, 'USD' for United States Dollar, 'INR' for Indian Rupees.
- * @property {string} [currency_symbol]
+ * @property {string} [currency_symbol] - The symbol representing the currency.
  */
 
 /**
  * @typedef OrderingCurrency
  * @property {string} [currency_code] - This specifies the currency code for all amounts.
- * @property {string} [currency_name]
- * @property {string} [currency_symbol]
- * @property {string} [currency_sub_unit]
+ * @property {string} [currency_name] - The full name of the currency.
+ * @property {string} [currency_symbol] - The symbol representing the currency.
+ * @property {string} [currency_sub_unit] - The sub-unit of the currency
  */
 
 /**
@@ -3126,18 +3610,22 @@ const Joi = require("joi");
  * @typedef ShipmentItem
  * @property {string} [order_date] - Denotes the date and time when an order was
  *   placed by the customer. This timestamp is crucial for tracking the order'
- * @property {string} [order_created_ts]
+ * @property {string} [order_created_ts] - The timestamp indicating when the
+ *   order was created.
  * @property {ShipmentStatus} [shipment_status]
  * @property {UserDataInfo} [user]
- * @property {string} [estimated_sla_time]
- * @property {string} [estimated_sla_ts]
+ * @property {string} [estimated_sla_time] - The estimated Service Level
+ *   Agreement (SLA) time for the shipment.
+ * @property {string} [estimated_sla_ts] - The timestamp for the estimated SLA,
+ *   providing a specific time for expected delivery.
  * @property {Address} [delivery_address]
  * @property {Address} [billing_address]
  * @property {AffiliateDetails} [affiliate_details]
  * @property {boolean} [is_active] - This flag denotes whether the shipment is
- *   active or not
+ *   active or not.
  * @property {ShipmentListingChannel} [channel]
- * @property {string} [previous_shipment_id]
+ * @property {string} [previous_shipment_id] - The ID of any previous shipment
+ *   related to this order.
  * @property {string} [forward_end_shipment_id] - The forward_end_shipment_id
  *   represents the shipment ID of the original forward journey shipment. When a
  *   shipment is transitioned to a return journey, the original shipment ID from
@@ -3147,8 +3635,9 @@ const Joi = require("joi");
  *   forward_end_shipment_id value that was assigned during the initial return
  *   journey initiation. This ensures that all return shipments can be traced
  *   back to the original forward journey shipment.
- * @property {boolean} [lock_status]
- * @property {string} [invoice_id]
+ * @property {boolean} [lock_status] - Indicates whether the shipment is
+ *   currently locked for processing (true) or not (false).
+ * @property {string} [invoice_id] - The ID of the invoice associated with the shipment.
  * @property {Object} [payment_methods] - This field stores a collection of
  *   payment method objects used in a transaction. Each key within this object
  *   represents a unique payment method code (e.g., "COD" for Cash On Delivery),
@@ -3159,26 +3648,32 @@ const Joi = require("joi");
  *   The structure is designed to accommodate any number of payment methods,
  *   providing flexibility and comprehensive insights into each transaction's
  *   payment aspect.
- * @property {Object[]} [payment_info]
+ * @property {Object[]} [payment_info] - An array of payment information items
+ *   related to the shipment, detailing transaction specifics.
  * @property {string} [status_created_at] - Date time in UTC timezone as per ISO format.
- * @property {string} [status_created_ts]
- * @property {string} [display_name]
- * @property {BagUnit[]} [bags]
+ * @property {string} [status_created_ts] - The timestamp indicating when the
+ *   current status was logged, usually in ISO 8601 format.
+ * @property {string} [display_name] - A user-friendly name or identifier for
+ *   the shipment, useful for display purposes.
+ * @property {BagUnit[]} [bags] - An array of bags included in the shipment.
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
  * @property {Object} [meta] - Meta data of the item contains additional,
  *   potentially dynamic information about the item.
- * @property {string} [payment_mode]
- * @property {boolean} [can_process]
+ * @property {string} [payment_mode] - The mode of payment used for the shipment.
+ * @property {boolean} [can_process] - Indicates whether the shipment can
+ *   currently be processed (true) or not (false).
  * @property {Prices} [prices]
  * @property {OrderingCurrencyPrices} [ordering_currency_prices]
- * @property {string} order_id
- * @property {string} [ordering_channnel]
- * @property {string} [shipment_id]
- * @property {string} [customer_note]
+ * @property {string} order_id - The unique identifier of the order for the shipment.
+ * @property {string} [ordering_channnel] - The channel used for ordering the shipment.
+ * @property {string} [shipment_id] - The unique identifier for the shipment itself.
+ * @property {string} [customer_note] - Any special notes or instructions
+ *   provided by the customer related to the shipment.
  * @property {number} total_bags - The total number of bags in the shipment.
  * @property {string} shipment_created_at - Timestamp of the shipment created.
- * @property {string} [mode_of_payment]
- * @property {string} [shipment_created_ts]
+ * @property {string} [mode_of_payment] - The method of payment used to create the order.
+ * @property {string} [shipment_created_ts] - The timestamp indicating when the
+ *   shipment was created.
  * @property {Currency} [currency]
  * @property {CurrencyInfo} [currency_info]
  * @property {boolean} [is_lapa_enabled] - Flag to show NDR actions based on
@@ -3191,34 +3686,58 @@ const Joi = require("joi");
 
 /**
  * @typedef ShipmentInternalPlatformViewResponseSchema
- * @property {number} [total_count]
- * @property {string} [message]
- * @property {boolean} [success]
- * @property {ShipmentItem[]} [items]
- * @property {string} [lane]
+ * @property {number} [total_count] - The total number of shipments matching the
+ *   query criteria.
+ * @property {string} [message] - A message providing additional context about
+ *   the response.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {ShipmentItem[]} [items] - An array of shipment items returned as
+ *   part of the response.
+ * @property {string} [lane] - The lane associated with the shipment.
  * @property {Page} [page]
  */
 
 /**
  * @typedef TrackingList
- * @property {boolean} [is_passed]
- * @property {string} text
- * @property {boolean} [is_current]
- * @property {string} [time]
- * @property {string} [created_ts]
- * @property {string} status
+ * @property {boolean} [is_passed] - A flag indicating whether the tracking
+ *   event has already occurred. If true, it means the event is in the past;
+ *   otherwise, it is either current or future.
+ * @property {string} text - A descriptive message or status update associated
+ *   with the tracking event, providing context about the shipment's progress or
+ *   condition.
+ * @property {boolean} [is_current] - A flag indicating whether this tracking
+ *   event is the most recent update. If true, it reflects the latest status of
+ *   the shipment.
+ * @property {string} [time] - A timestamp representing when the tracking event
+ *   occurred. This helps in understanding the timeline of the shipment's journey.
+ * @property {string} [created_ts] - A timestamp indicating when the tracking
+ *   information was created or logged in the system. This may differ from the
+ *   event time.
+ * @property {string} status - The specific status associated with the tracking
+ *   event, such as "In Transit," "Delivered," or "Out for Delivery," providing
+ *   clarity on the shipment's current phase.
  */
 
 /**
  * @typedef InvoiceInfo
- * @property {string} [store_invoice_id]
- * @property {string} [invoice_url]
+ * @property {string} [store_invoice_id] - A unique identifier for the invoice
+ *   generated by the store or platform, used for internal tracking and reference.
+ * @property {string} [invoice_url] - A URL linking to the digital version of
+ *   the invoice, allowing users to view or download the invoice document online.
  * @property {string} [updated_date] - Denotes the date and time when the
- *   invoice information was modified or updated.
- * @property {string} [external_invoice_id]
- * @property {string} [label_url]
- * @property {string} [credit_note_id]
- * @property {Object} [links]
+ *   invoice information was modified or updated, providing a record of the most
+ *   recent changes.
+ * @property {string} [external_invoice_id] - An identifier for the invoice used
+ *   by external systems or partners, facilitating cross-system tracking and
+ *   reconciliation.
+ * @property {string} [label_url] - A URL linking to the shipping label
+ *   associated with the invoice, which may be used for shipment tracking and logistics.
+ * @property {string} [credit_note_id] - The identifier for any credit note
+ *   related to the invoice, used in cases of refunds or adjustments to the
+ *   original billing.
+ * @property {Object} [links] - An object containing additional links relevant
+ *   to the invoice, which may include related documents or resources.
  */
 
 /**
@@ -3227,23 +3746,26 @@ const Joi = require("joi");
  *   was placed by the customer. This timestamp is essential for tracking the
  *   initiation of the order process, scheduling deliveries, and analyzing order
  *   timelines.
- * @property {string} [created_ts]
+ * @property {string} [created_ts] - A timestamp indicating when the order was
+ *   created in the system.
  * @property {Object} [tax_details] - Contains a flexible and comprehensive set
  *   of key-value pairs detailing the tax calculations and classifications
  *   applicable to the order.
- * @property {string} [cod_charges]
- * @property {string} [source]
- * @property {string} fynd_order_id
- * @property {string} [affiliate_id]
- * @property {string} [affiliate_order_id]
+ * @property {string} [cod_charges] - The charges associated with Cash on
+ *   Delivery (COD) payments.
+ * @property {string} [source] - The source from which the order originated.
+ * @property {string} fynd_order_id - An unique identifier for the order.
+ * @property {string} [affiliate_id] - Affiliate id associated with order.
+ * @property {string} [affiliate_order_id] - Affiliate order id associated with order.
  * @property {Object} [ordering_channel_logo] - Represents the logo of the
  *   channel through which the order was placed, encapsulating branding elements
  *   and any relevant styling attributes. This object is designed to be
  *   flexible, allowing for the inclusion of various properties that define how
  *   the logo should be displayed across different platforms or documents
  *   related to the order.
- * @property {string} [order_value]
- * @property {string} [ordering_channel]
+ * @property {string} [order_value] - The total monetary value of the order
+ * @property {string} [ordering_channel] - The specific channel through which
+ *   the order was placed
  * @property {Object} [meta] - Meta data of the order contains additional,
  *   potentially dynamic information about the order.
  */
@@ -3283,73 +3805,95 @@ const Joi = require("joi");
  * @property {number} [country_code] - Identifies the country of the user's
  *   phone number using the two-character standard ISO 3166-1 alpha-2 country
  *   codes. Examples include 'US' for the United States and 'IN' for India.
- * @property {string} [number]
+ * @property {string} [number] - The actual phone number of the user.
  */
 
 /**
  * @typedef ContactDetails
- * @property {PhoneDetails[]} [phone]
- * @property {string[]} [emails]
+ * @property {PhoneDetails[]} [phone] - An array of phone numbers associated
+ *   with the contact.
+ * @property {string[]} [emails] - An array of email addresses associated with
+ *   the contact.
  */
 
 /**
  * @typedef CompanyDetails
- * @property {string} [company_name]
+ * @property {string} [company_name] - The name of the company.
  * @property {Object} [address] - It contains the properties for the address of a company.
- * @property {string} [company_cin]
- * @property {number} [company_id]
- * @property {string} [company_gst]
+ * @property {string} [company_cin] - The Corporate Identification Number (CIN)
+ *   of the company.
+ * @property {number} [company_id] - A unique identifier for the company on the platform.
+ * @property {string} [company_gst] - The Goods and Services Tax (GST) number of
+ *   the company.
  * @property {ContactDetails} [company_contact]
  */
 
 /**
  * @typedef OrderingStoreDetails
- * @property {string} [phone]
- * @property {string} [pincode]
+ * @property {string} [phone] - The contact phone number for the ordering store.
+ * @property {string} [pincode] - The postal code associated with the ordering
+ *   store's location.
  * @property {Object} [meta] - Meta data of the ordering store contains
  *   additional, potentially dynamic information about the ordering store.
- * @property {string} [address]
+ * @property {string} [address] - The complete address of the ordering store.
  * @property {string} [address1] - The primary address dynamically forms based
  *   on a template. If the template includes a single key, Address1 contains
  *   that data. For templates with multiple keys like {address} {address2}
  *   {area} {state} {country}, Address1 compiles all into a single formatted string.
- * @property {string} [display_address]
- * @property {number} [id]
- * @property {string} [code]
- * @property {string} [store_name]
- * @property {string} [country]
- * @property {string} [contact_person]
- * @property {string} [state]
- * @property {string} [city]
+ * @property {string} [display_address] - Formatted address based on the
+ *   title-template provided by the partner.
+ * @property {number} [id] - A unique identifier for the ordering store.
+ * @property {string} [code] - A specific code associated with the ordering store.
+ * @property {string} [store_name] - The name of the ordering store.
+ * @property {string} [country] - The country in which the ordering store is located.
+ * @property {string} [contact_person] - The name of the primary contact person
+ *   at the ordering store.
+ * @property {string} [state] - The state or region where the ordering store is situated.
+ * @property {string} [city] - The city in which the ordering store is located.
  */
 
 /**
  * @typedef DPDetailsData
- * @property {string} [pincode]
- * @property {string} [track_url]
- * @property {string} [eway_bill_id]
- * @property {number} [id]
- * @property {string} [country]
- * @property {string} [awb_no]
- * @property {string} [gst_tag]
- * @property {string} [name]
+ * @property {string} [pincode] - The postal code associated with the delivery
+ *   partner's location
+ * @property {string} [track_url] - A URL that provides access to real-time
+ *   tracking information for the shipment.
+ * @property {string} [eway_bill_id] - The unique identifier for the e-way bill
+ *   generated for the shipment.
+ * @property {number} [id] - A unique identifier for the delivery partner details.
+ * @property {string} [country] - The country in which the delivery partner operates.
+ * @property {string} [awb_no] - The Air Waybill number, a tracking number used
+ *   for air freight shipments, allowing for the identification and tracking of
+ *   the package in transit.
+ * @property {string} [gst_tag] - A tag associated with the Goods and Services
+ *   Tax (GST) for the shipment.
+ * @property {string} [name] - The name of the delivery partner or service
+ *   provider responsible for transporting the shipment.
  */
 
 /**
  * @typedef BuyerDetails
- * @property {string} [ajio_site_id]
- * @property {number} pincode
+ * @property {string} [ajio_site_id] - The unique identifier for the buyer on
+ *   the Ajio platform.
+ * @property {number} pincode - The postal code for the buyer's shipping
+ *   address, used for delivery location identification.
  * @property {string} address - Provides the comprehensive address details of
  *   the buyer's shipping address.
- * @property {string} gstin
- * @property {string} name
- * @property {string} state
- * @property {string} city
+ * @property {string} gstin - The Goods and Services Tax Identification Number
+ *   (GSTIN) of the buyer.
+ * @property {string} name - The full name of the buyer, essential for
+ *   personalizing communication and delivery.
+ * @property {string} state - The name of the state where the buyer's shipping
+ *   address is located, important for logistical purposes.
+ * @property {string} city - The name of the city where the buyer's shipping
+ *   address is located, which helps in identifying delivery zones.
  */
 
 /**
  * @typedef DebugInfo
- * @property {string} [stormbreaker_uuid]
+ * @property {string} [stormbreaker_uuid] - A unique identifier (UUID)
+ *   associated with the Stormbreaker system, used for tracking and debugging
+ *   purposes in the application.
  */
 
 /**
@@ -3362,129 +3906,152 @@ const Joi = require("joi");
 
 /**
  * @typedef Formatted
- * @property {string} [max]
- * @property {string} [min]
+ * @property {string} [max] - Represents the maximum formatted value, providing
+ *   a limit for the associated data, such as dimensions or weights.
+ * @property {string} [min] - Represents the minimum formatted value,
+ *   establishing a lower limit for the associated data, ensuring it meets
+ *   certain criteria or standards.
  */
 
 /**
  * @typedef ShipmentTags
- * @property {string} [slug]
+ * @property {string} [slug] - A URL-friendly string representing the tag, often
+ *   used for routing or categorization.
  * @property {string} [entity_type] - Type of entity that the tag is associated
  *   to (bag, shipments).
- * @property {string} [display_text]
+ * @property {string} [display_text] - A human-readable text representation of
+ *   the tag, used for display purposes in user interfaces.
  */
 
 /**
  * @typedef LockData
- * @property {boolean} [locked]
- * @property {boolean} [mto]
- * @property {string} [lock_message]
+ * @property {boolean} [locked] - Indicates whether the shipment is currently
+ *   locked for processing (true) or not (false).
+ * @property {boolean} [mto] - A flag indicating whether the shipment is part of
+ *   a multi-modal transport operation.
+ * @property {string} [lock_message] - An optional message providing additional
+ *   context or information regarding the lock status.
  */
 
 /**
  * @typedef ShipmentTimeStamp
- * @property {number} [max]
- * @property {number} [min]
+ * @property {number} [max] - Represents the maximum timestamp value, indicating
+ *   the latest time relevant to the shipment.
+ * @property {number} [min] - Represents the minimum timestamp value, indicating
+ *   the earliest time relevant to the shipment.
  */
 
 /**
  * @typedef ShipmentMeta
- * @property {string} [tracking_url]
+ * @property {string} [tracking_url] - A URL for tracking the shipment.
  * @property {string} [estimated_delivery_date] - Provides a forecasted date and
  *   time by which the shipment is expected to be delivered to the recipient.
  *   This estimation is crucial for planning purposes, both for the sender in
  *   managing expectations and for the recipient in preparing for receipt.
- * @property {boolean} same_store_available
+ * @property {boolean} same_store_available - Indicates whether the shipment is
+ *   available for pickup from the same store.
  * @property {BuyerDetails} [b2b_buyer_details]
  * @property {Formatted} [formatted]
  * @property {DebugInfo} [debug_info]
- * @property {string} [return_awb_number]
- * @property {boolean} [is_self_ship]
+ * @property {string} [return_awb_number] - The Air Waybill (AWB) number
+ *   associated with a return shipment.
+ * @property {boolean} [is_self_ship] - Indicates whether the shipment is a
+ *   self-shipped order.
  * @property {string} [box_type] - Box type of the shipment in which the
  *   shipment will be delivered.
  * @property {EinvoiceInfo} [einvoice_info]
- * @property {string} [return_affiliate_shipment_id]
- * @property {string} [parent_dp_id]
- * @property {number} [shipment_weight]
+ * @property {string} [return_affiliate_shipment_id] - The shipment ID
+ *   associated with a return from an affiliate.
+ * @property {string} [parent_dp_id] - The unique identifier for the parent
+ *   delivery partner.
+ * @property {number} [shipment_weight] - The total weight of the shipment.
  * @property {Dimensions} [dimension]
  * @property {Object} [dp_options] - Delivery partner options that are available
  *   to deliver the shipment.
- * @property {boolean} [assign_dp_from_sb]
+ * @property {boolean} [assign_dp_from_sb] - Indicates whether to assign the
+ *   delivery partner from the store’s basket.
  * @property {string} [due_date] - Specifies the deadline by which a particular
  *   action related to the affiliate shipment needs to be completed.
  * @property {string} [store_invoice_updated_date] - Denotes the date and time
  *   when the store's invoice related to this shipment was updated. This
  *   timestamp is vital for tracking changes to billing details, adjustments in
  *   charges, or updates in the invoicing status.
- * @property {string} [forward_affiliate_shipment_id]
- * @property {number} [return_store_node]
- * @property {string} [fulfilment_priority_text]
- * @property {ShipmentTags[]} [shipment_tags]
- * @property {Object} [external]
- * @property {string} [awb_number]
+ * @property {string} [forward_affiliate_shipment_id] - The shipment ID for the
+ *   forward journey of an affiliate shipment.
+ * @property {number} [return_store_node] - The identifier for the store node
+ *   involved in the return process.
+ * @property {string} [fulfilment_priority_text] - Textual representation of the
+ *   fulfillment priority for the shipment.
+ * @property {ShipmentTags[]} [shipment_tags] - Tags associated with the
+ *   shipment for categorization and filtering.
+ * @property {Object} [external] - External metadata related to the shipment.
+ * @property {string} [awb_number] - The Air Waybill number associated with the shipment.
  * @property {LockData} [lock_data]
  * @property {string} [order_type] - Defines the specific journey a shipment
  *   will follow based on the application's operational needs and customer
  *   preferences. This field categorizes orders into distinct types, each
- *   associated with a unique processing flow. For example:
- *
- *   - "HomeDelivery": The order undergoes all state transitions typical for a
- *       delivery, from processing the shipment to final delivery at the
- *       customer's address.
- *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
- *       is ready to be handed over directly to the customer at the store. This
- *       type streamlines the process by bypassing traditional shipping stages
- *       and facilitating a quicker transition to the final handover stage.
- *
+ *   associated with a unique processing flow.
  * @property {Object} [ewaybill_info] - Electronic Way Bill details i.e
  *   ewayBillNo, ewayBillDate that are utilized in the transportation of goods.
- * @property {string} [dp_id]
- * @property {number} [shipment_volumetric_weight]
- * @property {string} [marketplace_store_id]
+ * @property {string} [dp_id] - The unique identifier for the delivery partner
+ *   associated with the shipment.
+ * @property {number} [shipment_volumetric_weight] - The volumetric weight of
+ *   the shipment, which may differ from its actual weight.
+ * @property {string} [marketplace_store_id] - The unique identifier for the
+ *   marketplace store associated with the shipment.
  * @property {Object} [return_details] - An object containing the return details
  *   of the shipment.
- * @property {string} [dp_sort_key]
- * @property {string} [packaging_name]
+ * @property {string} [dp_sort_key] - A sort key for the delivery partner, used
+ *   for prioritization.
+ * @property {string} [packaging_name] - The name of the packaging used for the shipment.
  * @property {ShipmentTimeStamp} [timestamp]
- * @property {boolean} [auto_trigger_dp_assignment_acf]
- * @property {string} [dp_name]
- * @property {string} [po_number]
- * @property {number} weight
+ * @property {boolean} [auto_trigger_dp_assignment_acf] - Indicates whether
+ *   automatic delivery partner assignment is triggered for this shipment.
+ * @property {string} [dp_name] - The name of the delivery partner associated
+ *   with the shipment.
+ * @property {string} [po_number] - The purchase order number associated with
+ *   the shipment.
+ * @property {number} weight - The weight of the shipment, typically measured in
+ *   grams or kilograms.
  * @property {Object} [b2c_buyer_details] - Contains detailed information about
  *   the buyer in a business-to-consumer (B2C) transaction. This object is
  *   designed to capture a wide array of buyer-specific data such as contact
  *   information, shipping address, preferences, and any other relevant details
  *   that enhance the understanding of the buyer's profile and needs.
- * @property {string} [forward_affiliate_order_id]
- * @property {string} [return_affiliate_order_id]
+ * @property {string} [forward_affiliate_order_id] - The order ID for the
+ *   forward journey of an affiliate shipment.
+ * @property {string} [return_affiliate_order_id] - The order ID for the return
+ *   journey of an affiliate shipment.
  * @property {Object} [bag_weight] - This object is designed to accommodate a
  *   range of weight-related information. Denotes the weight of the bag,
  *   potentially including various measurements or related details.
- * @property {string} [refund_to]
+ * @property {string} [refund_to] - Specifies the recipient of any refunds
+ *   related to the shipment.
  */
 
 /**
  * @typedef PDFLinks
  * @property {string} invoice_type - The type of invoice issued, such as 'fynd'
  *   or other classifications.
- * @property {string} [label_a6]
- * @property {string} [invoice]
- * @property {string} [label_pos]
- * @property {string} [invoice_a6]
- * @property {string} [b2b]
- * @property {string} [label]
- * @property {string} [label_a4]
+ * @property {string} [label_a6] - URL or path to the A6 size label document.
+ * @property {string} [invoice] - URL or path to the main invoice document.
+ * @property {string} [label_pos] - URL or path to the POS label document.
+ * @property {string} [invoice_a6] - URL or path to the A6 size invoice document.
+ * @property {string} [b2b] - URL or path to the B2B document related to the transaction.
+ * @property {string} [label] - URL or path to the general label document.
+ * @property {string} [label_a4] - URL or path to the A4 size label document.
  * @property {string} label_type - Specifies the type of label associated with a
  *   PDF document,indicating its purpose or content. The label_type helps in
  *   organizing and identifying PDF documents quickly, ensuring that users or
  *   systems can efficiently utilize the correct documents for required actions.
- * @property {string} [invoice_export]
- * @property {string} [credit_note_url]
- * @property {string} [delivery_challan_a4]
- * @property {string} [label_export]
- * @property {string} [invoice_a4]
- * @property {string} [invoice_pos]
- * @property {string} [po_invoice]
+ * @property {string} [invoice_export] - URL or path to the exported invoice document.
+ * @property {string} [credit_note_url] - URL or path to the credit note document.
+ * @property {string} [delivery_challan_a4] - URL or path to the A4 delivery
+ *   challan document.
+ * @property {string} [label_export] - URL or path to the exported label document.
+ * @property {string} [invoice_a4] - URL or path to the A4 size invoice document.
+ * @property {string} [invoice_pos] - URL or path to the POS invoice document.
+ * @property {string} [po_invoice] - URL or path to the purchase order invoice document.
  */
 
 /**
@@ -3502,41 +4069,48 @@ const Joi = require("joi");
  * @property {string} affiliate_store_id - The unique identifier for the
  *   affiliate's store.
  * @property {string} affiliate_bag_id - The unique identifier for the affiliate's bag.
- * @property {string} [ad_id] - Ad_id of an affiliate
+ * @property {string} [id] - The unique identifier for the affiliate.
  */
 
 /**
  * @typedef BagConfigs
- * @property {boolean} is_returnable
- * @property {boolean} allow_force_return
- * @property {boolean} is_active
- * @property {boolean} can_be_cancelled
- * @property {boolean} enable_tracking
- * @property {boolean} is_customer_return_allowed
+ * @property {boolean} is_returnable - Indicates whether the bag is eligible for
+ *   return by the customer.
+ * @property {boolean} allow_force_return - A flag that determines if a forced
+ *   return can be initiated for the bag.
+ * @property {boolean} is_active - A flag indicating whether the bag is active or not.
+ * @property {boolean} can_be_cancelled - A flag that determines if the bag can
+ *   be cancelled.
+ * @property {boolean} enable_tracking - A flag that determines if shipment
+ *   tracking is enabled for the bag.
+ * @property {boolean} is_customer_return_allowed - A flag that determines if
+ *   customer return is allowed for the bag.
  */
 
 /**
  * @typedef OrderBagArticle
  * @property {Object} [identifiers] - Details of Identifiers associated with the article.
  * @property {ReturnConfig} [return_config]
- * @property {string} [uid]
- * @property {string} [size]
- * @property {string[]} [tags]
+ * @property {string} [uid] - A unique identifier for the article within the order bag.
+ * @property {string} [size] - The size of the article, which may be relevant
+ *   for clothing.
+ * @property {string[]} [tags] - An array of tags associated with the article.
  */
 
 /**
  * @typedef OrderBrandName
- * @property {string} [logo]
- * @property {number} [company]
- * @property {number} id
+ * @property {string} [logo] - A URL or path to the logo image associated with the brand.
+ * @property {number} [company] - A unique identifier for the company associated
+ *   with the brand.
+ * @property {number} id - A unique identifier for the brand within the system.
  * @property {string} [created_on] - Timestamp when the brand of the order was created.
- * @property {string} [brand_name]
+ * @property {string} [brand_name] - The name of the brand associated with the order.
  * @property {string} [modified_on] - Timestamp when the brand of the order was modified.
  */
 
 /**
  * @typedef AffiliateBagsDetails
- * @property {string} [affiliate_bag_id]
+ * @property {string} [affiliate_bag_id] - A unique identifier for the affiliate bag.
  * @property {string} [coupon_code] - A unique code provided to customers for
  *   redeeming special offers or discounts on their purchases.
  * @property {AffiliateMeta} [affiliate_meta]
@@ -3544,8 +4118,8 @@ const Joi = require("joi");
 
 /**
  * @typedef BagPaymentMethods
- * @property {string} [mode]
- * @property {number} [amount]
+ * @property {string} [mode] - The payment mode used for the transaction.
+ * @property {number} [amount] - The total amount associated with the payment method
  */
 
 /**
@@ -3630,22 +4204,31 @@ const Joi = require("joi");
  *   covered by other types. - free_gift_items- Free gift items are included
  *   with the purchase. - free_non_sellable_items- Free items that are not for
  *   sale are included with the purchase.
- * @property {string} [promotion_name]
- * @property {DiscountRules[]} [discount_rules]
- * @property {number} [amount]
- * @property {number} [article_quantity]
- * @property {BuyRules[]} [buy_rules]
- * @property {string} [promo_id]
- * @property {boolean} [mrp_promotion]
- * @property {AppliedFreeArticles[]} [applied_free_articles]
+ * @property {string} [promotion_name] - The name of the promotional campaign or offer.
+ * @property {DiscountRules[]} [discount_rules] - A list of rules that define
+ *   the conditions under which discounts are applied.
+ * @property {number} [amount] - The total monetary value of the discount or promotion.
+ * @property {number} [article_quantity] - The quantity of articles required to
+ *   qualify for the promotion.
+ * @property {BuyRules[]} [buy_rules] - A list of rules that outline the
+ *   conditions for purchasing items under the promotion.
+ * @property {string} [promo_id] - A unique identifier for the promotion.
+ * @property {boolean} [mrp_promotion] - A flag that designates whether or not
+ *   the promotion is an MRP (manufacturer's reduced price) promotion.
+ * @property {AppliedFreeArticles[]} [applied_free_articles] - A list of
+ *   articles that are eligible for free under the promotion.
  */
 
 /**
  * @typedef CurrentStatus
- * @property {number} [store_id]
- * @property {string} [delivery_awb_number]
- * @property {boolean} [kafka_sync]
- * @property {number} [delivery_partner_id]
+ * @property {number} [store_id] - A unique identifier for the store associated
+ *   with the shipment.
+ * @property {string} [delivery_awb_number] - The Air Waybill (AWB) number for
+ *   the delivery.
+ * @property {boolean} [kafka_sync] - A flag indicating whether the current
+ *   status is synchronized with Kafka or not.
+ * @property {number} [delivery_partner_id] - A unique identifier for the
+ *   delivery partner responsible for handling the shipment.
  * @property {string} [state_type] - Serves as a key identifier to differentiate
  *   among the diverse types of states a shipment can undergo throughout its journey.
  *
@@ -3657,16 +4240,20 @@ const Joi = require("joi");
  *       planning and coordination necessary for the shipment's journey,
  *       including route optimization and carrier selection.
  *
- * @property {number} [state_id]
- * @property {number} id
+ * @property {number} [state_id] - A unique identifier for the specific state of
+ *   the shipment.
+ * @property {number} id - A unique identifier for the current status entry
  * @property {string} [created_at] - Denotes the date and time when the bag
  *   status was created.
- * @property {string} [created_ts]
- * @property {string} [shipment_id]
- * @property {string} [updated_at]
+ * @property {string} [created_ts] - A timestamp indicating when the status was created
+ * @property {string} [shipment_id] - A unique identifier for the shipment.
+ * @property {string} [updated_at] - The date and time when the current status
+ *   was last updated.
  * @property {BagStateMapper} [bag_state_mapper]
- * @property {number} [bag_id]
- * @property {string} [status]
+ * @property {number} [bag_id] - A unique identifier for the bag associated with
+ *   the shipment.
+ * @property {string} [status] - A descriptive label representing the current
+ *   status of the shipment.
  */
 
 /**
@@ -3691,12 +4278,14 @@ const Joi = require("joi");
  *   includes comprehensive information such as the payment mode, amount,
  *   transaction status, and identifiers for each payment method.
  * @property {BagPaymentMethods[]} [payment_info]
- * @property {number} [quantity]
- * @property {string} [identifier]
- * @property {boolean} [can_return]
- * @property {boolean} [can_cancel]
- * @property {string} [display_name]
- * @property {number} [line_number]
+ * @property {number} [quantity] - The number of items contained in the bag.
+ * @property {string} [identifier] - A unique identifier for the bag.
+ * @property {boolean} [can_return] - Indicates whether the items in the bag are
+ *   eligible for return by the customer.
+ * @property {boolean} [can_cancel] - Indicates whether the bag is eligible for
+ *   cancellation by the customer.
+ * @property {string} [display_name] - A user-friendly name for the bag.
+ * @property {number} [line_number] - A unique identifier for each line item in a bag.
  * @property {Object} [meta] - Meta data of the bags contains additional,
  *   potentially dynamic information about the bags.
  * @property {AppliedPromos[]} [applied_promos]
@@ -3707,36 +4296,42 @@ const Joi = require("joi");
  * @property {number} bag_id
  * @property {string} [entity_type] - Type of entity that the tag is associated
  *   to (bag, shipments).
- * @property {boolean} [is_parent]
+ * @property {boolean} [is_parent] - A flag indicating whether the current bag
+ *   is a parent entity or not.
  */
 
 /**
  * @typedef FulfillingStore
- * @property {string} phone
- * @property {string} pincode
+ * @property {string} phone - The contact phone number for the fulfilling store.
+ * @property {string} pincode - The postal code for the fulfilling store's location.
  * @property {Object} meta - Meta data of the fulfilling store contains
  *   additional, potentially dynamic information about the fulfilling store.
- * @property {string} address
+ * @property {string} address - The complete address of the fulfilling store.
  * @property {string} [address1] - The primary address dynamically forms based
  *   on a template. If the template includes a single key, Address1 contains
  *   that data. For templates with multiple keys like {address} {address2}
  *   {area} {state} {country}, Address1 compiles all into a single formatted string.
- * @property {string} [display_address]
- * @property {number} id
- * @property {string} code
- * @property {string} store_name
- * @property {string} country
- * @property {string} fulfillment_channel
- * @property {string} contact_person
- * @property {string} state
- * @property {string} city
+ * @property {string} [display_address] - Display friendly version of the
+ *   Fulfilment Store Address.
+ * @property {number} id - The unique id or identifier of a fulfilment store.
+ * @property {string} code - The unique code of the fulfilment store.
+ * @property {string} store_name - The unique name of a fulfillment store.
+ * @property {string} country - The name of the country associated with a
+ *   specific fulfilment store.
+ * @property {string} fulfillment_channel - The channel through which
+ *   fulfillment is managed.
+ * @property {string} contact_person - The name of the contact person associated
+ *   with a fulfilling store.
+ * @property {string} state - The state or region where the fulfilling store is located.
+ * @property {string} city - The city in which the fulfilling store is situated.
  */
 
 /**
  * @typedef ShipmentPayments
- * @property {string} [mode]
- * @property {string} [logo]
- * @property {string} [source]
+ * @property {string} [mode] - The payment mode used for the shipment.
+ * @property {string} [logo] - A URL or path to the logo associated with the
+ *   payment method.
+ * @property {string} [source] - The source or origin of the payment
  */
 
 /**
@@ -3744,23 +4339,28 @@ const Joi = require("joi");
  * @property {Object} [meta] - It contains the additional properties related to
  *   shipment status transition like Kafka_emission_status, user_name, etc.
  *   Additionally it is dynamic.
- * @property {string[]} [bag_list]
- * @property {number} [id]
+ * @property {string[]} [bag_list] - The list of bags that are in this shipment
+ *   status transition.
+ * @property {number} [id] - Unique identifier for a shipment status.
  * @property {string} [created_at] - Denotes the date and time when the
  *   transition was created.
- * @property {string} [created_ts]
- * @property {string} [shipment_id]
- * @property {string} [status]
- * @property {string} [display_name]
- * @property {string} [current_shipment_status]
+ * @property {string} [created_ts] - A timestamp indicating when the status
+ *   entry was created.
+ * @property {string} [shipment_id] - The unique identifier for the shipment.
+ * @property {string} [status] - The current status of the shipment.
+ * @property {string} [display_name] - A user-friendly name or description of
+ *   the current shipment status.
+ * @property {string} [current_shipment_status] - Reflects the most recent
+ *   status of the shipment.
  * @property {string} [status_created_at] - Denotes the date and time when the
  *   transition of the status of the shipment was created.
  */
 
 /**
  * @typedef ShipmentLockDetails
- * @property {boolean} [lock_status]
- * @property {string} [lock_message]
+ * @property {boolean} [lock_status] - Represents the lock status of the shipment.
+ * @property {string} [lock_message] - A user-friendly message that explains the
+ *   reason for locking the shipment.
  * @property {Object} [action_to_status] - This field maps potential actions
  *   (e.g., downloading an invoice or label) to their corresponding shipment
  *   lock statuses, indicating which operations are allowed depending on the
@@ -3779,36 +4379,53 @@ const Joi = require("joi");
  *   shipment was physically picked up from the sender or the origin point by
  *   the delivery service. This timestamp is crucial for tracking the
  *   commencement of the shipment's journey.
- * @property {TrackingList[]} [tracking_list]
+ * @property {TrackingList[]} [tracking_list] - A list of tracking updates
+ *   associated with the shipment.
  * @property {InvoiceInfo} [invoice]
- * @property {string} [shipment_status]
+ * @property {string} [shipment_status] - Represents the current status of the shipment.
  * @property {GSTDetailsData} [gst_details]
  * @property {OrderStatusData} [order_status]
  * @property {Object} [delivery_slot] - Represents a specific time window
  *   allocated for the delivery of an order or shipment.
  * @property {OrderDetailsData} [order]
  * @property {UserDataInfo} [user]
- * @property {boolean} [enable_dp_tracking]
- * @property {string} [custom_message]
- * @property {string} [estimated_sla_time]
- * @property {string} [estimated_sla_ts]
- * @property {boolean} [can_update_dimension]
- * @property {string[]} [shipment_images]
- * @property {Object} [delivery_details] - Delivery Details of user
- * @property {Object} [billing_details] - Billing Details of user
- * @property {string} [forward_shipment_id]
- * @property {number} [fulfilment_priority]
+ * @property {boolean} [enable_dp_tracking] - A flag indicating whether the
+ *   delivery partner tracking feature is enabled for this shipment.
+ * @property {string} [custom_message] - A custom message or note associated
+ *   with the shipment.
+ * @property {string} [estimated_sla_time] - The estimated service level
+ *   agreement (SLA) time for the shipment, indicating expected delivery timelines.
+ * @property {string} [estimated_sla_ts] - A timestamp indicating when the
+ *   estimated SLA time is expected to be met.
+ * @property {boolean} [can_update_dimension] - Indicates whether the dimensions
+ *   of the shipment can be updated after creation.
+ * @property {string[]} [shipment_images] - A list of URLs for images related to
+ *   the shipment.
+ * @property {Object} [delivery_details] - A list of details about the delivery
+ *   of an order.
+ * @property {Object} [billing_details] - Information regarding the billing for
+ *   the shipment, including billing address and payment method.
+ * @property {string} [forward_shipment_id] - The ID of the parent forward
+ *   journey shipment.
+ * @property {number} [fulfilment_priority] - The fulfilment priority, with
+ *   lower numbers indicating a higher priority.
  * @property {ShipmentLockDetails} [shipment_details]
- * @property {Object[]} [custom_meta]
- * @property {number} [shipment_quantity]
+ * @property {Object[]} [custom_meta] - An array of custom metadata objects that
+ *   may contain additional, dynamic information specific to the shipment.
+ * @property {number} [shipment_quantity] - The total quantity of items included
+ *   in the shipment.
  * @property {CompanyDetails} [company_details]
  * @property {OrderingStoreDetails} [ordering_store]
- * @property {string} [order_platform]
- * @property {boolean} [lock_status]
- * @property {string} [platform_logo]
- * @property {string} [user_agent]
+ * @property {string} [order_platform] - The platform used to place the order.
+ * @property {boolean} [lock_status] - Indicates whether the shipment is
+ *   currently locked or not for modifications or updates.
+ * @property {string} [platform_logo] - The URL of the ordering platform's logo.
+ * @property {string} [user_agent] - Information about the user agent string,
+ *   typically containing details about the browser or application used to place
+ *   the order.
  * @property {DPDetailsData} [dp_details]
- * @property {string} [invoice_id]
+ * @property {string} [invoice_id] - The unique identifier for the invoice
+ *   associated with the shipment.
  * @property {Object} [payment_methods] - This field stores a collection of
  *   payment method objects used in a transaction. Each key within this object
  *   represents a unique payment method code (e.g., "COD" for Cash On Delivery),
@@ -3816,21 +4433,27 @@ const Joi = require("joi");
  *   payment method. The structure is designed to accommodate any number of
  *   payment methods,providing flexibility and comprehensive insights into each
  *   transaction's payment aspect.
- * @property {Object[]} [payment_info]
+ * @property {Object[]} [payment_info] - An array of objects containing detailed
+ *   information about the payments made for the shipment.
  * @property {Object} [coupon] - Coupon data of the shipment which denotes if
  *   coupon is applied, coupon code, coupon amount, coupon title and coupon message.
  * @property {AffiliateDetails} [affiliate_details]
- * @property {string} [priority_text]
- * @property {BagStatusHistory[]} [bag_status_history]
- * @property {boolean} [is_dp_assign_enabled]
- * @property {OrderBags[]} [bags]
- * @property {boolean} [dp_assignment]
- * @property {number} [total_items]
+ * @property {string} [priority_text] - Text that indicates the priority level
+ *   of the shipment.
+ * @property {BagStatusHistory[]} [bag_status_history] - A history of status
+ *   changes for bags associated with the shipment.
+ * @property {boolean} [is_dp_assign_enabled] - A flag indicating whether
+ *   delivery partner assignment features are enabled for the shipment.
+ * @property {OrderBags[]} [bags] - A list of bags included in the shipment
+ * @property {boolean} [dp_assignment] - Indicates whether a delivery partner
+ *   has been assigned to the shipment.
+ * @property {number} [total_items] - The total number of items contained within
+ *   the shipment,
  * @property {FulfillingStore} [fulfilling_store]
  * @property {Object} [meta] - Meta data of the shipment contains additional,
  *   potentially dynamic information about the shipment.
  * @property {Object} [pdf_links] - PDF Links associated with the shipment.
- * @property {string} [payment_mode]
+ * @property {string} [payment_mode] - The mode of payment used for the shipment.
  * @property {string} [packaging_type] - Defines the type of packaging used for
  *   the product, encompassing materials, design, and form factors.
  * @property {string} [journey_type] - It is a type being used to represent the
@@ -3841,25 +4464,33 @@ const Joi = require("joi");
  *   journey involves the process of sending items back from the customer to the
  *   original sender or a designated return facility.
  * @property {Prices} [prices]
- * @property {PriceAdjustmentCharge[]} [charges]
+ * @property {PriceAdjustmentCharge[]} [charges] - An array of charges applied
+ *   to the shipment.
  * @property {OrderingCurrencyPrices} [ordering_currency_prices]
- * @property {string} [vertical]
- * @property {string} shipment_id
+ * @property {string} [vertical] - The business vertical or category to which
+ *   the shipment belongs.
+ * @property {string} shipment_id - A unique identifier for the shipment.
  * @property {ShipmentPayments} [payments]
- * @property {string} [operational_status]
+ * @property {string} [operational_status] - The operational status of the shipment.
  * @property {ShipmentStatusData} [status]
  * @property {number} [total_bags] - The total number of bags in the shipment.
  * @property {string} [shipment_created_at] - Denotes the date and time when the
  *   shipment was created.
- * @property {string} [shipment_created_ts]
+ * @property {string} [shipment_created_ts] - A timestamp representing when the
+ *   shipment was created.
  * @property {Currency} [currency]
  * @property {CurrencyInfo} [currency_info]
- * @property {string} [previous_shipment_id]
- * @property {number} [shipment_update_time]
+ * @property {string} [previous_shipment_id] - The ID of the previous shipment
+ *   in the sequence.
+ * @property {number} [shipment_update_time] - A numerical representation of the
+ *   last update time for the shipment
  * @property {Address} [rto_address]
- * @property {string} [credit_note_id]
- * @property {boolean} [is_self_ship]
- * @property {string} [mode_of_payment]
+ * @property {string} [credit_note_id] - The identifier for any credit note
+ *   issued for the shipment
+ * @property {boolean} [is_self_ship] - A flag indicating whether the shipment
+ *   is being self-shipped by the seller or vendor.
+ * @property {string} [mode_of_payment] - The specific mode of payment used for
+ *   the transaction
  * @property {boolean} [is_lapa_enabled] - Flag to show NDR actions based on
  *   LAPA (Logistic As Per Actual) plan subscription. If LAPA plan taken, true,
  *   else false.
@@ -3879,9 +4510,12 @@ const Joi = require("joi");
 
 /**
  * @typedef ShipmentInfoResponseSchema
- * @property {string} [message]
- * @property {boolean} success
- * @property {PlatformShipment[]} [shipments]
+ * @property {string} [message] - A descriptive message providing additional
+ *   information about the API response.
+ * @property {boolean} success - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {PlatformShipment[]} [shipments] - A list of platform shipment
+ *   objects, containing information related to a shipment.
  */
 
 /**
@@ -3895,18 +4529,37 @@ const Joi = require("joi");
  * @property {Object} [meta] - It contains the additional properties related to
  *   shipment status transition like Kafka_emission_status, user_name, etc.
  *   Additionally it is dynamic.
- * @property {string} [mode]
- * @property {string} [name]
- * @property {number} [amount]
- * @property {boolean} [collected]
- * @property {string} [refund_by]
- * @property {string} [collect_by]
- * @property {string} [display_name]
- * @property {string} [merchant_transaction_id]
+ * @property {string} [mode] - Information about the payment source. For eg, NB_ICICI.
+ * @property {string} [name] - The name of the payment method (e.g., "Credit
+ *   Card", "PayPal").
+ * @property {number} [amount] - Amount paid using this payment method.
+ * @property {boolean} [collected] - Indicates whether this payment method has
+ *   been collected or not.
+ * @property {string} [refund_by] - Payment refund by for the customer and
+ *   seller (e.g fynd, seller).
+ * @property {string} [collect_by] - Payment collected by for the customer and
+ *   seller (e.g fynd, seller).
+ * @property {string} [display_name] - The name of the payment method as it
+ *   should be displayed to the user.
+ * @property {string} [merchant_transaction_id] - A unique identifier associated
+ *   with the payment transaction, such as TR669796C0012CF31BBD. This ID helps
+ *   track and reference the specific transaction within the merchant's system.
+ */
+
+/**
+ * @typedef CurrencySchema
+ * @property {string} [currency_code] - The ISO 4217 currency code, such as
+ *   'INR' for Indian Rupee. This field represents the standardized three-letter
+ *   code of a currency.
+ * @property {string} [currency_symbol] - The symbol representing the currency,
+ *   such as '₹' for Indian Rupee. This is used for display purposes alongside
+ *   currency amounts.
  */
 
 /**
  * @typedef OrderData
+ * @property {string} [ordering_channel] - The specific channel through which
+ *   the order was placed.
  * @property {string} order_date - Specifies the exact date and time when the
  *   order was placed by the customer, serving as a key timestamp for the
  *   initiation of the order processing cycle.
@@ -3929,6 +4582,12 @@ const Joi = require("joi");
  *   providing flexibility and comprehensive insights into each transaction's
  *   payment aspect.
  * @property {PaymentInfoData[]} [payment_info]
+ * @property {string} [affiliate_order_id] - External Order id
+ * @property {string} [affiliate_id] - Unique identifier for the sales channel.
+ * @property {string} [source] - Specifies the origin from from which the order
+ *   is created, including mobile applications, web interfaces, social media
+ *   integrations, or external APIs.
+ * @property {CurrencySchema} [currency]
  */
 
 /**
@@ -3962,29 +4621,41 @@ const Joi = require("joi");
 
 /**
  * @typedef PlatformBreakupValues
- * @property {string} [value]
- * @property {string} [name]
- * @property {string} [display]
+ * @property {string} [value] - Represents the value associated with a specific
+ *   component of the price breakdown.
+ * @property {string} [name] - Represents the name associated with a specific
+ *   component of the price breakdown.
+ * @property {string} [display] - A user-friendly display name for the
+ *   component, intended for presentation in user interfaces.
  */
 
 /**
  * @typedef PlatformChannel
- * @property {string} [logo]
- * @property {string} [name]
+ * @property {string} [logo] - Represents the logo of the channel through which
+ *   the order was placed.
+ * @property {string} [name] - Represents the name of the channel through which
+ *   the order was placed
  */
 
 /**
  * @typedef PlatformOrderItems
- * @property {PlatformBreakupValues[]} [breakup_values]
+ * @property {PlatformBreakupValues[]} [breakup_values] - The breakup_values
+ *   array contains detailed breakdowns of different pricing components related
+ *   to an order. Each item in the array is a reference to the
+ *   PlatformBreakupValues schema, which provides specific details about each
+ *   component such as loyalty points, coupon discounts, raw pricing data, and
+ *   display information.
  * @property {number} [total_order_value]
  * @property {Object} [meta] - It contains the additional properties related to
  *   order transition like Kafka_emission_status, user_name, etc. Additionally
  *   it is dynamic, potentially.
- * @property {string} [order_created_time]
- * @property {string} [order_created_ts]
- * @property {string} [payment_mode]
- * @property {PlatformShipment[]} [shipments]
- * @property {string} [order_id]
+ * @property {string} [order_created_time] - The Date and time when the order was created.
+ * @property {string} [order_created_ts] - The timestamp indicating when the
+ *   order was created.
+ * @property {string} [payment_mode] - The payment mode used for the order.
+ * @property {PlatformShipment[]} [shipments] - An array of shipment items
+ *   returned as part of the order.
+ * @property {string} [order_id] - A unique identifier associated with the order.
  * @property {PlatformChannel} [channel]
  * @property {UserDataInfo} [user_info]
  * @property {number} [order_value]
@@ -3996,37 +4667,45 @@ const Joi = require("joi");
 
 /**
  * @typedef OrderListingResponseSchema
- * @property {number} [total_count]
- * @property {string} [message]
- * @property {boolean} [success]
- * @property {PlatformOrderItems[]} [items]
- * @property {string} [lane]
+ * @property {number} [total_count] - The total number of orders matching the
+ *   query criteria.
+ * @property {string} [message] - A message providing additional context about
+ *   the response.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ * @property {PlatformOrderItems[]} [items] - An array of shipment items
+ *   returned as part of the response.
+ * @property {string} [lane] - The lane associated with the order.
  * @property {Page} [page]
  */
 
 /**
  * @typedef PlatformTrack
- * @property {string} [last_location_recieved_at] - Specifies the date and time
- *   when an update on the shipment's fulfilling store was received on the platform.
- * @property {Object} [meta] - It contains the additional properties related to
- *   shipment transition like Kafka_emission_status, user_name, etc.
- *   Additionally it is dynamic.
- * @property {string} [raw_status]
- * @property {string} [updated_at] - Records the date and time when the platform
- *   received an update on the shipment's location.
- * @property {string} [updated_time]
- * @property {string} [awb]
- * @property {string} [shipment_type] - Shipment type of the shipment.
- * @property {string} [status]
- * @property {string} [reason]
- * @property {string} [account_name]
+ * @property {string} [last_location_recieved_at] - The current geographic
+ *   location of the courier partner.
+ * @property {Object} [meta] - A field to store additional metadata related to
+ *   the courier partner's operations or the shipment.
+ * @property {string} [raw_status] - The current status of the shipment as
+ *   updated by the courier partner.
+ * @property {string} [updated_at] - Human readable timestamp when the status
+ *   was last updated by the courier partner.
+ * @property {string} [updated_time] - The timestamp when the status was last
+ *   updated by the courier partner.
+ * @property {string} [awb] - The Air Waybill (AWB) number associated with the
+ *   shipment, used for tracking the parcel in transit.
+ * @property {string} [shipment_type] - Indicates the type of journey the shipment.
+ * @property {string} [status] - The operational status of the shipment.
+ * @property {string} [reason] - Any additional remarks or comments from the
+ *   courier partner regarding the shipment.
+ * @property {string} [account_name] - The name of the courier partner
+ *   responsible for the shipment.
  */
 
 /**
  * @typedef PlatformShipmentTrack
  * @property {Object} [meta] - Meta data of the shipment contains additional,
  *   potentially dynamic information about the shipment.
- * @property {PlatformTrack[]} [results]
+ * @property {PlatformTrack[]} [results] - A list of tracking details at various status.
  */
 
 /**
@@ -4046,6 +4725,8 @@ const Joi = require("joi");
 
 /**
  * @typedef FiltersResponseSchema
+ * @property {AdvanceFilterInfo} [advance]
+ * @property {FiltersInfo} [global_1]
  * @property {AdvanceFilterInfo} [advance_filter]
  * @property {FiltersInfo[]} [global_filter]
  */
@@ -4074,8 +4755,9 @@ const Joi = require("joi");
 
 /**
  * @typedef PlatformShipmentReasonsResponseSchema
- * @property {Reason[]} [reasons]
- * @property {boolean} [success]
+ * @property {Reason[]} [reasons] - An array of reasons associated with the platform.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
  */
 
 /**
@@ -4385,16 +5067,23 @@ const Joi = require("joi");
 
 /**
  * @typedef BagDetails
- * @property {number} [bag_update_time]
- * @property {string} [id]
- * @property {number} [bag_id]
+ * @property {number} [bag_update_time] - The timestamp indicating when the
+ *   bag's information was last updated
+ * @property {string} [id] - A unique identifier for the bag record within the system.
+ * @property {number} [bag_id] - A unique identifier specifically for the bag
+ *   itself, used for tracking purposes.
  * @property {AffiliateBagDetails} [affiliate_bag_details]
  * @property {AffiliateDetails} [affiliate_details]
- * @property {Object[]} [applied_promos]
+ * @property {Object[]} [applied_promos] - A list of promotional discounts that
+ *   were applied to the bag's contents.
  * @property {Article} [article]
  * @property {ArticleStatusDetails} [article_details]
- * @property {BagStatusHistory[]} [bag_status]
- * @property {BagStatusHistory[]} [bag_status_history]
+ * @property {BagStatusHistory[]} [bag_status] - An array of current status
+ *   records associated with the bag, reflecting its lifecycle stages (e.g.,
+ *   pending, placed, delivered).
+ * @property {BagStatusHistory[]} [bag_status_history] - An array of current
+ *   status records associated with the bag, reflecting its lifecycle stages
+ *   (e.g., pending, placed, delivered).
  * @property {Brand} [brand]
  * @property {Company} [company]
  * @property {BagStatusHistory} [current_operational_status]
@@ -4402,14 +5091,17 @@ const Joi = require("joi");
  * @property {Dates} [dates]
  * @property {Address} [delivery_address]
  * @property {DeliverySlotDetails} [delivery_slot]
- * @property {string} [display_name]
- * @property {Object} [dp_details]
+ * @property {string} [display_name] - Name of the bag intended for user display.
+ * @property {Object} [dp_details] - Additional information about the delivery
+ *   partner (DP) handling the bag.
  * @property {Object} [einvoice_info]
  * @property {string} [entity_type] - Type of entity that the tag is associated
  *   to (bag, shipments).
  * @property {Object} [fallback_user] - Details of the fallback user associated
  *   with the bag .
- * @property {FinancialBreakup[]} [financial_breakup]
+ * @property {FinancialBreakup[]} [financial_breakup] - A breakdown of the
+ *   financial aspects associated with the bag, such as product prices, taxes,
+ *   discounts, and total cost.
  * @property {Store} [fulfilling_store]
  * @property {Object} [fyndstore_emp] - Fynd store employee details.
  * @property {GSTDetailsData} [gst_details]
@@ -4422,30 +5114,39 @@ const Joi = require("joi");
  *   delivery. Return Journey: Contrary to the forward journey, the return
  *   journey involves the process of sending items back from the customer to the
  *   original sender or a designated return facility.
- * @property {number} [line_number]
- * @property {boolean} [lock_status]
- * @property {string} [manifest_id]
+ * @property {number} [line_number] - A unique identifying number associated
+ *   with the bag. It is generated sequentially as bags are created.
+ * @property {boolean} [lock_status] - Indicates whether the bag is locked from
+ *   further changes (true/false). A locked bag cannot undergo modifications
+ *   until unlocked.
+ * @property {string} [manifest_id] - The identifier-assigned bags receive after
+ *   they are manifest (thereby creating a shipment in conjunction with the
+ *   allocated manifest).
  * @property {Object} [meta] - Meta data of the bag details contains additional,
  *   potentially dynamic information about the bag details.
- * @property {string} [mode_of_payment]
- * @property {number} [no_of_bags_order]
- * @property {string} [operational_status]
+ * @property {string} [mode_of_payment] - This field reflects the payment method
+ *   used in the transaction for a particular bag.
+ * @property {number} [no_of_bags_order] - The total number of bags in this bag's order.
+ * @property {string} [operational_status] - The particular state a bag occupies
+ *   in the shipment life-cycle.
  * @property {OrderDetails} [order]
- * @property {string} [order_integration_id]
+ * @property {string} [order_integration_id] - A unique identifier used for
+ *   integrating this order with external systems or services.
  * @property {string} [order_type] - Defines the specific journey a shipment
  *   will follow based on the application's operational needs and customer
  *   preferences. This field categorizes orders into distinct types, each
  *   associated with a unique processing flow. For example:
  *
- *   - "HomeDelivery": The order undergoes all state transitions typical for a
- *       delivery, from processing the shipment to final delivery at the
- *       customer's address.
- *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
- *       is ready to be handed over directly to the customer at the store. This
- *       type streamlines the process by bypassing traditional shipping stages
- *       and facilitating a quicker transition to the final handover stage.
+ *   - "HomeDelivery": The order goes through all the steps needed for delivery,
+ *       from being packed to arriving at the customer’s address.
+ *   - "PickAtStore": The order is prepared for pickup at the store, skipping
+ *       shipping steps to make it ready faster for the customer to collect in person.
+ *   - "Digital": This order type likely refers to orders that involve digital goods
+ *       or services, such as software, digital subscriptions, e-books, online
+ *       courses, or any other item that can be delivered electronically.
  *
- * @property {number} [order_value]
+ * @property {number} [order_value] - An estimated value of the order at the
+ *   time of placement or sale.
  * @property {Store} [ordering_store]
  * @property {Object} [parent_promo_bags] - An object containing details of
  *   parent promotional bags.
@@ -4459,11 +5160,16 @@ const Joi = require("joi");
  * @property {string} [payment_type] - The Specific type of payment.
  * @property {Object} [payments] - Defines allowed payment details for the item.
  * @property {Prices} [prices]
- * @property {PriceAdjustmentCharge[]} [charges]
- * @property {boolean} [qc_required]
- * @property {number} [quantity]
- * @property {Object[]} [reasons]
- * @property {boolean} [restore_coupon]
+ * @property {PriceAdjustmentCharge[]} [charges] - Defines any additional
+ *   charges for the product.
+ * @property {boolean} [qc_required] - Indicates whether quality check is
+ *   required for the product.
+ * @property {number} [quantity] - The quantity of the product.
+ * @property {Object[]} [reasons] - Information about why the Bag's
+ *   item/products are being cancelled or returned or exchanged. This keys
+ *   within this object represent unique
+ * @property {boolean} [restore_coupon] - Indicates whether voucher/wallet
+ *   points can be reapplied to the product.
  * @property {Object} [restore_promos] - Provides a flexible structure for
  *   storing information about promotion details or offers that are eligible for
  *   restoration. This can include details such as promo codes, descriptions of
@@ -4471,28 +5177,33 @@ const Joi = require("joi");
  *   relevant data that supports the reactivation of previously paused or
  *   expired promotions.
  * @property {Address} [rto_address]
- * @property {string} [seller_identifier]
+ * @property {string} [seller_identifier] - A unique identifier assigned by the
+ *   seller to represent a specific transaction in their order processing system.
  * @property {Shipment} [shipment]
  * @property {ShipmentDetails} [shipment_details]
- * @property {string} [shipment_id]
+ * @property {string} [shipment_id] - Unique identifier of the shipment.
  * @property {ShipmentGstDetails} [shipment_gst]
  * @property {ShipmentStatusData} [shipment_status]
- * @property {ShipmentStatusData[]} [shipment_status_history]
+ * @property {ShipmentStatusData[]} [shipment_status_history] - Status history
+ *   of the shipment item in the order.
  * @property {BagReturnableCancelableStatus} [status]
- * @property {string[]} [tags]
- * @property {number} [total_shipment_bags]
- * @property {number} [total_shipments_in_order]
+ * @property {string[]} [tags] - A list of tags or labels associated with the
+ *   bag, which might be used for filtering, sorting, or categorizing purposes.
+ * @property {number} [total_shipment_bags] - The total number of shipped bags.
+ * @property {number} [total_shipments_in_order] - The total number of shipments
+ *   in the order.
  * @property {string} [transaction_type] - Specifies the type of the transaction
  *   being processed. This classification helps in distinguishing between
  *   different operational processes and allows for tailored handling of each
  *   transaction type. For example, a 'shipment' transaction type refers to
  *   operations related to the shipping of goods.
- * @property {string} [type]
+ * @property {string} [type] - The type of the bag.
  * @property {string} [updated_at] - The date and time when the bag was last updated.
  * @property {UserDetails} [user]
  * @property {WeightData} [weight]
- * @property {number[]} [original_bag_list]
- * @property {string} [identifier]
+ * @property {number[]} [original_bag_list] - Specifies the list of integers
+ *   that specify the bag number
+ * @property {string} [identifier] - The unique identifier for the bag.
  */
 
 /**
@@ -4554,8 +5265,15 @@ const Joi = require("joi");
 
 /**
  * @typedef Error
- * @property {string} [message]
- * @property {boolean} [success]
+ * @property {string} [message] - A message describing the error that occurred.
+ * @property {boolean} [success] - Indicates whether the API call was successful
+ *   (true) or not (false).
+ */
+
+/**
+ * @typedef BulkFailedResponseSchema
+ * @property {boolean} [status]
+ * @property {string} [error]
  */
 
 class OrderPlatformModel {
@@ -4584,6 +5302,14 @@ class OrderPlatformModel {
       response: Joi.array().items(
         OrderPlatformModel.InvalidateShipmentCacheNestedResponseSchema()
       ),
+    });
+  }
+
+  /** @returns {UpdatePackingErrorResponseSchema} */
+  static UpdatePackingErrorResponseSchema() {
+    return Joi.object({
+      status: Joi.number().allow(null),
+      error: Joi.string().allow("").allow(null),
     });
   }
 
@@ -4622,8 +5348,8 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {Entities} */
-  static Entities() {
+  /** @returns {LockManagerEntities} */
+  static LockManagerEntities() {
     return Joi.object({
       id: Joi.string().allow(""),
       affiliate_order_id: Joi.string().allow(""),
@@ -4640,7 +5366,9 @@ class OrderPlatformModel {
       entity_type: Joi.string().allow("").required(),
       action: Joi.string().allow("").required(),
       action_type: Joi.string().allow("").required(),
-      entities: Joi.array().items(OrderPlatformModel.Entities()).required(),
+      entities: Joi.array()
+        .items(OrderPlatformModel.LockManagerEntities())
+        .required(),
       resume_tasks_after_unlock: Joi.boolean().allow(null),
       lock_after_transition: Joi.boolean(),
       unlock_before_transition: Joi.boolean(),
@@ -4714,6 +5442,7 @@ class OrderPlatformModel {
         OrderPlatformModel.AnnouncementResponseSchema()
       ),
       success: Joi.boolean(),
+      status: Joi.number(),
       message: Joi.string().allow(""),
     });
   }
@@ -4723,14 +5452,6 @@ class OrderPlatformModel {
     return Joi.object({
       success: Joi.boolean(),
       message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Click2CallResponseSchema} */
-  static Click2CallResponseSchema() {
-    return Joi.object({
-      call_id: Joi.string().allow("").required(),
-      success: Joi.boolean().required(),
     });
   }
 
@@ -4953,13 +5674,14 @@ class OrderPlatformModel {
   /** @returns {CreateOrderConfig} */
   static CreateOrderConfig() {
     return Joi.object({
-      dp_configuration: OrderPlatformModel.DPConfiguration(),
+      dp_configuration: OrderPlatformModel.DPConfiguration().required(),
       location_reassignment: Joi.boolean(),
       payment: OrderPlatformModel.PaymentConfig(),
       optimal_shipment_creation: Joi.boolean(),
       lock_state_messages: Joi.array().items(
         OrderPlatformModel.LockStateMessage()
       ),
+      integration_type: Joi.string().allow(""),
     });
   }
 
@@ -5328,7 +6050,7 @@ class OrderPlatformModel {
       duration: Joi.string().allow("").allow(null),
       channel_type: Joi.string().allow("").allow(null),
       activity_comment: Joi.string().allow("").allow(null),
-      activity_type: Joi.string().allow(""),
+      activity_type: Joi.string().allow("").allow(null),
       receiver: Joi.string().allow("").allow(null),
       recipient: Joi.string().allow("").allow(null),
       slug: Joi.string().allow("").allow(null),
@@ -5351,6 +6073,7 @@ class OrderPlatformModel {
       ticket_url: Joi.string().allow(""),
       l3_detail: Joi.string().allow(""),
       createdat: Joi.string().allow("").required(),
+      created_ts: Joi.string().allow(""),
       ticket_id: Joi.string().allow(""),
       activity_type: Joi.string().allow("").required(),
       l2_detail: Joi.string().allow(""),
@@ -5424,7 +6147,7 @@ class OrderPlatformModel {
   /** @returns {SendSmsPayload} */
   static SendSmsPayload() {
     return Joi.object({
-      bag_id: Joi.string().allow("").required(),
+      bag_id: Joi.number().required(),
       data: OrderPlatformModel.SmsDataPayload(),
       slug: Joi.string().allow("").required(),
     });
@@ -5521,8 +6244,8 @@ class OrderPlatformModel {
   static Dimension() {
     return Joi.object({
       packaging_type: Joi.string().allow(""),
-      weight: Joi.string().allow(""),
-      height: Joi.string().allow(""),
+      weight: Joi.number(),
+      height: Joi.number(),
       length: Joi.number(),
       width: Joi.number(),
     });
@@ -5554,11 +6277,19 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {AmountSchema} */
+  static AmountSchema() {
+    return Joi.object({
+      currency: Joi.string().allow(""),
+      value: Joi.number(),
+    });
+  }
+
   /** @returns {Charge} */
   static Charge() {
     return Joi.object({
       name: Joi.string().allow("").required(),
-      amount: Joi.object().pattern(/\S/, Joi.any()).required(),
+      amount: OrderPlatformModel.AmountSchema().required(),
       tax: OrderPlatformModel.Tax(),
       code: Joi.string().allow(""),
       type: Joi.string().allow("").required(),
@@ -5657,6 +6388,14 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {GeoLocationSchema} */
+  static GeoLocationSchema() {
+    return Joi.object({
+      latitude: Joi.number(),
+      longitude: Joi.number(),
+    });
+  }
+
   /** @returns {ShippingInfo} */
   static ShippingInfo() {
     return Joi.object({
@@ -5667,7 +6406,7 @@ class OrderPlatformModel {
       middle_name: Joi.string().allow(""),
       primary_mobile_number: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
-      geo_location: Joi.object().pattern(/\S/, Joi.any()),
+      geo_location: OrderPlatformModel.GeoLocationSchema(),
       gender: Joi.string().allow(""),
       house_no: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
@@ -5717,7 +6456,6 @@ class OrderPlatformModel {
       pincode: Joi.string().allow(""),
       primary_email: Joi.string().allow(""),
       address2: Joi.string().allow(""),
-      landmark: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       country_iso_code: Joi.string().allow(""),
     });
@@ -5762,6 +6500,7 @@ class OrderPlatformModel {
   static PaymentInfo() {
     return Joi.object({
       primary_mode: Joi.string().allow("").required(),
+      payment_mode: Joi.string().allow(""),
       payment_methods: Joi.array().items(OrderPlatformModel.PaymentMethod()),
     });
   }
@@ -5771,34 +6510,34 @@ class OrderPlatformModel {
     return Joi.object({
       shipments: Joi.array().items(OrderPlatformModel.Shipment()).required(),
       shipping_info: OrderPlatformModel.ShippingInfo().required(),
-      billing_info: OrderPlatformModel.BillingInfo().required(),
+      billing_info: OrderPlatformModel.ShippingInfo().required(),
       currency_info: Joi.object().pattern(/\S/, Joi.any()),
       external_order_id: Joi.string().allow(""),
       charges: Joi.array().items(OrderPlatformModel.Charge()),
       external_creation_date: Joi.string().allow(""),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       tax_info: OrderPlatformModel.TaxInfo(),
-      config: OrderPlatformModel.CreateOrderConfig(),
+      config: OrderPlatformModel.CreateOrderConfig().required(),
       payment_info: OrderPlatformModel.PaymentInfo().required(),
       user_info: OrderPlatformModel.UserInfo(),
       ordering_store_id: Joi.number(),
       order_platform: Joi.string().allow(""),
       status: Joi.string().allow(""),
       system_messages: Joi.array().items(OrderPlatformModel.SystemMessages()),
+      order_type: Joi.string().allow(""),
+      fynd_order_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      external_shipment_id: Joi.string().allow(""),
     });
   }
 
   /** @returns {CreateOrderErrorReponse} */
   static CreateOrderErrorReponse() {
     return Joi.object({
-      request_id: Joi.string().allow("").allow(null),
-      status: Joi.number().required(),
-      info: Joi.any(),
-      stack_trace: Joi.string().allow("").allow(null),
-      code: Joi.string().allow("").allow(null),
-      meta: Joi.string().allow("").allow(null),
-      message: Joi.string().allow("").required(),
-      exception: Joi.string().allow("").allow(null),
+      success: Joi.boolean(),
+      errors: Joi.string().allow(""),
+      status_code: Joi.number(),
+      fynd_order_id: Joi.string().allow(""),
     });
   }
 
@@ -5843,6 +6582,22 @@ class OrderPlatformModel {
   static CreateChannelConifgErrorResponseSchema() {
     return Joi.object({
       error: Joi.string().allow(""),
+      request_id: Joi.string().allow("").allow(null),
+      status: Joi.number().required(),
+      info: Joi.any(),
+      stack_trace: Joi.string().allow("").allow(null),
+      code: Joi.string().allow("").allow(null),
+      meta: Joi.string().allow("").allow(null),
+      message: Joi.string().allow("").required(),
+      exception: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {UploadManifestConsent} */
+  static UploadManifestConsent() {
+    return Joi.object({
+      consent_url: Joi.string().allow("").required(),
+      manifest_id: Joi.string().allow("").required(),
     });
   }
 
@@ -5852,14 +6607,6 @@ class OrderPlatformModel {
       is_inserted: Joi.boolean(),
       is_upserted: Joi.boolean(),
       acknowledged: Joi.boolean(),
-    });
-  }
-
-  /** @returns {UploadConsent} */
-  static UploadConsent() {
-    return Joi.object({
-      consent_url: Joi.string().allow("").required(),
-      manifest_id: Joi.string().allow("").required(),
     });
   }
 
@@ -5874,7 +6621,8 @@ class OrderPlatformModel {
   static ResponseDetail() {
     return Joi.object({
       success: Joi.boolean(),
-      message: Joi.array().items(Joi.string().allow("")),
+      message: Joi.string().allow(""),
+      status: Joi.number(),
     });
   }
 
@@ -5882,6 +6630,9 @@ class OrderPlatformModel {
   static FyndOrderIdList() {
     return Joi.object({
       fynd_order_id: Joi.array().items(Joi.string().allow("")),
+      start_date: Joi.string().allow(""),
+      end_date: Joi.string().allow(""),
+      mobile: Joi.number(),
     });
   }
 
@@ -5943,7 +6694,7 @@ class OrderPlatformModel {
       fynd_order_id: Joi.string().allow("").required(),
       seller_id: Joi.number().required(),
       affiliate_id: Joi.string().allow("").required(),
-      customer_mobile_number: Joi.string().allow(""),
+      customer_mobile_number: Joi.number(),
     });
   }
 
@@ -5957,6 +6708,13 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {RefundModeFormat} */
+  static RefundModeFormat() {
+    return Joi.object({
+      refund_to: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {RefundModeInfo} */
   static RefundModeInfo() {
     return Joi.object({
@@ -5964,6 +6722,7 @@ class OrderPlatformModel {
       slug: Joi.string().allow(""),
       options: Joi.array().items(OrderPlatformModel.RefundOption()),
       display_name: Joi.string().allow(""),
+      format: OrderPlatformModel.RefundModeFormat(),
     });
   }
 
@@ -5972,6 +6731,8 @@ class OrderPlatformModel {
     return Joi.object({
       success: Joi.boolean().required(),
       data: Joi.array().items(OrderPlatformModel.RefundModeInfo()).required(),
+      status: Joi.number(),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -6012,7 +6773,7 @@ class OrderPlatformModel {
   /** @returns {SendUserMobileOTP} */
   static SendUserMobileOTP() {
     return Joi.object({
-      mobile: Joi.string().allow("").required(),
+      mobile: Joi.number().required(),
       country_code: Joi.string().allow(""),
     });
   }
@@ -6031,6 +6792,7 @@ class OrderPlatformModel {
   static SendUserMobileOtpResponseSchema() {
     return Joi.object({
       success: Joi.boolean(),
+      status: Joi.number(),
       message: Joi.string().allow(""),
       data: OrderPlatformModel.PointBlankOtpData(),
     });
@@ -6073,12 +6835,27 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {BulkReportsFiltersSchema} */
+  static BulkReportsFiltersSchema() {
+    return Joi.object({
+      bag_status: Joi.string().allow(""),
+      operational_status: Joi.string().allow(""),
+      stores: Joi.string().allow(""),
+      time_to_dispatch: Joi.string().allow(""),
+      payment_methods: Joi.string().allow(""),
+      dp_ids: Joi.string().allow(""),
+      sales_channels: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
+      lock_status: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {BulkReportsDownloadRequestSchema} */
   static BulkReportsDownloadRequestSchema() {
     return Joi.object({
       store_ids: Joi.array().items(Joi.string().allow("")),
       lane_type: Joi.string().allow(""),
-      custom_headers: Joi.string().allow(""),
+      custom_headers: Joi.array().items(Joi.string().allow("")),
       report_type: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
       end_date: Joi.string().allow(""),
@@ -6086,6 +6863,7 @@ class OrderPlatformModel {
       filter_type: Joi.string().allow(""),
       is_cross_company_enabled: Joi.boolean(),
       custom_filters_for_lane: Joi.object().pattern(/\S/, Joi.any()),
+      filters: OrderPlatformModel.BulkReportsFiltersSchema(),
     });
   }
 
@@ -6097,8 +6875,8 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {BulkFailedResponseSchema} */
-  static BulkFailedResponseSchema() {
+  /** @returns {APIFailedResponseSchema} */
+  static APIFailedResponseSchema() {
     return Joi.object({
       status: Joi.boolean(),
       error: Joi.string().allow(""),
@@ -6155,7 +6933,7 @@ class OrderPlatformModel {
       file_name: Joi.string().allow(""),
       store_name: Joi.string().allow(""),
       updated_ts: Joi.number(),
-      status: Joi.boolean(),
+      status: Joi.string().allow(""),
       store_code: Joi.string().allow(""),
       bulk_action_type: Joi.string().allow(""),
       created_ts: Joi.string().allow(""),
@@ -6166,6 +6944,14 @@ class OrderPlatformModel {
       last_selected_invoice_label_type: Joi.string().allow(""),
       batch_id: Joi.string().allow(""),
       uploaded_by: Joi.string().allow(""),
+      invoicelabel_document_type: Joi.string().allow(""),
+      failed_sh_count: Joi.number(),
+      successful_sh_count: Joi.number(),
+      total_count: Joi.number(),
+      failed_shipments: Joi.array().items(Joi.string().allow("")),
+      successful_invoiced_count: Joi.number(),
+      failed_invoiced_count: Joi.number(),
+      total_invoiced_count: Joi.number(),
     });
   }
 
@@ -6259,11 +7045,13 @@ class OrderPlatformModel {
   static ManifestShipmentListing() {
     return Joi.object({
       total_count: Joi.number().required(),
-      lane: Joi.string().allow(""),
+      lane: Joi.string().allow("").required(),
       page: OrderPlatformModel.ManifestPageInfo().required(),
       success: Joi.boolean().required(),
-      status: Joi.number().required(),
-      items: Joi.array().items(OrderPlatformModel.ManifestItemDetails()),
+      status: Joi.number(),
+      items: Joi.array()
+        .items(OrderPlatformModel.ManifestItemDetails())
+        .required(),
       message: Joi.string().allow(""),
     });
   }
@@ -6705,10 +7493,10 @@ class OrderPlatformModel {
   /** @returns {ProcessManifestRequestSchema} */
   static ProcessManifestRequestSchema() {
     return Joi.object({
-      action: Joi.string().allow(""),
+      action: Joi.string().allow("").required(),
       manifest_id: Joi.string().allow(""),
-      filters: OrderPlatformModel.Filters(),
-      unique_id: Joi.string().allow(""),
+      filters: OrderPlatformModel.Filters().required(),
+      unique_id: Joi.string().allow("").required(),
     });
   }
 
@@ -6724,6 +7512,14 @@ class OrderPlatformModel {
       action: Joi.string().allow(""),
       created_by: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ManifestErrorResponseSchema} */
+  static ManifestErrorResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean(),
+      error: Joi.string().allow(""),
     });
   }
 
@@ -6972,6 +7768,23 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {CommonErrorResponseSchema} */
+  static CommonErrorResponseSchema() {
+    return Joi.object({
+      status: Joi.number(),
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ExceptionErrorResponseSchema} */
+  static ExceptionErrorResponseSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      exception: Joi.string().allow(""),
+      stack_trace: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {ProductSchema} */
   static ProductSchema() {
     return Joi.object({
@@ -7087,14 +7900,15 @@ class OrderPlatformModel {
     return Joi.object({
       current_shipment_status: Joi.string().allow("").allow(null),
       meta: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
-      shipment_status_id: Joi.number().allow(null),
+      id: Joi.number().allow(null),
       bag_list: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       title: Joi.string().allow("").required(),
+      display_name: Joi.string().allow(""),
       created_at: Joi.string().allow("").allow(null),
       created_ts: Joi.string().allow("").allow(null),
       shipment_id: Joi.string().allow("").allow(null),
       status_created_at: Joi.string().allow("").allow(null),
-      status_created_ts: Joi.string().allow("").allow(null),
+      updated_ts: Joi.string().allow("").allow(null),
       status: Joi.string().allow("").required(),
     });
   }
@@ -7102,17 +7916,19 @@ class OrderPlatformModel {
   /** @returns {UserDataInfo} */
   static UserDataInfo() {
     return Joi.object({
-      uid: Joi.number().allow(null),
+      id: Joi.number().allow(null),
       user_oid: Joi.string().allow("").allow(null),
+      mongo_user_id: Joi.string().allow("").allow(null),
       external_customer_id: Joi.string().allow("").allow(null),
       first_name: Joi.string().allow("").allow(null),
       last_name: Joi.string().allow("").allow(null),
       mobile: Joi.string().allow("").allow(null),
       email: Joi.string().allow("").allow(null),
+      meta: Joi.string().allow("").allow(null),
       is_anonymous_user: Joi.boolean().allow(null),
-      avis_user_id: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       gender: Joi.string().allow("").allow(null),
+      country_phone_code: Joi.string().allow(""),
     });
   }
 
@@ -7121,6 +7937,7 @@ class OrderPlatformModel {
     return Joi.object({
       phone: Joi.string().allow("").allow(null),
       address2: Joi.string().allow("").allow(null),
+      address: Joi.string().allow("").allow(null),
       longitude: Joi.number().allow(null),
       pincode: Joi.string().allow("").allow(null),
       area: Joi.string().allow("").allow(null),
@@ -7138,6 +7955,17 @@ class OrderPlatformModel {
       contact_person: Joi.string().allow("").allow(null),
       state: Joi.string().allow("").allow(null),
       city: Joi.string().allow("").allow(null),
+      area_code_slug: Joi.string().allow("").allow(null),
+      country_code: Joi.string().allow("").allow(null),
+      country_iso_code: Joi.string().allow("").allow(null),
+      country_phone_code: Joi.string().allow("").allow(null),
+      delivery_address_id: Joi.string().allow(""),
+      geo_location: Joi.object().pattern(/\S/, Joi.any()),
+      name: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
     }).allow(null);
   }
 
@@ -7343,7 +8171,7 @@ class OrderPlatformModel {
       delivery_partner_id: Joi.number().allow(null),
       app_display_name: Joi.string().allow("").allow(null),
       state_id: Joi.number().allow(null),
-      state_type: Joi.string().allow("").allow(null),
+      state_type: Joi.string().allow(""),
       bsh_id: Joi.number().allow(null),
       created_at: Joi.string().allow("").allow(null),
       created_ts: Joi.string().allow("").allow(null),
@@ -7390,7 +8218,9 @@ class OrderPlatformModel {
   /** @returns {Article} */
   static Article() {
     return Joi.object({
-      child_details: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
+      child_details: Joi.array()
+        .items(Joi.object().pattern(/\S/, Joi.any()))
+        .allow(null, ""),
       seller_identifier: Joi.string().allow("").required(),
       uid: Joi.string().allow("").required(),
       set: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
@@ -7936,7 +8766,7 @@ class OrderPlatformModel {
       affiliate_id: Joi.string().allow("").allow(null),
       affiliate_store_id: Joi.string().allow("").required(),
       affiliate_bag_id: Joi.string().allow("").required(),
-      ad_id: Joi.string().allow("").allow(null),
+      id: Joi.string().allow("").allow(null),
     });
   }
 
@@ -8292,9 +9122,18 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {CurrencySchema} */
+  static CurrencySchema() {
+    return Joi.object({
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {OrderData} */
   static OrderData() {
     return Joi.object({
+      ordering_channel: Joi.string().allow(""),
       order_date: Joi.string().allow("").required(),
       created_ts: Joi.string().allow(""),
       tax_details: OrderPlatformModel.TaxDetails(),
@@ -8307,6 +9146,10 @@ class OrderPlatformModel {
       payment_info: Joi.array()
         .items(OrderPlatformModel.PaymentInfoData())
         .allow(null, ""),
+      affiliate_order_id: Joi.string().allow(""),
+      affiliate_id: Joi.string().allow(""),
+      source: Joi.string().allow(""),
+      currency: OrderPlatformModel.CurrencySchema(),
     });
   }
 
@@ -8402,7 +9245,7 @@ class OrderPlatformModel {
   /** @returns {PlatformTrack} */
   static PlatformTrack() {
     return Joi.object({
-      last_location_recieved_at: Joi.string().allow(""),
+      last_location_recieved_at: Joi.string().allow("").allow(null),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       raw_status: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
@@ -8410,7 +9253,7 @@ class OrderPlatformModel {
       awb: Joi.string().allow(""),
       shipment_type: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      reason: Joi.string().allow(""),
+      reason: Joi.string().allow("").allow(null),
       account_name: Joi.string().allow(""),
     });
   }
@@ -8449,6 +9292,8 @@ class OrderPlatformModel {
   /** @returns {FiltersResponseSchema} */
   static FiltersResponseSchema() {
     return Joi.object({
+      advance: OrderPlatformModel.AdvanceFilterInfo(),
+      global_1: OrderPlatformModel.FiltersInfo(),
       advance_filter: OrderPlatformModel.AdvanceFilterInfo(),
       global_filter: Joi.array().items(OrderPlatformModel.FiltersInfo()),
     });
@@ -8949,6 +9794,14 @@ class OrderPlatformModel {
     return Joi.object({
       message: Joi.string().allow(""),
       success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BulkFailedResponseSchema} */
+  static BulkFailedResponseSchema() {
+    return Joi.object({
+      status: Joi.boolean(),
+      error: Joi.string().allow(""),
     });
   }
 }

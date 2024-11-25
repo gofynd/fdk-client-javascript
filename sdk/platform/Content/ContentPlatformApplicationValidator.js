@@ -81,11 +81,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef CreateSlideshowParam
- * @property {ContentPlatformModel.SlideshowPayload} body
- */
-
-/**
  * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
@@ -153,11 +148,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @typedef DeleteSEOMarkupSchemaParam
  * @property {string} id - Alphanumeric ID allotted to a SEO Markup Schema
  *   Template created within a business.
- */
-
-/**
- * @typedef DeleteSlideshowParam
- * @property {string} id - ID allotted to the slideshow.
  */
 
 /**
@@ -415,24 +405,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  *   Default value is 10.
  */
 
-/**
- * @typedef GetSlideshowBySlugParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   a slideshow. You can get slug value of a page from `getSlideshows` API.
- * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
- *   values are: web, android, ios and all
- */
-
-/**
- * @typedef GetSlideshowsParam
- * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
- *   values are: web, android, ios and all
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 10.
- */
-
 /** @typedef GetSupportInformationParam */
 
 /**
@@ -568,12 +540,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef UpdateSlideshowParam
- * @property {string} id - ID allotted to the slideshow.
- * @property {ContentPlatformModel.SlideshowPayload} body
- */
-
-/**
  * @typedef UpdateSupportInformationParam
  * @property {ContentPlatformModel.Support} body
  */
@@ -687,13 +653,6 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {CreateSlideshowParam} */
-  static createSlideshow() {
-    return Joi.object({
-      body: ContentPlatformModel.SlideshowPayload().required(),
-    }).required();
-  }
-
   /** @returns {DeleteAnnouncementParam} */
   static deleteAnnouncement() {
     return Joi.object({
@@ -784,13 +743,6 @@ class ContentPlatformApplicationValidator {
 
   /** @returns {DeleteSEOMarkupSchemaParam} */
   static deleteSEOMarkupSchema() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {DeleteSlideshowParam} */
-  static deleteSlideshow() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -1114,23 +1066,6 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetSlideshowBySlugParam} */
-  static getSlideshowBySlug() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-      devicePlatform: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetSlideshowsParam} */
-  static getSlideshows() {
-    return Joi.object({
-      devicePlatform: Joi.string().allow("").required(),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
   /** @returns {GetSupportInformationParam} */
   static getSupportInformation() {
     return Joi.object({}).required();
@@ -1308,14 +1243,6 @@ class ContentPlatformApplicationValidator {
   static updateSEOConfiguration() {
     return Joi.object({
       body: ContentPlatformModel.SeoComponent().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateSlideshowParam} */
-  static updateSlideshow() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: ContentPlatformModel.SlideshowPayload().required(),
     }).required();
   }
 

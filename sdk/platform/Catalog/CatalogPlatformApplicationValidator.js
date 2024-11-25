@@ -20,6 +20,16 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef CreateCollectionParam
+ * @property {string} [q] - Get collection list filtered by q string,
+ * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
+ * @property {string} [type] - Type of the collections
+ * @property {string[]} [tags] - Each response will contain next_id param, which
+ *   should be sent back to make pagination work.
+ * @property {boolean} [isActive] - Get collections filtered by active status.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
  * @property {CatalogPlatformModel.CreateCollection} body
  */
 
@@ -194,7 +204,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  */
 
@@ -203,12 +213,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  * @property {number[]} [brandId] - Helps to sort the brands list on the basis
  *   of uid list.
@@ -222,8 +232,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search brands by brand name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 
 /**
@@ -232,33 +242,34 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search department by name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 
 /**
  * @typedef GetApplicationFilterKeysParam
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ *   All the parameter filtered from filter parameters will be passed in "c"
+ *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
  */
 
 /**
  * @typedef GetApplicationFilterValuesParam
- * @property {string} filterKey - A `filter_key` is a filter key for a for which
- *   all the available filter values will returned. channel.
+ * @property {string} filterKey - A `filter_key` is a filter key which returns
+ *   all the available filter values.
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ *   All the parameter filtered from filter parameters will be passed in "c"
+ *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
  * @property {string} [collectionId] - A `collection_id` is a unique identifier
- *   for a particular collection. channel.
+ *   for a particular collection.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
- * @property {string} [q] - Get Values filtered by q string
+ * @property {string} [q] - The `q` parameter allows you to search and filter
+ *   specific data within the filter options. It acts as a query keyword that
+ *   can refine the results by matching relevant filter values, such as a
+ *   category name or any other applicable filter criteria.
  */
 
 /**
@@ -287,7 +298,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   page items. Default is 1.
  * @property {string} [pageType] - For pagination type should be cursor or
  *   number. Default is cursor.
- * @property {number[]} [itemIds] - Item Ids of product
+ * @property {string[]} [itemIds] - Item Ids of product
  */
 
 /** @typedef GetAutocompleteConfigParam */
@@ -302,7 +313,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetCatalogInsightsParam
- * @property {string} [brand] - Brand slug
+ * @property {string} [brand] - Brand slug that is to be searched.
  */
 
 /**
@@ -310,7 +321,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  */
 
 /**
@@ -329,6 +340,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   should be sent back to make pagination work.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ * @property {number} [pageNo] - Identifies the specific page of results being requested.
  */
 
 /**
@@ -354,14 +366,13 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef GetDiscountedInventoryBySizeIdentifierParam
- * @property {number} itemId - Item code of the product of which size is to be get.
- * @property {string} sizeIdentifier - Size Identifier (Seller Identifier or
- *   Primary Identifier) of which inventory is to get.
+ * @property {number} itemId - A `item_id` is a unique identifier for a specific product.
+ * @property {number} sizeIdentifier - Size Identifier (Seller Identifier or
+ *   Primary Identifier).
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search with help of store code.
  * @property {number[]} [locationIds] - Search by store ids.
  */
 
@@ -393,7 +404,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
- *   **v1.0/products/**
+ *   "v1.0/products/"
  */
 
 /** @typedef GetQueryFiltersParam */
@@ -413,13 +424,15 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateAppBrandParam
- * @property {string} brandUid - Brand id for which the custom_json is associated.
+ * @property {number} brandUid - A `brand id` is a unique identifier for a
+ *   particular brand.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 
 /**
  * @typedef UpdateAppCategoryParam
- * @property {string} categoryUid - Category id for which the custom_json is associated.
+ * @property {string} categoryUid - A `category id` is a unique identifier for a
+ *   particular category.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 
@@ -430,20 +443,20 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
  * @typedef UpdateAppDepartmentParam
- * @property {string} departmentUid - Department id for which the custom_json is
- *   associated.
+ * @property {number} departmentUid - A `department id` is a unique identifier
+ *   for a particular department.
  * @property {CatalogPlatformModel.ApplicationDepartmentJson} body
  */
 
 /**
  * @typedef UpdateAppLocationParam
- * @property {string} storeUid - Store id for which the custom_json is associated.
+ * @property {number} storeUid - Store id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationStoreJson} body
  */
 
 /**
  * @typedef UpdateAppProductParam
- * @property {string} itemId - Product id for which the custom_meta is associated.
+ * @property {number} itemId - A `item_id` is a unique identifier for a particular item.
  * @property {CatalogPlatformModel.ApplicationItemMeta} body
  */
 
@@ -526,6 +539,13 @@ class CatalogPlatformApplicationValidator {
   /** @returns {CreateCollectionParam} */
   static createCollection() {
     return Joi.object({
+      q: Joi.string().allow(""),
+      scheduleStatus: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      isActive: Joi.boolean(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
       body: CatalogPlatformModel.CreateCollection().required(),
     }).required();
   }
@@ -787,7 +807,7 @@ class CatalogPlatformApplicationValidator {
       pageSize: Joi.number(),
       pageNo: Joi.number(),
       pageType: Joi.string().allow(""),
-      itemIds: Joi.array().items(Joi.number()),
+      itemIds: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 
@@ -836,6 +856,7 @@ class CatalogPlatformApplicationValidator {
       sortOn: Joi.string().allow(""),
       pageId: Joi.string().allow(""),
       pageSize: Joi.number(),
+      pageNo: Joi.number(),
     }).required();
   }
 
@@ -871,10 +892,9 @@ class CatalogPlatformApplicationValidator {
   static getDiscountedInventoryBySizeIdentifier() {
     return Joi.object({
       itemId: Joi.number().required(),
-      sizeIdentifier: Joi.string().allow("").required(),
+      sizeIdentifier: Joi.number().required(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      q: Joi.string().allow(""),
       locationIds: Joi.array().items(Joi.number()),
     }).required();
   }
@@ -934,7 +954,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateAppBrandParam} */
   static updateAppBrand() {
     return Joi.object({
-      brandUid: Joi.string().allow("").required(),
+      brandUid: Joi.number().required(),
       body: CatalogPlatformModel.ApplicationBrandJson().required(),
     }).required();
   }
@@ -957,7 +977,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateAppDepartmentParam} */
   static updateAppDepartment() {
     return Joi.object({
-      departmentUid: Joi.string().allow("").required(),
+      departmentUid: Joi.number().required(),
       body: CatalogPlatformModel.ApplicationDepartmentJson().required(),
     }).required();
   }
@@ -965,7 +985,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateAppLocationParam} */
   static updateAppLocation() {
     return Joi.object({
-      storeUid: Joi.string().allow("").required(),
+      storeUid: Joi.number().required(),
       body: CatalogPlatformModel.ApplicationStoreJson().required(),
     }).required();
   }
@@ -973,7 +993,7 @@ class CatalogPlatformApplicationValidator {
   /** @returns {UpdateAppProductParam} */
   static updateAppProduct() {
     return Joi.object({
-      itemId: Joi.string().allow("").required(),
+      itemId: Joi.number().required(),
       body: CatalogPlatformModel.ApplicationItemMeta().required(),
     }).required();
   }

@@ -46,24 +46,6 @@ class ApplicationClient {
     this.theme = new Theme(config);
     this.user = new User(config);
     this.webhook = new Webhook(config);
-    if (
-      typeof window != "undefined" &&
-      config.options &&
-      config.options.enable_clickstream
-    ) {
-      const Clickstream = require("@gofynd/flick");
-      Logger({
-        level: "DEBUG",
-        message: `initializing clickstream with base url ${config.domain}`,
-      });
-      Clickstream.initialize(
-        config.domain,
-        convertStringToBase64(
-          config.applicationID + ":" + config.applicationToken
-        )
-      );
-      require("../common/Clickstream");
-    }
   }
 
   /**

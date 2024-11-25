@@ -1,14 +1,6 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const {
-  FDKClientValidationError,
-  FDKResponseValidationError,
-} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const CommonApplicationValidator = require("./CommonApplicationValidator");
-const CommonApplicationModel = require("./CommonApplicationModel");
-const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Common {
   constructor(_conf) {
@@ -35,10 +27,9 @@ class Common {
   }
 
   /**
-   * @param {CommonApplicationValidator.GetLocationsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CommonApplicationModel.Locations>} - Success response
+   * @returns {Promise<Locations>} - Success response
    * @name getLocations
    * @summary: Get a location
    * @description: Get countries , state , cities data associated with the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
@@ -47,28 +38,6 @@ class Common {
     { locationType, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = CommonApplicationValidator.getLocations().validate(
-      { locationType, id },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommonApplicationValidator.getLocations().validate(
-      { locationType, id },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Common > getLocations \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["location_type"] = locationType;
     query_params["id"] = id;
@@ -93,33 +62,13 @@ class Common {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = CommonApplicationModel.Locations().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Common > getLocations \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {CommonApplicationValidator.SearchApplicationParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CommonApplicationModel.ApplicationResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ApplicationResponseSchema>} - Success response
    * @name searchApplication
    * @summary: Get sales channel
    * @description: Get an active sales channel based on a provided query. The query can be a valid sales channel ID or a verified domain name. If the sales channel is found, a success response is returned. If not, a 404 error response is returned. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
@@ -128,28 +77,6 @@ class Common {
     { authorization, query, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = CommonApplicationValidator.searchApplication().validate(
-      { authorization, query },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommonApplicationValidator.searchApplication().validate(
-      { authorization, query },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Common > searchApplication \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
     query_params["query"] = query;
 
@@ -172,24 +99,6 @@ class Common {
     let responseData = response;
     if (responseHeaders) {
       responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CommonApplicationModel.ApplicationResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Common > searchApplication \n ${res_error}`,
-        });
-      }
     }
 
     return response;

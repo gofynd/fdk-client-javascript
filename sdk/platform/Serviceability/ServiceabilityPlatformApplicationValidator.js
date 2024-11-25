@@ -20,7 +20,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef GetCourierPartnerRuleParam
- * @property {string} ruleId - A `rule_id` is a unique identifier for a rule.
+ * @property {string} ruleId - Unique identifier of the courier partner rule
  */
 
 /**
@@ -70,12 +70,14 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdateCourierRuleParam
- * @property {string} ruleId - A `rule_id` is a unique identifier for a particular Dp.
+ * @property {string} ruleId - Unique identifier of the courier partner rule.
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
 
 /**
  * @typedef UpdatePincodeAuditHistoryParam
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails} body
  */
 
@@ -86,6 +88,8 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
  * @typedef UpdatePincodeCoDListingParam
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {ServiceabilityPlatformModel.PincodeCodStatusListingDetails} body
  */
 
@@ -214,6 +218,8 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdatePincodeAuditHistoryParam} */
   static updatePincodeAuditHistory() {
     return Joi.object({
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
       body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails().required(),
     }).required();
   }
@@ -228,6 +234,8 @@ class ServiceabilityPlatformApplicationValidator {
   /** @returns {UpdatePincodeCoDListingParam} */
   static updatePincodeCoDListing() {
     return Joi.object({
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
       body: ServiceabilityPlatformModel.PincodeCodStatusListingDetails().required(),
     }).required();
   }

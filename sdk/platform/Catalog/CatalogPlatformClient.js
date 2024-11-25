@@ -745,7 +745,7 @@ class Catalog {
    * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponseObject>} - Success response
    * @name createProduct
    * @summary: Create product
    * @description: Users can create a product using this API, associating it with the provided company ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
@@ -801,7 +801,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponseObject().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1313,15 +1313,16 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.SuccessResponseSchema>} - Success response
    * @name deleteProduct
    * @summary: Delete product
-   * @description: Users can delete a product using this by providing the itemid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
+   * @description: Users can delete a product by providing the item_id and company_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
    */
   async deleteProduct(
-    { itemId, requestHeaders } = { requestHeaders: {} },
+    { itemId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogPlatformValidator.deleteProduct().validate(
       {
         itemId,
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1335,6 +1336,7 @@ class Catalog {
     } = CatalogPlatformValidator.deleteProduct().validate(
       {
         itemId,
+        body,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1354,7 +1356,7 @@ class Catalog {
       "delete",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
-      undefined,
+      body,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -3959,13 +3961,15 @@ class Catalog {
    * @description: Retrieve a list of product bundles available in the catalog associated to a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundle/).
    */
   async getProductBundle(
-    { q, slug, requestHeaders } = { requestHeaders: {} },
+    { q, slug, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogPlatformValidator.getProductBundle().validate(
       {
         q,
         slug,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3980,6 +3984,8 @@ class Catalog {
       {
         q,
         slug,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3993,6 +3999,8 @@ class Catalog {
     const query_params = {};
     query_params["q"] = q;
     query_params["slug"] = slug;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const xHeaders = {};
 
@@ -6203,6 +6211,182 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformValidator.UpdateLocationPriceParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>}
+   *   - Success response
+   *
+   * @name updateLocationPrice
+   * @summary: Update an Article Price
+   * @description: enables you to update article price for a specific size and selling location (store). The price updates will be reflected instantly after the API call. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateLocationPrice/).
+   */
+  async updateLocationPrice(
+    { storeId, sellerIdentifier, body, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.updateLocationPrice().validate(
+      {
+        storeId,
+        sellerIdentifier,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateLocationPrice().validate(
+      {
+        storeId,
+        sellerIdentifier,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > updateLocationPrice \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/store/${storeId}/identifier/${sellerIdentifier}/price`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateLocationPrice \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.UpdateLocationQuantityParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema>}
+   *   - Success response
+   *
+   * @name updateLocationQuantity
+   * @summary: Update an Article Quantity
+   * @description: enables you to update article quantity for a specific size and selling location (store). The quantity updates will be reflected instantly after the API call. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateLocationQuantity/).
+   */
+  async updateLocationQuantity(
+    { storeId, sellerIdentifier, body, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.updateLocationQuantity().validate(
+      {
+        storeId,
+        sellerIdentifier,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateLocationQuantity().validate(
+      {
+        storeId,
+        sellerIdentifier,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > updateLocationQuantity \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/store/${storeId}/identifier/${sellerIdentifier}/quantity`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.LocationPriceQuantitySuccessResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateLocationQuantity \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformValidator.UpdateMarketplaceOptinParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -6615,6 +6799,95 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > uploadBulkProducts \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.ValidateProductGlobalTemplateParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.TemplatesGlobalValidationResponseSchema>}
+   *   - Success response
+   *
+   * @name validateProductGlobalTemplate
+   * @summary: Validate product template
+   * @description: Allows you to list all product templates global validation values for all the fields present in the database for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductGlobalTemplate/).
+   */
+  async validateProductGlobalTemplate(
+    { itemType, bulk, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.validateProductGlobalTemplate().validate(
+      {
+        itemType,
+        bulk,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.validateProductGlobalTemplate().validate(
+      {
+        itemType,
+        bulk,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > validateProductGlobalTemplate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["item_type"] = itemType;
+    query_params["bulk"] = bulk;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/validation/schema/`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.TemplatesGlobalValidationResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > validateProductGlobalTemplate \n ${res_error}`,
         });
       }
     }

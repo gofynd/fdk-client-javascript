@@ -1,14 +1,6 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const {
-  FDKClientValidationError,
-  FDKResponseValidationError,
-} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const LeadApplicationValidator = require("./LeadApplicationValidator");
-const LeadApplicationModel = require("./LeadApplicationModel");
-const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Lead {
   constructor(_conf) {
@@ -37,10 +29,9 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.CreateHistoryParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
+   * @returns {Promise<TicketHistory>} - Success response
    * @name createHistory
    * @summary: Log ticket history
    * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
@@ -49,28 +40,6 @@ class Lead {
     { id, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LeadApplicationValidator.createHistory().validate(
-      { id, body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadApplicationValidator.createHistory().validate(
-      { id, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Lead > createHistory \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -93,32 +62,13 @@ class Lead {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = LeadApplicationModel.TicketHistory().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Lead > createHistory \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {LeadApplicationValidator.CreateTicketParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
+   * @returns {Promise<Ticket>} - Success response
    * @name createTicket
    * @summary: Creates a ticket
    * @description: Create a new customer support ticket for a user query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
@@ -127,28 +77,6 @@ class Lead {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LeadApplicationValidator.createTicket().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadApplicationValidator.createTicket().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Lead > createTicket \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -171,32 +99,13 @@ class Lead {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = LeadApplicationModel.Ticket().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Lead > createTicket \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {LeadApplicationValidator.GetCustomFormParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LeadApplicationModel.CustomForm>} - Success response
+   * @returns {Promise<CustomForm>} - Success response
    * @name getCustomForm
    * @summary: Get custom form
    * @description: Get a customizable form template for data collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
@@ -205,28 +114,6 @@ class Lead {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LeadApplicationValidator.getCustomForm().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadApplicationValidator.getCustomForm().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Lead > getCustomForm \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -249,32 +136,13 @@ class Lead {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = LeadApplicationModel.CustomForm().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Lead > getCustomForm \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {LeadApplicationValidator.GetTicketParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
+   * @returns {Promise<Ticket>} - Success response
    * @name getTicket
    * @summary: Get a support ticket
    * @description: Get details of a specific customer support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
@@ -283,26 +151,6 @@ class Lead {
     { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LeadApplicationValidator.getTicket().validate(
-      { id },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadApplicationValidator.getTicket().validate(
-      { id },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Lead > getTicket \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -325,32 +173,13 @@ class Lead {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = LeadApplicationModel.Ticket().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Lead > getTicket \n ${res_error}`,
-        });
-      }
-    }
-
     return response;
   }
 
   /**
-   * @param {LeadApplicationValidator.SubmitCustomFormParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<LeadApplicationModel.SubmitCustomFormDetails>} - Success response
+   * @returns {Promise<SubmitCustomFormDetails>} - Success response
    * @name submitCustomForm
    * @summary: Submits form data
    * @description: Create user-entered data from a custom form for processing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
@@ -359,28 +188,6 @@ class Lead {
     { slug, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LeadApplicationValidator.submitCustomForm().validate(
-      { slug, body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadApplicationValidator.submitCustomForm().validate(
-      { slug, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Lead > submitCustomForm \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -401,24 +208,6 @@ class Lead {
     let responseData = response;
     if (responseHeaders) {
       responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LeadApplicationModel.SubmitCustomFormDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Lead > submitCustomForm \n ${res_error}`,
-        });
-      }
     }
 
     return response;

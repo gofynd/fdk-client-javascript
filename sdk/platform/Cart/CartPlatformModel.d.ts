@@ -690,8 +690,11 @@ export = CartPlatformModel;
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta] - Additional information regarding price adjustment
  * @property {string} cart_id - Unique identifier of the cart
+ * @property {DistributionLogic} [distribution_logic]
  */
 /**
  * @typedef PriceAdjustment
@@ -711,8 +714,11 @@ export = CartPlatformModel;
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta] - Additional information regarding price adjustment
  * @property {string} cart_id - Unique identifier of the cart
+ * @property {DistributionLogic} [distribution_logic]
  */
 /**
  * @typedef PriceAdjustmentResult
@@ -742,6 +748,27 @@ export = CartPlatformModel;
  * @property {Article[]} article_ids - The list of article object in the price adjustment
  * @property {Object} [meta] - Additional information regarding price adjustment
  * @property {string} cart_id - Unique identifier of the cart
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
+ * @property {DistributionLogic} [distribution_logic]
+ */
+/**
+ * @typedef DistributionRule
+ * @property {Object} [conditions] - This field defines the distribution conditions
+ */
+/**
+ * @typedef Distribution
+ * @property {string} [type] - This field defines the distribution type allowed
+ *   values('multi', 'single')
+ * @property {string} [logic] - This field defines the distribution logic
+ *   allowed values('apportion', 'weighted', 'equally')
+ * @property {DistributionRule} [rule]
+ */
+/**
+ * @typedef DistributionLogic
+ * @property {string} [distribution_level] - This field defines the distribution
+ *   level, currently allowed distribution level is (shipment)
+ * @property {Distribution} [distribution]
  */
 /**
  * @typedef CartItem
@@ -1941,6 +1968,10 @@ export = CartPlatformModel;
  * @property {string} [network]
  * @property {string} [type]
  * @property {string} [card_id]
+ * @property {string} [success_callback_url] - Success callback url to be
+ *   redirected after payment received
+ * @property {string} [failure_callback_url] - Failure callback url to be
+ *   redirected after payment failed
  */
 /**
  * @typedef CheckCart
@@ -2139,6 +2170,10 @@ export = CartPlatformModel;
  *   the payment
  * @property {string} [type] - Type of cart if payment mode is card to do the payment
  * @property {string} [card_id] - Saved card id if payment mode is card to do the payment
+ * @property {string} [success_callback_url] - Success callback url to be
+ *   redirected after payment received
+ * @property {string} [failure_callback_url] - Failure callback url to be
+ *   redirected after payment failed
  */
 /**
  * @typedef UpdateCartPaymentRequestV2
@@ -2231,7 +2266,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError };
+    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResult, SuccessMessage, OperationErrorResult, CouponUpdate, CouponPartialUpdate, CouponCreateResult, DisplayMeta1, Ownership1, CompareObject, ItemSizeMapping, ItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResult, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromotionPartialUpdate, ActivePromosResult, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResult, GetPriceAdjustmentResult, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsCreation, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductActionParams, ProductActionPage, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, ProductArticle, Ownership2, DiscountRulesApp, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResult, OpenApiErrorResult, ShippingAddress, OpenApiCartServiceabilityCreation, OpenApiCartServiceabilityResult, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResult, AbandonedCart, AbandonedCartResult, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResult, AddProductCart, AddCartCreation, AddCartDetailResult, UpdateProductCart, FreeGiftItemCreation, UpdateCartCreation, UpdateCartDetailResult, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResult, GetShareCartLinkCreation, GetShareCartLinkResult, SharedCartDetails, SharedCart, SharedCartResult, CartList, MultiCartResult, UpdateUserCartMapping, UserInfo, UserCartMappingResult, PlatformAddCartDetails, PlatformUpdateCartDetails, DeleteCartDetails, DeleteCartDetailResult, CartItemCountResult, Coupon, PageCoupon, GetCouponResult, ApplyCouponDetails, GeoLocation, PlatformAddress, ValidationConfig, PlatformGetAddressesDetails, SaveAddressDetails, UpdateAddressDetails, DeleteAddressResult, PlatformSelectCartAddress, ShipmentArticle, PlatformShipmentDetails, PlatformCartShipmentsResult, UpdateCartShipmentItem, UpdateCartShipmentCreation, PlatformCartMetaCreation, CartMetaDetails, CartMetaMissingDetails, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, PlatformCartCheckoutDetailCreation, CheckCart, CartCheckoutDetails, CartCheckoutResult, CartDeliveryModesDetails, PickupStoreDetail, StoreDetails, CartPaymentUpdate, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Creation, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, ArticlePriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersDetails, PromotionPaymentOffer, PromotionPaymentOffersDetails, ValidationError };
 }
 /** @returns {CouponDateMeta} */
 declare function CouponDateMeta(): CouponDateMeta;
@@ -3925,6 +3960,11 @@ type PriceAdjustmentUpdate = {
      */
     article_ids: Article[];
     /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
+    /**
      * - Additional information regarding price adjustment
      */
     meta?: any;
@@ -3932,6 +3972,7 @@ type PriceAdjustmentUpdate = {
      * - Unique identifier of the cart
      */
     cart_id: string;
+    distribution_logic?: DistributionLogic;
 };
 /** @returns {PriceAdjustment} */
 declare function PriceAdjustment(): PriceAdjustment;
@@ -3983,6 +4024,11 @@ type PriceAdjustment = {
      */
     article_ids: Article[];
     /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
+    /**
      * - Additional information regarding price adjustment
      */
     meta?: any;
@@ -3990,6 +4036,7 @@ type PriceAdjustment = {
      * - Unique identifier of the cart
      */
     cart_id: string;
+    distribution_logic?: DistributionLogic;
 };
 /** @returns {PriceAdjustmentResult} */
 declare function PriceAdjustmentResult(): PriceAdjustmentResult;
@@ -4058,6 +4105,45 @@ type PriceAdjustmentAdd = {
      * - Unique identifier of the cart
      */
     cart_id: string;
+    /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
+    distribution_logic?: DistributionLogic;
+};
+/** @returns {DistributionRule} */
+declare function DistributionRule(): DistributionRule;
+type DistributionRule = {
+    /**
+     * - This field defines the distribution conditions
+     */
+    conditions?: any;
+};
+/** @returns {Distribution} */
+declare function Distribution(): Distribution;
+type Distribution = {
+    /**
+     * - This field defines the distribution type allowed
+     * values('multi', 'single')
+     */
+    type?: string;
+    /**
+     * - This field defines the distribution logic
+     * allowed values('apportion', 'weighted', 'equally')
+     */
+    logic?: string;
+    rule?: DistributionRule;
+};
+/** @returns {DistributionLogic} */
+declare function DistributionLogic(): DistributionLogic;
+type DistributionLogic = {
+    /**
+     * - This field defines the distribution
+     * level, currently allowed distribution level is (shipment)
+     */
+    distribution_level?: string;
+    distribution?: Distribution;
 };
 /** @returns {CartItem} */
 declare function CartItem(): CartItem;
@@ -7103,6 +7189,16 @@ type PlatformCartCheckoutDetailCreation = {
     network?: string;
     type?: string;
     card_id?: string;
+    /**
+     * - Success callback url to be
+     * redirected after payment received
+     */
+    success_callback_url?: string;
+    /**
+     * - Failure callback url to be
+     * redirected after payment failed
+     */
+    failure_callback_url?: string;
 };
 /** @returns {CheckCart} */
 declare function CheckCart(): CheckCart;
@@ -7631,6 +7727,16 @@ type PlatformCartCheckoutDetailV2Creation = {
      * - Saved card id if payment mode is card to do the payment
      */
     card_id?: string;
+    /**
+     * - Success callback url to be
+     * redirected after payment received
+     */
+    success_callback_url?: string;
+    /**
+     * - Failure callback url to be
+     * redirected after payment failed
+     */
+    failure_callback_url?: string;
 };
 /** @returns {UpdateCartPaymentRequestV2} */
 declare function UpdateCartPaymentRequestV2(): UpdateCartPaymentRequestV2;

@@ -417,8 +417,8 @@ class Order {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentBagReasons>} - Success response
    * @name getShipmentBagReasons
-   * @summary: List bag cancellation reasons
-   * @description: Get reasons to perform full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
+   * @summary: Retrieve Reasons for Cancellation and Return journey
+   * @description: Allows users to retrieve a comprehensive list of reasons for cancellation  or returning a shipment. It provides both cancellation and return reasons, with an emphasis  on Quality Control (QC) evaluations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
    */
   async getShipmentBagReasons(
     { shipmentId, lineNumber, requestHeaders } = { requestHeaders: {} },

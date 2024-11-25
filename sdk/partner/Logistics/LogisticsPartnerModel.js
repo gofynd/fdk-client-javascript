@@ -2,32 +2,34 @@ const Joi = require("joi");
 
 /**
  * @typedef BulkRegionServiceabilityTatDetails
- * @property {string} country
- * @property {string} region
- * @property {string} type
+ * @property {string} country - Name of the country.
+ * @property {string} region - Name of the region for which the
+ *   tat/serviceability file needs to be downloaded.
+ * @property {string} type - Denotes the type of file.
  */
 
 /**
  * @typedef BulkRegionServiceabilityTatResultItemData
- * @property {string} [country]
- * @property {string} [region]
- * @property {string} [type]
- * @property {string} [batch_id]
- * @property {string} [status]
- * @property {Object[]} [failed_records]
- * @property {string} [file_path]
+ * @property {string} [country] - Name of the country.
+ * @property {string} [region] - Name of the region for which the
+ *   tat/serviceability file needs to be downloaded.
+ * @property {string} [type] - Denotes the type of data.
+ * @property {string} [batch_id] - Unique identifier identifying the perticular request.
+ * @property {string} [status] - Current status of the request.
+ * @property {Object[]} [failed_records] - Information of records which failed
+ * @property {string} [file_path] - CDN path of the file.
  */
 
 /**
  * @typedef ErrorResult
- * @property {string} value
- * @property {string} message
- * @property {string} type
+ * @property {string} value - Fields containing the error.
+ * @property {string} message - Description of the error.
+ * @property {string} type - Type of the error.
  */
 
 /**
  * @typedef FailureResult
- * @property {boolean} success
+ * @property {boolean} success - Denotes if the request was successfully executed.
  * @property {ErrorResult[]} error
  */
 
@@ -49,6 +51,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CourierAccountUpdateDetails
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
+ */
+
+/**
  * @typedef RegionTatItemResult
  * @property {RegionTatResult[]} items
  * @property {Page} page
@@ -66,6 +78,8 @@ const Joi = require("joi");
  *   first-mile service is available or not.
  * @property {boolean} [last_mile] - Boolean value indicating whether last-mile
  *   service is available or not.
+ * @property {boolean} [reverse_pickup] - Boolean value indicating whether a
+ *   region is first-mile serviceable or not in return pickup.
  * @property {number} [cod_limit] - Limit on the amount of cash on delivery
  *   (COD) payments allowed in the specified region.
  * @property {boolean} [doorstep_return] - Indicates if doorstep return service
@@ -87,6 +101,8 @@ const Joi = require("joi");
  *   first-mile service is available or not.
  * @property {boolean} [last_mile] - Boolean value indicating whether last-mile
  *   service is available or not.
+ * @property {boolean} [reverse_pickup] - Boolean value indicating whether a
+ *   region is first-mile serviceable or not in return pickup.
  * @property {number} [cod_limit] - Limit on the amount of cash on delivery
  *   (COD) payments allowed in the specified region.
  * @property {boolean} [doorstep_return] - Indicates if doorstep return service
@@ -117,6 +133,8 @@ const Joi = require("joi");
  *   first-mile service is available or not.
  * @property {boolean} [last_mile] - Boolean value indicating whether last-mile
  *   service is available or not.
+ * @property {boolean} [reverse_pickup] - Boolean value indicating whether a
+ *   region is first-mile serviceable or not in return pickup.
  * @property {number} [cod_limit] - Limit on the amount of cash on delivery
  *   (COD) payments allowed in the specified region.
  * @property {boolean} [doorstep_return] - Indicates if doorstep return service
@@ -148,6 +166,8 @@ const Joi = require("joi");
  *   first-mile service is available or not.
  * @property {boolean} [last_mile] - Boolean value indicating whether last-mile
  *   service is available or not.
+ * @property {boolean} [reverse_pickup] - Boolean value indicating whether a
+ *   region is first-mile serviceable or not in return pickup.
  * @property {number} [cod_limit] - Limit on the amount of cash on delivery
  *   (COD) payments allowed in the specified region.
  * @property {boolean} [doorstep_return] - Indicates if doorstep return service
@@ -223,25 +243,30 @@ const Joi = require("joi");
 
 /**
  * @typedef BulkRegionJobDetails
- * @property {string} [file_path]
- * @property {string} country
- * @property {string} action
- * @property {string} region
+ * @property {string} [file_path] - CDN path of the uploaded csv file for bulk import.
+ * @property {string} country - Country for which the tat or serviceability is
+ *   to be imported or exported.
+ * @property {string} action - Denotes the import or export action to be performed.
+ * @property {string} region - Region of the country for which import or export
+ *   is triggered.
  */
 
 /**
  * @typedef BulkRegionResultItemData
- * @property {string} file_path
- * @property {number} [failed]
- * @property {Object[]} [failed_records]
- * @property {string} action
- * @property {string} batch_id
- * @property {string} country
- * @property {number} [success]
- * @property {string} region
- * @property {string} status
- * @property {number} [total]
- * @property {string} [error_file_path]
+ * @property {string} [file_path] - CDN path of the file which was used for bulk import.
+ * @property {number} [failed] - Count of the failed records.
+ * @property {Object[]} [failed_records] - Information of records which failed.
+ * @property {string} action - Denotes the import or export action performed.
+ * @property {string} batch_id - Unique id to identify the import or export query.
+ * @property {string} country - Country for which the import or export action is
+ *   performed.
+ * @property {number} [success] - Denoted if the import or export was successful
+ *   or failure.
+ * @property {string} region - Region of the country for which import or export
+ *   is triggered.
+ * @property {string} status - Current status of the import or export action performed.
+ * @property {number} [total] - Count of total records.
+ * @property {string} [error_file_path] - Path of the error file.
  */
 
 /**
@@ -252,22 +277,27 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierAccount
- * @property {string} extension_id
- * @property {string} account_id
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
  */
 
 /**
  * @typedef CourierAccountDetailsBody
- * @property {string} extension_id
- * @property {string} [account_id]
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} [account_id] - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier account.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the courier account is in enabled
+ *   or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
  */
 
 /**
@@ -284,39 +314,52 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierAccountResult
- * @property {string} account_id
- * @property {string} scheme_id
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
  * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
+ * @property {string} stage - Denotes whether the courier account is in enabled
+ *   or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
  * @property {CourierPartnerSchemeModel} scheme_rules
  */
 
 /**
  * @typedef CourierPartnerSchemeModel
- * @property {string} extension_id
- * @property {string} scheme_id
- * @property {string} name
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {string} name - Name of the scheme
  * @property {ArithmeticOperations} weight
- * @property {string} transport_type
- * @property {string} region
- * @property {string} delivery_type
- * @property {string[]} payment_mode
- * @property {string} stage
+ * @property {string} transport_type - Mode of transport associated with the
+ *   courier partner scheme.
+ * @property {string} region - Serviceable region associated with the courier
+ *   partner scheme.
+ * @property {string} delivery_type - Type of delivery associated with the
+ *   courier partner scheme.
+ * @property {string[]} payment_mode - Mode of payment associated with the
+ *   courier partner scheme.
+ * @property {string} stage - Indicates if the courier partner scheme is
+ *   currently active or inactive.
  * @property {CourierPartnerSchemeFeatures} feature
  */
 
 /**
  * @typedef CourierPartnerSchemeDetailsModel
- * @property {string} extension_id
- * @property {string} [scheme_id]
- * @property {string} name
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} [scheme_id] - Unique identifier of courier partner scheme.
+ * @property {string} name - Name of the courier partner scheme.
  * @property {ArithmeticOperations} weight
- * @property {string} transport_type
- * @property {string} region
- * @property {string} delivery_type
- * @property {string[]} payment_mode
- * @property {string} stage
+ * @property {string} transport_type - Mode of transport associated with the
+ *   courier partner scheme.
+ * @property {string} region - Serviceable region associated with the courier
+ *   partner scheme.
+ * @property {string} delivery_type - Type of delivery associated with the
+ *   courier partner scheme.
+ * @property {string[]} payment_mode - Mode of payment associated with the
+ *   courier partner scheme.
+ * @property {string} stage - Indicates if the courier partner scheme is
+ *   currently active or inactive.
  * @property {CourierPartnerSchemeFeatures} feature
  */
 
@@ -366,6 +409,106 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CourierPartnerSchemeV2Features
+ * @property {boolean} [doorstep_qc] - Indicates if the courier partner offers
+ *   doorstep quality check services.
+ * @property {boolean} [qr] - Specifies whether the courier partner supports QR
+ *   code-based operations.
+ * @property {boolean} [mps] - Denotes if the courier partner supports
+ *   multi-part shipment services.
+ * @property {boolean} [ndr] - Indicates if the Non-Delivery Report (NDR)
+ *   feature is supported by the courier partner.
+ * @property {boolean} [dangerous_goods] - Specifies if the courier partner
+ *   handles the transportation of dangerous goods.
+ * @property {boolean} [fragile_goods] - Indicates whether the courier partner
+ *   manages the shipment of fragile goods.
+ * @property {boolean} [restricted_goods] - Indicates if the courier partner
+ *   handles restricted goods, as per regulatory guidelines.
+ * @property {boolean} [cold_storage_goods] - Denotes if the courier partner
+ *   provides cold storage facilities for goods.
+ * @property {boolean} [doorstep_exchange] - Indicates if the courier partner
+ *   supports doorstep exchange services.
+ * @property {boolean} [doorstep_return] - Specifies if the courier partner
+ *   offers doorstep return services.
+ * @property {boolean} [product_installation] - Indicates if the courier partner
+ *   provides product installation services upon delivery.
+ * @property {boolean} [openbox_delivery] - Specifies whether the courier
+ *   partner supports open-box delivery, allowing customers to inspect goods
+ *   before accepting.
+ * @property {boolean} [multi_pick_single_drop] - Indicates if the courier
+ *   partner supports multiple pickups to a single drop location.
+ * @property {boolean} [single_pick_multi_drop] - Indicates whether the courier
+ *   partner supports single pickup to multiple drop locations.
+ * @property {boolean} [multi_pick_multi_drop] - Denotes if the courier partner
+ *   offers services for multiple pickups to multiple drop locations.
+ * @property {boolean} [ewaybill] - Specifies if the courier partner requires or
+ *   supports the generation of e-waybills for shipments.
+ */
+
+/**
+ * @typedef CourierPartnerSchemeV2DetailsModel
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} [scheme_id] - Unique identifier of courier partner scheme.
+ * @property {string} name - Name of the scheme.
+ * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
+ * @property {string} transport_type - Mode of transport associated with the
+ *   courier partner scheme.
+ * @property {string} region - Serviceable region associated with the courier
+ *   partner scheme.
+ * @property {string} delivery_type - Type of delivery associated with the
+ *   courier partner scheme.
+ * @property {string[]} payment_mode - Mode of payment associated with the
+ *   courier partner scheme.
+ * @property {string} stage - Indicates if the courier partner scheme is
+ *   currently active or inactive.
+ * @property {string} [status_updates] - Describes the type of status updates
+ *   provided by the courier partner (e.g., real-time, periodic).
+ * @property {number} [ndr_attempts] - Indicates if the Non-Delivery Report
+ *   (NDR) feature is supported by the courier partner.
+ * @property {number} [qc_shipment_item_quantity] - Defines the maximum quantity
+ *   of items allowed in a quality check shipment.
+ * @property {number} [non_qc_shipment_item_quantity] - Defines the maximum
+ *   quantity of items allowed in a non-quality check shipment.
+ * @property {CourierPartnerSchemeV2Features} feature
+ */
+
+/**
+ * @typedef CourierPartnerV2SchemeModel
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {string} [company_id] - Unique identifier of company.
+ * @property {string} name - Name of the scheme.
+ * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
+ * @property {string} transport_type - Mode of transport associated with the
+ *   courier partner scheme.
+ * @property {string} region - Serviceable region associated with the courier
+ *   partner scheme.
+ * @property {string} delivery_type - Type of delivery associated with the
+ *   courier partner scheme.
+ * @property {string[]} payment_mode - Mode of payment associated with the
+ *   courier partner scheme.
+ * @property {string} stage - Indicates if the courier partner scheme is
+ *   currently active or inactive.
+ * @property {string} [status_updates] - Describes the type of status updates
+ *   provided by the courier partner (e.g., real-time, periodic).
+ * @property {number} [ndr_attempts] - Indicates if the Non-Delivery Report
+ *   (NDR) feature is supported by the courier partner.
+ * @property {number} [qc_shipment_item_quantity] - Defines the maximum quantity
+ *   of items allowed in a quality check shipment.
+ * @property {number} [non_qc_shipment_item_quantity] - Defines the maximum
+ *   quantity of items allowed in a non-quality check shipment.
+ * @property {CourierPartnerSchemeV2Features} feature
+ */
+
+/**
+ * @typedef courierPartnerSchemeV2List
+ * @property {CourierPartnerV2SchemeModel[]} items - List of courier partner schemes
+ * @property {Page} page
+ */
+
+/**
  * @typedef ArithmeticOperations
  * @property {number} [lt]
  * @property {number} [gt]
@@ -374,15 +517,29 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CourierPartnerSchemeUpdateDetails
- * @property {string} name
+ * @typedef CourierPartnerSchemeV2UpdateDetails
+ * @property {string} name - Name of the scheme.
  * @property {ArithmeticOperations} weight
- * @property {string} transport_type
- * @property {string} region
- * @property {string} delivery_type
- * @property {string[]} payment_mode
- * @property {string} stage
- * @property {CourierPartnerSchemeFeatures} feature
+ * @property {ArithmeticOperations} [volumetric_weight]
+ * @property {string} transport_type - Mode of transport associated with the
+ *   courier partner scheme.
+ * @property {string} region - Serviceable region associated with the courier
+ *   partner scheme.
+ * @property {string} delivery_type - Type of delivery associated with the
+ *   courier partner scheme.
+ * @property {string[]} payment_mode - Mode of payment associated with the
+ *   courier partner scheme.
+ * @property {string} stage - Indicates if the courier partner scheme is
+ *   currently active or inactive.
+ * @property {string} [status_updates] - Describes the type of status updates
+ *   provided by the courier partner (e.g., real-time, periodic).
+ * @property {number} [ndr_attempts] - Indicates if the Non-Delivery Report
+ *   (NDR) feature is supported by the courier partner.
+ * @property {number} [qc_shipment_item_quantity] - Defines the maximum quantity
+ *   of items allowed in a quality check shipment.
+ * @property {number} [non_qc_shipment_item_quantity] - Defines the maximum
+ *   quantity of items allowed in a non-quality check shipment.
+ * @property {CourierPartnerSchemeV2Features} feature
  */
 
 /**
@@ -393,18 +550,24 @@ const Joi = require("joi");
 
 /**
  * @typedef GetCountriesItems
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [iso2]
- * @property {string} [iso3]
- * @property {string[]} [timezones]
- * @property {HierarchyItems[]} [hierarchy]
- * @property {string} [phone_code]
- * @property {string} [currency]
- * @property {string} [type]
- * @property {string} [latitude]
- * @property {string} [longitude]
- * @property {string} [display_name]
+ * @property {string} [id] - Unique identifier of the country.
+ * @property {string} [name] - Name of the country.
+ * @property {string} [iso2] - Two-letter ISO code representing the country.
+ * @property {string} [iso3] - Three-letter ISO code representing the country.
+ * @property {string[]} [timezones] - List of time zones used in the country
+ *   (e.g., ["America/New_York", "America/Los_Angeles"]).
+ * @property {HierarchyItems[]} [hierarchy] - Levels within the country (e.g.,
+ *   states, cities) and their slugs (e.g., [{"name": "State", "slug": "state"},
+ *   {"name": "City", "slug": "city"}]).
+ * @property {string} [phone_code] - International dialing code for the country
+ *   (e.g., "+1").
+ * @property {string} [currency] - Indicates currency for the country (e.g., "INR").
+ * @property {string} [type] - Indicates the type of object (e.g., "country").
+ * @property {string} [latitude] - Geographical latitude of the country (e.g., "37.0902").
+ * @property {string} [longitude] - Geographical longitude of the country (e.g.,
+ *   "-95.7129").
+ * @property {string} [display_name] - User-friendly version of the geographical
+ *   data, which may be more descriptive or formatted differently.
  * @property {boolean} [has_next_hierarchy] - More detailed hierarchical data is
  *   available, meaning states, cities, or other regions within the country have
  *   been populated in the system.
@@ -412,8 +575,9 @@ const Joi = require("joi");
 
 /**
  * @typedef HierarchyItems
- * @property {string} [display_name]
- * @property {string} [slug]
+ * @property {string} [display_name] - It represent a country display name.
+ * @property {string} [slug] - A URL-friendly version of the name, often used
+ *   for referencing or querying purposes.
  */
 
 /**
@@ -446,7 +610,7 @@ class LogisticsPartnerModel {
       batch_id: Joi.string().allow(""),
       status: Joi.string().allow(""),
       failed_records: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
-      file_path: Joi.string().allow(""),
+      file_path: Joi.string().allow("").allow(null),
     });
   }
 
@@ -490,6 +654,17 @@ class LogisticsPartnerModel {
     });
   }
 
+  /** @returns {CourierAccountUpdateDetails} */
+  static CourierAccountUpdateDetails() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow("").required(),
+      is_self_ship: Joi.boolean().required(),
+      stage: Joi.string().allow("").required(),
+      is_own_account: Joi.boolean().required(),
+    });
+  }
+
   /** @returns {RegionTatItemResult} */
   static RegionTatItemResult() {
     return Joi.object({
@@ -515,6 +690,7 @@ class LogisticsPartnerModel {
     return Joi.object({
       first_mile: Joi.boolean(),
       last_mile: Joi.boolean(),
+      reverse_pickup: Joi.boolean().allow(null),
       cod_limit: Joi.number(),
       doorstep_return: Joi.boolean(),
       doorstep_qc: Joi.boolean(),
@@ -529,6 +705,7 @@ class LogisticsPartnerModel {
     return Joi.object({
       first_mile: Joi.boolean(),
       last_mile: Joi.boolean(),
+      reverse_pickup: Joi.boolean().allow(null),
       cod_limit: Joi.number(),
       doorstep_return: Joi.boolean(),
       doorstep_qc: Joi.boolean(),
@@ -547,6 +724,7 @@ class LogisticsPartnerModel {
       pincode: Joi.string().allow(""),
       first_mile: Joi.boolean(),
       last_mile: Joi.boolean(),
+      reverse_pickup: Joi.boolean().allow(null),
       cod_limit: Joi.number(),
       doorstep_return: Joi.boolean(),
       doorstep_qc: Joi.boolean(),
@@ -566,6 +744,7 @@ class LogisticsPartnerModel {
       pincode: Joi.string().allow(""),
       first_mile: Joi.boolean(),
       last_mile: Joi.boolean(),
+      reverse_pickup: Joi.boolean().allow(null),
       cod_limit: Joi.number(),
       doorstep_return: Joi.boolean(),
       doorstep_qc: Joi.boolean(),
@@ -622,7 +801,7 @@ class LogisticsPartnerModel {
   /** @returns {BulkRegionJobDetails} */
   static BulkRegionJobDetails() {
     return Joi.object({
-      file_path: Joi.string().allow(""),
+      file_path: Joi.string().allow("").allow(null),
       country: Joi.string().allow("").required(),
       action: Joi.string().allow("").required(),
       region: Joi.string().allow("").required(),
@@ -632,7 +811,7 @@ class LogisticsPartnerModel {
   /** @returns {BulkRegionResultItemData} */
   static BulkRegionResultItemData() {
     return Joi.object({
-      file_path: Joi.string().allow("").required(),
+      file_path: Joi.string().allow(""),
       failed: Joi.number(),
       failed_records: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
       action: Joi.string().allow("").required(),
@@ -768,6 +947,81 @@ class LogisticsPartnerModel {
     });
   }
 
+  /** @returns {CourierPartnerSchemeV2Features} */
+  static CourierPartnerSchemeV2Features() {
+    return Joi.object({
+      doorstep_qc: Joi.boolean(),
+      qr: Joi.boolean(),
+      mps: Joi.boolean(),
+      ndr: Joi.boolean(),
+      dangerous_goods: Joi.boolean(),
+      fragile_goods: Joi.boolean(),
+      restricted_goods: Joi.boolean(),
+      cold_storage_goods: Joi.boolean(),
+      doorstep_exchange: Joi.boolean(),
+      doorstep_return: Joi.boolean(),
+      product_installation: Joi.boolean(),
+      openbox_delivery: Joi.boolean(),
+      multi_pick_single_drop: Joi.boolean(),
+      single_pick_multi_drop: Joi.boolean(),
+      multi_pick_multi_drop: Joi.boolean(),
+      ewaybill: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CourierPartnerSchemeV2DetailsModel} */
+  static CourierPartnerSchemeV2DetailsModel() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
+      weight: LogisticsPartnerModel.ArithmeticOperations().required(),
+      volumetric_weight: LogisticsPartnerModel.ArithmeticOperations(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      status_updates: Joi.string().allow(""),
+      ndr_attempts: Joi.number(),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
+      feature: LogisticsPartnerModel.CourierPartnerSchemeV2Features().required(),
+    });
+  }
+
+  /** @returns {CourierPartnerV2SchemeModel} */
+  static CourierPartnerV2SchemeModel() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow("").required(),
+      company_id: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
+      weight: LogisticsPartnerModel.ArithmeticOperations().required(),
+      volumetric_weight: LogisticsPartnerModel.ArithmeticOperations(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      status_updates: Joi.string().allow(""),
+      ndr_attempts: Joi.number(),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
+      feature: LogisticsPartnerModel.CourierPartnerSchemeV2Features().required(),
+    });
+  }
+
+  /** @returns {courierPartnerSchemeV2List} */
+  static courierPartnerSchemeV2List() {
+    return Joi.object({
+      items: Joi.array()
+        .items(LogisticsPartnerModel.CourierPartnerV2SchemeModel())
+        .required(),
+      page: LogisticsPartnerModel.Page().required(),
+    });
+  }
+
   /** @returns {ArithmeticOperations} */
   static ArithmeticOperations() {
     return Joi.object({
@@ -778,17 +1032,22 @@ class LogisticsPartnerModel {
     });
   }
 
-  /** @returns {CourierPartnerSchemeUpdateDetails} */
-  static CourierPartnerSchemeUpdateDetails() {
+  /** @returns {CourierPartnerSchemeV2UpdateDetails} */
+  static CourierPartnerSchemeV2UpdateDetails() {
     return Joi.object({
       name: Joi.string().allow("").required(),
       weight: LogisticsPartnerModel.ArithmeticOperations().required(),
+      volumetric_weight: LogisticsPartnerModel.ArithmeticOperations(),
       transport_type: Joi.string().allow("").required(),
       region: Joi.string().allow("").required(),
       delivery_type: Joi.string().allow("").required(),
       payment_mode: Joi.array().items(Joi.string().allow("")).required(),
       stage: Joi.string().allow("").required(),
-      feature: LogisticsPartnerModel.CourierPartnerSchemeFeatures().required(),
+      status_updates: Joi.string().allow(""),
+      ndr_attempts: Joi.number(),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
+      feature: LogisticsPartnerModel.CourierPartnerSchemeV2Features().required(),
     });
   }
 

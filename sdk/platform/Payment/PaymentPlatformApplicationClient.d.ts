@@ -290,9 +290,9 @@ declare class Payment {
      * @returns {Promise<PaymentPlatformModel.PaymentOptionsDetails>} - Success response
      * @name getPaymentModeRoutes
      * @summary: Get payment modes
-     * @description: Available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeRoutes/).
+     * @description: Get available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeRoutes/).
      */
-    getPaymentModeRoutes({ refresh, requestType, orderId, shipmentId, requestHeaders }?: PaymentPlatformApplicationValidator.GetPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentOptionsDetails>;
+    getPaymentModeRoutes({ refresh, requestType, orderId, shipmentId, amount, requestHeaders }?: PaymentPlatformApplicationValidator.GetPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentOptionsDetails>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetPaymentSessionParam} arg
      *   - Arg object

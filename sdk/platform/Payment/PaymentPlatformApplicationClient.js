@@ -1926,10 +1926,10 @@ class Payment {
    * @returns {Promise<PaymentPlatformModel.PaymentOptionsDetails>} - Success response
    * @name getPaymentModeRoutes
    * @summary: Get payment modes
-   * @description: Available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeRoutes/).
+   * @description: Get available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeRoutes/).
    */
   async getPaymentModeRoutes(
-    { refresh, requestType, orderId, shipmentId, requestHeaders } = {
+    { refresh, requestType, orderId, shipmentId, amount, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -1942,6 +1942,7 @@ class Payment {
         requestType,
         orderId,
         shipmentId,
+        amount,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1958,6 +1959,7 @@ class Payment {
         requestType,
         orderId,
         shipmentId,
+        amount,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1973,6 +1975,7 @@ class Payment {
     query_params["request_type"] = requestType;
     query_params["order_id"] = orderId;
     query_params["shipment_id"] = shipmentId;
+    query_params["amount"] = amount;
 
     const response = await PlatformAPIClient.execute(
       this.config,

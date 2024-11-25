@@ -40,6 +40,20 @@ declare class Serviceability {
      */
     createCourierPartnerAccount({ body, requestHeaders }?: ServiceabilityPlatformValidator.CreateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierAccount>;
     /**
+     * @param {ServiceabilityPlatformValidator.CreateCourierPartnerSchemeParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerV2SchemeModel>}
+     *   - Success response
+     *
+     * @name createCourierPartnerScheme
+     * @summary: Create Scheme for courier partner extension
+     * @description: Create Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerScheme/).
+     */
+    createCourierPartnerScheme({ body, requestHeaders }?: ServiceabilityPlatformValidator.CreateCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerV2SchemeModel>;
+    /**
      * @param {ServiceabilityPlatformValidator.CreatePackageMaterialParam} arg
      *   - Arg object
      *
@@ -121,6 +135,16 @@ declare class Serviceability {
      */
     getCompanyConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CompanyConfig>;
     /**
+     * @param {ServiceabilityPlatformValidator.GetCountriesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.GetCountries>} - Success response
+     * @name getCountries
+     * @summary: Get countries
+     * @description: Retrieve a list of countries for logistical purposes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCountries/).
+     */
+    getCountries({ onboarding, pageNo, pageSize, q, hierarchy, requestHeaders }?: ServiceabilityPlatformValidator.GetCountriesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetCountries>;
+    /**
      * @param {ServiceabilityPlatformValidator.GetCourierPartnerAccountParam} arg
      *   - Arg object
      *
@@ -147,6 +171,34 @@ declare class Serviceability {
      * @description: Retrieves a list of courier partner accounts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
      */
     getCourierPartnerAccounts({ pageNo, pageSize, stage, paymentMode, transportType, requestHeaders }?: ServiceabilityPlatformValidator.GetCourierPartnerAccountsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CompanyCourierPartnerAccountListResult>;
+    /**
+     * @param {ServiceabilityPlatformValidator.GetCourierPartnerSchemeParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerV2SchemeModel>}
+     *   - Success response
+     *
+     * @name getCourierPartnerScheme
+     * @summary: Get Scheme for courier partner extension by Id
+     * @description: Update Scheme for courier partner extension by Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerScheme/).
+     */
+    getCourierPartnerScheme({ schemeId, requestHeaders }?: ServiceabilityPlatformValidator.GetCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerV2SchemeModel>;
+    /**
+     * @param {ServiceabilityPlatformValidator.GetCourierPartnerSchemesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.courierPartnerSchemeV2List>}
+     *   - Success response
+     *
+     * @name getCourierPartnerSchemes
+     * @summary: Get created Schemes for courier partner
+     * @description: Get created Schemes for courier partner - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerSchemes/).
+     */
+    getCourierPartnerSchemes({ schemeType, paymentMode, capabilities, schemeIds, requestHeaders }?: ServiceabilityPlatformValidator.GetCourierPartnerSchemesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.courierPartnerSchemeV2List>;
     /**
      * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -210,6 +262,20 @@ declare class Serviceability {
      */
     getPackageMaterials({ packageMaterialId, requestHeaders }?: ServiceabilityPlatformValidator.GetPackageMaterialsParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PackageMaterialResult>;
     /**
+     * @param {ServiceabilityPlatformValidator.GetSampleFileServiceabilityStatusParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.BulkRegionServiceabilityTatResult>}
+     *   - Success response
+     *
+     * @name getSampleFileServiceabilityStatus
+     * @summary: Get Serviceability TAT sample files generator status
+     * @description: Get Serviceability TAT sample file generator status - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getSampleFileServiceabilityStatus/).
+     */
+    getSampleFileServiceabilityStatus({ pageNo, pageSize, batchId, requestHeaders }?: ServiceabilityPlatformValidator.GetSampleFileServiceabilityStatusParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkRegionServiceabilityTatResult>;
+    /**
      * @param {ServiceabilityPlatformValidator.GetServiceabilityParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -242,6 +308,20 @@ declare class Serviceability {
      */
     getZones({ pageNo, pageSize, isActive, channelId, q, countryIsoCode, state, city, pincode, sector, requestHeaders, }?: ServiceabilityPlatformValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResult>;
     /**
+     * @param {ServiceabilityPlatformValidator.SampleFileServiceabilityParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.BulkRegionServiceabilityTatResultItemData>}
+     *   - Success response
+     *
+     * @name sampleFileServiceability
+     * @summary: Sample File Download
+     * @description: Sample File Download - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/sampleFileServiceability/).
+     */
+    sampleFileServiceability({ body, requestHeaders }?: ServiceabilityPlatformValidator.SampleFileServiceabilityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.BulkRegionServiceabilityTatResultItemData>;
+    /**
      * @param {ServiceabilityPlatformValidator.UpdateCompanyConfigurationParam} arg
      *   - Arg object
      *
@@ -266,6 +346,20 @@ declare class Serviceability {
      * @description: Updates an existing courier partner account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerAccount/).
      */
     updateCourierPartnerAccount({ accountId, body, requestHeaders }?: ServiceabilityPlatformValidator.UpdateCourierPartnerAccountParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierAccountResult>;
+    /**
+     * @param {ServiceabilityPlatformValidator.UpdateCourierPartnerSchemeParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerV2SchemeModel>}
+     *   - Success response
+     *
+     * @name updateCourierPartnerScheme
+     * @summary: Update Scheme for courier partner extension
+     * @description: Update Scheme for courier partner extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerScheme/).
+     */
+    updateCourierPartnerScheme({ schemeId, body, requestHeaders }?: ServiceabilityPlatformValidator.UpdateCourierPartnerSchemeParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerV2SchemeModel>;
     /**
      * @param {ServiceabilityPlatformValidator.UpdatePackageMaterialRuleParam} arg
      *   - Arg object

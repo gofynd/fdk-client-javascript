@@ -1,14 +1,16 @@
-const PublicAPIClient = require("../PublicAPIClient");
 const {
   FDKClientValidationError,
   FDKResponseValidationError,
 } = require("../../common/FDKError");
+
+const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+
 const WebhookPublicValidator = require("./WebhookPublicValidator");
 const WebhookPublicModel = require("./WebhookPublicModel");
-const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
+const { Logger } = require("./../../common/Logger");
 
 class Webhook {
   constructor(_conf) {

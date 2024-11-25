@@ -200,7 +200,7 @@ class LogisticsValidator {
     return Joi.object({
       companyId: Joi.number().required(),
       accountId: Joi.string().allow("").required(),
-      body: LogisticsModel.CourierAccount().required(),
+      body: LogisticsModel.CourierAccountUpdateDetails().required(),
     }).required();
   }
 
@@ -211,25 +211,40 @@ class LogisticsValidator {
     }).required();
   }
 
-  static createCourierPartnerScheme() {
-    return Joi.object({
-      body: LogisticsModel.CourierPartnerSchemeDetailsModel().required(),
-    }).required();
-  }
-
-  static updateCourierPartnerScheme() {
-    return Joi.object({
-      schemeId: Joi.string().allow("").required(),
-      body: LogisticsModel.CourierPartnerSchemeUpdateDetails().required(),
-    }).required();
-  }
-
   static getCountries() {
     return Joi.object({
       onboarding: Joi.boolean(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+    }).required();
+  }
+
+  static createCourierPartnerScheme() {
+    return Joi.object({
+      body: LogisticsModel.CourierPartnerSchemeV2DetailsModel().required(),
+    }).required();
+  }
+
+  static getCourierPartnerSchemes() {
+    return Joi.object({
+      schemeType: Joi.string().allow(""),
+      paymentMode: Joi.string().allow(""),
+      capabilities: Joi.array().items(Joi.string().allow("")),
+      schemeIds: Joi.array().items(Joi.string().allow("")),
+    }).required();
+  }
+
+  static updateCourierPartnerScheme() {
+    return Joi.object({
+      schemeId: Joi.string().allow("").required(),
+      body: LogisticsModel.CourierPartnerSchemeV2UpdateDetails().required(),
+    }).required();
+  }
+
+  static getCourierPartnerScheme() {
+    return Joi.object({
+      schemeId: Joi.string().allow("").required(),
     }).required();
   }
 }

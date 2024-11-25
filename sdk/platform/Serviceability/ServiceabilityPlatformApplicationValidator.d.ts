@@ -12,7 +12,7 @@ export = ServiceabilityPlatformApplicationValidator;
 /** @typedef GetApplicationServiceabilitySelfShipmentParam */
 /**
  * @typedef GetCourierPartnerRuleParam
- * @property {string} ruleId - A `rule_id` is a unique identifier for a rule.
+ * @property {string} ruleId - Unique identifier of the courier partner rule
  */
 /**
  * @typedef GetCourierPartnerRulesParam
@@ -53,11 +53,13 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateCourierRuleParam
- * @property {string} ruleId - A `rule_id` is a unique identifier for a particular Dp.
+ * @property {string} ruleId - Unique identifier of the courier partner rule.
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
 /**
  * @typedef UpdatePincodeAuditHistoryParam
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails} body
  */
 /**
@@ -66,6 +68,8 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef UpdatePincodeCoDListingParam
+ * @property {number} [pageNumber] - Page number to be fetched.
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {ServiceabilityPlatformModel.PincodeCodStatusListingDetails} body
  */
 /**
@@ -137,7 +141,7 @@ type CreateStoreRulesParam = {
 };
 type GetCourierPartnerRuleParam = {
     /**
-     * - A `rule_id` is a unique identifier for a rule.
+     * - Unique identifier of the courier partner rule
      */
     ruleId: string;
 };
@@ -184,18 +188,34 @@ type UpdateCourierPartnerRulePriorityParam = {
 };
 type UpdateCourierRuleParam = {
     /**
-     * - A `rule_id` is a unique identifier for a particular Dp.
+     * - Unique identifier of the courier partner rule.
      */
     ruleId: string;
     body: ServiceabilityPlatformModel.CourierPartnerRule;
 };
 type UpdatePincodeAuditHistoryParam = {
+    /**
+     * - Page number to be fetched.
+     */
+    pageNumber?: number;
+    /**
+     * - Determines the items to be displayed in a page
+     */
+    pageSize?: number;
     body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails;
 };
 type UpdatePincodeBulkViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopBulkData;
 };
 type UpdatePincodeCoDListingParam = {
+    /**
+     * - Page number to be fetched.
+     */
+    pageNumber?: number;
+    /**
+     * - Determines the items to be displayed in a page
+     */
+    pageSize?: number;
     body: ServiceabilityPlatformModel.PincodeCodStatusListingDetails;
 };
 type UpdatePincodeMopViewParam = {

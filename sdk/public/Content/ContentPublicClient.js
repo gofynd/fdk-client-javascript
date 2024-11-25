@@ -1,14 +1,16 @@
-const PublicAPIClient = require("../PublicAPIClient");
 const {
   FDKClientValidationError,
   FDKResponseValidationError,
 } = require("../../common/FDKError");
+
+const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+
 const ContentPublicValidator = require("./ContentPublicValidator");
 const ContentPublicModel = require("./ContentPublicModel");
-const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
+const { Logger } = require("./../../common/Logger");
 
 class Content {
   constructor(_conf) {

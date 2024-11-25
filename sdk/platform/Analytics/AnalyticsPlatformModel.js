@@ -83,7 +83,7 @@ class AnalyticsPlatformModel {
   static JobStatus() {
     return Joi.object({
       start_date: Joi.string().allow(""),
-      end_date: Joi.string().allow(""),
+      end_date: Joi.string().allow("").allow(null),
       status: Joi.string().allow(""),
       message: Joi.string().allow(""),
       file_metadata: Joi.array().items(Joi.any()).allow(null, ""),

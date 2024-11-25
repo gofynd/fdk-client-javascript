@@ -1,14 +1,6 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const {
-  FDKClientValidationError,
-  FDKResponseValidationError,
-} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const WebhookApplicationValidator = require("./WebhookApplicationValidator");
-const WebhookApplicationModel = require("./WebhookApplicationModel");
-const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Webhook {
   constructor(_conf) {
@@ -34,10 +26,9 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookApplicationValidator.SaveClickEventParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<WebhookApplicationModel.ClickEventDetails>} - Success response
+   * @returns {Promise<ClickEventDetails>} - Success response
    * @name saveClickEvent
    * @summary: Capture and save click events from various sales channels
    * @description: Send click events from various sales channels to enable insightful data collection and analysis. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/webhook/saveClickEvent/).
@@ -46,28 +37,6 @@ class Webhook {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = WebhookApplicationValidator.saveClickEvent().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = WebhookApplicationValidator.saveClickEvent().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Webhook > saveClickEvent \n ${warrning}`,
-      });
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -88,24 +57,6 @@ class Webhook {
     let responseData = response;
     if (responseHeaders) {
       responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = WebhookApplicationModel.ClickEventDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this._conf.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for application > Webhook > saveClickEvent \n ${res_error}`,
-        });
-      }
     }
 
     return response;

@@ -178,16 +178,6 @@ declare class Content {
      */
     createSEOMarkupSchema({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
     /**
-     * @param {ContentPlatformApplicationValidator.CreateSlideshowParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-     * @name createSlideshow
-     * @summary: Create a slideshow
-     * @description: Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
-     */
-    createSlideshow({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreateSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
-    /**
      * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
      *   - Arg object
      *
@@ -337,16 +327,6 @@ declare class Content {
      * @description: Use this API to Delete SEO Markup Schema - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSEOMarkupSchema/).
      */
     deleteSEOMarkupSchema({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSEOMarkupSchemaParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SEOSchemaMarkupTemplate>;
-    /**
-     * @param {ContentPlatformApplicationValidator.DeleteSlideshowParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-     * @name deleteSlideshow
-     * @summary: Delete a slideshow
-     * @description: Use this API to delete an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSlideshow/).
-     */
-    deleteSlideshow({ id, requestHeaders }?: ContentPlatformApplicationValidator.DeleteSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.EditDataLoaderParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -839,28 +819,6 @@ declare class Content {
      */
     getSEOMarkupSchemas({ title, active, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetSEOMarkupSchemasParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SeoSchemaComponent>;
     /**
-     * @param {ContentPlatformApplicationValidator.GetSlideshowBySlugParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-     * @name getSlideshowBySlug
-     * @summary: Get Slideshow
-     * @description: Use this API to get the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
-     */
-    getSlideshowBySlug({ slug, devicePlatform, requestHeaders }?: ContentPlatformApplicationValidator.GetSlideshowBySlugParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.GetSlideshowsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowGetDetails>} - Success response
-     * @name getSlideshows
-     * @summary: List Slideshows
-     * @description: Use this API to list all Slideshows - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
-     */
-    getSlideshows({ devicePlatform, pageNo, pageSize, requestHeaders }?: ContentPlatformApplicationValidator.GetSlideshowsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowGetDetails>;
-    /**
      * @param {ContentPlatformApplicationValidator.GetSupportInformationParam} arg
      *   - Arg object
      *
@@ -1137,16 +1095,6 @@ declare class Content {
      * @description: Modify configuration settings for SEO. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSEOConfiguration/).
      */
     updateSEOConfiguration({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSEOConfigurationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SeoSchema>;
-    /**
-     * @param {ContentPlatformApplicationValidator.UpdateSlideshowParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-     * @name updateSlideshow
-     * @summary: Update a slideshow
-     * @description: Use this API to Update Slideshow - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
-     */
-    updateSlideshow({ id, body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSlideshowParam, { responseHeaders }?: object): Promise<ContentPlatformModel.SlideshowSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.UpdateSupportInformationParam} arg
      *   - Arg object

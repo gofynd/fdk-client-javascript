@@ -754,8 +754,11 @@ const Joi = require("joi");
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta] - Additional information regarding price adjustment
  * @property {string} cart_id - Unique identifier of the cart
+ * @property {DistributionLogic} [distribution_logic]
  */
 
 /**
@@ -776,8 +779,11 @@ const Joi = require("joi");
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta] - Additional information regarding price adjustment
  * @property {string} cart_id - Unique identifier of the cart
+ * @property {DistributionLogic} [distribution_logic]
  */
 
 /**
@@ -810,6 +816,30 @@ const Joi = require("joi");
  * @property {Article[]} article_ids - The list of article object in the price adjustment
  * @property {Object} [meta] - Additional information regarding price adjustment
  * @property {string} cart_id - Unique identifier of the cart
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
+ * @property {DistributionLogic} [distribution_logic]
+ */
+
+/**
+ * @typedef DistributionRule
+ * @property {Object} [conditions] - This field defines the distribution conditions
+ */
+
+/**
+ * @typedef Distribution
+ * @property {string} [type] - This field defines the distribution type allowed
+ *   values('multi', 'single')
+ * @property {string} [logic] - This field defines the distribution logic
+ *   allowed values('apportion', 'weighted', 'equally')
+ * @property {DistributionRule} [rule]
+ */
+
+/**
+ * @typedef DistributionLogic
+ * @property {string} [distribution_level] - This field defines the distribution
+ *   level, currently allowed distribution level is (shipment)
+ * @property {Distribution} [distribution]
  */
 
 /**
@@ -2118,6 +2148,10 @@ const Joi = require("joi");
  * @property {string} [network]
  * @property {string} [type]
  * @property {string} [card_id]
+ * @property {string} [success_callback_url] - Success callback url to be
+ *   redirected after payment received
+ * @property {string} [failure_callback_url] - Failure callback url to be
+ *   redirected after payment failed
  */
 
 /**
@@ -2328,6 +2362,10 @@ const Joi = require("joi");
  *   the payment
  * @property {string} [type] - Type of cart if payment mode is card to do the payment
  * @property {string} [card_id] - Saved card id if payment mode is card to do the payment
+ * @property {string} [success_callback_url] - Success callback url to be
+ *   redirected after payment received
+ * @property {string} [failure_callback_url] - Failure callback url to be
+ *   redirected after payment failed
  */
 
 /**
@@ -3229,8 +3267,10 @@ class CartPlatformModel {
       allowed_refund: Joi.boolean(),
       is_authenticated: Joi.boolean().required(),
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
+      auto_remove: Joi.boolean(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       cart_id: Joi.string().allow("").required(),
+      distribution_logic: CartPlatformModel.DistributionLogic(),
     });
   }
 
@@ -3248,8 +3288,10 @@ class CartPlatformModel {
       allowed_refund: Joi.boolean(),
       is_authenticated: Joi.boolean().required(),
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
+      auto_remove: Joi.boolean(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       cart_id: Joi.string().allow("").required(),
+      distribution_logic: CartPlatformModel.DistributionLogic(),
     });
   }
 
@@ -3283,6 +3325,32 @@ class CartPlatformModel {
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       cart_id: Joi.string().allow("").required(),
+      auto_remove: Joi.boolean(),
+      distribution_logic: CartPlatformModel.DistributionLogic(),
+    });
+  }
+
+  /** @returns {DistributionRule} */
+  static DistributionRule() {
+    return Joi.object({
+      conditions: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {Distribution} */
+  static Distribution() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      logic: Joi.string().allow(""),
+      rule: CartPlatformModel.DistributionRule(),
+    });
+  }
+
+  /** @returns {DistributionLogic} */
+  static DistributionLogic() {
+    return Joi.object({
+      distribution_level: Joi.string().allow(""),
+      distribution: CartPlatformModel.Distribution(),
     });
   }
 
@@ -4646,6 +4714,8 @@ class CartPlatformModel {
       network: Joi.string().allow(""),
       type: Joi.string().allow(""),
       card_id: Joi.string().allow(""),
+      success_callback_url: Joi.string().allow("").allow(null),
+      failure_callback_url: Joi.string().allow("").allow(null),
     });
   }
 
@@ -4845,6 +4915,8 @@ class CartPlatformModel {
       network: Joi.string().allow(""),
       type: Joi.string().allow(""),
       card_id: Joi.string().allow(""),
+      success_callback_url: Joi.string().allow("").allow(null),
+      failure_callback_url: Joi.string().allow("").allow(null),
     });
   }
 

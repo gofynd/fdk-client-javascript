@@ -20,7 +20,9 @@ declare class LogisticsValidator {
     static getCourierPartnerAccounts(): any;
     static updateCourierPartnerAccount(): any;
     static getCourierPartnerAccount(): any;
-    static createCourierPartnerScheme(): any;
-    static updateCourierPartnerScheme(): any;
     static getCountries(): any;
+    static createCourierPartnerScheme(): any;
+    static getCourierPartnerSchemes(): any;
+    static updateCourierPartnerScheme(): any;
+    static getCourierPartnerScheme(): any;
 }

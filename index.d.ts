@@ -1,6 +1,5 @@
 import { ApplicationConfig } from "./sdk/application";
 import { ApplicationClient } from "./sdk/application";
-import { ApplicationModel } from "./sdk/application";
 import { PartnerConfig } from "./sdk/partner";
 import { PartnerClient } from "./sdk/partner";
 import { PartnerModel } from "./sdk/partner";
@@ -13,4 +12,4 @@ import { PublicModel } from "./sdk/public";
 import { fdkAxios } from "./sdk/common/AxiosHelper";
 import Utility = require("./sdk/common/Utility");
 import Constant = require("./sdk/common/Constant");
-export { ApplicationConfig, ApplicationClient, ApplicationModel, PartnerConfig, PartnerClient, PartnerModel, PlatformConfig, PlatformClient, PlatformModel, PublicConfig, PublicClient, PublicModel, fdkAxios as FdkAxios, Utility, Constant };
+export { ApplicationConfig, ApplicationClient, PartnerConfig, PartnerClient, PartnerModel, PlatformConfig, PlatformClient, PlatformModel, PublicConfig, PublicClient, PublicModel, fdkAxios as FdkAxios, Utility, Constant };

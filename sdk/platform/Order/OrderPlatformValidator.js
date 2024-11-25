@@ -14,13 +14,15 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef BulkListingParam
- * @property {number} pageSize - Page size
- * @property {number} pageNo - Page number
- * @property {string} startDate - UTC start date in ISO format
- * @property {string} endDate - UTC end date in ISO format
- * @property {string} [status] - Status for which to fetch the jobs.
- * @property {string} [bulkActionType] - Job type.
- * @property {string} [searchKey] - Search_key.
+ * @property {number} pageSize - The number of records to return per page in the response.
+ * @property {number} pageNo - The page number to fetch from the paginated results.
+ * @property {string} startDate - The start date for filtering the jobs,
+ *   expressed in UTC format
+ * @property {string} endDate - The end date for filtering the jobs, expressed
+ *   in UTC format
+ * @property {string} [status] - The status of the jobs to filter the results.
+ * @property {string} [bulkActionType] - Pecifies the type of job action being requested.
+ * @property {string} [searchKey] - A key or keyword used to search for specific jobs.
  */
 
 /**
@@ -69,11 +71,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef FetchCreditBalanceDetailParam
- * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
- */
-
-/**
  * @typedef FetchRefundModeConfigParam
  * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
  */
@@ -98,21 +95,21 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef GetAllowedStateTransitionParam
- * @property {string} orderingChannel - Ordering channel
- * @property {string} status - Current status of a shipment
+ * @property {string} orderingChannel - The channel through which orders are placed.
+ * @property {string} status - The status key indicates the current status for
+ *   which the API will provide a list of possible next state transitions.
  */
 
 /** @typedef GetAllowedTemplatesForBulkParam */
 
 /**
  * @typedef GetAnnouncementsParam
- * @property {string} [date] - Date On which the announcement is Active (Date
- *   should in ISO Datetime format IST Time)
+ * @property {string} [date] - Date On which the announcement is Active.
  */
 
 /**
  * @typedef GetBagByIdParam
- * @property {string} [bagId] - Id of bag
+ * @property {string} [bagId] - Unique identifier of a bag
  * @property {string} [channelBagId] - Id of application bag
  * @property {string} [channelId] - Id of application
  */
@@ -152,10 +149,10 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef GetFileByStatusParam
- * @property {string} batchId
- * @property {string} status
- * @property {string} fileType - It contains the type of file.
- * @property {string} [reportType]
+ * @property {string} batchId - Batch Id to identify the bulk operation request.
+ * @property {string} status - The status of the jobs to filter the results.
+ * @property {string} fileType
+ * @property {string} [reportType] - The type of report to be downloaded.
  */
 
 /**
@@ -185,32 +182,38 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   preferences. This field categorizes orders into distinct types, each
  *   associated with a unique processing flow. For example:
  *
- *   - "HomeDelivery": The order undergoes all state transitions typical for a
- *       delivery, from processing the shipment to final delivery at the
- *       customer's address.
- *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
- *       is ready to be handed over directly to the customer at the store. This
- *       type streamlines the process by bypassing traditional shipping stages
- *       and facilitating a quicker transition to the final handover stage.
+ *   - "HomeDelivery": The order goes through all the steps needed for delivery,
+ *       from being packed to arriving at the customer’s address.
+ *   - "PickAtStore": The order is prepared for pickup at the store, skipping
+ *       shipping steps to make it ready faster for the customer to collect in person.
+ *   - "Digital": This order type likely refers to orders that involve digital goods
+ *       or services, such as software, digital subscriptions, e-books, online
+ *       courses, or any other item that can be delivered electronically.
  */
 
 /**
  * @typedef GetManifestDetailsParam
- * @property {string} manifestId
+ * @property {string} manifestId - The unique identifier assigned to the manifest.
+ * @property {string} [dpIds] - Filter shipments with the specific Courier
+ *   partner Ids which is a combination of courier partner extension and scheme Ids.
+ * @property {string} [endDate] - End date for the shipment search range in manifest.
+ * @property {string} [startDate] - Start date for the shipment search range in manifest.
+ * @property {number} [pageNo] - Page number for pagination.
+ * @property {number} [pageSize] - Number of records per page for pagination.
  */
 
 /**
  * @typedef GetManifestShipmentsParam
  * @property {string} dpIds - Filter shipments with the specific Courier partner
  *   Ids which is a combination of courier partner extension and scheme Ids.
- * @property {number} stores - Filter with the specific store.
+ * @property {number} stores - Filter results based on specific store IDs.
  * @property {string} toDate - End date for the shipment search range.
  * @property {string} fromDate - Start date for the shipment search range.
- * @property {string} [dpName] - Filter with the specific courier partner name.
- * @property {string} [salesChannels] - Comma-separated list of sales channels.
- * @property {string} [searchType] - Type of search (e.g., by shipment ID, order
- *   ID, AWB number).
- * @property {string} [searchValue] - Value to search for based on the search type.
+ * @property {string} [dpName] - Filter results based on specific courier partner name.
+ * @property {string} [salesChannels] - Filter results based on comma-separated
+ *   list of sales channels.
+ * @property {string} [searchType] - Filter results based on search type.
+ * @property {string} [searchValue] - Filter results based on the search value.
  * @property {number} [pageNo] - Page number for pagination.
  * @property {number} [pageSize] - Number of records per page for pagination.
  */
@@ -222,16 +225,20 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef GetManifestsParam
- * @property {string} [status] - Possible Status [ active, closed ]
- * @property {string} [startDate] - UTC Start Date in ISO format
- * @property {string} [endDate] - UTC End Date in ISO format
- * @property {string} [searchType] - Search type options [ fynd_order_id,
- *   shipment_id, manifest_id, dp_name, awb_no ]
- * @property {number} [storeId] - Fetch manifests for a Store.
- * @property {string} [searchValue] - Search value for selected search type
- * @property {string} [dpIds] - DP Ids separated by ',' (comma)
- * @property {number} [pageNo]
- * @property {number} [pageSize]
+ * @property {string} [status] - Filter for the status of manifests.
+ * @property {string} [startDate] - The starting date for filtering manifests in
+ *   ISO format
+ * @property {string} [endDate] - The end date for filtering manifests in ISO format
+ * @property {string} [searchType] - Specifies the type of search to perform.
+ * @property {number} [storeId] - Filter to fetch manifests for a specific store
+ *   by its ID.
+ * @property {string} [searchValue] - The value to search for based on the
+ *   selected search type.
+ * @property {string} [dpIds] - A comma-separated list of courier partner IDs
+ *   (DP IDs) to filter the manifests.
+ * @property {number} [pageNo] - The number of the page to fetch data.
+ * @property {number} [pageSize] - The number of records to return per page for
+ *   pagination.
  */
 
 /**
@@ -244,13 +251,14 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef GetOrdersParam
  * @property {string} [lane] - Lane refers to a section where orders are
- *   assigned, indicating its grouping
+ *   assigned, indicating its grouping.
  * @property {string} [searchType] - Search_type refers to the field that will
- *   be used as the target for the search operation
+ *   be used as the target for the search operation.
  * @property {string} [bagStatus] - Bag_status refers to status of the entity.
  *   Filters orders based on the status.
  * @property {number} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
- * @property {string} [paymentMethods]
+ * @property {string} [paymentMethods] - Comma separated values of payment
+ *   methods that were used to place order.
  * @property {string} [tags] - Tags refers to additional descriptive labels
  *   associated with the order
  * @property {string} [searchValue] - Search_value is matched against the field
@@ -260,16 +268,19 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [startDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [endDate] - Date time in UTC timezone as per ISO format.
  * @property {string} [dpIds] - Delivery Partner IDs to which shipments are assigned.
- * @property {string} [stores]
- * @property {string} [salesChannels]
- * @property {number} [pageNo]
- * @property {number} [pageSize]
+ * @property {string} [stores] - A comma-separated list of store IDs used to
+ *   filter results to only those related to specific stores.
+ * @property {string} [salesChannels] - A comma-separated list of sales channel
+ *   IDs to filter results based on the sales channels involved.
+ * @property {number} [pageNo] - Specifies the page number for paginated results.
+ * @property {number} [pageSize] - Determines the number of results returned per page.
  * @property {boolean} [isPrioritySort]
  * @property {string} [customMeta]
  * @property {boolean} [myOrders]
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
  *   company order
- * @property {string} [customerId]
+ * @property {string} [customerId] - The unique identifier for the customer
+ *   associated with the query, useful for filtering results to a specific customer.
  * @property {string} [orderType]
  * @property {boolean} [allowInactive] - Flag indicating whether inactive
  *   shipments are allowed
@@ -278,14 +289,22 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   organized based on shipment groups or order groups. For example, using
  *   'shipments' groups results by shipment, while an invalid value like 'abcd'
  *   may not be recognized, leading to errors or default behavior.
+ * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
+ *   orders. This is useful when fetching data for a specific date range while
+ *   performing searches.
+ * @property {string} [fulfillmentType] - Define the Fulfillment Type for
+ *   Listing Orders, This is use when we want to get list of shipments or orders
+ *   by cross store or cross company or fulfilling Store (by default), this is
+ *   also depends on the login user accessType and store access
  */
 
 /** @typedef GetRoleBasedActionsParam */
 
 /**
  * @typedef GetShipmentByIdParam
- * @property {string} [channelShipmentId] - App Shipment Id
- * @property {string} [shipmentId] - Shipment Id
+ * @property {string} [channelShipmentId] - The shipment ID used in the
+ *   application, which can be used to reference specific shipments.
+ * @property {string} [shipmentId] - The unique identifier for a shipment.
  * @property {boolean} [fetchActiveShipment] - Flag to fetch active or
  *   deactivated shipments
  * @property {boolean} [allowInactive] - Flag indicating whether inactive
@@ -294,8 +313,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef GetShipmentHistoryParam
- * @property {string} [shipmentId] - Shipment Id
- * @property {number} [bagId] - Bag/Product Id
+ * @property {string} [shipmentId] - Identifier for the shipment
+ * @property {number} [bagId] - Identifier for a bag or product.
  */
 
 /**
@@ -311,56 +330,68 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef GetShipmentsParam
  * @property {string} [lane] - Name of lane for which data is to be fetched
- * @property {string} [bagStatus] - Comma separated values of bag statuses
+ * @property {string} [bagStatus] - Comma separated values of bag statuses.
  * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
- *   bag_status and override lane
- * @property {number} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
- * @property {string} [searchType] - Search_type refers to the field that will
- *   be used as the target for the search operation
- * @property {string} [searchValue] - Search type value
+ *   bag_status and override lane.
+ * @property {number} [timeToDispatch] - Indicates the time to dispatch.
+ * @property {string} [searchType] - Specifies the key used to determine the
+ *   type of search being performed.
+ * @property {string} [searchValue] - The value corresponding to the search
+ *   type, such as a specific shipment ID or order ID.
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
  * @property {string} [toDate] - End Date in DD-MM-YYYY format
- * @property {string} [startDate] - UTC Start Date in ISO format
- * @property {string} [endDate] - UTC End Date in ISO format
- * @property {string} [dpIds] - Comma separated values of delivery partner ids
- * @property {string} [stores] - Comma separated values of store ids
- * @property {string} [salesChannels] - Comma separated values of sales channel ids
- * @property {number} [pageNo] - Page number for paginated data
- * @property {number} [pageSize] - Page size of data received per page
- * @property {boolean} [fetchActiveShipment] - Flag to fetch active shipments
- * @property {boolean} [allowInactive] - Flag to allow inactive shipments
- * @property {boolean} [excludeLockedShipments] - Flag to fetch locked shipments
- * @property {string} [paymentMethods] - Comma separated values of payment methods
- * @property {string} [channelShipmentId] - App Shipment Id
- * @property {string} [channelOrderId] - App Order Id
- * @property {string} [customMeta]
- * @property {string} [orderingChannel]
- * @property {string} [companyAffiliateTag]
- * @property {boolean} [myOrders]
- * @property {string} [platformUserId]
- * @property {string} [sortType] - Sort the result data on basis of input
- * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
- *   company order
- * @property {string} [tags] - Comma separated values of tags
- * @property {string} [customerId]
- * @property {string} [orderType] - Defines the specific journey a shipment will
- *   follow based on the application's operational needs and customer
- *   preferences. This field categorizes orders into distinct types, each
- *   associated with a unique processing flow. For example:
- *
- *   - "HomeDelivery": The order undergoes all state transitions typical for a
- *       delivery, from processing the shipment to final delivery at the
- *       customer's address.
- *   - "PickAtStore": The order is prepared for pickup and moved to a state where it
- *       is ready to be handed over directly to the customer at the store. This
- *       type streamlines the process by bypassing traditional shipping stages
- *       and facilitating a quicker transition to the final handover stage.
- *
+ * @property {string} [startDate] - The UTC start date in ISO format
+ *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+ * @property {string} [endDate] - The UTC end date in ISO format
+ *   (YYYY-MM-DDTHH:MM:SSZ) for filtering results.
+ * @property {string} [dpIds] - A comma-separated list of delivery partner IDs
+ *   to filter results by specific delivery partners.
+ * @property {string} [stores] - A comma-separated list of store IDs used to
+ *   filter results to only those related to specific stores.
+ * @property {string} [salesChannels] - A comma-separated list of sales channel
+ *   IDs to filter results based on the sales channels involved.
+ * @property {number} [pageNo] - Specifies the page number for paginated results.
+ * @property {number} [pageSize] - Determines the number of results returned per page.
+ * @property {boolean} [fetchActiveShipment] - A boolean flag that indicates
+ *   whether to include only active shipments in the results.
+ * @property {boolean} [allowInactive] - A flag indicating whether to allow the
+ *   inclusion of inactive shipments in the results.
+ * @property {boolean} [excludeLockedShipments] - A flag to specify whether to
+ *   exclude shipments that are locked from the results.
+ * @property {string} [paymentMethods] - A comma-separated list of payment methods.
+ * @property {string} [channelShipmentId] - The shipment ID used in the
+ *   application, which can be used to reference specific shipments.
+ * @property {string} [channelOrderId] - The order ID used in the application.
+ * @property {string} [customMeta] - Custom metadata associated with the query,
+ *   allowing for additional filtering or information to be passed.
+ * @property {string} [orderingChannel] - The channel through which the order was placed.
+ * @property {string} [companyAffiliateTag] - A tag used to identify the
+ *   company's affiliation for filtering or reporting purposes.
+ * @property {boolean} [myOrders] - A boolean flag indicating whether the query
+ *   should return only the user's orders.
+ * @property {string} [platformUserId] - The unique identifier of the user on
+ *   the platform, useful for filtering orders related to a specific user.
+ * @property {string} [sortType] - Determines the sorting order of the results
+ *   based on specific criteria.
+ * @property {boolean} [showCrossCompanyData] - A flag indicating whether to
+ *   include data from both cross-company and non-cross-company orders in the results.
+ * @property {string} [tags] - A comma-separated list of tags associated with
+ *   the orders to filter results based on specific characteristics.
+ * @property {string} [customerId] - The unique identifier for the customer
+ *   associated with the query, useful for filtering results to a specific customer.
+ * @property {string} [orderType] - The type of order being queried.
  * @property {string} [groupEntity] - Defines the grouping criterion for
  *   retrieving shipments or orders. It specifies whether the results should be
  *   organized based on shipment groups or order groups. For example, using
  *   'shipments' groups results by shipment, while an invalid value like 'abcd'
  *   may not be recognized, leading to errors or default behavior.
+ * @property {boolean} [enforceDateFilter] - Applies a date filter for listing
+ *   shipments. This is useful when fetching data for a specific date range
+ *   while performing searches.
+ * @property {string} [fulfillmentType] - Define the Fulfillment Type for
+ *   Listing Orders, This is use when we want to get list of shipments or orders
+ *   by cross store or cross company or fulfilling Store (by default), this is
+ *   also depends on the login user accessType and store access
  */
 
 /**
@@ -390,7 +421,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef JobDetailsParam
- * @property {string} batchId
+ * @property {string} batchId - A unique identifier for the batch associated
+ *   with this bulk action.
  */
 
 /**
@@ -401,11 +433,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef PostShipmentHistoryParam
  * @property {OrderPlatformModel.PostShipmentHistory} body
- */
-
-/**
- * @typedef ProcessManifestsParam
- * @property {OrderPlatformModel.ProcessManifest} body
  */
 
 /**
@@ -425,10 +452,10 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef TrackShipmentParam
- * @property {string} [shipmentId] - Shipment ID
+ * @property {string} [shipmentId] - Unique identifier of a shipment on the platform.
  * @property {string} [awb] - AWB number
- * @property {number} [pageNo] - Page number
- * @property {number} [pageSize] - Page size
+ * @property {number} [pageNo] - Page number for pagination.
+ * @property {number} [pageSize] - Number of records per page for pagination.
  */
 
 /**
@@ -464,8 +491,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
  * @typedef UploadConsentsParam
- * @property {string} manifestId
- * @property {OrderPlatformModel.UploadConsent} body
+ * @property {OrderPlatformModel.UploadManifestConsent} body
  */
 
 /**
@@ -561,13 +587,6 @@ class OrderPlatformValidator {
   static failedOrderLogDetails() {
     return Joi.object({
       logId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {FetchCreditBalanceDetailParam} */
-  static fetchCreditBalanceDetail() {
-    return Joi.object({
-      body: OrderPlatformModel.FetchCreditBalanceRequestPayload().required(),
     }).required();
   }
 
@@ -713,6 +732,11 @@ class OrderPlatformValidator {
   static getManifestDetails() {
     return Joi.object({
       manifestId: Joi.string().allow("").required(),
+      dpIds: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
+      startDate: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -790,6 +814,8 @@ class OrderPlatformValidator {
       orderType: Joi.string().allow(""),
       allowInactive: Joi.boolean(),
       groupEntity: Joi.string().allow(""),
+      enforceDateFilter: Joi.boolean(),
+      fulfillmentType: Joi.string().allow(""),
     }).required();
   }
 
@@ -860,6 +886,8 @@ class OrderPlatformValidator {
       customerId: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
       groupEntity: Joi.string().allow(""),
+      enforceDateFilter: Joi.boolean(),
+      fulfillmentType: Joi.string().allow(""),
     }).required();
   }
 
@@ -917,13 +945,6 @@ class OrderPlatformValidator {
   static postShipmentHistory() {
     return Joi.object({
       body: OrderPlatformModel.PostShipmentHistory().required(),
-    }).required();
-  }
-
-  /** @returns {ProcessManifestsParam} */
-  static processManifests() {
-    return Joi.object({
-      body: OrderPlatformModel.ProcessManifest().required(),
     }).required();
   }
 
@@ -1004,8 +1025,7 @@ class OrderPlatformValidator {
   /** @returns {UploadConsentsParam} */
   static uploadConsents() {
     return Joi.object({
-      manifestId: Joi.string().allow("").required(),
-      body: OrderPlatformModel.UploadConsent().required(),
+      body: OrderPlatformModel.UploadManifestConsent().required(),
     }).required();
   }
 

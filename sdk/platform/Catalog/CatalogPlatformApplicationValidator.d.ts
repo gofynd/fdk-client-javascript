@@ -14,6 +14,16 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef CreateCollectionParam
+ * @property {string} [q] - Get collection list filtered by q string,
+ * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
+ * @property {string} [type] - Type of the collections
+ * @property {string[]} [tags] - Each response will contain next_id param, which
+ *   should be sent back to make pagination work.
+ * @property {boolean} [isActive] - Get collections filtered by active status.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
  * @property {CatalogPlatformModel.CreateCollection} body
  */
 /**
@@ -165,7 +175,7 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  */
 /**
@@ -173,12 +183,12 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
+ * @property {string} [q] - Search query with brand name. Use this parameter to
  *   search brands by brand name.
  * @property {number[]} [brandId] - Helps to sort the brands list on the basis
  *   of uid list.
@@ -191,8 +201,8 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search brands by brand name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 /**
  * @typedef GetApplicationDepartmentListingParam
@@ -200,31 +210,32 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search query with brand name.Use this parameter to
- *   search department by name.
+ * @property {string} [q] - A search query string. Use this parameter to filter
+ *   results based on a keyword or specific value.
  */
 /**
  * @typedef GetApplicationFilterKeysParam
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ *   All the parameter filtered from filter parameters will be passed in "c"
+ *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
  */
 /**
  * @typedef GetApplicationFilterValuesParam
- * @property {string} filterKey - A `filter_key` is a filter key for a for which
- *   all the available filter values will returned. channel.
+ * @property {string} filterKey - A `filter_key` is a filter key which returns
+ *   all the available filter values.
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ *   All the parameter filtered from filter parameters will be passed in "c"
+ *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
  * @property {string} [collectionId] - A `collection_id` is a unique identifier
- *   for a particular collection. channel.
+ *   for a particular collection.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
- * @property {string} [q] - Get Values filtered by q string
+ * @property {string} [q] - The `q` parameter allows you to search and filter
+ *   specific data within the filter options. It acts as a query keyword that
+ *   can refine the results by matching relevant filter values, such as a
+ *   category name or any other applicable filter criteria.
  */
 /**
  * @typedef GetApplicationProductsParam
@@ -252,7 +263,7 @@ export = CatalogPlatformApplicationValidator;
  *   page items. Default is 1.
  * @property {string} [pageType] - For pagination type should be cursor or
  *   number. Default is cursor.
- * @property {number[]} [itemIds] - Item Ids of product
+ * @property {string[]} [itemIds] - Item Ids of product
  */
 /** @typedef GetAutocompleteConfigParam */
 /**
@@ -263,14 +274,14 @@ export = CatalogPlatformApplicationValidator;
 /** @typedef GetCatalogConfigurationParam */
 /**
  * @typedef GetCatalogInsightsParam
- * @property {string} [brand] - Brand slug
+ * @property {string} [brand] - Brand slug that is to be searched.
  */
 /**
  * @typedef GetCategoriesParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
- *   **v1.0/departments/** API
+ *   "v1.0/departments/" API
  */
 /**
  * @typedef GetCollectionDetailParam
@@ -287,6 +298,7 @@ export = CatalogPlatformApplicationValidator;
  *   should be sent back to make pagination work.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ * @property {number} [pageNo] - Identifies the specific page of results being requested.
  */
 /**
  * @typedef GetConfigurationByTypeParam
@@ -307,14 +319,13 @@ export = CatalogPlatformApplicationValidator;
 /** @typedef GetDepartmentsParam */
 /**
  * @typedef GetDiscountedInventoryBySizeIdentifierParam
- * @property {number} itemId - Item code of the product of which size is to be get.
- * @property {string} sizeIdentifier - Size Identifier (Seller Identifier or
- *   Primary Identifier) of which inventory is to get.
+ * @property {number} itemId - A `item_id` is a unique identifier for a specific product.
+ * @property {number} sizeIdentifier - Size Identifier (Seller Identifier or
+ *   Primary Identifier).
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {string} [q] - Search with help of store code.
  * @property {number[]} [locationIds] - Search by store ids.
  */
 /**
@@ -343,7 +354,7 @@ export = CatalogPlatformApplicationValidator;
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
- *   **v1.0/products/**
+ *   "v1.0/products/"
  */
 /** @typedef GetQueryFiltersParam */
 /** @typedef GetSearchConfigurationParam */
@@ -358,12 +369,14 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAppBrandParam
- * @property {string} brandUid - Brand id for which the custom_json is associated.
+ * @property {number} brandUid - A `brand id` is a unique identifier for a
+ *   particular brand.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 /**
  * @typedef UpdateAppCategoryParam
- * @property {string} categoryUid - Category id for which the custom_json is associated.
+ * @property {string} categoryUid - A `category id` is a unique identifier for a
+ *   particular category.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 /**
@@ -372,18 +385,18 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAppDepartmentParam
- * @property {string} departmentUid - Department id for which the custom_json is
- *   associated.
+ * @property {number} departmentUid - A `department id` is a unique identifier
+ *   for a particular department.
  * @property {CatalogPlatformModel.ApplicationDepartmentJson} body
  */
 /**
  * @typedef UpdateAppLocationParam
- * @property {string} storeUid - Store id for which the custom_json is associated.
+ * @property {number} storeUid - Store id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationStoreJson} body
  */
 /**
  * @typedef UpdateAppProductParam
- * @property {string} itemId - Product id for which the custom_meta is associated.
+ * @property {number} itemId - A `item_id` is a unique identifier for a particular item.
  * @property {CatalogPlatformModel.ApplicationItemMeta} body
  */
 /**
@@ -582,6 +595,37 @@ type CreateAppReturnConfigurationParam = {
     body: CatalogPlatformModel.CreateUpdateAppReturnConfig;
 };
 type CreateCollectionParam = {
+    /**
+     * - Get collection list filtered by q string,
+     */
+    q?: string;
+    /**
+     * - Get collection list filtered by scheduled status,
+     */
+    scheduleStatus?: string;
+    /**
+     * - Type of the collections
+     */
+    type?: string;
+    /**
+     * - Each response will contain next_id param, which
+     * should be sent back to make pagination work.
+     */
+    tags?: string[];
+    /**
+     * - Get collections filtered by active status.
+     */
+    isActive?: boolean;
+    /**
+     * - The page number to navigate through the given
+     * set of results.
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
     body: CatalogPlatformModel.CreateCollection;
 };
 type CreateConfigurationByTypeParam = {
@@ -864,7 +908,7 @@ type GetApplicationBrandListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
+     * - Search query with brand name. Use this parameter to
      * search brands by brand name.
      */
     q?: string;
@@ -874,7 +918,7 @@ type GetApplicationBrandsParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
      * of available departments. You can retrieve available departments from the
-     * **v1.0/departments/** API
+     * "v1.0/departments/" API
      */
     department?: string;
     /**
@@ -888,7 +932,7 @@ type GetApplicationBrandsParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
+     * - Search query with brand name. Use this parameter to
      * search brands by brand name.
      */
     q?: string;
@@ -915,8 +959,8 @@ type GetApplicationCategoryListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
-     * search brands by brand name.
+     * - A search query string. Use this parameter to filter
+     * results based on a keyword or specific value.
      */
     q?: string;
 };
@@ -932,36 +976,34 @@ type GetApplicationDepartmentListingParam = {
      */
     pageSize?: number;
     /**
-     * - Search query with brand name.Use this parameter to
-     * search department by name.
+     * - A search query string. Use this parameter to filter
+     * results based on a keyword or specific value.
      */
     q?: string;
 };
 type GetApplicationFilterKeysParam = {
     /**
      * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in **c**
-     * parameter in this format.
-     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     * All the parameter filtered from filter parameters will be passed in "c"
+     * parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
      */
     c?: string;
 };
 type GetApplicationFilterValuesParam = {
     /**
-     * - A `filter_key` is a filter key for a for which
-     * all the available filter values will returned. channel.
+     * - A `filter_key` is a filter key which returns
+     * all the available filter values.
      */
     filterKey: string;
     /**
      * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in **c**
-     * parameter in this format.
-     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     * All the parameter filtered from filter parameters will be passed in "c"
+     * parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
      */
     c?: string;
     /**
      * - A `collection_id` is a unique identifier
-     * for a particular collection. channel.
+     * for a particular collection.
      */
     collectionId?: string;
     /**
@@ -975,7 +1017,10 @@ type GetApplicationFilterValuesParam = {
      */
     pageSize?: number;
     /**
-     * - Get Values filtered by q string
+     * - The `q` parameter allows you to search and filter
+     * specific data within the filter options. It acts as a query keyword that
+     * can refine the results by matching relevant filter values, such as a
+     * category name or any other applicable filter criteria.
      */
     q?: string;
 };
@@ -1037,7 +1082,7 @@ type GetApplicationProductsParam = {
     /**
      * - Item Ids of product
      */
-    itemIds?: number[];
+    itemIds?: string[];
 };
 type GetAutocompleteKeywordDetailParam = {
     /**
@@ -1048,7 +1093,7 @@ type GetAutocompleteKeywordDetailParam = {
 };
 type GetCatalogInsightsParam = {
     /**
-     * - Brand slug
+     * - Brand slug that is to be searched.
      */
     brand?: string;
 };
@@ -1057,7 +1102,7 @@ type GetCategoriesParam = {
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
      * of available departments. You can retrieve available departments from the
-     * **v1.0/departments/** API
+     * "v1.0/departments/" API
      */
     department?: string;
 };
@@ -1089,6 +1134,10 @@ type GetCollectionItemsParam = {
      * Default is 12.
      */
     pageSize?: number;
+    /**
+     * - Identifies the specific page of results being requested.
+     */
+    pageNo?: number;
 };
 type GetConfigurationByTypeParam = {
     /**
@@ -1123,14 +1172,14 @@ type GetConfigurationMetadataParam = {
 };
 type GetDiscountedInventoryBySizeIdentifierParam = {
     /**
-     * - Item code of the product of which size is to be get.
+     * - A `item_id` is a unique identifier for a specific product.
      */
     itemId: number;
     /**
      * - Size Identifier (Seller Identifier or
-     * Primary Identifier) of which inventory is to get.
+     * Primary Identifier).
      */
-    sizeIdentifier: string;
+    sizeIdentifier: number;
     /**
      * - The page number to navigate through the given
      * set of results
@@ -1141,10 +1190,6 @@ type GetDiscountedInventoryBySizeIdentifierParam = {
      * Default is 12.
      */
     pageSize?: number;
-    /**
-     * - Search with help of store code.
-     */
-    q?: string;
     /**
      * - Search by store ids.
      */
@@ -1201,7 +1246,7 @@ type GetProductDetailBySlugParam = {
     /**
      * - The unique identifier of a product. i.e; `slug` of
      * a product. You can retrieve these from the APIs that list products like
-     * **v1.0/products/**
+     * "v1.0/products/"
      */
     slug: string;
 };
@@ -1217,14 +1262,16 @@ type UpdateAllowSingleParam = {
 };
 type UpdateAppBrandParam = {
     /**
-     * - Brand id for which the custom_json is associated.
+     * - A `brand id` is a unique identifier for a
+     * particular brand.
      */
-    brandUid: string;
+    brandUid: number;
     body: CatalogPlatformModel.ApplicationBrandJson;
 };
 type UpdateAppCategoryParam = {
     /**
-     * - Category id for which the custom_json is associated.
+     * - A `category id` is a unique identifier for a
+     * particular category.
      */
     categoryUid: string;
     body: CatalogPlatformModel.ApplicationCategoryJson;
@@ -1234,24 +1281,24 @@ type UpdateAppCategoryReturnConfigurationParam = {
 };
 type UpdateAppDepartmentParam = {
     /**
-     * - Department id for which the custom_json is
-     * associated.
+     * - A `department id` is a unique identifier
+     * for a particular department.
      */
-    departmentUid: string;
+    departmentUid: number;
     body: CatalogPlatformModel.ApplicationDepartmentJson;
 };
 type UpdateAppLocationParam = {
     /**
      * - Store id for which the custom_json is associated.
      */
-    storeUid: string;
+    storeUid: number;
     body: CatalogPlatformModel.ApplicationStoreJson;
 };
 type UpdateAppProductParam = {
     /**
-     * - Product id for which the custom_meta is associated.
+     * - A `item_id` is a unique identifier for a particular item.
      */
-    itemId: string;
+    itemId: number;
     body: CatalogPlatformModel.ApplicationItemMeta;
 };
 type UpdateAppReturnConfigurationParam = {

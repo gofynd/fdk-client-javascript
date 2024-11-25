@@ -13,7 +13,7 @@ declare class Serviceability {
      *   - Success response
      *
      * @name createCourierPartnerRule
-     * @summary: Create rourier rule
+     * @summary: Create courier rule
      * @description: Creates a rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
      */
     createCourierPartnerRule({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateCourierPartnerRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>;
@@ -218,7 +218,7 @@ declare class Serviceability {
      * @summary: Get audit trail
      * @description: Retrieves the history of changes made to cash on delivery settings for pincodes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
      */
-    updatePincodeAuditHistory({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResultData>;
+    updatePincodeAuditHistory({ body, pageNumber, pageSize, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResultData>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam} arg
      *   - Arg object
@@ -245,7 +245,7 @@ declare class Serviceability {
      * @summary: Get COD enabled pincodes
      * @description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
      */
-    updatePincodeCoDListing({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResult>;
+    updatePincodeCoDListing({ body, pageNumber, pageSize, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResult>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam} arg
      *   - Arg object

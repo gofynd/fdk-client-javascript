@@ -325,22 +325,6 @@ export = ContentPlatformModel;
  * @property {string} [end]
  */
 /**
- * @typedef ConfigurationSchema
- * @property {number} [sleep_time]
- * @property {boolean} [start_on_launch]
- * @property {number} [duration]
- * @property {string} [slide_direction]
- */
-/**
- * @typedef SlideshowMedia
- * @property {string} [type]
- * @property {string} [url]
- * @property {string} [bg_color]
- * @property {number} [duration]
- * @property {boolean} [auto_decide_duration]
- * @property {Action} [action]
- */
-/**
  * @typedef UpdateHandpickedSchema
  * @property {HandpickedTagSchema} [tag]
  */
@@ -643,32 +627,6 @@ export = ContentPlatformModel;
  * @property {NavigationSchema[]} [system_pages]
  * @property {PageSchema[]} [custom_pages]
  * @property {string} [application_id]
- */
-/**
- * @typedef SlideshowGetDetails
- * @property {SlideshowSchema[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef SlideshowSchema
- * @property {string} [_id]
- * @property {string} [slug]
- * @property {DateMeta} [date_meta]
- * @property {string} [application]
- * @property {string} [platform]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia[]} [media]
- * @property {boolean} [active]
- * @property {boolean} [archived]
- * @property {Object} [_custom_json]
- */
-/**
- * @typedef SlideshowPayload
- * @property {string} [slug]
- * @property {string} [platform]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia} [media]
- * @property {boolean} [active]
  */
 /**
  * @typedef Support
@@ -1298,7 +1256,7 @@ export = ContentPlatformModel;
 declare class ContentPlatformModel {
 }
 declare namespace ContentPlatformModel {
-    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, ConfigurationSchema, SlideshowMedia, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, SlideshowGetDetails, SlideshowSchema, SlideshowPayload, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, GenerationEntityType, PageType };
+    export { ValidationError, GenerateSEOContent, GeneratedSEOContent, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, PathSourceSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSchemaMarkupTemplateRequestBody, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, DefaultSchemaComponent, DefaultSEOSchemaMarkupTemplate, ScheduleSchema, NextSchedule, BlogGetDetails, BlogFilters, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, SEOMetaItem, SEOMetaItems, SEOSitemap, SEObreadcrumb, DateMeta, BlogPayload, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, LocaleLanguage, Language, Action, NavigationReference, CronBasedScheduleSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessDetails, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, Page, LandingPageGetDetails, LandingPageSchema, DefaultNavigationDetails, NavigationGetDetails, Orientation, NavigationSchema, NavigationPayload, PageGetDetails, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PagePayload, CronSchedule, PagePublishPayload, PageMetaSchema, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, ResourcesSchema, ResourceSchema, FieldValidations, FieldDefinitionSchema, CustomFieldDefinitionsSchema, CustomFieldDefinitionRequestSchema, CustomObjectCustomFieldDefinitions, CustomObjectDefinitionUpdateRequestSchema, CustomFieldDefinitionDetailResSchema, MetaFieldDefinitionDetailResSchema, CustomDataDeleteSchema, CustomFieldValue, CustomFieldSchema, CustomFieldsResponseSchema, CustomFieldsDeleteSchema, CustomFieldsResponseByResourceIdSchema, CustomField, CustomFieldRequestSchema, CustomObjectSchema, CustomObjectDefinitionRequestSchema, CustomObjectDefinitionSlugSchema, CustomObjectDefinitionDeleteResponseSchema, CustomObjectEntryBulkUploadDetails, CustomObjectListItemDefinitionModel, CustomObjectListItemSchema, CustomObjectsSchema, CustomObjectFieldDefinition, CustomObjectBySlugSchema, CustomObjectBulkEntryInitiateDownload, CustomObjectMetaSchema, JobSchema, CustomFieldBulkEntry, CustomObjectBulkEntry, MetafieldTypesSchema, CustomFieldTypeSchema, SupportedValidationsMetaExampleSchema, SupportedValidationsMetaSchema, SupportedValidationsSchema, Duration, HTML, StringSingleLine, StringMultiLine, Dropdown, Integer, FloatType, BooleanType, Date, Datetime, Json, File, Url, Metaobject, Product, CustomObjectEntry, CustomObjectDefinitionsSchema, CustomObjectEntryFieldSchema, CustomObjectEntryFieldSchemaWithoutID, CustomObjectRequestSchema, CustomObjectRequestSchemaWithoutId, CustomObjectBulkSchema, ActionPage, GenerationEntityType, PageType };
 }
 /** @returns {ValidationError} */
 declare function ValidationError(): ValidationError;
@@ -1679,24 +1637,6 @@ type CronBasedScheduleSchema = {
     start?: string;
     end?: string;
 };
-/** @returns {ConfigurationSchema} */
-declare function ConfigurationSchema(): ConfigurationSchema;
-type ConfigurationSchema = {
-    sleep_time?: number;
-    start_on_launch?: boolean;
-    duration?: number;
-    slide_direction?: string;
-};
-/** @returns {SlideshowMedia} */
-declare function SlideshowMedia(): SlideshowMedia;
-type SlideshowMedia = {
-    type?: string;
-    url?: string;
-    bg_color?: string;
-    duration?: number;
-    auto_decide_duration?: boolean;
-    action?: Action;
-};
 /** @returns {UpdateHandpickedSchema} */
 declare function UpdateHandpickedSchema(): UpdateHandpickedSchema;
 type UpdateHandpickedSchema = {
@@ -2067,35 +2007,6 @@ type PageMetaSchema = {
     system_pages?: NavigationSchema[];
     custom_pages?: PageSchema[];
     application_id?: string;
-};
-/** @returns {SlideshowGetDetails} */
-declare function SlideshowGetDetails(): SlideshowGetDetails;
-type SlideshowGetDetails = {
-    items?: SlideshowSchema[];
-    page?: Page;
-};
-/** @returns {SlideshowSchema} */
-declare function SlideshowSchema(): SlideshowSchema;
-type SlideshowSchema = {
-    _id?: string;
-    slug?: string;
-    date_meta?: DateMeta;
-    application?: string;
-    platform?: string;
-    configuration?: ConfigurationSchema;
-    media?: SlideshowMedia[];
-    active?: boolean;
-    archived?: boolean;
-    _custom_json?: any;
-};
-/** @returns {SlideshowPayload} */
-declare function SlideshowPayload(): SlideshowPayload;
-type SlideshowPayload = {
-    slug?: string;
-    platform?: string;
-    configuration?: ConfigurationSchema;
-    media?: SlideshowMedia;
-    active?: boolean;
 };
 /** @returns {Support} */
 declare function Support(): Support;

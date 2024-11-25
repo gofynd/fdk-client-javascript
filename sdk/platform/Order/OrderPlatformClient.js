@@ -997,89 +997,6 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.FetchCreditBalanceDetailParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.FetchCreditBalanceResponsePayload>}
-   *   - Success response
-   *
-   * @name fetchCreditBalanceDetail
-   * @summary: Get credit balance detail
-   * @description: Retrieve details about credit balance on the basis of customer mobile number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/fetchCreditBalanceDetail/).
-   */
-  async fetchCreditBalanceDetail(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = OrderPlatformValidator.fetchCreditBalanceDetail().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.fetchCreditBalanceDetail().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > fetchCreditBalanceDetail \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/customer-credit-balance`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.FetchCreditBalanceResponsePayload().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > fetchCreditBalanceDetail \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.FetchRefundModeConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -2390,12 +2307,25 @@ class Order {
    * @description: Get details regarding a manifest which can be used to perform further actions on it - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestDetails/).
    */
   async getManifestDetails(
-    { manifestId, requestHeaders } = { requestHeaders: {} },
+    {
+      manifestId,
+      dpIds,
+      endDate,
+      startDate,
+      pageNo,
+      pageSize,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getManifestDetails().validate(
       {
         manifestId,
+        dpIds,
+        endDate,
+        startDate,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2409,6 +2339,11 @@ class Order {
     } = OrderPlatformValidator.getManifestDetails().validate(
       {
         manifestId,
+        dpIds,
+        endDate,
+        startDate,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2420,13 +2355,19 @@ class Order {
     }
 
     const query_params = {};
+    query_params["manifest_id"] = manifestId;
+    query_params["dp_ids"] = dpIds;
+    query_params["end_date"] = endDate;
+    query_params["start_date"] = startDate;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifests/${manifestId}`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/details`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -2739,7 +2680,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifests`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/listing`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -2867,7 +2808,7 @@ class Order {
    *   Success response
    * @name getOrders
    * @summary: List orders
-   * @description: Get a list of orders based on the filters provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
+   * @description: Get a list of orders based on the filters provided. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
    */
   async getOrders(
     {
@@ -2895,6 +2836,8 @@ class Order {
       orderType,
       allowInactive,
       groupEntity,
+      enforceDateFilter,
+      fulfillmentType,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2925,6 +2868,8 @@ class Order {
         orderType,
         allowInactive,
         groupEntity,
+        enforceDateFilter,
+        fulfillmentType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2959,6 +2904,8 @@ class Order {
         orderType,
         allowInactive,
         groupEntity,
+        enforceDateFilter,
+        fulfillmentType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2994,6 +2941,8 @@ class Order {
     query_params["order_type"] = orderType;
     query_params["allow_inactive"] = allowInactive;
     query_params["group_entity"] = groupEntity;
+    query_params["enforce_date_filter"] = enforceDateFilter;
+    query_params["fulfillment_type"] = fulfillmentType;
 
     const xHeaders = {};
 
@@ -3115,7 +3064,7 @@ class Order {
    * @returns {Promise<OrderPlatformModel.ShipmentInfoResponseSchema>} -
    *   Success response
    * @name getShipmentById
-   * @summary: Get shipment
+   * @summary: Get shipment details
    * @description: Get detailed information about a specific shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentById/).
    */
   async getShipmentById(
@@ -3418,6 +3367,8 @@ class Order {
       customerId,
       orderType,
       groupEntity,
+      enforceDateFilter,
+      fulfillmentType,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -3456,6 +3407,8 @@ class Order {
         customerId,
         orderType,
         groupEntity,
+        enforceDateFilter,
+        fulfillmentType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3498,6 +3451,8 @@ class Order {
         customerId,
         orderType,
         groupEntity,
+        enforceDateFilter,
+        fulfillmentType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3541,6 +3496,8 @@ class Order {
     query_params["customer_id"] = customerId;
     query_params["order_type"] = orderType;
     query_params["group_entity"] = groupEntity;
+    query_params["enforce_date_filter"] = enforceDateFilter;
+    query_params["fulfillment_type"] = fulfillmentType;
 
     const xHeaders = {};
 
@@ -4216,87 +4173,6 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.ProcessManifestsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ProcessManifestItemResponseSchema>}
-   *   - Success response
-   *
-   * @name processManifests
-   * @summary: Generate manifest
-   * @description: Generate manifest Id and PDF and tags the shipments with that manifest Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/processManifests/).
-   */
-  async processManifests(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.processManifests().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.processManifests().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > processManifests \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifests`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.ProcessManifestItemResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > processManifests \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.ReassignLocationParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -4380,7 +4256,7 @@ class Order {
    * @param {OrderPlatformValidator.SendSmsNinjaParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.SendSmsResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.BaseResponseSchema>} - Success response
    * @name sendSmsNinja
    * @summary: Send SMS
    * @description: Send SMS to customer based on the template that is selected - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendSmsNinja/).
@@ -4434,7 +4310,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.SendSmsResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.BaseResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4630,8 +4506,8 @@ class Order {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.BaseResponseSchema>} - Success response
    * @name updateAddress
-   * @summary: Update the address details of an existing shipment based on the provided address_category.  This operation allows the modification of critical shipment details, potentially affecting delivery/billing accuracy and customer communication.
-   * @description: Update the address details of an existing shipment on basis of address_category - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateAddress/).
+   * @summary: Update shipment address
+   * @description: Update the address details of an existing shipment based on the provided address_category. This operation allows the modification of critical shipment details, potentially affecting delivery/billing accuracy and customer communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateAddress/).
    */
   async updateAddress(
     { shipmentId, body, requestHeaders } = { requestHeaders: {} },
@@ -4872,7 +4748,7 @@ class Order {
    *
    * @name updateShipmentLock
    * @summary: Update a shipment lock
-   * @description: Modify shipment/bag lock and check status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentLock/).
+   * @description: Modify shipment/bag lock status and update lock/unlock messages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentLock/).
    */
   async updateShipmentLock(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -5115,12 +4991,11 @@ class Order {
    * @description: Uploads the consent signed by courier partner and seller to keep records - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsents/).
    */
   async uploadConsents(
-    { manifestId, body, requestHeaders } = { requestHeaders: {} },
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.uploadConsents().validate(
       {
-        manifestId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -5134,7 +5009,6 @@ class Order {
       error: warrning,
     } = OrderPlatformValidator.uploadConsents().validate(
       {
-        manifestId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -5153,7 +5027,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/${manifestId}/upload-consent`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/uploadConsent`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },

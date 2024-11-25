@@ -371,24 +371,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ConfigurationSchema
- * @property {number} [sleep_time]
- * @property {boolean} [start_on_launch]
- * @property {number} [duration]
- * @property {string} [slide_direction]
- */
-
-/**
- * @typedef SlideshowMedia
- * @property {string} [type]
- * @property {string} [url]
- * @property {string} [bg_color]
- * @property {number} [duration]
- * @property {boolean} [auto_decide_duration]
- * @property {Action} [action]
- */
-
-/**
  * @typedef UpdateHandpickedSchema
  * @property {HandpickedTagSchema} [tag]
  */
@@ -733,35 +715,6 @@ const Joi = require("joi");
  * @property {NavigationSchema[]} [system_pages]
  * @property {PageSchema[]} [custom_pages]
  * @property {string} [application_id]
- */
-
-/**
- * @typedef SlideshowGetDetails
- * @property {SlideshowSchema[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef SlideshowSchema
- * @property {string} [_id]
- * @property {string} [slug]
- * @property {DateMeta} [date_meta]
- * @property {string} [application]
- * @property {string} [platform]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia[]} [media]
- * @property {boolean} [active]
- * @property {boolean} [archived]
- * @property {Object} [_custom_json]
- */
-
-/**
- * @typedef SlideshowPayload
- * @property {string} [slug]
- * @property {string} [platform]
- * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia} [media]
- * @property {boolean} [active]
  */
 
 /**
@@ -1924,28 +1877,6 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {ConfigurationSchema} */
-  static ConfigurationSchema() {
-    return Joi.object({
-      sleep_time: Joi.number(),
-      start_on_launch: Joi.boolean(),
-      duration: Joi.number(),
-      slide_direction: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SlideshowMedia} */
-  static SlideshowMedia() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-      bg_color: Joi.string().allow(""),
-      duration: Joi.number(),
-      auto_decide_duration: Joi.boolean(),
-      action: ContentPlatformModel.Action(),
-    });
-  }
-
   /** @returns {UpdateHandpickedSchema} */
   static UpdateHandpickedSchema() {
     return Joi.object({
@@ -2375,41 +2306,6 @@ class ContentPlatformModel {
       system_pages: Joi.array().items(ContentPlatformModel.NavigationSchema()),
       custom_pages: Joi.array().items(ContentPlatformModel.PageSchema()),
       application_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SlideshowGetDetails} */
-  static SlideshowGetDetails() {
-    return Joi.object({
-      items: Joi.array().items(ContentPlatformModel.SlideshowSchema()),
-      page: ContentPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {SlideshowSchema} */
-  static SlideshowSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-      date_meta: ContentPlatformModel.DateMeta(),
-      application: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
-      configuration: ContentPlatformModel.ConfigurationSchema(),
-      media: Joi.array().items(ContentPlatformModel.SlideshowMedia()),
-      active: Joi.boolean(),
-      archived: Joi.boolean(),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
-    });
-  }
-
-  /** @returns {SlideshowPayload} */
-  static SlideshowPayload() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
-      configuration: ContentPlatformModel.ConfigurationSchema(),
-      media: ContentPlatformModel.SlideshowMedia(),
-      active: Joi.boolean(),
     });
   }
 

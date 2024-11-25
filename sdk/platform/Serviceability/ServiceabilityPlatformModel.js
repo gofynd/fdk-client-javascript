@@ -151,30 +151,45 @@ const Joi = require("joi");
 
 /**
  * @typedef ZoneProductTypes
- * @property {string} type
- * @property {string[]} tags
+ * @property {string} type - Denotes if the zone is applicable for all the
+ *   products or specific products.
+ * @property {string[]} tags - List of product tags.
+ */
+
+/**
+ * @typedef ZoneMappingDetailType
+ * @property {string} country - Uid for the country.
+ * @property {ZoneMappingRegions[]} [regions] - List of regions with its details.
  */
 
 /**
  * @typedef ZoneMappingType
- * @property {string} country
- * @property {string[]} [pincode]
- * @property {string[]} [state]
+ * @property {string} country - Uid for the country.
+ * @property {string[]} regions - List of region uid for the given country.
+ */
+
+/**
+ * @typedef ZoneMappingRegions
+ * @property {string} [display_name] - Name of the region that is in proper casing.
+ * @property {string[]} [parent_id]
+ * @property {string} [parent_uid] - Unique identifier for that regions parent.
+ * @property {string} [sub_type] - What type does the region belong to.
+ * @property {string} [uid] - Unique identifier for that region.
  */
 
 /**
  * @typedef UpdateZoneData
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
+ * @property {string} zone_id - Unique identifier for the zone.
+ * @property {string} name - Name for the zone.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} company_id - Company id associated with the zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {GetZoneDataViewChannels[]} channels - Channels for which the zone is active.
  * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
+ * @property {number[]} store_ids - A list of store identifiers associated with the zone.
+ * @property {string} region_type - Type of region that belongs in the zone.
+ * @property {ZoneMappingType[]} mapping - Country to region mapping for the zone.
  */
 
 /**
@@ -191,18 +206,23 @@ const Joi = require("joi");
 
 /**
  * @typedef GetZoneDataViewItems
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} [company_id]
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
+ * @property {string} zone_id - The unique identifier for the zone.
+ * @property {string} name - The name of the zone for easy identification.
+ * @property {string} slug - A URL-friendly version of the zone’s name, used for
+ *   routing or linking.
+ * @property {number} [company_id] - The ID of the company associated with this zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active
+ *   (true) or inactive (false).
+ * @property {GetZoneDataViewChannels[]} channels - A list of channels available
+ *   within this zone.
  * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} [region_type]
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
+ * @property {number[]} store_ids - A collection of store IDs linked to this zone.
+ * @property {string} [region_type] - The type of region the zone represents.
+ * @property {ZoneMappingType[]} mapping - A list of mappings defining
+ *   relationships between this zone and other entities.
+ * @property {string} [assignment_preference] - The preferred method for
+ *   assigning stores or products to the zone.
+ * @property {number} stores_count - The total number of stores assigned to this zone.
  */
 
 /**
@@ -212,36 +232,38 @@ const Joi = require("joi");
 
 /**
  * @typedef GetZoneByIdSchema
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} [company_id]
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
+ * @property {string} zone_id - Unique identifier for the zone.
+ * @property {string} name - Name for the zone.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} [company_id] - Company id associated with the zone.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {GetZoneDataViewChannels[]} channels - Channels for which the zone is active.
  * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
+ * @property {number[]} store_ids - A list of store identifiers associated with the zone.
+ * @property {string} region_type - Type of region that belongs in the zone.
+ * @property {ZoneMappingDetailType[]} mapping - Country to region mapping for the zone.
+ * @property {number} [stores_count]
  */
 
 /**
  * @typedef CreateZoneData
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
+ * @property {string} name - Name of the zone.
+ * @property {string} slug - A human-readable and unique identifier for the
+ *   zone, derived from the name.
+ * @property {number} company_id - Unique identifier of the company for which
+ *   the zone is created.
+ * @property {boolean} is_active - A flag indicating whether the zone is active.
+ * @property {GetZoneDataViewChannels[]} channels - Channels for which the zone is active.
+ * @property {number[]} store_ids - A list of store identifiers associated with the zone.
+ * @property {string} region_type - Type of region that belongs in the zone.
+ * @property {ZoneMappingType[]} mapping - Country to region mapping for the zone.
+ * @property {ZoneProductTypes} [product]
  */
 
 /**
  * @typedef ZoneResult
- * @property {number} status_code
+ * @property {number} [status_code]
  * @property {string} zone_id
  * @property {boolean} success
  */
@@ -261,7 +283,6 @@ const Joi = require("joi");
  * @property {string} slug
  * @property {boolean} is_active
  * @property {number[]} store_ids
- * @property {string} assignment_preference
  */
 
 /**
@@ -421,7 +442,7 @@ const Joi = require("joi");
  * @property {string} [display_name]
  * @property {number} [company_id]
  * @property {number} [uid]
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom JSON for internal usage
  * @property {string} [code]
  * @property {WarningsResult} [warnings]
  * @property {string} [name]
@@ -443,64 +464,74 @@ const Joi = require("joi");
 
 /**
  * @typedef PincodeMopData
- * @property {number[]} pincodes
- * @property {string} country
- * @property {string} action
+ * @property {number[]} pincodes - A list of pincodes.
+ * @property {string} country - Name of the country.
+ * @property {string} action - Denotes wether to activate or deavtivate pincodes
+ *   for COD mode of payment.
  */
 
 /**
  * @typedef PincodeMopUpdateResult
- * @property {number} pincode
- * @property {string} channel_id
- * @property {string} country
- * @property {boolean} is_active
+ * @property {number} pincode - Pincode of the region.
+ * @property {string} channel_id - Unique identifier of the sales channel.
+ * @property {string} country - Country name.
+ * @property {boolean} is_active - Denotes whether the pincode mode of payment
+ *   is active or not.
  */
 
 /**
  * @typedef PincodeMOPResult
- * @property {boolean} success
- * @property {number} status_code
- * @property {string} batch_id
- * @property {string} country
- * @property {string} action
- * @property {number[]} [pincodes]
- * @property {PincodeMopUpdateResult[]} [updated_pincodes]
+ * @property {boolean} success - Denotes if the action was successful or not.
+ * @property {number} status_code - Status code for the response.
+ * @property {string} batch_id - Unique identifier identifying the perticular request.
+ * @property {string} country - Name of the country.
+ * @property {string} action - Denotes wether to activate or deavtivate pincodes
+ *   for COD mode of payment.
+ * @property {number[]} [pincodes] - List of pincodes.
+ * @property {PincodeMopUpdateResult[]} [updated_pincodes] - Details of the
+ *   updated pincodes.
  */
 
 /**
  * @typedef CommonError
- * @property {string} [status_code]
+ * @property {string} [status_code] - Status code for the error.
  * @property {Object} [error]
- * @property {string} [success]
+ * @property {string} [success] - Whether operation was successful.
  */
 
 /**
  * @typedef PincodeMopBulkData
- * @property {string} batch_id
- * @property {string} s3_url
+ * @property {string} batch_id - Unique identifier for the request.
+ * @property {string} s3_url - CDN url for the uploaded file.
  */
 
 /**
  * @typedef PincodeBulkViewResult
  * @property {string} batch_id
- * @property {string} s3_url
+ * @property {string} s3_url - CDN url for the uploaded file.
  */
 
 /**
  * @typedef PincodeCodStatusListingDetails
- * @property {string} [country]
- * @property {boolean} [is_active]
- * @property {number} [pincode]
+ * @property {string} [country] - Name of the country.
+ * @property {boolean} [is_active] - Search based on the active or inactive flag.
+ * @property {number} [pincode] - Search based on the pincode.
  * @property {number} [current]
  * @property {number} [page_size]
  */
 
 /**
+ * @typedef PincodeCodStatusItem
+ * @property {boolean} [active] - Denoted if the pincode is active or not.
+ * @property {string} [pincode] - Name of the pincode.
+ */
+
+/**
  * @typedef PincodeCodStatusListingResult
- * @property {string} country
- * @property {PincodeCodStatusListingResult[]} data
- * @property {boolean} success
- * @property {Error[]} [errors]
+ * @property {string} country - Name of the country.
+ * @property {PincodeCodStatusListingResult[]} data - List of pincode details.
+ * @property {boolean} success - Denotes if the request was successful or not.
+ * @property {Error[]} [errors] - List of error object in case of unsuccessful response.
  * @property {PincodeCodStatusListingPage} page
  * @property {PincodeCodStatusListingSummary} summary
  */
@@ -523,14 +554,14 @@ const Joi = require("joi");
 
 /**
  * @typedef PincodeCodStatusListingSummary
- * @property {number} total_active_pincodes
- * @property {number} total_inactive_pincodes
+ * @property {number} total_active_pincodes - Count of the total active pincodes.
+ * @property {number} total_inactive_pincodes - Count of the total inactive pincodes.
  */
 
 /**
  * @typedef PincodeMopUpdateAuditHistoryDetails
- * @property {string} entity_type
- * @property {string} [file_name]
+ * @property {string} entity_type - Type of the entity requested.
+ * @property {string} [file_name] - Name of the file.
  */
 
 /**
@@ -544,21 +575,22 @@ const Joi = require("joi");
 
 /**
  * @typedef PincodeMopUpdateAuditHistoryResult
- * @property {string} [batch_id]
- * @property {string} [entity_type]
- * @property {string} [error_file_s3_url]
- * @property {string} [s3_url]
- * @property {string} [file_name]
+ * @property {string} [batch_id] - Uniquie identifier of the request.
+ * @property {string} [entity_type] - Type of the entity requested.
+ * @property {string} [error_file_s3_url] - URL for the error file.
+ * @property {string} [s3_url] - CDN url for the file uploaded.
+ * @property {string} [file_name] - Name of the file.
  * @property {string} [updated_at]
  * @property {string} [updated_by]
- * @property {boolean} [success]
+ * @property {boolean} [success] - Denotes if the request was successfully processed.
  */
 
 /**
  * @typedef PincodeMopUpdateAuditHistoryResultData
- * @property {string} [entity_type]
+ * @property {string} [entity_type] - Type of the entity requested.
  * @property {PincodeMopUpdateAuditHistoryPaging} page
- * @property {PincodeMopUpdateAuditHistoryResult[]} data
+ * @property {PincodeMopUpdateAuditHistoryResult[]} data - History records of
+ *   the uploaded files.
  */
 
 /**
@@ -590,35 +622,51 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CourierAccountUpdateDetails
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
+ */
+
+/**
  * @typedef CourierAccount
- * @property {string} extension_id
- * @property {string} account_id
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
+ * @property {number} company_id - Company id associated with the account.
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
+ * @property {CourierPartnerSchemeModel} scheme_rules
  */
 
 /**
  * @typedef CourierAccountDetailsBody
- * @property {string} extension_id
- * @property {string} [account_id]
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} [account_id] - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
  */
 
 /**
  * @typedef ErrorResult
- * @property {string} value
- * @property {string} message
- * @property {string} type
+ * @property {string} value - Fields containing the error.
+ * @property {string} message - Description of the error.
+ * @property {string} type - Type of the error.
  */
 
 /**
  * @typedef CourierPartnerAccountFailureResult
- * @property {boolean} success
+ * @property {boolean} success - Denotes whether the request is a success or failure.
  * @property {ErrorResult[]} error
  */
 
@@ -635,32 +683,39 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierPartnerRuleCPListResult
- * @property {string} [account_id]
- * @property {string} [extension_id]
- * @property {boolean} [is_self_ship]
- * @property {Object} [scheme_rules]
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {Object} [scheme_rules] - Denotes the scheme rules associated with
+ *   the courier partner account.
  */
 
 /**
  * @typedef CourierPartnerRuleResult
- * @property {boolean} [is_active]
- * @property {string} [application_id]
- * @property {number} [company_id]
- * @property {CourierPartnerRuleConditions} [conditions]
- * @property {string[]} [sort]
- * @property {Object} [created_by]
- * @property {string} [id]
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
- * @property {string} [name]
- * @property {string} [type]
+ * @property {boolean} is_active - Denotes whether the given courier partner
+ *   rule is inactive or active.
+ * @property {string} application_id - Unique identifier of the sales channel.
+ * @property {number} company_id - Unique identifier of the company.
+ * @property {CourierPartnerRuleConditions} conditions
+ * @property {string[]} sort - Sort Strategy of the courier partners.
+ * @property {Object} [created_by] - The Fynd account used to create the courier
+ *   partner rule.
+ * @property {string} id - Unique identifier of the courier partner rule.
+ * @property {Object} [modified_by] - The Fynd account used to modify the
+ *   courier partner rule.
+ * @property {string} [modified_on] - The datetime at which courier partner rule
+ *   is modified.
+ * @property {string} name - Name for the courier partner rule.
+ * @property {string} type - The type of the rule.
  * @property {CourierPartnerRuleCPListResult[]} [cp_list]
  */
 
 /**
  * @typedef CourierPartnerList
- * @property {string} extension_id
- * @property {string} account_id
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
  */
 
 /**
@@ -669,7 +724,7 @@ const Joi = require("joi");
  * @property {string} [sub_type]
  * @property {string} [name]
  * @property {string} [display_name]
- * @property {string} [parent_id]
+ * @property {string[]} [parent_id]
  * @property {string[]} [parent_ids]
  */
 
@@ -711,11 +766,13 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierPartnerRule
- * @property {boolean} is_active
- * @property {CourierPartnerList[]} [cp_list]
- * @property {string} name
+ * @property {boolean} is_active - Denotes whether the given courier partner
+ *   rule is inactive or active.
+ * @property {CourierPartnerList[]} [cp_list] - A list of courier partners.
+ * @property {string} name - Name for the courier partner rule.
  * @property {CourierPartnerRuleConditions} conditions
- * @property {string[]} sort
+ * @property {string[]} sort - Sort Strategy for the courier partners.
+ * @property {string} [type] - Denotes the type of the rule.
  */
 
 /**
@@ -806,44 +863,56 @@ const Joi = require("joi");
 
 /**
  * @typedef CompanyConfig
- * @property {string[]} rule_ids
- * @property {string[]} sort
- * @property {boolean} [logistics_as_actual]
+ * @property {string[]} rule_ids - A list for courier partner rules.
+ * @property {string[]} sort - Sort strategy for the courier partners.
+ * @property {string} [logistics_as_actual] - Depicts if the courier partner
+ *   rule configuration plan is subscribed by the seller for which mode.
+ * @property {number} company_id - Unique identifier of the company.
+ * @property {string} [application_id] - Unique identifier of the sales channel.
  */
 
 /**
  * @typedef ZoneConfig
- * @property {string} [serviceability_type]
+ * @property {string} [serviceability_type] - Serviceability type of the delivery zone.
+ * @property {number} [active_count] - Count of active delivery zones associated
+ *   with the sales channel.
+ * @property {number} [total_count] - Count of total delivery zones associated
+ *   with the sales channel.
  */
 
 /**
  * @typedef ApplicationConfig
- * @property {string[]} [rule_ids]
- * @property {string[]} [sort]
+ * @property {string[]} [rule_ids] - A list of courier partner rules.
+ * @property {string[]} [sort] - Strategy adopted to sort the courier partners.
  * @property {ZoneConfig} [zones]
  */
 
 /**
  * @typedef BulkRegionJobDetails
- * @property {string} [file_path]
- * @property {string} country
- * @property {string} action
- * @property {string} region
+ * @property {string} [file_path] - CDN path of the uploaded csv file for bulk import.
+ * @property {string} country - Country for which the tat or serviceability is
+ *   to be imported or exported.
+ * @property {string} action - Denotes the import or export action to be performed.
+ * @property {string} region - Region of the country for which import or export
+ *   is triggered.
  */
 
 /**
  * @typedef BulkRegionResultItemData
- * @property {string} file_path
- * @property {number} [failed]
+ * @property {string} [file_path] - CDN path of the file which was used for bulk import.
+ * @property {number} [failed] - Count of the failed records.
  * @property {Object[]} [failed_records]
- * @property {string} action
- * @property {string} batch_id
- * @property {string} country
- * @property {number} [success]
- * @property {string} region
- * @property {string} status
- * @property {number} [total]
- * @property {string} [error_file_path]
+ * @property {string} action - Denotes the import or export action performed.
+ * @property {string} batch_id - Unique id to identify the import or export query.
+ * @property {string} country - Country for which the import or export action is
+ *   performed.
+ * @property {number} [success] - Denoted if the import or export was successful
+ *   or failure.
+ * @property {string} region - Region of the country for which import or export
+ *   is triggered.
+ * @property {string} status - Current status of the import or export action performed.
+ * @property {number} [total] - Count of total records.
+ * @property {string} [error_file_path] - Path of the error file.
  */
 
 /**
@@ -872,11 +941,14 @@ const Joi = require("joi");
 
 /**
  * @typedef StoreRuleConfigData
- * @property {string[]} [rule_ids]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
+ * @property {string[]} [rule_ids] - List of rule ids which are active in the application.
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  */
 
 /**
@@ -905,22 +977,25 @@ const Joi = require("joi");
 
 /**
  * @typedef StoreRuleDataSchema
- * @property {string} [id]
- * @property {string} [name]
- * @property {number} [company_id]
- * @property {string} [application_id]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
+ * @property {string} [id] - Id of the rule.
+ * @property {string} [name] - Name of the rule.
+ * @property {number} [company_id] - Company id for which the rule is created.
+ * @property {string} [application_id] - Application id for which the rule is created.
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  * @property {StoreRuleConditionSchema} [conditions]
- * @property {boolean} [is_active]
+ * @property {boolean} [is_active] - Denotes whether the rule is active or inactive.
  */
 
 /**
  * @typedef StorePrioritySchema
- * @property {string} [id]
- * @property {string} [name]
+ * @property {number} [id] - Id of the store.
+ * @property {string} [name] - Name of the store.
  */
 
 /**
@@ -931,41 +1006,50 @@ const Joi = require("joi");
 
 /**
  * @typedef CreateStoreRuleDetailsSchema
- * @property {string} [name]
- * @property {boolean} [is_active]
+ * @property {string} [name] - Name of the rule.
+ * @property {boolean} [is_active] - Denotes if the rule is active or not.
  * @property {StoreRuleConditionSchema} [conditions]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the basic prioritization sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  */
 
 /**
  * @typedef StoreRuleResultSchema
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [type]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
+ * @property {string} [id] - Id of the rule created.
+ * @property {string} [name] - Name of the rule created.
+ * @property {string} [type] - Type of the rule created.
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the rule for sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the rule for sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  * @property {StoreRuleConditionSchema} [conditions]
- * @property {boolean} [is_active]
+ * @property {boolean} [is_active] - Denotes if the rule is active or inactive.
  */
 
 /**
  * @typedef StoreRuleUpdateResultSchema
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [type]
- * @property {string[]} [type_based_priority]
- * @property {string[]} [tag_based_priority]
- * @property {StorePrioritySchema[]} [store_priority]
- * @property {string[]} [sort]
+ * @property {string} [id] - Id of the rule created.
+ * @property {string} [name] - Name of the rule created.
+ * @property {string} [type] - Type of the rule created.
+ * @property {string[]} [type_based_priority] - Priority of the store type to be
+ *   used in the rule for sorting of stores.
+ * @property {string[]} [tag_based_priority] - Priority of the store tags to be
+ *   used in the rule for sorting of stores.
+ * @property {StorePrioritySchema[]} [store_priority] - Priority of explicit
+ *   stores to be used for sorting of stores.
+ * @property {string[]} [sort] - Criteria on which the selected stores should be sorted.
  * @property {StoreRuleConditionSchema} [conditions]
- * @property {boolean} [is_active]
- * @property {number} [company_id]
- * @property {string} [application_id]
+ * @property {boolean} [is_active] - Denotes if the rule is active or inactive.
+ * @property {number} [company_id] - Company id for which the rule is created.
+ * @property {string} [application_id] - Application id for which the rule is created.
  */
 
 /**
@@ -975,6 +1059,7 @@ const Joi = require("joi");
  * @property {string} [pickup_cutoff]
  * @property {string} [route_code]
  * @property {boolean} is_first_mile
+ * @property {boolean} [is_reverse_pickup]
  * @property {boolean} is_return
  * @property {boolean} is_installation
  * @property {boolean} is_last_mile
@@ -982,47 +1067,81 @@ const Joi = require("joi");
 
 /**
  * @typedef CourierPartnerSchemeFeatures
- * @property {boolean} [doorstep_qc]
- * @property {boolean} [qr]
- * @property {boolean} [mps]
- * @property {boolean} [ndr]
- * @property {number} [ndr_attempts]
- * @property {boolean} [dangerous_goods]
- * @property {boolean} [fragile_goods]
- * @property {boolean} [restricted_goods]
- * @property {boolean} [cold_storage_goods]
- * @property {boolean} [doorstep_exchange]
- * @property {boolean} [doorstep_return]
- * @property {boolean} [product_installation]
- * @property {boolean} [openbox_delivery]
- * @property {string} [status_updates]
- * @property {boolean} [multi_pick_single_drop]
- * @property {boolean} [single_pick_multi_drop]
- * @property {boolean} [multi_pick_multi_drop]
- * @property {boolean} [ewaybill]
+ * @property {boolean} [doorstep_qc] - Indicates if the courier partner offers
+ *   doorstep quality check services.
+ * @property {boolean} [qr] - Specifies whether the courier partner supports QR
+ *   code-based operations.
+ * @property {boolean} [mps] - Denotes if the courier partner supports
+ *   multi-part shipment services.
+ * @property {boolean} [ndr] - Indicates if the Non-Delivery Report (NDR)
+ *   feature is supported by the courier partner.
+ * @property {number} [ndr_attempts] - Number of attempts allowed for resolving
+ *   Non-Delivery Reports (NDR).
+ * @property {boolean} [dangerous_goods] - Specifies if the courier partner
+ *   handles the transportation of dangerous goods.
+ * @property {boolean} [fragile_goods] - Indicates whether the courier partner
+ *   manages the shipment of fragile goods.
+ * @property {boolean} [restricted_goods] - Indicates if the courier partner
+ *   handles restricted goods, as per regulatory guidelines.
+ * @property {boolean} [cold_storage_goods] - Denotes if the courier partner
+ *   provides cold storage facilities for goods.
+ * @property {boolean} [doorstep_exchange] - Indicates if the courier partner
+ *   supports doorstep exchange services.
+ * @property {boolean} [doorstep_return] - Specifies if the courier partner
+ *   offers doorstep return services.
+ * @property {boolean} [product_installation] - Indicates if the courier partner
+ *   provides product installation services upon delivery.
+ * @property {boolean} [openbox_delivery] - Specifies whether the courier
+ *   partner supports open-box delivery, allowing customers to inspect goods
+ *   before accepting.
+ * @property {string} [status_updates] - Describes the type of status updates
+ *   provided by the courier partner (e.g., real-time, periodic).
+ * @property {boolean} [multi_pick_single_drop] - Indicates if the courier
+ *   partner supports multiple pickups to a single drop location.
+ * @property {boolean} [single_pick_multi_drop] - Indicates whether the courier
+ *   partner supports single pickup to multiple drop locations.
+ * @property {boolean} [multi_pick_multi_drop] - Denotes if the courier partner
+ *   offers services for multiple pickups to multiple drop locations.
+ * @property {boolean} [ewaybill] - Specifies if the courier partner requires or
+ *   supports the generation of e-waybills for shipments.
+ * @property {number} [qc_shipment_item_quantity] - Defines the maximum quantity
+ *   of items allowed in a quality check shipment.
+ * @property {number} [non_qc_shipment_item_quantity] - Defines the maximum
+ *   quantity of items allowed in a non-quality check shipment.
  */
 
 /**
  * @typedef CourierPartnerSchemeModel
- * @property {string} extension_id
- * @property {string} scheme_id
+ * @property {string} [name] - Name of the scheme.
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {ArithmeticOperations} [volumetric_weight]
  * @property {ArithmeticOperations} weight
- * @property {string} transport_type
- * @property {string} region
- * @property {string} delivery_type
- * @property {string[]} payment_mode
- * @property {string} stage
+ * @property {string} transport_type - Mode of transport associated with the
+ *   courier partner scheme.
+ * @property {string} region - Serviceable region associated with the courier
+ *   partner scheme.
+ * @property {string} delivery_type - Type of delivery associated with the
+ *   courier partner scheme.
+ * @property {string[]} payment_mode - Mode of payment associated with the
+ *   courier partner scheme.
+ * @property {string} stage - Indicates if the courier partner scheme is
+ *   currently active or inactive.
  * @property {CourierPartnerSchemeFeatures} feature
  */
 
 /**
  * @typedef CourierAccountResult
- * @property {string} account_id
- * @property {string} scheme_id
- * @property {boolean} is_self_ship
- * @property {string} stage
- * @property {boolean} is_own_account
- * @property {CourierPartnerSchemeModel} scheme_rules
+ * @property {number} company_id - Company id associated with the account.
+ * @property {string} [extension_id] - Unique identifier of courier partner extension.
+ * @property {string} account_id - Unique identifier of courier partner scheme
+ *   and company id combination.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {boolean} is_self_ship - Denotes if the account is of self delivery type.
+ * @property {string} stage - Denotes whether the account is in enabled or disabled stage.
+ * @property {boolean} is_own_account - Denotes whether it is the seller's own
+ *   account or not.
+ * @property {CourierPartnerSchemeModel} [scheme_rules]
  */
 
 /**
@@ -1033,61 +1152,73 @@ const Joi = require("joi");
 
 /**
  * @typedef PackageMaterial
- * @property {string} name
- * @property {number} width
- * @property {number} height
- * @property {number} length
- * @property {PackageMaterialRule[]} [rules]
- * @property {number[]} store_ids
- * @property {number} weight
- * @property {number} error_rate
- * @property {string} package_type
- * @property {string} size
- * @property {string[]} [media]
- * @property {Channel[]} channels
- * @property {boolean} [track_inventory]
- * @property {string} status
- * @property {number} [max_weight]
- * @property {number} [package_vol_weight]
- * @property {boolean} [auto_calculate]
+ * @property {string} name - Name of the packaging material.
+ * @property {number} width - Width of the packaging material dimentions in centimeter.
+ * @property {number} height - Height of the packaging material dimentions in centimeter.
+ * @property {number} length - Length of the packaging material dimentions in centimeter.
+ * @property {PackageMaterialRule[]} [rules] - Product group rules associated
+ *   with the packaging.
+ * @property {number[]} store_ids - Store ids where the packaging is avaiable.
+ * @property {number} weight - Package's weight in gram.
+ * @property {number} error_rate - Error Rate associated with the packaging dimensions.
+ * @property {string} package_type - Type of package material.
+ * @property {string} size - Physical size of the packaging.
+ * @property {string[]} [media] - Image urls associated with the packaging material.
+ * @property {Channel[]} channels - Sales channel where packaging is applicable.
+ * @property {boolean} [track_inventory] - Denotes if the track of the inventory
+ *   should be kept.
+ * @property {string} status - Current status of the packaging material, if it
+ *   is active or inactive.
+ * @property {number} [max_weight] - Maximum weight holding capacity.
+ * @property {number} [package_vol_weight] - Volumetric weight that a packaging
+ *   material can carry.
+ * @property {boolean} [auto_calculate] - Denotes whether the volumetric weight
+ *   should be auto calculated or not.
  */
 
 /**
  * @typedef PackageMaterialResult
- * @property {string} name
- * @property {string} [id]
- * @property {number} [item_id]
- * @property {number} width
- * @property {number} height
- * @property {number} length
- * @property {PackageMaterialRule[]} [rules]
- * @property {number[]} store_ids
- * @property {number} weight
- * @property {number} error_rate
- * @property {string} package_type
- * @property {string} size
- * @property {string[]} [media]
- * @property {Channel[]} channels
- * @property {boolean} [track_inventory]
- * @property {string} status
- * @property {number} [max_weight]
- * @property {number} [package_vol_weight]
- * @property {boolean} [auto_calculate]
+ * @property {string} name - Name of the packaging material.
+ * @property {string} [id] - Id of the packaging material.
+ * @property {number} [item_id] - Unique identifier of an item associated with
+ *   the packaging material.
+ * @property {number} [company_id] - Company id associated with the packaging material.
+ * @property {number} width - Width of the packaging material dimentions in centimeter.
+ * @property {number} height - Height of the packaging material dimentions in centimeter.
+ * @property {number} length - Length of the packaging material dimentions in centimeter.
+ * @property {PackageMaterialRule[]} [rules] - Product group rules associated
+ *   with the packaging.
+ * @property {number[]} store_ids - Store ids where the packaging is avaiable.
+ * @property {number} weight - Package's weight in gram.
+ * @property {number} error_rate - Error Rate associated with the packaging dimensions.
+ * @property {string} package_type - Type of package material.
+ * @property {string} size - Physical size of the packaging.
+ * @property {string[]} [media] - Image urls associated with the packaging material.
+ * @property {Channel[]} channels - Sales channel where packaging is applicable.
+ * @property {boolean} [track_inventory] - Denotes if the track of the inventory
+ *   should be kept.
+ * @property {string} status - Current status of the packaging material, if it
+ *   is active or inactive.
+ * @property {number} [max_weight] - Maximum weight holding capacity.
+ * @property {number} [package_vol_weight] - Volumetric weight that a packaging
+ *   material can carry.
+ * @property {boolean} [auto_calculate] - Denotes whether the volumetric weight
+ *   should be auto calculated or not.
  */
 
 /**
  * @typedef PackageMaterialRule
- * @property {string} [rule_id]
+ * @property {string} [rule_id] - Unique identifier of the package rule.
  * @property {PackageMaterialRuleQuantity} [quantity]
- * @property {number} [weight]
+ * @property {number} [weight] - Volumetric weight in gram.
  */
 
 /**
  * @typedef PackageRule
- * @property {string} name
- * @property {number} company_id
- * @property {string} type
- * @property {boolean} [is_active]
+ * @property {string} name - Name of the package rule.
+ * @property {number} company_id - Unique identifier of the company.
+ * @property {string} type - Type of the rule.
+ * @property {boolean} [is_active] - Denotes if the rule is active or inactive.
  * @property {PackageRuleProductTag} [product_tag]
  * @property {PackageRuleProduct} [product_id]
  * @property {PackageRuleCategory} [category_id]
@@ -1095,11 +1226,12 @@ const Joi = require("joi");
 
 /**
  * @typedef PackageRuleResult
- * @property {string} [id]
- * @property {string} name
- * @property {number} company_id
- * @property {string} type
- * @property {boolean} [is_active]
+ * @property {string} [id] - Unique id of a package rule.
+ * @property {string} name - Name of a package rule.
+ * @property {number} company_id - Unique identifier of a company associated
+ *   with the package rule.
+ * @property {string} type - Type of the rule created.
+ * @property {boolean} [is_active] - Denotes if the rule is active or inactive.
  * @property {PackageRuleProductTag} [product_tag]
  * @property {PackageRuleProduct} [product_id]
  * @property {PackageRuleCategory} [category_id]
@@ -1107,8 +1239,8 @@ const Joi = require("joi");
 
 /**
  * @typedef Channel
- * @property {string} [type]
- * @property {string} [id]
+ * @property {string} [type] - Type of the channel.
+ * @property {string} [id] - Unique identifier of the channel.
  */
 
 /**
@@ -1140,19 +1272,20 @@ const Joi = require("joi");
 
 /**
  * @typedef PackageMaterialRuleQuantity
- * @property {number} [min]
- * @property {number} [max]
+ * @property {number} [min] - Minimum product's quantity that a packaging can contain.
+ * @property {number} [max] - Maximum product's quantity that a packaging can contain.
  */
 
 /**
  * @typedef RulePriorityDetails
- * @property {string} rule_id
- * @property {number} priority
+ * @property {string} rule_id - Rule id whose priority needs to be changed.
+ * @property {number} priority - New priority of the rule.
  */
 
 /**
  * @typedef RulePriorityResult
- * @property {boolean} [success]
+ * @property {boolean} [success] - Denotes if the priority of the rule is
+ *   changes successfully or not.
  */
 
 /**
@@ -1241,6 +1374,176 @@ const Joi = require("joi");
 /**
  * @typedef StandardError
  * @property {string} message - A brief description of the error.
+ */
+
+/**
+ * @typedef CourierPartnerSchemeV2Features
+ * @property {boolean} [doorstep_qc] - Indicates if the courier partner offers
+ *   doorstep quality check services.
+ * @property {boolean} [qr] - Specifies whether the courier partner supports QR
+ *   code-based operations.
+ * @property {boolean} [mps] - Denotes if the courier partner supports
+ *   multi-part shipment services.
+ * @property {boolean} [ndr] - Indicates if the Non-Delivery Report (NDR)
+ *   feature is supported by the courier partner.
+ * @property {boolean} [dangerous_goods] - Specifies if the courier partner
+ *   handles the transportation of dangerous goods.
+ * @property {boolean} [fragile_goods] - Indicates whether the courier partner
+ *   manages the shipment of fragile goods.
+ * @property {boolean} [restricted_goods] - Indicates if the courier partner
+ *   handles restricted goods, as per regulatory guidelines.
+ * @property {boolean} [cold_storage_goods] - Denotes if the courier partner
+ *   provides cold storage facilities for goods.
+ * @property {boolean} [doorstep_exchange] - Indicates if the courier partner
+ *   supports doorstep exchange services.
+ * @property {boolean} [doorstep_return] - Specifies if the courier partner
+ *   offers doorstep return services.
+ * @property {boolean} [product_installation] - Indicates if the courier partner
+ *   provides product installation services upon delivery.
+ * @property {boolean} [openbox_delivery] - Specifies whether the courier
+ *   partner supports open-box delivery, allowing customers to inspect goods
+ *   before accepting.
+ * @property {boolean} [multi_pick_single_drop] - Indicates if the courier
+ *   partner supports multiple pickups to a single drop location.
+ * @property {boolean} [single_pick_multi_drop] - Indicates whether the courier
+ *   partner supports single pickup to multiple drop locations.
+ * @property {boolean} [multi_pick_multi_drop] - Denotes if the courier partner
+ *   offers services for multiple pickups to multiple drop locations.
+ * @property {boolean} [ewaybill] - Specifies if the courier partner requires or
+ *   supports the generation of e-waybills for shipments.
+ */
+
+/**
+ * @typedef CourierPartnerSchemeV2DetailsModel
+ * @property {string} extension_id - Unique identifier of courier partner extension
+ * @property {string} [scheme_id]
+ * @property {string} name
+ * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
+ * @property {string} transport_type
+ * @property {string} region
+ * @property {string} delivery_type
+ * @property {string[]} payment_mode
+ * @property {string} stage
+ * @property {string} [status_updates] - Describes the type of status updates
+ *   provided by the courier partner (e.g., real-time, periodic).
+ * @property {number} [ndr_attempts] - Indicates if the Non-Delivery Report
+ *   (NDR) feature is supported by the courier partner.
+ * @property {number} [qc_shipment_item_quantity] - Defines the maximum quantity
+ *   of items allowed in a quality check shipment.
+ * @property {number} [non_qc_shipment_item_quantity] - Defines the maximum
+ *   quantity of items allowed in a non-quality check shipment.
+ * @property {CourierPartnerSchemeV2Features} feature
+ */
+
+/**
+ * @typedef CourierPartnerV2SchemeModel
+ * @property {string} extension_id - Unique identifier of courier partner extension.
+ * @property {string} scheme_id - Unique identifier of courier partner scheme.
+ * @property {string} [company_id] - Unique identifier of company.
+ * @property {string} name - Name of the scheme.
+ * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
+ * @property {string} transport_type - Mode of transport associated with the
+ *   courier partner scheme.
+ * @property {string} region - Serviceable region associated with the courier
+ *   partner scheme.
+ * @property {string} delivery_type - Type of delivery associated with the
+ *   courier partner scheme.
+ * @property {string[]} payment_mode - Mode of payment associated with the
+ *   courier partner scheme.
+ * @property {string} stage - Indicates if the courier partner scheme is
+ *   currently active or inactive.
+ * @property {string} [status_updates] - Describes the type of status updates
+ *   provided by the courier partner (e.g., real-time, periodic).
+ * @property {number} [ndr_attempts] - Indicates if the Non-Delivery Report
+ *   (NDR) feature is supported by the courier partner.
+ * @property {number} [qc_shipment_item_quantity] - Defines the maximum quantity
+ *   of items allowed in a quality check shipment.
+ * @property {number} [non_qc_shipment_item_quantity] - Defines the maximum
+ *   quantity of items allowed in a non-quality check shipment.
+ * @property {CourierPartnerSchemeV2Features} feature
+ */
+
+/**
+ * @typedef CourierPartnerSchemeV2UpdateDetails
+ * @property {string} name
+ * @property {ArithmeticOperations} weight
+ * @property {ArithmeticOperations} [volumetric_weight]
+ * @property {string} transport_type
+ * @property {string} region
+ * @property {string} delivery_type
+ * @property {string[]} payment_mode
+ * @property {string} stage
+ * @property {string} [status_updates] - Describes the type of status updates
+ *   provided by the courier partner (e.g., real-time, periodic).
+ * @property {number} [ndr_attempts] - Indicates if the Non-Delivery Report
+ *   (NDR) feature is supported by the courier partner.
+ * @property {number} [qc_shipment_item_quantity] - Defines the maximum quantity
+ *   of items allowed in a quality check shipment.
+ * @property {number} [non_qc_shipment_item_quantity] - Defines the maximum
+ *   quantity of items allowed in a non-quality check shipment.
+ * @property {CourierPartnerSchemeV2Features} feature
+ */
+
+/**
+ * @typedef courierPartnerSchemeV2List
+ * @property {CourierPartnerV2SchemeModel[]} items - List of courier partner schemes
+ * @property {Page} page
+ */
+
+/**
+ * @typedef BulkRegionServiceabilityTatDetails
+ * @property {string} country
+ * @property {string} region
+ * @property {string} type
+ */
+
+/**
+ * @typedef BulkRegionServiceabilityTatResultItemData
+ * @property {string} [country] - Name of the country.
+ * @property {string} [region] - Name of the region for which the
+ *   tat/serviceability file needs to be downloaded.
+ * @property {string} [type] - Denotes the type of data.
+ * @property {string} [batch_id] - Unique identifier identifying the perticular request.
+ * @property {string} [status] - Current status of the request.
+ * @property {Object[]} [failed_records] - Information of records which failed
+ * @property {string} [file_path] - CDN path of the file.
+ */
+
+/**
+ * @typedef BulkRegionServiceabilityTatResult
+ * @property {BulkRegionServiceabilityTatResultItemData[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef HierarchyItems
+ * @property {string} [display_name]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef GetCountriesItems
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string[]} [timezones]
+ * @property {HierarchyItems[]} [hierarchy]
+ * @property {string} [phone_code]
+ * @property {string} [currency]
+ * @property {string} [type]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {string} [display_name]
+ * @property {boolean} [has_next_hierarchy]
+ */
+
+/**
+ * @typedef GetCountries
+ * @property {GetCountriesItems[]} items
+ * @property {Page} page
  */
 
 class ServiceabilityPlatformModel {
@@ -1450,12 +1753,32 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {ZoneMappingDetailType} */
+  static ZoneMappingDetailType() {
+    return Joi.object({
+      country: Joi.string().allow("").required(),
+      regions: Joi.array().items(
+        ServiceabilityPlatformModel.ZoneMappingRegions()
+      ),
+    });
+  }
+
   /** @returns {ZoneMappingType} */
   static ZoneMappingType() {
     return Joi.object({
       country: Joi.string().allow("").required(),
-      pincode: Joi.array().items(Joi.string().allow("")),
-      state: Joi.array().items(Joi.string().allow("")),
+      regions: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {ZoneMappingRegions} */
+  static ZoneMappingRegions() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      parent_id: Joi.array().items(Joi.string().allow("")),
+      parent_uid: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
     });
   }
 
@@ -1476,7 +1799,6 @@ class ServiceabilityPlatformModel {
       mapping: Joi.array()
         .items(ServiceabilityPlatformModel.ZoneMappingType())
         .required(),
-      assignment_preference: Joi.string().allow(""),
     });
   }
 
@@ -1540,10 +1862,9 @@ class ServiceabilityPlatformModel {
       store_ids: Joi.array().items(Joi.number()).required(),
       region_type: Joi.string().allow("").required(),
       mapping: Joi.array()
-        .items(ServiceabilityPlatformModel.ZoneMappingType())
+        .items(ServiceabilityPlatformModel.ZoneMappingDetailType())
         .required(),
-      assignment_preference: Joi.string().allow(""),
-      stores_count: Joi.number().required(),
+      stores_count: Joi.number(),
     });
   }
 
@@ -1562,14 +1883,14 @@ class ServiceabilityPlatformModel {
       mapping: Joi.array()
         .items(ServiceabilityPlatformModel.ZoneMappingType())
         .required(),
-      assignment_preference: Joi.string().allow(""),
+      product: ServiceabilityPlatformModel.ZoneProductTypes(),
     });
   }
 
   /** @returns {ZoneResult} */
   static ZoneResult() {
     return Joi.object({
-      status_code: Joi.number().required(),
+      status_code: Joi.number(),
       zone_id: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
     });
@@ -1593,7 +1914,6 @@ class ServiceabilityPlatformModel {
       slug: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
       store_ids: Joi.array().items(Joi.number()).required(),
-      assignment_preference: Joi.string().allow("").required(),
     });
   }
 
@@ -1896,6 +2216,14 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {PincodeCodStatusItem} */
+  static PincodeCodStatusItem() {
+    return Joi.object({
+      active: Joi.boolean(),
+      pincode: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {PincodeCodStatusListingResult} */
   static PincodeCodStatusListingResult() {
     return Joi.object({
@@ -2016,15 +2344,28 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {CourierAccountUpdateDetails} */
+  static CourierAccountUpdateDetails() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow("").required(),
+      is_self_ship: Joi.boolean().required(),
+      stage: Joi.string().allow("").required(),
+      is_own_account: Joi.boolean().required(),
+    });
+  }
+
   /** @returns {CourierAccount} */
   static CourierAccount() {
     return Joi.object({
+      company_id: Joi.number().required(),
       extension_id: Joi.string().allow("").required(),
       account_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
       is_self_ship: Joi.boolean().required(),
       stage: Joi.string().allow("").required(),
       is_own_account: Joi.boolean().required(),
+      scheme_rules: ServiceabilityPlatformModel.CourierPartnerSchemeModel().required(),
     });
   }
 
@@ -2075,9 +2416,9 @@ class ServiceabilityPlatformModel {
   /** @returns {CourierPartnerRuleCPListResult} */
   static CourierPartnerRuleCPListResult() {
     return Joi.object({
-      account_id: Joi.string().allow(""),
-      extension_id: Joi.string().allow(""),
-      is_self_ship: Joi.boolean(),
+      account_id: Joi.string().allow("").required(),
+      extension_id: Joi.string().allow("").required(),
+      is_self_ship: Joi.boolean().required(),
       scheme_rules: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
@@ -2085,17 +2426,17 @@ class ServiceabilityPlatformModel {
   /** @returns {CourierPartnerRuleResult} */
   static CourierPartnerRuleResult() {
     return Joi.object({
-      is_active: Joi.boolean(),
-      application_id: Joi.string().allow(""),
-      company_id: Joi.number(),
-      conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions(),
-      sort: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean().required(),
+      application_id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions().required(),
+      sort: Joi.array().items(Joi.string().allow("")).required(),
       created_by: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
-      id: Joi.string().allow(""),
+      id: Joi.string().allow("").required(),
       modified_by: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       modified_on: Joi.string().allow("").allow(null),
-      name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
       cp_list: Joi.array().items(
         ServiceabilityPlatformModel.CourierPartnerRuleCPListResult()
       ),
@@ -2117,7 +2458,7 @@ class ServiceabilityPlatformModel {
       sub_type: Joi.string().allow(""),
       name: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
-      parent_id: Joi.string().allow(""),
+      parent_id: Joi.array().items(Joi.string().allow("")),
       parent_ids: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -2178,6 +2519,7 @@ class ServiceabilityPlatformModel {
       name: Joi.string().allow("").required(),
       conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions().required(),
       sort: Joi.array().items(Joi.string().allow("")).required(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -2305,7 +2647,9 @@ class ServiceabilityPlatformModel {
     return Joi.object({
       rule_ids: Joi.array().items(Joi.string().allow("")).required(),
       sort: Joi.array().items(Joi.string().allow("")).required(),
-      logistics_as_actual: Joi.boolean(),
+      logistics_as_actual: Joi.string().allow(""),
+      company_id: Joi.number().required(),
+      application_id: Joi.string().allow(""),
     });
   }
 
@@ -2313,6 +2657,8 @@ class ServiceabilityPlatformModel {
   static ZoneConfig() {
     return Joi.object({
       serviceability_type: Joi.string().allow(""),
+      active_count: Joi.number(),
+      total_count: Joi.number(),
     });
   }
 
@@ -2328,7 +2674,7 @@ class ServiceabilityPlatformModel {
   /** @returns {BulkRegionJobDetails} */
   static BulkRegionJobDetails() {
     return Joi.object({
-      file_path: Joi.string().allow(""),
+      file_path: Joi.string().allow("").allow(null),
       country: Joi.string().allow("").required(),
       action: Joi.string().allow("").required(),
       region: Joi.string().allow("").required(),
@@ -2338,7 +2684,7 @@ class ServiceabilityPlatformModel {
   /** @returns {BulkRegionResultItemData} */
   static BulkRegionResultItemData() {
     return Joi.object({
-      file_path: Joi.string().allow("").required(),
+      file_path: Joi.string().allow(""),
       failed: Joi.number(),
       failed_records: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
       action: Joi.string().allow("").required(),
@@ -2448,7 +2794,7 @@ class ServiceabilityPlatformModel {
   /** @returns {StorePrioritySchema} */
   static StorePrioritySchema() {
     return Joi.object({
-      id: Joi.string().allow(""),
+      id: Joi.number(),
       name: Joi.string().allow(""),
     });
   }
@@ -2522,6 +2868,7 @@ class ServiceabilityPlatformModel {
       pickup_cutoff: Joi.string().allow("").allow(null),
       route_code: Joi.string().allow("").allow(null),
       is_first_mile: Joi.boolean().required(),
+      is_reverse_pickup: Joi.boolean().allow(null),
       is_return: Joi.boolean().required(),
       is_installation: Joi.boolean().required(),
       is_last_mile: Joi.boolean().required(),
@@ -2549,14 +2896,18 @@ class ServiceabilityPlatformModel {
       single_pick_multi_drop: Joi.boolean(),
       multi_pick_multi_drop: Joi.boolean(),
       ewaybill: Joi.boolean(),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
     });
   }
 
   /** @returns {CourierPartnerSchemeModel} */
   static CourierPartnerSchemeModel() {
     return Joi.object({
+      name: Joi.string().allow(""),
       extension_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
+      volumetric_weight: ServiceabilityPlatformModel.ArithmeticOperations(),
       weight: ServiceabilityPlatformModel.ArithmeticOperations().required(),
       transport_type: Joi.string().allow("").required(),
       region: Joi.string().allow("").required(),
@@ -2570,12 +2921,14 @@ class ServiceabilityPlatformModel {
   /** @returns {CourierAccountResult} */
   static CourierAccountResult() {
     return Joi.object({
+      company_id: Joi.number().required(),
+      extension_id: Joi.string().allow(""),
       account_id: Joi.string().allow("").required(),
       scheme_id: Joi.string().allow("").required(),
       is_self_ship: Joi.boolean().required(),
       stage: Joi.string().allow("").required(),
       is_own_account: Joi.boolean().required(),
-      scheme_rules: ServiceabilityPlatformModel.CourierPartnerSchemeModel().required(),
+      scheme_rules: ServiceabilityPlatformModel.CourierPartnerSchemeModel(),
     });
   }
 
@@ -2622,6 +2975,7 @@ class ServiceabilityPlatformModel {
       name: Joi.string().allow("").required(),
       id: Joi.string().allow(""),
       item_id: Joi.number(),
+      company_id: Joi.number(),
       width: Joi.number().required(),
       height: Joi.number().required(),
       length: Joi.number().required(),
@@ -2863,6 +3217,171 @@ class ServiceabilityPlatformModel {
   static StandardError() {
     return Joi.object({
       message: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CourierPartnerSchemeV2Features} */
+  static CourierPartnerSchemeV2Features() {
+    return Joi.object({
+      doorstep_qc: Joi.boolean(),
+      qr: Joi.boolean(),
+      mps: Joi.boolean(),
+      ndr: Joi.boolean(),
+      dangerous_goods: Joi.boolean(),
+      fragile_goods: Joi.boolean(),
+      restricted_goods: Joi.boolean(),
+      cold_storage_goods: Joi.boolean(),
+      doorstep_exchange: Joi.boolean(),
+      doorstep_return: Joi.boolean(),
+      product_installation: Joi.boolean(),
+      openbox_delivery: Joi.boolean(),
+      multi_pick_single_drop: Joi.boolean(),
+      single_pick_multi_drop: Joi.boolean(),
+      multi_pick_multi_drop: Joi.boolean(),
+      ewaybill: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CourierPartnerSchemeV2DetailsModel} */
+  static CourierPartnerSchemeV2DetailsModel() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
+      weight: ServiceabilityPlatformModel.ArithmeticOperations().required(),
+      volumetric_weight: ServiceabilityPlatformModel.ArithmeticOperations(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      status_updates: Joi.string().allow(""),
+      ndr_attempts: Joi.number(),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
+      feature: ServiceabilityPlatformModel.CourierPartnerSchemeV2Features().required(),
+    });
+  }
+
+  /** @returns {CourierPartnerV2SchemeModel} */
+  static CourierPartnerV2SchemeModel() {
+    return Joi.object({
+      extension_id: Joi.string().allow("").required(),
+      scheme_id: Joi.string().allow("").required(),
+      company_id: Joi.string().allow(""),
+      name: Joi.string().allow("").required(),
+      weight: ServiceabilityPlatformModel.ArithmeticOperations().required(),
+      volumetric_weight: ServiceabilityPlatformModel.ArithmeticOperations(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      status_updates: Joi.string().allow(""),
+      ndr_attempts: Joi.number(),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
+      feature: ServiceabilityPlatformModel.CourierPartnerSchemeV2Features().required(),
+    });
+  }
+
+  /** @returns {CourierPartnerSchemeV2UpdateDetails} */
+  static CourierPartnerSchemeV2UpdateDetails() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      weight: ServiceabilityPlatformModel.ArithmeticOperations().required(),
+      volumetric_weight: ServiceabilityPlatformModel.ArithmeticOperations(),
+      transport_type: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      delivery_type: Joi.string().allow("").required(),
+      payment_mode: Joi.array().items(Joi.string().allow("")).required(),
+      stage: Joi.string().allow("").required(),
+      status_updates: Joi.string().allow(""),
+      ndr_attempts: Joi.number(),
+      qc_shipment_item_quantity: Joi.number().allow(null),
+      non_qc_shipment_item_quantity: Joi.number().allow(null),
+      feature: ServiceabilityPlatformModel.CourierPartnerSchemeV2Features().required(),
+    });
+  }
+
+  /** @returns {courierPartnerSchemeV2List} */
+  static courierPartnerSchemeV2List() {
+    return Joi.object({
+      items: Joi.array()
+        .items(ServiceabilityPlatformModel.CourierPartnerV2SchemeModel())
+        .required(),
+      page: ServiceabilityPlatformModel.Page().required(),
+    });
+  }
+
+  /** @returns {BulkRegionServiceabilityTatDetails} */
+  static BulkRegionServiceabilityTatDetails() {
+    return Joi.object({
+      country: Joi.string().allow("").required(),
+      region: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {BulkRegionServiceabilityTatResultItemData} */
+  static BulkRegionServiceabilityTatResultItemData() {
+    return Joi.object({
+      country: Joi.string().allow(""),
+      region: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      batch_id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      failed_records: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+      file_path: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {BulkRegionServiceabilityTatResult} */
+  static BulkRegionServiceabilityTatResult() {
+    return Joi.object({
+      items: Joi.array().items(
+        ServiceabilityPlatformModel.BulkRegionServiceabilityTatResultItemData()
+      ),
+      page: ServiceabilityPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {HierarchyItems} */
+  static HierarchyItems() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetCountriesItems} */
+  static GetCountriesItems() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")),
+      hierarchy: Joi.array().items(
+        ServiceabilityPlatformModel.HierarchyItems()
+      ),
+      phone_code: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      has_next_hierarchy: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GetCountries} */
+  static GetCountries() {
+    return Joi.object({
+      items: Joi.array()
+        .items(ServiceabilityPlatformModel.GetCountriesItems())
+        .required(),
+      page: ServiceabilityPlatformModel.Page().required(),
     });
   }
 }

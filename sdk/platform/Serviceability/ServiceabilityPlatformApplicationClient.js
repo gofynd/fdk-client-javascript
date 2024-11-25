@@ -25,7 +25,7 @@ class Serviceability {
    *   - Success response
    *
    * @name createCourierPartnerRule
-   * @summary: Create rourier rule
+   * @summary: Create courier rule
    * @description: Creates a rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
    */
   async createCourierPartnerRule(
@@ -1270,7 +1270,7 @@ class Serviceability {
    * @description: Retrieves the history of changes made to cash on delivery settings for pincodes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
    */
   async updatePincodeAuditHistory(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1278,6 +1278,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1291,6 +1293,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1302,6 +1306,8 @@ class Serviceability {
     }
 
     const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1435,7 +1441,7 @@ class Serviceability {
    * @description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
    */
   async updatePincodeCoDListing(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1443,6 +1449,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1456,6 +1464,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1467,6 +1477,8 @@ class Serviceability {
     }
 
     const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,

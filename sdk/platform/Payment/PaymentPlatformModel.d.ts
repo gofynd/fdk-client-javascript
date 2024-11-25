@@ -1,13 +1,13 @@
 export = PaymentPlatformModel;
 /**
  * @typedef PaymentGatewayConfigDetails
- * @property {Object[]} [aggregators] - List of all speceific Payment options
- *   with their Details.
+ * @property {Object[]} [aggregators] - List of all config specific to the
+ *   aggregator with their Details.
  * @property {string} app_id - Application Id to which Payment config Mapped
- * @property {string[]} excluded_fields - List of all excluded options with their Details.
+ * @property {string[]} excluded_fields - List of all excluded config with their Details.
  * @property {boolean} success - Response is successful or not
  * @property {boolean} created - Response is created or not
- * @property {string[]} display_fields - List of all included options with their Details.
+ * @property {string[]} display_fields - List of all display related configs, i.e. logo
  */
 /**
  * @typedef ErrorCodeDescription
@@ -21,7 +21,8 @@ export = PaymentPlatformModel;
  * @property {string} config_type - Config Type of the aggregator
  * @property {boolean} [is_active] - Enable or Disable Flag
  * @property {string} key - Api key of the payment aggregator
- * @property {string} merchant_salt - Merchant key of the payment aggregator
+ * @property {string} merchant_salt - The secret key or token provided by the
+ *   payment aggregator for the merchant.
  */
 /**
  * @typedef PaymentGatewayConfigCreation
@@ -162,7 +163,7 @@ export = PaymentPlatformModel;
 /**
  * @typedef PaymentOptionAndFlow
  * @property {RootPaymentMode[]} payment_option - Payment options
- * @property {PaymentFlow} payment_flows
+ * @property {PaymentFlow} [payment_flows]
  * @property {PaymentDefaultSelection} [payment_default_selection]
  */
 /**
@@ -327,9 +328,9 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef RefundAccountDetails
- * @property {boolean} [is_verified_flag]
- * @property {string} message - Response message
- * @property {Object} [data] - Refund account data.
+ * @property {boolean} [is_verified_flag] - Account is verified or not
+ * @property {string} [message] - Response message
+ * @property {Object} data - Refund account data.
  * @property {boolean} success - Success or failure flag.
  */
 /**
@@ -340,15 +341,15 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef BankDetailsForOTP
- * @property {string} ifsc_code
- * @property {string} account_no
- * @property {string} branch_name
- * @property {string} bank_name
- * @property {string} account_holder
+ * @property {string} ifsc_code - IFSC code of account
+ * @property {string} account_no - Account number
+ * @property {string} branch_name - Branch name of account
+ * @property {string} bank_name - Bank name of account
+ * @property {string} account_holder - Accountg holder name of account
  */
 /**
  * @typedef AddBeneficiaryDetailsOTPCreation
- * @property {string} order_id
+ * @property {string} order_id - Order_id for which account will be added
  * @property {BankDetailsForOTP} details
  */
 /**
@@ -369,11 +370,11 @@ export = PaymentPlatformModel;
  * @property {string} display_name - Display Name Of Account
  * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
  * @property {string} transfer_mode - Transfer Mode Of Account
- * @property {string} email - EMail of User
+ * @property {string} email - Email of User
  * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
  * @property {string} [branch_name] - Branch Name Of Account
  * @property {string} address - Address of User
- * @property {string} modified_on - MOdification Date of Beneficiary
+ * @property {string} modified_on - Modification Date of Beneficiary
  * @property {string} beneficiary_id - Benenficiary Id
  * @property {string} account_no - Account Number
  * @property {string} bank_name - Bank Name Of Account
@@ -386,7 +387,7 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef MultiTenderPaymentMeta
- * @property {Object} [extra_meta]
+ * @property {Object} [extra_meta] - Key value pair for extra data related to payment mode
  * @property {string} [order_id] - Fynd Platform order ID
  * @property {string} [payment_id] - A unique identifier associated with a
  *   specific payment transaction
@@ -403,7 +404,7 @@ export = PaymentPlatformModel;
  * @property {string} [name] - Payment mode name
  * @property {MultiTenderPaymentMeta} [meta]
  * @property {number} amount - Payment amount
- * @property {string} mode
+ * @property {string} mode - Payment mode short code
  */
 /**
  * @typedef PaymentConfirmationCreation
@@ -425,9 +426,30 @@ export = PaymentPlatformModel;
  * @property {number} usages - Used COD limit from the user Limit
  */
 /**
+ * @typedef CODLimitConfig
+ * @property {number} storefront - Limit for storefront
+ * @property {number} pos - Limit for pos
+ */
+/**
+ * @typedef CODPaymentLimitConfig
+ * @property {boolean} is_active - Boolean flag to show the status
+ * @property {number} usages - Used cod limit
+ * @property {number} user_id - User_id
+ * @property {string} merchant_user_id - Merchant_user_id
+ * @property {number} remaining_limit - Remaining COD limit
+ * @property {CODLimitConfig} limit
+ */
+/**
+ * @typedef GetUserBULimitResponseSchema
+ * @property {string} business_unit - COD limit business unit
+ * @property {string} display_name - Display name for cod limit
+ * @property {CODPaymentLimitConfig} config
+ */
+/**
  * @typedef GetUserCODLimitDetails
- * @property {CODdata} user_cod_data
+ * @property {GetUserBULimitResponseSchema[]} items
  * @property {boolean} success - Response is successful or not
+ * @property {string} [message] - Message for cod limit
  */
 /**
  * @typedef SetCODForUserCreation
@@ -719,7 +741,8 @@ export = PaymentPlatformModel;
  * @property {string} [payment_link_url] - Url of payment link
  * @property {string} [payment_link_current_status] - Status of payment link
  * @property {string} [external_order_id] - Merchant order id
- * @property {number} [polling_timeout] - Polling request timeout
+ * @property {number} [polling_timeout] - Polling request timeout, perform
+ *   polling till timeout elapsed or payment status is success/failure
  * @property {boolean} success - Successful or failure
  */
 /**
@@ -742,10 +765,11 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef CreatePaymentLinkMeta
- * @property {string} cart_id
- * @property {string} checkout_mode
- * @property {string} amount
- * @property {string} [assign_card_id]
+ * @property {string} cart_id - Cart id for which payment link needs to be generated.
+ * @property {string} checkout_mode - Checkout mode for the payment link i.e. self
+ * @property {string} amount - Payment link amount to be paid by the customer
+ * @property {string} [assign_card_id] - Assigned card id against which payment
+ *   to be done via payment link
  */
 /**
  * @typedef CreatePaymentLinkCreation
@@ -880,7 +904,8 @@ export = PaymentPlatformModel;
  * @property {AddressDetail} [shipping_address] - Shipping address
  * @property {number} amount_captured - Amount which is captured or credited to
  *   merchant account
- * @property {number} [amount_refunded]
+ * @property {number} [amount_refunded] - Amount refunded or credited back to
+ *   customer accout
  * @property {string} [aggregator_customer_id] - Unique customer id generated by
  *   payment gateway, not required for standard checkout.
  * @property {string} cancel_url - Cancel url sent by Fynd platform at the time
@@ -902,12 +927,12 @@ export = PaymentPlatformModel;
  * @property {AddressDetail} [billing_address] - Billing address
  * @property {boolean} [captured] - Whether the payment is captured (credited to
  *   merchant account) by payment gateway.
- * @property {Object} [meta] - Metadata
- * @property {string} status - Stautus of the payment
+ * @property {Object} [meta] - Extra meta data specific to extension
+ * @property {string} status - Status of the payment
  */
 /**
  * @typedef PaymentSessionCreation
- * @property {Object} [meta] - Meta
+ * @property {Object} [meta] - Extra meta data specific to extensions
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
@@ -918,6 +943,7 @@ export = PaymentPlatformModel;
  *   the schema `PaymentSessionDetail`.
  * @property {number} total_amount - Amount paid.
  * @property {string} checksum - Checksum to verify the payload
+ * @property {string} [source] - Source of payment update session
  */
 /**
  * @typedef PaymentSessionPutDetails
@@ -975,33 +1001,34 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef PaymentDetails
- * @property {Object[]} payment_methods - Method of payment
+ * @property {Object[]} payment_methods - List of payment methods
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {number} [amount_refunded]
+ * @property {number} [amount_refunded] - Already refunded amount for the given
+ *   gid (global identifier for the order).
  * @property {string} currency - Currency of the payment.
  * @property {string} mode - Test or live, test mode uses test credentials so
  *   that actual payment is not created.
- * @property {string} [merchant_locale] - Merchant's locale
- * @property {Object} [meta] - Metadata
+ * @property {string} [merchant_locale] - Merchant's locale (language) i.e. en
+ * @property {Object} [meta] - Extra meta data related to the payment methods
  * @property {string} [kind] - Optional kind of purchase/payment - one time
  *   payment (sale) or subcription. defaults to sale.
  * @property {string} [success_url] - Success url sent by Fynd platform at the
  *   time of payment creation
- * @property {string} status - Stautus of the payment
+ * @property {string} status - Status of the payment
  * @property {boolean} [captured] - Whether the payment is captured (credited to
  *   merchant account) by payment gateway.
  * @property {string} [payment_id] - Unique transaction id generated by payment gateway
  * @property {string} g_user_id - Global user identifier - unique user id
  *   generated by Fynd platform
- * @property {string} [locale] - User's locale
+ * @property {string} [locale] - User's locale (language), i.e. en
  * @property {string} [cancel_url] - Cancel url sent by Fynd platform at the
- *   time of payment creation
+ *   time of payment creation, redirect on payment cancellation
  * @property {string} [created] - Timestamp in epoch
  * @property {number} amount_captured - Amount which is captured or credited to
  *   merchant account
- * @property {number} amount - Amount paid.
+ * @property {number} amount - Amount paid for the order.
  * @property {string} [aggregator_customer_id] - Unique customer id generated by
  *   payment gateway, not required for standard checkout.
  * @property {string} [aggregator_order_id] - Unique order id or payment request
@@ -1194,14 +1221,14 @@ export = PaymentPlatformModel;
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, OrderDetail, AddressDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema };
+    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, OrderDetail, AddressDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema };
 }
 /** @returns {PaymentGatewayConfigDetails} */
 declare function PaymentGatewayConfigDetails(): PaymentGatewayConfigDetails;
 type PaymentGatewayConfigDetails = {
     /**
-     * - List of all speceific Payment options
-     * with their Details.
+     * - List of all config specific to the
+     * aggregator with their Details.
      */
     aggregators?: any[];
     /**
@@ -1209,7 +1236,7 @@ type PaymentGatewayConfigDetails = {
      */
     app_id: string;
     /**
-     * - List of all excluded options with their Details.
+     * - List of all excluded config with their Details.
      */
     excluded_fields: string[];
     /**
@@ -1221,7 +1248,7 @@ type PaymentGatewayConfigDetails = {
      */
     created: boolean;
     /**
-     * - List of all included options with their Details.
+     * - List of all display related configs, i.e. logo
      */
     display_fields: string[];
 };
@@ -1261,7 +1288,8 @@ type PaymentGatewayConfig = {
      */
     key: string;
     /**
-     * - Merchant key of the payment aggregator
+     * - The secret key or token provided by the
+     * payment aggregator for the merchant.
      */
     merchant_salt: string;
 };
@@ -1627,7 +1655,7 @@ type PaymentOptionAndFlow = {
      * - Payment options
      */
     payment_option: RootPaymentMode[];
-    payment_flows: PaymentFlow;
+    payment_flows?: PaymentFlow;
     payment_default_selection?: PaymentDefaultSelection;
 };
 /** @returns {AdvanceObject} */
@@ -2048,15 +2076,18 @@ type SaveSubscriptionSetupIntentDetails = {
 /** @returns {RefundAccountDetails} */
 declare function RefundAccountDetails(): RefundAccountDetails;
 type RefundAccountDetails = {
+    /**
+     * - Account is verified or not
+     */
     is_verified_flag?: boolean;
     /**
      * - Response message
      */
-    message: string;
+    message?: string;
     /**
      * - Refund account data.
      */
-    data?: any;
+    data: any;
     /**
      * - Success or failure flag.
      */
@@ -2081,15 +2112,33 @@ type NotFoundResourceError = {
 /** @returns {BankDetailsForOTP} */
 declare function BankDetailsForOTP(): BankDetailsForOTP;
 type BankDetailsForOTP = {
+    /**
+     * - IFSC code of account
+     */
     ifsc_code: string;
+    /**
+     * - Account number
+     */
     account_no: string;
+    /**
+     * - Branch name of account
+     */
     branch_name: string;
+    /**
+     * - Bank name of account
+     */
     bank_name: string;
+    /**
+     * - Accountg holder name of account
+     */
     account_holder: string;
 };
 /** @returns {AddBeneficiaryDetailsOTPCreation} */
 declare function AddBeneficiaryDetailsOTPCreation(): AddBeneficiaryDetailsOTPCreation;
 type AddBeneficiaryDetailsOTPCreation = {
+    /**
+     * - Order_id for which account will be added
+     */
     order_id: string;
     details: BankDetailsForOTP;
 };
@@ -2153,7 +2202,7 @@ type OrderBeneficiaryDetails = {
      */
     transfer_mode: string;
     /**
-     * - EMail of User
+     * - Email of User
      */
     email: string;
     /**
@@ -2169,7 +2218,7 @@ type OrderBeneficiaryDetails = {
      */
     address: string;
     /**
-     * - MOdification Date of Beneficiary
+     * - Modification Date of Beneficiary
      */
     modified_on: string;
     /**
@@ -2204,6 +2253,9 @@ type OrderBeneficiaryFetchResults = {
 /** @returns {MultiTenderPaymentMeta} */
 declare function MultiTenderPaymentMeta(): MultiTenderPaymentMeta;
 type MultiTenderPaymentMeta = {
+    /**
+     * - Key value pair for extra data related to payment mode
+     */
     extra_meta?: any;
     /**
      * - Fynd Platform order ID
@@ -2243,6 +2295,9 @@ type MultiTenderPaymentMethod = {
      * - Payment amount
      */
     amount: number;
+    /**
+     * - Payment mode short code
+     */
     mode: string;
 };
 /** @returns {PaymentConfirmationCreation} */
@@ -2294,14 +2349,68 @@ type CODdata = {
      */
     usages: number;
 };
+/** @returns {CODLimitConfig} */
+declare function CODLimitConfig(): CODLimitConfig;
+type CODLimitConfig = {
+    /**
+     * - Limit for storefront
+     */
+    storefront: number;
+    /**
+     * - Limit for pos
+     */
+    pos: number;
+};
+/** @returns {CODPaymentLimitConfig} */
+declare function CODPaymentLimitConfig(): CODPaymentLimitConfig;
+type CODPaymentLimitConfig = {
+    /**
+     * - Boolean flag to show the status
+     */
+    is_active: boolean;
+    /**
+     * - Used cod limit
+     */
+    usages: number;
+    /**
+     * - User_id
+     */
+    user_id: number;
+    /**
+     * - Merchant_user_id
+     */
+    merchant_user_id: string;
+    /**
+     * - Remaining COD limit
+     */
+    remaining_limit: number;
+    limit: CODLimitConfig;
+};
+/** @returns {GetUserBULimitResponseSchema} */
+declare function GetUserBULimitResponseSchema(): GetUserBULimitResponseSchema;
+type GetUserBULimitResponseSchema = {
+    /**
+     * - COD limit business unit
+     */
+    business_unit: string;
+    /**
+     * - Display name for cod limit
+     */
+    display_name: string;
+    config: CODPaymentLimitConfig;
+};
 /** @returns {GetUserCODLimitDetails} */
 declare function GetUserCODLimitDetails(): GetUserCODLimitDetails;
 type GetUserCODLimitDetails = {
-    user_cod_data: CODdata;
+    items: GetUserBULimitResponseSchema[];
     /**
      * - Response is successful or not
      */
     success: boolean;
+    /**
+     * - Message for cod limit
+     */
+    message?: string;
 };
 /** @returns {SetCODForUserCreation} */
 declare function SetCODForUserCreation(): SetCODForUserCreation;
@@ -3076,7 +3185,8 @@ type GetPaymentLinkDetails = {
      */
     external_order_id?: string;
     /**
-     * - Polling request timeout
+     * - Polling request timeout, perform
+     * polling till timeout elapsed or payment status is success/failure
      */
     polling_timeout?: number;
     /**
@@ -3140,9 +3250,22 @@ type ErrorDetails = {
 /** @returns {CreatePaymentLinkMeta} */
 declare function CreatePaymentLinkMeta(): CreatePaymentLinkMeta;
 type CreatePaymentLinkMeta = {
+    /**
+     * - Cart id for which payment link needs to be generated.
+     */
     cart_id: string;
+    /**
+     * - Checkout mode for the payment link i.e. self
+     */
     checkout_mode: string;
+    /**
+     * - Payment link amount to be paid by the customer
+     */
     amount: string;
+    /**
+     * - Assigned card id against which payment
+     * to be done via payment link
+     */
     assign_card_id?: string;
 };
 /** @returns {CreatePaymentLinkCreation} */
@@ -3518,6 +3641,10 @@ type PaymentSessionDetail = {
      * merchant account
      */
     amount_captured: number;
+    /**
+     * - Amount refunded or credited back to
+     * customer accout
+     */
     amount_refunded?: number;
     /**
      * - Unique customer id generated by
@@ -3580,11 +3707,11 @@ type PaymentSessionDetail = {
      */
     captured?: boolean;
     /**
-     * - Metadata
+     * - Extra meta data specific to extension
      */
     meta?: any;
     /**
-     * - Stautus of the payment
+     * - Status of the payment
      */
     status: string;
 };
@@ -3592,7 +3719,7 @@ type PaymentSessionDetail = {
 declare function PaymentSessionCreation(): PaymentSessionCreation;
 type PaymentSessionCreation = {
     /**
-     * - Meta
+     * - Extra meta data specific to extensions
      */
     meta?: any;
     /**
@@ -3626,6 +3753,10 @@ type PaymentSessionCreation = {
      * - Checksum to verify the payload
      */
     checksum: string;
+    /**
+     * - Source of payment update session
+     */
+    source?: string;
 };
 /** @returns {PaymentSessionPutDetails} */
 declare function PaymentSessionPutDetails(): PaymentSessionPutDetails;
@@ -3785,7 +3916,7 @@ type RefundSessionDetails = {
 declare function PaymentDetails(): PaymentDetails;
 type PaymentDetails = {
     /**
-     * - Method of payment
+     * - List of payment methods
      */
     payment_methods: any[];
     /**
@@ -3794,6 +3925,10 @@ type PaymentDetails = {
      * Fynd payments platform and is unique.
      */
     gid: string;
+    /**
+     * - Already refunded amount for the given
+     * gid (global identifier for the order).
+     */
     amount_refunded?: number;
     /**
      * - Currency of the payment.
@@ -3805,11 +3940,11 @@ type PaymentDetails = {
      */
     mode: string;
     /**
-     * - Merchant's locale
+     * - Merchant's locale (language) i.e. en
      */
     merchant_locale?: string;
     /**
-     * - Metadata
+     * - Extra meta data related to the payment methods
      */
     meta?: any;
     /**
@@ -3823,7 +3958,7 @@ type PaymentDetails = {
      */
     success_url?: string;
     /**
-     * - Stautus of the payment
+     * - Status of the payment
      */
     status: string;
     /**
@@ -3841,12 +3976,12 @@ type PaymentDetails = {
      */
     g_user_id: string;
     /**
-     * - User's locale
+     * - User's locale (language), i.e. en
      */
     locale?: string;
     /**
      * - Cancel url sent by Fynd platform at the
-     * time of payment creation
+     * time of payment creation, redirect on payment cancellation
      */
     cancel_url?: string;
     /**
@@ -3859,7 +3994,7 @@ type PaymentDetails = {
      */
     amount_captured: number;
     /**
-     * - Amount paid.
+     * - Amount paid for the order.
      */
     amount: number;
     /**
