@@ -3065,7 +3065,7 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef Article
- * @property {Object[]} [child_details] - Contains a flexible set of key-value
+ * @property {Object} [child_details] - Contains a flexible set of key-value
  *   pairs representing detailed information about the article's child entities,
  *   including dimensions (width, height, length), weight, and unique
  *   identifiers (EAN, article code, seller identifier) for each child entity.
@@ -11191,7 +11191,7 @@ type Article = {
      * including dimensions (width, height, length), weight, and unique
      * identifiers (EAN, article code, seller identifier) for each child entity.
      */
-    child_details?: any[];
+    child_details?: any;
     /**
      * - Unique identifier assigned by the
      * seller to the article, used for inventory management.

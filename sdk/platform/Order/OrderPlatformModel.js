@@ -3321,7 +3321,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Article
- * @property {Object[]} [child_details] - Contains a flexible set of key-value
+ * @property {Object} [child_details] - Contains a flexible set of key-value
  *   pairs representing detailed information about the article's child entities,
  *   including dimensions (width, height, length), weight, and unique
  *   identifiers (EAN, article code, seller identifier) for each child entity.
@@ -8218,9 +8218,7 @@ class OrderPlatformModel {
   /** @returns {Article} */
   static Article() {
     return Joi.object({
-      child_details: Joi.array()
-        .items(Joi.object().pattern(/\S/, Joi.any()))
-        .allow(null, ""),
+      child_details: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       seller_identifier: Joi.string().allow("").required(),
       uid: Joi.string().allow("").required(),
       set: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
