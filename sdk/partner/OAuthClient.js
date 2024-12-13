@@ -6,6 +6,7 @@ const querystring = require("query-string");
 const { sign } = require("@gofynd/fp-signature");
 const { convertStringToBase64 } = require("../common/utils");
 
+const refreshTokenRequestCache = {};
 class OAuthClient extends BaseOAuthClient {
   constructor(config) {
     super(config);

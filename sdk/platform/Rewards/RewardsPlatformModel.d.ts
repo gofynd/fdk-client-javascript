@@ -7,7 +7,7 @@ export = RewardsPlatformModel;
  * @property {string} [message]
  */
 /**
- * @typedef ListGiveaway
+ * @typedef GiveawayResponse
  * @property {Giveaway[]} [items]
  * @property {Page} [page]
  */
@@ -158,14 +158,14 @@ export = RewardsPlatformModel;
  * @property {boolean} [success]
  */
 /**
- * @typedef SetConfiguration
+ * @typedef ConfigurationRequest
  * @property {string[]} [valid_android_packages]
  * @property {string} [terms_conditions_link]
  */
 declare class RewardsPlatformModel {
 }
 declare namespace RewardsPlatformModel {
-    export { E, ListGiveaway, Giveaway, Schedule, RewardsAudience, Asset, RewardsRule, Page, Offer, ShareMessages, UserRes, Points, RewardUser, Referral, AppUser, HistoryRes, PointsHistory, ConfigurationRes, SetConfigurationRes, SetConfiguration };
+    export { E, GiveawayResponse, Giveaway, Schedule, RewardsAudience, Asset, RewardsRule, Page, Offer, ShareMessages, UserRes, Points, RewardUser, Referral, AppUser, HistoryRes, PointsHistory, ConfigurationRes, SetConfigurationRes, ConfigurationRequest };
 }
 /** @returns {E} */
 declare function E(): E;
@@ -175,9 +175,9 @@ type E = {
     info?: string;
     message?: string;
 };
-/** @returns {ListGiveaway} */
-declare function ListGiveaway(): ListGiveaway;
-type ListGiveaway = {
+/** @returns {GiveawayResponse} */
+declare function GiveawayResponse(): GiveawayResponse;
+type GiveawayResponse = {
     items?: Giveaway[];
     page?: Page;
 };
@@ -374,9 +374,9 @@ declare function SetConfigurationRes(): SetConfigurationRes;
 type SetConfigurationRes = {
     success?: boolean;
 };
-/** @returns {SetConfiguration} */
-declare function SetConfiguration(): SetConfiguration;
-type SetConfiguration = {
+/** @returns {ConfigurationRequest} */
+declare function ConfigurationRequest(): ConfigurationRequest;
+type ConfigurationRequest = {
     valid_android_packages?: string[];
     terms_conditions_link?: string;
 };

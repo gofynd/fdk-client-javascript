@@ -18,8 +18,7 @@ class Order {
    * @param {OrderPlatformValidator.AddStateManagerConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ConfigUpdatedResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.ConfigUpdatedResponse>} - Success response
    * @name addStateManagerConfig
    * @summary: Allows esm config updation
    * @description: Update ESM config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/addStateManagerConfig/).
@@ -75,10 +74,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ConfigUpdatedResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.ConfigUpdatedResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -98,8 +97,7 @@ class Order {
    * @param {OrderPlatformValidator.AttachOrderUserParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.AttachOrderUserResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.AttachOrderUserResponse>} - Success response
    * @name attachOrderUser
    * @summary: Attach order to a user
    * @description: Attach an anonymous order to a customer based on OTP verification - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/attachOrderUser/).
@@ -155,10 +153,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.AttachOrderUserResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.AttachOrderUserResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -178,7 +176,7 @@ class Order {
    * @param {OrderPlatformValidator.BulkListingParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BulkListingResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.BulkListingResponse>} - Success response
    * @name bulkListing
    * @summary: Lists bulk operations
    * @description: Get list of bulk operation that is initiated and completed as per the filters provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/bulkListing/).
@@ -260,7 +258,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.BulkListingResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.BulkListingResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -283,9 +281,8 @@ class Order {
    * @param {OrderPlatformValidator.BulkStateTransistionParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BulkStateTransistionResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.BulkStateTransistionResponse>} -
+   *   Success response
    * @name bulkStateTransistion
    * @summary: Upload bulk state transitions file
    * @description: Performs state transisiton in bulk using the CSV or excel file for the given shipments. The bulk transition CSV or excel template can be downloaded using the seller template download method. Current supported format is excel and CSV. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/bulkStateTransistion/).
@@ -341,7 +338,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.BulkStateTransistionResponseSchema().validate(
+    } = OrderPlatformModel.BulkStateTransistionResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -440,91 +437,10 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.CreateChannelConfigParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.CreateChannelConfigResponseSchema>}
-   *   - Success response
-   *
-   * @name createChannelConfig
-   * @summary: Create channel configuration
-   * @description: Set up configuration for a channel specific to orders which has implications over how the order fulfilment happens in a channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createChannelConfig/).
-   */
-  async createChannelConfig(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.createChannelConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.createChannelConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > createChannelConfig \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.CreateChannelConfigResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > createChannelConfig \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.CreateOrderParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.CreateOrderResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
    * @name createOrder
    * @summary: Create order
    * @description: Creates an order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createOrder/).
@@ -578,7 +494,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.CreateOrderResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.CreateOrderResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -601,7 +517,7 @@ class Order {
    * @param {OrderPlatformValidator.DispatchManifestsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.SuccessResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
    * @name dispatchManifests
    * @summary: Dispatch manifest
    * @description: Updates the status of the manifest to processed and change the status of the shipments in the manifest to dispatch status - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifests/).
@@ -657,7 +573,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.SuccessResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -680,7 +596,7 @@ class Order {
    * @param {OrderPlatformValidator.DownloadBulkActionTemplateParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.FileResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
    * @name downloadBulkActionTemplate
    * @summary: Download bulk template
    * @description: Download bulk seller templates which can be used to perform operations in bulk - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/downloadBulkActionTemplate/).
@@ -739,7 +655,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.FileResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.FileResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -762,9 +678,8 @@ class Order {
    * @param {OrderPlatformValidator.DownloadLanesReportParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BulkReportsDownloadResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.BulkReportsDownloadResponse>} -
+   *   Success response
    * @name downloadLanesReport
    * @summary: Download Lane report
    * @description: Downloads shipments/orders present in the provided lane - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/downloadLanesReport/).
@@ -820,7 +735,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.BulkReportsDownloadResponseSchema().validate(
+    } = OrderPlatformModel.BulkReportsDownloadResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -843,8 +758,7 @@ class Order {
    * @param {OrderPlatformValidator.EInvoiceRetryParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.EInvoiceRetryResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.EInvoiceRetryResponse>} - Success response
    * @name eInvoiceRetry
    * @summary: Retry E-invoice
    * @description: Reattempt the generation of an E-invoice - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/eInvoiceRetry/).
@@ -898,10 +812,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.EInvoiceRetryResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.EInvoiceRetryResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1080,8 +994,7 @@ class Order {
    * @param {OrderPlatformValidator.GenerateInvoiceIDParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.GenerateInvoiceIDResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.GenerateInvoiceIDResponse>} - Success response
    * @name generateInvoiceID
    * @summary: Generate and attach invoice Id
    * @description: Generate and attach Invoice Ids against shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generateInvoiceID/).
@@ -1139,10 +1052,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.GenerateInvoiceIDResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.GenerateInvoiceIDResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1162,9 +1075,8 @@ class Order {
    * @param {OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.GeneratePosOrderReceiptResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.GeneratePosOrderReceiptResponse>} -
+   *   Success response
    * @name generatePOSReceiptByOrderId
    * @summary: Generate POS receipt by order Id
    * @description: Create a point-of-sale (POS) receipt for a specific order by order Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generatePOSReceiptByOrderId/).
@@ -1230,7 +1142,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.GeneratePosOrderReceiptResponseSchema().validate(
+    } = OrderPlatformModel.GeneratePosOrderReceiptResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1253,7 +1165,7 @@ class Order {
    * @param {OrderPlatformValidator.GenerateProcessManifestParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ManifestResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.ManifestResponse>} - Success response
    * @name generateProcessManifest
    * @summary: Process Order Manifest
    * @description: Endpoint to save and process order manifests. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generateProcessManifest/).
@@ -1309,7 +1221,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ManifestResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.ManifestResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1418,8 +1330,7 @@ class Order {
    * @param {OrderPlatformValidator.GetAllowedTemplatesForBulkParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.AllowedTemplatesResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.AllowedTemplatesResponse>} - Success response
    * @name getAllowedTemplatesForBulk
    * @summary: List bulk operation templates
    * @description: Gets all the allowed templates to perform bulk operations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAllowedTemplatesForBulk/).
@@ -1473,10 +1384,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.AllowedTemplatesResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.AllowedTemplatesResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1496,8 +1407,7 @@ class Order {
    * @param {OrderPlatformValidator.GetAnnouncementsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.AnnouncementsResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.AnnouncementsResponse>} - Success response
    * @name getAnnouncements
    * @summary: List announcements
    * @description: Retrieve announcements related to orders fulfilment configured by platform or company admin - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAnnouncements/).
@@ -1554,10 +1464,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.AnnouncementsResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.AnnouncementsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1577,9 +1487,8 @@ class Order {
    * @param {OrderPlatformValidator.GetBagByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BagDetailsPlatformResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.BagDetailsPlatformResponse>} -
+   *   Success response
    * @name getBagById
    * @summary: Get bag
    * @description: Retrieve detailed information about a specific bag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBagById/).
@@ -1640,10 +1549,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.BagDetailsPlatformResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.BagDetailsPlatformResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1663,8 +1572,7 @@ class Order {
    * @param {OrderPlatformValidator.GetBagsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.GetBagsPlatformResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.GetBagsPlatformResponse>} - Success response
    * @name getBags
    * @summary: List bags
    * @description: Get paginated list of bags based on provided filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBags/).
@@ -1754,10 +1662,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.GetBagsPlatformResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.GetBagsPlatformResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1777,9 +1685,8 @@ class Order {
    * @param {OrderPlatformValidator.GetBulkActionTemplateParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BulkActionTemplateResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.BulkActionTemplateResponse>} -
+   *   Success response
    * @name getBulkActionTemplate
    * @summary: List supported templates
    * @description: Get list of templates so that users can download the required template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBulkActionTemplate/).
@@ -1831,10 +1738,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.BulkActionTemplateResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.BulkActionTemplateResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1854,7 +1761,7 @@ class Order {
    * @param {OrderPlatformValidator.GetBulkShipmentExcelFileParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.FileResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
    * @name getBulkShipmentExcelFile
    * @summary: Generate the report
    * @description: Generates the report which can be filled and uploaded to perform the bulk operation based on the filters provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBulkShipmentExcelFile/).
@@ -1960,7 +1867,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.FileResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.FileResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1980,85 +1887,10 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.GetChannelConfigParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.CreateChannelConfigData>} - Success response
-   * @name getChannelConfig
-   * @summary: Get channel configuration
-   * @description: Retrieve configuration settings specific to orders for a channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getChannelConfig/).
-   */
-  async getChannelConfig(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getChannelConfig \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.CreateChannelConfigData().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getChannelConfig \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.GetFileByStatusParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.JobFailedResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.JobFailedResponse>} - Success response
    * @name getFileByStatus
    * @summary: Download file used for Bulk operation
    * @description: Get the file download URL used for performing bulk operation - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getFileByStatus/).
@@ -2125,7 +1957,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.JobFailedResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.JobFailedResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2148,7 +1980,7 @@ class Order {
    * @param {OrderPlatformValidator.GetLaneConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.LaneConfigResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.LaneConfigResponse>} - Success response
    * @name getLaneConfig
    * @summary: Get lane configuration
    * @description: Get configuration settings for lanes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getLaneConfig/).
@@ -2278,7 +2110,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.LaneConfigResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.LaneConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2523,8 +2355,7 @@ class Order {
    * @param {OrderPlatformValidator.GetManifestfiltersParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ManifestFiltersResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.ManifestFiltersResponse>} - Success response
    * @name getManifestfilters
    * @summary: List filters
    * @description: Get supported filter for listing manifests - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestfilters/).
@@ -2581,10 +2412,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ManifestFiltersResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.ManifestFiltersResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2717,8 +2548,7 @@ class Order {
    * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.OrderDetailsResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
    * @name getOrderById
    * @summary: Get order
    * @description: Get detailed information about a specific order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrderById/).
@@ -2781,7 +2611,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.OrderDetailsResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.OrderDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2804,11 +2634,10 @@ class Order {
    * @param {OrderPlatformValidator.GetOrdersParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.OrderListingResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.OrderListingResponse>} - Success response
    * @name getOrders
    * @summary: List orders
-   * @description: Get a list of orders based on the filters provided. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
+   * @description: Get a list of orders based on the filters provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
    */
   async getOrders(
     {
@@ -2835,7 +2664,6 @@ class Order {
       customerId,
       orderType,
       allowInactive,
-      groupEntity,
       enforceDateFilter,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -2866,7 +2694,6 @@ class Order {
         customerId,
         orderType,
         allowInactive,
-        groupEntity,
         enforceDateFilter,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2901,7 +2728,6 @@ class Order {
         customerId,
         orderType,
         allowInactive,
-        groupEntity,
         enforceDateFilter,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2937,7 +2763,6 @@ class Order {
     query_params["customer_id"] = customerId;
     query_params["order_type"] = orderType;
     query_params["allow_inactive"] = allowInactive;
-    query_params["group_entity"] = groupEntity;
     query_params["enforce_date_filter"] = enforceDateFilter;
 
     const xHeaders = {};
@@ -2959,7 +2784,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.OrderListingResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.OrderListingResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2982,7 +2807,7 @@ class Order {
    * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.GetActionsResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.GetActionsResponse>} - Success response
    * @name getRoleBasedActions
    * @summary: Get role-based actions
    * @description: Retrieve permissible actions based on user roles such as company_admin,  company_operation, customer_care, and read_only. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRoleBasedActions/).
@@ -3034,7 +2859,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.GetActionsResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.GetActionsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3057,10 +2882,9 @@ class Order {
    * @param {OrderPlatformValidator.GetShipmentByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ShipmentInfoResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.ShipmentInfoResponse>} - Success response
    * @name getShipmentById
-   * @summary: Get shipment details
+   * @summary: Get shipment
    * @description: Get detailed information about a specific shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentById/).
    */
   async getShipmentById(
@@ -3130,7 +2954,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ShipmentInfoResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.ShipmentInfoResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3153,8 +2977,7 @@ class Order {
    * @param {OrderPlatformValidator.GetShipmentHistoryParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
    * @name getShipmentHistory
    * @summary: Get a shipment's history
    * @description: Get the history of the shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentHistory/).
@@ -3214,10 +3037,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ShipmentHistoryResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.ShipmentHistoryResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3237,9 +3060,8 @@ class Order {
    * @param {OrderPlatformValidator.GetShipmentReasonsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.PlatformShipmentReasonsResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.PlatformShipmentReasonsResponse>} -
+   *   Success response
    * @name getShipmentReasons
    * @summary: List bag cancellation reasons
    * @description: Get reasons to perform full or partial cancellation of a bag - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentReasons/).
@@ -3299,7 +3121,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.PlatformShipmentReasonsResponseSchema().validate(
+    } = OrderPlatformModel.PlatformShipmentReasonsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3322,7 +3144,7 @@ class Order {
    * @param {OrderPlatformValidator.GetShipmentsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema>}
+   * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
    *   - Success response
    *
    * @name getShipments
@@ -3362,7 +3184,6 @@ class Order {
       tags,
       customerId,
       orderType,
-      groupEntity,
       enforceDateFilter,
       requestHeaders,
     } = { requestHeaders: {} },
@@ -3401,7 +3222,6 @@ class Order {
         tags,
         customerId,
         orderType,
-        groupEntity,
         enforceDateFilter,
       },
       { abortEarly: false, allowUnknown: true }
@@ -3444,7 +3264,6 @@ class Order {
         tags,
         customerId,
         orderType,
-        groupEntity,
         enforceDateFilter,
       },
       { abortEarly: false, allowUnknown: false }
@@ -3488,7 +3307,6 @@ class Order {
     query_params["tags"] = tags;
     query_params["customer_id"] = customerId;
     query_params["order_type"] = orderType;
-    query_params["group_entity"] = groupEntity;
     query_params["enforce_date_filter"] = enforceDateFilter;
 
     const xHeaders = {};
@@ -3510,7 +3328,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ShipmentInternalPlatformViewResponseSchema().validate(
+    } = OrderPlatformModel.ShipmentInternalPlatformViewResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3694,8 +3512,7 @@ class Order {
    * @param {OrderPlatformValidator.GetTemplateParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.TemplateDownloadResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.TemplateDownloadResponse>} - Success response
    * @name getTemplate
    * @summary: Download bulk operation templates
    * @description: Get the excel or CSV file URL for the template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getTemplate/).
@@ -3749,10 +3566,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.TemplateDownloadResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.TemplateDownloadResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3772,7 +3589,7 @@ class Order {
    * @param {OrderPlatformValidator.GetfiltersParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.FiltersResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.FiltersResponse>} - Success response
    * @name getfilters
    * @summary: List filters
    * @description: Get supported filters for various listing operations - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getfilters/).
@@ -3830,7 +3647,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.FiltersResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.FiltersResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -3853,9 +3670,8 @@ class Order {
    * @param {OrderPlatformValidator.InvalidateShipmentCacheParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.InvalidateShipmentCacheResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.InvalidateShipmentCacheResponse>} -
+   *   Success response
    * @name invalidateShipmentCache
    * @summary: Invalidate shipment cache
    * @description: Clear the existing shipment cache data stored in Redis  and serialize the updated data for subsequent use. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/invalidateShipmentCache/).
@@ -3911,7 +3727,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.InvalidateShipmentCacheResponseSchema().validate(
+    } = OrderPlatformModel.InvalidateShipmentCacheResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -3934,7 +3750,7 @@ class Order {
    * @param {OrderPlatformValidator.JobDetailsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.JobDetailsResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.JobDetailsResponse>} - Success response
    * @name jobDetails
    * @summary: Get bulk operation details
    * @description: Fetches details of the job for the provided batch Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/jobDetails/).
@@ -3988,7 +3804,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.JobDetailsResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.JobDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4088,8 +3904,7 @@ class Order {
    * @param {OrderPlatformValidator.PostShipmentHistoryParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
    * @name postShipmentHistory
    * @summary: Create shipment history
    * @description: Used to add logs in history for a bag for the provided Shipment ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/postShipmentHistory/).
@@ -4145,10 +3960,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ShipmentHistoryResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.ShipmentHistoryResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4168,8 +3983,7 @@ class Order {
    * @param {OrderPlatformValidator.ReassignLocationParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.StoreReassignResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.StoreReassignResponse>} - Success response
    * @name reassignLocation
    * @summary: Reassign location
    * @description: Reassign the shipment to a another location and update its status to 'Store Reassigned.' - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/reassignLocation/).
@@ -4225,10 +4039,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.StoreReassignResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.StoreReassignResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4248,7 +4062,7 @@ class Order {
    * @param {OrderPlatformValidator.SendSmsNinjaParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BaseResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.BaseResponse>} - Success response
    * @name sendSmsNinja
    * @summary: Send SMS
    * @description: Send SMS to customer based on the template that is selected - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendSmsNinja/).
@@ -4302,7 +4116,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.BaseResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.BaseResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4325,8 +4139,7 @@ class Order {
    * @param {OrderPlatformValidator.SendUserMobileOTPParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.SendUserMobileOtpResponseSchema>} -
-   *   Success response
+   * @returns {Promise<OrderPlatformModel.SendUserMobileOtpResponse>} - Success response
    * @name sendUserMobileOTP
    * @summary: Send user mobile OTP
    * @description: Send a one-time OTP to a customer mobile number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendUserMobileOTP/).
@@ -4382,10 +4195,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.SendUserMobileOtpResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.SendUserMobileOtpResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4405,9 +4218,8 @@ class Order {
    * @param {OrderPlatformValidator.TrackShipmentParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingResponse>} -
+   *   Success response
    * @name trackShipment
    * @summary: Track shipment
    * @description: Retrieve courier partner tracking details for a given shipment Id or AWB number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipment/).
@@ -4473,7 +4285,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.CourierPartnerTrackingResponseSchema().validate(
+    } = OrderPlatformModel.CourierPartnerTrackingResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4496,19 +4308,44 @@ class Order {
    * @param {OrderPlatformValidator.UpdateAddressParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BaseResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.BaseResponse>} - Success response
    * @name updateAddress
    * @summary: Update shipment address
-   * @description: Update the address details of an existing shipment based on the provided address_category. This operation allows the modification of critical shipment details, potentially affecting delivery/billing accuracy and customer communication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateAddress/).
+   * @description: Modify the address details of an existing shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateAddress/).
    */
   async updateAddress(
-    { shipmentId, body, requestHeaders } = { requestHeaders: {} },
+    {
+      shipmentId,
+      addressCategory,
+      name,
+      address,
+      addressType,
+      pincode,
+      phone,
+      email,
+      landmark,
+      city,
+      state,
+      country,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.updateAddress().validate(
       {
         shipmentId,
-        body,
+        addressCategory,
+
+        name,
+        address,
+        addressType,
+        pincode,
+        phone,
+        email,
+        landmark,
+        city,
+        state,
+        country,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4520,7 +4357,18 @@ class Order {
     const { error: warrning } = OrderPlatformValidator.updateAddress().validate(
       {
         shipmentId,
-        body,
+        addressCategory,
+
+        name,
+        address,
+        addressType,
+        pincode,
+        phone,
+        email,
+        landmark,
+        city,
+        state,
+        country,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4532,15 +4380,27 @@ class Order {
     }
 
     const query_params = {};
+    query_params["shipment_id"] = shipmentId;
+    query_params["name"] = name;
+    query_params["address"] = address;
+    query_params["address_type"] = addressType;
+    query_params["pincode"] = pincode;
+    query_params["phone"] = phone;
+    query_params["email"] = email;
+    query_params["landmark"] = landmark;
+    query_params["address_category"] = addressCategory;
+    query_params["city"] = city;
+    query_params["state"] = state;
+    query_params["country"] = country;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "put",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/${shipmentId}/address`,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/delight/update-address`,
       query_params,
-      body,
+      undefined,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -4552,7 +4412,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.BaseResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.BaseResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -4575,7 +4435,7 @@ class Order {
    * @param {OrderPlatformValidator.UpdatePackagingDimensionsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.UpdatePackagingDimensionsResponseSchema>}
+   * @returns {Promise<OrderPlatformModel.UpdatePackagingDimensionsResponse>}
    *   - Success response
    *
    * @name updatePackagingDimensions
@@ -4635,7 +4495,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.UpdatePackagingDimensionsResponseSchema().validate(
+    } = OrderPlatformModel.UpdatePackagingDimensionsResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -4655,89 +4515,11 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.UpdatePaymentInfoParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name updatePaymentInfo
-   * @summary: Update payment details for an order, its shipments and its bags.
-   * @description: Updates the payment mode for an order, its shipments and its bags. This endpoint allows for modifying payment methods, and associated details but not amount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updatePaymentInfo/).
-   */
-  async updatePaymentInfo(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.updatePaymentInfo().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.updatePaymentInfo().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > updatePaymentInfo \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/payment/update`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > updatePaymentInfo \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.UpdateShipmentLockParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.UpdateShipmentLockResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<OrderPlatformModel.UpdateShipmentLockResponse>} -
+   *   Success response
    * @name updateShipmentLock
    * @summary: Update a shipment lock
    * @description: Modify shipment/bag lock status and update lock/unlock messages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentLock/).
@@ -4793,10 +4575,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.UpdateShipmentLockResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.UpdateShipmentLockResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4977,7 +4759,7 @@ class Order {
    * @param {OrderPlatformValidator.UploadConsentsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.SuccessResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
    * @name uploadConsents
    * @summary: Upload consent
    * @description: Uploads the consent signed by courier partner and seller to keep records - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsents/).
@@ -5033,7 +4815,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.SuccessResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -5056,7 +4838,7 @@ class Order {
    * @param {OrderPlatformValidator.VerifyMobileOTPParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.VerifyOtpResponseSchema>} - Success response
+   * @returns {Promise<OrderPlatformModel.VerifyOtpResponse>} - Success response
    * @name verifyMobileOTP
    * @summary: Verify mobile OTP
    * @description: Perform OTP verification to link a user to an anonymous order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/verifyMobileOTP/).
@@ -5112,7 +4894,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.VerifyOtpResponseSchema().validate(responseData, {
+    } = OrderPlatformModel.VerifyOtpResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });

@@ -14,16 +14,6 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef CreateCollectionParam
- * @property {string} [q] - Get collection list filtered by q string,
- * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
- * @property {string} [type] - Type of the collections
- * @property {string[]} [tags] - Each response will contain next_id param, which
- *   should be sent back to make pagination work.
- * @property {boolean} [isActive] - Get collections filtered by active status.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results.
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
  * @property {CatalogPlatformModel.CreateCollection} body
  */
 /**
@@ -57,7 +47,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef CreateSearchConfigurationParam
- * @property {CatalogPlatformModel.CreateSearchConfigurationRequestSchema} body
+ * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
  */
 /**
  * @typedef DeleteAppCategoryReturnConfigurationParam
@@ -170,6 +160,34 @@ export = CatalogPlatformApplicationValidator;
  */
 /** @typedef GetAppReturnConfigurationParam */
 /**
+ * @typedef GetAppicationProductsParam
+ * @property {string} [q] - The search query. This can be a partial or complete
+ *   name of a either a product, brand or category
+ * @property {string} [f] - The search filter parameters. All the parameter
+ *   filtered from filter parameters will be passed in **f** parameter in this
+ *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
+ *   details. This flag is used to fetch all filters
+ * @property {boolean} [isDependent] - This query parameter is used to get the
+ *   dependent products in the listing.
+ * @property {string} [sortOn] - The order to sort the list of products on. The
+ *   supported sort parameters are popularity, price, redemption and discount in
+ *   either ascending or descending order. See the supported values below.
+ * @property {string} [pageId] - Each response will contain **page_id** param,
+ *   which should be sent back to make pagination work.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {number} [pageNo] - If page_type is number then pass it to fetch
+ *   page items. Default is 1.
+ * @property {string} [pageType] - For pagination type should be cursor or
+ *   number. Default is cursor.
+ * @property {number[]} [itemIds] - Item Ids of product
+ */
+/**
  * @typedef GetApplicationBrandListingParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
@@ -216,54 +234,25 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef GetApplicationFilterKeysParam
  * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in "c"
- *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
  */
 /**
  * @typedef GetApplicationFilterValuesParam
- * @property {string} filterKey - A `filter_key` is a filter key which returns
- *   all the available filter values.
- * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in "c"
- *   parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
- * @property {string} [collectionId] - A `collection_id` is a unique identifier
- *   for a particular collection.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 10.
- * @property {string} [q] - The `q` parameter allows you to search and filter
- *   specific data within the filter options. It acts as a query keyword that
- *   can refine the results by matching relevant filter values, such as a
- *   category name or any other applicable filter criteria.
- */
-/**
- * @typedef GetApplicationProductsParam
- * @property {string} [q] - The search query. This can be a partial or complete
- *   name of a either a product, brand or category
- * @property {string} [f] - The search filter parameters. All the parameter
- *   filtered from filter parameters will be passed in **f** parameter in this
- *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+ * @property {string} filterKey - A `filter_key` is a filter key for a for which
+ *   all the available filter values will returned. channel.
  * @property {string} [c] - The search filter parameters for collection items.
  *   All the parameter filtered from filter parameters will be passed in **c**
  *   parameter in this format.
  *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
- * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
- *   details. This flag is used to fetch all filters
- * @property {boolean} [isDependent] - This query parameter is used to get the
- *   dependent products in the listing.
- * @property {string} [sortOn] - The order to sort the list of products on. The
- *   supported sort parameters are popularity, price, redemption and discount in
- *   either ascending or descending order. See the supported values below.
- * @property {string} [pageId] - Each response will contain **page_id** param,
- *   which should be sent back to make pagination work.
+ * @property {string} [collectionId] - A `collection_id` is a unique identifier
+ *   for a particular collection. channel.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {number} [pageNo] - If page_type is number then pass it to fetch
- *   page items. Default is 1.
- * @property {string} [pageType] - For pagination type should be cursor or
- *   number. Default is cursor.
- * @property {string[]} [itemIds] - Item Ids of product
+ *   Default is 10.
+ * @property {string} [q] - Get Values filtered by q string
  */
 /** @typedef GetAutocompleteConfigParam */
 /**
@@ -298,7 +287,6 @@ export = CatalogPlatformApplicationValidator;
  *   should be sent back to make pagination work.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
- * @property {number} [pageNo] - Identifies the specific page of results being requested.
  */
 /**
  * @typedef GetConfigurationByTypeParam
@@ -319,13 +307,14 @@ export = CatalogPlatformApplicationValidator;
 /** @typedef GetDepartmentsParam */
 /**
  * @typedef GetDiscountedInventoryBySizeIdentifierParam
- * @property {number} itemId - A `item_id` is a unique identifier for a specific product.
- * @property {number} sizeIdentifier - Size Identifier (Seller Identifier or
- *   Primary Identifier).
+ * @property {number} itemId - Item code of the product of which size is to be get.
+ * @property {string} sizeIdentifier - Size Identifier (Seller Identifier or
+ *   Primary Identifier) of which inventory is to get.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
+ * @property {string} [q] - Search with help of store code.
  * @property {number[]} [locationIds] - Search by store ids.
  */
 /**
@@ -354,7 +343,7 @@ export = CatalogPlatformApplicationValidator;
  * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
- *   "v1.0/products/"
+ *   **v1.0/products/**
  */
 /** @typedef GetQueryFiltersParam */
 /** @typedef GetSearchConfigurationParam */
@@ -365,7 +354,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAllowSingleParam
- * @property {CatalogPlatformModel.AllowSingleRequestSchema} body
+ * @property {CatalogPlatformModel.AllowSingleRequest} body
  */
 /**
  * @typedef UpdateAppBrandParam
@@ -385,18 +374,18 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateAppDepartmentParam
- * @property {number} departmentUid - A `department id` is a unique identifier
- *   for a particular department.
+ * @property {string} departmentUid - Department id for which the custom_json is
+ *   associated.
  * @property {CatalogPlatformModel.ApplicationDepartmentJson} body
  */
 /**
  * @typedef UpdateAppLocationParam
- * @property {number} storeUid - Store id for which the custom_json is associated.
+ * @property {string} storeUid - Store id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationStoreJson} body
  */
 /**
  * @typedef UpdateAppProductParam
- * @property {number} itemId - A `item_id` is a unique identifier for a particular item.
+ * @property {string} itemId - Product id for which the custom_meta is associated.
  * @property {CatalogPlatformModel.ApplicationItemMeta} body
  */
 /**
@@ -416,7 +405,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateDefaultSortParam
- * @property {CatalogPlatformModel.DefaultKeyRequestSchema} body
+ * @property {CatalogPlatformModel.DefaultKeyRequest} body
  */
 /**
  * @typedef UpdateGroupConfigurationParam
@@ -436,7 +425,7 @@ export = CatalogPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateSearchConfigurationParam
- * @property {CatalogPlatformModel.UpdateSearchConfigurationRequestSchema} body
+ * @property {CatalogPlatformModel.UpdateSearchConfigurationRequest} body
  */
 /**
  * @typedef UpdateSearchKeywordsParam
@@ -497,6 +486,8 @@ declare class CatalogPlatformApplicationValidator {
     static getAppProducts(): GetAppProductsParam;
     /** @returns {GetAppReturnConfigurationParam} */
     static getAppReturnConfiguration(): any;
+    /** @returns {GetAppicationProductsParam} */
+    static getAppicationProducts(): GetAppicationProductsParam;
     /** @returns {GetApplicationBrandListingParam} */
     static getApplicationBrandListing(): GetApplicationBrandListingParam;
     /** @returns {GetApplicationBrandsParam} */
@@ -509,8 +500,6 @@ declare class CatalogPlatformApplicationValidator {
     static getApplicationFilterKeys(): GetApplicationFilterKeysParam;
     /** @returns {GetApplicationFilterValuesParam} */
     static getApplicationFilterValues(): GetApplicationFilterValuesParam;
-    /** @returns {GetApplicationProductsParam} */
-    static getApplicationProducts(): GetApplicationProductsParam;
     /** @returns {GetAutocompleteConfigParam} */
     static getAutocompleteConfig(): any;
     /** @returns {GetAutocompleteKeywordDetailParam} */
@@ -579,7 +568,7 @@ declare class CatalogPlatformApplicationValidator {
     static updateSearchKeywords(): UpdateSearchKeywordsParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetApplicationProductsParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
+    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetApplicationFilterKeysParam, GetApplicationFilterValuesParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
 }
 type AddCollectionItemsParam = {
     /**
@@ -595,37 +584,6 @@ type CreateAppReturnConfigurationParam = {
     body: CatalogPlatformModel.CreateUpdateAppReturnConfig;
 };
 type CreateCollectionParam = {
-    /**
-     * - Get collection list filtered by q string,
-     */
-    q?: string;
-    /**
-     * - Get collection list filtered by scheduled status,
-     */
-    scheduleStatus?: string;
-    /**
-     * - Type of the collections
-     */
-    type?: string;
-    /**
-     * - Each response will contain next_id param, which
-     * should be sent back to make pagination work.
-     */
-    tags?: string[];
-    /**
-     * - Get collections filtered by active status.
-     */
-    isActive?: boolean;
-    /**
-     * - The page number to navigate through the given
-     * set of results.
-     */
-    pageNo?: number;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
     body: CatalogPlatformModel.CreateCollection;
 };
 type CreateConfigurationByTypeParam = {
@@ -661,7 +619,7 @@ type CreateListingConfigurationParam = {
     body: CatalogPlatformModel.AppConfigurationsSort;
 };
 type CreateSearchConfigurationParam = {
-    body: CatalogPlatformModel.CreateSearchConfigurationRequestSchema;
+    body: CatalogPlatformModel.CreateSearchConfigurationRequest;
 };
 type DeleteAppCategoryReturnConfigurationParam = {
     body: CatalogPlatformModel.DeleteAppCategoryReturnConfig;
@@ -896,6 +854,66 @@ type GetAppProductsParam = {
      */
     q?: string;
 };
+type GetAppicationProductsParam = {
+    /**
+     * - The search query. This can be a partial or complete
+     * name of a either a product, brand or category
+     */
+    q?: string;
+    /**
+     * - The search filter parameters. All the parameter
+     * filtered from filter parameters will be passed in **f** parameter in this
+     * format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+     */
+    f?: string;
+    /**
+     * - The search filter parameters for collection items.
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     */
+    c?: string;
+    /**
+     * - Pass `filters` parameter to fetch the filter
+     * details. This flag is used to fetch all filters
+     */
+    filters?: boolean;
+    /**
+     * - This query parameter is used to get the
+     * dependent products in the listing.
+     */
+    isDependent?: boolean;
+    /**
+     * - The order to sort the list of products on. The
+     * supported sort parameters are popularity, price, redemption and discount in
+     * either ascending or descending order. See the supported values below.
+     */
+    sortOn?: string;
+    /**
+     * - Each response will contain **page_id** param,
+     * which should be sent back to make pagination work.
+     */
+    pageId?: string;
+    /**
+     * - Number of items to retrieve in each page.
+     * Default is 12.
+     */
+    pageSize?: number;
+    /**
+     * - If page_type is number then pass it to fetch
+     * page items. Default is 1.
+     */
+    pageNo?: number;
+    /**
+     * - For pagination type should be cursor or
+     * number. Default is cursor.
+     */
+    pageType?: string;
+    /**
+     * - Item Ids of product
+     */
+    itemIds?: number[];
+};
 type GetApplicationBrandListingParam = {
     /**
      * - The page number to navigate through the given
@@ -984,26 +1002,28 @@ type GetApplicationDepartmentListingParam = {
 type GetApplicationFilterKeysParam = {
     /**
      * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in "c"
-     * parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      */
     c?: string;
 };
 type GetApplicationFilterValuesParam = {
     /**
-     * - A `filter_key` is a filter key which returns
-     * all the available filter values.
+     * - A `filter_key` is a filter key for a for which
+     * all the available filter values will returned. channel.
      */
     filterKey: string;
     /**
      * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in "c"
-     * parameter in this format. "?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts"
+     * All the parameter filtered from filter parameters will be passed in **c**
+     * parameter in this format.
+     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      */
     c?: string;
     /**
      * - A `collection_id` is a unique identifier
-     * for a particular collection.
+     * for a particular collection. channel.
      */
     collectionId?: string;
     /**
@@ -1017,72 +1037,9 @@ type GetApplicationFilterValuesParam = {
      */
     pageSize?: number;
     /**
-     * - The `q` parameter allows you to search and filter
-     * specific data within the filter options. It acts as a query keyword that
-     * can refine the results by matching relevant filter values, such as a
-     * category name or any other applicable filter criteria.
+     * - Get Values filtered by q string
      */
     q?: string;
-};
-type GetApplicationProductsParam = {
-    /**
-     * - The search query. This can be a partial or complete
-     * name of a either a product, brand or category
-     */
-    q?: string;
-    /**
-     * - The search filter parameters. All the parameter
-     * filtered from filter parameters will be passed in **f** parameter in this
-     * format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
-     */
-    f?: string;
-    /**
-     * - The search filter parameters for collection items.
-     * All the parameter filtered from filter parameters will be passed in **c**
-     * parameter in this format.
-     * **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
-     */
-    c?: string;
-    /**
-     * - Pass `filters` parameter to fetch the filter
-     * details. This flag is used to fetch all filters
-     */
-    filters?: boolean;
-    /**
-     * - This query parameter is used to get the
-     * dependent products in the listing.
-     */
-    isDependent?: boolean;
-    /**
-     * - The order to sort the list of products on. The
-     * supported sort parameters are popularity, price, redemption and discount in
-     * either ascending or descending order. See the supported values below.
-     */
-    sortOn?: string;
-    /**
-     * - Each response will contain **page_id** param,
-     * which should be sent back to make pagination work.
-     */
-    pageId?: string;
-    /**
-     * - Number of items to retrieve in each page.
-     * Default is 12.
-     */
-    pageSize?: number;
-    /**
-     * - If page_type is number then pass it to fetch
-     * page items. Default is 1.
-     */
-    pageNo?: number;
-    /**
-     * - For pagination type should be cursor or
-     * number. Default is cursor.
-     */
-    pageType?: string;
-    /**
-     * - Item Ids of product
-     */
-    itemIds?: string[];
 };
 type GetAutocompleteKeywordDetailParam = {
     /**
@@ -1134,10 +1091,6 @@ type GetCollectionItemsParam = {
      * Default is 12.
      */
     pageSize?: number;
-    /**
-     * - Identifies the specific page of results being requested.
-     */
-    pageNo?: number;
 };
 type GetConfigurationByTypeParam = {
     /**
@@ -1172,14 +1125,14 @@ type GetConfigurationMetadataParam = {
 };
 type GetDiscountedInventoryBySizeIdentifierParam = {
     /**
-     * - A `item_id` is a unique identifier for a specific product.
+     * - Item code of the product of which size is to be get.
      */
     itemId: number;
     /**
      * - Size Identifier (Seller Identifier or
-     * Primary Identifier).
+     * Primary Identifier) of which inventory is to get.
      */
-    sizeIdentifier: number;
+    sizeIdentifier: string;
     /**
      * - The page number to navigate through the given
      * set of results
@@ -1190,6 +1143,10 @@ type GetDiscountedInventoryBySizeIdentifierParam = {
      * Default is 12.
      */
     pageSize?: number;
+    /**
+     * - Search with help of store code.
+     */
+    q?: string;
     /**
      * - Search by store ids.
      */
@@ -1246,7 +1203,7 @@ type GetProductDetailBySlugParam = {
     /**
      * - The unique identifier of a product. i.e; `slug` of
      * a product. You can retrieve these from the APIs that list products like
-     * "v1.0/products/"
+     * **v1.0/products/**
      */
     slug: string;
 };
@@ -1258,7 +1215,7 @@ type GetSearchKeywordsParam = {
     id: string;
 };
 type UpdateAllowSingleParam = {
-    body: CatalogPlatformModel.AllowSingleRequestSchema;
+    body: CatalogPlatformModel.AllowSingleRequest;
 };
 type UpdateAppBrandParam = {
     /**
@@ -1281,24 +1238,24 @@ type UpdateAppCategoryReturnConfigurationParam = {
 };
 type UpdateAppDepartmentParam = {
     /**
-     * - A `department id` is a unique identifier
-     * for a particular department.
+     * - Department id for which the custom_json is
+     * associated.
      */
-    departmentUid: number;
+    departmentUid: string;
     body: CatalogPlatformModel.ApplicationDepartmentJson;
 };
 type UpdateAppLocationParam = {
     /**
      * - Store id for which the custom_json is associated.
      */
-    storeUid: number;
+    storeUid: string;
     body: CatalogPlatformModel.ApplicationStoreJson;
 };
 type UpdateAppProductParam = {
     /**
-     * - A `item_id` is a unique identifier for a particular item.
+     * - Product id for which the custom_meta is associated.
      */
-    itemId: number;
+    itemId: string;
     body: CatalogPlatformModel.ApplicationItemMeta;
 };
 type UpdateAppReturnConfigurationParam = {
@@ -1320,7 +1277,7 @@ type UpdateCollectionParam = {
     body: CatalogPlatformModel.UpdateCollection;
 };
 type UpdateDefaultSortParam = {
-    body: CatalogPlatformModel.DefaultKeyRequestSchema;
+    body: CatalogPlatformModel.DefaultKeyRequest;
 };
 type UpdateGroupConfigurationParam = {
     /**
@@ -1349,7 +1306,7 @@ type UpdateListingConfigurationParam = {
     body: CatalogPlatformModel.AppConfigurationsSort;
 };
 type UpdateSearchConfigurationParam = {
-    body: CatalogPlatformModel.UpdateSearchConfigurationRequestSchema;
+    body: CatalogPlatformModel.UpdateSearchConfigurationRequest;
 };
 type UpdateSearchKeywordsParam = {
     /**

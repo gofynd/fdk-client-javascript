@@ -83,12 +83,12 @@ declare class Rewards {
      * @param {RewardsPlatformApplicationValidator.ShowGiveawaysParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<RewardsPlatformModel.ListGiveaway>} - Success response
+     * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
      * @name showGiveaways
      * @summary: List giveaways
      * @description: Retrieve and display available giveaways. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
      */
-    showGiveaways({ pageId, pageSize, requestHeaders }?: RewardsPlatformApplicationValidator.ShowGiveawaysParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.ListGiveaway>;
+    showGiveaways({ pageId, pageSize, requestHeaders }?: RewardsPlatformApplicationValidator.ShowGiveawaysParam, { responseHeaders }?: object): Promise<RewardsPlatformModel.GiveawayResponse>;
     /**
      * @param {RewardsPlatformApplicationValidator.ShowOffersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
