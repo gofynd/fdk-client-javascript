@@ -47,6 +47,21 @@ class Content {
     { entity, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!entity) {
+      invalidInput.push({
+        message: `The 'entity' field is required.`,
+        path: ["entity"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getCredentialsByEntity().validate(
       { entity },
       { abortEarly: false, allowUnknown: true }

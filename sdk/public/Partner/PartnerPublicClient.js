@@ -48,6 +48,21 @@ class Partner {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!slug) {
+      invalidInput.push({
+        message: `The 'slug' field is required.`,
+        path: ["slug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const {
       error,
     } = PartnerPublicValidator.getPanelExtensionDetails().validate(

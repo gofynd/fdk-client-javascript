@@ -55,6 +55,14 @@ class Webhook {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = WebhookPublicValidator.fetchAllWebhookEvents().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -133,6 +141,14 @@ class Webhook {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = WebhookPublicValidator.notifyDepricatedEvent().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -211,6 +227,14 @@ class Webhook {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const {
       error,
     } = WebhookPublicValidator.queryWebhookEventDetails().validate(
@@ -291,6 +315,14 @@ class Webhook {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const {
       error,
     } = WebhookPublicValidator.testHandlerTransformation().validate(
@@ -371,6 +403,14 @@ class Webhook {
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = WebhookPublicValidator.validateSchema().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
