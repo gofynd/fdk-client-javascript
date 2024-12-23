@@ -604,6 +604,19 @@ declare class Payment {
      */
     updateRefundSession({ gid, requestId, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateRefundSessionParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundSessionDetails>;
     /**
+     * @param {PaymentPlatformApplicationValidator.ValidateCustomerAndCreditSummaryParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.ValidateCustomerCreditSchema>} -
+     *   Success response
+     * @name validateCustomerAndCreditSummary
+     * @summary: Verify payment customer and show credit summary
+     * @description: Verify if the user is eligible for payment and also show credit summary if activated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/validateCustomerAndCreditSummary/).
+     */
+    validateCustomerAndCreditSummary({ body, requestHeaders }?: PaymentPlatformApplicationValidator.ValidateCustomerAndCreditSummaryParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.ValidateCustomerCreditSchema>;
+    /**
      * @param {PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam} arg
      *   - Arg object
      *

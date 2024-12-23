@@ -75,6 +75,12 @@ class FileStorageValidator {
       body: FileStorageModel.ProxyFile().required(),
     }).required();
   }
+
+  static signUrls() {
+    return Joi.object({
+      body: FileStorageModel.SignUrl().required(),
+    }).required();
+  }
 }
 
 module.exports = FileStorageValidator;

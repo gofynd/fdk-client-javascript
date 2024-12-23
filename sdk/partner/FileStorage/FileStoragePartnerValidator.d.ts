@@ -10,4 +10,5 @@ declare class FileStorageValidator {
     static saveOrganizationLevelProxy(): any;
     static fetchProxy(): any;
     static saveProxyDetails(): any;
+    static signUrls(): any;
 }

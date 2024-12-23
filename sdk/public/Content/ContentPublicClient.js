@@ -58,6 +58,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getAllTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -134,6 +142,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getAnalyticsTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -212,6 +228,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getBasicDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -290,6 +314,21 @@ class Content {
     { entityType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!entityType) {
+      invalidInput.push({
+        message: `The 'entityType' field is required.`,
+        path: ["entityType"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getCredentialsByEntity().validate(
       { entityType },
       { abortEarly: false, allowUnknown: true }
@@ -368,6 +407,21 @@ class Content {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!slug) {
+      invalidInput.push({
+        message: `The 'slug' field is required.`,
+        path: ["slug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getCustomPage().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -444,6 +498,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getFooterContent().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -522,6 +584,21 @@ class Content {
     { pageType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!pageType) {
+      invalidInput.push({
+        message: `The 'pageType' field is required.`,
+        path: ["pageType"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getHomePageContent().validate(
       { pageType },
       { abortEarly: false, allowUnknown: true }
@@ -601,6 +678,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getMenuContent().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -679,6 +764,21 @@ class Content {
     { type, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!type) {
+      invalidInput.push({
+        message: `The 'type' field is required.`,
+        path: ["type"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getMenuContentByType().validate(
       { type },
       { abortEarly: false, allowUnknown: true }
@@ -757,6 +857,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getNavbar().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -833,6 +941,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = ContentPublicValidator.getPricingBanner().validate(
       {},
       { abortEarly: false, allowUnknown: true }

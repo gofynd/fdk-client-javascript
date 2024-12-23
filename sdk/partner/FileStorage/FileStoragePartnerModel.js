@@ -110,6 +110,25 @@ const Joi = require("joi");
  * @property {string} message
  */
 
+/**
+ * @typedef SignedUrl
+ * @property {string} url - This is the original asset URL provided in the
+ *   request. This is the URL for which a signed URL has been generated.
+ * @property {string} signed_url - Generated signed URL.
+ * @property {number} expiry - The expiration time for the signed URL in seconds.
+ */
+
+/**
+ * @typedef SignUrlResult
+ * @property {SignedUrl[]} urls - Signed URL object.
+ */
+
+/**
+ * @typedef SignUrl
+ * @property {number} expiry - The expiration time for the signed URL.
+ * @property {string[]} urls - List of asset URLs to be signed.
+ */
+
 class FileStoragePartnerModel {
   /** @returns {SizeConstraints} */
   static SizeConstraints() {
@@ -247,6 +266,30 @@ class FileStoragePartnerModel {
   static FailedBrowseFilesResult() {
     return Joi.object({
       message: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {SignedUrl} */
+  static SignedUrl() {
+    return Joi.object({
+      url: Joi.string().allow("").required(),
+      signed_url: Joi.string().allow("").required(),
+      expiry: Joi.number().required(),
+    });
+  }
+
+  /** @returns {SignUrlResult} */
+  static SignUrlResult() {
+    return Joi.object({
+      urls: Joi.array().items(FileStoragePartnerModel.SignedUrl()).required(),
+    });
+  }
+
+  /** @returns {SignUrl} */
+  static SignUrl() {
+    return Joi.object({
+      expiry: Joi.number().required(),
+      urls: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 }

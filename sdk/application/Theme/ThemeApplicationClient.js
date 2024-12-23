@@ -1,3 +1,8 @@
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
+
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
@@ -39,6 +44,21 @@ class Theme {
     { themeId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!themeId) {
+      invalidInput.push({
+        message: `The 'themeId' field is required.`,
+        path: ["themeId"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -76,6 +96,14 @@ class Theme {
     { filters, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["filters"] = filters;
 
@@ -121,6 +149,27 @@ class Theme {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!themeId) {
+      invalidInput.push({
+        message: `The 'themeId' field is required.`,
+        path: ["themeId"],
+      });
+    }
+    if (!pageValue) {
+      invalidInput.push({
+        message: `The 'pageValue' field is required.`,
+        path: ["pageValue"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["filters"] = filters;
     query_params["section_preview_hash"] = sectionPreviewHash;
@@ -161,6 +210,21 @@ class Theme {
     { themeId, filters, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!themeId) {
+      invalidInput.push({
+        message: `The 'themeId' field is required.`,
+        path: ["themeId"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["filters"] = filters;
 

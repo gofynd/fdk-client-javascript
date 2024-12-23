@@ -71,11 +71,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef CreatePagePreviewParam
- * @property {ContentPlatformModel.PagePayload} body
- */
-
-/**
  * @typedef CreateSEOMarkupSchemaParam
  * @property {ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody} body
  */
@@ -634,13 +629,6 @@ class ContentPlatformApplicationValidator {
 
   /** @returns {CreatePageParam} */
   static createPage() {
-    return Joi.object({
-      body: ContentPlatformModel.PagePayload().required(),
-    }).required();
-  }
-
-  /** @returns {CreatePagePreviewParam} */
-  static createPagePreview() {
     return Joi.object({
       body: ContentPlatformModel.PagePayload().required(),
     }).required();

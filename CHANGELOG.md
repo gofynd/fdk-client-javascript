@@ -1,3 +1,95 @@
+# CHANGE LOG (1.6.0) - 2.1.0
+
+## Application Client
+
+
+
+### Logistic
+
+
+
+#### getCountries
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>phoneCode</code> (type: <code>string</code>)
+
+
+
+## Partner Client
+
+
+
+### FileStorage
+
+
+
+#### signUrls
+
+- ##### What's New
+	- [Added] method <code>signUrls</code>
+
+
+
+### Webhook
+
+
+
+#### fetchSubscribers
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code>items[].association</code> of schema <code>Association</code> in response with status code 200
+	- [Breaking] [Added] Type <code>object</code> to property <code>items[].auth_meta</code> of schema <code>AuthMeta</code> in response with status code 200
+
+
+## Platform Client
+
+
+
+### AuditTrail
+
+
+
+#### createAuditLog
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>CreateLogResp</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Required status to Request body content
+
+
+### Content
+
+
+
+#### createPagePreview
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>createPagePreview</code>
+
+
+
+### Payment
+
+
+
+#### validateCustomerAndCreditSummary
+
+- ##### What's New
+	- [Added] method <code>validateCustomerAndCreditSummary</code>
+
+
+
+### User
+
+
+
+#### createUser
+
+- ##### What's Changed
+	- [Changed] <code>username</code> made optional in request body
+
+
 # CHANGE LOG (1.5.2) - 2.0.0
 
 ## Application Client

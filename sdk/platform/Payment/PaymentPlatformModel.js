@@ -1369,6 +1369,42 @@ const Joi = require("joi");
  * @property {PaymentModeCustomConfigSchema[]} items
  */
 
+/**
+ * @typedef CustomerValidationSchema
+ * @property {string} aggregator - Aggregator name of the payment gateway.
+ * @property {number} transaction_amount - Payable amount
+ * @property {string} [cart_id] - Unique identifier for the shopping cart.
+ */
+
+/**
+ * @typedef UserCreditSchema
+ * @property {number} amount - The monetary value, which can represent available
+ *   balance, redeemed balance, or hold amount, depending on the context.
+ * @property {string} currency - The currency code (e.g., INR, USD).
+ * @property {string} [unique_id] - A unique identifier for the payment transaction.
+ */
+
+/**
+ * @typedef CreditAccountSummary
+ * @property {string} account_id - Unique identifier associated with the
+ *   customer's account
+ * @property {string} status - Current state of the account, indicating whether
+ *   it is ACTIVE, INACTIVE, or UNREGISTERED.
+ * @property {UserCreditSchema} [redeemable_balance]
+ * @property {UserCreditSchema} [available_balance]
+ * @property {UserCreditSchema} [amount_on_hold]
+ */
+
+/**
+ * @typedef ValidateCustomerCreditSchema
+ * @property {boolean} success - Successful or failure of API
+ * @property {boolean} is_eligible - The customer is eligible to make a transaction or not
+ * @property {boolean} [is_applied] - Credit is applied to the user's account or not
+ * @property {string} message - Detailed message about the user credt eligibility.
+ * @property {string} [cart_id] - Unique identifier for the shopping cart.
+ * @property {CreditAccountSummary} [account]
+ */
+
 class PaymentPlatformModel {
   /** @returns {PaymentGatewayConfigDetails} */
   static PaymentGatewayConfigDetails() {
@@ -3005,6 +3041,47 @@ class PaymentPlatformModel {
       items: Joi.array()
         .items(PaymentPlatformModel.PaymentModeCustomConfigSchema())
         .required(),
+    });
+  }
+
+  /** @returns {CustomerValidationSchema} */
+  static CustomerValidationSchema() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      transaction_amount: Joi.number().required(),
+      cart_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UserCreditSchema} */
+  static UserCreditSchema() {
+    return Joi.object({
+      amount: Joi.number().required(),
+      currency: Joi.string().allow("").required(),
+      unique_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreditAccountSummary} */
+  static CreditAccountSummary() {
+    return Joi.object({
+      account_id: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+      redeemable_balance: PaymentPlatformModel.UserCreditSchema(),
+      available_balance: PaymentPlatformModel.UserCreditSchema(),
+      amount_on_hold: PaymentPlatformModel.UserCreditSchema(),
+    });
+  }
+
+  /** @returns {ValidateCustomerCreditSchema} */
+  static ValidateCustomerCreditSchema() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      is_eligible: Joi.boolean().required(),
+      is_applied: Joi.boolean(),
+      message: Joi.string().allow("").required(),
+      cart_id: Joi.string().allow(""),
+      account: PaymentPlatformModel.CreditAccountSummary(),
     });
   }
 }

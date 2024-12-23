@@ -1,3 +1,8 @@
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
+
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
@@ -38,6 +43,14 @@ class Common {
     { locationType, id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["location_type"] = locationType;
     query_params["id"] = id;
@@ -77,6 +90,14 @@ class Common {
     { authorization, query, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["query"] = query;
 

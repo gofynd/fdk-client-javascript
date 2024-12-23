@@ -55,7 +55,7 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef EventConfigResult
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfig[]} [event_configs] - List of event configurations.
  */
 /**
  * @typedef Association
@@ -96,7 +96,7 @@ export = WebhookPlatformModel;
  * @property {string} [created_on] - The date and time when the subscriber was created.
  * @property {string} [type] - The type of subscriber, which can either be passed as null.
  * @property {AuthMeta} [auth_meta]
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfig[]} [event_configs] - List of event configurations.
  */
 /**
  * @typedef Events
@@ -183,7 +183,7 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef SubscriberConfigList
- * @property {SubscriberDetails[]} [items]
+ * @property {SubscriberDetails[]} [items] - List of subscriber details.
  * @property {Page} [page]
  */
 /**
@@ -199,7 +199,7 @@ export = WebhookPlatformModel;
  * @property {string} type - The type of the configuration.
  * @property {Object} [custom_headers] - Custom headers for the configuration.
  * @property {AuthMeta} [auth_meta]
- * @property {RestEventData[]} events
+ * @property {RestEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef QueueEventData
@@ -211,13 +211,13 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef KafkaConfig
- * @property {string} [type]
- * @property {QueueEventData[]} events
+ * @property {string} [type] - Type of Kafka configuration (optional).
+ * @property {QueueEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef PubSubConfig
- * @property {string} [type]
- * @property {QueueEventData[]} events
+ * @property {string} [type] - Type of Pub/Sub configuration (optional).
+ * @property {QueueEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef TemporalEventData
@@ -230,8 +230,8 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef TemporalConfig
- * @property {string} [type]
- * @property {TemporalEventData[]} events
+ * @property {string} [type] - Type of Temporal configuration (optional).
+ * @property {TemporalEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef SqsEventData
@@ -243,8 +243,8 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef SqsConfig
- * @property {string} [type]
- * @property {SqsEventData[]} events
+ * @property {string} [type] - Type of SQS configuration (optional).
+ * @property {SqsEventData[]} events - List of event data for configuration.
  */
 /**
  * @typedef EventBridgeData
@@ -257,8 +257,9 @@ export = WebhookPlatformModel;
  */
 /**
  * @typedef EventBridgeConfig
- * @property {string} [type]
- * @property {EventBridgeData[]} events
+ * @property {string} [type] - Type of event configuration (optional).
+ * @property {EventBridgeData[]} events - List of event data for EventBridge
+ *   configuration.
  */
 /**
  * @typedef EventMapBody
@@ -445,6 +446,9 @@ type EventConfig = {
 /** @returns {EventConfigResult} */
 declare function EventConfigResult(): EventConfigResult;
 type EventConfigResult = {
+    /**
+     * - List of event configurations.
+     */
     event_configs?: EventConfig[];
 };
 /** @returns {Association} */
@@ -547,6 +551,9 @@ type SubscriberDetails = {
      */
     type?: string;
     auth_meta?: AuthMeta;
+    /**
+     * - List of event configurations.
+     */
     event_configs?: EventConfig[];
 };
 /** @returns {Events} */
@@ -776,6 +783,9 @@ type SubscriberConfigResult = {
 /** @returns {SubscriberConfigList} */
 declare function SubscriberConfigList(): SubscriberConfigList;
 type SubscriberConfigList = {
+    /**
+     * - List of subscriber details.
+     */
     items?: SubscriberDetails[];
     page?: Page;
 };
@@ -815,6 +825,9 @@ type RestConfig = {
      */
     custom_headers?: any;
     auth_meta?: AuthMeta;
+    /**
+     * - List of event data for configuration.
+     */
     events: RestEventData[];
 };
 /** @returns {QueueEventData} */
@@ -844,13 +857,25 @@ type QueueEventData = {
 /** @returns {KafkaConfig} */
 declare function KafkaConfig(): KafkaConfig;
 type KafkaConfig = {
+    /**
+     * - Type of Kafka configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for configuration.
+     */
     events: QueueEventData[];
 };
 /** @returns {PubSubConfig} */
 declare function PubSubConfig(): PubSubConfig;
 type PubSubConfig = {
+    /**
+     * - Type of Pub/Sub configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for configuration.
+     */
     events: QueueEventData[];
 };
 /** @returns {TemporalEventData} */
@@ -884,7 +909,13 @@ type TemporalEventData = {
 /** @returns {TemporalConfig} */
 declare function TemporalConfig(): TemporalConfig;
 type TemporalConfig = {
+    /**
+     * - Type of Temporal configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for configuration.
+     */
     events: TemporalEventData[];
 };
 /** @returns {SqsEventData} */
@@ -914,7 +945,13 @@ type SqsEventData = {
 /** @returns {SqsConfig} */
 declare function SqsConfig(): SqsConfig;
 type SqsConfig = {
+    /**
+     * - Type of SQS configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for configuration.
+     */
     events: SqsEventData[];
 };
 /** @returns {EventBridgeData} */
@@ -945,7 +982,14 @@ type EventBridgeData = {
 /** @returns {EventBridgeConfig} */
 declare function EventBridgeConfig(): EventBridgeConfig;
 type EventBridgeConfig = {
+    /**
+     * - Type of event configuration (optional).
+     */
     type?: string;
+    /**
+     * - List of event data for EventBridge
+     * configuration.
+     */
     events: EventBridgeData[];
 };
 /** @returns {EventMapBody} */

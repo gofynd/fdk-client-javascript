@@ -142,5 +142,15 @@ declare class FileStorage {
      * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/saveProxyDetails/).
      */
     saveProxyDetails({ body, requestHeaders }?: FileStoragePartnerValidator.SaveProxyDetailsParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.SaveProxy>;
+    /**
+     * @param {FileStoragePartnerValidator.SignUrlsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<FileStoragePartnerModel.SignUrlResult>} - Success response
+     * @name signUrls
+     * @summary: Signs file URLs
+     * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/filestorage/signUrls/).
+     */
+    signUrls({ body, requestHeaders }?: FileStoragePartnerValidator.SignUrlsParam, { responseHeaders }?: object): Promise<FileStoragePartnerModel.SignUrlResult>;
 }
 import FileStoragePartnerModel = require("./FileStoragePartnerModel");

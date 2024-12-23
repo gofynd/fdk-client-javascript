@@ -192,7 +192,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DeliveryTsResult
- * @property {DeliveryTsSchema[]} [delivery_ts]
+ * @property {DeliveryTsSchema[]} [delivery_ts] - List of delivery timestamps.
  */
 
 /**
@@ -280,7 +280,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ResponseTimeTs
- * @property {AvgResponseTime[]} [avg_response_time_ts]
+ * @property {AvgResponseTime[]} [avg_response_time_ts] - List of average
+ *   response time timestamps.
  */
 
 /**
@@ -297,7 +298,8 @@ const Joi = require("joi");
 
 /**
  * @typedef DeliverySummaryResult
- * @property {DeliveryEventLevelSchema[]} [delivery_event_level]
+ * @property {DeliveryEventLevelSchema[]} [delivery_event_level] - List of
+ *   delivery event levels.
  * @property {DeliverySummarySchema} [delivery_summary]
  */
 

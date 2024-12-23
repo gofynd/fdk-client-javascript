@@ -1,3 +1,8 @@
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
+
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
@@ -59,6 +64,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -96,6 +109,21 @@ class Content {
     { slug, rootId, preview, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!slug) {
+      invalidInput.push({
+        message: `The 'slug' field is required.`,
+        path: ["slug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["root_id"] = rootId;
     query_params["preview"] = preview;
@@ -135,6 +163,14 @@ class Content {
     { pageNo, pageSize, tags, search, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -176,6 +212,27 @@ class Content {
     { resource, resourceSlug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!resource) {
+      invalidInput.push({
+        message: `The 'resource' field is required.`,
+        path: ["resource"],
+      });
+    }
+    if (!resourceSlug) {
+      invalidInput.push({
+        message: `The 'resourceSlug' field is required.`,
+        path: ["resourceSlug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -213,6 +270,27 @@ class Content {
     { definitionSlug, slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!definitionSlug) {
+      invalidInput.push({
+        message: `The 'definitionSlug' field is required.`,
+        path: ["definitionSlug"],
+      });
+    }
+    if (!slug) {
+      invalidInput.push({
+        message: `The 'slug' field is required.`,
+        path: ["slug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -250,6 +328,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -287,6 +373,21 @@ class Content {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!slug) {
+      invalidInput.push({
+        message: `The 'slug' field is required.`,
+        path: ["slug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -324,6 +425,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -361,6 +470,21 @@ class Content {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!slug) {
+      invalidInput.push({
+        message: `The 'slug' field is required.`,
+        path: ["slug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -398,6 +522,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -435,6 +567,21 @@ class Content {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!slug) {
+      invalidInput.push({
+        message: `The 'slug' field is required.`,
+        path: ["slug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -472,6 +619,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -509,6 +664,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -546,6 +709,14 @@ class Content {
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -585,6 +756,21 @@ class Content {
     { slug, rootId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!slug) {
+      invalidInput.push({
+        message: `The 'slug' field is required.`,
+        path: ["slug"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["root_id"] = rootId;
 
@@ -623,6 +809,14 @@ class Content {
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -662,6 +856,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -699,6 +901,14 @@ class Content {
     { pageType, active, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
     query_params["page_type"] = pageType;
     query_params["active"] = active;
@@ -738,6 +948,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -775,6 +993,14 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const query_params = {};
 
     const xHeaders = {};

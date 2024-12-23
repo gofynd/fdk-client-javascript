@@ -239,7 +239,7 @@ const Joi = require("joi");
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {string} [gender]
- * @property {string} username
+ * @property {string} [username]
  * @property {Object} [meta]
  * @property {string} [external_id]
  * @property {string} [rr_id]
@@ -827,7 +827,7 @@ class UserPlatformModel {
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
-      username: Joi.string().allow("").required(),
+      username: Joi.string().allow(""),
       meta: Joi.object().pattern(/\S/, Joi.any()),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),

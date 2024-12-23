@@ -154,18 +154,6 @@ declare class Content {
      */
     createPage({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreatePageParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageSchema>;
     /**
-     * @param {ContentPlatformApplicationValidator.CreatePagePreviewParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
-     * @name createPagePreview
-     * @summary: Create page preview
-     * @description: Generate and add a new page preview. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPagePreview/).
-     */
-    createPagePreview({ body, requestHeaders }?: ContentPlatformApplicationValidator.CreatePagePreviewParam, { responseHeaders }?: object): Promise<ContentPlatformModel.PageSchema>;
-    /**
      * @param {ContentPlatformApplicationValidator.CreateSEOMarkupSchemaParam} arg
      *   - Arg object
      *

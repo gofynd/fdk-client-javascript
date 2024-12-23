@@ -36,7 +36,7 @@ declare class Logistic {
      * @summary: Get countries
      * @description: List of supported countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountries/).
      */
-    getCountries({ onboarding, pageNo, pageSize, q, hierarchy, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetCountries>;
+    getCountries({ onboarding, pageNo, pageSize, q, hierarchy, phoneCode, requestHeaders, }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetCountries>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

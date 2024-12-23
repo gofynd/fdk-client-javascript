@@ -1225,10 +1225,42 @@ export = PaymentPlatformModel;
  * @property {string} message
  * @property {PaymentModeCustomConfigSchema[]} items
  */
+/**
+ * @typedef CustomerValidationSchema
+ * @property {string} aggregator - Aggregator name of the payment gateway.
+ * @property {number} transaction_amount - Payable amount
+ * @property {string} [cart_id] - Unique identifier for the shopping cart.
+ */
+/**
+ * @typedef UserCreditSchema
+ * @property {number} amount - The monetary value, which can represent available
+ *   balance, redeemed balance, or hold amount, depending on the context.
+ * @property {string} currency - The currency code (e.g., INR, USD).
+ * @property {string} [unique_id] - A unique identifier for the payment transaction.
+ */
+/**
+ * @typedef CreditAccountSummary
+ * @property {string} account_id - Unique identifier associated with the
+ *   customer's account
+ * @property {string} status - Current state of the account, indicating whether
+ *   it is ACTIVE, INACTIVE, or UNREGISTERED.
+ * @property {UserCreditSchema} [redeemable_balance]
+ * @property {UserCreditSchema} [available_balance]
+ * @property {UserCreditSchema} [amount_on_hold]
+ */
+/**
+ * @typedef ValidateCustomerCreditSchema
+ * @property {boolean} success - Successful or failure of API
+ * @property {boolean} is_eligible - The customer is eligible to make a transaction or not
+ * @property {boolean} [is_applied] - Credit is applied to the user's account or not
+ * @property {string} message - Detailed message about the user credt eligibility.
+ * @property {string} [cart_id] - Unique identifier for the shopping cart.
+ * @property {CreditAccountSummary} [account]
+ */
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema };
+    export { PaymentGatewayConfigDetails, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigCreation, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorDetails, IntentAppErrorList, ProductCODData, CODChargesLimitsDetails, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, PaymentOptions, AggregatorRoute, PaymentDefaultSelection, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteDetails, PaymentOptionsDetails, PayoutCustomer, PayoutMoreAttributes, PayoutAggregator, Payout, PayoutsDetails, PayoutBankDetails, PayoutCreation, PayoutDetails, UpdatePayoutDetails, UpdatePayoutCreation, DeletePayoutDetails, SubscriptionPaymentMethodDetails, DeleteSubscriptionPaymentMethodDetails, SubscriptionConfigDetails, SaveSubscriptionSetupIntentCreation, SaveSubscriptionSetupIntentDetails, RefundAccountDetails, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPCreation, IfscCodeDetails, OrderBeneficiaryDetails, OrderBeneficiaryFetchResults, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationCreation, PaymentConfirmationDetails, CODdata, CODLimitConfig, CODPaymentLimitConfig, GetUserBULimitResponseSchema, GetUserCODLimitDetails, SetCODForUserCreation, SetCODOptionDetails, EdcModelData, EdcAggregatorAndModelListDetails, StatisticsData, EdcDeviceStatsDetails, EdcAddCreation, EdcDevice, EdcDeviceAddDetails, EdcDeviceDetails, EdcUpdate, EdcDeviceUpdateDetails, Page, EdcDeviceListDetails, PaymentInitializationCreation, PaymentInitializationDetails, PaymentStatusUpdateCreation, PaymentStatusUpdateDetails, ResendOrCancelPaymentCreation, LinkStatus, ResendOrCancelPaymentDetails, PaymentStatusBulkHandlerCreation, PaymentObjectList, PaymentStatusObject, PaymentStatusBulkHandlerDetails, GetOauthUrlDetails, RevokeOAuthToken, RepaymentRequestDetails, RepaymentDetailsSerialiserPayAll, RepaymentDetails, MerchantOnBoardingCreation, MerchantOnBoardingDetails, ValidateCustomerCreation, ValidateCustomerDetails, GetPaymentLinkDetails, ErrorDescription, ErrorDetails, CreatePaymentLinkMeta, CreatePaymentLinkCreation, CreatePaymentLinkDetails, PollingPaymentLinkDetails, CancelOrResendPaymentLinkCreation, ResendPaymentLinkDetails, CancelPaymentLinkDetails, Code, PaymentCode, GetPaymentCode, GetPaymentCodeDetails, PlatformPaymentModeDetails, MerchnatPaymentModeCreation, OrderDetail, AddressDetail, ReasonDetail, PaymentSessionDetail, PaymentSessionCreation, PaymentSessionPutDetails, RefundSessionDetail, RefundSessionCreation, RefundSessionDetails, PaymentDetails, CartDetails, RefundDetails, PaymentSessionFetchDetails, RefundSourcesPriority, RefundPriorityDetails, RefundPriorityCreation, MerchantPaymentModeCreation, FromConfig, ToConfig, PlatformPaymentModeCopyConfigCreation, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderCreation, PaymentOrderData, PaymentOrderDetails, AggregatorVersionItemSchema, AggregatorVersionDetails, AggregatorVersionRequestSchema, PatchAggregatorControl, PaymentModeCustomConfigSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, CustomerValidationSchema, UserCreditSchema, CreditAccountSummary, ValidateCustomerCreditSchema };
 }
 /** @returns {PaymentGatewayConfigDetails} */
 declare function PaymentGatewayConfigDetails(): PaymentGatewayConfigDetails;
@@ -4470,4 +4502,79 @@ type PaymentCustomConfigResponseSchema = {
     success: boolean;
     message: string;
     items: PaymentModeCustomConfigSchema[];
+};
+/** @returns {CustomerValidationSchema} */
+declare function CustomerValidationSchema(): CustomerValidationSchema;
+type CustomerValidationSchema = {
+    /**
+     * - Aggregator name of the payment gateway.
+     */
+    aggregator: string;
+    /**
+     * - Payable amount
+     */
+    transaction_amount: number;
+    /**
+     * - Unique identifier for the shopping cart.
+     */
+    cart_id?: string;
+};
+/** @returns {UserCreditSchema} */
+declare function UserCreditSchema(): UserCreditSchema;
+type UserCreditSchema = {
+    /**
+     * - The monetary value, which can represent available
+     * balance, redeemed balance, or hold amount, depending on the context.
+     */
+    amount: number;
+    /**
+     * - The currency code (e.g., INR, USD).
+     */
+    currency: string;
+    /**
+     * - A unique identifier for the payment transaction.
+     */
+    unique_id?: string;
+};
+/** @returns {CreditAccountSummary} */
+declare function CreditAccountSummary(): CreditAccountSummary;
+type CreditAccountSummary = {
+    /**
+     * - Unique identifier associated with the
+     * customer's account
+     */
+    account_id: string;
+    /**
+     * - Current state of the account, indicating whether
+     * it is ACTIVE, INACTIVE, or UNREGISTERED.
+     */
+    status: string;
+    redeemable_balance?: UserCreditSchema;
+    available_balance?: UserCreditSchema;
+    amount_on_hold?: UserCreditSchema;
+};
+/** @returns {ValidateCustomerCreditSchema} */
+declare function ValidateCustomerCreditSchema(): ValidateCustomerCreditSchema;
+type ValidateCustomerCreditSchema = {
+    /**
+     * - Successful or failure of API
+     */
+    success: boolean;
+    /**
+     * - The customer is eligible to make a transaction or not
+     */
+    is_eligible: boolean;
+    /**
+     * - Credit is applied to the user's account or not
+     */
+    is_applied?: boolean;
+    /**
+     * - Detailed message about the user credt eligibility.
+     */
+    message: string;
+    /**
+     * - Unique identifier for the shopping cart.
+     */
+    cart_id?: string;
+    account?: CreditAccountSummary;
 };

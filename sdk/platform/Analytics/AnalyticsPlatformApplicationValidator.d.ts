@@ -9,7 +9,7 @@ export = AnalyticsPlatformApplicationValidator;
  */
 /**
  * @typedef StartDownloadForQueryV2Param
- * @property {string} exportType
+ * @property {string} exportType - Format in which to be exported(eg. CSV or excel).
  * @property {AnalyticsPlatformModel.FileDownloadRequestBody} body
  */
 declare class AnalyticsPlatformApplicationValidator {
@@ -33,6 +33,9 @@ type ExecuteJobForProvidedParametersV2Param = {
     body: AnalyticsPlatformModel.JobExecute;
 };
 type StartDownloadForQueryV2Param = {
+    /**
+     * - Format in which to be exported(eg. CSV or excel).
+     */
     exportType: string;
     body: AnalyticsPlatformModel.FileDownloadRequestBody;
 };

@@ -292,6 +292,11 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  */
 
 /**
+ * @typedef ValidateCustomerAndCreditSummaryParam
+ * @property {PaymentPlatformModel.CustomerValidationSchema} body
+ */
+
+/**
  * @typedef VerifyCustomerForPaymentParam
  * @property {PaymentPlatformModel.ValidateCustomerCreation} body
  */
@@ -668,6 +673,13 @@ class PaymentPlatformApplicationValidator {
       gid: Joi.string().allow("").required(),
       requestId: Joi.string().allow("").required(),
       body: PaymentPlatformModel.RefundSessionCreation().required(),
+    }).required();
+  }
+
+  /** @returns {ValidateCustomerAndCreditSummaryParam} */
+  static validateCustomerAndCreditSummary() {
+    return Joi.object({
+      body: PaymentPlatformModel.CustomerValidationSchema().required(),
     }).required();
   }
 

@@ -49,6 +49,21 @@ class Catalog {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
+    let invalidInput = [];
+
+    if (!level) {
+      invalidInput.push({
+        message: `The 'level' field is required.`,
+        path: ["level"],
+      });
+    }
+    if (invalidInput.length) {
+      const error = new Error();
+      error.message = "Missing required field";
+      error.details = invalidInput;
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
     const { error } = CatalogPublicValidator.getTaxonomyByLevel().validate(
       { level, l0Slug, l1Slug, l2Slug, l3Slug, limit },
       { abortEarly: false, allowUnknown: true }

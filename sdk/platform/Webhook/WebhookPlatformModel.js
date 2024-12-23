@@ -60,7 +60,7 @@ const Joi = require("joi");
 
 /**
  * @typedef EventConfigResult
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfig[]} [event_configs] - List of event configurations.
  */
 
 /**
@@ -105,7 +105,7 @@ const Joi = require("joi");
  * @property {string} [created_on] - The date and time when the subscriber was created.
  * @property {string} [type] - The type of subscriber, which can either be passed as null.
  * @property {AuthMeta} [auth_meta]
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfig[]} [event_configs] - List of event configurations.
  */
 
 /**
@@ -199,7 +199,7 @@ const Joi = require("joi");
 
 /**
  * @typedef SubscriberConfigList
- * @property {SubscriberDetails[]} [items]
+ * @property {SubscriberDetails[]} [items] - List of subscriber details.
  * @property {Page} [page]
  */
 
@@ -217,7 +217,7 @@ const Joi = require("joi");
  * @property {string} type - The type of the configuration.
  * @property {Object} [custom_headers] - Custom headers for the configuration.
  * @property {AuthMeta} [auth_meta]
- * @property {RestEventData[]} events
+ * @property {RestEventData[]} events - List of event data for configuration.
  */
 
 /**
@@ -231,14 +231,14 @@ const Joi = require("joi");
 
 /**
  * @typedef KafkaConfig
- * @property {string} [type]
- * @property {QueueEventData[]} events
+ * @property {string} [type] - Type of Kafka configuration (optional).
+ * @property {QueueEventData[]} events - List of event data for configuration.
  */
 
 /**
  * @typedef PubSubConfig
- * @property {string} [type]
- * @property {QueueEventData[]} events
+ * @property {string} [type] - Type of Pub/Sub configuration (optional).
+ * @property {QueueEventData[]} events - List of event data for configuration.
  */
 
 /**
@@ -253,8 +253,8 @@ const Joi = require("joi");
 
 /**
  * @typedef TemporalConfig
- * @property {string} [type]
- * @property {TemporalEventData[]} events
+ * @property {string} [type] - Type of Temporal configuration (optional).
+ * @property {TemporalEventData[]} events - List of event data for configuration.
  */
 
 /**
@@ -268,8 +268,8 @@ const Joi = require("joi");
 
 /**
  * @typedef SqsConfig
- * @property {string} [type]
- * @property {SqsEventData[]} events
+ * @property {string} [type] - Type of SQS configuration (optional).
+ * @property {SqsEventData[]} events - List of event data for configuration.
  */
 
 /**
@@ -284,8 +284,9 @@ const Joi = require("joi");
 
 /**
  * @typedef EventBridgeConfig
- * @property {string} [type]
- * @property {EventBridgeData[]} events
+ * @property {string} [type] - Type of event configuration (optional).
+ * @property {EventBridgeData[]} events - List of event data for EventBridge
+ *   configuration.
  */
 
 /**

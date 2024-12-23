@@ -171,7 +171,7 @@ export = WebhookPartnerModel;
  */
 /**
  * @typedef DeliveryTsResult
- * @property {DeliveryTsSchema[]} [delivery_ts]
+ * @property {DeliveryTsSchema[]} [delivery_ts] - List of delivery timestamps.
  */
 /**
  * @typedef DeliveryTsSchema
@@ -251,7 +251,8 @@ export = WebhookPartnerModel;
  */
 /**
  * @typedef ResponseTimeTs
- * @property {AvgResponseTime[]} [avg_response_time_ts]
+ * @property {AvgResponseTime[]} [avg_response_time_ts] - List of average
+ *   response time timestamps.
  */
 /**
  * @typedef AvgResponseTime
@@ -266,7 +267,8 @@ export = WebhookPartnerModel;
  */
 /**
  * @typedef DeliverySummaryResult
- * @property {DeliveryEventLevelSchema[]} [delivery_event_level]
+ * @property {DeliveryEventLevelSchema[]} [delivery_event_level] - List of
+ *   delivery event levels.
  * @property {DeliverySummarySchema} [delivery_summary]
  */
 /**
@@ -694,6 +696,9 @@ type FilterReportResult = {
 /** @returns {DeliveryTsResult} */
 declare function DeliveryTsResult(): DeliveryTsResult;
 type DeliveryTsResult = {
+    /**
+     * - List of delivery timestamps.
+     */
     delivery_ts?: DeliveryTsSchema[];
 };
 /** @returns {DeliveryTsSchema} */
@@ -908,6 +913,10 @@ type DeliveryEventLevelSchema = {
 /** @returns {ResponseTimeTs} */
 declare function ResponseTimeTs(): ResponseTimeTs;
 type ResponseTimeTs = {
+    /**
+     * - List of average
+     * response time timestamps.
+     */
     avg_response_time_ts?: AvgResponseTime[];
 };
 /** @returns {AvgResponseTime} */
@@ -940,6 +949,10 @@ type AvgResponseTime = {
 /** @returns {DeliverySummaryResult} */
 declare function DeliverySummaryResult(): DeliverySummaryResult;
 type DeliverySummaryResult = {
+    /**
+     * - List of
+     * delivery event levels.
+     */
     delivery_event_level?: DeliveryEventLevelSchema[];
     delivery_summary?: DeliverySummarySchema;
 };

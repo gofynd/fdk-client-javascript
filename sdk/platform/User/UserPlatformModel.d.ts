@@ -211,7 +211,7 @@ export = UserPlatformModel;
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {string} [gender]
- * @property {string} username
+ * @property {string} [username]
  * @property {Object} [meta]
  * @property {string} [external_id]
  * @property {string} [rr_id]
@@ -835,7 +835,7 @@ type CreateUserRequestSchema = {
     first_name?: string;
     last_name?: string;
     gender?: string;
-    username: string;
+    username?: string;
     meta?: any;
     external_id?: string;
     rr_id?: string;

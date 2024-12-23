@@ -95,10 +95,26 @@ export = FileStoragePartnerModel;
  * @typedef FailedBrowseFilesResult
  * @property {string} message
  */
+/**
+ * @typedef SignedUrl
+ * @property {string} url - This is the original asset URL provided in the
+ *   request. This is the URL for which a signed URL has been generated.
+ * @property {string} signed_url - Generated signed URL.
+ * @property {number} expiry - The expiration time for the signed URL in seconds.
+ */
+/**
+ * @typedef SignUrlResult
+ * @property {SignedUrl[]} urls - Signed URL object.
+ */
+/**
+ * @typedef SignUrl
+ * @property {number} expiry - The expiration time for the signed URL.
+ * @property {string[]} urls - List of asset URLs to be signed.
+ */
 declare class FileStoragePartnerModel {
 }
 declare namespace FileStoragePartnerModel {
-    export { SizeConstraints, SaveProxy, ProxyFileData, ProxyFile, FetchProxyDetails, NamespaceDetails, AllNamespaceDetails, CDN, Upload, FileUpload, FileUploadStart, CreatedBy, FileUploadComplete, FailedBrowseFilesResult };
+    export { SizeConstraints, SaveProxy, ProxyFileData, ProxyFile, FetchProxyDetails, NamespaceDetails, AllNamespaceDetails, CDN, Upload, FileUpload, FileUploadStart, CreatedBy, FileUploadComplete, FailedBrowseFilesResult, SignedUrl, SignUrlResult, SignUrl };
 }
 /** @returns {SizeConstraints} */
 declare function SizeConstraints(): SizeConstraints;
@@ -221,4 +237,41 @@ type FileUploadComplete = {
 declare function FailedBrowseFilesResult(): FailedBrowseFilesResult;
 type FailedBrowseFilesResult = {
     message: string;
+};
+/** @returns {SignedUrl} */
+declare function SignedUrl(): SignedUrl;
+type SignedUrl = {
+    /**
+     * - This is the original asset URL provided in the
+     * request. This is the URL for which a signed URL has been generated.
+     */
+    url: string;
+    /**
+     * - Generated signed URL.
+     */
+    signed_url: string;
+    /**
+     * - The expiration time for the signed URL in seconds.
+     */
+    expiry: number;
+};
+/** @returns {SignUrlResult} */
+declare function SignUrlResult(): SignUrlResult;
+type SignUrlResult = {
+    /**
+     * - Signed URL object.
+     */
+    urls: SignedUrl[];
+};
+/** @returns {SignUrl} */
+declare function SignUrl(): SignUrl;
+type SignUrl = {
+    /**
+     * - The expiration time for the signed URL.
+     */
+    expiry: number;
+    /**
+     * - List of asset URLs to be signed.
+     */
+    urls: string[];
 };

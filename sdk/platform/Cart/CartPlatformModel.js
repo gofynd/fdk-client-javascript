@@ -1566,6 +1566,20 @@ const Joi = require("joi");
  * @property {boolean} [partial] - When adding multiple items check if all
  *   added. True if only few are added.
  * @property {string} [message] - Message of add cart API response
+ * @property {Object} [result] - Add to cart result data
+ * @property {CartItemInfo[]} [items] - List of items that needs to be added in cart.
+ */
+
+/**
+ * @typedef CartItemInfo
+ * @property {number} [item_id] - Item id of the product that needs to be
+ *   added/updated/removed.
+ * @property {string} [size] - Item size of the product that needs to be
+ *   added/updated/removed.
+ * @property {number} [store_id] - Unique identifier of the store selected by
+ *   the user from which user want to buy a product.
+ * @property {boolean} [success] - True if items are added/updated/removed successfully.
+ * @property {string} [message] - Message for added/updated/removed item.
  */
 
 /**
@@ -1604,6 +1618,8 @@ const Joi = require("joi");
  * @property {boolean} [success] - True if all items are added successfully.
  *   False if partially added or not added.
  * @property {CartDetailResult} [cart]
+ * @property {Object} [result] - Contains article related result info
+ * @property {CartItemInfo[]} [items] - List of items that needs to be updated in cart.
  * @property {string} [message] - Message of update cart API response
  */
 
@@ -4112,6 +4128,19 @@ class CartPlatformModel {
       cart: CartPlatformModel.CartDetailResult(),
       partial: Joi.boolean(),
       message: Joi.string().allow(""),
+      result: Joi.object().pattern(/\S/, Joi.any()),
+      items: Joi.array().items(CartPlatformModel.CartItemInfo()),
+    });
+  }
+
+  /** @returns {CartItemInfo} */
+  static CartItemInfo() {
+    return Joi.object({
+      item_id: Joi.number(),
+      size: Joi.string().allow(""),
+      store_id: Joi.number(),
+      success: Joi.boolean(),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -4156,6 +4185,8 @@ class CartPlatformModel {
     return Joi.object({
       success: Joi.boolean(),
       cart: CartPlatformModel.CartDetailResult(),
+      result: Joi.object().pattern(/\S/, Joi.any()),
+      items: Joi.array().items(CartPlatformModel.CartItemInfo()),
       message: Joi.string().allow(""),
     });
   }
