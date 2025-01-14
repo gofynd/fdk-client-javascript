@@ -32,6 +32,18 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} [status]
  */
 /**
+ * @typedef GetZonesParam
+ * @property {number} [pageNo] - Index of the item to start returning with
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @property {boolean} [isActive] - Status of Zone (either active or inactive)
+ * @property {string} [q] - Search with name as a free text
+ * @property {string} [countryIsoCode] - ISO2 code of the country
+ * @property {string} [state] - State name
+ * @property {string} [city] - City name
+ * @property {string} [pincode] - Pincode value to search zones
+ * @property {string} [sector] - Sector value to search zones
+ */
+/**
  * @typedef InsertApplicationConfigParam
  * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
  */
@@ -97,6 +109,8 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getStoreRule(): GetStoreRuleParam;
     /** @returns {GetStoreRulesParam} */
     static getStoreRules(): GetStoreRulesParam;
+    /** @returns {GetZonesParam} */
+    static getZones(): GetZonesParam;
     /** @returns {InsertApplicationConfigParam} */
     static insertApplicationConfig(): InsertApplicationConfigParam;
     /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
@@ -121,7 +135,7 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updateStoreRulesConfig(): UpdateStoreRulesConfigParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateCourierPartnerRuleParam, CreateStoreRulesParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetStoreRuleParam, GetStoreRulesParam, InsertApplicationConfigParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam };
+    export { CreateCourierPartnerRuleParam, CreateStoreRulesParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetStoreRuleParam, GetStoreRulesParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam };
 }
 type CreateCourierPartnerRuleParam = {
     body: ServiceabilityPlatformModel.CourierPartnerRule;
@@ -160,6 +174,44 @@ type GetStoreRulesParam = {
     pageNo?: number;
     pageSize?: number;
     status?: string;
+};
+type GetZonesParam = {
+    /**
+     * - Index of the item to start returning with
+     */
+    pageNo?: number;
+    /**
+     * - Determines the items to be displayed in a page
+     */
+    pageSize?: number;
+    /**
+     * - Status of Zone (either active or inactive)
+     */
+    isActive?: boolean;
+    /**
+     * - Search with name as a free text
+     */
+    q?: string;
+    /**
+     * - ISO2 code of the country
+     */
+    countryIsoCode?: string;
+    /**
+     * - State name
+     */
+    state?: string;
+    /**
+     * - City name
+     */
+    city?: string;
+    /**
+     * - Pincode value to search zones
+     */
+    pincode?: string;
+    /**
+     * - Sector value to search zones
+     */
+    sector?: string;
 };
 type InsertApplicationConfigParam = {
     body: ServiceabilityPlatformModel.StoreRuleConfigData;

@@ -127,6 +127,16 @@ declare class Serviceability {
      */
     getStoreRules({ pageNo, pageSize, status, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetStoreRulesApiResponse>;
     /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetZonesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+     * @name getZones
+     * @summary: Get zones
+     * @description: Retrieves a list of delivery zones. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
+     */
+    getZones({ pageNo, pageSize, isActive, q, countryIsoCode, state, city, pincode, sector, requestHeaders, }?: ServiceabilityPlatformApplicationValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResponse>;
+    /**
      * @param {ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam} arg
      *   - Arg object
      *

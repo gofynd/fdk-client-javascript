@@ -108,19 +108,6 @@ export = ServiceabilityPlatformValidator;
  * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
  */
 /**
- * @typedef GetZonesParam
- * @property {number} [pageNo] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {boolean} [isActive] - Status of Zone (either active or inactive)
- * @property {string} [channelId] - Zones filtered by an application
- * @property {string} [q] - Search with name as a free text
- * @property {string} [countryIsoCode] - ISO2 code of the country
- * @property {string} [state] - State name
- * @property {string} [city] - City name
- * @property {string} [pincode] - Pincode value to search zones
- * @property {string} [sector] - Sector value to search zones
- */
-/**
  * @typedef UpdateCompanyConfigurationParam
  * @property {ServiceabilityPlatformModel.CompanyConfig} body
  */
@@ -192,8 +179,6 @@ declare class ServiceabilityPlatformValidator {
     static getServiceability(): GetServiceabilityParam;
     /** @returns {GetZoneByIdParam} */
     static getZoneById(): GetZoneByIdParam;
-    /** @returns {GetZonesParam} */
-    static getZones(): GetZonesParam;
     /** @returns {UpdateCompanyConfigurationParam} */
     static updateCompanyConfiguration(): UpdateCompanyConfigurationParam;
     /** @returns {UpdateCourierPartnerAccountParam} */
@@ -208,7 +193,7 @@ declare class ServiceabilityPlatformValidator {
     static updateZoneById(): UpdateZoneByIdParam;
 }
 declare namespace ServiceabilityPlatformValidator {
-    export { BulkServiceabilityParam, BulkTatParam, CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, CreateZoneParam, GetAllStoresParam, GetBulkServiceabilityParam, GetBulkTatParam, GetCompanyConfigurationParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRulesParam, GetPackageMaterialsParam, GetServiceabilityParam, GetZoneByIdParam, GetZonesParam, UpdateCompanyConfigurationParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, UpdateServiceabilityParam, UpdateZoneByIdParam };
+    export { BulkServiceabilityParam, BulkTatParam, CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, CreateZoneParam, GetAllStoresParam, GetBulkServiceabilityParam, GetBulkTatParam, GetCompanyConfigurationParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRulesParam, GetPackageMaterialsParam, GetServiceabilityParam, GetZoneByIdParam, UpdateCompanyConfigurationParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, UpdateServiceabilityParam, UpdateZoneByIdParam };
 }
 type BulkServiceabilityParam = {
     /**
@@ -436,48 +421,6 @@ type GetZoneByIdParam = {
      * - A `zone_id` is a unique identifier for a particular zone.
      */
     zoneId: string;
-};
-type GetZonesParam = {
-    /**
-     * - Index of the item to start returning with
-     */
-    pageNo?: number;
-    /**
-     * - Determines the items to be displayed in a page
-     */
-    pageSize?: number;
-    /**
-     * - Status of Zone (either active or inactive)
-     */
-    isActive?: boolean;
-    /**
-     * - Zones filtered by an application
-     */
-    channelId?: string;
-    /**
-     * - Search with name as a free text
-     */
-    q?: string;
-    /**
-     * - ISO2 code of the country
-     */
-    countryIsoCode?: string;
-    /**
-     * - State name
-     */
-    state?: string;
-    /**
-     * - City name
-     */
-    city?: string;
-    /**
-     * - Pincode value to search zones
-     */
-    pincode?: string;
-    /**
-     * - Sector value to search zones
-     */
-    sector?: string;
 };
 type UpdateCompanyConfigurationParam = {
     body: ServiceabilityPlatformModel.CompanyConfig;
