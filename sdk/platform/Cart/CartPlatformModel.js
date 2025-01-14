@@ -2132,6 +2132,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef OrderTag
+ * @property {string} [display_text] - Display text for order tag
+ * @property {string} [slug] - Slug to be used for tagging order with any unique value
+ */
+
+/**
  * @typedef PlatformCartCheckoutDetailCreation
  * @property {CartCheckoutCustomMeta[]} [custom_meta]
  * @property {string} [address_id]
@@ -2168,6 +2174,8 @@ const Joi = require("joi");
  *   redirected after payment received
  * @property {string} [failure_callback_url] - Failure callback url to be
  *   redirected after payment failed
+ * @property {OrderTag[]} [order_tags] - Order tags used to identify specific
+ *   type of order which is tagged using order tags
  */
 
 /**
@@ -2382,6 +2390,8 @@ const Joi = require("joi");
  *   redirected after payment received
  * @property {string} [failure_callback_url] - Failure callback url to be
  *   redirected after payment failed
+ * @property {OrderTag[]} [order_tags] - Order tags used to identify specific
+ *   type of order which is tagged using order tags
  */
 
 /**
@@ -4709,6 +4719,14 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {OrderTag} */
+  static OrderTag() {
+    return Joi.object({
+      display_text: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {PlatformCartCheckoutDetailCreation} */
   static PlatformCartCheckoutDetailCreation() {
     return Joi.object({
@@ -4747,6 +4765,7 @@ class CartPlatformModel {
       card_id: Joi.string().allow(""),
       success_callback_url: Joi.string().allow("").allow(null),
       failure_callback_url: Joi.string().allow("").allow(null),
+      order_tags: Joi.array().items(CartPlatformModel.OrderTag()),
     });
   }
 
@@ -4948,6 +4967,7 @@ class CartPlatformModel {
       card_id: Joi.string().allow(""),
       success_callback_url: Joi.string().allow("").allow(null),
       failure_callback_url: Joi.string().allow("").allow(null),
+      order_tags: Joi.array().items(CartPlatformModel.OrderTag()),
     });
   }
 

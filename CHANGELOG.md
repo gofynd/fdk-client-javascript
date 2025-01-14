@@ -4,6 +4,22 @@
 
 
 
+### Cart
+
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] property <code>order_tags</code> of schema <code>CartCheckoutDetailCreation</code> in request body
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property <code>order_tags</code> of schema <code>CartCheckoutDetailV2Creation</code> in request body
+
+
 ### Logistic
 
 
@@ -13,6 +29,17 @@
 - ##### What's New
 	- [Added] <code>query</code> parameter <code>phoneCode</code> (type: <code>string</code>)
 
+
+
+#### getCountry
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>fields.address[].input</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
+	- [Breaking] [Added] Possible values <code>list,textbox</code> to property <code>fields.address[].input</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
+	- [Added] property <code>fields.address[].next</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>fields.address[].input</code> made optional in response with status code 200
 
 
 ## Partner Client
@@ -56,6 +83,22 @@
 
 - ##### What's Deprecated
 	- [Deleted] Required status to Request body content
+
+
+### Cart
+
+
+
+#### platformCheckoutCart
+
+- ##### What's New
+	- [Added] property <code>order_tags</code> of schema <code>PlatformCartCheckoutDetailCreation</code> in request body
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property <code>order_tags</code> of schema <code>PlatformCartCheckoutDetailV2Creation</code> in request body
 
 
 ### Content
