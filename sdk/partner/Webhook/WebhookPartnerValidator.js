@@ -2,6 +2,14 @@ const Joi = require("joi");
 
 const WebhookModel = require("./WebhookPartnerModel");
 class WebhookValidator {
+  static responseTimeSummary() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      startDate: Joi.string().allow("").required(),
+      endDate: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static fetchDeliverySummary() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -13,7 +21,7 @@ class WebhookValidator {
   static getDeliveryDetailInsights() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
-      body: WebhookModel.DeliveryDetailsRequest().required(),
+      body: WebhookModel.DeliveryDetailsPayload().required(),
     }).required();
   }
 
@@ -52,7 +60,7 @@ class WebhookValidator {
   static getInvalidEventList() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
-      body: WebhookModel.InvalidEventsRequest().required(),
+      body: WebhookModel.InvalidEventsPayload().required(),
     }).required();
   }
 
@@ -66,7 +74,7 @@ class WebhookValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       subscriberId: Joi.number().required(),
-      body: WebhookModel.UpdateSubscriberRequest().required(),
+      body: WebhookModel.SubscriberUpdate().required(),
     }).required();
   }
 }

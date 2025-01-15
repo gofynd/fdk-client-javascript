@@ -43,10 +43,10 @@ class Rewards {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CatalogueOrderResponse>} - Success response
+   * @returns {Promise<CatalogueOrderDetails>} - Success response
    * @name catalogueOrder
    * @summary: Order from catalogue
-   * @description: Place an reward on order items available in the catalogue. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/catalogueOrder/).
+   * @description: Place a reward on order items available in the catalogue. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/catalogueOrder/).
    */
   async catalogueOrder(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -140,7 +140,7 @@ class Rewards {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<OrderDiscountResponse>} - Success response
+   * @returns {Promise<OrderDiscountDetails>} - Success response
    * @name getOrderDiscount
    * @summary: Order discount
    * @description: Retrieve the discount applied to a specific order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOrderDiscount/).
@@ -185,7 +185,7 @@ class Rewards {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PointsResponse>} - Success response
+   * @returns {Promise<PointsDetails>} - Success response
    * @name getUserPoints
    * @summary: Current points
    * @description: Retrieves the current reward points balance for the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPoints/).
@@ -230,7 +230,7 @@ class Rewards {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<PointsHistoryResponse>} - Success response
+   * @returns {Promise<PointsHistoryDetails>} - Success response
    * @name getUserPointsHistory
    * @summary: Points history
    * @description: Gets the historical data of points earned or spent by the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPointsHistory/).
@@ -277,7 +277,7 @@ class Rewards {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ReferralDetailsResponse>} - Success response
+   * @returns {Promise<ReferralDetails>} - Success response
    * @name getUserReferralDetails
    * @summary: Referral details
    * @description: Gets the details of the user’s referral status and codes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserReferralDetails/).
@@ -322,7 +322,7 @@ class Rewards {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<RedeemReferralCodeResponse>} - Success response
+   * @returns {Promise<RedeemReferralCodeDetails>} - Success response
    * @name redeemReferralCode
    * @summary: Redeem code
    * @description: Applies a referral code to earn or redeem rewards. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/redeemReferralCode/).

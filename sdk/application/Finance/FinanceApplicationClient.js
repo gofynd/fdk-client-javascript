@@ -7,13 +7,14 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 
-class Common {
+class Finance {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getLocations: "/service/common/configuration/v1.0/location",
-      searchApplication:
-        "/service/common/configuration/v1.0/application/search-application",
+      customerCreditBalance:
+        "/service/application/finance/v1.0/customer-credit-balance",
+      lockUnlockCreditNote:
+        "/service/application/finance/v1.0/lock-unlock-credit-note",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -34,13 +35,13 @@ class Common {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<Locations>} - Success response
-   * @name getLocations
-   * @summary: Get a location
-   * @description: Get countries , state , cities data associated with the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
+   * @returns {Promise<CustomerCreditBalanceResponseSchema>} - Success response
+   * @name customerCreditBalance
+   * @summary: This API will provide customer's credit balance against phone number or email and seller*affiliate id
+   * @description: This API will provide customer's credit balance against phone number or email and seller*affiliate id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/finance/customerCreditBalance/).
    */
-  async getLocations(
-    { locationType, id, requestHeaders } = { requestHeaders: {} },
+  async customerCreditBalance(
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     let invalidInput = [];
@@ -52,20 +53,18 @@ class Common {
     }
 
     const query_params = {};
-    query_params["location_type"] = locationType;
-    query_params["id"] = id;
 
     const xHeaders = {};
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
-      "get",
+      "post",
       constructUrl({
-        url: this._urls["getLocations"],
+        url: this._urls["customerCreditBalance"],
         params: {},
       }),
       query_params,
-      undefined,
+      body,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -81,13 +80,13 @@ class Common {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<ApplicationResponseSchema>} - Success response
-   * @name searchApplication
-   * @summary: Get sales channel
-   * @description: Get an active sales channel based on a provided query. The query can be a valid sales channel ID or a verified domain name. If the sales channel is found, a success response is returned. If not, a 404 error response is returned. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
+   * @returns {Promise<LockUnlockResponseSchema>} - Success response
+   * @name lockUnlockCreditNote
+   * @summary: Lock or Unlock requested credit note.
+   * @description: Used to lock or unlock requested credit note. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/finance/lockUnlockCreditNote/).
    */
-  async searchApplication(
-    { authorization, query, requestHeaders } = { requestHeaders: {} },
+  async lockUnlockCreditNote(
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     let invalidInput = [];
@@ -99,20 +98,18 @@ class Common {
     }
 
     const query_params = {};
-    query_params["query"] = query;
 
     const xHeaders = {};
-    xHeaders["authorization"] = authorization;
 
     const response = await ApplicationAPIClient.execute(
       this._conf,
-      "get",
+      "post",
       constructUrl({
-        url: this._urls["searchApplication"],
+        url: this._urls["lockUnlockCreditNote"],
         params: {},
       }),
       query_params,
-      undefined,
+      body,
       { ...xHeaders, ...requestHeaders },
       { responseHeaders }
     );
@@ -126,4 +123,4 @@ class Common {
   }
 }
 
-module.exports = Common;
+module.exports = Finance;

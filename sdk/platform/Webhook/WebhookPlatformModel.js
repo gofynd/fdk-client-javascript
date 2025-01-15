@@ -1,51 +1,6 @@
 const Joi = require("joi");
 
 /**
- * @typedef Event
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
- * @property {string} [version]
- */
-
-/**
- * @typedef EventProcessRequest
- * @property {string} [search_text]
- * @property {string} end_date
- * @property {string} start_date
- * @property {number[]} [subscriber_ids]
- * @property {string} [status]
- * @property {Event[]} [event]
- */
-
-/**
- * @typedef DownloadReportResponse
- * @property {string} [file_name]
- */
-
-/**
- * @typedef EventProcessReports
- * @property {EventProcessReportObject[]} [rows]
- * @property {Page} [page]
- */
-
-/**
- * @typedef EventProcessReportObject
- * @property {string} [event_name] - The name of the processed event.
- * @property {number} [response_code] - The response code of the event.
- * @property {string} [response_message] - The response message of the event.
- * @property {string} [data] - The data associated with the event.
- * @property {number} [attempt] - The attempt number of the event.
- * @property {number} [last_attempted_on] - The timestamp of the last attempted event.
- * @property {string} [status] - The status of the event (e.g., "FAILED").
- * @property {string} [name] - The name of the event.
- * @property {string} [webhook_url] - The webhook URL associated with the event.
- * @property {number} [response_time] - The response time of the event.
- * @property {string} [message_id]
- * @property {string} [event_trace_id]
- */
-
-/**
  * @typedef Page
  * @property {number} [item_total] - The total number of items on the page.
  * @property {string} [next_id] - The identifier for the next page.
@@ -57,309 +12,317 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PingWebhook
- * @property {string} webhook_url - The URL of the subscriber's webhook to ping.
- * @property {Object} [auth_meta] - Authentication metadata (if required by the
- *   subscriber).
- * @property {Object} [custom_headers] - Custom headers to include in the ping request.
- */
-
-/**
- * @typedef PingWebhookResponse
- * @property {string} [status] - The status of the ping (e.g., "SUCCESS").
- * @property {string} [message] - An optional message related to the ping.
- * @property {number} [code] - The HTTP status code of the ping response (e.g., 200).
+ * @typedef BroadcasterConfig
+ * @property {string} [topic] - The name of the topic for the broadcaster configuration.
+ * @property {string} [queue] - The name of the queue for the broadcaster configuration.
+ * @property {string} [event_bridge_name] - The name of the event bridge
+ *   associated with the broadcaster.
+ * @property {string} [workflow_name] - The name of the workflow related to the
+ *   broadcaster.
+ * @property {string} [account_id] - The account ID associated with the broadcaster.
+ * @property {string} [detail_type] - The type of detail for the broadcaster
+ *   configuration.
  */
 
 /**
  * @typedef SubscriberEventMapping
- * @property {number} [id]
- * @property {number} [event_id]
- * @property {number} [subscriber_id]
- * @property {string} [topic]
- * @property {string} [created_on]
+ * @property {number} [id] - The unique identifier for the subscriber event mapping.
+ * @property {number} [event_id] - The ID of the event associated with the subscriber.
+ * @property {number} [subscriber_id] - The ID of the subscriber.
+ * @property {BroadcasterConfig} [broadcaster_config]
+ * @property {string} [created_on] - The date and time when the subscriber event
+ *   mapping was created.
  */
 
 /**
  * @typedef EventConfig
- * @property {number} [id]
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [event_category]
+ * @property {number} [id] - The unique identifier for the event configuration.
+ * @property {string} [type] - The type of event configuration, which may be null.
+ * @property {string} [event_name] - The name of the event.
+ * @property {string} [event_type] - The type of the event.
+ * @property {string} [event_category] - The category of the event.
+ * @property {string} [modified_by] - The identifier of the user who last
+ *   modified the event configuration.
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
- * @property {Object} [event_schema]
- * @property {string} [group]
- * @property {string} [version]
- * @property {string} [display_name]
- * @property {string} [description]
- * @property {string} [created_on]
- * @property {string} [updated_on]
+ * @property {Object} [event_schema] - The schema for the event, allowing for
+ *   additional properties and may be null.
+ * @property {string} [group] - The group associated with the event
+ *   configuration, which may be null.
+ * @property {string} [version] - The version of the event configuration.
+ * @property {string} [display_name] - The display name of the event configuration.
+ * @property {string} [description] - A description of the event configuration,
+ *   which may be null.
+ * @property {string} [created_on] - The date and time when the event
+ *   configuration was created.
+ * @property {string} [updated_on] - The date and time when the event
+ *   configuration was last updated.
  */
 
 /**
- * @typedef EventConfigResponse
+ * @typedef EventConfigResult
  * @property {EventConfig[]} [event_configs]
  */
 
 /**
- * @typedef ReportFiltersPayload
- * @property {number[]} subscriber_ids - An array of subscriber IDs for
- *   filtering filters (optional).
- */
-
-/**
- * @typedef ReportFilterResponse
- * @property {string} [filter_name] - The name of the filter.
- * @property {Object[]} [values]
- */
-
-/**
- * @typedef HistoryPayload
- * @property {string} type - The type of history report (e.g., "platform").
- * @property {number} [page_no] - The page number of the history report.
- * @property {number} [page_size] - The number of records per page.
- */
-
-/**
- * @typedef HistoryFilters
- * @property {string[]} [events]
- * @property {string} [search_text]
- * @property {string} [status] - The status of the history report (e.g., "FAILED").
- * @property {string} [end_date] - The end date and time of the history report.
- * @property {string} [start_date] - The start date and time of the history report.
- * @property {number[]} [subscribers] - An array of subscriber IDs associated
- *   with the history report.
- * @property {string[]} [webhook_type] - An array of webhook type to identify
- *   thetype of subscriber i.e (KAFKA or REST).
- */
-
-/**
- * @typedef Url
- * @property {string} [url] - The URL of the uploaded report file.
- * @property {string} [name] - The name of the uploaded report file.
- */
-
-/**
- * @typedef CdnObject
- * @property {Url[]} [urls]
- */
-
-/**
- * @typedef UploadServiceObject
- * @property {CdnObject} [cdn]
- */
-
-/**
- * @typedef HistoryAssociation
- * @property {number} [company_id]
- * @property {number[]} [subscriber_ids]
- */
-
-/**
- * @typedef HistoryItems
- * @property {number} [id] - The ID of the history report.
- * @property {HistoryAssociation} [association]
- * @property {HistoryFilters} [filters]
- * @property {string} [filename] - The filename of the history report.
- * @property {string} [status] - The status of the history report (e.g., "COMPLETED").
- * @property {UploadServiceObject} [upload_service_response]
- * @property {string} [created_on] - The date and time when the history report
- *   was created.
- * @property {string} [updated_on] - The date and time when the history report
- *   was last updated.
- * @property {string} [message] - A message related to the history report.
- */
-
-/**
- * @typedef HistoryResponse
- * @property {HistoryItems[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef CancelResponse
- * @property {string} [message] - The HTTP status code of the response (e.g., 200).
- */
-
-/**
  * @typedef Association
- * @property {string[]} [application_id]
- * @property {string} [extension_id]
- * @property {string} [criteria]
+ * @property {string[]} [application_id] - A list of application IDs associated
+ *   with the association.
+ * @property {string} [extension_id] - The extension ID associated with the association.
+ * @property {string} [criteria] - The criteria for the association, such as
+ *   "ALL", "EMPTY", or "SPECIFIC-EVENTS".
  */
 
 /**
  * @typedef AssociationResp
- * @property {number} [company_id]
- * @property {string[]} [application_id]
- * @property {string} [extension_id]
- * @property {string} [criteria]
+ * @property {number} [company_id] - The ID of the company associated with the response.
+ * @property {string[]} [application_id] - A list of application IDs associated
+ *   with the response.
+ * @property {string} [extension_id] - The extension ID associated with the response.
+ * @property {string} [criteria] - The criteria for the response, such as "ALL",
+ *   "EMPTY", or "SPECIFIC-EVENTS".
  */
 
 /**
  * @typedef AuthMeta
- * @property {string} [type]
- * @property {string} [secret]
+ * @property {string} [type] - The type of authentication method used.
+ * @property {string} [secret] - The secret key or token used for authentication.
  */
 
 /**
- * @typedef SubscriberResponse
- * @property {number} [id]
- * @property {string} [modified_by]
- * @property {string} [name]
- * @property {string} [provider]
- * @property {string} [webhook_url]
+ * @typedef SubscriberDetails
+ * @property {number} [id] - The unique identifier of the subscriber.
+ * @property {string} [modified_by] - The identifier of the user who last
+ *   modified the subscriber details.
+ * @property {string} [name] - The name of the subscriber.
+ * @property {string} [provider] - The provider of the subscriber.
+ * @property {string} [webhook_url] - The URL for the subscriber's webhook.
  * @property {AssociationResp} [association]
- * @property {Object} [custom_headers]
+ * @property {Object} [custom_headers] - Custom headers for the subscriber.
  * @property {SubscriberStatus} [status]
- * @property {string} [email_id]
- * @property {string} [updated_on]
- * @property {string} [created_on]
- * @property {string} [type]
+ * @property {string} [email_id] - The email ID associated with the subscriber.
+ * @property {string} [updated_on] - The date and time when the subscriber
+ *   details were last updated.
+ * @property {string} [created_on] - The date and time when the subscriber was created.
+ * @property {string} [type] - The type of subscriber, which can either be passed as null.
  * @property {AuthMeta} [auth_meta]
  * @property {EventConfig[]} [event_configs]
  */
 
 /**
  * @typedef Events
- * @property {string} [slug]
- * @property {string} [topic]
+ * @property {string} [slug] - The slug or identifier for the event.
+ * @property {string} [topic] - The topic associated with the event.
+ * @property {string} [queue] - The queue associated with the event in case of
+ *   provider as Pub/Sub.
+ * @property {string} [event_bridge_name] - The name of the event bridge
+ *   associated with the event in case of provider as AWS event bridge.
+ * @property {string} [workflow_name] - The name of the workflow related to the
+ *   event in case of provider as temporal.
+ * @property {string} [detail_type] - The type of detail for the event.
  */
 
 /**
  * @typedef SubscriberConfigPostRequestV2
- * @property {string} name
- * @property {string} [webhook_url]
- * @property {string} provider
+ * @property {string} name - The name of the subscriber.
+ * @property {string} [type] - The type of the subscriber, which may be null.
+ * @property {string} [webhook_url] - The URL for the subscriber's webhook.
+ * @property {string} provider - The provider of the subscriber.
  * @property {Association} association
- * @property {Object} [custom_headers]
+ * @property {Object} [custom_headers] - Custom headers for the subscriber.
  * @property {SubscriberStatus} status
- * @property {string} email_id
+ * @property {string} email_id - The email ID associated with the subscriber.
  * @property {AuthMeta} [auth_meta]
- * @property {Events[]} events
+ * @property {Events[]} events - The list of events associated with the subscriber.
  */
 
 /**
  * @typedef SubscriberConfigUpdateRequestV2
- * @property {number} id
- * @property {string} [name]
- * @property {string} [webhook_url]
- * @property {string} provider
+ * @property {number} id - The unique identifier of the subscriber to be updated.
+ * @property {string} [name] - The name of the subscriber.
+ * @property {string} [type] - The type of the subscriber, which may be null.
+ * @property {string} [webhook_url] - The URL for the subscriber's webhook.
+ * @property {string} provider - The provider of the subscriber.
  * @property {Association} [association]
- * @property {Object} [custom_headers]
+ * @property {Object} [custom_headers] - Custom headers for the subscriber.
  * @property {SubscriberStatus} status
- * @property {string} [email_id]
+ * @property {string} [email_id] - The email ID associated with the subscriber.
  * @property {AuthMeta} [auth_meta]
- * @property {Events[]} [events]
+ * @property {Events[]} [events] - The list of events associated with the subscriber.
  */
 
 /**
  * @typedef SubscriberConfigPost
- * @property {string} name
- * @property {string} webhook_url
+ * @property {string} name - The name of the subscriber.
+ * @property {string} [type] - The type of the subscriber, which can be null.
+ * @property {string} webhook_url - The URL for the subscriber's webhook.
  * @property {Association} association
- * @property {Object} [custom_headers]
+ * @property {Object} [custom_headers] - Custom headers for the subscriber.
  * @property {SubscriberStatus} status
- * @property {string} email_id
+ * @property {string} email_id - The email ID associated with the subscriber.
  * @property {AuthMeta} [auth_meta]
- * @property {number[]} event_id
+ * @property {number[]} event_id - The list of event IDs associated with the subscriber.
  */
 
 /**
  * @typedef SubscriberConfigUpdate
- * @property {number} id
- * @property {string} [name]
- * @property {string} [webhook_url]
+ * @property {number} id - The unique identifier of the subscriber to be updated.
+ * @property {string} [name] - The name of the subscriber.
+ * @property {string} [type] - The type of the subscriber, which can be null.
+ * @property {string} [webhook_url] - The URL for the subscriber's webhook.
  * @property {Association} [association]
- * @property {Object} [custom_headers]
+ * @property {Object} [custom_headers] - Custom headers for the subscriber.
  * @property {SubscriberStatus} [status]
- * @property {string} [email_id]
+ * @property {string} [email_id] - The email ID associated with the subscriber.
  * @property {AuthMeta} [auth_meta]
- * @property {number[]} event_id
+ * @property {number[]} event_id - The list of event IDs associated with the subscriber.
  */
 
 /**
- * @typedef SubscriberConfigResponse
- * @property {number} [id]
- * @property {string} [modified_by]
- * @property {string} [name]
- * @property {string} [webhook_url]
- * @property {string} [provider]
+ * @typedef SubscriberConfigResult
+ * @property {number} [id] - The unique identifier of the subscriber configuration.
+ * @property {string} [modified_by] - The identifier of the user who last
+ *   modified the subscriber configuration.
+ * @property {string} [name] - The name of the subscriber.
+ * @property {string} [webhook_url] - The URL for the subscriber's webhook.
+ * @property {string} [provider] - The provider of the subscriber.
  * @property {AssociationResp} [association]
- * @property {Object} [custom_headers]
+ * @property {Object} [custom_headers] - Custom headers for the subscriber.
  * @property {SubscriberStatus} [status]
- * @property {string} [email_id]
- * @property {string} [updated_on]
- * @property {string} [created_on]
- * @property {string} [type]
+ * @property {string} [email_id] - The email ID associated with the subscriber.
+ * @property {string} [updated_on] - The date and time when the subscriber was
+ *   last updated.
+ * @property {string} [created_on] - The date and time when the subscriber was created.
+ * @property {string} [type] - The type of the subscriber, which can be null.
  * @property {AuthMeta} [auth_meta]
- * @property {number[]} [event_id]
+ * @property {number[]} [event_id] - The list of event IDs associated with the subscriber.
  */
 
 /**
  * @typedef SubscriberConfigList
- * @property {SubscriberResponse[]} [items]
+ * @property {SubscriberDetails[]} [items]
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef RestEventData
+ * @property {string} event_category - The category of the event.
+ * @property {string} event_name - The name of the event.
+ * @property {string} event_type - The type of the event.
+ * @property {number} version - The version number of the event.
+ */
+
+/**
+ * @typedef RestConfig
+ * @property {string} webhook_url - The URL for the webhook.
+ * @property {string} type - The type of the configuration.
+ * @property {Object} [custom_headers] - Custom headers for the configuration.
+ * @property {AuthMeta} [auth_meta]
+ * @property {RestEventData[]} events
+ */
+
+/**
+ * @typedef QueueEventData
+ * @property {string} event_category - The category of the event.
+ * @property {string} event_name - The name of the event.
+ * @property {string} event_type - The type of the event.
+ * @property {number} version - The version number of the event.
+ * @property {string} topic - The topic associated with the event.
+ */
+
+/**
+ * @typedef KafkaConfig
+ * @property {string} [type]
+ * @property {QueueEventData[]} events
+ */
+
+/**
+ * @typedef PubSubConfig
+ * @property {string} [type]
+ * @property {QueueEventData[]} events
+ */
+
+/**
+ * @typedef TemporalEventData
+ * @property {string} event_category - The category of the event.
+ * @property {string} event_name - The name of the event.
+ * @property {string} event_type - The type of the event.
+ * @property {number} version - The version number of the event.
+ * @property {string} [queue] - The queue associated with the event.
+ * @property {string} [workflow_name] - The workflow name related to the event.
+ */
+
+/**
+ * @typedef TemporalConfig
+ * @property {string} [type]
+ * @property {TemporalEventData[]} events
+ */
+
+/**
+ * @typedef SqsEventData
+ * @property {string} event_category - The category of the event.
+ * @property {string} event_name - The name of the event.
+ * @property {string} event_type - The type of the event.
+ * @property {number} version - The version number of the event.
+ * @property {string} [queue] - The queue name associated with the event in SQS.
+ */
+
+/**
+ * @typedef SqsConfig
+ * @property {string} [type]
+ * @property {SqsEventData[]} events
+ */
+
+/**
+ * @typedef EventBridgeData
+ * @property {string} event_category - The category of the event.
+ * @property {string} event_name - The name of the event.
+ * @property {string} event_type - The type of the event.
+ * @property {number} version - The version number of the event.
+ * @property {string} [event_bridge_name] - The name of the event bridge related
+ *   to the event.
+ */
+
+/**
+ * @typedef EventBridgeConfig
+ * @property {string} [type]
+ * @property {EventBridgeData[]} events
+ */
+
+/**
+ * @typedef EventMapBody
+ * @property {RestConfig} [rest]
+ * @property {KafkaConfig} [kafka]
+ * @property {PubSubConfig} [pub_sub]
+ * @property {TemporalConfig} [temporal]
+ * @property {SqsConfig} [sqs]
+ * @property {EventBridgeConfig} [event_bridge]
+ */
+
+/**
+ * @typedef WebhookConfig
+ * @property {string} [notification_email] - The email address for notifications.
+ * @property {string} [name] - The name of the webhook configuration.
+ * @property {string} [status] - The status of the webhook (e.g., active or inactive).
+ * @property {Association} [association]
+ * @property {EventMapBody} [event_map]
+ */
+
+/**
+ * @typedef UpsertSubscriberConfig
+ * @property {WebhookConfig} webhook_config
+ */
+
+/**
+ * @typedef UpsertSubscriberConfigResult
+ * @property {boolean} [status] - The status of the upsert operation (e.g.,
+ *   success or failure).
+ * @property {string} [message] - A message providing details about the upsert
+ *   operation result.
  */
 
 /** @typedef {"active" | "inactive"} SubscriberStatus */
 
 class WebhookPlatformModel {
-  /** @returns {Event} */
-  static Event() {
-    return Joi.object({
-      event_name: Joi.string().allow(""),
-      event_type: Joi.string().allow(""),
-      event_category: Joi.string().allow(""),
-      version: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {EventProcessRequest} */
-  static EventProcessRequest() {
-    return Joi.object({
-      search_text: Joi.string().allow(""),
-      end_date: Joi.string().allow("").required(),
-      start_date: Joi.string().allow("").required(),
-      subscriber_ids: Joi.array().items(Joi.number()),
-      status: Joi.string().allow(""),
-      event: Joi.array().items(WebhookPlatformModel.Event()),
-    });
-  }
-
-  /** @returns {DownloadReportResponse} */
-  static DownloadReportResponse() {
-    return Joi.object({
-      file_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {EventProcessReports} */
-  static EventProcessReports() {
-    return Joi.object({
-      rows: Joi.array().items(WebhookPlatformModel.EventProcessReportObject()),
-      page: WebhookPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {EventProcessReportObject} */
-  static EventProcessReportObject() {
-    return Joi.object({
-      event_name: Joi.string().allow(""),
-      response_code: Joi.number(),
-      response_message: Joi.string().allow(""),
-      data: Joi.string().allow(""),
-      attempt: Joi.number(),
-      last_attempted_on: Joi.number(),
-      status: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      webhook_url: Joi.string().allow(""),
-      response_time: Joi.number(),
-      message_id: Joi.string().allow(""),
-      event_trace_id: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {Page} */
   static Page() {
     return Joi.object({
@@ -373,22 +336,16 @@ class WebhookPlatformModel {
     });
   }
 
-  /** @returns {PingWebhook} */
-  static PingWebhook() {
+  /** @returns {BroadcasterConfig} */
+  static BroadcasterConfig() {
     return Joi.object({
-      webhook_url: Joi.string().allow("").required(),
-      auth_meta: Joi.any(),
-      custom_headers: Joi.any(),
-    });
-  }
-
-  /** @returns {PingWebhookResponse} */
-  static PingWebhookResponse() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      code: Joi.number(),
-    });
+      topic: Joi.string().allow(""),
+      queue: Joi.string().allow(""),
+      event_bridge_name: Joi.string().allow(""),
+      workflow_name: Joi.string().allow(""),
+      account_id: Joi.string().allow(""),
+      detail_type: Joi.string().allow(""),
+    }).allow(null);
   }
 
   /** @returns {SubscriberEventMapping} */
@@ -397,7 +354,7 @@ class WebhookPlatformModel {
       id: Joi.number(),
       event_id: Joi.number(),
       subscriber_id: Joi.number(),
-      topic: Joi.string().allow("").allow(null),
+      broadcaster_config: WebhookPlatformModel.BroadcasterConfig(),
       created_on: Joi.string().allow(""),
     });
   }
@@ -406,9 +363,11 @@ class WebhookPlatformModel {
   static EventConfig() {
     return Joi.object({
       id: Joi.number(),
+      type: Joi.string().allow("").allow(null),
       event_name: Joi.string().allow(""),
       event_type: Joi.string().allow(""),
       event_category: Joi.string().allow(""),
+      modified_by: Joi.string().allow(""),
       subscriber_event_mapping: WebhookPlatformModel.SubscriberEventMapping(),
       event_schema: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       group: Joi.string().allow("").allow(null),
@@ -420,107 +379,10 @@ class WebhookPlatformModel {
     });
   }
 
-  /** @returns {EventConfigResponse} */
-  static EventConfigResponse() {
+  /** @returns {EventConfigResult} */
+  static EventConfigResult() {
     return Joi.object({
       event_configs: Joi.array().items(WebhookPlatformModel.EventConfig()),
-    });
-  }
-
-  /** @returns {ReportFiltersPayload} */
-  static ReportFiltersPayload() {
-    return Joi.object({
-      subscriber_ids: Joi.array().items(Joi.number()).required(),
-    });
-  }
-
-  /** @returns {ReportFilterResponse} */
-  static ReportFilterResponse() {
-    return Joi.object({
-      filter_name: Joi.string().allow(""),
-      values: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
-    });
-  }
-
-  /** @returns {HistoryPayload} */
-  static HistoryPayload() {
-    return Joi.object({
-      type: Joi.string().allow("").required(),
-      page_no: Joi.number(),
-      page_size: Joi.number(),
-    });
-  }
-
-  /** @returns {HistoryFilters} */
-  static HistoryFilters() {
-    return Joi.object({
-      events: Joi.array().items(Joi.string().allow("")),
-      search_text: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      end_date: Joi.string().allow(""),
-      start_date: Joi.string().allow(""),
-      subscribers: Joi.array().items(Joi.number()),
-      webhook_type: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {Url} */
-  static Url() {
-    return Joi.object({
-      url: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CdnObject} */
-  static CdnObject() {
-    return Joi.object({
-      urls: Joi.array().items(WebhookPlatformModel.Url()),
-    });
-  }
-
-  /** @returns {UploadServiceObject} */
-  static UploadServiceObject() {
-    return Joi.object({
-      cdn: WebhookPlatformModel.CdnObject(),
-    }).allow(null);
-  }
-
-  /** @returns {HistoryAssociation} */
-  static HistoryAssociation() {
-    return Joi.object({
-      company_id: Joi.number(),
-      subscriber_ids: Joi.array().items(Joi.number()),
-    });
-  }
-
-  /** @returns {HistoryItems} */
-  static HistoryItems() {
-    return Joi.object({
-      id: Joi.number(),
-      association: WebhookPlatformModel.HistoryAssociation(),
-      filters: WebhookPlatformModel.HistoryFilters(),
-      filename: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      upload_service_response: WebhookPlatformModel.UploadServiceObject(),
-      created_on: Joi.string().allow(""),
-      updated_on: Joi.string().allow("").allow(null),
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {HistoryResponse} */
-  static HistoryResponse() {
-    return Joi.object({
-      items: Joi.array().items(WebhookPlatformModel.HistoryItems()),
-      page: WebhookPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {CancelResponse} */
-  static CancelResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
     });
   }
 
@@ -551,8 +413,8 @@ class WebhookPlatformModel {
     });
   }
 
-  /** @returns {SubscriberResponse} */
-  static SubscriberResponse() {
+  /** @returns {SubscriberDetails} */
+  static SubscriberDetails() {
     return Joi.object({
       id: Joi.number(),
       modified_by: Joi.string().allow(""),
@@ -560,7 +422,7 @@ class WebhookPlatformModel {
       provider: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
       association: WebhookPlatformModel.AssociationResp(),
-      custom_headers: Joi.any(),
+      custom_headers: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       status: WebhookPlatformModel.SubscriberStatus(),
       email_id: Joi.string().allow(""),
       updated_on: Joi.string().allow(""),
@@ -576,6 +438,10 @@ class WebhookPlatformModel {
     return Joi.object({
       slug: Joi.string().allow(""),
       topic: Joi.string().allow(""),
+      queue: Joi.string().allow(""),
+      event_bridge_name: Joi.string().allow(""),
+      workflow_name: Joi.string().allow(""),
+      detail_type: Joi.string().allow(""),
     });
   }
 
@@ -583,10 +449,11 @@ class WebhookPlatformModel {
   static SubscriberConfigPostRequestV2() {
     return Joi.object({
       name: Joi.string().allow("").required(),
+      type: Joi.string().allow("").allow(null),
       webhook_url: Joi.string().allow(""),
       provider: Joi.string().allow("").required(),
       association: WebhookPlatformModel.Association().required(),
-      custom_headers: Joi.any(),
+      custom_headers: Joi.object().pattern(/\S/, Joi.any()),
       status: WebhookPlatformModel.SubscriberStatus().required(),
       email_id: Joi.string().allow("").required(),
       auth_meta: WebhookPlatformModel.AuthMeta(),
@@ -599,10 +466,11 @@ class WebhookPlatformModel {
     return Joi.object({
       id: Joi.number().required(),
       name: Joi.string().allow(""),
+      type: Joi.string().allow("").allow(null),
       webhook_url: Joi.string().allow(""),
       provider: Joi.string().allow("").required(),
       association: WebhookPlatformModel.Association(),
-      custom_headers: Joi.any(),
+      custom_headers: Joi.object().pattern(/\S/, Joi.any()),
       status: WebhookPlatformModel.SubscriberStatus().required(),
       email_id: Joi.string().allow(""),
       auth_meta: WebhookPlatformModel.AuthMeta(),
@@ -614,9 +482,10 @@ class WebhookPlatformModel {
   static SubscriberConfigPost() {
     return Joi.object({
       name: Joi.string().allow("").required(),
+      type: Joi.string().allow("").allow(null),
       webhook_url: Joi.string().allow("").required(),
       association: WebhookPlatformModel.Association().required(),
-      custom_headers: Joi.any(),
+      custom_headers: Joi.object().pattern(/\S/, Joi.any()),
       status: WebhookPlatformModel.SubscriberStatus().required(),
       email_id: Joi.string().allow("").required(),
       auth_meta: WebhookPlatformModel.AuthMeta(),
@@ -629,9 +498,10 @@ class WebhookPlatformModel {
     return Joi.object({
       id: Joi.number().required(),
       name: Joi.string().allow(""),
+      type: Joi.string().allow("").allow(null),
       webhook_url: Joi.string().allow(""),
       association: WebhookPlatformModel.Association(),
-      custom_headers: Joi.any(),
+      custom_headers: Joi.object().pattern(/\S/, Joi.any()),
       status: WebhookPlatformModel.SubscriberStatus(),
       email_id: Joi.string().allow(""),
       auth_meta: WebhookPlatformModel.AuthMeta(),
@@ -639,8 +509,8 @@ class WebhookPlatformModel {
     });
   }
 
-  /** @returns {SubscriberConfigResponse} */
-  static SubscriberConfigResponse() {
+  /** @returns {SubscriberConfigResult} */
+  static SubscriberConfigResult() {
     return Joi.object({
       id: Joi.number(),
       modified_by: Joi.string().allow(""),
@@ -648,7 +518,7 @@ class WebhookPlatformModel {
       webhook_url: Joi.string().allow(""),
       provider: Joi.string().allow(""),
       association: WebhookPlatformModel.AssociationResp(),
-      custom_headers: Joi.any(),
+      custom_headers: Joi.object().pattern(/\S/, Joi.any()),
       status: WebhookPlatformModel.SubscriberStatus(),
       email_id: Joi.string().allow(""),
       updated_on: Joi.string().allow(""),
@@ -662,8 +532,162 @@ class WebhookPlatformModel {
   /** @returns {SubscriberConfigList} */
   static SubscriberConfigList() {
     return Joi.object({
-      items: Joi.array().items(WebhookPlatformModel.SubscriberResponse()),
+      items: Joi.array().items(WebhookPlatformModel.SubscriberDetails()),
       page: WebhookPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {RestEventData} */
+  static RestEventData() {
+    return Joi.object({
+      event_category: Joi.string().allow("").required(),
+      event_name: Joi.string().allow("").required(),
+      event_type: Joi.string().allow("").required(),
+      version: Joi.number().required(),
+    });
+  }
+
+  /** @returns {RestConfig} */
+  static RestConfig() {
+    return Joi.object({
+      webhook_url: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+      custom_headers: Joi.object().pattern(/\S/, Joi.any()),
+      auth_meta: WebhookPlatformModel.AuthMeta(),
+      events: Joi.array()
+        .items(WebhookPlatformModel.RestEventData())
+        .required(),
+    });
+  }
+
+  /** @returns {QueueEventData} */
+  static QueueEventData() {
+    return Joi.object({
+      event_category: Joi.string().allow("").required(),
+      event_name: Joi.string().allow("").required(),
+      event_type: Joi.string().allow("").required(),
+      version: Joi.number().required(),
+      topic: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {KafkaConfig} */
+  static KafkaConfig() {
+    return Joi.object({
+      type: Joi.string().allow("").allow(null),
+      events: Joi.array()
+        .items(WebhookPlatformModel.QueueEventData())
+        .required(),
+    });
+  }
+
+  /** @returns {PubSubConfig} */
+  static PubSubConfig() {
+    return Joi.object({
+      type: Joi.string().allow("").allow(null),
+      events: Joi.array()
+        .items(WebhookPlatformModel.QueueEventData())
+        .required(),
+    });
+  }
+
+  /** @returns {TemporalEventData} */
+  static TemporalEventData() {
+    return Joi.object({
+      event_category: Joi.string().allow("").required(),
+      event_name: Joi.string().allow("").required(),
+      event_type: Joi.string().allow("").required(),
+      version: Joi.number().required(),
+      queue: Joi.string().allow(""),
+      workflow_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {TemporalConfig} */
+  static TemporalConfig() {
+    return Joi.object({
+      type: Joi.string().allow("").allow(null),
+      events: Joi.array()
+        .items(WebhookPlatformModel.TemporalEventData())
+        .required(),
+    });
+  }
+
+  /** @returns {SqsEventData} */
+  static SqsEventData() {
+    return Joi.object({
+      event_category: Joi.string().allow("").required(),
+      event_name: Joi.string().allow("").required(),
+      event_type: Joi.string().allow("").required(),
+      version: Joi.number().required(),
+      queue: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SqsConfig} */
+  static SqsConfig() {
+    return Joi.object({
+      type: Joi.string().allow("").allow(null),
+      events: Joi.array().items(WebhookPlatformModel.SqsEventData()).required(),
+    });
+  }
+
+  /** @returns {EventBridgeData} */
+  static EventBridgeData() {
+    return Joi.object({
+      event_category: Joi.string().allow("").required(),
+      event_name: Joi.string().allow("").required(),
+      event_type: Joi.string().allow("").required(),
+      version: Joi.number().required(),
+      event_bridge_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {EventBridgeConfig} */
+  static EventBridgeConfig() {
+    return Joi.object({
+      type: Joi.string().allow("").allow(null),
+      events: Joi.array()
+        .items(WebhookPlatformModel.EventBridgeData())
+        .required(),
+    });
+  }
+
+  /** @returns {EventMapBody} */
+  static EventMapBody() {
+    return Joi.object({
+      rest: WebhookPlatformModel.RestConfig(),
+      kafka: WebhookPlatformModel.KafkaConfig(),
+      pub_sub: WebhookPlatformModel.PubSubConfig(),
+      temporal: WebhookPlatformModel.TemporalConfig(),
+      sqs: WebhookPlatformModel.SqsConfig(),
+      event_bridge: WebhookPlatformModel.EventBridgeConfig(),
+    });
+  }
+
+  /** @returns {WebhookConfig} */
+  static WebhookConfig() {
+    return Joi.object({
+      notification_email: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      association: WebhookPlatformModel.Association(),
+      event_map: WebhookPlatformModel.EventMapBody(),
+    });
+  }
+
+  /** @returns {UpsertSubscriberConfig} */
+  static UpsertSubscriberConfig() {
+    return Joi.object({
+      webhook_config: WebhookPlatformModel.WebhookConfig().required(),
+    });
+  }
+
+  /** @returns {UpsertSubscriberConfigResult} */
+  static UpsertSubscriberConfigResult() {
+    return Joi.object({
+      status: Joi.boolean(),
+      message: Joi.string().allow(""),
     });
   }
 

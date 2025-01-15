@@ -21,11 +21,11 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
    *   - Success response
    *
    * @name createCourierPartnerRule
-   * @summary: Create rourier rule
+   * @summary: Create courier rule
    * @description: Creates a rule within the delivery configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
    */
   async createCourierPartnerRule(
@@ -79,7 +79,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRuleResponse().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -104,9 +104,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleResponseSchema>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleResultSchema>} -
+   *   Success response
    * @name createStoreRules
    * @summary: Create store rule
    * @description: Create a rule within the order routing rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createStoreRules/).
@@ -162,7 +161,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleResponseSchema().validate(
+    } = ServiceabilityPlatformModel.StoreRuleResultSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -343,7 +342,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResult>}
    *   - Success response
    *
    * @name getApplicationServiceabilitySelfShipment
@@ -397,7 +396,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse().validate(
+    } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -422,7 +421,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
    *   - Success response
    *
    * @name getCourierPartnerRule
@@ -480,7 +479,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRuleResponse().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -505,7 +504,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResult>}
    *   - Success response
    *
    * @name getCourierPartnerRules
@@ -570,7 +569,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRulesListResponse().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRulesListResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -582,6 +581,89 @@ class Serviceability {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Serviceability > getCourierPartnerRules \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnersParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ShipmentCourierPartnerResult>}
+   *   - Success response
+   *
+   * @name getCourierPartners
+   * @summary: Serviceable Courier Partners.
+   * @description: Get all the serviceable courier partners of a destination and the shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartners/).
+   */
+  async getCourierPartners(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.getCourierPartners().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.getCourierPartners().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > getCourierPartners \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipment/courier-partners`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.ShipmentCourierPartnerResult().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getCourierPartners \n ${res_error}`,
         });
       }
     }
@@ -677,9 +759,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetStoreRulesApiResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.GetStoreRulesApiResult>} -
+   *   Success response
    * @name getStoreRules
    * @summary: Get store rules
    * @description: Retrieves an existing order routing setup for a single application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRules/).
@@ -742,7 +823,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.GetStoreRulesApiResponse().validate(
+    } = ServiceabilityPlatformModel.GetStoreRulesApiResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -765,7 +846,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.GetZonesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+   * @returns {Promise<ServiceabilityPlatformModel.ListViewResult>} - Success response
    * @name getZones
    * @summary: Get zones
    * @description: Retrieves a list of delivery zones. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
@@ -860,7 +941,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ListViewResponse().validate(responseData, {
+    } = ServiceabilityPlatformModel.ListViewResult().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -967,7 +1048,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResult>}
    *   - Success response
    *
    * @name patchApplicationServiceabilitySelfShipment
@@ -1025,7 +1106,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse().validate(
+    } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1132,7 +1213,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResponse>} -
+   * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResult>} -
    *   Success response
    * @name updateCourierPartnerRulePriority
    * @summary: Update courier partner rule priority
@@ -1189,7 +1270,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.RulePriorityResponse().validate(
+    } = ServiceabilityPlatformModel.RulePriorityResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1214,7 +1295,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRuleResult>}
    *   - Success response
    *
    * @name updateCourierRule
@@ -1274,7 +1355,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRuleResponse().validate(
+    } = ServiceabilityPlatformModel.CourierPartnerRuleResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1299,7 +1380,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResultData>}
    *   - Success response
    *
    * @name updatePincodeAuditHistory
@@ -1307,7 +1388,7 @@ class Serviceability {
    * @description: Retrieves the history of changes made to cash on delivery settings for pincodes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
    */
   async updatePincodeAuditHistory(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1315,6 +1396,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1328,6 +1411,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1339,6 +1424,8 @@ class Serviceability {
     }
 
     const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1357,7 +1444,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData().validate(
+    } = ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResultData().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1382,9 +1469,8 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResult>} -
+   *   Success response
    * @name updatePincodeBulkView
    * @summary: Bulk update pincode COD support
    * @description: Updates the cash on delivery settings for multiple specified pin codes simultaneously. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
@@ -1440,7 +1526,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PincodeBulkViewResponse().validate(
+    } = ServiceabilityPlatformModel.PincodeBulkViewResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1465,7 +1551,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResult>}
    *   - Success response
    *
    * @name updatePincodeCoDListing
@@ -1473,7 +1559,7 @@ class Serviceability {
    * @description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
    */
   async updatePincodeCoDListing(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { body, pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1481,6 +1567,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1494,6 +1582,8 @@ class Serviceability {
     } = ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing().validate(
       {
         body,
+        pageNumber,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1505,6 +1595,8 @@ class Serviceability {
     }
 
     const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1523,7 +1615,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PincodeCodStatusListingResponse().validate(
+    } = ServiceabilityPlatformModel.PincodeCodStatusListingResult().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1548,8 +1640,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
-   *   Success response
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPResult>} - Success response
    * @name updatePincodeMopView
    * @summary: Update pincode COD support
    * @description: Modify and update views related to pincode MOP (Mode of Payment). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
@@ -1605,10 +1696,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.PincodeMOPresponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = ServiceabilityPlatformModel.PincodeMOPResult().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1630,7 +1721,7 @@ class Serviceability {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleUpdateResultSchema>}
    *   - Success response
    *
    * @name updateStoreRules
@@ -1690,7 +1781,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema().validate(
+    } = ServiceabilityPlatformModel.StoreRuleUpdateResultSchema().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );

@@ -93,7 +93,7 @@ class Theme {
    * @description: Gets the theme configuration and template details of a theme applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
    */
   async getAppliedTheme(
-    { requestHeaders } = { requestHeaders: {} },
+    { filters, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     let invalidInput = [];
@@ -105,6 +105,7 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["filters"] = filters;
 
     const xHeaders = {};
 
@@ -206,7 +207,7 @@ class Theme {
    * @description: Gets the theme configuration and template details of a theme by theme id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
    */
   async getThemeForPreview(
-    { themeId, requestHeaders } = { requestHeaders: {} },
+    { themeId, filters, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     let invalidInput = [];
@@ -225,6 +226,7 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["filters"] = filters;
 
     const xHeaders = {};
 
