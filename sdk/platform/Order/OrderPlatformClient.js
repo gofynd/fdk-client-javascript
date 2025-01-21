@@ -3337,6 +3337,7 @@ class Order {
     {
       lane,
       bagStatus,
+      statusAssigned,
       statusOverrideLane,
       timeToDispatch,
       searchType,
@@ -3345,6 +3346,8 @@ class Order {
       toDate,
       startDate,
       endDate,
+      statusAssignedStartDate,
+      statusAssignedEndDate,
       dpIds,
       stores,
       salesChannels,
@@ -3377,6 +3380,7 @@ class Order {
       {
         lane,
         bagStatus,
+        statusAssigned,
         statusOverrideLane,
         timeToDispatch,
         searchType,
@@ -3385,6 +3389,8 @@ class Order {
         toDate,
         startDate,
         endDate,
+        statusAssignedStartDate,
+        statusAssignedEndDate,
         dpIds,
         stores,
         salesChannels,
@@ -3421,6 +3427,7 @@ class Order {
       {
         lane,
         bagStatus,
+        statusAssigned,
         statusOverrideLane,
         timeToDispatch,
         searchType,
@@ -3429,6 +3436,8 @@ class Order {
         toDate,
         startDate,
         endDate,
+        statusAssignedStartDate,
+        statusAssignedEndDate,
         dpIds,
         stores,
         salesChannels,
@@ -3466,6 +3475,7 @@ class Order {
     const query_params = {};
     query_params["lane"] = lane;
     query_params["bag_status"] = bagStatus;
+    query_params["status_assigned"] = statusAssigned;
     query_params["status_override_lane"] = statusOverrideLane;
     query_params["time_to_dispatch"] = timeToDispatch;
     query_params["search_type"] = searchType;
@@ -3474,6 +3484,8 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["start_date"] = startDate;
     query_params["end_date"] = endDate;
+    query_params["status_assigned_start_date"] = statusAssignedStartDate;
+    query_params["status_assigned_end_date"] = statusAssignedEndDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
     query_params["sales_channels"] = salesChannels;
