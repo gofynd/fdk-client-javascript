@@ -1,4 +1,4 @@
-# CHANGE LOG (1.6.2) - 2.1.0
+# CHANGE LOG (1.6.3) - 2.1.0
 
 ## Application Client
 
@@ -125,6 +125,34 @@
 
 	- [Added] <code>query</code> parameter <code>statusAssignedEndDate</code> (type: <code>string</code>)
 
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>items[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>shipments[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>shipments[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>items[].shipments[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>items[].user_info.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>object</code> of property <code>items[].user.meta</code> of schema <code>UserDataInfo</code> in response with status code 200
 
 
 ### Payment

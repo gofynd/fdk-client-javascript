@@ -2629,7 +2629,7 @@ export = OrderPlatformModel;
  * @property {string} [last_name] - The last name of the user.
  * @property {string} [mobile] - The mobile phone number of the user.
  * @property {string} [email] - The email address of the user.
- * @property {string} [meta] - Additional metadata related to the user.
+ * @property {Object} [meta] - Additional metadata related to the user.
  * @property {boolean} [is_anonymous_user] - Indicates whether the user is an
  *   anonymous user (true) or registered (false).
  * @property {string} [name] - A full name of the user, which may be a
@@ -10202,7 +10202,7 @@ type UserDataInfo = {
     /**
      * - Additional metadata related to the user.
      */
-    meta?: string;
+    meta?: any;
     /**
      * - Indicates whether the user is an
      * anonymous user (true) or registered (false).
