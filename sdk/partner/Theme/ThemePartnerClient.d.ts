@@ -176,42 +176,44 @@ declare class Theme {
      * @param {ThemePartnerValidator.CreateExtensionSectionDraftParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<ThemePartnerModel.ExtensionSectionDraft>} - Success response
+     * @returns {Promise<ThemePartnerModel.DraftExtensionSectionResponse>} -
+     *   Success response
      * @name createExtensionSectionDraft
      * @summary: Draft extension section
      * @description: Create a new draft for an extension section within the specified organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createExtensionSectionDraft/).
      */
-    createExtensionSectionDraft({ extensionId, body, requestHeaders }?: ThemePartnerValidator.CreateExtensionSectionDraftParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionSectionDraft>;
+    createExtensionSectionDraft({ extensionId, body, requestHeaders }?: ThemePartnerValidator.CreateExtensionSectionDraftParam, { responseHeaders }?: object): Promise<ThemePartnerModel.DraftExtensionSectionResponse>;
     /**
      * @param {ThemePartnerValidator.PublishExtensionSectionsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<ThemePartnerModel.ExtensionSectionPublish>} - Success response
+     * @returns {Promise<ThemePartnerModel.PublishExtensionSectionResponse>} -
+     *   Success response
      * @name publishExtensionSections
      * @summary: Publish an extension section
      * @description: Publish a draft extension section within the specified organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/publishExtensionSections/).
      */
-    publishExtensionSections({ extensionId, body, requestHeaders }?: ThemePartnerValidator.PublishExtensionSectionsParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionSectionPublish>;
+    publishExtensionSections({ extensionId, body, requestHeaders }?: ThemePartnerValidator.PublishExtensionSectionsParam, { responseHeaders }?: object): Promise<ThemePartnerModel.PublishExtensionSectionResponse>;
     /**
      * @param {ThemePartnerValidator.ApplyExtensionPreviewParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<ThemePartnerModel.ExtensionPreview>} - Success response
+     * @returns {Promise<ThemePartnerModel.ExtensionPreviewResponse>} - Success response
      * @name applyExtensionPreview
      * @summary: Start a Preview of Extension Section
      * @description: Use this API to start a local session for previewing the extension section binding. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/applyExtensionPreview/).
      */
-    applyExtensionPreview({ extensionSectionId, body, requestHeaders }?: ThemePartnerValidator.ApplyExtensionPreviewParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionPreview>;
+    applyExtensionPreview({ extensionSectionId, body, requestHeaders }?: ThemePartnerValidator.ApplyExtensionPreviewParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionPreviewResponse>;
     /**
      * @param {ThemePartnerValidator.RemoveExtensionPreviewParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<ThemePartnerModel.ExtensionPreview>} - Success response
+     * @returns {Promise<ThemePartnerModel.ExtensionPreviewResponse>} - Success response
      * @name removeExtensionPreview
      * @summary: Close a Preview of Extension Section
      * @description: Use this API to close a local session for previewing the extension section binding - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/removeExtensionPreview/).
      */
-    removeExtensionPreview({ extensionSectionId, body, requestHeaders }?: ThemePartnerValidator.RemoveExtensionPreviewParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionPreview>;
+    removeExtensionPreview({ extensionSectionId, body, requestHeaders }?: ThemePartnerValidator.RemoveExtensionPreviewParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionPreviewResponse>;
     /**
      * @param {ThemePartnerValidator.GetThemeRejectionReasonsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

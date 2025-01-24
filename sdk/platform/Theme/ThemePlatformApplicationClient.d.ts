@@ -177,12 +177,12 @@ declare class Theme {
      * @param {ThemePlatformApplicationValidator.IsUpgradableParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemePlatformModel.ThemeUpgradable>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemeUpgradableResponse>} - Success response
      * @name isUpgradable
      * @summary: Check theme is upgradable
      * @description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
      */
-    isUpgradable({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.IsUpgradableParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemeUpgradable>;
+    isUpgradable({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.IsUpgradableParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemeUpgradableResponse>;
     /**
      * @param {ThemePlatformApplicationValidator.UpdateMultiplePagesParam} arg
      *   - Arg object
@@ -204,7 +204,7 @@ declare class Theme {
      * @summary: Update a page
      * @description: Modify and update the content of a page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updatePage/).
      */
-    updatePage({ themeId, pageValue, socketId, body, requestHeaders }?: ThemePlatformApplicationValidator.UpdatePageParam, { responseHeaders }?: object): Promise<ThemePlatformModel.AvailablePageSchema>;
+    updatePage({ themeId, pageValue, body, requestHeaders }?: ThemePlatformApplicationValidator.UpdatePageParam, { responseHeaders }?: object): Promise<ThemePlatformModel.AvailablePageSchema>;
     /**
      * @param {ThemePlatformApplicationValidator.UpdateThemeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

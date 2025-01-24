@@ -5,24 +5,20 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef CreateStoreRulesParam
- * @property {ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema} body
+ * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
  */
 /** @typedef GetApplicationConfigParam */
 /** @typedef GetApplicationConfigurationParam */
 /** @typedef GetApplicationServiceabilitySelfShipmentParam */
 /**
  * @typedef GetCourierPartnerRuleParam
- * @property {string} ruleId - Unique identifier of the courier partner rule
+ * @property {string} ruleId - A `rule_id` is a unique identifier for a rule.
  */
 /**
  * @typedef GetCourierPartnerRulesParam
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [status] - Filter rules based on rule status
- */
-/**
- * @typedef GetCourierPartnersParam
- * @property {ServiceabilityPlatformModel.ShipmentCourierPartnerDetails} body
  */
 /**
  * @typedef GetStoreRuleParam
@@ -36,24 +32,12 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} [status]
  */
 /**
- * @typedef GetZonesParam
- * @property {number} [pageNo] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {boolean} [isActive] - Status of Zone (either active or inactive)
- * @property {string} [q] - Search with name as a free text
- * @property {string} [countryIsoCode] - ISO2 code of the country
- * @property {string} [state] - State name
- * @property {string} [city] - City name
- * @property {string} [pincode] - Pincode value to search zones
- * @property {string} [sector] - Sector value to search zones
- */
-/**
  * @typedef InsertApplicationConfigParam
  * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
  */
 /**
  * @typedef PatchApplicationServiceabilitySelfShipmentParam
- * @property {ServiceabilityPlatformModel.SelfShipResult} body
+ * @property {ServiceabilityPlatformModel.SelfShipResponse} body
  */
 /**
  * @typedef UpdateApplicationConfigurationParam
@@ -61,18 +45,16 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef UpdateCourierPartnerRulePriorityParam
- * @property {ServiceabilityPlatformModel.RulePriorityDetails} body
+ * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
  */
 /**
  * @typedef UpdateCourierRuleParam
- * @property {string} ruleId - Unique identifier of the courier partner rule.
+ * @property {string} ruleId - A `rule_id` is a unique identifier for a particular Dp.
  * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
 /**
  * @typedef UpdatePincodeAuditHistoryParam
- * @property {number} [pageNumber] - Page number to be fetched.
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails} body
+ * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest} body
  */
 /**
  * @typedef UpdatePincodeBulkViewParam
@@ -80,9 +62,7 @@ export = ServiceabilityPlatformApplicationValidator;
  */
 /**
  * @typedef UpdatePincodeCoDListingParam
- * @property {number} [pageNumber] - Page number to be fetched.
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {ServiceabilityPlatformModel.PincodeCodStatusListingDetails} body
+ * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequest} body
  */
 /**
  * @typedef UpdatePincodeMopViewParam
@@ -92,7 +72,7 @@ export = ServiceabilityPlatformApplicationValidator;
  * @typedef UpdateStoreRulesParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
  *   particular rule object.
- * @property {ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema} body
+ * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
  */
 /**
  * @typedef UpdateStoreRulesConfigParam
@@ -113,14 +93,10 @@ declare class ServiceabilityPlatformApplicationValidator {
     static getCourierPartnerRule(): GetCourierPartnerRuleParam;
     /** @returns {GetCourierPartnerRulesParam} */
     static getCourierPartnerRules(): GetCourierPartnerRulesParam;
-    /** @returns {GetCourierPartnersParam} */
-    static getCourierPartners(): GetCourierPartnersParam;
     /** @returns {GetStoreRuleParam} */
     static getStoreRule(): GetStoreRuleParam;
     /** @returns {GetStoreRulesParam} */
     static getStoreRules(): GetStoreRulesParam;
-    /** @returns {GetZonesParam} */
-    static getZones(): GetZonesParam;
     /** @returns {InsertApplicationConfigParam} */
     static insertApplicationConfig(): InsertApplicationConfigParam;
     /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
@@ -145,17 +121,17 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updateStoreRulesConfig(): UpdateStoreRulesConfigParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { CreateCourierPartnerRuleParam, CreateStoreRulesParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetCourierPartnersParam, GetStoreRuleParam, GetStoreRulesParam, GetZonesParam, InsertApplicationConfigParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam };
+    export { CreateCourierPartnerRuleParam, CreateStoreRulesParam, GetApplicationConfigParam, GetApplicationConfigurationParam, GetApplicationServiceabilitySelfShipmentParam, GetCourierPartnerRuleParam, GetCourierPartnerRulesParam, GetStoreRuleParam, GetStoreRulesParam, InsertApplicationConfigParam, PatchApplicationServiceabilitySelfShipmentParam, UpdateApplicationConfigurationParam, UpdateCourierPartnerRulePriorityParam, UpdateCourierRuleParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateStoreRulesParam, UpdateStoreRulesConfigParam };
 }
 type CreateCourierPartnerRuleParam = {
     body: ServiceabilityPlatformModel.CourierPartnerRule;
 };
 type CreateStoreRulesParam = {
-    body: ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema;
+    body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema;
 };
 type GetCourierPartnerRuleParam = {
     /**
-     * - Unique identifier of the courier partner rule
+     * - A `rule_id` is a unique identifier for a rule.
      */
     ruleId: string;
 };
@@ -173,9 +149,6 @@ type GetCourierPartnerRulesParam = {
      */
     status?: string;
 };
-type GetCourierPartnersParam = {
-    body: ServiceabilityPlatformModel.ShipmentCourierPartnerDetails;
-};
 type GetStoreRuleParam = {
     /**
      * - A `rule_uid` is a unique identifier for a
@@ -188,87 +161,33 @@ type GetStoreRulesParam = {
     pageSize?: number;
     status?: string;
 };
-type GetZonesParam = {
-    /**
-     * - Index of the item to start returning with
-     */
-    pageNo?: number;
-    /**
-     * - Determines the items to be displayed in a page
-     */
-    pageSize?: number;
-    /**
-     * - Status of Zone (either active or inactive)
-     */
-    isActive?: boolean;
-    /**
-     * - Search with name as a free text
-     */
-    q?: string;
-    /**
-     * - ISO2 code of the country
-     */
-    countryIsoCode?: string;
-    /**
-     * - State name
-     */
-    state?: string;
-    /**
-     * - City name
-     */
-    city?: string;
-    /**
-     * - Pincode value to search zones
-     */
-    pincode?: string;
-    /**
-     * - Sector value to search zones
-     */
-    sector?: string;
-};
 type InsertApplicationConfigParam = {
     body: ServiceabilityPlatformModel.StoreRuleConfigData;
 };
 type PatchApplicationServiceabilitySelfShipmentParam = {
-    body: ServiceabilityPlatformModel.SelfShipResult;
+    body: ServiceabilityPlatformModel.SelfShipResponse;
 };
 type UpdateApplicationConfigurationParam = {
     body: ServiceabilityPlatformModel.ApplicationConfig;
 };
 type UpdateCourierPartnerRulePriorityParam = {
-    body: ServiceabilityPlatformModel.RulePriorityDetails;
+    body: ServiceabilityPlatformModel.RulePriorityRequest;
 };
 type UpdateCourierRuleParam = {
     /**
-     * - Unique identifier of the courier partner rule.
+     * - A `rule_id` is a unique identifier for a particular Dp.
      */
     ruleId: string;
     body: ServiceabilityPlatformModel.CourierPartnerRule;
 };
 type UpdatePincodeAuditHistoryParam = {
-    /**
-     * - Page number to be fetched.
-     */
-    pageNumber?: number;
-    /**
-     * - Determines the items to be displayed in a page
-     */
-    pageSize?: number;
-    body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryDetails;
+    body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest;
 };
 type UpdatePincodeBulkViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopBulkData;
 };
 type UpdatePincodeCoDListingParam = {
-    /**
-     * - Page number to be fetched.
-     */
-    pageNumber?: number;
-    /**
-     * - Determines the items to be displayed in a page
-     */
-    pageSize?: number;
-    body: ServiceabilityPlatformModel.PincodeCodStatusListingDetails;
+    body: ServiceabilityPlatformModel.PincodeCodStatusListingRequest;
 };
 type UpdatePincodeMopViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopData;
@@ -279,7 +198,7 @@ type UpdateStoreRulesParam = {
      * particular rule object.
      */
     ruleUid: string;
-    body: ServiceabilityPlatformModel.CreateStoreRuleDetailsSchema;
+    body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema;
 };
 type UpdateStoreRulesConfigParam = {
     body: ServiceabilityPlatformModel.StoreRuleConfigData;

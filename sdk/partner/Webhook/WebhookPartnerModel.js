@@ -1,122 +1,89 @@
 const Joi = require("joi");
 
 /**
- * @typedef SubscriberUpdate
- * @property {string} [status] - Represents the status of the subscriber update operation.
+ * @typedef UpdateSubscriberRequest
+ * @property {string} [status]
  */
 
 /**
- * @typedef SubscriberUpdateResult
- * @property {string} [message] - Provides a message describing the result of
- *   the subscriber update operation.
+ * @typedef UpdateSubscriberResponse
+ * @property {string} [message]
  */
 
 /**
  * @typedef Association
- * @property {number} [company_id] - The identifier for the company associated
- *   with the configuration.
- * @property {string[]} [application_id] - A list of application identifiers
- *   associated with the configuration.
- * @property {string} [extension_id] - The identifier for the extension related
- *   to the configuration.
- * @property {string} [criteria] - Defines the criteria for the association,
- *   including options for all events, empty criteria, or specific events.
+ * @property {number} [company_id]
+ * @property {string[]} [application_id]
+ * @property {string} [extension_id]
+ * @property {string} [criteria]
  */
 
 /**
  * @typedef AuthMeta
- * @property {string} [type] - Specifies the type of authentication used.
- * @property {string} [secret] - Contains the secret key or token used for authentication.
- */
-
-/**
- * @typedef BroadcasterConfig
- * @property {string} [topic] - The topic associated with the broadcaster configuration.
- * @property {string} [queue] - The queue name used by the broadcaster.
- * @property {string} [event_bridge_name] - The name of the event bridge used in
- *   the broadcaster configuration.
- * @property {string} [workflow_name] - The name of the workflow related to the
- *   broadcaster.
- * @property {string} [account_id] - The account ID associated with the
- *   broadcaster configuration.
- * @property {string} [detail_type] - Specifies the type of detail for the
- *   broadcaster, allowing for custom or non-enumerated values.
+ * @property {string} [type]
+ * @property {string} [secret]
  */
 
 /**
  * @typedef SubscriberEventMapping
- * @property {number} [id] - The unique identifier for the subscriber event mapping.
- * @property {number} [event_id] - The identifier for the event associated with
- *   the subscriber.
- * @property {number} [subscriber_id] - The identifier for the subscriber
- *   involved in the mapping.
- * @property {BroadcasterConfig} [broadcaster_config]
- * @property {string} [created_on] - The timestamp indicating when the
- *   subscriber event mapping was created.
+ * @property {number} [id]
+ * @property {number} [event_id]
+ * @property {number} [subscriber_id]
+ * @property {string} [topic]
+ * @property {string} [created_on]
  */
 
 /**
- * @typedef EventConfigDetails
- * @property {number} [id] - The unique identifier for the event configuration.
- * @property {string} [event_name] - The name assigned to the event configuration.
- * @property {string} [event_type] - Specifies the type of event, allowing for
- *   custom or non-enumerated values.
- * @property {string} [event_category] - Defines the category of the event,
- *   allowing for custom or non-enumerated values.
- * @property {Object} [event_schema] - Contains the schema details for the
- *   event, allowing for flexible or dynamic schemas.
- * @property {string} [version] - The version number of the event configuration.
- * @property {string} [display_name] - The display name for the event configuration.
- * @property {string} [description] - A description of the event configuration,
- *   if provided.
- * @property {string} [created_on] - The timestamp indicating when the event
- *   configuration was created.
- * @property {string} [updated_on] - The timestamp indicating when the event
- *   configuration was last updated.
- * @property {string} [group] - The group to which the event configuration
- *   belongs, if applicable.
+ * @typedef EventConfigResponse
+ * @property {number} [id]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [event_category]
+ * @property {Object} [event_schema]
+ * @property {string} [version]
+ * @property {string} [display_name]
+ * @property {string} [description]
+ * @property {string} [created_on]
+ * @property {string} [updated_on]
+ * @property {string} [group]
  * @property {SubscriberEventMapping} [subscriber_event_mapping]
  */
 
 /**
- * @typedef SubscriberConfigDetails
- * @property {ItemSchema[]} [items] - A list of items representing subscriber
- *   configurations.
+ * @typedef SubscriberConfigResponse
+ * @property {ItemSchema[]} [items]
  * @property {Page} [page]
  */
 
 /**
- * @typedef InvalidEventsPayload
- * @property {string} [event_name] - The name of the event that is considered invalid.
- * @property {string} [version] - The version of the event that is considered invalid.
- * @property {string} [category] - The category of the event that is considered invalid.
- * @property {string} [start_date] - The start date and time for the period
- *   during which events were considered invalid.
- * @property {string} [end_date] - The end date and time for the period during
- *   which events were considered invalid.
+ * @typedef InvalidEventsRequest
+ * @property {string} [event_name]
+ * @property {string} [version]
+ * @property {string} [category]
+ * @property {string} [start_date]
+ * @property {string} [end_date]
  */
 
 /**
- * @typedef InvalidEventsResult
- * @property {string} [event_name] - The name of the event that was found to be invalid.
- * @property {string} [event_type] - The type of the invalid event, allowing for
- *   custom or non-enumerated values.
- * @property {string} [version] - The version of the invalid event.
- * @property {string} [category] - The category of the invalid event.
- * @property {number} [count] - The number of occurrences of the invalid event.
+ * @typedef InvalidEventsResponse
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [version]
+ * @property {string} [category]
+ * @property {number} [count]
  */
 
 /**
  * @typedef HistoryFilters
- * @property {string[]} [events] - A list of event types to filter the history report.
- * @property {string} [search_text] - Text used for searching within the history report.
+ * @property {string[]} [events]
+ * @property {string} [search_text]
  * @property {string} [status] - The status of the history report (e.g., "FAILED").
  * @property {string} [end_date] - The end date and time of the history report.
  * @property {string} [start_date] - The start date and time of the history report.
  * @property {number[]} [subscribers] - An array of subscriber IDs associated
  *   with the history report.
- * @property {string[]} [webhook_type] - An array of webhook types to identify
- *   the type of subscriber.
+ * @property {string[]} [webhook_type] - An array of webhook type to identify
+ *   thetype of subscriber i.e (KAFKA or REST).
  */
 
 /**
@@ -127,8 +94,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CdnObject
- * @property {Url[]} [urls] - A list of URLs for CDN objects, including the
- *   location of the uploaded report files.
+ * @property {Url[]} [urls]
  */
 
 /**
@@ -138,119 +104,103 @@ const Joi = require("joi");
 
 /**
  * @typedef HistoryAssociation
- * @property {number} [company_id] - The identifier for the company associated
- *   with the history report.
- * @property {number[]} [subscriber_ids] - A list of subscriber IDs related to
- *   the history report.
+ * @property {number} [company_id]
+ * @property {number[]} [subscriber_ids]
  */
 
 /**
  * @typedef HistoryItems
- * @property {number} [id] - The unique identifier for the history report.
+ * @property {number} [id] - The ID of the history report.
  * @property {HistoryAssociation} [association]
  * @property {HistoryFilters} [filters]
- * @property {string} [filename] - The name of the file containing the history report.
- * @property {string} [status] - The current status of the history report (e.g.,
- *   "COMPLETED").
+ * @property {string} [filename] - The filename of the history report.
+ * @property {string} [status] - The status of the history report (e.g., "COMPLETED").
  * @property {UploadServiceObject} [upload_service_response]
  * @property {string} [created_on] - The date and time when the history report
- *   was generated.
+ *   was created.
  * @property {string} [updated_on] - The date and time when the history report
  *   was last updated.
  * @property {string} [message] - A message related to the history report.
  */
 
 /**
- * @typedef HistoryResult
- * @property {HistoryItems[]} [items] - A list of history report items.
+ * @typedef HistoryResponse
+ * @property {HistoryItems[]} [items]
  * @property {Page} [page]
  */
 
 /**
  * @typedef HistoryPayload
- * @property {number} [company_id] - The identifier for the company requesting
- *   the history report.
- * @property {string} [type] - Specifies the type of history report requested
- *   (e.g., "platform").
- * @property {number} [page_no] - The page number of the history report results.
- * @property {number} [page_size] - The number of records to display per page in
- *   the history report.
+ * @property {number} [company_id]
+ * @property {string} [type] - The type of history report (e.g., "platform").
+ * @property {number} [page_no] - The page number of the history report.
+ * @property {number} [page_size] - The number of records per page.
  */
 
 /**
- * @typedef CancelDownloadResult
- * @property {string} [message] - A message indicating the result of the cancel
- *   download request.
- * @property {string} [result] - The outcome of the cancel download operation.
+ * @typedef CancelDownloadResponse
+ * @property {string} [message]
+ * @property {string} [result]
  */
 
 /**
- * @typedef FilterReportResult
- * @property {string} [filter_name] - The name of the filter applied in the report.
- * @property {Object[]} [values] - A list of values resulting from the applied filter.
+ * @typedef FilterReportResponse
+ * @property {string} [filter_name]
+ * @property {Object[]} [values]
  */
 
 /**
- * @typedef DeliveryTsResult
+ * @typedef DeliveryTsResponse
  * @property {DeliveryTsSchema[]} [delivery_ts]
  */
 
 /**
  * @typedef DeliveryTsSchema
- * @property {string} [timestamp] - The timestamp of the delivery event.
- * @property {number} [failed] - The count of failed delivery attempts.
- * @property {number} [removed_webhooks] - The count of removed webhooks during delivery.
- * @property {number} [success] - The count of successful delivery attempts.
+ * @property {string} [timestamp]
+ * @property {number} [failed]
+ * @property {number} [removed_webhooks]
+ * @property {number} [success]
  */
 
 /**
- * @typedef DeliveryDetailsPayload
- * @property {string} [company_id] - The identifier for the company requesting
- *   delivery details.
- * @property {number} [page_no] - The page number for the delivery details results.
- * @property {number} [page_size] - The number of records per page for delivery details.
- * @property {string} [start_date] - The start date and time for filtering
- *   delivery details.
- * @property {string} [end_date] - The end date and time for filtering delivery details.
- * @property {EventDeliveryDetailSchema[]} [event] - A list of event delivery details.
- * @property {string} [status] - The status of the delivery details request.
+ * @typedef DeliveryDetailsRequest
+ * @property {string} [company_id]
+ * @property {number} [page_no]
+ * @property {number} [page_size]
+ * @property {string} [start_date]
+ * @property {string} [end_date]
+ * @property {EventDeliveryDetailSchema[]} [event]
+ * @property {string} [status]
  */
 
 /**
  * @typedef EventDeliveryDetailSchema
- * @property {string} [event_name] - The name of the event related to the
- *   delivery details.
- * @property {string} [event_type] - The type of the event, allowing for custom
- *   or non-enumerated values.
- * @property {string} [event_category] - The category of the event, allowing for
- *   custom or non-enumerated values.
- * @property {string} [version] - The version of the event related to the
- *   delivery details.
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [event_category]
+ * @property {string} [version]
  */
 
 /**
- * @typedef DeliveryDetailsResult
- * @property {EventProcessReportObject[]} [rows] - A list of processed event
- *   reports with delivery details.
+ * @typedef DeliveryDetailsResponse
+ * @property {EventProcessReportObject[]} [rows]
  * @property {Page} [page]
  */
 
 /**
  * @typedef EventProcessReportObject
  * @property {string} [event_name] - The name of the processed event.
- * @property {number} [response_code] - The response code returned for the
- *   event, allowing for custom or non-enumerated values.
- * @property {string} [response_message] - The response message associated with the event.
- * @property {string} [data] - The data payload associated with the event.
- * @property {number} [attempt] - The attempt number for processing the event.
- * @property {number} [last_attempted_on] - The timestamp of the last attempt to
- *   process the event.
- * @property {string} [status] - The status of the event processing (e.g., "FAILED").
+ * @property {number} [response_code] - The response code of the event.
+ * @property {string} [response_message] - The response message of the event.
+ * @property {string} [data] - The data associated with the event.
+ * @property {number} [attempt] - The attempt number of the event.
+ * @property {number} [last_attempted_on] - The timestamp of the last attempted event.
+ * @property {string} [status] - The status of the event (e.g., "FAILED").
  * @property {string} [name] - The name of the event.
- * @property {string} [webhook_url] - The URL of the webhook associated with the event.
- * @property {number} [response_time] - The time taken to respond to the event.
- * @property {string} [message_id] - The identifier for the event message.
- * @property {string} [event_trace_id] - The trace ID associated with the event.
+ * @property {string} [webhook_url] - The webhook URL associated with the event.
+ * @property {number} [response_time] - The response time of the event.
+ * @property {string} [message_id]
+ * @property {string} [event_trace_id]
  */
 
 /**
@@ -266,79 +216,58 @@ const Joi = require("joi");
 
 /**
  * @typedef DeliveryEventLevelSchema
- * @property {string} [event] - The name or identifier of the event.
- * @property {number} [success] - The count of successful deliveries for the event.
- * @property {number} [failed] - The count of failed deliveries for the event.
- * @property {number} [failed_percentage] - The percentage of failed deliveries
- *   relative to the total.
- * @property {number} [removed_webhooks] - The count of webhooks that were
- *   removed during the delivery.
- * @property {number} [total] - The total number of delivery attempts for the event.
- * @property {number} [response_time] - The average response time for the event
- *   deliveries.
+ * @property {string} [event]
+ * @property {number} [success]
+ * @property {number} [failed]
+ * @property {number} [failed_percentage]
+ * @property {number} [removed_webhooks]
+ * @property {number} [total]
+ * @property {number} [response_time]
  */
 
 /**
- * @typedef ResponseTimeTs
- * @property {AvgResponseTime[]} [avg_response_time_ts]
- */
-
-/**
- * @typedef AvgResponseTime
- * @property {string} [last_attempted_on] - The timestamp of the last attempt,
- *   formatted as a string.
- * @property {number} [response_code] - The response code returned for the
- *   delivery attempt, allowing for custom or non-enumerated values.
- * @property {string} [response_time] - The response time for the delivery
- *   attempt, formatted as a string.
- * @property {number} [attempt] - The attempt number for the delivery.
- * @property {number} [total] - The total count of deliveries attempted.
- */
-
-/**
- * @typedef DeliverySummaryResult
+ * @typedef DeliverySummaryResponse
  * @property {DeliveryEventLevelSchema[]} [delivery_event_level]
  * @property {DeliverySummarySchema} [delivery_summary]
  */
 
 /**
  * @typedef DeliverySummarySchema
- * @property {number} [success] - The total count of successful deliveries.
- * @property {number} [response_time] - The average response time for deliveries.
- * @property {number} [failed_percentage] - The percentage of failed deliveries.
- * @property {number} [removed_webhooks] - The count of webhooks removed during delivery.
+ * @property {number} [success]
+ * @property {number} [response_time]
+ * @property {number} [failed_percentage]
+ * @property {number} [removed_webhooks]
  */
 
 /**
  * @typedef ItemSchema
- * @property {number} [id] - The unique identifier for the item.
- * @property {string} [modified_by] - The user or system that last modified the item.
- * @property {string} [name] - The name of the item.
- * @property {string} [webhook_url] - The URL of the webhook associated with the item.
- * @property {string} [provider] - The provider of the item.
+ * @property {number} [id]
+ * @property {string} [modified_by]
+ * @property {string} [name]
+ * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
- * @property {Object} [custom_headers] - Custom headers associated with the item, if any.
- * @property {string} [status] - The current status of the item.
- * @property {string} [email_id] - The email ID associated with the item, if applicable.
- * @property {string} [updated_on] - The date and time when the item was last updated.
- * @property {string} [created_on] - The date and time when the item was created.
- * @property {string} [type] - The type of the item, if applicable.
+ * @property {Object} [custom_headers]
+ * @property {string} [status]
+ * @property {string} [email_id]
+ * @property {string} [updated_on]
+ * @property {string} [created_on]
+ * @property {string} [type]
  * @property {AuthMeta} [auth_meta]
- * @property {EventConfigDetails[]} [event_configs] - A list of event
- *   configurations associated with the item.
- * @property {number[]} [event_id] - A list of event IDs associated with the item.
+ * @property {EventConfigResponse[]} [event_configs]
+ * @property {number[]} [event_id]
  */
 
 class WebhookPartnerModel {
-  /** @returns {SubscriberUpdate} */
-  static SubscriberUpdate() {
+  /** @returns {UpdateSubscriberRequest} */
+  static UpdateSubscriberRequest() {
     return Joi.object({
       status: Joi.string().allow(""),
     });
   }
 
-  /** @returns {SubscriberUpdateResult} */
-  static SubscriberUpdateResult() {
+  /** @returns {UpdateSubscriberResponse} */
+  static UpdateSubscriberResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
@@ -362,31 +291,19 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {BroadcasterConfig} */
-  static BroadcasterConfig() {
-    return Joi.object({
-      topic: Joi.string().allow(""),
-      queue: Joi.string().allow(""),
-      event_bridge_name: Joi.string().allow(""),
-      workflow_name: Joi.string().allow(""),
-      account_id: Joi.string().allow(""),
-      detail_type: Joi.string().allow(""),
-    }).allow(null);
-  }
-
   /** @returns {SubscriberEventMapping} */
   static SubscriberEventMapping() {
     return Joi.object({
       id: Joi.number(),
       event_id: Joi.number(),
       subscriber_id: Joi.number(),
-      broadcaster_config: WebhookPartnerModel.BroadcasterConfig(),
+      topic: Joi.string().allow("").allow(null),
       created_on: Joi.string().allow(""),
     });
   }
 
-  /** @returns {EventConfigDetails} */
-  static EventConfigDetails() {
+  /** @returns {EventConfigResponse} */
+  static EventConfigResponse() {
     return Joi.object({
       id: Joi.number(),
       event_name: Joi.string().allow(""),
@@ -403,16 +320,16 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {SubscriberConfigDetails} */
-  static SubscriberConfigDetails() {
+  /** @returns {SubscriberConfigResponse} */
+  static SubscriberConfigResponse() {
     return Joi.object({
       items: Joi.array().items(WebhookPartnerModel.ItemSchema()),
       page: WebhookPartnerModel.Page(),
     });
   }
 
-  /** @returns {InvalidEventsPayload} */
-  static InvalidEventsPayload() {
+  /** @returns {InvalidEventsRequest} */
+  static InvalidEventsRequest() {
     return Joi.object({
       event_name: Joi.string().allow(""),
       version: Joi.string().allow(""),
@@ -422,8 +339,8 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {InvalidEventsResult} */
-  static InvalidEventsResult() {
+  /** @returns {InvalidEventsResponse} */
+  static InvalidEventsResponse() {
     return Joi.object({
       event_name: Joi.string().allow(""),
       event_type: Joi.string().allow(""),
@@ -491,8 +408,8 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {HistoryResult} */
-  static HistoryResult() {
+  /** @returns {HistoryResponse} */
+  static HistoryResponse() {
     return Joi.object({
       items: Joi.array().items(WebhookPartnerModel.HistoryItems()),
       page: WebhookPartnerModel.Page(),
@@ -509,24 +426,24 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {CancelDownloadResult} */
-  static CancelDownloadResult() {
+  /** @returns {CancelDownloadResponse} */
+  static CancelDownloadResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
       result: Joi.string().allow(""),
     });
   }
 
-  /** @returns {FilterReportResult} */
-  static FilterReportResult() {
+  /** @returns {FilterReportResponse} */
+  static FilterReportResponse() {
     return Joi.object({
       filter_name: Joi.string().allow(""),
       values: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
     });
   }
 
-  /** @returns {DeliveryTsResult} */
-  static DeliveryTsResult() {
+  /** @returns {DeliveryTsResponse} */
+  static DeliveryTsResponse() {
     return Joi.object({
       delivery_ts: Joi.array().items(WebhookPartnerModel.DeliveryTsSchema()),
     });
@@ -542,8 +459,8 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {DeliveryDetailsPayload} */
-  static DeliveryDetailsPayload() {
+  /** @returns {DeliveryDetailsRequest} */
+  static DeliveryDetailsRequest() {
     return Joi.object({
       company_id: Joi.string().allow(""),
       page_no: Joi.number(),
@@ -565,8 +482,8 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {DeliveryDetailsResult} */
-  static DeliveryDetailsResult() {
+  /** @returns {DeliveryDetailsResponse} */
+  static DeliveryDetailsResponse() {
     return Joi.object({
       rows: Joi.array().items(WebhookPartnerModel.EventProcessReportObject()),
       page: WebhookPartnerModel.Page(),
@@ -617,28 +534,8 @@ class WebhookPartnerModel {
     });
   }
 
-  /** @returns {ResponseTimeTs} */
-  static ResponseTimeTs() {
-    return Joi.object({
-      avg_response_time_ts: Joi.array().items(
-        WebhookPartnerModel.AvgResponseTime()
-      ),
-    });
-  }
-
-  /** @returns {AvgResponseTime} */
-  static AvgResponseTime() {
-    return Joi.object({
-      last_attempted_on: Joi.string().allow(""),
-      response_code: Joi.number(),
-      response_time: Joi.string().allow(""),
-      attempt: Joi.number(),
-      total: Joi.number(),
-    });
-  }
-
-  /** @returns {DeliverySummaryResult} */
-  static DeliverySummaryResult() {
+  /** @returns {DeliverySummaryResponse} */
+  static DeliverySummaryResponse() {
     return Joi.object({
       delivery_event_level: Joi.array().items(
         WebhookPartnerModel.DeliveryEventLevelSchema()
@@ -666,7 +563,7 @@ class WebhookPartnerModel {
       webhook_url: Joi.string().allow(""),
       provider: Joi.string().allow(""),
       association: WebhookPartnerModel.Association(),
-      custom_headers: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
+      custom_headers: Joi.any(),
       status: Joi.string().allow(""),
       email_id: Joi.string().allow(""),
       updated_on: Joi.string().allow(""),
@@ -674,7 +571,7 @@ class WebhookPartnerModel {
       type: Joi.string().allow("").allow(null),
       auth_meta: WebhookPartnerModel.AuthMeta(),
       event_configs: Joi.array().items(
-        WebhookPartnerModel.EventConfigDetails()
+        WebhookPartnerModel.EventConfigResponse()
       ),
       event_id: Joi.array().items(Joi.number()),
     });

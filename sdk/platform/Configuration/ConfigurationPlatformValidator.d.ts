@@ -1,7 +1,7 @@
 export = ConfigurationPlatformValidator;
 /**
  * @typedef CreateApplicationParam
- * @property {ConfigurationPlatformModel.CreateApplicationRequestSchema} body
+ * @property {ConfigurationPlatformModel.CreateApplicationRequest} body
  */
 /**
  * @typedef GetApplicationsParam
@@ -19,21 +19,12 @@ export = ConfigurationPlatformValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.CompanyByBrandsRequestSchema} body
+ * @property {ConfigurationPlatformModel.CompanyByBrandsRequest} body
  */
 /** @typedef GetCurrenciesParam */
 /**
- * @typedef GetCurrencyExchangeRatesParam
- * @property {string} [currencyCode] - The 3-letter ISO 4217 code representing
- *   the base currency for the exchange rates. Defaults to "INR" if not specified.
- * @property {string} [exchangeCurrencyCode] - A 3-letter ISO 4217 currency code
- *   for which exchange rates against the base currency are requested.
- * @property {string} [exchangeCountryCode] - The country code for which
- *   exchange rates against the base currency are requested.
- */
-/**
  * @typedef GetDomainAvailibilityParam
- * @property {ConfigurationPlatformModel.DomainSuggestionsRequestSchema} body
+ * @property {ConfigurationPlatformModel.DomainSuggestionsRequest} body
  */
 /**
  * @typedef GetOtherSellerApplicationByIdParam
@@ -52,7 +43,7 @@ export = ConfigurationPlatformValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
- * @property {ConfigurationPlatformModel.StoreByBrandsRequestSchema} body
+ * @property {ConfigurationPlatformModel.StoreByBrandsRequest} body
  */
 /**
  * @typedef OptOutFromApplicationParam
@@ -71,8 +62,6 @@ declare class ConfigurationPlatformValidator {
     static getCompanyByBrands(): GetCompanyByBrandsParam;
     /** @returns {GetCurrenciesParam} */
     static getCurrencies(): any;
-    /** @returns {GetCurrencyExchangeRatesParam} */
-    static getCurrencyExchangeRates(): GetCurrencyExchangeRatesParam;
     /** @returns {GetDomainAvailibilityParam} */
     static getDomainAvailibility(): GetDomainAvailibilityParam;
     /** @returns {GetOtherSellerApplicationByIdParam} */
@@ -85,10 +74,10 @@ declare class ConfigurationPlatformValidator {
     static optOutFromApplication(): OptOutFromApplicationParam;
 }
 declare namespace ConfigurationPlatformValidator {
-    export { CreateApplicationParam, GetApplicationsParam, GetBrandsByCompanyParam, GetCompanyByBrandsParam, GetCurrenciesParam, GetCurrencyExchangeRatesParam, GetDomainAvailibilityParam, GetOtherSellerApplicationByIdParam, GetOtherSellerApplicationsParam, GetStoreByBrandsParam, OptOutFromApplicationParam };
+    export { CreateApplicationParam, GetApplicationsParam, GetBrandsByCompanyParam, GetCompanyByBrandsParam, GetCurrenciesParam, GetDomainAvailibilityParam, GetOtherSellerApplicationByIdParam, GetOtherSellerApplicationsParam, GetStoreByBrandsParam, OptOutFromApplicationParam };
 }
 type CreateApplicationParam = {
-    body: ConfigurationPlatformModel.CreateApplicationRequestSchema;
+    body: ConfigurationPlatformModel.CreateApplicationRequest;
 };
 type GetApplicationsParam = {
     pageNo?: number;
@@ -115,27 +104,10 @@ type GetCompanyByBrandsParam = {
      * Default value is 10.
      */
     pageSize?: number;
-    body: ConfigurationPlatformModel.CompanyByBrandsRequestSchema;
-};
-type GetCurrencyExchangeRatesParam = {
-    /**
-     * - The 3-letter ISO 4217 code representing
-     * the base currency for the exchange rates. Defaults to "INR" if not specified.
-     */
-    currencyCode?: string;
-    /**
-     * - A 3-letter ISO 4217 currency code
-     * for which exchange rates against the base currency are requested.
-     */
-    exchangeCurrencyCode?: string;
-    /**
-     * - The country code for which
-     * exchange rates against the base currency are requested.
-     */
-    exchangeCountryCode?: string;
+    body: ConfigurationPlatformModel.CompanyByBrandsRequest;
 };
 type GetDomainAvailibilityParam = {
-    body: ConfigurationPlatformModel.DomainSuggestionsRequestSchema;
+    body: ConfigurationPlatformModel.DomainSuggestionsRequest;
 };
 type GetOtherSellerApplicationByIdParam = {
     /**
@@ -166,7 +138,7 @@ type GetStoreByBrandsParam = {
      * Default value is 10.
      */
     pageSize?: number;
-    body: ConfigurationPlatformModel.StoreByBrandsRequestSchema;
+    body: ConfigurationPlatformModel.StoreByBrandsRequest;
 };
 type OptOutFromApplicationParam = {
     /**

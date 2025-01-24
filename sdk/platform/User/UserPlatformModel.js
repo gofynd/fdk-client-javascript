@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 /**
- * @typedef SuccessMessage
+ * @typedef SuccessMessageResponse
  * @property {string} [success]
  */
 
@@ -26,7 +26,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAttributeDefinitionDetails
+ * @typedef UserAttributeDefinitionResponse
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The attribute name.
  * @property {string} [slug] - The attribute key.
@@ -54,20 +54,20 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserAttribute
+ * @typedef UserAttributeResponse
  * @property {string} [_id] - The unique identifier for the attribute definition.
  * @property {string} [name] - The name of user attribute definition.
  * @property {string} [user_id] - The unique identifier for the user.
  * @property {string} [application_id] - The application ID.
  * @property {string} [type] - The attribute type.
- * @property {boolean} [customer_overridden] - Whether the attribute is customer-editable.
+ * @property {boolean} [customer_overriden] - Whether the attribute is customer-editable.
  * @property {Object} [attribute]
  * @property {string} [updated_by]
  */
 
 /**
- * @typedef CreateUserAttribute
- * @property {boolean} [customer_overridden]
+ * @typedef CreateUserAttributeRequest
+ * @property {boolean} [customer_overriden]
  * @property {Object} [attribute]
  */
 
@@ -532,8 +532,8 @@ const Joi = require("joi");
  */
 
 class UserPlatformModel {
-  /** @returns {SuccessMessage} */
-  static SuccessMessage() {
+  /** @returns {SuccessMessageResponse} */
+  static SuccessMessageResponse() {
     return Joi.object({
       success: Joi.string().allow(""),
     });
@@ -561,8 +561,8 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserAttributeDefinitionDetails} */
-  static UserAttributeDefinitionDetails() {
+  /** @returns {UserAttributeDefinitionResponse} */
+  static UserAttributeDefinitionResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -594,25 +594,25 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserAttribute} */
-  static UserAttribute() {
+  /** @returns {UserAttributeResponse} */
+  static UserAttributeResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       application_id: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      customer_overridden: Joi.boolean(),
-      attribute: Joi.object().pattern(/\S/, Joi.any()),
+      customer_overriden: Joi.boolean(),
+      attribute: Joi.any(),
       updated_by: Joi.string().allow(""),
     });
   }
 
-  /** @returns {CreateUserAttribute} */
-  static CreateUserAttribute() {
+  /** @returns {CreateUserAttributeRequest} */
+  static CreateUserAttributeRequest() {
     return Joi.object({
-      customer_overridden: Joi.boolean(),
-      attribute: Joi.object().pattern(/\S/, Joi.any()),
+      customer_overriden: Joi.boolean(),
+      attribute: Joi.any(),
     });
   }
 
@@ -736,7 +736,7 @@ class UserPlatformModel {
       info: Joi.string().allow(""),
       request_id: Joi.string().allow(""),
       error: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       authenticated: Joi.boolean(),
     });
   }
@@ -828,7 +828,7 @@ class UserPlatformModel {
       last_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       username: Joi.string().allow("").required(),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
     });
@@ -1082,7 +1082,7 @@ class UserPlatformModel {
       gender: Joi.string().allow(""),
       external_id: Joi.string().allow(""),
       rr_id: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       phone_numbers: Joi.array().items(UserPlatformModel.UserPhoneNumbers()),
       emails: Joi.array().items(UserPlatformModel.UserEmails()),
     });
@@ -1115,7 +1115,7 @@ class UserPlatformModel {
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
@@ -1139,7 +1139,7 @@ class UserPlatformModel {
       application_id: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
-      meta: Joi.object().pattern(/\S/, Joi.any()),
+      meta: Joi.any(),
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),

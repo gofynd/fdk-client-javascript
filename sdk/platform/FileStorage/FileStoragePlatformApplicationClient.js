@@ -23,10 +23,10 @@ class FileStorage {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.FileUploadComplete>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name appCompleteUpload
-   * @summary: Application complete upload.
-   * @description: Finish uploading a file from an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
+   * @summary: Complete file upload for Application
+   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database on platform at application level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
    */
   async appCompleteUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -69,7 +69,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v2.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete`,
       query_params,
       body,
       requestHeaders,
@@ -83,7 +83,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.FileUploadComplete().validate(responseData, {
+    } = FileStoragePlatformModel.CompleteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -108,8 +108,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name appCopyFiles
-   * @summary: Application copy files.
-   * @description: Copy files from an application to another location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
+   * @summary: Copy files for Application
+   * @description: Handle multiple file uploads, updating progress and providing detailed status reports. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
    */
   async appCopyFiles(
     { body, sync, requestHeaders } = { requestHeaders: {} },
@@ -188,10 +188,10 @@ class FileStorage {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.FileUpload>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name appStartUpload
-   * @summary: Application start upload.
-   * @description: Start uploading a file from an application and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
+   * @summary: Initiates file upload for Application
+   * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response on platofrm at application level. Please refer group description for more details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
    */
   async appStartUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -234,7 +234,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v2.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start`,
       query_params,
       body,
       requestHeaders,
@@ -248,7 +248,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.FileUpload().validate(responseData, {
+    } = FileStoragePlatformModel.StartResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -273,8 +273,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name appbrowse
-   * @summary: Application browse files.
-   * @description: Browse files within an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
+   * @summary: Browse files for Application
+   * @description: View and navigate through available files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
    */
   async appbrowse(
     { namespace, page, limit, search, requestHeaders } = { requestHeaders: {} },
@@ -361,8 +361,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name browsefiles
-   * @summary: Browse Files
-   * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browsefiles/).
+   * @summary: Browse files for Application
+   * @description: View and navigate through available files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browsefiles/).
    */
   async browsefiles(
     { namespace, body, page, limit, search, requestHeaders } = {
@@ -448,248 +448,6 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.DeletePdfGeneratorConfigParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name deletePdfGeneratorConfig
-   * @summary: Delete a PDF generator configuration
-   * @description: Deletes a specific PDF generator configuration based on the provided id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfGeneratorConfig/).
-   */
-  async deletePdfGeneratorConfig(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.deletePdfGeneratorConfig().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.deletePdfGeneratorConfig().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > deletePdfGeneratorConfig \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > FileStorage > deletePdfGeneratorConfig \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {FileStoragePlatformApplicationValidator.FetchPdfDefaultTemplateByIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.PdfDefaultTemplateById>} -
-   *   Success response
-   * @name fetchPdfDefaultTemplateById
-   * @summary: get default html template for invoice or label
-   * @description: get default html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/fetchPdfDefaultTemplateById/).
-   */
-  async fetchPdfDefaultTemplateById(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.fetchPdfDefaultTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.fetchPdfDefaultTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > fetchPdfDefaultTemplateById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/default-template/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = FileStoragePlatformModel.PdfDefaultTemplateById().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > FileStorage > fetchPdfDefaultTemplateById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {FileStoragePlatformApplicationValidator.FetchPdfTypeByIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.PdfTypeByIdDetails>} - Success response
-   * @name fetchPdfTypeById
-   * @summary: Get the pdf types of by id
-   * @description: Get the pdf types of PDF formats for filter - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/fetchPdfTypeById/).
-   */
-  async fetchPdfTypeById(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.fetchPdfTypeById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.fetchPdfTypeById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > fetchPdfTypeById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/types/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = FileStoragePlatformModel.PdfTypeByIdDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > FileStorage > fetchPdfTypeById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {FileStoragePlatformApplicationValidator.GeneratePaymentReceiptParam} arg
    *   - Arg object
    *
@@ -697,7 +455,7 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name generatePaymentReceipt
-   * @summary: Generate payment receipt.
+   * @summary: Generate payment receipt
    * @description: Generate Payment Receipt for Jiomart Digital - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/generatePaymentReceipt/).
    */
   async generatePaymentReceipt(
@@ -769,25 +527,28 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.GetConfigHtmlTemplateByIdParam} arg
+   * @param {FileStoragePlatformApplicationValidator.GetDefaultHtmlTemplateParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getConfigHtmlTemplateById
-   * @summary: Update html template for invoice or label
-   * @description: Update html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getConfigHtmlTemplateById/).
+   * @returns {Promise<FileStoragePlatformModel.PdfConfigSuccess>} - Success response
+   * @name getDefaultHtmlTemplate
+   * @summary: Get html template for Application
+   * @description: Get the saved html template for provided sales channel
+   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultHtmlTemplate/).
    */
-  async getConfigHtmlTemplateById(
-    { id, requestHeaders } = { requestHeaders: {} },
+  async getDefaultHtmlTemplate(
+    { pdfTypeId, format, countryCode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = FileStoragePlatformApplicationValidator.getConfigHtmlTemplateById().validate(
+    } = FileStoragePlatformApplicationValidator.getDefaultHtmlTemplate().validate(
       {
-        id,
+        pdfTypeId,
+        format,
+        countryCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -798,25 +559,30 @@ class FileStorage {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = FileStoragePlatformApplicationValidator.getConfigHtmlTemplateById().validate(
+    } = FileStoragePlatformApplicationValidator.getDefaultHtmlTemplate().validate(
       {
-        id,
+        pdfTypeId,
+        format,
+        countryCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > getConfigHtmlTemplateById \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > FileStorage > getDefaultHtmlTemplate \n ${warrning}`,
       });
     }
 
     const query_params = {};
+    query_params["pdf_type_id"] = pdfTypeId;
+    query_params["format"] = format;
+    query_params["country_code"] = countryCode;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config/${id}`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config`,
       query_params,
       undefined,
       requestHeaders,
@@ -828,7 +594,9 @@ class FileStorage {
       responseData = response[0];
     }
 
-    const { error: res_error } = Joi.any().validate(responseData, {
+    const {
+      error: res_error,
+    } = FileStoragePlatformModel.PdfConfigSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -839,7 +607,7 @@ class FileStorage {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > FileStorage > getConfigHtmlTemplateById \n ${res_error}`,
+          message: `Response Validation Warnings for platform > FileStorage > getDefaultHtmlTemplate \n ${res_error}`,
         });
       }
     }
@@ -853,10 +621,11 @@ class FileStorage {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.PdfDataItemsDetails>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.DummyTemplateDataItems>} -
+   *   Success response
    * @name getDefaultPdfData
-   * @summary: Get default PDF data.
-   * @description: Retrieve default data for PDF generation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
+   * @summary: Get default PDF data
+   * @description: Retrieve default pdf payload data for invoice generation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
    */
   async getDefaultPdfData(
     { pdfTypeId, countryCode, requestHeaders } = { requestHeaders: {} },
@@ -913,10 +682,10 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.PdfDataItemsDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = FileStoragePlatformModel.DummyTemplateDataItems().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -941,8 +710,8 @@ class FileStorage {
    * @returns {Promise<FileStoragePlatformModel.PdfDefaultTemplateSuccess>} -
    *   Success response
    * @name getDefaultPdfTemplate
-   * @summary: Get default PDF template.
-   * @description: Retrieve the default PDF template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
+   * @summary: Get default PDF template
+   * @description: Retrieve to get the default Invoice template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
    */
   async getDefaultPdfTemplate(
     { pdfTypeId, format, countryCode, requestHeaders } = { requestHeaders: {} },
@@ -1022,192 +791,23 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.GetHtmlTemplateConfigParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.PdfConfigSuccess>} - Success response
-   * @name getHtmlTemplateConfig
-   * @summary: Get html template for sales channel
-   * @description: Get default html template for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getHtmlTemplateConfig/).
-   */
-  async getHtmlTemplateConfig(
-    { pdfTypeId, format, countryCode, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.getHtmlTemplateConfig().validate(
-      {
-        pdfTypeId,
-        format,
-        countryCode,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.getHtmlTemplateConfig().validate(
-      {
-        pdfTypeId,
-        format,
-        countryCode,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > getHtmlTemplateConfig \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["pdf_type_id"] = pdfTypeId;
-    query_params["format"] = format;
-    query_params["country_code"] = countryCode;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = FileStoragePlatformModel.PdfConfigSuccess().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > FileStorage > getHtmlTemplateConfig \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {FileStoragePlatformApplicationValidator.GetPdfPayloadByIdParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.MapperDetails>} - Success response
-   * @name getPdfPayloadById
-   * @summary: Get default PDF data.
-   * @description: Retrieve default data for PDF generation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfPayloadById/).
-   */
-  async getPdfPayloadById(
-    { id, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.getPdfPayloadById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.getPdfPayloadById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > getPdfPayloadById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/mapper/${id}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = FileStoragePlatformModel.MapperDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > FileStorage > getPdfPayloadById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {FileStoragePlatformApplicationValidator.GetPdfTypesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.InvoiceTypes>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.InvoiceTypesResponse>} -
+   *   Success response
    * @name getPdfTypes
-   * @summary: Get all the supported invoice pdf types
-   * @description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
+   * @summary: Get PDF types
+   * @description: Retrieve a list of available invoice types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
    */
   async getPdfTypes(
-    { storeOs, countryCode, requestHeaders } = { requestHeaders: {} },
+    { countryCode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
       {
-        storeOs,
         countryCode,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1221,7 +821,6 @@ class FileStorage {
       error: warrning,
     } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
       {
-        storeOs,
         countryCode,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1235,7 +834,6 @@ class FileStorage {
 
     const query_params = {};
     query_params["country_code"] = countryCode;
-    query_params["store_os"] = storeOs;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1254,7 +852,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.InvoiceTypes().validate(responseData, {
+    } = FileStoragePlatformModel.InvoiceTypesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -1282,8 +880,8 @@ class FileStorage {
    * @returns {Promise<FileStoragePlatformModel.PdfConfigSaveSuccess>} -
    *   Success response
    * @name saveHtmlTemplate
-   * @summary: Save HTML template.
-   * @description: Store an HTML template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/saveHtmlTemplate/).
+   * @summary: Save PDF template
+   * @description: Save html template for provided sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/saveHtmlTemplate/).
    */
   async saveHtmlTemplate(
     { body, requestHeaders } = { requestHeaders: {} },
