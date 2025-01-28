@@ -57,15 +57,20 @@ const CartPlatformModel = require("./CartPlatformModel");
 /**
  * @typedef DeleteCartParam
  * @property {string} [id] - The unique identifier of the cart.
+ * @property {string} [cartType] - The type of cart
  * @property {CartPlatformModel.DeleteCartRequest} body
+ */
+
+/**
+ * @typedef DeleteCartMetaConfigParam
+ * @property {string} cartMetaId - CartMeta mongo _id for fetching single cart
+ *   meta data for editing
  */
 
 /**
  * @typedef FetchAndvalidateCartItemsParam
  * @property {CartPlatformModel.OpenapiCartDetailsRequest} body
  */
-
-/** @typedef FetchCartMetaConfigParam */
 
 /**
  * @typedef GetAbandonedCartParam
@@ -127,9 +132,6 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef GetCartParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {string} [userId] - Option to fetch cart for the provided user_id.
- * @property {string} [orderType] - The order type of shipment HomeDelivery - If
- *   the customer wants the order home-delivered PickAtStore - If the customer
- *   wants the handover of an order at the store itself.
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
@@ -137,6 +139,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @property {number} [assignCardId] - Token of user's debit or credit card
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
@@ -145,6 +148,14 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @property {string} [toDate]
  * @property {string} [filterOn]
  */
+
+/**
+ * @typedef GetCartMetaConfigParam
+ * @property {string} cartMetaId - CartMeta mongo _id for fetching single cart
+ *   meta data for editing
+ */
+
+/** @typedef GetCartMetaConfigsParam */
 
 /**
  * @typedef GetCartShareLinkParam
@@ -168,6 +179,8 @@ const CartPlatformModel = require("./CartPlatformModel");
 
 /** @typedef GetCouponOptionValuesParam */
 
+/** @typedef GetCouponTagsParam */
+
 /**
  * @typedef GetCouponsParam
  * @property {number} [pageNo]
@@ -184,6 +197,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
@@ -207,22 +221,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @property {string} [code]
  */
 
-/**
- * @typedef GetPromotionOffersParam
- * @property {string} [slug] - A short, human-readable, URL-friendly identifier
- *   of a product. You can get slug value from the endpoint
- *   /service/application/catalog/v1.0/products/
- * @property {number} [pageSize] - Number of offers to be fetched to show
- * @property {string} [promotionGroup] - Type of promotion groups
- * @property {number} [storeId] - Store id
- * @property {string} [cartType] - The type of cart
- */
-
-/**
- * @typedef GetPromotionPaymentOffersParam
- * @property {string} [id] - Cart id
- * @property {number} [uid] - Cart uid
- */
+/** @typedef GetPromotionTagsParam */
 
 /**
  * @typedef GetPromotionsParam
@@ -270,16 +269,22 @@ const CartPlatformModel = require("./CartPlatformModel");
  *   the price breakup of cart items.
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
- * @property {string} [orderType] - The order type of shipment HomeDelivery - If
- *   the customer wants the order home-delivered PickAtStore - If the customer
- *   wants the handover of an order at the store itself.
  * @property {string} [id] - The unique identifier of the cart
+ * @property {string} [cartType] - The type of cart
  * @property {CartPlatformModel.PlatformAddCartRequest} body
+ */
+
+/**
+ * @typedef PlatformCheckoutCartParam
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {string} [cartType] - The type of cart
+ * @property {CartPlatformModel.PlatformCartCheckoutDetailRequest} body
  */
 
 /**
  * @typedef PlatformCheckoutCartV2Param
  * @property {string} [id] - The unique identifier of the cart
+ * @property {string} [cartType] - The type of cart
  * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Request} body
  */
 
@@ -295,6 +300,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  *   the price breakup of cart items.
  * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
  *   set/initialize buy now cart
+ * @property {string} [cartType] - The type of cart
  * @property {CartPlatformModel.PlatformUpdateCartRequest} body
  */
 
@@ -308,6 +314,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef RemoveCouponParam
  * @property {string} [uid]
  * @property {boolean} [buyNow]
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
@@ -361,6 +368,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef UpdateCartMetaParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [userId]
  * @property {CartPlatformModel.PlatformCartMetaRequest} body
  */
 
@@ -438,6 +446,11 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @property {string} [paymentIdentifier]
  * @property {string} [aggregatorName]
  * @property {string} [merchantCode]
+ * @property {string} [iin] - Debit/Credit card prefix (first 6 digit)
+ * @property {string} [network] - Credit/Debit card issuer, e.g. VISA, MASTERCARD, RUPAY
+ * @property {string} [type] - Card type, e.g. Credit, Debit
+ * @property {string} [cardId] - Saved card token reference id
+ * @property {string} [cartType] - Type of the cart
  */
 
 class CartPlatformApplicationValidator {
@@ -515,7 +528,15 @@ class CartPlatformApplicationValidator {
   static deleteCart() {
     return Joi.object({
       id: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
       body: CartPlatformModel.DeleteCartRequest().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteCartMetaConfigParam} */
+  static deleteCartMetaConfig() {
+    return Joi.object({
+      cartMetaId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -524,11 +545,6 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       body: CartPlatformModel.OpenapiCartDetailsRequest().required(),
     }).required();
-  }
-
-  /** @returns {FetchCartMetaConfigParam} */
-  static fetchCartMetaConfig() {
-    return Joi.object({}).required();
   }
 
   /** @returns {GetAbandonedCartParam} */
@@ -604,11 +620,11 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       userId: Joi.string().allow(""),
-      orderType: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
       assignCardId: Joi.number(),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
     }).required();
   }
 
@@ -619,6 +635,18 @@ class CartPlatformApplicationValidator {
       toDate: Joi.string().allow(""),
       filterOn: Joi.string().allow(""),
     }).required();
+  }
+
+  /** @returns {GetCartMetaConfigParam} */
+  static getCartMetaConfig() {
+    return Joi.object({
+      cartMetaId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetCartMetaConfigsParam} */
+  static getCartMetaConfigs() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetCartShareLinkParam} */
@@ -654,6 +682,11 @@ class CartPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetCouponTagsParam} */
+  static getCouponTags() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {GetCouponsParam} */
   static getCoupons() {
     return Joi.object({
@@ -673,6 +706,7 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
     }).required();
   }
 
@@ -705,23 +739,9 @@ class CartPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetPromotionOffersParam} */
-  static getPromotionOffers() {
-    return Joi.object({
-      slug: Joi.string().allow(""),
-      pageSize: Joi.number(),
-      promotionGroup: Joi.string().allow(""),
-      storeId: Joi.number(),
-      cartType: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {GetPromotionPaymentOffersParam} */
-  static getPromotionPaymentOffers() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      uid: Joi.number(),
-    }).required();
+  /** @returns {GetPromotionTagsParam} */
+  static getPromotionTags() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetPromotionsParam} */
@@ -772,9 +792,18 @@ class CartPlatformApplicationValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
-      orderType: Joi.string().allow(""),
       id: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
       body: CartPlatformModel.PlatformAddCartRequest().required(),
+    }).required();
+  }
+
+  /** @returns {PlatformCheckoutCartParam} */
+  static platformCheckoutCart() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
+      body: CartPlatformModel.PlatformCartCheckoutDetailRequest().required(),
     }).required();
   }
 
@@ -782,6 +811,7 @@ class CartPlatformApplicationValidator {
   static platformCheckoutCartV2() {
     return Joi.object({
       id: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
       body: CartPlatformModel.PlatformCartCheckoutDetailV2Request().required(),
     }).required();
   }
@@ -794,6 +824,7 @@ class CartPlatformApplicationValidator {
       orderType: Joi.string().allow(""),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
       body: CartPlatformModel.PlatformUpdateCartRequest().required(),
     }).required();
   }
@@ -811,6 +842,7 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       uid: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
     }).required();
   }
 
@@ -874,6 +906,7 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      userId: Joi.string().allow(""),
       body: CartPlatformModel.PlatformCartMetaRequest().required(),
     }).required();
   }
@@ -966,6 +999,11 @@ class CartPlatformApplicationValidator {
       paymentIdentifier: Joi.string().allow(""),
       aggregatorName: Joi.string().allow(""),
       merchantCode: Joi.string().allow(""),
+      iin: Joi.string().allow(""),
+      network: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      cardId: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
     }).required();
   }
 }

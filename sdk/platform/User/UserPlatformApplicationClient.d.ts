@@ -223,6 +223,16 @@ declare class User {
      */
     getUserGroups({ pageNo, pageSize, name, type, status, groupUid, requestHeaders }?: UserPlatformApplicationValidator.GetUserGroupsParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupListResponseSchema>;
     /**
+     * @param {UserPlatformApplicationValidator.GetUsersByByGroupIdParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
+     * @name getUsersByByGroupId
+     * @summary: Get users belonging to user group by Id
+     * @description: Use this API to users belonging to user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUsersByByGroupId/).
+     */
+    getUsersByByGroupId({ groupId, requestHeaders }?: UserPlatformApplicationValidator.GetUsersByByGroupIdParam, { responseHeaders }?: object): Promise<UserPlatformModel.CustomerListResponseSchema>;
+    /**
      * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

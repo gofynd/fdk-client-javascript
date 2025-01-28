@@ -3,6 +3,16 @@ declare class Webhook {
     constructor(config: any);
     config: any;
     /**
+     * @param {WebhookPartnerValidator.ResponseTimeSummaryParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.ResponseTimeTs>} - Success response
+     * @name responseTimeSummary
+     * @summary: Response time summary
+     * @description: Response time summary - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/responseTimeSummary/).
+     */
+    responseTimeSummary({ extensionId, startDate, endDate, requestHeaders }?: WebhookPartnerValidator.ResponseTimeSummaryParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.ResponseTimeTs>;
+    /**
      * @param {WebhookPartnerValidator.FetchDeliverySummaryParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options

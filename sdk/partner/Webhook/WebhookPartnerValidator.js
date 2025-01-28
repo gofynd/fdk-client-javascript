@@ -2,6 +2,14 @@ const Joi = require("joi");
 
 const WebhookModel = require("./WebhookPartnerModel");
 class WebhookValidator {
+  static responseTimeSummary() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      startDate: Joi.string().allow("").required(),
+      endDate: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static fetchDeliverySummary() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),

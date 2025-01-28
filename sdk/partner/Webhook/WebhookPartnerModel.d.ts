@@ -186,6 +186,7 @@ export = WebhookPartnerModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef DeliveryEventLevelSchema
@@ -195,6 +196,15 @@ export = WebhookPartnerModel;
  * @property {number} [failed_percentage]
  * @property {number} [removed_webhooks]
  * @property {number} [total]
+ * @property {number} [response_time]
+ */
+/**
+ * @typedef ResponseTimeTs
+ * @property {AvgResponseTime[]} [avg_response_time_ts]
+ */
+/**
+ * @typedef AvgResponseTime
+ * @property {string} [timestamp]
  * @property {number} [response_time]
  */
 /**
@@ -230,7 +240,7 @@ export = WebhookPartnerModel;
 declare class WebhookPartnerModel {
 }
 declare namespace WebhookPartnerModel {
-    export { UpdateSubscriberRequest, UpdateSubscriberResponse, Association, AuthMeta, SubscriberEventMapping, EventConfigResponse, SubscriberConfigResponse, InvalidEventsRequest, InvalidEventsResponse, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, HistoryPayload, CancelDownloadResponse, FilterReportResponse, DeliveryTsResponse, DeliveryTsSchema, DeliveryDetailsRequest, EventDeliveryDetailSchema, DeliveryDetailsResponse, EventProcessReportObject, Page, DeliveryEventLevelSchema, DeliverySummaryResponse, DeliverySummarySchema, ItemSchema };
+    export { UpdateSubscriberRequest, UpdateSubscriberResponse, Association, AuthMeta, SubscriberEventMapping, EventConfigResponse, SubscriberConfigResponse, InvalidEventsRequest, InvalidEventsResponse, HistoryFilters, Url, CdnObject, UploadServiceObject, HistoryAssociation, HistoryItems, HistoryResponse, HistoryPayload, CancelDownloadResponse, FilterReportResponse, DeliveryTsResponse, DeliveryTsSchema, DeliveryDetailsRequest, EventDeliveryDetailSchema, DeliveryDetailsResponse, EventProcessReportObject, Page, DeliveryEventLevelSchema, ResponseTimeTs, AvgResponseTime, DeliverySummaryResponse, DeliverySummarySchema, ItemSchema };
 }
 /** @returns {UpdateSubscriberRequest} */
 declare function UpdateSubscriberRequest(): UpdateSubscriberRequest;
@@ -544,6 +554,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - Total number of items.
+     */
+    total?: number;
 };
 /** @returns {DeliveryEventLevelSchema} */
 declare function DeliveryEventLevelSchema(): DeliveryEventLevelSchema;
@@ -554,6 +568,17 @@ type DeliveryEventLevelSchema = {
     failed_percentage?: number;
     removed_webhooks?: number;
     total?: number;
+    response_time?: number;
+};
+/** @returns {ResponseTimeTs} */
+declare function ResponseTimeTs(): ResponseTimeTs;
+type ResponseTimeTs = {
+    avg_response_time_ts?: AvgResponseTime[];
+};
+/** @returns {AvgResponseTime} */
+declare function AvgResponseTime(): AvgResponseTime;
+type AvgResponseTime = {
+    timestamp?: string;
     response_time?: number;
 };
 /** @returns {DeliverySummaryResponse} */

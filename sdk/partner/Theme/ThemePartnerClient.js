@@ -20,7 +20,7 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.AllAvailablePageSchema>} - Success response
    * @name getAllPages
-   * @summary: Get all pages
+   * @summary: Get all pages.
    * @description: Retrieve a list of all pages available in the partner server setup. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getAllPages/).
    */
   async getAllPages(
@@ -509,7 +509,7 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.ThemesSchema[]>} - Success response
    * @name getApplicationThemes
-   * @summary: Get application themes
+   * @summary: Get application themes.
    * @description: Retrieve a list of themes available for the partner server application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getApplicationThemes/).
    */
   async getApplicationThemes(
@@ -546,7 +546,7 @@ class Theme {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/theme/v2.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/themes`,
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/themes`,
       query_params,
       undefined,
       requestHeaders,
@@ -620,7 +620,7 @@ class Theme {
     const response = await PartnerAPIClient.execute(
       this.config,
       "get",
-      `/service/partner/theme/v2.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -704,7 +704,7 @@ class Theme {
     const response = await PartnerAPIClient.execute(
       this.config,
       "put",
-      `/service/partner/theme/v2.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
       query_params,
       body,
       requestHeaders,
@@ -743,7 +743,7 @@ class Theme {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
    * @name deleteTheme
-   * @summary: Delete theme
+   * @summary: Delete theme.
    * @description: Remove a theme from the partner server configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/deleteTheme/).
    */
   async deleteTheme(
@@ -781,7 +781,7 @@ class Theme {
     const response = await PartnerAPIClient.execute(
       this.config,
       "delete",
-      `/service/partner/theme/v2.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/${themeId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -1371,6 +1371,83 @@ class Theme {
   }
 
   /**
+   * @param {ThemePartnerValidator.GetThemeRejectionReasonsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.ThemeRejectionReasons>} - Success response
+   * @name getThemeRejectionReasons
+   * @summary: Get theme rejection reasons.
+   * @description: Retrieve reasons for the rejection of themes within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeRejectionReasons/).
+   */
+  async getThemeRejectionReasons(
+    { themeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemePartnerValidator.getThemeRejectionReasons().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePartnerValidator.getThemeRejectionReasons().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > getThemeRejectionReasons \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/theme/${themeId}/reasons`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.ThemeRejectionReasons().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > getThemeRejectionReasons \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ThemePartnerValidator.CreateExtensionSectionDraftParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
@@ -1445,6 +1522,88 @@ class Theme {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for partner > Theme > createExtensionSectionDraft \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePartnerValidator.GetExtensionbindingParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.ExtensionBinding>} - Success response
+   * @name getExtensionbinding
+   * @summary: Get extension binding
+   * @description: Get the details for extension binding. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getExtensionbinding/).
+   */
+  async getExtensionbinding(
+    { extensionId, bundleName, type, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemePartnerValidator.getExtensionbinding().validate(
+      {
+        extensionId,
+        bundleName,
+        type,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePartnerValidator.getExtensionbinding().validate(
+      {
+        extensionId,
+        bundleName,
+        type,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > getExtensionbinding \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["type"] = type;
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/extension-section/${extensionId}/${bundleName}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.ExtensionBinding().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > getExtensionbinding \n ${res_error}`,
         });
       }
     }
@@ -1691,83 +1850,6 @@ class Theme {
   }
 
   /**
-   * @param {ThemePartnerValidator.GetThemeRejectionReasonsParam} arg - Arg object.
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<ThemePartnerModel.ThemeRejectionReasons>} - Success response
-   * @name getThemeRejectionReasons
-   * @summary: Get theme rejection reasons
-   * @description: Retrieve reasons for the rejection of themes within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeRejectionReasons/).
-   */
-  async getThemeRejectionReasons(
-    { themeId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ThemePartnerValidator.getThemeRejectionReasons().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ThemePartnerValidator.getThemeRejectionReasons().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for partner > Theme > getThemeRejectionReasons \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PartnerAPIClient.execute(
-      this.config,
-      "get",
-      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/theme/${themeId}/reasons`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ThemePartnerModel.ThemeRejectionReasons().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for partner > Theme > getThemeRejectionReasons \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ThemePartnerValidator.GetThemeVersionsParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
@@ -1923,6 +2005,247 @@ class Theme {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for partner > Theme > createTheme \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePartnerValidator.GetOrgnaizationDefaultThemeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.MarketplaceTheme>} - Success response
+   * @name getOrgnaizationDefaultTheme
+   * @summary: Get organization default theme details.
+   * @description: Obtain detailed information about a theme within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getOrgnaizationDefaultTheme/).
+   */
+  async getOrgnaizationDefaultTheme(
+    { companyId, applicationId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePartnerValidator.getOrgnaizationDefaultTheme().validate(
+      {
+        companyId,
+        applicationId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePartnerValidator.getOrgnaizationDefaultTheme().validate(
+      {
+        companyId,
+        applicationId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > getOrgnaizationDefaultTheme \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/default_theme`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.MarketplaceTheme().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > getOrgnaizationDefaultTheme \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePartnerValidator.GetSystemPageParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.DefaultPageSchema>} - Success response
+   * @name getSystemPage
+   * @summary: Get system page.
+   * @description: Obtain detailed information about a system page within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getSystemPage/).
+   */
+  async getSystemPage(
+    { companyId, applicationId, pageValue, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemePartnerValidator.getSystemPage().validate(
+      {
+        companyId,
+        applicationId,
+        pageValue,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemePartnerValidator.getSystemPage().validate(
+      {
+        companyId,
+        applicationId,
+        pageValue,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > getSystemPage \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/page/${pageValue}/system`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.DefaultPageSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > getSystemPage \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePartnerValidator.GetAppliedThemeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
+   * @name getAppliedTheme
+   * @summary: Current theme.
+   * @description: Gets the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getAppliedTheme/).
+   */
+  async getAppliedTheme(
+    { companyId, applicationId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemePartnerValidator.getAppliedTheme().validate(
+      {
+        companyId,
+        applicationId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePartnerValidator.getAppliedTheme().validate(
+      {
+        companyId,
+        applicationId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > getAppliedTheme \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "get",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}/applied-theme`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.ThemesSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > getAppliedTheme \n ${res_error}`,
         });
       }
     }

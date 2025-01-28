@@ -54,7 +54,7 @@ export = CompanyProfilePlatformModel;
  * @typedef GetAddressSerializer
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {number} [pincode]
+ * @property {string} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -94,10 +94,11 @@ export = CompanyProfilePlatformModel;
  */
 /**
  * @typedef ErrorResponse
+ * @property {number} [code]
+ * @property {string} [error]
  * @property {string} [message]
- * @property {string} [code]
- * @property {number} [status]
  * @property {Object} [meta]
+ * @property {number} [status]
  */
 /**
  * @typedef CompanyTaxesSerializer1
@@ -109,7 +110,7 @@ export = CompanyProfilePlatformModel;
  * @typedef CreateUpdateAddressSerializer
  * @property {string} [landmark]
  * @property {string} [country_code]
- * @property {number} pincode
+ * @property {string} [pincode]
  * @property {string} address_type
  * @property {number} longitude
  * @property {string} country
@@ -139,6 +140,7 @@ export = CompanyProfilePlatformModel;
 /**
  * @typedef ProfileSuccessResponse
  * @property {number} [uid]
+ * @property {Object[]} [data]
  * @property {string} [message]
  * @property {boolean} [success]
  */
@@ -185,7 +187,7 @@ export = CompanyProfilePlatformModel;
  * @property {string} [description]
  */
 /**
- * @typedef CreateBrandRequestSerializer
+ * @typedef CreateUpdateBrandRequestSerializer
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
@@ -197,19 +199,6 @@ export = CompanyProfilePlatformModel;
  * @property {BrandBannerSerializer} banner
  * @property {string} name
  * @property {string} [slug_key]
- */
-/**
- * @typedef UpdateBrandRequestSerializer
- * @property {Object} [_custom_json]
- * @property {Object} [_locale_language]
- * @property {string[]} [synonyms]
- * @property {number} [company_id]
- * @property {string} [description]
- * @property {string} logo
- * @property {string} [brand_tier]
- * @property {number} [uid]
- * @property {BrandBannerSerializer} banner
- * @property {string} name
  */
 /**
  * @typedef CompanySocialAccounts
@@ -232,7 +221,7 @@ export = CompanyProfilePlatformModel;
  * @property {string} company_type
  * @property {string} [modified_on]
  * @property {string[]} [market_channels]
- * @property {string} business_type
+ * @property {string} [business_type]
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string[]} [notification_emails]
  * @property {CompanyDetails} [details]
@@ -266,6 +255,7 @@ export = CompanyProfilePlatformModel;
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 /**
  * @typedef CompanyBrandListSerializer
@@ -384,7 +374,7 @@ export = CompanyProfilePlatformModel;
  * @typedef AddressSerializer
  * @property {string} [landmark]
  * @property {string} country_code
- * @property {number} [pincode]
+ * @property {string} [pincode]
  * @property {string} [address_type]
  * @property {number} longitude
  * @property {string} [country]
@@ -444,7 +434,7 @@ export = CompanyProfilePlatformModel;
 declare class CompanyProfilePlatformModel {
 }
 declare namespace CompanyProfilePlatformModel {
-    export { CompanyTaxesSerializer, UserSerializer, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSerializer, GetCompanyProfileSerializerResponse, ErrorResponse, CompanyTaxesSerializer1, CreateUpdateAddressSerializer, UpdateCompany, ProfileSuccessResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, GetBrandResponseSerializer, CreateBrandRequestSerializer, UpdateBrandRequestSerializer, CompanySocialAccounts, CompanyDetails, CompanySerializer, CompanyBrandSerializer, Page, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, GetCompanySerializer, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, HolidayDateSerializer, HolidaySchemaSerializer, ProductReturnConfigSerializer, GetLocationSerializer, LocationListSerializer, AddressSerializer, LocationSerializer, BulkLocationSerializer, AverageOrderProcessingTime, StoreTagsResponseSchema };
+    export { CompanyTaxesSerializer, UserSerializer, Website, BusinessDetails, SellerPhoneNumber, ContactDetails, CountryCurrencyInfo, BusinessCountryInfo, Document, GetAddressSerializer, GetCompanyProfileSerializerResponse, ErrorResponse, CompanyTaxesSerializer1, CreateUpdateAddressSerializer, UpdateCompany, ProfileSuccessResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, GetBrandResponseSerializer, CreateUpdateBrandRequestSerializer, CompanySocialAccounts, CompanyDetails, CompanySerializer, CompanyBrandSerializer, Page, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, GetCompanySerializer, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, HolidayDateSerializer, HolidaySchemaSerializer, ProductReturnConfigSerializer, GetLocationSerializer, LocationListSerializer, AddressSerializer, LocationSerializer, BulkLocationSerializer, AverageOrderProcessingTime, StoreTagsResponseSchema };
 }
 /** @returns {CompanyTaxesSerializer} */
 declare function CompanyTaxesSerializer(): CompanyTaxesSerializer;
@@ -511,7 +501,7 @@ declare function GetAddressSerializer(): GetAddressSerializer;
 type GetAddressSerializer = {
     landmark?: string;
     country_code?: string;
-    pincode?: number;
+    pincode?: string;
     address_type?: string;
     longitude: number;
     country?: string;
@@ -553,10 +543,11 @@ type GetCompanyProfileSerializerResponse = {
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
+    code?: number;
+    error?: string;
     message?: string;
-    code?: string;
-    status?: number;
     meta?: any;
+    status?: number;
 };
 /** @returns {CompanyTaxesSerializer1} */
 declare function CompanyTaxesSerializer1(): CompanyTaxesSerializer1;
@@ -570,7 +561,7 @@ declare function CreateUpdateAddressSerializer(): CreateUpdateAddressSerializer;
 type CreateUpdateAddressSerializer = {
     landmark?: string;
     country_code?: string;
-    pincode: number;
+    pincode?: string;
     address_type: string;
     longitude: number;
     country: string;
@@ -602,6 +593,7 @@ type UpdateCompany = {
 declare function ProfileSuccessResponse(): ProfileSuccessResponse;
 type ProfileSuccessResponse = {
     uid?: number;
+    data?: any[];
     message?: string;
     success?: boolean;
 };
@@ -651,9 +643,9 @@ type GetBrandResponseSerializer = {
     logo?: string;
     description?: string;
 };
-/** @returns {CreateBrandRequestSerializer} */
-declare function CreateBrandRequestSerializer(): CreateBrandRequestSerializer;
-type CreateBrandRequestSerializer = {
+/** @returns {CreateUpdateBrandRequestSerializer} */
+declare function CreateUpdateBrandRequestSerializer(): CreateUpdateBrandRequestSerializer;
+type CreateUpdateBrandRequestSerializer = {
     _custom_json?: any;
     _locale_language?: any;
     synonyms?: string[];
@@ -665,20 +657,6 @@ type CreateBrandRequestSerializer = {
     banner: BrandBannerSerializer;
     name: string;
     slug_key?: string;
-};
-/** @returns {UpdateBrandRequestSerializer} */
-declare function UpdateBrandRequestSerializer(): UpdateBrandRequestSerializer;
-type UpdateBrandRequestSerializer = {
-    _custom_json?: any;
-    _locale_language?: any;
-    synonyms?: string[];
-    company_id?: number;
-    description?: string;
-    logo: string;
-    brand_tier?: string;
-    uid?: number;
-    banner: BrandBannerSerializer;
-    name: string;
 };
 /** @returns {CompanySocialAccounts} */
 declare function CompanySocialAccounts(): CompanySocialAccounts;
@@ -704,7 +682,7 @@ type CompanySerializer = {
     company_type: string;
     modified_on?: string;
     market_channels?: string[];
-    business_type: string;
+    business_type?: string;
     addresses?: GetAddressSerializer[];
     notification_emails?: string[];
     details?: CompanyDetails;
@@ -761,6 +739,10 @@ type Page = {
      * - The number of items per page.
      */
     size?: number;
+    /**
+     * - Total number of items.
+     */
+    total?: number;
 };
 /** @returns {CompanyBrandListSerializer} */
 declare function CompanyBrandListSerializer(): CompanyBrandListSerializer;
@@ -893,7 +875,7 @@ declare function AddressSerializer(): AddressSerializer;
 type AddressSerializer = {
     landmark?: string;
     country_code: string;
-    pincode?: number;
+    pincode?: string;
     address_type?: string;
     longitude: number;
     country?: string;

@@ -1,6 +1,46 @@
 const Joi = require("joi");
 
 /**
+ * @typedef SizeConstraints
+ * @property {number} [max] - Maximum allowed size (in bytes) for files in the namespace
+ */
+
+/**
+ * @typedef FetchProxyResponse
+ * @property {string} [id]
+ * @property {string} [created_at]
+ */
+
+/**
+ * @typedef FetchProxyRequest
+ * @property {number} [id]
+ * @property {string} [customer]
+ * @property {number} [quantity]
+ * @property {number} [price]
+ * @property {string} [url]
+ */
+
+/**
+ * @typedef ProxyResponse
+ * @property {Object} [data]
+ * @property {Object} [support]
+ */
+
+/**
+ * @typedef NamespaceDetails
+ * @property {string} [namespace] - The namespace identifier
+ * @property {string[]} [valid_content_types] - List of valid content types for
+ *   the namespace
+ * @property {SizeConstraints} [size]
+ * @property {string} [file_acl] - Access control level for files in the namespace
+ */
+
+/**
+ * @typedef AllNamespaceDetails
+ * @property {NamespaceDetails[]} [items]
+ */
+
+/**
  * @typedef CDN
  * @property {string} url
  * @property {string} absolute_url
@@ -23,7 +63,6 @@ const Joi = require("joi");
  * @property {string} operation
  * @property {number} size
  * @property {Upload} upload
- * @property {CDN} cdn
  * @property {string[]} [tags]
  */
 
@@ -65,6 +104,59 @@ const Joi = require("joi");
  */
 
 class FileStoragePartnerModel {
+  /** @returns {SizeConstraints} */
+  static SizeConstraints() {
+    return Joi.object({
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {FetchProxyResponse} */
+  static FetchProxyResponse() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FetchProxyRequest} */
+  static FetchProxyRequest() {
+    return Joi.object({
+      id: Joi.number(),
+      customer: Joi.string().allow(""),
+      quantity: Joi.number(),
+      price: Joi.number(),
+      url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProxyResponse} */
+  static ProxyResponse() {
+    return Joi.object({
+      data: Joi.object().pattern(/\S/, Joi.any()),
+      support: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
+  /** @returns {NamespaceDetails} */
+  static NamespaceDetails() {
+    return Joi.object({
+      namespace: Joi.string().allow(""),
+      valid_content_types: Joi.array()
+        .items(Joi.string().allow(""))
+        .allow(null, ""),
+      size: FileStoragePartnerModel.SizeConstraints(),
+      file_acl: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AllNamespaceDetails} */
+  static AllNamespaceDetails() {
+    return Joi.object({
+      items: Joi.array().items(FileStoragePartnerModel.NamespaceDetails()),
+    });
+  }
+
   /** @returns {CDN} */
   static CDN() {
     return Joi.object({
@@ -93,7 +185,6 @@ class FileStoragePartnerModel {
       operation: Joi.string().allow("").required(),
       size: Joi.number().required(),
       upload: FileStoragePartnerModel.Upload().required(),
-      cdn: FileStoragePartnerModel.CDN().required(),
       tags: Joi.array().items(Joi.string().allow("")),
     });
   }

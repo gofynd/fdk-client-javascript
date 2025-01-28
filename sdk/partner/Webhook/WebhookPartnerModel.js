@@ -212,6 +212,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 
 /**
@@ -222,6 +223,17 @@ const Joi = require("joi");
  * @property {number} [failed_percentage]
  * @property {number} [removed_webhooks]
  * @property {number} [total]
+ * @property {number} [response_time]
+ */
+
+/**
+ * @typedef ResponseTimeTs
+ * @property {AvgResponseTime[]} [avg_response_time_ts]
+ */
+
+/**
+ * @typedef AvgResponseTime
+ * @property {string} [timestamp]
  * @property {number} [response_time]
  */
 
@@ -518,6 +530,7 @@ class WebhookPartnerModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      total: Joi.number(),
     });
   }
 
@@ -530,6 +543,23 @@ class WebhookPartnerModel {
       failed_percentage: Joi.number(),
       removed_webhooks: Joi.number(),
       total: Joi.number(),
+      response_time: Joi.number(),
+    });
+  }
+
+  /** @returns {ResponseTimeTs} */
+  static ResponseTimeTs() {
+    return Joi.object({
+      avg_response_time_ts: Joi.array().items(
+        WebhookPartnerModel.AvgResponseTime()
+      ),
+    });
+  }
+
+  /** @returns {AvgResponseTime} */
+  static AvgResponseTime() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
       response_time: Joi.number(),
     });
   }

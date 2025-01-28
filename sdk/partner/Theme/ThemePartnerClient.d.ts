@@ -8,7 +8,7 @@ declare class Theme {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<ThemePartnerModel.AllAvailablePageSchema>} - Success response
      * @name getAllPages
-     * @summary: Get all pages
+     * @summary: Get all pages.
      * @description: Retrieve a list of all pages available in the partner server setup. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getAllPages/).
      */
     getAllPages({ companyId, applicationId, themeId, requestHeaders }?: ThemePartnerValidator.GetAllPagesParam, { responseHeaders }?: object): Promise<ThemePartnerModel.AllAvailablePageSchema>;
@@ -68,7 +68,7 @@ declare class Theme {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<ThemePartnerModel.ThemesSchema[]>} - Success response
      * @name getApplicationThemes
-     * @summary: Get application themes
+     * @summary: Get application themes.
      * @description: Retrieve a list of themes available for the partner server application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getApplicationThemes/).
      */
     getApplicationThemes({ companyId, applicationId, requestHeaders }?: ThemePartnerValidator.GetApplicationThemesParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemesSchema[]>;
@@ -98,7 +98,7 @@ declare class Theme {
      * @param {import("../PartnerAPIClient").Options} - Options
      * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
      * @name deleteTheme
-     * @summary: Delete theme
+     * @summary: Delete theme.
      * @description: Remove a theme from the partner server configurations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/deleteTheme/).
      */
     deleteTheme({ companyId, applicationId, themeId, requestHeaders }?: ThemePartnerValidator.DeleteThemeParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemesSchema>;
@@ -173,6 +173,16 @@ declare class Theme {
      */
     createNewThemeInOrganization({ body, slug, requestHeaders }?: ThemePartnerValidator.CreateNewThemeInOrganizationParam, { responseHeaders }?: object): Promise<ThemePartnerModel.MarketplaceTheme>;
     /**
+     * @param {ThemePartnerValidator.GetThemeRejectionReasonsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.ThemeRejectionReasons>} - Success response
+     * @name getThemeRejectionReasons
+     * @summary: Get theme rejection reasons.
+     * @description: Retrieve reasons for the rejection of themes within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeRejectionReasons/).
+     */
+    getThemeRejectionReasons({ themeId, requestHeaders }?: ThemePartnerValidator.GetThemeRejectionReasonsParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemeRejectionReasons>;
+    /**
      * @param {ThemePartnerValidator.CreateExtensionSectionDraftParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
@@ -183,6 +193,16 @@ declare class Theme {
      * @description: Create a new draft for an extension section within the specified organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createExtensionSectionDraft/).
      */
     createExtensionSectionDraft({ extensionId, body, requestHeaders }?: ThemePartnerValidator.CreateExtensionSectionDraftParam, { responseHeaders }?: object): Promise<ThemePartnerModel.DraftExtensionSectionResponse>;
+    /**
+     * @param {ThemePartnerValidator.GetExtensionbindingParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.ExtensionBinding>} - Success response
+     * @name getExtensionbinding
+     * @summary: Get extension binding
+     * @description: Get the details for extension binding. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getExtensionbinding/).
+     */
+    getExtensionbinding({ extensionId, bundleName, type, requestHeaders }?: ThemePartnerValidator.GetExtensionbindingParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionBinding>;
     /**
      * @param {ThemePartnerValidator.PublishExtensionSectionsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -215,16 +235,6 @@ declare class Theme {
      */
     removeExtensionPreview({ extensionSectionId, body, requestHeaders }?: ThemePartnerValidator.RemoveExtensionPreviewParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ExtensionPreviewResponse>;
     /**
-     * @param {ThemePartnerValidator.GetThemeRejectionReasonsParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<ThemePartnerModel.ThemeRejectionReasons>} - Success response
-     * @name getThemeRejectionReasons
-     * @summary: Get theme rejection reasons
-     * @description: Retrieve reasons for the rejection of themes within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeRejectionReasons/).
-     */
-    getThemeRejectionReasons({ themeId, requestHeaders }?: ThemePartnerValidator.GetThemeRejectionReasonsParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemeRejectionReasons>;
-    /**
      * @param {ThemePartnerValidator.GetThemeVersionsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PartnerAPIClient").Options} - Options
@@ -244,5 +254,35 @@ declare class Theme {
      * @description: Themes improve the look and appearance of a website. Use this API to create a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createTheme/).
      */
     createTheme({ companyId, applicationId, body, requestHeaders }?: ThemePartnerValidator.CreateThemeParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemesSchema>;
+    /**
+     * @param {ThemePartnerValidator.GetOrgnaizationDefaultThemeParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.MarketplaceTheme>} - Success response
+     * @name getOrgnaizationDefaultTheme
+     * @summary: Get organization default theme details.
+     * @description: Obtain detailed information about a theme within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getOrgnaizationDefaultTheme/).
+     */
+    getOrgnaizationDefaultTheme({ companyId, applicationId, requestHeaders }?: ThemePartnerValidator.GetOrgnaizationDefaultThemeParam, { responseHeaders }?: object): Promise<ThemePartnerModel.MarketplaceTheme>;
+    /**
+     * @param {ThemePartnerValidator.GetSystemPageParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.DefaultPageSchema>} - Success response
+     * @name getSystemPage
+     * @summary: Get system page.
+     * @description: Obtain detailed information about a system page within partner server organizations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getSystemPage/).
+     */
+    getSystemPage({ companyId, applicationId, pageValue, requestHeaders }?: ThemePartnerValidator.GetSystemPageParam, { responseHeaders }?: object): Promise<ThemePartnerModel.DefaultPageSchema>;
+    /**
+     * @param {ThemePartnerValidator.GetAppliedThemeParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
+     * @name getAppliedTheme
+     * @summary: Current theme.
+     * @description: Gets the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getAppliedTheme/).
+     */
+    getAppliedTheme({ companyId, applicationId, requestHeaders }?: ThemePartnerValidator.GetAppliedThemeParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemesSchema>;
 }
 import ThemePartnerModel = require("./ThemePartnerModel");

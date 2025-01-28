@@ -12,7 +12,7 @@ class Lead {
     this._conf = _conf;
     this._relativeUrls = {
       createHistory: "/service/application/lead/v1.0/ticket/{id}/history",
-      createTicket: "/service/application/lead/v1.0/ticket/",
+      createTicket: "/service/application/lead/v1.0/ticket",
       getCustomForm: "/service/application/lead/v1.0/form/{slug}",
       getTicket: "/service/application/lead/v1.0/ticket/{id}",
       submitCustomForm: "/service/application/lead/v1.0/form/{slug}/submit",
@@ -38,7 +38,7 @@ class Lead {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<TicketHistory>} - Success response
    * @name createHistory
-   * @summary: Log ticket history
+   * @summary: Logs ticket history.
    * @description: Create a history entry for a specific support ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
    */
   async createHistory(

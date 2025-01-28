@@ -132,6 +132,28 @@ declare class Theme {
      */
     getFonts({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemePlatformModel.FontsSchema>;
     /**
+     * @param {ThemePlatformApplicationValidator.GetFontsV2Param} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
+     * @name getFontsV2
+     * @summary: List theme fonts
+     * @description: Retrieve a list of available fonts that can be used by themes in the platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getFontsV2/).
+     */
+    getFontsV2({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ThemePlatformModel.FontsSchema>;
+    /**
+     * @param {ThemePlatformApplicationValidator.GetLatestVersionOfThemeBySlugParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ThemePlatformModel.MarketplaceTheme[]>} - Success response
+     * @name getLatestVersionOfThemeBySlug
+     * @summary: Get latest version of theme by slug.
+     * @description: Retrieve the most recent version of a theme using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getLatestVersionOfThemeBySlug/).
+     */
+    getLatestVersionOfThemeBySlug({ slugName, requestHeaders }?: ThemePlatformApplicationValidator.GetLatestVersionOfThemeBySlugParam, { responseHeaders }?: object): Promise<ThemePlatformModel.MarketplaceTheme[]>;
+    /**
      * @param {ThemePlatformApplicationValidator.GetPageParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -180,7 +202,7 @@ declare class Theme {
      * @returns {Promise<ThemePlatformModel.ThemeUpgradableResponse>} - Success response
      * @name isUpgradable
      * @summary: Check theme is upgradable
-     * @description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
+     * @description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
      */
     isUpgradable({ themeId, requestHeaders }?: ThemePlatformApplicationValidator.IsUpgradableParam, { responseHeaders }?: object): Promise<ThemePlatformModel.ThemeUpgradableResponse>;
     /**

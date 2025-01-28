@@ -676,7 +676,7 @@ class Logistics {
    *   - Success response
    *
    * @name getCourierPartnerAccounts
-   * @summary: Getting Courier Account list of a company
+   * @summary: Getting Courier Account list of a company.
    * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
@@ -687,6 +687,7 @@ class Logistics {
       stage,
       paymentMode,
       transportType,
+      accountIds,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -701,6 +702,7 @@ class Logistics {
         stage,
         paymentMode,
         transportType,
+        accountIds,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -719,6 +721,7 @@ class Logistics {
         stage,
         paymentMode,
         transportType,
+        accountIds,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -735,6 +738,7 @@ class Logistics {
     query_params["stage"] = stage;
     query_params["payment_mode"] = paymentMode;
     query_params["transport_type"] = transportType;
+    query_params["account_ids"] = accountIds;
 
     const response = await PartnerAPIClient.execute(
       this.config,
@@ -778,9 +782,9 @@ class Logistics {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PartnerAPIClient").Options} - Options
-   * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
+   * @returns {Promise<LogisticsPartnerModel.CourierAccount>} - Success response
    * @name updateCourierPartnerAccount
-   * @summary: Update Courier Account in database
+   * @summary: Update Courier Account in database.
    * @description: Updates Courier Account - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/updateCourierPartnerAccount/).
    */
   async updateCourierPartnerAccount(
@@ -838,7 +842,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsPartnerModel.CourierAccountResponse().validate(responseData, {
+    } = LogisticsPartnerModel.CourierAccount().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -863,7 +867,7 @@ class Logistics {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<LogisticsPartnerModel.CourierAccountResponse>} - Success response
    * @name getCourierPartnerAccount
-   * @summary: Getting Courier Account of a company from database
+   * @summary: Getting Courier Account of a company from database.
    * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCourierPartnerAccount/).
    */
   async getCourierPartnerAccount(
@@ -986,7 +990,7 @@ class Logistics {
     const response = await PartnerAPIClient.execute(
       this.config,
       "post",
-      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/scheme/`,
+      `/service/partner/logistics/v1.0/organization/${this.config.organizationId}/courier-partner/scheme`,
       query_params,
       body,
       requestHeaders,
@@ -1109,21 +1113,22 @@ class Logistics {
    * @param {import("../PartnerAPIClient").Options} - Options
    * @returns {Promise<LogisticsPartnerModel.GetCountries>} - Success response
    * @name getCountries
-   * @summary: Get all countries and associated data
-   * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
+   * @summary: Get all countries and associated data.
+   * @description: Retrieve a list of countries for logistical purposes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/logistics/getCountries/).
    */
   async getCountries(
-    { onboarding, pageNo, pageSize, q, requestHeaders } = {
+    { onboard, pageNo, pageSize, q, hierarchy, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = LogisticsPartnerValidator.getCountries().validate(
       {
-        onboarding,
+        onboard,
         pageNo,
         pageSize,
         q,
+        hierarchy,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1136,10 +1141,11 @@ class Logistics {
       error: warrning,
     } = LogisticsPartnerValidator.getCountries().validate(
       {
-        onboarding,
+        onboard,
         pageNo,
         pageSize,
         q,
+        hierarchy,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1151,10 +1157,11 @@ class Logistics {
     }
 
     const query_params = {};
-    query_params["onboarding"] = onboarding;
+    query_params["onboard"] = onboard;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
+    query_params["hierarchy"] = hierarchy;
 
     const response = await PartnerAPIClient.execute(
       this.config,

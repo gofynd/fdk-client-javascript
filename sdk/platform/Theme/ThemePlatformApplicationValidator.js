@@ -4,7 +4,7 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
  * @typedef AddThemeToApplicationParam
- * @property {ThemePlatformModel.ThemeReq} body
+ * @property {ThemePlatformModel.ThemesSchema} body
  */
 
 /**
@@ -53,6 +53,13 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /** @typedef GetFontsParam */
 
+/** @typedef GetFontsV2Param */
+
+/**
+ * @typedef GetLatestVersionOfThemeBySlugParam
+ * @property {string} slugName - Slug of theme
+ */
+
 /**
  * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
@@ -95,7 +102,7 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 /**
  * @typedef UpdateThemeParam
  * @property {string} themeId - The ID of the theme.
- * @property {ThemePlatformModel.UpdateThemeRequestBody} body
+ * @property {ThemePlatformModel.ThemesSchema} body
  */
 
 /**
@@ -113,7 +120,7 @@ class ThemePlatformApplicationValidator {
   /** @returns {AddThemeToApplicationParam} */
   static addThemeToApplication() {
     return Joi.object({
-      body: ThemePlatformModel.ThemeReq().required(),
+      body: ThemePlatformModel.ThemesSchema().required(),
     }).required();
   }
 
@@ -189,6 +196,18 @@ class ThemePlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetFontsV2Param} */
+  static getFontsV2() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetLatestVersionOfThemeBySlugParam} */
+  static getLatestVersionOfThemeBySlug() {
+    return Joi.object({
+      slugName: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetPageParam} */
   static getPage() {
     return Joi.object({
@@ -246,7 +265,7 @@ class ThemePlatformApplicationValidator {
   static updateTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
-      body: ThemePlatformModel.UpdateThemeRequestBody().required(),
+      body: ThemePlatformModel.ThemesSchema().required(),
     }).required();
   }
 

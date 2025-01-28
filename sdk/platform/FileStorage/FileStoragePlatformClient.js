@@ -22,7 +22,7 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name browse
-   * @summary: Browse files
+   * @summary: Browse files.
    * @description: View and navigate through available files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browse/).
    */
   async browse(
@@ -105,8 +105,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name completeUpload
-   * @summary: Complete file upload
-   * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database at platform level - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/completeUpload/).
+   * @summary: Complete file upload.
+   * @description: Starts the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/completeUpload/).
    */
   async completeUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -149,7 +149,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete`,
+      `/service/platform/assets/v2.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -188,8 +188,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name copyFiles
-   * @summary: Copy files
-   * @description: Handle multiple file uploads, updating progress and providing detailed status reports. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
+   * @summary: Copy files.
+   * @description: Duplicate files to another location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
    */
   async copyFiles(
     { body, sync, requestHeaders } = { requestHeaders: {} },
@@ -268,8 +268,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.SignUrlResponse>} - Success response
    * @name getSignUrls
-   * @summary: Get signed URLs
-   * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored resources inside private bucket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getSignUrls/).
+   * @summary: Get signed URLs.
+   * @description: Retrieve signed URLs for file access. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getSignUrls/).
    */
   async getSignUrls(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -347,8 +347,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.ProxyResponse>} - Success response
    * @name proxy
-   * @summary: Access files through a proxy
-   * @description: It enables the communication between two entities by directing client requests to the correct server and sending responses back to the client. Please refer group description for more details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
+   * @summary: Proxy file access.
+   * @description: Access files through a proxy. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
    */
   async proxy(
     { url, requestHeaders } = { requestHeaders: {} },
@@ -425,8 +425,8 @@ class FileStorage {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name startUpload
-   * @summary: Start file upload
-   * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response at platform level. Please refer group description for more details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/startUpload/).
+   * @summary: Start file upload.
+   * @description: Inititates the process of uploading a file to storage location, and returns a storage link in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/startUpload/).
    */
   async startUpload(
     { namespace, body, requestHeaders } = { requestHeaders: {} },
@@ -469,7 +469,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start`,
+      `/service/platform/assets/v2.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },

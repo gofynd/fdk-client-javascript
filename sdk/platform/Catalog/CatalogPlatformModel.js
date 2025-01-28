@@ -1,6 +1,357 @@
 const Joi = require("joi");
 
 /**
+ * @typedef StoreTagsResponseSchema
+ * @property {string[]} [tags]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef DiscountMeta
+ * @property {string} [start]
+ * @property {string} [end]
+ * @property {boolean} [timer]
+ */
+
+/**
+ * @typedef ProductMinMaxPrice
+ * @property {number} [min]
+ * @property {number} [max]
+ */
+
+/**
+ * @typedef ProductPrice
+ * @property {ProductMinMaxPrice} [selling]
+ * @property {ProductMinMaxPrice} [effective]
+ * @property {ProductMinMaxPrice} [marked]
+ * @property {string} [currency]
+ */
+
+/**
+ * @typedef ProductPricesPage
+ * @property {string} [type]
+ * @property {number} [current]
+ * @property {number} [size]
+ * @property {number} [item_total]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ */
+
+/**
+ * @typedef ProductPriceItem
+ * @property {DiscountMeta} [discount_meta]
+ * @property {string} [product_name]
+ * @property {number} [item_id]
+ * @property {string} [factory_type_id]
+ * @property {ProductPrice} [price]
+ * @property {number} [store_id]
+ * @property {boolean} [is_sellable]
+ * @property {number} [seller_id]
+ * @property {string[]} [delivery_zone_ids]
+ * @property {string[]} [sizes]
+ */
+
+/**
+ * @typedef ProductPrices
+ * @property {ProductPriceItem[]} [data]
+ * @property {ProductPricesPage} [page]
+ */
+
+/**
+ * @typedef ProductFiltersKeysOnly
+ * @property {ProductFiltersKey} key
+ */
+
+/**
+ * @typedef GetQueryFiltersKeysResponse
+ * @property {ProductFiltersKeysOnly[]} [filters]
+ * @property {Object} [operators]
+ * @property {ProductSortOn[]} [sort_on]
+ */
+
+/**
+ * @typedef GetQueryFiltersValuesResponse
+ * @property {ProductFiltersValue[]} values
+ * @property {Page} page
+ */
+
+/**
+ * @typedef GTINSchema
+ * @property {string} gtin_type
+ * @property {string} gtin_value
+ * @property {boolean} [primary]
+ */
+
+/**
+ * @typedef SetSizeSchema
+ * @property {string} size
+ * @property {number} pieces
+ */
+
+/**
+ * @typedef SizeDistributionSchema
+ * @property {SetSizeSchema[]} [size]
+ */
+
+/**
+ * @typedef InventorySetSchema
+ * @property {number} [quantity]
+ * @property {SizeDistributionSchema} [size_distribution]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef InvSizeSchema
+ * @property {number} [item_height]
+ * @property {number} [item_width]
+ * @property {number} [item_length]
+ * @property {string} [item_dimensions_unit_of_measure]
+ * @property {number} [item_weight]
+ * @property {string} [item_weight_unit_of_measure]
+ * @property {string} currency
+ * @property {number} quantity
+ * @property {string} store_code
+ * @property {GTINSchema[]} identifiers
+ * @property {string} size
+ * @property {number} [price]
+ * @property {number} price_effective
+ * @property {number} [price_transfer]
+ * @property {string} [expiration_date]
+ * @property {boolean} [is_set]
+ * @property {InventorySetSchema} [set]
+ */
+
+/**
+ * @typedef InventoryRequestSchema
+ * @property {number} company_id
+ * @property {InvSizeSchema[]} sizes
+ * @property {ItemQuerySchema} item
+ */
+
+/**
+ * @typedef ItemQuerySchema
+ * @property {number} [uid]
+ * @property {string} [item_code]
+ * @property {number} [brand_uid]
+ */
+
+/**
+ * @typedef SuccessResponseSchema
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef CompanyDRIListResponseSchema
+ * @property {CompanyDRIResponseSchema[]} [items] - List of Company DRIs.
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CompanyDRIResponseSchema
+ * @property {string[]} [tags] - List of tags associated with the Company DRI.
+ * @property {string[]} [responsibilities] - List of responsibilities of the Company DRI.
+ * @property {string[]} [responsibilities_display_name] - List of display names
+ *   for responsibilities.
+ * @property {number} [uid] - Unique identifier for the Company DRI.
+ * @property {number} [company_id] - ID of the associated company.
+ * @property {boolean} [status] - Status of the Company DRI (active or inactive).
+ * @property {Object} [contact] - Contact information for the Company DRI.
+ * @property {Object} [contact_details] - Detailed contact information for the
+ *   Company DRI.
+ */
+
+/**
+ * @typedef SearchResponseSchema
+ * @property {string} [_id]
+ * @property {MerchandisingQuery} [query]
+ * @property {boolean} [is_active]
+ * @property {string} [merchandising_rule_id]
+ * @property {string} [rule_name]
+ * @property {string} [application_id]
+ * @property {string} [status]
+ * @property {string} [zone_id]
+ * @property {Object} [_schedule]
+ */
+
+/**
+ * @typedef MerchandisingQuery
+ * @property {string} [query_condition]
+ * @property {MerchandisingSearchQuery} [query]
+ * @property {MerchandisingFilter[]} [filter]
+ */
+
+/**
+ * @typedef MerchandisingSearchQuery
+ * @property {string} [condition]
+ * @property {string} [search_query]
+ * @property {string} [synonyms]
+ */
+
+/**
+ * @typedef MerchandisingFilter
+ * @property {string} [attribute]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef MerchandisingRuleQuery
+ * @property {string} condition
+ * @property {string} search_query
+ * @property {boolean} synonyms
+ */
+
+/**
+ * @typedef MerchandisingRulesList
+ * @property {MerchDataItem[]} [data]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef MerchDataItem
+ * @property {MerchSearchQuery} [query]
+ * @property {string[]} [action]
+ * @property {boolean} [is_active]
+ * @property {string} [merchandising_rule_id]
+ * @property {string} [rule_name]
+ * @property {string} [status]
+ * @property {string} [zone_id]
+ * @property {string} [application_id]
+ */
+
+/**
+ * @typedef MerchSearchQuery
+ * @property {string} [query_condition]
+ * @property {MerchQueryCondition} [query]
+ * @property {MerchFilter[]} [filter]
+ */
+
+/**
+ * @typedef MerchQueryCondition
+ * @property {string} [condition]
+ * @property {string} [search_query]
+ * @property {string} [synonyms]
+ */
+
+/**
+ * @typedef MerchFilter
+ * @property {string} [attribute]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef SuccessResponseMerchandising
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef MerchandiseQueryResponse
+ * @property {string} [message]
+ * @property {string} [merchandising_rule_id]
+ */
+
+/**
+ * @typedef Filter
+ * @property {string} [attribute]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef MerchandisingRuleQueryPart
+ * @property {Filter[]} [filter]
+ * @property {string} [query_condition]
+ * @property {Object} [query]
+ */
+
+/**
+ * @typedef MerchandisingRuleQueryPost
+ * @property {MerchandisingRuleQueryPart} [query]
+ * @property {string} [zone_id]
+ */
+
+/**
+ * @typedef MerchandisingRuleSave
+ * @property {string} rule_name
+ * @property {CollectionSchedule} _schedule
+ * @property {boolean} is_active
+ */
+
+/**
+ * @typedef PinItem
+ * @property {string} name
+ * @property {number} uid
+ * @property {number} position
+ */
+
+/**
+ * @typedef PinItemRequest
+ * @property {string} action
+ * @property {string} item_id
+ * @property {number} position
+ */
+
+/**
+ * @typedef PinRequest
+ * @property {PinItemRequest[]} [action_value]
+ */
+
+/**
+ * @typedef PinResponse
+ * @property {PinItem[]} [data]
+ */
+
+/**
+ * @typedef HideAttribute
+ * @property {string} name
+ * @property {number} uid
+ */
+
+/**
+ * @typedef HideAttributeRequest
+ * @property {string} [action]
+ * @property {number} [item_id]
+ */
+
+/**
+ * @typedef HideResponse
+ * @property {HideAttribute[]} [data]
+ */
+
+/**
+ * @typedef HideRequest
+ * @property {HideAttributeRequest[]} [action_value]
+ */
+
+/**
+ * @typedef PostBoostAttribute
+ * @property {string} attribute
+ * @property {string} value
+ * @property {number} strength
+ * @property {string} action
+ */
+
+/**
+ * @typedef BoostAttribute
+ * @property {string} attribute
+ * @property {string} value
+ * @property {number} strength
+ */
+
+/**
+ * @typedef GetMerchandisingRuleBoostAction
+ * @property {BoostAttribute[]} [data]
+ */
+
+/**
+ * @typedef PostMerchandisingRuleBoostAction
+ * @property {PostBoostAttribute[]} [action_value]
+ */
+
+/**
+ * @typedef GetMerchandisingRuleBuryAction
+ * @property {BoostAttribute[]} [data]
+ */
+
+/**
  * @typedef Action
  * @property {string} [type] - Type of action to be taken e.g, page.
  * @property {ActionPage} [page]
@@ -29,11 +380,11 @@ const Joi = require("joi");
  * @property {string} app_id
  * @property {string} [config_id]
  * @property {string} config_type
- * @property {Object} [created_by]
+ * @property {Object} [created_by] - The user who created the configuration.
  * @property {string} [created_on]
  * @property {string} [id]
  * @property {ConfigurationListing} [listing]
- * @property {Object} [modified_by]
+ * @property {Object} [modified_by] - The user who modified the configuration.
  * @property {string} [modified_on]
  * @property {ConfigurationProduct} [product]
  * @property {string} [type]
@@ -42,8 +393,7 @@ const Joi = require("joi");
 /**
  * @typedef AppCategoryReturnConfig
  * @property {number} category_id - Unique identifier for L3 category
- * @property {ProductReturnConfigBaseSerializer} return_config - Return
- *   configuration details
+ * @property {Object} return_config - Return configuration details
  */
 
 /**
@@ -70,8 +420,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AppConfigurationDetail
- * @property {string} app_id
+ * @typedef AppConfigurationCreateDetail
+ * @property {string} [app_id]
  * @property {AttributeDetailsGroup[]} [attributes]
  * @property {boolean} is_active
  * @property {boolean} is_default
@@ -83,9 +433,36 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef AppConfigurationDetail
+ * @property {string} [id]
+ * @property {string} [app_id]
+ * @property {AttributeDetailsGroup[]} [attributes]
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {number} priority
+ * @property {string} slug
+ * @property {string[]} [template_slugs]
+ */
+
+/**
+ * @typedef AppConfigurationsResponse
+ * @property {string} [id]
+ * @property {string} [app_id]
+ * @property {string} [default_key]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_default]
+ * @property {string} [key]
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {number} [priority]
+ */
+
+/**
  * @typedef AppConfigurationsSort
  * @property {string} app_id
- * @property {string} default_key
+ * @property {string} [default_key]
  * @property {boolean} is_active
  * @property {boolean} is_default
  * @property {string} key
@@ -95,16 +472,53 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ValueConfigType
+ * @property {Object[]} [bucket_points]
+ * @property {Object} [map]
+ * @property {string} [sort]
+ * @property {string} [condition]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef AppConfigurationsFilter
+ * @property {string} app_id
+ * @property {boolean} [allow_single]
+ * @property {string} [attribute_name]
+ * @property {ValueConfigType} [value_config]
+ * @property {string} [type]
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ * @property {string} key
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {number} priority
+ */
+
+/**
+ * @typedef AppConfigurationsFilterResponse
+ * @property {string} [id]
+ * @property {string} [app_id]
+ * @property {boolean} [allow_single]
+ * @property {string} [attribute_name]
+ * @property {ValueConfigType} [value_config]
+ * @property {string} [type]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_default]
+ * @property {string} [key]
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {number} [priority]
+ */
+
+/**
  * @typedef ApplicationBrandJson
- * @property {Object} _custom_json - A custom JSON object containing additional
- *   brand-specific configurations or data. The structure is flexible and may
- *   vary based on application needs.
+ * @property {Object} _custom_json
  */
 
 /**
  * @typedef ApplicationCategoryJson
- * @property {Object} _custom_json - A custom JSON object containing additional
- *   details or configurations specific to the application category.
+ * @property {Object} _custom_json
  */
 
 /**
@@ -144,11 +558,10 @@ const Joi = require("joi");
  * @property {boolean} [is_cod] - Whether the item is available for Cash on
  *   Delivery (COD) or not
  * @property {boolean} [is_gift] - Whether the item is a gift or not
- * @property {ApplicationItemMOQ} [moq] - Minimum Order Quantity information for the item
- * @property {ApplicationItemSEO} [seo] - Search Engine Optimization information
- *   for the item
- * @property {SizePromotionThreshold} [size_promotion_threshold] - Size level
- *   promotion limitation information for item
+ * @property {Object} [moq] - Minimum Order Quantity information for the item
+ * @property {Object} [seo] - Search Engine Optimization information for the item
+ * @property {Object} [size_promotion_threshold] - Size level promotion
+ *   limitation information for item
  */
 
 /**
@@ -171,9 +584,19 @@ const Joi = require("joi");
  * @typedef ApplicationProductListingResponse
  * @property {ProductFilters[]} [filters]
  * @property {ProductListingDetail[]} [items]
- * @property {Object} [operators]
+ * @property {OperatorsResponse} [operators]
  * @property {Page} page
  * @property {ProductSortOn[]} [sort_on]
+ */
+
+/**
+ * @typedef OperatorsResponse
+ * @property {string} [btw]
+ * @property {string} [lte]
+ * @property {string} [gte]
+ * @property {string} [gt]
+ * @property {string} [lt]
+ * @property {string} [nin]
  */
 
 /**
@@ -183,12 +606,12 @@ const Joi = require("joi");
 
 /**
  * @typedef AppReturnConfigResponse
+ * @property {Object} [created_by]
+ * @property {Object} [modified_by]
  * @property {string} [app_id] - Channel identifier
  * @property {number} [category_count] - Count of L3 category return config set
  *   for application
  * @property {number} [company_id] - Unique identifer of company
- * @property {Object} [created_by] - User details
- * @property {Object} [modified_by] - User details
  * @property {string} [modified_on] - Modification date
  * @property {string} [return_config_level] - Configuration level of return
  *   window category|product|no-return
@@ -347,12 +770,9 @@ const Joi = require("joi");
 
 /**
  * @typedef BannerImage
- * @property {string} [aspect_ratio] - The aspect ratio of the banner image,
- *   typically represented as a ratio (e.g., '16:9' or '4:3').
- * @property {string} [type] - The type of media, such as 'image' or 'banner',
- *   indicating the format of the banner.
- * @property {string} [url] - The URL where the banner image is located,
- *   typically a web address pointing to the image resource.
+ * @property {string} [aspect_ratio]
+ * @property {string} [type]
+ * @property {string} [url]
  */
 
 /**
@@ -365,7 +785,7 @@ const Joi = require("joi");
 /**
  * @typedef BaseAppCategoryReturnConfigResponse
  * @property {AppCategoryReturnConfigResponse[]} [data]
- * @property {PageResponse} [page]
+ * @property {PageResponse1} [page]
  */
 
 /**
@@ -376,53 +796,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BrandLogo
+ * @property {string} [url]
+ * @property {string} [type]
+ */
+
+/**
  * @typedef BrandItem
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {string[]} [departments] - An array of department names or
- *   categories that the brand belongs to, represented as strings.
- * @property {string} [discount] - A string representing the discount offered by
- *   the brand, such as percentage or amount off.
- * @property {BrandMedia} [logo]
- * @property {string} [name] - The name of the brand.
- * @property {string} [slug] - A URL-friendly identifier for the brand, often
- *   used in website routing.
- * @property {number} [uid] - A unique identifier for the brand, typically used
- *   for internal reference.
- */
-
-/**
- * @typedef BrandListingResponse
- * @property {BrandItem[]} [items] - An array of brand items, each containing
- *   detailed information about the brand, such as action, banners, departments,
- *   discount, logo, and other related fields.
- * @property {Page} page
- */
-
-/**
- * @typedef ApplicationBrandListingItemSchema
- * @property {Object} [_custom_json] - Custom JSON object for additional data.
- * @property {Object} [_locale_language] - Custom object for locale-specific
- *   language data.
- * @property {string} [brand_banner_portrait_url] - URL of the brand's portrait banner.
- * @property {string} [brand_banner_url] - URL of the brand's landscape banner.
- * @property {string} [brand_logo_url] - URL of the brand's logo.
- * @property {string} [description] - Description of the brand.
- * @property {string} [name] - Name of the brand.
- * @property {string} [slug_key] - Unique slug key for the brand.
- * @property {number} [priority] - Priority of the brand in listing.
- * @property {number} [uid] - Unique identifier of the brand.
- * @property {string} [created_on] - Timestamp when the category was created.
- * @property {string} [last_updated] - Timestamp when the category was created.
- * @property {boolean} [is_active] - Indicates if the brand is active.
- * @property {number[]} [departments] - List of department IDs associated with the brand.
- * @property {string} [modified_on] - Timestamp when the brand was last modified.
- */
-
-/**
- * @typedef ApplicationBrandListingSchema
- * @property {ApplicationBrandListingItemSchema[]} [items]
- * @property {Page} [page]
+ * @property {number[]} [departments]
+ * @property {string} [discount]
+ * @property {BrandLogo} [logo]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
  */
 
 /**
@@ -443,11 +831,42 @@ const Joi = require("joi");
  * @property {number} [priority] - Priority of the category.
  * @property {CreatedBy} [created_by]
  * @property {string} [created_on] - Timestamp when the category was created.
- * @property {CreatedBy} [modified_by]
+ * @property {ModifiedBy} [modified_by]
  * @property {string} [modified_on] - Timestamp when the category was last modified.
  * @property {string} [app_id] - Application ID associated with the category.
  * @property {boolean} [is_active] - Indicates whether the category is active.
  * @property {number} [uid] - Unique identifier of the category.
+ */
+
+/**
+ * @typedef ApplicationBrandListingSchema
+ * @property {ApplicationBrandListingItemSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef ApplicationBrandListingItemSchema
+ * @property {Object} [_custom_json] - Custom JSON object for additional data.
+ * @property {Object} [_locale_language] - Custom object for locale-specific
+ *   language data.
+ * @property {string} [brand_banner_portrait_url] - URL of the brand's portrait banner.
+ * @property {string} [brand_banner_url] - URL of the brand's landscape banner.
+ * @property {string} [brand_logo_url] - URL of the brand's logo.
+ * @property {string} [description] - Description of the brand.
+ * @property {string} [name] - Name of the brand.
+ * @property {string} [slug_key] - Unique slug key for the brand.
+ * @property {number} [priority] - Priority of the brand in listing.
+ * @property {number} [uid] - Unique identifier of the brand.
+ * @property {string} [created_on] - Timestamp when the category was created.
+ * @property {string} [last_updated] - Timestamp when the category was created.
+ * @property {boolean} [is_active] - Indicates if the brand is active.
+ * @property {number[]} [departments] - List of department IDs associated with the brand.
+ */
+
+/**
+ * @typedef BrandListingResponse
+ * @property {BrandItem[]} [items]
+ * @property {Page} page
  */
 
 /**
@@ -457,7 +876,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InventoryBrandMeta
+ * @typedef BrandMeta1
  * @property {number} [id]
  * @property {string} [name]
  */
@@ -469,9 +888,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkHsnResponse
+ * @typedef BulkHsnDataResponse
  * @property {boolean} [success] - Flag indicating the success status of the
  *   bulk HSN operation.
+ */
+
+/**
+ * @typedef BulkHsnResponse
+ * @property {BulkHsnDataResponse} [data]
  */
 
 /**
@@ -486,12 +910,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FailedRecord
- * @property {string} [identifiers]
- * @property {string} [message]
- */
-
-/**
  * @typedef BulkInventoryGetItems
  * @property {number} [cancelled]
  * @property {string[]} [cancelled_records]
@@ -499,7 +917,7 @@ const Joi = require("joi");
  * @property {Object} [created_by]
  * @property {string} [created_on]
  * @property {number} [failed]
- * @property {FailedRecord[]} [failed_records]
+ * @property {string[]} [failed_records]
  * @property {string} [file_path]
  * @property {string} [id]
  * @property {boolean} [is_active]
@@ -508,6 +926,17 @@ const Joi = require("joi");
  * @property {string} [stage]
  * @property {number} [succeed]
  * @property {number} [total]
+ */
+
+/**
+ * @typedef BulkProductUploadJob
+ * @property {number} [company_id] - The ID of the company
+ * @property {number} [total] - Total records to be imported
+ * @property {number} [succeed] - Successfully imported records
+ * @property {string} [stage] - The import stage
+ * @property {string} [file_path]
+ * @property {string} [template_tag] - Template tag for the import
+ * @property {string} [tracking_url]
  */
 
 /**
@@ -524,7 +953,7 @@ const Joi = require("joi");
  * @property {number} [cancelled]
  * @property {Object[]} [cancelled_records]
  * @property {number} company_id
- * @property {UserInfo1} [created_by] - The user who created the item.
+ * @property {Object} [created_by] - The user who created the item.
  * @property {string} created_on - The date and time when the item was created.
  * @property {string} [custom_template_tag]
  * @property {number} [failed]
@@ -551,7 +980,7 @@ const Joi = require("joi");
 /**
  * @typedef BulkResponse
  * @property {string} batch_id
- * @property {UserInfo1} [created_by] - The user who created the item.
+ * @property {Object} [created_by] - The user who created the item.
  * @property {string} created_on - The date and time when the item was created.
  * @property {boolean} [is_active] - Whether the item is active or not.
  * @property {string} [modified_by] - The user who last modified the item.
@@ -560,26 +989,19 @@ const Joi = require("joi");
 
 /**
  * @typedef CatalogInsightBrand
- * @property {number} [article_freshness] - The average freshness of the
- *   articles based on the time since they were added to the catalog.
- * @property {number} [available_articles] - The number of articles that are
- *   currently available for purchase.
- * @property {number} [available_sizes] - The total number of unique sizes
- *   available across all articles.
- * @property {string} [name] - The name of the brand.
- * @property {number} [total_articles] - The total number of articles listed
- *   under the brand.
- * @property {number} [total_sizes] - The total number of sizes offered across
- *   all articles for the brand.
+ * @property {number} [article_freshness]
+ * @property {number} [available_articles]
+ * @property {number} [available_sizes]
+ * @property {string} [name]
+ * @property {number} [total_articles]
+ * @property {number} [total_sizes]
  */
 
 /**
  * @typedef CatalogInsightItem
- * @property {number} [count] - The total number of catalog items available.
- * @property {number} [out_of_stock_count] - The number of items that are
- *   currently out of stock.
- * @property {number} [sellable_count] - The number of items that are currently
- *   sellable (in stock).
+ * @property {number} [count]
+ * @property {number} [out_of_stock_count]
+ * @property {number} [sellable_count]
  */
 
 /**
@@ -609,9 +1031,9 @@ const Joi = require("joi");
  * @property {string} [id] - It is the unique identifier of the category.
  * @property {boolean} is_active - It is the flag indicating if the category is active.
  * @property {number} level - It is the level of category
- * @property {CategoryMapping} [marketplaces] - It is the mapping of the
- *   category in different marketplaces.
- * @property {Media1} [media] - It is the details of the media such as banner and logo..
+ * @property {Object} [marketplaces] - It is the mapping of the category in
+ *   different marketplaces.
+ * @property {Object} [media] - It is the details of the media such as banner and logo..
  * @property {Object} [modified_by] - It is the details of the user who last
  *   modified the category.
  * @property {string} [modified_on] - It is the date and time when the category
@@ -621,6 +1043,84 @@ const Joi = require("joi");
  * @property {string} [slug] - It is the slug of the category.
  * @property {string[]} [synonyms] - It is the list of synonyms.
  * @property {string[]} [tryouts] - It is the list of tryouts.
+ * @property {number} [uid] - It is the unique identifier of the category.
+ */
+
+/**
+ * @typedef ChannelListResponse
+ * @property {ChannelItem[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef ChannelDetailResponse
+ * @property {string} [created_on]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [name]
+ * @property {string} [logo]
+ * @property {ChannelValidation} [validation]
+ * @property {string} [_id]
+ * @property {string} [description]
+ * @property {string} [slug]
+ * @property {string} [app_id]
+ * @property {CreatedBy} [modified_by]
+ * @property {string} [modified_on]
+ * @property {string} [display_name]
+ */
+
+/**
+ * @typedef ChannelItem
+ * @property {string} [logo]
+ * @property {CreatedBy} [modified_by]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [slug]
+ * @property {string} [name]
+ * @property {string} [app_id]
+ * @property {string} [modified_on]
+ * @property {string} [_id]
+ * @property {string} [description]
+ * @property {ChannelValidation} [validation]
+ * @property {string} [created_on]
+ * @property {string} [display_name]
+ */
+
+/**
+ * @typedef ChannelValidation
+ * @property {ProductValidation} [product]
+ * @property {BrandValidationItem} [brand]
+ * @property {CompanyValidation} [company]
+ * @property {LocationValidation} [location]
+ */
+
+/**
+ * @typedef ProductValidation
+ * @property {boolean} [gated_category_applicable]
+ * @property {boolean} [imageless_products]
+ * @property {string} [stage]
+ */
+
+/**
+ * @typedef BrandValidationItem
+ * @property {string} [stage]
+ * @property {boolean} [consent_doc_required]
+ */
+
+/**
+ * @typedef CompanyValidation
+ * @property {boolean} [bank_ac_required]
+ * @property {boolean} [gst_required]
+ * @property {boolean} [verified]
+ */
+
+/**
+ * @typedef LocationValidation
+ * @property {boolean} [gst_required]
+ * @property {string} [stage]
+ */
+
+/**
+ * @typedef CategoryCreateResponse
+ * @property {string} [message] - It is the message of the response from the category.
  * @property {number} [uid] - It is the unique identifier of the category.
  */
 
@@ -637,22 +1137,15 @@ const Joi = require("joi");
 
 /**
  * @typedef CategoryListingResponse
- * @property {DepartmentCategoryTree[]} [data] - An array containing the
- *   department category trees, which provide hierarchical information about
- *   categories and their associated departments.
- * @property {DepartmentIdentifier[]} [departments] - An array of department
- *   identifiers, each providing basic information like name, slug, and unique
- *   ID for departments within the catalog.
+ * @property {DepartmentCategoryTree[]} [data]
+ * @property {DepartmentIdentifier[]} [departments]
  */
 
 /**
  * @typedef CategoryMapping
- * @property {CategoryMappingValues} [ajio] - It is the category id mapping for
- *   ajio platform.
- * @property {CategoryMappingValues} [facebook] - It is the category id mapping
- *   for facebook platform.
- * @property {CategoryMappingValues} [google] - It is the category id mapping
- *   for google platform.
+ * @property {Object} [ajio] - It is the category id mapping for ajio platform.
+ * @property {Object} [facebook] - It is the category id mapping for facebook platform.
+ * @property {Object} [google] - It is the category id mapping for google platform.
  */
 
 /**
@@ -663,30 +1156,50 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CategoryRequestBody
+ * @property {number[]} departments - It is the list of unique department the
+ *   category belongs to.
+ * @property {Hierarchy[]} [hierarchy] - It is the list of category hierarchies
+ *   for each department of an L3 category.
+ * @property {boolean} is_active - It is the flag indicating if the category is active.
+ * @property {number} level - It is the level of category
+ * @property {Object} [marketplaces] - It is the mapping of the category in
+ *   different marketplaces.
+ * @property {Object} [media] - It is the details of the media such as banner and logo..
+ * @property {string} name - It is the name of the category
+ * @property {number} [priority] - It is the priority of the category.
+ * @property {string} [slug] - It is the slug of the category.
+ * @property {string[]} [synonyms] - It is the list of synonyms.
+ * @property {string[]} [tryouts] - It is the list of tryouts.
+ */
+
+/**
  * @typedef CategoryResponse
  * @property {Category[]} [items]
  * @property {Page} [page]
  */
 
 /**
+ * @typedef CategoryUpdateResponse
+ * @property {string} [message] - It is the message of the response from the category.
+ * @property {boolean} [success] - It is the flag indication the success response.
+ */
+
+/**
  * @typedef Child
- * @property {Object} [_custom_json] - Custom JSON object to store additional
- *   data for the child.
+ * @property {Object} [_custom_json]
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {SecondLevelChild[]} [childs] - A list of second-level child
- *   elements under the current child.
- * @property {string} [name] - Name of the child element.
- * @property {string} [slug] - Slug or URL-friendly identifier for the child element.
- * @property {number} [uid] - Unique identifier for the child element.
+ * @property {SecondLevelChild[]} [childs]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
  */
 
 /**
  * @typedef CollectionBadge
- * @property {string} [color] - The color of the badge displayed with the
- *   collection, typically represented as a string (e.g., a hex code or color name).
- * @property {string} [text] - The text displayed on the badge, which may
- *   indicate a label or promotion related to the collection.
+ * @property {string} [color]
+ * @property {string} [text]
  */
 
 /**
@@ -696,42 +1209,45 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CollectionBannerResponse
+ * @property {CollectionImageResponse} [landscape]
+ * @property {CollectionImageResponse} [portrait]
+ */
+
+/**
+ * @typedef BadgeDetail
+ * @property {string} [color]
+ * @property {string} [text]
+ */
+
+/**
  * @typedef CollectionCreateResponse
- * @property {string} [uid] - Unique identifier for the collection.
- * @property {CollectionSchedule} [_schedule]
- * @property {boolean} [allow_facets] - Indicates whether facet-based filtering
- *   is allowed for the collection.
- * @property {boolean} [allow_sort] - Indicates whether sorting options are
- *   allowed for the collection.
- * @property {string} [app_id] - The application ID associated with the collection.
- * @property {Object} [badge] - Details of the badge associated with the collection.
- * @property {ImageUrls} [banners]
- * @property {string} [description] - A description of the collection.
- * @property {boolean} [is_active] - Indicates whether the collection is currently active.
- * @property {BannerImage} [logo]
- * @property {Object} [meta] - Additional metadata related to the collection.
- * @property {string} [name] - The name of the collection.
- * @property {number} [priority] - The priority level of the collection, used to
- *   determine its display order.
- * @property {CollectionQuery[]} [query] - Query objects that define how the
- *   collection's items are retrieved or filtered.
- * @property {string} [slug] - The URL-friendly identifier for the collection.
- * @property {string} [sort_on] - The default sorting order for items in the
- *   collection, e.g., 'popular'.
- * @property {string[]} [tag] - Array of tags associated with the collection for
- *   categorization and filtering.
- * @property {string} [type] - The type of collection, such as 'items' for
- *   manually added items or 'query' for dynamically fetched items.
- * @property {string[]} [visible_facets_keys] - Keys of the facets that are
- *   visible and can be used for filtering the collection.
- * @property {boolean} [published] - Indicates whether the collection is published.
- * @property {string[]} [tags] - List of tags associated with the collection.
- * @property {Action} [action]
- * @property {Object} [_custom_json] - Custom JSON data for additional information.
- * @property {Object} [_locale_language] - Locale language settings for the collection.
+ * @property {CollectionBadge} [badge]
+ * @property {CollectionBannerResponse} [banners]
+ * @property {string} [description]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_visible]
+ * @property {CollectionImageResponse} [logo]
+ * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {boolean} [is_searchable]
+ * @property {number} [priority]
+ * @property {boolean} [published]
+ * @property {CollectionQuery[]} [query]
  * @property {SeoDetail} [seo]
- * @property {boolean} [is_visible] - Indicates if the collection is visible to users.
- * @property {string} [id] - Unique identifier for the collection.
+ * @property {Object} [_custom_json]
+ * @property {Object} [_locale_language]
+ * @property {CollectionSchedule} [_schedule]
+ * @property {Action} [action]
+ * @property {string} [uid]
+ * @property {boolean} [allow_facets]
+ * @property {boolean} [allow_sort]
+ * @property {string} [app_id]
+ * @property {string} [slug]
+ * @property {string} [sort_on]
+ * @property {string[]} [tags]
+ * @property {string} [type]
+ * @property {string[]} [visible_facets_keys]
  */
 
 /**
@@ -759,11 +1275,16 @@ const Joi = require("joi");
 
 /**
  * @typedef CollectionImage
- * @property {string} aspect_ratio - The aspect ratio of the image, typically
- *   represented as a string (e.g., "16:9" or "4:3") to indicate the
- *   proportional relationship between the image's width and height.
- * @property {string} url - The URL of the image, which provides the location
- *   where the image is hosted and can be accessed.
+ * @property {string} [aspect_ratio]
+ * @property {string} [url]
+ * @property {string} [secure_url]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef CollectionImageResponse
+ * @property {string} [type]
+ * @property {string} [url]
  */
 
 /**
@@ -785,24 +1306,22 @@ const Joi = require("joi");
 
 /**
  * @typedef CollectionListingFilter
- * @property {CollectionListingFilterTag[]} [tags] - A list of tags used to
- *   filter the collection listing.
- * @property {CollectionListingFilterType[]} [type] - A list of types used to
- *   filter the collection listing.
+ * @property {CollectionListingFilterTag[]} [tags]
+ * @property {CollectionListingFilterType[]} [type]
  */
 
 /**
  * @typedef CollectionListingFilterTag
- * @property {string} [display] - The display name of the tag for the collection listing.
- * @property {boolean} [is_selected] - Indicates whether the tag is currently selected.
- * @property {string} [name] - The name of the tag.
+ * @property {string} [display]
+ * @property {boolean} [is_selected]
+ * @property {string} [name]
  */
 
 /**
  * @typedef CollectionListingFilterType
- * @property {string} [display] - The display name of the type for the collection listing.
- * @property {boolean} [is_selected] - Indicates whether the type is currently selected.
- * @property {string} [name] - The internal name of the type.
+ * @property {string} [display]
+ * @property {boolean} [is_selected]
+ * @property {string} [name]
  */
 
 /**
@@ -810,22 +1329,16 @@ const Joi = require("joi");
  * @property {string} attribute - The attribute of the collection query
  * @property {string} op - The operation to be performed on the attribute of the
  *   collection query
- * @property {Object[]} value - The value of the attribute of the collection query
+ * @property {string[]} value - The value of the attribute of the collection query
  */
 
 /**
  * @typedef CollectionSchedule
- * @property {string} [cron] - The cron expression that defines the scheduling
- *   pattern, allowing for tasks or events to be repeated at specific intervals
- *   (e.g., daily, weekly).
- * @property {number} [duration] - The duration in seconds for which the
- *   collection is active or valid.
- * @property {string} [end] - The end date and time for the collection's
- *   schedule, formatted as a date-time string.
- * @property {NextSchedule[]} [next_schedule] - The next set of scheduled times
- *   when the collection will become active, based on the cron expression.
- * @property {string} [start] - The start date and time for the collection's
- *   schedule, formatted as a date-time string.
+ * @property {string} [cron]
+ * @property {number} [duration]
+ * @property {string} [end]
+ * @property {NextSchedule[]} [next_schedule]
+ * @property {string} [start]
  */
 
 /**
@@ -834,6 +1347,9 @@ const Joi = require("joi");
  * @property {string} [brand_name]
  * @property {number} [company_id]
  * @property {number} [total_article]
+ * @property {Object} [logo]
+ * @property {string} [name]
+ * @property {number} [id]
  */
 
 /**
@@ -842,7 +1358,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InventoryCompanyMeta
+ * @typedef CompanyMeta1
  * @property {number} [id]
  */
 
@@ -862,6 +1378,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ConfigErrorResponse
+ * @property {string} [code]
+ * @property {Object} [errors]
  * @property {string} message
  */
 
@@ -879,8 +1397,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ConfigurationListing
- * @property {ConfigurationListingFilter} filter
- * @property {ConfigurationListingSort} sort
+ * @property {ConfigurationListingFilter} [filter]
+ * @property {ConfigurationListingSort} [sort]
  */
 
 /**
@@ -929,8 +1447,34 @@ const Joi = require("joi");
 
 /**
  * @typedef ConfigurationProduct
- * @property {ConfigurationProductSimilar} similar
- * @property {ConfigurationProductVariant} variant
+ * @property {ConfigurationProductSimilar} [similar]
+ * @property {ConfigurationProductVariant} [variant]
+ * @property {ConfigurationProductDetailsGroups} [details_groups]
+ */
+
+/**
+ * @typedef ConfigurationProductDetailsGroups
+ * @property {ConfigurationProductDetailsConfig[]} [config]
+ */
+
+/**
+ * @typedef ConfigurationProductDetailsConfig
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [priority]
+ * @property {string[]} [template_slugs]
+ * @property {ConfigurationProductDetailsAttribute[]} [attributes]
+ * @property {boolean} [is_active]
+ */
+
+/**
+ * @typedef ConfigurationProductDetailsAttribute
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string} [display_type]
+ * @property {number} [priority]
+ * @property {boolean} [is_active]
+ * @property {string} [key]
  */
 
 /**
@@ -972,57 +1516,130 @@ const Joi = require("joi");
  * @property {boolean} [is_active]
  * @property {AutocompleteResult[]} [results]
  * @property {string[]} [words]
+ * @property {AutocompleteAction} [action]
  */
 
 /**
  * @typedef CreateAutocompleteWordsResponse
+ * @property {string} [uid]
+ * @property {boolean} [is_active]
+ * @property {AutocompleteResult[]} [results]
  * @property {Object} [_custom_json]
  * @property {string} [app_id]
- * @property {Object[]} [results]
  * @property {string[]} [words]
  */
 
 /**
  * @typedef CreateCollection
- * @property {Object} [_custom_json] - Custom JSON data for the collection, used
- *   for any additional information.
- * @property {Object} [_locale_language] - Locale-specific data for supporting
- *   multiple languages.
+ * @property {Object} [_custom_json]
+ * @property {Object} [_locale_language]
  * @property {CollectionSchedule} [_schedule]
- * @property {boolean} [allow_facets] - Indicates whether facet-based filtering
- *   is allowed for the collection.
- * @property {boolean} [allow_sort] - Indicates whether sorting options are
- *   allowed for the collection.
- * @property {string} app_id - The application ID associated with the collection.
+ * @property {boolean} [allow_facets]
+ * @property {boolean} [allow_sort]
+ * @property {string} [app_id]
  * @property {CollectionBadge} [badge]
  * @property {CollectionBanner} banners
- * @property {UserInfo} [created_by] - Information about the user who created
- *   the collection.
- * @property {string} [description] - A description of the collection.
- * @property {boolean} [is_active] - Indicates whether the collection is currently active.
- * @property {boolean} [is_visible] - Indicates whether the collection is
- *   visible to users.
+ * @property {Object} [created_by]
+ * @property {string} [description]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_visible]
  * @property {CollectionImage} logo
- * @property {Object} [meta] - Additional metadata related to the collection.
- * @property {UserInfo} [modified_by] - Information about the user who last
- *   modified the collection.
- * @property {string} name - The name of the collection.
- * @property {number} [priority] - The priority level of the collection, used to
- *   determine its display order.
- * @property {boolean} [published] - Indicates whether the collection is
- *   published and available to users.
- * @property {CollectionQuery[]} [query] - Query objects that define how the
- *   collection's items are retrieved or filtered.
+ * @property {Object} [meta]
+ * @property {Object} [modified_by]
+ * @property {string} name
+ * @property {number} [priority]
+ * @property {boolean} [published]
+ * @property {CollectionQuery[]} [query]
  * @property {SeoDetail} [seo]
- * @property {string} slug - The URL-friendly identifier for the collection.
- * @property {string} [sort_on] - The default sorting order for items in the
- *   collection, e.g., 'popular'.
- * @property {string[]} [tags] - Array of tags associated with the collection
- *   for categorization and filtering.
- * @property {string} type - The type of collection, either 'items' for manually
- *   added items or 'query' for dynamically fetched items.
- * @property {string[]} [visible_facets_keys] - Keys of the facets that are
- *   visible and can be used for filtering the collection.
+ * @property {string} slug
+ * @property {boolean} [is_searchable]
+ * @property {string} [sort_on]
+ * @property {string[]} [tags]
+ * @property {string} type
+ * @property {string[]} [visible_facets_keys]
+ */
+
+/**
+ * @typedef RerankingBoostItems
+ * @property {BoostItem[]} [boost]
+ */
+
+/**
+ * @typedef GetSearchRerankDetailResponse
+ * @property {RerankingBoostItems} [ranking]
+ * @property {boolean} [is_active]
+ * @property {CreatedBy} [modified_by]
+ * @property {CreatedBy} [created_by]
+ * @property {string[]} [words]
+ * @property {string} [app_id]
+ * @property {string} [modified_on]
+ * @property {string} [created_on]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef BoostItem
+ * @property {string} [attribute_key]
+ * @property {string} [attribute_value]
+ */
+
+/**
+ * @typedef GetSearchRerankItemResponse
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {string[]} [words]
+ * @property {string} [app_id]
+ * @property {Object} [modified_by] - The user who modified the search rerank.
+ * @property {RerankingBoostItems} [ranking]
+ * @property {Object} [created_by] - The user who created the search rerank.
+ * @property {boolean} [is_active]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef GetSearchRerankResponse
+ * @property {GetSearchRerankItemResponse[]} [items]
+ * @property {PageResponse1} [page]
+ */
+
+/**
+ * @typedef CreateSearchRerankResponse
+ * @property {string[]} [words]
+ * @property {string} [app_id]
+ * @property {RerankingBoostItems} [ranking]
+ * @property {boolean} [is_active]
+ * @property {string} [created_on]
+ * @property {Object} [created_by] - The user who created the search rerank.
+ * @property {string} [modified_on]
+ * @property {Object} [modified_by] - The user who modified the search rerank.
+ */
+
+/**
+ * @typedef UpdateSearchRerankResponse
+ * @property {string[]} [words]
+ * @property {string} [app_id]
+ * @property {RerankingBoostItems} [ranking]
+ * @property {boolean} [is_active]
+ * @property {string} [created_on]
+ * @property {Object} [created_by] - The user who created the search rerank.
+ * @property {string} [modified_on]
+ * @property {Object} [modified_by] - The user who modified the search rerank.
+ */
+
+/**
+ * @typedef UpdateSearchRerankRequest
+ * @property {string[]} [words]
+ * @property {boolean} [is_active]
+ * @property {string} [application_id]
+ * @property {RerankingBoostItems} [ranking]
+ */
+
+/**
+ * @typedef CreateSearchRerankRequest
+ * @property {string[]} [words]
+ * @property {boolean} [is_active]
+ * @property {string} [application_id]
+ * @property {RerankingBoostItems} [ranking]
  */
 
 /**
@@ -1030,14 +1647,12 @@ const Joi = require("joi");
  * @property {string} application_id - The application id where custom search
  *   configuration is set
  * @property {number} company_id - The company id where custom search configuration is set
- * @property {UserSerializer} [created_by] - The user who created the search
- *   configuration.
+ * @property {Object} [created_by] - The user who created the search configuration.
  * @property {string} [created_on] - The date and time when the search
  *   configuration was created.
  * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
  *   search is enabled for this attribute.
- * @property {UserSerializer} [modified_by] - The user who modified the search
- *   configuration.
+ * @property {Object} [modified_by] - The user who modified the search configuration.
  * @property {string} [modified_on] - The date and time when the search
  *   configuration was last modified.
  * @property {number} [proximity] - Proximity distance configuration
@@ -1075,8 +1690,8 @@ const Joi = require("joi");
 
 /**
  * @typedef CrossSellingResponse
- * @property {CatalogInsightBrand} [brand_distribution]
- * @property {CrossSellingData} [data]
+ * @property {number} [articles]
+ * @property {number} [products]
  */
 
 /**
@@ -1117,6 +1732,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DeleteSearchRerankConfigurationResponse
+ * @property {boolean} [success]
+ * @property {string} [message]
+ */
+
+/**
  * @typedef Department
  * @property {Media2} [logo]
  * @property {string} [name]
@@ -1127,10 +1748,43 @@ const Joi = require("joi");
 
 /**
  * @typedef DepartmentCategoryTree
- * @property {string} [department] - The name of the department that this
- *   category tree belongs to, such as 'Men', 'Women', or 'Electronics'.
- * @property {CategoryItems[]} [items] - An array of categories that fall under
- *   the specified department, each containing details about category items.
+ * @property {string} [department]
+ * @property {CategoryItems[]} [items]
+ */
+
+/**
+ * @typedef PollErrorResponse
+ * @property {Object} [error]
+ */
+
+/**
+ * @typedef DepartmentCreateErrorResponse
+ * @property {Object} [error]
+ */
+
+/**
+ * @typedef ProductBundleCreateErrorResponse
+ * @property {Object} [error]
+ */
+
+/**
+ * @typedef DepartmentCreateResponse
+ * @property {string} message
+ * @property {number} uid
+ */
+
+/**
+ * @typedef DepartmentCreateUpdate
+ * @property {string} [_cls]
+ * @property {Object} [_custom_json]
+ * @property {boolean} [is_active]
+ * @property {string} logo
+ * @property {string} name
+ * @property {Object} [platforms]
+ * @property {number} priority_order
+ * @property {string} [slug]
+ * @property {string[]} [tags]
+ * @property {number} [uid]
  */
 
 /**
@@ -1144,17 +1798,39 @@ const Joi = require("joi");
 
 /**
  * @typedef DepartmentIdentifier
- * @property {string} [name] - The name of the department, such as
- *   'Electronics', 'Apparel', or 'Home Appliances'.
- * @property {string} [slug] - A URL-friendly identifier for the department,
- *   often used in creating department-specific links or routes.
- * @property {number} [uid] - A unique identifier for the department, used to
- *   distinguish it from other departments in the system.
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+
+/**
+ * @typedef DepartmentModel
+ * @property {string} [_cls]
+ * @property {Object} [_custom_json]
+ * @property {string} [_id]
+ * @property {Object} [created_by] - User details of the creator of the document
+ * @property {boolean} [is_active] - Whether the department is currently active
+ * @property {string} logo - The URL of the department's logo
+ * @property {Object} [modified_by] - User details of the last modifier of the document
+ * @property {string} name - The name of the department
+ * @property {number} priority_order - The priority order of the department
+ * @property {string} [slug] - The unique slug identifier for the department
+ * @property {string[]} [synonyms] - A list of synonyms for the department name
+ * @property {number} uid - The unique ID for the department
+ * @property {Object} [verified_by] - User details of the verifier of the
+ *   document, if applicable
+ * @property {string} [verified_on] - Timestamp of when the document was
+ *   verified, if applicable
  */
 
 /**
  * @typedef DepartmentResponse
  * @property {Department[]} [items]
+ */
+
+/**
+ * @typedef ValidationFailedResponse
+ * @property {string} [message] - Response message for failed validation
  */
 
 /**
@@ -1173,7 +1849,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InventoryDimensionResponse
+ * @typedef DimensionResponse1
  * @property {number} [height]
  * @property {number} [length]
  * @property {string} [unit]
@@ -1191,9 +1867,9 @@ const Joi = require("joi");
 
 /**
  * @typedef EntityConfiguration
- * @property {string} app_id
+ * @property {string} [app_id]
  * @property {string} [config_id]
- * @property {string} config_type
+ * @property {string} [config_type]
  * @property {string} [id]
  * @property {GetCatalogConfigurationDetailsSchemaListing} [listing]
  * @property {GetCatalogConfigurationDetailsProduct} [product]
@@ -1201,12 +1877,18 @@ const Joi = require("joi");
 
 /**
  * @typedef ErrorResponse
- * @property {string} [code] - A string representing the specific error code.
- * @property {string} [error] - A brief description of the error type.
- * @property {string} [message] - A detailed message explaining the error.
- * @property {Object} [meta] - Additional metadata or context about the error,
- *   if available.
- * @property {number} [status] - The HTTP status code associated with the error.
+ * @property {number} [code]
+ * @property {string} [error]
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {number} [status]
+ */
+
+/**
+ * @typedef CategoryErrorResponse
+ * @property {string} [code]
+ * @property {Object} [error]
+ * @property {string} [message]
  */
 
 /**
@@ -1296,19 +1978,24 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AttributeDetail
+ * @typedef GenderDetail
+ * @property {string} [created_on] - It is Date and time when the attribute was created.
+ * @property {string} [modified_on] - It is Date and time when the attribute was modified.
+ * @property {Object} [created_by] - Details of the user who created the attribute.
+ * @property {Object} [modified_by] - Details of the user who last modified the attribute.
  * @property {string[]} [departments]
  * @property {string} [description]
  * @property {AttributeMasterDetails} [details]
  * @property {boolean} [enabled_for_end_consumer]
  * @property {AttributeMasterFilter} [filters]
- * @property {string} [id]
+ * @property {string} [_id]
  * @property {boolean} [is_nested]
  * @property {string} [logo]
  * @property {AttributeMasterMeta} [meta]
  * @property {string} [name]
  * @property {AttributeMaster} [schema]
  * @property {string} [slug]
+ * @property {boolean} [variant]
  */
 
 /**
@@ -1322,13 +2009,24 @@ const Joi = require("joi");
  * @property {string} [landmark]
  * @property {number} [latitude]
  * @property {number} [longitude]
- * @property {number} [pincode]
+ * @property {string} [pincode]
  * @property {string} [state]
  */
 
 /**
  * @typedef GetAllSizes
  * @property {AllSizes[]} [all_sizes]
+ */
+
+/**
+ * @typedef FilterResponse
+ * @property {ValueItem[]} [values]
+ */
+
+/**
+ * @typedef ValueItem
+ * @property {string} [text]
+ * @property {string} [value]
  */
 
 /**
@@ -1345,11 +2043,11 @@ const Joi = require("joi");
 
 /**
  * @typedef GetAutocompleteWordsData
- * @property {Object} [_custom_json]
+ * @property {AutocompleteResult[]} [results]
  * @property {string} [app_id]
- * @property {Object[]} [results]
- * @property {string} [uid]
  * @property {string[]} [words]
+ * @property {boolean} [is_active]
+ * @property {string} [uid]
  */
 
 /**
@@ -1360,10 +2058,62 @@ const Joi = require("joi");
 
 /**
  * @typedef GetCatalogConfigurationDetailsProduct
- * @property {Object} [compare]
- * @property {Object} [detail]
- * @property {Object} [similar]
- * @property {Object} [variant]
+ * @property {CompareFilter} [compare]
+ * @property {SimilarFilter} [similar]
+ * @property {VariantFilter} [variant]
+ * @property {DetailFilter} [detail]
+ */
+
+/**
+ * @typedef FilterItem
+ * @property {string} [key]
+ * @property {string} [display]
+ * @property {string[]} [filter_types]
+ * @property {string[]} [units]
+ */
+
+/**
+ * @typedef CompareFilter
+ * @property {FilterItem[]} [data]
+ */
+
+/**
+ * @typedef SimilarFilter
+ * @property {SimilarItem[]} [data]
+ */
+
+/**
+ * @typedef VariantFilter
+ * @property {VariantItem[]} [data]
+ */
+
+/**
+ * @typedef DetailFilter
+ * @property {FilterItem[]} [data]
+ * @property {DetailFilterValues} [values]
+ */
+
+/**
+ * @typedef DetailFilterValues
+ * @property {DisplayType[]} [display_type]
+ */
+
+/**
+ * @typedef DisplayType
+ * @property {string} [key]
+ * @property {string} [display]
+ */
+
+/**
+ * @typedef SimilarItem
+ * @property {string} [key]
+ * @property {string} [display]
+ */
+
+/**
+ * @typedef VariantItem
+ * @property {string} [key]
+ * @property {string} [display]
  */
 
 /**
@@ -1380,54 +2130,40 @@ const Joi = require("joi");
 
 /**
  * @typedef GetCollectionDetailNest
- * @property {CollectionSchedule} [_schedule]
+ * @property {Object} [_schedule]
  * @property {Action} [action]
- * @property {boolean} [allow_facets] - Indicates whether facets are allowed for
- *   filtering the collection.
- * @property {boolean} [allow_sort] - Indicates whether sorting options are
- *   allowed for the collection.
- * @property {string} [app_id] - The application ID associated with the collection.
- * @property {CollectionBadge} [badge]
+ * @property {boolean} [allow_facets]
+ * @property {boolean} [allow_sort]
+ * @property {string} [app_id]
+ * @property {Object} [badge]
  * @property {ImageUrls} [banners]
- * @property {string} [description] - A description of the collection.
- * @property {boolean} [is_active] - Indicates whether the collection is currently active.
+ * @property {Object} [cron]
+ * @property {string} [description]
+ * @property {boolean} [is_active]
  * @property {Media} [logo]
- * @property {Object} [meta] - Additional metadata related to the collection.
- * @property {string} [name] - The name of the collection.
- * @property {number} [priority] - The priority level of the collection in the
- *   display list.
- * @property {CollectionQuery[]} [query] - Array of queries that define how the
- *   collection is fetched or filtered.
- * @property {string} [slug] - The URL-friendly identifier of the collection.
- * @property {string[]} [tag] - Array of tags associated with the collection.
- * @property {string} [type] - The type of collection, such as manual or automated.
- * @property {string} [uid] - The unique identifier for the collection.
- * @property {string[]} [visible_facets_keys] - List of facet keys that are
- *   visible for filtering the collection.
- * @property {string} [_id] - Internal identifier for the collection.
- * @property {boolean} [published] - Indicates if the collection is published.
- * @property {string[]} [tags] - Tags associated with the collection.
- * @property {string} [sort_on] - Sort criteria for the collection.
- * @property {Object} [_custom_json] - Custom JSON data for the collection.
- * @property {Object} [_locale_language] - Locale-specific language settings.
- * @property {SeoDetail} [seo]
- * @property {boolean} [is_visible] - Indicates if the collection is visible.
+ * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {number} [priority]
+ * @property {CollectionQuery[]} [query]
+ * @property {string} [slug]
+ * @property {string[]} [tag]
+ * @property {string} [type]
+ * @property {string} [uid]
+ * @property {string[]} [visible_facets_keys]
  */
 
 /**
  * @typedef GetCollectionItemsResponse
- * @property {ProductFilters[]} [filters] - An array of filters applicable to
- *   the products in the collection.
- * @property {ProductListingDetail[]} [items] - List of product details in the collection.
+ * @property {ProductFilters[]} [filters]
+ * @property {ProductListingDetail[]} [items]
  * @property {Page} [page]
- * @property {ProductSortOn[]} [sort_on] - Sorting options available for the
- *   products in the collection.
+ * @property {ProductSortOn[]} [sort_on]
  */
 
 /**
  * @typedef GetCollectionListingResponse
  * @property {CollectionListingFilter} [filters]
- * @property {GetCollectionDetailNest[]} [items] - Array of nested collection details.
+ * @property {GetCollectionDetailNest[]} [items]
  * @property {Page} [page]
  */
 
@@ -1483,9 +2219,9 @@ const Joi = require("joi");
 
 /**
  * @typedef GetConfigMetadataResponse
+ * @property {Page} [page]
  * @property {ConditionItem[]} [condition]
  * @property {DataItem[]} data
- * @property {Page} [page]
  * @property {GetConfigMetadataValues} [values]
  */
 
@@ -1496,19 +2232,80 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef AttributeType
+ * @property {string} [unit]
+ * @property {number} [priority]
+ * @property {string} [name]
+ * @property {string} [key]
+ * @property {string} [display_type]
+ * @property {boolean} [is_active]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef DataType
+ * @property {string} [app_id]
+ * @property {boolean} [is_default]
+ * @property {number} [priority]
+ * @property {string} [name]
+ * @property {AttributeType[]} [attributes]
+ * @property {boolean} [is_active]
+ * @property {string} [slug]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef ListingValueConfigType
+ * @property {string} [sort]
+ * @property {Object[]} [bucket_points]
+ * @property {Object} [map]
+ * @property {string} [condition]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef SizeLimitConfiguration
+ * @property {number} [min] - Minimum number of variants to display.
+ * @property {number} [max] - Maximum number of variants to display.
+ */
+
+/**
+ * @typedef ListingDataType
+ * @property {string} [app_id]
+ * @property {boolean} [allow_single]
+ * @property {string} [id]
+ * @property {boolean} [is_active]
+ * @property {string} [key]
+ * @property {string} [name]
+ * @property {boolean} [is_default]
+ * @property {number} [priority]
+ * @property {string} [logo]
+ * @property {ListingValueConfigType} [value_config]
+ * @property {string} [type]
+ * @property {string} [display_type] - Display type of the variant attribute.
+ * @property {SizeLimitConfiguration} [size]
+ */
+
+/**
+ * @typedef GetListingConfigResponse
+ * @property {ListingDataType[]} [data]
+ * @property {PageResponseType} [page]
+ */
+
+/**
  * @typedef GetConfigResponse
- * @property {Object[]} data
+ * @property {DataType[]} data
  * @property {PageResponseType} page
  */
 
 /**
  * @typedef GetDepartment
- * @property {RequestUserSerializer} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {boolean} [is_active]
  * @property {string} [item_type]
  * @property {string} [logo]
- * @property {RequestUserSerializer} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {number} [page_no]
@@ -1522,24 +2319,24 @@ const Joi = require("joi");
 
 /**
  * @typedef GetInventories
- * @property {InventoryBrandMeta} [brand]
- * @property {InventoryCompanyMeta} [company]
+ * @property {BrandMeta1} [brand]
+ * @property {CompanyMeta1} [company]
  * @property {string} [country_of_origin]
- * @property {RequestUserSerializer} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {DateMeta} [date_meta]
- * @property {InventoryDimensionResponse} [dimension]
+ * @property {DimensionResponse1} [dimension]
  * @property {string} [expiration_date]
  * @property {string} [id]
  * @property {Object} [identifier]
  * @property {string} [inventory_updated_on]
  * @property {boolean} [is_set]
  * @property {number} [item_id]
- * @property {InventoryManufacturerResponse} [manufacturer]
- * @property {RequestUserSerializer} [modified_by]
+ * @property {ManufacturerResponse1} [manufacturer]
+ * @property {UserSerializer1} [modified_by]
  * @property {Object} [platforms]
  * @property {PriceArticle} [price]
  * @property {QuantitiesArticle} [quantities]
- * @property {ReturnConfig} [return_config]
+ * @property {ReturnConfig2} [return_config]
  * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {string} [stage]
@@ -1549,9 +2346,9 @@ const Joi = require("joi");
  * @property {number} [total_quantity]
  * @property {string} [trace_id]
  * @property {boolean} [track_inventory]
- * @property {TraderResponse[]} [trader]
+ * @property {Trader2[]} [trader]
  * @property {string} [uid]
- * @property {InventoryWeightResponse} [weight]
+ * @property {WeightResponse1} [weight]
  */
 
 /**
@@ -1564,7 +2361,7 @@ const Joi = require("joi");
  * @typedef GetLocationSerializer
  * @property {Object} [_custom_json]
  * @property {GetAddressSerializer} address
- * @property {string} code
+ * @property {string} store_code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {UserSerializer3} [created_by]
@@ -1578,7 +2375,7 @@ const Joi = require("joi");
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
- * @property {string} phone_number
+ * @property {string} [phone_number]
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [stage]
  * @property {string} [store_type]
@@ -1597,21 +2394,27 @@ const Joi = require("joi");
 
 /**
  * @typedef GetProductBundleCreateResponse
+ * @property {Object} [created_by] - The user who created the product bundle.
+ * @property {Object} [modified_by] - The user who created the product bundle.
  * @property {string} choice
  * @property {number} [company_id]
- * @property {Object} [created_by]
  * @property {string} [created_on]
  * @property {string} [id]
  * @property {boolean} is_active
  * @property {string} [logo]
  * @property {Object} [meta]
- * @property {Object} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [page_visibility]
  * @property {ProductBundleItem[]} products
  * @property {boolean} [same_store_assignment]
  * @property {string} slug
+ * @property {boolean} allow_remove
+ * @property {boolean} auto_add_to_cart
+ * @property {boolean} auto_select
+ * @property {boolean} prefer_single_shipment
+ * @property {boolean} allow_individual_cancel
+ * @property {boolean} allow_individual_return
  */
 
 /**
@@ -1631,14 +2434,17 @@ const Joi = require("joi");
  * @property {string[]} [page_visibility]
  * @property {GetProducts[]} [products]
  * @property {boolean} [same_store_assignment]
+ * @property {boolean} [allow_remove]
+ * @property {boolean} [auto_add_to_cart]
+ * @property {boolean} [auto_select]
+ * @property {boolean} [prefer_single_shipment]
+ * @property {boolean} [allow_individual_cancel]
+ * @property {boolean} [allow_individual_return]
  * @property {string} [slug]
  */
 
 /**
  * @typedef GetProducts
- * @property {boolean} [allow_remove]
- * @property {boolean} [auto_add_to_cart]
- * @property {boolean} [auto_select]
  * @property {number} [max_quantity]
  * @property {number} [min_quantity]
  * @property {Price} [price]
@@ -1682,23 +2488,17 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetQueryFiltersKeysResponse
- * @property {ProductFiltersKeysOnly[]} [filters]
- * @property {Object} operators
- * @property {ProductSortOn[]} [sort_on]
- */
-
-/**
  * @typedef GetQueryFiltersResponse
  * @property {ProductFilters[]} [filters]
- * @property {Object} operators
+ * @property {Object} [operators]
  * @property {ProductSortOn[]} [sort_on]
  */
 
 /**
- * @typedef GetCollectionItemsResponseSchemaV2
+ * @typedef GetCollectionItemsResponseSchema
  * @property {ProductDetailV2[]} [items]
- * @property {Page1} [page]
+ * @property {ProductSortOnv2[]} [sort_on]
+ * @property {Page} [page]
  */
 
 /**
@@ -1729,6 +2529,7 @@ const Joi = require("joi");
  * @property {CollectionQuerySchemaV2[]} [query]
  * @property {string} type
  * @property {string[]} [visible_facets_keys]
+ * @property {boolean} [reset_items]
  */
 
 /**
@@ -1736,7 +2537,7 @@ const Joi = require("joi");
  * @property {string} attribute - The attribute of the collection query
  * @property {string} op - The operation to be performed on the attribute of the
  *   collection query
- * @property {Object[]} value - The value of the attribute of the collection query
+ * @property {string[]} value
  */
 
 /**
@@ -1756,17 +2557,16 @@ const Joi = require("joi");
 
 /**
  * @typedef GetSearchConfigurationResponse
+ * @property {string} [_id] - The id of the search configuration.
  * @property {string} application_id - The application id where custom search
  *   configuration is set
  * @property {number} company_id - The company id where custom search configuration is set
- * @property {UserSerializer} [created_by] - The user who created the search
- *   configuration.
+ * @property {Object} [created_by] - The user who created the search configuration.
  * @property {string} [created_on] - The date and time when the search
  *   configuration was created.
  * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
  *   search is enabled for this attribute.
- * @property {UserSerializer} [modified_by] - The user who modified the search
- *   configuration.
+ * @property {Object} [modified_by] - The user who modified the search configuration.
  * @property {string} [modified_on] - The date and time when the search
  *   configuration was last modified.
  * @property {number} [proximity] - Proximity distance configuration
@@ -1776,6 +2576,8 @@ const Joi = require("joi");
 
 /**
  * @typedef GetSearchWordsData
+ * @property {Object} [query]
+ * @property {string} [sort_on]
  * @property {Object} [_custom_json]
  * @property {string} [app_id]
  * @property {boolean} [is_active]
@@ -1825,13 +2627,14 @@ const Joi = require("joi");
 
 /**
  * @typedef HSNDataInsertV2
+ * @property {string} [id] - ID of the HSN.
  * @property {string} country_code - Country code.
  * @property {Object} [created_by] - Details of the user who created the HSN data.
+ * @property {Object} [modified_by] - Details of the user who last modified the HSN data.
  * @property {string} [created_on] - Date and time when the HSN data was created.
  * @property {string} description - Description of the HSN data.
  * @property {string} hsn_code - HSN code.
  * @property {string} [hsn_code_id] - Unique identifier of the HSN code.
- * @property {Object} [modified_by] - Details of the user who last modified the HSN data.
  * @property {string} [modified_on] - Date and time when the HSN data was last modified.
  * @property {string} reporting_hsn - HSN code.
  * @property {TaxSlab[]} taxes - List of tax slabs.
@@ -1850,13 +2653,35 @@ const Joi = require("joi");
 
 /**
  * @typedef HsnCode
- * @property {HsnCodesObject} [data] - The HSN code data.
+ * @property {Object} [data] - The HSN code data.
+ */
+
+/**
+ * @typedef SlabObject
+ * @property {number} [threshold]
+ * @property {number} [tax]
+ */
+
+/**
+ * @typedef UpdateHsnCodesObject
+ * @property {Object} [modified_by]
+ * @property {number} [company_id] - The ID of the company.
+ * @property {SlabObject[]} [slabs]
+ * @property {string} [hs2_code] - The HS2 code.
+ * @property {string} [hsn_code] - The HSN code.
+ * @property {string} [tax_on]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef UpdateHsnCode
+ * @property {Object} [data] - The HSN code data.
  */
 
 /**
  * @typedef HsnCodesListingResponseSchemaV2
  * @property {HSNDataInsertV2[]} [items]
- * @property {PageResponse} [page]
+ * @property {PageResponse1} [page]
  */
 
 /**
@@ -1938,15 +2763,15 @@ const Joi = require("joi");
 /**
  * @typedef InventoryConfig
  * @property {FilerList[]} [data]
- * @property {boolean} [multivalues]
+ * @property {boolean} [multivalue]
  */
 
 /**
  * @typedef InventoryCreateRequest
  * @property {string[]} [data] - The list of attributes that you want to extract
  *   in the export job.
- * @property {InventoryExportFilter} filters - This filters that are applied for
- *   the export of the inventory.
+ * @property {Object} filters - This filters that are applied for the export of
+ *   the inventory.
  * @property {string[]} [notification_emails] - The list of the emails to be
  *   notified after the completion of the job.
  * @property {string} [type] - The type of file that needs to be exported.
@@ -1966,18 +2791,40 @@ const Joi = require("joi");
  * @property {number[]} [brand_ids] - The list of the brand ids that needs to be exported.
  * @property {string} [from_date] - The modified on date from which the data
  *   needs to be exported.
- * @property {InventoryExportQuantityFilter} [quantity] - The quantity range
- *   that needs to be exported.
+ * @property {Object} [quantity] - The quantity range that needs to be exported.
  * @property {number[]} store_ids - The list of the store ids that needs to be exported.
  * @property {string} [to_date] - The modified on date till when the data needs
  *   to be exported.
  */
 
 /**
+ * @typedef InventoryExportJobResponse
+ * @property {InventoryExportItem[]} [items]
+ */
+
+/**
+ * @typedef InventoryExportItem
+ * @property {string} [status]
+ * @property {string} [type]
+ * @property {Object} [stats]
+ * @property {string} [completed_on]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {number} [seller_id]
+ * @property {string} [task_id]
+ * @property {string[]} [notification_emails]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [_id]
+ * @property {string} [url]
+ * @property {string} [trigger_on]
+ * @property {number[]} [brand]
+ * @property {number[]} [store]
+ */
+
+/**
  * @typedef InventoryExportJob
  * @property {string} [completed_on] - Completion datetime of the job.
- * @property {InventoryExportAdvanceOption} [filters] - The filters that needs
- *   to be exported.
+ * @property {Object} [filters] - The filters that needs to be exported.
  * @property {string[]} [notification_emails] - The notification emails for the job.
  * @property {number} seller_id - The seller id that needs to be exported.
  * @property {string} [status] - The status of the job.
@@ -1987,9 +2834,39 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef InventoryExportJobListFilters
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ * @property {string[]} [brands]
+ * @property {string[]} [stores]
+ */
+
+/**
+ * @typedef InventoryExportJobListStats
+ * @property {number} [success]
+ * @property {number} [total]
+ */
+
+/**
+ * @typedef InventoryExportJobList
+ * @property {string} [status]
+ * @property {string} [completed_on]
+ * @property {string[]} [notification_emails]
+ * @property {InventoryExportJobListFilters} [filters]
+ * @property {InventoryExportJobListStats} [stats]
+ * @property {string} [type]
+ * @property {string} [modified_on]
+ * @property {string} [created_on]
+ * @property {number} [seller_id]
+ * @property {string} [url]
+ * @property {string} [task_id]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [id]
+ */
+
+/**
  * @typedef InventoryExportJobListResponse
- * @property {InventoryJobDetailResponse} items - This is the list/history of
- *   all the jobs.
+ * @property {InventoryExportJobList[]} [items]
  * @property {Page} [page]
  */
 
@@ -2001,6 +2878,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ExportPatchRequest
+ * @property {string[]} [notification_emails]
+ * @property {string} [status]
+ */
+
+/**
  * @typedef InventoryExportRequest
  * @property {number[]} [brand]
  * @property {number[]} [store]
@@ -2008,37 +2891,71 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef EditInventoryDataDownloadsResponse
+ * @property {string} [url]
+ * @property {string} [completed_on]
+ * @property {number} [seller_id]
+ * @property {string} [task_id]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {string[]} [notification_emails]
+ * @property {string} [status]
+ */
+
+/**
+ * @typedef EditInventoryDownloadsResponse
+ * @property {EditInventoryDataDownloadsResponse} [data]
+ */
+
+/**
+ * @typedef InventoryExportFiltersResponse
+ * @property {number[]} [brand_ids]
+ * @property {number[]} [store_ids]
+ */
+
+/**
+ * @typedef Stats
+ * @property {number} [total]
+ */
+
+/**
  * @typedef InventoryExportResponse
- * @property {string} [created_by] - The user that created the job.
+ * @property {Object} [created_by] - The user that created the job.
  * @property {string} [created_on] - Creation datetime of the job
- * @property {Object} [filters] - The filters that needs to be exported.
+ * @property {InventoryExportFiltersResponse} [filters]
  * @property {string} [modified_on] - Modification date of the job
  * @property {string[]} [notification_emails] - The notification emails for the job.
  * @property {number} seller_id - The seller id that needs to be exported.
  * @property {string} [status] - The status of the job.
  * @property {string} task_id - The task id of the job.
  * @property {string} [type] - The type of file that needs to be exported.
+ * @property {Stats} [stats]
+ * @property {string} [_id]
+ * @property {string} [trigger_on]
+ * @property {number[]} [brand]
+ * @property {number[]} [store]
  */
 
 /**
  * @typedef InventoryFailedReason
  * @property {string} [errors] - It is the error message of the inventory error response.
  * @property {string} message - It is the message of the activity performed.
+ * @property {number} [reason_code] - It is the reason code of the inventory
+ *   error response.
  */
 
 /**
  * @typedef InventoryJobDetailResponse
- * @property {UserDetail} [cancelled_by] - This is the user detail of the user
- *   who cancelled the job.
+ * @property {Object} [cancelled_by] - This is the user detail of the user who
+ *   cancelled the job.
  * @property {string} [cancelled_on] - This is the timestamp of the cacellation
  *   for this job.
  * @property {string} [completed_on] - This is the timestamp of the completion
  *   for this job.
- * @property {UserDetail} [created_by] - This is the user detail of the user who
+ * @property {Object} [created_by] - This is the user detail of the user who
  *   cancelled the job.
  * @property {string} [created_on] - This is the timestamp of the creation for this job.
- * @property {InventoryJobFilters} filters - This is the filter criteria applied
- *   for the export job.
+ * @property {Object} filters - This is the filter criteria applied for the export job.
  * @property {string} id - This is the ID of the job.
  * @property {string} [modified_on] - This is the timestamp of the modification
  *   for this job.
@@ -2056,8 +2973,7 @@ const Joi = require("joi");
  * @property {string[]} [brands] - The list of all the brands selected.
  * @property {string} [from_date] - The modified on date from which the data
  *   needs to be exported.
- * @property {InventoryExportQuantityFilter} [quantity] - The quantity range
- *   that needs to be exported.
+ * @property {Object} [quantity] - The quantity range that needs to be exported.
  * @property {string[]} [stores] - The list of all the store selected.
  * @property {string} [to_date] - The modified on date till when the data needs
  *   to be exported.
@@ -2112,26 +3028,75 @@ const Joi = require("joi");
 
 /**
  * @typedef InventoryRequestSchemaV2
- * @property {number} company_id - The ID of the company.
  * @property {Object} [meta] - Additional metadata for the inventory request.
  * @property {InventoryPayload[]} [payload] - The list of inventory payloads.
  */
 
 /**
+ * @typedef InventoryIdentifier
+ * @property {string} [gtin_type]
+ * @property {string} [gtin_value]
+ * @property {boolean} [primary]
+ */
+
+/**
+ * @typedef InventoryGeoLocation
+ * @property {string} [type]
+ * @property {number[]} [coordinates]
+ */
+
+/**
+ * @typedef InventoryMobileNumber
+ * @property {string} [number]
+ * @property {number} [country_code]
+ */
+
+/**
+ * @typedef InventoryAddress
+ * @property {string} [address1]
+ * @property {string} [pincode]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [state]
+ * @property {InventoryGeoLocation} [lat_long]
+ * @property {string} [country_code]
+ */
+
+/**
+ * @typedef InventoryManager
+ * @property {string} [name]
+ * @property {string} [email]
+ * @property {InventoryMobileNumber} [mobile_no]
+ */
+
+/**
+ * @typedef InventoryStore
+ * @property {string} [name]
+ * @property {string} [store_code]
+ * @property {number} [uid]
+ * @property {InventoryAddress} [address]
+ * @property {InventoryManager} [manager]
+ * @property {Object} [_custom_json]
+ */
+
+/**
  * @typedef InventoryResponse
- * @property {string} [currency]
- * @property {Object} [identifiers]
+ * @property {InventoryStore} [store]
+ * @property {string} [uid]
+ * @property {string} [size]
  * @property {string} [inventory_updated_on]
+ * @property {string} [seller_identifier]
  * @property {number} [item_id]
+ * @property {number} [quantity]
  * @property {number} [price]
  * @property {number} [price_effective]
  * @property {number} [price_transfer]
- * @property {number} [quantity]
+ * @property {string} [currency]
  * @property {number} [sellable_quantity]
- * @property {string} [seller_identifier]
- * @property {string} [size]
- * @property {Object} [store]
- * @property {string} [uid]
+ * @property {CreatedBy} [created_by]
+ * @property {CreatedBy} [modified_by]
+ * @property {string} [expiration_date]
+ * @property {InventoryIdentifier[]} [identifiers]
  */
 
 /**
@@ -2157,11 +3122,11 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Custom JSON data for the article.
  * @property {string} [added_on_store] - The date and time when the article was
  *   added to the store.
- * @property {BrandMeta} brand - The metadata of the brand.
- * @property {CompanyMeta} company - The metadata of the company.
+ * @property {Object} brand - The metadata of the brand.
+ * @property {Object} company - The metadata of the company.
  * @property {string} country_of_origin - The country of origin of the article.
  * @property {string} [created_by] - The user who created the article.
- * @property {DimensionResponse} dimension - The dimensions of the article.
+ * @property {Object} dimension - The dimensions of the article.
  * @property {string} [expiration_date] - The expiration date of the article.
  * @property {boolean} fragile - Indicates if the article is fragile.
  * @property {string} fynd_article_code - The Fynd article code.
@@ -2171,18 +3136,18 @@ const Joi = require("joi");
  * @property {boolean} [is_active] - Indicates if the article is active.
  * @property {boolean} [is_set]
  * @property {number} item_id - The ID of the item.
- * @property {ManufacturerResponse} manufacturer - The manufacturer of the article.
+ * @property {Object} manufacturer - The manufacturer of the article.
  * @property {Object} [meta] - Additional metadata for the article.
  * @property {string} [modified_by] - The user who modified the article.
- * @property {PriceMeta} price - The price metadata of the article.
+ * @property {Object} price - The price metadata of the article.
  * @property {Quantities} [quantities]
  * @property {Object} [raw_meta] - The raw metadata of the article.
- * @property {ReturnConfig1} [return_config] - The return configuration of the article.
+ * @property {Object} [return_config] - The return configuration of the article.
  * @property {string} seller_identifier - The seller identifier of the article.
  * @property {InventorySet} [set]
  * @property {string} size - The size of the article.
  * @property {string} [stage] - The stage of the article.
- * @property {StoreMeta} store - The metadata of the store.
+ * @property {Object} store - The metadata of the store.
  * @property {string[]} [tags] - The tags associated with the article.
  * @property {Object} [tax_identifier] - The tax identifier of the article.
  * @property {number} total_quantity - The total quantity of the article.
@@ -2191,7 +3156,7 @@ const Joi = require("joi");
  *   for the article.
  * @property {Trader1[]} [trader] - The traders associated with the article.
  * @property {string} uid - The unique identifier of the article.
- * @property {WeightResponse} weight - The weight of the article.
+ * @property {Object} weight - The weight of the article.
  */
 
 /**
@@ -2210,7 +3175,8 @@ const Joi = require("joi");
 /**
  * @typedef InventoryUpdateResponse
  * @property {InventoryResponseItem[]} [items]
- * @property {string} message - It is the success message of the inventory update.
+ * @property {string} [message] - It is the success message of the inventory update.
+ * @property {boolean} [success] - It is the success message of the inventory update.
  */
 
 /**
@@ -2261,6 +3227,19 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PriceRange
+ * @property {number} [min]
+ * @property {number} [max]
+ */
+
+/**
+ * @typedef ProductPriceRangeSchema
+ * @property {PriceRange} [effective]
+ * @property {PriceRange} [marked]
+ * @property {string} [currency]
+ */
+
+/**
  * @typedef LimitedProductData
  * @property {Object} [attributes]
  * @property {string} [country_of_origin]
@@ -2268,7 +3247,7 @@ const Joi = require("joi");
  * @property {string[]} [images]
  * @property {string} [item_code]
  * @property {string} [name]
- * @property {Object} [price]
+ * @property {ProductPriceRangeSchema} [price]
  * @property {number} [quantity]
  * @property {string} [short_description]
  * @property {string[]} [sizes]
@@ -2278,8 +3257,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ListSizeGuide
- * @property {Object[]} [items]
- * @property {Object} [page]
+ * @property {SizeGuideResponse[]} [items]
+ * @property {Page} [page]
  */
 
 /**
@@ -2298,6 +3277,7 @@ const Joi = require("joi");
 
 /**
  * @typedef LocationListSerializer
+ * @property {Object[]} [filters]
  * @property {GetLocationSerializer[]} [items]
  * @property {Page} [page]
  */
@@ -2338,7 +3318,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InventoryManufacturerResponse
+ * @typedef ManufacturerResponse1
  * @property {string} [address]
  * @property {boolean} [is_default]
  * @property {string} [name]
@@ -2366,20 +3346,44 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BrandMedia
- * @property {string} [aspect_ratio] - The aspect ratio of the media, typically
- *   represented as a string like '16:9' or '4:3'.
- * @property {string} [type] - The type of media, such as 'image', 'video', or
- *   'audio', describing the content format.
- * @property {string} [url] - The URL where the media file is hosted, typically
- *   a link to an image or video resource.
+ * @typedef Meta
+ * @property {GuideHeaders} [headers]
+ * @property {GuideValues[]} [values]
+ * @property {string} [unit]
  */
 
 /**
- * @typedef Meta
- * @property {Object} [headers]
- * @property {string} [unit]
- * @property {Object[]} [values]
+ * @typedef GuideHeaders
+ * @property {Header} [col_1]
+ * @property {Header} [col_2]
+ * @property {Header} [col_3]
+ * @property {Header} [col_4]
+ * @property {Header} [col_5]
+ * @property {Header} [col_6]
+ * @property {Header} [col_7]
+ * @property {Header} [col_8]
+ * @property {Header} [col_9]
+ * @property {Header} [col_10]
+ */
+
+/**
+ * @typedef GuideValues
+ * @property {string} [col_1]
+ * @property {string} [col_2]
+ * @property {string} [col_3]
+ * @property {string} [col_4]
+ * @property {string} [col_5]
+ * @property {string} [col_6]
+ * @property {string} [col_7]
+ * @property {string} [col_8]
+ * @property {string} [col_9]
+ * @property {string} [col_10]
+ */
+
+/**
+ * @typedef Header
+ * @property {string} [value]
+ * @property {boolean} [convertable]
  */
 
 /**
@@ -2435,8 +3439,8 @@ const Joi = require("joi");
 
 /**
  * @typedef NextSchedule
- * @property {string} [end] - The end time of the schedule.
- * @property {string} [start] - The start time of the schedule.
+ * @property {string} [end]
+ * @property {string} [start]
  */
 
 /**
@@ -2456,11 +3460,48 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef OptinAddress
+ * @property {string} [address1]
+ * @property {string} [state]
+ * @property {string} [pincode]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {number} [latitude]
+ * @property {number} [longitude]
+ * @property {string} [country_code]
+ */
+
+/**
+ * @typedef OptinDocument
+ * @property {string} [type]
+ * @property {string} [value]
+ * @property {string} [legal_name]
+ * @property {boolean} [verified]
+ * @property {string} [url]
+ */
+
+/**
+ * @typedef OptinBusinessCountryInfo
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {Object} [currency]
+ * @property {string} [timezone]
+ */
+
+/**
  * @typedef OptinCompanyDetail
- * @property {string} [business_type]
- * @property {string} [company_type]
  * @property {string} [name]
  * @property {number} [uid]
+ * @property {string} [business_info]
+ * @property {string} [business_type]
+ * @property {string} [company_type]
+ * @property {OptinBusinessCountryInfo} [business_country_info]
+ * @property {OptinAddress} [address]
+ * @property {OptinDocument[]} [documents]
+ * @property {number[]} [brands]
+ * @property {string[]} [notification_emails]
+ * @property {Object} [warnings]
+ * @property {string} [stage]
  */
 
 /**
@@ -2478,11 +3519,12 @@ const Joi = require("joi");
 
 /**
  * @typedef OwnerAppItemResponse
+ * @property {Object} [size_promotion_threshold]
  * @property {Object} [alt_text]
  * @property {boolean} [is_cod]
  * @property {boolean} [is_gift]
- * @property {MOQData} [moq]
- * @property {SEOData} [seo]
+ * @property {Object} [moq]
+ * @property {Object} [seo]
  * @property {Object} [_custom_json] - Custom JSON data for the item
  * @property {MetaFields[]} [_custom_meta] - Custom meta fields for the item
  */
@@ -2505,6 +3547,7 @@ const Joi = require("joi");
  * @property {number} [current] - The current page number.
  * @property {string} type - The type of the page, such as 'PageType'.
  * @property {number} [size] - The number of items per page.
+ * @property {number} [total] - Total number of items.
  */
 
 /**
@@ -2516,6 +3559,16 @@ const Joi = require("joi");
  * @property {number} [item_total] - It is the total number of item present for
  *   the filter.
  * @property {number} [size] - It is the size of each page.
+ */
+
+/**
+ * @typedef PageResponse1
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
  */
 
 /**
@@ -2641,10 +3694,12 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductBrand
- * @property {Action} [action]
- * @property {Media} [logo]
- * @property {string} [name]
+ * @property {string} [type]
  * @property {number} [uid]
+ * @property {string} [name]
+ * @property {Object} [logo]
+ * @property {PageAction} [action]
+ * @property {Object} [_custom_json]
  */
 
 /**
@@ -2676,6 +3731,22 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef InventoryBulkJob
+ * @property {number} [company_id] - The ID of the company.
+ * @property {string} [file_path] - The file path of the company.
+ */
+
+/**
+ * @typedef ProductBulkResponse
+ * @property {string} [batch_id]
+ */
+
+/**
+ * @typedef InventoryBulkResponse
+ * @property {string} [batch_id]
+ */
+
+/**
  * @typedef ProductBulkRequestList
  * @property {ProductBulkRequest[]} [items]
  * @property {Page} [page]
@@ -2683,9 +3754,6 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductBundleItem
- * @property {boolean} [allow_remove]
- * @property {boolean} [auto_add_to_cart]
- * @property {boolean} [auto_select]
  * @property {number} max_quantity
  * @property {number} min_quantity
  * @property {number} product_uid
@@ -2694,7 +3762,7 @@ const Joi = require("joi");
 /**
  * @typedef ProductBundleRequest
  * @property {string} choice
- * @property {number} [company_id]
+ * @property {string} [company_id]
  * @property {Object} [created_by]
  * @property {string} [created_on]
  * @property {boolean} is_active
@@ -2707,12 +3775,18 @@ const Joi = require("joi");
  * @property {ProductBundleItem[]} products
  * @property {boolean} [same_store_assignment]
  * @property {string} slug
+ * @property {boolean} auto_add_to_cart
+ * @property {boolean} auto_select
+ * @property {boolean} allow_remove
+ * @property {boolean} prefer_single_shipment
+ * @property {boolean} allow_individual_return
+ * @property {boolean} allow_individual_cancel
  */
 
 /**
  * @typedef ProductBundleUpdateRequest
  * @property {string} choice
- * @property {number} [company_id]
+ * @property {string} [company_id]
  * @property {boolean} is_active
  * @property {string} [logo]
  * @property {Object} [meta]
@@ -2720,6 +3794,12 @@ const Joi = require("joi");
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [page_visibility]
+ * @property {boolean} [allow_individual_cancel]
+ * @property {boolean} [allow_individual_return]
+ * @property {boolean} [allow_remove]
+ * @property {boolean} [auto_add_to_cart]
+ * @property {boolean} [auto_select]
+ * @property {boolean} [prefer_single_shipment]
  * @property {ProductBundleItem[]} products
  * @property {boolean} [same_store_assignment]
  * @property {string} slug
@@ -2729,6 +3809,25 @@ const Joi = require("joi");
  * @typedef ProductConfigurationDownloads
  * @property {Object[]} [data]
  * @property {boolean} [multivalue]
+ */
+
+/**
+ * @typedef ProductCreateUpdateSizesSchema
+ * @property {string} [size]
+ * @property {number} [price]
+ * @property {number} [price_effective]
+ * @property {number} [price_transfer]
+ * @property {string} [currency]
+ * @property {number} [item_length]
+ * @property {number} [item_width]
+ * @property {number} [item_height]
+ * @property {number} [item_weight]
+ * @property {string} [item_dimensions_unit_of_measure]
+ * @property {string} [item_weight_unit_of_measure]
+ * @property {boolean} [track_inventory]
+ * @property {GTIN[]} [identifiers]
+ * @property {Object} [_custom_json]
+ * @property {string} [name]
  */
 
 /**
@@ -2760,18 +3859,16 @@ const Joi = require("joi");
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
  * @property {ProductPublish1} [product_publish]
- * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
  * @property {string} [size_guide]
- * @property {Object[]} sizes
+ * @property {ProductCreateUpdateSizesSchema[]} sizes
  * @property {string} slug
  * @property {string[]} [tags]
  * @property {TaxIdentifier} tax_identifier
  * @property {TeaserTag} [teaser_tag]
  * @property {string} template_tag
  * @property {Trader[]} trader
- * @property {number} [uid]
  * @property {Object} [variant_group]
  * @property {Object} [variant_media]
  * @property {Object} [variants]
@@ -2818,6 +3915,64 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PatchProductDownloadsDataResponse
+ * @property {string} [created_on]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [task_id]
+ * @property {string} [modified_on]
+ * @property {number} [seller_id]
+ * @property {string} [url]
+ * @property {string} [status]
+ * @property {string[]} [notification_emails]
+ * @property {string} [completed_on]
+ */
+
+/**
+ * @typedef PatchProductDownloadsResponse
+ * @property {PatchProductDownloadsDataResponse} [data]
+ */
+
+/**
+ * @typedef ProductDownloadFilters
+ * @property {string[]} brands
+ * @property {string[]} catalogue_types
+ * @property {string[]} templates
+ */
+
+/**
+ * @typedef CreateProductDownloadsDataResponse
+ * @property {string} [created_on]
+ * @property {string} [type]
+ * @property {string} [task_id]
+ * @property {ProductDownloadFilters} [filters]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [_id]
+ * @property {Object[]} [notification_emails]
+ * @property {string} [modified_on]
+ * @property {string} [status]
+ * @property {number} [seller_id]
+ * @property {Stats} [stats]
+ */
+
+/**
+ * @typedef CreateProductDownloadsResponse
+ * @property {CreateProductDownloadsDataResponse} [data]
+ */
+
+/**
+ * @typedef GetProductDownloadsResponse
+ * @property {string} [modified_on]
+ * @property {string} [url]
+ * @property {string} [status]
+ * @property {string} [completed_on]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [created_on]
+ * @property {number} [seller_id]
+ * @property {string} [task_id]
+ * @property {string} [id]
+ */
+
+/**
  * @typedef ProductDownloadsResponse
  * @property {ProductTemplateExportResponse[]} [items] - The items of the job.
  * @property {Page} [page]
@@ -2827,17 +3982,6 @@ const Joi = require("joi");
  * @typedef ProductFilters
  * @property {ProductFiltersKey} key
  * @property {ProductFiltersValue[]} values
- */
-
-/**
- * @typedef GetQueryFiltersValuesResponse
- * @property {ProductFiltersValue[]} values
- * @property {Page} page
- */
-
-/**
- * @typedef ProductFiltersKeysOnly
- * @property {ProductFiltersKey} key
  */
 
 /**
@@ -2862,7 +4006,40 @@ const Joi = require("joi");
  * @property {string} [query_format]
  * @property {number} [selected_max]
  * @property {number} [selected_min]
- * @property {Object} value
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef ApplicationCategoryAction
+ * @property {CategoryPageAction} [page]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ApplicationCategoryItem
+ * @property {Object} [_custom_json]
+ * @property {ApplicationCategoryAction} [action]
+ * @property {number} [id]
+ * @property {CategoryImage} [logo]
+ * @property {string} [name]
+ * @property {number} [uid]
+ */
+
+/**
+ * @typedef CategoryPageAction
+ * @property {CategoryQuery} [query]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef CategoryQuery
+ * @property {string[]} [category]
+ */
+
+/**
+ * @typedef CategoryImage
+ * @property {string} [type]
+ * @property {string} [url]
  */
 
 /**
@@ -2893,12 +4070,32 @@ const Joi = require("joi");
  * @property {string[]} [tryouts]
  * @property {string} [type]
  * @property {number} [uid]
+ * @property {ApplicationCategoryItem[]} [categories]
+ * @property {string[]} [_custom_meta]
+ * @property {PageAction} [action]
+ * @property {boolean} [is_tryout]
+ * @property {number[]} [all_company_ids]
+ * @property {boolean} [is_custom_order]
+ * @property {string[]} [collections]
+ */
+
+/**
+ * @typedef PageAction
+ * @property {ActionObject} [page]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ActionObject
+ * @property {string} [type]
+ * @property {Object} [query]
  */
 
 /**
  * @typedef ProductListingPrice
  * @property {Price1} [effective]
  * @property {Price1} [marked]
+ * @property {Price1} [selling]
  */
 
 /**
@@ -2911,6 +4108,23 @@ const Joi = require("joi");
  * @typedef ProductListingResponseV2
  * @property {ProductSchemaV2[]} [items]
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef ProductVerificationModel
+ * @property {Object} [rejected_fields]
+ * @property {string} [status]
+ * @property {number} [brand_uid]
+ * @property {string} [created_on]
+ * @property {number[]} [company_ids]
+ * @property {string} [item_code]
+ * @property {string} [remark]
+ * @property {CreatedBy} [created_by]
+ * @property {string} [modified_on]
+ * @property {string} [slug]
+ * @property {CreatedBy} [modified_by]
+ * @property {number} [item_id]
+ * @property {string} [id]
  */
 
 /**
@@ -2945,7 +4159,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CategorySubSchema
+ * @property {string} [name]
+ * @property {number} [uid]
+ */
+
+/**
+ * @typedef CategoryProduct
+ * @property {CategorySubSchema} [l3]
+ * @property {CategorySubSchema} [l1]
+ * @property {CategorySubSchema} [l2]
+ */
+
+/**
  * @typedef ProductSchemaV2
+ * @property {CategoryProduct} [category]
  * @property {Object} [_custom_json]
  * @property {number[]} [all_company_ids]
  * @property {string[]} [all_identifiers]
@@ -2953,7 +4181,6 @@ const Joi = require("joi");
  * @property {Object} [attributes]
  * @property {Brand} [brand]
  * @property {number} [brand_uid]
- * @property {Object} [category]
  * @property {string} [category_slug]
  * @property {number} [category_uid]
  * @property {string} [color]
@@ -3034,6 +4261,17 @@ const Joi = require("joi");
  * @property {boolean} [is_selected]
  * @property {string} [name]
  * @property {string} [value]
+ * @property {string} [display]
+ * @property {string} [logo]
+ */
+
+/**
+ * @typedef ProductSortOnv2
+ * @property {boolean} [is_selected]
+ * @property {string} [name]
+ * @property {string} [value]
+ * @property {string} [display]
+ * @property {string} [logo]
  */
 
 /**
@@ -3046,15 +4284,16 @@ const Joi = require("joi");
  * @property {string[]} [attributes]
  * @property {string[]} [categories]
  * @property {Object} [created_by]
+ * @property {Object} [modified_by]
  * @property {string} [created_on]
  * @property {string[]} [departments]
  * @property {string} [description]
  * @property {boolean} [is_active]
  * @property {boolean} [is_archived]
- * @property {boolean} is_expirable
- * @property {boolean} is_physical
+ * @property {boolean} [is_expirable]
+ * @property {boolean} [is_physical]
  * @property {string} [logo]
- * @property {Object} [modified_by]
+ * @property {string} [id]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} slug
@@ -3063,8 +4302,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductTemplateDownloadsExport
- * @property {ProductTemplateExportFilterRequest} [filters] - This is the
- *   filters of the file for the export.
+ * @property {ProductTemplateExportFilterRequest} [filters]
  * @property {string[]} [notification_emails] - The list of the emails to be
  *   notified after the completion of the job.
  * @property {string} [type] - This is the type of the file for the export.
@@ -3084,8 +4322,11 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductTemplateExportResponse
+ * @property {string} [trigger_on]
+ * @property {string} [id]
+ * @property {Object} [template_tags]
  * @property {string} [completed_on] - Completion datetime of the job
- * @property {UserInfo1} [created_by] - The user that created the job.
+ * @property {Object} [created_by] - The user that created the job.
  * @property {Object} [filters] - The filters that needs to be exported.
  * @property {string} [modified_on] - Modification date of the job
  * @property {string[]} [notification_emails] - The notification emails for the job.
@@ -3104,6 +4345,19 @@ const Joi = require("joi");
  * @property {Media[]} [media]
  * @property {string} [name]
  * @property {number} [uid]
+ */
+
+/**
+ * @typedef CompanyVerificationStats
+ * @property {number} [verified]
+ * @property {number} [total]
+ */
+
+/**
+ * @typedef CompanyVerificationResponse
+ * @property {number} [uid]
+ * @property {string} [name]
+ * @property {CompanyVerificationStats} [stats]
  */
 
 /**
@@ -3164,7 +4418,6 @@ const Joi = require("joi");
 /**
  * @typedef Quantity
  * @property {number} [count]
- * @property {string} [updated_at]
  */
 
 /**
@@ -3176,8 +4429,8 @@ const Joi = require("joi");
 /**
  * @typedef ReturnConfig
  * @property {boolean} returnable
- * @property {number} time
- * @property {string} unit
+ * @property {number} [time]
+ * @property {string} [unit]
  */
 
 /**
@@ -3203,44 +4456,38 @@ const Joi = require("joi");
 
 /**
  * @typedef Sitemap
- * @property {number} [priority] - Indicates the priority of this URL relative
- *   to other URLs on the site. A value between 0.0 and 1.0, where 1.0 is the
- *   highest priority.
- * @property {string} [frequency] - How frequently the content at the URL is
- *   likely to change.
+ * @property {number} [priority]
+ * @property {string} [frequency]
  */
 
 /**
  * @typedef ApplicationItemSeoAction
- * @property {Object} [page] - Details of the page associated with this SEO action.
- * @property {string} type - Type of action, such as navigation or redirection.
+ * @property {Object} [page]
+ * @property {string} type
  */
 
 /**
  * @typedef ApplicationItemSeoBreadcrumbs
- * @property {string} [url] - The URL that this breadcrumb points to.
- * @property {ApplicationItemSeoAction[]} [action] - The actions available for
- *   this breadcrumb, defining what happens when it's clicked or interacted with.
+ * @property {string} [url]
+ * @property {Object} [action]
  */
 
 /**
  * @typedef ApplicationItemSeoMetaTagItem
- * @property {string} key - The name of the meta tag.
- * @property {string} value - The value associated with the meta tag.
+ * @property {string} key
+ * @property {string} value
  */
 
 /**
  * @typedef ApplicationItemSeoMetaTags
- * @property {string} title - The title for this set of meta tags.
- * @property {ApplicationItemSeoMetaTagItem[]} [items] - A list of meta tag
- *   items, each defined by key-value pairs.
+ * @property {string} title
+ * @property {ApplicationItemSeoMetaTagItem[]} [items]
  */
 
 /**
  * @typedef Metatags
- * @property {string} [title] - The title or heading for the meta tags section.
- * @property {ApplicationItemSeoMetaTagItem[]} [items] - An array of meta tag
- *   items, each consisting of key-value pairs.
+ * @property {string} [title]
+ * @property {ApplicationItemSeoMetaTags[]} [items]
  */
 
 /**
@@ -3277,16 +4524,13 @@ const Joi = require("joi");
 
 /**
  * @typedef SecondLevelChild
- * @property {Object} [_custom_json] - Custom JSON object to store additional
- *   data for the second-level child.
+ * @property {Object} [_custom_json]
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {ThirdLevelChild[]} [childs] - A list of third-level child elements
- *   under the second-level child.
- * @property {string} [name] - Name of the second-level child element.
- * @property {string} [slug] - Slug or URL-friendly identifier for the
- *   second-level child element.
- * @property {number} [uid] - Unique identifier for the second-level child element.
+ * @property {ThirdLevelChild[]} [childs]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
  */
 
 /**
@@ -3296,21 +4540,19 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SitemapDetail
+ * @property {number} [priority]
+ * @property {string} [frequency]
+ */
+
+/**
  * @typedef SeoDetail
- * @property {string} [description] - SEO meta description for the item or
- *   collection. This is used to describe the content for search engines.
- * @property {string} [title] - SEO meta title for the item or collection. It is
- *   used as the title that appears in search results.
- * @property {Object} [sitemap] - Information regarding the sitemap
- *   configuration for the item or collection.
- * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs] - List of
- *   breadcrumbs for navigation, showing the hierarchy of pages leading to the
- *   current page.
- * @property {Metatags[]} [meta_tags] - An array of meta tags, each containing
- *   key-value pairs for various SEO meta tags used to enhance search visibility.
- * @property {string} [canonical_url] - The canonical URL for the item or
- *   collection, which tells search engines the preferred version of the URL to
- *   avoid duplicate content issues.
+ * @property {string} [description]
+ * @property {string} [title]
+ * @property {SitemapDetail} [sitemap]
+ * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs]
+ * @property {Metatags[]} [meta_tags]
+ * @property {string} [canonical_url]
  */
 
 /**
@@ -3322,6 +4564,19 @@ const Joi = require("joi");
 /**
  * @typedef SingleCategoryResponse
  * @property {Category} [data]
+ */
+
+/**
+ * @typedef VariantTypesResponse
+ * @property {VariantTypeItem[]} [items]
+ */
+
+/**
+ * @typedef VariantTypeItem
+ * @property {string} [name] - Name of the item
+ * @property {string} [key] - Key of the item
+ * @property {string[]} [type] - Array of item types
+ * @property {Object} [image_config] - Configuration for the image
  */
 
 /**
@@ -3344,14 +4599,15 @@ const Joi = require("joi");
 
 /**
  * @typedef SizeGuideResponse
+ * @property {string} [image]
+ * @property {Object} [created_by] - The user who created the size guide.
+ * @property {Object} [modified_by] - The user who modified the size guide.
  * @property {boolean} [active]
  * @property {number} [brand_id]
  * @property {number} [company_id]
- * @property {Object} [created_by]
  * @property {string} [created_on]
  * @property {Object} [guide]
  * @property {string} [id]
- * @property {Object} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [subtitle]
@@ -3360,41 +4616,102 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreAssignResponse
- * @property {string} [_id]
- * @property {ArticleAssignment1} article_assignment
+ * @typedef Time
+ * @property {number} [hour]
+ * @property {number} [minute]
+ */
+
+/**
+ * @typedef Timing
+ * @property {Time} [closing]
+ * @property {string} [weekday]
+ * @property {Time} [opening]
+ * @property {boolean} [open]
+ */
+
+/**
+ * @typedef StoreItem
+ * @property {string} [stage]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {string} [modified_on]
+ * @property {UserSchemaCustom} [modified_by]
+ * @property {Manager} [manager]
+ * @property {string[]} [notification_emails]
+ * @property {string} [verified_on]
+ * @property {UserSchemaCustom} [verified_by]
+ * @property {IntegrationType} [integration_type]
  * @property {number} [company_id]
- * @property {string} [group_id]
- * @property {number} [index]
- * @property {number} item_id
- * @property {Object} [meta]
- * @property {number} [price_effective]
- * @property {number} [price_marked]
- * @property {number} quantity
- * @property {string} [s_city]
- * @property {string} size
- * @property {boolean} status
- * @property {number} [store_id]
- * @property {number} [store_pincode]
- * @property {Object[]} [strategy_wise_listing]
- * @property {string} [uid]
+ * @property {Document[]} [documents]
+ * @property {string} [created_on]
+ * @property {Address} [address]
+ * @property {UserSchemaCustom} [created_by]
+ * @property {Object} [_custom_json]
+ * @property {number} [uid]
+ * @property {Timing[]} [timing]
+ * @property {string} [store_type]
+ */
+
+/**
+ * @typedef UserSchemaCustom
+ * @property {string} [user_id]
+ * @property {string} [username]
+ */
+
+/**
+ * @typedef Manager
+ * @property {string} [name]
+ * @property {string} [email]
+ * @property {MobileNo} [mobile_no]
+ */
+
+/**
+ * @typedef MobileNo
+ * @property {number} [country_code]
+ * @property {string} [number]
+ */
+
+/**
+ * @typedef IntegrationType
+ * @property {string} [order]
+ * @property {string} [inventory]
+ */
+
+/**
+ * @typedef Address
+ * @property {string} [country_code]
+ * @property {string} [address1]
+ * @property {string} [city]
+ * @property {string} [address2]
+ * @property {string} [country]
+ * @property {string} [pincode]
+ * @property {string} [landmark]
+ * @property {string} [state]
  */
 
 /**
  * @typedef StoreDetail
  * @property {Object[]} [additional_contacts]
- * @property {Object} [address]
  * @property {number} [company_id]
  * @property {string} [created_on]
  * @property {string} [display_name]
- * @property {Object[]} [documents]
- * @property {Object} [manager]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [store_code]
  * @property {string} [store_type]
- * @property {Object} [timing]
+ * @property {Timing[]} [timing]
  * @property {number} [uid]
+ * @property {string} [stage]
+ * @property {UserSchemaCustom} [modified_by]
+ * @property {Manager} [manager]
+ * @property {string[]} [notification_emails]
+ * @property {string} [verified_on]
+ * @property {UserSchemaCustom} [verified_by]
+ * @property {IntegrationType} [integration_type]
+ * @property {Document[]} [documents]
+ * @property {Address} [address]
+ * @property {UserSchemaCustom} [created_by]
+ * @property {Object} [_custom_json]
  */
 
 /**
@@ -3408,10 +4725,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SuccessResponseObject
- * @property {boolean} [success] - Indicates whether the operation was successful or not.
- * @property {number} [uid] - A unique identifier associated with the successful
- *   operation.
+ * @typedef SuccessResponse1
+ * @property {boolean} [success]
+ * @property {number} [uid]
  */
 
 /**
@@ -3460,7 +4776,7 @@ const Joi = require("joi");
 
 /**
  * @typedef TemplatesResponse
- * @property {ProductTemplate} [items]
+ * @property {ProductTemplate[]} [items]
  * @property {Page} [page]
  */
 
@@ -3472,16 +4788,13 @@ const Joi = require("joi");
 
 /**
  * @typedef ThirdLevelChild
- * @property {Object} [_custom_json] - Custom JSON object to store additional
- *   data for the third-level child.
+ * @property {Object} [_custom_json]
  * @property {Action} [action]
  * @property {ImageUrls} [banners]
- * @property {Object[]} [childs] - A list of further nested child elements under
- *   the third-level child (if applicable).
- * @property {string} [name] - Name of the third-level child element.
- * @property {string} [slug] - Slug or URL-friendly identifier for the
- *   third-level child element.
- * @property {number} [uid] - Unique identifier for the third-level child element.
+ * @property {Object[]} [childs]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
  */
 
 /**
@@ -3499,7 +4812,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TraderResponse
+ * @typedef Trader2
  * @property {string[]} [address]
  * @property {string} [name]
  * @property {string} [type]
@@ -3507,6 +4820,9 @@ const Joi = require("joi");
 
 /**
  * @typedef UpdateCollection
+ * @property {Action} [action]
+ * @property {string} [uid]
+ * @property {string} [app_id]
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {CollectionSchedule} [_schedule]
@@ -3519,7 +4835,7 @@ const Joi = require("joi");
  * @property {boolean} [is_visible]
  * @property {CollectionImage} [logo]
  * @property {Object} [meta]
- * @property {UserInfo} [modified_by]
+ * @property {string} [modified_by] - User info.
  * @property {string} [name]
  * @property {number} [priority]
  * @property {boolean} [published]
@@ -3530,6 +4846,7 @@ const Joi = require("joi");
  * @property {string[]} [tags]
  * @property {string} [type]
  * @property {string[]} [visible_facets_keys]
+ * @property {boolean} [is_searchable]
  */
 
 /**
@@ -3537,14 +4854,12 @@ const Joi = require("joi");
  * @property {string} application_id - The application id where custom search
  *   configuration is set
  * @property {number} company_id - The company id where custom search configuration is set
- * @property {UserSerializer} [created_by] - The user who created the search
- *   configuration.
+ * @property {Object} [created_by] - The user who created the search configuration.
  * @property {string} [created_on] - The date and time when the search
  *   configuration was created.
  * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
  *   search is enabled for this attribute.
- * @property {UserSerializer} [modified_by] - The user who modified the search
- *   configuration.
+ * @property {Object} [modified_by] - The user who modified the search configuration.
  * @property {string} [modified_on] - The date and time when the search
  *   configuration was last modified.
  * @property {number} [proximity] - Proximity distance configuration
@@ -3558,16 +4873,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateMarketplaceOptinResponse
- * @property {number[]} [store_ids]
- * @property {number[]} [brand_ids]
- * @property {number} [company_id]
- * @property {string} [opt_level]
- * @property {string} [platform]
- * @property {boolean} [enabled]
- * @property {CreatedBy} [created_by]
- * @property {CreatedBy} [modified_by]
- * @property {string} [app_id]
+ * @typedef UpdatedResponse
+ * @property {number[]} [items_not_updated]
+ * @property {string} [message]
  */
 
 /**
@@ -3616,7 +4924,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef RequestUserSerializer
+ * @typedef UserSerializer1
  * @property {string} [_id]
  * @property {string} [contact]
  * @property {string} [uid]
@@ -3648,6 +4956,7 @@ const Joi = require("joi");
 /**
  * @typedef ValidateProduct
  * @property {boolean} [valid]
+ * @property {string} [message]
  */
 
 /**
@@ -3683,7 +4992,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef InventoryWeightResponse
+ * @typedef WeightResponse1
  * @property {number} [shipping]
  * @property {string} [unit]
  */
@@ -3695,17 +5004,23 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ModifiedBy
+ * @property {string} [username]
+ * @property {string} [user_id]
+ */
+
+/**
  * @typedef Marketplaces
  * @property {number[]} [brand_ids]
  * @property {string} [app_id]
  * @property {boolean} [enabled]
- * @property {CreatedBy} [created_by]
- * @property {Object} [created_on]
+ * @property {Object} [created_by]
+ * @property {string} [created_on]
  * @property {string} [opt_level]
  * @property {number} [company_id]
- * @property {CreatedBy} [modified_by]
+ * @property {Object} [modified_by]
  * @property {number[]} [store_ids]
- * @property {Object} [modified_on]
+ * @property {string} [modified_on]
  * @property {string} [platforms]
  * @property {string} [_id]
  */
@@ -3714,6 +5029,16 @@ const Joi = require("joi");
  * @typedef GetAllMarketplaces
  * @property {Marketplaces[]} [items]
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef CreateMarketplaceOptinRequest
+ * @property {number[]} [brand_ids]
+ * @property {number} [company_id]
+ * @property {boolean} [enabled]
+ * @property {string} [opt_level]
+ * @property {string} [platform]
+ * @property {number[]} [store_ids]
  */
 
 /**
@@ -3727,6 +5052,42 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CreateMarketplaceOptinResponse
+ * @property {number[]} [store_ids]
+ * @property {number[]} [brand_ids]
+ * @property {number} [company_id]
+ * @property {string} [opt_level]
+ * @property {string} [platform]
+ * @property {boolean} [enabled]
+ * @property {CreatedBy} [created_by]
+ * @property {CreatedBy} [modified_by]
+ * @property {string} [app_id]
+ */
+
+/**
+ * @typedef GetProductTemplateSlugItems
+ * @property {string[]} [attributes]
+ * @property {string[]} [departments]
+ * @property {boolean} [is_active]
+ * @property {string} [tag]
+ * @property {boolean} [is_physical]
+ * @property {string} [description]
+ * @property {string} [logo]
+ * @property {boolean} [is_archived]
+ * @property {string} [slug]
+ * @property {string[]} [categories]
+ * @property {boolean} [is_expirable]
+ * @property {string} [name]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef GetProductTemplateSlugResponse
+ * @property {Page} [page]
+ * @property {GetProductTemplateSlugItems[]} [items]
+ */
+
+/**
  * @typedef UpdateMarketplaceOptinResponse
  * @property {number[]} [brand_ids]
  * @property {number} [company_id]
@@ -3735,8 +5096,529 @@ const Joi = require("joi");
  * @property {string} [opt_level]
  * @property {string} [platform]
  * @property {number[]} [store_ids]
+ * @property {Object} [created_by]
+ * @property {Object} [modified_by]
+ */
+
+/**
+ * @typedef AutocompleteRequestSchema
+ * @property {Object} [query_suggestion]
+ * @property {Object} [product_suggestion]
+ * @property {Object} [collection_suggestion]
+ * @property {Object} [brand_suggestion]
+ * @property {Object} [category_suggestion]
+ */
+
+/**
+ * @typedef AutocompleteUpsertResponseSchema
+ * @property {string} [message]
+ * @property {string} [id]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef AutocompleteErrorResponseSchema
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef AutocompleteResponseSchema
+ * @property {string} [id]
+ * @property {Object} [query_suggestion]
+ * @property {Object} [product_suggestion]
+ * @property {Object} [collection_suggestion]
+ * @property {Object} [brand_suggestion]
+ * @property {Object} [category_suggestion]
+ */
+
+/**
+ * @typedef ProductListingActionPage
+ * @property {string} [type]
+ * @property {Object} [query]
+ * @property {Object} [params]
+ */
+
+/**
+ * @typedef ProductListingAction
+ * @property {string} [type]
+ * @property {ProductListingActionPage} [page]
+ */
+
+/**
+ * @typedef AutocompleteItem
+ * @property {Media} [logo]
+ * @property {string} [display]
+ * @property {string} [type]
+ * @property {Object} [_custom_json]
+ * @property {ProductListingAction} [action]
+ */
+
+/**
+ * @typedef AutocompletePreviewResponseSchema
+ * @property {AutocompleteItem[]} [items]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryRequestSchema
+ * @property {string} [name]
+ * @property {string} [code]
+ * @property {boolean} [is_active]
+ * @property {string[]} [factory_type_ids]
+ * @property {number[]} [department_ids]
+ * @property {string} [application_id]
+ * @property {string} [factory_type]
+ * @property {string} [currency]
+ * @property {string} [currency_symbol]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryResponse
+ * @property {string} [factory_type] - Type of the factory.
+ * @property {boolean} [is_active] - Indicates whether the factory is active or not.
+ * @property {string} [code] - Code associated with the factory.
+ * @property {string[]} [factory_type_ids] - Array of unique identifiers
+ *   associated with the factory type.
+ * @property {string} [currency] - Currency associated with the factory.
+ * @property {string} [application_id] - Unique identifier for the application.
+ * @property {string} [created_on] - Date and time when the factory was created.
  * @property {CreatedBy} [created_by]
  * @property {CreatedBy} [modified_by]
+ * @property {string} [name] - Name of the factory.
+ * @property {number[]} [department_ids] - Array of department identifiers
+ *   associated with the factory.
+ * @property {string} [modified_on] - Date and time when the factory was last modified.
+ * @property {string} [_id] - Unique identifier for the factory.
+ */
+
+/**
+ * @typedef ErrorDetails
+ * @property {number} [status_code]
+ */
+
+/**
+ * @typedef AppPriceFactory
+ * @property {string} [_id]
+ * @property {string} application_id
+ * @property {number[]} department_ids
+ * @property {string} factory_type
+ * @property {string[]} factory_type_ids
+ * @property {string} code
+ * @property {string} name
+ * @property {boolean} is_active
+ * @property {string} currency
+ * @property {Object} [created_by]
+ * @property {Object} [modified_by]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ */
+
+/**
+ * @typedef EditAppPriceFactoryRequestSchema
+ * @property {string} [name]
+ * @property {string} [code]
+ * @property {boolean} [is_active]
+ * @property {string[]} [factory_type_ids]
+ * @property {number[]} [department_ids]
+ * @property {string} [application_id]
+ * @property {string} [factory_type]
+ * @property {string} [currency]
+ * @property {string} [currency_symbol]
+ */
+
+/**
+ * @typedef GetAppPriceFactoryResponse
+ * @property {AppPriceFactory[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProduct
+ * @property {number} [item_id]
+ * @property {number} [marked_price]
+ * @property {number} [selling_price]
+ * @property {string} [seller_identifier]
+ * @property {string} [zone]
+ * @property {string} [action]
+ */
+
+/**
+ * @typedef PriceFactorySizes
+ * @property {string} [size_name]
+ * @property {string} [seller_identifier]
+ * @property {number} [marked_price]
+ * @property {number} [selling_price]
+ * @property {string} [currency]
+ * @property {boolean} [is_active]
+ */
+
+/**
+ * @typedef CompanySizes
+ * @property {string} [size_name]
+ * @property {string} [seller_identifier]
+ * @property {number} [marked_price]
+ * @property {number} [selling_price]
+ * @property {string} [currency]
+ * @property {boolean} [is_active]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductItem
+ * @property {string} [name]
+ * @property {number} [item_id]
+ * @property {string} [seller_identifier]
+ * @property {number} [marked_price]
+ * @property {number} [selling_price]
+ * @property {string} [zone]
+ * @property {string} [command]
+ */
+
+/**
+ * @typedef CreatePriceFactoryProductRequest
+ * @property {CreateAppPriceFactoryProductItem[]} [items]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductResponse
+ * @property {number} [item_id]
+ * @property {string} [item_name]
+ * @property {string} [item_code]
+ * @property {string} [brand]
+ * @property {string} [category]
+ * @property {string[]} [factory_type_id]
+ * @property {Media[]} [media]
+ * @property {PriceFactorySizes[]} [sizes]
+ * @property {CompanySizes[]} [company_sizes]
+ */
+
+/**
+ * @typedef UpdateAppPriceFactoryProductRequest
+ * @property {PriceFactorySizes[]} [sizes]
+ */
+
+/**
+ * @typedef UpdateAppPriceFactoryProductResponse
+ * @property {number} [item_id]
+ * @property {string} [zone_id]
+ * @property {Media[]} [media]
+ * @property {CompanySizes[]} [company_sizes]
+ * @property {PriceFactorySizes[]} [sizes]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductRequest
+ * @property {CreateAppPriceFactoryProduct[]} [items]
+ */
+
+/**
+ * @typedef FailedRecordsData
+ * @property {number} [item_id]
+ * @property {string} [error]
+ */
+
+/**
+ * @typedef CreatePriceFactoryProductResponse
+ * @property {number} [total_records]
+ * @property {number} [success_records]
+ * @property {number} [failed_records]
+ * @property {FailedRecordsData[]} [failed_records_data]
+ * @property {string} [stage]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductsResponse
+ * @property {CreateAppPriceFactoryProductResponse[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductBulkJobRequest
+ * @property {string} [file_path]
+ * @property {string} [file_type]
+ * @property {string} [job_type]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductExportJobRequest
+ * @property {boolean} [sample_with_data]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductExportJobResponse
+ * @property {string} [job_type]
+ * @property {number} [company_id]
+ * @property {string} [file_type]
+ * @property {string} [_id]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {Object} [created_by]
+ * @property {Object} [modified_by]
+ * @property {number} [success_records]
+ * @property {string} [application_id]
+ * @property {number} [total_records]
+ * @property {string} [factory_id]
+ * @property {boolean} [is_active]
+ * @property {string} [stage]
+ * @property {number} [failed_records]
+ */
+
+/**
+ * @typedef AppPriceFactoryProductExportPollJobResponse
+ * @property {string} [id]
+ * @property {string} [stage]
+ * @property {boolean} [is_active]
+ * @property {string} [created_on]
+ * @property {number} [total_records]
+ * @property {number} [success_records]
+ * @property {number} [failed_records]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductExportJobPollResponse
+ * @property {AppPriceFactoryProductExportPollJobResponse[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductBulkJobResponse
+ * @property {string} [job_id]
+ * @property {string} [status]
+ * @property {string} [file_type]
+ * @property {string} [stage]
+ * @property {CreatedBy} [created_by]
+ * @property {number} [company_id]
+ * @property {string} [job_type]
+ * @property {number} [total_records]
+ * @property {boolean} [is_active]
+ * @property {string} [modified_on]
+ * @property {string} [application_id]
+ * @property {string} [factory_id]
+ * @property {CreatedBy} [modified_by]
+ * @property {string} [created_on]
+ * @property {number} [failed_records]
+ * @property {string} [file_path]
+ * @property {number} [success_records]
+ * @property {string} [_id]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductBulkJobValidateResponse
+ * @property {string} [job_type]
+ * @property {string} [file_type]
+ * @property {string} [file_path]
+ * @property {string} [job_id]
+ * @property {string} [status]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {CreatedBy} [created_by]
+ * @property {CreatedBy} [modified_by]
+ */
+
+/**
+ * @typedef CreateAppPriceFactoryProductBulkJobPollResponse
+ * @property {string} [status]
+ * @property {number} [total_records]
+ * @property {number} [success_records]
+ * @property {number} [failed_records]
+ * @property {string} [error_file]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {Object} [created_by]
+ * @property {Object} [modified_by]
+ * @property {string} [stage] - Current stage of the process
+ * @property {boolean} [is_active] - Flag indicating if is active
+ * @property {string} [_id] - Unique identifier for the response
+ * @property {string} [error_file_url] - URL to the error file, if any
+ */
+
+/**
+ * @typedef SynonymListResponseSchema
+ * @property {SynonymResponseSchema[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef SynonymResponseSchema
+ * @property {string} [created_on]
+ * @property {string} [_id]
+ * @property {string} [type]
+ * @property {string[]} [synonyms]
+ * @property {string} [key]
+ * @property {string} [app_id]
+ * @property {string} [modified_on]
+ */
+
+/**
+ * @typedef SynonymListErrorResponseSchema
+ * @property {string} [message]
+ * @property {string} [error]
+ */
+
+/**
+ * @typedef SynonymCreateRequestSchema
+ * @property {string} [type]
+ * @property {string} [key]
+ * @property {string[]} [synonyms]
+ */
+
+/**
+ * @typedef SynonymCreateResponseSchema
+ * @property {boolean} [status]
+ * @property {string} [_id]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef SynonymUpdateResponseSchema
+ * @property {boolean} [success]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef SynonymCreateErrorSchema
+ * @property {string} [message]
+ * @property {Object} [errors]
+ * @property {number} [code]
+ */
+
+/**
+ * @typedef SynonymDeleteErrorSchema
+ * @property {string} [message]
+ * @property {boolean} [success]
+ * @property {string} [error]
+ */
+
+/**
+ * @typedef SynonymDeleteResponseSchema
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef SynonymUploadRequestSchema
+ * @property {string} [tracking_url]
+ * @property {string} [file_type]
+ * @property {string} [job_type]
+ */
+
+/**
+ * @typedef SynonymUploadResponseSchema
+ * @property {string} [job_type]
+ * @property {string} [file_type]
+ * @property {string} [tracking_url]
+ * @property {string} [stage]
+ * @property {boolean} [is_active]
+ * @property {number} [total_records]
+ * @property {number} [success_records]
+ * @property {number} [failed_records]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {string} [id]
+ */
+
+/**
+ * @typedef SynonymExportResponseSchema
+ * @property {string} [job_type]
+ * @property {string} [stage]
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {string} [id]
+ * @property {string} [application_id]
+ */
+
+/**
+ * @typedef SynonymUploadErrorSchema
+ * @property {string} [message]
+ * @property {Object} [errors]
+ * @property {number} [code]
+ */
+
+/**
+ * @typedef SynonymBulkValidateRequestSchema
+ * @property {string} [job_id]
+ * @property {string} [tracking_url]
+ * @property {string} [file_type]
+ * @property {string} [job_type]
+ */
+
+/**
+ * @typedef SynonymBulkValidateResponseSchema
+ * @property {string} [job_id]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef SynonymBulkValidateErrorSchema
+ * @property {string} [message]
+ * @property {Object} [errors]
+ * @property {number} [code]
+ */
+
+/**
+ * @typedef SynonymBulkProcessRequestSchema
+ * @property {string} [job_id]
+ * @property {string} [tracking_url]
+ * @property {string} [file_type]
+ * @property {string} [job_type]
+ */
+
+/**
+ * @typedef SynonymBulkProcessResponseSchema
+ * @property {string} [job_id]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef SynonymBulkProcessErrorSchema
+ * @property {string} [message]
+ * @property {string} [errors]
+ * @property {number} [code]
+ */
+
+/**
+ * @typedef SynonymBulkPollResponseSchema
+ * @property {number} [total_records]
+ * @property {number} [success_records]
+ * @property {number} [failed_records]
+ * @property {string} [stage]
+ * @property {string} [error_url]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef SynonymBulkPollErrorSchema
+ * @property {string} [message]
+ * @property {string} [error]
+ */
+
+/**
+ * @typedef PriceFactoryErrorSchema
+ * @property {Object} [departments]
+ * @property {Object} [pricing_strategy]
+ * @property {Object} [department_price_zonewise_department_ids]
+ * @property {string[]} [factory_type]
+ */
+
+/**
+ * @typedef PriceFactoryCreateErrorSchema
+ * @property {string} [message]
+ * @property {Object} [error]
+ * @property {number} [code]
+ */
+
+/**
+ * @typedef PriceGroupedByZone
+ * @property {string} [discount]
+ * @property {number[]} [store_id]
+ * @property {number} [seller_id]
+ * @property {string} [factory_type_id]
+ * @property {DiscountMeta} [discount_meta]
+ * @property {ProductListingPrice} [price]
+ */
+
+/**
+ * @typedef AppPriceByIdResponse
+ * @property {PriceGroupedByZone[]} [data]
  */
 
 /**
@@ -3799,6 +5681,461 @@ const Joi = require("joi");
  */
 
 class CatalogPlatformModel {
+  /** @returns {StoreTagsResponseSchema} */
+  static StoreTagsResponseSchema() {
+    return Joi.object({
+      tags: Joi.array().items(Joi.string().allow("")),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {DiscountMeta} */
+  static DiscountMeta() {
+    return Joi.object({
+      start: Joi.string().allow(""),
+      end: Joi.string().allow(""),
+      timer: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ProductMinMaxPrice} */
+  static ProductMinMaxPrice() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {ProductPrice} */
+  static ProductPrice() {
+    return Joi.object({
+      selling: CatalogPlatformModel.ProductMinMaxPrice(),
+      effective: CatalogPlatformModel.ProductMinMaxPrice(),
+      marked: CatalogPlatformModel.ProductMinMaxPrice(),
+      currency: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProductPricesPage} */
+  static ProductPricesPage() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      current: Joi.number(),
+      size: Joi.number(),
+      item_total: Joi.number(),
+      has_previous: Joi.boolean(),
+      has_next: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ProductPriceItem} */
+  static ProductPriceItem() {
+    return Joi.object({
+      discount_meta: CatalogPlatformModel.DiscountMeta(),
+      product_name: Joi.string().allow(""),
+      item_id: Joi.number(),
+      factory_type_id: Joi.string().allow(""),
+      price: CatalogPlatformModel.ProductPrice(),
+      store_id: Joi.number(),
+      is_sellable: Joi.boolean(),
+      seller_id: Joi.number(),
+      delivery_zone_ids: Joi.array().items(Joi.string().allow("")),
+      sizes: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {ProductPrices} */
+  static ProductPrices() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.ProductPriceItem()),
+      page: CatalogPlatformModel.ProductPricesPage(),
+    });
+  }
+
+  /** @returns {ProductFiltersKeysOnly} */
+  static ProductFiltersKeysOnly() {
+    return Joi.object({
+      key: CatalogPlatformModel.ProductFiltersKey().required(),
+    });
+  }
+
+  /** @returns {GetQueryFiltersKeysResponse} */
+  static GetQueryFiltersKeysResponse() {
+    return Joi.object({
+      filters: Joi.array().items(CatalogPlatformModel.ProductFiltersKeysOnly()),
+      operators: Joi.object().pattern(/\S/, Joi.string().allow("")),
+      sort_on: Joi.array().items(CatalogPlatformModel.ProductSortOn()),
+    });
+  }
+
+  /** @returns {GetQueryFiltersValuesResponse} */
+  static GetQueryFiltersValuesResponse() {
+    return Joi.object({
+      values: Joi.array()
+        .items(CatalogPlatformModel.ProductFiltersValue())
+        .required(),
+      page: CatalogPlatformModel.Page().required(),
+    });
+  }
+
+  /** @returns {GTINSchema} */
+  static GTINSchema() {
+    return Joi.object({
+      gtin_type: Joi.string().allow("").required(),
+      gtin_value: Joi.string().allow("").required(),
+      primary: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SetSizeSchema} */
+  static SetSizeSchema() {
+    return Joi.object({
+      size: Joi.string().allow("").required(),
+      pieces: Joi.number().required(),
+    });
+  }
+
+  /** @returns {SizeDistributionSchema} */
+  static SizeDistributionSchema() {
+    return Joi.object({
+      size: Joi.array().items(CatalogPlatformModel.SetSizeSchema()),
+    });
+  }
+
+  /** @returns {InventorySetSchema} */
+  static InventorySetSchema() {
+    return Joi.object({
+      quantity: Joi.number(),
+      size_distribution: CatalogPlatformModel.SizeDistributionSchema(),
+      name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InvSizeSchema} */
+  static InvSizeSchema() {
+    return Joi.object({
+      item_height: Joi.number(),
+      item_width: Joi.number(),
+      item_length: Joi.number(),
+      item_dimensions_unit_of_measure: Joi.string().allow(""),
+      item_weight: Joi.number(),
+      item_weight_unit_of_measure: Joi.string().allow(""),
+      currency: Joi.string().allow("").required(),
+      quantity: Joi.number().required(),
+      store_code: Joi.string().allow("").required(),
+      identifiers: Joi.array()
+        .items(CatalogPlatformModel.GTINSchema())
+        .required(),
+      size: Joi.string().allow("").required(),
+      price: Joi.number(),
+      price_effective: Joi.number().required(),
+      price_transfer: Joi.number(),
+      expiration_date: Joi.string().allow(""),
+      is_set: Joi.boolean(),
+      set: CatalogPlatformModel.InventorySetSchema(),
+    });
+  }
+
+  /** @returns {InventoryRequestSchema} */
+  static InventoryRequestSchema() {
+    return Joi.object({
+      company_id: Joi.number().required(),
+      sizes: Joi.array().items(CatalogPlatformModel.InvSizeSchema()).required(),
+      item: CatalogPlatformModel.ItemQuerySchema().required(),
+    });
+  }
+
+  /** @returns {ItemQuerySchema} */
+  static ItemQuerySchema() {
+    return Joi.object({
+      uid: Joi.number(),
+      item_code: Joi.string().allow(""),
+      brand_uid: Joi.number(),
+    });
+  }
+
+  /** @returns {SuccessResponseSchema} */
+  static SuccessResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CompanyDRIListResponseSchema} */
+  static CompanyDRIListResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.CompanyDRIResponseSchema()),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CompanyDRIResponseSchema} */
+  static CompanyDRIResponseSchema() {
+    return Joi.object({
+      tags: Joi.array().items(Joi.string().allow("")),
+      responsibilities: Joi.array().items(Joi.string().allow("")),
+      responsibilities_display_name: Joi.array().items(Joi.string().allow("")),
+      uid: Joi.number(),
+      company_id: Joi.number(),
+      status: Joi.boolean(),
+      contact: Joi.any(),
+      contact_details: Joi.any(),
+    });
+  }
+
+  /** @returns {SearchResponseSchema} */
+  static SearchResponseSchema() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      query: CatalogPlatformModel.MerchandisingQuery(),
+      is_active: Joi.boolean(),
+      merchandising_rule_id: Joi.string().allow(""),
+      rule_name: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      zone_id: Joi.string().allow(""),
+      _schedule: Joi.any(),
+    });
+  }
+
+  /** @returns {MerchandisingQuery} */
+  static MerchandisingQuery() {
+    return Joi.object({
+      query_condition: Joi.string().allow(""),
+      query: CatalogPlatformModel.MerchandisingSearchQuery(),
+      filter: Joi.array().items(CatalogPlatformModel.MerchandisingFilter()),
+    });
+  }
+
+  /** @returns {MerchandisingSearchQuery} */
+  static MerchandisingSearchQuery() {
+    return Joi.object({
+      condition: Joi.string().allow(""),
+      search_query: Joi.string().allow(""),
+      synonyms: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {MerchandisingFilter} */
+  static MerchandisingFilter() {
+    return Joi.object({
+      attribute: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {MerchandisingRuleQuery} */
+  static MerchandisingRuleQuery() {
+    return Joi.object({
+      condition: Joi.string().allow("").required(),
+      search_query: Joi.string().allow("").required(),
+      synonyms: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {MerchandisingRulesList} */
+  static MerchandisingRulesList() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.MerchDataItem()),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {MerchDataItem} */
+  static MerchDataItem() {
+    return Joi.object({
+      query: CatalogPlatformModel.MerchSearchQuery(),
+      action: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean(),
+      merchandising_rule_id: Joi.string().allow(""),
+      rule_name: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      zone_id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {MerchSearchQuery} */
+  static MerchSearchQuery() {
+    return Joi.object({
+      query_condition: Joi.string().allow(""),
+      query: CatalogPlatformModel.MerchQueryCondition(),
+      filter: Joi.array().items(CatalogPlatformModel.MerchFilter()),
+    });
+  }
+
+  /** @returns {MerchQueryCondition} */
+  static MerchQueryCondition() {
+    return Joi.object({
+      condition: Joi.string().allow(""),
+      search_query: Joi.string().allow(""),
+      synonyms: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {MerchFilter} */
+  static MerchFilter() {
+    return Joi.object({
+      attribute: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SuccessResponseMerchandising} */
+  static SuccessResponseMerchandising() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {MerchandiseQueryResponse} */
+  static MerchandiseQueryResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      merchandising_rule_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Filter} */
+  static Filter() {
+    return Joi.object({
+      attribute: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {MerchandisingRuleQueryPart} */
+  static MerchandisingRuleQueryPart() {
+    return Joi.object({
+      filter: Joi.array().items(CatalogPlatformModel.Filter()),
+      query_condition: Joi.string().allow(""),
+      query: Joi.any(),
+    });
+  }
+
+  /** @returns {MerchandisingRuleQueryPost} */
+  static MerchandisingRuleQueryPost() {
+    return Joi.object({
+      query: CatalogPlatformModel.MerchandisingRuleQueryPart(),
+      zone_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {MerchandisingRuleSave} */
+  static MerchandisingRuleSave() {
+    return Joi.object({
+      rule_name: Joi.string().allow("").required(),
+      _schedule: CatalogPlatformModel.CollectionSchedule().required(),
+      is_active: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {PinItem} */
+  static PinItem() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      uid: Joi.number().required(),
+      position: Joi.number().required(),
+    });
+  }
+
+  /** @returns {PinItemRequest} */
+  static PinItemRequest() {
+    return Joi.object({
+      action: Joi.string().allow("").required(),
+      item_id: Joi.string().allow("").required(),
+      position: Joi.number().required(),
+    });
+  }
+
+  /** @returns {PinRequest} */
+  static PinRequest() {
+    return Joi.object({
+      action_value: Joi.array().items(CatalogPlatformModel.PinItemRequest()),
+    });
+  }
+
+  /** @returns {PinResponse} */
+  static PinResponse() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.PinItem()),
+    });
+  }
+
+  /** @returns {HideAttribute} */
+  static HideAttribute() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+      uid: Joi.number().required(),
+    });
+  }
+
+  /** @returns {HideAttributeRequest} */
+  static HideAttributeRequest() {
+    return Joi.object({
+      action: Joi.string().allow(""),
+      item_id: Joi.number(),
+    });
+  }
+
+  /** @returns {HideResponse} */
+  static HideResponse() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.HideAttribute()),
+    });
+  }
+
+  /** @returns {HideRequest} */
+  static HideRequest() {
+    return Joi.object({
+      action_value: Joi.array().items(
+        CatalogPlatformModel.HideAttributeRequest()
+      ),
+    });
+  }
+
+  /** @returns {PostBoostAttribute} */
+  static PostBoostAttribute() {
+    return Joi.object({
+      attribute: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
+      strength: Joi.number().required(),
+      action: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {BoostAttribute} */
+  static BoostAttribute() {
+    return Joi.object({
+      attribute: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
+      strength: Joi.number().required(),
+    });
+  }
+
+  /** @returns {GetMerchandisingRuleBoostAction} */
+  static GetMerchandisingRuleBoostAction() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.BoostAttribute()),
+    });
+  }
+
+  /** @returns {PostMerchandisingRuleBoostAction} */
+  static PostMerchandisingRuleBoostAction() {
+    return Joi.object({
+      action_value: Joi.array().items(
+        CatalogPlatformModel.PostBoostAttribute()
+      ),
+    });
+  }
+
+  /** @returns {GetMerchandisingRuleBuryAction} */
+  static GetMerchandisingRuleBuryAction() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.BoostAttribute()),
+    });
+  }
+
   /** @returns {Action} */
   static Action() {
     return Joi.object({
@@ -3850,7 +6187,7 @@ class CatalogPlatformModel {
   static AppCategoryReturnConfig() {
     return Joi.object({
       category_id: Joi.number().required(),
-      return_config: CatalogPlatformModel.ProductReturnConfigBaseSerializer().required(),
+      return_config: Joi.any().required(),
     });
   }
 
@@ -3881,10 +6218,10 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {AppConfigurationDetail} */
-  static AppConfigurationDetail() {
+  /** @returns {AppConfigurationCreateDetail} */
+  static AppConfigurationCreateDetail() {
     return Joi.object({
-      app_id: Joi.string().allow("").required(),
+      app_id: Joi.string().allow(""),
       attributes: Joi.array().items(
         CatalogPlatformModel.AttributeDetailsGroup()
       ),
@@ -3898,17 +6235,96 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {AppConfigurationDetail} */
+  static AppConfigurationDetail() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
+      attributes: Joi.array().items(
+        CatalogPlatformModel.AttributeDetailsGroup()
+      ),
+      is_active: Joi.boolean().required(),
+      is_default: Joi.boolean().required(),
+      logo: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      priority: Joi.number().required(),
+      slug: Joi.string().allow("").required(),
+      template_slugs: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {AppConfigurationsResponse} */
+  static AppConfigurationsResponse() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
+      default_key: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      is_default: Joi.boolean(),
+      key: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      priority: Joi.number(),
+    });
+  }
+
   /** @returns {AppConfigurationsSort} */
   static AppConfigurationsSort() {
     return Joi.object({
       app_id: Joi.string().allow("").required(),
-      default_key: Joi.string().allow("").required(),
+      default_key: Joi.string().allow(""),
       is_active: Joi.boolean().required(),
       is_default: Joi.boolean().required(),
       key: Joi.string().allow("").required(),
       logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
       priority: Joi.number().required(),
+    });
+  }
+
+  /** @returns {ValueConfigType} */
+  static ValueConfigType() {
+    return Joi.object({
+      bucket_points: Joi.array().items(Joi.any()),
+      map: Joi.any(),
+      sort: Joi.string().allow(""),
+      condition: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AppConfigurationsFilter} */
+  static AppConfigurationsFilter() {
+    return Joi.object({
+      app_id: Joi.string().allow("").required(),
+      allow_single: Joi.boolean(),
+      attribute_name: Joi.string().allow(""),
+      value_config: CatalogPlatformModel.ValueConfigType(),
+      type: Joi.string().allow(""),
+      is_active: Joi.boolean().required(),
+      is_default: Joi.boolean().required(),
+      key: Joi.string().allow("").required(),
+      logo: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      priority: Joi.number().required(),
+    });
+  }
+
+  /** @returns {AppConfigurationsFilterResponse} */
+  static AppConfigurationsFilterResponse() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
+      allow_single: Joi.boolean(),
+      attribute_name: Joi.string().allow(""),
+      value_config: CatalogPlatformModel.ValueConfigType(),
+      type: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      is_default: Joi.boolean(),
+      key: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      priority: Joi.number(),
     });
   }
 
@@ -3970,9 +6386,9 @@ class CatalogPlatformModel {
       alt_text: Joi.any(),
       is_cod: Joi.boolean(),
       is_gift: Joi.boolean(),
-      moq: CatalogPlatformModel.ApplicationItemMOQ(),
-      seo: CatalogPlatformModel.ApplicationItemSEO(),
-      size_promotion_threshold: CatalogPlatformModel.SizePromotionThreshold(),
+      moq: Joi.any(),
+      seo: Joi.any(),
+      size_promotion_threshold: Joi.any(),
     });
   }
 
@@ -4005,9 +6421,21 @@ class CatalogPlatformModel {
     return Joi.object({
       filters: Joi.array().items(CatalogPlatformModel.ProductFilters()),
       items: Joi.array().items(CatalogPlatformModel.ProductListingDetail()),
-      operators: Joi.any(),
+      operators: CatalogPlatformModel.OperatorsResponse(),
       page: CatalogPlatformModel.Page().required(),
       sort_on: Joi.array().items(CatalogPlatformModel.ProductSortOn()),
+    });
+  }
+
+  /** @returns {OperatorsResponse} */
+  static OperatorsResponse() {
+    return Joi.object({
+      btw: Joi.string().allow(""),
+      lte: Joi.string().allow(""),
+      gte: Joi.string().allow(""),
+      gt: Joi.string().allow(""),
+      lt: Joi.string().allow(""),
+      nin: Joi.string().allow(""),
     });
   }
 
@@ -4021,11 +6449,11 @@ class CatalogPlatformModel {
   /** @returns {AppReturnConfigResponse} */
   static AppReturnConfigResponse() {
     return Joi.object({
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
       app_id: Joi.string().allow(""),
       category_count: Joi.number(),
       company_id: Joi.number(),
-      created_by: Joi.any(),
-      modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       return_config_level: Joi.string().allow(""),
     });
@@ -4246,7 +6674,7 @@ class CatalogPlatformModel {
       data: Joi.array().items(
         CatalogPlatformModel.AppCategoryReturnConfigResponse()
       ),
-      page: CatalogPlatformModel.PageResponse(),
+      page: CatalogPlatformModel.PageResponse1(),
     });
   }
 
@@ -4259,56 +6687,25 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {BrandLogo} */
+  static BrandLogo() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {BrandItem} */
   static BrandItem() {
     return Joi.object({
       action: CatalogPlatformModel.Action(),
       banners: CatalogPlatformModel.ImageUrls(),
-      departments: Joi.array().items(Joi.string().allow("")),
+      departments: Joi.array().items(Joi.number()),
       discount: Joi.string().allow(""),
-      logo: CatalogPlatformModel.BrandMedia(),
+      logo: CatalogPlatformModel.BrandLogo(),
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       uid: Joi.number(),
-    });
-  }
-
-  /** @returns {BrandListingResponse} */
-  static BrandListingResponse() {
-    return Joi.object({
-      items: Joi.array().items(CatalogPlatformModel.BrandItem()),
-      page: CatalogPlatformModel.Page().required(),
-    });
-  }
-
-  /** @returns {ApplicationBrandListingItemSchema} */
-  static ApplicationBrandListingItemSchema() {
-    return Joi.object({
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
-      _locale_language: Joi.object().pattern(/\S/, Joi.any()),
-      brand_banner_portrait_url: Joi.string().allow(""),
-      brand_banner_url: Joi.string().allow(""),
-      brand_logo_url: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      slug_key: Joi.string().allow(""),
-      priority: Joi.number(),
-      uid: Joi.number(),
-      created_on: Joi.string().allow(""),
-      last_updated: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      departments: Joi.array().items(Joi.number()),
-      modified_on: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ApplicationBrandListingSchema} */
-  static ApplicationBrandListingSchema() {
-    return Joi.object({
-      items: Joi.array().items(
-        CatalogPlatformModel.ApplicationBrandListingItemSchema()
-      ),
-      page: CatalogPlatformModel.Page(),
     });
   }
 
@@ -4335,11 +6732,49 @@ class CatalogPlatformModel {
       priority: Joi.number(),
       created_by: CatalogPlatformModel.CreatedBy(),
       created_on: Joi.string().allow(""),
-      modified_by: CatalogPlatformModel.CreatedBy(),
+      modified_by: CatalogPlatformModel.ModifiedBy(),
       modified_on: Joi.string().allow(""),
       app_id: Joi.string().allow(""),
       is_active: Joi.boolean(),
       uid: Joi.number(),
+    });
+  }
+
+  /** @returns {ApplicationBrandListingSchema} */
+  static ApplicationBrandListingSchema() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.ApplicationBrandListingItemSchema()
+      ),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {ApplicationBrandListingItemSchema} */
+  static ApplicationBrandListingItemSchema() {
+    return Joi.object({
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      _locale_language: Joi.object().pattern(/\S/, Joi.any()),
+      brand_banner_portrait_url: Joi.string().allow(""),
+      brand_banner_url: Joi.string().allow(""),
+      brand_logo_url: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      slug_key: Joi.string().allow(""),
+      priority: Joi.number(),
+      uid: Joi.number(),
+      created_on: Joi.string().allow(""),
+      last_updated: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      departments: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {BrandListingResponse} */
+  static BrandListingResponse() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.BrandItem()),
+      page: CatalogPlatformModel.Page().required(),
     });
   }
 
@@ -4351,8 +6786,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {InventoryBrandMeta} */
-  static InventoryBrandMeta() {
+  /** @returns {BrandMeta1} */
+  static BrandMeta1() {
     return Joi.object({
       id: Joi.number(),
       name: Joi.string().allow(""),
@@ -4367,10 +6802,17 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {BulkHsnDataResponse} */
+  static BulkHsnDataResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {BulkHsnResponse} */
   static BulkHsnResponse() {
     return Joi.object({
-      success: Joi.boolean(),
+      data: CatalogPlatformModel.BulkHsnDataResponse(),
     });
   }
 
@@ -4389,14 +6831,6 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {FailedRecord} */
-  static FailedRecord() {
-    return Joi.object({
-      identifiers: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {BulkInventoryGetItems} */
   static BulkInventoryGetItems() {
     return Joi.object({
@@ -4406,7 +6840,7 @@ class CatalogPlatformModel {
       created_by: Joi.any(),
       created_on: Joi.string().allow(""),
       failed: Joi.number(),
-      failed_records: Joi.array().items(CatalogPlatformModel.FailedRecord()),
+      failed_records: Joi.array().items(Joi.string().allow("")),
       file_path: Joi.string().allow(""),
       id: Joi.string().allow(""),
       is_active: Joi.boolean(),
@@ -4415,6 +6849,19 @@ class CatalogPlatformModel {
       stage: Joi.string().allow(""),
       succeed: Joi.number(),
       total: Joi.number(),
+    });
+  }
+
+  /** @returns {BulkProductUploadJob} */
+  static BulkProductUploadJob() {
+    return Joi.object({
+      company_id: Joi.number(),
+      total: Joi.number(),
+      succeed: Joi.number(),
+      stage: Joi.string().allow(""),
+      file_path: Joi.string().allow(""),
+      template_tag: Joi.string().allow(""),
+      tracking_url: Joi.string().allow(""),
     });
   }
 
@@ -4435,7 +6882,7 @@ class CatalogPlatformModel {
       cancelled: Joi.number(),
       cancelled_records: Joi.array().items(Joi.any()),
       company_id: Joi.number().required(),
-      created_by: CatalogPlatformModel.UserInfo1(),
+      created_by: Joi.any(),
       created_on: Joi.string().allow("").required(),
       custom_template_tag: Joi.string().allow(""),
       failed: Joi.number(),
@@ -4466,7 +6913,7 @@ class CatalogPlatformModel {
   static BulkResponse() {
     return Joi.object({
       batch_id: Joi.string().allow("").required(),
-      created_by: CatalogPlatformModel.UserInfo1(),
+      created_by: Joi.any(),
       created_on: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
       modified_by: Joi.string().allow("").allow(null),
@@ -4524,8 +6971,8 @@ class CatalogPlatformModel {
       id: Joi.string().allow(""),
       is_active: Joi.boolean().required(),
       level: Joi.number().required(),
-      marketplaces: CatalogPlatformModel.CategoryMapping(),
-      media: CatalogPlatformModel.Media1(),
+      marketplaces: Joi.any(),
+      media: Joi.any(),
       modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
@@ -4533,6 +6980,102 @@ class CatalogPlatformModel {
       slug: Joi.string().allow(""),
       synonyms: Joi.array().items(Joi.string().allow("")),
       tryouts: Joi.array().items(Joi.string().allow("")),
+      uid: Joi.number(),
+    });
+  }
+
+  /** @returns {ChannelListResponse} */
+  static ChannelListResponse() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.ChannelItem()),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {ChannelDetailResponse} */
+  static ChannelDetailResponse() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      name: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+      validation: CatalogPlatformModel.ChannelValidation(),
+      _id: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      modified_on: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ChannelItem} */
+  static ChannelItem() {
+    return Joi.object({
+      logo: Joi.string().allow(""),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      slug: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      validation: CatalogPlatformModel.ChannelValidation(),
+      created_on: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ChannelValidation} */
+  static ChannelValidation() {
+    return Joi.object({
+      product: CatalogPlatformModel.ProductValidation(),
+      brand: CatalogPlatformModel.BrandValidationItem(),
+      company: CatalogPlatformModel.CompanyValidation(),
+      location: CatalogPlatformModel.LocationValidation(),
+    });
+  }
+
+  /** @returns {ProductValidation} */
+  static ProductValidation() {
+    return Joi.object({
+      gated_category_applicable: Joi.boolean(),
+      imageless_products: Joi.boolean(),
+      stage: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BrandValidationItem} */
+  static BrandValidationItem() {
+    return Joi.object({
+      stage: Joi.string().allow(""),
+      consent_doc_required: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CompanyValidation} */
+  static CompanyValidation() {
+    return Joi.object({
+      bank_ac_required: Joi.boolean(),
+      gst_required: Joi.boolean(),
+      verified: Joi.boolean(),
+    });
+  }
+
+  /** @returns {LocationValidation} */
+  static LocationValidation() {
+    return Joi.object({
+      gst_required: Joi.boolean(),
+      stage: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CategoryCreateResponse} */
+  static CategoryCreateResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
       uid: Joi.number(),
     });
   }
@@ -4563,9 +7106,9 @@ class CatalogPlatformModel {
   /** @returns {CategoryMapping} */
   static CategoryMapping() {
     return Joi.object({
-      ajio: CatalogPlatformModel.CategoryMappingValues(),
-      facebook: CatalogPlatformModel.CategoryMappingValues(),
-      google: CatalogPlatformModel.CategoryMappingValues(),
+      ajio: Joi.any(),
+      facebook: Joi.any(),
+      google: Joi.any(),
     });
   }
 
@@ -4577,11 +7120,36 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {CategoryRequestBody} */
+  static CategoryRequestBody() {
+    return Joi.object({
+      departments: Joi.array().items(Joi.number()).required(),
+      hierarchy: Joi.array().items(CatalogPlatformModel.Hierarchy()),
+      is_active: Joi.boolean().required(),
+      level: Joi.number().required(),
+      marketplaces: Joi.any(),
+      media: Joi.any(),
+      name: Joi.string().allow("").required(),
+      priority: Joi.number(),
+      slug: Joi.string().allow(""),
+      synonyms: Joi.array().items(Joi.string().allow("")),
+      tryouts: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
   /** @returns {CategoryResponse} */
   static CategoryResponse() {
     return Joi.object({
       items: Joi.array().items(CatalogPlatformModel.Category()),
       page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CategoryUpdateResponse} */
+  static CategoryUpdateResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 
@@ -4614,36 +7182,51 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {CollectionBannerResponse} */
+  static CollectionBannerResponse() {
+    return Joi.object({
+      landscape: CatalogPlatformModel.CollectionImageResponse(),
+      portrait: CatalogPlatformModel.CollectionImageResponse(),
+    });
+  }
+
+  /** @returns {BadgeDetail} */
+  static BadgeDetail() {
+    return Joi.object({
+      color: Joi.string().allow(""),
+      text: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {CollectionCreateResponse} */
   static CollectionCreateResponse() {
     return Joi.object({
-      uid: Joi.string().allow(""),
+      badge: CatalogPlatformModel.CollectionBadge(),
+      banners: CatalogPlatformModel.CollectionBannerResponse(),
+      description: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      is_visible: Joi.boolean(),
+      logo: CatalogPlatformModel.CollectionImageResponse(),
+      meta: Joi.any(),
+      name: Joi.string().allow(""),
+      is_searchable: Joi.boolean(),
+      priority: Joi.number(),
+      published: Joi.boolean(),
+      query: Joi.array().items(CatalogPlatformModel.CollectionQuery()),
+      seo: CatalogPlatformModel.SeoDetail(),
+      _custom_json: Joi.any(),
+      _locale_language: Joi.any(),
       _schedule: CatalogPlatformModel.CollectionSchedule(),
+      action: CatalogPlatformModel.Action(),
+      uid: Joi.string().allow(""),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
-      badge: Joi.any(),
-      banners: CatalogPlatformModel.ImageUrls(),
-      description: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      logo: CatalogPlatformModel.BannerImage(),
-      meta: Joi.any(),
-      name: Joi.string().allow(""),
-      priority: Joi.number(),
-      query: Joi.array().items(CatalogPlatformModel.CollectionQuery()),
       slug: Joi.string().allow(""),
       sort_on: Joi.string().allow(""),
-      tag: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
-      published: Joi.boolean(),
-      tags: Joi.array().items(Joi.string().allow("")),
-      action: CatalogPlatformModel.Action(),
-      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
-      _locale_language: Joi.object().pattern(/\S/, Joi.any()),
-      seo: CatalogPlatformModel.SeoDetail(),
-      is_visible: Joi.boolean(),
-      id: Joi.string().allow(""),
     });
   }
 
@@ -4675,8 +7258,18 @@ class CatalogPlatformModel {
   /** @returns {CollectionImage} */
   static CollectionImage() {
     return Joi.object({
-      aspect_ratio: Joi.string().allow("").required(),
-      url: Joi.string().allow("").required(),
+      aspect_ratio: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      secure_url: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CollectionImageResponse} */
+  static CollectionImageResponse() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
     });
   }
 
@@ -4736,7 +7329,7 @@ class CatalogPlatformModel {
     return Joi.object({
       attribute: Joi.string().allow("").required(),
       op: Joi.string().allow("").required(),
-      value: Joi.array().items(Joi.any()).required(),
+      value: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 
@@ -4758,6 +7351,9 @@ class CatalogPlatformModel {
       brand_name: Joi.string().allow(""),
       company_id: Joi.number(),
       total_article: Joi.number(),
+      logo: Joi.any(),
+      name: Joi.string().allow(""),
+      id: Joi.number(),
     });
   }
 
@@ -4768,8 +7364,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {InventoryCompanyMeta} */
-  static InventoryCompanyMeta() {
+  /** @returns {CompanyMeta1} */
+  static CompanyMeta1() {
     return Joi.object({
       id: Joi.number(),
     });
@@ -4794,6 +7390,8 @@ class CatalogPlatformModel {
   /** @returns {ConfigErrorResponse} */
   static ConfigErrorResponse() {
     return Joi.object({
+      code: Joi.string().allow(""),
+      errors: Joi.any(),
       message: Joi.string().allow("").required(),
     });
   }
@@ -4817,8 +7415,8 @@ class CatalogPlatformModel {
   /** @returns {ConfigurationListing} */
   static ConfigurationListing() {
     return Joi.object({
-      filter: CatalogPlatformModel.ConfigurationListingFilter().required(),
-      sort: CatalogPlatformModel.ConfigurationListingSort().required(),
+      filter: CatalogPlatformModel.ConfigurationListingFilter(),
+      sort: CatalogPlatformModel.ConfigurationListingSort(),
     });
   }
 
@@ -4885,8 +7483,44 @@ class CatalogPlatformModel {
   /** @returns {ConfigurationProduct} */
   static ConfigurationProduct() {
     return Joi.object({
-      similar: CatalogPlatformModel.ConfigurationProductSimilar().required(),
-      variant: CatalogPlatformModel.ConfigurationProductVariant().required(),
+      similar: CatalogPlatformModel.ConfigurationProductSimilar(),
+      variant: CatalogPlatformModel.ConfigurationProductVariant(),
+      details_groups: CatalogPlatformModel.ConfigurationProductDetailsGroups(),
+    });
+  }
+
+  /** @returns {ConfigurationProductDetailsGroups} */
+  static ConfigurationProductDetailsGroups() {
+    return Joi.object({
+      config: Joi.array().items(
+        CatalogPlatformModel.ConfigurationProductDetailsConfig()
+      ),
+    });
+  }
+
+  /** @returns {ConfigurationProductDetailsConfig} */
+  static ConfigurationProductDetailsConfig() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      priority: Joi.number(),
+      template_slugs: Joi.array().items(Joi.string().allow("")),
+      attributes: Joi.array().items(
+        CatalogPlatformModel.ConfigurationProductDetailsAttribute()
+      ),
+      is_active: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ConfigurationProductDetailsAttribute} */
+  static ConfigurationProductDetailsAttribute() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      display_type: Joi.string().allow(""),
+      priority: Joi.number(),
+      is_active: Joi.boolean(),
+      key: Joi.string().allow(""),
     });
   }
 
@@ -4942,15 +7576,18 @@ class CatalogPlatformModel {
       is_active: Joi.boolean(),
       results: Joi.array().items(CatalogPlatformModel.AutocompleteResult()),
       words: Joi.array().items(Joi.string().allow("")),
+      action: CatalogPlatformModel.AutocompleteAction(),
     });
   }
 
   /** @returns {CreateAutocompleteWordsResponse} */
   static CreateAutocompleteWordsResponse() {
     return Joi.object({
+      uid: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      results: Joi.array().items(CatalogPlatformModel.AutocompleteResult()),
       _custom_json: Joi.any(),
       app_id: Joi.string().allow(""),
-      results: Joi.array().items(Joi.any()),
       words: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -4959,30 +7596,134 @@ class CatalogPlatformModel {
   static CreateCollection() {
     return Joi.object({
       _custom_json: Joi.any(),
-      _locale_language: Joi.object().pattern(/\S/, Joi.any()),
+      _locale_language: Joi.any(),
       _schedule: CatalogPlatformModel.CollectionSchedule(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
-      app_id: Joi.string().allow("").required(),
+      app_id: Joi.string().allow(""),
       badge: CatalogPlatformModel.CollectionBadge(),
       banners: CatalogPlatformModel.CollectionBanner().required(),
-      created_by: CatalogPlatformModel.UserInfo(),
+      created_by: Joi.any(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
       is_visible: Joi.boolean(),
       logo: CatalogPlatformModel.CollectionImage().required(),
       meta: Joi.any(),
-      modified_by: CatalogPlatformModel.UserInfo(),
+      modified_by: Joi.any(),
       name: Joi.string().allow("").required(),
       priority: Joi.number(),
       published: Joi.boolean(),
       query: Joi.array().items(CatalogPlatformModel.CollectionQuery()),
       seo: CatalogPlatformModel.SeoDetail(),
       slug: Joi.string().allow("").required(),
+      is_searchable: Joi.boolean(),
       sort_on: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow("").required(),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {RerankingBoostItems} */
+  static RerankingBoostItems() {
+    return Joi.object({
+      boost: Joi.array().items(CatalogPlatformModel.BoostItem()),
+    });
+  }
+
+  /** @returns {GetSearchRerankDetailResponse} */
+  static GetSearchRerankDetailResponse() {
+    return Joi.object({
+      ranking: CatalogPlatformModel.RerankingBoostItems(),
+      is_active: Joi.boolean(),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      words: Joi.array().items(Joi.string().allow("")),
+      app_id: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BoostItem} */
+  static BoostItem() {
+    return Joi.object({
+      attribute_key: Joi.string().allow(""),
+      attribute_value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetSearchRerankItemResponse} */
+  static GetSearchRerankItemResponse() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      words: Joi.array().items(Joi.string().allow("")),
+      app_id: Joi.string().allow(""),
+      modified_by: Joi.any(),
+      ranking: CatalogPlatformModel.RerankingBoostItems(),
+      created_by: Joi.any(),
+      is_active: Joi.boolean(),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetSearchRerankResponse} */
+  static GetSearchRerankResponse() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.GetSearchRerankItemResponse()
+      ),
+      page: CatalogPlatformModel.PageResponse1(),
+    });
+  }
+
+  /** @returns {CreateSearchRerankResponse} */
+  static CreateSearchRerankResponse() {
+    return Joi.object({
+      words: Joi.array().items(Joi.string().allow("")),
+      app_id: Joi.string().allow(""),
+      ranking: CatalogPlatformModel.RerankingBoostItems(),
+      is_active: Joi.boolean(),
+      created_on: Joi.string().allow(""),
+      created_by: Joi.any(),
+      modified_on: Joi.string().allow(""),
+      modified_by: Joi.any(),
+    });
+  }
+
+  /** @returns {UpdateSearchRerankResponse} */
+  static UpdateSearchRerankResponse() {
+    return Joi.object({
+      words: Joi.array().items(Joi.string().allow("")),
+      app_id: Joi.string().allow(""),
+      ranking: CatalogPlatformModel.RerankingBoostItems(),
+      is_active: Joi.boolean(),
+      created_on: Joi.string().allow(""),
+      created_by: Joi.any(),
+      modified_on: Joi.string().allow(""),
+      modified_by: Joi.any(),
+    });
+  }
+
+  /** @returns {UpdateSearchRerankRequest} */
+  static UpdateSearchRerankRequest() {
+    return Joi.object({
+      words: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean(),
+      application_id: Joi.string().allow(""),
+      ranking: CatalogPlatformModel.RerankingBoostItems(),
+    });
+  }
+
+  /** @returns {CreateSearchRerankRequest} */
+  static CreateSearchRerankRequest() {
+    return Joi.object({
+      words: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean(),
+      application_id: Joi.string().allow(""),
+      ranking: CatalogPlatformModel.RerankingBoostItems(),
     });
   }
 
@@ -4991,10 +7732,10 @@ class CatalogPlatformModel {
     return Joi.object({
       application_id: Joi.string().allow("").required(),
       company_id: Joi.number().required(),
-      created_by: CatalogPlatformModel.UserSerializer(),
+      created_by: Joi.any(),
       created_on: Joi.string().allow(""),
       is_proximity_enabled: Joi.boolean(),
-      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       proximity: Joi.number(),
       searchable_attributes: Joi.array().items(
@@ -5041,8 +7782,8 @@ class CatalogPlatformModel {
   /** @returns {CrossSellingResponse} */
   static CrossSellingResponse() {
     return Joi.object({
-      brand_distribution: CatalogPlatformModel.CatalogInsightBrand(),
-      data: CatalogPlatformModel.CrossSellingData(),
+      articles: Joi.number(),
+      products: Joi.number(),
     });
   }
 
@@ -5095,6 +7836,14 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {DeleteSearchRerankConfigurationResponse} */
+  static DeleteSearchRerankConfigurationResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+      message: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {Department} */
   static Department() {
     return Joi.object({
@@ -5111,6 +7860,51 @@ class CatalogPlatformModel {
     return Joi.object({
       department: Joi.string().allow(""),
       items: Joi.array().items(CatalogPlatformModel.CategoryItems()),
+    });
+  }
+
+  /** @returns {PollErrorResponse} */
+  static PollErrorResponse() {
+    return Joi.object({
+      error: Joi.any(),
+    });
+  }
+
+  /** @returns {DepartmentCreateErrorResponse} */
+  static DepartmentCreateErrorResponse() {
+    return Joi.object({
+      error: Joi.any(),
+    });
+  }
+
+  /** @returns {ProductBundleCreateErrorResponse} */
+  static ProductBundleCreateErrorResponse() {
+    return Joi.object({
+      error: Joi.any(),
+    });
+  }
+
+  /** @returns {DepartmentCreateResponse} */
+  static DepartmentCreateResponse() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      uid: Joi.number().required(),
+    });
+  }
+
+  /** @returns {DepartmentCreateUpdate} */
+  static DepartmentCreateUpdate() {
+    return Joi.object({
+      _cls: Joi.string().allow(""),
+      _custom_json: Joi.any(),
+      is_active: Joi.boolean(),
+      logo: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      platforms: Joi.any(),
+      priority_order: Joi.number().required(),
+      slug: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      uid: Joi.number(),
     });
   }
 
@@ -5134,10 +7928,37 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {DepartmentModel} */
+  static DepartmentModel() {
+    return Joi.object({
+      _cls: Joi.string().allow(""),
+      _custom_json: Joi.any(),
+      _id: Joi.string().allow(""),
+      created_by: Joi.any(),
+      is_active: Joi.boolean(),
+      logo: Joi.string().allow("").required(),
+      modified_by: Joi.any(),
+      name: Joi.string().allow("").required(),
+      priority_order: Joi.number().required(),
+      slug: Joi.string().allow(""),
+      synonyms: Joi.array().items(Joi.string().allow("")),
+      uid: Joi.number().required(),
+      verified_by: Joi.any(),
+      verified_on: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {DepartmentResponse} */
   static DepartmentResponse() {
     return Joi.object({
       items: Joi.array().items(CatalogPlatformModel.Department()),
+    });
+  }
+
+  /** @returns {ValidationFailedResponse} */
+  static ValidationFailedResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
 
@@ -5160,8 +7981,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {InventoryDimensionResponse} */
-  static InventoryDimensionResponse() {
+  /** @returns {DimensionResponse1} */
+  static DimensionResponse1() {
     return Joi.object({
       height: Joi.number(),
       length: Joi.number(),
@@ -5184,9 +8005,9 @@ class CatalogPlatformModel {
   /** @returns {EntityConfiguration} */
   static EntityConfiguration() {
     return Joi.object({
-      app_id: Joi.string().allow("").required(),
+      app_id: Joi.string().allow(""),
       config_id: Joi.string().allow(""),
-      config_type: Joi.string().allow("").required(),
+      config_type: Joi.string().allow(""),
       id: Joi.string().allow(""),
       listing: CatalogPlatformModel.GetCatalogConfigurationDetailsSchemaListing(),
       product: CatalogPlatformModel.GetCatalogConfigurationDetailsProduct(),
@@ -5196,11 +8017,20 @@ class CatalogPlatformModel {
   /** @returns {ErrorResponse} */
   static ErrorResponse() {
     return Joi.object({
-      code: Joi.string().allow(""),
+      code: Joi.number(),
       error: Joi.string().allow(""),
       message: Joi.string().allow(""),
       meta: Joi.any(),
       status: Joi.number(),
+    });
+  }
+
+  /** @returns {CategoryErrorResponse} */
+  static CategoryErrorResponse() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      error: Joi.any(),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -5298,21 +8128,26 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {AttributeDetail} */
-  static AttributeDetail() {
+  /** @returns {GenderDetail} */
+  static GenderDetail() {
     return Joi.object({
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
       departments: Joi.array().items(Joi.string().allow("")),
       description: Joi.string().allow(""),
       details: CatalogPlatformModel.AttributeMasterDetails(),
       enabled_for_end_consumer: Joi.boolean(),
       filters: CatalogPlatformModel.AttributeMasterFilter(),
-      id: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
       is_nested: Joi.boolean(),
       logo: Joi.string().allow(""),
       meta: CatalogPlatformModel.AttributeMasterMeta(),
       name: Joi.string().allow(""),
       schema: CatalogPlatformModel.AttributeMaster(),
       slug: Joi.string().allow(""),
+      variant: Joi.boolean(),
     });
   }
 
@@ -5328,7 +8163,7 @@ class CatalogPlatformModel {
       landmark: Joi.string().allow(""),
       latitude: Joi.number(),
       longitude: Joi.number(),
-      pincode: Joi.number(),
+      pincode: Joi.string().allow(""),
       state: Joi.string().allow(""),
     });
   }
@@ -5337,6 +8172,21 @@ class CatalogPlatformModel {
   static GetAllSizes() {
     return Joi.object({
       all_sizes: Joi.array().items(CatalogPlatformModel.AllSizes()),
+    });
+  }
+
+  /** @returns {FilterResponse} */
+  static FilterResponse() {
+    return Joi.object({
+      values: Joi.array().items(CatalogPlatformModel.ValueItem()),
+    });
+  }
+
+  /** @returns {ValueItem} */
+  static ValueItem() {
+    return Joi.object({
+      text: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -5359,11 +8209,11 @@ class CatalogPlatformModel {
   /** @returns {GetAutocompleteWordsData} */
   static GetAutocompleteWordsData() {
     return Joi.object({
-      _custom_json: Joi.any(),
+      results: Joi.array().items(CatalogPlatformModel.AutocompleteResult()),
       app_id: Joi.string().allow(""),
-      results: Joi.array().items(Joi.any()),
-      uid: Joi.string().allow(""),
       words: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean(),
+      uid: Joi.string().allow(""),
     });
   }
 
@@ -5378,10 +8228,80 @@ class CatalogPlatformModel {
   /** @returns {GetCatalogConfigurationDetailsProduct} */
   static GetCatalogConfigurationDetailsProduct() {
     return Joi.object({
-      compare: Joi.any(),
-      detail: Joi.any(),
-      similar: Joi.any(),
-      variant: Joi.any(),
+      compare: CatalogPlatformModel.CompareFilter(),
+      similar: CatalogPlatformModel.SimilarFilter(),
+      variant: CatalogPlatformModel.VariantFilter(),
+      detail: CatalogPlatformModel.DetailFilter(),
+    });
+  }
+
+  /** @returns {FilterItem} */
+  static FilterItem() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      display: Joi.string().allow(""),
+      filter_types: Joi.array().items(Joi.string().allow("")),
+      units: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {CompareFilter} */
+  static CompareFilter() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.FilterItem()),
+    });
+  }
+
+  /** @returns {SimilarFilter} */
+  static SimilarFilter() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.SimilarItem()),
+    });
+  }
+
+  /** @returns {VariantFilter} */
+  static VariantFilter() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.VariantItem()),
+    });
+  }
+
+  /** @returns {DetailFilter} */
+  static DetailFilter() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.FilterItem()),
+      values: CatalogPlatformModel.DetailFilterValues(),
+    });
+  }
+
+  /** @returns {DetailFilterValues} */
+  static DetailFilterValues() {
+    return Joi.object({
+      display_type: Joi.array().items(CatalogPlatformModel.DisplayType()),
+    });
+  }
+
+  /** @returns {DisplayType} */
+  static DisplayType() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      display: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SimilarItem} */
+  static SimilarItem() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      display: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {VariantItem} */
+  static VariantItem() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      display: Joi.string().allow(""),
     });
   }
 
@@ -5404,13 +8324,14 @@ class CatalogPlatformModel {
   /** @returns {GetCollectionDetailNest} */
   static GetCollectionDetailNest() {
     return Joi.object({
-      _schedule: CatalogPlatformModel.CollectionSchedule(),
+      _schedule: Joi.any(),
       action: CatalogPlatformModel.Action(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
-      badge: CatalogPlatformModel.CollectionBadge(),
+      badge: Joi.any(),
       banners: CatalogPlatformModel.ImageUrls(),
+      cron: Joi.any(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
       logo: CatalogPlatformModel.Media(),
@@ -5423,14 +8344,6 @@ class CatalogPlatformModel {
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
-      _id: Joi.string().allow(""),
-      published: Joi.boolean(),
-      tags: Joi.array().items(Joi.string().allow("")),
-      sort_on: Joi.string().allow(""),
-      _custom_json: Joi.any(),
-      _locale_language: Joi.any(),
-      seo: CatalogPlatformModel.SeoDetail(),
-      is_visible: Joi.boolean(),
     });
   }
 
@@ -5518,9 +8431,9 @@ class CatalogPlatformModel {
   /** @returns {GetConfigMetadataResponse} */
   static GetConfigMetadataResponse() {
     return Joi.object({
+      page: CatalogPlatformModel.Page(),
       condition: Joi.array().items(CatalogPlatformModel.ConditionItem()),
       data: Joi.array().items(CatalogPlatformModel.DataItem()).required(),
-      page: CatalogPlatformModel.Page(),
       values: CatalogPlatformModel.GetConfigMetadataValues(),
     });
   }
@@ -5533,10 +8446,83 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {AttributeType} */
+  static AttributeType() {
+    return Joi.object({
+      unit: Joi.string().allow(""),
+      priority: Joi.number(),
+      name: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      display_type: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      slug: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DataType} */
+  static DataType() {
+    return Joi.object({
+      app_id: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+      priority: Joi.number(),
+      name: Joi.string().allow(""),
+      attributes: Joi.array().items(CatalogPlatformModel.AttributeType()),
+      is_active: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ListingValueConfigType} */
+  static ListingValueConfigType() {
+    return Joi.object({
+      sort: Joi.string().allow(""),
+      bucket_points: Joi.array().items(Joi.any()),
+      map: Joi.any(),
+      condition: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SizeLimitConfiguration} */
+  static SizeLimitConfiguration() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {ListingDataType} */
+  static ListingDataType() {
+    return Joi.object({
+      app_id: Joi.string().allow(""),
+      allow_single: Joi.boolean(),
+      id: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      key: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+      priority: Joi.number(),
+      logo: Joi.string().allow(""),
+      value_config: CatalogPlatformModel.ListingValueConfigType(),
+      type: Joi.string().allow(""),
+      display_type: Joi.string().allow(""),
+      size: CatalogPlatformModel.SizeLimitConfiguration(),
+    });
+  }
+
+  /** @returns {GetListingConfigResponse} */
+  static GetListingConfigResponse() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.ListingDataType()),
+      page: CatalogPlatformModel.PageResponseType(),
+    });
+  }
+
   /** @returns {GetConfigResponse} */
   static GetConfigResponse() {
     return Joi.object({
-      data: Joi.array().items(Joi.any()).required(),
+      data: Joi.array().items(CatalogPlatformModel.DataType()).required(),
       page: CatalogPlatformModel.PageResponseType().required(),
     });
   }
@@ -5544,12 +8530,12 @@ class CatalogPlatformModel {
   /** @returns {GetDepartment} */
   static GetDepartment() {
     return Joi.object({
-      created_by: CatalogPlatformModel.RequestUserSerializer(),
+      created_by: CatalogPlatformModel.UserSerializer1(),
       created_on: Joi.string().allow(""),
       is_active: Joi.boolean(),
       item_type: Joi.string().allow(""),
       logo: Joi.string().allow(""),
-      modified_by: CatalogPlatformModel.RequestUserSerializer(),
+      modified_by: CatalogPlatformModel.UserSerializer1(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       page_no: Joi.number(),
@@ -5565,24 +8551,24 @@ class CatalogPlatformModel {
   /** @returns {GetInventories} */
   static GetInventories() {
     return Joi.object({
-      brand: CatalogPlatformModel.InventoryBrandMeta(),
-      company: CatalogPlatformModel.InventoryCompanyMeta(),
+      brand: CatalogPlatformModel.BrandMeta1(),
+      company: CatalogPlatformModel.CompanyMeta1(),
       country_of_origin: Joi.string().allow(""),
-      created_by: CatalogPlatformModel.RequestUserSerializer(),
+      created_by: CatalogPlatformModel.UserSerializer1(),
       date_meta: CatalogPlatformModel.DateMeta(),
-      dimension: CatalogPlatformModel.InventoryDimensionResponse(),
+      dimension: CatalogPlatformModel.DimensionResponse1(),
       expiration_date: Joi.string().allow(""),
       id: Joi.string().allow(""),
       identifier: Joi.any(),
       inventory_updated_on: Joi.string().allow(""),
       is_set: Joi.boolean(),
       item_id: Joi.number(),
-      manufacturer: CatalogPlatformModel.InventoryManufacturerResponse(),
-      modified_by: CatalogPlatformModel.RequestUserSerializer(),
+      manufacturer: CatalogPlatformModel.ManufacturerResponse1(),
+      modified_by: CatalogPlatformModel.UserSerializer1(),
       platforms: Joi.any(),
       price: CatalogPlatformModel.PriceArticle(),
       quantities: CatalogPlatformModel.QuantitiesArticle(),
-      return_config: CatalogPlatformModel.ReturnConfig(),
+      return_config: CatalogPlatformModel.ReturnConfig2(),
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
       stage: Joi.string().allow(""),
@@ -5592,9 +8578,9 @@ class CatalogPlatformModel {
       total_quantity: Joi.number(),
       trace_id: Joi.string().allow(""),
       track_inventory: Joi.boolean(),
-      trader: Joi.array().items(CatalogPlatformModel.TraderResponse()),
+      trader: Joi.array().items(CatalogPlatformModel.Trader2()),
       uid: Joi.string().allow(""),
-      weight: CatalogPlatformModel.InventoryWeightResponse(),
+      weight: CatalogPlatformModel.WeightResponse1(),
     });
   }
 
@@ -5611,7 +8597,7 @@ class CatalogPlatformModel {
     return Joi.object({
       _custom_json: Joi.any(),
       address: CatalogPlatformModel.GetAddressSerializer().required(),
-      code: Joi.string().allow("").required(),
+      store_code: Joi.string().allow("").required(),
       company: CatalogPlatformModel.GetCompanySerializer(),
       contact_numbers: Joi.array().items(
         CatalogPlatformModel.SellerPhoneNumber()
@@ -5627,7 +8613,7 @@ class CatalogPlatformModel {
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
-      phone_number: Joi.string().allow("").required(),
+      phone_number: Joi.string().allow(""),
       product_return_config: CatalogPlatformModel.ProductReturnConfigSerializer(),
       stage: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
@@ -5652,15 +8638,15 @@ class CatalogPlatformModel {
   /** @returns {GetProductBundleCreateResponse} */
   static GetProductBundleCreateResponse() {
     return Joi.object({
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
       choice: Joi.string().allow("").required(),
       company_id: Joi.number(),
-      created_by: Joi.any(),
       created_on: Joi.string().allow(""),
       id: Joi.string().allow(""),
       is_active: Joi.boolean().required(),
       logo: Joi.string().allow("").allow(null),
       meta: Joi.any(),
-      modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       page_visibility: Joi.array().items(Joi.string().allow("")),
@@ -5669,6 +8655,12 @@ class CatalogPlatformModel {
         .required(),
       same_store_assignment: Joi.boolean(),
       slug: Joi.string().allow("").required(),
+      allow_remove: Joi.boolean().required(),
+      auto_add_to_cart: Joi.boolean().required(),
+      auto_select: Joi.boolean().required(),
+      prefer_single_shipment: Joi.boolean().required(),
+      allow_individual_cancel: Joi.boolean().required(),
+      allow_individual_return: Joi.boolean().required(),
     });
   }
 
@@ -5694,6 +8686,12 @@ class CatalogPlatformModel {
       page_visibility: Joi.array().items(Joi.string().allow("")),
       products: Joi.array().items(CatalogPlatformModel.GetProducts()),
       same_store_assignment: Joi.boolean(),
+      allow_remove: Joi.boolean(),
+      auto_add_to_cart: Joi.boolean(),
+      auto_select: Joi.boolean(),
+      prefer_single_shipment: Joi.boolean(),
+      allow_individual_cancel: Joi.boolean(),
+      allow_individual_return: Joi.boolean(),
       slug: Joi.string().allow(""),
     });
   }
@@ -5701,9 +8699,6 @@ class CatalogPlatformModel {
   /** @returns {GetProducts} */
   static GetProducts() {
     return Joi.object({
-      allow_remove: Joi.boolean(),
-      auto_add_to_cart: Joi.boolean(),
-      auto_select: Joi.boolean(),
       max_quantity: Joi.number(),
       min_quantity: Joi.number(),
       price: CatalogPlatformModel.Price(),
@@ -5751,29 +8746,21 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {GetQueryFiltersKeysResponse} */
-  static GetQueryFiltersKeysResponse() {
-    return Joi.object({
-      filters: Joi.array().items(CatalogPlatformModel.ProductFiltersKeysOnly()),
-      operators: Joi.object().pattern(/\S/, Joi.string().allow("")).required(),
-      sort_on: Joi.array().items(CatalogPlatformModel.ProductSortOn()),
-    });
-  }
-
   /** @returns {GetQueryFiltersResponse} */
   static GetQueryFiltersResponse() {
     return Joi.object({
       filters: Joi.array().items(CatalogPlatformModel.ProductFilters()),
-      operators: Joi.object().pattern(/\S/, Joi.string().allow("")).required(),
+      operators: Joi.object().pattern(/\S/, Joi.string().allow("")),
       sort_on: Joi.array().items(CatalogPlatformModel.ProductSortOn()),
     });
   }
 
-  /** @returns {GetCollectionItemsResponseSchemaV2} */
-  static GetCollectionItemsResponseSchemaV2() {
+  /** @returns {GetCollectionItemsResponseSchema} */
+  static GetCollectionItemsResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CatalogPlatformModel.ProductDetailV2()),
-      page: CatalogPlatformModel.Page1(),
+      sort_on: Joi.array().items(CatalogPlatformModel.ProductSortOnv2()),
+      page: CatalogPlatformModel.Page(),
     });
   }
 
@@ -5810,6 +8797,7 @@ class CatalogPlatformModel {
       query: Joi.array().items(CatalogPlatformModel.CollectionQuerySchemaV2()),
       type: Joi.string().allow("").required(),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+      reset_items: Joi.boolean(),
     });
   }
 
@@ -5818,7 +8806,7 @@ class CatalogPlatformModel {
     return Joi.object({
       attribute: Joi.string().allow("").required(),
       op: Joi.string().allow("").required(),
-      value: Joi.array().items(Joi.any()).required(),
+      value: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 
@@ -5842,12 +8830,13 @@ class CatalogPlatformModel {
   /** @returns {GetSearchConfigurationResponse} */
   static GetSearchConfigurationResponse() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       application_id: Joi.string().allow("").required(),
       company_id: Joi.number().required(),
-      created_by: CatalogPlatformModel.UserSerializer(),
+      created_by: Joi.any(),
       created_on: Joi.string().allow(""),
       is_proximity_enabled: Joi.boolean(),
-      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       proximity: Joi.number(),
       searchable_attributes: Joi.array().items(
@@ -5859,6 +8848,8 @@ class CatalogPlatformModel {
   /** @returns {GetSearchWordsData} */
   static GetSearchWordsData() {
     return Joi.object({
+      query: Joi.any(),
+      sort_on: Joi.string().allow(""),
       _custom_json: Joi.any(),
       app_id: Joi.string().allow(""),
       is_active: Joi.boolean(),
@@ -5922,13 +8913,14 @@ class CatalogPlatformModel {
   /** @returns {HSNDataInsertV2} */
   static HSNDataInsertV2() {
     return Joi.object({
+      id: Joi.string().allow(""),
       country_code: Joi.string().allow("").required(),
       created_by: Joi.any(),
+      modified_by: Joi.any(),
       created_on: Joi.string().allow(""),
       description: Joi.string().allow("").required(),
       hsn_code: Joi.string().allow("").required(),
       hsn_code_id: Joi.string().allow(""),
-      modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       reporting_hsn: Joi.string().allow("").required(),
       taxes: Joi.array().items(CatalogPlatformModel.TaxSlab()).required(),
@@ -5948,7 +8940,35 @@ class CatalogPlatformModel {
   /** @returns {HsnCode} */
   static HsnCode() {
     return Joi.object({
-      data: CatalogPlatformModel.HsnCodesObject(),
+      data: Joi.any(),
+    });
+  }
+
+  /** @returns {SlabObject} */
+  static SlabObject() {
+    return Joi.object({
+      threshold: Joi.number(),
+      tax: Joi.number(),
+    });
+  }
+
+  /** @returns {UpdateHsnCodesObject} */
+  static UpdateHsnCodesObject() {
+    return Joi.object({
+      modified_by: Joi.any(),
+      company_id: Joi.number(),
+      slabs: Joi.array().items(CatalogPlatformModel.SlabObject()),
+      hs2_code: Joi.string().allow(""),
+      hsn_code: Joi.string().allow(""),
+      tax_on: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UpdateHsnCode} */
+  static UpdateHsnCode() {
+    return Joi.object({
+      data: Joi.any(),
     });
   }
 
@@ -5956,7 +8976,7 @@ class CatalogPlatformModel {
   static HsnCodesListingResponseSchemaV2() {
     return Joi.object({
       items: Joi.array().items(CatalogPlatformModel.HSNDataInsertV2()),
-      page: CatalogPlatformModel.PageResponse(),
+      page: CatalogPlatformModel.PageResponse1(),
     });
   }
 
@@ -6051,7 +9071,7 @@ class CatalogPlatformModel {
   static InventoryConfig() {
     return Joi.object({
       data: Joi.array().items(CatalogPlatformModel.FilerList()),
-      multivalues: Joi.boolean(),
+      multivalue: Joi.boolean(),
     });
   }
 
@@ -6059,9 +9079,9 @@ class CatalogPlatformModel {
   static InventoryCreateRequest() {
     return Joi.object({
       data: Joi.array().items(Joi.string().allow("")),
-      filters: CatalogPlatformModel.InventoryExportFilter().required(),
+      filters: Joi.any().required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
-      type: Joi.string().allow("").allow(null),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -6081,9 +9101,37 @@ class CatalogPlatformModel {
     return Joi.object({
       brand_ids: Joi.array().items(Joi.number()),
       from_date: Joi.string().allow(""),
-      quantity: CatalogPlatformModel.InventoryExportQuantityFilter(),
+      quantity: Joi.any(),
       store_ids: Joi.array().items(Joi.number()).required(),
       to_date: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InventoryExportJobResponse} */
+  static InventoryExportJobResponse() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.InventoryExportItem()),
+    });
+  }
+
+  /** @returns {InventoryExportItem} */
+  static InventoryExportItem() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      stats: Joi.any(),
+      completed_on: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      task_id: Joi.string().allow(""),
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      _id: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      trigger_on: Joi.string().allow(""),
+      brand: Joi.array().items(Joi.number()),
+      store: Joi.array().items(Joi.number()),
     });
   }
 
@@ -6091,7 +9139,7 @@ class CatalogPlatformModel {
   static InventoryExportJob() {
     return Joi.object({
       completed_on: Joi.string().allow(""),
-      filters: CatalogPlatformModel.InventoryExportAdvanceOption(),
+      filters: Joi.any(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       seller_id: Joi.number().required(),
       status: Joi.string().allow(""),
@@ -6101,10 +9149,47 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {InventoryExportJobListFilters} */
+  static InventoryExportJobListFilters() {
+    return Joi.object({
+      brand_ids: Joi.array().items(Joi.number()),
+      store_ids: Joi.array().items(Joi.number()),
+      brands: Joi.array().items(Joi.string().allow("")),
+      stores: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {InventoryExportJobListStats} */
+  static InventoryExportJobListStats() {
+    return Joi.object({
+      success: Joi.number(),
+      total: Joi.number(),
+    });
+  }
+
+  /** @returns {InventoryExportJobList} */
+  static InventoryExportJobList() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      completed_on: Joi.string().allow(""),
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+      filters: CatalogPlatformModel.InventoryExportJobListFilters(),
+      stats: CatalogPlatformModel.InventoryExportJobListStats(),
+      type: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      url: Joi.string().allow(""),
+      task_id: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {InventoryExportJobListResponse} */
   static InventoryExportJobListResponse() {
     return Joi.object({
-      items: CatalogPlatformModel.InventoryJobDetailResponse().required(),
+      items: Joi.array().items(CatalogPlatformModel.InventoryExportJobList()),
       page: CatalogPlatformModel.Page(),
     });
   }
@@ -6118,27 +9203,76 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {ExportPatchRequest} */
+  static ExportPatchRequest() {
+    return Joi.object({
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+      status: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {InventoryExportRequest} */
   static InventoryExportRequest() {
     return Joi.object({
       brand: Joi.array().items(Joi.number()),
       store: Joi.array().items(Joi.number()),
-      type: Joi.string().allow("").allow(null),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {EditInventoryDataDownloadsResponse} */
+  static EditInventoryDataDownloadsResponse() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+      completed_on: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      task_id: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+      status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {EditInventoryDownloadsResponse} */
+  static EditInventoryDownloadsResponse() {
+    return Joi.object({
+      data: CatalogPlatformModel.EditInventoryDataDownloadsResponse(),
+    });
+  }
+
+  /** @returns {InventoryExportFiltersResponse} */
+  static InventoryExportFiltersResponse() {
+    return Joi.object({
+      brand_ids: Joi.array().items(Joi.number()),
+      store_ids: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {Stats} */
+  static Stats() {
+    return Joi.object({
+      total: Joi.number(),
     });
   }
 
   /** @returns {InventoryExportResponse} */
   static InventoryExportResponse() {
     return Joi.object({
-      created_by: Joi.string().allow(""),
+      created_by: Joi.any(),
       created_on: Joi.string().allow(""),
-      filters: Joi.any(),
+      filters: CatalogPlatformModel.InventoryExportFiltersResponse(),
       modified_on: Joi.string().allow(""),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       seller_id: Joi.number().required(),
       status: Joi.string().allow(""),
       task_id: Joi.string().allow("").required(),
       type: Joi.string().allow(""),
+      stats: CatalogPlatformModel.Stats(),
+      _id: Joi.string().allow(""),
+      trigger_on: Joi.string().allow(""),
+      brand: Joi.array().items(Joi.number()),
+      store: Joi.array().items(Joi.number()),
     });
   }
 
@@ -6147,25 +9281,26 @@ class CatalogPlatformModel {
     return Joi.object({
       errors: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
+      reason_code: Joi.number(),
     });
   }
 
   /** @returns {InventoryJobDetailResponse} */
   static InventoryJobDetailResponse() {
     return Joi.object({
-      cancelled_by: CatalogPlatformModel.UserDetail(),
+      cancelled_by: Joi.any(),
       cancelled_on: Joi.string().allow(""),
       completed_on: Joi.string().allow(""),
-      created_by: CatalogPlatformModel.UserDetail(),
+      created_by: Joi.any(),
       created_on: Joi.string().allow(""),
-      filters: CatalogPlatformModel.InventoryJobFilters().required(),
+      filters: Joi.any().required(),
       id: Joi.string().allow("").required(),
       modified_on: Joi.string().allow(""),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       seller_id: Joi.number().required(),
       status: Joi.string().allow(""),
       task_id: Joi.string().allow("").required(),
-      type: Joi.string().allow("").allow(null),
+      type: Joi.string().allow(""),
       url: Joi.string().allow("").required(),
     });
   }
@@ -6175,7 +9310,7 @@ class CatalogPlatformModel {
     return Joi.object({
       brands: Joi.array().items(Joi.string().allow("")),
       from_date: Joi.string().allow(""),
-      quantity: CatalogPlatformModel.InventoryExportQuantityFilter(),
+      quantity: Joi.any(),
       stores: Joi.array().items(Joi.string().allow("")),
       to_date: Joi.string().allow(""),
     });
@@ -6237,28 +9372,91 @@ class CatalogPlatformModel {
   /** @returns {InventoryRequestSchemaV2} */
   static InventoryRequestSchemaV2() {
     return Joi.object({
-      company_id: Joi.number().required(),
       meta: Joi.any(),
       payload: Joi.array().items(CatalogPlatformModel.InventoryPayload()),
+    });
+  }
+
+  /** @returns {InventoryIdentifier} */
+  static InventoryIdentifier() {
+    return Joi.object({
+      gtin_type: Joi.string().allow(""),
+      gtin_value: Joi.string().allow(""),
+      primary: Joi.boolean(),
+    });
+  }
+
+  /** @returns {InventoryGeoLocation} */
+  static InventoryGeoLocation() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      coordinates: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {InventoryMobileNumber} */
+  static InventoryMobileNumber() {
+    return Joi.object({
+      number: Joi.string().allow(""),
+      country_code: Joi.number(),
+    });
+  }
+
+  /** @returns {InventoryAddress} */
+  static InventoryAddress() {
+    return Joi.object({
+      address1: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      lat_long: CatalogPlatformModel.InventoryGeoLocation(),
+      country_code: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InventoryManager} */
+  static InventoryManager() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      mobile_no: CatalogPlatformModel.InventoryMobileNumber(),
+    });
+  }
+
+  /** @returns {InventoryStore} */
+  static InventoryStore() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      store_code: Joi.string().allow(""),
+      uid: Joi.number(),
+      address: CatalogPlatformModel.InventoryAddress(),
+      manager: CatalogPlatformModel.InventoryManager(),
+      _custom_json: Joi.any(),
     });
   }
 
   /** @returns {InventoryResponse} */
   static InventoryResponse() {
     return Joi.object({
-      currency: Joi.string().allow(""),
-      identifiers: Joi.any(),
+      store: CatalogPlatformModel.InventoryStore(),
+      uid: Joi.string().allow(""),
+      size: Joi.string().allow(""),
       inventory_updated_on: Joi.string().allow(""),
+      seller_identifier: Joi.string().allow(""),
       item_id: Joi.number(),
+      quantity: Joi.number(),
       price: Joi.number(),
       price_effective: Joi.number(),
       price_transfer: Joi.number(),
-      quantity: Joi.number(),
+      currency: Joi.string().allow(""),
       sellable_quantity: Joi.number(),
-      seller_identifier: Joi.string().allow(""),
-      size: Joi.string().allow(""),
-      store: Joi.any(),
-      uid: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      expiration_date: Joi.string().allow(""),
+      identifiers: Joi.array().items(
+        CatalogPlatformModel.InventoryIdentifier()
+      ),
     });
   }
 
@@ -6291,11 +9489,11 @@ class CatalogPlatformModel {
     return Joi.object({
       _custom_json: Joi.any(),
       added_on_store: Joi.string().allow(""),
-      brand: CatalogPlatformModel.BrandMeta().required(),
-      company: CatalogPlatformModel.CompanyMeta().required(),
+      brand: Joi.any().required(),
+      company: Joi.any().required(),
       country_of_origin: Joi.string().allow("").required(),
       created_by: Joi.string().allow("").allow(null),
-      dimension: CatalogPlatformModel.DimensionResponse().required(),
+      dimension: Joi.any().required(),
       expiration_date: Joi.string().allow(""),
       fragile: Joi.boolean().required(),
       fynd_article_code: Joi.string().allow("").required(),
@@ -6305,18 +9503,18 @@ class CatalogPlatformModel {
       is_active: Joi.boolean(),
       is_set: Joi.boolean(),
       item_id: Joi.number().required(),
-      manufacturer: CatalogPlatformModel.ManufacturerResponse().required(),
+      manufacturer: Joi.any().required(),
       meta: Joi.any().allow(null),
       modified_by: Joi.string().allow("").allow(null),
-      price: CatalogPlatformModel.PriceMeta().required(),
+      price: Joi.any().required(),
       quantities: CatalogPlatformModel.Quantities(),
       raw_meta: Joi.any(),
-      return_config: CatalogPlatformModel.ReturnConfig1(),
+      return_config: Joi.any(),
       seller_identifier: Joi.string().allow("").required(),
       set: CatalogPlatformModel.InventorySet(),
       size: Joi.string().allow("").required(),
       stage: Joi.string().allow(""),
-      store: CatalogPlatformModel.StoreMeta().required(),
+      store: Joi.any().required(),
       tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       tax_identifier: Joi.any(),
       total_quantity: Joi.number().required(),
@@ -6324,7 +9522,7 @@ class CatalogPlatformModel {
       track_inventory: Joi.boolean(),
       trader: Joi.array().items(CatalogPlatformModel.Trader1()).allow(null, ""),
       uid: Joi.string().allow("").required(),
-      weight: CatalogPlatformModel.WeightResponse().required(),
+      weight: Joi.any().required(),
     });
   }
 
@@ -6349,7 +9547,8 @@ class CatalogPlatformModel {
   static InventoryUpdateResponse() {
     return Joi.object({
       items: Joi.array().items(CatalogPlatformModel.InventoryResponseItem()),
-      message: Joi.string().allow("").required(),
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 
@@ -6410,6 +9609,23 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {PriceRange} */
+  static PriceRange() {
+    return Joi.object({
+      min: Joi.number(),
+      max: Joi.number(),
+    });
+  }
+
+  /** @returns {ProductPriceRangeSchema} */
+  static ProductPriceRangeSchema() {
+    return Joi.object({
+      effective: CatalogPlatformModel.PriceRange(),
+      marked: CatalogPlatformModel.PriceRange(),
+      currency: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {LimitedProductData} */
   static LimitedProductData() {
     return Joi.object({
@@ -6419,7 +9635,7 @@ class CatalogPlatformModel {
       images: Joi.array().items(Joi.string().allow("")),
       item_code: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      price: Joi.any(),
+      price: CatalogPlatformModel.ProductPriceRangeSchema(),
       quantity: Joi.number(),
       short_description: Joi.string().allow(""),
       sizes: Joi.array().items(Joi.string().allow("")),
@@ -6431,8 +9647,8 @@ class CatalogPlatformModel {
   /** @returns {ListSizeGuide} */
   static ListSizeGuide() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
-      page: Joi.any(),
+      items: Joi.array().items(CatalogPlatformModel.SizeGuideResponse()),
+      page: CatalogPlatformModel.Page(),
     });
   }
 
@@ -6457,6 +9673,7 @@ class CatalogPlatformModel {
   /** @returns {LocationListSerializer} */
   static LocationListSerializer() {
     return Joi.object({
+      filters: Joi.array().items(Joi.any()),
       items: Joi.array().items(CatalogPlatformModel.GetLocationSerializer()),
       page: CatalogPlatformModel.Page(),
     });
@@ -6507,8 +9724,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {InventoryManufacturerResponse} */
-  static InventoryManufacturerResponse() {
+  /** @returns {ManufacturerResponse1} */
+  static ManufacturerResponse1() {
     return Joi.object({
       address: Joi.string().allow(""),
       is_default: Joi.boolean(),
@@ -6543,21 +9760,52 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {BrandMedia} */
-  static BrandMedia() {
-    return Joi.object({
-      aspect_ratio: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {Meta} */
   static Meta() {
     return Joi.object({
-      headers: Joi.any(),
+      headers: CatalogPlatformModel.GuideHeaders(),
+      values: Joi.array().items(CatalogPlatformModel.GuideValues()),
       unit: Joi.string().allow(""),
-      values: Joi.array().items(Joi.any()),
+    });
+  }
+
+  /** @returns {GuideHeaders} */
+  static GuideHeaders() {
+    return Joi.object({
+      col_1: CatalogPlatformModel.Header(),
+      col_2: CatalogPlatformModel.Header(),
+      col_3: CatalogPlatformModel.Header(),
+      col_4: CatalogPlatformModel.Header(),
+      col_5: CatalogPlatformModel.Header(),
+      col_6: CatalogPlatformModel.Header(),
+      col_7: CatalogPlatformModel.Header(),
+      col_8: CatalogPlatformModel.Header(),
+      col_9: CatalogPlatformModel.Header(),
+      col_10: CatalogPlatformModel.Header(),
+    });
+  }
+
+  /** @returns {GuideValues} */
+  static GuideValues() {
+    return Joi.object({
+      col_1: Joi.string().allow(""),
+      col_2: Joi.string().allow(""),
+      col_3: Joi.string().allow(""),
+      col_4: Joi.string().allow(""),
+      col_5: Joi.string().allow(""),
+      col_6: Joi.string().allow(""),
+      col_7: Joi.string().allow(""),
+      col_8: Joi.string().allow(""),
+      col_9: Joi.string().allow(""),
+      col_10: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Header} */
+  static Header() {
+    return Joi.object({
+      value: Joi.string().allow(""),
+      convertable: Joi.boolean(),
     });
   }
 
@@ -6657,13 +9905,56 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {OptinAddress} */
+  static OptinAddress() {
+    return Joi.object({
+      address1: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      latitude: Joi.number(),
+      longitude: Joi.number(),
+      country_code: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {OptinDocument} */
+  static OptinDocument() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+      legal_name: Joi.string().allow(""),
+      verified: Joi.boolean(),
+      url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {OptinBusinessCountryInfo} */
+  static OptinBusinessCountryInfo() {
+    return Joi.object({
+      country: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
+      currency: Joi.any(),
+      timezone: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {OptinCompanyDetail} */
   static OptinCompanyDetail() {
     return Joi.object({
-      business_type: Joi.string().allow(""),
-      company_type: Joi.string().allow(""),
       name: Joi.string().allow(""),
       uid: Joi.number(),
+      business_info: Joi.string().allow(""),
+      business_type: Joi.string().allow(""),
+      company_type: Joi.string().allow(""),
+      business_country_info: CatalogPlatformModel.OptinBusinessCountryInfo(),
+      address: CatalogPlatformModel.OptinAddress(),
+      documents: Joi.array().items(CatalogPlatformModel.OptinDocument()),
+      brands: Joi.array().items(Joi.number()),
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+      warnings: Joi.any(),
+      stage: Joi.string().allow(""),
     });
   }
 
@@ -6687,11 +9978,12 @@ class CatalogPlatformModel {
   /** @returns {OwnerAppItemResponse} */
   static OwnerAppItemResponse() {
     return Joi.object({
+      size_promotion_threshold: Joi.any(),
       alt_text: Joi.any(),
       is_cod: Joi.boolean(),
       is_gift: Joi.boolean(),
-      moq: CatalogPlatformModel.MOQData(),
-      seo: CatalogPlatformModel.SEOData(),
+      moq: Joi.any(),
+      seo: Joi.any(),
       _custom_json: Joi.any(),
       _custom_meta: Joi.array().items(CatalogPlatformModel.MetaFields()),
     });
@@ -6718,6 +10010,7 @@ class CatalogPlatformModel {
       current: Joi.number(),
       type: Joi.string().allow("").required(),
       size: Joi.number(),
+      total: Joi.number(),
     });
   }
 
@@ -6729,6 +10022,18 @@ class CatalogPlatformModel {
       has_previous: Joi.boolean(),
       item_total: Joi.number(),
       size: Joi.number(),
+    });
+  }
+
+  /** @returns {PageResponse1} */
+  static PageResponse1() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      has_previous: Joi.boolean(),
+      item_total: Joi.number(),
+      size: Joi.number(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -6874,10 +10179,12 @@ class CatalogPlatformModel {
   /** @returns {ProductBrand} */
   static ProductBrand() {
     return Joi.object({
-      action: CatalogPlatformModel.Action(),
-      logo: CatalogPlatformModel.Media(),
-      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
       uid: Joi.number(),
+      name: Joi.string().allow(""),
+      logo: Joi.any(),
+      action: CatalogPlatformModel.PageAction(),
+      _custom_json: Joi.any(),
     });
   }
 
@@ -6913,6 +10220,28 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {InventoryBulkJob} */
+  static InventoryBulkJob() {
+    return Joi.object({
+      company_id: Joi.number(),
+      file_path: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProductBulkResponse} */
+  static ProductBulkResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InventoryBulkResponse} */
+  static InventoryBulkResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {ProductBulkRequestList} */
   static ProductBulkRequestList() {
     return Joi.object({
@@ -6924,9 +10253,6 @@ class CatalogPlatformModel {
   /** @returns {ProductBundleItem} */
   static ProductBundleItem() {
     return Joi.object({
-      allow_remove: Joi.boolean(),
-      auto_add_to_cart: Joi.boolean(),
-      auto_select: Joi.boolean(),
       max_quantity: Joi.number().required(),
       min_quantity: Joi.number().required(),
       product_uid: Joi.number().required(),
@@ -6937,7 +10263,7 @@ class CatalogPlatformModel {
   static ProductBundleRequest() {
     return Joi.object({
       choice: Joi.string().allow("").required(),
-      company_id: Joi.number(),
+      company_id: Joi.string().allow(""),
       created_by: Joi.any(),
       created_on: Joi.string().allow(""),
       is_active: Joi.boolean().required(),
@@ -6952,6 +10278,12 @@ class CatalogPlatformModel {
         .required(),
       same_store_assignment: Joi.boolean(),
       slug: Joi.string().allow("").required(),
+      auto_add_to_cart: Joi.boolean().required(),
+      auto_select: Joi.boolean().required(),
+      allow_remove: Joi.boolean().required(),
+      prefer_single_shipment: Joi.boolean().required(),
+      allow_individual_return: Joi.boolean().required(),
+      allow_individual_cancel: Joi.boolean().required(),
     });
   }
 
@@ -6959,7 +10291,7 @@ class CatalogPlatformModel {
   static ProductBundleUpdateRequest() {
     return Joi.object({
       choice: Joi.string().allow("").required(),
-      company_id: Joi.number(),
+      company_id: Joi.string().allow(""),
       is_active: Joi.boolean().required(),
       logo: Joi.string().allow("").allow(null),
       meta: Joi.any(),
@@ -6967,6 +10299,12 @@ class CatalogPlatformModel {
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       page_visibility: Joi.array().items(Joi.string().allow("")),
+      allow_individual_cancel: Joi.boolean(),
+      allow_individual_return: Joi.boolean(),
+      allow_remove: Joi.boolean(),
+      auto_add_to_cart: Joi.boolean(),
+      auto_select: Joi.boolean(),
+      prefer_single_shipment: Joi.boolean(),
       products: Joi.array()
         .items(CatalogPlatformModel.ProductBundleItem())
         .required(),
@@ -6980,6 +10318,27 @@ class CatalogPlatformModel {
     return Joi.object({
       data: Joi.array().items(Joi.any()),
       multivalue: Joi.boolean(),
+    });
+  }
+
+  /** @returns {ProductCreateUpdateSizesSchema} */
+  static ProductCreateUpdateSizesSchema() {
+    return Joi.object({
+      size: Joi.string().allow(""),
+      price: Joi.number(),
+      price_effective: Joi.number(),
+      price_transfer: Joi.number(),
+      currency: Joi.string().allow(""),
+      item_length: Joi.number(),
+      item_width: Joi.number(),
+      item_height: Joi.number(),
+      item_weight: Joi.number(),
+      item_dimensions_unit_of_measure: Joi.string().allow(""),
+      item_weight_unit_of_measure: Joi.string().allow(""),
+      track_inventory: Joi.boolean(),
+      identifiers: Joi.array().items(CatalogPlatformModel.GTIN()),
+      _custom_json: Joi.any(),
+      name: Joi.string().allow(""),
     });
   }
 
@@ -7015,18 +10374,18 @@ class CatalogPlatformModel {
       no_of_boxes: Joi.number(),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
       product_publish: CatalogPlatformModel.ProductPublish1(),
-      requester: Joi.string().allow(""),
       return_config: CatalogPlatformModel.ReturnConfig().required(),
       short_description: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
-      sizes: Joi.array().items(Joi.any()).required(),
+      sizes: Joi.array()
+        .items(CatalogPlatformModel.ProductCreateUpdateSizesSchema())
+        .required(),
       slug: Joi.string().allow("").required(),
       tags: Joi.array().items(Joi.string().allow("")),
       tax_identifier: CatalogPlatformModel.TaxIdentifier().required(),
       teaser_tag: CatalogPlatformModel.TeaserTag(),
       template_tag: Joi.string().allow("").required(),
       trader: Joi.array().items(CatalogPlatformModel.Trader()).required(),
-      uid: Joi.number().allow(null),
       variant_group: Joi.any(),
       variant_media: Joi.any(),
       variants: Joi.any(),
@@ -7081,6 +10440,76 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {PatchProductDownloadsDataResponse} */
+  static PatchProductDownloadsDataResponse() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      task_id: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      url: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+      completed_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PatchProductDownloadsResponse} */
+  static PatchProductDownloadsResponse() {
+    return Joi.object({
+      data: CatalogPlatformModel.PatchProductDownloadsDataResponse(),
+    });
+  }
+
+  /** @returns {ProductDownloadFilters} */
+  static ProductDownloadFilters() {
+    return Joi.object({
+      brands: Joi.array().items(Joi.string().allow("")).required(),
+      catalogue_types: Joi.array().items(Joi.string().allow("")).required(),
+      templates: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {CreateProductDownloadsDataResponse} */
+  static CreateProductDownloadsDataResponse() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      task_id: Joi.string().allow(""),
+      filters: CatalogPlatformModel.ProductDownloadFilters(),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      _id: Joi.string().allow(""),
+      notification_emails: Joi.array().items(Joi.any()),
+      modified_on: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      stats: CatalogPlatformModel.Stats(),
+    });
+  }
+
+  /** @returns {CreateProductDownloadsResponse} */
+  static CreateProductDownloadsResponse() {
+    return Joi.object({
+      data: CatalogPlatformModel.CreateProductDownloadsDataResponse(),
+    });
+  }
+
+  /** @returns {GetProductDownloadsResponse} */
+  static GetProductDownloadsResponse() {
+    return Joi.object({
+      modified_on: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      completed_on: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      created_on: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      task_id: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {ProductDownloadsResponse} */
   static ProductDownloadsResponse() {
     return Joi.object({
@@ -7098,23 +10527,6 @@ class CatalogPlatformModel {
       values: Joi.array()
         .items(CatalogPlatformModel.ProductFiltersValue())
         .required(),
-    });
-  }
-
-  /** @returns {GetQueryFiltersValuesResponse} */
-  static GetQueryFiltersValuesResponse() {
-    return Joi.object({
-      values: Joi.array()
-        .items(CatalogPlatformModel.ProductFiltersValue())
-        .required(),
-      page: CatalogPlatformModel.Page().required(),
-    });
-  }
-
-  /** @returns {ProductFiltersKeysOnly} */
-  static ProductFiltersKeysOnly() {
-    return Joi.object({
-      key: CatalogPlatformModel.ProductFiltersKey().required(),
     });
   }
 
@@ -7143,7 +10555,50 @@ class CatalogPlatformModel {
       query_format: Joi.string().allow(""),
       selected_max: Joi.number(),
       selected_min: Joi.number(),
-      value: Joi.any().required(),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ApplicationCategoryAction} */
+  static ApplicationCategoryAction() {
+    return Joi.object({
+      page: CatalogPlatformModel.CategoryPageAction(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ApplicationCategoryItem} */
+  static ApplicationCategoryItem() {
+    return Joi.object({
+      _custom_json: Joi.any(),
+      action: CatalogPlatformModel.ApplicationCategoryAction(),
+      id: Joi.number(),
+      logo: CatalogPlatformModel.CategoryImage(),
+      name: Joi.string().allow(""),
+      uid: Joi.number(),
+    });
+  }
+
+  /** @returns {CategoryPageAction} */
+  static CategoryPageAction() {
+    return Joi.object({
+      query: CatalogPlatformModel.CategoryQuery(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CategoryQuery} */
+  static CategoryQuery() {
+    return Joi.object({
+      category: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {CategoryImage} */
+  static CategoryImage() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
     });
   }
 
@@ -7178,6 +10633,31 @@ class CatalogPlatformModel {
       tryouts: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       uid: Joi.number(),
+      categories: Joi.array().items(
+        CatalogPlatformModel.ApplicationCategoryItem()
+      ),
+      _custom_meta: Joi.array().items(Joi.string().allow("")),
+      action: CatalogPlatformModel.PageAction(),
+      is_tryout: Joi.boolean(),
+      all_company_ids: Joi.array().items(Joi.number()),
+      is_custom_order: Joi.boolean(),
+      collections: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {PageAction} */
+  static PageAction() {
+    return Joi.object({
+      page: CatalogPlatformModel.ActionObject(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ActionObject} */
+  static ActionObject() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      query: Joi.any(),
     });
   }
 
@@ -7186,6 +10666,7 @@ class CatalogPlatformModel {
     return Joi.object({
       effective: CatalogPlatformModel.Price1(),
       marked: CatalogPlatformModel.Price1(),
+      selling: CatalogPlatformModel.Price1(),
     });
   }
 
@@ -7202,6 +10683,25 @@ class CatalogPlatformModel {
     return Joi.object({
       items: Joi.array().items(CatalogPlatformModel.ProductSchemaV2()),
       page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {ProductVerificationModel} */
+  static ProductVerificationModel() {
+    return Joi.object({
+      rejected_fields: Joi.any(),
+      status: Joi.string().allow(""),
+      brand_uid: Joi.number(),
+      created_on: Joi.string().allow(""),
+      company_ids: Joi.array().items(Joi.number()),
+      item_code: Joi.string().allow(""),
+      remark: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      modified_on: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      item_id: Joi.number(),
+      id: Joi.string().allow(""),
     });
   }
 
@@ -7246,9 +10746,27 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {CategorySubSchema} */
+  static CategorySubSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      uid: Joi.number(),
+    });
+  }
+
+  /** @returns {CategoryProduct} */
+  static CategoryProduct() {
+    return Joi.object({
+      l3: CatalogPlatformModel.CategorySubSchema(),
+      l1: CatalogPlatformModel.CategorySubSchema(),
+      l2: CatalogPlatformModel.CategorySubSchema(),
+    });
+  }
+
   /** @returns {ProductSchemaV2} */
   static ProductSchemaV2() {
     return Joi.object({
+      category: CatalogPlatformModel.CategoryProduct(),
       _custom_json: Joi.any(),
       all_company_ids: Joi.array().items(Joi.number()),
       all_identifiers: Joi.array().items(Joi.string().allow("")),
@@ -7256,7 +10774,6 @@ class CatalogPlatformModel {
       attributes: Joi.any(),
       brand: CatalogPlatformModel.Brand(),
       brand_uid: Joi.number(),
-      category: Joi.any(),
       category_slug: Joi.string().allow(""),
       category_uid: Joi.number(),
       color: Joi.string().allow(""),
@@ -7345,6 +10862,19 @@ class CatalogPlatformModel {
       is_selected: Joi.boolean(),
       name: Joi.string().allow(""),
       value: Joi.string().allow(""),
+      display: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProductSortOnv2} */
+  static ProductSortOnv2() {
+    return Joi.object({
+      is_selected: Joi.boolean(),
+      name: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+      display: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
     });
   }
 
@@ -7361,15 +10891,16 @@ class CatalogPlatformModel {
       attributes: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       categories: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       created_by: Joi.any(),
+      modified_by: Joi.any(),
       created_on: Joi.string().allow(""),
       departments: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
       is_archived: Joi.boolean(),
-      is_expirable: Joi.boolean().required(),
-      is_physical: Joi.boolean().required(),
+      is_expirable: Joi.boolean(),
+      is_physical: Joi.boolean(),
       logo: Joi.string().allow(""),
-      modified_by: Joi.any(),
+      id: Joi.string().allow(""),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       slug: Joi.string().allow("").required(),
@@ -7400,8 +10931,11 @@ class CatalogPlatformModel {
   /** @returns {ProductTemplateExportResponse} */
   static ProductTemplateExportResponse() {
     return Joi.object({
+      trigger_on: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      template_tags: Joi.any(),
       completed_on: Joi.string().allow(""),
-      created_by: CatalogPlatformModel.UserInfo1(),
+      created_by: Joi.any(),
       filters: Joi.any(),
       modified_on: Joi.string().allow(""),
       notification_emails: Joi.array().items(Joi.string().allow("")),
@@ -7422,6 +10956,23 @@ class CatalogPlatformModel {
       media: Joi.array().items(CatalogPlatformModel.Media()),
       name: Joi.string().allow(""),
       uid: Joi.number(),
+    });
+  }
+
+  /** @returns {CompanyVerificationStats} */
+  static CompanyVerificationStats() {
+    return Joi.object({
+      verified: Joi.number(),
+      total: Joi.number(),
+    });
+  }
+
+  /** @returns {CompanyVerificationResponse} */
+  static CompanyVerificationResponse() {
+    return Joi.object({
+      uid: Joi.number(),
+      name: Joi.string().allow(""),
+      stats: CatalogPlatformModel.CompanyVerificationStats(),
     });
   }
 
@@ -7492,7 +11043,6 @@ class CatalogPlatformModel {
   static Quantity() {
     return Joi.object({
       count: Joi.number(),
-      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -7508,8 +11058,8 @@ class CatalogPlatformModel {
   static ReturnConfig() {
     return Joi.object({
       returnable: Joi.boolean().required(),
-      time: Joi.number().required(),
-      unit: Joi.string().allow("").required(),
+      time: Joi.number(),
+      unit: Joi.string().allow(""),
     });
   }
 
@@ -7560,9 +11110,7 @@ class CatalogPlatformModel {
   static ApplicationItemSeoBreadcrumbs() {
     return Joi.object({
       url: Joi.string().allow(""),
-      action: Joi.array().items(
-        CatalogPlatformModel.ApplicationItemSeoAction()
-      ),
+      action: Joi.any(),
     });
   }
 
@@ -7589,7 +11137,7 @@ class CatalogPlatformModel {
     return Joi.object({
       title: Joi.string().allow(""),
       items: Joi.array().items(
-        CatalogPlatformModel.ApplicationItemSeoMetaTagItem()
+        CatalogPlatformModel.ApplicationItemSeoMetaTags()
       ),
     });
   }
@@ -7654,12 +11202,20 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {SitemapDetail} */
+  static SitemapDetail() {
+    return Joi.object({
+      priority: Joi.number(),
+      frequency: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {SeoDetail} */
   static SeoDetail() {
     return Joi.object({
       description: Joi.string().allow(""),
       title: Joi.string().allow(""),
-      sitemap: Joi.any(),
+      sitemap: CatalogPlatformModel.SitemapDetail(),
       breadcrumbs: Joi.array().items(
         CatalogPlatformModel.ApplicationItemSeoBreadcrumbs()
       ),
@@ -7680,6 +11236,23 @@ class CatalogPlatformModel {
   static SingleCategoryResponse() {
     return Joi.object({
       data: CatalogPlatformModel.Category(),
+    });
+  }
+
+  /** @returns {VariantTypesResponse} */
+  static VariantTypesResponse() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.VariantTypeItem()),
+    });
+  }
+
+  /** @returns {VariantTypeItem} */
+  static VariantTypeItem() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      type: Joi.array().items(Joi.string().allow("")),
+      image_config: Joi.any().allow(null),
     });
   }
 
@@ -7710,14 +11283,15 @@ class CatalogPlatformModel {
   /** @returns {SizeGuideResponse} */
   static SizeGuideResponse() {
     return Joi.object({
+      image: Joi.string().allow(""),
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
       active: Joi.boolean(),
       brand_id: Joi.number(),
       company_id: Joi.number(),
-      created_by: Joi.any(),
       created_on: Joi.string().allow(""),
       guide: Joi.any(),
       id: Joi.string().allow(""),
-      modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       subtitle: Joi.string().allow(""),
@@ -7726,26 +11300,93 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {StoreAssignResponse} */
-  static StoreAssignResponse() {
+  /** @returns {Time} */
+  static Time() {
     return Joi.object({
-      _id: Joi.string().allow(""),
-      article_assignment: CatalogPlatformModel.ArticleAssignment1().required(),
+      hour: Joi.number(),
+      minute: Joi.number(),
+    });
+  }
+
+  /** @returns {Timing} */
+  static Timing() {
+    return Joi.object({
+      closing: CatalogPlatformModel.Time(),
+      weekday: Joi.string().allow(""),
+      opening: CatalogPlatformModel.Time(),
+      open: Joi.boolean(),
+    });
+  }
+
+  /** @returns {StoreItem} */
+  static StoreItem() {
+    return Joi.object({
+      stage: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      modified_by: CatalogPlatformModel.UserSchemaCustom(),
+      manager: CatalogPlatformModel.Manager(),
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+      verified_on: Joi.string().allow(""),
+      verified_by: CatalogPlatformModel.UserSchemaCustom(),
+      integration_type: CatalogPlatformModel.IntegrationType(),
       company_id: Joi.number(),
-      group_id: Joi.string().allow(""),
-      index: Joi.number(),
-      item_id: Joi.number().required(),
-      meta: Joi.any(),
-      price_effective: Joi.number(),
-      price_marked: Joi.number(),
-      quantity: Joi.number().required(),
-      s_city: Joi.string().allow(""),
-      size: Joi.string().allow("").required(),
-      status: Joi.boolean().required(),
-      store_id: Joi.number(),
-      store_pincode: Joi.number(),
-      strategy_wise_listing: Joi.array().items(Joi.any()),
-      uid: Joi.string().allow(""),
+      documents: Joi.array().items(CatalogPlatformModel.Document()),
+      created_on: Joi.string().allow(""),
+      address: CatalogPlatformModel.Address(),
+      created_by: CatalogPlatformModel.UserSchemaCustom(),
+      _custom_json: Joi.any(),
+      uid: Joi.number(),
+      timing: Joi.array().items(CatalogPlatformModel.Timing()),
+      store_type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UserSchemaCustom} */
+  static UserSchemaCustom() {
+    return Joi.object({
+      user_id: Joi.string().allow(""),
+      username: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Manager} */
+  static Manager() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      mobile_no: CatalogPlatformModel.MobileNo(),
+    });
+  }
+
+  /** @returns {MobileNo} */
+  static MobileNo() {
+    return Joi.object({
+      country_code: Joi.number(),
+      number: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {IntegrationType} */
+  static IntegrationType() {
+    return Joi.object({
+      order: Joi.string().allow(""),
+      inventory: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Address} */
+  static Address() {
+    return Joi.object({
+      country_code: Joi.string().allow(""),
+      address1: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      address2: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      landmark: Joi.string().allow(""),
+      state: Joi.string().allow(""),
     });
   }
 
@@ -7753,18 +11394,26 @@ class CatalogPlatformModel {
   static StoreDetail() {
     return Joi.object({
       additional_contacts: Joi.array().items(Joi.any()),
-      address: Joi.any(),
       company_id: Joi.number(),
       created_on: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
-      documents: Joi.array().items(Joi.any()),
-      manager: Joi.any(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       store_code: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
-      timing: Joi.any(),
+      timing: Joi.array().items(CatalogPlatformModel.Timing()),
       uid: Joi.number(),
+      stage: Joi.string().allow(""),
+      modified_by: CatalogPlatformModel.UserSchemaCustom(),
+      manager: CatalogPlatformModel.Manager(),
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+      verified_on: Joi.string().allow(""),
+      verified_by: CatalogPlatformModel.UserSchemaCustom(),
+      integration_type: CatalogPlatformModel.IntegrationType(),
+      documents: Joi.array().items(CatalogPlatformModel.Document()),
+      address: CatalogPlatformModel.Address(),
+      created_by: CatalogPlatformModel.UserSchemaCustom(),
+      _custom_json: Joi.any(),
     });
   }
 
@@ -7782,8 +11431,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {SuccessResponseObject} */
-  static SuccessResponseObject() {
+  /** @returns {SuccessResponse1} */
+  static SuccessResponse1() {
     return Joi.object({
       success: Joi.boolean(),
       uid: Joi.number(),
@@ -7847,7 +11496,7 @@ class CatalogPlatformModel {
   /** @returns {TemplatesResponse} */
   static TemplatesResponse() {
     return Joi.object({
-      items: CatalogPlatformModel.ProductTemplate(),
+      items: Joi.array().items(CatalogPlatformModel.ProductTemplate()),
       page: CatalogPlatformModel.Page(),
     });
   }
@@ -7891,8 +11540,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {TraderResponse} */
-  static TraderResponse() {
+  /** @returns {Trader2} */
+  static Trader2() {
     return Joi.object({
       address: Joi.array().items(Joi.string().allow("")),
       name: Joi.string().allow(""),
@@ -7903,6 +11552,9 @@ class CatalogPlatformModel {
   /** @returns {UpdateCollection} */
   static UpdateCollection() {
     return Joi.object({
+      action: CatalogPlatformModel.Action(),
+      uid: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
       _schedule: CatalogPlatformModel.CollectionSchedule(),
@@ -7915,7 +11567,7 @@ class CatalogPlatformModel {
       is_visible: Joi.boolean(),
       logo: CatalogPlatformModel.CollectionImage(),
       meta: Joi.any(),
-      modified_by: CatalogPlatformModel.UserInfo(),
+      modified_by: Joi.string().allow("").allow(null),
       name: Joi.string().allow(""),
       priority: Joi.number(),
       published: Joi.boolean(),
@@ -7926,6 +11578,7 @@ class CatalogPlatformModel {
       tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
+      is_searchable: Joi.boolean(),
     });
   }
 
@@ -7934,10 +11587,10 @@ class CatalogPlatformModel {
     return Joi.object({
       application_id: Joi.string().allow("").required(),
       company_id: Joi.number().required(),
-      created_by: CatalogPlatformModel.UserSerializer(),
+      created_by: Joi.any(),
       created_on: Joi.string().allow(""),
       is_proximity_enabled: Joi.boolean(),
-      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       proximity: Joi.number(),
       searchable_attributes: Joi.array().items(
@@ -7953,18 +11606,11 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {CreateMarketplaceOptinResponse} */
-  static CreateMarketplaceOptinResponse() {
+  /** @returns {UpdatedResponse} */
+  static UpdatedResponse() {
     return Joi.object({
-      store_ids: Joi.array().items(Joi.number()),
-      brand_ids: Joi.array().items(Joi.number()),
-      company_id: Joi.number(),
-      opt_level: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
-      enabled: Joi.boolean(),
-      created_by: CatalogPlatformModel.CreatedBy(),
-      modified_by: CatalogPlatformModel.CreatedBy(),
-      app_id: Joi.string().allow(""),
+      items_not_updated: Joi.array().items(Joi.number()),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -8025,8 +11671,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {RequestUserSerializer} */
-  static RequestUserSerializer() {
+  /** @returns {UserSerializer1} */
+  static UserSerializer1() {
     return Joi.object({
       _id: Joi.string().allow(""),
       contact: Joi.string().allow(""),
@@ -8067,6 +11713,7 @@ class CatalogPlatformModel {
   static ValidateProduct() {
     return Joi.object({
       valid: Joi.boolean(),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -8108,8 +11755,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {InventoryWeightResponse} */
-  static InventoryWeightResponse() {
+  /** @returns {WeightResponse1} */
+  static WeightResponse1() {
     return Joi.object({
       shipping: Joi.number(),
       unit: Joi.string().allow(""),
@@ -8124,19 +11771,27 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {ModifiedBy} */
+  static ModifiedBy() {
+    return Joi.object({
+      username: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {Marketplaces} */
   static Marketplaces() {
     return Joi.object({
       brand_ids: Joi.array().items(Joi.number()),
       app_id: Joi.string().allow(""),
       enabled: Joi.boolean(),
-      created_by: CatalogPlatformModel.CreatedBy(),
-      created_on: Joi.any(),
+      created_by: Joi.any(),
+      created_on: Joi.string().allow(""),
       opt_level: Joi.string().allow(""),
       company_id: Joi.number(),
-      modified_by: CatalogPlatformModel.CreatedBy(),
+      modified_by: Joi.any(),
       store_ids: Joi.array().items(Joi.number()),
-      modified_on: Joi.any(),
+      modified_on: Joi.string().allow(""),
       platforms: Joi.string().allow(""),
       _id: Joi.string().allow(""),
     });
@@ -8147,6 +11802,18 @@ class CatalogPlatformModel {
     return Joi.object({
       items: Joi.array().items(CatalogPlatformModel.Marketplaces()),
       page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CreateMarketplaceOptinRequest} */
+  static CreateMarketplaceOptinRequest() {
+    return Joi.object({
+      brand_ids: Joi.array().items(Joi.number()),
+      company_id: Joi.number(),
+      enabled: Joi.boolean(),
+      opt_level: Joi.string().allow(""),
+      platform: Joi.string().allow(""),
+      store_ids: Joi.array().items(Joi.number()),
     });
   }
 
@@ -8162,6 +11829,50 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {CreateMarketplaceOptinResponse} */
+  static CreateMarketplaceOptinResponse() {
+    return Joi.object({
+      store_ids: Joi.array().items(Joi.number()),
+      brand_ids: Joi.array().items(Joi.number()),
+      company_id: Joi.number(),
+      opt_level: Joi.string().allow(""),
+      platform: Joi.string().allow(""),
+      enabled: Joi.boolean(),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      app_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetProductTemplateSlugItems} */
+  static GetProductTemplateSlugItems() {
+    return Joi.object({
+      attributes: Joi.array().items(Joi.string().allow("")),
+      departments: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean(),
+      tag: Joi.string().allow(""),
+      is_physical: Joi.boolean(),
+      description: Joi.string().allow(""),
+      logo: Joi.string().allow(""),
+      is_archived: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      categories: Joi.array().items(Joi.string().allow("")),
+      is_expirable: Joi.boolean(),
+      name: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetProductTemplateSlugResponse} */
+  static GetProductTemplateSlugResponse() {
+    return Joi.object({
+      page: CatalogPlatformModel.Page(),
+      items: Joi.array().items(
+        CatalogPlatformModel.GetProductTemplateSlugItems()
+      ),
+    });
+  }
+
   /** @returns {UpdateMarketplaceOptinResponse} */
   static UpdateMarketplaceOptinResponse() {
     return Joi.object({
@@ -8172,8 +11883,655 @@ class CatalogPlatformModel {
       opt_level: Joi.string().allow(""),
       platform: Joi.string().allow(""),
       store_ids: Joi.array().items(Joi.number()),
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
+    });
+  }
+
+  /** @returns {AutocompleteRequestSchema} */
+  static AutocompleteRequestSchema() {
+    return Joi.object({
+      query_suggestion: Joi.any(),
+      product_suggestion: Joi.any(),
+      collection_suggestion: Joi.any(),
+      brand_suggestion: Joi.any(),
+      category_suggestion: Joi.any(),
+    });
+  }
+
+  /** @returns {AutocompleteUpsertResponseSchema} */
+  static AutocompleteUpsertResponseSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {AutocompleteErrorResponseSchema} */
+  static AutocompleteErrorResponseSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {AutocompleteResponseSchema} */
+  static AutocompleteResponseSchema() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      query_suggestion: Joi.any(),
+      product_suggestion: Joi.any(),
+      collection_suggestion: Joi.any(),
+      brand_suggestion: Joi.any(),
+      category_suggestion: Joi.any(),
+    });
+  }
+
+  /** @returns {ProductListingActionPage} */
+  static ProductListingActionPage() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      query: Joi.any(),
+      params: Joi.any(),
+    });
+  }
+
+  /** @returns {ProductListingAction} */
+  static ProductListingAction() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      page: CatalogPlatformModel.ProductListingActionPage(),
+    });
+  }
+
+  /** @returns {AutocompleteItem} */
+  static AutocompleteItem() {
+    return Joi.object({
+      logo: CatalogPlatformModel.Media(),
+      display: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      _custom_json: Joi.any(),
+      action: CatalogPlatformModel.ProductListingAction(),
+    });
+  }
+
+  /** @returns {AutocompletePreviewResponseSchema} */
+  static AutocompletePreviewResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.AutocompleteItem()),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryRequestSchema} */
+  static CreateAppPriceFactoryRequestSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      factory_type_ids: Joi.array().items(Joi.string().allow("")),
+      department_ids: Joi.array().items(Joi.number()),
+      application_id: Joi.string().allow(""),
+      factory_type: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryResponse} */
+  static CreateAppPriceFactoryResponse() {
+    return Joi.object({
+      factory_type: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      code: Joi.string().allow(""),
+      factory_type_ids: Joi.array().items(Joi.string().allow("")),
+      currency: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
       created_by: CatalogPlatformModel.CreatedBy(),
       modified_by: CatalogPlatformModel.CreatedBy(),
+      name: Joi.string().allow(""),
+      department_ids: Joi.array().items(Joi.number()),
+      modified_on: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ErrorDetails} */
+  static ErrorDetails() {
+    return Joi.object({
+      status_code: Joi.number(),
+    });
+  }
+
+  /** @returns {AppPriceFactory} */
+  static AppPriceFactory() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow("").required(),
+      department_ids: Joi.array().items(Joi.number()).required(),
+      factory_type: Joi.string().allow("").required(),
+      factory_type_ids: Joi.array().items(Joi.string().allow("")).required(),
+      code: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
+      currency: Joi.string().allow("").required(),
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {EditAppPriceFactoryRequestSchema} */
+  static EditAppPriceFactoryRequestSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      factory_type_ids: Joi.array().items(Joi.string().allow("")),
+      department_ids: Joi.array().items(Joi.number()),
+      application_id: Joi.string().allow(""),
+      factory_type: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetAppPriceFactoryResponse} */
+  static GetAppPriceFactoryResponse() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.AppPriceFactory()),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProduct} */
+  static CreateAppPriceFactoryProduct() {
+    return Joi.object({
+      item_id: Joi.number(),
+      marked_price: Joi.number(),
+      selling_price: Joi.number(),
+      seller_identifier: Joi.string().allow(""),
+      zone: Joi.string().allow(""),
+      action: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PriceFactorySizes} */
+  static PriceFactorySizes() {
+    return Joi.object({
+      size_name: Joi.string().allow(""),
+      seller_identifier: Joi.string().allow(""),
+      marked_price: Joi.number(),
+      selling_price: Joi.number(),
+      currency: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CompanySizes} */
+  static CompanySizes() {
+    return Joi.object({
+      size_name: Joi.string().allow(""),
+      seller_identifier: Joi.string().allow(""),
+      marked_price: Joi.number(),
+      selling_price: Joi.number(),
+      currency: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductItem} */
+  static CreateAppPriceFactoryProductItem() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      item_id: Joi.number(),
+      seller_identifier: Joi.string().allow(""),
+      marked_price: Joi.number(),
+      selling_price: Joi.number(),
+      zone: Joi.string().allow(""),
+      command: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreatePriceFactoryProductRequest} */
+  static CreatePriceFactoryProductRequest() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.CreateAppPriceFactoryProductItem()
+      ),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductResponse} */
+  static CreateAppPriceFactoryProductResponse() {
+    return Joi.object({
+      item_id: Joi.number(),
+      item_name: Joi.string().allow(""),
+      item_code: Joi.string().allow(""),
+      brand: Joi.string().allow(""),
+      category: Joi.string().allow(""),
+      factory_type_id: Joi.array().items(Joi.string().allow("")),
+      media: Joi.array().items(CatalogPlatformModel.Media()),
+      sizes: Joi.array().items(CatalogPlatformModel.PriceFactorySizes()),
+      company_sizes: Joi.array().items(CatalogPlatformModel.CompanySizes()),
+    });
+  }
+
+  /** @returns {UpdateAppPriceFactoryProductRequest} */
+  static UpdateAppPriceFactoryProductRequest() {
+    return Joi.object({
+      sizes: Joi.array().items(CatalogPlatformModel.PriceFactorySizes()),
+    });
+  }
+
+  /** @returns {UpdateAppPriceFactoryProductResponse} */
+  static UpdateAppPriceFactoryProductResponse() {
+    return Joi.object({
+      item_id: Joi.number(),
+      zone_id: Joi.string().allow(""),
+      media: Joi.array().items(CatalogPlatformModel.Media()),
+      company_sizes: Joi.array().items(CatalogPlatformModel.CompanySizes()),
+      sizes: Joi.array().items(CatalogPlatformModel.PriceFactorySizes()),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductRequest} */
+  static CreateAppPriceFactoryProductRequest() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.CreateAppPriceFactoryProduct()
+      ),
+    });
+  }
+
+  /** @returns {FailedRecordsData} */
+  static FailedRecordsData() {
+    return Joi.object({
+      item_id: Joi.number(),
+      error: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreatePriceFactoryProductResponse} */
+  static CreatePriceFactoryProductResponse() {
+    return Joi.object({
+      total_records: Joi.number(),
+      success_records: Joi.number(),
+      failed_records: Joi.number(),
+      failed_records_data: Joi.array().items(
+        CatalogPlatformModel.FailedRecordsData()
+      ),
+      stage: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductsResponse} */
+  static CreateAppPriceFactoryProductsResponse() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.CreateAppPriceFactoryProductResponse()
+      ),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductBulkJobRequest} */
+  static CreateAppPriceFactoryProductBulkJobRequest() {
+    return Joi.object({
+      file_path: Joi.string().allow(""),
+      file_type: Joi.string().allow(""),
+      job_type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductExportJobRequest} */
+  static CreateAppPriceFactoryProductExportJobRequest() {
+    return Joi.object({
+      sample_with_data: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductExportJobResponse} */
+  static CreateAppPriceFactoryProductExportJobResponse() {
+    return Joi.object({
+      job_type: Joi.string().allow(""),
+      company_id: Joi.number(),
+      file_type: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
+      success_records: Joi.number(),
+      application_id: Joi.string().allow(""),
+      total_records: Joi.number(),
+      factory_id: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      stage: Joi.string().allow(""),
+      failed_records: Joi.number(),
+    });
+  }
+
+  /** @returns {AppPriceFactoryProductExportPollJobResponse} */
+  static AppPriceFactoryProductExportPollJobResponse() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      stage: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      created_on: Joi.string().allow(""),
+      total_records: Joi.number(),
+      success_records: Joi.number(),
+      failed_records: Joi.number(),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductExportJobPollResponse} */
+  static CreateAppPriceFactoryProductExportJobPollResponse() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.AppPriceFactoryProductExportPollJobResponse()
+      ),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductBulkJobResponse} */
+  static CreateAppPriceFactoryProductBulkJobResponse() {
+    return Joi.object({
+      job_id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      file_type: Joi.string().allow(""),
+      stage: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      company_id: Joi.number(),
+      job_type: Joi.string().allow(""),
+      total_records: Joi.number(),
+      is_active: Joi.boolean(),
+      modified_on: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      factory_id: Joi.string().allow(""),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+      created_on: Joi.string().allow(""),
+      failed_records: Joi.number(),
+      file_path: Joi.string().allow(""),
+      success_records: Joi.number(),
+      _id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductBulkJobValidateResponse} */
+  static CreateAppPriceFactoryProductBulkJobValidateResponse() {
+    return Joi.object({
+      job_type: Joi.string().allow(""),
+      file_type: Joi.string().allow(""),
+      file_path: Joi.string().allow(""),
+      job_id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_by: CatalogPlatformModel.CreatedBy(),
+      modified_by: CatalogPlatformModel.CreatedBy(),
+    });
+  }
+
+  /** @returns {CreateAppPriceFactoryProductBulkJobPollResponse} */
+  static CreateAppPriceFactoryProductBulkJobPollResponse() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      total_records: Joi.number(),
+      success_records: Joi.number(),
+      failed_records: Joi.number(),
+      error_file: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
+      stage: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      error_file_url: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {SynonymListResponseSchema} */
+  static SynonymListResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.SynonymResponseSchema()),
+      page: CatalogPlatformModel.Page(),
+    });
+  }
+
+  /** @returns {SynonymResponseSchema} */
+  static SynonymResponseSchema() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      synonyms: Joi.array().items(Joi.string().allow("")),
+      key: Joi.string().allow(""),
+      app_id: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymListErrorResponseSchema} */
+  static SynonymListErrorResponseSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      error: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymCreateRequestSchema} */
+  static SynonymCreateRequestSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      synonyms: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {SynonymCreateResponseSchema} */
+  static SynonymCreateResponseSchema() {
+    return Joi.object({
+      status: Joi.boolean(),
+      _id: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymUpdateResponseSchema} */
+  static SynonymUpdateResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean(),
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymCreateErrorSchema} */
+  static SynonymCreateErrorSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      errors: Joi.any(),
+      code: Joi.number(),
+    });
+  }
+
+  /** @returns {SynonymDeleteErrorSchema} */
+  static SynonymDeleteErrorSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
+      error: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymDeleteResponseSchema} */
+  static SynonymDeleteResponseSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SynonymUploadRequestSchema} */
+  static SynonymUploadRequestSchema() {
+    return Joi.object({
+      tracking_url: Joi.string().allow(""),
+      file_type: Joi.string().allow(""),
+      job_type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymUploadResponseSchema} */
+  static SynonymUploadResponseSchema() {
+    return Joi.object({
+      job_type: Joi.string().allow(""),
+      file_type: Joi.string().allow(""),
+      tracking_url: Joi.string().allow(""),
+      stage: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      total_records: Joi.number(),
+      success_records: Joi.number(),
+      failed_records: Joi.number(),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymExportResponseSchema} */
+  static SynonymExportResponseSchema() {
+    return Joi.object({
+      job_type: Joi.string().allow(""),
+      stage: Joi.string().allow(""),
+      created_on: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymUploadErrorSchema} */
+  static SynonymUploadErrorSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      errors: Joi.any(),
+      code: Joi.number(),
+    });
+  }
+
+  /** @returns {SynonymBulkValidateRequestSchema} */
+  static SynonymBulkValidateRequestSchema() {
+    return Joi.object({
+      job_id: Joi.string().allow(""),
+      tracking_url: Joi.string().allow(""),
+      file_type: Joi.string().allow(""),
+      job_type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymBulkValidateResponseSchema} */
+  static SynonymBulkValidateResponseSchema() {
+    return Joi.object({
+      job_id: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymBulkValidateErrorSchema} */
+  static SynonymBulkValidateErrorSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      errors: Joi.any(),
+      code: Joi.number(),
+    });
+  }
+
+  /** @returns {SynonymBulkProcessRequestSchema} */
+  static SynonymBulkProcessRequestSchema() {
+    return Joi.object({
+      job_id: Joi.string().allow(""),
+      tracking_url: Joi.string().allow(""),
+      file_type: Joi.string().allow(""),
+      job_type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymBulkProcessResponseSchema} */
+  static SynonymBulkProcessResponseSchema() {
+    return Joi.object({
+      job_id: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymBulkProcessErrorSchema} */
+  static SynonymBulkProcessErrorSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      errors: Joi.string().allow(""),
+      code: Joi.number(),
+    });
+  }
+
+  /** @returns {SynonymBulkPollResponseSchema} */
+  static SynonymBulkPollResponseSchema() {
+    return Joi.object({
+      total_records: Joi.number(),
+      success_records: Joi.number(),
+      failed_records: Joi.number(),
+      stage: Joi.string().allow(""),
+      error_url: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SynonymBulkPollErrorSchema} */
+  static SynonymBulkPollErrorSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      error: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PriceFactoryErrorSchema} */
+  static PriceFactoryErrorSchema() {
+    return Joi.object({
+      departments: Joi.any(),
+      pricing_strategy: Joi.any(),
+      department_price_zonewise_department_ids: Joi.any(),
+      factory_type: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {PriceFactoryCreateErrorSchema} */
+  static PriceFactoryCreateErrorSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      error: Joi.any(),
+      code: Joi.number(),
+    });
+  }
+
+  /** @returns {PriceGroupedByZone} */
+  static PriceGroupedByZone() {
+    return Joi.object({
+      discount: Joi.string().allow(""),
+      store_id: Joi.array().items(Joi.number()),
+      seller_id: Joi.number(),
+      factory_type_id: Joi.string().allow(""),
+      discount_meta: CatalogPlatformModel.DiscountMeta(),
+      price: CatalogPlatformModel.ProductListingPrice(),
+    });
+  }
+
+  /** @returns {AppPriceByIdResponse} */
+  static AppPriceByIdResponse() {
+    return Joi.object({
+      data: Joi.array().items(CatalogPlatformModel.PriceGroupedByZone()),
     });
   }
 

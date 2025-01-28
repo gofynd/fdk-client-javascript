@@ -1,5 +1,9 @@
 export = ConfigurationPublicValidator;
 /**
+ * @typedef CheckVersionIsUpToDateParam
+ * @property {ConfigurationPublicModel.VersionRequest} body
+ */
+/**
  * @typedef GetLocationsParam
  * @property {string} [locationType] - Provide location type to query on.
  *   Possible values : country, state, city
@@ -13,14 +17,19 @@ export = ConfigurationPublicValidator;
  * @property {string} [query] - Provide application name
  */
 declare class ConfigurationPublicValidator {
+    /** @returns {CheckVersionIsUpToDateParam} */
+    static checkVersionIsUpToDate(): CheckVersionIsUpToDateParam;
     /** @returns {GetLocationsParam} */
     static getLocations(): GetLocationsParam;
     /** @returns {SearchApplicationParam} */
     static searchApplication(): SearchApplicationParam;
 }
 declare namespace ConfigurationPublicValidator {
-    export { GetLocationsParam, SearchApplicationParam };
+    export { CheckVersionIsUpToDateParam, GetLocationsParam, SearchApplicationParam };
 }
+type CheckVersionIsUpToDateParam = {
+    body: ConfigurationPublicModel.VersionRequest;
+};
 type GetLocationsParam = {
     /**
      * - Provide location type to query on.
@@ -41,3 +50,4 @@ type SearchApplicationParam = {
      */
     query?: string;
 };
+import ConfigurationPublicModel = require("./ConfigurationPublicModel");

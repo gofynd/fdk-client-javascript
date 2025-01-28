@@ -5,8 +5,10 @@ declare class Theme {
     _relativeUrls: {
         getAllPages: string;
         getAppliedTheme: string;
+        getAppliedThemeV1: string;
         getPage: string;
         getThemeForPreview: string;
+        getThemeForPreviewV1: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -15,7 +17,7 @@ declare class Theme {
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<AllAvailablePageSchema>} - Success response
      * @name getAllPages
-     * @summary: List pages
+     * @summary: Fetch all pages.
      * @description: Get all page level configs, sections and seo data of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
      */
     getAllPages({ themeId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<AllAvailablePageSchema>;
@@ -28,6 +30,15 @@ declare class Theme {
      * @description: Gets the theme configuration and template details of a theme applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
      */
     getAppliedTheme({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ThemesSchema>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ThemesSchema>} - Success response
+     * @name getAppliedThemeV1
+     * @summary: Current theme.
+     * @description: Gets the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedThemeV1/).
+     */
+    getAppliedThemeV1({ requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ThemesSchema>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -46,4 +57,13 @@ declare class Theme {
      * @description: Gets the theme configuration and template details of a theme by theme id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
      */
     getThemeForPreview({ themeId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ThemesSchema>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ThemesSchema>} - Success response
+     * @name getThemeForPreviewV1
+     * @summary: Preview theme.
+     * @description: Retrieves a theme for previewing before applying it to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreviewV1/).
+     */
+    getThemeForPreviewV1({ themeId, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ThemesSchema>;
 }

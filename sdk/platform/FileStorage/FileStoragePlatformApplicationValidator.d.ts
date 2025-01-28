@@ -42,14 +42,24 @@ export = FileStoragePlatformApplicationValidator;
  * @property {FileStoragePlatformModel.ExtensionSlug} body
  */
 /**
+ * @typedef DeletePdfGeneratorConfigParam
+ * @property {string} id
+ */
+/**
+ * @typedef FetchPdfDefaultTemplateByIdParam
+ * @property {string} id
+ */
+/**
+ * @typedef FetchPdfTypeByIdParam
+ * @property {string} id
+ */
+/**
  * @typedef GeneratePaymentReceiptParam
  * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
  */
 /**
- * @typedef GetDefaultHtmlTemplateParam
- * @property {number} pdfTypeId
- * @property {string} format
- * @property {string} [countryCode]
+ * @typedef GetConfigHtmlTemplateByIdParam
+ * @property {string} id
  */
 /**
  * @typedef GetDefaultPdfDataParam
@@ -63,8 +73,19 @@ export = FileStoragePlatformApplicationValidator;
  * @property {string} [countryCode]
  */
 /**
+ * @typedef GetHtmlTemplateConfigParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ * @property {string} [countryCode]
+ */
+/**
+ * @typedef GetPdfPayloadByIdParam
+ * @property {string} id
+ */
+/**
  * @typedef GetPdfTypesParam
  * @property {string} [countryCode]
+ * @property {boolean} storeOs
  */
 /**
  * @typedef SaveHtmlTemplateParam
@@ -86,14 +107,24 @@ declare class FileStoragePlatformApplicationValidator {
     static appbrowse(): AppbrowseParam;
     /** @returns {BrowsefilesParam} */
     static browsefiles(): BrowsefilesParam;
+    /** @returns {DeletePdfGeneratorConfigParam} */
+    static deletePdfGeneratorConfig(): DeletePdfGeneratorConfigParam;
+    /** @returns {FetchPdfDefaultTemplateByIdParam} */
+    static fetchPdfDefaultTemplateById(): FetchPdfDefaultTemplateByIdParam;
+    /** @returns {FetchPdfTypeByIdParam} */
+    static fetchPdfTypeById(): FetchPdfTypeByIdParam;
     /** @returns {GeneratePaymentReceiptParam} */
     static generatePaymentReceipt(): GeneratePaymentReceiptParam;
-    /** @returns {GetDefaultHtmlTemplateParam} */
-    static getDefaultHtmlTemplate(): GetDefaultHtmlTemplateParam;
+    /** @returns {GetConfigHtmlTemplateByIdParam} */
+    static getConfigHtmlTemplateById(): GetConfigHtmlTemplateByIdParam;
     /** @returns {GetDefaultPdfDataParam} */
     static getDefaultPdfData(): GetDefaultPdfDataParam;
     /** @returns {GetDefaultPdfTemplateParam} */
     static getDefaultPdfTemplate(): GetDefaultPdfTemplateParam;
+    /** @returns {GetHtmlTemplateConfigParam} */
+    static getHtmlTemplateConfig(): GetHtmlTemplateConfigParam;
+    /** @returns {GetPdfPayloadByIdParam} */
+    static getPdfPayloadById(): GetPdfPayloadByIdParam;
     /** @returns {GetPdfTypesParam} */
     static getPdfTypes(): GetPdfTypesParam;
     /** @returns {SaveHtmlTemplateParam} */
@@ -102,7 +133,7 @@ declare class FileStoragePlatformApplicationValidator {
     static updateHtmlTemplate(): UpdateHtmlTemplateParam;
 }
 declare namespace FileStoragePlatformApplicationValidator {
-    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam, BrowsefilesParam, GeneratePaymentReceiptParam, GetDefaultHtmlTemplateParam, GetDefaultPdfDataParam, GetDefaultPdfTemplateParam, GetPdfTypesParam, SaveHtmlTemplateParam, UpdateHtmlTemplateParam };
+    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam, BrowsefilesParam, DeletePdfGeneratorConfigParam, FetchPdfDefaultTemplateByIdParam, FetchPdfTypeByIdParam, GeneratePaymentReceiptParam, GetConfigHtmlTemplateByIdParam, GetDefaultPdfDataParam, GetDefaultPdfTemplateParam, GetHtmlTemplateConfigParam, GetPdfPayloadByIdParam, GetPdfTypesParam, SaveHtmlTemplateParam, UpdateHtmlTemplateParam };
 }
 type AppCompleteUploadParam = {
     /**
@@ -174,13 +205,20 @@ type BrowsefilesParam = {
     search?: string;
     body: FileStoragePlatformModel.ExtensionSlug;
 };
+type DeletePdfGeneratorConfigParam = {
+    id: string;
+};
+type FetchPdfDefaultTemplateByIdParam = {
+    id: string;
+};
+type FetchPdfTypeByIdParam = {
+    id: string;
+};
 type GeneratePaymentReceiptParam = {
     body: FileStoragePlatformModel.PaymentReceiptRequestBody;
 };
-type GetDefaultHtmlTemplateParam = {
-    pdfTypeId: number;
-    format: string;
-    countryCode?: string;
+type GetConfigHtmlTemplateByIdParam = {
+    id: string;
 };
 type GetDefaultPdfDataParam = {
     pdfTypeId: number;
@@ -191,8 +229,17 @@ type GetDefaultPdfTemplateParam = {
     format: string;
     countryCode?: string;
 };
+type GetHtmlTemplateConfigParam = {
+    pdfTypeId: number;
+    format: string;
+    countryCode?: string;
+};
+type GetPdfPayloadByIdParam = {
+    id: string;
+};
 type GetPdfTypesParam = {
     countryCode?: string;
+    storeOs: boolean;
 };
 type SaveHtmlTemplateParam = {
     body: FileStoragePlatformModel.PdfConfig;

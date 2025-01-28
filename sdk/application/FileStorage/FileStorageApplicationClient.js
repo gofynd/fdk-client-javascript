@@ -14,10 +14,10 @@ class FileStorage {
     this._conf = _conf;
     this._relativeUrls = {
       completeUpload:
-        "/service/application/assets/v1.0/namespaces/{namespace}/upload/complete",
+        "/service/application/assets/v2.0/namespaces/{namespace}/upload/complete",
       signUrls: "/service/application/assets/v1.0/sign-urls",
       startUpload:
-        "/service/application/assets/v1.0/namespaces/{namespace}/upload/start",
+        "/service/application/assets/v2.0/namespaces/{namespace}/upload/start",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -40,7 +40,7 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CompleteResponse>} - Success response
    * @name completeUpload
-   * @summary: Complete file upload
+   * @summary: Finalizes upload process.
    * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
    */
   async completeUpload(
@@ -92,7 +92,7 @@ class FileStorage {
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<SignUrlResponse>} - Success response
    * @name signUrls
-   * @summary: Get signed URLs
+   * @summary: Signs file URLs.
    * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
    */
   async signUrls(
