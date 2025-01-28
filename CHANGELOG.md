@@ -1,3 +1,83 @@
+# CHANGE LOG (1.6.4) - 2.1.1
+
+## Platform Client
+
+
+
+### Order
+
+
+
+#### updateShipmentStatus
+
+- ##### What's New
+	- [Added] property <code>statuses[].shipments[].transition_comments</code> of schema <code>ShipmentsRequestSchema</code> in request body
+
+
+### User
+
+
+
+#### bulkImportStoreFrontUsers
+
+- ##### What's New
+	- [Added] method <code>bulkImportStoreFrontUsers</code>
+
+
+
+#### getBulkImportUsersList
+
+- ##### What's New
+	- [Added] method <code>getBulkImportUsersList</code>
+
+
+
+#### createBulkExportUsers
+
+- ##### What's New
+	- [Added] method <code>createBulkExportUsers</code>
+
+
+
+#### getBulkExportUsersList
+
+- ##### What's New
+	- [Added] method <code>getBulkExportUsersList</code>
+
+
+
+#### getUsersJobByJobId
+
+- ##### What's New
+	- [Added] method <code>getUsersJobByJobId</code>
+
+
+
+### Webhook
+
+
+
+#### getSubscribersByCompany
+
+- ##### What's New
+	- [Added] property <code>items[].event_configs[].subscriber_event_mapping.filters</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Added] property <code>items[].event_configs[].subscriber_event_mapping.reducer</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+
+
+#### getSubscriberById
+
+- ##### What's New
+	- [Added] property <code>event_configs[].subscriber_event_mapping.filters</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Added] property <code>event_configs[].subscriber_event_mapping.reducer</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+
+
+#### getSubscribersByExtensionId
+
+- ##### What's New
+	- [Added] property <code>items[].event_configs[].subscriber_event_mapping.filters</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+	- [Added] property <code>items[].event_configs[].subscriber_event_mapping.reducer</code> of schema <code>SubscriberEventMapping</code> in response with status code 200
+
+
 # CHANGE LOG (1.6.3) - 2.1.0
 
 ## Application Client

@@ -29,9 +29,31 @@ const Joi = require("joi");
  * @property {number} [id] - The unique identifier for the subscriber event mapping.
  * @property {number} [event_id] - The ID of the event associated with the subscriber.
  * @property {number} [subscriber_id] - The ID of the subscriber.
+ * @property {FilterSchema} [filters]
+ * @property {Object} [reducer] - The reducer property allows users to customize
+ *   the JSON structure of the webhook payload using JSONPath queries. They can
+ *   also create new properties by mapping existing ones. Note that it overrides
+ *   the entire JSON structure of the webhook payload sent via the webhook. See
+ *   the partner documentation's filter and reducer section for details.
  * @property {BroadcasterConfig} [broadcaster_config]
  * @property {string} [created_on] - The date and time when the subscriber event
  *   mapping was created.
+ */
+
+/**
+ * @typedef FilterSchema
+ * @property {string} [query] - JSONPath expression that specifies the property
+ *   in the webhook payload to filter on. This enables targeting specific data
+ *   within the payload.
+ * @property {string} [condition] - JavaScript function used to evaluate the
+ *   specified property in the webhook payload against a condition. This
+ *   function determines whether the filter passes based on its return value.
+ * @property {string} [logic] - Logical operator used to combine multiple
+ *   conditions in the `conditions` array. Supported values are `AND` and `OR`.
+ * @property {Object[]} [conditions] - An array of filter objects to be
+ *   evaluated using the specified logical operator. This array will contain
+ *   more filters including a combination of single condition mode and logical
+ *   group mode filters.
  */
 
 /**
@@ -355,9 +377,21 @@ class WebhookPlatformModel {
       id: Joi.number(),
       event_id: Joi.number(),
       subscriber_id: Joi.number(),
+      filters: WebhookPlatformModel.FilterSchema(),
+      reducer: Joi.object().pattern(/\S/, Joi.any()).allow(null, ""),
       broadcaster_config: WebhookPlatformModel.BroadcasterConfig(),
       created_on: Joi.string().allow(""),
     });
+  }
+
+  /** @returns {FilterSchema} */
+  static FilterSchema() {
+    return Joi.object({
+      query: Joi.string().allow(""),
+      condition: Joi.string().allow(""),
+      logic: Joi.string().allow(""),
+      conditions: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
+    }).allow(null);
   }
 
   /** @returns {EventConfig} */

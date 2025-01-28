@@ -308,12 +308,20 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef TransitionComments
+ * @property {string} title - Title for the transition message.
+ * @property {string} message - Message for the transition.
+ */
+
+/**
  * @typedef ShipmentsRequestSchema
  * @property {string} identifier - Unique identifier for the shipment.
  * @property {ReasonsData} [reasons]
  * @property {Products[]} [products] - A list of products or bags that need to
  *   be updated as part of the shipment status change.
  * @property {DataUpdates} [data_updates]
+ * @property {TransitionComments[]} [transition_comments] - Comments or notes
+ *   associated with the transition of shipment status.
  */
 
 /**
@@ -5574,6 +5582,14 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {TransitionComments} */
+  static TransitionComments() {
+    return Joi.object({
+      title: Joi.string().allow("").required(),
+      message: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {ShipmentsRequestSchema} */
   static ShipmentsRequestSchema() {
     return Joi.object({
@@ -5581,6 +5597,9 @@ class OrderPlatformModel {
       reasons: OrderPlatformModel.ReasonsData(),
       products: Joi.array().items(OrderPlatformModel.Products()),
       data_updates: OrderPlatformModel.DataUpdates(),
+      transition_comments: Joi.array().items(
+        OrderPlatformModel.TransitionComments()
+      ),
     });
   }
 
