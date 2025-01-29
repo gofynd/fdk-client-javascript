@@ -17,14 +17,6 @@ export = CatalogPlatformValidator;
  * @property {CatalogPlatformModel.BulkProductUploadJob} body
  */
 /**
- * @typedef CreateCategoriesParam
- * @property {CatalogPlatformModel.CategoryRequestBody} body
- */
-/**
- * @typedef CreateDepartmentsParam
- * @property {CatalogPlatformModel.DepartmentCreateUpdate} body
- */
-/**
  * @typedef CreateInventoryExportParam
  * @property {CatalogPlatformModel.InventoryCreateRequest} body
  */
@@ -114,6 +106,11 @@ export = CatalogPlatformValidator;
  * @property {string} [type] - Search using type
  */
 /**
+ * @typedef GetAttributeParam
+ * @property {string} attributeSlug - Slug of the attribute for which you want
+ *   to view the details
+ */
+/**
  * @typedef GetCategoryDataParam
  * @property {string} uid - Category unique id
  */
@@ -145,11 +142,6 @@ export = CatalogPlatformValidator;
 /**
  * @typedef GetDepartmentDataParam
  * @property {string} uid - A `uid` is a unique identifier of a department.
- */
-/**
- * @typedef GetGenderAttributeParam
- * @property {string} attributeSlug - Slug of the attribute for which you want
- *   to view the genders
  */
 /**
  * @typedef GetHsnCodeParam
@@ -441,16 +433,6 @@ export = CatalogPlatformValidator;
  * @property {CatalogPlatformModel.ExportPatchRequest} body
  */
 /**
- * @typedef UpdateCategoryParam
- * @property {string} uid - Category unique id
- * @property {CatalogPlatformModel.CategoryRequestBody} body
- */
-/**
- * @typedef UpdateDepartmentParam
- * @property {string} uid - A `uid` is a unique identifier of a department.
- * @property {CatalogPlatformModel.DepartmentCreateUpdate} body
- */
-/**
  * @typedef UpdateInventoriesParam
  * @property {CatalogPlatformModel.InventoryRequestSchemaV2} body
  */
@@ -509,10 +491,6 @@ declare class CatalogPlatformValidator {
     static createBulkInventoryJob(): CreateBulkInventoryJobParam;
     /** @returns {CreateBulkProductUploadJobParam} */
     static createBulkProductUploadJob(): CreateBulkProductUploadJobParam;
-    /** @returns {CreateCategoriesParam} */
-    static createCategories(): CreateCategoriesParam;
-    /** @returns {CreateDepartmentsParam} */
-    static createDepartments(): CreateDepartmentsParam;
     /** @returns {CreateInventoryExportParam} */
     static createInventoryExport(): CreateInventoryExportParam;
     /** @returns {CreateInventoryExportJobParam} */
@@ -551,6 +529,8 @@ declare class CatalogPlatformValidator {
     static exportInventoryConfig(): ExportInventoryConfigParam;
     /** @returns {GetAllProductHsnCodesParam} */
     static getAllProductHsnCodes(): GetAllProductHsnCodesParam;
+    /** @returns {GetAttributeParam} */
+    static getAttribute(): GetAttributeParam;
     /** @returns {GetCategoryDataParam} */
     static getCategoryData(): GetCategoryDataParam;
     /** @returns {GetCompanyBrandDetailParam} */
@@ -565,8 +545,6 @@ declare class CatalogPlatformValidator {
     static getCompanyVerification(): GetCompanyVerificationParam;
     /** @returns {GetDepartmentDataParam} */
     static getDepartmentData(): GetDepartmentDataParam;
-    /** @returns {GetGenderAttributeParam} */
-    static getGenderAttribute(): GetGenderAttributeParam;
     /** @returns {GetHsnCodeParam} */
     static getHsnCode(): GetHsnCodeParam;
     /** @returns {GetInventoriesParam} */
@@ -645,10 +623,6 @@ declare class CatalogPlatformValidator {
     static patchInventoryExportDetail(): PatchInventoryExportDetailParam;
     /** @returns {PatchProductExportDetailParam} */
     static patchProductExportDetail(): PatchProductExportDetailParam;
-    /** @returns {UpdateCategoryParam} */
-    static updateCategory(): UpdateCategoryParam;
-    /** @returns {UpdateDepartmentParam} */
-    static updateDepartment(): UpdateDepartmentParam;
     /** @returns {UpdateInventoriesParam} */
     static updateInventories(): UpdateInventoriesParam;
     /** @returns {UpdateMarketplaceOptinParam} */
@@ -667,7 +641,7 @@ declare class CatalogPlatformValidator {
     static validateProductTemplateSchema(): ValidateProductTemplateSchemaParam;
 }
 declare namespace CatalogPlatformValidator {
-    export { AllSizesParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateCategoriesParam, CreateDepartmentsParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyBrandsDRIParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetCompanyVerificationParam, GetDepartmentDataParam, GetGenderAttributeParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetInventoryExportDetailParam, GetLocationTagsParam, GetMarketplacesParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductTemplateBySlugParam, GetProductValidationParam, GetProductVerificationDetailsParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetVariantTypesParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListTemplateBrandTypeValuesParam, PatchInventoryExportDetailParam, PatchProductExportDetailParam, UpdateCategoryParam, UpdateDepartmentParam, UpdateInventoriesParam, UpdateMarketplaceOptinParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UploadBulkProductsParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
+    export { AllSizesParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, DeleteBulkInventoryJobParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetAttributeParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyBrandsDRIParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetCompanyVerificationParam, GetDepartmentDataParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetInventoryExportDetailParam, GetLocationTagsParam, GetMarketplacesParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductTemplateBySlugParam, GetProductValidationParam, GetProductVerificationDetailsParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetVariantTypesParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListTemplateBrandTypeValuesParam, PatchInventoryExportDetailParam, PatchProductExportDetailParam, UpdateInventoriesParam, UpdateMarketplaceOptinParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UploadBulkProductsParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
 }
 type AllSizesParam = {
     /**
@@ -687,12 +661,6 @@ type CreateBulkInventoryJobParam = {
 };
 type CreateBulkProductUploadJobParam = {
     body: CatalogPlatformModel.BulkProductUploadJob;
-};
-type CreateCategoriesParam = {
-    body: CatalogPlatformModel.CategoryRequestBody;
-};
-type CreateDepartmentsParam = {
-    body: CatalogPlatformModel.DepartmentCreateUpdate;
 };
 type CreateInventoryExportParam = {
     body: CatalogPlatformModel.InventoryCreateRequest;
@@ -821,6 +789,13 @@ type GetAllProductHsnCodesParam = {
      */
     type?: string;
 };
+type GetAttributeParam = {
+    /**
+     * - Slug of the attribute for which you want
+     * to view the details
+     */
+    attributeSlug: string;
+};
 type GetCategoryDataParam = {
     /**
      * - Category unique id
@@ -882,13 +857,6 @@ type GetDepartmentDataParam = {
      * - A `uid` is a unique identifier of a department.
      */
     uid: string;
-};
-type GetGenderAttributeParam = {
-    /**
-     * - Slug of the attribute for which you want
-     * to view the genders
-     */
-    attributeSlug: string;
 };
 type GetHsnCodeParam = {
     /**
@@ -1505,20 +1473,6 @@ type PatchProductExportDetailParam = {
      */
     jobId: string;
     body: CatalogPlatformModel.ExportPatchRequest;
-};
-type UpdateCategoryParam = {
-    /**
-     * - Category unique id
-     */
-    uid: string;
-    body: CatalogPlatformModel.CategoryRequestBody;
-};
-type UpdateDepartmentParam = {
-    /**
-     * - A `uid` is a unique identifier of a department.
-     */
-    uid: string;
-    body: CatalogPlatformModel.DepartmentCreateUpdate;
 };
 type UpdateInventoriesParam = {
     body: CatalogPlatformModel.InventoryRequestSchemaV2;

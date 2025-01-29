@@ -486,6 +486,8 @@ const Joi = require("joi");
  * @property {PromotionAuthor} [author]
  * @property {PromotionDateMeta} date_meta
  * @property {string} [_id] - Promotion id
+ * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
+ *   be applied on cart and ready to update promotion
  * @property {string} [code]
  * @property {string[]} [tags]
  */
@@ -527,33 +529,108 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PromotionUpdate
- * @property {string} [_id]
- * @property {boolean} [stackable]
- * @property {string} [calculate_on] - Only available for Contract pricing and
- *   Ladder pricing promotion type
- * @property {string} [apply_exclusive]
- * @property {string} promo_group
- * @property {string} mode
- * @property {boolean} [apply_all_discount]
- * @property {DisplayMeta1} display_meta
- * @property {Ownership} ownership
- * @property {string} promotion_type
- * @property {DiscountRule[]} discount_rules
+ * @typedef PromotionAddResult
+ * @property {boolean} [stackable] - Boolean value set true to apply other promotions also
+ * @property {string} [calculate_on] - Article Price on which promotion
+ *   calculated like effective price or marked price. Only available for
+ *   Contract pricing and Ladder pricing promotion type
+ * @property {string} [apply_exclusive] - Promotion should apply on either
+ *   article or cart.
+ * @property {string} promo_group - The type of promotion group
+ * @property {string} mode - Promotion mode, like coupon or promotion
+ * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
+ *   be applied on cart and ready to update promotion
+ * @property {boolean} [apply_all_discount] - True means to apply all discount offers
+ * @property {DisplayMeta1} [display_meta]
+ * @property {Ownership} [ownership]
+ * @property {string} promotion_type - Type of promotion
+ * @property {DiscountRule[]} [discount_rules] - List of discount offers and
+ *   their applicable conditions
  * @property {Restrictions1} [restrictions]
- * @property {string} [currency]
- * @property {string} [code]
+ * @property {string} [currency] - Promotion Currency code like INR
+ * @property {string} [code] - Promotion unique code
  * @property {PromotionSchedule} [_schedule]
  * @property {PromotionAction} [post_order_action]
- * @property {number} [apply_priority]
+ * @property {number} [apply_priority] - Promotion applicable priority
  * @property {PromotionAuthor} [author]
  * @property {Visibility} [visiblility]
- * @property {string} application_id
- * @property {Object} buy_rules
- * @property {Object} [_custom_json]
+ * @property {string} application_id - Current application id of sales channel
+ * @property {Object} [buy_rules]
+ * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {PromoIndexedCriteria[]} [indexed_criteria]
- * @property {string[]} [tags]
+ * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string} [_id] - Unique idenfier of promotion.
+ */
+
+/**
+ * @typedef PromotionUpdate
+ * @property {boolean} [stackable] - Set true to apply other promotions in cart
+ * @property {string} [calculate_on] - Article Price on which promotion
+ *   calculated like effective price or marked price. Only available for
+ *   Contract pricing and Ladder pricing promotion type
+ * @property {string} [apply_exclusive] - Promotion should apply on either
+ *   article or cart.
+ * @property {string} [reason] - Promotion rejection reason added by reviewer
+ * @property {string} promo_group - The type of promotion group
+ * @property {string} mode - Promotion mode
+ * @property {boolean} [apply_all_discount] - True means to apply all discount offers
+ * @property {DisplayMeta1} [display_meta]
+ * @property {Ownership} [ownership]
+ * @property {string} promotion_type - The Promotion type like amount, bogo and
+ *   percentage etc.
+ * @property {DiscountRule[]} [discount_rules] - List of discount offers and
+ *   their applicable conditions
+ * @property {Restrictions1} [restrictions]
+ * @property {string} [currency] - Promotion Currency code like INR
+ * @property {string} [code] - Promotion unique code
+ * @property {PromotionSchedule} [_schedule]
+ * @property {PromotionAction} [post_order_action]
+ * @property {number} [apply_priority] - Promotion applicable priority
+ * @property {PromotionAuthor} [author]
+ * @property {Visibility} [visiblility]
+ * @property {string} application_id - Current application id of sales channel
+ * @property {Object} [buy_rules]
+ * @property {Object} [_custom_json] - Set extra properties in promotion
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags] - List of tags applicable for promotion
+ */
+
+/**
+ * @typedef PromotionUpdateResult
+ * @property {boolean} [stackable] - Set true to apply other promotions in cart
+ * @property {string} [calculate_on] - Article Price on which promotion
+ *   calculated like effective price or marked price. Only available for
+ *   Contract pricing and Ladder pricing promotion type
+ * @property {string} [apply_exclusive] - Promotion should apply on either
+ *   article or cart.
+ * @property {string} [reason] - Promotion rejection reason added by reviewer
+ * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
+ *   be applied on cart and ready to update promotion
+ * @property {string} promo_group - The type of promotion group
+ * @property {string} mode - Promotion mode
+ * @property {boolean} [apply_all_discount] - True means to apply all discount offers
+ * @property {DisplayMeta1} [display_meta]
+ * @property {Ownership} [ownership]
+ * @property {string} promotion_type - The Promotion type like amount, bogo and
+ *   percentage etc.
+ * @property {DiscountRule[]} [discount_rules] - List of discount offers and
+ *   their applicable conditions
+ * @property {Restrictions1} [restrictions]
+ * @property {string} [currency] - Promotion Currency code like INR
+ * @property {string} [code] - Promotion unique code
+ * @property {PromotionSchedule} [_schedule]
+ * @property {PromotionAction} [post_order_action]
+ * @property {number} [apply_priority] - Promotion applicable priority
+ * @property {PromotionAuthor} [author]
+ * @property {Visibility} [visiblility]
+ * @property {string} application_id - Current application id of sales channel
+ * @property {Object} [buy_rules]
+ * @property {Object} [_custom_json] - Set extra properties in promotion
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {PromoIndexedCriteria[]} [indexed_criteria]
+ * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string} [_id] - Auto generated id of specific promotion
  */
 
 /**
@@ -1794,7 +1871,7 @@ const Joi = require("joi");
  * @property {Object} [_custom_json]
  * @property {string} [price_factory_type_id]
  * @property {number} [item_id]
- * @property {number} [item_index]
+ * @property {number} item_index
  * @property {CartProductIdentifer} identifiers
  * @property {string} [article_id]
  */
@@ -2115,9 +2192,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ValidationConfig
+ * @property {number} address_max_limit - The maximum number of addresses a user can have.
+ * @property {number} user_address_count - The total number of addresses saved by a user.
+ */
+
+/**
  * @typedef PlatformGetAddressesResponse
  * @property {PlatformAddress[]} [address]
  * @property {boolean} [pii_masking]
+ * @property {ValidationConfig} [validation_config]
  */
 
 /**
@@ -2751,6 +2835,13 @@ const Joi = require("joi");
  * @typedef AllAddressForSelectAddress
  * @property {PlatformAddress[]} [address]
  * @property {boolean} [pii_masking]
+ * @property {ValidationConfig} [validation_config]
+ */
+
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
  */
 
 class CartPlatformModel {
@@ -3341,6 +3432,7 @@ class CartPlatformModel {
       author: CartPlatformModel.PromotionAuthor(),
       date_meta: CartPlatformModel.PromotionDateMeta().required(),
       _id: Joi.string().allow(""),
+      is_processed: Joi.boolean(),
       code: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
     });
@@ -3391,22 +3483,20 @@ class CartPlatformModel {
     });
   }
 
-  /** @returns {PromotionUpdate} */
-  static PromotionUpdate() {
+  /** @returns {PromotionAddResult} */
+  static PromotionAddResult() {
     return Joi.object({
-      _id: Joi.string().allow(""),
       stackable: Joi.boolean(),
       calculate_on: Joi.string().allow(""),
       apply_exclusive: Joi.string().allow("").allow(null),
       promo_group: Joi.string().allow("").required(),
       mode: Joi.string().allow("").required(),
+      is_processed: Joi.boolean(),
       apply_all_discount: Joi.boolean(),
-      display_meta: CartPlatformModel.DisplayMeta1().required(),
-      ownership: CartPlatformModel.Ownership().required(),
+      display_meta: CartPlatformModel.DisplayMeta1(),
+      ownership: CartPlatformModel.Ownership(),
       promotion_type: Joi.string().allow("").required(),
-      discount_rules: Joi.array()
-        .items(CartPlatformModel.DiscountRule())
-        .required(),
+      discount_rules: Joi.array().items(CartPlatformModel.DiscountRule()),
       restrictions: CartPlatformModel.Restrictions1(),
       currency: Joi.string().allow(""),
       code: Joi.string().allow(""),
@@ -3416,15 +3506,79 @@ class CartPlatformModel {
       author: CartPlatformModel.PromotionAuthor(),
       visiblility: CartPlatformModel.Visibility(),
       application_id: Joi.string().allow("").required(),
-      buy_rules: Joi.object()
-        .pattern(/\S/, CartPlatformModel.ItemCriteria())
-        .required(),
-      _custom_json: Joi.any(),
+      buy_rules: Joi.object().pattern(/\S/, CartPlatformModel.ItemCriteria()),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
       date_meta: CartPlatformModel.PromotionDateMeta(),
       indexed_criteria: Joi.array().items(
         CartPlatformModel.PromoIndexedCriteria()
       ),
       tags: Joi.array().items(Joi.string().allow("")),
+      _id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PromotionUpdate} */
+  static PromotionUpdate() {
+    return Joi.object({
+      stackable: Joi.boolean(),
+      calculate_on: Joi.string().allow(""),
+      apply_exclusive: Joi.string().allow("").allow(null),
+      reason: Joi.string().allow("").allow(null),
+      promo_group: Joi.string().allow("").required(),
+      mode: Joi.string().allow("").required(),
+      apply_all_discount: Joi.boolean(),
+      display_meta: CartPlatformModel.DisplayMeta1(),
+      ownership: CartPlatformModel.Ownership(),
+      promotion_type: Joi.string().allow("").required(),
+      discount_rules: Joi.array().items(CartPlatformModel.DiscountRule()),
+      restrictions: CartPlatformModel.Restrictions1(),
+      currency: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      _schedule: CartPlatformModel.PromotionSchedule(),
+      post_order_action: CartPlatformModel.PromotionAction(),
+      apply_priority: Joi.number(),
+      author: CartPlatformModel.PromotionAuthor(),
+      visiblility: CartPlatformModel.Visibility(),
+      application_id: Joi.string().allow("").required(),
+      buy_rules: Joi.object().pattern(/\S/, CartPlatformModel.ItemCriteria()),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      date_meta: CartPlatformModel.PromotionDateMeta(),
+      tags: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {PromotionUpdateResult} */
+  static PromotionUpdateResult() {
+    return Joi.object({
+      stackable: Joi.boolean(),
+      calculate_on: Joi.string().allow(""),
+      apply_exclusive: Joi.string().allow("").allow(null),
+      reason: Joi.string().allow("").allow(null),
+      is_processed: Joi.boolean(),
+      promo_group: Joi.string().allow("").required(),
+      mode: Joi.string().allow("").required(),
+      apply_all_discount: Joi.boolean(),
+      display_meta: CartPlatformModel.DisplayMeta1(),
+      ownership: CartPlatformModel.Ownership(),
+      promotion_type: Joi.string().allow("").required(),
+      discount_rules: Joi.array().items(CartPlatformModel.DiscountRule()),
+      restrictions: CartPlatformModel.Restrictions1(),
+      currency: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      _schedule: CartPlatformModel.PromotionSchedule(),
+      post_order_action: CartPlatformModel.PromotionAction(),
+      apply_priority: Joi.number(),
+      author: CartPlatformModel.PromotionAuthor(),
+      visiblility: CartPlatformModel.Visibility(),
+      application_id: Joi.string().allow("").required(),
+      buy_rules: Joi.object().pattern(/\S/, CartPlatformModel.ItemCriteria()),
+      _custom_json: Joi.object().pattern(/\S/, Joi.any()),
+      date_meta: CartPlatformModel.PromotionDateMeta(),
+      indexed_criteria: Joi.array().items(
+        CartPlatformModel.PromoIndexedCriteria()
+      ),
+      tags: Joi.array().items(Joi.string().allow("")),
+      _id: Joi.string().allow(""),
     });
   }
 
@@ -4793,7 +4947,7 @@ class CartPlatformModel {
       _custom_json: Joi.any(),
       price_factory_type_id: Joi.string().allow(""),
       item_id: Joi.number(),
-      item_index: Joi.number(),
+      item_index: Joi.number().required(),
       identifiers: CartPlatformModel.CartProductIdentifer().required(),
       article_id: Joi.string().allow(""),
     });
@@ -5158,11 +5312,20 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {ValidationConfig} */
+  static ValidationConfig() {
+    return Joi.object({
+      address_max_limit: Joi.number().required(),
+      user_address_count: Joi.number().required(),
+    });
+  }
+
   /** @returns {PlatformGetAddressesResponse} */
   static PlatformGetAddressesResponse() {
     return Joi.object({
       address: Joi.array().items(CartPlatformModel.PlatformAddress()),
       pii_masking: Joi.boolean(),
+      validation_config: CartPlatformModel.ValidationConfig(),
     });
   }
 
@@ -5897,6 +6060,15 @@ class CartPlatformModel {
     return Joi.object({
       address: Joi.array().items(CartPlatformModel.PlatformAddress()),
       pii_masking: Joi.boolean(),
+      validation_config: CartPlatformModel.ValidationConfig(),
+    });
+  }
+
+  /** @returns {ValidationError} */
+  static ValidationError() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      field: Joi.string().allow("").required(),
     });
   }
 }

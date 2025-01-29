@@ -4,20 +4,26 @@ export = FileStoragePartnerModel;
  * @property {number} [max] - Maximum allowed size (in bytes) for files in the namespace
  */
 /**
- * @typedef FetchProxyResponse
- * @property {string} [id]
- * @property {string} [created_at]
+ * @typedef SaveProxy
+ * @property {number} [id]
+ * @property {string} [token]
  */
 /**
- * @typedef FetchProxyRequest
+ * @typedef ProxyFileData
+ * @property {string} [email]
+ * @property {string} [password]
+ */
+/**
+ * @typedef ProxyFile
  * @property {number} [id]
  * @property {string} [customer]
  * @property {number} [quantity]
  * @property {number} [price]
+ * @property {ProxyFileData} [data]
  * @property {string} [url]
  */
 /**
- * @typedef ProxyResponse
+ * @typedef FetchProxyDetails
  * @property {Object} [data]
  * @property {Object} [support]
  */
@@ -45,7 +51,7 @@ export = FileStoragePartnerModel;
  * @property {string} url
  */
 /**
- * @typedef StartResponse
+ * @typedef FileUpload
  * @property {string} file_name
  * @property {string} file_path
  * @property {string} content_type
@@ -57,7 +63,7 @@ export = FileStoragePartnerModel;
  * @property {string[]} [tags]
  */
 /**
- * @typedef StartRequest
+ * @typedef FileUploadStart
  * @property {string} file_name
  * @property {string} content_type
  * @property {number} size
@@ -69,7 +75,7 @@ export = FileStoragePartnerModel;
  * @property {string} [username]
  */
 /**
- * @typedef CompleteResponse
+ * @typedef FileUploadComplete
  * @property {string} _id
  * @property {string} file_name
  * @property {string} file_path
@@ -86,13 +92,13 @@ export = FileStoragePartnerModel;
  * @property {CreatedBy} [created_by]
  */
 /**
- * @typedef FailedResponse
+ * @typedef FailedBrowseFilesResult
  * @property {string} message
  */
 declare class FileStoragePartnerModel {
 }
 declare namespace FileStoragePartnerModel {
-    export { SizeConstraints, FetchProxyResponse, FetchProxyRequest, ProxyResponse, NamespaceDetails, AllNamespaceDetails, CDN, Upload, StartResponse, StartRequest, CreatedBy, CompleteResponse, FailedResponse };
+    export { SizeConstraints, SaveProxy, ProxyFileData, ProxyFile, FetchProxyDetails, NamespaceDetails, AllNamespaceDetails, CDN, Upload, FileUpload, FileUploadStart, CreatedBy, FileUploadComplete, FailedBrowseFilesResult };
 }
 /** @returns {SizeConstraints} */
 declare function SizeConstraints(): SizeConstraints;
@@ -102,24 +108,31 @@ type SizeConstraints = {
      */
     max?: number;
 };
-/** @returns {FetchProxyResponse} */
-declare function FetchProxyResponse(): FetchProxyResponse;
-type FetchProxyResponse = {
-    id?: string;
-    created_at?: string;
+/** @returns {SaveProxy} */
+declare function SaveProxy(): SaveProxy;
+type SaveProxy = {
+    id?: number;
+    token?: string;
 };
-/** @returns {FetchProxyRequest} */
-declare function FetchProxyRequest(): FetchProxyRequest;
-type FetchProxyRequest = {
+/** @returns {ProxyFileData} */
+declare function ProxyFileData(): ProxyFileData;
+type ProxyFileData = {
+    email?: string;
+    password?: string;
+};
+/** @returns {ProxyFile} */
+declare function ProxyFile(): ProxyFile;
+type ProxyFile = {
     id?: number;
     customer?: string;
     quantity?: number;
     price?: number;
+    data?: ProxyFileData;
     url?: string;
 };
-/** @returns {ProxyResponse} */
-declare function ProxyResponse(): ProxyResponse;
-type ProxyResponse = {
+/** @returns {FetchProxyDetails} */
+declare function FetchProxyDetails(): FetchProxyDetails;
+type FetchProxyDetails = {
     data?: any;
     support?: any;
 };
@@ -159,9 +172,9 @@ type Upload = {
     expiry: number;
     url: string;
 };
-/** @returns {StartResponse} */
-declare function StartResponse(): StartResponse;
-type StartResponse = {
+/** @returns {FileUpload} */
+declare function FileUpload(): FileUpload;
+type FileUpload = {
     file_name: string;
     file_path: string;
     content_type: string;
@@ -172,9 +185,9 @@ type StartResponse = {
     upload: Upload;
     tags?: string[];
 };
-/** @returns {StartRequest} */
-declare function StartRequest(): StartRequest;
-type StartRequest = {
+/** @returns {FileUploadStart} */
+declare function FileUploadStart(): FileUploadStart;
+type FileUploadStart = {
     file_name: string;
     content_type: string;
     size: number;
@@ -186,9 +199,9 @@ declare function CreatedBy(): CreatedBy;
 type CreatedBy = {
     username?: string;
 };
-/** @returns {CompleteResponse} */
-declare function CompleteResponse(): CompleteResponse;
-type CompleteResponse = {
+/** @returns {FileUploadComplete} */
+declare function FileUploadComplete(): FileUploadComplete;
+type FileUploadComplete = {
     _id: string;
     file_name: string;
     file_path: string;
@@ -204,8 +217,8 @@ type CompleteResponse = {
     modified_on: string;
     created_by?: CreatedBy;
 };
-/** @returns {FailedResponse} */
-declare function FailedResponse(): FailedResponse;
-type FailedResponse = {
+/** @returns {FailedBrowseFilesResult} */
+declare function FailedBrowseFilesResult(): FailedBrowseFilesResult;
+type FailedBrowseFilesResult = {
     message: string;
 };

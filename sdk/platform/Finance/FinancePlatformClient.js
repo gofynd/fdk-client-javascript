@@ -21,7 +21,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.ChannelDisplayNameResponse>} -
    *   Success response
    * @name channelDisplayName
-   * @summary: Get channel display name.
+   * @summary: Get channel display name
    * @description: Retrieve the display name for a channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/channelDisplayName/).
    */
   async channelDisplayName(
@@ -105,7 +105,7 @@ class Finance {
    *   - Success response
    *
    * @name createSellerCreditNoteConfig
-   * @summary: Create seller credit note config.
+   * @summary: Create seller credit note config
    * @description: Set up configuration for seller credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/createSellerCreditNoteConfig/).
    */
   async createSellerCreditNoteConfig(
@@ -187,7 +187,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.CreditNoteDetailsResponse>} -
    *   Success response
    * @name creditNoteDetails
-   * @summary: Get credit note details.
+   * @summary: Get credit note details
    * @description: Retrieve detailed information about a credit note. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/creditNoteDetails/).
    */
   async creditNoteDetails(
@@ -268,7 +268,7 @@ class Finance {
    *   - Success response
    *
    * @name creditlineDataplatform
-   * @summary: Access credit line data platform.
+   * @summary: Access credit line data platform
    * @description: Connect to the credit line data platform. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/creditlineDataplatform/).
    */
   async creditlineDataplatform(
@@ -349,7 +349,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.DeleteConfigResponse>} - Success response
    * @name deleteConfig
-   * @summary: Deletes credit note config.
+   * @summary: Deletes credit note config
    * @description: Deletes credit note config. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/deleteConfig/).
    */
   async deleteConfig(
@@ -430,7 +430,7 @@ class Finance {
    *   - Success response
    *
    * @name downloadCreditDebitNote
-   * @summary: Download credit/debit note.
+   * @summary: Download credit/debit note
    * @description: Retrieve and save credit/debit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/downloadCreditDebitNote/).
    */
   async downloadCreditDebitNote(
@@ -511,7 +511,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.DownloadReportList>} - Success response
    * @name downloadReport
-   * @summary: Download financial report.
+   * @summary: Download financial report
    * @description: Retrieve and save a financial report. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/downloadReport/).
    */
   async downloadReport(
@@ -592,7 +592,7 @@ class Finance {
    *   - Success response
    *
    * @name downloadReportCustomerCn
-   * @summary: Download customer credit note report.
+   * @summary: Download customer credit note report
    * @description: Retrieve and save a report for customer credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/downloadReportCustomerCn/).
    */
   async downloadReportCustomerCn(
@@ -673,7 +673,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GenerateReportJson>} - Success response
    * @name generateReport
-   * @summary: Generate financial report.
+   * @summary: Generate financial report
    * @description: Create a financial report with relevant data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/generateReport/).
    */
   async generateReport(
@@ -754,7 +754,7 @@ class Finance {
    *   - Success response
    *
    * @name generateReportCustomerCn
-   * @summary: Generate customer credit note report.
+   * @summary: Generate customer credit note report
    * @description: Create a report specifically for customer credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/generateReportCustomerCn/).
    */
   async generateReportCustomerCn(
@@ -835,7 +835,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetAffiliateResponse>} - Success response
    * @name getAffiliate
-   * @summary: Get affiliate details.
+   * @summary: Get affiliate details
    * @description: Retrieve information about an affiliate. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getAffiliate/).
    */
   async getAffiliate(
@@ -914,7 +914,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetCnConfigResponse>} - Success response
    * @name getCnConfig
-   * @summary: Get credit note configuration.
+   * @summary: Get credit note configuration
    * @description: Retrieve configuration settings for credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getCnConfig/).
    */
   async getCnConfig(
@@ -993,7 +993,7 @@ class Finance {
    *   - Success response
    *
    * @name getCustomerCreditBalance
-   * @summary: Get customer credit balance.
+   * @summary: Get customer credit balance
    * @description: Retrieve the credit balance of a customer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getCustomerCreditBalance/).
    */
   async getCustomerCreditBalance(
@@ -1074,7 +1074,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
    * @name getData
-   * @summary: Get financial data.
+   * @summary: Get financial data
    * @description: Retrieve financial data for analysis. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getData/).
    */
   async getData(
@@ -1151,7 +1151,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetPdfUrlViewResponse>} - Success response
    * @name getPdfUrlView
-   * @summary: Get PDF URL view.
+   * @summary: Get PDF URL view
    * @description: Retrieve a URL to view a PDF document. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getPdfUrlView/).
    */
   async getPdfUrlView(
@@ -1230,7 +1230,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetReasonResponse>} - Success response
    * @name getReason
-   * @summary: Get transaction reason.
+   * @summary: Get transaction reason
    * @description: Retrieve the reason behind a transaction. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getReason/).
    */
   async getReason(
@@ -1307,7 +1307,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetReportListResponse>} - Success response
    * @name getReportList
-   * @summary: Get report list.
+   * @summary: Get report list
    * @description: Retrieve a list of available financial reports. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getReportList/).
    */
   async getReportList(
@@ -1387,7 +1387,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.GetReportingFiltersResponse>} -
    *   Success response
    * @name getReportingFilters
-   * @summary: Get reporting filters.
+   * @summary: Get reporting filters
    * @description: Retrieve available filters for financial reporting. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getReportingFilters/).
    */
   async getReportingFilters(
@@ -1471,7 +1471,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.InvoiceActivityLogsResponse>} -
    *   Success response
    * @name invoiceActivityLogs
-   * @summary: Display activity log details of an invoice.
+   * @summary: Display activity log details of an invoice
    * @description: Display activity log details of invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceActivityLogs/).
    */
   async invoiceActivityLogs(
@@ -1550,8 +1550,8 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.InvoiceListingResponse>} - Success response
    * @name invoiceListing
-   * @summary: Gives list of invoices.
-   * @description: Gives list of invoices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceListing/).
+   * @summary: List invoices
+   * @description: Provides list of invoices generated for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceListing/).
    */
   async invoiceListing(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -1629,7 +1629,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.InvoicePdfResponse>} - Success response
    * @name invoicePDF
-   * @summary: Get invoice PDF.
+   * @summary: Get invoice PDF
    * @description: Retrieve the PDF version of an invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePDF/).
    */
   async invoicePDF(
@@ -1707,7 +1707,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.InvoicePaymentDetailsResponse>} -
    *   Success response
    * @name invoicePaymentDetails
-   * @summary: Display payment details of an invoice.
+   * @summary: Display payment details of an invoice
    * @description: Display payment details of invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentDetails/).
    */
   async invoicePaymentDetails(
@@ -1866,7 +1866,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.InvoiceTypeResponse>} - Success response
    * @name invoiceType
-   * @summary: Get invoice types.
+   * @summary: Get invoice types
    * @description: Retrieve a list of available invoice types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceType/).
    */
   async invoiceType(
@@ -1944,7 +1944,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.IsCnRefundMethodResponse>} -
    *   Success response
    * @name isCnRefundMethod
-   * @summary: Check CN refund method.
+   * @summary: Check refund method
    * @description: Verify the refund method for credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/isCnRefundMethod/).
    */
   async isCnRefundMethod(
@@ -2024,7 +2024,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.IsCreditlinePlatformResponse>} -
    *   Success response
    * @name isCreditlinePlatform
-   * @summary: Check credit line platform status.
+   * @summary: Check credit line platform status
    * @description: Determine if the credit line platform is operational. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/isCreditlinePlatform/).
    */
   async isCreditlinePlatform(
@@ -2176,7 +2176,7 @@ class Finance {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.PaymentProcessResponse>} - Success response
    * @name paymentProcess
-   * @summary: Process payments.
+   * @summary: Process payments
    * @description: Initiate and manage payment processes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/paymentProcess/).
    */
   async paymentProcess(
@@ -2256,7 +2256,7 @@ class Finance {
    * @returns {Promise<FinancePlatformModel.UnlockCreditNoteResponse>} -
    *   Success response
    * @name unlockCreditNote
-   * @summary: Unlocks credit notes.
+   * @summary: Unlock credit notes
    * @description: Used to unlock all request credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/unlockCreditNote/).
    */
   async unlockCreditNote(

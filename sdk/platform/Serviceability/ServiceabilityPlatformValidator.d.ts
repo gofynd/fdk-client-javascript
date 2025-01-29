@@ -76,6 +76,12 @@ export = ServiceabilityPlatformValidator;
  *   or a search term.
  */
 /**
+ * @typedef GetLocalitiesByPrefixParam
+ * @property {number} [pageNo] - Starting index of the items.
+ * @property {number} [pageSize] - Number of items per page.
+ * @property {string} [q] - Localities starting with the specified prefix.
+ */
+/**
  * @typedef GetLocalityParam
  * @property {string} localityType - A `locality_type` contains value
  *   geographical division.
@@ -173,6 +179,8 @@ declare class ServiceabilityPlatformValidator {
     static getListPackageMaterialRuleDetails(): GetListPackageMaterialRuleDetailsParam;
     /** @returns {GetLocalitiesParam} */
     static getLocalities(): GetLocalitiesParam;
+    /** @returns {GetLocalitiesByPrefixParam} */
+    static getLocalitiesByPrefix(): GetLocalitiesByPrefixParam;
     /** @returns {GetLocalityParam} */
     static getLocality(): GetLocalityParam;
     /** @returns {GetOptimalLocationsParam} */
@@ -199,7 +207,7 @@ declare class ServiceabilityPlatformValidator {
     static validateAddress(): ValidateAddressParam;
 }
 declare namespace ServiceabilityPlatformValidator {
-    export { CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, GetCompanyConfigurationParam, GetCompanySelfShipParam, GetCountriesParam, GetCountryParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetInstalledCourierPartnerExtensionsParam, GetListPackageMaterialRuleDetailsParam, GetLocalitiesParam, GetLocalityParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRuleDetailsParam, GetPackageMaterialsParam, UpdateCompanyConfigurationParam, UpdateCompanySelfShipParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, ValidateAddressParam };
+    export { CreateCourierPartnerAccountParam, CreatePackageMaterialParam, CreatePackageMaterialRuleParam, GetCompanyConfigurationParam, GetCompanySelfShipParam, GetCountriesParam, GetCountryParam, GetCourierPartnerAccountParam, GetCourierPartnerAccountsParam, GetInstalledCourierPartnerExtensionsParam, GetListPackageMaterialRuleDetailsParam, GetLocalitiesParam, GetLocalitiesByPrefixParam, GetLocalityParam, GetOptimalLocationsParam, GetPackageMaterialListParam, GetPackageMaterialRuleParam, GetPackageMaterialRuleDetailsParam, GetPackageMaterialsParam, UpdateCompanyConfigurationParam, UpdateCompanySelfShipParam, UpdateCourierPartnerAccountParam, UpdatePackageMaterialRuleParam, UpdatePackageMaterialsParam, ValidateAddressParam };
 }
 type CreateCourierPartnerAccountParam = {
     body: ServiceabilityPlatformModel.CourierAccount;
@@ -357,6 +365,20 @@ type GetLocalitiesParam = {
      * or a search term.
      */
     name?: string;
+};
+type GetLocalitiesByPrefixParam = {
+    /**
+     * - Starting index of the items.
+     */
+    pageNo?: number;
+    /**
+     * - Number of items per page.
+     */
+    pageSize?: number;
+    /**
+     * - Localities starting with the specified prefix.
+     */
+    q?: string;
 };
 type GetLocalityParam = {
     /**

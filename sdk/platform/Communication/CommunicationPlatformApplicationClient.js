@@ -426,9 +426,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
    * @name createEventSubscriptions
    * @summary: Create event subscriptions
    * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEventSubscriptions/).
@@ -484,10 +482,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1401,9 +1399,7 @@ class Communication {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationPlatformModel.EventSubscription>} - Success response
    * @name editEventSubscriptions
    * @summary: Create event subscriptions
    * @description: Create event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/editEventSubscriptions/).
@@ -1461,10 +1457,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EventSubscriptionsBulkUpdateResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CommunicationPlatformModel.EventSubscription().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

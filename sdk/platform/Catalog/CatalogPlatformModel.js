@@ -1119,12 +1119,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CategoryCreateResponse
- * @property {string} [message] - It is the message of the response from the category.
- * @property {number} [uid] - It is the unique identifier of the category.
- */
-
-/**
  * @typedef CategoryItems
  * @property {Object} [_custom_json]
  * @property {Action} [action]
@@ -1156,33 +1150,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CategoryRequestBody
- * @property {number[]} departments - It is the list of unique department the
- *   category belongs to.
- * @property {Hierarchy[]} [hierarchy] - It is the list of category hierarchies
- *   for each department of an L3 category.
- * @property {boolean} is_active - It is the flag indicating if the category is active.
- * @property {number} level - It is the level of category
- * @property {Object} [marketplaces] - It is the mapping of the category in
- *   different marketplaces.
- * @property {Object} [media] - It is the details of the media such as banner and logo..
- * @property {string} name - It is the name of the category
- * @property {number} [priority] - It is the priority of the category.
- * @property {string} [slug] - It is the slug of the category.
- * @property {string[]} [synonyms] - It is the list of synonyms.
- * @property {string[]} [tryouts] - It is the list of tryouts.
- */
-
-/**
  * @typedef CategoryResponse
  * @property {Category[]} [items]
  * @property {Page} [page]
- */
-
-/**
- * @typedef CategoryUpdateResponse
- * @property {string} [message] - It is the message of the response from the category.
- * @property {boolean} [success] - It is the flag indication the success response.
  */
 
 /**
@@ -1758,33 +1728,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DepartmentCreateErrorResponse
- * @property {Object} [error]
- */
-
-/**
  * @typedef ProductBundleCreateErrorResponse
  * @property {Object} [error]
- */
-
-/**
- * @typedef DepartmentCreateResponse
- * @property {string} message
- * @property {number} uid
- */
-
-/**
- * @typedef DepartmentCreateUpdate
- * @property {string} [_cls]
- * @property {Object} [_custom_json]
- * @property {boolean} [is_active]
- * @property {string} logo
- * @property {string} name
- * @property {Object} [platforms]
- * @property {number} priority_order
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {number} [uid]
  */
 
 /**
@@ -1801,26 +1746,6 @@ const Joi = require("joi");
  * @property {string} [name]
  * @property {string} [slug]
  * @property {number} [uid]
- */
-
-/**
- * @typedef DepartmentModel
- * @property {string} [_cls]
- * @property {Object} [_custom_json]
- * @property {string} [_id]
- * @property {Object} [created_by] - User details of the creator of the document
- * @property {boolean} [is_active] - Whether the department is currently active
- * @property {string} logo - The URL of the department's logo
- * @property {Object} [modified_by] - User details of the last modifier of the document
- * @property {string} name - The name of the department
- * @property {number} priority_order - The priority order of the department
- * @property {string} [slug] - The unique slug identifier for the department
- * @property {string[]} [synonyms] - A list of synonyms for the department name
- * @property {number} uid - The unique ID for the department
- * @property {Object} [verified_by] - User details of the verifier of the
- *   document, if applicable
- * @property {string} [verified_on] - Timestamp of when the document was
- *   verified, if applicable
  */
 
 /**
@@ -1978,7 +1903,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GenderDetail
+ * @typedef AttributeDetail
  * @property {string} [created_on] - It is Date and time when the attribute was created.
  * @property {string} [modified_on] - It is Date and time when the attribute was modified.
  * @property {Object} [created_by] - Details of the user who created the attribute.
@@ -3015,7 +2940,12 @@ const Joi = require("joi");
  * @property {string} seller_identifier - The identifier of the seller.
  * @property {number} store_id - The ID of the store.
  * @property {string[]} [tags] - The tags associated with the inventory item.
- * @property {number} [total_quantity] - The total quantity of the inventory item.
+ * @property {number} [total_quantity] - The total quantity of the inventory
+ *   item. Any one quantity is allowed `sellable_quantity` or `total_quantity`,
+ *   the other one would be derived.
+ * @property {number} [sellable_quantity] - The sellable quantity of the
+ *   inventory item. Any one quantity is allowed `sellable_quantity` or
+ *   `total_quantity`, the other one would be derived.
  * @property {string} [trace_id] - The trace ID of the inventory payload.
  */
 
@@ -5371,6 +5301,7 @@ const Joi = require("joi");
  * @property {number} [total_records]
  * @property {number} [success_records]
  * @property {number} [failed_records]
+ * @property {string} [job_type]
  */
 
 /**
@@ -7072,14 +7003,6 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {CategoryCreateResponse} */
-  static CategoryCreateResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      uid: Joi.number(),
-    });
-  }
-
   /** @returns {CategoryItems} */
   static CategoryItems() {
     return Joi.object({
@@ -7120,36 +7043,11 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {CategoryRequestBody} */
-  static CategoryRequestBody() {
-    return Joi.object({
-      departments: Joi.array().items(Joi.number()).required(),
-      hierarchy: Joi.array().items(CatalogPlatformModel.Hierarchy()),
-      is_active: Joi.boolean().required(),
-      level: Joi.number().required(),
-      marketplaces: Joi.any(),
-      media: Joi.any(),
-      name: Joi.string().allow("").required(),
-      priority: Joi.number(),
-      slug: Joi.string().allow(""),
-      synonyms: Joi.array().items(Joi.string().allow("")),
-      tryouts: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
   /** @returns {CategoryResponse} */
   static CategoryResponse() {
     return Joi.object({
       items: Joi.array().items(CatalogPlatformModel.Category()),
       page: CatalogPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {CategoryUpdateResponse} */
-  static CategoryUpdateResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
     });
   }
 
@@ -7870,41 +7768,10 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {DepartmentCreateErrorResponse} */
-  static DepartmentCreateErrorResponse() {
-    return Joi.object({
-      error: Joi.any(),
-    });
-  }
-
   /** @returns {ProductBundleCreateErrorResponse} */
   static ProductBundleCreateErrorResponse() {
     return Joi.object({
       error: Joi.any(),
-    });
-  }
-
-  /** @returns {DepartmentCreateResponse} */
-  static DepartmentCreateResponse() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      uid: Joi.number().required(),
-    });
-  }
-
-  /** @returns {DepartmentCreateUpdate} */
-  static DepartmentCreateUpdate() {
-    return Joi.object({
-      _cls: Joi.string().allow(""),
-      _custom_json: Joi.any(),
-      is_active: Joi.boolean(),
-      logo: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-      platforms: Joi.any(),
-      priority_order: Joi.number().required(),
-      slug: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
-      uid: Joi.number(),
     });
   }
 
@@ -7925,26 +7792,6 @@ class CatalogPlatformModel {
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       uid: Joi.number(),
-    });
-  }
-
-  /** @returns {DepartmentModel} */
-  static DepartmentModel() {
-    return Joi.object({
-      _cls: Joi.string().allow(""),
-      _custom_json: Joi.any(),
-      _id: Joi.string().allow(""),
-      created_by: Joi.any(),
-      is_active: Joi.boolean(),
-      logo: Joi.string().allow("").required(),
-      modified_by: Joi.any(),
-      name: Joi.string().allow("").required(),
-      priority_order: Joi.number().required(),
-      slug: Joi.string().allow(""),
-      synonyms: Joi.array().items(Joi.string().allow("")),
-      uid: Joi.number().required(),
-      verified_by: Joi.any(),
-      verified_on: Joi.string().allow(""),
     });
   }
 
@@ -8128,8 +7975,8 @@ class CatalogPlatformModel {
     });
   }
 
-  /** @returns {GenderDetail} */
-  static GenderDetail() {
+  /** @returns {AttributeDetail} */
+  static AttributeDetail() {
     return Joi.object({
       created_on: Joi.string().allow(""),
       modified_on: Joi.string().allow(""),
@@ -9356,6 +9203,7 @@ class CatalogPlatformModel {
       store_id: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")).allow(null, ""),
       total_quantity: Joi.number().allow(null),
+      sellable_quantity: Joi.number(),
       trace_id: Joi.string().allow(""),
     });
   }
@@ -12224,6 +12072,7 @@ class CatalogPlatformModel {
       total_records: Joi.number(),
       success_records: Joi.number(),
       failed_records: Joi.number(),
+      job_type: Joi.string().allow(""),
     });
   }
 

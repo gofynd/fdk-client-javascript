@@ -1,5 +1,3 @@
-const Billing = require("./Billing/BillingPublicClient");
-
 const Configuration = require("./Configuration/ConfigurationPublicClient");
 
 const Content = require("./Content/ContentPublicClient");
@@ -23,8 +21,6 @@ class PublicClient {
    */
   constructor(config) {
     this.config = config;
-
-    this.billing = new Billing(config);
 
     this.configuration = new Configuration(config);
 

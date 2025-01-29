@@ -350,35 +350,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /** @typedef GetAppReturnConfigurationParam */
 
 /**
- * @typedef GetAppicationProductsParam
- * @property {string} [q] - The search query. This can be a partial or complete
- *   name of a either a product, brand or category
- * @property {string} [f] - The search filter parameters. All the parameter
- *   filtered from filter parameters will be passed in **f** parameter in this
- *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
- * @property {string} [c] - The search filter parameters for collection items.
- *   All the parameter filtered from filter parameters will be passed in **c**
- *   parameter in this format.
- *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
- * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
- *   details. This flag is used to fetch all filters
- * @property {boolean} [isDependent] - This query parameter is used to get the
- *   dependent products in the listing.
- * @property {string} [sortOn] - The order to sort the list of products on. The
- *   supported sort parameters are popularity, price, redemption and discount in
- *   either ascending or descending order. See the supported values below.
- * @property {string} [pageId] - Each response will contain **page_id** param,
- *   which should be sent back to make pagination work.
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- *   Default is 12.
- * @property {number} [pageNo] - If page_type is number then pass it to fetch
- *   page items. Default is 1.
- * @property {string} [pageType] - For pagination type should be cursor or
- *   number. Default is cursor.
- * @property {string[]} [itemIds] - Item Ids of product
- */
-
-/**
  * @typedef GetApplicationBrandListingParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
@@ -449,6 +420,35 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
  * @property {string} [q] - Get Values filtered by q string
+ */
+
+/**
+ * @typedef GetApplicationProductsParam
+ * @property {string} [q] - The search query. This can be a partial or complete
+ *   name of a either a product, brand or category
+ * @property {string} [f] - The search filter parameters. All the parameter
+ *   filtered from filter parameters will be passed in **f** parameter in this
+ *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
+ *   details. This flag is used to fetch all filters
+ * @property {boolean} [isDependent] - This query parameter is used to get the
+ *   dependent products in the listing.
+ * @property {string} [sortOn] - The order to sort the list of products on. The
+ *   supported sort parameters are popularity, price, redemption and discount in
+ *   either ascending or descending order. See the supported values below.
+ * @property {string} [pageId] - Each response will contain **page_id** param,
+ *   which should be sent back to make pagination work.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {number} [pageNo] - If page_type is number then pass it to fetch
+ *   page items. Default is 1.
+ * @property {string} [pageType] - For pagination type should be cursor or
+ *   number. Default is cursor.
+ * @property {string[]} [itemIds] - Item Ids of product
  */
 
 /**
@@ -677,6 +677,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef PollPriceFactoryJobsParam
  * @property {string} id - An `id` is a unique identifier for a particular price factory.
+ * @property {string} [startDate] - Date that filters the jobs created after this date
+ * @property {string} [endDate] - Date that filters the jobs created before this date
+ * @property {string[]} [stage] - Filter jobs by the stage
+ * @property {boolean} [isActive] - Filter active or inactive jobs
+ * @property {string} [q] - Pass unique identifier for a particular job to poll
+ * @property {string[]} [type] - Pass type for a particular job to poll
  */
 
 /**
@@ -1275,23 +1281,6 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetAppicationProductsParam} */
-  static getAppicationProducts() {
-    return Joi.object({
-      q: Joi.string().allow(""),
-      f: Joi.string().allow(""),
-      c: Joi.string().allow(""),
-      filters: Joi.boolean(),
-      isDependent: Joi.boolean(),
-      sortOn: Joi.string().allow(""),
-      pageId: Joi.string().allow(""),
-      pageSize: Joi.number(),
-      pageNo: Joi.number(),
-      pageType: Joi.string().allow(""),
-      itemIds: Joi.array().items(Joi.string().allow("")),
-    }).required();
-  }
-
   /** @returns {GetApplicationBrandListingParam} */
   static getApplicationBrandListing() {
     return Joi.object({
@@ -1347,6 +1336,23 @@ class CatalogPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetApplicationProductsParam} */
+  static getApplicationProducts() {
+    return Joi.object({
+      q: Joi.string().allow(""),
+      f: Joi.string().allow(""),
+      c: Joi.string().allow(""),
+      filters: Joi.boolean(),
+      isDependent: Joi.boolean(),
+      sortOn: Joi.string().allow(""),
+      pageId: Joi.string().allow(""),
+      pageSize: Joi.number(),
+      pageNo: Joi.number(),
+      pageType: Joi.string().allow(""),
+      itemIds: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 
@@ -1607,6 +1613,12 @@ class CatalogPlatformApplicationValidator {
   static pollPriceFactoryJobs() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+      startDate: Joi.string().allow(""),
+      endDate: Joi.string().allow(""),
+      stage: Joi.array().items(Joi.string().allow("")),
+      isActive: Joi.boolean(),
+      q: Joi.string().allow(""),
+      type: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 

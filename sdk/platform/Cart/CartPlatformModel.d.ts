@@ -433,6 +433,8 @@ export = CartPlatformModel;
  * @property {PromotionAuthor} [author]
  * @property {PromotionDateMeta} date_meta
  * @property {string} [_id] - Promotion id
+ * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
+ *   be applied on cart and ready to update promotion
  * @property {string} [code]
  * @property {string[]} [tags]
  */
@@ -471,33 +473,106 @@ export = CartPlatformModel;
  * @property {string[]} [tags]
  */
 /**
- * @typedef PromotionUpdate
- * @property {string} [_id]
- * @property {boolean} [stackable]
- * @property {string} [calculate_on] - Only available for Contract pricing and
- *   Ladder pricing promotion type
- * @property {string} [apply_exclusive]
- * @property {string} promo_group
- * @property {string} mode
- * @property {boolean} [apply_all_discount]
- * @property {DisplayMeta1} display_meta
- * @property {Ownership} ownership
- * @property {string} promotion_type
- * @property {DiscountRule[]} discount_rules
+ * @typedef PromotionAddResult
+ * @property {boolean} [stackable] - Boolean value set true to apply other promotions also
+ * @property {string} [calculate_on] - Article Price on which promotion
+ *   calculated like effective price or marked price. Only available for
+ *   Contract pricing and Ladder pricing promotion type
+ * @property {string} [apply_exclusive] - Promotion should apply on either
+ *   article or cart.
+ * @property {string} promo_group - The type of promotion group
+ * @property {string} mode - Promotion mode, like coupon or promotion
+ * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
+ *   be applied on cart and ready to update promotion
+ * @property {boolean} [apply_all_discount] - True means to apply all discount offers
+ * @property {DisplayMeta1} [display_meta]
+ * @property {Ownership} [ownership]
+ * @property {string} promotion_type - Type of promotion
+ * @property {DiscountRule[]} [discount_rules] - List of discount offers and
+ *   their applicable conditions
  * @property {Restrictions1} [restrictions]
- * @property {string} [currency]
- * @property {string} [code]
+ * @property {string} [currency] - Promotion Currency code like INR
+ * @property {string} [code] - Promotion unique code
  * @property {PromotionSchedule} [_schedule]
  * @property {PromotionAction} [post_order_action]
- * @property {number} [apply_priority]
+ * @property {number} [apply_priority] - Promotion applicable priority
  * @property {PromotionAuthor} [author]
  * @property {Visibility} [visiblility]
- * @property {string} application_id
- * @property {Object} buy_rules
- * @property {Object} [_custom_json]
+ * @property {string} application_id - Current application id of sales channel
+ * @property {Object} [buy_rules]
+ * @property {Object} [_custom_json] - Set extra properties in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {PromoIndexedCriteria[]} [indexed_criteria]
- * @property {string[]} [tags]
+ * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string} [_id] - Unique idenfier of promotion.
+ */
+/**
+ * @typedef PromotionUpdate
+ * @property {boolean} [stackable] - Set true to apply other promotions in cart
+ * @property {string} [calculate_on] - Article Price on which promotion
+ *   calculated like effective price or marked price. Only available for
+ *   Contract pricing and Ladder pricing promotion type
+ * @property {string} [apply_exclusive] - Promotion should apply on either
+ *   article or cart.
+ * @property {string} [reason] - Promotion rejection reason added by reviewer
+ * @property {string} promo_group - The type of promotion group
+ * @property {string} mode - Promotion mode
+ * @property {boolean} [apply_all_discount] - True means to apply all discount offers
+ * @property {DisplayMeta1} [display_meta]
+ * @property {Ownership} [ownership]
+ * @property {string} promotion_type - The Promotion type like amount, bogo and
+ *   percentage etc.
+ * @property {DiscountRule[]} [discount_rules] - List of discount offers and
+ *   their applicable conditions
+ * @property {Restrictions1} [restrictions]
+ * @property {string} [currency] - Promotion Currency code like INR
+ * @property {string} [code] - Promotion unique code
+ * @property {PromotionSchedule} [_schedule]
+ * @property {PromotionAction} [post_order_action]
+ * @property {number} [apply_priority] - Promotion applicable priority
+ * @property {PromotionAuthor} [author]
+ * @property {Visibility} [visiblility]
+ * @property {string} application_id - Current application id of sales channel
+ * @property {Object} [buy_rules]
+ * @property {Object} [_custom_json] - Set extra properties in promotion
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags] - List of tags applicable for promotion
+ */
+/**
+ * @typedef PromotionUpdateResult
+ * @property {boolean} [stackable] - Set true to apply other promotions in cart
+ * @property {string} [calculate_on] - Article Price on which promotion
+ *   calculated like effective price or marked price. Only available for
+ *   Contract pricing and Ladder pricing promotion type
+ * @property {string} [apply_exclusive] - Promotion should apply on either
+ *   article or cart.
+ * @property {string} [reason] - Promotion rejection reason added by reviewer
+ * @property {boolean} [is_processed] - Flag to verify if promotion is ready to
+ *   be applied on cart and ready to update promotion
+ * @property {string} promo_group - The type of promotion group
+ * @property {string} mode - Promotion mode
+ * @property {boolean} [apply_all_discount] - True means to apply all discount offers
+ * @property {DisplayMeta1} [display_meta]
+ * @property {Ownership} [ownership]
+ * @property {string} promotion_type - The Promotion type like amount, bogo and
+ *   percentage etc.
+ * @property {DiscountRule[]} [discount_rules] - List of discount offers and
+ *   their applicable conditions
+ * @property {Restrictions1} [restrictions]
+ * @property {string} [currency] - Promotion Currency code like INR
+ * @property {string} [code] - Promotion unique code
+ * @property {PromotionSchedule} [_schedule]
+ * @property {PromotionAction} [post_order_action]
+ * @property {number} [apply_priority] - Promotion applicable priority
+ * @property {PromotionAuthor} [author]
+ * @property {Visibility} [visiblility]
+ * @property {string} application_id - Current application id of sales channel
+ * @property {Object} [buy_rules]
+ * @property {Object} [_custom_json] - Set extra properties in promotion
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {PromoIndexedCriteria[]} [indexed_criteria]
+ * @property {string[]} [tags] - List of tags applicable for promotion
+ * @property {string} [_id] - Auto generated id of specific promotion
  */
 /**
  * @typedef PromoIndexedCriteria
@@ -1635,7 +1710,7 @@ export = CartPlatformModel;
  * @property {Object} [_custom_json]
  * @property {string} [price_factory_type_id]
  * @property {number} [item_id]
- * @property {number} [item_index]
+ * @property {number} item_index
  * @property {CartProductIdentifer} identifiers
  * @property {string} [article_id]
  */
@@ -1927,9 +2002,15 @@ export = CartPlatformModel;
  * @property {number} [meta_data_int]
  */
 /**
+ * @typedef ValidationConfig
+ * @property {number} address_max_limit - The maximum number of addresses a user can have.
+ * @property {number} user_address_count - The total number of addresses saved by a user.
+ */
+/**
  * @typedef PlatformGetAddressesResponse
  * @property {PlatformAddress[]} [address]
  * @property {boolean} [pii_masking]
+ * @property {ValidationConfig} [validation_config]
  */
 /**
  * @typedef SaveAddressResponse
@@ -2509,11 +2590,17 @@ export = CartPlatformModel;
  * @typedef AllAddressForSelectAddress
  * @property {PlatformAddress[]} [address]
  * @property {boolean} [pii_masking]
+ * @property {ValidationConfig} [validation_config]
+ */
+/**
+ * @typedef ValidationError
+ * @property {string} message - A brief description of the error encountered.
+ * @property {string} field - The field in the request that caused the error.
  */
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, NextSchedule, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponObj, CouponsResponse, CouponMedias, CouponDetailObj, CouponDetailResponse, TagsViewResponse, SuccessMessage, OperationErrorResponse, CartMetaConfigOperationErrorResponse, CouponUpdate, CouponPartialUpdate, DisplayMeta1, CompareObject, ItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResponse, PromotionAdd, PromotionUpdate, PromoIndexedCriteria, PromotionPartialUpdate, ActivePromos, ActivePromosResponse, Charges, DeliveryCharges, OrderPlacing, PanCard, CartMetaConfigUpdate, TimeStampIDResponse, CartMetaConfigDetailResponse, CartMetaConfigListResponse, CartMetaConfigListObject, CartMetaConfigAddResponse, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, AddPriceAdjustmentResponse, UpdatePriceAdjustmentResponse, PriceAdjustmentResponse, GetPriceAdjustmentResponse, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsRequest, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticleAppliedPriceAdjustment, ArticlePriceInfo, StoreInfo, ArticleGiftCard, ProductArticle, PromoDiscountRuleOffer, PromoDiscountRuleRawOffer, PromoDiscountRuleItemCriteria, DiscountRulesApp, AppliedFreeArticles, PromoBuyRuleCartConditions, PromoBuyRuleCompareFieldsTypes, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, ParentItemIdentifiers, CartItemMOQ, CartItemCustomOrder, CartProductInfo, DiscountMeta, PriceAdjustmentApplied, OpenapiCartDetailsResponse, OpenApiErrorResponse, ShippingAddress, OpenApiCartServiceabilityRequest, OpenApiCartServiceabilityResponse, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResponse, AbandonedCart, AbandonedCartResponse, PaymentSelectionLock, CartCurrency, CartCouponMedias, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartAppliedPriceAdjustment, CustomCart, CartDetailResponse, AddProductCart, ArticleAssignment, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, CartList, MultiCartResponse, UpdateUserCartMapping, UserCartMappingResponse, CartMappingUserInfo, PlatformAddCartRequest, PlatformUpdateCartRequest, DeleteCartRequest, DeleteCartDetailResponse, CartItemCountResponse, Coupon, PageCoupon, GetCouponResponse, ApplyCouponRequest, GeoLocation, PlatformAddress, AddressCustomJson, PlatformGetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, PlatformSelectCartAddressRequest, ShipmentArticle, ShipmentError, PlatformShipmentResponse, ShipmentMeta, ShipmentMetaDimension, ShipmentLogisticsMeta, ShipmentLogisticsMetaAccount, ShipmentLogisticsMetaAccountAreaCode, ShipmentLogisticsMetaAccountDpTat, PlatformCartShipmentsResponse, UpdateCartShipmentItem, UpdateCartShipmentRequest, PlatformCartMetaRequest, CartMetaResponse, CartMetaMissingResponse, CartMetaFieldsValidation, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, PlatformCartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, CartDeliveryModesResponse, PickupStoreDetail, StoreDetailsResponse, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Request, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersResponse, PromotionPaymentOffer, CouponOptions, CouponOptionTypes, CouponOptionScopes, CouponOptionsApplicable, CouponOptionsValueTypes, CouponOptionsCalculate, CouponOptionsPayableCategory, CouponOptionsTxnMode, CouponOptionsPayableBy, SelectAddressResponseError, AllAddressForSelectAddress };
+    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, NextSchedule, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponObj, CouponsResponse, CouponMedias, CouponDetailObj, CouponDetailResponse, TagsViewResponse, SuccessMessage, OperationErrorResponse, CartMetaConfigOperationErrorResponse, CouponUpdate, CouponPartialUpdate, DisplayMeta1, CompareObject, ItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResponse, PromotionAdd, PromotionAddResult, PromotionUpdate, PromotionUpdateResult, PromoIndexedCriteria, PromotionPartialUpdate, ActivePromos, ActivePromosResponse, Charges, DeliveryCharges, OrderPlacing, PanCard, CartMetaConfigUpdate, TimeStampIDResponse, CartMetaConfigDetailResponse, CartMetaConfigListResponse, CartMetaConfigListObject, CartMetaConfigAddResponse, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, AddPriceAdjustmentResponse, UpdatePriceAdjustmentResponse, PriceAdjustmentResponse, GetPriceAdjustmentResponse, PriceAdjustmentAdd, DistributionRule, Distribution, DistributionLogic, CartItem, OpenapiCartDetailsRequest, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticleAppliedPriceAdjustment, ArticlePriceInfo, StoreInfo, ArticleGiftCard, ProductArticle, PromoDiscountRuleOffer, PromoDiscountRuleRawOffer, PromoDiscountRuleItemCriteria, DiscountRulesApp, AppliedFreeArticles, PromoBuyRuleCartConditions, PromoBuyRuleCompareFieldsTypes, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, ParentItemIdentifiers, CartItemMOQ, CartItemCustomOrder, CartProductInfo, DiscountMeta, PriceAdjustmentApplied, OpenapiCartDetailsResponse, OpenApiErrorResponse, ShippingAddress, OpenApiCartServiceabilityRequest, OpenApiCartServiceabilityResponse, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResponse, AbandonedCart, AbandonedCartResponse, PaymentSelectionLock, CartCurrency, CartCouponMedias, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartAppliedPriceAdjustment, CustomCart, CartDetailResponse, AddProductCart, ArticleAssignment, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, CartList, MultiCartResponse, UpdateUserCartMapping, UserCartMappingResponse, CartMappingUserInfo, PlatformAddCartRequest, PlatformUpdateCartRequest, DeleteCartRequest, DeleteCartDetailResponse, CartItemCountResponse, Coupon, PageCoupon, GetCouponResponse, ApplyCouponRequest, GeoLocation, PlatformAddress, AddressCustomJson, ValidationConfig, PlatformGetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, PlatformSelectCartAddressRequest, ShipmentArticle, ShipmentError, PlatformShipmentResponse, ShipmentMeta, ShipmentMetaDimension, ShipmentLogisticsMeta, ShipmentLogisticsMetaAccount, ShipmentLogisticsMetaAccountAreaCode, ShipmentLogisticsMetaAccountDpTat, PlatformCartShipmentsResponse, UpdateCartShipmentItem, UpdateCartShipmentRequest, PlatformCartMetaRequest, CartMetaResponse, CartMetaMissingResponse, CartMetaFieldsValidation, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, PlatformCartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, CartDeliveryModesResponse, PickupStoreDetail, StoreDetailsResponse, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Request, UpdateCartPaymentRequestV2, PriceMinMax, ItemPriceDetails, FreeGiftItems, PromotionOffer, PromotionOffersResponse, PromotionPaymentOffer, CouponOptions, CouponOptionTypes, CouponOptionScopes, CouponOptionsApplicable, CouponOptionsValueTypes, CouponOptionsCalculate, CouponOptionsPayableCategory, CouponOptionsTxnMode, CouponOptionsPayableBy, SelectAddressResponseError, AllAddressForSelectAddress, ValidationError };
 }
 /** @returns {CouponDateMeta} */
 declare function CouponDateMeta(): CouponDateMeta;
@@ -3062,6 +3149,11 @@ type PromotionListItem = {
      * - Promotion id
      */
     _id?: string;
+    /**
+     * - Flag to verify if promotion is ready to
+     * be applied on cart and ready to update promotion
+     */
+    is_processed?: boolean;
     code?: string;
     tags?: string[];
 };
@@ -3104,38 +3196,254 @@ type PromotionAdd = {
     indexed_criteria?: PromoIndexedCriteria[];
     tags?: string[];
 };
-/** @returns {PromotionUpdate} */
-declare function PromotionUpdate(): PromotionUpdate;
-type PromotionUpdate = {
-    _id?: string;
+/** @returns {PromotionAddResult} */
+declare function PromotionAddResult(): PromotionAddResult;
+type PromotionAddResult = {
+    /**
+     * - Boolean value set true to apply other promotions also
+     */
     stackable?: boolean;
     /**
-     * - Only available for Contract pricing and
-     * Ladder pricing promotion type
+     * - Article Price on which promotion
+     * calculated like effective price or marked price. Only available for
+     * Contract pricing and Ladder pricing promotion type
      */
     calculate_on?: string;
+    /**
+     * - Promotion should apply on either
+     * article or cart.
+     */
     apply_exclusive?: string;
+    /**
+     * - The type of promotion group
+     */
     promo_group: string;
+    /**
+     * - Promotion mode, like coupon or promotion
+     */
     mode: string;
+    /**
+     * - Flag to verify if promotion is ready to
+     * be applied on cart and ready to update promotion
+     */
+    is_processed?: boolean;
+    /**
+     * - True means to apply all discount offers
+     */
     apply_all_discount?: boolean;
-    display_meta: DisplayMeta1;
-    ownership: Ownership;
+    display_meta?: DisplayMeta1;
+    ownership?: Ownership;
+    /**
+     * - Type of promotion
+     */
     promotion_type: string;
-    discount_rules: DiscountRule[];
+    /**
+     * - List of discount offers and
+     * their applicable conditions
+     */
+    discount_rules?: DiscountRule[];
     restrictions?: Restrictions1;
+    /**
+     * - Promotion Currency code like INR
+     */
     currency?: string;
+    /**
+     * - Promotion unique code
+     */
     code?: string;
     _schedule?: PromotionSchedule;
     post_order_action?: PromotionAction;
+    /**
+     * - Promotion applicable priority
+     */
     apply_priority?: number;
     author?: PromotionAuthor;
     visiblility?: Visibility;
+    /**
+     * - Current application id of sales channel
+     */
     application_id: string;
-    buy_rules: any;
+    buy_rules?: any;
+    /**
+     * - Set extra properties in promotion
+     */
     _custom_json?: any;
     date_meta?: PromotionDateMeta;
     indexed_criteria?: PromoIndexedCriteria[];
+    /**
+     * - List of tags applicable for promotion
+     */
     tags?: string[];
+    /**
+     * - Unique idenfier of promotion.
+     */
+    _id?: string;
+};
+/** @returns {PromotionUpdate} */
+declare function PromotionUpdate(): PromotionUpdate;
+type PromotionUpdate = {
+    /**
+     * - Set true to apply other promotions in cart
+     */
+    stackable?: boolean;
+    /**
+     * - Article Price on which promotion
+     * calculated like effective price or marked price. Only available for
+     * Contract pricing and Ladder pricing promotion type
+     */
+    calculate_on?: string;
+    /**
+     * - Promotion should apply on either
+     * article or cart.
+     */
+    apply_exclusive?: string;
+    /**
+     * - Promotion rejection reason added by reviewer
+     */
+    reason?: string;
+    /**
+     * - The type of promotion group
+     */
+    promo_group: string;
+    /**
+     * - Promotion mode
+     */
+    mode: string;
+    /**
+     * - True means to apply all discount offers
+     */
+    apply_all_discount?: boolean;
+    display_meta?: DisplayMeta1;
+    ownership?: Ownership;
+    /**
+     * - The Promotion type like amount, bogo and
+     * percentage etc.
+     */
+    promotion_type: string;
+    /**
+     * - List of discount offers and
+     * their applicable conditions
+     */
+    discount_rules?: DiscountRule[];
+    restrictions?: Restrictions1;
+    /**
+     * - Promotion Currency code like INR
+     */
+    currency?: string;
+    /**
+     * - Promotion unique code
+     */
+    code?: string;
+    _schedule?: PromotionSchedule;
+    post_order_action?: PromotionAction;
+    /**
+     * - Promotion applicable priority
+     */
+    apply_priority?: number;
+    author?: PromotionAuthor;
+    visiblility?: Visibility;
+    /**
+     * - Current application id of sales channel
+     */
+    application_id: string;
+    buy_rules?: any;
+    /**
+     * - Set extra properties in promotion
+     */
+    _custom_json?: any;
+    date_meta?: PromotionDateMeta;
+    /**
+     * - List of tags applicable for promotion
+     */
+    tags?: string[];
+};
+/** @returns {PromotionUpdateResult} */
+declare function PromotionUpdateResult(): PromotionUpdateResult;
+type PromotionUpdateResult = {
+    /**
+     * - Set true to apply other promotions in cart
+     */
+    stackable?: boolean;
+    /**
+     * - Article Price on which promotion
+     * calculated like effective price or marked price. Only available for
+     * Contract pricing and Ladder pricing promotion type
+     */
+    calculate_on?: string;
+    /**
+     * - Promotion should apply on either
+     * article or cart.
+     */
+    apply_exclusive?: string;
+    /**
+     * - Promotion rejection reason added by reviewer
+     */
+    reason?: string;
+    /**
+     * - Flag to verify if promotion is ready to
+     * be applied on cart and ready to update promotion
+     */
+    is_processed?: boolean;
+    /**
+     * - The type of promotion group
+     */
+    promo_group: string;
+    /**
+     * - Promotion mode
+     */
+    mode: string;
+    /**
+     * - True means to apply all discount offers
+     */
+    apply_all_discount?: boolean;
+    display_meta?: DisplayMeta1;
+    ownership?: Ownership;
+    /**
+     * - The Promotion type like amount, bogo and
+     * percentage etc.
+     */
+    promotion_type: string;
+    /**
+     * - List of discount offers and
+     * their applicable conditions
+     */
+    discount_rules?: DiscountRule[];
+    restrictions?: Restrictions1;
+    /**
+     * - Promotion Currency code like INR
+     */
+    currency?: string;
+    /**
+     * - Promotion unique code
+     */
+    code?: string;
+    _schedule?: PromotionSchedule;
+    post_order_action?: PromotionAction;
+    /**
+     * - Promotion applicable priority
+     */
+    apply_priority?: number;
+    author?: PromotionAuthor;
+    visiblility?: Visibility;
+    /**
+     * - Current application id of sales channel
+     */
+    application_id: string;
+    buy_rules?: any;
+    /**
+     * - Set extra properties in promotion
+     */
+    _custom_json?: any;
+    date_meta?: PromotionDateMeta;
+    indexed_criteria?: PromoIndexedCriteria[];
+    /**
+     * - List of tags applicable for promotion
+     */
+    tags?: string[];
+    /**
+     * - Auto generated id of specific promotion
+     */
+    _id?: string;
 };
 /** @returns {PromoIndexedCriteria} */
 declare function PromoIndexedCriteria(): PromoIndexedCriteria;
@@ -5072,7 +5380,7 @@ type UpdateProductCart = {
     _custom_json?: any;
     price_factory_type_id?: string;
     item_id?: number;
-    item_index?: number;
+    item_index: number;
     identifiers: CartProductIdentifer;
     article_id?: string;
 };
@@ -5499,11 +5807,24 @@ type AddressCustomJson = {
     meta_data?: string;
     meta_data_int?: number;
 };
+/** @returns {ValidationConfig} */
+declare function ValidationConfig(): ValidationConfig;
+type ValidationConfig = {
+    /**
+     * - The maximum number of addresses a user can have.
+     */
+    address_max_limit: number;
+    /**
+     * - The total number of addresses saved by a user.
+     */
+    user_address_count: number;
+};
 /** @returns {PlatformGetAddressesResponse} */
 declare function PlatformGetAddressesResponse(): PlatformGetAddressesResponse;
 type PlatformGetAddressesResponse = {
     address?: PlatformAddress[];
     pii_masking?: boolean;
+    validation_config?: ValidationConfig;
 };
 /** @returns {SaveAddressResponse} */
 declare function SaveAddressResponse(): SaveAddressResponse;
@@ -6398,4 +6719,17 @@ declare function AllAddressForSelectAddress(): AllAddressForSelectAddress;
 type AllAddressForSelectAddress = {
     address?: PlatformAddress[];
     pii_masking?: boolean;
+    validation_config?: ValidationConfig;
+};
+/** @returns {ValidationError} */
+declare function ValidationError(): ValidationError;
+type ValidationError = {
+    /**
+     * - A brief description of the error encountered.
+     */
+    message: string;
+    /**
+     * - The field in the request that caused the error.
+     */
+    field: string;
 };

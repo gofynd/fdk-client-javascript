@@ -7,8 +7,10 @@ declare class Logistic {
         getAllCountries: string;
         getCountries: string;
         getCountry: string;
+        getDeliveryPromise: string;
         getGeoAreas: string;
         getLocalities: string;
+        getLocalitiesByPrefix: string;
         getLocality: string;
         getPincodeCity: string;
         getZones: string;
@@ -75,6 +77,15 @@ declare class Logistic {
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<GetPromiseDetails>} - Success response
+     * @name getDeliveryPromise
+     * @summary: Get delivery promise
+     * @description: Get delivery promises for both global and store levels based on a specific locality type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getDeliveryPromise/).
+     */
+    getDeliveryPromise({ pageNo, pageSize, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetPromiseDetails>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<GeoAreaGetResponseBody>} - Success response
      * @name getGeoAreas
      * @summary: Get all geoareas in the current application.
@@ -113,6 +124,29 @@ declare class Logistic {
         pageSize?: number;
         q?: string;
         name?: string;
+    }): Paginator<GetLocalities>;
+    /**
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<GetLocalities>} - Success response
+     * @name getLocalitiesByPrefix
+     * @summary: Get Localities by Name Prefix
+     * @description: Get localities that start with a specified prefix. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalitiesByPrefix/).
+     */
+    getLocalitiesByPrefix({ companyId, pageNo, pageSize, q, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<GetLocalities>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.companyId - The unique identifier of the company.
+     * @param {number} [arg.pageSize] - Number of items per page.
+     * @param {string} [arg.q] - Localities starting with the specified prefix.
+     * @returns {Paginator<GetLocalities>}
+     * @summary: Get Localities by Name Prefix
+     * @description: Get localities that start with a specified prefix.
+     */
+    getLocalitiesByPrefixPaginator({ companyId, pageSize, q }?: {
+        companyId: number;
+        pageSize?: number;
+        q?: string;
     }): Paginator<GetLocalities>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

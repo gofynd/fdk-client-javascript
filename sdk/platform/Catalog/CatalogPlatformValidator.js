@@ -24,16 +24,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef CreateCategoriesParam
- * @property {CatalogPlatformModel.CategoryRequestBody} body
- */
-
-/**
- * @typedef CreateDepartmentsParam
- * @property {CatalogPlatformModel.DepartmentCreateUpdate} body
- */
-
-/**
  * @typedef CreateInventoryExportParam
  * @property {CatalogPlatformModel.InventoryCreateRequest} body
  */
@@ -142,6 +132,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef GetAttributeParam
+ * @property {string} attributeSlug - Slug of the attribute for which you want
+ *   to view the details
+ */
+
+/**
  * @typedef GetCategoryDataParam
  * @property {string} uid - Category unique id
  */
@@ -179,12 +175,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef GetDepartmentDataParam
  * @property {string} uid - A `uid` is a unique identifier of a department.
- */
-
-/**
- * @typedef GetGenderAttributeParam
- * @property {string} attributeSlug - Slug of the attribute for which you want
- *   to view the genders
  */
 
 /**
@@ -516,18 +506,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef UpdateCategoryParam
- * @property {string} uid - Category unique id
- * @property {CatalogPlatformModel.CategoryRequestBody} body
- */
-
-/**
- * @typedef UpdateDepartmentParam
- * @property {string} uid - A `uid` is a unique identifier of a department.
- * @property {CatalogPlatformModel.DepartmentCreateUpdate} body
- */
-
-/**
  * @typedef UpdateInventoriesParam
  * @property {CatalogPlatformModel.InventoryRequestSchemaV2} body
  */
@@ -612,20 +590,6 @@ class CatalogPlatformValidator {
   static createBulkProductUploadJob() {
     return Joi.object({
       body: CatalogPlatformModel.BulkProductUploadJob().required(),
-    }).required();
-  }
-
-  /** @returns {CreateCategoriesParam} */
-  static createCategories() {
-    return Joi.object({
-      body: CatalogPlatformModel.CategoryRequestBody().required(),
-    }).required();
-  }
-
-  /** @returns {CreateDepartmentsParam} */
-  static createDepartments() {
-    return Joi.object({
-      body: CatalogPlatformModel.DepartmentCreateUpdate().required(),
     }).required();
   }
 
@@ -773,6 +737,13 @@ class CatalogPlatformValidator {
     }).required();
   }
 
+  /** @returns {GetAttributeParam} */
+  static getAttribute() {
+    return Joi.object({
+      attributeSlug: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetCategoryDataParam} */
   static getCategoryData() {
     return Joi.object({
@@ -822,13 +793,6 @@ class CatalogPlatformValidator {
   static getDepartmentData() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetGenderAttributeParam} */
-  static getGenderAttribute() {
-    return Joi.object({
-      attributeSlug: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -1182,22 +1146,6 @@ class CatalogPlatformValidator {
     return Joi.object({
       jobId: Joi.string().allow("").required(),
       body: CatalogPlatformModel.ExportPatchRequest().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateCategoryParam} */
-  static updateCategory() {
-    return Joi.object({
-      uid: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.CategoryRequestBody().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateDepartmentParam} */
-  static updateDepartment() {
-    return Joi.object({
-      uid: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.DepartmentCreateUpdate().required(),
     }).required();
   }
 

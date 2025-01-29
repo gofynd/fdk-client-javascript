@@ -369,7 +369,7 @@ declare class Serviceability {
      * @summary: Get zones
      * @description: Retrieves a list of delivery zones. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZones/).
      */
-    getZones({ stage, type, pageSize, pageNo, isActive, q, countryIsoCode, pincode, state, city, sector, requestHeaders, }?: ServiceabilityPlatformApplicationValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResponseV2>;
+    getZones({ stage, type, accessLevel, status, pageSize, pageNo, isActive, q, countryIsoCode, pincode, state, city, sector, requestHeaders, }?: ServiceabilityPlatformApplicationValidator.GetZonesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ListViewResponseV2>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam} arg
      *   - Arg object

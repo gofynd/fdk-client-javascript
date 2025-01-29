@@ -38,7 +38,7 @@ class FileStorage {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<CompleteResponse>} - Success response
+   * @returns {Promise<FileUploadComplete>} - Success response
    * @name completeUpload
    * @summary: Finalizes upload process.
    * @description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
@@ -90,7 +90,7 @@ class FileStorage {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<SignUrlResponse>} - Success response
+   * @returns {Promise<SignUrlResult>} - Success response
    * @name signUrls
    * @summary: Signs file URLs.
    * @description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
@@ -135,7 +135,7 @@ class FileStorage {
   /**
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
-   * @returns {Promise<StartResponse>} - Success response
+   * @returns {Promise<FileUpload>} - Success response
    * @name startUpload
    * @summary: Initiates file upload
    * @description: Starts the process of uploading a file to storage location, and returns a signed url in response. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).

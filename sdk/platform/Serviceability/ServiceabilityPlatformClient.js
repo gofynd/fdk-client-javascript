@@ -1149,6 +1149,125 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformValidator.GetLocalitiesByPrefixParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.GetLocalities>} - Success response
+   * @name getLocalitiesByPrefix
+   * @summary: Get Localities by Name Prefix
+   * @description: Get localities that start with a specified prefix. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getLocalitiesByPrefix/).
+   */
+  async getLocalitiesByPrefix(
+    { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getLocalitiesByPrefix().validate(
+      {
+        pageNo,
+        pageSize,
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getLocalitiesByPrefix().validate(
+      {
+        pageNo,
+        pageSize,
+        q,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > getLocalitiesByPrefix \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["q"] = q;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/localities`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.GetLocalities().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getLocalitiesByPrefix \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - Number of items per page.
+   * @param {string} [arg.q] - Localities starting with the specified prefix.
+   * @returns {Paginator<ServiceabilityPlatformModel.GetLocalities>}
+   * @summary: Get Localities by Name Prefix
+   * @description: Get localities that start with a specified prefix.
+   */
+  getLocalitiesByPrefixPaginator({ pageSize, q } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getLocalitiesByPrefix({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {ServiceabilityPlatformValidator.GetLocalityParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

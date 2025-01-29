@@ -2280,6 +2280,8 @@ class Serviceability {
     {
       stage,
       type,
+      accessLevel,
+      status,
       pageSize,
       pageNo,
       isActive,
@@ -2299,6 +2301,8 @@ class Serviceability {
       {
         stage,
         type,
+        accessLevel,
+        status,
         pageSize,
         pageNo,
         isActive,
@@ -2322,6 +2326,8 @@ class Serviceability {
       {
         stage,
         type,
+        accessLevel,
+        status,
         pageSize,
         pageNo,
         isActive,
@@ -2344,6 +2350,8 @@ class Serviceability {
     const query_params = {};
     query_params["stage"] = stage;
     query_params["type"] = type;
+    query_params["access_level"] = accessLevel;
+    query_params["status"] = status;
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
     query_params["is_active"] = isActive;

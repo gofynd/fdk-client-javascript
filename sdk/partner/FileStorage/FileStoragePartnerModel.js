@@ -6,22 +6,29 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FetchProxyResponse
- * @property {string} [id]
- * @property {string} [created_at]
+ * @typedef SaveProxy
+ * @property {number} [id]
+ * @property {string} [token]
  */
 
 /**
- * @typedef FetchProxyRequest
+ * @typedef ProxyFileData
+ * @property {string} [email]
+ * @property {string} [password]
+ */
+
+/**
+ * @typedef ProxyFile
  * @property {number} [id]
  * @property {string} [customer]
  * @property {number} [quantity]
  * @property {number} [price]
+ * @property {ProxyFileData} [data]
  * @property {string} [url]
  */
 
 /**
- * @typedef ProxyResponse
+ * @typedef FetchProxyDetails
  * @property {Object} [data]
  * @property {Object} [support]
  */
@@ -54,7 +61,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StartResponse
+ * @typedef FileUpload
  * @property {string} file_name
  * @property {string} file_path
  * @property {string} content_type
@@ -67,7 +74,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StartRequest
+ * @typedef FileUploadStart
  * @property {string} file_name
  * @property {string} content_type
  * @property {number} size
@@ -81,7 +88,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompleteResponse
+ * @typedef FileUploadComplete
  * @property {string} _id
  * @property {string} file_name
  * @property {string} file_path
@@ -99,7 +106,7 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FailedResponse
+ * @typedef FailedBrowseFilesResult
  * @property {string} message
  */
 
@@ -111,27 +118,36 @@ class FileStoragePartnerModel {
     });
   }
 
-  /** @returns {FetchProxyResponse} */
-  static FetchProxyResponse() {
+  /** @returns {SaveProxy} */
+  static SaveProxy() {
     return Joi.object({
-      id: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
+      id: Joi.number(),
+      token: Joi.string().allow(""),
     });
   }
 
-  /** @returns {FetchProxyRequest} */
-  static FetchProxyRequest() {
+  /** @returns {ProxyFileData} */
+  static ProxyFileData() {
+    return Joi.object({
+      email: Joi.string().allow(""),
+      password: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProxyFile} */
+  static ProxyFile() {
     return Joi.object({
       id: Joi.number(),
       customer: Joi.string().allow(""),
       quantity: Joi.number(),
       price: Joi.number(),
+      data: FileStoragePartnerModel.ProxyFileData(),
       url: Joi.string().allow(""),
     });
   }
 
-  /** @returns {ProxyResponse} */
-  static ProxyResponse() {
+  /** @returns {FetchProxyDetails} */
+  static FetchProxyDetails() {
     return Joi.object({
       data: Joi.object().pattern(/\S/, Joi.any()),
       support: Joi.object().pattern(/\S/, Joi.any()),
@@ -174,8 +190,8 @@ class FileStoragePartnerModel {
     });
   }
 
-  /** @returns {StartResponse} */
-  static StartResponse() {
+  /** @returns {FileUpload} */
+  static FileUpload() {
     return Joi.object({
       file_name: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
@@ -189,8 +205,8 @@ class FileStoragePartnerModel {
     });
   }
 
-  /** @returns {StartRequest} */
-  static StartRequest() {
+  /** @returns {FileUploadStart} */
+  static FileUploadStart() {
     return Joi.object({
       file_name: Joi.string().allow("").required(),
       content_type: Joi.string().allow("").required(),
@@ -207,8 +223,8 @@ class FileStoragePartnerModel {
     });
   }
 
-  /** @returns {CompleteResponse} */
-  static CompleteResponse() {
+  /** @returns {FileUploadComplete} */
+  static FileUploadComplete() {
     return Joi.object({
       _id: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
@@ -227,8 +243,8 @@ class FileStoragePartnerModel {
     });
   }
 
-  /** @returns {FailedResponse} */
-  static FailedResponse() {
+  /** @returns {FailedBrowseFilesResult} */
+  static FailedBrowseFilesResult() {
     return Joi.object({
       message: Joi.string().allow("").required(),
     });

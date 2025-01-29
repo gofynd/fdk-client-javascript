@@ -152,7 +152,39 @@ declare class CompanyProfile {
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
      */
-    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, types, tags, requestHeaders, }?: CompanyProfilePlatformValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
+    getLocations({ storeType, storeCodes, q, stage, pageNo, pageSize, locationIds, types, tags, requestHeaders, }?: CompanyProfilePlatformValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.storeType] - Helps to sort the location list on the
+     *   basis of location type.
+     * @param {string[]} [arg.storeCodes] - List of up to 50 store codes to
+     *   fetch. Specify multiple values by repeating the query parameter (e.g.,
+     *   `?store_codes=high_street&store_codes=main_avenue`). Comma-separated
+     *   values are not supported.
+     * @param {string} [arg.q] - Query that is to be searched.
+     * @param {string} [arg.stage] - To filter companies on basis of verified or
+     *   unverified companies.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 10.
+     * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+     * @param {string[]} [arg.types] - Helps to get the location list on the
+     *   basis of multiple location type.
+     * @param {string[]} [arg.tags] - Helps to get the location list on the
+     *   basis of multiple location tag.
+     * @returns {Paginator<CompanyProfilePlatformModel.LocationListSerializer>}
+     * @summary: Get list of locations
+     * @description: This API allows to view all the locations associated to a company.
+     */
+    getLocationsPaginator({ storeType, storeCodes, q, stage, pageSize, locationIds, types, tags, }?: {
+        storeType?: string;
+        storeCodes?: string[];
+        q?: string;
+        stage?: string;
+        pageSize?: number;
+        locationIds?: number[];
+        types?: string[];
+        tags?: string[];
+    }): Paginator<CompanyProfilePlatformModel.LocationListSerializer>;
     /**
      * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
