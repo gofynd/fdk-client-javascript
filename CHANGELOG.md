@@ -1,4 +1,4 @@
-# CHANGE LOG (3.1.0-beta.1) - 1.10.2
+# CHANGE LOG (3.1.0-beta.2) - 1.10.2
 
 ## Application Client
 
@@ -63,6 +63,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>items[].custom_order.is_custom_order</code>, <code>items[].custom_order.manufacturing_time</code>, <code>items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200
@@ -176,6 +180,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>cart.items[].custom_order.is_custom_order</code>, <code>cart.items[].custom_order.manufacturing_time</code>, <code>cart.items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200
@@ -288,6 +296,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>cart.items[].custom_order.is_custom_order</code>, <code>cart.items[].custom_order.manufacturing_time</code>, <code>cart.items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200
@@ -440,6 +452,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>items[].custom_order.is_custom_order</code>, <code>items[].custom_order.manufacturing_time</code>, <code>items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200
@@ -560,6 +576,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>items[].custom_order.is_custom_order</code>, <code>items[].custom_order.manufacturing_time</code>, <code>items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200
@@ -762,6 +782,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>items[].custom_order.is_custom_order</code>, <code>items[].custom_order.manufacturing_time</code>, <code>items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200
@@ -877,6 +901,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>shipments[].items[].custom_order.is_custom_order</code>, <code>shipments[].items[].custom_order.manufacturing_time</code>, <code>shipments[].items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>shipments[].items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200
@@ -994,6 +1022,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>cart.items[].custom_order.is_custom_order</code>, <code>cart.items[].custom_order.manufacturing_time</code>, <code>cart.items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200
@@ -1074,6 +1106,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] properties <code>cart.items[].custom_order.is_custom_order</code>, <code>cart.items[].custom_order.manufacturing_time</code>, <code>cart.items[].custom_order.manufacturing_time_unit</code> in response with status code 404
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 404
 	- [Added] property <code>cart.items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 404
@@ -1181,6 +1217,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.tags</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3_categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] properties <code>cart.items[].custom_order.is_custom_order</code>, <code>cart.items[].custom_order.manufacturing_time</code>, <code>cart.items[].custom_order.manufacturing_time_unit</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].is_set</code> of schema <code>CartProductInfo</code> in response with status code 200
 	- [Added] property <code>cart.items[].price_per_unit.base.selling</code> of schema <code>ProductPrice</code> in response with status code 200

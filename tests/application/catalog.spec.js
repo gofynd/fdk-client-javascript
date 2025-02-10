@@ -61,4 +61,21 @@ describe("Application Content Test Cases ", () => {
     let res = await applicationClient.content.getNavigations();
     expect(res).not.toBeNull();
   });
+
+  describe("Check Path validation", () => {
+    it("getFollowerCountById validation test", async () => {
+      try {
+        let res = await applicationClient.catalog.getFollowerCountById({
+          collectionType: "",
+          collectionId: "",
+          requestHeaders: {},
+        });
+        expect(res).not.toBeNull();
+      } catch (e) {
+        expect(e).not.toBeNull();
+        expect(e.name).toBe("FDKClientValidationError");
+        expect(e.message).toBe("Missing required field");
+      }
+    });
+  });
 });

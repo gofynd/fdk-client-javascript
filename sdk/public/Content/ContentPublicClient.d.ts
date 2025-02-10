@@ -58,7 +58,7 @@ declare class Content {
      * @summary: Get credentials to power chat support systems
      * @description: Get credentials for support system - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getCredentialsByEntity/).
      */
-    getCredentialsByEntity({ entityType, requestHeaders }?: ContentPublicValidator.GetCredentialsByEntityParam, { responseHeaders }?: object): Promise<ContentPublicModel.CredentialsSchema>;
+    getCredentialsByEntity({ entityType, requestHeaders }?: ContentPublicValidator.GetCredentialsByEntityParam, { responseHeaders }?: object, ...args: any[]): Promise<ContentPublicModel.CredentialsSchema>;
     /**
      * @param {ContentPublicValidator.GetCustomPageParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -68,7 +68,7 @@ declare class Content {
      * @summary: Retrieve info for custom page.
      * @description: Retrieve info of custom pagee to develop and manage custom webpages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getCustomPage/).
      */
-    getCustomPage({ slug, requestHeaders }?: ContentPublicValidator.GetCustomPageParam, { responseHeaders }?: object): Promise<ContentPublicModel.CustomPageBySlugSchema>;
+    getCustomPage({ slug, requestHeaders }?: ContentPublicValidator.GetCustomPageParam, { responseHeaders }?: object, ...args: any[]): Promise<ContentPublicModel.CustomPageBySlugSchema>;
     /**
      * @param {ContentPublicValidator.GetFooterContentParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -108,7 +108,7 @@ declare class Content {
      * @summary: Get desktop menu content
      * @description: Retrieves the desktop menu content. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getMenuContentByType/).
      */
-    getMenuContentByType({ type, requestHeaders }?: ContentPublicValidator.GetMenuContentByTypeParam, { responseHeaders }?: object): Promise<ContentPublicModel.MenuTypeSchema>;
+    getMenuContentByType({ type, requestHeaders }?: ContentPublicValidator.GetMenuContentByTypeParam, { responseHeaders }?: object, ...args: any[]): Promise<ContentPublicModel.MenuTypeSchema>;
     /**
      * @param {ContentPublicValidator.GetNavbarParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -148,7 +148,7 @@ declare class Content {
      * @summary: Get documentation of Software Development Kit by its type
      * @description: Get documentation of SDK by its type - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/content/getSDKDocumentationByType/).
      */
-    getSDKDocumentationByType({ type, requestHeaders }?: ContentPublicValidator.GetSDKDocumentationByTypeParam, { responseHeaders }?: object): Promise<ContentPublicModel.SDKbyTypeResponseSchema>;
+    getSDKDocumentationByType({ type, requestHeaders }?: ContentPublicValidator.GetSDKDocumentationByTypeParam, { responseHeaders }?: object, ...args: any[]): Promise<ContentPublicModel.SDKbyTypeResponseSchema>;
 }
 import ContentPublicModel = require("./ContentPublicModel");
 import ContentPublicValidator = require("./ContentPublicValidator");

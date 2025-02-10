@@ -1084,6 +1084,10 @@ const Joi = require("joi");
  * @property {CategoryInfo[]} [categories] - Product category information which
  *   incldes category name and category id.
  * @property {Object} [attributes] - Product attributes defined on platform.
+ * @property {number[]} [l1_categories] - List of L1 categories.
+ * @property {number[]} [l2_categories] - List of L2 categories.
+ * @property {number[]} [l3_categories] - List of L3 categories.
+ * @property {number[]} [departments] - List of departments.
  */
 
 /**
@@ -4084,6 +4088,10 @@ class CartPlatformModel {
       item_code: Joi.string().allow("").allow(null),
       categories: Joi.array().items(CartPlatformModel.CategoryInfo()),
       attributes: Joi.any().allow(null),
+      l1_categories: Joi.array().items(Joi.number()).allow(null, ""),
+      l2_categories: Joi.array().items(Joi.number()).allow(null, ""),
+      l3_categories: Joi.array().items(Joi.number()).allow(null, ""),
+      departments: Joi.array().items(Joi.number()).allow(null, ""),
     });
   }
 

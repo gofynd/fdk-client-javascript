@@ -39,7 +39,7 @@ declare class Share {
      * @summary: Collection QR code.
      * @description: Generates a QR code for a specific product collection using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getCollectionQRCodeBySlug/).
      */
-    getCollectionQRCodeBySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<QRCodeResp>;
+    getCollectionQRCodeBySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<QRCodeResp>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -48,7 +48,7 @@ declare class Share {
      * @summary: Original URL.
      * @description: Retrieve the original link from a short-link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getOriginalShortLinkByHash/).
      */
-    getOriginalShortLinkByHash({ hash, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ShortLinkRes>;
+    getOriginalShortLinkByHash({ hash, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ShortLinkRes>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -57,7 +57,7 @@ declare class Share {
      * @summary: Product QR code.
      * @description: Creates a QR code for a specific product identified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getProductQRCodeBySlug/).
      */
-    getProductQRCodeBySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<QRCodeResp>;
+    getProductQRCodeBySlug({ slug, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<QRCodeResp>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -66,7 +66,7 @@ declare class Share {
      * @summary: Fetch short link.
      * @description: Retrieves a previously created short link using its hash identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getShortLinkByHash/).
      */
-    getShortLinkByHash({ hash, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options): Promise<ShortLinkRes>;
+    getShortLinkByHash({ hash, requestHeaders }?: object, { responseHeaders }?: import("../ApplicationAPIClient").Options, ...args: any[]): Promise<ShortLinkRes>;
     /**
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options

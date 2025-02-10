@@ -6,6 +6,7 @@ const {
 const PublicAPIClient = require("../PublicAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 const ContentPublicValidator = require("./ContentPublicValidator");
 const ContentPublicModel = require("./ContentPublicModel");
@@ -60,14 +61,6 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getAllTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -144,14 +137,6 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getAnalyticsTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -230,14 +215,6 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getBasicDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -316,18 +293,12 @@ class Content {
     { entityType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!entityType) {
-      invalidInput.push({
-        message: `The 'entityType' field is required.`,
-        path: ["entityType"],
+    const errors = validateRequiredParams(arguments[0], ["entityType"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -409,18 +380,12 @@ class Content {
     { slug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!slug) {
-      invalidInput.push({
-        message: `The 'slug' field is required.`,
-        path: ["slug"],
+    const errors = validateRequiredParams(arguments[0], ["slug"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -500,14 +465,6 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getFooterContent().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -586,21 +543,6 @@ class Content {
     { pageType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!pageType) {
-      invalidInput.push({
-        message: `The 'pageType' field is required.`,
-        path: ["pageType"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getHomePageContent().validate(
       { pageType },
       { abortEarly: false, allowUnknown: true }
@@ -680,14 +622,6 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getMenuContent().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -766,18 +700,12 @@ class Content {
     { type, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!type) {
-      invalidInput.push({
-        message: `The 'type' field is required.`,
-        path: ["type"],
+    const errors = validateRequiredParams(arguments[0], ["type"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -859,14 +787,6 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getNavbar().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -943,14 +863,6 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getPricingBanner().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1029,14 +941,6 @@ class Content {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const { error } = ContentPublicValidator.getSDKDocumentation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1115,18 +1019,12 @@ class Content {
     { type, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!type) {
-      invalidInput.push({
-        message: `The 'type' field is required.`,
-        path: ["type"],
+    const errors = validateRequiredParams(arguments[0], ["type"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 

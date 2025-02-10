@@ -984,6 +984,10 @@ export = CartPlatformModel;
  * @property {CategoryInfo[]} [categories] - Product category information which
  *   incldes category name and category id.
  * @property {Object} [attributes] - Product attributes defined on platform.
+ * @property {number[]} [l1_categories] - List of L1 categories.
+ * @property {number[]} [l2_categories] - List of L2 categories.
+ * @property {number[]} [l3_categories] - List of L3 categories.
+ * @property {number[]} [departments] - List of departments.
  */
 /**
  * @typedef BasePrice
@@ -4113,6 +4117,22 @@ type CartProduct = {
      * - Product attributes defined on platform.
      */
     attributes?: any;
+    /**
+     * - List of L1 categories.
+     */
+    l1_categories?: number[];
+    /**
+     * - List of L2 categories.
+     */
+    l2_categories?: number[];
+    /**
+     * - List of L3 categories.
+     */
+    l3_categories?: number[];
+    /**
+     * - List of departments.
+     */
+    departments?: number[];
 };
 /** @returns {BasePrice} */
 declare function BasePrice(): BasePrice;

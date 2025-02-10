@@ -6,6 +6,7 @@ const {
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 class Logistic {
   constructor(_conf) {
@@ -60,24 +61,15 @@ class Logistic {
     { companyId, applicationId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!companyId) {
-      invalidInput.push({
-        message: `The 'companyId' field is required.`,
-        path: ["companyId"],
+    const errors = validateRequiredParams(arguments[0], [
+      "companyId",
+      "applicationId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!applicationId) {
-      invalidInput.push({
-        message: `The 'applicationId' field is required.`,
-        path: ["applicationId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -118,14 +110,6 @@ class Logistic {
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -165,14 +149,6 @@ class Logistic {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["onboard"] = onboard;
     query_params["page_no"] = pageNo;
@@ -252,18 +228,12 @@ class Logistic {
     { countryIsoCode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!countryIsoCode) {
-      invalidInput.push({
-        message: `The 'countryIsoCode' field is required.`,
-        path: ["countryIsoCode"],
+    const errors = validateRequiredParams(arguments[0], ["countryIsoCode"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -304,14 +274,6 @@ class Logistic {
     { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -365,24 +327,15 @@ class Logistic {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!applicationId) {
-      invalidInput.push({
-        message: `The 'applicationId' field is required.`,
-        path: ["applicationId"],
+    const errors = validateRequiredParams(arguments[0], [
+      "applicationId",
+      "companyId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!companyId) {
-      invalidInput.push({
-        message: `The 'companyId' field is required.`,
-        path: ["companyId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -443,18 +396,12 @@ class Logistic {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!localityType) {
-      invalidInput.push({
-        message: `The 'localityType' field is required.`,
-        path: ["localityType"],
+    const errors = validateRequiredParams(arguments[0], ["localityType"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -551,18 +498,12 @@ class Logistic {
     { companyId, pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!companyId) {
-      invalidInput.push({
-        message: `The 'companyId' field is required.`,
-        path: ["companyId"],
+    const errors = validateRequiredParams(arguments[0], ["companyId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -639,24 +580,15 @@ class Logistic {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!localityType) {
-      invalidInput.push({
-        message: `The 'localityType' field is required.`,
-        path: ["localityType"],
+    const errors = validateRequiredParams(arguments[0], [
+      "localityType",
+      "localityValue",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!localityValue) {
-      invalidInput.push({
-        message: `The 'localityValue' field is required.`,
-        path: ["localityValue"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -700,18 +632,12 @@ class Logistic {
     { pincode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!pincode) {
-      invalidInput.push({
-        message: `The 'pincode' field is required.`,
-        path: ["pincode"],
+    const errors = validateRequiredParams(arguments[0], ["pincode"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -767,24 +693,15 @@ class Logistic {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!companyId) {
-      invalidInput.push({
-        message: `The 'companyId' field is required.`,
-        path: ["companyId"],
+    const errors = validateRequiredParams(arguments[0], [
+      "companyId",
+      "applicationId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!applicationId) {
-      invalidInput.push({
-        message: `The 'applicationId' field is required.`,
-        path: ["applicationId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -838,24 +755,15 @@ class Logistic {
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!countryIsoCode) {
-      invalidInput.push({
-        message: `The 'countryIsoCode' field is required.`,
-        path: ["countryIsoCode"],
+    const errors = validateRequiredParams(arguments[0], [
+      "countryIsoCode",
+      "templateName",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!templateName) {
-      invalidInput.push({
-        message: `The 'templateName' field is required.`,
-        path: ["templateName"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 

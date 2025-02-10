@@ -6,6 +6,7 @@ const {
 const ApplicationAPIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { validateRequiredParams } = require("../../common/Validator");
 
 class Order {
   constructor(_conf) {
@@ -66,24 +67,15 @@ class Order {
     { orderId, shipmentId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!orderId) {
-      invalidInput.push({
-        message: `The 'orderId' field is required.`,
-        path: ["orderId"],
+    const errors = validateRequiredParams(arguments[0], [
+      "orderId",
+      "shipmentId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -124,18 +116,12 @@ class Order {
     { shipmentId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -176,18 +162,12 @@ class Order {
     { orderId, allowInactive, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!orderId) {
-      invalidInput.push({
-        message: `The 'orderId' field is required.`,
-        path: ["orderId"],
+    const errors = validateRequiredParams(arguments[0], ["orderId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -239,14 +219,6 @@ class Order {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
     const query_params = {};
     query_params["status"] = status;
     query_params["page_no"] = pageNo;
@@ -292,18 +264,12 @@ class Order {
     { orderId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!orderId) {
-      invalidInput.push({
-        message: `The 'orderId' field is required.`,
-        path: ["orderId"],
+    const errors = validateRequiredParams(arguments[0], ["orderId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -352,18 +318,12 @@ class Order {
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -409,24 +369,15 @@ class Order {
     { shipmentId, bagId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
+    const errors = validateRequiredParams(arguments[0], [
+      "shipmentId",
+      "bagId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!bagId) {
-      invalidInput.push({
-        message: `The 'bagId' field is required.`,
-        path: ["bagId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -467,18 +418,12 @@ class Order {
     { shipmentId, allowInactive, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -520,18 +465,12 @@ class Order {
     { shipmentId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -572,18 +511,12 @@ class Order {
     { shipmentId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -624,24 +557,15 @@ class Order {
     { orderId, shipmentId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!orderId) {
-      invalidInput.push({
-        message: `The 'orderId' field is required.`,
-        path: ["orderId"],
+    const errors = validateRequiredParams(arguments[0], [
+      "orderId",
+      "shipmentId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -682,18 +606,12 @@ class Order {
     { shipmentId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -734,18 +652,12 @@ class Order {
     { shipmentId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
+    const errors = validateRequiredParams(arguments[0], ["shipmentId"]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
@@ -786,24 +698,15 @@ class Order {
     { orderId, shipmentId, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    let invalidInput = [];
-
-    if (!orderId) {
-      invalidInput.push({
-        message: `The 'orderId' field is required.`,
-        path: ["orderId"],
+    const errors = validateRequiredParams(arguments[0], [
+      "orderId",
+      "shipmentId",
+    ]);
+    if (errors.length > 0) {
+      const error = new FDKClientValidationError({
+        message: "Missing required field",
+        details: errors,
       });
-    }
-    if (!shipmentId) {
-      invalidInput.push({
-        message: `The 'shipmentId' field is required.`,
-        path: ["shipmentId"],
-      });
-    }
-    if (invalidInput.length) {
-      const error = new Error();
-      error.message = "Missing required field";
-      error.details = invalidInput;
       return Promise.reject(new FDKClientValidationError(error));
     }
 
